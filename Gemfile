@@ -26,7 +26,7 @@ gem 'devise_token_auth'
 gem 'omniauth'
 gem 'omniauth-ldap'
 gem 'activerecord-postgresql-adapter'
-gem 'pg', '~> 0.18.4'
+gem 'pg'
 gem 'mysql2'
 
 group :metrics do
