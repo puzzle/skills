@@ -27,7 +27,7 @@ gem 'omniauth'
 gem 'omniauth-ldap'
 gem 'activerecord-postgresql-adapter'
 gem 'pg', '~> 0.18.4'
-
+gem 'mysql2'
 
 group :metrics do
   gem 'brakeman'

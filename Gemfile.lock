@@ -75,6 +75,7 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.9.1)
+    mysql2 (0.4.4)
     net-ldap (0.14.0)
     nio4r (1.2.1)
     nokogiri (1.6.8.1)
@@ -169,6 +170,7 @@ DEPENDENCIES
   devise
   devise_token_auth
   listen (~> 3.0.5)
+  mysql2
   net-ldap (~> 0.14.0)
   omniauth
   omniauth-ldap
