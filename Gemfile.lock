@@ -91,7 +91,7 @@ GEM
     orm_adapter (0.5.0)
     parser (2.3.1.4)
       ast (~> 2.2)
-    pg (0.19.0)
+    pg (0.18.4)
     powerpack (0.1.1)
     puma (3.6.0)
     pyu-ruby-sasl (0.0.3.3)
@@ -174,7 +174,7 @@ DEPENDENCIES
   net-ldap (~> 0.14.0)
   omniauth
   omniauth-ldap
-  pg
+  pg (~> 0.18.4)
   puma (~> 3.0)
   rack
   rails (~> 5.0.0, >= 5.0.0.1)
