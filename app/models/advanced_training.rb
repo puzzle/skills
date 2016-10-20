@@ -1,0 +1,2 @@
+class AdvancedTraining < ApplicationRecord
+end

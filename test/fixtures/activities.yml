@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyText
+  updated_at: 2016-10-20 13:18:39
+  updated_by: MyString
+  created_at: 2016-10-20 13:18:39
+  role: MyText
+  year_from: 
+  year_to: 
+  person_id: 
+
+two:
+  description: MyText
+  updated_at: 2016-10-20 13:18:39
+  updated_by: MyString
+  created_at: 2016-10-20 13:18:39
+  role: MyText
+  year_from: 
+  year_to: 
+  person_id: 
