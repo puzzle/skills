@@ -10,7 +10,7 @@ Rails.application.load_tasks
 Rake::TestTask.new(:test) do |t|
   t.libs << ['lib', 'test']
   t.test_files = Dir['test/**/*_test.rb'].reject do |path|
-    path.include?['features']
+    path.include?('features')
   end
   t.warning = false
 end
