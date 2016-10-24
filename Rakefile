@@ -8,7 +8,7 @@ require 'rake/testtask'
 Rails.application.load_tasks
 
 Rake::TestTask.new(:test) do |t|
-  t.libs << ['lib', 'test']
+  t.libs << %w(lib test)
   t.test_files = Dir['test/**/*_test.rb'].reject do |path|
     path.include?('features')
   end

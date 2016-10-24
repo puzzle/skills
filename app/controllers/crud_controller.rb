@@ -1,6 +1,5 @@
 # A generic controller to display, create, update and destroy entries of a certain model class.
 class CrudController < ListController
-
   class_attribute :permitted_attrs, :nested_models
 
   # GET /users/1
@@ -58,7 +57,6 @@ class CrudController < ListController
     instance_variable_set(:"@#{ivar_name}", model_scope.new(model_params))
   end
 
-
   def render_entry(options = {})
     render({ json: entry,
              serializer: model_serializer,
@@ -72,10 +70,9 @@ class CrudController < ListController
   end
 
   def entry_url
-    send("#{self.class.name.underscore.
-         gsub(/_controller$/, '').
-         gsub(/\//, '_').singularize}_url", entry
-        )
+    send("#{self.class.name.underscore
+         .gsub(/_controller$/, '')
+         .gsub(/\//, '_').singularize}_url", entry)
   end
 
   # Only allow a trusted parameter "white list" through.
@@ -87,5 +84,4 @@ class CrudController < ListController
   def ivar_name
     model_class.model_name.param_key
   end
-
 end
