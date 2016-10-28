@@ -18,7 +18,7 @@ gem 'puma', '~> 3.0'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
-
+gem 'seed-fu'
 gem 'rack'
 gem 'devise'
 gem 'net-ldap', '~> 0.14.0'
@@ -28,6 +28,7 @@ gem 'omniauth-ldap'
 gem 'activerecord-postgresql-adapter'
 gem 'mysql2'
 gem 'pg', '0.19.0.pre20160409114042'
+gem 'faker'
 
 group :metrics do
   gem 'brakeman'
@@ -41,6 +42,7 @@ end
 
 group :development do
   gem 'listen', '~> 3.0.5'
+  gem 'pry'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
