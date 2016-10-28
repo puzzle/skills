@@ -17,5 +17,4 @@ namespace :ci do
                  'test',
                  'test:features',
                  'brakeman']
-
 end

@@ -2,7 +2,6 @@
 # Define an array of searchable string columns in your subclassing
 # controllers using the class attribute +search_columns+.
 module Searchable
-
   def self.prepended(klass)
     klass.class_attribute :search_columns
     klass.search_columns = []
@@ -54,7 +53,6 @@ module Searchable
 
   # Class methods for Searchable.
   module ClassMethods
-
     # All search columns divided in table and field names.
     def search_tables_and_fields
       @search_tables_and_fields ||= search_columns.map do |f|
@@ -66,5 +64,4 @@ module Searchable
       end
     end
   end
-
 end

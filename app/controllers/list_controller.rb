@@ -1,6 +1,5 @@
 # A generic controller to display entries of a certain model class.
 class ListController < ApplicationController
-
   prepend Searchable
 
   delegate :model_class, :model_identifier, :model_serializer, :list_serializer,
@@ -36,7 +35,6 @@ class ListController < ApplicationController
   end
 
   class << self
-
     # The ActiveRecord class of the model.
     def model_class
       @model_class ||= controller_name.classify.constantize
@@ -55,6 +53,5 @@ class ListController < ApplicationController
     def model_serializer
       @model_serializer ||= "#{model_class.name}Serializer".constantize
     end
-
   end
 end

@@ -5,7 +5,7 @@
 #  or later. See the COPYING file at the top-level directory or at
 #  https://github.com/hitobito/hitobito.
 
-desc "Run brakeman"
+desc 'Run brakeman'
 task :brakeman do
   begin
     Timeout.timeout(300) do
