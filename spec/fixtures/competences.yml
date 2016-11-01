@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  description: MyText
+scrum:
+  description: Scrum Master
   updated_at: 2016-10-20 13:24:44
-  updated_by: MyString
-  person_id: 
+  updated_by: Bob
+  person: bob
 
-two:
-  description: MyText
+rails:
+  description: Ruby on Rails
   updated_at: 2016-10-20 13:24:44
-  updated_by: MyString
-  person_id: 
+  updated_by: Alice
+  person: alice 

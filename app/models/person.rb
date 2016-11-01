@@ -22,15 +22,14 @@
 #
 
 class Person < ApplicationRecord
-  has_many :projects
-  has_many :activities
-  has_many :advanced_trainings
-  has_many :educations
-  has_many :competences
+  has_many :projects, dependent: :delete_all
+  has_many :activities, dependent: :delete_all
+  has_many :advanced_trainings, dependent: :delete_all
+  has_many :educations, dependent: :delete_all
+  has_many :competences, dependent: :delete_all
 
 
-  def origin_person?
-    origin_person_id.blank?
-  end
+  belongs_to :status
 
+  scope :list, -> { order(:name) }
 end

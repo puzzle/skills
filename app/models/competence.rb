@@ -11,4 +11,6 @@
 
 class Competence < ApplicationRecord
   belongs_to :person
+
+  scope :list, -> { order(:id) }
 end

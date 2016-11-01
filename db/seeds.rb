@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+ENV['FIXTURES_PATH'] = 'spec/fixtures'
+Rake.application['db:fixtures:load'].invoke
+
 fixtures = Rails.root.join('db', 'seeds')
 SeedFu.seed ENV['NO_ENV'] ? [fixtures] : [fixtures, File.join(fixtures, Rails.env)]
-

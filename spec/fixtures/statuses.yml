@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  status: MyString
+employee:
+  status: Employee
 
-two:
-  status: MyString
+copartner:
+  status: Copartner 

@@ -1,13 +1,11 @@
-#encoding: utf-8
+# encoding: utf-8
 
 class StatusSeeder
-
   def seed_statuses(status_names)
     status_names.each do |s|
       seed_status(s)
     end
   end
-
 
   private
 
@@ -16,5 +14,4 @@ class StatusSeeder
       s.status = status_name
     end
   end
-
 end

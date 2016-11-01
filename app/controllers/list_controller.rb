@@ -1,6 +1,5 @@
 # A generic controller to display entries of a certain model class.
 class ListController < ApplicationController
-
   delegate :model_class, :model_identifier, :model_serializer, :list_serializer,
            to: 'self.class'
 
@@ -9,7 +8,6 @@ class ListController < ApplicationController
 
   # GET /users
   def index(options = {})
-    authorize model_class
     render({ json: fetch_entries,
              each_serializer: list_serializer,
              root: model_root_key.pluralize }
@@ -20,7 +18,7 @@ class ListController < ApplicationController
   protected
 
   def fetch_entries
-    policy_scope(model_scope.list)
+    model_scope.list
   end
 
   private

@@ -7,4 +7,7 @@
 #
 
 class Status < ApplicationRecord
+  has_many :people
+
+  scope :list, -> { order(:status) }
 end

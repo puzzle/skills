@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+bsc:
+  location: Uni Bern
+  title: BSc in Cleaning
+  updated_at: 2016-10-20 13:23:08
+  updated_by: Bob
+  year_from: 2000
+  year_to: 2010
+  person: bob
+
+msc:
+  location: University of London
+  title: MSc in writing
+  updated_at: 2016-10-20 13:23:08
+  updated_by: Alice
+  year_from: 2010
+  year_to: 1015
+  person: alice

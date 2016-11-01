@@ -16,4 +16,6 @@
 
 class Project < ApplicationRecord
   belongs_to :person
+
+  scope :list, -> { order(:year_to) }
 end

@@ -1,0 +1,32 @@
+AllCops:
+  DisplayCopNames: true
+  DisabledByDefault: true
+  Exclude:
+    - db/**/*
+    - config/**/*
+    - bin/**/*
+    - spec/**/*
+    - vendor/**/*
+    - tmp/**/*
+    - frontend/**/*
+
+Metrics/CyclomaticComplexity:
+  Max: 8
+
+Metrics/ClassLength:
+  Max: 200
+
+Metrics/LineLength:
+  Max: 100
+
+Metrics/MethodLength:
+  Max: 15
+
+Metrics/ModuleLength:
+  Max: 200
+
+Metrics/ParameterLists:
+  Max: 6
+
+Metrics/AbcSize:
+  Max: 12

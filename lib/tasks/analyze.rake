@@ -15,3 +15,12 @@ task :brakeman do
     puts "\nBrakeman took too long. Aborting."
   end
 end
+
+desc 'Run rubocop-must.yml and fail if there are issues'
+task :rubocop do
+  begin
+    sh "rubocop --config rubocop-must.yml"
+  rescue
+    abort('RuboCop failed!')
+  end
+end

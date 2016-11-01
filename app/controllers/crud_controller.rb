@@ -4,14 +4,12 @@ class CrudController < ListController
 
   # GET /users/1
   def show(options = {})
-    authorize entry
     render_entry(options[:render_options])
   end
 
   # POST /users
   def create(options = {})
     build_entry
-    authorize entry
     if entry.save
       render_entry({ status: :created,
                      location: entry_url }
@@ -23,7 +21,6 @@ class CrudController < ListController
 
   # PATCH/PUT /users/1
   def update(options = {})
-    authorize entry
     entry.attributes = model_params
     if entry.save
       render_entry(options[:render_options])
@@ -34,7 +31,6 @@ class CrudController < ListController
 
   # DELETE /users/1
   def destroy(_options = {})
-    authorize entry
     if entry.destroy
       head 204
     else
@@ -47,6 +43,10 @@ class CrudController < ListController
   def entry
     instance_variable_get(:"@#{ivar_name}") ||
       instance_variable_set(:"@#{ivar_name}", fetch_entry)
+  end
+
+  def person_id
+    instance_variable_get(:@_params)['person_id']
   end
 
   def fetch_entry
@@ -72,7 +72,7 @@ class CrudController < ListController
   def entry_url
     send("#{self.class.name.underscore
          .gsub(/_controller$/, '')
-         .gsub(/\//, '_').singularize}_url", entry)
+         .gsub(/\//, '_').singularize}_url", entry, person_id)
   end
 
   # Only allow a trusted parameter "white list" through.

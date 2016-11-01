@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+duckduckgo:
+  updated_at: 2016-10-20 13:21:17
+  updated_by: Bob
+  created_at: 2016-10-20 13:21:17
+  description: very interesting project
+  title: duckduckgo
+  role: Senior Software Engineer
+  technology: Ruby on Rails
+  year_to: 2013
+  person: bob 
+
+google:
+  updated_at: 2016-10-20 13:21:17
+  updated_by: Alice
+  created_at: 2016-10-20 13:21:17
+  description: I learned so much
+  title: google
+  role: Developer
+  technology: java
+  year_to: 2015
+  person: alice

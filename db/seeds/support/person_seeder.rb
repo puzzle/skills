@@ -1,8 +1,6 @@
-#encoding: utf-8
-
+# encoding: utf-8
 
 class PersonSeeder
-
   def seed_people(names)
     names.each do |test|
       person = seed_person(test).first
@@ -50,10 +48,10 @@ class PersonSeeder
     Person.seed_once(:name) do |p|
       p.birthdate = Faker::Date.between(20.year.ago, 65.year.ago)
       p.profile_picture = Faker::Avatar.image
-      p.language = "Deutsch, Englisch, Französisch"
+      p.language = 'Deutsch, Englisch, Französisch'
       p.location = Faker::Pokemon.location
-      p.martial_status = "ledig"
-      p.updated_by = "seed_user"
+      p.martial_status = 'ledig'
+      p.updated_by = 'seed_user'
       p.name = name.to_s
       p.origin = Faker::StarWars.planet
       p.role = Faker::Company.profession
@@ -96,7 +94,7 @@ class PersonSeeder
   def seed_education(person_id)
     Education.seed do |e|
       e.location = Faker::Educator.university
-      e.type = Faker::Educator.course
+      e.title = Faker::Educator.course
       e.year_from = Faker::Number.between(1956, 1979)
       e.year_to = Faker::Number.between(1980, 2016)
       e.person_id = person_id

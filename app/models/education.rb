@@ -14,4 +14,6 @@
 
 class Education < ApplicationRecord
   belongs_to :person
+
+  scope :list, -> { order(:year_from) }
 end

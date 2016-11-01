@@ -56,7 +56,7 @@ class InitialSchema < ActiveRecord::Migration[5.0]
 
       create_table :educations do |t|
         t.text :location
-        t.text :type
+        t.text :title
         t.timestamp :updated_at
         t.string :updated_by
         t.integer :year_from
