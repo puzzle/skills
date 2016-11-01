@@ -12,50 +12,46 @@ class InitialSchema < ActiveRecord::Migration[5.0]
         t.string :language
         t.string :location
         t.string :martial_status
-        t.timestamp :updated_at
         t.string :updated_by
-        t.datetime :created_at
         t.string :name
         t.string :origin
         t.string :role
         t.string :title
-        t.integer :status_id
+        t.references :status
         t.integer :origin_person_id
         t.string :variation_name
         t.timestamp :variation_date
+        t.timestamps
       end
 
       create_table :advanced_trainings do |t|
         t.text :description
-        t.timestamp :updated_at
         t.string :updated_by
-        t.datetime :created_at
         t.integer :year_from
         t.integer :year_to
-        t.integer :person_id
+        t.references :person
+        t.timestamps
       end
 
       create_table :activities do |t|
         t.text :description
-        t.timestamp :updated_at
         t.string :updated_by
-        t.datetime :created_at
         t.text :role
         t.integer :year_from
         t.integer :year_to
-        t.integer :person_id
+        t.timestamps
+        t.references :person
       end
 
       create_table :projects do |t|
-        t.timestamp :updated_at
         t.string :updated_by
-        t.datetime :created_at
         t.text :description
         t.text :title
         t.text :role
         t.text :technology
         t.integer :year_to
-        t.integer :person_id
+        t.timestamps
+        t.references :person
       end
 
       create_table :educations do |t|
@@ -65,14 +61,14 @@ class InitialSchema < ActiveRecord::Migration[5.0]
         t.string :updated_by
         t.integer :year_from
         t.integer :year_to
-        t.integer :person_id
+        t.references :person
       end
 
       create_table :competences do |t|
         t.text :description
         t.timestamp :updated_at
         t.string :updated_by
-        t.integer :person_id
+        t.references :person
       end
     end
   end

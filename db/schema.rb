@@ -17,23 +17,25 @@ ActiveRecord::Schema.define(version: 20161031092413) do
 
   create_table "activities", force: :cascade do |t|
     t.text     "description"
-    t.datetime "updated_at"
     t.string   "updated_by"
-    t.datetime "created_at"
     t.text     "role"
     t.integer  "year_from"
     t.integer  "year_to"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "person_id"
+    t.index ["person_id"], name: "index_activities_on_person_id", using: :btree
   end
 
   create_table "advanced_trainings", force: :cascade do |t|
     t.text     "description"
-    t.datetime "updated_at"
     t.string   "updated_by"
-    t.datetime "created_at"
     t.integer  "year_from"
     t.integer  "year_to"
     t.integer  "person_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["person_id"], name: "index_advanced_trainings_on_person_id", using: :btree
   end
 
   create_table "competences", force: :cascade do |t|
@@ -41,6 +43,7 @@ ActiveRecord::Schema.define(version: 20161031092413) do
     t.datetime "updated_at"
     t.string   "updated_by"
     t.integer  "person_id"
+    t.index ["person_id"], name: "index_competences_on_person_id", using: :btree
   end
 
   create_table "educations", force: :cascade do |t|
@@ -51,6 +54,7 @@ ActiveRecord::Schema.define(version: 20161031092413) do
     t.integer  "year_from"
     t.integer  "year_to"
     t.integer  "person_id"
+    t.index ["person_id"], name: "index_educations_on_person_id", using: :btree
   end
 
   create_table "people", force: :cascade do |t|
@@ -59,9 +63,7 @@ ActiveRecord::Schema.define(version: 20161031092413) do
     t.string   "language"
     t.string   "location"
     t.string   "martial_status"
-    t.datetime "updated_at"
     t.string   "updated_by"
-    t.datetime "created_at"
     t.string   "name"
     t.string   "origin"
     t.string   "role"
@@ -70,18 +72,22 @@ ActiveRecord::Schema.define(version: 20161031092413) do
     t.integer  "origin_person_id"
     t.string   "variation_name"
     t.datetime "variation_date"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["status_id"], name: "index_people_on_status_id", using: :btree
   end
 
   create_table "projects", force: :cascade do |t|
-    t.datetime "updated_at"
     t.string   "updated_by"
-    t.datetime "created_at"
     t.text     "description"
     t.text     "title"
     t.text     "role"
     t.text     "technology"
     t.integer  "year_to"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "person_id"
+    t.index ["person_id"], name: "index_projects_on_person_id", using: :btree
   end
 
   create_table "statuses", force: :cascade do |t|
