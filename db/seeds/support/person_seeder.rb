@@ -4,28 +4,25 @@
 class PersonSeeder
 
   def seed_people(names)
-    names.each do |name|
-      seed_person = seed_person(name)
-      person = Person.all.find(seed_person.first.id)
-      person.origin_person_id = seed_person.first.id
-      person.save!
-      3.times do
+    names.each do |test|
+      person = seed_person(test).first
+      rand(0...3).times do
         seed_activity(person.id)
+      end
+      rand(0...3).times do
         seed_advanced_training(person.id)
+      end
+      rand(0...3).times do
         seed_project(person.id)
+      end
+      rand(0...3).times do
         seed_education(person.id)
+      end
+      rand(0...3).times do
         seed_competence(person.id)
       end
     end
   end
-
-  def seed_variations(persons)
-    persons.each do |person|
-      seed_variation(person)
-    end
-  end
-
-  private
 
   def seed_variation(person)
     Person.seed do |p|
@@ -40,12 +37,14 @@ class PersonSeeder
       p.role = person.role
       p.title = person.title
       p.status_id = person.status_id
-      p.origin_person_id = person.origin_person_id
+      p.origin_person_id = person.id
       p.variation_name = Faker::Book.genre
       p.variation_date = Faker::Date.between(1.year.ago, 100.days.ago)
-      p.created_at = Time.now
     end
   end
+
+
+  private
 
   def seed_person(name)
     Person.seed_once(:name) do |p|
@@ -60,17 +59,12 @@ class PersonSeeder
       p.role = Faker::Company.profession
       p.title = Faker::Name.title
       p.status_id = rand(1..4)
-      p.origin_person_id = nil
-      p.variation_name = Faker::Space.company
-      p.variation_date = Faker::Date.between(1.year.ago, 100.days.ago)
-      p.created_at = Time.now
     end
   end
 
   def seed_activity(person_id)
     Activity.seed do |a|
       a.description = Faker::Hacker.say_something_smart
-      a.created_at = Time.now
       a.role = Faker::Company.profession
       a.year_from = Faker::Number.between(1956, 1979)
       a.year_to = Faker::Number.between(1980, 2016)
@@ -90,7 +84,6 @@ class PersonSeeder
 
   def seed_project(person_id)
     Project.seed do |p|
-      p.created_at = Time.now
       p.description = Faker::Hacker.say_something_smart
       p.title = Faker::Name.title
       p.role = Faker::Company.profession
@@ -116,6 +109,5 @@ class PersonSeeder
       c.person_id = person_id
     end
   end
-
-
 end
+
