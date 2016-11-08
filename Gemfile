@@ -28,6 +28,7 @@ gem 'activerecord-postgresql-adapter'
 gem 'mysql2'
 gem 'pg', '0.19.0.pre20160409114042'
 gem 'faker'
+gem 'annotate'
 
 group :metrics do
   gem 'brakeman'
