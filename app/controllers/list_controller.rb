@@ -1,6 +1,5 @@
 # A generic controller to display entries of a certain model class.
 class ListController < ApplicationController
-  prepend Searchable
 
   delegate :model_class, :model_identifier, :model_serializer, :list_serializer,
            to: 'self.class'
