@@ -22,11 +22,11 @@
 #
 
 class Person < ApplicationRecord
-  has_many :projects, dependent: :delete_all
-  has_many :activities, dependent: :delete_all
-  has_many :advanced_trainings, dependent: :delete_all
-  has_many :educations, dependent: :delete_all
-  has_many :competences, dependent: :delete_all
+  has_many :projects, dependent: :destroy
+  has_many :activities, dependent: :destroy
+  has_many :advanced_trainings, dependent: :destroy
+  has_many :educations, dependent: :destroy
+  has_many :competences, dependent: :destroy
 
 
   belongs_to :status
