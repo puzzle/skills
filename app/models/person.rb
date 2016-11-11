@@ -27,9 +27,14 @@ class Person < ApplicationRecord
   has_many :advanced_trainings, dependent: :destroy
   has_many :educations, dependent: :destroy
   has_many :competences, dependent: :destroy
+  has_many :variations,
+    ->(person) { where(origin_person_id: person.id) },
+    class_name: 'Person',
+    foreign_key: :origin_person_id
 
-
+  belongs_to :origin_person, class_name: 'Person', foreign_key: :origin_person_id
   belongs_to :status
 
   scope :list, -> { order(:name) }
+
 end
