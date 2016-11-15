@@ -8,6 +8,7 @@
 #  title       :text
 #  role        :text
 #  technology  :text
+#  year_from   :integer
 #  year_to     :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null

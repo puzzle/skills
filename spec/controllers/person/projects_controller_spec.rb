@@ -9,7 +9,7 @@ describe Person::ProjectsController do
       projects = json['projects']
 
       expect(projects.count).to eq(1)
-      expect(projects.first.count).to eq(7)
+      expect(projects.first.count).to eq(8)
       json_object_includes_keys(projects.first, keys)
     end
   end
