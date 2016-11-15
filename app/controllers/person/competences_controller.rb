@@ -1,4 +1,4 @@
-class CompetencesController::Person < CrudController
+class Person::CompetencesController < CrudController
   self.permitted_attrs = [:description, :updated_by]
 
   def fetch_entries

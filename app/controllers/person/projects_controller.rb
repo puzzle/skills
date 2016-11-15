@@ -1,4 +1,4 @@
-class ProjectsController::Person < CrudController
+class Person::ProjectsController < CrudController
   self.permitted_attrs = [:updated_by, :description, :title, :role, :technology, :year_to]
 
   def fetch_entries

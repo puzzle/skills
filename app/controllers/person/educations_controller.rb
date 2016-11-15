@@ -1,4 +1,4 @@
-class EducationsController::Person < CrudController
+class Person::EducationsController < CrudController
   self.permitted_attrs = [:location, :title, :updated_by, :year_from, :year_to]
 
   def fetch_entries
