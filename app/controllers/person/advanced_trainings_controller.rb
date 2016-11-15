@@ -1,4 +1,4 @@
-class Person
+module Person
   class AdvancedTrainingsController < CrudController
     self.permitted_attrs = [:description, :updated_by, :year_from, :year_to]
 

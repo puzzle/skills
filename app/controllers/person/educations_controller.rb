@@ -1,4 +1,4 @@
-class Person
+module Person
   class EducationsController < CrudController
     self.permitted_attrs = [:location, :title, :updated_by, :year_from, :year_to]
 

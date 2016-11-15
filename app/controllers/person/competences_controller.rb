@@ -1,4 +1,4 @@
-class Person
+module Person
   class CompetencesController < CrudController
     self.permitted_attrs = [:description, :updated_by]
 
