@@ -8,6 +8,7 @@ duckduckgo:
   title: duckduckgo
   role: Senior Software Engineer
   technology: Ruby on Rails
+  year_from: 2010
   year_to: 2013
   person: bob 
 
@@ -19,5 +20,6 @@ google:
   title: google
   role: Developer
   technology: java
+  year_from: 2012
   year_to: 2015
   person: alice

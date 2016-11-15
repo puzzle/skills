@@ -4,19 +4,19 @@ class PersonSeeder
   def seed_people(names)
     names.each do |test|
       person = seed_person(test).first
-      rand(0...3).times do
+      rand(2...5).times do
         seed_activity(person.id)
       end
-      rand(0...3).times do
+      rand(2...5).times do
         seed_advanced_training(person.id)
       end
-      rand(0...3).times do
+      rand(2...5).times do
         seed_project(person.id)
       end
-      rand(0...3).times do
+      rand(2...5).times do
         seed_education(person.id)
       end
-      rand(0...3).times do
+      rand(2...5).times do
         seed_competence(person.id)
       end
     end
@@ -86,7 +86,8 @@ class PersonSeeder
       p.title = Faker::Name.title
       p.role = Faker::Company.profession
       p.technology = Faker::Superhero.power
-      p.year_to = Faker::Number.between(1970, 2015)
+      p.year_from = Faker::Number.between(1956, 1979)
+      p.year_to = Faker::Number.between(1980, 2016)
       p.person_id = person_id
     end
   end
