@@ -175,13 +175,13 @@
                     {
                         "type": "GitHub",
                         "github": {
-                            "secret": "mp1OxMBqdecycOAj8-SP"
+                            "secret": "EDITME"
                         }
                     },
                     {
                         "type": "Generic",
                         "generic": {
-                            "secret": "0Jzo020dgea76z0IPf83"
+                            "secret": "EDITME"
                         }
                     },
                     {
