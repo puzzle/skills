@@ -22,6 +22,8 @@
 #
 
 class Person < ApplicationRecord
+  include Export
+
   has_many :projects, dependent: :destroy
   has_many :activities, dependent: :destroy
   has_many :advanced_trainings, dependent: :destroy

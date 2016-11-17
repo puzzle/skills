@@ -1,6 +1,35 @@
 require 'rails_helper'
 
 describe PeopleController do
+  describe 'Export person as odt' do
+    it 'returns bob' do
+      bob = people(:bob)
+
+      expect_any_instance_of(Person)
+        .to receive(:export)
+        .exactly(1).times
+        .and_call_original
+
+      expect_any_instance_of(ODFReport::Report)
+        .to receive(:add_field)
+        .exactly(14).times
+        .and_call_original
+
+      expect_any_instance_of(ODFReport::Report)
+        .to receive(:add_table)
+        .exactly(4).times
+        .and_call_original
+
+      process :show, method: :get, format: 'odt', params: { id: bob.id }
+    end
+
+    it 'check filename' do
+      process :show, method: :get, format: 'odt', params: { id: people(:bob).id }
+      expect(@response['Content-Disposition']).to match(
+        /filename="bob_anderson_cv.odt"/)
+    end
+  end
+
   describe 'GET index' do
     it 'returns all people without nested models' do
       keys =  %w(id birthdate profile_picture language location martial_status
