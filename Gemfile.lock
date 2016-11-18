@@ -59,6 +59,8 @@ GEM
     byebug (9.0.6)
     coderay (1.1.1)
     concurrent-ruby (1.0.2)
+    deep_cloneable (2.2.2)
+      activerecord (>= 3.1.0, < 5.2.0)
     devise (4.2.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -226,6 +228,7 @@ DEPENDENCIES
   brakeman
   bullet
   byebug
+  deep_cloneable (~> 2.2.2)
   devise
   devise_token_auth
   faker

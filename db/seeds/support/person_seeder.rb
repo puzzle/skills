@@ -37,7 +37,6 @@ class PersonSeeder
       p.status_id = person.status_id
       p.origin_person_id = person.id
       p.variation_name = Faker::Book.genre
-      p.variation_date = Faker::Date.between(1.year.ago, 100.days.ago)
     end
   end
 
@@ -57,6 +56,7 @@ class PersonSeeder
       p.role = Faker::Company.profession
       p.title = Faker::Name.title
       p.status_id = rand(1..4)
+      p.type = 'Person'
     end
   end
 

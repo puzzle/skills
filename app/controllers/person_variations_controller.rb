@@ -1,0 +1,2 @@
+class PersonVariationsController < PeopleController
+end

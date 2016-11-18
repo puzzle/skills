@@ -27,14 +27,25 @@ class Person < ApplicationRecord
   has_many :advanced_trainings, dependent: :destroy
   has_many :educations, dependent: :destroy
   has_many :competences, dependent: :destroy
-  has_many :variations,
-    ->(person) { where(origin_person_id: person.id) },
-    class_name: 'Person',
-    foreign_key: :origin_person_id
-
-  belongs_to :origin_person, class_name: 'Person', foreign_key: :origin_person_id
+  has_many :person_variations, foreign_key: :origin_person_id
   belongs_to :status
 
   scope :list, -> { order(:name) }
+
+
+  def create_variation(variation_name)
+    origin_clone = self.deep_clone include: [:activities,
+                                       :projects, 
+                                       :advanced_trainings,
+                                       :educations, 
+                                       :competences]
+
+    origin_clone.type = 'PersonVariation'
+    origin_clone.origin_person_id = self.id
+    origin_clone.variation_name = variation_name
+    origin_clone.save!
+    variation = origin_clone.becomes(PersonVariation)
+    variation.save!
+  end
 
 end

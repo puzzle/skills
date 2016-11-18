@@ -1,4 +1,4 @@
-class PersonSerializer < ApplicationSerializer
+class PersonVariationSerializer < ApplicationSerializer
   attributes :id, :birthdate, :language, :profile_picture, :location, :martial_status, :updated_by, 
              :name, :origin, :role, :title, :variation_name
 
