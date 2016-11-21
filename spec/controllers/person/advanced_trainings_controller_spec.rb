@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe Person::AdvancedTrainingsController do
+  before { auth(:ken) }
+
   describe 'GET index' do
     it 'returns all advanced_trainings' do
       keys = %w(id description updated_by year_from year_to)

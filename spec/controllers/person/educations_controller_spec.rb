@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe Person::EducationsController, type: :controller do
+  before { auth(:ken) }
+
   describe 'GET index' do
     it 'returns all educations' do
       keys = %w(id location title year_from year_to updated_by)

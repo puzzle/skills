@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe StatusesController do
+  before { auth(:ken) }
+
   describe 'GET index' do
     it 'returns all statuses' do
       process :index, method: :get

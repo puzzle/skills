@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe Person::ProjectsController do
+  before { auth(:ken) }
+
   describe 'GET index' do
     it 'returns all projects' do
       keys = %w(id technology title description role updated_by year_to)

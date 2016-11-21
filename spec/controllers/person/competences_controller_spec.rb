@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe Person::CompetencesController do
+  before { auth(:ken) }
+
   describe 'GET index' do
     it 'returns all competences' do
       keys = %w(id description updated_by)
