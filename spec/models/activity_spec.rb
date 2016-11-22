@@ -4,12 +4,29 @@ describe Activity do
   fixtures :activities
 
   context 'validations' do
+    it 'presence true' do
+      activity = Activity.new
+      activity.valid?
+
+      expect(activity.errors[:year_from].first).to eq("can't be blank")
+      expect(activity.errors[:year_to].first).to eq("can't be blank")
+      expect(activity.errors[:person_id].first).to eq("can't be blank")
+      expect(activity.errors[:role].first).to eq("can't be blank")
+    end
+
+    it 'description max length should be 1000' do
+      activity = activities(:ascom)
+      activity.description = SecureRandom.hex(1000)
+      activity.valid?
+      expect(activity.errors[:description].first).to eq('is too long (maximum is 1000 characters)')
+    end
+
     it 'does not create Activity if from is bigger than to' do
-      # TODO
-      # activity = activities(:one)
-      # activity.year_to = 2016
-      # activity.save
-      # expect(activity.errors[:year_to].first).to eq('must be higher than year from')
+      activity = activities(:ascom)
+      activity.year_to = 1997
+      activity.valid?
+
+      expect(activity.errors[:year_from].first).to eq('must be higher than year from')
     end
   end
 end

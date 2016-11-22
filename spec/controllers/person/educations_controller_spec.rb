@@ -32,6 +32,7 @@ describe Person::EducationsController, type: :controller do
     it 'creates new education' do
       education = { title: 'test title',
                     updated_by: 'Bob',
+                    location: 'Bern',
                     year_from: 2000,
                     year_to: 2015 }
 
@@ -39,6 +40,7 @@ describe Person::EducationsController, type: :controller do
 
       new_education = Education.find_by(title: 'test title')
       expect(new_education).not_to eq(nil)
+      expect(new_education.location).to eq('Bern')
       expect(new_education.year_from).to eq(2000)
       expect(new_education.year_to).to eq(2015)
     end

@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  location   :text
-#  type       :text
+#  title       :text
 #  updated_at :datetime
 #  updated_by :string
 #  year_from  :integer
@@ -14,6 +14,9 @@
 
 class Education < ApplicationRecord
   belongs_to :person
+  validates :year_from, :year_to, :person_id, :title, :location, presence: true
+  validates_length_of :updated_by, :location, :title, maximum: 30
+  validate :start_must_be_before_end_time
 
   scope :list, -> { order(:year_from) }
 end

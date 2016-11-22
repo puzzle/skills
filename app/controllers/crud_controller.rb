@@ -46,7 +46,8 @@ class CrudController < ListController
   end
 
   def person_id
-    instance_variable_get(:@_params)['person_id']
+    params = instance_variable_get(:@_params)
+    params.nil? ? nil : params['person_id']
   end
 
   def fetch_entry
@@ -54,7 +55,12 @@ class CrudController < ListController
   end
 
   def build_entry
-    instance_variable_set(:"@#{ivar_name}", model_scope.new(model_params))
+    attrs = model_params.to_h
+    if model_scope != Person && attrs.present?
+      attrs = attrs.merge!({ person_id: person_id })
+    end
+
+    instance_variable_set(:"@#{ivar_name}", model_scope.new(attrs))
   end
 
   def render_entry(options = {})
