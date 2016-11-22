@@ -13,7 +13,6 @@ class Competence < ApplicationRecord
   belongs_to :person
   validates :person_id, presence: true
   validates_length_of :description, maximum: 1000
-  validates_length_of :updated_by, maximum: 30
 
   scope :list, -> { order(:id) }
 end

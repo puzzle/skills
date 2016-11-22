@@ -4,7 +4,7 @@ describe Person do
   fixtures :people
 
   context 'fomatting' do
-    it 'just one year if year from and to are the same' do
+    it 'returns just one year if year_from and year_to are the same' do
       bob = people(:bob)
       activity = bob.activities.first
       activity.update_attributes(year_to: 2000)
@@ -14,7 +14,7 @@ describe Person do
       expect(formatted_year).to eq(2000)
     end
 
-    it 'returns year from and to are not the same' do
+    it 'returns formatted year_from and year_to if they are not the same' do
       bob = people(:bob)
       activity = bob.activities.first
 
@@ -39,7 +39,7 @@ describe Person do
     end
 
     context 'validations' do
-      it 'checks whether presence is true' do
+      it 'checks whether required attribute values are present' do
         person = Person.new
         person.valid?
 
@@ -53,11 +53,10 @@ describe Person do
         expect(person.errors[:status_id].first).to eq("can't be blank")
       end
 
-      it 'max length should be 30' do
+      it 'should not be more than 30 characters' do
         person = people(:bob)
         person.location = SecureRandom.hex(30)
         person.martial_status = SecureRandom.hex(30)
-        person.updated_by = SecureRandom.hex(30)
         person.name = SecureRandom.hex(30)
         person.origin = SecureRandom.hex(30)
         person.role = SecureRandom.hex(30)
@@ -67,7 +66,6 @@ describe Person do
 
         expect(person.errors[:location].first).to eq('is too long (maximum is 30 characters)')
         expect(person.errors[:martial_status].first).to eq('is too long (maximum is 30 characters)')
-        expect(person.errors[:updated_by].first).to eq('is too long (maximum is 30 characters)')
         expect(person.errors[:name].first).to eq('is too long (maximum is 30 characters)')
         expect(person.errors[:origin].first).to eq('is too long (maximum is 30 characters)')
         expect(person.errors[:role].first).to eq('is too long (maximum is 30 characters)')
@@ -75,7 +73,7 @@ describe Person do
         expect(person.errors[:variation_name].first).to eq('is too long (maximum is 30 characters)')
       end
 
-      it 'max length should be 100' do
+      it 'should not be more than 100 characters' do
         person = people(:bob)
         person.language = SecureRandom.hex(100)
         person.valid?

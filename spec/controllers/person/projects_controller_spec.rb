@@ -52,19 +52,16 @@ describe Person::ProjectsController do
       expect(new_project.role).to eq('test role')
     end
 
-    it 'does not creates new project if ' do
+    it 'does not creates new project if invalid' do
       project = { description: 'Test description',
                   year_from: 2010,
                   year_to: 2015,
                   role: 'test role' }
 
       post :create, params: { person_id: bob.id, project: project }
-
       # entsprechende Errormeldung mis in JSON response vorhanden sein.
       # unvalid ist kein englisches wort -> invalid
       # titel dieses Tests ist zu generisch. 
-
-
     end
   end
 

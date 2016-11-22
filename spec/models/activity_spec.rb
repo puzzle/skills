@@ -14,14 +14,14 @@ describe Activity do
       expect(activity.errors[:role].first).to eq("can't be blank")
     end
 
-    it 'description max length should be 1000' do
+    it 'should not be more than 1000 characters in the description' do
       activity = activities(:ascom)
       activity.description = SecureRandom.hex(1000)
       activity.valid?
       expect(activity.errors[:description].first).to eq('is too long (maximum is 1000 characters)')
     end
 
-    it 'does not create Activity if from is bigger than to' do
+    it 'does not create Activity if year_from is later than year_to' do
       activity = activities(:ascom)
       activity.year_to = 1997
       activity.valid?

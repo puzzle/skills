@@ -1,4 +1,4 @@
-# == Schema Information
+# == Schema Information :updated_by,
 #
 # Table name: people
 #
@@ -31,7 +31,7 @@ class Person < ApplicationRecord
   has_many :variations, foreign_key: :origin_person_id, class_name: Person::Variation
   belongs_to :status
   validates :birthdate, :language, :location, :name, :origin, :role, :title, :status_id, presence: true
-  validates_length_of :location, :martial_status, :updated_by, :name, :origin, :role, :title, :variation_name, maximum: 30
+  validates_length_of :location, :martial_status, :name, :origin, :role, :title, :variation_name, maximum: 30
   validates_length_of :language, maximum: 100
 
   scope :list, -> { where(type: nil).order(:name) }
