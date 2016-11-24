@@ -8,7 +8,12 @@ class Person::VariationsController < CrudController
   end
 
   def create
-    Person::Variation.create_variation(params['variation_name'], params['person_id'])
+    variation = Person::Variation.create_variation(params['variation_name'], params['person_id'])
+    if variation.persisted?
+      render({json: variation, serializer: model_serializer, include: [self.nested_models]})
+    else
+      render json: variation.errors.details, status: :unprocessable_entity
+    end
   end
 
   class << self
