@@ -4,9 +4,13 @@ class PersonSeeder
   def seed_people(names)
     names.each do |name|
       person = seed_person(name).first
+      break unless person
       associations = [:competence, :activity, :advanced_training, :project, :education]
       associations.each do |a|
         seed_association(a, person.id)
+      end
+      rand(0..3).times do
+        seed_variation(person)
       end
     end
   end

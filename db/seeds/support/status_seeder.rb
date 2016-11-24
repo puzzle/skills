@@ -10,7 +10,7 @@ class StatusSeeder
   private
 
   def seed_status(status_name)
-    Status.seed do |s|
+    Status.seed_once(:status) do |s|
       s.status = status_name
     end
   end
