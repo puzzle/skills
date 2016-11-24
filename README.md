@@ -27,7 +27,10 @@ You will need the following things properly installed on your computer.
 * `createuser puzzlecv -s -l -P` (with password puzzlecv)
 
 go back to user / cv2 dir
-* `rake db:setup`
+* `rails db:setup`
+
+now run backend server
+* `rails s`
 
 ## Front-End
 

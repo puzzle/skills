@@ -2,8 +2,9 @@
 
 class PersonSeeder
   def seed_people(names)
-    names.each do |test|
-      person = seed_person(test).first
+    names.each do |n|
+      person = seed_person(n).first
+      break unless person
       rand(2...5).times do
         seed_activity(person.id)
       end
@@ -19,11 +20,14 @@ class PersonSeeder
       rand(2...5).times do
         seed_competence(person.id)
       end
+      rand(0..3).times do
+        seed_variation(person)
+      end
     end
   end
 
   def seed_variation(person)
-    Person.seed do |p|
+    Person.seed_once(:name) do |p|
       p.birthdate = person.birthdate
       p.profile_picture = person.profile_picture
       p.language = person.language

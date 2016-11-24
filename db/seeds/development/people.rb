@@ -26,12 +26,4 @@ names = ["Jorah Mormont",
          "Davos Seaworth",
          "Arya Stark"]
 
-
-
 seeder.seed_people(names)
-
-Person.all.each do |p|
-  rand(0..3).times do
-    seeder.seed_variation(p)
-  end
-end
