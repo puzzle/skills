@@ -4,7 +4,7 @@ describe Person::ProjectsController do
   describe 'GET index' do
     it 'returns all projects' do
       keys = %w(id technology title description role updated_by year_to)
-      process :index, method: :get, params: { person_id: bob.id }
+      process :index, method: :get, params: { type: 'Person', person_id: bob.id }
 
       projects = json['projects']
 
@@ -18,7 +18,7 @@ describe Person::ProjectsController do
     it 'returns project' do
       project = projects(:duckduckgo)
 
-      process :show, method: :get, params: { person_id: bob.id, id: project.id }
+      process :show, method: :get, params: { type: 'Person', person_id: bob.id, id: project.id }
 
       project_json = json['project']
 
@@ -38,7 +38,7 @@ describe Person::ProjectsController do
                   technology: 'test technology',
                   role: 'test role' }
 
-      post :create, params: { person_id: bob.id, project: project }
+      post :create, params: { type: 'Person', person_id: bob.id, project: project }
 
       new_project = Project.find_by(description: 'test description')
       expect(new_project).not_to eq(nil)
@@ -53,7 +53,8 @@ describe Person::ProjectsController do
     it 'updates existing person' do
       project = projects(:duckduckgo)
 
-      process :update, method: :put, params: { id: project,
+      process :update, method: :put, params: { type: 'Person',
+                                               id: project,
                                                person_id: bob.id,
                                                project: { description: 'changed' } }
 
@@ -65,7 +66,9 @@ describe Person::ProjectsController do
   describe 'DELETE destroy' do
     it 'destroys existing person' do
       project = projects(:duckduckgo)
-      process :destroy, method: :delete, params: { person_id: bob.id, id: project.id }
+      process :destroy, method: :delete, params: { type: 'Person',
+                                                   person_id: bob.id,
+                                                   id: project.id }
 
       expect(Project.exists?(project.id)).to eq(false)
     end

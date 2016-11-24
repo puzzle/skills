@@ -1,5 +1,4 @@
 # encoding: utf-8
-#
 
 require Rails.root.join('db', 'seeds', 'support', 'person_seeder')
 
@@ -21,11 +20,10 @@ names = ["Jorah Mormont",
          "Jaime Lannister",
          "Joffrey Baratheon",
          "Sandor Clegane",
-         "Bronn",
+         "Bob Stark",
          "Daenerys Targaryen",
          "Davos Seaworth",
          "Arya Stark"]
-
 
 
 seeder.seed_people(names)

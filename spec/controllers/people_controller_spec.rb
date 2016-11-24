@@ -4,14 +4,14 @@ describe PeopleController do
   describe 'GET index' do
     it 'returns all people without nested models' do
       keys =  %w(id birthdate profile_picture language location martial_status
-                 updated_by name origin role title status variation_name variation_date)
+                 updated_by name origin role title status)
 
       process :index, method: :get
 
       people = json['people']
 
       expect(people.count).to eq(2)
-      expect(people.first.count).to eq(14)
+      expect(people.first.count).to eq(12)
       json_object_includes_keys(people.first, keys)
     end
   end
@@ -19,16 +19,15 @@ describe PeopleController do
   describe 'GET show' do
     it 'returns person with nested modules' do
       keys =  %w(id birthdate profile_picture language location martial_status updated_by name origin
-                 role title status advanced_trainings activities projects educations competences
-                 variation_name variation_date)
+                 role title status advanced_trainings activities projects educations competences)
 
       bob = people(:bob)
 
-      process :show, method: :get, params: { id: bob.id }
+      process :show, method: :get, params: { id: bob.id}
 
       bob_json = json['person']
 
-      expect(bob_json.count).to eq(19)
+      expect(bob_json.count).to eq(17)
       json_object_includes_keys(bob_json, keys)
     end
   end
@@ -46,7 +45,7 @@ describe PeopleController do
                  title: 'Bsc in tester',
                  status_id: 2 }
 
-      process :create, method: :post, params: { person: person }
+      process :create, method: :post, params: { person: person}
 
       new_person = Person.find_by(name: 'test')
       expect(new_person).not_to eq(nil)
@@ -69,7 +68,7 @@ describe PeopleController do
   describe 'DELETE destroy' do
     it 'destroys existing person' do
       bob = people(:bob)
-      process :destroy, method: :delete, params: { id: bob.id }
+      process :destroy, method: :delete, params: {id: bob.id }
 
       expect(Person.exists?(bob.id)).to eq(false)
       expect(Activity.exists?(person_id: bob.id)).to eq(false)

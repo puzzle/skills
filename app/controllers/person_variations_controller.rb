@@ -1,2 +1,0 @@
-class PersonVariationsController < PeopleController
-end

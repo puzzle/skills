@@ -2,46 +2,88 @@
 
 class PersonSeeder
   def seed_people(names)
-    names.each do |test|
-      person = seed_person(test).first
-      rand(2...5).times do
-        seed_activity(person.id)
+    names.each do |name|
+      person = seed_person(name).first
+      associations = [:competence, :activity, :advanced_training, :project, :education]
+      associations.each do |a|
+        seed_association(a, person.id)
       end
-      rand(2...5).times do
-        seed_advanced_training(person.id)
-      end
-      rand(2...5).times do
-        seed_project(person.id)
-      end
-      rand(2...5).times do
-        seed_education(person.id)
-      end
-      rand(2...5).times do
-        seed_competence(person.id)
-      end
+    end
+  end
+
+  def seed_association(assoc_name, person_id)
+    rand(0..3).times do
+      send('seed_' + assoc_name.to_s, person_id )
     end
   end
 
   def seed_variation(person)
-    Person.seed do |p|
-      p.birthdate = person.birthdate
-      p.profile_picture = person.profile_picture
-      p.language = person.language
-      p.location = person.location
-      p.martial_status = person.martial_status
-      p.updated_by = person.updated_by
-      p.name = person.name
-      p.origin = person.origin
-      p.role = person.role
-      p.title = person.title
-      p.status_id = person.status_id
-      p.origin_person_id = person.id
-      p.variation_name = Faker::Book.genre
+    person_variation = Person::Variation.create_variation(Faker::Book.title, person.id)
+    associations = [:competence, :activity, :advanced_training, :project, :education]
+    change_variation(person_variation)
+    associations.each do |a|
+      change_associations(a, person_variation)
     end
   end
 
+  def change_associations(assoc_name, person_variation)
+    associations = person_variation.send(assoc_name.to_s.pluralize)
+    associations.each do |a|
+      rand(0..1).times do
+        send('change_' + assoc_name.to_s, a)
+      end
+    end
+  end
 
   private
+
+  def change_variation(person_variation)
+    person_variation.language = 'Deutsch, Englisch, Französisch'
+    person_variation.location = Faker::Pokemon.location
+    person_variation.role = Faker::Company.profession
+    person_variation.title = Faker::Name.title
+    person_variation.status_id = rand(1..4)
+  end
+
+  def change_activity(activity)
+    activity.description = Faker::Hacker.say_something_smart
+    activity.role = Faker::Company.profession
+    activity.year_from = Faker::Number.between(1956, 1979)
+    activity.year_to = Faker::Number.between(1980, 2016)
+    activity.save!
+  end
+
+  def change_advanced_training(advanced_training)
+    advanced_training.description = Faker::Hacker.say_something_smart
+    advanced_training.created_at = Time.now
+    advanced_training.year_from = Faker::Number.between(1956, 1979)
+    advanced_training.year_to = Faker::Number.between(1980, 2016)
+    advanced_training.save!
+  end
+
+  def change_project(project)
+    project.description = Faker::Hacker.say_something_smart
+    project.title = Faker::Name.title
+    project.role = Faker::Company.profession
+    project.technology = Faker::Superhero.power
+    project.year_from = Faker::Number.between(1956, 1979)
+    project.year_to = Faker::Number.between(1980, 2016)
+    project.save!
+  end
+
+
+  def change_education(education)
+    education.location = Faker::Educator.university
+    education.title = Faker::Educator.course
+    education.year_from = Faker::Number.between(1956, 1979)
+    education.year_to = Faker::Number.between(1980, 2016)
+    education.save!
+  end
+
+  def change_competence(competence)
+    competence.description = Faker::Superhero.power
+    competence.save!
+  end
 
   def seed_person(name)
     Person.seed_once(:name) do |p|
@@ -56,7 +98,6 @@ class PersonSeeder
       p.role = Faker::Company.profession
       p.title = Faker::Name.title
       p.status_id = rand(1..4)
-      p.type = 'Person'
     end
   end
 
@@ -109,4 +150,3 @@ class PersonSeeder
     end
   end
 end
-
