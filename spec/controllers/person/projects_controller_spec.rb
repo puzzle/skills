@@ -53,13 +53,17 @@ describe Person::ProjectsController do
     end
 
     it 'does not creates new project if unvalid' do
-      project = { description: 'test description',
+      project = { description: 'Test description',
                   updated_by: 'Bob',
                   year_from: 2010,
                   year_to: 2015,
                   role: 'test role' }
-                  
+
       post :create, params: { person_id: bob.id, project: project }
+
+      unvalid_project = Project.find_by(description: 'Test description')
+
+      expect(unvalid_project).to eq(nil)
 
     end
   end
