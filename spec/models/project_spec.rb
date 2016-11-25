@@ -5,7 +5,6 @@ describe Project do
 
   context 'validations' do
     it 'checks whether required attribute values are present' do
-      project = Project.new
       project.valid?
 
       expect(project.errors[:year_from].first).to eq("can't be blank")
