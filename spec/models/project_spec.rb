@@ -4,7 +4,7 @@ describe Project do
   fixtures :projects
 
   context 'validations' do
-    it 'presence true' do
+    it 'checks whether presence is true' do
 
       project = Project.new
       project.valid?

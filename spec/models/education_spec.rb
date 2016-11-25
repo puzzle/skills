@@ -4,7 +4,7 @@ describe Education do
   fixtures :educations
 
   context 'validations' do
-    it 'presence true' do
+    it 'checks whether presence is true' do
       education = Education.new
       education.valid?
 

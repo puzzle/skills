@@ -4,7 +4,7 @@ describe AdvancedTraining do
   fixtures :advanced_trainings
 
   context 'validations' do
-    it 'presence true' do
+    it 'checks whether presence is true' do
       advanced_training = AdvancedTraining.new
       advanced_training.valid?
 

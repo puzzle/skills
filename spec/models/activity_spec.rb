@@ -4,7 +4,7 @@ describe Activity do
   fixtures :activities
 
   context 'validations' do
-    it 'presence true' do
+    it 'checks whether presence is true' do
       activity = Activity.new
       activity.valid?
 

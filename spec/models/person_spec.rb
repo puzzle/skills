@@ -39,7 +39,7 @@ describe Person do
     end
 
     context 'validations' do
-      it 'presence true' do
+      it 'checks whether presence is true' do
         person = Person.new
         person.valid?
 

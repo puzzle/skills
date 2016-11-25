@@ -4,7 +4,7 @@ describe Competence do
   fixtures :competences
 
   context 'validations' do
-    it 'presence true' do
+    it 'checks whether presence is true' do
       competence = Competence.new
       competence.valid?
 
