@@ -17,7 +17,7 @@ class PersonSeeder
 
   def seed_association(assoc_name, person_id)
     rand(0..3).times do
-      send('seed_' + assoc_name.to_s, person_id )
+      send("seed_#{assoc_name}", person_id)
     end
   end
 
@@ -34,7 +34,7 @@ class PersonSeeder
     associations = person_variation.send(assoc_name.to_s.pluralize)
     associations.each do |a|
       rand(0..1).times do
-        send('change_' + assoc_name.to_s, a)
+        send("change_#{assoc_name}", a)
       end
     end
   end
@@ -74,7 +74,6 @@ class PersonSeeder
     project.year_to = Faker::Number.between(1980, 2016)
     project.save!
   end
-
 
   def change_education(education)
     education.location = Faker::Educator.university

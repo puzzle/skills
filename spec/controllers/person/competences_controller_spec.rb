@@ -43,7 +43,7 @@ describe Person::CompetencesController do
     it 'updates existing person' do
       competence = competences(:scrum)
 
-      process :update, method: :put, params: { type: 'Person', 
+      process :update, method: :put, params: { type: 'Person',
                                                id: competence,
                                                person_id: bob.id,
                                                competence: { description: 'changed' } }

@@ -18,12 +18,12 @@ describe PeopleController do
 
   describe 'GET show' do
     it 'returns person with nested modules' do
-      keys =  %w(id birthdate profile_picture language location martial_status updated_by name origin
-                 role title status advanced_trainings activities projects educations competences)
+      keys = %w(id birthdate profile_picture language location martial_status updated_by name origin
+                role title status advanced_trainings activities projects educations competences)
 
       bob = people(:bob)
 
-      process :show, method: :get, params: { id: bob.id}
+      process :show, method: :get, params: { id: bob.id }
 
       bob_json = json['person']
 
@@ -45,7 +45,7 @@ describe PeopleController do
                  title: 'Bsc in tester',
                  status_id: 2 }
 
-      process :create, method: :post, params: { person: person}
+      process :create, method: :post, params: { person: person }
 
       new_person = Person.find_by(name: 'test')
       expect(new_person).not_to eq(nil)
@@ -68,7 +68,7 @@ describe PeopleController do
   describe 'DELETE destroy' do
     it 'destroys existing person' do
       bob = people(:bob)
-      process :destroy, method: :delete, params: {id: bob.id }
+      process :destroy, method: :delete, params: { id: bob.id }
 
       expect(Person.exists?(bob.id)).to eq(false)
       expect(Activity.exists?(person_id: bob.id)).to eq(false)

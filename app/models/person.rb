@@ -30,6 +30,4 @@ class Person < ApplicationRecord
   belongs_to :status
 
   scope :list, -> { where(type: nil).order(:name) }
-
-
 end

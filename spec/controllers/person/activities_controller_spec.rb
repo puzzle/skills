@@ -8,7 +8,7 @@ describe Person::ActivitiesController do
       process :index, method: :get, params: { type: 'Person', person_id: bob.id }
 
       activities = json['activities']
-      
+
       expect(activities.count).to eq(1)
       expect(activities.first.count).to eq(6)
       json_object_includes_keys(activities.first, keys)
@@ -48,7 +48,7 @@ describe Person::ActivitiesController do
     it 'updates existing person' do
       activity = activities(:swisscom)
 
-      process :update, method: :put, params: { type: 'Person', 
+      process :update, method: :put, params: { type: 'Person',
                                                id: activity,
                                                person_id: bob.id,
                                                activity: { description: 'changed' } }

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Person::Variation do
   fixtures :people
-  
+
   context 'variations' do
     before do
       @bob = people(:bob)

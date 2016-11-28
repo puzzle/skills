@@ -1,8 +1,8 @@
 class Person::Variation < Person
   belongs_to :origin_person, class_name: 'Person', foreign_key: :origin_person_id
-  belongs_to :status  # Needed because STI don't work as expected.
+  belongs_to :status # Needed because STI don't work as expected.
 
-  scope :list, -> {all.order(:name)}
+  scope :list, -> { all.order(:name) }
 
   def self.create_variation(variation_name, person_id)
     ActiveRecord::Base.transaction do
@@ -23,10 +23,9 @@ class Person::Variation < Person
       assocs = person.send(assoc_name)
       assocs.each do |assoc|
         assoc_duplicate = assoc.dup
-        assoc_duplicate.person_id = self.id
+        assoc_duplicate.person_id = id
         assoc_duplicate.save!
       end
     end
   end
-
 end

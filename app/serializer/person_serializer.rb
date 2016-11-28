@@ -1,5 +1,5 @@
 class PersonSerializer < ApplicationSerializer
-  attributes :id, :birthdate, :language, :profile_picture, :location, :martial_status, :updated_by, 
+  attributes :id, :birthdate, :language, :profile_picture, :location, :martial_status, :updated_by,
              :name, :origin, :role, :title
 
   belongs_to :status do |serializer|

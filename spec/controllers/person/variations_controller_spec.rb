@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe Person::VariationsController do
-
   context 'variations' do
     before do
       @bob = people(:bob)
@@ -12,14 +11,15 @@ describe Person::VariationsController do
     describe 'GET index' do
       it 'returns all person variations without nested models' do
         keys =  %w(id birthdate profile_picture language location martial_status
-                 updated_by name origin role title status variation_name)
+                   updated_by name origin role title status variation_name)
 
-        process :index, method: :get, params: {person_id: @bob.id}
+        process :index, method: :get, params: { person_id: @bob.id }
 
         variations = json['person/variations']
 
         expect(variations.count).to eq(2)
         expect(variations.first.count).to eq(13)
+        expect(variations.first['variation_name']).to eq('bobs_variation1')
         json_object_includes_keys(variations.first, keys)
       end
     end
@@ -27,8 +27,8 @@ describe Person::VariationsController do
     describe 'GET show' do
       it 'returns person variations with nested modules' do
         keys =  %w(id birthdate profile_picture language location martial_status updated_by name origin
-                 role title status advanced_trainings activities projects educations competences
-                 variation_name )
+                   role title status advanced_trainings activities projects educations competences
+                   variation_name )
 
         process :show, method: :get, params: { person_id: @bob.id,
                                                id: @bobs_variation1.id }
@@ -42,22 +42,22 @@ describe Person::VariationsController do
 
     describe 'POST create' do
       it 'creates new person variation' do
-
         process :create, method: :post, params: { person_id: @bob.id,
                                                   variation_name: 'variation_test' }
 
-        new_person_variation = @bob.variations.first
+        new_person_variation = @bob.variations.find_by(variation_name: 'variation_test')
         expect(new_person_variation.location).to eq(@bob.location)
         expect(new_person_variation.language).to eq(@bob.language)
+        expect(new_person_variation.variation_name).to eq('variation_test')
+        expect(new_person_variation.type).to eq('Person::Variation')
       end
     end
 
     describe 'PUT update' do
       it 'updates existing person variation' do
-
-        process :update, method: :put, params: {person_id: @bob.id,
-                                                id: @bobs_variation1.id,
-                                                person_variation: { location: 'test_location' } }
+        process :update, method: :put, params: { person_id: @bob.id,
+                                                 id: @bobs_variation1.id,
+                                                 person_variation: { location: 'test_location' } }
 
         @bobs_variation1.reload
 
@@ -67,7 +67,7 @@ describe Person::VariationsController do
 
     describe 'DELETE destroy' do
       it 'destroys existing person variation' do
-        process :destroy, method: :delete, params: {person_id: @bob.id, id: @bobs_variation2.id }
+        process :destroy, method: :delete, params: { person_id: @bob.id, id: @bobs_variation2.id }
 
         expect(Person::Variation.exists?(@bobs_variation2.id)).to eq(false)
         expect(Activity.exists?(person_id: @bobs_variation2.id)).to eq(false)
