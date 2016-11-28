@@ -78,7 +78,7 @@ module Person::Export
 
   def insert_projects(r)
     projects_list = projects.collect do |p|
-      { year: formatted_year(p), project: project_description(p)}
+      { year: formatted_year(p), project: project_description(p) }
     end
 
     r.add_table('PROJECTS', projects_list, header: true) do |t|
@@ -92,15 +92,14 @@ module Person::Export
     str << "#{p.title}\n\n"
     str << "#{p.description}\n\n"
     str << "#{p.role}\n\n"
-    str << "#{p.technology}"
+    str << p.technology.to_s
   end
 
   def formatted_year(obj)
-    if(obj.year_from == obj.year_to)
+    if obj.year_from == obj.year_to
       obj.year_to
     else
       "#{obj.year_from} - #{obj.year_to}"
     end
   end
-
 end

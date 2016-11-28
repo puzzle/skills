@@ -19,8 +19,8 @@ class PeopleController < CrudController
     person = Person.find(params[:id])
     odt_file = person.export
     send_data odt_file.generate, type: 'application/vnd.oasis.opendocument.text',
-      disposition: 'attachment',
-      filename: filename(person.name)
+                                 disposition: 'attachment',
+                                 filename: filename(person.name)
   end
 
   def filename(name)

@@ -9,7 +9,7 @@ class User < ApplicationRecord
   def locked?
     locked_until > Time.now if last_failed_login_attempt_at
   end
-  
+
   def reset_failed_login_attempts
     update_attributes(last_failed_login_attempt_at: nil,
                       failed_login_attempts: 0)
@@ -17,9 +17,8 @@ class User < ApplicationRecord
 
   private
 
-    
   def locked_until
-    last_failed_login_attempt_at + (failed_login_attempts*3).seconds
+    last_failed_login_attempt_at + (failed_login_attempts * 3).seconds
   end
 
   class << self

@@ -8,7 +8,7 @@ describe AuthenticationsController do
     end
 
     it 'responses unauthorized if no password param entered' do
-      process :sign_in, method: :post, params: { username: 'test'}
+      process :sign_in, method: :post, params: { username: 'test' }
       expect(response.status).to eq(401)
     end
 
@@ -26,7 +26,6 @@ describe AuthenticationsController do
                             last_failed_login_attempt_at: Time.now)
 
       allow(LdapTools).to receive(:uid_by_username).and_return(ken.ldap_uid)
-
 
       process :sign_in, method: :post, params: { username: 'ken', password: 'test' }
 
@@ -63,7 +62,6 @@ describe AuthenticationsController do
     end
 
     it 'updates failed login attempts on invalid login' do
-
       ken = users(:ken)
       allow(LdapTools).to receive(:uid_by_username).and_return(ken.ldap_uid)
       allow(LdapTools).to receive(:valid_user?).and_return(false)

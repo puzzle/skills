@@ -8,18 +8,18 @@ describe Person do
       bob = people(:bob)
       activity = bob.activities.first
       activity.update_attributes(year_to: 2000)
-      
+
       formatted_year = bob.send(:formatted_year, activity)
-      
+
       expect(formatted_year).to eq(2000)
     end
 
     it 'returns year from and to are not the same' do
       bob = people(:bob)
       activity = bob.activities.first
-      
+
       formatted_year = bob.send(:formatted_year, activity)
-      
+
       expect(formatted_year).to eq('2000 - 2010')
     end
   end

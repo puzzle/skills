@@ -2,7 +2,6 @@ require 'net/ldap'
 
 class LdapTools
   class << self
-
     def ldap_connection
       @@ldap_connection ||= connect_ldap
     end
@@ -19,7 +18,7 @@ class LdapTools
       filter = Net::LDAP::Filter.eq('uid', username)
       result = ldap_connection.search(base: basename,
                                       filter: filter)
-      
+
       result[0][:uidnumber][0].to_i unless result.empty?
     end
 

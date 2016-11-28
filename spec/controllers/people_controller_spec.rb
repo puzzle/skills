@@ -29,14 +29,15 @@ describe PeopleController do
       it 'check filename' do
         process :show, method: :get, format: 'odt', params: { id: people(:bob).id }
         expect(@response['Content-Disposition']).to match(
-          /filename="bob_anderson_cv.odt"/)
+          /filename="bob_anderson_cv.odt"/
+        )
       end
     end
 
     describe 'GET index' do
       it 'returns all people without nested models' do
-        keys =  %w(id birthdate profile_picture language location martial_status
-                 updated_by name origin role title status)
+        keys = %w(id birthdate profile_picture language location martial_status
+                  updated_by name origin role title status)
 
         get :index
 
@@ -50,7 +51,7 @@ describe PeopleController do
       describe 'GET show' do
         it 'returns person with nested modules' do
           keys = %w(id birthdate profile_picture language location martial_status updated_by name origin
-                role title status advanced_trainings activities projects educations competences)
+                    role title status advanced_trainings activities projects educations competences)
 
           bob = people(:bob)
 
@@ -113,27 +114,26 @@ describe PeopleController do
       describe 'application controller before filter' do
         it 'renders unauthorized if no params' do
           process :index, method: :get, params: {}
-
           expect(response.status).to eq(401)
         end
 
         it 'render unauthorized if user does not exists' do
-          process :index, method: :get, params: {ldap_uid: 0000, api_token: 'test'}
+          process :index, method: :get, params: { ldap_uid: 0o000, api_token: 'test' }
 
           expect(response.status).to eq(401)
         end
 
         it 'render unauthorized if api_token doesnt match' do
-          process :index, method: :get, params: {ldap_uid: users(:ken).ldap_uid,
-                                                 api_token: 'wrong token'}
+          process :index, method: :get, params: { ldap_uid: users(:ken).ldap_uid,
+                                                  api_token: 'wrong token' }
 
           expect(response.status).to eq(401)
         end
 
         it 'does nothing if api_token is correct' do
           ken = users(:ken)
-          process :index, method: :get, params: {ldap_uid: ken.ldap_uid,
-                                                 api_token: ken.api_token}
+          process :index, method: :get, params: { ldap_uid: ken.ldap_uid,
+                                                  api_token: ken.api_token }
 
           expect(response.status).to eq(200)
         end

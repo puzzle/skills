@@ -3,7 +3,7 @@ class ApplicationController < ActionController::API
 
   def authorize
     return if Rails.env.development?
-    
+
     ldap_uid = params[:ldap_uid]
     api_token = params[:api_token]
 

@@ -15,8 +15,8 @@ class Person::VariationsController < CrudController
       render json: variation.errors.details, status: :unprocessable_entity
     end
   end
-  
-  protected 
+
+  protected
 
   def fetch_entries
     model_scope.list.where(origin_person_id: params['person_id'])
