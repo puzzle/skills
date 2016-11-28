@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   scope '/api' do
     scope '/auth' do
-      post 'sign_in', to: 'authentications#sign_in'
+      post 'sign_in', to: 'authentication#sign_in'
     end
 
     resources :statuses

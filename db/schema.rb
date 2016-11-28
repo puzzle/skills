@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 20_161_121_103_046) do
   end
 
   create_table 'users', force: :cascade do |t|
-    t.integer  'ldap_uid'
+    t.string  'ldap_uid'
     t.string   'api_token'
     t.integer  'failed_login_attempts', default: 0
     t.datetime 'last_failed_login_attempt_at'

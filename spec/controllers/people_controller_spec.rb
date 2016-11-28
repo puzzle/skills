@@ -111,33 +111,34 @@ describe PeopleController do
         end
       end
 
-      describe 'application controller before filter' do
-        it 'renders unauthorized if no params' do
-          process :index, method: :get, params: {}
-          expect(response.status).to eq(401)
-        end
+    end
+  end
 
-        it 'render unauthorized if user does not exists' do
-          process :index, method: :get, params: { ldap_uid: 0o000, api_token: 'test' }
+  describe 'authentication' do
+    it 'renders unauthorized if no params' do
+      process :index, method: :get, params: {}
+      expect(response.status).to eq(401)
+    end
 
-          expect(response.status).to eq(401)
-        end
+    it 'render unauthorized if user does not exists' do
+      process :index, method: :get, params: { ldap_uid: 0o000, api_token: 'test' }
 
-        it 'render unauthorized if api_token doesnt match' do
-          process :index, method: :get, params: { ldap_uid: users(:ken).ldap_uid,
-                                                  api_token: 'wrong token' }
+      expect(response.status).to eq(401)
+    end
 
-          expect(response.status).to eq(401)
-        end
+    it 'render unauthorized if api_token doesnt match' do
+      process :index, method: :get, params: { ldap_uid: users(:ken).ldap_uid,
+                                              api_token: 'wrong token' }
 
-        it 'does nothing if api_token is correct' do
-          ken = users(:ken)
-          process :index, method: :get, params: { ldap_uid: ken.ldap_uid,
-                                                  api_token: ken.api_token }
+      expect(response.status).to eq(401)
+    end
 
-          expect(response.status).to eq(200)
-        end
-      end
+    it 'does nothing if api_token is correct' do
+      ken = users(:ken)
+      process :index, method: :get, params: { ldap_uid: ken.ldap_uid,
+                                              api_token: ken.api_token }
+
+      expect(response.status).to eq(200)
     end
   end
 end
