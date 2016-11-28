@@ -15,13 +15,20 @@ class ApplicationController < ActionController::API
     render_unauthorized
   end
 
+  protected
+
+  def render_unauthorized(message = nil)
+    if message.nil?
+      render status: :unauthorized
+    else
+      render json: message, status: :unauthorized
+    end
+  end
+
   private
 
   def auth_params_present?
     params[:ldap_uid].present? && params[:api_token].present?
   end
 
-  def render_unauthorized
-    render status: :unauthorized
-  end
 end

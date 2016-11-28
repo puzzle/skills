@@ -3,6 +3,6 @@ require 'LdapTools'
 module ControllerHelpers
   def auth(user)
     user = users(user) unless user.is_a?(User)
-    allow(Rails.env).to receive(:development?).and_return(true)
+    expect_any_instance_of(ApplicationController).to receive(:authorize).and_return(true)
   end
 end

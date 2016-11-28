@@ -6,30 +6,28 @@ class LdapTools
       @@ldap_connection ||= connect_ldap
     end
 
-    def valid_user?(username, password)
+    def authenticate(username, password)
       result = ldap_connection.bind_as(base: basename,
                                        filter: "uid=#{username}",
                                        password: password)
 
-      result ? true : false
+      result.present?
     end
 
-    def uid_by_username(username)
+    def exists?(username)
       filter = Net::LDAP::Filter.eq('uid', username)
       result = ldap_connection.search(base: basename,
                                       filter: filter)
-
-      result[0][:uidnumber][0].to_i unless result.empty?
+      result.present?
     end
 
     private
 
     def connect_ldap
-      Net::LDAP.new \
-        base: basename,
-        host: hostname,
-        port: port,
-        encryption: :simple_tls
+      Net::LDAP.new(base: basename,
+                    host: hostname,
+                    port: port,
+                    encryption: :simple_tls)
     end
 
     def basename
