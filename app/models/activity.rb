@@ -18,7 +18,7 @@ class Activity < ApplicationRecord
   validates :year_from, :year_to, :person_id, :role, presence: true
   validates_length_of :description, maximum: 1000
   validates_length_of :updated_by, :role, maximum: 30
-  validate :start_must_be_before_end_time
+  validate :year_from_before_year_to
 
   scope :list, -> { order(:year_from) }
 end

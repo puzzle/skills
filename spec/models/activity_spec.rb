@@ -4,7 +4,7 @@ describe Activity do
   fixtures :activities
 
   context 'validations' do
-    it 'checks whether presence is true' do
+    it 'checks whether required attribute values are present' do
       activity = Activity.new
       activity.valid?
 
@@ -26,7 +26,7 @@ describe Activity do
       activity.year_to = 1997
       activity.valid?
 
-      expect(activity.errors[:year_from].first).to eq('must be higher than year from')
+      expect(activity.errors[:year_from].first).to eq('must be before year to')
     end
   end
 end

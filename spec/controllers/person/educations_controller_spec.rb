@@ -31,7 +31,6 @@ describe Person::EducationsController, type: :controller do
   describe 'POST create' do
     it 'creates new education' do
       education = { title: 'test title',
-                    updated_by: 'Bob',
                     location: 'Bern',
                     year_from: 2000,
                     year_to: 2015 }
