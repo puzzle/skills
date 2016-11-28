@@ -8,6 +8,7 @@
 
 class Status < ApplicationRecord
   has_many :people
+  has_many :variations, class_name: Person::Variation
 
   scope :list, -> { order(:status) }
 end

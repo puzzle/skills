@@ -7,10 +7,10 @@ describe Person::ActivitiesController do
     it 'returns all activities' do
       keys = %w(id description updated_by role year_from)
 
-      process :index, method: :get, params: { person_id: bob.id }
+      process :index, method: :get, params: { type: 'Person', person_id: bob.id }
 
       activities = json['activities']
-      
+
       expect(activities.count).to eq(1)
       expect(activities.first.count).to eq(6)
       json_object_includes_keys(activities.first, keys)
@@ -21,7 +21,7 @@ describe Person::ActivitiesController do
     it 'returns activity' do
       activity = activities(:swisscom)
 
-      process :show, method: :get, params: { person_id: bob.id, id: activity.id }
+      process :show, method: :get, params: { type: 'Person', person_id: bob.id, id: activity.id }
 
       activity_json = json['activity']
 
@@ -37,7 +37,7 @@ describe Person::ActivitiesController do
                    year_to: 2015,
                    role: 'test role' }
 
-      post :create, params: { person_id: bob.id, activity: activity }
+      post :create, params: { type: 'Person', person_id: bob.id, activity: activity }
 
       new_activity = Activity.find_by(description: 'test description')
       expect(new_activity).not_to eq(nil)
@@ -50,7 +50,8 @@ describe Person::ActivitiesController do
     it 'updates existing person' do
       activity = activities(:swisscom)
 
-      process :update, method: :put, params: { id: activity,
+      process :update, method: :put, params: { type: 'Person',
+                                               id: activity,
                                                person_id: bob.id,
                                                activity: { description: 'changed' } }
 
@@ -62,7 +63,7 @@ describe Person::ActivitiesController do
   describe 'DELETE destroy' do
     it 'destroys existing person' do
       activity = activities(:swisscom)
-      process :destroy, method: :delete, params: { person_id: bob.id, id: activity.id }
+      process :destroy, method: :delete, params: { type: 'Person', person_id: bob.id, id: activity.id }
 
       expect(Activity.exists?(activity.id)).to eq(false)
     end

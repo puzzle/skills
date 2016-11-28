@@ -6,7 +6,7 @@ describe Person::CompetencesController do
   describe 'GET index' do
     it 'returns all competences' do
       keys = %w(id description updated_by)
-      process :index, method: :get, params: { person_id: bob.id }
+      process :index, method: :get, params: { type: 'Person', person_id: bob.id }
 
       competences = json['competences']
 
@@ -20,7 +20,7 @@ describe Person::CompetencesController do
     it 'returns competence' do
       competence = competences(:scrum)
 
-      process :show, method: :get, params: { person_id: bob.id, id: competence.id }
+      process :show, method: :get, params: { type: 'Person', person_id: bob.id, id: competence.id }
 
       competence_json = json['competence']
 
@@ -33,7 +33,7 @@ describe Person::CompetencesController do
       competence = { description: 'test description',
                      updated_by: 'Bob' }
 
-      post :create, params: { person_id: bob.id, competence: competence }
+      post :create, params: { type: 'Person', person_id: bob.id, competence: competence }
 
       new_competence = Competence.find_by(description: 'test description')
       expect(new_competence).not_to eq(nil)
@@ -45,7 +45,8 @@ describe Person::CompetencesController do
     it 'updates existing person' do
       competence = competences(:scrum)
 
-      process :update, method: :put, params: { id: competence,
+      process :update, method: :put, params: { type: 'Person',
+                                               id: competence,
                                                person_id: bob.id,
                                                competence: { description: 'changed' } }
 
@@ -57,7 +58,7 @@ describe Person::CompetencesController do
   describe 'DELETE destroy' do
     it 'destroys existing person' do
       competence = competences(:scrum)
-      process :destroy, method: :delete, params: { person_id: bob.id, id: competence.id }
+      process :destroy, method: :delete, params: { type: 'Person', person_id: bob.id, id: competence.id }
 
       expect(Competence.exists?(competence.id)).to eq(false)
     end

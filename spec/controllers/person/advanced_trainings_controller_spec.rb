@@ -7,7 +7,7 @@ describe Person::AdvancedTrainingsController do
     it 'returns all advanced_trainings' do
       keys = %w(id description updated_by year_from year_to)
 
-      process :index, method: :get, params: { person_id: bob.id }
+      process :index, method: :get, params: { type: 'Person', person_id: bob.id }
 
       advanced_trainings = json['advanced_trainings']
 
@@ -21,7 +21,7 @@ describe Person::AdvancedTrainingsController do
     it 'returns advanced training' do
       course = advanced_trainings(:course)
 
-      process :show, method: :get, params: { person_id: bob.id, id: course.id }
+      process :show, method: :get, params: { type: 'Person', person_id: bob.id, id: course.id }
 
       course_json = json['advanced_training']
 
@@ -36,7 +36,7 @@ describe Person::AdvancedTrainingsController do
                             year_from: 2000,
                             year_to: 2015 }
 
-      post :create, params: { person_id: bob.id, advanced_training: advanced_training }
+      post :create, params: { type: 'Person', person_id: bob.id, advanced_training: advanced_training }
 
       new_at = AdvancedTraining.find_by(description: 'test description')
       expect(new_at).not_to eq(nil)
@@ -49,7 +49,7 @@ describe Person::AdvancedTrainingsController do
     it 'updates existing person' do
       course = advanced_trainings(:course)
 
-      process :update, method: :put, params: { id: course, person_id: bob.id, advanced_training: { description: 'changed' } }
+      process :update, method: :put, params: { type: 'Person', id: course, person_id: bob.id, advanced_training: { description: 'changed' } }
 
       course.reload
       expect(course.description).to eq('changed')
@@ -59,7 +59,7 @@ describe Person::AdvancedTrainingsController do
   describe 'DELETE destroy' do
     it 'destroys existing person' do
       course = advanced_trainings(:course)
-      process :destroy, method: :delete, params: { person_id: bob.id, id: course.id }
+      process :destroy, method: :delete, params: { type: 'Person', person_id: bob.id, id: course.id }
 
       expect(AdvancedTraining.exists?(course.id)).to eq(false)
     end

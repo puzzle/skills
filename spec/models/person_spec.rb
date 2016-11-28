@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Person do
   fixtures :people
-  
+
   context 'fomatting' do
     it 'just one year if year from and to are the same' do
       bob = people(:bob)
@@ -28,19 +28,15 @@ describe Person do
     before do
       @bob = people(:bob)
       @alice = people(:alice)
+      @bobs_variation = Person::Variation.create_variation('bobs_variation1', @bob.id)
     end
     it 'returns origin Person if origin_person_id is set' do
-      @bob.origin_person_id = @alice.id
-      expect(@bob.origin_person.id).to eq(@alice.id)
+      expect(@bobs_variation.origin_person.id).to eq(@bob.id)
     end
 
     it 'returns all variations from a person' do
-      p = Person.find(@bob.id)
-      p.origin_person_id = @alice.id
-      p.save
-
-      expect(@alice.variations.count).to eq(1)
-      expect(@alice.variations.first.id).to eq(@bob.id)
+      expect(@bob.variations.count).to eq(1)
+      expect(@bob.variations.first.origin_person_id).to eq(@bob.id)
     end
   end
 end

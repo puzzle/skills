@@ -66,6 +66,8 @@ GEM
       carrierwave (>= 0.8.0)
     coderay (1.1.1)
     concurrent-ruby (1.0.2)
+    deep_cloneable (2.2.2)
+      activerecord (>= 3.1.0, < 5.2.0)
     diff-lcs (1.2.5)
     docile (1.1.5)
     erubis (2.7.0)
@@ -214,6 +216,7 @@ DEPENDENCIES
   bullet
   byebug
   carrierwave-base64
+  deep_cloneable (~> 2.2.2)
   faker
   listen (~> 3.0.5)
   mysql2

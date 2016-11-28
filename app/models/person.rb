@@ -19,7 +19,6 @@
 #  variation_date   :datetime
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#
 
 class Person < ApplicationRecord
   include Export
@@ -29,14 +28,8 @@ class Person < ApplicationRecord
   has_many :advanced_trainings, dependent: :destroy
   has_many :educations, dependent: :destroy
   has_many :competences, dependent: :destroy
-  has_many :variations,
-    ->(person) { where(origin_person_id: person.id) },
-    class_name: 'Person',
-    foreign_key: :origin_person_id
-
-  belongs_to :origin_person, class_name: 'Person', foreign_key: :origin_person_id
+  has_many :variations, foreign_key: :origin_person_id, class_name: Person::Variation
   belongs_to :status
 
-  scope :list, -> { order(:name) }
-
+  scope :list, -> { where(type: nil).order(:name) }
 end

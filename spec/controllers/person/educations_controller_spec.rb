@@ -6,7 +6,7 @@ describe Person::EducationsController, type: :controller do
   describe 'GET index' do
     it 'returns all educations' do
       keys = %w(id location title year_from year_to updated_by)
-      process :index, method: :get, params: { person_id: bob.id }
+      process :index, method: :get, params: { type: 'Person', person_id: bob.id }
 
       educations = json['educations']
 
@@ -20,7 +20,7 @@ describe Person::EducationsController, type: :controller do
     it 'returns education' do
       education = educations(:bsc)
 
-      process :show, method: :get, params: { person_id: bob.id, id: education.id }
+      process :show, method: :get, params: { type: 'Person', person_id: bob.id, id: education.id }
 
       education_json = json['education']
 
@@ -35,7 +35,7 @@ describe Person::EducationsController, type: :controller do
                     year_from: 2000,
                     year_to: 2015 }
 
-      post :create, params: { person_id: bob.id, education: education }
+      post :create, params: { type: 'Person', person_id: bob.id, education: education }
 
       new_education = Education.find_by(title: 'test title')
       expect(new_education).not_to eq(nil)
@@ -48,7 +48,8 @@ describe Person::EducationsController, type: :controller do
     it 'updates existing person' do
       education = educations(:bsc)
 
-      process :update, method: :put, params: { id: education,
+      process :update, method: :put, params: { type: 'Person',
+                                               id: education,
                                                person_id: bob.id,
                                                education: { title: 'changed' } }
 
@@ -60,7 +61,9 @@ describe Person::EducationsController, type: :controller do
   describe 'DELETE destroy' do
     it 'destroys existing person' do
       education = educations(:bsc)
-      process :destroy, method: :delete, params: { person_id: bob.id, id: education.id }
+      process :destroy, method: :delete, params: { type: 'Person',
+                                                   person_id: bob.id,
+                                                   id: education.id }
 
       expect(Education.exists?(education.id)).to eq(false)
     end

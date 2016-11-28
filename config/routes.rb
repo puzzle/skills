@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resources :projects, controller: 'person/projects'
       resources :educations, controller: 'person/educations'
       resources :competences, controller: 'person/competences'
+      resources :variations, controller: 'person/variations'
     end
   end
 end

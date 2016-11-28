@@ -71,9 +71,9 @@ ActiveRecord::Schema.define(version: 20161121103046) do
     t.integer  "status_id"
     t.integer  "origin_person_id"
     t.string   "variation_name"
-    t.datetime "variation_date"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.string   "type"
     t.index ["status_id"], name: "index_people_on_status_id", using: :btree
   end
 
