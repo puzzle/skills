@@ -27,7 +27,6 @@ describe Person do
   context 'variations' do
     before do
       @bob = people(:bob)
-      @alice = people(:alice)
       @bobs_variation = Person::Variation.create_variation('bobs_variation1', @bob.id)
     end
     it 'returns origin Person if origin_person_id is set' do
