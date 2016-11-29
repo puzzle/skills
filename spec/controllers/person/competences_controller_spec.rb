@@ -37,7 +37,6 @@ describe Person::CompetencesController do
 
       new_competence = Competence.find_by(description: 'test description')
       expect(new_competence).not_to eq(nil)
-      expect(new_competence.updated_by).to eq('Bob')
     end
   end
 

@@ -35,6 +35,7 @@ describe Person::ProjectsController do
     it 'creates new project' do
       project = { description: 'test description',
                   updated_by: 'Bob',
+                  year_from: 2010,
                   year_to: 2015,
                   title: 'test title',
                   technology: 'test technology',
@@ -44,10 +45,24 @@ describe Person::ProjectsController do
 
       new_project = Project.find_by(description: 'test description')
       expect(new_project).not_to eq(nil)
+      expect(new_project.year_from).to eq(2010)
       expect(new_project.year_to).to eq(2015)
       expect(new_project.title).to eq('test title')
       expect(new_project.technology).to eq('test technology')
       expect(new_project.role).to eq('test role')
+    end
+
+    it 'does not creates new project if ' do
+      project = { description: 'Test description',
+                  year_from: 2010,
+                  year_to: 2015,
+                  role: 'test role' }
+
+      post :create, params: { person_id: bob.id, project: project }
+
+      # entsprechende Errormeldung mis in JSON response vorhanden sein.
+      # unvalid ist kein englisches wort -> invalid
+      # titel dieses Tests ist zu generisch. 
     end
   end
 
