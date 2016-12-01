@@ -4,12 +4,8 @@ class ApplicationController < ActionController::API
   def authorize
     return if Rails.env.development?
 
-    ldap_uid = params[:ldap_uid]
-    api_token = params[:api_token]
-
     if auth_params_present?
-      user = User.find_by(ldap_uid: ldap_uid)
-      return if user && user.api_token == api_token
+      return if authenticates?
     end
 
     render_unauthorized
@@ -18,17 +14,21 @@ class ApplicationController < ActionController::API
   protected
 
   def render_unauthorized(message = nil)
-    if message.nil?
-      render status: :unauthorized
-    else
-      render json: message, status: :unauthorized
-    end
+    render json: message, status: :unauthorized
   end
 
   private
 
   def auth_params_present?
     params[:ldap_uid].present? && params[:api_token].present?
+  end
+
+  def authenticates?
+    ldap_uid = params[:ldap_uid]
+    api_token = params[:api_token]
+
+    user = User.find_by(ldap_uid: ldap_uid)
+    user && user.api_token == api_token
   end
 
 end
