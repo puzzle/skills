@@ -1,0 +1,10 @@
+.navbar {
+  width: 12%;
+}
+.navbar ul li{
+width: 100%;
+}
+
+.navbar ul li:hover {
+  background-color: #E7E7E7;
+}
