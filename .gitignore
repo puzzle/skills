@@ -22,3 +22,22 @@
 
 # Igonre coverage files
 /coverage
+
+########## Frontend #########
+
+# compiled output
+fronend/dist
+fronend/tmp
+
+# dependencies
+fronend/node_modules
+fronend/bower_components
+
+# misc
+fronend/.sass-cache
+fronend/connect.lock
+fronend/coverage/*
+fronend/libpeerconnection.log
+fronend/npm-debug.log*
+fronend/testem.log
+
