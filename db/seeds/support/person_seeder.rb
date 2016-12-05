@@ -12,9 +12,6 @@ class PersonSeeder
       rand(0..3).times do
         seed_variation(person)
       end
-      rand(0..3).times do
-        seed_variation(person)
-      end
     end
   end
 

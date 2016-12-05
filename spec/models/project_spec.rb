@@ -23,13 +23,13 @@ describe Project do
       expect(project.errors[:description].first).to eq('is too long (maximum is 1000 characters)')
     end
 
-    it 'should not be more than 30 characters' do
+    it 'should not be more than 50 characters' do
       project = projects(:duckduckgo)
-      project.role = SecureRandom.hex(30)
-      project.title = SecureRandom.hex(30)
+      project.role = SecureRandom.hex(50)
+      project.title = SecureRandom.hex(50)
       project.valid?
-      expect(project.errors[:role].first).to eq('is too long (maximum is 30 characters)')
-      expect(project.errors[:title].first).to eq('is too long (maximum is 30 characters)')
+      expect(project.errors[:role].first).to eq('is too long (maximum is 50 characters)')
+      expect(project.errors[:title].first).to eq('is too long (maximum is 50 characters)')
     end
 
     it 'should not be more than 100 characters' do

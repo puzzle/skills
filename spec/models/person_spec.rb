@@ -53,24 +53,24 @@ describe Person do
         expect(person.errors[:status_id].first).to eq("can't be blank")
       end
 
-      it 'should not be more than 30 characters' do
+      it 'should not be more than 50 characters' do
         person = people(:bob)
-        person.location = SecureRandom.hex(30)
-        person.martial_status = SecureRandom.hex(30)
-        person.name = SecureRandom.hex(30)
-        person.origin = SecureRandom.hex(30)
-        person.role = SecureRandom.hex(30)
-        person.title = SecureRandom.hex(30)
-        person.variation_name = SecureRandom.hex(30)
+        person.location = SecureRandom.hex(50)
+        person.martial_status = SecureRandom.hex(50)
+        person.name = SecureRandom.hex(50)
+        person.origin = SecureRandom.hex(50)
+        person.role = SecureRandom.hex(50)
+        person.title = SecureRandom.hex(50)
+        person.variation_name = SecureRandom.hex(50)
         person.valid?
 
-        expect(person.errors[:location].first).to eq('is too long (maximum is 30 characters)')
-        expect(person.errors[:martial_status].first).to eq('is too long (maximum is 30 characters)')
-        expect(person.errors[:name].first).to eq('is too long (maximum is 30 characters)')
-        expect(person.errors[:origin].first).to eq('is too long (maximum is 30 characters)')
-        expect(person.errors[:role].first).to eq('is too long (maximum is 30 characters)')
-        expect(person.errors[:title].first).to eq('is too long (maximum is 30 characters)')
-        expect(person.errors[:variation_name].first).to eq('is too long (maximum is 30 characters)')
+        expect(person.errors[:location].first).to eq('is too long (maximum is 50 characters)')
+        expect(person.errors[:martial_status].first).to eq('is too long (maximum is 50 characters)')
+        expect(person.errors[:name].first).to eq('is too long (maximum is 50 characters)')
+        expect(person.errors[:origin].first).to eq('is too long (maximum is 50 characters)')
+        expect(person.errors[:role].first).to eq('is too long (maximum is 50 characters)')
+        expect(person.errors[:title].first).to eq('is too long (maximum is 50 characters)')
+        expect(person.errors[:variation_name].first).to eq('is too long (maximum is 50 characters)')
       end
 
       it 'should not be more than 100 characters' do

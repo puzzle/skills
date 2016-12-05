@@ -5,15 +5,15 @@ describe Person::ActivitiesController do
 
   describe 'GET index' do
     it 'returns all activities' do
-      keys = %w(id description updated_by role year_from)
+      keys = %w(description updated-by role year-from)
 
       process :index, method: :get, params: { type: 'Person', person_id: bob.id }
 
-      activities = json['activities']
+      activities = json['data']
 
       expect(activities.count).to eq(1)
-      expect(activities.first.count).to eq(6)
-      json_object_includes_keys(activities.first, keys)
+      expect(activities.first['attributes'].count).to eq(5)
+      json_object_includes_keys(activities.first['attributes'], keys)
     end
   end
 
@@ -23,9 +23,9 @@ describe Person::ActivitiesController do
 
       process :show, method: :get, params: { type: 'Person', person_id: bob.id, id: activity.id }
 
-      activity_json = json['activity']
+      activity_attrs = json['data']['attributes']
 
-      expect(activity_json['description']).to eq(activity.description)
+      expect(activity_attrs['description']).to eq(activity.description)
     end
   end
 

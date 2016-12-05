@@ -5,14 +5,14 @@ describe Person::EducationsController, type: :controller do
 
   describe 'GET index' do
     it 'returns all educations' do
-      keys = %w(id location title year_from year_to updated_by)
+      keys = %w(location title year-from year-to updated-by)
       process :index, method: :get, params: { type: 'Person', person_id: bob.id }
 
-      educations = json['educations']
+      educations = json['data']
 
       expect(educations.count).to eq(1)
-      expect(educations.first.count).to eq(6)
-      json_object_includes_keys(educations.first, keys)
+      expect(educations.first['attributes'].count).to eq(5)
+      json_object_includes_keys(educations.first['attributes'], keys)
     end
   end
 
@@ -22,9 +22,9 @@ describe Person::EducationsController, type: :controller do
 
       process :show, method: :get, params: { type: 'Person', person_id: bob.id, id: education.id }
 
-      education_json = json['education']
+      education_attrs = json['data']['attributes']
 
-      expect(education_json['title']).to eq(education.title)
+      expect(education_attrs['title']).to eq(education.title)
     end
   end
 

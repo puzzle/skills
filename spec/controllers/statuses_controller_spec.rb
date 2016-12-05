@@ -7,10 +7,10 @@ describe StatusesController do
     it 'returns all statuses' do
       process :index, method: :get
 
-      statuses = json['statuses']
+      statuses = json['data']
       expect(statuses.count).to eq(2)
-      expect(statuses.first.count).to eq(2)
-      expect(statuses.first).to include('status')
+      expect(statuses.first['attributes'].count).to eq(1)
+      expect(statuses.first['attributes']).to include('status')
     end
   end
 
@@ -20,9 +20,9 @@ describe StatusesController do
 
       process :show, method: :get, params: { id: status.id }
 
-      status_json = json['status']
+      status_json = json['data']
 
-      expect(status_json['status']).to eq(status.status)
+      expect(status_json['attributes']['status']).to eq(status.status)
     end
   end
 end
