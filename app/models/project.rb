@@ -21,7 +21,7 @@ class Project < ApplicationRecord
   validates_length_of :description, maximum: 1000
   validates_length_of :technology, maximum: 100
   validate :year_from_before_year_to
-  validates_length_of :role, :title, maximum: 30
+  validates_length_of :role, :title, maximum: 50
 
   scope :list, -> { order(:year_to) }
 end

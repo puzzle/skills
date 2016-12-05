@@ -5,14 +5,14 @@ describe Person::ProjectsController do
 
   describe 'GET index' do
     it 'returns all projects' do
-      keys = %w(id technology title description role updated_by year_to)
+      keys = %w(technology title description role updated-by year-to)
       process :index, method: :get, params: { type: 'Person', person_id: bob.id }
 
-      projects = json['projects']
+      projects = json['data']
 
       expect(projects.count).to eq(1)
-      expect(projects.first.count).to eq(8)
-      json_object_includes_keys(projects.first, keys)
+      expect(projects.first['attributes'].count).to eq(7)
+      json_object_includes_keys(projects.first['attributes'], keys)
     end
   end
 
@@ -22,12 +22,12 @@ describe Person::ProjectsController do
 
       process :show, method: :get, params: { type: 'Person', person_id: bob.id, id: project.id }
 
-      project_json = json['project']
+      project_attrs = json['data']['attributes']
 
-      expect(project_json['technology']).to eq(project.technology)
-      expect(project_json['title']).to eq(project.title)
-      expect(project_json['description']).to eq(project.description)
-      expect(project_json['role']).to eq(project.role)
+      expect(project_attrs['technology']).to eq(project.technology)
+      expect(project_attrs['title']).to eq(project.title)
+      expect(project_attrs['description']).to eq(project.description)
+      expect(project_attrs['role']).to eq(project.role)
     end
   end
 

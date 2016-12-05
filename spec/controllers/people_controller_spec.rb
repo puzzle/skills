@@ -36,31 +36,36 @@ describe PeopleController do
 
     describe 'GET index' do
       it 'returns all people without nested models' do
-        keys = %w(id birthdate profile_picture language location martial_status
-                  updated_by name origin role title status)
+        keys = %w(birthdate profile-picture language location martial-status
+                  updated-by name origin role title)
 
         get :index
 
-        people = json['people']
+        people = json['data']
 
         expect(people.count).to eq(2)
-        expect(people.first.count).to eq(12)
-        json_object_includes_keys(people.first, keys)
+        alice_attrs = people.first['attributes']
+        expect(alice_attrs.count).to eq(10)
+        json_object_includes_keys(alice_attrs, keys)
+
+        # TODO check that nested models data is empty
       end
 
       describe 'GET show' do
         it 'returns person with nested modules' do
-          keys = %w(id birthdate profile_picture language location martial_status updated_by name origin
-                    role title status advanced_trainings activities projects educations competences)
-
+          keys = %w(birthdate profile-picture language location martial-status updated-by name origin
+                    role title)
+          nested_keys = %w(advanced_trainings activities projects educations competences, status)
           bob = people(:bob)
 
           process :show, method: :get, params: { id: bob.id }
 
-          bob_json = json['person']
+          bob_attrs = json['data']['attributes']
 
-          expect(bob_json.count).to eq(17)
-          json_object_includes_keys(bob_json, keys)
+          expect(bob_attrs.count).to eq(10)
+          json_object_includes_keys(bob_attrs, keys)
+
+          # TODO check nested models data
         end
 
         describe 'POST create' do

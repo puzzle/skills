@@ -5,14 +5,14 @@ describe Person::CompetencesController do
 
   describe 'GET index' do
     it 'returns all competences' do
-      keys = %w(id description updated_by)
+      keys = %w(description updated-by)
       process :index, method: :get, params: { type: 'Person', person_id: bob.id }
 
-      competences = json['competences']
+      competences = json['data']
 
       expect(competences.count).to eq(1)
-      expect(competences.first.count).to eq(3)
-      json_object_includes_keys(competences.first, keys)
+      expect(competences.first['attributes'].count).to eq(2)
+      json_object_includes_keys(competences.first['attributes'], keys)
     end
   end
 
@@ -22,9 +22,9 @@ describe Person::CompetencesController do
 
       process :show, method: :get, params: { type: 'Person', person_id: bob.id, id: competence.id }
 
-      competence_json = json['competence']
+      competence_attrs = json['data']['attributes']
 
-      expect(competence_json['description']).to eq(competence.description)
+      expect(competence_attrs['description']).to eq(competence.description)
     end
   end
 

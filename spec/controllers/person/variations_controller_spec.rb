@@ -11,33 +11,32 @@ describe Person::VariationsController do
 
     describe 'GET index' do
       it 'returns all person variations without nested models' do
-        keys =  %w(id birthdate profile_picture language location martial_status
-                   updated_by name origin role title status variation_name)
+        keys =  %w(birthdate profile-picture language location martial-status
+                   updated-by name origin role title variation-name)
 
         process :index, method: :get, params: { person_id: @bob.id }
 
-        variations = json['person/variations']
+        variations = json['data']
 
         expect(variations.count).to eq(2)
-        expect(variations.first.count).to eq(13)
-        expect(variations.first['variation_name']).to eq('bobs_variation1')
-        json_object_includes_keys(variations.first, keys)
+        expect(variations.first['attributes'].count).to eq(11)
+        expect(variations.first['attributes']['variation-name']).to eq('bobs_variation1')
+        json_object_includes_keys(variations.first['attributes'], keys)
       end
     end
 
     describe 'GET show' do
       it 'returns person variations with nested modules' do
-        keys =  %w(id birthdate profile_picture language location martial_status updated_by name origin
-                   role title status advanced_trainings activities projects educations competences
-                   variation_name )
+        keys =  %w(birthdate profile-picture language location martial-status updated-by name origin
+                   role title variation-name )
 
         process :show, method: :get, params: { person_id: @bob.id,
                                                id: @bobs_variation1.id }
 
-        bob_json = json['person/variation']
+        bob_attrs = json['data']['attributes']
 
-        expect(bob_json.count).to eq(18)
-        json_object_includes_keys(bob_json, keys)
+        expect(bob_attrs.count).to eq(11)
+        json_object_includes_keys(bob_attrs, keys)
       end
     end
 

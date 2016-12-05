@@ -5,15 +5,15 @@ describe Person::AdvancedTrainingsController do
 
   describe 'GET index' do
     it 'returns all advanced_trainings' do
-      keys = %w(id description updated_by year_from year_to)
+      keys = %w(description updated-by year-from year-to)
 
       process :index, method: :get, params: { type: 'Person', person_id: bob.id }
 
-      advanced_trainings = json['advanced_trainings']
+      advanced_trainings = json['data']
 
       expect(advanced_trainings.count).to eq(1)
-      expect(advanced_trainings.first.count).to eq(5)
-      json_object_includes_keys(advanced_trainings.first, keys)
+      expect(advanced_trainings.first['attributes'].count).to eq(4)
+      json_object_includes_keys(advanced_trainings.first['attributes'], keys)
     end
   end
 
@@ -23,9 +23,9 @@ describe Person::AdvancedTrainingsController do
 
       process :show, method: :get, params: { type: 'Person', person_id: bob.id, id: course.id }
 
-      course_json = json['advanced_training']
+      course_attrs = json['data']['attributes']
 
-      expect(course_json['description']).to eq(course.description)
+      expect(course_attrs['description']).to eq(course.description)
     end
   end
 
