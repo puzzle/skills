@@ -36,8 +36,7 @@ describe PeopleController do
 
     describe 'GET index' do
       it 'returns all people without nested models' do
-        keys = %w(birthdate profile-picture language location martial-status
-                  updated-by name origin role title)
+        keys = %w(name)
 
         get :index
 
@@ -45,7 +44,8 @@ describe PeopleController do
 
         expect(people.count).to eq(2)
         alice_attrs = people.first['attributes']
-        expect(alice_attrs.count).to eq(10)
+        expect(alice_attrs.count).to eq(1)
+        expect(alice_attrs.first[1]).to eq("Alice Mante")
         json_object_includes_keys(alice_attrs, keys)
 
         # TODO check that nested models data is empty
