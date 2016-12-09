@@ -4,7 +4,7 @@
 #
 #  id               :integer          not null, primary key
 #  birthdate        :datetime
-#  profile_picture  :binary           not null
+#  picture          :binary           not null
 #  language         :string
 #  location         :string
 #  martial_status   :string
@@ -23,6 +23,7 @@
 class Person < ApplicationRecord
   include Export
 
+  mount_uploader :picture, PictureUploader
   has_many :projects, dependent: :destroy
   has_many :activities, dependent: :destroy
   has_many :advanced_trainings, dependent: :destroy
@@ -33,6 +34,15 @@ class Person < ApplicationRecord
   validates :birthdate, :language, :location, :name, :origin, :role, :title, :status_id, presence: true
   validates_length_of :location, :martial_status, :name, :origin, :role, :title, :variation_name, maximum: 50
   validates_length_of :language, maximum: 100
+  validate :picture_size
 
   scope :list, -> { where(type: nil).order(:name) }
+  
+  private
+
+  def picture_size
+    return if picture.nil? || picture.size < 10.megabytes
+    errors.add(:picture, 'grösse kann maximal 10MB sein')
+  end
+
 end

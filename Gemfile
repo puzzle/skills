@@ -5,9 +5,10 @@ gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'activerecord-postgresql-adapter'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'annotate'
-gem 'carrierwave-base64'
+gem 'carrierwave'
 gem 'faker'
 gem 'odf-report'
+gem 'mini_magick'
 gem 'mysql2'
 gem 'net-ldap', '~> 0.14.0'
 gem 'pg', '0.19.0.pre20160409114042'
@@ -27,6 +28,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
+  gem 'hirb'
 end
 
 group :development do

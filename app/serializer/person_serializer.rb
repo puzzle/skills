@@ -1,6 +1,10 @@
 class PersonSerializer < ApplicationSerializer
-  attributes :id, :birthdate, :language, :profile_picture, :location, :martial_status, :updated_by,
+  attributes :id, :birthdate, :language, :picture, :location, :martial_status, :updated_by,
              :name, :origin, :role, :title
+
+  def picture
+    object.picture.url
+  end
 
   belongs_to :status do |serializer|
     serializer.object.status

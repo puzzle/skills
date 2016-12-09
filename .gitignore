@@ -23,6 +23,9 @@
 # Igonre coverage files
 /coverage
 
+# Ignore uploaded pictures
+/public/uploads
+
 ########## Frontend #########
 
 # compiled output

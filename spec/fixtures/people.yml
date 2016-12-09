@@ -2,7 +2,6 @@
 
 bob:
   birthdate: 2014-03-02 13:15:11
-  profile_picture: test
   language: German
   location: Bern
   martial_status: Single
@@ -17,7 +16,6 @@ bob:
 
 alice:
   birthdate: 2016-10-20 13:15:11
-  profile_picture: test
   language: English
   location: London
   martial_status: Maried

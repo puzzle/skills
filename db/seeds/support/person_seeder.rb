@@ -13,6 +13,7 @@ class PersonSeeder
         seed_variation(person)
       end
     end
+    load_images
   end
 
   def seed_association(assoc_name, person_id)
@@ -40,6 +41,14 @@ class PersonSeeder
   end
 
   private
+
+  def load_images
+    Person.all.each do |p|
+      File.open('spec/fixtures/files/picture.png') do |f|
+        p.update_attributes(picture: f)
+      end
+    end
+  end
 
   def change_variation(person_variation)
     person_variation.language = 'Deutsch, Englisch, Französisch'
@@ -91,8 +100,8 @@ class PersonSeeder
   def seed_person(name)
     Person.seed_once(:name) do |p|
       p.birthdate = Faker::Date.between(20.year.ago, 65.year.ago)
-      p.profile_picture = Faker::Avatar.image
       p.language = 'Deutsch, Englisch, Französisch'
+      p.picture = Faker::Avatar
       p.location = Faker::Pokemon.location
       p.martial_status = 'ledig'
       p.updated_by = 'seed_user'

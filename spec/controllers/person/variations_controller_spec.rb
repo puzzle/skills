@@ -11,7 +11,7 @@ describe Person::VariationsController do
 
     describe 'GET index' do
       it 'returns all person variations without nested models' do
-        keys =  %w(birthdate profile-picture language location martial-status
+        keys =  %w(birthdate picture language location martial-status
                    updated-by name origin role title variation-name)
 
         process :index, method: :get, params: { person_id: @bob.id }
@@ -27,7 +27,7 @@ describe Person::VariationsController do
 
     describe 'GET show' do
       it 'returns person variations with nested modules' do
-        keys =  %w(birthdate profile-picture language location martial-status updated-by name origin
+        keys =  %w(birthdate picture language location martial-status updated-by name origin
                    role title variation-name )
 
         process :show, method: :get, params: { person_id: @bob.id,

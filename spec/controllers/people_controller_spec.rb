@@ -3,6 +3,7 @@ require 'rails_helper'
 describe PeopleController do
   describe 'PeoplController' do
     before { auth(:ken) }
+    before { load_pictures }
 
     describe 'Export person as odt' do
       it 'returns bob' do
@@ -16,6 +17,11 @@ describe PeopleController do
         expect_any_instance_of(ODFReport::Report)
           .to receive(:add_field)
           .exactly(14).times
+          .and_call_original
+
+        expect_any_instance_of(ODFReport::Report)
+          .to receive(:add_image)
+          .exactly(1).times
           .and_call_original
 
         expect_any_instance_of(ODFReport::Report)
@@ -47,15 +53,14 @@ describe PeopleController do
         expect(alice_attrs.count).to eq(1)
         expect(alice_attrs.first[1]).to eq("Alice Mante")
         json_object_includes_keys(alice_attrs, keys)
-
-        # TODO check that nested models data is empty
+        expect(people).not_to include('relationships')
       end
 
       describe 'GET show' do
         it 'returns person with nested modules' do
-          keys = %w(birthdate profile-picture language location martial-status updated-by name origin
+          keys = %w(birthdate picture language location martial-status updated-by name origin
                     role title)
-          nested_keys = %w(advanced_trainings activities projects educations competences, status)
+
           bob = people(:bob)
 
           process :show, method: :get, params: { id: bob.id }
@@ -64,14 +69,19 @@ describe PeopleController do
 
           expect(bob_attrs.count).to eq(10)
           json_object_includes_keys(bob_attrs, keys)
+          expect(bob_attrs['picture']).to eq(bob.picture.url)
 
-          # TODO check nested models data
+          nested_keys = %w(advanced-trainings activities projects educations competences status)
+          nested_attrs = json['data']['relationships']
+
+          expect(nested_attrs.count).to eq(6)
+          json_object_includes_keys(nested_attrs, nested_keys)
         end
 
         describe 'POST create' do
           it 'creates new person' do
             person = { birthdate: Time.now,
-                       profile_picture: 'test',
+                       picture: fixture_file_upload('files/picture.png','image/png'),
                        language: 'German',
                        location: 'Bern',
                        martial_status: 'single',
@@ -87,6 +97,7 @@ describe PeopleController do
             expect(new_person).not_to eq(nil)
             expect(new_person.location).to eq('Bern')
             expect(new_person.language).to eq('German')
+            expect(new_person.picture.url).to eq("/uploads/person/picture/#{new_person.id}/picture.png")
           end
         end
 
@@ -115,7 +126,6 @@ describe PeopleController do
           end
         end
       end
-
     end
   end
 
