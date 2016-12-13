@@ -1,3 +1,4 @@
+
 require 'rails_helper'
 
 describe Person do
@@ -21,6 +22,28 @@ describe Person do
       formatted_year = bob.send(:formatted_year, activity)
 
       expect(formatted_year).to eq('2000 - 2010')
+    end
+  end
+
+  context 'search' do
+    it 'finds search term in associated education' do
+      people = Person.search('duckduckgo')
+      expect(people.count).to eq(1)
+      expect(people.first.name).to eq('Bob Anderson')
+    end
+
+    it 'finds search term in person' do
+      people = Person.search('Alice')
+      expect(people.count).to eq(1)
+      expect(people.first.name).to eq('Alice Mante')
+    end
+
+    it 'finds person for given status id' do
+      status = statuses(:copartner)
+      people = Person.search_by_status_id(status.id)
+      expect(people.count).to eq(1)
+      expect(people.first.name).to eq('Alice Mante')
+      expect(people.first.status).to eq(status)
     end
   end
 

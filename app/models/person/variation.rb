@@ -1,7 +1,8 @@
 class Person::Variation < Person
   belongs_to :origin_person, class_name: 'Person', foreign_key: :origin_person_id
   belongs_to :status # Needed because STI don't work as expected.
-
+  
+  default_scope { all.order(:name) }
   scope :list, -> { all.order(:name) }
 
   def self.create_variation(variation_name, person_id)

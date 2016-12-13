@@ -41,7 +41,10 @@ describe PeopleController do
     end
 
     describe 'GET index' do
-      it 'returns all people without nested models' do
+      it 'returns all people without nested models without any filter' do
+        expect(Person).not_to receive(:search_by_status_id)
+        expect(Person).not_to receive(:search)
+
         keys = %w(name)
 
         get :index
@@ -56,74 +59,113 @@ describe PeopleController do
         expect(people).not_to include('relationships')
       end
 
-      describe 'GET show' do
-        it 'returns person with nested modules' do
-          keys = %w(birthdate picture language location martial-status updated-by name origin
-                    role title)
+      it 'filters persons for term if given' do
+        expect(Person).not_to receive(:search_by_status_id)
+        expect(Person)
+          .to receive(:search)
+          .with('London')
+          .exactly(1).times
+          .and_call_original
 
+
+        get :index, params: { q: 'London'}
+      end
+
+      it 'filters persons for status if given' do
+        expect(Person).not_to receive(:search)
+        expect(Person)
+          .to receive(:search_by_status_id)
+          .with('1')
+          .exactly(1).times
+          .and_call_original
+
+        get :index, params: { status_id: 1 }
+      end
+
+      it 'filters persons for term and status_id if botch are given' do
+        expect(Person)
+          .to receive(:search)
+          .with('London')
+          .exactly(1).times
+          .and_call_original
+
+        expect(Person)
+          .to receive(:search_by_status_id)
+          .with('1')
+          .exactly(1).times
+          .and_call_original
+
+        get :index, params: { q: 'London', status_id: 1}
+      end
+    end
+
+    describe 'GET show' do
+      it 'returns person with nested modules' do
+        keys = %w(birthdate picture language location martial-status updated-by name origin
+                  role title)
+
+        bob = people(:bob)
+
+        process :show, method: :get, params: { id: bob.id }
+
+        bob_attrs = json['data']['attributes']
+
+        expect(bob_attrs.count).to eq(10)
+        json_object_includes_keys(bob_attrs, keys)
+        expect(bob_attrs['picture']).to eq(bob.picture.url)
+
+        nested_keys = %w(advanced-trainings activities projects educations competences status)
+        nested_attrs = json['data']['relationships']
+
+        expect(nested_attrs.count).to eq(6)
+        json_object_includes_keys(nested_attrs, nested_keys)
+      end
+
+      describe 'POST create' do
+        it 'creates new person' do
+          person = { birthdate: Time.now,
+                     picture: fixture_file_upload('files/picture.png','image/png'),
+                     language: 'German',
+                     location: 'Bern',
+                     martial_status: 'single',
+                     name: 'test',
+                     origin: 'Switzerland',
+                     role: 'tester',
+                     title: 'Bsc in tester',
+                     status_id: 2 }
+
+          process :create, method: :post, params: { person: person }
+
+          new_person = Person.find_by(name: 'test')
+          expect(new_person).not_to eq(nil)
+          expect(new_person.location).to eq('Bern')
+          expect(new_person.language).to eq('German')
+          expect(new_person.picture.url).to eq("/uploads/person/picture/#{new_person.id}/picture.png")
+        end
+      end
+
+      describe 'PUT update' do
+        it 'updates existing person' do
           bob = people(:bob)
 
-          process :show, method: :get, params: { id: bob.id }
+          process :update, method: :put, params: { id: bob.id, person: { location: 'test_location' } }
 
-          bob_attrs = json['data']['attributes']
-
-          expect(bob_attrs.count).to eq(10)
-          json_object_includes_keys(bob_attrs, keys)
-          expect(bob_attrs['picture']).to eq(bob.picture.url)
-
-          nested_keys = %w(advanced-trainings activities projects educations competences status)
-          nested_attrs = json['data']['relationships']
-
-          expect(nested_attrs.count).to eq(6)
-          json_object_includes_keys(nested_attrs, nested_keys)
+          bob.reload
+          expect(bob.location).to eq('test_location')
         end
+      end
 
-        describe 'POST create' do
-          it 'creates new person' do
-            person = { birthdate: Time.now,
-                       picture: fixture_file_upload('files/picture.png','image/png'),
-                       language: 'German',
-                       location: 'Bern',
-                       martial_status: 'single',
-                       name: 'test',
-                       origin: 'Switzerland',
-                       role: 'tester',
-                       title: 'Bsc in tester',
-                       status_id: 2 }
+      describe 'DELETE destroy' do
+        it 'destroys existing person' do
+          bob = people(:bob)
+          process :destroy, method: :delete, params: { id: bob.id }
 
-            process :create, method: :post, params: { person: person }
-
-            new_person = Person.find_by(name: 'test')
-            expect(new_person).not_to eq(nil)
-            expect(new_person.location).to eq('Bern')
-            expect(new_person.language).to eq('German')
-            expect(new_person.picture.url).to eq("/uploads/person/picture/#{new_person.id}/picture.png")
-          end
-        end
-
-        describe 'PUT update' do
-          it 'updates existing person' do
-            bob = people(:bob)
-
-            process :update, method: :put, params: { id: bob.id, person: { location: 'test_location' } }
-
-            bob.reload
-            expect(bob.location).to eq('test_location')
-          end
-        end
-
-        describe 'DELETE destroy' do
-          it 'destroys existing person' do
-            bob = people(:bob)
-            process :destroy, method: :delete, params: { id: bob.id }
-
-            expect(Person.exists?(bob.id)).to eq(false)
-            expect(Activity.exists?(person_id: bob.id)).to eq(false)
-            expect(AdvancedTraining.exists?(person_id: bob.id)).to eq(false)
-            expect(Project.exists?(person_id: bob.id)).to eq(false)
-            expect(Education.exists?(person_id: bob.id)).to eq(false)
-            expect(Competence.exists?(person_id: bob.id)).to eq(false)
-          end
+          expect(Person.exists?(bob.id)).to eq(false)
+          expect(Activity.exists?(person_id: bob.id)).to eq(false)
+          expect(AdvancedTraining.exists?(person_id: bob.id)).to eq(false)
+          expect(Project.exists?(person_id: bob.id)).to eq(false)
+          expect(Education.exists?(person_id: bob.id)).to eq(false)
+          expect(Competence.exists?(person_id: bob.id)).to eq(false)
         end
       end
     end
