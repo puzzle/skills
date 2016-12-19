@@ -1,9 +1,43 @@
-<h2>{{title}}</h2>
-<nav class="navbar navbar-default">
-<ul class="nav navbar-nav">
-  {{#each people as |person|}}
-    <li><a href="#">{{person.name}}</a></li>
-  {{/each}}
-</ul>
-</nav>
-
+<div id="left-grid" class="span3">
+  <!-- Personlist heading -->
+  <div class="row-fluid">
+    <span class="span8 section-title">Puzzle Mitarbeiter</span>
+    <div id="thanks">
+        <a data-toggle="modal" onclick="loadPerson()"
+          class="button">neu...</a>
+    </div>
+  </div>
+  <!-- Horizontal ruler -->
+  <div class="row-fluid">
+    <div class="span10">
+      <hr>
+    </div>
+  </div>
+  <!-- Personlist -->
+  <div class="row-fluid person-list">
+    <div class="span10">
+      <form id="form-search" class="">
+        <input id="field-search" type="text" class="span12"
+          autocomplete="off" placeholder="Personensuche"> <a
+          onclick="toggleExtendedSearch()" id="toggleSearch">+
+          erweiterte Suche</a><br>
+        <div id="textSearch" style="display: none">
+          <select class="statusDropdown span12" id="statusSearchDropdown"><option
+              value="0">Alle</option>
+          </select> <br>
+        </div>
+        <br>
+      </form>
+      <div class="container-fluid round-border"
+        style="background-color: #ccc;">
+        <div class="menu_div">
+          <ul id="person-list">
+            {{#each people as |person|}}
+            <li>{{#link-to "person" person.id}}{{person.attributes.name}}{{/link-to}}</li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

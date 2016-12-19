@@ -7,8 +7,9 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function(){
-  this.route('people');
-  this.resource('person', { path: 'people/:person_id' });
+  this.route('people', function(){
+    this.route('person', { path: '/:person_id', resetNamespace: true });
+  });
 });
 
 export default Router;

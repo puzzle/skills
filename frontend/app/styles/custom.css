@@ -1,0 +1,381 @@
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc !important;
+  margin-top: 5px !important;
+  padding: 0;
+}
+
+.pointer{
+	cursor: pointer;
+}
+
+
+/* Override Bootstrap
+-------------------------------------------------- */
+.form-horizontal .control-group {
+	margin-bottom: 10px !important;
+}
+
+.form-horizontal .control-label{
+	width: 90px !important;
+}
+
+.form-horizontal .controls {
+	margin-left: 100px !important;
+}
+
+
+/* Main Content
+-------------------------------------------------- */
+#head {
+}
+
+
+#main {
+  margin-top: 50px;
+}
+
+#inner-main {
+  margin-top: 20px;
+}
+
+#left-grid {
+	margin-right: 0;
+}
+
+#right-grid {
+	margin-left: 0;
+	padding-left: 20px;
+	border-left: 1px solid #ccc;
+}
+
+#extended-search-form{
+	border-left: 1px solid #ccc;
+	margin-left: 0px;
+	padding-left: 20px;
+}
+
+.section {
+	margin-bottom: 70px;
+}
+
+.section-title{
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.btn-space {
+	margin-left: 10px;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by it's height */
+  margin: 0 auto -60px;
+}
+
+/* Set the fixed height of the footer here */
+#push {
+  height: 60px;
+  margin-top: 50px;
+}
+
+#footer {
+  height: 30px;
+  margin-top: 50px;
+  background-color: #888888;
+}
+
+#footer > div.container {
+  height: inherit;
+  color: white;
+  font-size: 0.8em;
+}
+
+#footer > div.container > p{
+  text-align: center;
+  margin: 0px;
+}
+
+/* Personlist navbar
+-------------------------------------------------- */
+#form-search {
+	margin: 0px;
+}
+
+#div-create-person {
+	text-align: right;
+}
+.round-border {
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+div.row-fluid.person-list > div.span10 > div.container-fluid.round-border {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.menu_div ul
+{
+    padding:0px;
+    margin:0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:15px;
+    color:#FFF;
+    list-style:none;
+    text-indent:15px;
+    
+}
+.menu_div ul li
+{
+    background:#3f3f3f;
+    line-height:35px;
+        border-bottom:1px solid #333;
+}
+.menu_div ul li a
+{
+    text-decoration:none;
+    color:#FFF;
+    display:block;
+}
+.menu_div ul li a:hover
+{
+    background: #4577D4;
+}
+.menu_div ul li a:active
+{
+    background: #29477F;
+}
+
+.menu_div ul li.active {
+	background: #4577D4;
+}
+
+
+/* Responsive behavior
+-------------------------------------------------- */
+
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+  #footer {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+
+/* All Section
+-------------------------------------------------- */
+.show-description-cell{
+  width: 550px !important;
+}
+
+.show-year-cell{
+  width: 100px !important;
+}
+
+
+/* Profile Section
+-------------------------------------------------- */
+.fileUpload {
+	position: relative;
+	overflow: hidden;
+	margin-top: 5px;
+}
+.fileUpload input.upload {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	width: 140px;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+
+.profil-img {
+}
+
+#profile-content-show dl {
+	margin-bottom: 10px;
+}
+#profile-content-show dt {
+	width: 100px;
+}
+#profile-content-show dd {
+	margin-left: 120px;
+}
+
+/* Competence Section
+-------------------------------------------------- */
+.vertical-center {
+	vertical-align: middle;
+}
+
+/* Activity & Project Section
+-------------------------------------------------- */
+#project div.span4 button,
+#activity div.span4 button {
+	margin-left: 10px;
+}
+
+.project-title,
+.activity-role{
+  font-weight: bold;
+}
+
+.project-title,
+.project-role,
+.project-description,
+.project-technology,
+.activity-role,
+.activity-description {
+  border: 0 !important;
+}
+
+#variation-options {
+	float: right;
+}
+
+#variation-selection{
+	float: left;
+}
+
+#actual-cv-pill > a {
+	margin: 0px;
+}
+
+#variation-cv-pill > a {
+	margin: 0px;
+}
+
+#option-pill > a{
+	border:0px;
+	border-radius: 6px;
+}
+#remove-profile {
+    color: red;
+}
+
+.variation-link.active {
+    background-color: #00aaff;
+    color: white;
+}
+
+.group-pills > li:first-child > a {
+    border-bottom-right-radius:  0px;
+    border: 1px solid #e8ebf0;
+    border-top-right-radius: 0px;
+}
+
+.group-pills > li:last-child > a {
+    border-bottom-left-radius:  0px;
+    border: 1px solid #e8ebf0;
+    border-top-left-radius: 0px;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-top: 1px;
+  *margin-right: .3em;
+  line-height: 14px;
+  vertical-align: top;
+  background-image: url("../img/glyphicons-halflings.png");
+  background-repeat: no-repeat;
+}
+.icon-white {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-top: 1px;
+  *margin-right: .3em;
+  line-height: 14px;
+  vertical-align: middle;
+  background-image: url("../img/glyphicons-halflings-white.png");
+  background-repeat: no-repeat;
+}
+
+
+[class^="icon-"]:hover,
+[class*=" icon-"]:hover {
+  background-image: url("../img/glyphicons-halflings-005580.png");
+}
+
+a{
+	cursor:pointer;
+}
+ dd{
+    overflow: hidden;
+    text-overflow: ellipsis;	
+}
+
+td,th{
+	max-width:550px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#competence-content-show > div > ul > li{
+	max-width:800px;
+    overflow: hidden;
+    text-overflow: ellipsis;	
+    list-style-type: circle;
+}
+
+.project-title, .project-description, .project-role, .activity-role{
+	padding-bottom: 10px;
+}
+
+.action-header{
+	width: 0px;
+}
+
+#variation-placeholder {
+	height: 14px;
+	max-width: 150px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.menu_div ul li a.active {
+    background: none repeat scroll 0 0 #4577d4;
+}
+
+a.disabled-link,
+a.disabled-link:visited ,
+a.disabled-link:active,
+a.disabled-link:hover {
+    background-color:#d9d9d9 !important;
+    color:#aaa !important;
+}
+
+#img-avatar-edit:hover{
+	opacity: 0.3;
+}
+
+
+#img-input{position:absolute; top:-100px;}

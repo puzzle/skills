@@ -1,17 +1,8 @@
-{{model.name}}
-<br>
-{{model.birthdate}}
-<br>
-{{model.picture}}
-<br>
-{{model.language}}
-<br>
-{{model.location}}
-<br>
-{{model.martial-status}}
-<br>
-{{model.origin}}
-<br>
-{{model.role}}
-<br>
-{{model.title}}
+<div id="right-grid" class="span9 sub-page">
+  {{person-show person=model}}
+  {{competences-show competences=model.competences}}
+  {{educations-show educations=model.educations}}
+  {{advanced-trainings-show  advancedTrainings=model.advancedTrainings}}
+  {{activities-show activities=model.activities}}
+  {{projects-show projects=model.projects}}
+</div>

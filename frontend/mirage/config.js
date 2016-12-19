@@ -3,7 +3,7 @@ export default function() {
   this.namespace = 'api';
 
   this.get('/people');
-
+  this.get('/people/:person_id');
 
 
 

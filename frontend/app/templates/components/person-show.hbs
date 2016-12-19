@@ -1,0 +1,72 @@
+<!-- Profile heading -->
+<div class="row-fluid">
+  <div class="span5">
+    <span class="section-title">Personalien</span>
+  </div>
+  <a href={{document-export-url person.id}} id="button-edit-profile" class="button pull-right">
+    Exportieren
+  </a>
+
+</div>
+
+<!-- Horizontal ruler -->
+<div class="row-fluid">
+  <div class="span12">
+    <hr>
+  </div>
+</div>
+
+<!-- Profile content -->
+<section id="profil" class="section">
+    <div id="profile-content-show" class="row-fluid">
+      <!-- Avatar img -->
+      <div class="span2">
+        <img id="img-avatar-read" src={{person.picturePath}} class="img-polaroid profil-img">
+      </div>
+      <!-- Profile left row -->
+      <div class="span5">
+        <dl class="dl-horizontal">
+          <dt>Name</dt>
+          <dd id="show_personName">{{person.name}}</dd>
+        </dl>
+        <dl class="dl-horizontal">
+          <dt>Titel</dt>
+          <dd id="show_title">{{person.title}}</dd>
+        </dl>
+        <dl class="dl-horizontal">
+          <dt>Funktion</dt>
+          <dd id="show_role">{{person.role}}</dd>
+        </dl>
+        <dl class="dl-horizontal">
+          <dt>Geb.Datum</dt>
+          <dd id="show_birthdate">{{person.birthdate}}</dd>
+        </dl>
+      </div>
+      <!-- /Profile left row -->
+
+      <!-- Profile right row -->
+      <div class="span5">
+        <dl class="dl-horizontal">
+          <dt>Nationalität</dt>
+          <dd id="show_origin">{{person.origin}}</dd>
+        </dl>
+        <dl class="dl-horizontal">
+          <dt>Wohnort</dt>
+          <dd id="show_location">{{person.location}}</dd>
+        </dl>
+        <dl class="dl-horizontal">
+          <dt>Sprachen</dt>
+          <dd id="show_language">{{person.language}}</dd>
+        </dl>
+        <dl class="dl-horizontal">
+          <dt>Zivilstand</dt>
+          <dd id="show_martialStatus">{{person.martialStatus}}</dd>
+        </dl>
+        <dl class="dl-horizontal">
+          <dt>Status</dt>
+          <dd id="show_status">{{person.status.status}}</dd>
+        </dl>
+      </div>
+      <!-- /Profile right row -->
+    </div>
+</section>
