@@ -101,7 +101,7 @@ describe PeopleController do
 
     describe 'GET show' do
       it 'returns person with nested modules' do
-        keys = %w(birthdate picture language location martial-status updated-by name origin
+        keys = %w(birthdate picture-path language location martial-status updated-by name origin
                   role title)
 
         bob = people(:bob)
@@ -112,7 +112,7 @@ describe PeopleController do
 
         expect(bob_attrs.count).to eq(10)
         json_object_includes_keys(bob_attrs, keys)
-        expect(bob_attrs['picture']).to eq(bob.picture.url)
+        expect(bob_attrs['picture-path']).to eq("/api/people/#{bob.id}/picture")
 
         nested_keys = %w(advanced-trainings activities projects educations competences status)
         nested_attrs = json['data']['relationships']
@@ -140,7 +140,8 @@ describe PeopleController do
           expect(new_person).not_to eq(nil)
           expect(new_person.location).to eq('Bern')
           expect(new_person.language).to eq('German')
-          expect(new_person.picture.url).to eq("/uploads/person/picture/#{new_person.id}/picture.png")
+          expect(new_person.picture.url)
+            .to include("#{Rails.root}/uploads/person/picture/#{new_person.id}/picture.png")
         end
       end
 

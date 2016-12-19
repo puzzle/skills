@@ -1,9 +1,9 @@
 class PersonSerializer < ApplicationSerializer
-  attributes :id, :birthdate, :language, :picture, :location, :martial_status, :updated_by,
+  attributes :id, :birthdate, :language, :picture_path, :location, :martial_status, :updated_by,
              :name, :origin, :role, :title
 
-  def picture
-    object.picture.url
+  def picture_path
+    "/api/people/#{object.id}/picture"
   end
 
   belongs_to :status do |serializer|

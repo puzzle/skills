@@ -24,7 +24,7 @@
 /coverage
 
 # Ignore uploaded pictures
-/public/uploads
+/uploads
 
 ########## Frontend #########
 

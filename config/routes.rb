@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :educations, controller: 'person/educations'
       resources :competences, controller: 'person/competences'
       resources :variations, controller: 'person/variations'
+      get 'picture'
     end
   end
 end

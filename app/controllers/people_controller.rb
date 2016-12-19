@@ -17,6 +17,11 @@ class PeopleController < CrudController
     format_odt? ? export : super
   end
 
+  def picture
+    person = Person.find(params[:person_id])
+    send_file(person.picture.url, disposition: "inline")
+  end
+
   private
 
   def export

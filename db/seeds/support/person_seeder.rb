@@ -5,6 +5,7 @@ class PersonSeeder
     names.each do |name|
       person = seed_person(name).first
       break unless person
+      seed_image(person)
       associations = [:competence, :activity, :advanced_training, :project, :education]
       associations.each do |a|
         seed_association(a, person.id)
@@ -13,7 +14,6 @@ class PersonSeeder
         seed_variation(person)
       end
     end
-    load_images
   end
 
   def seed_association(assoc_name, person_id)
@@ -42,11 +42,9 @@ class PersonSeeder
 
   private
 
-  def load_images
-    Person.all.each do |p|
-      File.open('spec/fixtures/files/picture.png') do |f|
-        p.update_attributes(picture: f)
-      end
+  def seed_image(person)
+    File.open('spec/fixtures/files/picture.png') do |f|
+      person.update_attributes(picture: f)
     end
   end
 
