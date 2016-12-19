@@ -8,7 +8,6 @@ class PeopleController < CrudController
   def index
     people = fetch_entries
     people = people.search(params[:q]) if params[:q].present?
-    people = people.search_by_status_id(params[:status_id]) if params[:status_id].present?
 
     render json: people, each_serializer: PeopleSerializer
   end

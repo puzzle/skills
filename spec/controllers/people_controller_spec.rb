@@ -42,7 +42,6 @@ describe PeopleController do
 
     describe 'GET index' do
       it 'returns all people without nested models without any filter' do
-        expect(Person).not_to receive(:search_by_status_id)
         expect(Person).not_to receive(:search)
 
         keys = %w(name)
@@ -60,42 +59,13 @@ describe PeopleController do
       end
 
       it 'filters persons for term if given' do
-        expect(Person).not_to receive(:search_by_status_id)
         expect(Person)
           .to receive(:search)
           .with('London')
           .exactly(1).times
           .and_call_original
-
 
         get :index, params: { q: 'London'}
-      end
-
-      it 'filters persons for status if given' do
-        expect(Person).not_to receive(:search)
-        expect(Person)
-          .to receive(:search_by_status_id)
-          .with('1')
-          .exactly(1).times
-          .and_call_original
-
-        get :index, params: { status_id: 1 }
-      end
-
-      it 'filters persons for term and status_id if botch are given' do
-        expect(Person)
-          .to receive(:search)
-          .with('London')
-          .exactly(1).times
-          .and_call_original
-
-        expect(Person)
-          .to receive(:search_by_status_id)
-          .with('1')
-          .exactly(1).times
-          .and_call_original
-
-        get :index, params: { q: 'London', status_id: 1}
       end
     end
 

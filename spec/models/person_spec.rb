@@ -27,7 +27,7 @@ describe Person do
 
   context 'search' do
     it 'finds search term in associated education' do
-      people = Person.search('duckduckgo')
+      people = Person.search('duckduck')
       expect(people.count).to eq(1)
       expect(people.first.name).to eq('Bob Anderson')
     end
@@ -36,14 +36,6 @@ describe Person do
       people = Person.search('Alice')
       expect(people.count).to eq(1)
       expect(people.first.name).to eq('Alice Mante')
-    end
-
-    it 'finds person for given status id' do
-      status = statuses(:copartner)
-      people = Person.search_by_status_id(status.id)
-      expect(people.count).to eq(1)
-      expect(people.first.name).to eq('Alice Mante')
-      expect(people.first.status).to eq(status)
     end
   end
 

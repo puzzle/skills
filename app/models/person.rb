@@ -40,16 +40,18 @@ class Person < ApplicationRecord
   scope :list, -> { where(type: nil).order(:name) }
   default_scope { where(type: nil).order(:name) }
 
-  pg_search_scope :search_by_status_id, associated_against: { status: :id }
   pg_search_scope :search,
     against: [:language, :location, :name, :origin, :role, :title],
     associated_against: {
-    projects: [:description, :title, :role, :technology],
-    activities: [:description, :role],
-    educations: [:location, :title],
-    advanced_trainings: :description,
-    competences: :description
-  }
+      projects: [:description, :title, :role, :technology],
+      activities: [:description, :role],
+      educations: [:location, :title],
+      advanced_trainings: :description,
+      competences: :description
+    },
+    using: { tsearch: { 
+      prefix: true
+    } }
 
   
   private
