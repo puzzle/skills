@@ -8,11 +8,9 @@ export default [
   origin: 'Switzerland',
   role: 'librarian',
   title: 'International Tactics Designer',
-  statues:[
-    {
-      type: 'Mitarbeiter'
-    }
-  ]
+  martialStatus: 'ledig',
+  statusId: 1,
+  projectId: 1
 },
 {name: 'Bob Stark'},
 {name: 'Tyrion Lennister'}

@@ -1,5 +1,7 @@
 export default function(server) {
 
+  server.loadFixtures("statuses");
+  server.loadFixtures("projects");
   server.loadFixtures("people");
       /*
     Seed your development database using your factories.
