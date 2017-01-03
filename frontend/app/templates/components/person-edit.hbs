@@ -1,0 +1,21 @@
+<section id="profil" class="section">
+  {{#form-for (changeset person validations) update as |f|}}
+    {{model-header title="Personalien" form=f}}
+    <div class="row-fluid" id="profile-content-edit">
+      {{picture-edit picturePath=person.picturePath uploadPath=personPictureUploadPath}}
+      <div class="span5">
+        {{f.text-field 'name'}}
+        {{f.text-field 'title' label="Titel"}}
+        {{f.text-field 'role' label="Funktion"}}
+        {{f.date-field 'birthdate' label="Geb.Datum"}}
+      </div>
+      <div class="span5">
+        {{f.text-field 'origin' label="Nationalität"}}
+        {{f.text-field 'location' label="Wohnort"}}
+        {{f.text-field 'language' label="Sprache"}}
+        {{f.search-field 'martialStatus' label="Zivilstand"}}
+        {{f.text-field 'status.status' label="Status"}}
+      </div>
+    </div>
+  {{/form-for}}
+</section>

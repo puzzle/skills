@@ -21,7 +21,6 @@ class CrudController < ListController
 
   # PATCH/PUT /users/1
   def update(options = {})
-    entry.attributes = model_params
     if entry.save
       render_entry(options[:render_options])
     else
@@ -83,7 +82,7 @@ class CrudController < ListController
 
   # Only allow a trusted parameter "white list" through.
   def model_params
-    attrs = params.require(model_identifier).permit(permitted_attrs)
+    attrs = params[:data][:attributes].permit(permitted_attrs)
     AttributeDeserializer.new(attrs, nested_models: nested_models).run
   end
 

@@ -1,5 +1,8 @@
 <div id="right-grid" class="span9 sub-page">
-  {{person-show person=model}}
+  <a onclick={{action (toggle 'personEditing' this)}} class="pull-right">
+    {{if personEditing 'Editieren...' 'Abbrechen'}}
+  </a>
+  {{component (if personEditing 'person-show' 'person-edit') person=model}}
   {{competences-show competences=model.competences}}
   {{educations-show educations=model.educations}}
   {{advanced-trainings-show  advancedTrainings=model.advancedTrainings}}
