@@ -21,6 +21,7 @@ class CrudController < ListController
 
   # PATCH/PUT /users/1
   def update(options = {})
+    entry.attributes = model_params
     if entry.save
       render_entry(options[:render_options])
     else

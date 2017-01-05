@@ -23,6 +23,11 @@
 class Person < ApplicationRecord
   include Export
   include PgSearch
+  
+  STATUSES  = {1 => 'Mitarbeiter',
+               2 => 'Partner',
+               3 => 'Bewerber',
+               4 => 'Ex Mitarbeiter'}
 
   mount_uploader :picture, PictureUploader
   has_many :projects, dependent: :destroy
@@ -31,11 +36,12 @@ class Person < ApplicationRecord
   has_many :educations, dependent: :destroy
   has_many :competences, dependent: :destroy
   has_many :variations, foreign_key: :origin_person_id, class_name: Person::Variation
-  belongs_to :status
+
   validates :birthdate, :language, :location, :name, :origin, :role, :title, :status_id, presence: true
   validates_length_of :location, :martial_status, :name, :origin, :role, :title, :variation_name, maximum: 50
   validates_length_of :language, maximum: 100
   validate :picture_size
+  validate :valid_status
 
   scope :list, -> { where(type: nil).order(:name) }
   default_scope { where(type: nil).order(:name) }
@@ -53,6 +59,9 @@ class Person < ApplicationRecord
       prefix: true
     } }
 
+  def status
+    STATUSES[status_id]
+  end
   
   private
 
@@ -60,5 +69,9 @@ class Person < ApplicationRecord
     return if picture.nil? || picture.size < 10.megabytes
     errors.add(:picture, 'grösse kann maximal 10MB sein')
   end
-
+  
+  def valid_status
+    return if STATUSES.include?(status_id)
+    errors.add(:status_id, 'unbekannt')
+  end
 end

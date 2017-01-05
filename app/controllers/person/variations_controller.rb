@@ -3,10 +3,6 @@ class Person::VariationsController < CrudController
 
   self.nested_models = PeopleController.nested_models
 
-  def index
-    super(render_options: { include: [:status] })
-  end
-
   def create
     variation = Person::Variation.create_variation(params['variation_name'], params['person_id'])
     if variation.persisted?

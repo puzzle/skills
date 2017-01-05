@@ -5,7 +5,7 @@ describe Person::ProjectsController do
 
   describe 'GET index' do
     it 'returns all projects' do
-      keys = %w(technology title description role updated-by year-to)
+      keys = %w(technology title description role updated_by year_to)
       process :index, method: :get, params: { type: 'Person', person_id: bob.id }
 
       projects = json['data']

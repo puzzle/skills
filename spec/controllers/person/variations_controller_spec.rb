@@ -11,8 +11,8 @@ describe Person::VariationsController do
 
     describe 'GET index' do
       it 'returns all person variations without nested models' do
-        keys =  %w(birthdate picture language location martial-status
-                   updated-by name origin role title variation-name)
+        keys =  %w(birthdate picture language location martial_status
+                   updated_by name origin role title variation_name)
 
         process :index, method: :get, params: { person_id: @bob.id }
 
@@ -20,15 +20,15 @@ describe Person::VariationsController do
 
         expect(variations.count).to eq(2)
         expect(variations.first['attributes'].count).to eq(11)
-        expect(variations.first['attributes']['variation-name']).to eq('bobs_variation1')
+        expect(variations.first['attributes']['variation_name']).to eq('bobs_variation1')
         json_object_includes_keys(variations.first['attributes'], keys)
       end
     end
 
     describe 'GET show' do
       it 'returns person variations with nested modules' do
-        keys =  %w(birthdate picture language location martial-status updated-by name origin
-                   role title variation-name )
+        keys =  %w(birthdate picture language location martial_status updated_by name origin
+                   role title variation_name )
 
         process :show, method: :get, params: { person_id: @bob.id,
                                                id: @bobs_variation1.id }

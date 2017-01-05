@@ -1,13 +1,9 @@
 class PersonSerializer < ApplicationSerializer
   attributes :id, :birthdate, :language, :picture_path, :location, :martial_status, :updated_by,
-             :name, :origin, :role, :title
+             :name, :origin, :role, :title, :status_id
 
   def picture_path
     "/api/people/#{object.id}/picture"
-  end
-
-  belongs_to :status do |serializer|
-    serializer.object.status
   end
 
   has_many :advanced_trainings do |serializer|

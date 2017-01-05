@@ -5,7 +5,7 @@ describe Person::EducationsController, type: :controller do
 
   describe 'GET index' do
     it 'returns all educations' do
-      keys = %w(location title year-from year-to updated-by)
+      keys = %w(location title year_from year_to updated_by)
       process :index, method: :get, params: { type: 'Person', person_id: bob.id }
 
       educations = json['data']

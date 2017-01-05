@@ -6,7 +6,6 @@ Rails.application.routes.draw do
       post 'sign_in', to: 'authentication#sign_in'
     end
 
-    resources :statuses
     resources :people do
       resources :advanced_trainings, controller: 'person/advanced_trainings'
       resources :activities, controller: 'person/activities'

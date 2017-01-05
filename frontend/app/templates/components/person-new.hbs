@@ -1,8 +1,7 @@
 <section id="profil" class="section">
-  {{#form-for (changeset person validations) submit=(action 'submit') as |f|}}
-    {{model-header title="Personalien" form=f}}
+  {{#form-for newPerson submit=(action 'submit') as |f|}}
+    {{model-header header="Mitarbeiter erfassen:" title="Personalien" form=f}}
     <div class="row-fluid" id="profile-content-edit">
-      {{picture-edit picturePath=person.picturePath uploadPath=personPictureUploadPath}}
       <div class="span5">
         {{f.text-field 'name'}}
         {{f.text-field 'title' label="Titel"}}
@@ -23,3 +22,4 @@
     </div>
   {{/form-for}}
 </section>
+{{yield}}
