@@ -29,6 +29,6 @@ PersonModel.reopenClass({
     '3': 'Bewerber', 
     '4': 'Ex Mitarbeiter'
   }
-})
+});
 
 export default PersonModel;

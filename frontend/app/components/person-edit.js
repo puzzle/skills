@@ -12,14 +12,14 @@ export default Component.extend({
 
   statusData:computed(function(){
     return Object.keys(PersonModel.STATUSES).map(id => {
-      return { id, label: PersonModel.STATUSES[id] }
+      return { id, label: PersonModel.STATUSES[id] };
     });
   }),
 
   actions: {
     submit(changeset) {
       return changeset.save()
-        .then(() => this.sendAction('submit'))
+        .then(() => this.sendAction('submit'));
     }
   }
 
