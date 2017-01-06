@@ -6,7 +6,6 @@ Rails.application.routes.draw do
       post 'sign_in', to: 'authentication#sign_in'
     end
 
-    resources :statuses
     resources :people do
       resources :advanced_trainings, controller: 'person/advanced_trainings'
       resources :activities, controller: 'person/activities'
@@ -14,6 +13,7 @@ Rails.application.routes.draw do
       resources :educations, controller: 'person/educations'
       resources :competences, controller: 'person/competences'
       resources :variations, controller: 'person/variations'
+      put 'picture', to: 'people#update_picture'
       get 'picture'
     end
   end

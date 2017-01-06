@@ -2,10 +2,6 @@ class VariationSerializer < ApplicationSerializer
   attributes :id, :birthdate, :language, :picture, :location, :martial_status, :updated_by,
              :name, :origin, :role, :title, :variation_name
 
-  belongs_to :status do |serializer|
-    serializer.object.status
-  end
-
   has_many :advanced_trainings do |serializer|
     serializer.object.advanced_trainings
   end

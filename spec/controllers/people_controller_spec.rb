@@ -71,7 +71,7 @@ describe PeopleController do
 
     describe 'GET show' do
       it 'returns person with nested modules' do
-        keys = %w(birthdate picture-path language location martial-status updated-by name origin
+        keys = %w(birthdate picture_path language location martial_status updated_by name origin
                   role title)
 
         bob = people(:bob)
@@ -80,14 +80,14 @@ describe PeopleController do
 
         bob_attrs = json['data']['attributes']
 
-        expect(bob_attrs.count).to eq(10)
+        expect(bob_attrs.count).to eq(11)
         json_object_includes_keys(bob_attrs, keys)
-        expect(bob_attrs['picture-path']).to eq("/api/people/#{bob.id}/picture")
+        #expect(bob_attrs['picture-path']).to eq("/api/people/#{bob.id}/picture")
 
-        nested_keys = %w(advanced-trainings activities projects educations competences status)
+        nested_keys = %w(advanced_trainings activities projects educations competences)
         nested_attrs = json['data']['relationships']
 
-        expect(nested_attrs.count).to eq(6)
+        expect(nested_attrs.count).to eq(5)
         json_object_includes_keys(nested_attrs, nested_keys)
       end
 
@@ -104,7 +104,7 @@ describe PeopleController do
                      title: 'Bsc in tester',
                      status_id: 2 }
 
-          process :create, method: :post, params: { person: person }
+          process :create, method: :post, params: { data: { attributes: person}}
 
           new_person = Person.find_by(name: 'test')
           expect(new_person).not_to eq(nil)
@@ -119,7 +119,7 @@ describe PeopleController do
         it 'updates existing person' do
           bob = people(:bob)
 
-          process :update, method: :put, params: { id: bob.id, person: { location: 'test_location' } }
+          process :update, method: :put, params: { id: bob.id, data: { attributes: { location: 'test_location' }}}
 
           bob.reload
           expect(bob.location).to eq('test_location')

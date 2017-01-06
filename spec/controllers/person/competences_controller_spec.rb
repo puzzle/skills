@@ -5,7 +5,7 @@ describe Person::CompetencesController do
 
   describe 'GET index' do
     it 'returns all competences' do
-      keys = %w(description updated-by)
+      keys = %w(description updated_by)
       process :index, method: :get, params: { type: 'Person', person_id: bob.id }
 
       competences = json['data']

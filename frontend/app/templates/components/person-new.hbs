@@ -1,0 +1,25 @@
+<section id="profil" class="section">
+  {{#form-for newPerson submit=(action 'submit') as |f|}}
+    {{model-header header="Mitarbeiter erfassen:" title="Personalien" form=f}}
+    <div class="row-fluid" id="profile-content-edit">
+      <div class="span5">
+        {{f.text-field 'name'}}
+        {{f.text-field 'title' label="Titel"}}
+        {{f.text-field 'role' label="Funktion"}}
+        {{f.date-field 'birthdate' label="Geb.Datum"}}
+      </div>
+      <div class="span5">
+        {{f.text-field 'origin' label="Nationalität"}}
+        {{f.text-field 'location' label="Wohnort"}}
+        {{f.text-field 'language' label="Sprache"}}
+        {{f.text-field 'martialStatus' label="Zivilstand"}}
+        {{f.select-field 'statusId' statusData
+          label="Status"
+          optionLabelPath="label"
+          optionTargetPath="id"
+          }}
+      </div>
+    </div>
+  {{/form-for}}
+</section>
+{{yield}}

@@ -17,7 +17,7 @@ class PersonSeeder
   end
 
   def seed_association(assoc_name, person_id)
-    rand(0..3).times do
+    rand(3..9).times do
       send("seed_#{assoc_name}", person_id)
     end
   end

@@ -83,7 +83,7 @@ class CrudController < ListController
 
   # Only allow a trusted parameter "white list" through.
   def model_params
-    attrs = params.require(model_identifier).permit(permitted_attrs)
+    attrs = params[:data][:attributes].permit(permitted_attrs)
     AttributeDeserializer.new(attrs, nested_models: nested_models).run
   end
 

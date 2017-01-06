@@ -5,7 +5,7 @@ describe Person::ActivitiesController do
 
   describe 'GET index' do
     it 'returns all activities' do
-      keys = %w(description updated-by role year-from)
+      keys = %w(description updated_by role year_from)
 
       process :index, method: :get, params: { type: 'Person', person_id: bob.id }
 

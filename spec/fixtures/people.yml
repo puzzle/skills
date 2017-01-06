@@ -12,7 +12,7 @@ bob:
   origin: Switzerland
   role: Cleaner
   title: BSc in Cleaning
-  status: employee
+  status_id: 1 #Mitarbeiter
 
 alice:
   birthdate: 2016-10-20 13:15:11
@@ -26,4 +26,4 @@ alice:
   origin: England
   role: Secretary
   title: MSc in writing
-  status: copartner
+  status_id: 2 # Partner

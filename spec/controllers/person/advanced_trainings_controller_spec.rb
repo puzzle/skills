@@ -5,7 +5,7 @@ describe Person::AdvancedTrainingsController do
 
   describe 'GET index' do
     it 'returns all advanced_trainings' do
-      keys = %w(description updated-by year-from year-to)
+      keys = %w(description updated_by year_from year_to)
 
       process :index, method: :get, params: { type: 'Person', person_id: bob.id }
 

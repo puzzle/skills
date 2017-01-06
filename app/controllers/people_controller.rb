@@ -4,7 +4,6 @@ class PeopleController < CrudController
 
   self.nested_models = [:advanced_trainings, :activities, :projects,
                         :educations, :competences]
-    
   def index
     people = fetch_entries
     people = people.search(params[:q]) if params[:q].present?
@@ -14,6 +13,12 @@ class PeopleController < CrudController
 
   def show
     format_odt? ? export : super
+  end
+  
+  def update_picture
+    person = Person.find(params[:person_id])
+    person.update_attributes(picture: params[:picture])
+    render json: {data: { picture_path: person_picture_path(params[:person_id])}}
   end
 
   def picture
