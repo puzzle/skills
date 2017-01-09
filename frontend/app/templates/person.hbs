@@ -9,6 +9,7 @@
   {{component (if personEditing 'person-edit' 'person-show' )
     person=model
     submit=(action (toggle 'personEditing' this))
+    model-header-title = 'Personalien'
     }}
   {{competences-show competences=model.competences}}
   {{educations-show educations=model.educations}}

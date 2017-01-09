@@ -5,4 +5,11 @@ export default Ember.Route.extend({
   model(){
     return this.get('ajax').request('/people').then(response => response.data);
   },
+
+  actions: {
+    reloadPeopleList() {
+      this.refresh();
+    }
+  }
+
 });

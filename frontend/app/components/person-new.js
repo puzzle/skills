@@ -14,10 +14,7 @@ export default Ember.Component.extend({
   actions: {
     submit(newPerson) {
       return newPerson.save()
-        .then(
-          () => this.sendAction('submit'),
-          this.get('router').transitionTo('people')
-          );
+        .then(() => this.sendAction('submit', newPerson));
     }
   }
 });
