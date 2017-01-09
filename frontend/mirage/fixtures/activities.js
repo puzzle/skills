@@ -97,7 +97,7 @@ personId: 4
 },
 {
 id: 13,
-description: 'X-Wing flieg',
+description: 'X-Wing fliegen',
 role: 'Pilot',
 year_from: 1956,
 year_to: 1974,
