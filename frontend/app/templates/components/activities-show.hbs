@@ -14,7 +14,7 @@
           <tbody id="activity-content-show">
             {{#each activities as |activity|}}
               <tr id="template_activity_record" class="template">
-                <td id="show_year" class="show-year-cell">2000-2001</td>
+                <td id="show_year" class="show-year-cell">{{activity.year_from}}-{{activity.year_to}}</td>
                 <td class="show-description-cell">
                   <div>
                     <div id="show_role" class="activity-role">

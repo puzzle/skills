@@ -9,16 +9,25 @@ test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.render(hbs`{{person-show}}`);
+  this.set('person', {name: 'Harry Potter',
+                      title: 'Zauberer',
+                      role: 'Schüler',
+                      birthdate: '01.01.2000',
+                      origin: 'Godrics hollow',
+                      "location": 'Hogwarts',
+                      language: 'Parsel',
+                      martialStatus:  'ledig',
+                      "status": 'Mitarbeiter'});
 
-  assert.equal(this.$().text().trim(), '');
+  this.render(hbs`{{person-show person=person}}`);
 
-  // Template block usage:
-  this.render(hbs`
-    {{#person-show}}
-      template block text
-    {{/person-show}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.ok(this.$().text().includes('Harry Potter'));
+  assert.ok(this.$().text().includes('Zauberer'));
+  assert.ok(this.$().text().includes('Schüler'));
+  assert.ok(this.$().text().includes('01.01.2000'));
+  assert.ok(this.$().text().includes('Godrics hollow'));
+  assert.ok(this.$().text().includes('Hogwarts'));
+  assert.ok(this.$().text().includes('Parsel'));
+  assert.ok(this.$().text().includes('ledig'));
+  assert.ok(this.$().text().includes('Mitarbeiter'));
 });

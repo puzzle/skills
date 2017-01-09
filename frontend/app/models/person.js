@@ -1,4 +1,7 @@
-import DS from 'ember-data';
+import DS from 'ember-data'; 
+import Ember from 'ember';
+ 
+ 
 
 const PersonModel = DS.Model.extend({
   name: DS.attr('string'),

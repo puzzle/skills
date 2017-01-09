@@ -2,11 +2,16 @@
   {{model-header title="Kompetenzen"}}
     <div id="competence-content-show" class="row-fluid">
       <div class="span12">
-        <ul>
-          {{#each competences as |competence|}}
-            <li>{{competence.description}}</li>
-          {{/each}}
-        </ul>
+      {{#each competences as |competence|}}
+        <tr>
+          <th>
+            {{competence.description}}
+          </th>
+          <th>
+            <a id="button-edit-competences" class="button">Edit</a>
+          </th>
+        </tr>
+      {{/each}}
       </div>
     </div>
 </section>

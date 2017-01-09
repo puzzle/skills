@@ -3,7 +3,7 @@ import { Model, hasMany } from 'ember-cli-mirage';
 export default Model.extend({
   competences: hasMany(),
   projects: hasMany(),
-  advanced_trainings: hasMany(),
+  advancedTrainings: hasMany(),
   educations: hasMany(),
   activities: hasMany()
 });

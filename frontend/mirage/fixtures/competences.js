@@ -30,12 +30,12 @@ personId: 2
   personId: 3
 },   
 {
-  id: 7
+  id: 7,
   description: 'Das ist eine vierte description',
   personId: 4
 },
 {
-  id: 8
+  id: 8,
   description: 'Description',
   personId: 4
 },  
@@ -55,12 +55,12 @@ personId: 2
   personId: 1
 },   
 {
-  id: 12
+  id: 12,
   description: 'description 12',
   personId: 2
 },
 {
-  id: 13
+  id: 13,
   description: 'description 13',
   personId: 3
 },  

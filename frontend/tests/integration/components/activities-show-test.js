@@ -9,16 +9,9 @@ test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 
+  this.set('activity', {})
+
   this.render(hbs`{{activity-show}}`);
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#activity-show}}
-      template block text
-    {{/activity-show}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.ok(this.$().text().includes('Harry Potter'));
 });
