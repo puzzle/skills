@@ -1,0 +1,13 @@
+<tr>
+{{#if competenceEditing}}
+  {{competence-edit competence=competence editing=competenceEditing
+                           submit=(action (toggle 'competenceEditing' this))}}
+{{else}}
+  <th>
+    {{competence.description}}
+  </th>
+  <th>
+    <a onclick={{action (toggle 'competenceEditing' this)}} id="button-edit-competences" class="button">Edit</a>
+  </th>
+{{/if}}
+</tr>

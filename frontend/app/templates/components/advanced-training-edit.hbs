@@ -1,0 +1,14 @@
+{{#form-for (changeset advanced-training validations) submit=(action 'submit') as |f|}}
+    {{f.number-field 'year_from'}}
+    {{f.number-field 'year_to'}}
+    {{f.text-field 'description'}}
+    {{f.submit "Speichern"}}
+    {{f.reset "Reset"}}
+    <a onclick={{action (toggle 'editing' this)}}>
+      Abbrechen
+    </a>
+    <a onclick={{action (toggle 'editing' this)}}>
+      Delete
+    </a>
+    {{advanced-training-delete advanced-training=advanced-training advancedTrainingEditing=editing}}
+{{/form-for}}

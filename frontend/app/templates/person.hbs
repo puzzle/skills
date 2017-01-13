@@ -2,7 +2,6 @@
   <a onclick={{action (toggle 'personEditing' this)}} class="pull-right">
     {{if personEditing  'Abbrechen' 'Editieren...'}}
   </a>
-{{context}}
   {{person-delete personToDelete=model
     personEditing=personEditing
     }} 

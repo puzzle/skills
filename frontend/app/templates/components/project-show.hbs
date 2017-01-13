@@ -1,0 +1,29 @@
+<tr id="template_project_record" class="template">
+{{#if projectEditing}}
+  {{project-edit project=project editing=projectEditing
+                           submit=(action (toggle 'projectEditing' this))}}
+{{else}}
+  <td id="show_year" class="show-year-cell">
+    {{project.year_from}}-{{project.year_to}}
+  </td>
+  <td class="show-description-cell">
+    <div>
+      <div id="show_projectTitle" class="project-title">
+        {{project.title}}
+      </div>
+      <div id="show_projectDescription" class="project-description">
+        {{project.description}}
+      </div>
+      <div id="show_role" class="project-role">
+        {{project.role}}
+      </div>
+      <div id="show_technology" class="project-technology">
+        {{project.technology}}
+      </div>
+    </div>
+  </td>
+  <td>
+    <a onclick={{action (toggle 'projectEditing' this)}} id="button-edit-project" class="button">Edit</a>
+  </td>
+  {{/if}}
+</tr>

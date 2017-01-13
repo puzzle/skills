@@ -7,14 +7,14 @@ Rails.application.routes.draw do
     end
 
     resources :people do
-      resources :advanced_trainings, controller: 'person/advanced_trainings'
-      resources :activities, controller: 'person/activities'
-      resources :projects, controller: 'person/projects'
-      resources :educations, controller: 'person/educations'
-      resources :competences, controller: 'person/competences'
-      resources :variations, controller: 'person/variations'
       put 'picture', to: 'people#update_picture'
       get 'picture'
     end
+    resources :advanced_trainings, controller: 'person/advanced_trainings'
+    resources :activities, controller: 'person/activities'
+    resources :projects, controller: 'person/projects'
+    resources :educations, controller: 'person/educations'
+    resources :competences, controller: 'person/competences'
+    resources :variations, controller: 'person/variations'
   end
 end

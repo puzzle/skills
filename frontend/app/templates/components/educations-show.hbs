@@ -12,18 +12,7 @@
           </thead>
           <tbody>
             {{#each educations as |education|}}
-              <tr id="template_education_record" class="template">
-                <td id="show_year" class="show-year-cell">
-                  {{education.year_from}}-{{education.year_to}}
-                </td>
-                <td id="show_description" class="show-description-cell">
-                  {{education.title}}
-                  <br>{{education.location}}
-                </td>
-                <td>
-                  <a id="button-edit-education" class="button">Edit</a>
-                </td>
-              </tr>
+              {{education-show education=education}}
             {{/each}}
           </tbody>
         </table>

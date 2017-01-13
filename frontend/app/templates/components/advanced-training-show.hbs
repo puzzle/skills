@@ -1,0 +1,17 @@
+<tr id="template_advancedtraining_record" class="template">
+
+{{#if advancedTrainingEditing}}
+  {{advanced-training-edit advanced-training=advanced-training editing=advancedTrainingEditing
+                           submit=(action (toggle 'advancedTrainingEditing' this))}}
+{{else}}
+  <td id="show_year" class="show-year-cell">
+    {{advanced-training.year_from}}-{{advanced-training.year_to}}
+  </td>
+  <td id="show_description" class="show-description-cell">
+    {{advanced-training.description}}
+  </td>
+  <td>
+    <a onclick={{action (toggle 'advancedTrainingEditing' this)}} id="button-edit-advancedTraining" class="button">Edit</a>
+  </td>
+  {{/if}}
+</tr>
