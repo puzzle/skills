@@ -57,7 +57,7 @@ class CrudController < ListController
   def build_entry
     attrs = model_params.to_h
     if model_scope != Person && attrs.present?
-      attrs = attrs.merge!({ person_id: person_id })
+      attrs = attrs.merge!(person_id: person_id)
     end
 
     instance_variable_set(:"@#{ivar_name}", model_scope.new(attrs))
