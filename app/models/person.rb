@@ -23,11 +23,11 @@
 class Person < ApplicationRecord
   include Export
   include PgSearch
-  
-  STATUSES  = {1 => 'Mitarbeiter',
+
+  STATUSES = { 1 => 'Mitarbeiter',
                2 => 'Partner',
                3 => 'Bewerber',
-               4 => 'Ex Mitarbeiter'}
+               4 => 'Ex Mitarbeiter' }
 
   mount_uploader :picture, PictureUploader
   has_many :projects, dependent: :destroy
@@ -37,8 +37,10 @@ class Person < ApplicationRecord
   has_many :competences, dependent: :destroy
   has_many :variations, foreign_key: :origin_person_id, class_name: Person::Variation
 
-  validates :birthdate, :language, :location, :name, :origin, :role, :title, :status_id, presence: true
-  validates_length_of :location, :martial_status, :name, :origin, :role, :title, :variation_name, maximum: 50
+  validates :birthdate, :language, :location, :name, :origin,
+            :role, :title, :status_id, presence: true
+  validates_length_of :location, :martial_status, :name, :origin,
+                      :role, :title, :variation_name, maximum: 50
   validates_length_of :language, maximum: 100
   validate :picture_size
   validate :valid_status
@@ -47,29 +49,31 @@ class Person < ApplicationRecord
   default_scope { where(type: nil).order(:name) }
 
   pg_search_scope :search,
-    against: [:language, :location, :name, :origin, :role, :title],
-    associated_against: {
-      projects: [:description, :title, :role, :technology],
-      activities: [:description, :role],
-      educations: [:location, :title],
-      advanced_trainings: :description,
-      competences: :description
-    },
-    using: { tsearch: { 
-      prefix: true
-    } }
+                  against: [:language, :location, :name, :origin, :role, :title],
+                  associated_against: {
+                    projects: [:description, :title, :role, :technology],
+                    activities: [:description, :role],
+                    educations: [:location, :title],
+                    advanced_trainings: :description,
+                    competences: :description
+                  },
+                  using: {
+                    tsearch: {
+                      prefix: true
+                    }
+                  }
 
   def status
     STATUSES[status_id]
   end
-  
+
   private
 
   def picture_size
     return if picture.nil? || picture.size < 10.megabytes
     errors.add(:picture, 'grösse kann maximal 10MB sein')
   end
-  
+
   def valid_status
     return if STATUSES.include?(status_id)
     errors.add(:status_id, 'unbekannt')

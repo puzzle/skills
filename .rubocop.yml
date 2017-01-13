@@ -1,0 +1,105 @@
+AllCops:
+  DisplayCopNames: true
+  Exclude:
+    - Rakefile
+    - db/**/*
+    - config/**/*
+    - lib/tasks/**/*
+    - test/**/*
+    - tmp/**/*
+    - frontend/**/*
+    - test/**/*
+
+Metrics/AbcSize:
+  Max: 20
+  Severity: error
+
+Metrics/ClassLength:
+  Max: 200
+  Severity: error
+
+Metrics/CyclomaticComplexity:
+  Max: 6
+  Severity: error
+
+Metrics/LineLength:
+  Max: 100
+  Severity: warning
+
+Metrics/MethodLength:
+  Max: 10
+  Severity: error
+
+
+# Keep for now, easier with superclass definitions
+ClassAndModuleChildren:
+  Enabled: false
+
+# The ones we use must exist for the entire class hierarchy.
+ClassVars:
+  Enabled: false
+
+# map instead of collect, reduce instead of inject.
+# Probably later
+CollectionMethods:
+  Enabled: false
+
+# Well, well, well
+Documentation:
+  Enabled: false
+
+# Probably later
+DotPosition:
+  Enabled: false
+
+# Missing UTF-8 encoding statements should always be created.
+Encoding:
+  Severity: error
+
+# Keep single line bodys for if and unless
+IfUnlessModifier:
+  Enabled: false
+
+# We thinks that's fine
+HasAndBelongsToMany:
+  Enabled: false
+
+# We think that's the developers choice
+Rails/Delegate:
+  Enabled: false
+
+# That's no huge stopper
+Style/EmptyLines:
+  Enabled: false
+
+# We thinks that's fine for specs
+Style/EmptyLinesAroundBlockBody:
+  Enabled: false
+
+# We thinks that's fine
+Style/EmptyLinesAroundClassBody:
+  Enabled: false
+
+# We thinks that's fine
+Style/EmptyLinesAroundModuleBody:
+  Enabled: false
+
+# We thinks that's fine
+Style/MultilineOperationIndentation:
+  Enabled: false
+
+# We thinks that's fine
+Style/RegexpLiteral:
+  Enabled: false
+
+# We think that's the developers choice
+Style/SymbolProc:
+  Enabled: false
+
+# Probably later
+Style/GuardClause:
+  Enabled: false
+
+# We thinks that's fine
+Style/SingleLineBlockParams:
+  Enabled: false

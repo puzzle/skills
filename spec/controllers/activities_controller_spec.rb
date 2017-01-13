@@ -60,7 +60,9 @@ describe ActivitiesController do
   describe 'DELETE destroy' do
     it 'destroys existing person' do
       activity = activities(:swisscom)
-      process :destroy, method: :delete, params: { type: 'Person', person_id: bob.id, id: activity.id }
+      process :destroy, method: :delete, params: {
+        type: 'Person', person_id: bob.id, id: activity.id
+      }
 
       expect(Activity.exists?(activity.id)).to eq(false)
     end
