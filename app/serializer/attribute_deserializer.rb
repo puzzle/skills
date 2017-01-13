@@ -19,8 +19,8 @@ class AttributeDeserializer
     nested_models.each do |model|
       if model.is_a?(Hash)
         process_models_hash(attrs, model)
-      else
-        attrs["#{model}_attributes"] = attrs.delete(model.to_s) if attrs.key?(model.to_s)
+      elsif attrs.key?(model.to_s)
+        attrs["#{model}_attributes"] = attrs.delete(model.to_s)
       end
     end
   end

@@ -16,7 +16,9 @@ describe Competence do
       competence.description = SecureRandom.hex(1000)
       competence.valid?
 
-      expect(competence.errors[:description].first).to eq('is too long (maximum is 1000 characters)')
+      expect(competence.errors[:description].first).to eq(
+        'is too long (maximum is 1000 characters)'
+      )
     end
   end
 end

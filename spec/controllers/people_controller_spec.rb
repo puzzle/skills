@@ -53,7 +53,7 @@ describe PeopleController do
         expect(people.count).to eq(2)
         alice_attrs = people.first['attributes']
         expect(alice_attrs.count).to eq(1)
-        expect(alice_attrs.first[1]).to eq("Alice Mante")
+        expect(alice_attrs.first[1]).to eq('Alice Mante')
         json_object_includes_keys(alice_attrs, keys)
         expect(people).not_to include('relationships')
       end
@@ -65,7 +65,7 @@ describe PeopleController do
           .exactly(1).times
           .and_call_original
 
-        get :index, params: { q: 'London'}
+        get :index, params: { q: 'London' }
       end
     end
 
@@ -82,7 +82,7 @@ describe PeopleController do
 
         expect(bob_attrs.count).to eq(11)
         json_object_includes_keys(bob_attrs, keys)
-        #expect(bob_attrs['picture-path']).to eq("/api/people/#{bob.id}/picture")
+        # expect(bob_attrs['picture-path']).to eq("/api/people/#{bob.id}/picture")
 
         nested_keys = %w(advanced_trainings activities projects educations competences)
         nested_attrs = json['data']['relationships']
@@ -94,7 +94,7 @@ describe PeopleController do
       describe 'POST create' do
         it 'creates new person' do
           person = { birthdate: Time.now,
-                     picture: fixture_file_upload('files/picture.png','image/png'),
+                     picture: fixture_file_upload('files/picture.png', 'image/png'),
                      language: 'German',
                      location: 'Bern',
                      martial_status: 'single',
@@ -104,7 +104,7 @@ describe PeopleController do
                      title: 'Bsc in tester',
                      status_id: 2 }
 
-          process :create, method: :post, params: { data: { attributes: person}}
+          process :create, method: :post, params: { data: { attributes: person } }
 
           new_person = Person.find_by(name: 'test')
           expect(new_person).not_to eq(nil)
@@ -119,7 +119,9 @@ describe PeopleController do
         it 'updates existing person' do
           bob = people(:bob)
 
-          process :update, method: :put, params: { id: bob.id, data: { attributes: { location: 'test_location' }}}
+          process :update, method: :put, params: {
+            id: bob.id, data: { attributes: { location: 'test_location' } }
+          }
 
           bob.reload
           expect(bob.location).to eq('test_location')

@@ -17,7 +17,9 @@ describe AdvancedTraining do
       advanced_training = advanced_trainings(:course)
       advanced_training.description = SecureRandom.hex(1000)
       advanced_training.valid?
-      expect(advanced_training.errors[:description].first).to eq('is too long (maximum is 1000 characters)')
+      expect(advanced_training.errors[:description].first).to eq(
+        'is too long (maximum is 1000 characters)'
+      )
     end
 
     it 'does not create AdvancedTraining if year_from is later than year_to' do

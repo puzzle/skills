@@ -57,7 +57,9 @@ describe Person::CompetencesController do
   describe 'DELETE destroy' do
     it 'destroys existing person' do
       competence = competences(:scrum)
-      process :destroy, method: :delete, params: { type: 'Person', person_id: bob.id, id: competence.id }
+      process :destroy, method: :delete, params: {
+        type: 'Person', person_id: bob.id, id: competence.id
+      }
 
       expect(Competence.exists?(competence.id)).to eq(false)
     end

@@ -34,7 +34,8 @@ describe AuthenticationController do
       expect(JSON.parse(response.body)['error']['seconds_locked']).to eq(25)
     end
 
-    it 'resets failed login attemtpts & api_token and returns ldap_uid and api_token if valid login' do
+    it 'resets failed login attemtpts &
+        api_token and returns ldap_uid and api_token if valid login' do
       ken = users(:ken)
       old_token = ken.api_token
       ken.update_attributes(failed_login_attempts: 5,
@@ -47,7 +48,7 @@ describe AuthenticationController do
 
       ken.reload
       ken_json = JSON.parse(response.body)
-      
+
       expect(ken.api_token).not_to eq(old_token)
       expect(ken_json['ldap_uid']).to eq(ken.ldap_uid)
       expect(ken_json['api_token']).to eq(ken.api_token)
@@ -82,7 +83,7 @@ describe AuthenticationController do
       allow(LdapTools).to receive(:authenticate).and_return(false)
 
       process :sign_in, method: :post, params: { username: 'kanderson', password: 'test' }
-      
+
       json = JSON.parse(response.body)
 
       expect(response.status).to eq(401)

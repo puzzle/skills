@@ -14,16 +14,16 @@ class PeopleController < CrudController
   def show
     format_odt? ? export : super
   end
-  
+
   def update_picture
     person = Person.find(params[:person_id])
     person.update_attributes(picture: params[:picture])
-    render json: {data: { picture_path: person_picture_path(params[:person_id])}}
+    render json: { data: { picture_path: person_picture_path(params[:person_id]) } }
   end
 
   def picture
     person = Person.find(params[:person_id])
-    send_file(person.picture.url, disposition: "inline")
+    send_file(person.picture.url, disposition: 'inline')
   end
 
   private
@@ -32,9 +32,9 @@ class PeopleController < CrudController
     person = Person.find(params[:id])
     odt_file = person.export
     send_data odt_file.generate,
-      type: 'application/vnd.oasis.opendocument.text',
-      disposition: 'attachment',
-      filename: filename(person.name)
+              type: 'application/vnd.oasis.opendocument.text',
+              disposition: 'attachment',
+              filename: filename(person.name)
   end
 
   def filename(name)

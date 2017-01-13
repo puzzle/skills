@@ -62,7 +62,7 @@ describe Person::ProjectsController do
 
       # entsprechende Errormeldung mis in JSON response vorhanden sein.
       # unvalid ist kein englisches wort -> invalid
-      # titel dieses Tests ist zu generisch. 
+      # titel dieses Tests ist zu generisch.
     end
   end
 

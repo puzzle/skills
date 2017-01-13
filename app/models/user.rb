@@ -18,7 +18,7 @@ class User < ApplicationRecord
 
   def seconds_locked
     return 0 if failed_login_attempts <= 3
-    (failed_login_attempts*5).seconds
+    (failed_login_attempts * 5).seconds
   end
 
   private
@@ -33,7 +33,7 @@ class User < ApplicationRecord
 
       user = find_or_create(username)
 
-      return { error: { seconds_locked: user.seconds_locked }} if user.locked?
+      return { error: { seconds_locked: user.seconds_locked } } if user.locked?
 
       unless LdapTools.authenticate(username, password)
         user.update_failed_login_attempts
