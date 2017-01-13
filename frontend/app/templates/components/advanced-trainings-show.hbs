@@ -12,17 +12,7 @@
         </thead>
         <tbody id="advanced-training-content-show">
           {{#each advanced-trainings as |advanced-training|}}
-            <tr id="template_advancedtraining_record" class="template">
-              <td id="show_year" class="show-year-cell">
-               {{advanced-training.year_from}}-{{advanced-training.year_to}}
-              </td>
-              <td id="show_description" class="show-description-cell">
-                {{advanced-training.description}}
-              </td>
-              <td>
-                <a id="button-edit-advancedtraining" class="button">Edit</a>
-              </td>
-            </tr>
+            {{advanced-training-show advanced-training=advanced-training}}
           {{/each}}
         </tbody>
       </table>

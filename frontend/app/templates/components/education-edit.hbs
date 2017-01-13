@@ -1,0 +1,12 @@
+{{#form-for (changeset education validations) submit=(action 'submit') as |f|}}
+    {{f.number-field 'year_from'}}
+    {{f.number-field 'year_to'}}
+    {{f.text-field 'title'}}
+    {{f.text-field 'location'}}
+    {{f.submit "Speichern"}}
+    {{f.reset "Reset"}}
+    <a onclick={{action (toggle 'editing' this)}}>
+      Abbrechen
+    </a>
+    {{education-delete education=education educationEditing=editing}}
+  {{/form-for}}

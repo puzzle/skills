@@ -1,17 +1,17 @@
 <section id="competence" class="section">
+  <a onclick={{action (toggle 'competenceNew' this)}} id="button-new-competences" class="button pull-right">{{if competenceNew 'Abbrechen' 'Neu'}}</a>
   {{model-header title="Kompetenzen"}}
+  {{#if competenceNew}}
+    {{competence-new personId=46 submit=(action (toggle 'competenceNew' this))}}
+  {{else}}
+
     <div id="competence-content-show" class="row-fluid">
-      <div class="span12">
+    <div class="span12">
       {{#each competences as |competence|}}
-        <tr>
-          <th>
-            {{competence.description}}
-          </th>
-          <th>
-            <a id="button-edit-competences" class="button">Edit</a>
-          </th>
-        </tr>
-      {{/each}}
-      </div>
+        {{competence-show competence=competence}}
+    {{/each}}
     </div>
+  </div>
+
+{{/if}}
 </section>

@@ -1,0 +1,14 @@
+{{#form-for (changeset project validations) submit=(action 'submit') as |f|}}
+    {{f.number-field 'year_from'}}
+    {{f.number-field 'year_to'}}
+    {{f.text-field 'title'}}
+    {{f.text-field 'description'}}
+    {{f.text-field 'role'}}
+    {{f.text-field 'technology'}}
+    {{f.submit "Speichern"}}
+    {{f.reset "Reset"}}
+    <a onclick={{action (toggle 'editing' this)}}>
+      Abbrechen
+    </a>
+    {{project-delete project=project projectEditing=editing}}
+{{/form-for}}

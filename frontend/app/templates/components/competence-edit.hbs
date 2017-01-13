@@ -1,0 +1,13 @@
+{{#form-for (changeset competence validations) submit=(action 'submit') as |f|}}
+<th>
+  {{f.text-field 'description'}}
+</th>
+<div class="pull-right">
+  {{f.submit "Speichern"}}
+  {{f.reset "Reset"}}
+  <a onclick={{action (toggle 'editing' this)}}>
+    Abbrechen
+  </a>
+    {{competence-delete competence=competence competenceEditing=editing}}
+</div>
+{{/form-for}}
