@@ -1,5 +1,9 @@
 <section id="activity" class="section">
+  <a onclick={{action (toggle 'projectNew' this)}} id="button-new-projects" class="button pull-right">{{if projectsNew 'Abbrechen' 'Neu'}}</a>
   {{model-header title="Projects"}}
+  {{#if projectNew}}
+    {{project-new personId=personId submit=(action (toggle 'projectNew' this))}}
+{{else}}
   <div class="row-fluid">
     <div class="span12">
       <table id="project-content-show-table"
@@ -19,4 +23,5 @@
       </table>
     </div>
   </div>
+  {{/if}}
 </section>

@@ -1,0 +1,7 @@
+{{#form-for newAdvancedTraining submit=(action 'submit') as |f|}}
+    {{f.number-field 'year_from'}}
+    {{f.number-field 'year_to'}}
+    {{f.text-field 'description'}}
+    {{f.submit "Speichern"}}
+    {{f.reset "Reset"}}
+{{/form-for}}

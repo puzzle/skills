@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Person::AdvancedTrainingsController do
+describe AdvancedTrainingsController do
   before { auth(:ken) }
 
   describe 'GET index' do
@@ -36,7 +36,7 @@ describe Person::AdvancedTrainingsController do
                             year_from: 2000,
                             year_to: 2015 }
 
-      post :create, params: { type: 'Person', person_id: bob.id, advanced_training: advanced_training }
+      post :create, params: create_params(advanced_training, bob.id, 'advanced-training') 
 
       new_at = AdvancedTraining.find_by(description: 'test description')
       expect(new_at).not_to eq(nil)
@@ -48,8 +48,8 @@ describe Person::AdvancedTrainingsController do
   describe 'PUT update' do
     it 'updates existing person' do
       course = advanced_trainings(:course)
-
-      process :update, method: :put, params: { type: 'Person', id: course, person_id: bob.id, advanced_training: { description: 'changed' } }
+      updated_attributes = {description: 'changed'}
+      process :update, method: :put, params: update_params(course.id, updated_attributes, bob.id, 'advanced-training')
 
       course.reload
       expect(course.description).to eq('changed')
@@ -69,5 +69,13 @@ describe Person::AdvancedTrainingsController do
 
   def bob
     @bob ||= people(:bob)
+  end
+
+  def create_params(object, user_id, model_type)
+    {data: { attributes: object, relationships: { person: {data: { type: 'People', id: user_id}}}, type: model_type}}
+  end
+
+  def update_params(objectId, updated_attributes, user_id, model_type)
+    {data: {id: objectId, attributes: updated_attributes, relationships: { person: {data: { type: 'people', id: user_id}}}, type: model_type}, id: objectId}
   end
 end

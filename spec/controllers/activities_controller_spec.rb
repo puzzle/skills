@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Person::ActivitiesController do
+describe ActivitiesController do
   before { auth(:ken) }
 
   describe 'GET index' do
@@ -37,7 +37,7 @@ describe Person::ActivitiesController do
                    year_to: 2015,
                    role: 'test role' }
 
-      post :create, params: { type: 'Person', person_id: bob.id, activity: activity }
+      post :create, params: create_params(activity, bob.id, 'activity')
 
       new_activity = Activity.find_by(description: 'test description')
       expect(new_activity).not_to eq(nil)
@@ -49,12 +49,9 @@ describe Person::ActivitiesController do
   describe 'PUT update' do
     it 'updates existing person' do
       activity = activities(:swisscom)
+      updated_attributes = {description: 'changed'}
 
-      process :update, method: :put, params: { type: 'Person',
-                                               id: activity,
-                                               person_id: bob.id,
-                                               activity: { description: 'changed' } }
-
+      process :update, method: :put, params: update_params(activity.id, updated_attributes, bob.id, 'activity')
       activity.reload
       expect(activity.description).to eq('changed')
     end
@@ -73,5 +70,13 @@ describe Person::ActivitiesController do
 
   def bob
     @bob ||= people(:bob)
+  end
+
+  def create_params(object, user_id, model_type)
+    {data: { attributes: object, relationships: { person: {data: { type: 'People', id: user_id}}}, type: model_type}}
+  end
+
+  def update_params(objectId, updated_attributes, user_id, model_type)
+    {data: {id: objectId, attributes: updated_attributes, relationships: { person: {data: { type: 'people', id: user_id}}}, type: model_type}, id: objectId}
   end
 end

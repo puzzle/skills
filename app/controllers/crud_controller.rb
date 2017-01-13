@@ -45,11 +45,6 @@ class CrudController < ListController
       instance_variable_set(:"@#{ivar_name}", fetch_entry)
   end
 
-  def person_id
-    params = instance_variable_get(:@_params)
-    params.nil? ? nil : params['person_id']
-  end
-
   def fetch_entry
     model_scope.find(params.fetch(:id))
   end
@@ -78,7 +73,7 @@ class CrudController < ListController
   def entry_url
     send("#{self.class.name.underscore
          .gsub(/_controller$/, '')
-         .gsub(/\//, '_').singularize}_url", entry, person_id)
+         .gsub(/\//, '_').singularize}_url", entry)
   end
 
   # Only allow a trusted parameter "white list" through.

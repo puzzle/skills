@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Person::EducationsController, type: :controller do
+describe EducationsController, type: :controller do
   before { auth(:ken) }
 
   describe 'GET index' do
@@ -35,7 +35,7 @@ describe Person::EducationsController, type: :controller do
                     year_from: 2000,
                     year_to: 2015 }
 
-      post :create, params: { type: 'Person', person_id: bob.id, education: education }
+      post :create, params: create_params(education, bob.id, 'educations')
 
       new_education = Education.find_by(title: 'test title')
       expect(new_education).not_to eq(nil)
@@ -48,11 +48,8 @@ describe Person::EducationsController, type: :controller do
   describe 'PUT update' do
     it 'updates existing person' do
       education = educations(:bsc)
-
-      process :update, method: :put, params: { type: 'Person',
-                                               id: education,
-                                               person_id: bob.id,
-                                               education: { title: 'changed' } }
+      updated_attributes = {title: 'changed'}
+      process :update, method: :put, params: update_params(education.id, updated_attributes, bob.id, 'educations')
 
       education.reload
       expect(education.title).to eq('changed')
@@ -74,5 +71,13 @@ describe Person::EducationsController, type: :controller do
 
   def bob
     @bob ||= people(:bob)
+  end
+
+  def create_params(object, user_id, model_type)
+    {data: { attributes: object, relationships: { person: {data: { type: 'People', id: user_id}}}, type: model_type}}
+  end
+
+  def update_params(objectId, updated_attributes, user_id, model_type)
+    {data: {id: objectId, attributes: updated_attributes, relationships: { person: {data: { type: 'people', id: user_id}}}, type: model_type}, id: objectId}
   end
 end

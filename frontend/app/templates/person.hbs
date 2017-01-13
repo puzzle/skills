@@ -10,9 +10,9 @@
     submit=(action (toggle 'personEditing' this))
     model-header-title = 'Personalien'
     }}
-  {{competences-show competences=model.competences}}
-  {{educations-show educations=model.educations}}
-  {{advanced-trainings-show  advanced-trainings=model.advancedTrainings}}
-  {{activities-show activities=model.activities}}
-  {{projects-show projects=model.projects}}
+  {{competences-show competences=model.competences personId=model.id}}
+  {{educations-show educations=model.educations personId=model.id}}
+  {{advanced-trainings-show  advanced-trainings=model.advancedTrainings personId=model.id}}
+  {{activities-show activities=model.activities personId=model.id}}
+  {{projects-show projects=model.projects personId=model.id}}
 </div>

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Person::CompetencesController do
+describe CompetencesController do
   before { auth(:ken) }
 
   describe 'GET index' do
@@ -33,7 +33,7 @@ describe Person::CompetencesController do
       competence = { description: 'test description',
                      updated_by: 'Bob' }
 
-      post :create, params: { type: 'Person', person_id: bob.id, competence: competence }
+      post :create, params: create_params(competence, bob.id, 'competences') 
 
       new_competence = Competence.find_by(description: 'test description')
       expect(new_competence).not_to eq(nil)
@@ -43,12 +43,8 @@ describe Person::CompetencesController do
   describe 'PUT update' do
     it 'updates existing person' do
       competence = competences(:scrum)
-
-      process :update, method: :put, params: { type: 'Person',
-                                               id: competence,
-                                               person_id: bob.id,
-                                               competence: { description: 'changed' } }
-
+      updated_attributes = {description: 'changed'}
+      process :update, method: :put, params: update_params(competence.id, updated_attributes, bob.id, 'competences')
       competence.reload
       expect(competence.description).to eq('changed')
     end
@@ -67,5 +63,13 @@ describe Person::CompetencesController do
 
   def bob
     @bob ||= people(:bob)
+  end
+
+  def create_params(object, user_id, model_type)
+    {data: { attributes: object, relationships: { person: {data: { type: 'People', id: user_id}}}, type: model_type}}
+  end
+
+  def update_params(objectId, updated_attributes, user_id, model_type)
+    {data: {id: objectId, attributes: updated_attributes, relationships: { person: {data: { type: 'people', id: user_id}}}, type: model_type}, id: objectId}
   end
 end

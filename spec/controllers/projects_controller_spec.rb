@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Person::ProjectsController do
+describe ProjectsController do
   before { auth(:ken) }
 
   describe 'GET index' do
@@ -41,7 +41,7 @@ describe Person::ProjectsController do
                   technology: 'test technology',
                   role: 'test role' }
 
-      post :create, params: { type: 'Person', person_id: bob.id, project: project }
+      post :create, params: create_params(project, bob.id, 'projects')
 
       new_project = Project.find_by(description: 'test description')
       expect(new_project).not_to eq(nil)
@@ -51,29 +51,13 @@ describe Person::ProjectsController do
       expect(new_project.technology).to eq('test technology')
       expect(new_project.role).to eq('test role')
     end
-
-    it 'does not creates new project if ' do
-      project = { description: 'Test description',
-                  year_from: 2010,
-                  year_to: 2015,
-                  role: 'test role' }
-
-      post :create, params: { person_id: bob.id, project: project }
-
-      # entsprechende Errormeldung mis in JSON response vorhanden sein.
-      # unvalid ist kein englisches wort -> invalid
-      # titel dieses Tests ist zu generisch. 
-    end
   end
 
   describe 'PUT update' do
     it 'updates existing person' do
       project = projects(:duckduckgo)
-
-      process :update, method: :put, params: { type: 'Person',
-                                               id: project,
-                                               person_id: bob.id,
-                                               project: { description: 'changed' } }
+      updated_attributes = {description: 'changed'}
+      process :update, method: :put, params: update_params(project.id, updated_attributes, bob.id, 'projects')
 
       project.reload
       expect(project.description).to eq('changed')
@@ -95,5 +79,13 @@ describe Person::ProjectsController do
 
   def bob
     @bob ||= people(:bob)
+  end
+
+  def create_params(object, user_id, model_type)
+    {data: { attributes: object, relationships: { person: {data: { type: 'People', id: user_id}}}, type: model_type}}
+  end
+
+  def update_params(objectId, updated_attributes, user_id, model_type)
+    {data: {id: objectId, attributes: updated_attributes, relationships: { person: {data: { type: 'people', id: user_id}}}, type: model_type}, id: objectId}
   end
 end

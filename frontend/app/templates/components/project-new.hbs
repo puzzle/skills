@@ -1,0 +1,11 @@
+{{#form-for newProject submit=(action 'submit') as |f|}}
+    {{f.number-field 'year_from'}}
+    {{f.number-field 'year_to'}}
+    {{f.text-field 'title'}}
+    {{f.text-field 'description'}}
+    {{f.text-field 'role'}}
+    {{f.text-field 'technology'}}
+    {{f.submit "Speichern"}}
+    {{f.reset "Reset"}}
+{{/form-for}}
+

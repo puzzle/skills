@@ -2,9 +2,8 @@
   <a onclick={{action (toggle 'competenceNew' this)}} id="button-new-competences" class="button pull-right">{{if competenceNew 'Abbrechen' 'Neu'}}</a>
   {{model-header title="Kompetenzen"}}
   {{#if competenceNew}}
-    {{competence-new personId=46 submit=(action (toggle 'competenceNew' this))}}
+    {{competence-new personId=personId submit=(action (toggle 'competenceNew' this))}}
   {{else}}
-
     <div id="competence-content-show" class="row-fluid">
     <div class="span12">
       {{#each competences as |competence|}}
@@ -12,6 +11,5 @@
     {{/each}}
     </div>
   </div>
-
 {{/if}}
 </section>
