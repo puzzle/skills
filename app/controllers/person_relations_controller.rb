@@ -1,7 +1,6 @@
 class PersonRelationsController < CrudController
   def person_id
-    params = instance_variable_get(:@_params)
-    params.nil? ? nil : params['data']['relationships']['person']['data']['id']
+    @_params.nil? ? nil : @_params['data']['relationships']['person']['data']['id']
   end
 
   def create(options = {})
@@ -12,6 +11,10 @@ class PersonRelationsController < CrudController
     else
       render_errors
     end
+  end
+
+  def fetch_entries
+    model_class.where(person_id: params['person_id'])
   end
 
 end
