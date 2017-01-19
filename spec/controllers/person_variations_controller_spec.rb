@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Person::VariationsController do
+describe PersonVariationsController do
   context 'variations' do
     before do
       @bob = people(:bob)

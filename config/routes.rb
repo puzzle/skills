@@ -15,6 +15,6 @@ Rails.application.routes.draw do
     resources :projects, controller: 'projects'
     resources :educations, controller: 'educations'
     resources :competences, controller: 'competences'
-    resources :variations, controller: 'variations'
+    resources :person_variations, controller: 'person_variations'
   end
 end

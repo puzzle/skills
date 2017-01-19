@@ -1,4 +1,4 @@
-class VariationsController < CrudController
+class PersonVariationsController < CrudController
   self.permitted_attrs = PeopleController.permitted_attrs + [:variation_name]
 
   self.nested_models = PeopleController.nested_models
