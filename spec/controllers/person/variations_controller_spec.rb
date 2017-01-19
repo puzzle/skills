@@ -55,9 +55,11 @@ describe Person::VariationsController do
 
     describe 'PUT update' do
       it 'updates existing person variation' do
-        process :update, method: :put, params: { person_id: @bob.id,
-                                                 id: @bobs_variation1.id,
-                                                 person_variation: { location: 'test_location' } }
+        updated_attributes = { location: 'test_location' }
+        process :update, method: :put, params: update_params(@bobs_variation1.id,
+                                                             updated_attributes,
+                                                             @bob.id, 
+                                                             'variations')
 
         @bobs_variation1.reload
 
@@ -77,5 +79,11 @@ describe Person::VariationsController do
         expect(Competence.exists?(person_id: @bobs_variation2.id)).to eq(false)
       end
     end
+  end
+
+  private
+
+  def update_params(objectId, updated_attributes, user_id, model_type)
+    {data: {id: objectId, attributes: updated_attributes, relationships: { person: {data: { type: 'people', id: user_id}}}, type: model_type}, id: objectId}
   end
 end

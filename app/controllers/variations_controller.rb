@@ -1,4 +1,4 @@
-class Person::VariationsController < CrudController
+class VariationsController < CrudController
   self.permitted_attrs = PeopleController.permitted_attrs + [:variation_name]
 
   self.nested_models = PeopleController.nested_models
@@ -15,7 +15,7 @@ class Person::VariationsController < CrudController
   protected
 
   def fetch_entries
-    model_scope.list.where(origin_person_id: params['person_id'])
+    model_class.where(origin_person_id: params['person_id'])
   end
 
   class << self
