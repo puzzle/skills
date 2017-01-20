@@ -12,7 +12,7 @@ export default Component.extend({
   actions: {
     submit(newAdvancedTraining) {
       let person = this.get('store').peekRecord('person', this.get('personId'));
-      newAdvancedTraining.set('person', person)
+      newAdvancedTraining.set('person', person);
       return newAdvancedTraining.save()
         .then(() => this.sendAction('submit', newAdvancedTraining));
     }

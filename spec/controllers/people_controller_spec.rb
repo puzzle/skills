@@ -80,7 +80,7 @@ describe PeopleController do
 
         bob_attrs = json['data']['attributes']
 
-        expect(bob_attrs.count).to eq(11)
+        expect(bob_attrs.count).to eq(13)
         json_object_includes_keys(bob_attrs, keys)
         # expect(bob_attrs['picture-path']).to eq("/api/people/#{bob.id}/picture")
 
@@ -91,55 +91,94 @@ describe PeopleController do
         json_object_includes_keys(nested_attrs, nested_keys)
       end
 
-      describe 'POST create' do
-        it 'creates new person' do
-          person = { birthdate: Time.now,
-                     picture: fixture_file_upload('files/picture.png', 'image/png'),
-                     language: 'German',
-                     location: 'Bern',
-                     martial_status: 'single',
-                     name: 'test',
-                     origin: 'Switzerland',
-                     role: 'tester',
-                     title: 'Bsc in tester',
-                     status_id: 2 }
+      it 'returns person variations with nested modules' do
+        bobs_variation1 = Person::Variation.create_variation('bobs_variation1', people(:bob).id)
+        keys = %w(birthdate picture_path language location martial_status updated_by name origin
+                  role title variation_name)
 
-          process :create, method: :post, params: { data: { attributes: person } }
+        process :show, method: :get, params: { id: bobs_variation1.id }
 
-          new_person = Person.find_by(name: 'test')
-          expect(new_person).not_to eq(nil)
-          expect(new_person.location).to eq('Bern')
-          expect(new_person.language).to eq('German')
-          expect(new_person.picture.url)
-            .to include("#{Rails.root}/uploads/person/picture/#{new_person.id}/picture.png")
-        end
+        bob_attrs = json['data']['attributes']
+
+        expect(bob_attrs.count).to eq(13)
+        json_object_includes_keys(bob_attrs, keys)
+      end
+    end
+
+    describe 'POST create' do
+      it 'creates new person' do
+        person = { birthdate: Time.now,
+                   picture: fixture_file_upload('files/picture.png', 'image/png'),
+                   language: 'German',
+                   location: 'Bern',
+                   martial_status: 'single',
+                   name: 'test',
+                   origin: 'Switzerland',
+                   role: 'tester',
+                   title: 'Bsc in tester',
+                   status_id: 2 }
+
+        process :create, method: :post, params: { data: { attributes: person } }
+
+        new_person = Person.find_by(name: 'test')
+        expect(new_person).not_to eq(nil)
+        expect(new_person.location).to eq('Bern')
+        expect(new_person.language).to eq('German')
+        expect(new_person.picture.url)
+          .to include("#{Rails.root}/uploads/person/picture/#{new_person.id}/picture.png")
+      end
+    end
+
+    describe 'PUT update' do
+      it 'updates existing person' do
+        bob = people(:bob)
+
+        process :update, method: :put, params: {
+          id: bob.id, data: { attributes: { location: 'test_location' } }
+        }
+
+        bob.reload
+        expect(bob.location).to eq('test_location')
       end
 
-      describe 'PUT update' do
-        it 'updates existing person' do
-          bob = people(:bob)
+      it 'updates existing person variation' do
+        bobs_variation1 = Person::Variation.create_variation('bobs_variation1', people(:bob).id)
+        updated_attributes = { location: 'test_location' }
+        process :update, method: :put, params: update_params(bobs_variation1.id,
+                                                             updated_attributes,
+                                                             people(:bob).id, 
+                                                             'variations')
 
-          process :update, method: :put, params: {
-            id: bob.id, data: { attributes: { location: 'test_location' } }
-          }
+        bobs_variation1.reload
 
-          bob.reload
-          expect(bob.location).to eq('test_location')
-        end
+        expect(bobs_variation1.location).to eq('test_location')
+      end
+    end
+
+    describe 'DELETE destroy' do
+      it 'destroys existing person' do
+        bob = people(:bob)
+        process :destroy, method: :delete, params: { id: bob.id }
+
+        expect(Person.exists?(bob.id)).to eq(false)
+        expect(Activity.exists?(person_id: bob.id)).to eq(false)
+        expect(AdvancedTraining.exists?(person_id: bob.id)).to eq(false)
+        expect(Project.exists?(person_id: bob.id)).to eq(false)
+        expect(Education.exists?(person_id: bob.id)).to eq(false)
+        expect(Competence.exists?(person_id: bob.id)).to eq(false)
       end
 
-      describe 'DELETE destroy' do
-        it 'destroys existing person' do
-          bob = people(:bob)
-          process :destroy, method: :delete, params: { id: bob.id }
+      it 'destroys existing person variation' do
+        bobs_variation2 = Person::Variation.create_variation('bobs_variation1', people(:bob).id)
 
-          expect(Person.exists?(bob.id)).to eq(false)
-          expect(Activity.exists?(person_id: bob.id)).to eq(false)
-          expect(AdvancedTraining.exists?(person_id: bob.id)).to eq(false)
-          expect(Project.exists?(person_id: bob.id)).to eq(false)
-          expect(Education.exists?(person_id: bob.id)).to eq(false)
-          expect(Competence.exists?(person_id: bob.id)).to eq(false)
-        end
+        process :destroy, method: :delete, params: { person_id: people(:bob).id, id: bobs_variation2.id }
+
+        expect(Person::Variation.exists?(bobs_variation2.id)).to eq(false)
+        expect(Activity.exists?(person_id: bobs_variation2.id)).to eq(false)
+        expect(AdvancedTraining.exists?(person_id: bobs_variation2.id)).to eq(false)
+        expect(Project.exists?(person_id: bobs_variation2.id)).to eq(false)
+        expect(Education.exists?(person_id: bobs_variation2.id)).to eq(false)
+        expect(Competence.exists?(person_id: bobs_variation2.id)).to eq(false)
       end
     end
   end
@@ -171,4 +210,12 @@ describe PeopleController do
       expect(response.status).to eq(200)
     end
   end
+
+  private
+
+  def update_params(objectId, updated_attributes, user_id, model_type)
+    {data: {id: objectId, attributes: updated_attributes, relationships: { person: {data: { type: 'people', id: user_id}}}, type: model_type}, id: objectId}
+  end
+
+
 end

@@ -42,6 +42,7 @@ class Person < ApplicationRecord
   validates_length_of :location, :martial_status, :name, :origin,
                       :role, :title, :variation_name, maximum: 50
   validates_length_of :language, maximum: 100
+  validate :valid_person
   validate :picture_size
   validate :valid_status
 
@@ -77,5 +78,10 @@ class Person < ApplicationRecord
   def valid_status
     return if STATUSES.include?(status_id)
     errors.add(:status_id, 'unbekannt')
+  end
+  
+  def valid_person
+    return if self.class == Person && variation_name.nil? && origin_person_id.nil?
+    false
   end
 end
