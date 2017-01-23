@@ -58,7 +58,7 @@ describe PersonVariationsController do
         updated_attributes = { location: 'test_location' }
         process :update, method: :put, params: update_params(@bobs_variation1.id,
                                                              updated_attributes,
-                                                             @bob.id, 
+                                                             @bob.id,
                                                              'variations')
 
         @bobs_variation1.reload
@@ -83,7 +83,12 @@ describe PersonVariationsController do
 
   private
 
-  def update_params(objectId, updated_attributes, user_id, model_type)
-    {data: {id: objectId, attributes: updated_attributes, relationships: { person: {data: { type: 'people', id: user_id}}}, type: model_type}, id: objectId}
+  def update_params(object_id, updated_attributes, user_id, model_type)
+    { data: { id: object_id,
+              attributes: updated_attributes,
+              relationships: {
+                person: { data: { type: 'people',
+                                  id: user_id } }
+              }, type: model_type }, id: object_id }
   end
 end

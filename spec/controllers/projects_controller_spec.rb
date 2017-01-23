@@ -56,8 +56,9 @@ describe ProjectsController do
   describe 'PUT update' do
     it 'updates existing person' do
       project = projects(:duckduckgo)
-      updated_attributes = {description: 'changed'}
-      process :update, method: :put, params: update_params(project.id, updated_attributes, bob.id, 'projects')
+      updated_attributes = { description: 'changed' }
+      process :update, method: :put, params: update_params(project.id, updated_attributes,
+                                                           bob.id, 'projects')
 
       project.reload
       expect(project.description).to eq('changed')
@@ -82,10 +83,17 @@ describe ProjectsController do
   end
 
   def create_params(object, user_id, model_type)
-    {data: { attributes: object, relationships: { person: {data: { type: 'People', id: user_id}}}, type: model_type}}
+    { data: { attributes: object, relationships: {
+      person: {
+        data: { type: 'People', id: user_id }
+      }, type: model_type
+    } } }
   end
 
-  def update_params(objectId, updated_attributes, user_id, model_type)
-    {data: {id: objectId, attributes: updated_attributes, relationships: { person: {data: { type: 'people', id: user_id}}}, type: model_type}, id: objectId}
+  def update_params(object_id, updated_attributes, user_id, model_type)
+    { data: { id: object_id, attributes: updated_attributes, relationships: {
+      person: { data: { type: 'people',
+                        id: user_id } }
+    }, type: model_type }, id: object_id }
   end
 end

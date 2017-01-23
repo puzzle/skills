@@ -48,8 +48,11 @@ describe EducationsController, type: :controller do
   describe 'PUT update' do
     it 'updates existing person' do
       education = educations(:bsc)
-      updated_attributes = {title: 'changed'}
-      process :update, method: :put, params: update_params(education.id, updated_attributes, bob.id, 'educations')
+      updated_attributes = { title: 'changed' }
+      process :update, method: :put, params: update_params(education.id,
+                                                           updated_attributes,
+                                                           bob.id,
+                                                           'educations')
 
       education.reload
       expect(education.title).to eq('changed')
@@ -74,10 +77,18 @@ describe EducationsController, type: :controller do
   end
 
   def create_params(object, user_id, model_type)
-    {data: { attributes: object, relationships: { person: {data: { type: 'People', id: user_id}}}, type: model_type}}
+    { data: { attributes: object, relationships: {
+      person: { data: { type: 'People',
+                        id: user_id } }
+    }, type: model_type } }
   end
 
-  def update_params(objectId, updated_attributes, user_id, model_type)
-    {data: {id: objectId, attributes: updated_attributes, relationships: { person: {data: { type: 'people', id: user_id}}}, type: model_type}, id: objectId}
+  def update_params(object_id, updated_attributes, user_id, model_type)
+    { data: { id: object_id,
+              attributes: updated_attributes,
+              relationships: {
+                person: { data: { type: 'people',
+                                  id: user_id } }
+              }, type: model_type }, id: object_id }
   end
 end

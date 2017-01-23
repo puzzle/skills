@@ -1,6 +1,6 @@
 class PictureUploader < CarrierWave::Uploader::Base
 
-  EXTENSION_WHITE_LIST = %w(jpg jpeg gif png)
+  EXTENSION_WHITE_LIST = %w(jpg jpeg gif png).freeze
 
   include CarrierWave::MiniMagick
 

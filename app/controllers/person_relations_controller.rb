@@ -6,7 +6,7 @@ class PersonRelationsController < CrudController
   def create(options = {})
     build_entry
     if entry.save
-      render_entry({ status: :created}
+      render_entry({ status: :created }
                    .merge(options[:render_options] || {}))
     else
       render_errors

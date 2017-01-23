@@ -27,7 +27,7 @@ class Person < ApplicationRecord
   STATUSES = { 1 => 'Mitarbeiter',
                2 => 'Partner',
                3 => 'Bewerber',
-               4 => 'Ex Mitarbeiter' }
+               4 => 'Ex Mitarbeiter' }.freeze
 
   mount_uploader :picture, PictureUploader
   has_many :projects, dependent: :destroy
