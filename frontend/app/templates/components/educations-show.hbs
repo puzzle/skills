@@ -1,26 +1,31 @@
 <section id="education" class="section">
   <a onclick={{action (toggle 'educationNew' this)}} id="button-new-educations" class="button pull-right">{{if educationNew 'Abbrechen' 'Neu'}}</a>
   {{model-header title="Ausbildungen"}}
-  {{#if educationNew}}
-    {{education-new personId=personId submit=(action (toggle 'educationNew' this))}}
-{{else}}
-    <div id="education-content-show" class="row-fluid">
-    <div class="span12">
-      <table class="table table-striped table-hover">
-        <thead>
-          <tr>
-            <th>Zeit</th>
-            <th>Beschreibung</th>
-            <th class="action-header">Aktion</th>
-          </tr>
-        </thead>
-        <tbody>
-        {{#each educations as |education|}}
-          {{education-show education=education}}
-      {{/each}}
-        </tbody>
-      </table>
-    </div>
-  </div>
-{{/if}}
+  {{#if educationEditing}}
+      {{education-edit education = educationEditing done=(action (toggle 'educationEditing' this))
+    }}
+  {{else}}
+    {{#if educationNew}}
+      {{education-new personId=personId submit=(action (toggle 'educationNew' this))}}
+    {{else}}
+      <div id="education-content-show" class="row-fluid">
+        <div class="span12">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Zeit</th>
+                <th>Beschreibung</th>
+                <th class="action-header">Aktion</th>
+              </tr>
+            </thead>
+            <tbody>
+            {{#each educations as |education|}}
+              {{education-show selectEducation = (action (mut educationEditing)) education=education}}
+            {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    {{/if}}
+  {{/if}}
 </section>
