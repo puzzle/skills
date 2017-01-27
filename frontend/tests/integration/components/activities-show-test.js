@@ -9,7 +9,7 @@ test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.set('activity', {})
+  this.set('activity', {});
 
   this.render(hbs`{{activity-show}}`);
 

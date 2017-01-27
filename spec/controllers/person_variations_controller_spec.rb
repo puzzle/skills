@@ -11,32 +11,14 @@ describe PersonVariationsController do
 
     describe 'GET index' do
       it 'returns all person variations without nested models' do
-        keys =  %w(birthdate picture language location martial_status
-                   updated_by name origin role title variation_name)
 
         process :index, method: :get, params: { person_id: @bob.id }
 
         variations = json['data']
 
         expect(variations.count).to eq(2)
-        expect(variations.first['attributes'].count).to eq(11)
+        expect(variations.first['attributes'].count).to eq(1)
         expect(variations.first['attributes']['variation_name']).to eq('bobs_variation1')
-        json_object_includes_keys(variations.first['attributes'], keys)
-      end
-    end
-
-    describe 'GET show' do
-      it 'returns person variations with nested modules' do
-        keys =  %w(birthdate picture language location martial_status updated_by name origin
-                   role title variation_name )
-
-        process :show, method: :get, params: { person_id: @bob.id,
-                                               id: @bobs_variation1.id }
-
-        bob_attrs = json['data']['attributes']
-
-        expect(bob_attrs.count).to eq(11)
-        json_object_includes_keys(bob_attrs, keys)
       end
     end
 
@@ -50,33 +32,6 @@ describe PersonVariationsController do
         expect(new_person_variation.language).to eq(@bob.language)
         expect(new_person_variation.variation_name).to eq('variation_test')
         expect(new_person_variation.type).to eq('Person::Variation')
-      end
-    end
-
-    describe 'PUT update' do
-      it 'updates existing person variation' do
-        updated_attributes = { location: 'test_location' }
-        process :update, method: :put, params: update_params(@bobs_variation1.id,
-                                                             updated_attributes,
-                                                             @bob.id,
-                                                             'variations')
-
-        @bobs_variation1.reload
-
-        expect(@bobs_variation1.location).to eq('test_location')
-      end
-    end
-
-    describe 'DELETE destroy' do
-      it 'destroys existing person variation' do
-        process :destroy, method: :delete, params: { person_id: @bob.id, id: @bobs_variation2.id }
-
-        expect(Person::Variation.exists?(@bobs_variation2.id)).to eq(false)
-        expect(Activity.exists?(person_id: @bobs_variation2.id)).to eq(false)
-        expect(AdvancedTraining.exists?(person_id: @bobs_variation2.id)).to eq(false)
-        expect(Project.exists?(person_id: @bobs_variation2.id)).to eq(false)
-        expect(Education.exists?(person_id: @bobs_variation2.id)).to eq(false)
-        expect(Competence.exists?(person_id: @bobs_variation2.id)).to eq(false)
       end
     end
   end

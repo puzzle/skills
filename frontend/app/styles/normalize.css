@@ -280,8 +280,7 @@ Lists
 
 dl,
 menu,
-ol,
-ul {
+ol{
 margin: 1em 0;
 }
 
@@ -294,8 +293,7 @@ margin: 0 0 0 40px;
 */
 
 menu,
-ol,
-ul {
+ol{
 padding: 0 0 0 40px;
 }
 

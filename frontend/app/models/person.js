@@ -3,7 +3,7 @@ import Ember from 'ember';
  
  
 
-const PersonModel = DS.Model.extend({
+const Person = DS.Model.extend({
   name: DS.attr('string'),
   birthdate: DS.attr('date'),
   picturePath: DS.attr('string'),
@@ -14,18 +14,20 @@ const PersonModel = DS.Model.extend({
   role: DS.attr('string'),
   title: DS.attr('string'),
   statusId: DS.attr('string'),
+
   competences: DS.hasMany('competence'),
   educations: DS.hasMany('education'),
   advancedTrainings: DS.hasMany('advanced-training'),
   activities: DS.hasMany('activity'),
   projects: DS.hasMany('project'),
+  personVariations: DS.hasMany('person-variation'),
 
   status: Ember.computed('statusId', function() {
-    return PersonModel.STATUSES[this.get('statusId')];
+    return Person.STATUSES[this.get('statusId')];
   })
 });
 
-PersonModel.reopenClass({
+Person.reopenClass({
   STATUSES: {
     '1': 'Mitarbeiter',
     '2': 'Partner',
@@ -34,4 +36,4 @@ PersonModel.reopenClass({
   }
 });
 
-export default PersonModel;
+export default Person;

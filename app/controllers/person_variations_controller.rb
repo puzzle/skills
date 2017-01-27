@@ -2,11 +2,16 @@ class PersonVariationsController < CrudController
   self.permitted_attrs = PeopleController.permitted_attrs + [:variation_name]
 
   self.nested_models = PeopleController.nested_models
+  
+  def index
+    person_variations = fetch_entries
+    render json: person_variations, each_serializer: PersonVariationsSerializer    
+  end
 
   def create
     variation = Person::Variation.create_variation(params['variation_name'], params['person_id'])
     if variation.persisted?
-      render(json: variation, serializer: model_serializer, include: [nested_models])
+      render(json: variation, serializer: PersonVariationsSerializer)
     else
       render json: variation.errors.details, status: :unprocessable_entity
     end

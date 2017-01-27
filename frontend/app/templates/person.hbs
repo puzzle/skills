@@ -1,4 +1,5 @@
 <div id="right-grid" class="span9 sub-page">
+  {{person-actions person=model}}
   <a onclick={{action (toggle 'personEditing' this)}} class="pull-right">
     {{if personEditing  'Abbrechen' 'Editieren...'}}
   </a>

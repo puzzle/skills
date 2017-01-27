@@ -11,9 +11,8 @@ export default Component.extend({
 
   actions: {
     submit(newEducation) {
-      console.log('personId')
       let person = this.get('store').peekRecord('person', this.get('personId'));
-      newEducation.set('person', person)
+      newEducation.set('person', person);
       return newEducation.save()
         .then(() => this.sendAction('submit', newEducation));
     }

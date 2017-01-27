@@ -446,7 +446,7 @@ Spin animation for .loading-mask::after
 The loading throbber is a single spinning element with three  
 visible borders and a border-radius of 50%.  
 Instead of a border we could also use a font-icon or any  
-image using the content attribute.  
+image using the content attribute. c
 */
 .loading-mask::after {
   content: "";
@@ -462,3 +462,43 @@ image using the content attribute.
   animation: 2s linear 0s normal none infinite running spin;
   filter: drop-shadow(0 0 2 rgba(0, 0, 0, 0.33));
 }
+
+.nav-pills .right div{
+  display: block;
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
+  margin-top: 2px;
+  margin-right: -4px;
+}
+
+.nav-pills .left div{
+  display: block;
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+  margin-left: 1px;
+  position: absolute;
+  height: 22px;
+}
+
+.nav-pills li div{
+  background: none;
+  color: #0088cc;
+  border: 1px solid #e8ebf0;
+  box-shadow: none;
+}
+
+.nav-pills .active div{
+  background: #0088cc;
+  color: #fff;
+  text-shadow: none;
+}
+
+.nav-pills li div .caret{
+  border-top: 4px solid #0088CC;
+}
+
+.nav-pills .active div .caret{
+  border-top: 4px solid #fff;
+}
+
+

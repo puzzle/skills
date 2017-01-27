@@ -1,0 +1,97 @@
+<section id="variation">
+  <div class="toolbar-pills span12 row-fluid">
+    <ul class="nav nav-pills group-pills" id="variation-selection">
+      <li id="actual-cv-pill" class={{if (eq person.variationName undefined) 'active'}}>
+        {{#link-to "person" person.originPersonId}}aktuelles CV{{/link-to}}
+      </li>
+      <li id="variation-cv-pill" class={{if person.variationName 'active'}} class="dropwdown left">
+        {{#basic-dropdown onOpen=(action 'loadPersonVariations' person.originPersonId person.id) as |dd|}}
+          {{#dd.trigger class="btn btn-default"}}
+            {{#if person.variationName}}
+              {{person.variationName}}
+            {{else}}
+               Varianten
+            {{/if}}
+            <b class="caret"></b>
+          {{/dd.trigger}}
+        {{#dd.content}}
+          <ul class="content-bootstrap-feel dropdown-menu">
+            {{#each personVariations as |pv|}}
+              <li id="change-variation-link"
+                  class={{if (eq pv.id person.id) 'active'}}>
+                {{#link-to "person" pv.id}}{{pv.attributes.variation_name}}{{/link-to}}
+              </li>
+            {{/each}}
+            {{#unless person.originPersonId}}
+              <hr>
+              <li>
+                <a class="new-variation-link" onclick={{action (toggle 'createVariationModal' this)}}>
+                  Neue Variante erstellen...
+                </a>
+              </li>
+            {{/unless}}
+          </ul>
+        {{/dd.content}}
+        {{/basic-dropdown}}
+      </li>
+    </ul>
+    <ul class="nav nav-pills group-pills" id="variation-options">
+      <li class="dropdown right" id="option-pill">
+        {{#basic-dropdown as |dd|}}
+        {{#dd.trigger class="btn btn-default"}}Optionen <b class="caret"></b>{{/dd.trigger}}
+        {{#dd.content}}
+            <ul class="content-bootstrap-feel dropdown-menu">
+              {{#if person.originPersonId}}
+                <li>
+                  <a class="update-variation-link" onclick={{action (toggle 'updateVariationModal' this)}}>
+                    Varianten Name ändern...
+                  </a>
+                </li>
+              {{/if}}
+            </ul>
+          {{/dd.content}}
+        {{/basic-dropdown}}
+      </li>
+      <li>
+        <a href={{document-export-url person.id}} id="button-edit-profile" class="button pull-right right">
+          Exportieren
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<div class="row-fluid">
+  <div class="span12">
+    <hr>
+  </div>
+</div>
+    
+{{#if createVariationModal}}
+  {{#modal-dialog hasOverlay=false}}
+    <h1>CV-Variante erstellen</h1>
+    <hr>
+    {{#form-for (changeset person validations) submit=(pipe-action (action 'createPersonVariation' person.id)
+    (toggle 'createVariationModal' this)) as |f|}}
+      {{f.text-field 'variationName' label="Varianten Name"}}
+      <br>
+      <button {{action (toggle 'createVariationModal' this)}}>Abbrechen</button>
+      {{f.submit "Speichern"}} 
+    {{/form-for}}
+  {{/modal-dialog}}
+{{/if}}
+
+{{#if updateVariationModal}}
+  {{#modal-dialog hasOverlay=false}}
+    <h1>CV-Variantenname ändern</h1>
+    <hr>
+    {{#form-for (changeset person validations) 
+                submit=(pipe-action (action 'updateVariationName')
+                                    (toggle 'updateVariationModal' this)) as |f|}}
+      {{f.text-field 'variationName' label="Varianten Name"}}
+      <br>
+      <button {{action (toggle 'updateVariationModal' this)}}>Abbrechen</button>
+      {{f.submit "Speichern"}} 
+    {{/form-for}}
+  {{/modal-dialog}}
+{{/if}}

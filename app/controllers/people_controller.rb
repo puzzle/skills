@@ -1,6 +1,6 @@
 class PeopleController < CrudController
   self.permitted_attrs = [:birthdate, :picture, :language, :location, :martial_status,
-                          :updated_by, :name, :origin, :role, :title, :status_id]
+                          :updated_by, :name, :origin, :role, :title, :status_id, :variation_name]
 
   self.nested_models = [:advanced_trainings, :activities, :projects,
                         :educations, :competences]
@@ -16,25 +16,30 @@ class PeopleController < CrudController
   end
 
   def update_picture
-    person = Person.find(params[:person_id])
+    person = fetch_entry(:person_id)
     person.update_attributes(picture: params[:picture])
     render json: { data: { picture_path: person_picture_path(params[:person_id]) } }
   end
 
   def picture
-    person = Person.find(params[:person_id])
+    person = fetch_entry(:person_id)
     send_file(person.picture.url, disposition: 'inline')
   end
 
   private
 
+  def fetch_entry(attr = :id)
+      Person.find(params.fetch(attr))
+    rescue ActiveRecord::RecordNotFound
+      Person::Variation.find(params.fetch(attr))
+  end
+
   def export
-    person = Person.find(params[:id])
-    odt_file = person.export
+    odt_file = entry.export
     send_data odt_file.generate,
               type: 'application/vnd.oasis.opendocument.text',
               disposition: 'attachment',
-              filename: filename(person.name)
+              filename: filename(entry.name)
   end
 
   def filename(name)

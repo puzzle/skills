@@ -9,12 +9,14 @@ Rails.application.routes.draw do
     resources :people do
       put 'picture', to: 'people#update_picture'
       get 'picture'
+      get 'variations', to: 'person_variations#index'
+      post 'variation', to: 'person_variations#create'
+
     end
     resources :advanced_trainings, controller: 'advanced_trainings'
     resources :activities, controller: 'activities'
     resources :projects, controller: 'projects'
     resources :educations, controller: 'educations'
     resources :competences, controller: 'competences'
-    resources :person_variations, controller: 'person_variations'
   end
 end

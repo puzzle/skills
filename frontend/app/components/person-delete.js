@@ -4,7 +4,11 @@ export default Ember.Component.extend({
   actions: {
     deletePerson(personToDelete) {
       personToDelete.destroyRecord();
-      this.get('router').transitionTo('people');
+      if(personToDelete.get('variationName')){
+        this.get('router').transitionTo('person', personToDelete.get('originPersonId'));
+      }else{
+        this.get('router').transitionTo('people');
+      }
     }
   }
 
