@@ -1,4 +1,4 @@
-require 'LdapTools'
+require 'ldap_tools'
 
 class AuthenticationController < ApplicationController
   skip_before_action :authorize

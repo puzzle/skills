@@ -1,4 +1,4 @@
-require 'LdapTools'
+require 'ldap_tools'
 
 module ControllerHelpers
   def auth(user)
