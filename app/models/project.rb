@@ -18,10 +18,10 @@
 class Project < ApplicationRecord
   belongs_to :person
   validates :year_from, :year_to, :person_id, :role, :title, :technology, presence: true
-  validates_length_of :description, maximum: 1000
-  validates_length_of :technology, maximum: 100
+  validates :description, length: { maximum: 1000 }
+  validates :technology, length: { maximum: 100 }
   validate :year_from_before_year_to
-  validates_length_of :role, :title, maximum: 50
+  validates :role, :title, length: { maximum: 50 }
 
   scope :list, -> { order(:year_to) }
 end

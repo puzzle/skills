@@ -24,7 +24,7 @@ describe AuthenticationController do
     it 'responses unauthorized if still locked' do
       ken = users(:ken)
       ken.update_attributes(failed_login_attempts: 5,
-                            last_failed_login_attempt_at: Time.now)
+                            last_failed_login_attempt_at: Time.current)
 
       allow(LdapTools).to receive(:exists?).and_return(true)
 
@@ -39,7 +39,7 @@ describe AuthenticationController do
       ken = users(:ken)
       old_token = ken.api_token
       ken.update_attributes(failed_login_attempts: 5,
-                            last_failed_login_attempt_at: Time.now - 30.seconds)
+                            last_failed_login_attempt_at: Time.current - 30.seconds)
 
       allow(LdapTools).to receive(:exists?).and_return(ken.ldap_uid)
       allow(LdapTools).to receive(:authenticate).and_return(true)

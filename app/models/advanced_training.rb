@@ -15,7 +15,7 @@
 class AdvancedTraining < ApplicationRecord
   belongs_to :person
   validates :year_from, :year_to, :person_id, presence: true
-  validates_length_of :description, maximum: 1000
+  validates :description, length: { maximum: 1000 }
   validate :year_from_before_year_to
 
   scope :list, -> { order(:year_from) }

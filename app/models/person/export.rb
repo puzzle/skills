@@ -22,7 +22,7 @@ module Person::Export
 
     r.add_field(:header_info, "#{name} - Version 1.0")
 
-    r.add_field(:date, Date.today.strftime('%d.%m.%Y'))
+    r.add_field(:date, Time.zone.today.strftime('%d.%m.%Y'))
     r.add_field(:version, '1.0')
     r.add_field(:comment, 'Aktuelle Ausgabe')
   end

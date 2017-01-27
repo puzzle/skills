@@ -39,9 +39,9 @@ class Person < ApplicationRecord
 
   validates :birthdate, :language, :location, :name, :origin,
             :role, :title, :status_id, presence: true
-  validates_length_of :location, :martial_status, :name, :origin,
-                      :role, :title, :variation_name, maximum: 50
-  validates_length_of :language, maximum: 100
+  validates :location, :martial_status, :name, :origin,
+            :role, :title, :variation_name, length: { maximum: 50 }
+  validates :language, length: { maximum: 100 }
   validate :picture_size
   validate :valid_status
 

@@ -16,8 +16,8 @@
 class Activity < ApplicationRecord
   belongs_to :person
   validates :year_from, :year_to, :person_id, :role, presence: true
-  validates_length_of :description, maximum: 1000
-  validates_length_of :role, maximum: 30
+  validates :description, length: { maximum: 1000 }
+  validates :role, length: { maximum: 30 }
   validate :year_from_before_year_to
 
   scope :list, -> { order(:year_from) }

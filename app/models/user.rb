@@ -2,12 +2,12 @@ class User < ApplicationRecord
   validates :ldap_uid, uniqueness: true
 
   def update_failed_login_attempts
-    update_attributes(last_failed_login_attempt_at: Time.now,
+    update_attributes(last_failed_login_attempt_at: Time.current,
                       failed_login_attempts: failed_login_attempts + 1)
   end
 
   def locked?
-    return locked_until > Time.now if last_failed_login_attempt_at
+    return locked_until > Time.current if last_failed_login_attempt_at
     false
   end
 

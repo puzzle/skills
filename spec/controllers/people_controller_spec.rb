@@ -93,7 +93,7 @@ describe PeopleController do
 
       describe 'POST create' do
         it 'creates new person' do
-          person = { birthdate: Time.now,
+          person = { birthdate: Time.current,
                      picture: fixture_file_upload('files/picture.png', 'image/png'),
                      language: 'German',
                      location: 'Bern',
