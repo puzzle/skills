@@ -2,10 +2,10 @@ class PersonVariationsController < CrudController
   self.permitted_attrs = PeopleController.permitted_attrs + [:variation_name]
 
   self.nested_models = PeopleController.nested_models
-  
+
   def index
     person_variations = fetch_entries
-    render json: person_variations, each_serializer: PersonVariationsSerializer    
+    render json: person_variations, each_serializer: PersonVariationsSerializer
   end
 
   def create

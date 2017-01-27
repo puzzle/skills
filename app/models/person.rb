@@ -79,7 +79,7 @@ class Person < ApplicationRecord
     return if STATUSES.include?(status_id)
     errors.add(:status_id, 'unbekannt')
   end
-  
+
   def valid_person
     return if self.class == Person && variation_name.nil? && origin_person_id.nil?
     false

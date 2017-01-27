@@ -146,7 +146,7 @@ describe PeopleController do
         updated_attributes = { location: 'test_location' }
         process :update, method: :put, params: update_params(bobs_variation1.id,
                                                              updated_attributes,
-                                                             people(:bob).id, 
+                                                             people(:bob).id,
                                                              'variations')
 
         bobs_variation1.reload
@@ -171,7 +171,9 @@ describe PeopleController do
       it 'destroys existing person variation' do
         bobs_variation2 = Person::Variation.create_variation('bobs_variation1', people(:bob).id)
 
-        process :destroy, method: :delete, params: { person_id: people(:bob).id, id: bobs_variation2.id }
+        process :destroy,
+                method: :delete,
+                params: { person_id: people(:bob).id, id: bobs_variation2.id }
 
         expect(Person::Variation.exists?(bobs_variation2.id)).to eq(false)
         expect(Activity.exists?(person_id: bobs_variation2.id)).to eq(false)
@@ -213,8 +215,12 @@ describe PeopleController do
 
   private
 
-  def update_params(objectId, updated_attributes, user_id, model_type)
-    {data: {id: objectId, attributes: updated_attributes, relationships: { person: {data: { type: 'people', id: user_id}}}, type: model_type}, id: objectId}
+  def update_params(object_id, updated_attributes, user_id, model_type)
+    { data: { id: object_id,
+              attributes: updated_attributes,
+              relationships: { person: { data: { type: 'people', id: user_id } } },
+              type: model_type },
+      id: object_id }
   end
 
 
