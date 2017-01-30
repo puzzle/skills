@@ -47,7 +47,6 @@ class Person < ApplicationRecord
   validate :valid_status
 
   scope :list, -> { where(type: nil).order(:name) }
-  default_scope { where(type: nil).order(:name) }
 
   pg_search_scope :search,
                   against: [:language, :location, :name, :origin, :role, :title],
@@ -81,7 +80,6 @@ class Person < ApplicationRecord
   end
 
   def valid_person
-    return if self.class == Person && variation_name.nil? && origin_person_id.nil?
-    false
+    return false unless is_a?(Person::Variation)
   end
 end
