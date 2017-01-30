@@ -1,6 +1,6 @@
 class PersonRelationsController < CrudController
   def person_id
-    @_params.nil? ? nil : @_params['data']['relationships']['person']['data']['id']
+    params['data']['relationships']['person']['data']['id']
   end
 
   def create(options = {})
