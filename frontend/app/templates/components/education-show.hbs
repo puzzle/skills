@@ -1,11 +1,5 @@
 <tr id="template_education_record" class="template">
-  {{#if educationEditing}}
-    {{education-edit education=education
-  editing=educationEditing
-  submit=(action (toggle 'competenceEditing' this))
-  }}
-{{else}}
-    <td id="show_year" class="show-year-cell">
+  <td id="show_year" class="show-year-cell">
     {{education.year_from}}-{{education.year_to}}
   </td>
   <td id="show_description" class="show-description-cell">
@@ -13,7 +7,6 @@
     <br>{{education.location}}
   </td>
   <td>
-    <a onclick={{action (toggle 'educationEditing' this)}} id="button-edit-educations" class="button">Edit</a>
+    <a onclick={{action selectEducation education}} id="button-edit-educations" class="button">Edit</a>
   </td>
-{{/if}}
 </tr>

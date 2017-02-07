@@ -1,5 +1,6 @@
 <section id="profil" class="section">
-  {{#form-for (changeset person validations) submit=(action 'submit') as |f|}}
+  {{#with (changeset person validations) as |changeset|}}
+  {{#form-for changeset submit=(action 'submit') as |f|}}
     {{model-header title="Personalien" form=f}}
     <div class="row-fluid" id="profile-content-edit">
       {{picture-edit picturePath=person.picturePath uploadPath=personPictureUploadPath}}
@@ -7,7 +8,12 @@
         {{f.text-field 'name'}}
         {{f.text-field 'title' label="Titel"}}
         {{f.text-field 'role' label="Funktion"}}
-        {{f.date-field 'birthdate' label="Geb.Datum"}}
+        <div class="text-field form-group">
+        <label class="label-date form-field--label" for='date_location'>Geb.Datum</label>
+          <div id="date_location">
+            {{bootstrap-datepicker value=changeset.birthdate}}
+          </div>
+        </div>
       </div>
       <div class="span5">
         {{f.text-field 'origin' label="Nationalität"}}
@@ -22,4 +28,5 @@
       </div>
     </div>
   {{/form-for}}
+  {{/with}}
 </section>

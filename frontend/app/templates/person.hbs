@@ -3,9 +3,6 @@
   <a onclick={{action (toggle 'personEditing' this)}} class="pull-right">
     {{if personEditing  'Abbrechen' 'Editieren...'}}
   </a>
-  {{person-delete personToDelete=model
-    personEditing=personEditing
-    }} 
   {{component (if personEditing 'person-edit' 'person-show' )
     person=model
     submit=(action (toggle 'personEditing' this))

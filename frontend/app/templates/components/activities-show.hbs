@@ -1,27 +1,32 @@
 <section id="activity" class="section">
   <a onclick={{action (toggle 'activityNew' this)}} id="button-new-activities" class="button pull-right">{{if activityNew 'Abbrechen' 'Neu'}}</a>
   {{model-header title="Aktivitäten"}}
-  {{#if activityNew}}
-    {{activity-new personId=personId submit=(action (toggle 'activityNew' this))}}
+  {{#if activityEditing}}
+      {{activity-edit activity = activityEditing done=(action (toggle 'activityEditing' this))
+    }}
   {{else}}
-    <div class="row-fluid">
-      <div class="span12">
-        <table id="activity-content-show-table"
-          class="table table-hover table-striped">
-          <thead>
-            <tr>
-              <th>Zeit</th>
-              <th>Aktivität</th>
-              <th class="action-header">Aktion</th>
-            </tr>
-          </thead>
-          <tbody id="activity-content-show">
-            {{#each activities as |activity|}}
-              {{activity-show activity=activity}}
-            {{/each}}
-          </tbody>
-        </table>
+    {{#if activityNew}}
+      {{activity-new personId=personId submit=(action (toggle 'activityNew' this))}}
+    {{else}}
+      <div class="row-fluid">
+        <div class="span12">
+          <table id="activity-content-show-table"
+            class="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th>Zeit</th>
+                <th>Aktivität</th>
+                <th class="action-header">Aktion</th>
+              </tr>
+            </thead>
+            <tbody id="activity-content-show">
+              {{#each activities as |activity|}}
+              {{activity-show selectActivity = (action (mut activityEditing)) activity=activity}}
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
     {{/if}}
+  {{/if}}
 </section>

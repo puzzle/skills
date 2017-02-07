@@ -23,23 +23,27 @@ class PeopleController < CrudController
 
   def picture
     person = fetch_entry(:person_id)
-    send_file(person.picture.url, disposition: 'inline')
+    if person.picture.file.nil?
+      send_file(Rails.public_path + 'default_avatar.png', disposition: 'inline')
+    else
+      send_file(person.picture.url, disposition: 'inline')
+    end
   end
 
   private
 
   def fetch_entry(attr = :id)
-      Person.find(params.fetch(attr))
-    rescue ActiveRecord::RecordNotFound
-      Person::Variation.find(params.fetch(attr))
+    Person.find(params.fetch(attr))
+  rescue ActiveRecord::RecordNotFound
+    Person::Variation.find(params.fetch(attr))
   end
 
   def export
     odt_file = entry.export
     send_data odt_file.generate,
-              type: 'application/vnd.oasis.opendocument.text',
-              disposition: 'attachment',
-              filename: filename(entry.name)
+      type: 'application/vnd.oasis.opendocument.text',
+      disposition: 'attachment',
+      filename: filename(entry.name)
   end
 
   def filename(name)

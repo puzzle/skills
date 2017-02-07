@@ -47,6 +47,18 @@
                     Varianten Name ändern...
                   </a>
                 </li>
+                <li>
+                  <a onclick={{action 'deletePerson' person}} >Variante Löschen</a>
+                </li>
+              {{else}}
+                <li>
+                  <a class="new-variation-link" onclick={{action (toggle 'createVariationModal' this)}}>
+                    Neue Variante erstellen...
+                  </a>
+                </li>
+                <li>
+                  <a onclick={{action 'deletePerson' person}} >CV Löschen</a>
+                </li>
               {{/if}}
             </ul>
           {{/dd.content}}
