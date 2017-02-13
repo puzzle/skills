@@ -1,12 +1,10 @@
 <div id="right-grid" class="span9 sub-page">
   {{person-actions person=model}}
-  <a onclick={{action (toggle 'personEditing' this)}} class="pull-right">
-    {{if personEditing  'Abbrechen' 'Editieren...'}}
-  </a>
   {{component (if personEditing 'person-edit' 'person-show' )
     person=model
     submit=(action (toggle 'personEditing' this))
     model-header-title = 'Personalien'
+    personEditing=(action (toggle 'personEditing' this))
     }}
   {{competences-show competences=model.competences personId=model.id}}
   {{educations-show educations=model.educations personId=model.id}}
