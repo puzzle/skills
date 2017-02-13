@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-    session: Ember.inject.service('session'),
+  session: Ember.inject.service('session'),
 
   actions: {
     authenticate() {
@@ -9,8 +9,9 @@ export default Ember.Route.extend({
       var identification = this.controller.get('identification')
 
       this.get('session').authenticate('authenticator:auth', password, identification).catch((reason) => {
-        this.set('errorMessage', reason.error || reason);
+        this.set('errorMessage', reason.message);
       });
+    if 
     }
   }
 });
