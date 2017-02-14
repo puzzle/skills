@@ -1,13 +1,37 @@
 <section id="profil" class="section">
-  {{#form-for (changeset person validations) submit=(action 'submit') as |f|}}
-    {{model-header title="Personalien" form=f}}
+  {{#with (changeset person validations) as |changeset|}}
+  {{#form-for changeset submit=(action 'submit') as |f|}}
+    <div class="row-fluid">
+      <div class="span5">
+        <span class="section-title">Personalien</span>
+      </div>
+      <div class="pull-right">
+        {{f.submit "Speichern"}}
+        {{f.reset "Reset"}}
+      <a onclick={{personEditing}} class="pull-right">
+        {{if personEditing  'Abbrechen' 'Editieren...'}}
+      </a>
+      </div>
+    </div>
+
+<!-- Horizontal ruler -->
+<div class="row-fluid">
+  <div class="span12">
+    <hr>
+  </div>
+</div>
     <div class="row-fluid" id="profile-content-edit">
       {{picture-edit picturePath=person.picturePath uploadPath=personPictureUploadPath}}
       <div class="span5">
         {{f.text-field 'name'}}
         {{f.text-field 'title' label="Titel"}}
         {{f.text-field 'role' label="Funktion"}}
-        {{f.date-field 'birthdate' label="Geb.Datum"}}
+        <div class="text-field form-group">
+        <label class="label-date form-field--label" for='date_location'>Geb.Datum</label>
+          <div id="date_location">
+            {{bootstrap-datepicker value=changeset.birthdate}}
+          </div>
+        </div>
       </div>
       <div class="span5">
         {{f.text-field 'origin' label="Nationalität"}}
@@ -22,4 +46,5 @@
       </div>
     </div>
   {{/form-for}}
+  {{/with}}
 </section>

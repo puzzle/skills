@@ -3,6 +3,12 @@
   <div class="span5">
     <span class="section-title">Personalien</span>
   </div>
+    <div class="pull-right">
+      <a onclick={{personEditing}} class="pull-right">
+        {{if personEditing  'Editieren' 'Abbrechen'}}
+      </a>
+     
+    </div>
 </div>
 
 <!-- Horizontal ruler -->
@@ -35,7 +41,9 @@
         </dl>
         <dl class="dl-horizontal">
           <dt>Geb.Datum</dt>
-          <dd>{{person.birthdate}}</dd>
+          <dd>
+          {{moment-format person.birthdate 'DD.MM.YYYY'}}
+          </dd>
         </dl>
       </div>
       <!-- /Profile left row -->

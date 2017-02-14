@@ -1,13 +1,21 @@
-{{#form-for (changeset competence validations) submit=(action 'submit') as |f|}}
-<th>
-  {{f.text-field 'description'}}
-</th>
-<div class="pull-right">
-  {{f.submit "Speichern"}}
-  {{f.reset "Reset"}}
-  <a onclick={{action (toggle 'editing' this)}}>
-    Abbrechen
-  </a>
-    {{competence-delete competence=competence competenceEditing=editing}}
-</div>
-{{/form-for}}
+{{#with (changeset competence validations) as |changeset|}}
+  <form onsubmit={{action 'submit' changeset}} id="form_competence">
+    <div id="competence-content-edit" class="row-fluid" style="display: block;">
+      <div class="span10">
+        <div class="row-fluid">
+          <div class="span10">
+            {{input value=changeset.description class="input-xxlarge"}}
+          </div>
+        </div>
+      </div>
+      <div class="span2">
+        <button class="btn btn-primary btn-block btn-mini" >
+          Speichern </button>
+        <button class="btn btn-inverse btn-block btn-mini" type="button" onclick={{action done}}>
+          Abbrechen </button>
+        <button class="btn btn-danger btn-block btn-mini" type="button" onclick={{action 'deleteCompetence' competence}}>
+          Delete </button>
+      </div>
+    </div>
+  </form>
+{{/with}}
