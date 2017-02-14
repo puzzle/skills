@@ -11,7 +11,6 @@ export default Ember.Route.extend({
       this.get('session').authenticate('authenticator:auth', password, identification).catch((reason) => {
         this.set('errorMessage', reason.message);
       });
-    if 
     }
   }
 });

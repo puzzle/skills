@@ -5,8 +5,12 @@ export default Base.extend({
   session: Ember.inject.service('session'),       
 
   restore(data) {
-    
+    if (Ember.isEmpty(data.token)) {
+      throw new Error('No Token to restore found')
+    }
+    return Ember.RSVP.resolve(data);
   },
+
   authenticate(password, identification) {
     return this.get('ajax').request('/auth/sign_in', {
         method: 'POST',
@@ -20,6 +24,8 @@ export default Base.extend({
         throw xhr.responseText
         })
   },
+
   invalidate(data) {
+    debugger
   }
 });
