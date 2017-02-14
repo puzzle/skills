@@ -7,6 +7,7 @@ export default Base.extend({
   restore(data) {
     if (Ember.isEmpty(data.token)) {
       throw new Error('No Token to restore found')
+      this.transitionTo('login')
     }
     return Ember.RSVP.resolve(data);
   },
@@ -19,13 +20,14 @@ export default Base.extend({
           password: password
         }
       }).then(function (response) {
-            return {token: response.api_token}
+            return {token: response.api_token, 
+                    ldap_uid: response.ldap_uid}
       }, function(xhr, status, error) {
         throw xhr.responseText
         })
   },
 
   invalidate(data) {
-    debugger
+    return Ember.RSVP.resolve();
   }
 });
