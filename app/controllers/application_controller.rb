@@ -20,12 +20,12 @@ class ApplicationController < ActionController::API
   private
 
   def auth_params_present?
-    params[:ldap_uid].present? && params[:api_token].present?
+    request.headers["ldap-uid"].present? && request.headers["api-token"].present?
   end
 
   def authenticates?
-    ldap_uid = params[:ldap_uid]
-    api_token = params[:api_token]
+    ldap_uid = request.headers["ldap-uid"]
+    api_token = request.headers["api-token"]
 
     user = User.find_by(ldap_uid: ldap_uid)
     user && user.api_token == api_token

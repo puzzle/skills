@@ -11,6 +11,7 @@ Router.map(function(){
     this.route('new');
     this.route('person', { path: '/:person_id', resetNamespace: true });
   });
+  this.route('login');
 });
 
 export default Router;

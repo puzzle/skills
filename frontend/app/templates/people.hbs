@@ -1,2 +1,5 @@
+{{#if session.isAuthenticated}}
+  <a {{action 'invalidateSession'}}>Logout</a>
+{{/if}}
 {{people-list people=model}}
 {{outlet}}
