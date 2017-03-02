@@ -15,13 +15,10 @@ export default AjaxService.extend({
     let token = this.get('session.data.authenticated.token')
     let ldap_uid = this.get('session.data.authenticated.ldap_uid')
 
-    if (token) {
+    if (token && ldap_uid) {
       headers.api_token = `${token}`
-      if (ldap_uid){
-        headers.ldap_uid = `${ldap_uid}`
+      headers.ldap_uid = `${ldap_uid}`
       }
-    }
-
     return headers
   }
 })

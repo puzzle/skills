@@ -2,7 +2,7 @@ class ApplicationController < ActionController::API
   before_action :authorize
 
   def authorize
-    #return if Rails.env.development?
+    return if Rails.env.development?
 
     if auth_params_present?
       return if authenticates?
