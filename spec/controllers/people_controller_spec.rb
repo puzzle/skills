@@ -186,28 +186,33 @@ describe PeopleController do
   end
 
   describe 'authentication' do
-    it 'renders unauthorized if no params' do
-      process :index, method: :get, params: {}
+    it 'renders unauthorized without headers' do
+      process :index, method: :get
       expect(response.status).to eq(401)
     end
 
     it 'render unauthorized if user does not exists' do
-      process :index, method: :get, params: { ldap_uid: 0o000, api_token: 'test' }
+      @request.headers['ldap-uid'] = 0o000
+      @request.headers['api-token'] = 'test'
+      process :index, method: :get
 
       expect(response.status).to eq(401)
     end
 
     it 'render unauthorized if api_token doesnt match' do
-      process :index, method: :get, params: { ldap_uid: users(:ken).ldap_uid,
-                                              api_token: 'wrong token' }
+      @request.headers['ldap-uid'] = users(:ken).ldap_uid
+      @request.headers['api-token'] = 'wrong token'
+      process :index, method: :get
 
       expect(response.status).to eq(401)
     end
 
     it 'does nothing if api_token is correct' do
       ken = users(:ken)
-      process :index, method: :get, params: { ldap_uid: ken.ldap_uid,
-                                              api_token: ken.api_token }
+      @request.headers['ldap-uid'] = ken.ldap_uid
+      @request.headers['api-token'] = ken.api_token
+      process :index, method: :get
+
 
       expect(response.status).to eq(200)
     end
