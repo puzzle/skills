@@ -24,8 +24,19 @@
           Speichern </button>
         <button class="btn btn-inverse btn-block btn-mini" type="button" onclick={{action done}}>
           Abbrechen </button>
-        <button class="btn btn-danger btn-block btn-mini" type="button" onclick={{action 'deleteActivity' activity}}>
+        {{#confirm-dialog
+          text="Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?"
+          confirmButton="Löschen"
+          cancelButton="Abbrechen"
+          confirmAction=(action 'confirmDestroy' activity)
+          confirmButtonClass="btn btn-danger"
+          cancelButtonClass="btn pull-right"
+          okCssIcon="fa fa-check-circle-o"
+          cancelCssIcon="fa fa-ban"
+        }}
+        <button class="btn btn-danger btn-block btn-mini" type="button">
           Delete </button>
+        {{/confirm-dialog}}
       </div>
     </div>
   </form>

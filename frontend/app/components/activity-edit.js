@@ -12,6 +12,9 @@ export default Ember.Component.extend({
       activity.destroyRecord().then(
         activity => this.sendAction('done')
       );
+    },
+    confirmDestroy(activity){
+      this.send('deleteActivity', activity);
     }
   }
 });

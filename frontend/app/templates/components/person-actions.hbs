@@ -48,7 +48,7 @@
                   </a>
                 </li>
                 <li>
-                  <a onclick={{action 'deletePerson' person}} >Variante Löschen</a>
+                  <a onclick={{action (toggle 'deletePersonConfirm' this)}} >Variante Löschen</a>
                 </li>
               {{else}}
                 <li>
@@ -57,7 +57,7 @@
                   </a>
                 </li>
                 <li>
-                  <a onclick={{action 'deletePerson' person}} >CV Löschen</a>
+                  <a onclick={{action (toggle 'deletePersonConfirm' this)}} >CV Löschen</a>
                 </li>
               {{/if}}
             </ul>
@@ -106,4 +106,28 @@
       {{f.submit "Speichern"}} 
     {{/form-for}}
   {{/modal-dialog}}
+{{/if}}
+
+{{#if deletePersonConfirm}}
+    <span class="modal-dialog-wrapper">
+      {{#modal-dialog
+      hasOverlay=false
+      }}
+          <div class="dialog-content">
+              <div class="dialog-text">
+                <p>Möchten Sie dieses CV unwiederruflich löschen?</p>
+              </div>
+              <div class="dialog-footer">
+                <button {{action 'deletePerson' person}} class="confirm-button btn btn-danger">
+                        <i class="fa fa-check-circle-o"></i>
+                        CV Löschen
+                  </button>
+                  <button onclick={{action (toggle 'deletePersonConfirm' this)}} class="cancel-button btn pull-right">
+                        <i class="fa fa-ban"></i>
+                    Abbrechen
+                  </button>
+              </div>
+          </div>
+      {{/modal-dialog}}
+    </span>
 {{/if}}

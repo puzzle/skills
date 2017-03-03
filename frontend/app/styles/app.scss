@@ -308,3 +308,22 @@ textarea {
   padding: 5px;
   margin: 2px 0 0;
 }
+
+/* Confirm Dialog */
+
+
+.ember-modal-dialog.ember-view {
+  padding: 10px;
+
+}
+
+.dialog-text {
+  font-size: 120%;
+}
+.confirm-dialog-button {
+  margin-top: 5px;
+  display: block;
+  width: 100%;
+  padding-right: 0;
+  padding-left: 0;
+}

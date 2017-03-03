@@ -36,6 +36,6 @@ export default Ember.Component.extend({
       }else{
         this.get('router').transitionTo('people');
       }
-    }
+    },
   }
 });

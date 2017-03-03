@@ -8,10 +8,13 @@ export default Ember.Component.extend({
         advanced_training => this.sendAction('done')
       );
     },
-    deleteAdvancedTrainings(advancedTraining, event) {
+    deleteAdvancedTrainings(advancedTraining) {
       advancedTraining.destroyRecord().then(
         advanced_training => this.sendAction('done')
       );
+    },
+    confirmDestroy(advancedTraining){
+      this.send('deleteAdvancedTrainings', advancedTraining);
     }
   }
 });
