@@ -1,6 +1,7 @@
 #!/bin/bash
 
+npm install -g bower
 npm install
 bower install
 
-ember build --environment production
+npm run build-prod
