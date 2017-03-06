@@ -6,7 +6,7 @@ export default Ember.Component.extend({
   
   actions: {
     loadPersonVariations(originPersonId, id = originPersonId) {
-      id = originPersonId || id
+      id = originPersonId || id;
       return this.get('ajax')
        .request(`people/${id}/variations`)
         .then(response => response.data)
@@ -30,12 +30,16 @@ export default Ember.Component.extend({
     },
 
     deletePerson(personToDelete) {
-      personToDelete.destroyRecord();
-      if(personToDelete.get('variationName')){
-        this.get('router').transitionTo('person', personToDelete.get('originPersonId'));
-      }else{
-        this.get('router').transitionTo('people');
-      }
+      personToDelete.destroyRecord().then(() => {
+        if (personToDelete.get('variationName')) {
+          this.get('router').transitionTo('person', personToDelete.get('originPersonId'));
+        }
+        else {
+          this.get('router').transitionTo('people').then(() =>
+            this.sendAction('onDelete')
+          );
+        }
+      });
     },
   }
 });

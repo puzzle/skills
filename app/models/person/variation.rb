@@ -14,6 +14,7 @@ class Person::Variation < Person
       associations = [:activities, :projects, :advanced_trainings, :educations, :competences]
 
       person_variation = person.dup.becomes!(Person::Variation)
+      person_variation.picture = person.picture
       person_variation.origin_person_id = person_id
       person_variation.variation_name = variation_name
       person_variation.save!

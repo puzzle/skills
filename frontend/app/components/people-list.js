@@ -6,12 +6,12 @@ const { Component, inject, computed } = Ember;
 export default Ember.Component.extend({
   filterBy: 'all',
   
-  filteredList: function(){
+  filteredList: computed('people.[]', 'filterBy', function(){
     if (this.filterBy === 'all'){
       return this.people
     }
     return this.people.filterBy('attributes.status_id', parseInt(this.filterBy))
-  }.property('people', 'filterBy'),
+  }),
 
   statusData:computed(function(){
     return Object.keys(PersonModel.STATUSES).map(id => {
@@ -19,9 +19,9 @@ export default Ember.Component.extend({
     });
   }),
 
-    actions: {
-      setFilter(value){
-        this.set('filterBy', value)
-      }
+  actions: {
+    setFilter(value){
+      this.set('filterBy', value)
     }
+  }
 });

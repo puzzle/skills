@@ -1,5 +1,5 @@
 <div id="right-grid" class="span9 sub-page">
-  {{person-actions person=model}}
+  {{person-actions person=model onDelete=(route-action 'reloadPeopleList')}}
   {{component (if personEditing 'person-edit' 'person-show' )
     person=model
     submit=(action (toggle 'personEditing' this))

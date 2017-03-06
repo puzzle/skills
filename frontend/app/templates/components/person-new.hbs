@@ -1,6 +1,20 @@
 <section id="profil" class="section">
   {{#form-for newPerson submit=(action 'submit') as |f|}}
-    {{model-header header="Mitarbeiter erfassen:" title="Personalien" form=f}}
+    <div class="row-fluid">
+      <h2>Mitarbeiter erfassen</h2>
+      <div class="span5">
+        <span class="section-title">Personalien</span>
+      </div>
+      <div class="pull-right">
+        {{f.submit "Speichern"}}
+      </div>
+    </div>
+    <!-- Horizontal ruler -->
+    <div class="row-fluid">
+      <div class="span12">
+        <hr>
+      </div>
+    </div>
     <div class="row-fluid" id="profile-content-edit">
       <div class="span5">
         {{f.text-field 'name'}}
