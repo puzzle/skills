@@ -35,7 +35,10 @@ class Person < ApplicationRecord
   has_many :advanced_trainings, dependent: :destroy
   has_many :educations, dependent: :destroy
   has_many :competences, dependent: :destroy
-  has_many :variations, foreign_key: :origin_person_id, class_name: Person::Variation
+  has_many :variations, foreign_key: :origin_person_id,
+           class_name: Person::Variation
+
+  before_destroy :destroy_variations
 
   validates :birthdate, :language, :location, :name, :origin,
             :role, :title, :status_id, presence: true
@@ -65,6 +68,15 @@ class Person < ApplicationRecord
 
   def status
     STATUSES[status_id]
+  end
+
+
+  def destroy_variations
+    unless self.is_a?(Person::Variation)
+      self.variations.each do |variation|
+        variation.destroy
+      end
+    end
   end
 
   private
