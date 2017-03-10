@@ -73,9 +73,7 @@ class Person < ApplicationRecord
 
   def destroy_variations
     unless self.is_a?(Person::Variation)
-      self.variations.each do |variation|
-        variation.destroy
-      end
+      variations.destroy_all
     end
   end
 
