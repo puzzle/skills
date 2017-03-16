@@ -4,6 +4,9 @@ class PeopleController < CrudController
 
   self.nested_models = [:advanced_trainings, :activities, :projects,
                         :educations, :competences]
+
+  skip_before_filter :authorize, :only => [:picture]
+
   def index
     people = fetch_entries
     people = people.search(params[:q]) if params[:q].present?

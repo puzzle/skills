@@ -320,10 +320,39 @@ textarea {
 .dialog-text {
   font-size: 120%;
 }
+
 .confirm-dialog-button {
   margin-top: 5px;
   display: block;
   width: 100%;
   padding-right: 0;
   padding-left: 0;
+}
+
+
+/* Login/Logout */
+
+.login_form {
+  padding: 5% 1%;
+  border: 3px solid #EBE6E2;
+  border-radius: 5px;
+  height: 100%;
+  text-align: center;
+  margin-top: 15%;
+}
+
+.login_form h1 {
+  vertical-align: bottom !important;
+}
+
+.login-form-user {
+  padding-bottom: 5px;
+}
+
+.login-form-password {
+  padding-bottom: 5px;
+}
+
+#logout-button {
+  margin-bottom: 20px;
 }
