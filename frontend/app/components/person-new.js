@@ -15,7 +15,12 @@ export default Ember.Component.extend({
     submit(newPerson) {
       return newPerson.save()
         .then(() => this.sendAction('submit', newPerson))
-        .then(() => this.get('notify').success('Person erstellt!'))
+        .then(() => this.get('notify').success('Person wurde erstellt!'))
+        .catch(() => {
+          this.get('newPerson.errors').forEach(({ attribute, message }) => {
+            this.get('notify').alert("%@ %@".fmt(attribute, message), { closeAfter: 10000 });
+          });
+        });
     }
   }
 });

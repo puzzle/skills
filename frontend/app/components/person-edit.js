@@ -19,7 +19,14 @@ export default Component.extend({
   actions: {
     submit(changeset) {
       return changeset.save()
-        .then(() => this.sendAction('submit'));
+        .then(() => this.sendAction('submit'))
+        .then(() => this.get('notify').success('Personalien wurden aktualisiert!'))
+        .catch(() => {
+          this.get('person.errors').forEach(({ attribute, message }) => {
+            changeset.pushErrors(attribute, message);
+            this.get('notify').alert("%@ %@".fmt(attribute, message), { closeAfter: 10000 });
+          });
+        });
     }
   }
 

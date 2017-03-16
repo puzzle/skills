@@ -43,7 +43,7 @@
     "ember-confirm-dialog": "^1.0.0",
     "ember-data": "^2.10.0",
     "ember-export-application-global": "^1.0.5",
-    "ember-form-for": "2.0.0-alpha.14",
+    "ember-form-for": "2.0.0-alpha.15",
     "ember-load-initializers": "^0.5.1",
     "ember-modal-dialog": "0.9.0",
     "ember-moment": "7.3.0",

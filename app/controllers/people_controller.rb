@@ -37,8 +37,6 @@ class PeopleController < CrudController
 
   def fetch_entry(attr = :id)
     Person.find(params.fetch(attr))
-  rescue ActiveRecord::RecordNotFound
-    Person::Variation.find(params.fetch(attr))
   end
 
   def export

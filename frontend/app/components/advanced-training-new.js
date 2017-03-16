@@ -14,7 +14,13 @@ export default Component.extend({
       let person = this.get('store').peekRecord('person', this.get('personId'));
       newAdvancedTraining.set('person', person);
       return newAdvancedTraining.save()
-        .then(() => this.sendAction('submit', newAdvancedTraining));
+        .then(() => this.sendAction('submit', newAdvancedTraining))
+        .then(() => this.get('notify').success('Weiterbildung wurde hinzugefügt!'))
+        .catch(() => {
+          this.get('newAdvancedTraining.errors').forEach(({ attribute, message }) => {
+            this.get('notify').alert("%@ %@".fmt(attribute, message), { closeAfter: 10000 });
+          });
+        });
     }
   }
 });
