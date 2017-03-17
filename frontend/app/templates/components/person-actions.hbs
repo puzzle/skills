@@ -78,7 +78,7 @@
     <hr>
   </div>
 </div>
-    
+
 {{#if createVariationModal}}
   {{#modal-dialog hasOverlay=false}}
     <h1>CV-Variante erstellen</h1>
@@ -88,7 +88,7 @@
       {{f.text-field 'variationName' label="Varianten Name"}}
       <br>
       <button {{action (toggle 'createVariationModal' this)}}>Abbrechen</button>
-      {{f.submit "Speichern"}} 
+      {{f.submit "Speichern"}}
     {{/form-for}}
   {{/modal-dialog}}
 {{/if}}
@@ -97,22 +97,20 @@
   {{#modal-dialog hasOverlay=false}}
     <h1>CV-Variantenname ändern</h1>
     <hr>
-    {{#form-for (changeset person validations) 
+    {{#form-for (changeset person validations)
                 submit=(pipe-action (action 'updateVariationName')
                                     (toggle 'updateVariationModal' this)) as |f|}}
       {{f.text-field 'variationName' label="Varianten Name"}}
       <br>
       <button {{action (toggle 'updateVariationModal' this)}}>Abbrechen</button>
-      {{f.submit "Speichern"}} 
+      {{f.submit "Speichern"}}
     {{/form-for}}
   {{/modal-dialog}}
 {{/if}}
 
 {{#if deletePersonConfirm}}
     <span class="modal-dialog-wrapper">
-      {{#modal-dialog
-      hasOverlay=false
-      }}
+      {{#modal-dialog hasOverlay=false}}
           <div class="dialog-content">
               <div class="dialog-text">
                 <p>Möchten Sie dieses CV unwiederruflich löschen?</p>
