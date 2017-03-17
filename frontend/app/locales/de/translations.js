@@ -25,9 +25,12 @@ export default {
     "description": "Beschreibung",
     "role": "Role",
     "title": "Titel",
-    "technology": "Technologie"
-  
+    "technology": "Technologie" 
+  },
+  "person":{
+    "name": "Name"
   }
+
 
   
   // "some.translation.key": "Text for some.translation.key",
