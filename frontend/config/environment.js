@@ -23,7 +23,11 @@ module.exports = function(environment) {
 
     'ember-form-for': {
       errorsPath: 'error.PROPERTY_NAME.validation',
+    },
+    i18n: {
+      defaultLocale: 'de'
     }
+
   };
 
   if (environment === 'development') {
