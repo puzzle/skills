@@ -25,3 +25,4 @@
 
 # Ignore uploaded pictures
 /uploads
+/public/uploads
