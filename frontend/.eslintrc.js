@@ -9,6 +9,10 @@ module.exports = {
     browser: true
   },
   rules: {
-    'indent': ['error', 2]
+    'indent': ['error', 2],
+    'no-trailing-spaces': 'error',
+    'no-unused-vars': ['error', {
+      args: 'none'
+    }]
   }
 };
