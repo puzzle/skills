@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-import Person from './person'
+import Person from './person';
 
 export default Person.extend({
   variationName: DS.attr('string'),
