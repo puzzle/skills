@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+
+  cv2db:
+    image: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_DB=cv2_development
+      - POSTGRES_USER=puzzlecv
+      - POSTGRES_PASSWORD=puzzlecv
