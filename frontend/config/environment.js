@@ -19,6 +19,10 @@ module.exports = function(environment) {
 
     APP: {
       documentExportHost: ''
+    },
+
+    'ember-form-for': {
+      errorsPath: 'error.PROPERTY_NAME.validation',
     }
   };
 

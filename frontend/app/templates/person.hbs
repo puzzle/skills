@@ -1,4 +1,8 @@
 <div id="right-grid" class="span9 sub-page">
+  {{#each model.errors as |error|}}
+    {{error.detail}}
+  {{/each}}
+  
   {{person-actions person=model onDelete=(route-action 'reloadPeopleList')}}
   {{component (if personEditing 'person-edit' 'person-show' )
     person=model

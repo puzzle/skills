@@ -14,7 +14,13 @@ export default Component.extend({
       let person = this.get('store').peekRecord('person', this.get('personId'));
       newProject.set('person', person);
       return newProject.save()
-        .then(() => this.sendAction('submit', newProject));
+        .then(() => this.sendAction('submit', newProject))
+        .then(() => this.get('notify').success('Projekt wurde hinzugefügt!'))
+        .catch(() => {
+          this.get('newProject.errors').forEach(({ attribute, message }) => {
+            this.get('notify').alert("%@ %@".fmt(attribute, message), { closeAfter: 10000 });
+          });
+        });
     }
   }
 });

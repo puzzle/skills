@@ -22,7 +22,8 @@ export default Component.extend({
 
     res.then(res => this.set('picturePath', res.data.picture_path));
 
-    this.set('response', ObjectPromiseProxy.create({ promise: res }));
+    this.set('response', ObjectPromiseProxy.create({ promise: res }))
+      .then(() => this.get('notify').success('Profilbild wurde aktualisiert!'));
   },
   didInsertElement() {
     this.$('.img-input').on('change', e => {

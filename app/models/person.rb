@@ -90,6 +90,6 @@ class Person < ApplicationRecord
   end
 
   def valid_person
-    return false unless is_a?(Person::Variation)
+    return false unless self.is_a?(Person::Variation)
   end
 end

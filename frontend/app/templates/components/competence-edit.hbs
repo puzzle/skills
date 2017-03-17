@@ -1,4 +1,7 @@
 {{#with (changeset competence validations) as |changeset|}}
+  {{#each changeset.errors as |error|}}
+    {{error.detail}}
+  {{/each}}
   <form onsubmit={{action 'submit' changeset}} id="form_competence">
     <div id="competence-content-edit" class="row-fluid" style="display: block;">
       <div class="span10">
