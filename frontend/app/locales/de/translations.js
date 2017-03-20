@@ -26,7 +26,9 @@ export default {
     "role": "Role",
     "title": "Titel",
     "technology": "Technologie"
-
+  },
+  "person":{
+    "name": "Name"
   }
 
 
