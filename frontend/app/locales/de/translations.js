@@ -28,7 +28,7 @@ export default {
     "technology": "Technologie"
   },
   "person":{
-    "name": "Name"
+    name: "Name"
   }
 
 
