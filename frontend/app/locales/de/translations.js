@@ -1,6 +1,6 @@
 export default {
   "competence":{
-    "description": "Beschreibung"
+    description: "Beschreibung"
   },
   "education":{
     "year-from": "Jahr ab",
@@ -11,7 +11,7 @@ export default {
   "advanced-training":{
     "year-from": "Jahr ab",
     "year-to": "Jahr bis",
-    "description": "Beschreibung" 
+    "description": "Beschreibung"
   },
   "activity":{
     "year-from": "Jahr ab",
@@ -26,10 +26,10 @@ export default {
     "role": "Role",
     "title": "Titel",
     "technology": "Technologie"
-  
+
   }
 
-  
+
   // "some.translation.key": "Text for some.translation.key",
   //
   // "a": {

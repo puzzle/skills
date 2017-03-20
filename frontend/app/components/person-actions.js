@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   ajax: Ember.inject.service(),
   router: Ember.inject.service(),
-  
+
   actions: {
     loadPersonVariations(originPersonId, id = originPersonId) {
       id = originPersonId || id;
@@ -18,9 +18,9 @@ export default Ember.Component.extend({
        .request(`people/${id}/variation`, {
          method: 'POST',
          data: {
-          variation_name: changeset.get('variationName')
+           variation_name: changeset.get('variationName')
          }
-        })
+       })
         .then(response => response.data)
         .then(personVariation => this.get('router').transitionTo('person', personVariation.id))
         .then(() => this.get('notify').success('Variante erstellt!'));

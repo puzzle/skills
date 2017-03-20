@@ -17,7 +17,7 @@ test('it renders', function(assert) {
   this.render(hbs`
     {{people-list title='title test'}}
     `);
-  
+
 // TODO render a list of people and check
 
   assert.equal(this.$().text().trim(), 'title test');

@@ -10,14 +10,14 @@ test('it renders person', function(assert) {
   // Handle any actions with this.on('myAction', function(val) { ... });
 
   this.set('person', {name: 'Harry Potter',
-                      title: 'Zauberer',
-                      role: 'Schüler',
-                      birthdate: '01.01.2000',
-                      origin: 'Godrics hollow',
-                      "location": 'Hogwarts',
-                      language: 'Parsel',
-                      martialStatus:  'ledig',
-                      "status": 'Mitarbeiter'});
+    title: 'Zauberer',
+    role: 'Schüler',
+    birthdate: '01.01.2000',
+    origin: 'Godrics hollow',
+    location: 'Hogwarts',
+    language: 'Parsel',
+    martialStatus:  'ledig',
+    status: 'Mitarbeiter'});
 
   this.render(hbs`{{person-show person=person}}`);
 

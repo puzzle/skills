@@ -13,10 +13,10 @@ export default Ember.Component.extend({
           });
         });
     },
-       deleteCompetence(competence, event) {
-         competence.destroyRecord().then(competence => this.sendAction('done'))
+    deleteCompetence(competence, event) {
+      competence.destroyRecord().then(competence => this.sendAction('done'))
            .then(() => this.get('notify').success('Kompetenz wurde entfernt!'));
-       },
+    },
     confirmDestroy(competence){
       this.send('deleteCompetence', competence)
     }

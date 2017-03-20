@@ -5,7 +5,7 @@ const { computed } = Ember;
 
 export default Ember.Component.extend({
   filterBy: 'all',
-  
+
   filteredList: computed('people.[]', 'filterBy', function(){
     if (this.filterBy === 'all'){
       return this.people;

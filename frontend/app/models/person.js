@@ -1,14 +1,14 @@
-import DS from 'ember-data'; 
+import DS from 'ember-data';
 import Ember from 'ember';
- 
- 
+
+
 
 const Person = DS.Model.extend({
   name: DS.attr('string'),
   birthdate: DS.attr('date'),
   picturePath: DS.attr('string'),
   language: DS.attr('string'),
-  "location": DS.attr('string'),
+  location: DS.attr('string'),
   martialStatus: DS.attr('string'),
   origin: DS.attr('string'),
   role: DS.attr('string'),
@@ -29,10 +29,10 @@ const Person = DS.Model.extend({
 
 Person.reopenClass({
   STATUSES: {
-    '1': 'Mitarbeiter',
-    '2': 'Partner',
-    '3': 'Bewerber', 
-    '4': 'Ex Mitarbeiter'
+    1: 'Mitarbeiter',
+    2: 'Partner',
+    3: 'Bewerber',
+    4: 'Ex Mitarbeiter'
   }
 });
 
