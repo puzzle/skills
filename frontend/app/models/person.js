@@ -13,7 +13,7 @@ const Person = DS.Model.extend({
   origin: DS.attr('string'),
   role: DS.attr('string'),
   title: DS.attr('string'),
-  statusId: DS.attr('string'),
+  statusId: DS.attr('string', { defaultValue: 1 }),
 
   competences: DS.hasMany('competence'),
   educations: DS.hasMany('education'),

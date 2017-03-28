@@ -20,7 +20,12 @@
         {{f.text-field 'name'}}
         {{f.text-field 'title' label="Titel"}}
         {{f.text-field 'role' label="Funktion"}}
-        {{f.date-field 'birthdate' label="Geb.Datum"}}
+        <div class="text-field form-group">
+          <label class="label-date form-field--label" for='date_location'>Geb.Datum</label>
+          <div id="date_location">
+            {{bootstrap-datepicker value=newPerson.birthdate}}
+          </div>
+        </div>
       </div>
       <div class="span5">
         {{f.text-field 'origin' label="Nationalität"}}
