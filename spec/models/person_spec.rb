@@ -107,5 +107,14 @@ describe Person do
         expect(person.errors[:language].first).to eq('is too long (maximum is 100 characters)')
       end
     end
+
+    context 'export' do
+      it 'can export without an image' do
+        person = people(:bob)
+        person.remove_picture
+        expect(person.picture.file).to be_nil
+        person.export
+      end
+    end
   end
 end
