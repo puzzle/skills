@@ -14,7 +14,7 @@
 
 class AdvancedTraining < ApplicationRecord
   belongs_to :person
-  validates :year_from, :year_to, :person_id, presence: true
+  validates :year_from, :year_to, :person_id, :description, presence: true
   validates :description, length: { maximum: 1000 }
   validate :year_from_before_year_to
 
