@@ -32,7 +32,7 @@ module Person::Export
     r.add_field(:birthdate, Date.parse(birthdate.to_s).strftime('%d.%m.%Y'))
     r.add_field(:origin, origin)
     r.add_field(:language, language)
-    r.add_image(:profile_picture, picture.path) if picture.path.present?
+    r.add_image(:profile_picture, picture.path) if picture.file.present?
   end
 
   def insert_competences(r)

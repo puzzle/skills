@@ -26,11 +26,9 @@ class PeopleController < CrudController
 
   def picture
     person = fetch_entry(:person_id)
-    if person.picture.file.nil?
-      send_file(Rails.public_path + 'default_avatar.png', disposition: 'inline')
-    else
-      send_file(person.picture.url, disposition: 'inline')
-    end
+    default_avatar_url = "#{Rails.public_path}/default_avatar.png"
+    picture_url = person.picture.file.nil? ? default_avatar_url : person.picture.url
+    send_file(picture_url, disposition: 'inline')
   end
 
   private
