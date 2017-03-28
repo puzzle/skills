@@ -1,8 +1,25 @@
-{{#form-for newEducation submit=(action 'submit') as |f|}}
-    {{f.number-field 'year_from'}}
-    {{f.number-field 'year_to'}}
-    {{f.text-field 'title'}}
-    {{f.text-field 'location'}}
-    {{f.submit "Speichern"}}
-    {{f.reset "Reset"}}
-  {{/form-for}}
+<form onsubmit={{action 'submit' newEducation}} id="form_newEducation">
+  <div id="newEducation-content-edit" class="row-fluid" style="display: block;">
+    <div class="span10">
+      <div class="row-fluid">
+        <div class="span2">
+          {{input value=newEducation.year_from type="number" class="input-mini" placeholder="von"}}
+        </div>
+        <div class="span10">
+          {{input value=newEducation.title class="input-xxlarge" placeholder="Ausbildungsart, erhaltener Titel"}}
+        </div>
+      </div>
+      <div class="row-fluid">
+        <div class="span2">
+          {{input value=newEducation.year_to type="number" class="input-mini" placeholder="bis"}}
+        </div>
+        <div class="span10">
+          {{input value=newEducation.location class="input-xxlarge" placeholder="Ausbildungsort"}}
+        </div>
+      </div>
+    </div>
+    <div class="span2">
+      <button action="submit" class="btn btn-primary btn-block btn-mini" > Speichern </button>
+    </div>
+  </div>
+</form>

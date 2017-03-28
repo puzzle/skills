@@ -6,7 +6,7 @@
     }}
   {{else}}
     {{#if activityNew}}
-      {{activity-new personId=personId submit=(action (toggle 'activityNew' this))}}
+      {{activity-new personId=personId done=(action (toggle 'activityNew' this))}}
     {{else}}
       <div class="row-fluid">
         <div class="span12">

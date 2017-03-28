@@ -6,7 +6,7 @@
     }}
   {{else}}
     {{#if educationNew}}
-      {{education-new personId=personId submit=(action (toggle 'educationNew' this))}}
+      {{education-new personId=personId done=(action (toggle 'educationNew' this))}}
     {{else}}
       <div id="education-content-show" class="row-fluid">
         <div class="span12">

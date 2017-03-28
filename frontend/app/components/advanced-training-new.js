@@ -10,11 +10,12 @@ export default Component.extend({
   }),
 
   actions: {
-    submit(newAdvancedTraining) {
+    submit(newAdvancedTraining, event) {
+      event.preventDefault();
       let person = this.get('store').peekRecord('person', this.get('personId'));
       newAdvancedTraining.set('person', person);
       return newAdvancedTraining.save()
-        .then(() => this.sendAction('submit', newAdvancedTraining))
+        .then(education => this.sendAction('done'))
         .then(() => this.get('notify').success('Weiterbildung wurde hinzugefügt!'))
         .catch(() => {
           this.get('newAdvancedTraining.errors').forEach(({ attribute, message }) => {

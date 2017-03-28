@@ -10,11 +10,12 @@ export default Component.extend({
   }),
 
   actions: {
-    submit(newProject) {
+    submit(newProject, event) {
+      event.preventDefault();
       let person = this.get('store').peekRecord('person', this.get('personId'));
       newProject.set('person', person);
       return newProject.save()
-        .then(() => this.sendAction('submit', newProject))
+        .then(project => this.sendAction('done'))
         .then(() => this.get('notify').success('Projekt wurde hinzugefügt!'))
         .catch(() => {
           this.get('newProject.errors').forEach(({ attribute, message }) => {

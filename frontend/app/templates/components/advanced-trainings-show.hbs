@@ -6,7 +6,7 @@
     }}
   {{else}}
     {{#if advanced-trainingNew}}
-      {{advanced-training-new personId=personId submit=(action (toggle 'advanced-trainingNew' this))}}
+      {{advanced-training-new personId=personId done=(action (toggle 'advanced-trainingNew' this))}}
     {{else}}
       <div id="advancedtraining-content-show" class="row-fluid">
         <div class="span12">

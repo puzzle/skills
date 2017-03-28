@@ -1,7 +1,27 @@
-{{#form-for newAdvancedTraining submit=(action 'submit') as |f|}}
-    {{f.number-field 'year_from'}}
-    {{f.number-field 'year_to'}}
-    {{f.text-field 'description'}}
-    {{f.submit "Speichern"}}
-    {{f.reset "Reset"}}
-{{/form-for}}
+<form onsubmit={{action 'submit' newAdvancedTraining}} id="form_advancedTraining">
+  <div id="advancedTraining-content-edit" class="row-fluid" style="display: block;">
+    <div class="row-fluid">
+      <div class="span10">
+        <div class="span2">
+          <div class="row-fluid">
+            {{input placeholder="von" value=newAdvancedTraining.year_from type="number" class="input-mini"}}
+          </div>
+          <div class="row-fluid">
+            {{input placeholder="bis" value=newAdvancedTraining.year_to type="number" class="input-mini"}}
+          </div>
+        </div>
+        <div class="span10">
+          <div class="row-fluid">
+            <div class="span12">
+              {{textarea placeholder="Beschreibung" value=newAdvancedTraining.description class="input-xxlarge"}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="span2">
+        <button class="btn btn-primary btn-block btn-mini" >
+          Speichern </button>
+      </div>
+    </div>
+  </div>
+</form>
