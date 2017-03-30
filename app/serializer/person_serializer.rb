@@ -7,22 +7,22 @@ class PersonSerializer < ApplicationSerializer
   end
 
   has_many :advanced_trainings do |serializer|
-    serializer.object.advanced_trainings
+    serializer.object.advanced_trainings.list
   end
 
   has_many :activities do |serializer|
-    serializer.object.activities
+    serializer.object.activities.list
   end
 
   has_many :projects do |serializer|
-    serializer.object.projects
+    serializer.object.projects.list
   end
 
   has_many :educations do |serializer|
-    serializer.object.educations
+    serializer.object.educations.list
   end
 
   has_many :competences do |serializer|
-    serializer.object.competences
+    serializer.object.competences.list
   end
 end
