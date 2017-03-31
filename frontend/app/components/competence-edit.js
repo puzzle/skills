@@ -9,7 +9,7 @@ export default Ember.Component.extend({
         .then(() => this.get('notify').success('Kompetenz wurde aktualisiert!'))
         .catch(() => {
           this.get('competence.errors').forEach(({ attribute, message }) => {
-            this.get('notify').alert("%@ %@".fmt(attribute, message), { closeAfter: 10000 });
+            this.get('notify').alert(`${attribute} ${message}`, { closeAfter: 10000 });
           });
         });
     },

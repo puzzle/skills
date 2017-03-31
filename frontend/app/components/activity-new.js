@@ -19,7 +19,7 @@ export default Component.extend({
         .then(() => this.get('notify').success('Aktivität wurde hinzugefügt!'))
         .catch(() => {
           this.get('newActivity.errors').forEach(({ attribute, message }) => {
-            this.get('notify').alert("%@ %@".fmt(attribute, message), { closeAfter: 10000 });
+            this.get('notify').alert(`${attribute} ${message}`, { closeAfter: 10000 });
           });
         });
     }

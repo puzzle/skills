@@ -24,7 +24,7 @@ export default Component.extend({
         .catch(() => {
           this.get('person.errors').forEach(({ attribute, message }) => {
             changeset.pushErrors(attribute, message);
-            this.get('notify').alert("%@ %@".fmt(attribute, message), { closeAfter: 10000 });
+            this.get('notify').alert(`${attribute} ${message}`, { closeAfter: 10000 });
           });
         });
     }

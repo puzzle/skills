@@ -19,7 +19,7 @@ export default Component.extend({
         .then(() => this.get('notify').success('Weiterbildung wurde hinzugefügt!'))
         .catch(() => {
           this.get('newAdvancedTraining.errors').forEach(({ attribute, message }) => {
-            this.get('notify').alert("%@ %@".fmt(attribute, message), { closeAfter: 10000 });
+            this.get('notify').alert(`${attribute} ${message}`, { closeAfter: 10000 });
           });
         });
     }

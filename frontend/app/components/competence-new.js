@@ -18,7 +18,7 @@ export default Component.extend({
         .then(() => this.get('notify').success('Kompetenz wurde hinzugefügt!'))
         .catch(() => {
           this.get('newCompetence.errors').forEach(({ attribute, message }) => {
-            this.get('notify').alert("%@ %@".fmt(attribute, message), { closeAfter: 10000 });
+            this.get('notify').alert(`${attribute} ${message}`, { closeAfter: 10000 });
           });
         });
     }
