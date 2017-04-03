@@ -87,8 +87,8 @@
     (toggle 'createVariationModal' this)) as |f|}}
       {{f.text-field 'variationName' label="Varianten Name"}}
       <br>
-      <button {{action (toggle 'createVariationModal' this)}}>Abbrechen</button>
-      {{f.submit "Speichern"}}
+      <button {{action (toggle 'createVariationModal' this)}} class="btn">Abbrechen</button>
+      {{f.submit "Speichern"class="btn btn-primary"}}
     {{/form-for}}
   {{/modal-dialog}}
 {{/if}}
@@ -102,8 +102,8 @@
                                     (toggle 'updateVariationModal' this)) as |f|}}
       {{f.text-field 'variationName' label="Varianten Name"}}
       <br>
-      <button {{action (toggle 'updateVariationModal' this)}}>Abbrechen</button>
-      {{f.submit "Speichern"}}
+      <button {{action (toggle 'updateVariationModal' this)}} class="btn">Abbrechen</button>
+      {{f.submit "Speichern" class="btn btn-primary"}}
     {{/form-for}}
   {{/modal-dialog}}
 {{/if}}

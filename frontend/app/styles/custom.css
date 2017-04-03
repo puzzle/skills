@@ -550,3 +550,15 @@ form textarea{
   right: 0px;
   font-size: 30px;
 }
+
+
+/* Buttons
+-------------------------------------------------- */
+
+.btn-primary{
+  color: white!important;
+}
+
+.async-button:hover{
+  background-position: 0px 0px!important;
+}
