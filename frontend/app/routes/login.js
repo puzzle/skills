@@ -1,7 +1,7 @@
 import Ember from 'ember';
-import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
+import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-route-mixin';
 
-export default Ember.Route.extend(ApplicationRouteMixin, {
+export default Ember.Route.extend(UnauthenticatedRouteMixin, {
   session: Ember.inject.service('session'),
 
   actions: {
@@ -13,11 +13,6 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
         this.set('errorMessage', reason.message);
       });
       this.transitionTo('people');
-    },
-
-    invalidateSession: function(){
-      this.get('session').invalidate();
-      this.transitionTo('login')
-    }
+    } 
   }
 });

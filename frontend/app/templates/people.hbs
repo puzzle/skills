@@ -1,5 +1,2 @@
 {{people-list people=model}}
-{{#if session.isAuthenticated}}
-  <a  id='logout-button' class='btn btn-danger pull-right' {{action 'invalidateSession'}}>Logout</a>
-{{/if}}
 {{outlet}}

@@ -4,7 +4,8 @@ class AuthenticationController < ApplicationController
   skip_before_action :authorize
 
   def sign_in
-    return render json: nil if Rails.env.development?
+    development_json = { ldap_uid: 'development_user', api_token: '1234' }
+    return render json: development_json if Rails.env.development?
 
     username = params[:username]
     password = params[:password]

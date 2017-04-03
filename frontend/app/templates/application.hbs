@@ -1,8 +1,8 @@
 <main id="main" class="container">
   <div id="inner-main" class="container-fluid">
     <div class="row-fluid">
-     {{#if session.isAuthenticated}}
-       <a {{action 'invalidateSession'}}>Logout</a>
+      {{#if session.isAuthenticated}}
+      <a id='logout-button' class='pull-right' {{action 'invalidateSession'}}>Logout</a>
       {{/if}}
       {{outlet}}
     </div>

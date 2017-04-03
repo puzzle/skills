@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import RSVP from 'rsvp'
 import Base from 'ember-simple-auth/authenticators/base';
-import ENV from '../config/environment';
 
 const { Promise } = RSVP
 
@@ -10,7 +9,7 @@ export default Base.extend({
   session: Ember.inject.service('session'),
 
   restore(data) {
-    if (Ember.isEmpty(data.token) && ENV.environment != 'development') {
+    if (Ember.isEmpty(data.token)) {
       return Promise.reject(new Error('No Token to restore found'))
     }
     return Promise.resolve(data);
