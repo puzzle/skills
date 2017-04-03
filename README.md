@@ -37,6 +37,7 @@ now run backend server
 The following environment variables are required for using ldap:
 
 | Umgebungsvariable | Beschreibung | Default |
+| --- | --- | --- |
 | LDAP_BASENAME | LDAP Base name, e.g. ou=users,dc=yourdomain,dc=com  | - |
 | LDAP_HOSTNAME | LDAP Server host name | - |
 | LDAP_PORT | LDAP Server Port | 686 |
