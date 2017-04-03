@@ -13,7 +13,9 @@
     "build": "ember build",
     "build-prod": "ember build --prod",
     "start": "ember serve --proxy=http://localhost:3000/",
-    "test": "ember test"
+    "test": "ember test",
+    "bower-install": "bower install"
+
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",

@@ -2,5 +2,5 @@
 
 npm install bower && \
 npm install && \
-bower install && \
+npm run bower-install && \
 npm run build-prod
