@@ -32,6 +32,14 @@ go back to user / cv2 dir
 now run backend server
 * `rails s`
 
+### LDAP config
+
+The following environment variables are required for using ldap:
+
+| LDAP_BASENAME | LDAP Base name, e.g. ou=users,dc=yourdomain,dc=com  | - |
+| LDAP_HOSTNAME | LDAP Server host name | - |
+| LDAP_PORT | LDAP Server Port | 686 |
+
 ## Front-End
 
 Das Front-End ist umgesetzt mit EmberJS.
