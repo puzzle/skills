@@ -16,8 +16,7 @@ export default Base.extend({
   },
 
   authenticate(password, identification) {
-    return this.get('ajax').request('/auth/sign_in', {
-      method: 'POST',
+    return this.get('ajax').post('/auth/sign_in', {
       data: {
         username: identification,
         password: password
@@ -26,7 +25,7 @@ export default Base.extend({
       return {token: response.api_token,
         ldap_uid: response.ldap_uid}
     }, function(xhr, status, error) {
-      throw xhr.responseText
+      throw xhr.payload
     })
   },
 
