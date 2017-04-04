@@ -2,7 +2,7 @@ class ApplicationController < ActionController::API
   before_action :authorize
 
   def authorize
-    return if Rails.env.development?
+    return if Rails.env.development? && ENV['ENABLE_AUTH'].blank?
 
     if auth_params_present?
       return if authenticates?
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::API
 
   protected
 
-  def render_unauthorized(message = nil)
+  def render_unauthorized(message = 'unauthorized')
     render json: message, status: :unauthorized
   end
 

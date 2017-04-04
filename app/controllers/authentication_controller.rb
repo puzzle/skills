@@ -5,12 +5,12 @@ class AuthenticationController < ApplicationController
 
   def sign_in
     development_json = { ldap_uid: 'development_user', api_token: '1234' }
-    return render json: development_json if Rails.env.development?
+    return render json: development_json if Rails.env.development? && ENV['ENABLE_AUTH'].blank?
 
     username = params[:username]
     password = params[:password]
 
-    return render_unauthorized unless username.present? && password.present?
+    return render_unauthorized('dis mami') unless username.present? && password.present?
 
     json = User.authenticate(username, password)
 
