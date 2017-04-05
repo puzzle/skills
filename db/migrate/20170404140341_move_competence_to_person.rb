@@ -22,7 +22,7 @@ class MoveCompetenceToPerson < ActiveRecord::Migration
 
   def move_copmetences_back_to_own_class
     Person.all.find_each do |person|
-      Competence.create(description: person.competences,
+      Competence.create(description: person.competences.to_s,
                         person_id: person.id)
     end
   end
@@ -31,14 +31,18 @@ class MoveCompetenceToPerson < ActiveRecord::Migration
     Person.all.find_each do |person|
       competences = ""
       person_competences = Competence.where(person_id: person.id)
+
       person_competences.find_each do |competence|
         if competence == person_competences.last
-          competences << competence.description
+          competences << competence.description.to_s
         else
           competences << "#{competence.description} \n"
         end
       end
       person.update_attributes(competences: competences)
     end
+  end
+
+  class Competence < ActiveRecord::Base
   end
 end
