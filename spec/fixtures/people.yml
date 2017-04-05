@@ -13,6 +13,7 @@ bob:
   role: Cleaner
   title: BSc in Cleaning
   status_id: 1 #Mitarbeiter
+  competences: Java\n Ruby
 
 alice:
   birthdate: 2016-10-20 13:15:11
@@ -27,3 +28,4 @@ alice:
   role: Secretary
   title: MSc in writing
   status_id: 2 # Partner
+  competences: LaTex\n Puppet\n Bash

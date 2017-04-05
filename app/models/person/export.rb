@@ -38,8 +38,10 @@ module Person::Export
   def insert_competences(r)
     bullet = "\u2022"
     competences_string = ''
-    competences.each do |c|
-      competences_string << "#{bullet} #{c.description}\n"
+    if competences.present?
+      competences.split("\n").each do |competence|
+        competences_string << "#{bullet} #{competence}\n"
+      end
     end
     r.add_field(:competences, competences_string)
   end

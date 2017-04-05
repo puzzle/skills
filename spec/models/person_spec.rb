@@ -115,6 +115,12 @@ describe Person do
         expect(person.picture.file).to be_nil
         person.export
       end
+
+      it 'can export without competences' do
+        person = people(:bob)
+        person.competences = nil
+        person.export
+      end
     end
   end
 end

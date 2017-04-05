@@ -11,7 +11,7 @@ class Person::Variation < Person
   def self.create_variation(variation_name, person_id)
     ActiveRecord::Base.transaction do
       person = Person.find(person_id)
-      associations = [:activities, :projects, :advanced_trainings, :educations, :competences]
+      associations = [:activities, :projects, :advanced_trainings, :educations]
 
       person_variation = person.dup.becomes!(Person::Variation)
       person_variation.picture = person.picture

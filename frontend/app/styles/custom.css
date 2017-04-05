@@ -535,6 +535,12 @@ form textarea{
   display: none;
 }
 
+.competences-edit-input{
+  width: 95%;
+  height: 250px;
+  margin-left: 15px;
+}
+
 
 .ember-notify-cn .ember-notify{
   min-width: 300px;

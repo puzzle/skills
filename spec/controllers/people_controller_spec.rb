@@ -72,7 +72,7 @@ describe PeopleController do
     describe 'GET show' do
       it 'returns person with nested modules' do
         keys = %w(birthdate picture_path language location martial_status updated_by name origin
-                  role title)
+                  role title competences)
 
         bob = people(:bob)
 
@@ -80,14 +80,14 @@ describe PeopleController do
 
         bob_attrs = json['data']['attributes']
 
-        expect(bob_attrs.count).to eq(13)
+        expect(bob_attrs.count).to eq(14)
         json_object_includes_keys(bob_attrs, keys)
         # expect(bob_attrs['picture-path']).to eq("/api/people/#{bob.id}/picture")
 
-        nested_keys = %w(advanced_trainings activities projects educations competences)
+        nested_keys = %w(advanced_trainings activities projects educations)
         nested_attrs = json['data']['relationships']
 
-        expect(nested_attrs.count).to eq(5)
+        expect(nested_attrs.count).to eq(4)
         json_object_includes_keys(nested_attrs, nested_keys)
       end
 
@@ -100,7 +100,7 @@ describe PeopleController do
 
         bob_attrs = json['data']['attributes']
 
-        expect(bob_attrs.count).to eq(13)
+        expect(bob_attrs.count).to eq(14)
         json_object_includes_keys(bob_attrs, keys)
       end
     end
@@ -165,7 +165,6 @@ describe PeopleController do
         expect(AdvancedTraining.exists?(person_id: bob.id)).to eq(false)
         expect(Project.exists?(person_id: bob.id)).to eq(false)
         expect(Education.exists?(person_id: bob.id)).to eq(false)
-        expect(Competence.exists?(person_id: bob.id)).to eq(false)
       end
 
       it 'destroys existing person variation' do
@@ -180,7 +179,6 @@ describe PeopleController do
         expect(AdvancedTraining.exists?(person_id: bobs_variation2.id)).to eq(false)
         expect(Project.exists?(person_id: bobs_variation2.id)).to eq(false)
         expect(Education.exists?(person_id: bobs_variation2.id)).to eq(false)
-        expect(Competence.exists?(person_id: bobs_variation2.id)).to eq(false)
       end
     end
   end

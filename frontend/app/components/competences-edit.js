@@ -6,19 +6,12 @@ export default Ember.Component.extend({
       event.preventDefault();
       return changeset.save()
         .then(competence => this.sendAction('done'))
-        .then(() => this.get('notify').success('Kompetenz wurde aktualisiert!'))
+        .then(() => this.get('notify').success('Kompetenzen wurden aktualisiert!'))
         .catch(() => {
           this.get('competence.errors').forEach(({ attribute, message }) => {
             this.get('notify').alert(`${attribute} ${message}`, { closeAfter: 10000 });
           });
         });
-    },
-    deleteCompetence(competence, event) {
-      competence.destroyRecord().then(competence => this.sendAction('done'))
-           .then(() => this.get('notify').success('Kompetenz wurde entfernt!'));
-    },
-    confirmDestroy(competence){
-      this.send('deleteCompetence', competence)
     }
   }
 });

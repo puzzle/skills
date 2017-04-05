@@ -34,7 +34,6 @@ class Person < ApplicationRecord
   has_many :activities, dependent: :destroy
   has_many :advanced_trainings, dependent: :destroy
   has_many :educations, dependent: :destroy
-  has_many :competences, dependent: :destroy
   has_many :variations, foreign_key: :origin_person_id,
            class_name: Person::Variation
 
@@ -52,13 +51,12 @@ class Person < ApplicationRecord
   scope :list, -> { where(type: nil).order(:name) }
 
   pg_search_scope :search,
-                  against: [:language, :location, :name, :origin, :role, :title],
+                  against: [:language, :location, :name, :origin, :role, :title, :competences],
                   associated_against: {
                     projects: [:description, :title, :role, :technology],
                     activities: [:description, :role],
                     educations: [:location, :title],
-                    advanced_trainings: :description,
-                    competences: :description
+                    advanced_trainings: :description
                   },
                   using: {
                     tsearch: {

@@ -10,7 +10,7 @@
     model-header-title = 'Personalien'
     personEditing=(action (toggle 'personEditing' this))
     }}
-  {{competences-show competences=model.competences personId=model.id}}
+  {{competences-show person=model}}
   {{educations-show educations=model.educations personId=model.id}}
   {{advanced-trainings-show  advanced-trainings=model.advancedTrainings personId=model.id}}
   {{activities-show activities=model.activities personId=model.id}}

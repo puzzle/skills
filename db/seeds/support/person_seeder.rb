@@ -6,7 +6,7 @@ class PersonSeeder
       person = seed_person(name).first
       break unless person
       seed_image(person)
-      associations = [:competence, :activity, :advanced_training, :project, :education]
+      associations = [:activity, :advanced_training, :project, :education]
       associations.each do |a|
         seed_association(a, person.id)
       end
@@ -24,7 +24,7 @@ class PersonSeeder
 
   def seed_variation(person)
     person_variation = Person::Variation.create_variation(Faker::Book.title, person.id)
-    associations = [:competence, :activity, :advanced_training, :project, :education]
+    associations = [:activity, :advanced_training, :project, :education]
     change_variation(person_variation)
     associations.each do |a|
       change_associations(a, person_variation)
@@ -90,11 +90,6 @@ class PersonSeeder
     education.save!
   end
 
-  def change_competence(competence)
-    competence.description = Faker::Superhero.power
-    competence.save!
-  end
-
   def seed_person(name)
     Person.seed_once(:name) do |p|
       p.birthdate = Faker::Date.between(20.year.ago, 65.year.ago)
@@ -108,6 +103,9 @@ class PersonSeeder
       p.role = Faker::Company.profession
       p.title = Faker::Name.title
       p.status_id = rand(1..4)
+      competences = ""
+      rand(5..15).times{ competences << "#{Faker::Superhero.power}\n" }
+      p.competences = competences
     end
   end
 
@@ -150,13 +148,6 @@ class PersonSeeder
       e.year_from = Faker::Number.between(1956, 1979)
       e.year_to = Faker::Number.between(1980, 2016)
       e.person_id = person_id
-    end
-  end
-
-  def seed_competence(person_id)
-    Competence.seed do |c|
-      c.description = Faker::Superhero.power
-      c.person_id = person_id
     end
   end
 end

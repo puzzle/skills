@@ -1,9 +1,9 @@
 class PeopleController < CrudController
   self.permitted_attrs = [:birthdate, :picture, :language, :location, :martial_status,
-                          :updated_by, :name, :origin, :role, :title, :status_id, :variation_name]
+                          :updated_by, :name, :origin, :role, :title, :competences, :status_id, :variation_name]
 
   self.nested_models = [:advanced_trainings, :activities, :projects,
-                        :educations, :competences]
+                        :educations]
 
   skip_before_filter :authorize, :only => [:picture]
 
