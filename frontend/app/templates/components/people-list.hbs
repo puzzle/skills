@@ -17,18 +17,18 @@
     <div class="span10">
       <form id="form-search" class="">
         <input id="field-search" type="text" class="span12"
-          autocomplete="off" placeholder="Personensuche"> 
-          <a onclick={{action (toggle 'advancedSearch' this)}} id="toggleSearch">+ erweiterte Suche</a><br>
-          {{#if advancedSearch}}
-            <div>
-              <select onchange={{action 'setFilter' value="target.value"}}>
-                <option selectionBinding='filterBy' value='all'>Alle</option>
-                {{#each statusData as |status|}}
-                  <option selctionBinding='filterBy' value={{status.id}}>{{status.name}}</option>
-                {{/each}}
-              </select>
-            </div>
-          {{/if}}
+          autocomplete="off" placeholder="Personensuche" oninput={{perform searchPeopleTask value='target.value'}}> 
+        <a onclick={{action (toggle 'advancedSearch' this)}} id="toggleSearch">+ erweiterte Suche</a><br>
+        {{#if advancedSearch}}
+          <div>
+            <select onchange={{action 'setFilter' value="target.value"}}>
+              <option selectionBinding='filterBy' value='all'>Alle</option>
+              {{#each statusData as |status|}}
+                <option selctionBinding='filterBy' value={{status.id}}>{{status.name}}</option>
+              {{/each}}
+            </select>
+          </div>
+        {{/if}}
         <div id="textSearch" style="display: none">
           <select class="statusDropdown span12" id="statusSearchDropdown"><option
               value="0">Alle</option>

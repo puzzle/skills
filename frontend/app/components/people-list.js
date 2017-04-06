@@ -1,7 +1,9 @@
 import Ember from 'ember';
 import PersonModel from '../models/person';
+import { task, timeout } from 'ember-concurrency';
 
 const { computed } = Ember;
+const SEARCH_TIMEOUT = 250;
 
 export default Ember.Component.extend({
   filterBy: 'all',
@@ -18,6 +20,17 @@ export default Ember.Component.extend({
       return { id, name: PersonModel.STATUSES[id] };
     });
   }),
+
+  searchPeopleTask: task(function*(q) {
+    if (Ember.isBlank(q)) {
+      this.sendAction('onSearch', null);
+      return
+    }
+
+    yield timeout(SEARCH_TIMEOUT);
+
+    this.sendAction('onSearch', q);
+  }).restartable(),
 
   actions: {
     setFilter(value){

@@ -15,7 +15,6 @@
     "start": "ember serve --proxy=http://localhost:3000/",
     "test": "ember test",
     "bower-install": "bower install"
-
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
@@ -41,6 +40,7 @@
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^1.2.0",
     "ember-composable-helpers": "^2.0.0",
+    "ember-concurrency": "^0.8.1",
     "ember-confirm-dialog": "^1.2.0",
     "ember-data": "^2.12.1",
     "ember-export-application-global": "^2.0.0",

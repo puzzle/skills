@@ -3,8 +3,17 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   ajax: Ember.inject.service(),
-  model(){
-    return this.get('ajax').request('/people').then(response => response.data);
+
+  queryParams: {
+    q: {
+      refreshModel: true,
+      replace: true
+    }
+  },  
+
+  model({ q }){
+    return this.get('ajax').request('/people', { data: { q } })
+      .then(response => response.data);
   },
 
   actions: {
