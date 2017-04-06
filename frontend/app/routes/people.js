@@ -9,7 +9,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       refreshModel: true,
       replace: true
     }
-  },  
+  },
 
   model({ q }){
     return this.get('ajax').request('/people', { data: { q } })

@@ -13,6 +13,6 @@ export default Ember.Route.extend(UnauthenticatedRouteMixin, {
         this.set('errorMessage', reason.message);
       });
       this.transitionTo('people');
-    } 
+    }
   }
 });
