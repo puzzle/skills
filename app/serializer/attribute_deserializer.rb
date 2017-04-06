@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class AttributeDeserializer
   def initialize(params, options = {})
     @params = params

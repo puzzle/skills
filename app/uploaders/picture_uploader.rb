@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class PictureUploader < CarrierWave::Uploader::Base
 
   EXTENSION_WHITE_LIST = %w(jpg jpeg gif png).freeze

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class User < ApplicationRecord
   validates :ldap_uid, uniqueness: true
 

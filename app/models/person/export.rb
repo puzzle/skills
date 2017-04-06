@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Person::Export
   def export
     ODFReport::Report.new('lib/templates/cv_template.odt') do |r|

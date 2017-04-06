@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class ApplicationController < ActionController::API
   before_action :authorize
 
@@ -20,12 +22,12 @@ class ApplicationController < ActionController::API
   private
 
   def auth_params_present?
-    request.headers["ldap-uid"].present? && request.headers["api-token"].present?
+    request.headers['ldap-uid'].present? && request.headers['api-token'].present?
   end
 
   def authenticates?
-    ldap_uid = request.headers["ldap-uid"]
-    api_token = request.headers["api-token"]
+    ldap_uid = request.headers['ldap-uid']
+    api_token = request.headers['api-token']
 
     user = User.find_by(ldap_uid: ldap_uid)
     user && user.api_token == api_token

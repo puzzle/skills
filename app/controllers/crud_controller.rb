@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 # A generic controller to display, create, update and destroy entries of a certain model class.
 class CrudController < ListController
   class_attribute :permitted_attrs, :nested_models
@@ -67,7 +69,8 @@ class CrudController < ListController
   end
 
   def render_errors
-    render json: entry, status: 422, adapter: :json_api, serializer: ActiveModel::Serializer::ErrorSerializer
+    render json: entry, status: 422,
+           adapter: :json_api, serializer: ActiveModel::Serializer::ErrorSerializer
   end
 
   def entry_url

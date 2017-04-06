@@ -1,11 +1,14 @@
+# encoding: utf-8
+
 class PeopleController < CrudController
-  self.permitted_attrs = [:birthdate, :picture, :language, :location, :martial_status,
-                          :updated_by, :name, :origin, :role, :title, :competences, :status_id, :variation_name]
+  self.permitted_attrs = [:birthdate, :picture, :language, :location,
+                          :martial_status, :updated_by, :name, :origin, :role, :title,
+                          :competences, :status_id, :variation_name]
 
   self.nested_models = [:advanced_trainings, :activities, :projects,
                         :educations]
 
-  skip_before_filter :authorize, :only => [:picture]
+  skip_before_filter :authorize, only: [:picture]
 
   def index
     people = fetch_entries
@@ -40,9 +43,9 @@ class PeopleController < CrudController
   def export
     odt_file = entry.export
     send_data odt_file.generate,
-      type: 'application/vnd.oasis.opendocument.text',
-      disposition: 'attachment',
-      filename: filename(entry.name)
+              type: 'application/vnd.oasis.opendocument.text',
+              disposition: 'attachment',
+              filename: filename(entry.name)
   end
 
   def filename(name)

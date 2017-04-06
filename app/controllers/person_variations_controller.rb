@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class PersonVariationsController < CrudController
   self.permitted_attrs = PeopleController.permitted_attrs + [:variation_name]
 

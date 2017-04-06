@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class VariationSerializer < ApplicationSerializer
   attributes :id, :birthdate, :language, :picture, :location, :martial_status, :updated_by,
              :name, :origin, :role, :title, :variation_name

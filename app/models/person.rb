@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 # == Schema Information :updated_by,
 #
 # Table name: people
@@ -35,7 +37,7 @@ class Person < ApplicationRecord
   has_many :advanced_trainings, dependent: :destroy
   has_many :educations, dependent: :destroy
   has_many :variations, foreign_key: :origin_person_id,
-           class_name: Person::Variation
+                        class_name: Person::Variation
 
   before_destroy :destroy_variations
 
@@ -70,7 +72,7 @@ class Person < ApplicationRecord
 
 
   def destroy_variations
-    unless self.is_a?(Person::Variation)
+    unless is_a?(Person::Variation)
       variations.destroy_all
     end
   end
@@ -88,6 +90,6 @@ class Person < ApplicationRecord
   end
 
   def valid_person
-    return false unless self.is_a?(Person::Variation)
+    return false unless is_a?(Person::Variation)
   end
 end
