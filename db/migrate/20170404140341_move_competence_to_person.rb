@@ -1,7 +1,7 @@
 class MoveCompetenceToPerson < ActiveRecord::Migration
   def up
     add_column :people, :competences, :string
-    move_competences_to_person_attr
+    move_competences_to_person_attribute
     drop_table :competences
   end
 
@@ -13,21 +13,21 @@ class MoveCompetenceToPerson < ActiveRecord::Migration
       t.references :person
     end
 
-    move_copmetences_back_to_own_class
+    move_competences_back_to_own_table
 
     remove_column :people, :competences
   end
 
   private
 
-  def move_copmetences_back_to_own_class
+  def move_competences_back_to_own_table
     Person.all.find_each do |person|
       Competence.create(description: person.competences.to_s,
                         person_id: person.id)
     end
   end
 
-  def move_competences_to_person_attr
+  def move_competences_to_person_attribute
     Person.all.find_each do |person|
       competences = ""
       person_competences = Competence.where(person_id: person.id)
@@ -42,6 +42,8 @@ class MoveCompetenceToPerson < ActiveRecord::Migration
       person.update_attributes(competences: competences)
     end
   end
+
+  private
 
   class Competence < ActiveRecord::Base
   end
