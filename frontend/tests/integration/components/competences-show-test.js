@@ -19,16 +19,18 @@ test('it renders competences from person', function(assert) {
 
   this.render(hbs`{{competences-show person=person}}`);
 
-  assert.ok(this.$().text().indexOf('very much') !== -1);
+  let text = this.$().text();
+
+  assert.ok(text.includes('very much'));
 
   // doesn't show full person
-  assert.ok(this.$().text().indexOf('Harry Potter') === -1);
-  assert.ok(this.$().text().indexOf('Zauberer') === -1);
-  assert.ok(this.$().text().indexOf('Schüler') === -1);
-  assert.ok(this.$().text().indexOf('01.01.2000' === -1));
-  assert.ok(this.$().text().indexOf('Godrics hollow' === -1));
-  assert.ok(this.$().text().indexOf('Hogwarts' === -1));
-  assert.ok(this.$().text().indexOf('Parsel' === -1));
-  assert.ok(this.$().text().indexOf('ledig' === -1));
-  assert.ok(this.$().text().indexOf('Mitarbeiter' === -1));
+  assert.ok(!text.includes('Harry Potter'));
+  assert.ok(!text.includes('Zauberer'));
+  assert.ok(!text.includes('Schüler'));
+  assert.ok(!text.includes('01.01.2000'));
+  assert.ok(!text.includes('Godrics hollow'));
+  assert.ok(!text.includes('Hogwarts'));
+  assert.ok(!text.includes('Parsel'));
+  assert.ok(!text.includes('ledig'));
+  assert.ok(!text.includes('Mitarbeiter'));
 });
