@@ -5,21 +5,19 @@ moduleForComponent('advanced-training-show', 'Integration | Component | advanced
   integration: true
 });
 
-test('it renders', function(assert) {
+test('it renders advanced-training', function(assert) {
+  this.set('advanced-training', {
+    description: 'Lucid Dreaming',
+    year_from: '1988',
+    year_to: '1989'
+  });
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  this.render(hbs`{{advanced-training-show 
+    advanced-training=advanced-training
+    selectAdvancedTraining=(action (mut advancedTrainingEditing))
+  }}`);
 
-  this.render(hbs`{{advanced-training-show}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#advanced-training-show}}
-      template block text
-    {{/advanced-training-show}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.ok(this.$().text().indexOf('Lucid Dreaming') !== -1);
+  assert.ok(this.$().text().indexOf('1988') !== -1);
+  assert.ok(this.$().text().indexOf('1989') !== -1);
 });

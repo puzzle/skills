@@ -1,24 +1,5 @@
-import { moduleForComponent, test } from 'ember-qunit';
-import hbs from 'htmlbars-inline-precompile';
+import { moduleForComponent } from 'ember-qunit';
 
 moduleForComponent('people-list', 'Integration | Component | people list', {
   integration: true
-});
-
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
-
-  this.render(hbs`{{people-list}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{people-list title='title test'}}
-    `);
-
-// TODO render a list of people and check
-
-  assert.equal(this.$().text().trim(), 'title test');
 });

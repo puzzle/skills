@@ -8,7 +8,9 @@
 desc 'Runs the taks for a commit build'
 task ci: ['log:clear',
           'db:migrate',
-          'spec']
+          'spec',
+          'frontend:prepare',
+          'spec:frontend']
 
 namespace :ci do
   desc 'Runs the tasks for the nightly build'

@@ -5,21 +5,20 @@ moduleForComponent('education-show', 'Integration | Component | education show',
   integration: true
 });
 
-test('it renders', function(assert) {
+test('it renders education', function(assert) {
+  this.set('education', {
+    title: 'Ausbildung',
+    location: 'Bern',
+    year_from: '1990',
+    year_to: '1995'
+  });
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  this.render(hbs`{{education-show 
+    selectEducation=(action (mut educationEditing)) 
+    education=education}}`);
 
-  this.render(hbs`{{education-show}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#education-show}}
-      template block text
-    {{/education-show}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.ok(this.$().text().indexOf('Ausbildung') !== -1);
+  assert.ok(this.$().text().indexOf('Bern') !== -1);
+  assert.ok(this.$().text().indexOf('1990') !== -1);
+  assert.ok(this.$().text().indexOf('1995') !== -1);
 });

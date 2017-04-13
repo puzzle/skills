@@ -5,21 +5,25 @@ moduleForComponent('project-show', 'Integration | Component | project show', {
   integration: true
 });
 
-test('it renders', function(assert) {
+test('it renders project', function(assert) {
+  this.set('project', {
+    title: 'Dreaming Project',
+    description: 'Schlafen',
+    role: 'Träumer',
+    technology: 'Bed',
+    year_from: '1990',
+    year_to: '1991'
+  });
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  this.render(hbs`{{project-show 
+    project=project
+    selectProject=(action (mut projectEditing))
+  }}`);
 
-  this.render(hbs`{{project-show}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#project-show}}
-      template block text
-    {{/project-show}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.ok(this.$().text().indexOf('Dreaming Project') !== -1);
+  assert.ok(this.$().text().indexOf('Schlafen') !== -1);
+  assert.ok(this.$().text().indexOf('Träumer') !== -1);
+  assert.ok(this.$().text().indexOf('Bed') !== -1);
+  assert.ok(this.$().text().indexOf('1990') !== -1);
+  assert.ok(this.$().text().indexOf('1991') !== -1);
 });

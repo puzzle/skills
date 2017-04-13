@@ -5,20 +5,30 @@ moduleForComponent('competence-show', 'Integration | Component | competence show
   integration: true
 });
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+test('it renders competences from person', function(assert) {
+  this.set('person', {name: 'Harry Potter',
+    title: 'Zauberer',
+    role: 'Schüler',
+    birthdate: new Date('2000-01-01'),
+    origin: 'Godrics hollow',
+    location: 'Hogwarts',
+    competences: 'very much',
+    language: 'Parsel',
+    martialStatus:  'ledig',
+    status: 'Mitarbeiter'});
 
-  this.render(hbs`{{competence-show}}`);
+  this.render(hbs`{{competences-show person=person}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.ok(this.$().text().indexOf('very much') !== -1);
 
-  // Template block usage:
-  this.render(hbs`
-    {{#competence-show}}
-      template block text
-    {{/competence-show}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  // doesn't show full person
+  assert.ok(this.$().text().indexOf('Harry Potter') === -1);
+  assert.ok(this.$().text().indexOf('Zauberer') === -1);
+  assert.ok(this.$().text().indexOf('Schüler') === -1);
+  assert.ok(this.$().text().indexOf('01.01.2000' === -1));
+  assert.ok(this.$().text().indexOf('Godrics hollow' === -1));
+  assert.ok(this.$().text().indexOf('Hogwarts' === -1));
+  assert.ok(this.$().text().indexOf('Parsel' === -1));
+  assert.ok(this.$().text().indexOf('ledig' === -1));
+  assert.ok(this.$().text().indexOf('Mitarbeiter' === -1));
 });

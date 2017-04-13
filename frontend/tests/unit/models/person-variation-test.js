@@ -1,12 +1,7 @@
-import { moduleForModel, test } from 'ember-qunit';
+import { moduleForModel } from 'ember-qunit';
 
 moduleForModel('person-variation', 'Unit | Model | person variation', {
   // Specify the other units that are required for this test.
   needs: []
 });
 
-test('it exists', function(assert) {
-  let model = this.subject();
-  // let store = this.store();
-  assert.ok(!!model);
-});
