@@ -19,4 +19,7 @@ Rails.application.routes.draw do
     resources :educations, controller: 'educations'
     resources :competences, controller: 'competences'
   end
+
+  get '*path', to: 'static_assets#index'
+
 end
