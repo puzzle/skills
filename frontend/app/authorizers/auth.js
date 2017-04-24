@@ -7,8 +7,8 @@ export default Base.extend({
     let ldap_uid = sessionData.ldap_uid;
 
     if (api_token && ldap_uid) {
-      block('api_token', api_token);
-      block('ldap_uid', ldap_uid);
+      block('api-token', api_token);
+      block('ldap-uid', ldap_uid);
     }
   }
 });

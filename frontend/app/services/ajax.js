@@ -16,8 +16,8 @@ export default AjaxService.extend({
       let ldap_uid = this.get('session.data.authenticated.ldap_uid');
 
       if (token && ldap_uid) {
-        headers.api_token = `${token}`;
-        headers.ldap_uid = `${ldap_uid}`;
+        headers['api-token'] = `${token}`;
+        headers['ldap-uid'] = `${ldap_uid}`;
       }
       return headers;
     }
