@@ -42,6 +42,10 @@ The following environment variables are required for using ldap:
 | LDAP_HOSTNAME | LDAP Server host name | - |
 | LDAP_PORT | LDAP Server Port | 686 |
 
+### Enable Authentication on development
+
+Set the Environment variable ENABLE_AUTH to true in backend.
+
 ## Front-End
 
 Das Front-End ist umgesetzt mit EmberJS.
