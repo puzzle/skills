@@ -1,9 +1,12 @@
 import Ember from 'ember';
+import { translationMacro as t } from "ember-i18n";
 
 const { Component, computed, inject } = Ember;
 
 export default Component.extend({
   store: inject.service(),
+
+  i18n: Ember.inject.service(),
 
   newProject: computed('personId', function() {
     return this.get('store').createRecord('project');
@@ -19,7 +22,8 @@ export default Component.extend({
         .then(() => this.get('notify').success('Projekt wurde hinzugefügt!'))
         .catch(() => {
           this.get('newProject.errors').forEach(({ attribute, message }) => {
-            this.get('notify').alert(`${attribute} ${message}`, { closeAfter: 10000 });
+            let translated_attribute = this.get('i18n').t(`project.${attribute}`)['string']
+             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
         });
     }

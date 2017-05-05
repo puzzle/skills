@@ -1,9 +1,12 @@
 import Ember from 'ember';
+import { translationMacro as t } from "ember-i18n";
 
 const { Component, computed, inject } = Ember;
 
 export default Component.extend({
   store: inject.service(),
+
+  i18n: Ember.inject.service(),
 
   newAdvancedTraining: computed('personId', function() {
     return this.get('store').createRecord('advanced-training');
@@ -19,7 +22,8 @@ export default Component.extend({
         .then(() => this.get('notify').success('Weiterbildung wurde hinzugefügt!'))
         .catch(() => {
           this.get('newAdvancedTraining.errors').forEach(({ attribute, message }) => {
-            this.get('notify').alert(`${attribute} ${message}`, { closeAfter: 10000 });
+            let translated_attribute = this.get('i18n').t(`advanced-training.${attribute}`)['string']
+            this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
         });
     }

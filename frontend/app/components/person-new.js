@@ -1,9 +1,12 @@
 import Ember from 'ember';
 import PersonModel from '../models/person';
+import { translationMacro as t } from "ember-i18n";
 
 const {computed} = Ember;
 
 export default Ember.Component.extend({
+
+  i18n: Ember.inject.service(),
 
   statusData:computed(function(){
     return Object.keys(PersonModel.STATUSES).map(id => {
@@ -18,7 +21,8 @@ export default Ember.Component.extend({
         .then(() => this.get('notify').success('Person wurde erstellt!'))
         .catch(() => {
           this.get('newPerson.errors').forEach(({ attribute, message }) => {
-            this.get('notify').alert(`${attribute} ${message}`, { closeAfter: 10000 });
+            let translated_attribute = this.get('i18n').t(`person.${attribute}`)['string']
+            this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
         });
     }

@@ -1,10 +1,13 @@
 import Ember from 'ember';
 import PersonModel from '../models/person';
+import { translationMacro as t } from "ember-i18n";
 
 const { Component, inject, computed } = Ember;
 
 export default Component.extend({
   store: inject.service(),
+
+  i18n: Ember.inject.service(),
 
   personPictureUploadPath:computed('person.id', function(){
     return `/people/${this.get('person.id')}/picture`;
@@ -23,8 +26,9 @@ export default Component.extend({
         .then(() => this.get('notify').success('Personalien wurden aktualisiert!'))
         .catch(() => {
           this.get('person.errors').forEach(({ attribute, message }) => {
+            let translated_attribute = this.get('i18n').t(`person.${attribute}`)['string']
             changeset.pushErrors(attribute, message);
-            this.get('notify').alert(`${attribute} ${message}`, { closeAfter: 10000 });
+            this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
         });
     }

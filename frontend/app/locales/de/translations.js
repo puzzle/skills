@@ -3,32 +3,40 @@ export default {
     description: "Beschreibung"
   },
   "education":{
-    "year-from": "Jahr ab",
-    "year-to": "Jahr bis",
+    "year_from": "Jahr ab",
+    "year_to": "Jahr bis",
     "title": "Titel",
     "location": "Ort"
   },
   "advanced-training":{
-    "year-from": "Jahr ab",
-    "year-to": "Jahr bis",
+    "year_from": "Jahr ab",
+    "year_to": "Jahr bis",
     "description": "Beschreibung"
   },
   "activity":{
-    "year-from": "Jahr ab",
-    "year-to": "Jahr bis",
+    "year_from": "Jahr ab",
+    "year_to": "Jahr bis",
     "description": "Beschreibung",
-    "role": "Role"
+    "role": "Rolle"
   },
   "project":{
-    "year-from": "Jahr ab",
-    "year-to": "Jahr bis",
+    "year_from": "Jahr von",
+    "year_to": "Jahr bis",
     "description": "Beschreibung",
-    "role": "Role",
+    "role": "Rolle",
     "title": "Titel",
     "technology": "Technologie"
   },
   "person":{
-    name: "Name"
+    "birthdate": "Geburtsdatum",
+    "language": "Sprache",
+    "location": "Wohnort",
+    "martialStatus": "Zivilstand",
+    "name": "Name",
+    "origin": "Nationalität",
+    "role": "Rolle",
+    "title": "Titel",
+    "competences": "Kompetenzen"
   }
 
 

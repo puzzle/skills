@@ -1,6 +1,10 @@
 import Ember from 'ember';
+import { translationMacro as t } from "ember-i18n";
 
 export default Ember.Component.extend({
+
+  i18n: Ember.inject.service(),
+
   actions: {
     submit(changeset, event) {
       event.preventDefault();
@@ -9,7 +13,8 @@ export default Ember.Component.extend({
         .then(() => this.get('notify').success('Kompetenzen wurden aktualisiert!'))
         .catch(() => {
           this.get('competence.errors').forEach(({ attribute, message }) => {
-            this.get('notify').alert(`${attribute} ${message}`, { closeAfter: 10000 });
+            let translated_attribute = this.get('i18n').t(`competence.${attribute}`)['string']
+             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
         });
     }
