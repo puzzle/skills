@@ -11,6 +11,12 @@ export default Component.extend({
     return this.get('store').createRecord('project');
   }),
 
+  willDestroyElement(){
+    if(this.get('newProject.isNew')){
+      this.get('newProject').destroyRecord();
+    }
+  },
+
   actions: {
     submit(newProject, event) {
       event.preventDefault();

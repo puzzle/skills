@@ -35,7 +35,7 @@ class User < ApplicationRecord
 
       user = find_or_create(username)
 
-      return { error: { seconds_locked: user.seconds_locked } } if user.locked?
+      return { error: "User ist gesperrt für #{user.seconds_locked} Sekunden"} if user.locked?
 
       unless LdapTools.authenticate(username, password)
         user.update_failed_login_attempts

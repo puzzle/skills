@@ -11,7 +11,11 @@ export default Ember.Component.extend({
         .then( activity => this.sendAction('done'))
         .then(() => this.get('notify').success('Aktivität wurde aktualisiert!'))
         .catch(() => {
-          this.get('activity.errors').forEach(({ attribute, message }) => {
+          let activity = this.get('activity');
+          let errors = activity.get('errors').slice(); // clone array as rollbackAttributes mutates
+
+          activity.rollbackAttributes();
+          errors.forEach(({ attribute, message }) => {
             let translated_attribute = this.get('i18n').t(`activity.${attribute}`)['string']
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });

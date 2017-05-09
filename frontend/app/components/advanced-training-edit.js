@@ -10,7 +10,11 @@ export default Ember.Component.extend({
         .then(advanced_training => this.sendAction('done'))
         .then(() => this.get('notify').success('Weiterbildung wurde aktualisiert!'))
         .catch(() => {
-          this.get('advanced-training.errors').forEach(({ attribute, message }) => {
+          let advanced_training = this.get('advanced-training');
+          let errors = advanced_training.get('errors').slice(); // clone array as rollbackAttributes mutates
+
+          advanced_training.rollbackAttributes();
+          errors.forEach(({ attribute, message }) => {
             let translated_attribute = this.get('i18n').t(`advanced-training.${attribute}`)['string']
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
