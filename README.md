@@ -32,6 +32,13 @@ go back to user / cv2 dir
 now run backend server
 * `rails s`
 
+#### Testing
+
+* To run the backend tests run `rake test` 
+* Frontend tests can be executed with `rake frontend:prepare; rake spec:frontend`
+* To run a single test run the following command in the frontend folder `npm test --filter "some filter words"`
+
+
 ### LDAP config
 
 The following environment variables are required for using ldap:
