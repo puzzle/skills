@@ -12,7 +12,11 @@ export default Ember.Component.extend({
         .then(project => this.sendAction('done'))
         .then(() => this.get('notify').success('Projekt wurde aktualisiert!'))
         .catch(() => {
-          this.get('project.errors').forEach(({ attribute, message }) => {
+          let project = this.get('project');
+          let errors = project.get('errors').slice(); // clone array as rollbackAttributes mutates
+
+          project.rollbackAttributes();
+          errors.forEach(({ attribute, message }) => {
             let translated_attribute = this.get('i18n').t(`project.${attribute}`)['string']
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });

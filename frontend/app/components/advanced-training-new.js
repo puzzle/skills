@@ -12,6 +12,12 @@ export default Component.extend({
     return this.get('store').createRecord('advanced-training');
   }),
 
+  willDestroyElement(){
+    if(this.get('newAdvancedTraining.isNew')){
+      this.get('newAdvancedTraining').destroyRecord();
+    }
+  },
+
   actions: {
     submit(newAdvancedTraining, event) {
       event.preventDefault();

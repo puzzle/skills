@@ -12,7 +12,11 @@ export default Ember.Component.extend({
         .then(competence => this.sendAction('done'))
         .then(() => this.get('notify').success('Kompetenzen wurden aktualisiert!'))
         .catch(() => {
-          this.get('competence.errors').forEach(({ attribute, message }) => {
+          let competence = this.get('competence');
+          let errors = competence.get('errors').slice(); // clone array as rollbackAttributes mutates
+
+          competence.rollbackAttributes();
+          errors.forEach(({ attribute, message }) => {
             let translated_attribute = this.get('i18n').t(`competence.${attribute}`)['string']
              this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
