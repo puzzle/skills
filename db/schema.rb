@@ -15,82 +15,82 @@ ActiveRecord::Schema.define(version: 20170404140341) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "activities", force: :cascade do |t|
-    t.text     "description"
-    t.string   "updated_by"
-    t.text     "role"
-    t.integer  "year_from"
-    t.integer  "year_to"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "person_id"
-    t.index ["person_id"], name: "index_activities_on_person_id", using: :btree
+  create_table "activities", id: :serial, force: :cascade do |t|
+    t.text "description"
+    t.string "updated_by"
+    t.text "role"
+    t.integer "year_from"
+    t.integer "year_to"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "person_id"
+    t.index ["person_id"], name: "index_activities_on_person_id"
   end
 
-  create_table "advanced_trainings", force: :cascade do |t|
-    t.text     "description"
-    t.string   "updated_by"
-    t.integer  "year_from"
-    t.integer  "year_to"
-    t.integer  "person_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["person_id"], name: "index_advanced_trainings_on_person_id", using: :btree
+  create_table "advanced_trainings", id: :serial, force: :cascade do |t|
+    t.text "description"
+    t.string "updated_by"
+    t.integer "year_from"
+    t.integer "year_to"
+    t.integer "person_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["person_id"], name: "index_advanced_trainings_on_person_id"
   end
 
-  create_table "educations", force: :cascade do |t|
-    t.text     "location"
-    t.text     "title"
+  create_table "educations", id: :serial, force: :cascade do |t|
+    t.text "location"
+    t.text "title"
     t.datetime "updated_at"
-    t.string   "updated_by"
-    t.integer  "year_from"
-    t.integer  "year_to"
-    t.integer  "person_id"
-    t.index ["person_id"], name: "index_educations_on_person_id", using: :btree
+    t.string "updated_by"
+    t.integer "year_from"
+    t.integer "year_to"
+    t.integer "person_id"
+    t.index ["person_id"], name: "index_educations_on_person_id"
   end
 
-  create_table "people", force: :cascade do |t|
+  create_table "people", id: :serial, force: :cascade do |t|
     t.datetime "birthdate"
-    t.string   "language"
-    t.string   "location"
-    t.string   "martial_status"
-    t.string   "updated_by"
-    t.string   "name"
-    t.string   "origin"
-    t.string   "role"
-    t.string   "title"
-    t.integer  "status_id"
-    t.integer  "origin_person_id"
-    t.string   "variation_name"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.string   "type"
-    t.string   "picture"
-    t.string   "competences"
-    t.index ["status_id"], name: "index_people_on_status_id", using: :btree
+    t.string "language"
+    t.string "location"
+    t.string "martial_status"
+    t.string "updated_by"
+    t.string "name"
+    t.string "origin"
+    t.string "role"
+    t.string "title"
+    t.integer "status_id"
+    t.integer "origin_person_id"
+    t.string "variation_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "type"
+    t.string "picture"
+    t.string "competences"
+    t.index ["status_id"], name: "index_people_on_status_id"
   end
 
-  create_table "projects", force: :cascade do |t|
-    t.string   "updated_by"
-    t.text     "description"
-    t.text     "title"
-    t.text     "role"
-    t.text     "technology"
-    t.integer  "year_to"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "person_id"
-    t.integer  "year_from"
-    t.index ["person_id"], name: "index_projects_on_person_id", using: :btree
+  create_table "projects", id: :serial, force: :cascade do |t|
+    t.string "updated_by"
+    t.text "description"
+    t.text "title"
+    t.text "role"
+    t.text "technology"
+    t.integer "year_to"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "person_id"
+    t.integer "year_from"
+    t.index ["person_id"], name: "index_projects_on_person_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string   "ldap_uid"
-    t.string   "api_token"
-    t.integer  "failed_login_attempts",        default: 0
+  create_table "users", id: :serial, force: :cascade do |t|
+    t.string "ldap_uid"
+    t.string "api_token"
+    t.integer "failed_login_attempts", default: 0
     t.datetime "last_failed_login_attempt_at"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
