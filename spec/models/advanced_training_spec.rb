@@ -8,9 +8,9 @@ describe AdvancedTraining do
       advanced_training = AdvancedTraining.new
       advanced_training.valid?
 
-      expect(advanced_training.errors[:year_from].first).to eq("can't be blank")
-      expect(advanced_training.errors[:year_to].first).to eq("can't be blank")
-      expect(advanced_training.errors[:person_id].first).to eq("can't be blank")
+      expect(advanced_training.errors[:year_from].first).to eq('muss ausgefüllt werden')
+      expect(advanced_training.errors[:year_to].first).to eq('muss ausgefüllt werden')
+      expect(advanced_training.errors[:person_id].first).to eq('muss ausgefüllt werden')
     end
 
     it 'should not be more than 1000 characters in the description' do
@@ -18,7 +18,7 @@ describe AdvancedTraining do
       advanced_training.description = SecureRandom.hex(1000)
       advanced_training.valid?
       expect(advanced_training.errors[:description].first).to eq(
-        'is too long (maximum is 1000 characters)'
+        'ist zu lang (mehr als 1000 Zeichen)'
       )
     end
 
@@ -27,7 +27,7 @@ describe AdvancedTraining do
       advanced_training.year_to = 1997
       advanced_training.valid?
 
-      expect(advanced_training.errors[:year_from].first).to eq('must be before year to')
+      expect(advanced_training.errors[:year_from].first).to eq('muss vor Jahr bis sein')
     end
   end
 end

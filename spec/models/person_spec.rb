@@ -69,14 +69,14 @@ describe Person do
         person = Person.new
         person.valid?
 
-        expect(person.errors[:birthdate].first).to eq("can't be blank")
-        expect(person.errors[:language].first).to eq("can't be blank")
-        expect(person.errors[:location].first).to eq("can't be blank")
-        expect(person.errors[:name].first).to eq("can't be blank")
-        expect(person.errors[:origin].first).to eq("can't be blank")
-        expect(person.errors[:role].first).to eq("can't be blank")
-        expect(person.errors[:title].first).to eq("can't be blank")
-        expect(person.errors[:status_id].first).to eq("can't be blank")
+        expect(person.errors[:birthdate].first).to eq('muss ausgefüllt werden')
+        expect(person.errors[:language].first).to eq('muss ausgefüllt werden')
+        expect(person.errors[:location].first).to eq('muss ausgefüllt werden')
+        expect(person.errors[:name].first).to eq('muss ausgefüllt werden')
+        expect(person.errors[:origin].first).to eq('muss ausgefüllt werden')
+        expect(person.errors[:role].first).to eq('muss ausgefüllt werden')
+        expect(person.errors[:title].first).to eq('muss ausgefüllt werden')
+        expect(person.errors[:status_id].first).to eq('muss ausgefüllt werden')
       end
 
       it 'should not be more than 50 characters' do
@@ -90,13 +90,13 @@ describe Person do
         person.variation_name = SecureRandom.hex(50)
         person.valid?
 
-        expect(person.errors[:location].first).to eq('is too long (maximum is 50 characters)')
-        expect(person.errors[:martial_status].first).to eq('is too long (maximum is 50 characters)')
-        expect(person.errors[:name].first).to eq('is too long (maximum is 50 characters)')
-        expect(person.errors[:origin].first).to eq('is too long (maximum is 50 characters)')
-        expect(person.errors[:role].first).to eq('is too long (maximum is 50 characters)')
-        expect(person.errors[:title].first).to eq('is too long (maximum is 50 characters)')
-        expect(person.errors[:variation_name].first).to eq('is too long (maximum is 50 characters)')
+        expect(person.errors[:location].first).to eq('ist zu lang (mehr als 50 Zeichen)')
+        expect(person.errors[:martial_status].first).to eq('ist zu lang (mehr als 50 Zeichen)')
+        expect(person.errors[:name].first).to eq('ist zu lang (mehr als 50 Zeichen)')
+        expect(person.errors[:origin].first).to eq('ist zu lang (mehr als 50 Zeichen)')
+        expect(person.errors[:role].first).to eq('ist zu lang (mehr als 50 Zeichen)')
+        expect(person.errors[:title].first).to eq('ist zu lang (mehr als 50 Zeichen)')
+        expect(person.errors[:variation_name].first).to eq('ist zu lang (mehr als 50 Zeichen)')
       end
 
       it 'should not be more than 100 characters' do
@@ -104,7 +104,7 @@ describe Person do
         person.language = SecureRandom.hex(100)
         person.valid?
 
-        expect(person.errors[:language].first).to eq('is too long (maximum is 100 characters)')
+        expect(person.errors[:language].first).to eq('ist zu lang (mehr als 100 Zeichen)')
       end
     end
 

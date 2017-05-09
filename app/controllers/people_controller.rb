@@ -8,7 +8,7 @@ class PeopleController < CrudController
   self.nested_models = [:advanced_trainings, :activities, :projects,
                         :educations]
 
-  skip_before_filter :authorize, only: [:picture]
+  skip_before_action :authorize, only: [:picture]
 
   def index
     people = fetch_entries

@@ -1,4 +1,4 @@
-require 'rails_helper'
+equire 'rails_helper'
 
 describe ErrorSerializer do
   context 'serialize' do
@@ -12,7 +12,7 @@ describe ErrorSerializer do
       expect(json[:errors].first).to include(:id)
       expect(json[:errors].first).to include(:title)
       expect(json[:errors].first[:id]).to eq(:birthdate)
-      expect(json[:errors].first[:title]).to eq("Birthdate can't be blank")
+      expect(json[:errors].first[:title]).to eq('Birthdate muss ausgefüllt werden')
     end
   end
 end
