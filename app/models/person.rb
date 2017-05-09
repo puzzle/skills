@@ -23,7 +23,6 @@
 #  updated_at       :datetime         not null
 
 class Person < ApplicationRecord
-  include Export
   include PgSearch
 
   STATUSES = { 1 => 'Mitarbeiter',

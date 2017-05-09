@@ -41,7 +41,7 @@ class PeopleController < CrudController
   end
 
   def export
-    odt_file = entry.export
+    odt_file = Odt::Cv.new(entry).export
     send_data odt_file.generate,
               type: 'application/vnd.oasis.opendocument.text',
               disposition: 'attachment',

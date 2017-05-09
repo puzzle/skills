@@ -4,27 +4,6 @@ require 'rails_helper'
 describe Person do
   fixtures :people
 
-  context 'fomatting' do
-    it 'returns just one year if year_from and year_to are the same' do
-      bob = people(:bob)
-      activity = bob.activities.first
-      activity.update_attributes(year_to: 2000)
-
-      formatted_year = bob.send(:formatted_year, activity)
-
-      expect(formatted_year).to eq(2000)
-    end
-
-    it 'returns formatted year_from and year_to if they are not the same' do
-      bob = people(:bob)
-      activity = bob.activities.first
-
-      formatted_year = bob.send(:formatted_year, activity)
-
-      expect(formatted_year).to eq('2000 - 2010')
-    end
-  end
-
   context 'search' do
     it 'finds search term in associated education' do
       people = Person.search('duckduck')
@@ -105,21 +84,6 @@ describe Person do
         person.valid?
 
         expect(person.errors[:language].first).to eq('ist zu lang (mehr als 100 Zeichen)')
-      end
-    end
-
-    context 'export' do
-      it 'can export without an image' do
-        person = people(:bob)
-        person.remove_picture
-        expect(person.picture.file).to be_nil
-        person.export
-      end
-
-      it 'can export without competences' do
-        person = people(:bob)
-        person.competences = nil
-        person.export
       end
     end
   end
