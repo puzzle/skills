@@ -14,7 +14,7 @@ task ci: ['log:clear',
 
 namespace :ci do
   desc 'Runs the tasks for the nightly build'
-  task nightly: ['db:migrate',
-                 'ci',
-                 'brakeman']
+  task nightly: ['ci',
+                 'brakeman',
+                 'rubocop']
 end
