@@ -1,0 +1,27 @@
+{{#if messageIsHTMLDocument}}
+  <iframe srcdoc={{error.message}} style="width:100%;min-height:640px"></iframe>
+{{else if error.isAdapterError}}
+  <pre class="error">{{error.message}}</pre>
+{{else if error.errors}}
+  {{#if error.message}}<pre class="error">{{error.message}}</pre>{{/if}}
+  <ul>
+    {{#each error.errors as |error|}}
+      <li>{{error.code}} &ndash; {{error.title}}</li>
+    {{/each}}
+  </ul>
+{{else if error.message}}
+  <p>{{error.message}}</p>
+{{else}}
+  <p>Something unexpected happened</p>
+{{/if}}
+
+{{#if error.stack}}
+  <button class="btn-primary" onclick={{toggle 'showStack' this}}>
+    Show stack
+  </button>
+
+  {{#if showStack}}
+    <pre class="error-stack">{{error.stack}}</pre>
+  {{/if}}
+{{/if}}
+
