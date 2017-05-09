@@ -31,7 +31,7 @@ describe AuthenticationController do
       process :sign_in, method: :post, params: { username: 'kanderson', password: 'test' }
 
       expect(response.status).to eq(401)
-      expect(JSON.parse(response.body)['error']['seconds_locked']).to eq(25)
+      expect(JSON.parse(response.body)['error']).to eq("User ist gesperrt für 25 Sekunden")
     end
 
     it 'resets failed login attemtpts &
