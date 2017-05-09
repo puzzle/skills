@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import PersonModel from '../models/person';
-import { translationMacro as t } from "ember-i18n";
 
 const {computed} = Ember;
 

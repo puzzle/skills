@@ -1,42 +1,42 @@
 export default {
-  "competence":{
-    description: "Beschreibung"
+  'competence':{
+    description: 'Beschreibung'
   },
-  "education":{
-    "year_from": "Jahr ab",
-    "year_to": "Jahr bis",
-    "title": "Titel",
-    "location": "Ort"
+  'education':{
+    year_from: 'Jahr ab',
+    year_to: 'Jahr bis',
+    title: 'Titel',
+    location: 'Ort'
   },
-  "advanced-training":{
-    "year_from": "Jahr ab",
-    "year_to": "Jahr bis",
-    "description": "Beschreibung"
+  'advanced-training':{
+    year_from: 'Jahr ab',
+    year_to: 'Jahr bis',
+    description: 'Beschreibung'
   },
-  "activity":{
-    "year_from": "Jahr ab",
-    "year_to": "Jahr bis",
-    "description": "Beschreibung",
-    "role": "Rolle"
+  'activity':{
+    year_from: 'Jahr ab',
+    year_to: 'Jahr bis',
+    description: 'Beschreibung',
+    role: 'Rolle'
   },
-  "project":{
-    "year_from": "Jahr von",
-    "year_to": "Jahr bis",
-    "description": "Beschreibung",
-    "role": "Rolle",
-    "title": "Titel",
-    "technology": "Technologie"
+  'project':{
+    year_from: 'Jahr von',
+    year_to: 'Jahr bis',
+    description: 'Beschreibung',
+    role: 'Rolle',
+    title: 'Titel',
+    technology: 'Technologie'
   },
-  "person":{
-    "birthdate": "Geburtsdatum",
-    "language": "Sprache",
-    "location": "Wohnort",
-    "martialStatus": "Zivilstand",
-    "name": "Name",
-    "origin": "Nationalität",
-    "role": "Rolle",
-    "title": "Titel",
-    "competences": "Kompetenzen"
+  'person':{
+    birthdate: 'Geburtsdatum',
+    language: 'Sprache',
+    location: 'Wohnort',
+    martialStatus: 'Zivilstand',
+    name: 'Name',
+    origin: 'Nationalität',
+    role: 'Rolle',
+    title: 'Titel',
+    competences: 'Kompetenzen'
   }
 
 

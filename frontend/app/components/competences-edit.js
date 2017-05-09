@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import { translationMacro as t } from "ember-i18n";
 
 export default Ember.Component.extend({
 
@@ -14,7 +13,7 @@ export default Ember.Component.extend({
         .catch(() => {
           this.get('competence.errors').forEach(({ attribute, message }) => {
             let translated_attribute = this.get('i18n').t(`competence.${attribute}`)['string']
-             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
+            this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
         });
     }

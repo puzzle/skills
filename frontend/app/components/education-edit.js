@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import { translationMacro as t } from "ember-i18n";
 
 export default Ember.Component.extend({
 
@@ -13,7 +12,7 @@ export default Ember.Component.extend({
         .then(() => this.get('notify').success('Weiterbildung wurde aktualisiert!'))
         .catch(() => {
           this.get('education.errors').forEach(({ attribute, message }) => {
-             let translated_attribute = this.get('i18n').t(`education.${attribute}`)['string']
+            let translated_attribute = this.get('i18n').t(`education.${attribute}`)['string']
             changeset.pushErrors(attribute, message);
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
