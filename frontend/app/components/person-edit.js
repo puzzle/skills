@@ -25,7 +25,11 @@ export default Component.extend({
         .then(() => this.sendAction('submit'))
         .then(() => this.get('notify').success('Personalien wurden aktualisiert!'))
         .catch(() => {
-          this.get('person.errors').forEach(({ attribute, message }) => {
+          let person = this.get('person');
+          let errors = person.get('errors').slice(); // clone array as rollbackAttributes mutates
+
+          person.rollbackAttributes();
+          errors.forEach(({ attribute, message }) => {
             let translated_attribute = this.get('i18n').t(`person.${attribute}`)['string']
             changeset.pushErrors(attribute, message);
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
