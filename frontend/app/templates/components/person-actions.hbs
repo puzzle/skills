@@ -1,7 +1,7 @@
 <section id="variation">
   <div class="toolbar-pills span12 row-fluid">
     <ul class="nav nav-pills group-pills" id="variation-selection">
-      <li id="actual-cv-pill" class={{if (eq person.variationName undefined) 'active'}}>
+      <li id="actual-cv-pill" class={{unless person.variationName 'active'}}>
         {{#link-to "person" person.originPersonId}}aktuelles CV{{/link-to}}
       </li>
       <li id="variation-cv-pill" class={{if person.variationName 'active'}} class="dropwdown left">
