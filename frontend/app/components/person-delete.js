@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  router: Ember.inject.service(),
+
   actions: {
     deletePerson(personToDelete) {
       personToDelete.destroyRecord();
