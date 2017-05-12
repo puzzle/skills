@@ -14,24 +14,24 @@
             {{/if}}
             <b class="caret"></b>
           {{/dd.trigger}}
-        {{#dd.content}}
-          <ul class="content-bootstrap-feel dropdown-menu">
-            {{#each personVariations as |pv|}}
-              <li id="change-variation-link"
-                  class={{if (eq pv.id person.id) 'active'}}>
-                {{#link-to "person" pv.id}}{{pv.attributes.variation_name}}{{/link-to}}
-              </li>
-            {{/each}}
-            {{#unless person.originPersonId}}
-              <hr>
-              <li>
-                <a class="new-variation-link" onclick={{action (toggle 'createVariationModal' this)}}>
-                  Neue Variante erstellen...
-                </a>
-              </li>
-            {{/unless}}
-          </ul>
-        {{/dd.content}}
+          {{#dd.content}}
+            <ul class="content-bootstrap-feel dropdown-menu">
+              {{#each personVariations as |pv|}}
+                <li id="change-variation-link"
+                    class={{if (eq pv.id person.id) 'active'}}>
+                  {{#link-to "person" pv.id}}{{pv.attributes.variation_name}}{{/link-to}}
+                </li>
+              {{/each}}
+              {{#unless person.originPersonId}}
+                <hr>
+                <li>
+                  <a class="new-variation-link" onclick={{action (toggle 'createVariationModal' this)}}>
+                    Neue Variante erstellen...
+                  </a>
+                </li>
+              {{/unless}}
+            </ul>
+          {{/dd.content}}
         {{/basic-dropdown}}
       </li>
     </ul>
