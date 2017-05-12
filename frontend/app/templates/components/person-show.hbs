@@ -1,76 +1,70 @@
-<!-- Profile heading -->
+{{! Profile heading }}
 <div class="row-fluid">
   <div class="span5">
     <span class="section-title">Personalien</span>
   </div>
     <div class="pull-right">
-      <a onclick={{personEditing}} class="pull-right">
+      <a onclick={{personEditing}} data-test-person-edit-form-toggle class="pull-right">
         {{if personEditing  'Editieren' 'Abbrechen'}}
       </a>
-     
     </div>
 </div>
 
-<!-- Horizontal ruler -->
-<div class="row-fluid">
-  <div class="span12">
-    <hr>
-  </div>
-</div>
+<hr>
 
-<!-- Profile content -->
+{{! Profile content }}
 <section id="profil" class="section">
     <div id="profile-content-show" class="row-fluid">
-      <!-- Avatar img -->
+      {{! Avatar img }}
       <div class="span2">
         <img id="img-avatar-read" src={{person.picturePath}} class="img-polaroid profil-img">
       </div>
-      <!-- Profile left row -->
+      {{! Profile left row }}
       <div class="span5">
         <dl class="dl-horizontal">
           <dt>Name</dt>
-          <dd>{{person.name}}</dd>
+          <dd data-test-person-name>{{person.name}}</dd>
         </dl>
         <dl class="dl-horizontal">
           <dt>Titel</dt>
-          <dd>{{person.title}}</dd>
+          <dd data-test-person-title>{{person.title}}</dd>
         </dl>
         <dl class="dl-horizontal">
           <dt>Funktion</dt>
-          <dd>{{person.role}}</dd>
+          <dd data-test-person-role>{{person.role}}</dd>
         </dl>
         <dl class="dl-horizontal">
           <dt>Geb.Datum</dt>
-          <dd>
-          {{moment-format person.birthdate 'DD.MM.YYYY'}}
+          <dd data-test-person-birthdate>
+            {{~moment-format person.birthdate 'DD.MM.YYYY'~}}
           </dd>
         </dl>
       </div>
-      <!-- /Profile left row -->
+      {{! /Profile left row }}
 
-      <!-- Profile right row -->
+      {{! Profile right row }}
       <div class="span5">
         <dl class="dl-horizontal">
           <dt>Nationalität</dt>
-          <dd>{{person.origin}}</dd>
+          <dd data-test-person-origin>{{person.origin}}</dd>
         </dl>
         <dl class="dl-horizontal">
           <dt>Wohnort</dt>
-          <dd>{{person.location}}</dd>
+          <dd data-test-person-location>{{person.location}}</dd>
         </dl>
         <dl class="dl-horizontal">
           <dt>Sprachen</dt>
-          <dd>{{person.language}}</dd>
+          <dd data-test-person-language>{{person.language}}</dd>
         </dl>
         <dl class="dl-horizontal">
           <dt>Zivilstand</dt>
-          <dd>{{person.martialStatus}}</dd>
+          <dd data-test-person-marital-status>{{person.martialStatus}}</dd>
         </dl>
         <dl class="dl-horizontal">
           <dt>Status</dt>
-          <dd>{{person.status}}</dd>
+          <dd data-test-person-status>{{person.status}}</dd>
         </dl>
       </div>
-      <!-- /Profile right row -->
+      {{! /Profile right row }}
     </div>
 </section>

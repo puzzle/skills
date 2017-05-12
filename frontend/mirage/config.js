@@ -5,6 +5,7 @@ export default function() {
   this.get('/people');
   this.get('/people/:id');
   this.post('/people');
+  this.patch('/people/:id');
 
   // These comments are here to help you get started. Feel free to delete them.
 
