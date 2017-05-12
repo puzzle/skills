@@ -1,8 +1,6 @@
 import DS from 'ember-data';
 import Ember from 'ember';
 
-
-
 const Person = DS.Model.extend({
   name: DS.attr('string'),
   birthdate: DS.attr('date'),
