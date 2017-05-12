@@ -1,4 +1,4 @@
-class MoveCompetenceToPerson < ActiveRecord::Migration
+class MoveCompetenceToPerson < ActiveRecord::Migration[5.0]
   def up
     add_column :people, :competences, :string
     move_competences_to_person_attribute
