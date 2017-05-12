@@ -38,8 +38,8 @@
     <ul class="nav nav-pills group-pills" id="variation-options">
       <li class="dropdown right" id="option-pill">
         {{#basic-dropdown as |dd|}}
-        {{#dd.trigger class="btn btn-default"}}Optionen <b class="caret"></b>{{/dd.trigger}}
-        {{#dd.content}}
+          {{#dd.trigger class="btn btn-default"}}Optionen <b class="caret"></b>{{/dd.trigger}}
+          {{#dd.content}}
             <ul class="content-bootstrap-feel dropdown-menu">
               {{#if person.originPersonId}}
                 <li>
@@ -48,7 +48,7 @@
                   </a>
                 </li>
                 <li>
-                  <a onclick={{action (toggle 'deletePersonConfirm' this)}} >Variante Löschen</a>
+                  <a onclick={{action (toggle 'deletePersonConfirm' this)}}>Variante Löschen</a>
                 </li>
               {{else}}
                 <li>
@@ -57,7 +57,7 @@
                   </a>
                 </li>
                 <li>
-                  <a onclick={{action (toggle 'deletePersonConfirm' this)}} >CV Löschen</a>
+                  <a onclick={{action (toggle 'deletePersonConfirm' this)}}>CV Löschen</a>
                 </li>
               {{/if}}
             </ul>
@@ -73,11 +73,7 @@
   </div>
 </section>
 
-<div class="row-fluid">
-  <div class="span12">
-    <hr>
-  </div>
-</div>
+<hr>
 
 {{#if createVariationModal}}
   {{#modal-dialog hasOverlay=false}}
@@ -109,23 +105,21 @@
 {{/if}}
 
 {{#if deletePersonConfirm}}
-    <span class="modal-dialog-wrapper">
-      {{#modal-dialog hasOverlay=false}}
-          <div class="dialog-content">
-              <div class="dialog-text">
-                <p>Möchten Sie dieses CV unwiederruflich löschen?</p>
-              </div>
-              <div class="dialog-footer">
-                <button {{action 'deletePerson' person}} class="confirm-button btn btn-danger">
-                        <i class="fa fa-check-circle-o"></i>
-                        CV Löschen
-                  </button>
-                  <button onclick={{action (toggle 'deletePersonConfirm' this)}} class="cancel-button btn pull-right">
-                        <i class="fa fa-ban"></i>
-                    Abbrechen
-                  </button>
-              </div>
-          </div>
-      {{/modal-dialog}}
-    </span>
+  {{#modal-dialog hasOverlay=false}}
+    <div class="dialog-content">
+      <div class="dialog-text">
+        <p>Möchten Sie dieses CV unwiederruflich löschen?</p>
+      </div>
+      <div class="dialog-footer">
+        <button {{action 'deletePerson' person}} class="confirm-button btn btn-danger">
+          <i class="fa fa-check-circle-o"></i>
+          CV Löschen
+        </button>
+        <button onclick={{action (toggle 'deletePersonConfirm' this)}} class="cancel-button btn pull-right">
+          <i class="fa fa-ban"></i>
+          Abbrechen
+        </button>
+      </div>
+    </div>
+  {{/modal-dialog}}
 {{/if}}
