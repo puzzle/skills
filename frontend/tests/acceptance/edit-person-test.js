@@ -7,15 +7,12 @@ import page from 'frontend/tests/pages/person-edit';
 moduleForAcceptance('Acceptance | edit person');
 
 test('/people/:id edit person data', async function(assert) {
-  assert.expect(9);
+  assert.expect(8);
 
   authenticateSession(this.application);
 
-  await visit('/people/5');
-
-  assert.equal(currentURL(), '/people/5');
-
-  await page.toggleEditForm()
+  await page.visit({ person_id: 5 })
+    .toggleEditForm()
     .editForm
     .name('Hansjoggeli')
     .title('Dr.')
