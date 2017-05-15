@@ -65,7 +65,7 @@
         {{/basic-dropdown}}
       </li>
       <li>
-        <a href={{document-export-url person.id}} id="button-edit-profile" class="button pull-right right">
+        <a onclick={{action 'exportCvOdt' person.id}} id="button-edit-profile" class="button pull-right right">
           Exportieren
         </a>
       </li>
