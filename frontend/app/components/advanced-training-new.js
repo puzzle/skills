@@ -11,8 +11,8 @@ export default Component.extend({
     return this.get('store').createRecord('advanced-training');
   }),
 
-  willDestroyElement(){
-    if(this.get('newAdvancedTraining.isNew')){
+  willDestroyElement() {
+    if (this.get('newAdvancedTraining.isNew')) {
       this.get('newAdvancedTraining').destroyRecord();
     }
   },

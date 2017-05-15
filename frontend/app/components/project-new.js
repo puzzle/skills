@@ -11,8 +11,8 @@ export default Component.extend({
     return this.get('store').createRecord('project');
   }),
 
-  willDestroyElement(){
-    if(this.get('newProject.isNew')){
+  willDestroyElement() {
+    if (this.get('newProject.isNew')) {
       this.get('newProject').destroyRecord();
     }
   },

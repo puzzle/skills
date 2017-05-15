@@ -8,20 +8,20 @@ const SEARCH_TIMEOUT = 250;
 export default Ember.Component.extend({
   filterBy: 'all',
 
-  filteredList: computed('people.[]', 'filterBy', function(){
-    if (this.filterBy === 'all'){
+  filteredList: computed('people.[]', 'filterBy', function() {
+    if (this.filterBy === 'all') {
       return this.people;
     }
     return this.people.filterBy('attributes.status_id', parseInt(this.filterBy));
   }),
 
-  statusData:computed(function(){
+  statusData: computed(function() {
     return Object.keys(PersonModel.STATUSES).map(id => {
       return { id, name: PersonModel.STATUSES[id] };
     });
   }),
 
-  searchPeopleTask: task(function*(q) {
+  searchPeopleTask: task(function* (q) {
     if (Ember.isBlank(q)) {
       this.sendAction('onSearch', null);
       return
@@ -33,7 +33,7 @@ export default Ember.Component.extend({
   }).restartable(),
 
   actions: {
-    setFilter(value){
+    setFilter(value) {
       this.set('filterBy', value);
     }
   }

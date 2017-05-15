@@ -23,10 +23,10 @@ export default Ember.Component.extend({
     },
     deleteProject(project) {
       project.destroyRecord()
-        .then( project => this.sendAction('done'))
+        .then(project => this.sendAction('done'))
         .then(() => this.get('notify').success('Projekt wurde entfernt!'));
     },
-    confirmDestroy(project){
+    confirmDestroy(project) {
       this.send('deleteProject', project);
     }
   }

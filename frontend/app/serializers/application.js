@@ -2,10 +2,10 @@ import Ember from 'ember';
 import DS from 'ember-data';
 
 export default DS.JSONAPISerializer.extend({
-  keyForAttribute: function(attr) {
+  keyForAttribute(attr) {
     return Ember.String.underscore(attr);
   },
-  keyForRelationship: function(key) {
+  keyForRelationship(key) {
     return Ember.String.underscore(key);
   }
 });

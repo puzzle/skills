@@ -6,7 +6,8 @@ moduleForComponent('person-show', 'Integration | Component | person show', {
 });
 
 test('it renders person', function(assert) {
-  this.set('person', {name: 'Harry Potter',
+  this.set('person', {
+    name: 'Harry Potter',
     title: 'Zauberer',
     role: 'Schüler',
     birthdate: new Date('2000-01-01'),
@@ -14,7 +15,8 @@ test('it renders person', function(assert) {
     location: 'Hogwarts',
     language: 'Parsel',
     martialStatus:  'ledig',
-    status: 'Mitarbeiter'});
+    status: 'Mitarbeiter'
+  });
 
   this.render(hbs`{{person-show person=person}}`);
 

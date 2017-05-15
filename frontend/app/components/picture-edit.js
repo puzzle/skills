@@ -27,14 +27,14 @@ export default Component.extend({
   },
   didInsertElement() {
     this.$('.img-input').on('change', e => {
-      if(e.target.files.length){
+      if (e.target.files.length) {
         this.uploadImage(e.target.files[0]);
         e.target.value = null;
       }
     });
   },
   actions: {
-    changePicture: function(){
+    changePicture() {
       this.$('.img-input').click();
     }
   }

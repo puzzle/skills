@@ -25,7 +25,7 @@ export default Ember.Component.extend({
         .then(advanced_training => this.sendAction('done'))
         .then(() => this.get('notify').success('Weiterbildung wurde entfernt!'))
     },
-    confirmDestroy(advancedTraining){
+    confirmDestroy(advancedTraining) {
       this.send('deleteAdvancedTrainings', advancedTraining);
     }
   }

@@ -11,7 +11,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     }
   },
 
-  model({ q }){
+  model({ q }) {
     return this.get('ajax').request('/people', { data: { q } })
       .then(response => response.data);
   },

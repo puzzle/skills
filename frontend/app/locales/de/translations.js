@@ -1,25 +1,25 @@
 export default {
-  'competence':{
+  'competence': {
     description: 'Beschreibung'
   },
-  'education':{
+  'education': {
     year_from: 'Jahr ab',
     year_to: 'Jahr bis',
     title: 'Titel',
     location: 'Ort'
   },
-  'advanced-training':{
+  'advanced-training': {
     year_from: 'Jahr ab',
     year_to: 'Jahr bis',
     description: 'Beschreibung'
   },
-  'activity':{
+  'activity': {
     year_from: 'Jahr ab',
     year_to: 'Jahr bis',
     description: 'Beschreibung',
     role: 'Rolle'
   },
-  'project':{
+  'project': {
     year_from: 'Jahr von',
     year_to: 'Jahr bis',
     description: 'Beschreibung',
@@ -27,7 +27,7 @@ export default {
     title: 'Titel',
     technology: 'Technologie'
   },
-  'person':{
+  'person': {
     birthdate: 'Geburtsdatum',
     language: 'Sprache',
     location: 'Wohnort',

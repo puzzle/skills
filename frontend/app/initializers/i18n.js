@@ -3,7 +3,7 @@ export default {
 
   after: 'ember-i18n',
 
-  initialize: function(app) {
+  initialize(app) {
     app.inject('model', 'i18n', 'service:i18n')
   }
 };

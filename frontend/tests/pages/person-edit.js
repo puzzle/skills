@@ -3,7 +3,6 @@ import {
   visitable,
   fillable,
   clickable,
-  triggerable,
   text
 } from 'ember-cli-page-object';
 

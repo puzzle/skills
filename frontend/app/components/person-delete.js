@@ -6,9 +6,9 @@ export default Ember.Component.extend({
   actions: {
     deletePerson(personToDelete) {
       personToDelete.destroyRecord();
-      if(personToDelete.get('variationName')){
+      if (personToDelete.get('variationName')) {
         this.get('router').transitionTo('person', personToDelete.get('originPersonId'));
-      }else{
+      } else {
         this.get('router').transitionTo('people');
       }
     }

@@ -19,12 +19,14 @@ export default Base.extend({
     return this.get('ajax').post('/auth/sign_in', {
       data: {
         username: identification,
-        password: password
+        password
       }
-    }).then(function (response) {
-      return {token: response.api_token,
-        ldap_uid: response.ldap_uid}
-    }, function(xhr, status, error) {
+    }).then(response => {
+      return {
+        token: response.api_token,
+        ldap_uid: response.ldap_uid
+      }
+    }, (xhr, status, error) => {
       throw xhr.payload
     })
   },

@@ -6,7 +6,8 @@ moduleForComponent('competence-show', 'Integration | Component | competence show
 });
 
 test('it renders competences from person', function(assert) {
-  this.set('person', {name: 'Harry Potter',
+  this.set('person', {
+    name: 'Harry Potter',
     title: 'Zauberer',
     role: 'Schüler',
     birthdate: new Date('2000-01-01'),
@@ -15,7 +16,8 @@ test('it renders competences from person', function(assert) {
     competences: 'very much',
     language: 'Parsel',
     martialStatus:  'ledig',
-    status: 'Mitarbeiter'});
+    status: 'Mitarbeiter'
+  });
 
   this.render(hbs`{{competences-show person=person}}`);
 

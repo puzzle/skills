@@ -1,13 +1,13 @@
 import Ember from 'ember';
 import PersonModel from '../models/person';
 
-const {computed} = Ember;
+const { computed } = Ember;
 
 export default Ember.Component.extend({
 
   i18n: Ember.inject.service(),
 
-  statusData:computed(function(){
+  statusData: computed(function() {
     return Object.keys(PersonModel.STATUSES).map(id => {
       return { id, label: PersonModel.STATUSES[id] };
     });

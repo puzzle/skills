@@ -13,7 +13,7 @@ export default Ember.Component.extend({
         .then(personVariations => this.set('personVariations', personVariations));
     },
 
-    createPersonVariation(id, changeset){
+    createPersonVariation(id, changeset) {
       return this.get('ajax')
        .request(`people/${id}/variation`, {
          method: 'POST',
@@ -26,7 +26,7 @@ export default Ember.Component.extend({
         .then(() => this.get('notify').success('Variante erstellt!'));
     },
 
-    updateVariationName(changeset){
+    updateVariationName(changeset) {
       return changeset.save();
     },
 
@@ -42,6 +42,6 @@ export default Ember.Component.extend({
             .then(() => this.get('notify').success('Person gelöscht!'));
         }
       });
-    },
+    }
   }
 });

@@ -25,10 +25,10 @@ export default Ember.Component.extend({
     },
     deleteEducation(education) {
       education.destroyRecord()
-        .then( education => this.sendAction('done'))
+        .then(education => this.sendAction('done'))
         .then(() => this.get('notify').success('Weiterbildung wurde entfernt!'));
     },
-    confirmDestroy(education){
+    confirmDestroy(education) {
       this.send('deleteEducation', education);
     }
   }

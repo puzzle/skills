@@ -8,7 +8,7 @@ export default Ember.Component.extend({
     submit(changeset, event) {
       event.preventDefault();
       return changeset.save()
-        .then( activity => this.sendAction('done'))
+        .then(activity => this.sendAction('done'))
         .then(() => this.get('notify').success('Aktivität wurde aktualisiert!'))
         .catch(() => {
           let activity = this.get('activity');
@@ -23,10 +23,10 @@ export default Ember.Component.extend({
     },
     deleteActivity(activity, event) {
       activity.destroyRecord()
-        .then( activity => this.sendAction('done'))
+        .then(activity => this.sendAction('done'))
         .then(() => this.get('notify').success('Aktivität wurde entfernt!'));
     },
-    confirmDestroy(activity){
+    confirmDestroy(activity) {
       this.send('deleteActivity', activity);
     }
   }

@@ -8,11 +8,11 @@ export default Component.extend({
 
   i18n: Ember.inject.service(),
 
-  personPictureUploadPath:computed('person.id', function(){
+  personPictureUploadPath: computed('person.id', function() {
     return `/people/${this.get('person.id')}/picture`;
   }),
 
-  statusData:computed(function(){
+  statusData: computed(function() {
     return Object.keys(PersonModel.STATUSES).map(id => {
       return { id, label: PersonModel.STATUSES[id] };
     });
