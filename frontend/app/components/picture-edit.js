@@ -20,7 +20,7 @@ export default Component.extend({
 
     this.set('picturePath', URL.createObjectURL(file));
 
-    res.then(res => this.set('picturePath', res.data.picture_path));
+    res.then(res => this.set('picturePath', `${res.data.picture_path}?${Date.now()}`));
 
     this.set('response', ObjectPromiseProxy.create({ promise: res }))
       .then(() => this.get('notify').success('Profilbild wurde aktualisiert!'));
