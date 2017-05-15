@@ -6,7 +6,7 @@ class PersonSerializer < ApplicationSerializer
              :origin_person_id, :variation_name, :status_id
 
   def picture_path
-    "/api/people/#{object.id}/picture"
+    "/api/people/#{object.id}/picture?#{Time.now}"
   end
 
   has_many :advanced_trainings do |serializer|
