@@ -7,15 +7,15 @@ export default Ember.Component.extend({
   session: Ember.inject.service('session'),
 
   actions: {
-    exportCvOdt(personId, e){
+    exportCvOdt(personId, e) {
       e.preventDefault();
 
       let url = `${ENV.APP.documentExportHost}/api/people/${personId}.odt`;
-      
+
       let xhr = new XMLHttpRequest;
       xhr.responseType = 'blob';
       xhr.onload = () => {
-        let [ _, fileName ] = /filename="(.*?)"/.exec(xhr.getResponseHeader('Content-Disposition'));
+        let [ , fileName ] = /filename="(.*?)"/.exec(xhr.getResponseHeader('Content-Disposition'));
         let file = new File([ xhr.response ], fileName);
         window.location = URL.createObjectURL(file);
       };
