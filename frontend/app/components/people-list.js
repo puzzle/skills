@@ -35,6 +35,10 @@ export default Ember.Component.extend({
   actions: {
     setFilter(value) {
       this.set('filterBy', value);
+    },
+
+    scrollToTop() {
+      window.scrollTo(0, 0);
     }
   }
 });

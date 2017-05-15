@@ -41,7 +41,11 @@
         <div class="menu_div">
           <ul id="person-list">
             {{#each filteredList as |person|}}
-            <li>{{#link-to "person" person.id}}{{person.attributes.name}}{{/link-to}}</li>
+              <li onclick={{action 'scrollToTop'}}>
+                {{#link-to "person" person.id}}
+                  {{person.attributes.name}}
+                {{/link-to}}
+              </li>
             {{/each}}
           </ul>
         </div>
