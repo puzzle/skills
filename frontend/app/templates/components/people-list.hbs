@@ -18,22 +18,19 @@
       <form id="form-search" class="">
         <input id="field-search" type="text" class="span12"
           autocomplete="off" placeholder="Personensuche" oninput={{perform searchPeopleTask value='target.value'}}> 
-        <a onclick={{action (toggle 'advancedSearch' this)}} id="toggleSearch">+ erweiterte Suche</a><br>
+        <a onclick={{action (toggle 'advancedSearch' this)}} id="toggleSearch">
+          {{if advancedSearch '- erweiterte Suche' '+ erweiterte Suche'}}
+        </a><br>
         {{#if advancedSearch}}
           <div>
             <select onchange={{action 'setFilter' value="target.value"}}>
-              <option selectionBinding='filterBy' value='all'>Alle</option>
+              <option value='all'>Alle</option>
               {{#each statusData as |status|}}
-                <option selctionBinding='filterBy' value={{status.id}}>{{status.name}}</option>
+                <option value={{status.id}} selected={{eq filterBy status.id}}>{{status.name}}</option>
               {{/each}}
             </select>
           </div>
         {{/if}}
-        <div id="textSearch" style="display: none">
-          <select class="statusDropdown span12" id="statusSearchDropdown"><option
-              value="0">Alle</option>
-          </select> <br>
-        </div>
         <br>
       </form>
       <div class="container-fluid round-border"
@@ -41,8 +38,8 @@
         <div class="menu_div">
           <ul id="person-list">
             {{#each filteredList as |person|}}
-              <li onclick={{action 'scrollToTop'}}>
-                {{#link-to "person" person.id}}
+              <li>
+                {{#link-to "person" person.id click=(action 'scrollToTop')}}
                   {{person.attributes.name}}
                 {{/link-to}}
               </li>
