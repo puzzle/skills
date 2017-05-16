@@ -19,7 +19,7 @@
               </tr>
             </thead>
             <tbody id="advanced-training-content-show">
-              {{#each (sort-by 'year_from' advanced-trainings) as |advanced-training|}}
+              {{#each (sort-by 'year_from:desc' advanced-trainings) as |advanced-training|}}
                 {{advanced-training-show selectAdvancedTraining = (action (mut advanced-trainingEditing)) advanced-training=advanced-training}}
               {{/each}}
             </tbody>

@@ -25,5 +25,5 @@ class Project < ApplicationRecord
   validate :year_from_before_year_to
   validates :role, :title, length: { maximum: 50 }
 
-  scope :list, -> { order(:year_to) }
+  scope :list, -> { order(year_to: :desc) }
 end

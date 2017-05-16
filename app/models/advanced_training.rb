@@ -20,5 +20,5 @@ class AdvancedTraining < ApplicationRecord
   validates :description, length: { maximum: 1000 }
   validate :year_from_before_year_to
 
-  scope :list, -> { order(:year_from) }
+  scope :list, -> { order(year_from: :desc) }
 end

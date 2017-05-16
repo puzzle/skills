@@ -22,5 +22,5 @@ class Activity < ApplicationRecord
   validates :role, length: { maximum: 30 }
   validate :year_from_before_year_to
 
-  scope :list, -> { order(:year_from) }
+  scope :list, -> { order(year_from: :desc) }
 end

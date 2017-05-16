@@ -20,5 +20,5 @@ class Education < ApplicationRecord
   validates :location, :title, length: { maximum: 50 }
   validate :year_from_before_year_to
 
-  scope :list, -> { order(:year_from) }
+  scope :list, -> { order(year_from: :desc) }
 end

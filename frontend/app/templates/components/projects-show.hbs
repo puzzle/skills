@@ -19,7 +19,7 @@
               </tr>
             </thead>
             <tbody id="project-content-show">
-              {{#each (sort-by 'year_from' projects) as |project|}}
+              {{#each (sort-by 'year_from:desc' projects) as |project|}}
                   {{project-show selectProject = (action (mut projectEditing)) project=project}}
               {{/each}}
             </tbody>

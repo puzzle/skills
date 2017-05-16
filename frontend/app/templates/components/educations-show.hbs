@@ -19,7 +19,7 @@
               </tr>
             </thead>
             <tbody>
-            {{#each (sort-by 'year_from' educations) as |education|}}
+            {{#each (sort-by 'year_from:desc' educations) as |education|}}
               {{education-show selectEducation = (action (mut educationEditing)) education=education}}
             {{/each}}
             </tbody>
