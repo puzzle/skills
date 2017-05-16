@@ -1,6 +1,9 @@
 <tr id="template_project_record" class="template">
   <td id="show_year" class="show-year-cell">
-    {{project.year_from}}-{{project.year_to}}
+    {{project.year_from}}
+    {{#unless (eq project.year_from project.year_to)}}
+      -{{project.year_to}}
+    {{/unless}}
   </td>
   <td class="show-description-cell">
     <div>
