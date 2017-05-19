@@ -1,9 +1,11 @@
 <tr id="template_activity_record" class="template">
   <td id="show_year" class="show-year-cell">
     {{activity.year_from}}
-    {{#unless (eq activity.year_from activity.year_to)}}
-      -{{activity.year_to}}
-    {{/unless}}
+    {{#if (eq activity.year_to null)}}
+      - heute
+    {{else if (not-eq activity.year_from activity.year_to)}}
+      - {{activity.year_to}}
+    {{/if}}
   </td>
   <td class="show-description-cell">
     <div>

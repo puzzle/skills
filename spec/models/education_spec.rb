@@ -9,7 +9,6 @@ describe Education do
       education.valid?
 
       expect(education.errors[:year_from].first).to eq('muss ausgefüllt werden')
-      expect(education.errors[:year_to].first).to eq('muss ausgefüllt werden')
       expect(education.errors[:person_id].first).to eq('muss ausgefüllt werden')
       expect(education.errors[:title].first).to eq('muss ausgefüllt werden')
       expect(education.errors[:location].first).to eq('muss ausgefüllt werden')
@@ -31,6 +30,19 @@ describe Education do
       education.valid?
 
       expect(education.errors[:year_from].first).to eq('muss vor Jahr bis sein')
+    end
+
+    it 'orders education correctly with list scope' do
+      bob_id = people(:bob).id
+      Education.create(title: 'test1', location: 'test1', year_from: '2000', person_id: bob_id)
+      Education.create(title: 'test2', location: 'test2', year_from: '2000', year_to: '2030', person_id: bob_id)
+
+      list = Education.all.list
+
+      expect(list.first.location).to eq('test1')
+      expect(list.second.location).to eq('University of London')
+      expect(list.third.location).to eq('test2')
+      expect(list.fourth.location).to eq('Uni Bern')
     end
   end
 end

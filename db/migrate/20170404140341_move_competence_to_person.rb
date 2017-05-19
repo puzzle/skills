@@ -39,7 +39,7 @@ class MoveCompetenceToPerson < ActiveRecord::Migration[5.0]
           competences << "#{competence.description} \n"
         end
       end
-      person.update_attributes(competences: competences)
+      person.update_column(:competences, competences)
     end
   end
 

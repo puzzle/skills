@@ -1,9 +1,11 @@
 <tr id="template_education_record" class="template">
   <td id="show_year" class="show-year-cell">
     {{education.year_from}}
-    {{#unless (eq education.year_from education.year_to)}}
-      -{{education.year_to}}
-    {{/unless}}
+    {{#if (eq education.year_to null)}}
+      - heute
+    {{else if (not-eq education.year_from education.year_to)}}
+      - {{education.year_to}}
+    {{/if}}
   </td>
   <td id="show_description" class="show-description-cell">
     {{education.title}}

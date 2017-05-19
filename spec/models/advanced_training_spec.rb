@@ -9,7 +9,6 @@ describe AdvancedTraining do
       advanced_training.valid?
 
       expect(advanced_training.errors[:year_from].first).to eq('muss ausgefüllt werden')
-      expect(advanced_training.errors[:year_to].first).to eq('muss ausgefüllt werden')
       expect(advanced_training.errors[:person_id].first).to eq('muss ausgefüllt werden')
     end
 
@@ -28,6 +27,19 @@ describe AdvancedTraining do
       advanced_training.valid?
 
       expect(advanced_training.errors[:year_from].first).to eq('muss vor Jahr bis sein')
+    end
+
+    it 'orders projects correctly with list scope' do
+      bob_id = people(:bob).id
+      AdvancedTraining.create(description: 'test1', year_from: '2000', person_id: bob_id)
+      AdvancedTraining.create(description: 'test2', year_from: '2000', year_to: '2030', person_id: bob_id)
+
+      list = AdvancedTraining.all.list
+
+      expect(list.first.description).to eq('test1')
+      expect(list.second.description).to eq('was nice')
+      expect(list.third.description).to eq('course about how to clean')
+      expect(list.fourth.description).to eq('test2')
     end
   end
 end

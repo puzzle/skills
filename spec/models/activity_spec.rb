@@ -9,7 +9,6 @@ describe Activity do
       activity.valid?
 
       expect(activity.errors[:year_from].first).to eq('muss ausgefüllt werden')
-      expect(activity.errors[:year_to].first).to eq('muss ausgefüllt werden')
       expect(activity.errors[:person_id].first).to eq('muss ausgefüllt werden')
       expect(activity.errors[:role].first).to eq('muss ausgefüllt werden')
     end
@@ -27,6 +26,19 @@ describe Activity do
       activity.valid?
 
       expect(activity.errors[:year_from].first).to eq('muss vor Jahr bis sein')
+    end
+
+    it 'orders activties correctly with list scope' do
+      bob_id = people(:bob).id
+      Activity.create(description: 'test1', role: 'test', year_from: '2000', person_id: bob_id)
+      Activity.create(description: 'test2', role: 'test', year_from: '2000', year_to: '2030', person_id: bob_id)
+
+      list = Activity.all.list
+
+      expect(list.first.description).to eq('test1')
+      expect(list.second.description).to eq('Ascom')
+      expect(list.third.description).to eq('test2')
+      expect(list.fourth.description).to eq('Swisscom')
     end
   end
 end
