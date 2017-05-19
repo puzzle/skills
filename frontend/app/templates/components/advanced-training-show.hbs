@@ -1,9 +1,11 @@
 <tr id="template_advancedTraining_record" class="template">
   <td id="show_year" class="show-year-cell">
     {{advanced-training.year_from}}
-    {{#unless (eq advanced-training.year_from advanced-training.year_to)}}
-      -{{advanced-training.year_to}}
-    {{/unless}}
+    {{#if (eq advanced-training.year_to null)}}
+      - heute
+    {{else if (not-eq advanced-training.year_from advanced-training.year_to)}}
+      - {{advanced-training.year_to}}
+    {{/if}}
   </td>
   <td id="show_description" class="show-description-cell">
     {{advanced-training.description}}
