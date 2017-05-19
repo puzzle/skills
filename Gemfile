@@ -22,6 +22,7 @@ gem 'seed-fu'
 gem 'sqlite3'
 gem 'deep_cloneable', '~> 2.2.2'
 gem 'airbrake', '~> 5.0'
+gem 'database_cleaner'
 
 group :metrics do
   gem 'brakeman'

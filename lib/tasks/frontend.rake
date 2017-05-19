@@ -15,7 +15,7 @@ end
 namespace :spec do
   desc 'Runs frontend unit tests'
   task :frontend do
-    sh 'cd frontend && yarn test'
+    sh 'bin/frontend-tests.sh'
   end
 end
 

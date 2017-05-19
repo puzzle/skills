@@ -9,7 +9,7 @@ module.exports = {
     'Chrome'
   ],
   browser_args: {
-    'Firefox': [
+    Firefox: [
       '--no-remote'
     ],
     Chrome: [
@@ -18,5 +18,10 @@ module.exports = {
       '--remote-debugging-port=9222',
       '--window-size=1440,900'
     ]
+  },
+  proxies: {
+    '/api': {
+      target: 'http://localhost:' + (process.env.RAILS_PORT || '3000')
+    }
   }
 };

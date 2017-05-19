@@ -8,7 +8,13 @@ import {
 
 export default create({
   visit: visitable('/people/:person_id'),
-  toggleEditForm: clickable('[data-test-person-edit-form-toggle]'),
+  toggleEditFormButton: clickable('[data-test-person-edit-form-toggle]'),
+
+  toggleEditForm() {
+    this.toggleEditFormButton();
+
+    return this.editForm;
+  },
 
   editForm: {
     scope: '#profil',
@@ -34,6 +40,7 @@ export default create({
     birthdate: text('[data-test-person-birthdate]'),
     origin: text('[data-test-person-origin]'),
     location: text('[data-test-person-location]'),
+    language: text('[data-test-person-language]'),
     maritalStatus: text('[data-test-person-marital-status]'),
     status: text('[data-test-person-status]')
   }

@@ -67,6 +67,7 @@ GEM
       mimemagic (>= 0.3.0)
     coderay (1.1.1)
     concurrent-ruby (1.0.5)
+    database_cleaner (1.5.3)
     deep_cloneable (2.2.2)
       activerecord (>= 3.1.0, < 5.2.0)
     diff-lcs (1.2.5)
@@ -224,6 +225,7 @@ DEPENDENCIES
   bullet
   byebug
   carrierwave
+  database_cleaner
   deep_cloneable (~> 2.2.2)
   faker
   hirb
@@ -249,4 +251,4 @@ DEPENDENCIES
   tzinfo-data
 
 BUNDLED WITH
-   1.13.6
+   1.14.6

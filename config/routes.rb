@@ -30,7 +30,9 @@ Rails.application.routes.draw do
     resources :expertise_topics
     resources :expertise_topic_skill_values
 
-
+    if Rails.env.test?
+      resource 'test_api', controller: 'test_api', only: [:create, :destroy]
+    end
   end
 
   get '*path', to: 'static_assets#index'
