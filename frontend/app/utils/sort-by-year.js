@@ -10,7 +10,7 @@ export default function sortByYear(property) {
       let aYearTo = a.get('year_to');
       let bYearTo = b.get('year_to');
 
-      if (aYearTo == null || bYearTo == null){
+      if (aYearTo == null || bYearTo == null) {
         return -1
       }
 
