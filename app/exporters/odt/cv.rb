@@ -56,8 +56,8 @@ module Odt
     end
 
     def insert_educations(r)
-      educations_list = person.educations.collect do |e|
-        { year: formatted_year(e), title: e.title }
+      educations_list = person.educations.list.collect do |e|
+        { year: formatted_year(e), title: "#{e.title}\n#{e.location}" }
       end
 
       r.add_table('EDUCATIONS', educations_list, header: true) do |t|
@@ -67,7 +67,7 @@ module Odt
     end
 
     def insert_advanced_trainings(r)
-      advanced_trainings_list = person.advanced_trainings.collect do |at|
+      advanced_trainings_list = person.advanced_trainings.list.collect do |at|
         { year: formatted_year(at), description: at.description }
       end
 
@@ -78,8 +78,8 @@ module Odt
     end
 
     def insert_activities(r)
-      activities_list = person.activities.collect do |a|
-        { year: formatted_year(a), description: a.description }
+      activities_list = person.activities.list.collect do |a|
+        { year: formatted_year(a), description: "#{a.role}\n\n#{a.description}" }
       end
 
       r.add_table('ACTIVITIES', activities_list, header: true) do |t|
@@ -89,7 +89,7 @@ module Odt
     end
 
     def insert_projects(r)
-      projects_list = person.projects.collect do |p|
+      projects_list = person.projects.list.collect do |p|
         { year: formatted_year(p), project: project_description(p) }
       end
 
@@ -108,7 +108,9 @@ module Odt
     end
 
     def formatted_year(obj)
-      if obj.year_from == obj.year_to
+      if obj.year_to.nil? 
+        "#{obj.year_from} - heute"
+      elsif obj.year_from == obj.year_to
         obj.year_to
       else
         "#{obj.year_from} - #{obj.year_to}"
