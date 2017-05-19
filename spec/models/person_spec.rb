@@ -58,31 +58,25 @@ describe Person do
         expect(person.errors[:status_id].first).to eq('muss ausgefüllt werden')
       end
 
-      it 'should not be more than 50 characters' do
-        person = people(:bob)
-        person.location = SecureRandom.hex(50)
-        person.martial_status = SecureRandom.hex(50)
-        person.name = SecureRandom.hex(50)
-        person.origin = SecureRandom.hex(50)
-        person.role = SecureRandom.hex(50)
-        person.title = SecureRandom.hex(50)
-        person.variation_name = SecureRandom.hex(50)
-        person.valid?
-
-        expect(person.errors[:location].first).to eq('ist zu lang (mehr als 50 Zeichen)')
-        expect(person.errors[:martial_status].first).to eq('ist zu lang (mehr als 50 Zeichen)')
-        expect(person.errors[:name].first).to eq('ist zu lang (mehr als 50 Zeichen)')
-        expect(person.errors[:origin].first).to eq('ist zu lang (mehr als 50 Zeichen)')
-        expect(person.errors[:role].first).to eq('ist zu lang (mehr als 50 Zeichen)')
-        expect(person.errors[:title].first).to eq('ist zu lang (mehr als 50 Zeichen)')
-        expect(person.errors[:variation_name].first).to eq('ist zu lang (mehr als 50 Zeichen)')
-      end
-
       it 'should not be more than 100 characters' do
         person = people(:bob)
+        person.location = SecureRandom.hex(100)
         person.language = SecureRandom.hex(100)
+        person.martial_status = SecureRandom.hex(100)
+        person.name = SecureRandom.hex(100)
+        person.origin = SecureRandom.hex(100)
+        person.role = SecureRandom.hex(100)
+        person.title = SecureRandom.hex(100)
+        person.variation_name = SecureRandom.hex(100)
         person.valid?
 
+        expect(person.errors[:location].first).to eq('ist zu lang (mehr als 100 Zeichen)')
+        expect(person.errors[:martial_status].first).to eq('ist zu lang (mehr als 100 Zeichen)')
+        expect(person.errors[:name].first).to eq('ist zu lang (mehr als 100 Zeichen)')
+        expect(person.errors[:origin].first).to eq('ist zu lang (mehr als 100 Zeichen)')
+        expect(person.errors[:role].first).to eq('ist zu lang (mehr als 100 Zeichen)')
+        expect(person.errors[:title].first).to eq('ist zu lang (mehr als 100 Zeichen)')
+        expect(person.errors[:variation_name].first).to eq('ist zu lang (mehr als 100 Zeichen)')
         expect(person.errors[:language].first).to eq('ist zu lang (mehr als 100 Zeichen)')
       end
     end
