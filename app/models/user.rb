@@ -48,7 +48,7 @@ class User < ApplicationRecord
 
     def find_or_create(ldap_uid)
       user = User.find_by(ldap_uid: ldap_uid)
-      return User.create(ldap_uid: ldap_uid) unless user
+      user = User.create(ldap_uid: ldap_uid) unless user
       user.update_attributes(api_token: generate_api_token)
       user
     end
