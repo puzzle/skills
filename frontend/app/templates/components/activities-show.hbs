@@ -20,7 +20,7 @@
               </tr>
             </thead>
             <tbody id="activity-content-show">
-              {{#each (sort-by 'year_from:desc' activities) as |activity|}}
+              {{#each sortedActivities as |activity|}}
                 {{activity-show selectActivity = (action (mut activityEditing)) activity=activity}}
               {{/each}}
             </tbody>
