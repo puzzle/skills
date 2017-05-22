@@ -10,7 +10,7 @@ describe PersonVariationsController do
     end
 
     describe 'GET index' do
-      it 'returns all person variations without nested models' do
+      it 'returns all person variations without nested models ordered by variation_name' do
 
         process :index, method: :get, params: { person_id: @bob.id }
 
@@ -19,6 +19,7 @@ describe PersonVariationsController do
         expect(variations.count).to eq(2)
         expect(variations.first['attributes'].count).to eq(1)
         expect(variations.first['attributes']['variation_name']).to eq('bobs_variation1')
+        expect(variations.second['attributes']['variation_name']).to eq('bobs_variation2')
       end
     end
 

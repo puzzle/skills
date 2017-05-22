@@ -7,7 +7,7 @@ class Person::Variation < Person
   validates :variation_name, uniqueness: { scope: :origin_person_id }
   validates :variation_name, presence: true
 
-  default_scope { all.order(:name) }
+  default_scope { all.order(:variation_name) }
   scope :list, -> { all.order(:name) }
 
   def self.create_variation(variation_name, person_id)
