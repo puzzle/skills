@@ -14,14 +14,33 @@ describe Education do
       expect(education.errors[:location].first).to eq('muss ausgefüllt werden')
     end
 
-    it 'should not be more than 50 characters' do
+    it 'checks validation maximum length for attribute' do
       education = educations(:bsc)
-      education.location = SecureRandom.hex(50)
-      education.title = SecureRandom.hex(50)
+      education.location = SecureRandom.hex(500)
+      education.title = SecureRandom.hex(500)
       education.valid?
 
-      expect(education.errors[:location].first).to eq('ist zu lang (mehr als 50 Zeichen)')
-      expect(education.errors[:title].first).to eq('ist zu lang (mehr als 50 Zeichen)')
+      expect(education.errors[:location].first).to eq('ist zu lang (mehr als 500 Zeichen)')
+      expect(education.errors[:title].first).to eq('ist zu lang (mehr als 500 Zeichen)')
+    end
+
+    it 'year should not be longer or shorter then 4' do
+      education = educations(:bsc)
+      education.year_from = 12345
+      education.year_to = 12345
+      education.valid?
+
+      expect(education.errors[:year_from].first).to eq('hat die falsche Länge (muss genau 4 Zeichen haben)')
+      expect(education.errors[:year_to].first).to eq('hat die falsche Länge (muss genau 4 Zeichen haben)')
+    end
+
+    it 'year_to can be blank' do
+      education = educations(:bsc)
+      education.year_to = nil
+
+      education.valid?
+
+      expect(education.errors[:year_to]).to be_empty
     end
 
     it 'does not create Education if year_from is later than year_to' do

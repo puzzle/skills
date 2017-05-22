@@ -20,10 +20,10 @@
 class Project < ApplicationRecord
   belongs_to :person
   validates :year_from, :person_id, :role, :title, :technology, presence: true
-  validates :description, length: { maximum: 1000 }
-  validates :technology, length: { maximum: 100 }
+  validates :year_from, :year_to, length: {is: 4}, allow_blank: true
+  validates :description, :technology, :role, length: { maximum: 5000 }
+  validates :title, length: { maximum: 500 }
   validate :year_from_before_year_to
-  validates :role, :title, length: { maximum: 50 }
 
   scope :list, -> { order('year_to IS NOT NULL, year_from desc, year_to desc') }
 end

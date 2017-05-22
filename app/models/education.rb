@@ -17,7 +17,8 @@
 class Education < ApplicationRecord
   belongs_to :person
   validates :year_from, :person_id, :title, :location, presence: true
-  validates :location, :title, length: { maximum: 50 }
+  validates :year_from, :year_to, length: {is: 4}, allow_blank: true
+  validates :location, :title, length: { maximum: 500 }
   validate :year_from_before_year_to
 
   scope :list, -> { order('year_to IS NOT NULL, year_from desc, year_to desc') }

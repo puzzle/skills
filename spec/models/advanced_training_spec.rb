@@ -12,12 +12,12 @@ describe AdvancedTraining do
       expect(advanced_training.errors[:person_id].first).to eq('muss ausgefüllt werden')
     end
 
-    it 'should not be more than 1000 characters in the description' do
+    it 'checks validation maximum length for attribute' do
       advanced_training = advanced_trainings(:course)
-      advanced_training.description = SecureRandom.hex(1000)
+      advanced_training.description = SecureRandom.hex(5000)
       advanced_training.valid?
       expect(advanced_training.errors[:description].first).to eq(
-        'ist zu lang (mehr als 1000 Zeichen)'
+        'ist zu lang (mehr als 5000 Zeichen)'
       )
     end
 
@@ -27,6 +27,25 @@ describe AdvancedTraining do
       advanced_training.valid?
 
       expect(advanced_training.errors[:year_from].first).to eq('muss vor Jahr bis sein')
+    end
+
+    it 'year should not be longer or shorter then 4' do
+      advanced_training = advanced_trainings(:course)
+      advanced_training.year_from = 12345
+      advanced_training.year_to = 12345
+      advanced_training.valid?
+
+      expect(advanced_training.errors[:year_from].first).to eq('hat die falsche Länge (muss genau 4 Zeichen haben)')
+      expect(advanced_training.errors[:year_to].first).to eq('hat die falsche Länge (muss genau 4 Zeichen haben)')
+    end
+
+    it 'year_to can be blank' do
+      advanced_training = advanced_trainings(:course)
+      advanced_training.year_to = nil
+
+      advanced_training.valid?
+
+      expect(advanced_training.errors[:year_to]).to be_empty
     end
 
     it 'orders projects correctly with list scope' do

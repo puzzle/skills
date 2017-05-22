@@ -13,11 +13,15 @@ describe Activity do
       expect(activity.errors[:role].first).to eq('muss ausgefüllt werden')
     end
 
-    it 'should not be more than 1000 characters in the description' do
+    it 'checks validation maximum length for attribute' do
       activity = activities(:ascom)
-      activity.description = SecureRandom.hex(1000)
+      activity.description = SecureRandom.hex(5000)
+      activity.role = SecureRandom.hex(500)
+
       activity.valid?
-      expect(activity.errors[:description].first).to eq('ist zu lang (mehr als 1000 Zeichen)')
+
+      expect(activity.errors[:description].first).to eq('ist zu lang (mehr als 5000 Zeichen)')
+      expect(activity.errors[:role].first).to eq('ist zu lang (mehr als 500 Zeichen)')
     end
 
     it 'does not create Activity if year_from is later than year_to' do
@@ -26,6 +30,25 @@ describe Activity do
       activity.valid?
 
       expect(activity.errors[:year_from].first).to eq('muss vor Jahr bis sein')
+    end
+
+    it 'year should not be longer or shorter then 4' do
+      activity = activities(:ascom)
+      activity.year_from = 12345
+      activity.year_to = 12345
+      activity.valid?
+
+      expect(activity.errors[:year_from].first).to eq('hat die falsche Länge (muss genau 4 Zeichen haben)')
+      expect(activity.errors[:year_to].first).to eq('hat die falsche Länge (muss genau 4 Zeichen haben)')
+    end
+
+    it 'year_to can be blank' do
+      activity = activities(:ascom)
+      activity.year_to = nil
+
+      activity.valid?
+
+      expect(activity.errors[:year_to]).to be_empty
     end
 
     it 'orders activties correctly with list scope' do
