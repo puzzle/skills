@@ -73,10 +73,28 @@ class UpdateLegacySchema < ActiveRecord::Migration[5.0]
       add_column :competences, :created_at, :timestamp
       rename_column :competences, :moduser, :updated_by
       rename_column :competences, :fk_person, :person_id
+
+      sequence_for_primary_keys
     end
   end
 
   private
+
+  def sequence_for_primary_keys
+    tables = ActiveRecord::Base.connection.tables
+    tables.delete('schema_migrations')
+    tables.delete('ar_internal_metadata')
+
+    tables.each do |t|
+      ActiveRecord::Base.connection.execute "CREATE SEQUENCE #{t}_id_seq;"
+
+      ActiveRecord::Base.connection.execute <<-SQL
+        ALTER TABLE #{t} 
+        ALTER COLUMN id set DEFAULT NEXTVAL('#{t}_id_seq');
+      SQL
+      ActiveRecord::Base.connection.execute "select setval('#{t}_id_seq', (select max(id)+1 from #{t}), false)"
+    end
+  end
 
   def update_origin_person_id
     Person.all.find_each do |p|
