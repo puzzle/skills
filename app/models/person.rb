@@ -26,9 +26,9 @@ class Person < ApplicationRecord
   include PgSearch
 
   STATUSES = { 1 => 'Mitarbeiter',
-               2 => 'Partner',
+               2 => 'Ex Mitarbeiter',
                3 => 'Bewerber',
-               4 => 'Ex Mitarbeiter' }.freeze
+               4 => 'Partner' }.freeze
 
   mount_uploader :picture, PictureUploader
   has_many :projects, dependent: :destroy

@@ -28,9 +28,9 @@ const Person = DS.Model.extend({
 Person.reopenClass({
   STATUSES: {
     1: 'Mitarbeiter',
-    2: 'Partner',
+    2: 'Ex Mitarbeiter',
     3: 'Bewerber',
-    4: 'Ex Mitarbeiter'
+    4: 'Partner'
   }
 });
 
