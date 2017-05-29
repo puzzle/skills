@@ -36,6 +36,14 @@ ActiveRecord::Schema.define(version: 20170523091825) do
     t.datetime "created_at"
   end
 
+  create_table "competences", id: :serial, force: :cascade do |t|
+    t.text "description"
+    t.datetime "updated_at"
+    t.string "updated_by"
+    t.integer "person_id"
+    t.index ["person_id"], name: "index_competences_on_person_id"
+  end
+
   create_table "educations", id: :serial, force: :cascade do |t|
     t.string "location", limit: 500
     t.string "title", limit: 500
@@ -80,6 +88,10 @@ ActiveRecord::Schema.define(version: 20170523091825) do
     t.integer "year_to"
     t.integer "person_id", default: 1, null: false
     t.datetime "created_at"
+  end
+
+  create_table "statuses", id: :serial, force: :cascade do |t|
+    t.string "status"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
