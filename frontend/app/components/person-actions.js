@@ -42,7 +42,10 @@ export default Ember.Component.extend({
        })
         .then(response => response.data)
         .then(personVariation => this.get('router').transitionTo('person', personVariation.id))
-        .then(() => this.get('notify').success('Variante erstellt!'));
+        .then(
+            function(value){this.get('notify').success('Variante erstellt!')}.bind(this),
+            function(reason){this.get('notify').error(reason.payload)}.bind(this)
+         );
     },
 
     updateVariationName(changeset) {
@@ -51,9 +54,11 @@ export default Ember.Component.extend({
 
     deletePerson(personToDelete) {
       personToDelete.destroyRecord().then(() => {
+        this.toggleProperty('deletePersonConfirm');
         if (personToDelete.get('variationName')) {
           this.get('router').transitionTo('person', personToDelete.get('originPersonId'))
             .then(() => this.get('notify').success('Variante entfernt!'));
+
         }
         else {
           this.get('router').transitionTo('people')
