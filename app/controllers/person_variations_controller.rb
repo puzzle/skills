@@ -17,6 +17,8 @@ class PersonVariationsController < CrudController
     else
       render json: variation.errors.details, status: :unprocessable_entity
     end
+  rescue => e
+    render json: e.message, status: :unprocessable_entity
   end
 
   protected
