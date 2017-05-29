@@ -22,13 +22,11 @@ class PeopleController < CrudController
   end
 
   def update_picture
-    person = fetch_entry(:person_id)
     person.update_attributes(picture: params[:picture])
     render json: { data: { picture_path: person_picture_path(params[:person_id]) } }
   end
 
   def picture
-    person = fetch_entry(:person_id)
     default_avatar_url = "#{Rails.public_path}/default_avatar.png"
     picture_url = person.picture.file.nil? ? default_avatar_url : person.picture.url
     send_file(picture_url, disposition: 'inline')
@@ -36,8 +34,8 @@ class PeopleController < CrudController
 
   private
 
-  def fetch_entry(attr = :id)
-    Person.find(params.fetch(attr))
+  def person
+    @person ||= Person.find(params[:person_id])
   end
 
   def export
