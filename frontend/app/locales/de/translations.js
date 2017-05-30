@@ -3,18 +3,18 @@ export default {
     description: 'Beschreibung'
   },
   'education': {
-    year_from: 'Jahr ab',
+    year_from: 'Jahr von',
     year_to: 'Jahr bis',
     title: 'Titel',
     location: 'Ort'
   },
   'advanced-training': {
-    year_from: 'Jahr ab',
+    year_from: 'Jahr von',
     year_to: 'Jahr bis',
     description: 'Beschreibung'
   },
   'activity': {
-    year_from: 'Jahr ab',
+    year_from: 'Jahr von',
     year_to: 'Jahr bis',
     description: 'Beschreibung',
     role: 'Rolle'

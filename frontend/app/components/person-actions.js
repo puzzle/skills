@@ -44,7 +44,7 @@ export default Ember.Component.extend({
         .then(personVariation => this.get('router').transitionTo('person', personVariation.id))
         .then(
             function(value) { this.get('notify').success('Variante erstellt!') }.bind(this),
-            function(reason) { this.get('notify').error(reason.payload) }.bind(this)
+            function(reason) { this.get('notify').alert(reason.payload, { closeAfter: 15000 } ) }.bind(this)
          );
     },
 
