@@ -218,6 +218,13 @@ hr {
     margin-top: 9px;
   }
 
+  .img-avatar-edit {
+    width: 128px;
+    height: 119px;
+    object-fit: cover;
+    box-sizing: border-box;
+  }
+
   #profile-content-show dl {
     margin-bottom: 10px;
   }
