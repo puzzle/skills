@@ -48,7 +48,7 @@ class LdapTools
 
     def check_username(username)
       unless username =~ /^([a-zA-Z]|\d)+$/
-        raise ActiveRecord::StatementInvalid.new('invalid username') 
+        raise ActiveRecord::StatementInvalid, 'invalid username'
       end
     end
   end
