@@ -17,7 +17,13 @@ export default Ember.Component.extend({
       xhr.onload = () => {
         let [ , fileName ] = /filename="(.*?)"/.exec(xhr.getResponseHeader('Content-Disposition'));
         let file = new File([ xhr.response ], fileName);
-        window.location = URL.createObjectURL(file);
+        let link = document.createElement('a');
+        link.style.display = 'none';
+        link.href = URL.createObjectURL(file);
+        link.download = file.name;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       };
       xhr.open('GET', url);
       xhr.setRequestHeader('api-token', this.get('session.data.authenticated.token'));
