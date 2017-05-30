@@ -43,8 +43,8 @@ export default Ember.Component.extend({
         .then(response => response.data)
         .then(personVariation => this.get('router').transitionTo('person', personVariation.id))
         .then(
-            function(value){this.get('notify').success('Variante erstellt!')}.bind(this),
-            function(reason){this.get('notify').error(reason.payload)}.bind(this)
+            function(value) { this.get('notify').success('Variante erstellt!') }.bind(this),
+            function(reason) { this.get('notify').error(reason.payload) }.bind(this)
          );
     },
 
