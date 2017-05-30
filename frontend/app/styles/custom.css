@@ -214,11 +214,8 @@ hr {
     filter: alpha(opacity=0);
   }
 
-  .img-avatar-edit {
-    width: 128px;
-    height: 119px;
-    object-fit: cover;
-    box-sizing: border-box;
+  #img-avatar-read {
+    margin-top: 9px;
   }
 
   #profile-content-show dl {

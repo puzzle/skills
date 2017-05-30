@@ -10,6 +10,16 @@ export default Component.extend({
   uploadImage(file) {
     let formData = new FormData();
 
+    if (!file.name.match(/.(jpg|jpeg|png|gif|svg|bmp)$/i)) {
+      this.get('notify').alert('Invalider Datentyp');
+      return
+    }
+
+    if (file.size > 10000000) { //10MB
+      this.get('notify').alert('Datei ist zu gross, max 10MB');
+      return
+    }
+
     formData.append('picture', file);
 
     let res = this.get('ajax').put(this.get('uploadPath'), {
