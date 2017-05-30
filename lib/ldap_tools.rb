@@ -9,6 +9,7 @@ class LdapTools
     end
 
     def authenticate(username, password)
+      check_username(username)
       result = ldap_connection.bind_as(base: basename,
                                        filter: "uid=#{username}",
                                        password: password)
@@ -17,6 +18,7 @@ class LdapTools
     end
 
     def exists?(username)
+      check_username(username)
       filter = Net::LDAP::Filter.eq('uid', username)
       result = ldap_connection.search(base: basename,
                                       filter: filter)
@@ -42,6 +44,12 @@ class LdapTools
 
     def port
       @@port ||= ENV['LDAP_PORT'] || 636
+    end
+
+    def check_username(username)
+      unless username =~ /^([a-zA-Z]|\d)+$/
+        raise ActiveRecord::StatementInvalid.new('invalid username') 
+      end
     end
   end
 end

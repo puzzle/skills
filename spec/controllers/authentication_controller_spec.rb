@@ -12,13 +12,18 @@ describe AuthenticationController do
       expect(response.status).to eq(401)
     end
 
+    it 'responses unauthorized if username contains special chars' do
+      process :sign_in, method: :post, params: { username: "special_chars'", password: 'test' }
+      expect(response.status).to eq(401)
+    end
+
     it 'responses unauthorized if username does not exist in on Ldap server' do
       allow(LdapTools).to receive(:exists?).and_return(false)
 
-      process :sign_in, method: :post, params: { username: 'unknown_user', password: 'test' }
+      process :sign_in, method: :post, params: { username: 'unknownUser', password: 'test' }
 
       expect(response.status).to eq(401)
-      expect(JSON.parse(response.body)['error']).to eq('authentication failed')
+      expect(JSON.parse(response.body)['error']).to eq('Ungültige Login Daten')
     end
 
     it 'responses unauthorized if still locked' do
@@ -60,9 +65,9 @@ describe AuthenticationController do
       allow(LdapTools).to receive(:exists?).and_return(true)
       allow(LdapTools).to receive(:authenticate).and_return(true)
 
-      process :sign_in, method: :post, params: { username: 'new_user', password: 'test' }
+      process :sign_in, method: :post, params: { username: 'newUser', password: 'test' }
 
-      expect(User.exists?(ldap_uid: 'new_user')).to be true
+      expect(User.exists?(ldap_uid: 'newUser')).to be true
     end
 
     it 'updates failed login attempts on invalid login' do
@@ -87,7 +92,7 @@ describe AuthenticationController do
       json = JSON.parse(response.body)
 
       expect(response.status).to eq(401)
-      expect(json['error']).to eq('authentication failed')
+      expect(json['error']).to eq('Ungültige Login Daten')
     end
 
   end

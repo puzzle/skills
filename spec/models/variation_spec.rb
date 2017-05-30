@@ -12,5 +12,14 @@ describe Person::Variation do
       expect(bob.reload.variations.count).to eq(1)
     end
 
+    it 'renders validation errors if person has invalid nested values' do
+      bob = people(:bob)
+      bob.educations.first.update_column(:title, nil)
+      bob.reload
+
+      assert_raises ActiveRecord::RecordInvalid do
+        Person::Variation.create_variation('bobs_invalid_variation', bob.id)
+      end
+    end
   end
 end

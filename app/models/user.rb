@@ -31,7 +31,7 @@ class User < ApplicationRecord
 
   class << self
     def authenticate(username, password)
-      return { error: 'authentication failed' } unless LdapTools.exists?(username)
+      return { error: 'Ungültige Login Daten' } unless LdapTools.exists?(username)
 
       user = find_or_create(username)
 
@@ -39,7 +39,7 @@ class User < ApplicationRecord
 
       unless LdapTools.authenticate(username, password)
         user.update_failed_login_attempts
-        return { error: 'authentication failed' }
+        return { error: 'Ungültige Login Daten' }
       end
 
       user.reset_failed_login_attempts

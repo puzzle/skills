@@ -11,14 +11,19 @@ class AuthenticationController < ApplicationController
 
     username = params[:username]
     password = params[:password]
-
-    return render_unauthorized('dis mami') unless username.present? && password.present?
+    
+    if invalid_params?(username, password)
+      return render_unauthorized({ error: 'Invalide Parameter' }) 
+    end
 
     json = User.authenticate(username, password)
 
-    if json[:error].nil?
-      return render json: json
-    end
+    return render json: json if json[:error].nil?
+
     render_unauthorized(json)
+  end
+
+  def invalid_params?(username, password)
+    username.blank? || password.blank? || (username =~ /^([a-zA-Z]|\d)+$/).nil?
   end
 end
