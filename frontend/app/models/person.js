@@ -14,11 +14,14 @@ const Person = DS.Model.extend({
   competences: DS.attr('string'),
   statusId: DS.attr('string', { defaultValue: 1 }),
 
+  variationName: DS.attr('string'),
+  originPersonId: DS.attr('number'),
+
   educations: DS.hasMany('education'),
   advancedTrainings: DS.hasMany('advanced-training'),
   activities: DS.hasMany('activity'),
   projects: DS.hasMany('project'),
-  personVariations: DS.hasMany('person-variation'),
+  personVariations: DS.hasMany('person'),
 
   status: Ember.computed('statusId', function() {
     return Person.STATUSES[this.get('statusId')];
