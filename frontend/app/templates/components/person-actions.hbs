@@ -23,7 +23,7 @@
                 </li>
               {{/each}}
               {{#unless person.originPersonId}}
-                <hr>
+                {{#if personVariations.length}}<hr>{{/if}}
                 <li>
                   <a class="new-variation-link" onclick={{action (toggle 'createVariationModal' this)}}>
                     Neue Variante erstellen...
