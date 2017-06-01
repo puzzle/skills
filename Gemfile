@@ -21,6 +21,7 @@ gem 'rails-i18n'
 gem 'seed-fu'
 gem 'sqlite3'
 gem 'deep_cloneable', '~> 2.2.2'
+gem 'airbrake', '~> 5.0'
 
 group :metrics do
   gem 'brakeman'
