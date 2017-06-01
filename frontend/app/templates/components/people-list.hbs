@@ -15,7 +15,7 @@
   <!-- Personlist -->
   <div class="row-fluid person-list">
     <div class="span10">
-      <form id="form-search" class="">
+      <div id="form-search" class="">
         <input id="field-search" type="text" class="span12"
           autocomplete="off" placeholder="Personensuche" oninput={{perform searchPeopleTask value='target.value'}}> 
         <a onclick={{action (toggle 'advancedSearch' this)}} id="toggleSearch">
@@ -32,7 +32,7 @@
           </div>
         {{/if}}
         <br>
-      </form>
+      </div>
       <div class="container-fluid round-border"
         style="background-color: #ccc;">
         <div class="menu_div">
