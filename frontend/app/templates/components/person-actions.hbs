@@ -7,7 +7,7 @@
       <li id="variation-cv-pill" class={{if person.variationName 'active'}} class="dropwdown left">
         {{#basic-dropdown onOpen=(action 'loadPersonVariations' person.originPersonId person.id) as |dd|}}
           {{#dd.trigger class="btn btn-default"}}
-            {{#if person.variationName}}
+            {{#if person.originPersonId}}
               {{person.variationName}}
             {{else}}
                Varianten
