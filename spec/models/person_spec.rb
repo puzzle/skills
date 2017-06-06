@@ -1,3 +1,27 @@
+# == Schema Information
+#
+# Table name: people
+#
+#  id               :integer          not null, primary key
+#  birthdate        :datetime
+#  language         :string
+#  location         :string
+#  martial_status   :string
+#  updated_by       :string
+#  name             :string
+#  origin           :string
+#  role             :string
+#  title            :string
+#  status_id        :integer
+#  origin_person_id :integer
+#  variation_name   :string
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  type             :string
+#  picture          :string
+#  competences      :string
+#
+
 
 require 'rails_helper'
 

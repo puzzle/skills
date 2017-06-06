@@ -1,12 +1,11 @@
 # encoding: utf-8
-
 # == Schema Information
 #
 # Table name: educations
 #
 #  id         :integer          not null, primary key
 #  location   :text
-#  title       :text
+#  title      :text
 #  updated_at :datetime
 #  updated_by :string
 #  year_from  :integer

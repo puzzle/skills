@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: educations
+#
+#  id         :integer          not null, primary key
+#  location   :text
+#  title      :text
+#  updated_at :datetime
+#  updated_by :string
+#  year_from  :integer
+#  year_to    :integer
+#  person_id  :integer
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 bsc:
