@@ -13,11 +13,19 @@ Rails.application.routes.draw do
       post 'variation', to: 'person_variations#create'
 
     end
+    
     resources :advanced_trainings, controller: 'advanced_trainings'
     resources :activities, controller: 'activities'
     resources :projects, controller: 'projects'
     resources :educations, controller: 'educations'
     resources :competences, controller: 'competences'
+
+    # FWS
+    resources :expertise_categories
+    resources :expertise_topics
+    resources :expertise_topic_skill_values
+
+
   end
 
   get '*path', to: 'static_assets#index'

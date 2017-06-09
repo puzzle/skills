@@ -86,14 +86,12 @@ describe ProjectsController do
     { data: { attributes: object, relationships: {
       person: {
         data: { type: 'People', id: user_id }
-      }, type: model_type
-    } } }
+      } }, type: model_type } }
   end
 
   def update_params(object_id, updated_attributes, user_id, model_type)
     { data: { id: object_id, attributes: updated_attributes, relationships: {
-      person: { data: { type: 'people',
-                        id: user_id } }
+        person: { data: { type: 'people', id: user_id } }
     }, type: model_type }, id: object_id }
   end
 end

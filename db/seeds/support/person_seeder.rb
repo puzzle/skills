@@ -23,7 +23,7 @@ class PersonSeeder
   end
 
   def seed_variation(person)
-    person_variation = Person::Variation.create_variation(Faker::Book.title, person.id)
+    person_variation = Person::Variation.create_variation(Faker::Beer.name, person.id)
     associations = [:activity, :advanced_training, :project, :education]
     change_variation(person_variation)
     associations.each do |a|

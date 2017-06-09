@@ -26,4 +26,8 @@ class PersonSerializer < ApplicationSerializer
   has_many :educations do |serializer|
     serializer.object.educations.list
   end
+
+  has_many :expertise_topic_skill_values do |serializer|
+    serializer.object.expertise_topic_skill_values.list
+  end
 end

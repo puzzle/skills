@@ -52,12 +52,7 @@ class CrudController < ListController
   end
 
   def build_entry
-    attrs = model_params.to_h
-    if model_scope != Person && attrs.present?
-      attrs = attrs.merge!(person_id: person_id)
-    end
-
-    instance_variable_set(:"@#{ivar_name}", model_scope.new(attrs))
+    instance_variable_set(:"@#{ivar_name}", model_scope.new(model_params))
   end
 
   def render_entry(options = {})
@@ -82,7 +77,23 @@ class CrudController < ListController
   # Only allow a trusted parameter "white list" through.
   def model_params
     attrs = params[:data][:attributes].permit(permitted_attrs)
+    attrs = map_relationships(attrs)
     AttributeDeserializer.new(attrs, nested_models: nested_models).run
+  end
+  
+  def map_relationships(attrs)
+    relationships = params[:data][:relationships]
+
+    return attrs if relationships.blank?
+
+    relationships.each do |e, v|
+      attribute_name = "#{e}_id"
+      next unless permitted_attrs.include?(attribute_name.to_sym)
+
+      parent_id = v[:data][:id]
+      attrs[attribute_name] = parent_id
+    end
+    attrs
   end
 
   def ivar_name
