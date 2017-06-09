@@ -22,6 +22,7 @@ const Person = DS.Model.extend({
   activities: DS.hasMany('activity'),
   projects: DS.hasMany('project'),
   personVariations: DS.hasMany('person'),
+  expertiseTopicSkillValues: DS.hasMany('expertise-topic-skill-value'),
 
   status: Ember.computed('statusId', function() {
     return Person.STATUSES[this.get('statusId')];
