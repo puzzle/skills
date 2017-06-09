@@ -1,0 +1,17 @@
+# == Schema Information
+#
+# Table name: expertise_topics
+#
+#  id                    :integer          not null, primary key
+#  name                  :string
+#  user_topic            :boolean          default(FALSE)
+#  expertise_category_id :integer
+#
+
+rails:
+  name: ruby on rails
+  expertise_category: ruby
+
+postgresql:
+  name: postgresql
+  expertise_category: database

@@ -1,0 +1,32 @@
+# == Schema Information
+#
+# Table name: expertise_topic_skill_values
+#
+#  id                  :integer          not null, primary key
+#  years_of_experience :integer
+#  number_of_projects  :integer
+#  last_use            :integer
+#  skill_level         :string
+#  comment             :string
+#  person_id           :integer
+#  expertise_topic_id  :integer
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+rails_bob:
+  years_of_experience: 2
+  number_of_projects: 3
+  last_use: 2010
+  skill_level: expert
+  comment: very high level
+  person: bob
+  expertise_topic: rails
+
+postgresql_alice:
+  years_of_experience: 4
+  number_of_projects: 4
+  last_use: 2016
+  skill_level: expert
+  person: alice
+  expertise_topic: postgresql

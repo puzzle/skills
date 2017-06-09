@@ -1,12 +1,10 @@
 # encoding: utf-8
-
-# == Schema Information :updated_by,
+# == Schema Information
 #
 # Table name: people
 #
 #  id               :integer          not null, primary key
 #  birthdate        :datetime
-#  picture          :binary           not null
 #  language         :string
 #  location         :string
 #  martial_status   :string
@@ -18,9 +16,12 @@
 #  status_id        :integer
 #  origin_person_id :integer
 #  variation_name   :string
-#  variation_date   :datetime
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  type             :string
+#  picture          :string
+#  competences      :string
+#
 
 class Person < ApplicationRecord
   include PgSearch
@@ -35,6 +36,7 @@ class Person < ApplicationRecord
   has_many :activities, dependent: :destroy
   has_many :advanced_trainings, dependent: :destroy
   has_many :educations, dependent: :destroy
+  has_many :expertise_topic_skill_values, dependent: :destroy
   has_many :variations, foreign_key: :origin_person_id,
                         class_name: Person::Variation
 
