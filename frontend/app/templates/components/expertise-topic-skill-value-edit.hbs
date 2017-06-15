@@ -1,0 +1,25 @@
+{{#with (changeset expertiseTopic validations) as |changeset|}}
+  <td class="fws-topic-name">{{expertiseTopic.name}}</td>
+  <td><input maxlength="2" class="fws-number-input" type="number" value={{expertiseTopicSkillValue.yearsOfExperience}}/></td>
+  <td><input maxlength="2" class="fws-number-input" type="number" value={{expertiseTopicSkillValue.numberOfProjects}}/></td>
+  <td><input maxlength="4" class="fws-year-input" type="number" value={{expertiseTopicSkillValue.lastUse}}/></td>
+
+  <td> 
+    <select class="fws-select">
+      {{#each skillLevelData as |sld|}}
+        {{#if (eq expertiseTopicSkillValue.skillLevel sld) }}
+          <option value={{sld}} selected>{{sld}}</option>
+        {{else}}
+          <option value={{sld}}>{{sld}}</option>
+        {{/if}}
+      {{/each}}
+    </select>
+  </td>
+
+  <td><textarea class="fws-textarea-input">{{expertiseTopicSkillValue.comment}}</textarea></td>
+  <td>
+    <a href="" onclick={{action 'submit' changeset}}>
+      <img class="fws-action-icon" alt="check" src="/assets/images/check.svg">
+    </a>
+  </td>
+{{/with}}

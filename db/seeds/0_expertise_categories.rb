@@ -33,9 +33,6 @@ seeder.seed_development_category('Software Design und Methoden',
                                  ['Objektorientierte Analyse und Design',
                                   'Funktionale Programmierung', 'Design Patterns', 'Scrum, o.ä.'])
 
-seeder.seed_development_category('Ergänzungen')
-
-
 # seed system engineer categories
 seeder.seed_system_category('Linux Distributionen', ['Red Hat', 'CentOS', 'Fedora', 'Debian',
                                                      'Ubuntu', 'SUSE', 
@@ -98,5 +95,3 @@ seeder.seed_system_category('Programmier- und Script-Sprachen',
                              'PHP', 'C', 'C++', 'Java'])
 
 seeder.seed_system_category('Version Control', ['Git', 'SVN'])
-
-seeder.seed_system_category('Ergänzungen')

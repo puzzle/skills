@@ -16,6 +16,7 @@
 
 class ExpertiseTopicSkillValue < ApplicationRecord
   belongs_to :expertise_topic
+  belongs_to :expertise_category
   belongs_to :person
 
   enum skill_level: [:trainee, :junior, :professional, :senior, :expert]
@@ -26,5 +27,10 @@ class ExpertiseTopicSkillValue < ApplicationRecord
   validates :number_of_projects, length: { maximum: 5 }
   validates :years_of_experience, inclusion: { in: 0..100 }
   
-  scope :list, -> { order(:last_use) }
+  scope :list, -> (person_id = nil, category_id= nil) do 
+    includes(:expertise_topic).
+    includes(expertise_topic: :expertise_category).
+    where(person_id: person_id).
+    where(expertise_categories: { id: category_id } )
+  end
 end

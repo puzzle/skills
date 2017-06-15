@@ -30,6 +30,7 @@ export default Ember.Component.extend({
       xhr.setRequestHeader('ldap-uid', this.get('session.data.authenticated.ldap_uid'));
       xhr.send();
     },
+
     loadPersonVariations(originPersonId, id = originPersonId) {
       id = originPersonId || id;
       return this.get('ajax')

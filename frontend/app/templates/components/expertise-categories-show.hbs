@@ -1,0 +1,6 @@
+{{#each expertiseCategories as |ec|}}
+  <div class="expertise-category" onclick={{action (toggle 'showTopics' this)}} >
+    {{ec.name}}
+  </div>
+  {{expertise-topics-show expertiseCategory=ec person=person}}
+{{/each}}

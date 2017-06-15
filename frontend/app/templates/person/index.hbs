@@ -1,0 +1,15 @@
+{{#each model.errors as |error|}}
+  {{error.detail}}
+{{/each}}
+
+{{component (if personEditing 'person-edit' 'person-show' )
+  person=model
+  submit=(action (toggle 'personEditing' this))
+  model-header-title = 'Personalien'
+  personEditing=(action (toggle 'personEditing' this))
+  }}
+{{competences-show person=model}}
+{{educations-show educations=model.educations personId=model.id}}
+{{advanced-trainings-show  advanced-trainings=model.advancedTrainings personId=model.id}}
+{{activities-show activities=model.activities personId=model.id}}
+{{projects-show projects=model.projects personId=model.id}}

@@ -1,0 +1,14 @@
+<table class="expertise-topic-skill-values-table table">
+  <tr>
+    <th class="fws-topic-name">Fachwissen</th>
+    <th>Jahre</th>
+    <th>Projekte</th>
+    <th class="fws-last-use">Letztmals angewendet</th>
+    <th>Erfahrungswert</th>
+    <th>Bemerkung</th>
+    <th></th>
+  </tr>
+  {{#each expertiseTopics as |et|}}
+      {{expertise-topic-skill-value-show expertiseTopic=et}}
+  {{/each}}
+</table>

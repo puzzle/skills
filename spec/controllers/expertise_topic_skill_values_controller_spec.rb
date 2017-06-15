@@ -4,14 +4,14 @@ describe ExpertiseTopicSkillValuesController do
   before { auth(:ken) }
 
   describe 'GET index' do
-    it 'returns all expertise_topic_skill_value_skill_values' do
+    it 'returns all expertise_topic_skill_value_skill_values for given params' do
       keys = %w(years_of_experience number_of_projects last_use skill_level comment)
 
-      process :index, method: :get
+      process :index, method: :get, params: { person_id: people(:bob).id, category_id: expertise_categories(:ruby).id}
 
       categories = json['data']
 
-      expect(categories.count).to eq(2)
+      expect(categories.count).to eq(1)
       expect(categories.first['attributes'].count).to eq(5)
       json_object_includes_keys(categories.first['attributes'], keys)
     end

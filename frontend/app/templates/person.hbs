@@ -1,18 +1,3 @@
-<div id="right-grid" class="span9 sub-page">
-  {{#each model.errors as |error|}}
-    {{error.detail}}
-  {{/each}}
-  
-  {{person-actions person=model onDelete=(route-action 'reloadPeopleList')}}
-  {{component (if personEditing 'person-edit' 'person-show' )
-    person=model
-    submit=(action (toggle 'personEditing' this))
-    model-header-title = 'Personalien'
-    personEditing=(action (toggle 'personEditing' this))
-    }}
-  {{competences-show person=model}}
-  {{educations-show educations=model.educations personId=model.id}}
-  {{advanced-trainings-show  advanced-trainings=model.advancedTrainings personId=model.id}}
-  {{activities-show activities=model.activities personId=model.id}}
-  {{projects-show projects=model.projects personId=model.id}}
-</div>
+{{person-actions person=model onDelete=(route-action 'reloadPeopleList')}}
+
+{{outlet}}

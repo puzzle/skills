@@ -4,14 +4,14 @@ describe ExpertiseTopicsController do
   before { auth(:ken) }
 
   describe 'GET index' do
-    it 'returns all expertise_topics' do
+    it 'returns all expertise_topics for given category' do
       keys = %w(name user_topic)
 
-      process :index, method: :get
+      process :index, method: :get, params: { category_id: expertise_categories(:ruby).id }
 
       categories = json['data']
 
-      expect(categories.count).to eq(2)
+      expect(categories.count).to eq(1)
       expect(categories.first['attributes'].count).to eq(2)
       json_object_includes_keys(categories.first['attributes'], keys)
     end

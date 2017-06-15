@@ -1,0 +1,23 @@
+<div>
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="active">
+      <a href="#development" aria-controls="development" role="tab" data-toggle="tab">Entwickler</a>
+    </li>
+    <li>
+      <a href="#system_engineering" aria-controls="system_engineering" role="tab" data-toggle="tab">Systemtechniker</a>
+    </li>
+  </ul>
+
+  <div id="expertise-categories">
+    <div class="tab-content">
+      <div role="tabpanel" id="development" class="tab-pane active">
+        {{expertise-categories-show person=model discipline='development'}}
+      </div>
+      <div role="tabpanel" id="system_engineering" class="tab-pane">
+        {{expertise-categories-show person=model discipline='system_engineering'}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="/assets/js/bootstrap/tab.js"></script>

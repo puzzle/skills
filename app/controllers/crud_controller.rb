@@ -88,12 +88,16 @@ class CrudController < ListController
 
     relationships.each do |e, v|
       attribute_name = "#{e}_id"
-      next unless permitted_attrs.include?(attribute_name.to_sym)
+      next unless permitted_param?(attribute_name)
 
       parent_id = v[:data][:id]
       attrs[attribute_name] = parent_id
     end
     attrs
+  end
+
+  def permitted_param?(attribute_name)
+    permitted_attrs.map(&:to_s).include?(attribute_name)
   end
 
   def ivar_name

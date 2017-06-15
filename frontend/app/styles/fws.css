@@ -1,0 +1,61 @@
+#fws-link{
+  margin-left: 200px;
+}
+#expertise-categories{
+  width: 100%;
+  margin-top: -20px;
+  margin-bottom: 20px;
+}
+
+.expertise-category{
+  border-bottom: 0.5px solid #222;
+  background-color: #3B3B3B;
+  text-align: center;
+  font-size: 15px;
+  padding: 5px;
+  color: white;
+}
+
+
+.expertise-topic-skill-values-table{
+  background-color: #FAFAFA;
+  margin-bottom: 0;
+  width: 100%!important;
+}
+
+.expertise-topic-skill-values-table .content-row:hover{
+  background-color: #EEE;
+}
+
+.expertise-category:hover{
+  background-color: #4577D4;
+  cursor: pointer;
+}
+
+.fws-topic-name{
+  max-width: 130px;
+}
+
+.fws-last-use{
+  width: 30px;
+}
+
+.fws-number-input{
+  width: 35px;
+}
+
+.fws-year-input{
+  width: 55px;
+}
+
+.fws-textarea-input{
+  height: 20px;
+}
+
+.fws-select{
+  width: 110px;
+}
+
+.fws-action-icon{
+ width: 17px;
+}

@@ -9,7 +9,9 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('people', function() {
     this.route('new');
-    this.route('person', { path: '/:person_id', resetNamespace: true });
+    this.route('person', { path: '/:person_id', resetNamespace: true }, function() {
+      this.route('fws');
+    });
   });
   this.route('login');
 });
