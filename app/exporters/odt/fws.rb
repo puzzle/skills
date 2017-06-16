@@ -1,20 +1,15 @@
 # encoding: utf-8
 module Odt
-  class Cv
+  class Fws
 
     def initialize(person)
       @person = person
     end
 
     def export
-      ODFReport::Report.new('lib/templates/fws_developer_template.odt') do |r|
+      ODFReport::Report.new('lib/templates/fws_developer_template1.odt') do |r|
         insert_general_sections(r)
-        insert_personalien(r)
-        insert_competences(r)
-        insert_advanced_trainings(r)
-        insert_educations(r)
-        insert_activities(r)
-        insert_projects(r)
+        insert_java(r)
       end
     end
 
@@ -28,12 +23,15 @@ module Odt
       r.add_field(:section, 'dev1')
       r.add_field(:name, person.name)
       r.add_field(:title_function, person.role)
+    end
 
-      r.add_field(:header_info, "#{person.name} - Version 1.0")
-
-      r.add_field(:date, Time.zone.today.strftime('%d.%m.%Y'))
-      r.add_field(:version, '1.0')
-      r.add_field(:comment, 'Aktuelle Ausgabe')
+    def insert_java(r)
+      category_id = ExpertiseCategory.find_by(name: 'Java').id
+      java_topics = ExpertiseTopicSkillValue.list(person.id, category_id)
+      r.add_table('JAVA', java_topics, header: true) do |t|
+        require 'pry'; binding.pry
+        t.add_column(:topic, 'test')
+      end
     end
 
     def insert_personalien(r)

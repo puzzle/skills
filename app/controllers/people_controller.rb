@@ -32,6 +32,15 @@ class PeopleController < CrudController
     send_file(picture_url, disposition: 'inline')
   end
 
+  def export_fws
+    return render status: 404 unless format_odt?
+    odt_file = Odt::Fws.new(person).export
+    send_data odt_file.generate,
+              type: 'application/vnd.oasis.opendocument.text',
+              disposition: 'attachment',
+              filename: filename(entry.name)
+  end
+
   private
 
   def person

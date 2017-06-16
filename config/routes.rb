@@ -11,9 +11,9 @@ Rails.application.routes.draw do
       get 'picture'
       get 'variations', to: 'person_variations#index'
       post 'variation', to: 'person_variations#create'
-
+      get 'fws', to: 'people#export_fws'
     end
-    
+
     resources :advanced_trainings, controller: 'advanced_trainings'
     resources :activities, controller: 'activities'
     resources :projects, controller: 'projects'
