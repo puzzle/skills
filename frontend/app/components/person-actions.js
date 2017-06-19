@@ -1,34 +1,53 @@
 import Ember from 'ember';
-import ENV from '../config/environment';
 
 export default Ember.Component.extend({
   ajax: Ember.inject.service(),
   router: Ember.inject.service(),
-  session: Ember.inject.service('session'),
+  session: Ember.inject.service(),
+
+  downloadFile(url) {
+    let xhr = new XMLHttpRequest;
+    xhr.responseType = 'blob';
+    xhr.onload = () => {
+      let [ , fileName ] = /filename="(.*?)"/.exec(xhr.getResponseHeader('Content-Disposition'));
+      let file = new File([ xhr.response ], fileName);
+      let link = document.createElement('a');
+      link.style.display = 'none';
+      link.href = URL.createObjectURL(file);
+      link.download = file.name;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
+    xhr.open('GET', url);
+    xhr.setRequestHeader('api-token', this.get('session.data.authenticated.token'));
+    xhr.setRequestHeader('ldap-uid', this.get('session.data.authenticated.ldap_uid'));
+    xhr.send();
+  },
 
   actions: {
     exportCvOdt(personId, e) {
       e.preventDefault();
+      let url = `/api/people/${personId}.odt`;
+      this.downloadFile(url)
+    },
 
-      let url = `${ENV.APP.documentExportHost}/api/people/${personId}.odt`;
+    exportDevFws(personId, e) {
+      e.preventDefault();
+      let url = `/api/people/${personId}/fws.odt?discipline=development`;
+      this.downloadFile(url)
+    },
 
-      let xhr = new XMLHttpRequest;
-      xhr.responseType = 'blob';
-      xhr.onload = () => {
-        let [ , fileName ] = /filename="(.*?)"/.exec(xhr.getResponseHeader('Content-Disposition'));
-        let file = new File([ xhr.response ], fileName);
-        let link = document.createElement('a');
-        link.style.display = 'none';
-        link.href = URL.createObjectURL(file);
-        link.download = file.name;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      };
-      xhr.open('GET', url);
-      xhr.setRequestHeader('api-token', this.get('session.data.authenticated.token'));
-      xhr.setRequestHeader('ldap-uid', this.get('session.data.authenticated.ldap_uid'));
-      xhr.send();
+    exportSysFws(personId, e) {
+      e.preventDefault();
+      let url = `/api/people/${personId}/fws.odt?discipline=system_engineering`;
+      this.downloadFile(url)
+    },
+
+    exportEmptyFws(personId, e) {
+      e.preventDefault();
+      let url = `/api/people/${personId}/fws.odt?empty=true`;
+      this.downloadFile(url)
     },
 
     loadPersonVariations(originPersonId, id = originPersonId) {

@@ -24,8 +24,8 @@ class ExpertiseTopicSkillValue < ApplicationRecord
   validates :years_of_experience, :number_of_projects, :last_use, :skill_level, presence: true
   validates :last_use, length: { is: 4 }
   validates :comment, length: { maximum: 500 }
-  validates :number_of_projects, length: { maximum: 5 }
-  validates :years_of_experience, inclusion: { in: 0..100 }
+  validates :number_of_projects, inclusion: { in: 0..255 }
+  validates :years_of_experience, inclusion: { in: 0..80 }
   
   scope :list, -> (person_id = nil, category_id= nil) do 
     includes(:expertise_topic).

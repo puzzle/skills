@@ -7,6 +7,7 @@ const { String: { pluralize, underscore } } = Ember;
 export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   namespace: 'api',
   authorizer: 'authorizer:auth',
+  //coalesceFindRequests: true,
 
   pathForType(type) {
     return pluralize(underscore(type));

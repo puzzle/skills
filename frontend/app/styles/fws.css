@@ -41,7 +41,7 @@
 }
 
 .fws-number-input{
-  width: 35px;
+  width: 42px;
 }
 
 .fws-year-input{
@@ -49,7 +49,7 @@
 }
 
 .fws-textarea-input{
-  height: 20px;
+  height: 40px;
 }
 
 .fws-select{
@@ -57,5 +57,20 @@
 }
 
 .fws-action-icon{
- width: 17px;
+ width: 17px!important;
+ max-width: 17px!important;
+ min-width: 17px!important;
+}
+
+.fws-category-unfold-icon{
+  width: 30px;
+  float: right;
+  margin-top: -4px;
+}
+
+.fws-button{
+  margin-left: 5px;
+  margin-top: 0px!important;
+  border-radius: 4px!important;
+  margin-top: 0;
 }

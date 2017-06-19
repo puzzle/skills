@@ -37,6 +37,14 @@ export default {
     role: 'Rolle',
     title: 'Titel',
     competences: 'Kompetenzen'
+  },
+
+  'expertise-topic-skill-value': {
+    yearsOfExperience: 'Jahre',
+    numberOfProjects: 'Projekte',
+    lastUse: 'Letztmals angewendet',
+    skillLevel: 'Erfahrungswert',
+    comment: 'Bemerkung'
   }
 
 

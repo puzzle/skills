@@ -31,13 +31,9 @@ describe ExpertiseTopicSkillValue do
       etsv = ExpertiseTopicSkillValue.new
       etsv.last_use = 12345
       etsv.comment = SecureRandom.hex(500)
-      etsv.number_of_projects = 123456
-      etsv.years_of_experience = 101
 
       etsv.valid?
 
-      expect(etsv.errors[:years_of_experience].first).to eq('ist kein gültiger Wert')
-      expect(etsv.errors[:number_of_projects].first).to eq('ist zu lang (mehr als 5 Zeichen)')
       expect(etsv.errors[:last_use].first).to eq('hat die falsche Länge (muss genau 4 Zeichen haben)')
       expect(etsv.errors[:comment].first).to eq('ist zu lang (mehr als 500 Zeichen)')
     end

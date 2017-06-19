@@ -2,7 +2,7 @@
   <div class="toolbar-pills span12 row-fluid">
     <ul class="nav nav-pills group-pills" id="variation-selection">
       <li id="actual-cv-pill" class={{unless person.variationName 'active'}}>
-        {{#link-to "person" person.originPersonId}}aktuelles CV{{/link-to}}
+        {{#link-to "person" (or person.originPersonId person)}}aktuelles CV{{/link-to}}
       </li>
       <li id="variation-cv-pill" class={{if person.variationName 'active'}} class="dropwdown left">
         {{#basic-dropdown onOpen=(action 'loadPersonVariations' person.originPersonId person.id) as |dd|}}
@@ -34,6 +34,9 @@
           {{/dd.content}}
         {{/basic-dropdown}}
       </li>
+      <li>
+        {{#link-to "person.fws" (or person.originPersonId person) class="fws-button"}}Fachwissenskala{{/link-to}}
+      </li>
     </ul>
     <ul class="nav nav-pills group-pills" id="variation-options">
       <li class="dropdown right" id="option-pill">
@@ -64,10 +67,32 @@
           {{/dd.content}}
         {{/basic-dropdown}}
       </li>
-      <li>
-        <a onclick={{action 'exportCvOdt' person.id}} id="button-edit-profile" class="button pull-right right">
-          Exportieren
-        </a>
+      <li id="export-dropdown" class="dropdown left">
+        {{#basic-dropdown as |dd|}}
+          {{#dd.trigger class="btn btn-default"}}Exportieren <b class="caret"></b>{{/dd.trigger}}
+          {{#dd.content}}
+            <ul class="content-bootstrap-feel dropdown-menu">
+                <li>
+                  <a onclick={{action 'exportCvOdt' person.id}}>
+                    {{#if person.originPersonId}}
+                      CV Variante
+                    {{else}}
+                      Aktuelles CV
+                    {{/if}}
+                  </a>
+                  <a onclick={{action 'exportDevFws' person.id}}>
+                    Fachwissenskala Entwickler
+                  </a>
+                  <a onclick={{action 'exportSysFws' person.id}}>
+                    Fachwissensskala Systemtechniker
+                  </a>
+                  <a onclick={{action 'exportEmptyFws' person.id}}>
+                    Leere Fachwissensskala
+                  </a>
+                </li>
+            </ul>
+          {{/dd.content}}
+        {{/basic-dropdown}}
       </li>
     </ul>
   </div>

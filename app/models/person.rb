@@ -38,7 +38,7 @@ class Person < ApplicationRecord
   has_many :educations, dependent: :destroy
   has_many :expertise_topic_skill_values, dependent: :destroy
   has_many :variations, foreign_key: :origin_person_id,
-                        class_name: Person::Variation
+                        class_name: 'Person::Variation'
 
   before_destroy :destroy_variations
 

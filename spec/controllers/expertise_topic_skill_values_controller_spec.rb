@@ -2,6 +2,8 @@ require 'rails_helper'
 
 describe ExpertiseTopicSkillValuesController do
   before { auth(:ken) }
+  
+  let(:bobs_variation) { Person::Variation.create_variation('bobs_variation', people(:bob).id) }
 
   describe 'GET index' do
     it 'returns all expertise_topic_skill_value_skill_values for given params' do
@@ -37,10 +39,29 @@ describe ExpertiseTopicSkillValuesController do
                                       skill_level: 'expert',
                                       comment: 'very high level' }
 
-      post :create, params: create_params(expertise_topic_skill_value, expertise_topics(:rails))
+      post :create, params: create_params(expertise_topic_skill_value, 
+                                          expertise_topics(:rails),
+                                          people(:bob))
 
       new_expertise_topic_skill_value = ExpertiseTopicSkillValue.find_by(last_use: 2000)
       expect(new_expertise_topic_skill_value.number_of_projects).to eq(12)
+    end
+
+    it "doesn't create new expertise_topic_skill_value for variation" do
+      expertise_topic_skill_value = { years_of_experience: 1,
+                                      number_of_projects: 12,
+                                      last_use: 2000,
+                                      skill_level: 'expert',
+                                      comment: 'very high level' }
+
+      exception = assert_raises(RuntimeError) do
+        post :create, params: create_params(expertise_topic_skill_value, 
+                                            expertise_topics(:rails),
+                                            bobs_variation.id)
+      end
+
+      expect(ExpertiseTopicSkillValue.find_by(last_use: 2000)).to be_nil
+      expect(exception.message).to eq('not yet implemented')
     end
   end
 
@@ -67,11 +88,11 @@ describe ExpertiseTopicSkillValuesController do
   
   private
 
-  def create_params(object, parent_id)
+  def create_params(object, parent_id, person_id)
     { data: { attributes: object,
               relationships: { 
                 expertise_topic: { data: { id: parent_id } },
-                person: { data: { id: people(:bob) } }
+                person: { data: { id: person_id } }
               }
             } }
   end

@@ -480,8 +480,11 @@ hr {
     border-bottom-left-radius: 0px;
     border-top-left-radius: 0px;
     margin-left: 1px;
-    position: absolute;
     height: 22px;
+  }
+  
+  .ember-basic-dropdown-content-wormhole-origin{
+    position: absolute;
   }
 
   .nav-pills li div{
@@ -551,8 +554,9 @@ form textarea{
   height: 50px;
 }
 
-.ember-notify-cn{
+.ember-notify-cn.ember-view{
   top: 0px;
+  bottom: auto;
   margin-right: 20px;
 }
 
@@ -571,4 +575,19 @@ form textarea{
 
 .async-button:hover{
   background-position: 0px 0px!important;
+}
+
+
+.btn-link{
+  background:none!important;
+  color:inherit;
+  border:none; 
+  padding:0!important;
+  font: inherit;
+  cursor: pointer;
+}
+
+#export-dropdown{
+  margin-left: 5px;
+  margin-top: 1px;
 }

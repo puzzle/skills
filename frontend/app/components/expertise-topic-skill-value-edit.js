@@ -1,22 +1,34 @@
 import Ember from 'ember';
 import ExpertiseTopicSkillValueModel from '../models/expertise-topic-skill-value'
-import ExpertiseTopicSkillValueShow from './expertise-topic-skill-value-show';
 
-const { computed, inject } = Ember;
+const { Component, computed, inject } = Ember;
+const DEFAULT_SKILL_LEVEL = 'trainee';
 
-export default ExpertiseTopicSkillValueShow.extend({
+export default Component.extend({
+  skillLevelData: ExpertiseTopicSkillValueModel.SKILL_LEVELS,
   store: inject.service(),
-  classNames: 'content-row-edit',
+  tagName: '',
 
-  skillLevelData: computed(function() {
-    return ExpertiseTopicSkillValueModel.SKILL_LEVELS;
+  formId: computed('expertiseTopic', function() {
+    return `expertise-topic-${this.get('expertiseTopic.id')}-form`;
   }),
 
-  actions: {
-    submit(changeset, event) {
-      event.preventDefault();
-      return changeset.save()
-        .then(() => this.get('notify').success('aktualisiert'))
+  _expertiseTopicSkillValue: null,
+
+  expertiseTopicSkillValue: computed({
+    set(_key, value) {
+      if (this._expertiseTopicSkillValue &&
+          this._expertiseTopicSkillValue.get('isNew') &&
+          !this._expertiseTopicSkillValue.get('isSaving')) {
+        this._expertiseTopicSkillValue.destroyRecord();
+      }
+      this._expertiseTopicSkillValue = value ||
+        this.get('store').createRecord('expertise-topic-skill-value', { skillLevel: DEFAULT_SKILL_LEVEL });
+
+      return this._expertiseTopicSkillValue;
+    },
+    get() {
+      return this._expertiseTopicSkillValue;
     }
-  }
+  })
 });

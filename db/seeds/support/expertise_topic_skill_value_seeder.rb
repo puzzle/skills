@@ -3,6 +3,7 @@
 class ExpertiseTopicSkillValueSeeder
   def seed_expertise_topic_skill_values
     Person.all.find_each do |p|
+      next if p.origin_person_id
       ExpertiseTopic.all.find_each do |et|
         seed_expertise_topc_skill_value(et, p)
       end

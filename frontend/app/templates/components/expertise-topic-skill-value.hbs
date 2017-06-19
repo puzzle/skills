@@ -1,0 +1,6 @@
+{{component
+  (if editing 'expertise-topic-skill-value-edit' 'expertise-topic-skill-value-show')
+  ontoggleedit=(action (mut editing))
+  expertiseTopic=expertiseTopic
+  expertiseTopicSkillValue=expertiseTopicSkillValue
+  onsubmit=(action 'submit')}}

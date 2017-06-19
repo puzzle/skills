@@ -1,14 +1,29 @@
-<table class="expertise-topic-skill-values-table table">
-  <tr>
-    <th class="fws-topic-name">Fachwissen</th>
-    <th>Jahre</th>
-    <th>Projekte</th>
-    <th class="fws-last-use">Letztmals angewendet</th>
-    <th>Erfahrungswert</th>
-    <th>Bemerkung</th>
-    <th></th>
-  </tr>
-  {{#each expertiseTopics as |et|}}
-      {{expertise-topic-skill-value-show expertiseTopic=et}}
-  {{/each}}
-</table>
+<div class="expertise-category" onclick={{action (toggle 'showTopics' this)}} >
+  {{expertiseCategory.name}}
+  {{#if showTopics}}
+    <img class="fws-category-unfold-icon" src="/assets/images/chevron-left.svg">
+  {{else}}
+    <img class="fws-category-unfold-icon" src="/assets/images/chevron-down.svg">
+  {{/if}}
+</div>
+
+{{#if showTopics}}
+  <table class="expertise-topic-skill-values-table table">
+    <tr>
+      <th class="fws-topic-name">Fachwissen</th>
+      <th>Jahre</th>
+      <th>Projekte</th>
+      <th class="fws-last-use">Letztmals angewendet</th>
+      <th>Erfahrungswert</th>
+      <th>Bemerkung</th>
+      <th></th>
+    </tr>
+    {{#if isLoading.isFulfilled}}
+      {{#each expertiseTopics as |et|}}
+        {{expertise-topic-skill-value expertiseTopic=et person=person}}
+      {{/each}}
+    {{else if isLoading.isPending}}
+      <tr><td colspan="42">Lädt...</td></tr>
+    {{/if}}
+  </table>
+{{/if}}
