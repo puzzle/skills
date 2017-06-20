@@ -1,10 +1,10 @@
 <section id="variation">
   <div class="toolbar-pills span12 row-fluid">
     <ul class="nav nav-pills group-pills" id="variation-selection">
-      <li id="actual-cv-pill" class={{unless person.variationName 'active'}}>
+      <li id="actual-cv-pill" class={{unless person.originPersonId 'active'}}>
         {{#link-to "person" (or person.originPersonId person)}}aktuelles CV{{/link-to}}
       </li>
-      <li id="variation-cv-pill" class={{if person.variationName 'active'}} class="dropwdown left">
+      <li id="variation-cv-pill" class={{if person.originPersonId 'active'}} class="dropwdown left">
         {{#basic-dropdown onOpen=(action 'loadPersonVariations' person.originPersonId person.id) as |dd|}}
           {{#dd.trigger class="btn btn-default"}}
             {{#if person.originPersonId}}
