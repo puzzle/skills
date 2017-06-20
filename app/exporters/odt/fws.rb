@@ -2,20 +2,29 @@
 module Odt
   class Fws
 
-    def initialize(person)
+    def initialize(person, discipline, empty)
       @person = person
+      @discipline = discipline
+      @empty = empty
     end
 
     def export
-      ODFReport::Report.new('lib/templates/fws_developer_template1.odt') do |r|
+      return empty_export if @empty == 'true'
+      ODFReport::Report.new("lib/templates/fws_#{@discipline}_template.odt") do |r|
         insert_general_sections(r)
-        insert_java(r)
+        insert_categories(r)
       end
     end
 
     private
 
     attr_accessor :person
+
+    def empty_export
+      ODFReport::Report.new("lib/templates/fws_#{@discipline}_empty_template.odt") do |r|
+        insert_categories(r)
+      end
+    end
 
     def insert_general_sections(r)
       r.add_field(:client, 'mg')
@@ -25,94 +34,43 @@ module Odt
       r.add_field(:title_function, person.role)
     end
 
-    def insert_java(r)
-      category_id = ExpertiseCategory.find_by(name: 'Java').id
-      java_topics = ExpertiseTopicSkillValue.list(person.id, category_id)
-      r.add_table('JAVA', java_topics, header: true) do |t|
-        require 'pry'; binding.pry
-        t.add_column(:topic, 'test')
+    def skill_values_row(category_id)
+     ExpertiseTopicSkillValue.list(person.id, category_id).collect do |e|
+        topics = { topic: e.expertise_topic.name,
+         last_use: e.last_use,
+         experience: e.years_of_experience,
+         projects: e.number_of_projects,
+         skill: e.skill_level,
+         comment: e.comment,
+         trainee: '',
+         junior: '',
+         professional: '',
+         senior: '',
+         expert: ''
+        }
+        topics[e.skill_level.to_sym] = 'X'
+        topics
       end
     end
 
-    def insert_personalien(r)
-      r.add_field(:title, person.title)
-      r.add_field(:birthdate, Date.parse(person.birthdate.to_s).strftime('%d.%m.%Y'))
-      r.add_field(:origin, person.origin)
-      r.add_field(:language, person.language)
-      r.add_image(:profile_picture, person.picture.path) if person.picture.file.present?
-    end
-
-    def insert_competences(r)
-      bullet = "\u2022"
-      competences_string = ''
-      if person.competences.present?
-        person.competences.split("\n").each do |competence|
-          competences_string << "#{bullet} #{competence}\n"
+    def insert_categories(r)
+      expertise_categories = ExpertiseCategory.list(@discipline)
+      expertise_categories.each do |category|
+        topics = skill_values_row(category.id)
+        r.add_table(category.name.upcase.delete(' '), topics, header: true) do |t|
+          t.add_column(:topic, :topic)
+          t.add_column(:experience, :experience)
+          t.add_column(:projects, :projects)
+          t.add_column(:last_use, :last_use)
+          t.add_column(:comment, :comment)
+          t.add_column(:trainee, :trainee)
+          t.add_column(:junior, :junior)
+          t.add_column(:professional, :professional)
+          t.add_column(:senior, :senior)
+          t.add_column(:expert, :expert)
         end
       end
-      r.add_field(:competences, competences_string)
     end
 
-    def insert_educations(r)
-      educations_list = person.educations.list.collect do |e|
-        { year: formatted_year(e), title: "#{e.title}\n#{e.location}" }
-      end
-
-      r.add_table('EDUCATIONS', educations_list, header: true) do |t|
-        t.add_column(:year, :year)
-        t.add_column(:education, :title)
-      end
-    end
-
-    def insert_advanced_trainings(r)
-      advanced_trainings_list = person.advanced_trainings.list.collect do |at|
-        { year: formatted_year(at), description: at.description }
-      end
-
-      r.add_table('ADVANCED_TRAININGS', advanced_trainings_list, header: true) do |t|
-        t.add_column(:year, :year)
-        t.add_column(:advanced_training, :description)
-      end
-    end
-
-    def insert_activities(r)
-      activities_list = person.activities.list.collect do |a|
-        { year: formatted_year(a), description: "#{a.role}\n\n#{a.description}" }
-      end
-
-      r.add_table('ACTIVITIES', activities_list, header: true) do |t|
-        t.add_column(:year, :year)
-        t.add_column(:activity, :description)
-      end
-    end
-
-    def insert_projects(r)
-      projects_list = person.projects.list.collect do |p|
-        { year: formatted_year(p), project: project_description(p) }
-      end
-
-      r.add_table('PROJECTS', projects_list, header: true) do |t|
-        t.add_column(:year, :year)
-        t.add_column(:project_description, :project)
-      end
-    end
-
-    def project_description(p)
-      str = ''
-      str << "#{p.title}\n\n"
-      str << "#{p.description}\n\n"
-      str << "#{p.role}\n\n"
-      str << p.technology.to_s
-    end
-
-    def formatted_year(obj)
-      if obj.year_to.nil?
-        "#{obj.year_from} - heute"
-      elsif obj.year_from == obj.year_to
-        obj.year_to
-      else
-        "#{obj.year_from} - #{obj.year_to}"
-      end
-    end
   end
 end

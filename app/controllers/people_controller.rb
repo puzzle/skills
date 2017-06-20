@@ -34,7 +34,7 @@ class PeopleController < CrudController
 
   def export_fws
     return render status: 404 unless format_odt?
-    odt_file = Odt::Fws.new(person).export
+    odt_file = Odt::Fws.new(person, params['discipline'], params['empty']).export
     send_data odt_file.generate,
               type: 'application/vnd.oasis.opendocument.text',
               disposition: 'attachment',

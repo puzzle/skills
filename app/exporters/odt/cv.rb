@@ -1,11 +1,11 @@
 # encoding: utf-8
 module Odt
   class Cv
-    
+
     def initialize(person)
       @person = person
     end
-    
+
     def export
       ODFReport::Report.new('lib/templates/cv_template.odt') do |r|
         insert_general_sections(r)
@@ -108,7 +108,7 @@ module Odt
     end
 
     def formatted_year(obj)
-      if obj.year_to.nil? 
+      if obj.year_to.nil?
         "#{obj.year_from} - heute"
       elsif obj.year_from == obj.year_to
         obj.year_to
