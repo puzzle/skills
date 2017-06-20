@@ -5,6 +5,11 @@ Rails.application.routes.draw do
     scope '/auth' do
       post 'sign_in', to: 'authentication#sign_in'
     end
+    scope 'documents' do
+      scope 'templates' do
+        get 'fws', to: 'people#export_empty_fws'
+      end
+    end
 
     resources :people do
       put 'picture', to: 'people#update_picture'

@@ -34,11 +34,20 @@ class PeopleController < CrudController
 
   def export_fws
     return render status: 404 unless format_odt?
-    odt_file = Odt::Fws.new(person, params['discipline'], params['empty']).export
+    odt_file = Odt::Fws.new(params['discipline'], params[:person_id]).export
     send_data odt_file.generate,
-              type: 'application/vnd.oasis.opendocument.text',
-              disposition: 'attachment',
-              filename: filename(entry.name)
+      type: 'application/vnd.oasis.opendocument.text',
+      disposition: 'attachment',
+      filename: filename(person.name)
+  end
+
+  def export_empty_fws
+    return render status: 404 unless format_odt?
+    odt_file = Odt::Fws.new(params['discipline']).empty_export
+    send_data odt_file.generate,
+      type: 'application/vnd.oasis.opendocument.text',
+      disposition: 'attachment',
+      filename: filename('fws')
   end
 
   private
@@ -50,9 +59,9 @@ class PeopleController < CrudController
   def export
     odt_file = Odt::Cv.new(entry).export
     send_data odt_file.generate,
-              type: 'application/vnd.oasis.opendocument.text',
-              disposition: 'attachment',
-              filename: filename(entry.name)
+      type: 'application/vnd.oasis.opendocument.text',
+      disposition: 'attachment',
+      filename: filename(entry.name)
   end
 
   def filename(name)
