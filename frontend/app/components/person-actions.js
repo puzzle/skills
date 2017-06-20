@@ -44,9 +44,15 @@ export default Ember.Component.extend({
       this.downloadFile(url)
     },
 
-    exportEmptyFws(personId, e) {
+    exportEmptyDevFws(personId, e) {
       e.preventDefault();
-      let url = `/api/people/${personId}/fws.odt?empty=true`;
+      let url = `/api/people/fws.odt?empty=true&discipline=development`;
+      this.downloadFile(url)
+    },
+
+    exportEmptySysFws(personId, e) {
+      e.preventDefault();
+      let url = `/api/people/fws.odt?empty=true&discipline=system_engineering`;
       this.downloadFile(url)
     },
 
