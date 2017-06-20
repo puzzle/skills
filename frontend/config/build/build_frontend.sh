@@ -1,6 +1,6 @@
 #!/bin/bash
 
-npm install bower && \
-npm install && \
-npm run bower-install && \
-npm run build-prod
+yarn add bower && \
+yarn install && \
+yarn run bower-install && \
+yarn run build-prod
