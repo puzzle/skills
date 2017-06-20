@@ -60,6 +60,7 @@
     "ember-source": "^2.13.3",
     "ember-test-selectors": "^0.3.4",
     "ember-tether": "^1.0.0-beta.0",
+    "liquid-fire": "^0.27.3",
     "loader.js": "^4.4.0",
     "symlink-or-copy": "^1.1.8"
   },

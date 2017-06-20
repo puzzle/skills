@@ -1,21 +1,26 @@
 #fws-link{
   margin-left: 200px;
 }
+
 #expertise-categories{
   width: 100%;
+  margin: 0px auto;
   margin-top: -20px;
   margin-bottom: 20px;
 }
 
 .expertise-category{
-  border-bottom: 0.5px solid #222;
-  background-color: #3B3B3B;
-  text-align: center;
   font-size: 15px;
-  padding: 5px;
-  color: white;
+  padding: 10px 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  margin-top: 5px; 
 }
 
+#expertise-categories .unfolded{
+  border-bottom: 0px;
+  border-radius: 3px 3px 0px 0px;
+}
 
 .expertise-topic-skill-values-table{
   background-color: #FAFAFA;
@@ -25,10 +30,11 @@
 
 .expertise-topic-skill-values-table .content-row:hover{
   background-color: #EEE;
+  cursor: pointer;
 }
 
 .expertise-category:hover{
-  background-color: #4577D4;
+  background-color: #EEE;
   cursor: pointer;
 }
 
@@ -73,4 +79,10 @@
   margin-top: 0px!important;
   border-radius: 4px!important;
   margin-top: 0;
+}
+
+.expertise-topic-skill-values-table{
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  margin-top: -5px;
 }

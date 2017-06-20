@@ -1,13 +1,16 @@
-<div class="expertise-category" onclick={{action (toggle 'showTopics' this)}} >
-  {{expertiseCategory.name}}
-  {{#if showTopics}}
-    <img class="fws-category-unfold-icon" src="/assets/images/chevron-left.svg">
-  {{else}}
-    <img class="fws-category-unfold-icon" src="/assets/images/chevron-down.svg">
-  {{/if}}
-</div>
-
 {{#if showTopics}}
+  <div class="expertise-category unfolded" onclick={{action (toggle 'showTopics' this)}} >
+    {{expertiseCategory.name}}
+    <img class="fws-category-unfold-icon" src="/assets/images/chevron-up.svg">
+  </div>
+{{else}}
+  <div class="expertise-category" onclick={{action (toggle 'showTopics' this)}} >
+    {{expertiseCategory.name}}
+    <img class="fws-category-unfold-icon" src="/assets/images/chevron-down.svg">
+  </div>
+{{/if}}
+
+{{#liquid-if showTopics}}
   <table class="expertise-topic-skill-values-table table">
     <tr>
       <th class="fws-topic-name">Fachwissen</th>
@@ -18,12 +21,8 @@
       <th>Bemerkung</th>
       <th></th>
     </tr>
-    {{#if isLoading.isFulfilled}}
       {{#each expertiseTopics as |et|}}
         {{expertise-topic-skill-value expertiseTopic=et person=person}}
       {{/each}}
-    {{else if isLoading.isPending}}
-      <tr><td colspan="42">Lädt...</td></tr>
-    {{/if}}
   </table>
-{{/if}}
+{{/liquid-if}}
