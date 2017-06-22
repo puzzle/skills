@@ -68,6 +68,10 @@ hr {
     font-weight: bold;
   }
 
+  .section-title a{
+    color: #333
+  }
+
   .btn-space {
     margin-left: 10px;
   }

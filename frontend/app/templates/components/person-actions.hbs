@@ -75,7 +75,7 @@
                 <li>
                   <a onclick={{action 'exportCvOdt' person.id}}>
                     {{#if person.originPersonId}}
-                      CV Variante
+                      Aktuelle Variante
                     {{else}}
                       Aktuelles CV
                     {{/if}}
@@ -85,12 +85,6 @@
                   </a>
                   <a onclick={{action 'exportSysFws' person.id}}>
                     Fachwissensskala Systemtechniker
-                  </a>
-                  <a onclick={{action 'exportEmptyDevFws' person.id}}>
-                    Leere Fachwissensskala (Entwickler)
-                  </a>
-                  <a onclick={{action 'exportEmptySysFws' person.id}}>
-                    Leere Fachwissensskala (Systemtechniker)
                   </a>
                 </li>
             </ul>
