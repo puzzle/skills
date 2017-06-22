@@ -26,9 +26,11 @@
       <th>Bemerkung</th>
       <th></th>
     </tr>
+    {{#if isLoading.isFulfilled}}
       {{#each expertiseTopics as |et|}}
         {{expertise-topic-skill-value expertiseTopic=et person=person}}
       {{/each}}
+    {{/if}}
   </table>
 {{/liquid-if}}
 
