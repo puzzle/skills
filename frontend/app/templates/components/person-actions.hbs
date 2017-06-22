@@ -34,9 +34,9 @@
           {{/dd.content}}
         {{/basic-dropdown}}
       </li>
-      <li>
-        {{#link-to "person.fws" (or person.originPersonId person) class="fws-button"}}Fachwissenskala{{/link-to}}
-      </li>
+      {{#link-to "person.fws" (or person.originPersonId person) tagName="li"}}
+        <a class="fws-button">Fachwissenskala</a>
+      {{/link-to}}
     </ul>
     <ul class="nav nav-pills group-pills" id="variation-options">
       <li class="dropdown right" id="option-pill">
