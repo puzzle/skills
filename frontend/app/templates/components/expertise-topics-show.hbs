@@ -14,12 +14,12 @@
   <table class="expertise-topic-skill-values-table table">
     <tr>
       <th class="fws-topic-name">Fachwissen</th>
-      <th>Jahre</th>
-      <th>Projekte</th>
+      <th>Jahre Erfahrung</th>
+      <th>Anzahl Projekte</th>
       <th class="fws-last-use">Letztmals angewendet</th>
       <th>
         Erfahrungswert
-        <a onclick={{action (toggle 'erfahrungswertInfo' this)}}>
+        <a onclick={{action (toggle 'showInfoModal' this)}}>
           <img class="info-icon" src="/assets/images/info.svg">
         </a>
       </th>
@@ -34,8 +34,8 @@
   </table>
 {{/liquid-if}}
 
-{{#if erfahrungswertInfo}}
-  {{#modal-dialog hasOverlay=false}}
+{{#if showInfoModal}}
+  {{#modal-dialog close='closeInfo'}}
     <table class="table">
       <tr>
         <th>Erfahrungswert</th>
@@ -63,7 +63,7 @@
       </tr>
 
     </table>
-    <button onclick={{action (toggle 'erfahrungswertInfo' this)}} class="btn pull-right">
+    <button onclick={{action (toggle 'showInfoModal' this)}} class="btn pull-right">
       Got it!
     </button>
   {{/modal-dialog}}

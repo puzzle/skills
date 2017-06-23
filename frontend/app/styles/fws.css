@@ -33,6 +33,11 @@
   cursor: pointer;
 }
 
+.expertise-topic-skill-values-table .content-row-edit:hover{
+  cursor: default;
+  background-color: #FAFAFA;
+}
+
 .expertise-category:hover{
   background-color: #EEE;
   cursor: pointer;

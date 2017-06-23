@@ -27,6 +27,12 @@ export default Component.extend({
         this.get('expertiseTopicSkillValues')
       ])
     });
-  })
+  }),
+
+  actions: {
+    closeInfo() {
+      this.set('showInfoModal', false);
+    }
+  }
 
 });

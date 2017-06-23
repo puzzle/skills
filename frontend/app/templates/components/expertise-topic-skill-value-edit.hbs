@@ -4,6 +4,7 @@
     <input form={{formId}}
         max="80"
         min="0"
+        required="true"
         class="fws-number-input"
         type="number"
         value={{expertiseTopicSkillValue.yearsOfExperience}}
@@ -13,6 +14,7 @@
     <input form={{formId}}
         max="255"
         min="0"
+        required="true"
         class="fws-number-input"
         class="fws-number-input"
         type="number"
@@ -23,6 +25,7 @@
     <input form={{formId}}
         max="4095"
         min="1900"
+        required="true"
         class="fws-year-input"
         type="number"
         value={{expertiseTopicSkillValue.lastUse}}
@@ -44,13 +47,13 @@
   </td>
   <td>
     <form id={{formId}} onsubmit={{action onsubmit changeset}}>
-      <button class="btn-link">
-        <img class="fws-action-icon" alt="check" src="/assets/images/save.svg">
+      <button class="btn-link" title="save">
+        <img class="fws-action-icon" alt="check" src="/assets/images/save.svg" alt="save icon">
       </button>
     </form>
     <form id={{formId}}>
-      <button onclick={{action cancelEdit changeset}} class="btn-link">
-        <img class="fws-action-icon" alt="check" src="/assets/images/cross.svg">
+      <button onclick={{action cancelEdit changeset}} class="btn-link" title="cancel">
+        <img class="fws-action-icon" alt="check" src="/assets/images/cross.svg" alt="cancel icon">
       </button>
     </form>
   </td>
