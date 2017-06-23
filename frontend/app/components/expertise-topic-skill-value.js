@@ -35,7 +35,10 @@ export default Component.extend({
           return record;
         })
         .catch(err => {
-          changeset.get('_content.errors').forEach(({ attribute, message }) => {
+          let expertiseTopicSkillValue = this.get('expertiseTopicSkillValue');
+          let errors = expertiseTopicSkillValue.get('errors').slice();
+          expertiseTopicSkillValue.rollbackAttributes()
+          errors.forEach(({ attribute, message }) => {
             let translated_attribute = this.get('i18n').t(`expertise-topic-skill-value.${attribute}`)['string']
             changeset.pushErrors(attribute, message);
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
