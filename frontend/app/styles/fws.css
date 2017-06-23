@@ -14,7 +14,7 @@
   padding: 10px 10px;
   border: 1px solid #ddd;
   border-radius: 3px;
-  margin-top: 5px; 
+  margin-top: 5px;
 }
 
 #expertise-categories .unfolded{
@@ -94,4 +94,9 @@
 
 .expertise-topic-skill-values-table .info-icon{
   width: 15px;
+}
+
+.fws-comments-field {
+  word-wrap: break-word;
+  max-width: 125px;
 }
