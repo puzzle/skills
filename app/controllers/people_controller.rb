@@ -34,26 +34,48 @@ class PeopleController < CrudController
 
   def export_fws
     return render status: 404 unless format_odt?
-    odt_file = Odt::Fws.new(params['discipline'], params[:person_id]).export
+
+    discipline = params['discipline']
+    odt_file = Odt::Fws.new(discipline, params[:person_id]).export
     send_data odt_file.generate,
       type: 'application/vnd.oasis.opendocument.text',
       disposition: 'attachment',
-      filename: filename(person.name)
+      filename: fws_filename(discipline, person.name)
   end
 
   def export_empty_fws
     return render status: 404 unless format_odt?
-    odt_file = Odt::Fws.new(params['discipline']).empty_export
+
+    discipline = params['discipline']
+    odt_file = Odt::Fws.new(discipline).empty_export
+
     send_data odt_file.generate,
       type: 'application/vnd.oasis.opendocument.text',
       disposition: 'attachment',
-      filename: filename('fws')
+      filename: empty_fws_filename(discipline)
   end
 
   private
 
   def person
     @person ||= Person.find(params[:person_id])
+  end
+
+  def fws_filename(discipline, name)
+    formatted_name = name.downcase.tr(' ', '-') 
+    if discipline == 'development'
+      "fachwissensskala-entwicklung-#{formatted_name}.odt"
+    else
+      "fachwissensskala-sys-#{formatted_name}.odt"
+    end
+  end
+
+  def empty_fws_filename(discipline)
+    if discipline == 'development'
+      'fachwissensskala-entwicklung.odt'
+    else
+      'fachwissensskala-sys.odt'
+    end
   end
 
   def export

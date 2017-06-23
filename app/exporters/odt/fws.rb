@@ -88,7 +88,7 @@ module Odt
     end
 
     def person
-      @person ||= Person.find(@person_id)
+      @person ||= ::Person.find(@person_id)
     end
   end
 end
