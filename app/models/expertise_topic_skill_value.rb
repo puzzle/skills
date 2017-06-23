@@ -26,8 +26,11 @@ class ExpertiseTopicSkillValue < ApplicationRecord
   validates :comment, length: { maximum: 500 }
   validates :number_of_projects, inclusion: { in: 0..255 }
   validates :years_of_experience, inclusion: { in: 0..80 }
-  
-  scope :list, -> (person_id = nil, category_id= nil) do 
+  validates :expertise_topic_id,
+    uniqueness: { scope: :person ,
+                  message: '- Etwas ist schief gelaufen. Bitte Seite neu laden' }
+
+  scope :list, -> (person_id = nil, category_id= nil) do
     includes(:expertise_topic).
     includes(expertise_topic: :expertise_category).
     where(person_id: person_id).

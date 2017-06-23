@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe ExpertiseTopicSkillValuesController do
   before { auth(:ken) }
-  
+
   let(:bobs_variation) { Person::Variation.create_variation('bobs_variation', people(:bob).id) }
 
   describe 'GET index' do
@@ -33,13 +33,16 @@ describe ExpertiseTopicSkillValuesController do
 
   describe 'POST create' do
     it 'creates new expertise_topic_skill_value' do
+      ExpertiseTopicSkillValue.find_by(person_id: people(:bob),
+                                       expertise_topic_id: expertise_topics(:rails)).delete
+
       expertise_topic_skill_value = { years_of_experience: 1,
                                       number_of_projects: 12,
                                       last_use: 2000,
                                       skill_level: 'expert',
                                       comment: 'very high level' }
 
-      post :create, params: create_params(expertise_topic_skill_value, 
+      post :create, params: create_params(expertise_topic_skill_value,
                                           expertise_topics(:rails),
                                           people(:bob))
 
@@ -55,7 +58,7 @@ describe ExpertiseTopicSkillValuesController do
                                       comment: 'very high level' }
 
       exception = assert_raises(RuntimeError) do
-        post :create, params: create_params(expertise_topic_skill_value, 
+        post :create, params: create_params(expertise_topic_skill_value,
                                             expertise_topics(:rails),
                                             bobs_variation.id)
       end
@@ -85,12 +88,12 @@ describe ExpertiseTopicSkillValuesController do
       expect(ExpertiseTopicSkillValue.exists?(expertise_topic_skill_value.id)).to be false
     end
   end
-  
+
   private
 
   def create_params(object, parent_id, person_id)
     { data: { attributes: object,
-              relationships: { 
+              relationships: {
                 expertise_topic: { data: { id: parent_id } },
                 person: { data: { id: person_id } }
               }
