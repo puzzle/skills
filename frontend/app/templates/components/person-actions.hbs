@@ -35,7 +35,7 @@
         {{/basic-dropdown}}
       </li>
       {{#link-to "person.fws" (or person.originPersonId person) tagName="li"}}
-        <a class="fws-button">Fachwissenskala</a>
+        <a class="fws-button">Fachwissensskala</a>
       {{/link-to}}
     </ul>
     <ul class="nav nav-pills group-pills" id="variation-options">
@@ -81,7 +81,7 @@
                     {{/if}}
                   </a>
                   <a onclick={{action 'exportDevFws' person.id}}>
-                    Fachwissenskala Entwickler
+                    Fachwissensskala Entwickler
                   </a>
                   <a onclick={{action 'exportSysFws' person.id}}>
                     Fachwissensskala Systemtechniker
