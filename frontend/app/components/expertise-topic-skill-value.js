@@ -45,9 +45,10 @@ export default Component.extend({
           });
         })
     },
-   cancelEdit(changeset, event){
-     changeset.rollback();
-     this.set('editing', false);
-   }
+
+    cancelEdit(changeset, event) {
+      changeset.rollback();
+      this.set('editing', false);
+    }
   }
 });

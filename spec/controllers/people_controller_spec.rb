@@ -38,6 +38,58 @@ describe PeopleController do
           /filename="bob_anderson_cv.odt"/
         )
       end
+
+      it 'returns fws bob development' do
+        bob = people(:bob)
+
+        expect_any_instance_of(Odt::Fws)
+          .to receive(:export)
+          .exactly(1).times
+          .and_call_original
+
+        process :export_fws, method: :get, format: 'odt', params: { discipline: 'development', person_id: bob.id }
+        expect(@response['Content-Disposition']).to match(
+          /attachment; filename=\"fachwissensskala-entwicklung-bob-anderson.odt\"/
+        )
+      end
+
+      it 'returns fws bob sys' do
+        bob = people(:bob)
+
+        expect_any_instance_of(Odt::Fws)
+          .to receive(:export)
+          .exactly(1).times
+          .and_call_original
+
+        process :export_fws, method: :get, format: 'odt', params: { discipline: 'system_engineering', person_id: bob.id }
+        expect(@response['Content-Disposition']).to match(
+          /attachment; filename=\"fachwissensskala-sys-bob-anderson.odt\"/
+        )
+      end
+
+      it 'returns empty development fws' do
+        expect_any_instance_of(Odt::Fws)
+          .to receive(:empty_export)
+          .exactly(1).times
+          .and_call_original
+
+        process :export_empty_fws, method: :get, format: 'odt', params: { discipline: 'development'}
+        expect(@response['Content-Disposition']).to match(
+          /attachment; filename=\"fachwissensskala-entwicklung.odt\"/
+        )
+      end
+
+      it 'returns empty system_enigneer fws' do
+        expect_any_instance_of(Odt::Fws)
+          .to receive(:empty_export)
+          .exactly(1).times
+          .and_call_original
+
+        process :export_empty_fws, method: :get, format: 'odt', params: { discipline: 'system_engineering'}
+        expect(@response['Content-Disposition']).to match(
+          /attachment; filename=\"fachwissensskala-sys.odt\"/
+        )
+      end
     end
 
     describe 'GET index' do
