@@ -41,6 +41,10 @@ export default Component.extend({
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
         })
-    }
+    },
+   cancelEdit(changeset, event){
+     changeset.rollback();
+     this.set('editing', false);
+   }
   }
 });
