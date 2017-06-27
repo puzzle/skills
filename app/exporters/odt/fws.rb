@@ -16,7 +16,7 @@ module Odt
 
     def empty_export
       ODFReport::Report.new("lib/templates/fws_#{@discipline}_empty_template.odt") do |r|
-        insert_topics(r)
+        insert_empty_categories(r)
       end
     end
 
@@ -32,8 +32,8 @@ module Odt
 
     def skill_values_row(category_id)
       ExpertiseTopicSkillValue.list(@person_id, category_id).collect do |e|
-        topics = expertise_export_values(e)
-        topics[e.skill_level.to_sym] = 'X'
+        topics = expertise_export_values(e).with_indifferent_access
+        topics[e.skill_level] = 'X'
         topics
       end
     end
@@ -77,7 +77,7 @@ module Odt
       end
     end
 
-    def insert_topics(r)
+    def insert_empty_categories(r)
       expertise_categories = ExpertiseCategory.list(@discipline)
       expertise_categories.each do |category|
         topics = ExpertiseTopic.list(category.id)
