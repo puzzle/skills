@@ -339,16 +339,15 @@ textarea {
     padding-bottom: 20px;
     padding-left: 20px;
     padding-right: 20px;
-    box-shadow: 0px 0px 4px #AAA;
-    border-radius: 10px;
     width: 400px;
 }
 
-.form-login h1{
+.form-login img{
  border:0 solid #DDD; 
  border-bottom-width:1px;
  padding-bottom:10px;
  text-align: center;
+ margin-bottom: 20px;
 }
 
 .form-login input{
@@ -362,8 +361,7 @@ textarea {
 }
 
 .form-login .btn{
-  width: 190px;
-  margin-left:17px;
+  width: 80px;
 }
 
 #logout-button{
