@@ -25,15 +25,26 @@ export default Component.extend({
     let res = this.get('ajax').put(this.get('uploadPath'), {
       contentType: false,
       processData: false,
+      timeout: 5000,
       data: formData
     });
 
+    let oldPicture = this.get('picturePath');
     this.set('picturePath', URL.createObjectURL(file));
 
-    res.then(res => this.set('picturePath', `${res.data.picture_path}?${Date.now()}`));
+    res
+      .then(res =>
+        this.set('picturePath', `${res.data.picture_path}?${Date.now()}`)
+      )
+      .then(() =>
+        this.get('notify').success('Profilbild wurde aktualisiert!')
+      )
+      .catch(err => {
+        this.get('notify').error(err.message)
+        this.set('picturePath', oldPicture)
+      });
 
     this.set('response', ObjectPromiseProxy.create({ promise: res }))
-      .then(() => this.get('notify').success('Profilbild wurde aktualisiert!'));
   },
   didInsertElement() {
     this.$('.img-input').on('change', e => {
