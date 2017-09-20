@@ -13,7 +13,7 @@ test('it renders activity', function(assert) {
     year_to: '1991'
   });
 
-  this.render(hbs`{{activity-show 
+  this.render(hbs`{{activity-show
     activity=activity
     selectActivity=(action (mut activityEditing))
   }}`);
@@ -22,4 +22,23 @@ test('it renders activity', function(assert) {
   assert.ok(this.$().text().indexOf('Träumer') !== -1);
   assert.ok(this.$().text().indexOf('1990') !== -1);
   assert.ok(this.$().text().indexOf('1991') !== -1);
+});
+
+test('activity description preserves whitespace', function(assert) {
+  this.set('activity', {
+    description: 'Preserves\nwhitespaces',
+    role: 'Träumer',
+    year_from: '1990',
+    year_to: '1991'
+  });
+
+  this.render(hbs`{{activity-show
+    activity=activity
+    selectActivity=(action (mut activityEditing))
+  }}`);
+
+  assert.equal(
+    window.getComputedStyle(this.$('.activity-description')[0]).whiteSpace,
+    'pre-wrap'
+  );
 });
