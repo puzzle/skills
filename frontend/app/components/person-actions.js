@@ -27,25 +27,25 @@ export default Ember.Component.extend({
     loadPersonVariations(originPersonId, id = originPersonId) {
       id = originPersonId || id;
       return this.get('ajax')
-       .request(`people/${id}/variations`)
+        .request(`people/${id}/variations`)
         .then(response => response.data)
         .then(personVariations => this.set('personVariations', personVariations));
     },
 
     createPersonVariation(id, changeset) {
       return this.get('ajax')
-       .request(`people/${id}/variation`, {
-         method: 'POST',
-         data: {
-           variation_name: changeset.get('variationName')
-         }
-       })
+        .request(`people/${id}/variation`, {
+          method: 'POST',
+          data: {
+            variation_name: changeset.get('variationName')
+          }
+        })
         .then(response => response.data)
         .then(personVariation => this.get('router').transitionTo('person', personVariation.id))
         .then(
-            function(value) { this.get('notify').success('Variante erstellt!') }.bind(this),
-            function(reason) { this.get('notify').alert(reason.payload, { closeAfter: 15000 }) }.bind(this)
-         );
+          value => this.get('notify').success('Variante erstellt!'),
+          reason => this.get('notify').alert(reason.payload, { closeAfter: 15000 })
+        );
     },
 
     updateVariationName(changeset) {
