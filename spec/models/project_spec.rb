@@ -29,7 +29,7 @@ describe Project do
       expect(project.errors[:person_id].first).to eq('muss ausgefüllt werden')
       expect(project.errors[:role].first).to eq('muss ausgefüllt werden')
       expect(project.errors[:title].first).to eq('muss ausgefüllt werden')
-      expect(project.errors[:technology].first).to eq('muss ausgefüllt werden')
+      expect(project.errors[:technology].first).to eq(nil)
     end
 
     it 'checks validation maximum length for attributes' do

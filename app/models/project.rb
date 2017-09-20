@@ -19,8 +19,8 @@
 
 class Project < ApplicationRecord
   belongs_to :person
-  validates :year_from, :person_id, :role, :title, :technology, presence: true
-  validates :year_from, :year_to, length: {is: 4}, allow_blank: true
+  validates :year_from, :person_id, :role, :title, presence: true
+  validates :year_from, :year_to, length: { is: 4 }, allow_blank: true
   validates :description, :technology, :role, length: { maximum: 5000 }
   validates :title, length: { maximum: 500 }
   validate :year_from_before_year_to
