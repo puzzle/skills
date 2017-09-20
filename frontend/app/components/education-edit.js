@@ -9,7 +9,7 @@ export default Ember.Component.extend({
       event.preventDefault();
       return changeset.save()
         .then(education => this.sendAction('done'))
-        .then(() => this.get('notify').success('Weiterbildung wurde aktualisiert!'))
+        .then(() => this.get('notify').success('Ausbildung wurde aktualisiert!'))
         .catch(() => {
           let education = this.get('education');
           let errors = education.get('errors').slice(); // clone array as rollbackAttributes mutates
@@ -17,11 +17,9 @@ export default Ember.Component.extend({
           education.rollbackAttributes();
           errors.forEach(({ attribute, message }) => {
             let translated_attribute = this.get('i18n').t(`education.${attribute}`)['string']
-            changeset.pushErrors(attribute, message);
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
-        })
-
+        });
     },
     deleteEducation(education) {
       education.destroyRecord()
