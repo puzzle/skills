@@ -343,7 +343,7 @@ textarea {
 }
 
 .form-login img{
- border:0 solid #DDD; 
+ border:0 solid #DDD;
  border-bottom-width:1px;
  padding-bottom:10px;
  text-align: center;
@@ -371,4 +371,8 @@ textarea {
   text-align: center;
   margin-top: -40px;
   margin-right: 10px;
+}
+
+.preserve-whitespace {
+  white-space: pre-wrap;
 }
