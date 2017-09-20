@@ -17,9 +17,10 @@ textarea {
     color: #222;
 }
 
-html {
+:root {
     font-size: 1em;
     line-height: 1.4;
+    overflow-y: scroll;
 }
 
 /*
