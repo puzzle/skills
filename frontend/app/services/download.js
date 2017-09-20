@@ -7,8 +7,10 @@ export default Ember.Service.extend({
     let xhr = new XMLHttpRequest;
     xhr.responseType = 'blob';
     xhr.onload = () => {
-      let [ , fileName ] = /filename="(.*?)"/.exec(xhr.getResponseHeader('Content-Disposition'));
-      let file = new File([ xhr.response ], fileName);
+      let [ , fileName ] = /filename\*=UTF-8''(.*?)$/.exec(
+        xhr.getResponseHeader('Content-Disposition')
+      );
+      let file = new File([ xhr.response ], decodeURIComponent(fileName));
       let link = document.createElement('a');
       link.style.display = 'none';
       link.href = URL.createObjectURL(file);
