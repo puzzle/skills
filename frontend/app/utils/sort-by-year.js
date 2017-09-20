@@ -7,15 +7,14 @@ export default function sortByYear(property) {
     if (!collection) return [];
 
     return collection.toArray().sort((a, b) => {
-      let aYearTo = a.get('year_to');
-      let bYearTo = b.get('year_to');
+      let aYearTo = a.get('year_to')|0;
+      let bYearTo = b.get('year_to')|0;
 
-      if (aYearTo == null || bYearTo == null) {
-        return -1
-      }
+      if (aYearTo === 0 && bYearTo !== 0) return -1;
+      if (aYearTo !== 0 && bYearTo === 0) return  1;
 
-      let aYearFrom = a.get('year_from');
-      let bYearFrom = b.get('year_from');
+      let aYearFrom = a.get('year_from')|0;
+      let bYearFrom = b.get('year_from')|0;
 
       if (aYearFrom < bYearFrom) return  1;
       if (aYearFrom > bYearFrom) return -1;
