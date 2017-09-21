@@ -1,3 +1,4 @@
+import Service from '@ember/service';
 import { test, skip } from 'qunit';
 import moduleForAcceptance from 'frontend/tests/helpers/module-for-acceptance';
 
@@ -16,7 +17,19 @@ skip('login with valid credentials works', async function(assert) {
 });
 
 test('login with invalid credentials rejects', async function(assert) {
+  assert.expect(2);
+
+  this.application.register('service:mocknotify', Service.extend({
+    alert(message) {
+      // Currently no real message from the backend as LDAP is not available
+      // and thus errors with a status code of 500
+      assert.equal(message, 'Unbekannter Fehler');
+    }
+  }));
+  this.application.inject('route', 'notify', 'service:mocknotify');
+
   await page.visit();
+
   await page.login('habasch', '123456');
 
   assert.equal(currentURL(), '/login');

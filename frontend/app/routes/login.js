@@ -11,7 +11,7 @@ export default Ember.Route.extend(UnauthenticatedRouteMixin, {
 
       this.get('session').authenticate('authenticator:auth', password, identification)
         .catch(reason => {
-          this.get('notify').alert(reason.error);
+          this.get('notify').alert(reason && reason.error || 'Unbekannter Fehler');
         });
       this.transitionTo('people');
     }
