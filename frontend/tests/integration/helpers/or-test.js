@@ -6,12 +6,17 @@ moduleForComponent('or', 'helper:or', {
   integration: true
 });
 
-// Replace this with your real tests.
-test('it renders', function(assert) {
-  this.set('inputValue', '1234');
+test('it works', function(assert) {
+  this.render(hbs`{{or 0 1}}`);
 
-  this.render(hbs`{{or inputValue}}`);
+  assert.equal(this.$().text().trim(), '1');
 
-  assert.equal(this.$().text().trim(), '1234');
+  this.render(hbs`{{or 1 0}}`);
+
+  assert.equal(this.$().text().trim(), '1');
+
+  this.render(hbs`{{or 0 false 'hallo'}}`);
+
+  assert.equal(this.$().text().trim(), 'hallo');
 });
 
