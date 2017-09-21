@@ -4,7 +4,7 @@ export RAILS_PORT=3001
 
 rails server -e test -d -p $RAILS_PORT
 
-cd frontend && COVERAGE=true ember test
+cd frontend && COVERAGE=true yarn test
 cd ..
 
 kill -INT $(cat tmp/pids/server.pid)
