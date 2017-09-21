@@ -15,7 +15,8 @@
             <b class="caret"></b>
           {{/dd.trigger}}
           {{#dd.content}}
-            <ul class="content-bootstrap-feel dropdown-menu">
+            <ul class="content-bootstrap-feel dropdown-menu"
+                data-test-variation-dropdown-content>
               {{#each personVariations as |pv|}}
                 <li id="change-variation-link"
                     class={{if (eq pv.id person.id) 'active'}}>
@@ -104,15 +105,17 @@
 
 {{#if createVariationModal}}
   {{#modal-dialog hasOverlay=false}}
-    <h1>CV-Variante erstellen</h1>
-    <hr>
-    {{#form-for (changeset person validations) submit=(pipe-action (action 'createPersonVariation' person.id)
-    (toggle 'createVariationModal' this)) as |f|}}
-      {{f.text-field 'variationName' label="Varianten Name"}}
-      <br>
-      <button {{action (toggle 'createVariationModal' this)}} class="btn">Abbrechen</button>
-      {{f.submit "Speichern"class="btn btn-primary"}}
-    {{/form-for}}
+    <div data-test-variation-modal>
+      <h1>CV-Variante erstellen</h1>
+      <hr>
+      {{#form-for (changeset person validations) submit=(pipe-action (action 'createPersonVariation' person.id)
+      (toggle 'createVariationModal' this)) as |f|}}
+        {{f.text-field 'variationName' label="Varianten Name"}}
+        <br>
+        <button {{action (toggle 'createVariationModal' this)}} class="btn">Abbrechen</button>
+        {{f.submit "Speichern"class="btn btn-primary"}}
+      {{/form-for}}
+    </div>
   {{/modal-dialog}}
 {{/if}}
 

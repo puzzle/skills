@@ -5,15 +5,17 @@ import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
 import applicationPage from 'frontend/tests/pages/application';
 import page from 'frontend/tests/pages/person-edit';
 
-moduleForAcceptance('Acceptance | edit person');
+moduleForAcceptance('Acceptance | edit person', {
+  beforeEach() {
+    authenticateSession(this.application, {
+      ldap_uid: 'development_user',
+      token: '1234'
+    });
+  }
+});
 
 test('/people/:id edit person data', async function(assert) {
   assert.expect(7);
-
-  authenticateSession(this.application, {
-    ldap_uid: 'development_user',
-    token: '1234'
-  });
 
   await applicationPage.visitHome('/');
   await applicationPage.menuItem('Bob Anderson');
@@ -41,13 +43,30 @@ test('/people/:id edit person data', async function(assert) {
   });
 });
 
-skip('Creating a new variation', async function(assert) {
-  assert.expect(1);
+test('Creating a new variation', async function(assert) {
+  assert.expect(12);
 
-  authenticateSession(this.application);
+  await applicationPage.visitHome('/');
+  await applicationPage.menuItem('Bob Anderson');
 
-  await page.visit({ person_id: 5 });
+  assert.ok(page.personActions.originCVIsActive);
+
+  const originURL = currentURL();
+
   await page.createVariation('Dönu.js');
 
-  assert.equal(currentURL(), '/people/6');
+  assert.equal(page.personActions.variationDropdownButtonText, 'Dönu.js');
+  assert.ok(page.personActions.variationDropdownButtonIsActive);
+  assert.notOk(page.personActions.originCVIsActive);
+
+  assert.notEqual(currentURL(), originURL);
+
+  assert.equal(page.profileData.name, 'Bob Anderson');
+  assert.equal(page.profileData.title, 'BSc in Cleaning');
+  assert.equal(page.profileData.role, 'Cleaner');
+  //assert.equal(page.profileData.birthdate, '02.03.2014');
+  assert.equal(page.profileData.origin, 'Switzerland');
+  assert.equal(page.profileData.location, 'Bern');
+  assert.equal(page.profileData.maritalStatus, 'Single');
+  assert.equal(page.profileData.status, 'Mitarbeiter');
 });

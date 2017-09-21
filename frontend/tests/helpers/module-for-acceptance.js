@@ -2,6 +2,9 @@ import { all, resolve } from 'rsvp';
 import { module } from 'qunit';
 import startApp from '../helpers/start-app';
 import destroyApp from '../helpers/destroy-app';
+import registerBasicDropdownHelpers from '../../tests/helpers/ember-basic-dropdown';
+
+registerBasicDropdownHelpers();
 
 export default function(name, options = {}) {
   module(name, {
