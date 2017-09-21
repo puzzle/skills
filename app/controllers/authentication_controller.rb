@@ -11,9 +11,9 @@ class AuthenticationController < ApplicationController
 
     username = params[:username]
     password = params[:password]
-    
+
     if invalid_params?(username, password)
-      return render_unauthorized({ error: 'Invalide Parameter' }) 
+      return render_unauthorized(error: 'Invalide Parameter')
     end
 
     json = User.authenticate(username, password)
