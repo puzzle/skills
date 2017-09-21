@@ -9,11 +9,14 @@ export default Ember.Route.extend(UnauthenticatedRouteMixin, {
       let password = this.controller.get('password');
       let identification = this.controller.get('identification');
 
-      this.get('session').authenticate('authenticator:auth', password, identification)
+      this.get('session')
+        .authenticate('authenticator:auth', password, identification)
+        .then(() => {
+          this.transitionTo('people');
+        })
         .catch(reason => {
           this.get('notify').alert(reason && reason.error || 'Unbekannter Fehler');
         });
-      this.transitionTo('people');
     }
   }
 });
