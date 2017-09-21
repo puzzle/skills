@@ -1,12 +1,12 @@
 {{#if showTopics}}
-  <div class="expertise-category unfolded" onclick={{action (toggle 'showTopics' this)}} >
+  <div role="button" class="expertise-category unfolded" onclick={{action (toggle 'showTopics' this)}} >
     {{expertiseCategory.name}}
-    <img class="fws-category-unfold-icon" src="/assets/images/chevron-up.svg">
+    <img class="fws-category-unfold-icon" src="/assets/images/chevron-up.svg" alt="Unfold">
   </div>
 {{else}}
-  <div class="expertise-category" onclick={{action (toggle 'showTopics' this)}} >
+  <div role="button" class="expertise-category" onclick={{action (toggle 'showTopics' this)}} >
     {{expertiseCategory.name}}
-    <img class="fws-category-unfold-icon" src="/assets/images/chevron-down.svg">
+    <img class="fws-category-unfold-icon" src="/assets/images/chevron-down.svg" alt="Unfold">
   </div>
 {{/if}}
 
@@ -19,9 +19,10 @@
       <th class="fws-last-use">Letztmals angewendet</th>
       <th>
         Erfahrungswert
-        <a onclick={{action (toggle 'showInfoModal' this)}}>
-          <img class="info-icon" src="/assets/images/info.svg">
-        </a>
+        <button onclick={{action (toggle 'showInfoModal' this)}}
+            class="btn btn-link">
+          <img class="info-icon" src="/assets/images/info.svg" alt="Info">
+        </button>
       </th>
       <th class="fws-comments-field">Bemerkung</th>
       <th></th>

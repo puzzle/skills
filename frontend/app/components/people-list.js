@@ -1,11 +1,12 @@
-import Ember from 'ember';
+import { isBlank } from '@ember/utils';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 import PersonModel from '../models/person';
 import { task, timeout } from 'ember-concurrency';
 
-const { computed } = Ember;
 const SEARCH_TIMEOUT = 250;
 
-export default Ember.Component.extend({
+export default Component.extend({
   filterBy: 'all',
 
   filteredList: computed('people.[]', 'filterBy', function() {
@@ -22,7 +23,7 @@ export default Ember.Component.extend({
   }),
 
   searchPeopleTask: task(function* (q) {
-    if (Ember.isBlank(q)) {
+    if (isBlank(q)) {
       this.sendAction('onSearch', null);
       return
     }

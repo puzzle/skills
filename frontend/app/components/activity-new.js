@@ -1,11 +1,16 @@
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 import Ember from 'ember';
 
-const { Component, computed, inject } = Ember;
+const {
+  inject
+} = Ember;
 
 export default Component.extend({
   store: inject.service(),
 
-  i18n: Ember.inject.service(),
+  i18n: service(),
 
   newActivity: computed('personId', function() {
     return this.get('store').createRecord('activity');

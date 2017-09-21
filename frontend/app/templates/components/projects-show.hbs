@@ -1,5 +1,9 @@
 <section id="activity" class="section">
-  <a onclick={{action (toggle 'projectNew' this)}} id="button-new-projects" class="button pull-right">{{if projectNew 'Abbrechen' 'Neu'}}</a>
+  <button onclick={{action (toggle 'projectNew' this)}}
+      id="button-new-projects"
+      class="btn btn-link pull-right">
+    {{~if projectNew 'Abbrechen' 'Neu'~}}
+  </button>
   {{model-header title="Projects"}}
   {{#if projectEditing}}
     {{project-edit project = projectEditing done=(action (toggle 'projectEditing' this))}}
@@ -20,7 +24,7 @@
             </thead>
             <tbody id="project-content-show">
               {{#each sortedProjects as |project|}}
-                  {{project-show selectProject = (action (mut projectEditing)) project=project}}
+                {{project-show selectProject = (action (mut projectEditing)) project=project}}
               {{/each}}
             </tbody>
           </table>

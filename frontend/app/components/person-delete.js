@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
-  router: Ember.inject.service(),
+export default Component.extend({
+  router: service(),
 
   actions: {
     deletePerson(personToDelete) {

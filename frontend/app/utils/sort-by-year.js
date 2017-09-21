@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
 
 export default function sortByYear(property) {
-  return Ember.computed(`${property}.@each.{year_to,year_from}`, function() {
+  return computed(`${property}.@each.{year_to,year_from}`, function() {
     let collection = this.get(property);
 
     if (!collection) return [];

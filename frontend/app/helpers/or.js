@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function or(params) {
   return params.find(Boolean);
 }
 
-export default Ember.Helper.helper(or);
+export default helper(or);

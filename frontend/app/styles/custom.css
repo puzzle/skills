@@ -486,7 +486,7 @@ hr {
     margin-left: 1px;
     height: 22px;
   }
-  
+
   .ember-basic-dropdown-content-wormhole-origin{
     position: absolute;
   }
@@ -582,12 +582,8 @@ form textarea{
 }
 
 
-.btn-link{
-  background:none!important;
-  color:inherit;
-  border:none; 
+.btn-link {
   padding:0!important;
-  font: inherit;
   cursor: pointer;
 }
 

@@ -1,15 +1,16 @@
-import Ember from 'ember';
-import RSVP from 'rsvp'
+import { isEmpty } from '@ember/utils';
+import { inject as service } from '@ember/service';
+import RSVP, { resolve } from 'rsvp';
 import Base from 'ember-simple-auth/authenticators/base';
 
 const { Promise } = RSVP
 
 export default Base.extend({
-  ajax: Ember.inject.service(),
-  session: Ember.inject.service('session'),
+  ajax: service(),
+  session: service('session'),
 
   restore(data) {
-    if (Ember.isEmpty(data.token)) {
+    if (isEmpty(data.token)) {
       return Promise.reject(new Error('No Token to restore found'))
     }
     return Promise.resolve(data);
@@ -32,6 +33,6 @@ export default Base.extend({
   },
 
   invalidate(data) {
-    return Ember.RSVP.resolve();
+    return resolve();
   }
 });

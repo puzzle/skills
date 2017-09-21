@@ -1,26 +1,29 @@
 <div id="left-grid" class="span3">
-  <!-- Personlist heading -->
+  {{! Personlist heading }}
   <div class="row-fluid">
     <span class="span8 section-title">{{#link-to 'people'}}Puzzle Mitarbeiter{{/link-to}}</span>
     <div id="thanks">
       {{#link-to "people.new"}}neu...{{/link-to}}
     </div>
   </div>
-  <!-- Horizontal ruler -->
+  {{! Horizontal ruler }}
   <div class="row-fluid">
     <div class="span10">
       <hr>
     </div>
   </div>
-  <!-- Personlist -->
+  {{! Personlist }}
   <div class="row-fluid person-list">
     <div class="span10">
       <div id="form-search" class="">
         <input id="field-search" type="text" class="span12"
-          autocomplete="off" placeholder="Personensuche" oninput={{perform searchPeopleTask value='target.value'}}> 
-        <a onclick={{action (toggle 'advancedSearch' this)}} id="toggleSearch">
+          autocomplete="off" placeholder="Personensuche" oninput={{perform searchPeopleTask value='target.value'}}>
+        <button class="btn btn-link"
+            onclick={{action (toggle 'advancedSearch' this)}}
+            id="toggleSearch">
           {{if advancedSearch '- erweiterte Suche' '+ erweiterte Suche'}}
-        </a><br>
+        </button>
+        <br>
         {{#if advancedSearch}}
           <div>
             <select onchange={{action 'setFilter' value="target.value"}}>

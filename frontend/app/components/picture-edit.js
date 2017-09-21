@@ -1,8 +1,13 @@
+import PromiseProxyMixin from '@ember/object/promise-proxy-mixin';
+import ObjectProxy from '@ember/object/proxy';
+import Component from '@ember/component';
 import Ember from 'ember';
 
-const { Component, inject } = Ember;
+const {
+  inject
+} = Ember;
 
-const ObjectPromiseProxy = Ember.ObjectProxy.extend(Ember.PromiseProxyMixin);
+const ObjectPromiseProxy = ObjectProxy.extend(PromiseProxyMixin);
 
 export default Component.extend({
   ajax: inject.service(),

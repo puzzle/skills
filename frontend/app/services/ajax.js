@@ -1,7 +1,10 @@
+import { computed } from '@ember/object';
 import AjaxService from 'ember-ajax/services/ajax';
 import Ember from 'ember';
 
-const { computed, inject } = Ember;
+const {
+  inject
+} = Ember;
 
 export default AjaxService.extend({
   session: inject.service('session'),

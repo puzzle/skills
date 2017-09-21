@@ -25,10 +25,14 @@
         </div>
       </div>
       <div class="span2">
-        <button class="btn btn-primary btn-block btn-mini" >
-          Speichern </button>
-        <button class="btn btn-inverse btn-block btn-mini" type="button" onclick={{action done}}>
-          Abbrechen </button>
+        <button class="btn btn-primary btn-block btn-mini">
+          Speichern
+        </button>
+        <button class="btn btn-inverse btn-block btn-mini"
+            type="button"
+            onclick={{action done}}>
+          Abbrechen
+        </button>
         {{#confirm-dialog
           text="Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?"
           confirmButton="Löschen"
@@ -38,11 +42,11 @@
           cancelButtonClass="btn pull-right"
           okCssIcon="fa fa-check-circle-o"
           cancelCssIcon="fa fa-ban"
-        }}
-        <button class="btn btn-danger btn-block btn-mini" type="button">
-          Löschen </button>
+          }}
+          <button class="btn btn-danger btn-block btn-mini" type="button">
+            Löschen
+          </button>
         {{/confirm-dialog}}
-     
       </div>
     </div>
   </form>

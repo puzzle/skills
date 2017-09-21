@@ -1,7 +1,9 @@
 <section id="competence" class="section">
-  <a onclick={{action (toggle 'competenceEdit' this)}} id="button-new-competences" class="button pull-right">
+  <button onclick={{action (toggle 'competenceEdit' this)}}
+      id="button-new-competences"
+      class="btn btn-link pull-right">
     {{if competenceEdit 'Abbrechen' 'Editieren'}}
-  </a>
+  </button>
   {{#if competenceEdit}}
     {{competences-edit person=person done=(action (toggle 'competenceEdit' this))}}
   {{else}}
@@ -9,9 +11,9 @@
     <div id="competence-content-show" class="row-fluid">
       <div class="span12">
         <ul>
-        {{#each competenceList as |competence|}}
-          <li>{{competence}}</li>
-        {{/each}}
+          {{#each competenceList as |competence|}}
+            <li>{{competence}}</li>
+          {{/each}}
         </ul>
       </div>
     </div>

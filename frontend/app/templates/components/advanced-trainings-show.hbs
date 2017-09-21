@@ -1,9 +1,12 @@
 <section id="advancedTraining" class="section">
-  <a onclick={{action (toggle 'advanced-trainingNew' this)}} id="button-new-advanced-trainings" class="button pull-right">{{if advanced-trainingNew 'Abbrechen' 'Neu'}}</a>
+  <button onclick={{action (toggle 'advanced-trainingNew' this)}}
+      id="button-new-advanced-trainings"
+      class="btn btn-link pull-right">
+    {{if advanced-trainingNew 'Abbrechen' 'Neu'}}
+  </button>
   {{model-header title="Weiterbildung"}}
   {{#if advanced-trainingEditing}}
-      {{advanced-training-edit advanced-training=advanced-trainingEditing done=(action (toggle 'advanced-trainingEditing' this))
-    }}
+    {{advanced-training-edit advanced-training=advanced-trainingEditing done=(action (toggle 'advanced-trainingEditing' this))}}
   {{else}}
     {{#if advanced-trainingNew}}
       {{advanced-training-new personId=personId done=(action (toggle 'advanced-trainingNew' this))}}

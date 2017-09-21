@@ -1,7 +1,11 @@
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 import Ember from 'ember';
 import ExpertiseTopicSkillValueModel from '../models/expertise-topic-skill-value'
 
-const { Component, computed, inject } = Ember;
+const {
+  inject
+} = Ember;
 const DEFAULT_SKILL_LEVEL = 'trainee';
 
 export default Component.extend({

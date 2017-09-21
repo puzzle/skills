@@ -77,21 +77,21 @@
           {{#dd.trigger class="btn btn-default"}}Exportieren <b class="caret"></b>{{/dd.trigger}}
           {{#dd.content}}
             <ul class="content-bootstrap-feel dropdown-menu">
-                <li>
-                  <a onclick={{pipe (action 'exportCvOdt' person.id) dd.actions.close}}>
-                    {{#if person.originPersonId}}
-                      Aktuelle Variante
-                    {{else}}
-                      Aktuelles CV
-                    {{/if}}
-                  </a>
-                  <a onclick={{pipe (action 'exportDevFws' person.id) dd.actions.close}}>
-                    Fachwissensskala Entwickler
-                  </a>
-                  <a onclick={{pipe (action 'exportSysFws' person.id) dd.actions.close}}>
-                    Fachwissensskala Systemtechniker
-                  </a>
-                </li>
+              <li>
+                <a onclick={{pipe (action 'exportCvOdt' person.id) dd.actions.close}}>
+                  {{#if person.originPersonId}}
+                    Aktuelle Variante
+                  {{else}}
+                    Aktuelles CV
+                  {{/if}}
+                </a>
+                <a onclick={{pipe (action 'exportDevFws' person.id) dd.actions.close}}>
+                  Fachwissensskala Entwickler
+                </a>
+                <a onclick={{pipe (action 'exportSysFws' person.id) dd.actions.close}}>
+                  Fachwissensskala Systemtechniker
+                </a>
+              </li>
             </ul>
           {{/dd.content}}
         {{/basic-dropdown}}

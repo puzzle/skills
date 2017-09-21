@@ -3,10 +3,11 @@
     {{error.detail}}
   {{/each}}
   <form onsubmit={{action 'submit' changeset}}>
-      <div class="pull-right">
-        <button class="async-button form-button--submit default ember-view" >
-          Speichern </button>
-      </div>
+    <div class="pull-right">
+      <button class="async-button form-button--submit default">
+        Speichern
+      </button>
+    </div>
     {{model-header title="Kompetenzen"}}
     {{textarea value=changeset.competences class="competences-edit-input"}}
   </form>

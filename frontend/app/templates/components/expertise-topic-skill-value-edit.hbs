@@ -42,8 +42,9 @@
 
   <td>
     <textarea class="fws-textarea-input"
-        oninput={{action (mut changeset.comment) value="target.value"}}
-        >{{expertiseTopicSkillValue.comment}}</textarea>
+        oninput={{action (mut changeset.comment) value="target.value"}}>
+      {{~expertiseTopicSkillValue.comment~}}
+    </textarea>
   </td>
   <td>
     <form id={{formId}} onsubmit={{action onsubmit changeset}}>

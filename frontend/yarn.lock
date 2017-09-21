@@ -12,6 +12,16 @@
     "@glimmer/wire-format" "^0.25.3"
     simple-html-tokenizer "^0.3.0"
 
+"@glimmer/compiler@^0.28.2":
+  version "0.28.3"
+  resolved "https://registry.yarnpkg.com/@glimmer/compiler/-/compiler-0.28.3.tgz#8ac6f0ffa3cd2e9dcb68f9f66870699375112f56"
+  dependencies:
+    "@glimmer/interfaces" "^0.28.3"
+    "@glimmer/syntax" "^0.28.3"
+    "@glimmer/util" "^0.28.3"
+    "@glimmer/wire-format" "^0.28.3"
+    simple-html-tokenizer "^0.3.0"
+
 "@glimmer/di@^0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@glimmer/di/-/di-0.2.0.tgz#73bfd4a6ee4148a80bf092e8a5d29bcac9d4ce7e"
@@ -21,6 +31,12 @@
   resolved "https://registry.yarnpkg.com/@glimmer/interfaces/-/interfaces-0.25.3.tgz#8c460b28ad5a17eaa1712e6aa7b8ebb49738c38f"
   dependencies:
     "@glimmer/wire-format" "^0.25.3"
+
+"@glimmer/interfaces@^0.28.3":
+  version "0.28.3"
+  resolved "https://registry.yarnpkg.com/@glimmer/interfaces/-/interfaces-0.28.3.tgz#9fdbec9163ae3fa280d8f5cb28e7664ce6e5e7ee"
+  dependencies:
+    "@glimmer/wire-format" "^0.28.3"
 
 "@glimmer/node@^0.25.3":
   version "0.25.3"
@@ -75,15 +91,34 @@
     handlebars "^4.0.6"
     simple-html-tokenizer "^0.3.0"
 
+"@glimmer/syntax@^0.28.2", "@glimmer/syntax@^0.28.3":
+  version "0.28.3"
+  resolved "https://registry.yarnpkg.com/@glimmer/syntax/-/syntax-0.28.3.tgz#8ccf4a849b94784bcce7bb493e7b426bd9717dca"
+  dependencies:
+    "@glimmer/interfaces" "^0.28.3"
+    "@glimmer/util" "^0.28.3"
+    handlebars "^4.0.6"
+    simple-html-tokenizer "^0.3.0"
+
 "@glimmer/util@^0.25.3":
   version "0.25.3"
   resolved "https://registry.yarnpkg.com/@glimmer/util/-/util-0.25.3.tgz#7cedf72947137b519658c8be34d0d5965cebe3a1"
+
+"@glimmer/util@^0.28.3":
+  version "0.28.3"
+  resolved "https://registry.yarnpkg.com/@glimmer/util/-/util-0.28.3.tgz#1af4e194bace63e4cbb1b348839d870c90644417"
 
 "@glimmer/wire-format@^0.25.3":
   version "0.25.3"
   resolved "https://registry.yarnpkg.com/@glimmer/wire-format/-/wire-format-0.25.3.tgz#046692b3a26a30a498712266cd0bdb47d7710f37"
   dependencies:
     "@glimmer/util" "^0.25.3"
+
+"@glimmer/wire-format@^0.28.3":
+  version "0.28.3"
+  resolved "https://registry.yarnpkg.com/@glimmer/wire-format/-/wire-format-0.28.3.tgz#eb40ce0bbb4b2af3adbcd2e073c4f97bf7b3005f"
+  dependencies:
+    "@glimmer/util" "^0.28.3"
 
 abbrev@1:
   version "1.1.0"
@@ -1714,7 +1749,7 @@ chalk@^1.0.0, chalk@^1.1.1, chalk@^1.1.3:
     strip-ansi "^3.0.0"
     supports-color "^2.0.0"
 
-chalk@^2.0.0, chalk@^2.1.0:
+chalk@^2.0.0, chalk@^2.0.1, chalk@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.1.0.tgz#ac5becf14fa21b99c6c92ca7a7d7cfd5b17e743e"
   dependencies:
@@ -2571,6 +2606,22 @@ ember-cli-string-utils@^1.0.0, ember-cli-string-utils@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/ember-cli-string-utils/-/ember-cli-string-utils-1.1.0.tgz#39b677fc2805f55173735376fcef278eaa4452a1"
 
+ember-cli-template-lint@^0.7.3:
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/ember-cli-template-lint/-/ember-cli-template-lint-0.7.3.tgz#ddc3ec6bb30a2b1d0af7d3af4e1de68011d3aa15"
+  dependencies:
+    aot-test-generators "^0.1.0"
+    broccoli-concat "^3.2.2"
+    broccoli-persistent-filter "^1.2.0"
+    chalk "^2.0.1"
+    debug "^2.6.8"
+    ember-cli-version-checker "^2.0.0"
+    ember-template-lint "^0.8.1"
+    json-stable-stringify "^1.0.1"
+    md5-hex "^2.0.0"
+    strip-ansi "^4.0.0"
+    walk-sync "^0.3.2"
+
 ember-cli-test-info@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ember-cli-test-info/-/ember-cli-test-info-1.0.0.tgz#ed4e960f249e97523cf891e4aed2072ce84577b4"
@@ -3023,6 +3074,18 @@ ember-string-ishtmlsafe-polyfill@^1.1.0:
     ember-cli-babel "^5.1.7"
     ember-cli-version-checker "^1.2.0"
 
+ember-template-lint@^0.8.1:
+  version "0.8.6"
+  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-0.8.6.tgz#9f7e2f657c52b3fdf2840bc47ec4f55d78e2377f"
+  dependencies:
+    "@glimmer/compiler" "^0.28.2"
+    "@glimmer/syntax" "^0.28.2"
+    chalk "^2.0.0"
+    lodash "^4.11.1"
+    minimatch "^3.0.4"
+    resolve "^1.1.3"
+    strip-bom "^3.0.0"
+
 ember-test-helpers@^0.6.3:
   version "0.6.3"
   resolved "https://registry.yarnpkg.com/ember-test-helpers/-/ember-test-helpers-0.6.3.tgz#f864cdf6f4e75f3f8768d6537785b5ab6e82d907"
@@ -3244,6 +3307,14 @@ escodegen@^1.8.0:
     optionator "^0.8.1"
   optionalDependencies:
     source-map "~0.5.6"
+
+eslint-plugin-ember@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-4.5.0.tgz#6634034a5267083db2f32678e6b699f119c5eb94"
+  dependencies:
+    ember-rfc176-data "^0.2.7"
+    require-folder-tree "^1.4.5"
+    snake-case "^2.1.0"
 
 eslint-scope@^3.7.1:
   version "3.7.1"
@@ -4979,11 +5050,15 @@ lodash.values@~2.3.0:
   dependencies:
     lodash.keys "~2.3.0"
 
+lodash@3.8.0:
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.8.0.tgz#376eb98bdcd9382a9365c33c4cb8250de1325b91"
+
 lodash@^3.10.0, lodash@^3.10.1, lodash@^3.9.3:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
-lodash@^4.0.0, lodash@^4.14.0, lodash@^4.17.4, lodash@^4.3.0, lodash@^4.5.1, lodash@^4.6.1, lodash@~4.17.4:
+lodash@^4.0.0, lodash@^4.11.1, lodash@^4.14.0, lodash@^4.17.4, lodash@^4.3.0, lodash@^4.5.1, lodash@^4.6.1, lodash@~4.17.4:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -5003,6 +5078,10 @@ loud-rejection@^1.0.0:
   dependencies:
     currently-unhandled "^0.4.1"
     signal-exit "^3.0.0"
+
+lower-case@^1.1.1:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/lower-case/-/lower-case-1.1.4.tgz#9a2cabd1b9e8e0ae993a4bf7d5875c39c42e8eac"
 
 lru-cache@^4.0.1:
   version "4.1.1"
@@ -5262,6 +5341,12 @@ natural-compare@^1.4.0:
 negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
+
+no-case@^2.2.0:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/no-case/-/no-case-2.3.2.tgz#60b813396be39b3f1288a4c1ed5d1e7d28b464ac"
+  dependencies:
+    lower-case "^1.1.1"
 
 node-dir@^0.1.16:
   version "0.1.17"
@@ -5999,6 +6084,12 @@ require-directory@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/require-directory/-/require-directory-2.1.1.tgz#8c64ad5fd30dab1c976e2344ffe7f792a6a6df42"
 
+require-folder-tree@^1.4.5:
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/require-folder-tree/-/require-folder-tree-1.4.5.tgz#dfe553cbab98cc88e1c56a3f2f358f06ef85bcb0"
+  dependencies:
+    lodash "3.8.0"
+
 require-main-filename@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/require-main-filename/-/require-main-filename-1.0.1.tgz#97f717b69d48784f5f526a6c5aa8ffdda055a4d1"
@@ -6035,7 +6126,7 @@ resolve@1.3.2:
   dependencies:
     path-parse "^1.0.5"
 
-resolve@^1.1.2, resolve@^1.1.6, resolve@^1.1.7, resolve@^1.3.0, resolve@^1.3.3, resolve@^1.4.0, resolve@~1.4.0:
+resolve@^1.1.2, resolve@^1.1.3, resolve@^1.1.6, resolve@^1.1.7, resolve@^1.3.0, resolve@^1.3.3, resolve@^1.4.0, resolve@~1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.4.0.tgz#a75be01c53da25d934a98ebd0e4c4a7312f92a86"
   dependencies:
@@ -6257,6 +6348,12 @@ slash@^1.0.0:
 slice-ansi@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/slice-ansi/-/slice-ansi-0.0.4.tgz#edbf8903f66f7ce2f8eafd6ceed65e264c831b35"
+
+snake-case@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/snake-case/-/snake-case-2.1.0.tgz#41bdb1b73f30ec66a04d4e2cad1b76387d4d6d9f"
+  dependencies:
+    no-case "^2.2.0"
 
 sntp@2.x.x:
   version "2.0.2"
@@ -6939,7 +7036,7 @@ walk-sync@^0.2.5, walk-sync@^0.2.7:
     ensure-posix-path "^1.0.0"
     matcher-collection "^1.0.0"
 
-walk-sync@^0.3.0, walk-sync@^0.3.1:
+walk-sync@^0.3.0, walk-sync@^0.3.1, walk-sync@^0.3.2:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/walk-sync/-/walk-sync-0.3.2.tgz#4827280afc42d0e035367c4a4e31eeac0d136f75"
   dependencies:

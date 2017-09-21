@@ -40,6 +40,7 @@
     "ember-cli-sass": "^7.0.0",
     "ember-cli-shims": "^1.1.0",
     "ember-cli-sri": "^2.1.0",
+    "ember-cli-template-lint": "^0.7.3",
     "ember-cli-uglify": "^1.2.0",
     "ember-composable-helpers": "^2.0.1",
     "ember-concurrency": "^0.8.3",
@@ -60,6 +61,7 @@
     "ember-source": "^2.15.0",
     "ember-test-selectors": "^0.3.4",
     "ember-tether": "^1.0.0-beta.0",
+    "eslint-plugin-ember": "^4.5.0",
     "liquid-fire": "^0.28.0",
     "loader.js": "^4.4.0"
   },

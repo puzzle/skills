@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function eq([ firstArg, ...restArgs ]) {
   return restArgs.every(a => a === firstArg);
 }
 
-export default Ember.Helper.helper(eq);
+export default helper(eq);

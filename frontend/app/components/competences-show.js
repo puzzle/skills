@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
-  competenceList: Ember.computed('person.competences', function() {
+export default Component.extend({
+  competenceList: computed('person.competences', function() {
     let competences = this.get('person.competences')
     if (competences == null) return '';
     return competences.split('\n')

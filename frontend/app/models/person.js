@@ -1,5 +1,5 @@
+import { computed } from '@ember/object';
 import DS from 'ember-data';
-import Ember from 'ember';
 
 const Person = DS.Model.extend({
   name: DS.attr('string'),
@@ -23,7 +23,7 @@ const Person = DS.Model.extend({
   projects: DS.hasMany('project'),
   expertiseTopicSkillValues: DS.hasMany('expertise-topic-skill-value'),
 
-  status: Ember.computed('statusId', function() {
+  status: computed('statusId', function() {
     return Person.STATUSES[this.get('statusId')];
   })
 });

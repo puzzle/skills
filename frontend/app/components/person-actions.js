@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
-  ajax: Ember.inject.service(),
-  router: Ember.inject.service(),
-  download: Ember.inject.service(),
+export default Component.extend({
+  ajax: service(),
+  router: service(),
+  download: service(),
 
   actions: {
     exportCvOdt(personId, e) {

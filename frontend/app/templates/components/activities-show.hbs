@@ -1,8 +1,12 @@
 <section id="activity" class="section">
-  <a onclick={{action (toggle 'activityNew' this)}} id="button-new-activities" class="button pull-right">{{if activityNew 'Abbrechen' 'Neu'}}</a>
+  <button onclick={{action (toggle 'activityNew' this)}}
+      id="button-new-activities"
+      class="btn btn-link pull-right">
+    {{if activityNew 'Abbrechen' 'Neu'}}
+  </button>
   {{model-header title="Aktivitäten"}}
   {{#if activityEditing}}
-      {{activity-edit activity = activityEditing done=(action (toggle 'activityEditing' this))
+    {{activity-edit activity=activityEditing done=(action (toggle 'activityEditing' this))
     }}
   {{else}}
     {{#if activityNew}}

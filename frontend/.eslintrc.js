@@ -7,11 +7,25 @@ module.exports = {
     ecmaVersion: 2017,
     sourceType: 'module'
   },
-  extends: 'eslint:recommended',
+  extends: [
+    'eslint:recommended',
+    'plugin:ember/recommended'
+  ],
   env: {
     browser: true
   },
   rules: {
+    'ember/alias-model-in-controller': 0,
+    'ember/use-ember-get-and-set': 0,
+    'ember/named-functions-in-promises': 0,
+    'ember/new-module-imports': 2,
+    'ember/no-global-jquery': 2,
+    'ember/require-super-in-init': 2,
+    'ember/order-in-components': 0,
+    'ember/order-in-controllers': 0,
+    'ember/order-in-routes': 0,
+    'ember/closure-actions': 0,
+
     'arrow-body-style': [2, 'as-needed', { requireReturnForObjectLiteral: true }],
     'arrow-parens': [2, 'as-needed'],
     'arrow-spacing': [2, { 'before': true, 'after': true }],

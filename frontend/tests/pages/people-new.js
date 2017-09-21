@@ -1,6 +1,6 @@
+import { run } from '@ember/runloop';
 import $ from 'jquery';
 import RSVP from 'rsvp';
-import Ember from 'ember';
 import {
   create,
   visitable,
@@ -28,7 +28,7 @@ export default create({
     await Object.keys(person).reduce((p, key) =>
       p.then(() => this[key](person[key])), Promise.resolve());
 
-    Ember.run(() => {
+    run(() => {
       $('#profil #date_location > input').datepicker('setDate', person.birthdate);
     });
 

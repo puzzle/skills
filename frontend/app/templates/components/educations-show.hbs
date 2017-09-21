@@ -1,9 +1,14 @@
 <section id="education" class="section">
-  <a onclick={{action (toggle 'educationNew' this)}} id="button-new-educations" class="button pull-right">{{if educationNew 'Abbrechen' 'Neu'}}</a>
+  <button onclick={{action (toggle 'educationNew' this)}}
+      id="button-new-educations"
+      class="btn btn-link pull-right">
+    {{~if educationNew 'Abbrechen' 'Neu'~}}
+  </button>
+
   {{model-header title="Ausbildungen"}}
+
   {{#if educationEditing}}
-      {{education-edit education = educationEditing done=(action (toggle 'educationEditing' this))
-    }}
+    {{education-edit education = educationEditing done=(action (toggle 'educationEditing' this))}}
   {{else}}
     {{#if educationNew}}
       {{education-new personId=personId done=(action (toggle 'educationNew' this))}}
@@ -19,9 +24,9 @@
               </tr>
             </thead>
             <tbody>
-            {{#each sortedEducations as |education|}}
-              {{education-show selectEducation = (action (mut educationEditing)) education=education}}
-            {{/each}}
+              {{#each sortedEducations as |education|}}
+                {{education-show selectEducation = (action (mut educationEditing)) education=education}}
+              {{/each}}
             </tbody>
           </table>
         </div>
