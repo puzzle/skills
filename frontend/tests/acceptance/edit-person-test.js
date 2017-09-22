@@ -15,7 +15,7 @@ moduleForAcceptance('Acceptance | edit person', {
 });
 
 test('/people/:id edit person data', async function(assert) {
-  assert.expect(7);
+  assert.expect(11);
 
   await applicationPage.visitHome('/');
   await applicationPage.menuItem('Bob Anderson');
@@ -31,16 +31,31 @@ test('/people/:id edit person data', async function(assert) {
   await page.editForm.status(3);
   await page.editForm.submit();
 
-  await andThen(() => {
-    assert.equal(page.profileData.name, 'Hansjoggeli');
-    assert.equal(page.profileData.title, 'Dr.');
-    assert.equal(page.profileData.role, 'Joggeli');
-    //assert.equal(page.profileData.birthdate, '12.05.2017');
-    assert.equal(page.profileData.origin, 'Schwiz');
-    assert.equal(page.profileData.location, 'Chehrplatz Schwandi');
-    assert.equal(page.profileData.maritalStatus, 'Verwittwet');
-    assert.equal(page.profileData.status, 'Bewerber');
-  });
+  assert.equal(page.profileData.name, 'Hansjoggeli');
+  assert.equal(page.profileData.title, 'Dr.');
+  assert.equal(page.profileData.role, 'Joggeli');
+  //assert.equal(page.profileData.birthdate, '12.05.2017');
+  assert.equal(page.profileData.origin, 'Schwiz');
+  assert.equal(page.profileData.location, 'Chehrplatz Schwandi');
+  assert.equal(page.profileData.maritalStatus, 'Verwittwet');
+  assert.equal(page.profileData.status, 'Bewerber');
+
+  await page.competences.toggleForm();
+  await page.competences.textarea(
+    '\n' +
+    'Competence 1\n' +
+    '\n' +
+    'Competence 2\n' +
+    'Competence 3\n' +
+    '\n' +
+    '\n'
+  );
+  await page.competences.submit();
+
+  assert.equal(page.competences.list().count, 3);
+  assert.equal(page.competences.list(0).text, 'Competence 1');
+  assert.equal(page.competences.list(1).text, 'Competence 2');
+  assert.equal(page.competences.list(2).text, 'Competence 3');
 });
 
 test('Creating a new variation', async function(assert) {

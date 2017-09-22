@@ -5,6 +5,9 @@ export default Component.extend({
   competenceList: computed('person.competences', function() {
     let competences = this.get('person.competences')
     if (competences == null) return '';
-    return competences.split('\n')
+    return competences
+      .split('\n')
+      .map(c => c.trim())
+      .filter(c => c !== '');
   })
 });

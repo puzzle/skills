@@ -6,6 +6,7 @@ import {
   clickable,
   clickOnText,
   hasClass,
+  collection,
   text
 } from 'ember-cli-page-object';
 
@@ -84,5 +85,20 @@ export default create({
     await this.variationDropdown.newVariation();
     await this.createVariationDialog.variationName(name);
     return this.createVariationDialog.create();
-  }
+  },
+
+  competences: {
+    scope: '#competence',
+
+    list: collection({
+      itemScope: 'ul > li',
+      item: {
+        text: text(),
+      },
+    }),
+
+    toggleForm: clickable('#button-new-competences'),
+    textarea: fillable('.competences-edit-input'),
+    submit: clickable('.form-button--submit'),
+  },
 });
