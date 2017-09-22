@@ -16,7 +16,8 @@
 #
 
 class Activity < ApplicationRecord
-  belongs_to :person
+  belongs_to :person, touch: true
+
   validates :year_from, :person_id, :role, presence: true
   validates :year_from, :year_to, length: {is: 4}, allow_blank: true
   validates :description, length: { maximum: 5000 }

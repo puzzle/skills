@@ -78,4 +78,14 @@ describe Education do
       expect(list.fourth.location).to eq('Uni Bern')
     end
   end
+
+  context 'update' do
+    it 'updates updated_at on person' do
+      bsc = educations(:bsc)
+      person_updated_at = bsc.person.updated_at
+      bsc.title = 'BSc in Machine Learning'
+      bsc.save!
+      expect(bsc.person.reload.updated_at).to be > person_updated_at
+    end
+  end
 end

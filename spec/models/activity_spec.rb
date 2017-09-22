@@ -79,4 +79,14 @@ describe Activity do
       expect(list.fourth.description).to eq('Swisscom')
     end
   end
+
+  context 'update' do
+    it 'updates updated_at on person' do
+      swisscom = activities(:swisscom)
+      person_updated_at = swisscom.person.updated_at
+      swisscom.description = 'UX Consultant - renewing their GUIs'
+      swisscom.save!
+      expect(swisscom.person.reload.updated_at).to be > person_updated_at
+    end
+  end
 end

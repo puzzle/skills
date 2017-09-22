@@ -75,4 +75,14 @@ describe AdvancedTraining do
       expect(list.fourth.description).to eq('test2')
     end
   end
+
+  context 'update' do
+    it 'updates updated_at on person' do
+      course = advanced_trainings(:course)
+      person_updated_at = course.person.updated_at
+      course.description = 'RxJS Workshop'
+      course.save!
+      expect(course.person.reload.updated_at).to be > person_updated_at
+    end
+  end
 end

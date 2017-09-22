@@ -18,7 +18,8 @@
 #
 
 class Project < ApplicationRecord
-  belongs_to :person
+  belongs_to :person, touch: true
+
   validates :year_from, :person_id, :role, :title, presence: true
   validates :year_from, :year_to, length: { is: 4 }, allow_blank: true
   validates :description, :technology, :role, length: { maximum: 5000 }

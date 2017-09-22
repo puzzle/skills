@@ -89,4 +89,14 @@ describe Project do
       expect(list.fourth.title).to eq('test2')
     end
   end
+
+  context 'update' do
+    it 'updates updated_at on person' do
+      duckduckgo = projects(:duckduckgo)
+      person_updated_at = duckduckgo.person.updated_at
+      duckduckgo.description = 'Search engine performance optimizations'
+      duckduckgo.save!
+      expect(duckduckgo.person.reload.updated_at).to be > person_updated_at
+    end
+  end
 end

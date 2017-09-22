@@ -14,7 +14,8 @@
 #
 
 class Education < ApplicationRecord
-  belongs_to :person
+  belongs_to :person, touch: true
+
   validates :year_from, :person_id, :title, :location, presence: true
   validates :year_from, :year_to, length: {is: 4}, allow_blank: true
   validates :location, :title, length: { maximum: 500 }
