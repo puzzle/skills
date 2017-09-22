@@ -12,7 +12,8 @@ const Person = DS.Model.extend({
   role: DS.attr('string'),
   title: DS.attr('string'),
   competences: DS.attr('string'),
-  statusId: DS.attr('string', { defaultValue: 1 }),
+  statusId: DS.attr('number', { defaultValue: 1 }),
+  company: DS.attr('string'),
 
   variationName: DS.attr('string'),
   originPersonId: DS.attr('number'),
@@ -25,7 +26,11 @@ const Person = DS.Model.extend({
 
   status: computed('statusId', function() {
     return Person.STATUSES[this.get('statusId')];
-  })
+  }),
+
+  isPartner: computed('statusId', function() {
+    return this.get('statusId') === 4;
+  }),
 });
 
 Person.reopenClass({

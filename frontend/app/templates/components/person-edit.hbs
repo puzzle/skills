@@ -41,6 +41,9 @@
             optionLabelPath="label"
             optionTargetPath="id"
             }}
+          {{#if (eq changeset.statusId 4)}}
+            {{f.text-field 'company' label='Firma'}}
+          {{/if}}
         </div>
       </div>
     {{/form-for}}

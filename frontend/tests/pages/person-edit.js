@@ -31,7 +31,8 @@ export default create({
     location: fillable('[name="person[location]"]'),
     language: fillable('[name="person[language]"]'),
     maritalStatus: fillable('[name="person[martialStatus]"]'),
-    status: fillable('[name="person[statusId]"]')
+    status: fillable('[name="person[statusId]"]'),
+    company: fillable('[name="person[company]"]'),
   },
 
   profileData: {
@@ -45,7 +46,8 @@ export default create({
     location: text('[data-test-person-location]'),
     language: text('[data-test-person-language]'),
     maritalStatus: text('[data-test-person-marital-status]'),
-    status: text('[data-test-person-status]')
+    status: text('[data-test-person-status]'),
+    company: text('[data-test-person-company]'),
   },
 
   personActions: {

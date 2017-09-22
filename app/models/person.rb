@@ -1,4 +1,5 @@
 # encoding: utf-8
+
 # == Schema Information
 #
 # Table name: people
@@ -45,7 +46,7 @@ class Person < ApplicationRecord
   validates :birthdate, :language, :location, :name, :origin,
             :role, :title, :status_id, presence: true
   validates :location, :language, :martial_status, :name, :origin,
-            :role, :title, :variation_name, length: { maximum: 100 }
+            :role, :title, :variation_name, :company, length: { maximum: 100 }
 
   validate :valid_person
   validate :picture_size
@@ -54,7 +55,16 @@ class Person < ApplicationRecord
   scope :list, -> { where(type: nil).order(:name) }
 
   pg_search_scope :search,
-                  against: [:language, :location, :name, :origin, :role, :title, :competences],
+                  against: [
+                    :language,
+                    :location,
+                    :name,
+                    :origin,
+                    :role,
+                    :title,
+                    :competences,
+                    :company
+                  ],
                   associated_against: {
                     projects: [:description, :title, :role, :technology],
                     activities: [:description, :role],
@@ -70,7 +80,6 @@ class Person < ApplicationRecord
   def status
     STATUSES[status_id]
   end
-
 
   def destroy_variations
     unless is_a?(Person::Variation)

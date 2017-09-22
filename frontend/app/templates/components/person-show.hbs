@@ -67,6 +67,12 @@
         <dt>Status</dt>
         <dd data-test-person-status>{{person.status}}</dd>
       </dl>
+      {{#if person.isPartner}}
+        <dl class="dl-horizontal">
+          <dt>Firma</dt>
+          <dd data-test-person-company>{{person.company}}</dd>
+        </dl>
+      {{/if}}
     </div>
     {{! /Profile right row }}
   </div>

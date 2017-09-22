@@ -32,6 +32,9 @@
           optionLabelPath="label"
           optionTargetPath="id"
           }}
+        {{#if newPerson.isPartner}}
+          {{f.text-field 'company' label='Firma'}}
+        {{/if}}
       </div>
     </div>
   {{/form-for}}

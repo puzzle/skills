@@ -8,9 +8,11 @@ export default Component.extend({
   i18n: service(),
 
   statusData: computed(function() {
-    return Object.keys(PersonModel.STATUSES).map(id => {
-      return { id, label: PersonModel.STATUSES[id] };
-    });
+    return Object.keys(PersonModel.STATUSES)
+      .map(id => Number(id))
+      .map(id => {
+        return { id, label: PersonModel.STATUSES[id] };
+      });
   }),
 
   actions: {

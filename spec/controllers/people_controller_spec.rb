@@ -123,8 +123,8 @@ describe PeopleController do
 
     describe 'GET show' do
       it 'returns person with nested modules' do
-        keys = %w(birthdate picture_path language location martial_status updated_by name origin
-                  role title competences)
+        keys = %w[birthdate picture_path language location martial_status
+                  updated_by name origin role title competences]
 
         bob = people(:bob)
 
@@ -132,7 +132,7 @@ describe PeopleController do
 
         bob_attrs = json['data']['attributes']
 
-        expect(bob_attrs.count).to eq(14)
+        expect(bob_attrs.count).to eq(15)
         json_object_includes_keys(bob_attrs, keys)
         # expect(bob_attrs['picture-path']).to eq("/api/people/#{bob.id}/picture")
 
@@ -145,15 +145,15 @@ describe PeopleController do
 
       it 'returns person variations with nested modules' do
         bobs_variation1 = Person::Variation.create_variation('bobs_variation1', people(:bob).id)
-        keys = %w(birthdate picture_path language location martial_status updated_by name origin
-                  role title variation_name)
+        keys = %w[birthdate picture_path language location martial_status
+                  updated_by name origin role title variation_name]
 
         process :show, method: :get, params: { id: bobs_variation1.id }
 
         bob_attrs = json['data']['attributes']
 
         expect(json['data']['type']).to eq('people')
-        expect(bob_attrs.count).to eq(14)
+        expect(bob_attrs.count).to eq(15)
         json_object_includes_keys(bob_attrs, keys)
       end
     end
@@ -169,7 +169,8 @@ describe PeopleController do
                    origin: 'Switzerland',
                    role: 'tester',
                    title: 'Bsc in tester',
-                   status_id: 2 }
+                   status_id: 2,
+                   company: 'Puzzle ITC GmbH'}
 
         process :create, method: :post, params: { data: { attributes: person } }
 
@@ -177,6 +178,7 @@ describe PeopleController do
         expect(new_person).not_to eq(nil)
         expect(new_person.location).to eq('Bern')
         expect(new_person.language).to eq('German')
+        expect(new_person.company).to eq('Puzzle ITC GmbH')
         expect(new_person.picture.url)
           .to include("#{Rails.root}/uploads/person/picture/#{new_person.id}/picture.png")
       end
@@ -271,7 +273,7 @@ describe PeopleController do
 
   private
 
-  def update_params(object_id, updated_attributes, user_id, model_type)
+  def update_params(object_id, updated_attributes, _user_id, model_type)
     { data: { id: object_id,
               attributes: updated_attributes,
               type: model_type },

@@ -9,7 +9,7 @@ import {
   clickable
 } from 'ember-cli-page-object';
 
-const { Promise } = RSVP;
+const { resolve } = RSVP;
 
 export default create({
   visit: visitable('/people/new'),
@@ -23,13 +23,15 @@ export default create({
   language: fillable('[name="person[language]"]'),
   maritalStatus: fillable('[name="person[martialStatus]"]'),
   status: selectable('[name="person[statusId]"]'),
+  company: fillable('[name="person[company]"]'),
 
   async createPerson(person) {
-    await Object.keys(person).reduce((p, key) =>
-      p.then(() => this[key](person[key])), Promise.resolve());
+    await Object.keys(person)
+      .reduce((p, key) => p.then(() => this[key](person[key])), resolve());
 
     run(() => {
-      $('#profil #date_location > input').datepicker('setDate', person.birthdate);
+      $('#profil #date_location > input')
+        .datepicker('setDate', person.birthdate);
     });
 
     return this.submit();
