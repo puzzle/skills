@@ -55,6 +55,7 @@ describe AuthenticationController do
       ken_json = JSON.parse(response.body)
 
       expect(ken.api_token).not_to eq(old_token)
+      expect(ken_json['user_id']).to eq(ken.id)
       expect(ken_json['ldap_uid']).to eq(ken.ldap_uid)
       expect(ken_json['api_token']).to eq(ken.api_token)
       expect(ken.failed_login_attempts).to eq(0)

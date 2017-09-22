@@ -56,7 +56,11 @@ class User < ApplicationRecord
       end
 
       user.reset_failed_login_attempts
-      { ldap_uid: username, api_token: user.api_token }
+      {
+        user_id: user.id,
+        ldap_uid: username,
+        api_token: user.api_token
+      }
     end
 
     def find_or_create(ldap_uid)
