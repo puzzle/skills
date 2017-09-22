@@ -6,7 +6,7 @@ rails server -e test -d -p $RAILS_PORT -P tmp/pids/frontend-test-server.pid
 rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 
 cd frontend
-COVERAGE=true ember test --server
+COVERAGE=true yarn test
 rc=$?
 cd ..
 
