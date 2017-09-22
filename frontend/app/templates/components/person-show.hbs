@@ -1,7 +1,15 @@
 {{! Profile heading }}
 <div class="row-fluid">
   <div class="span5">
-    <span class="section-title">Personalien</span>
+    <span class="section-title">
+      Personalien<br>
+      <span class="text-mute">
+        Zuletzt bearbeitet am
+        <time datetime={{moment-format person.updatedAt}}>
+          {{moment-format person.updatedAt 'L LT'}}
+        </time>
+      </span>
+    </span>
   </div>
   <div class="pull-right">
     <a onclick={{personEditing}} data-test-person-edit-form-toggle class="pull-right">
@@ -38,8 +46,11 @@
       </dl>
       <dl class="dl-horizontal">
         <dt>Geb.Datum</dt>
-        <dd data-test-person-birthdate>
-          {{~moment-format person.birthdate 'DD.MM.YYYY'~}}
+        <dd>
+          <time datetime={{moment-format person.birthdate}}
+              data-test-person-birthdate>
+            {{~moment-format person.birthdate 'L'~}}
+          </time>
         </dd>
       </dl>
     </div>

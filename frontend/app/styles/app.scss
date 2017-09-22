@@ -377,3 +377,10 @@ textarea {
 .preserve-whitespace {
   white-space: pre-wrap;
 }
+
+.text-mute {
+  color: #aaa;
+}
+.section-title > .text-mute {
+  font-size: 0.6em;
+}

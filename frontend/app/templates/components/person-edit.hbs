@@ -3,7 +3,15 @@
     {{#form-for changeset submit=(action 'submit') as |f|}}
       <div class="row-fluid">
         <div class="span5">
-          <span class="section-title">Personalien</span>
+          <span class="section-title">
+            Personalien<br>
+            <span class="text-mute">
+              Zuletzt bearbeitet am
+              <time datetime={{moment-format person.updatedAt}}>
+                {{moment-format person.updated_at 'L LT'}}
+              </time>
+            </span>
+          </span>
         </div>
         <div class="pull-right">
           {{f.submit "Speichern"}}

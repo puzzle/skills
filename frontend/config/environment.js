@@ -26,6 +26,9 @@ module.exports = function(environment) {
     },
     i18n: {
       defaultLocale: 'de'
+    },
+    'moment': {
+      includeLocales: [ 'de' ],
     }
   };
 

@@ -5,7 +5,12 @@ import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mi
 import { UnauthorizedError, ForbiddenError } from 'ember-ajax/errors';
 
 export default Route.extend(ApplicationRouteMixin, {
-  session: service('session'),
+  session: service(),
+  moment: service(),
+
+  beforeModel() {
+    this.get('moment').setLocale('de');
+  },
 
   isAuthError(error) {
     return error instanceof UnauthorizedError || error instanceof ForbiddenError ||
