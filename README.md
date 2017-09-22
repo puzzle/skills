@@ -35,7 +35,8 @@ now run backend server
 #### Testing
 
 * To run the backend tests run `rake test` 
-* Frontend tests can be executed with `rake frontend:prepare; rake spec:frontend`
+* Frontend tests can be executed with `rake spec:frontend`
+* Frontend tests with livereload `rake spec:frontend:serve`
 * To run a single test run the following command in the frontend folder `npm test --filter "some filter words"`
 
 

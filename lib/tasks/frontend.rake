@@ -17,5 +17,12 @@ namespace :spec do
   task :frontend do
     sh 'bin/frontend-tests.sh'
   end
+
+  namespace :frontend do
+  desc 'Runs frontend unit tests with livereload'
+    task :serve do
+      sh 'bin/frontend-tests.sh serve'
+    end
+  end
 end
 
