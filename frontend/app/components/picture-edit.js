@@ -11,7 +11,7 @@ export default Component.extend({
   uploadImage(file) {
     let formData = new FormData();
 
-    if (!file.name.match(/.(jpg|jpeg|png|gif|svg|bmp)$/i)) {
+    if (!/\.(?:jpe?g|png|gif|svg|bmp)$/i.test(file.name)) {
       this.get('notify').alert('Invalider Datentyp');
       return
     }
