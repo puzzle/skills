@@ -15,7 +15,7 @@ moduleForAcceptance('Acceptance | edit person', {
 });
 
 test('/people/:id edit person data', async function(assert) {
-  assert.expect(11);
+  assert.expect(7);
 
   await applicationPage.visitHome('/');
   await applicationPage.menuItem('Bob Anderson');
@@ -39,6 +39,13 @@ test('/people/:id edit person data', async function(assert) {
   assert.equal(page.profileData.location, 'Chehrplatz Schwandi');
   assert.equal(page.profileData.maritalStatus, 'Verwittwet');
   assert.equal(page.profileData.status, 'Bewerber');
+});
+
+test('/people/:id edit person competences', async function(assert) {
+  assert.expect(4);
+
+  await applicationPage.visitHome('/');
+  await applicationPage.menuItem('Bob Anderson');
 
   await page.competences.toggleForm();
   await page.competences.textarea(
