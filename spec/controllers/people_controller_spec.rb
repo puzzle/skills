@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe PeopleController do
-  describe 'PeoplController' do
+  describe 'PeopleController' do
     before { auth(:ken) }
     before { load_pictures }
 
@@ -132,7 +132,7 @@ describe PeopleController do
 
         bob_attrs = json['data']['attributes']
 
-        expect(bob_attrs.count).to eq(15)
+        expect(bob_attrs.count).to eq(16)
         json_object_includes_keys(bob_attrs, keys)
         # expect(bob_attrs['picture-path']).to eq("/api/people/#{bob.id}/picture")
 
@@ -153,7 +153,7 @@ describe PeopleController do
         bob_attrs = json['data']['attributes']
 
         expect(json['data']['type']).to eq('people')
-        expect(bob_attrs.count).to eq(15)
+        expect(bob_attrs.count).to eq(16)
         json_object_includes_keys(bob_attrs, keys)
       end
     end
