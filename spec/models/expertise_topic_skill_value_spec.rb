@@ -20,13 +20,13 @@ describe ExpertiseTopicSkillValue do
       etsv = ExpertiseTopicSkillValue.new
       etsv.valid?
 
-      expect(etsv.errors[:years_of_experience].first).to eq('muss ausgefüllt werden')
-      expect(etsv.errors[:number_of_projects].first).to eq('muss ausgefüllt werden')
-      expect(etsv.errors[:last_use].first).to eq('muss ausgefüllt werden')
+      expect(etsv.errors[:years_of_experience].first).to eq(nil)
+      expect(etsv.errors[:number_of_projects].first).to eq(nil)
+      expect(etsv.errors[:last_use].first).to eq(nil)
       expect(etsv.errors[:skill_level].first).to eq('muss ausgefüllt werden')
-      expect(etsv.errors.details.count).to eq(4)
+      expect(etsv.errors.details.count).to eq(1)
     end
-    
+
     it 'checks validation maximum length for attribute' do
       etsv = ExpertiseTopicSkillValue.new
       etsv.last_use = 12345

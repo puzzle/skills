@@ -21,11 +21,11 @@ class ExpertiseTopicSkillValue < ApplicationRecord
 
   enum skill_level: [:trainee, :junior, :professional, :senior, :expert]
 
-  validates :years_of_experience, :number_of_projects, :last_use, :skill_level, presence: true
-  validates :last_use, length: { is: 4 }
-  validates :comment, length: { maximum: 500 }
-  validates :number_of_projects, inclusion: { in: 0..255 }
-  validates :years_of_experience, inclusion: { in: 0..80 }
+  validates :skill_level, presence: true
+  validates :last_use, length: { is: 4 }, allow_nil: true
+  validates :comment, length: { maximum: 500 }, allow_nil: true
+  validates :number_of_projects, inclusion: { in: 0..255 }, allow_nil: true
+  validates :years_of_experience, inclusion: { in: 0..80 }, allow_nil: true
   validates :expertise_topic_id,
     uniqueness: { scope: :person ,
                   message: '- Etwas ist schief gelaufen. Bitte Seite neu laden' }

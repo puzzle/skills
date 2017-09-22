@@ -4,7 +4,6 @@
     <input form={{formId}}
         max="80"
         min="0"
-        required="true"
         class="fws-number-input"
         type="number"
         value={{expertiseTopicSkillValue.yearsOfExperience}}
@@ -14,7 +13,6 @@
     <input form={{formId}}
         max="255"
         min="0"
-        required="true"
         class="fws-number-input"
         class="fws-number-input"
         type="number"
@@ -25,7 +23,6 @@
     <input form={{formId}}
         max="4095"
         min="1900"
-        required="true"
         class="fws-year-input"
         type="number"
         value={{expertiseTopicSkillValue.lastUse}}
@@ -33,7 +30,11 @@
   </td>
 
   <td>
-    <select form={{formId}} class="fws-select selectpicker" onchange={{action (mut changeset.skillLevel) value="target.value"}}>
+    <select form={{formId}}
+        class="fws-select selectpicker"
+        onchange={{action (mut changeset.skillLevel)
+        value="target.value"}}
+        required>
       {{#each skillLevelData as |sld|}}
         <option value={{sld}} selected={{eq changeset.skillLevel sld}}>{{sld}}</option>
       {{/each}}
