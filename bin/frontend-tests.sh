@@ -3,6 +3,7 @@
 export RAILS_PORT=3001
 
 rails server -e test -d -p $RAILS_PORT
+rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 
 cd frontend
 COVERAGE=true yarn test
