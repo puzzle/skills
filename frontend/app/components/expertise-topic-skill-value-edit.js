@@ -1,16 +1,13 @@
+import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import Ember from 'ember';
 import ExpertiseTopicSkillValueModel from '../models/expertise-topic-skill-value'
 
-const {
-  inject
-} = Ember;
 const DEFAULT_SKILL_LEVEL = 'trainee';
 
 export default Component.extend({
   skillLevelData: ExpertiseTopicSkillValueModel.SKILL_LEVELS,
-  store: inject.service(),
+  store: service(),
   tagName: '',
 
   formId: computed('expertiseTopic', function() {

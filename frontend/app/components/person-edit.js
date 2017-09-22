@@ -1,16 +1,10 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import Ember from 'ember';
 import PersonModel from '../models/person';
 
-const {
-  inject
-} = Ember;
-
 export default Component.extend({
-  store: inject.service(),
-
+  store: service(),
   i18n: service(),
 
   personPictureUploadPath: computed('person.id', function() {

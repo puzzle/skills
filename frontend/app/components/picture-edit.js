@@ -1,16 +1,12 @@
+import { inject as service } from '@ember/service';
 import PromiseProxyMixin from '@ember/object/promise-proxy-mixin';
 import ObjectProxy from '@ember/object/proxy';
 import Component from '@ember/component';
-import Ember from 'ember';
-
-const {
-  inject
-} = Ember;
 
 const ObjectPromiseProxy = ObjectProxy.extend(PromiseProxyMixin);
 
 export default Component.extend({
-  ajax: inject.service(),
+  ajax: service(),
 
   uploadImage(file) {
     let formData = new FormData();
