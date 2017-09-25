@@ -41,15 +41,40 @@
       <div class="container-fluid round-border"
         style="background-color: #ccc;">
         <div class="menu_div">
-          <ul id="person-list">
-            {{#each filteredList as |person|}}
-              <li>
-                {{#link-to "person" person.id click=(action 'scrollToTop')}}
-                  {{~person.attributes.name~}}
-                {{/link-to}}
-              </li>
-            {{/each}}
-          </ul>
+          {{#if showGrouped}}
+            {{#cp-panels name="people-list" accordion=true as |panels|}}
+              {{#each-in groupedList as |letter people|}}
+                {{#panels.panel name=letter as |panel|}}
+                  {{#panel.toggle}}
+                    <div class="person-list-header">
+                      {{~letter~}}
+                    </div>
+                  {{/panel.toggle}}
+                  {{#panel.body}}
+                    <ul>
+                      {{#each people as |person|}}
+                        <li>
+                          {{#link-to "person" person.id click=(action 'scrollToTop')}}
+                            {{~person.attributes.name~}}
+                          {{/link-to}}
+                        </li>
+                      {{/each}}
+                    </ul>
+                  {{/panel.body}}
+                {{/panels.panel}}
+              {{/each-in}}
+            {{/cp-panels}}
+          {{else}}
+            <ul id="person-list">
+              {{#each filteredList as |person|}}
+                <li>
+                  {{#link-to "person" person.id click=(action 'scrollToTop')}}
+                    {{~person.attributes.name~}}
+                  {{/link-to}}
+                </li>
+              {{/each}}
+            </ul>
+          {{/if}}
         </div>
       </div>
     </div>
