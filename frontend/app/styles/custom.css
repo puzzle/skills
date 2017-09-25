@@ -158,6 +158,9 @@ hr {
     text-decoration:none;
     color:#FFF;
     display:block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .menu_div ul li a:hover
   {
