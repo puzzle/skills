@@ -2,10 +2,10 @@
 
 source 'https://rubygems.org'
 
-gem 'rails', '5.1.0'
+gem 'rails', '5.1.4'
 
+gem 'active_model_serializers', '~> 0.10.6'
 gem 'activerecord-postgresql-adapter'
-gem 'active_model_serializers', '~> 0.10.0'
 gem 'annotate'
 gem 'carrierwave'
 gem 'faker'
@@ -17,7 +17,7 @@ gem 'pg', '0.19.0.pre20160409114042'
 gem 'pg_search'
 gem 'puma', '~> 3.0'
 gem 'rack'
-gem 'rails-i18n'
+gem 'rails-i18n', '~> 5.0.4'
 gem 'seed-fu'
 gem 'sqlite3'
 gem 'deep_cloneable', '~> 2.2.2'
@@ -33,8 +33,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code
   # to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
   gem 'hirb'
+  gem 'rspec-rails', '~> 3.6'
 end
 
 group :development do
