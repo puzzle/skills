@@ -29,6 +29,7 @@ class PersonSeeder
     associations.each do |a|
       change_associations(a, person_variation)
     end
+  rescue
   end
 
   def change_associations(assoc_name, person_variation)
