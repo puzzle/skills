@@ -15,9 +15,18 @@
   {{! Personlist }}
   <div class="row-fluid person-list">
     <div class="span10">
-      <div id="form-search" class="">
-        <input id="field-search" type="text" class="span12"
-          autocomplete="off" placeholder="Personensuche" oninput={{perform searchPeopleTask value='target.value'}}>
+      <div id="form-search">
+        <div class={{if search 'input-append'}}>
+          <input id="field-search"
+              type="text"
+              autocomplete="off"
+              placeholder="Personensuche"
+              value={{search}}
+              oninput={{perform searchPeopleTask value='target.value'}}>
+          {{#if search}}
+            <button class="btn" onclick={{action 'clearSearch'}}>&times;</button>
+          {{/if}}
+        </div>
         <button class="btn btn-link"
             onclick={{action (toggle 'advancedSearch' this)}}
             id="toggleSearch">

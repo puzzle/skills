@@ -46,7 +46,7 @@ export default Component.extend({
 
   searchPeopleTask: task(function* (q) {
     if (isBlank(q)) {
-      this.sendAction('onSearch', null);
+      this.send('clearSearch');
       return
     }
 
@@ -56,6 +56,10 @@ export default Component.extend({
   }).restartable(),
 
   actions: {
+    clearSearch() {
+      this.sendAction('onSearch', null);
+    },
+
     setFilter(value) {
       this.set('filterBy', value);
     },
