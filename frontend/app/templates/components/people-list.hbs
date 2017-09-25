@@ -29,7 +29,9 @@
             <select onchange={{action 'setFilter' value="target.value"}}>
               <option value='all'>Alle</option>
               {{#each statusData as |status|}}
-                <option value={{status.id}} selected={{eq filterBy status.id}}>{{status.name}}</option>
+                <option value={{status.id}} selected={{eq filterBy status.id}}>
+                  {{~status.name~}}
+                </option>
               {{/each}}
             </select>
           </div>
@@ -43,7 +45,7 @@
             {{#each filteredList as |person|}}
               <li>
                 {{#link-to "person" person.id click=(action 'scrollToTop')}}
-                  {{person.attributes.name}}
+                  {{~person.attributes.name~}}
                 {{/link-to}}
               </li>
             {{/each}}
