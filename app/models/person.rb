@@ -38,6 +38,7 @@ class Person < ApplicationRecord
   has_many :advanced_trainings, dependent: :destroy
   has_many :educations, dependent: :destroy
   has_many :expertise_topic_skill_values, dependent: :destroy
+  has_many :expertise_topics, through: :expertise_topic_skill_values
   has_many :variations, foreign_key: :origin_person_id,
                         class_name: 'Person::Variation'
 
@@ -69,7 +70,8 @@ class Person < ApplicationRecord
                     projects: [:description, :title, :role, :technology],
                     activities: [:description, :role],
                     educations: [:location, :title],
-                    advanced_trainings: :description
+                    advanced_trainings: :description,
+                    expertise_topics: :name
                   },
                   using: {
                     tsearch: {
