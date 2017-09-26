@@ -250,7 +250,7 @@ hr {
 
   .form-field--control{
     width: 200px;
-    margin: 0 0 0 10px;
+    margin-left: 10px;
   }
 
   .form-button--submit, .form-button--reset {
