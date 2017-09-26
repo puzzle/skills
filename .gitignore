@@ -26,3 +26,6 @@
 # Ignore uploaded pictures
 /uploads
 /public/uploads
+
+/node_modules
+/yarn.lock
