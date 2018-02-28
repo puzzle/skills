@@ -7,7 +7,7 @@ class AuthenticationController < ApplicationController
 
   def sign_in
     development_json = { ldap_uid: 'development_user', api_token: '1234' }
-    return render json: development_json if Rails.env.development? && ENV['ENABLE_AUTH'].blank?
+    return render json: development_json if auth_disabled?
 
     username = params[:username]
     password = params[:password]
@@ -26,4 +26,12 @@ class AuthenticationController < ApplicationController
   def invalid_params?(username, password)
     username.blank? || password.blank? || (username =~ /^([a-zA-Z]|\d)+$/).nil?
   end
+
+  private
+
+  def auth_disabled?
+    (Rails.env.development? && ENV['ENABLE_AUTH'].blank?) ||
+      ENV['DISABLE_AUTH'].present?
+  end
+
 end

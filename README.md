@@ -1,4 +1,4 @@
-# PuzzleCV 2
+# Puzzle Skills
 
 ## Back-End
 
