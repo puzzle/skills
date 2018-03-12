@@ -19,7 +19,7 @@ class ExpertiseCategory < ApplicationRecord
                    uniqueness: { scope: :discipline }, 
                    length: { maximum: 100 }
 
-  scope :list, -> (discipline = nil) do 
+  scope :list, ->(discipline = nil) do 
     where(discipline: discipline )
   end
 

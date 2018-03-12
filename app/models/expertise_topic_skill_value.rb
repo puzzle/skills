@@ -30,7 +30,7 @@ class ExpertiseTopicSkillValue < ApplicationRecord
     uniqueness: { scope: :person ,
                   message: '- Etwas ist schief gelaufen. Bitte Seite neu laden' }
 
-  scope :list, -> (person_id = nil, category_id= nil) do
+  scope :list, ->(person_id = nil, category_id= nil) do
     includes(:expertise_topic).
     includes(expertise_topic: :expertise_category).
     where(person_id: person_id).
