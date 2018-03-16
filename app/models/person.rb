@@ -32,6 +32,8 @@ class Person < ApplicationRecord
                3 => 'Bewerber',
                4 => 'Partner' }.freeze
 
+  belongs_to :company
+
   mount_uploader :picture, PictureUploader
   has_many :projects, dependent: :destroy
   has_many :activities, dependent: :destroy
