@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :companies
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   scope '/api' do
@@ -19,6 +18,8 @@ Rails.application.routes.draw do
       post 'variation', to: 'person_variations#create'
       get 'fws', to: 'people#export_fws'
     end
+
+    resources :companies, controller: 'companies'
 
     resources :advanced_trainings, controller: 'advanced_trainings'
     resources :activities, controller: 'activities'
