@@ -14,7 +14,7 @@ class CreateCompanies < ActiveRecord::Migration[5.1]
       t.string :level
       t.integer :number_MA_total
       t.integer :number_MA_dev
-      t.int :number_MA_sys_mid
+      t.integer :number_MA_sys_mid
       t.integer :number_MA_PL
       t.integer :number_MA_UX
 
