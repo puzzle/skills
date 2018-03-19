@@ -4,7 +4,7 @@ require Rails.root.join('db', 'seeds', 'support', 'company_seeder')
 
 seeder = CompanySeeder.new
 
-companies = ['PuzzleITC',
+companies = ['Firma',
          'Ex-Mitarbeiter',
          'Partnerfirma']
 
