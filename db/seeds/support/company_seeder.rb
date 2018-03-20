@@ -2,17 +2,29 @@
 
 class CompanySeeder
   def seed_companies(companies)
-    companies.each do |company|
-      seed_company(company)
+    companies.each do |name|
+      company = seed_company(name).first
+      
+      break unless company
+      associations = [:location, :employee_quantity]
+      associations.each do |a|
+        seed_association(a, company.id)
+      end
+    end
+  end
+  
+  def seed_association(assoc_name, company_id)
+    rand(1..3).times do
+      send("seed_#{assoc_name}", company_id)
     end
   end
 
   private
-  def seed_company(company)
+  
+  def seed_company(name)
     Company.seed do |co|
-      co.name = company
+      co.name = name
       co.web = "www.example.com"
-      co.location = Faker::Pokemon.location
       co.email = "info@example.ch"
       co.phone = Faker::PhoneNumber.cell_phone
       co.partnermanager =  Faker::StarTrek.character
@@ -20,12 +32,25 @@ class CompanySeeder
       co.email_contact_person = Faker::Internet.email
       co.phone_contact_person = Faker::PhoneNumber.cell_phone
       co.crm = "crm"
-      co.level = Faker::Lorem.characters(1)
-      co.number_MA_dev = Faker::Number.between(0, 80)
-      co.number_MA_sys_mid = Faker::Number.between(0, 80)
-      co.number_MA_PL = Faker::Number.between(0, 80)
-      co.number_MA_UX = Faker::Number.between(0, 80)
-      co.number_MA_total = Faker::Number.between(80, 200)
+      co.level = ["A", "B", "C", "D", "E", "F"].sample
+      co.picture = Faker::Avatar.image
+    end
+  end
+
+  def seed_location(company_id)
+    Location.seed do |a|
+      a.location = Faker::Pokemon.location
+      a.company_id = company_id
+    end
+  end
+  
+  def seed_employee_quantity(company_id)
+    EmployeeQuantity.seed do |a|
+      category = "Anzahl MA "
+      category << #{Faker::Team.sport}
+      a.category = category
+      a.quantity = Faker::Number.between(10, 100)
+      a.company_id = company_id
     end
   end
 end
