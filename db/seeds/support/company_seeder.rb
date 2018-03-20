@@ -46,9 +46,8 @@ class CompanySeeder
   
   def seed_employee_quantity(company_id)
     EmployeeQuantity.seed do |a|
-      category = "Anzahl MA "
-      category << #{Faker::Team.sport}
-      a.category = category
+      category = Faker::Hacker.noun
+      a.category = "Total MA #{category}"
       a.quantity = Faker::Number.between(10, 100)
       a.company_id = company_id
     end
