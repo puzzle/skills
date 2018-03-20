@@ -6,6 +6,7 @@ seeder = CompanySeeder.new
 
 companies = ['Firma',
          'Ex-Mitarbeiter',
-         'Partnerfirma']
+         'Bewerber',
+         'Partner']
 
 seeder.seed_companies(companies)

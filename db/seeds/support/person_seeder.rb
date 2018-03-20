@@ -104,7 +104,7 @@ class PersonSeeder
       p.role = Faker::Company.profession
       p.title = Faker::Name.title
       p.status_id = rand(1..4) 
-      p.company_id = Faker::Number.between(1, 3)
+      p.company_id = rand(1..4)
       competences = ""
       rand(5..15).times{ competences << "#{Faker::Superhero.power}\n" }
       p.competences = competences
