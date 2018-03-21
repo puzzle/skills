@@ -1,9 +1,12 @@
 # encoding: utf-8
 
 class CompanySeeder
-  def seed_companies(companies)
+  def seed_companies(companies, my_company_flags)
+    my_company_flags.reverse!
+    
     companies.each do |name|
-      company = seed_company(name).first
+      flag = my_company_flags.pop
+      company = seed_company(name, flag).first
       
       break unless company
       associations = [:location, :employee_quantity]
@@ -21,7 +24,7 @@ class CompanySeeder
 
   private
   
-  def seed_company(name)
+  def seed_company(name, flag)
     Company.seed do |co|
       co.name = name
       co.web = "www.example.com"
@@ -34,6 +37,7 @@ class CompanySeeder
       co.crm = "crm"
       co.level = ["A", "B", "C", "D", "E", "F"].sample
       co.picture = Faker::Avatar.image
+      co.my_company = flag
     end
   end
 

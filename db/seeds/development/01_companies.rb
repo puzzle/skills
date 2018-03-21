@@ -8,5 +8,7 @@ companies = ['Firma',
          'Ex-Mitarbeiter',
          'Bewerber',
          'Partner']
+         
+my_company_flags = [true, false, false, false]
 
-seeder.seed_companies(companies)
+seeder.seed_companies(companies, my_company_flags)

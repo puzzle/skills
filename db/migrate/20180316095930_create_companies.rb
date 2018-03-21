@@ -12,6 +12,7 @@ class CreateCompanies < ActiveRecord::Migration[5.1]
       t.string :crm
       t.string :level
       t.string :picture
+      t.boolean :my_company
 
       t.timestamps
     end
