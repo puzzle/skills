@@ -1,7 +1,7 @@
 class Company < ApplicationRecord
 	has_many :people
-	has_many :locations
-	has_many :employee_quantities
+	has_many :locations, dependent: :destroy
+	has_many :employee_quantities, dependent: :destroy
 	
 	mount_uploader :picture, PictureUploader
 	
