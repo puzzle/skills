@@ -2,7 +2,7 @@
 
 class StaticAssetsController < ActionController::Base
 
-  protect_from_forgery with: :null_session
+  protect_from_forgery with: :exception
 
   def index
     render file: Rails.root.join('public/index.html')
