@@ -14,9 +14,12 @@ You will need the following things properly installed on your computer.
 
 ## Installation
 
+* `npm install -g ember-cli`
+* `npm install -g bower`
 * `git clone <repository-url>` this repository
 * `cd frontend`
 * `npm install`
+* `bower install`
 
 ## Running / Development
 With Mirage Fixtures:
