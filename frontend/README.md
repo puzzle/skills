@@ -36,7 +36,8 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Running Tests
 
-* `ember test`
+* `rake spec:frontend:serve` (from skills)[See skills/README.md](https://github.com/puzzle/skills/tree/uni-master#testing)
+* `ember test` (from frontend, acceptance tests are failing)
 * `ember test --server`
 
 ### Building
