@@ -21,8 +21,6 @@ You will need the following things properly installed on your computer.
 * `gem install bundler`
 * `bundle`
 
-Don't forget to run `rake rubocop` after making code changes. 
-
 #### database setup
 
 * `sudo su - postgres`
@@ -41,6 +39,13 @@ now run backend server
 * Frontend tests with livereload `rake spec:frontend:serve`
 * To run a single test run the following command in the frontend folder `npm test --filter "some filter words"`
 * There is also `rake ci` and `rake ci:nightly` which should be periodically exectued by a build job (e.g. on jenkins)
+
+#### Definition of Done (DoD) for new Code / Features
+
+* `rake spec` passes
+* `rake spec:frontend` passes
+* `rake rubocop` passes
+* manual testing (start server, frontend and click through the new feature)
 
 ### LDAP config
 
