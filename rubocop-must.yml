@@ -34,10 +34,6 @@ Metrics/ParameterLists:
 Metrics/AbcSize:
   Max: 36 # Try to reduce this value
 
-Style/Encoding:
-  EnforcedStyle: always
-  Enabled: true
-
 # Disable all other cops
 
 AccessorMethodName:
@@ -154,10 +150,10 @@ Lambda:
 LineEndConcatenation:
   Enabled: false
 
-Lint/Eval:
+Security/Eval:
   Enabled: false
 
-Lint/DefEndAlignment:
+Layout/DefEndAlignment:
   Enabled: false
 
 Lint/UnusedBlockArgument:
@@ -166,7 +162,7 @@ Lint/UnusedBlockArgument:
 Lint/UnusedMethodArgument:
   Enabled: false
 
-Lint/UnneededDisable:
+Lint/UnneededCopDisableDirective:
   Enabled: false
 
 Lint/UselessAccessModifier:
@@ -244,9 +240,6 @@ SpaceBeforeComma:
 SpaceBeforeFirstArg:
   Enabled: false
 
-SpaceInsideBrackets:
-  Enabled: false
-
 SpaceInsideHashLiteralBraces:
   Enabled: false
 
@@ -268,25 +261,22 @@ Style/ClassCheck:
 Style/ConditionalAssignment:
   Enabled: false
 
-Style/CommentIndentation:
+Layout/CommentIndentation:
   Enabled: false
 
 Style/EachWithObject:
   Enabled: false
 
-Style/ExtraSpacing:
+Layout/ExtraSpacing:
   Enabled: false
 
 Style/GuardClause:
   Enabled: false
 
-Style/IndentArray:
+Layout/IndentArray:
   Enabled: false
 
-Style/LeadingCommentSpace:
-  Enabled: false
-
-Style/MethodCallParentheses:
+Layout/LeadingCommentSpace:
   Enabled: false
 
 Style/MultilineBlockChain:
@@ -301,10 +291,10 @@ Style/ParallelAssignment:
 Style/SingleLineBlockParams:
   Enabled: false
 
-Style/SpaceBeforeComment:
+Layout/SpaceBeforeComment:
   Enabled: false
 
-Style/SpaceInsideBlockBraces:
+Layout/SpaceInsideBlockBraces:
   Enabled: false
 
 Style/StringLiteralsInInterpolation:
@@ -313,7 +303,7 @@ Style/StringLiteralsInInterpolation:
 Style/UnneededCapitalW:
   Enabled: false
 
-Style/VariableName:
+Naming/VariableName:
   Enabled: false
 
 Tab:
@@ -322,7 +312,10 @@ Tab:
 TrailingBlankLines:
   Enabled: false
 
-TrailingCommaInLiteral:
+Style/TrailingCommaInArrayLiteral:
+  Enabled: false
+
+Style/TrailingCommaInHashLiteral:
   Enabled: false
 
 TrailingCommaInArguments:
@@ -355,9 +348,6 @@ Performance/Casecmp:
 Performance/Detect:
   Enabled: false
 
-Performance/PushSplat:
-  Enabled: false
-
 Performance/RedundantBlockCall:
   Enabled: false
 
@@ -370,40 +360,40 @@ Performance/Sample:
 Style/BlockDelimiters:
   Enabled: false
 
-Style/ClosingParenthesisIndentation:
+Layout/ClosingParenthesisIndentation:
   Enabled: false
 
-Style/EmptyLinesAroundBlockBody:
+Layout/EmptyLinesAroundBlockBody:
   Enabled: false
 
-Style/EmptyLinesAroundClassBody:
+Layout/EmptyLinesAroundClassBody:
   Enabled: false
 
-Style/EmptyLinesAroundMethodBody:
+Layout/EmptyLinesAroundMethodBody:
   Enabled: false
 
-Style/EmptyLinesAroundModuleBody:
+Layout/EmptyLinesAroundModuleBody:
   Enabled: false
 
-Style/FirstParameterIndentation:
+Layout/FirstParameterIndentation:
   Enabled: false
 
 Style/IfInsideElse:
   Enabled: false
 
-Style/MultilineOperationIndentation:
+Layout/MultilineOperationIndentation:
   Enabled: false
 
-Style/MultilineMethodCallIndentation:
+Layout/MultilineMethodCallIndentation:
   Enabled: false
 
-Style/MultilineHashBraceLayout:
+Layout/MultilineHashBraceLayout:
   Enabled: false
 
-Style/MultilineArrayBraceLayout:
+Layout/MultilineArrayBraceLayout:
   Enabled: false
 
-Style/MultilineMethodCallBraceLayout:
+Layout/MultilineMethodCallBraceLayout:
   Enabled: false
 
 Style/MutableConstant:
@@ -415,7 +405,7 @@ Style/RedundantParentheses:
 Style/PreferredHashMethods:
   Enabled: false
 
-Style/SpaceAroundKeyword:
+Layout/SpaceAroundKeyword:
   Enabled: false
 
 Style/StructInheritance:
