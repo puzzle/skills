@@ -169,8 +169,7 @@ describe PeopleController do
                    origin: 'Switzerland',
                    role: 'tester',
                    title: 'Bsc in tester',
-                   status_id: 2,
-                   company: 'Puzzle ITC GmbH'}
+                   status_id: 2}
 
         process :create, method: :post, params: { data: { attributes: person } }
 
@@ -178,7 +177,6 @@ describe PeopleController do
         expect(new_person).not_to eq(nil)
         expect(new_person.location).to eq('Bern')
         expect(new_person.language).to eq('German')
-        expect(new_person.company).to eq('Puzzle ITC GmbH')
         expect(new_person.picture.url)
           .to include("#{Rails.root}/uploads/person/picture/#{new_person.id}/picture.png")
       end

@@ -12,7 +12,7 @@
 class ExpertiseCategory < ApplicationRecord
   has_many :expertise_topics, dependent: :destroy
 
-  enum discipline: [:development, :system_engineering]
+  enum discipline: [:development, :system_engineering, :offer]
 
   validates :discipline, presence: true
   validates :name, presence: true,

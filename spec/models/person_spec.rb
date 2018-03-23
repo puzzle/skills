@@ -92,7 +92,6 @@ describe Person do
         person.role = SecureRandom.hex(100)
         person.title = SecureRandom.hex(100)
         person.variation_name = SecureRandom.hex(100)
-        person.company = SecureRandom.hex(100)
         person.valid?
 
         expect(person.errors[:location].first).to eq('ist zu lang (mehr als 100 Zeichen)')
@@ -103,7 +102,6 @@ describe Person do
         expect(person.errors[:title].first).to eq('ist zu lang (mehr als 100 Zeichen)')
         expect(person.errors[:variation_name].first).to eq('ist zu lang (mehr als 100 Zeichen)')
         expect(person.errors[:language].first).to eq('ist zu lang (mehr als 100 Zeichen)')
-        expect(person.errors[:company].first).to eq('ist zu lang (mehr als 100 Zeichen)')
       end
     end
   end
