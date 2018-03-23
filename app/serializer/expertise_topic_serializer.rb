@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 class ExpertiseTopicSerializer < ActiveModel::Serializer
   attributes :id, :name, :user_topic
 

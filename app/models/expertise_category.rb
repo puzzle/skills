@@ -1,4 +1,4 @@
-# encoding: utf-8
+
 #
 # == Schema Information
 #
@@ -15,12 +15,12 @@ class ExpertiseCategory < ApplicationRecord
   enum discipline: [:development, :system_engineering]
 
   validates :discipline, presence: true
-  validates :name, presence: true, 
-                   uniqueness: { scope: :discipline }, 
+  validates :name, presence: true,
+                   uniqueness: { scope: :discipline },
                    length: { maximum: 100 }
 
-  scope :list, -> (discipline = nil) do 
-    where(discipline: discipline )
+  scope :list, ->(discipline = nil) do
+    where(discipline: discipline)
   end
 
 end
