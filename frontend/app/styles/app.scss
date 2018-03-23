@@ -1,11 +1,12 @@
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
 @import "normalize";
+@import "../../bower_components/bootstrap/scss/bootstrap";
 @import "toaster.mini";
 @import "custom";
 @import "fws";
 @import "ember-basic-dropdown";
-@import "../../bower_components/bootstrap/scss/bootstrap";
+
 
 html,
 button,
@@ -356,12 +357,6 @@ textarea {
 
 .form-login input{
   margin-bottom: 10px;
-}
-
-
-.form-inline {
-  width: 220px;
-  margin: 0px auto;
 }
 
 .form-login .btn{
