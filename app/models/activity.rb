@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 # == Schema Information
 #
 # Table name: activities
@@ -19,7 +17,7 @@ class Activity < ApplicationRecord
   belongs_to :person, touch: true
 
   validates :year_from, :person_id, :role, presence: true
-  validates :year_from, :year_to, length: {is: 4}, allow_blank: true
+  validates :year_from, :year_to, length: { is: 4 }, allow_blank: true
   validates :description, length: { maximum: 5000 }
   validates :role, length: { maximum: 500 }
   validate :year_from_before_year_to

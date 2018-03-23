@@ -5,13 +5,15 @@ AllCops:
     - db/**/*
     - config/**/*
     - lib/tasks/**/*
-    - test/**/*
+    - bin/**/*
+    - spec/**/*
+    - vendor/**/*
     - tmp/**/*
     - frontend/**/*
-    - test/**/*
+
 
 Metrics/AbcSize:
-  Max: 20
+  Max: 17
   Severity: error
 
 Metrics/ClassLength:
@@ -24,12 +26,22 @@ Metrics/CyclomaticComplexity:
 
 Metrics/LineLength:
   Max: 100
-  Severity: warning
+  Severity: error
 
 Metrics/MethodLength:
   Max: 10
   Severity: error
 
+Metrics/ModuleLength:
+  Max: 200
+  Severity: error
+
+Metrics/ParameterLists:
+  Max: 4
+  Severity: warning
+
+Rails:
+  Enabled: true
 
 # Keep for now, easier with superclass definitions
 ClassAndModuleChildren:
@@ -56,6 +68,30 @@ DotPosition:
 Encoding:
   Severity: error
 
+# That's no huge stopper
+Layout/EmptyLines:
+  Enabled: false
+
+# We thinks that's fine for specs
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: false
+
+# We thinks that's fine
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+
+# We thinks that's fine
+Layout/EmptyLinesAroundModuleBody:
+  Enabled: false
+
+# We thinks that's fine
+Layout/MultilineOperationIndentation:
+  Enabled: false
+
+# But probably more readable...
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
 # Keep single line bodys for if and unless
 IfUnlessModifier:
   Enabled: false
@@ -68,28 +104,28 @@ HasAndBelongsToMany:
 Rails/Delegate:
   Enabled: false
 
-# That's no huge stopper
-Style/EmptyLines:
-  Enabled: false
-
-# We thinks that's fine for specs
-Style/EmptyLinesAroundBlockBody:
+# We think that's the developers choice
+Rails/SkipsModelValidations:
   Enabled: false
 
 # We thinks that's fine
-Style/EmptyLinesAroundClassBody:
+Style/EmptyMethod:
   Enabled: false
 
-# We thinks that's fine
-Style/EmptyLinesAroundModuleBody:
+# just false positives for 0.51.0
+Style/MixinUsage:
   Enabled: false
 
-# We thinks that's fine
-Style/MultilineOperationIndentation:
+# Not sure if this is really an established community standard
+Style/PercentLiteralDelimiters:
   Enabled: false
 
 # We thinks that's fine
 Style/RegexpLiteral:
+  Enabled: false
+
+# We thinks that's fine
+Style/SymbolArray:
   Enabled: false
 
 # We think that's the developers choice

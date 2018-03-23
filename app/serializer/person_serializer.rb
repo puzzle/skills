@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 class PersonSerializer < ApplicationSerializer
   type :people
 

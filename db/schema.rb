@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170922080251) do
+ActiveRecord::Schema.define(version: 20180316104707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,27 @@ ActiveRecord::Schema.define(version: 20170922080251) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["person_id"], name: "index_advanced_trainings_on_person_id"
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.string "location"
+    t.string "web"
+    t.string "email"
+    t.string "phone"
+    t.string "partnermanager"
+    t.string "contact_person"
+    t.string "email_contact_person"
+    t.string "phone_contact_person"
+    t.string "crm"
+    t.string "level"
+    t.integer "number_MA_total"
+    t.integer "number_MA_dev"
+    t.integer "number_MA_sys_mid"
+    t.integer "number_MA_PL"
+    t.integer "number_MA_UX"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "educations", id: :serial, force: :cascade do |t|
