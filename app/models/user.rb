@@ -1,4 +1,4 @@
-# encoding: utf-8
+
 # == Schema Information
 #
 # Table name: users
@@ -17,8 +17,8 @@ class User < ApplicationRecord
   validates :ldap_uid, uniqueness: true
 
   def update_failed_login_attempts
-    update_attributes(last_failed_login_attempt_at: Time.current,
-                      failed_login_attempts: failed_login_attempts + 1)
+    update(last_failed_login_attempt_at: Time.current,
+           failed_login_attempts: failed_login_attempts + 1)
   end
 
   def locked?
@@ -27,8 +27,8 @@ class User < ApplicationRecord
   end
 
   def reset_failed_login_attempts
-    update_attributes(last_failed_login_attempt_at: nil,
-                      failed_login_attempts: 0)
+    update(last_failed_login_attempt_at: nil,
+           failed_login_attempts: 0)
   end
 
   def seconds_locked
@@ -43,12 +43,14 @@ class User < ApplicationRecord
   end
 
   class << self
+    # TODO refactor and enable rubocop
+    # rubocop:disable Metrics/MethodLength
     def authenticate(username, password)
       return { error: 'Ungültige Login Daten' } unless LdapTools.exists?(username)
 
       user = find_or_create(username)
 
-      return { error: "User ist gesperrt für #{user.seconds_locked} Sekunden"} if user.locked?
+      return { error: "User ist gesperrt für #{user.seconds_locked} Sekunden" } if user.locked?
 
       unless LdapTools.authenticate(username, password)
         user.update_failed_login_attempts
@@ -62,11 +64,13 @@ class User < ApplicationRecord
         api_token: user.api_token
       }
     end
+    # rubocop:enable Metrics/MethodLength
+
 
     def find_or_create(ldap_uid)
       user = User.find_by(ldap_uid: ldap_uid)
-      user = User.create(ldap_uid: ldap_uid) unless user
-      user.update_attributes(api_token: generate_api_token)
+      user ||= User.create(ldap_uid: ldap_uid)
+      user.update(api_token: generate_api_token)
       user
     end
 

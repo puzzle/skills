@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 # A generic controller to display, create, update and destroy entries of a certain model class.
 class CrudController < ListController
   class_attribute :permitted_attrs, :nested_models
@@ -80,7 +78,7 @@ class CrudController < ListController
     attrs = map_relationships(attrs)
     AttributeDeserializer.new(attrs, nested_models: nested_models).run
   end
-  
+
   def map_relationships(attrs)
     relationships = params[:data][:relationships]
 

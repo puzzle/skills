@@ -1,4 +1,4 @@
-# encoding: utf-8
+
 #
 # == Schema Information
 #
@@ -19,7 +19,7 @@ class ExpertiseTopicSkillValue < ApplicationRecord
   belongs_to :expertise_category
   belongs_to :person, touch: true
 
-  enum skill_level: [:trainee, :junior, :professional, :senior, :expert]
+  enum skill_level: %i[trainee junior professional senior expert]
 
   validates :skill_level, presence: true
   validates :last_use, length: { is: 4 }, allow_nil: true
@@ -27,13 +27,13 @@ class ExpertiseTopicSkillValue < ApplicationRecord
   validates :number_of_projects, inclusion: { in: 0..255 }, allow_nil: true
   validates :years_of_experience, inclusion: { in: 0..80 }, allow_nil: true
   validates :expertise_topic_id,
-    uniqueness: { scope: :person ,
-                  message: '- Etwas ist schief gelaufen. Bitte Seite neu laden' }
+            uniqueness: { scope: :person,
+                          message: '- Etwas ist schief gelaufen. Bitte Seite neu laden' }
 
-  scope :list, -> (person_id = nil, category_id= nil) do
+  scope :list, ->(person_id = nil, category_id = nil) do
     includes(:expertise_topic).
-    includes(expertise_topic: :expertise_category).
-    where(person_id: person_id).
-    where(expertise_categories: { id: category_id } )
+      includes(expertise_topic: :expertise_category).
+      where(person_id: person_id).
+      where(expertise_categories: { id: category_id })
   end
 end

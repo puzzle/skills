@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 # == Schema Information
 #
 # Table name: advanced_trainings
@@ -18,7 +16,7 @@ class AdvancedTraining < ApplicationRecord
   belongs_to :person, touch: true
 
   validates :year_from, :person_id, :description, presence: true
-  validates :year_from, :year_to, length: {is: 4}, allow_blank: true
+  validates :year_from, :year_to, length: { is: 4 }, allow_blank: true
   validates :description, length: { maximum: 5000 }
   validate :year_from_before_year_to
 
