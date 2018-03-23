@@ -1,14 +1,12 @@
-# encoding: utf-8
-
 class PeopleController < CrudController
-  self.permitted_attrs = [:birthdate, :picture, :language, :location,
-                          :martial_status, :updated_by, :name, :origin, :role, :title,
-                          :competences, :status_id, :variation_name, :company]
+  self.permitted_attrs = %i[birthdate picture language location
+                          martial_status updated_by name origin role title
+                          competences status_id variation_name company]
 
-  self.nested_models = [:advanced_trainings, :activities, :projects,
-                        :educations]
+  self.nested_models = %i[advanced_trainings activities projects
+                        educations]
 
-  skip_before_action :authorize, only: [:picture]
+  skip_before_action :authorize, only: :picture
 
   def index
     people = fetch_entries
@@ -22,7 +20,7 @@ class PeopleController < CrudController
   end
 
   def update_picture
-    person.update_attributes(picture: params[:picture])
+    person.update(picture: params[:picture])
     render json: { data: { picture_path: person_picture_path(params[:person_id]) } }
   end
 
@@ -102,7 +100,7 @@ class PeopleController < CrudController
     'filename="' +
       percent_escape(
         I18n.transliterate(filename),
-        /[^ A-Za-z0-9!#$+.^_`|~-]/
+        /[^ A-Za-z0-9!#{$+}.^_`|~-]/
       ) + '"'
   end
 
@@ -110,7 +108,7 @@ class PeopleController < CrudController
     "filename*=UTF-8''" +
       percent_escape(
         filename,
-        /[^A-Za-z0-9!#$&+.^_`|~-]/
+        /[^A-Za-z0-9!#{$&}+.^_`|~-]/
       )
   end
 

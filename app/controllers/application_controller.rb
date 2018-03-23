@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 class ApplicationController < ActionController::API
   before_action :authorize
 

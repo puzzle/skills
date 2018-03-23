@@ -1,4 +1,4 @@
-# encoding: utf-8
+
 #
 # == Schema Information
 #
@@ -14,14 +14,14 @@ class ExpertiseTopic < ApplicationRecord
   belongs_to :expertise_category
   has_many :expertise_topic_skill_values, dependent: :destroy
 
-  validates :name, presence: true, 
-                   length: { maximum: 100 }, 
+  validates :name, presence: true,
+                   length: { maximum: 100 },
                    uniqueness: { scope: :expertise_category }
 
-  scope :list, ->(category_id= nil) do 
+  scope :list, ->(category_id = nil) do
     includes(:expertise_category, :expertise_topic_skill_values).
-    where(expertise_categories: { id: category_id } ).
-    where(user_topic: false)
+      where(expertise_categories: { id: category_id }).
+      where(user_topic: false)
   end
 
 end
