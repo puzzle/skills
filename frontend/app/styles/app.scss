@@ -1,13 +1,11 @@
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
 @import "normalize";
-@import "bootstrap";
-@import "bootstrap-responsive";
-@import "bootstrap-responsive.mini";
 @import "toaster.mini";
 @import "custom";
 @import "fws";
 @import "ember-basic-dropdown";
+@import "../../bower_components/bootstrap/scss/bootstrap";
 
 html,
 button,
@@ -368,15 +366,6 @@ textarea {
 
 .form-login .btn{
   width: 80px;
-}
-
-#logout-button{
-  margin: 0px;
-  right: 0px;
-  width: 100px;
-  text-align: center;
-  margin-top: -40px;
-  margin-right: 10px;
 }
 
 .preserve-whitespace {

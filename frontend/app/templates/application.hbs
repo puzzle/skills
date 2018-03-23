@@ -1,12 +1,35 @@
-<main id="main" class="container">
+<main id="main" class="container-fluid">
   <div id="inner-main" class="container-fluid">
     <div class="row-fluid">
       {{#if session.isAuthenticated}}
-        <a id="logout-button"
-            role="button"
-            class="pull-right" {{action 'invalidateSession'}}>
-          Logout
-        </a>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-lg bg-light mb-3">
+          <a class="navbar-brand mr-4 text-dark" href="#">PuzzleSkills</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto nav-pills">
+              <li class="nav-item">
+                {{#link-to "people" class="nav-link"}}
+                  Person
+                {{/link-to}}
+              </li>
+              <li class="nav-item">
+                {{#link-to "companies" class="nav-link"}}
+                  Firmenprofile
+                {{/link-to}}
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Skills</a>
+              </li>
+            </ul>
+            <ul class="nav justify-content-end">
+              <li class="nav-item"><a id="logout-button" role="button" class="nav-link pull-right" {{action 'invalidateSession'}}>Logout</a></li>
+            </ul>
+          </div>
+        </nav>
       {{/if}}
       {{outlet}}
     </div>
