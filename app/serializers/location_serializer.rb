@@ -1,4 +1,4 @@
 class LocationSerializer < ApplicationSerializer
-  attributes :id, :name
+  attributes :id, :location
   belongs_to :company
 end
