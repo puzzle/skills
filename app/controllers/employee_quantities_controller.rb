@@ -39,13 +39,14 @@ class EmployeeQuantitiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_employee_quantity
-      @employee_quantity = EmployeeQuantity.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def employee_quantity_params
-      params.require(:employee_quantity).permit(:category, :quantity, :company_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_employee_quantity
+    @employee_quantity = EmployeeQuantity.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def employee_quantity_params
+    params.require(:employee_quantity).permit(:category, :quantity, :company_id)
+  end
 end
