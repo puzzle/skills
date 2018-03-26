@@ -25,7 +25,5 @@ class PersonSerializer < ApplicationSerializer
   has_many :educations do |serializer|
     serializer.object.educations.list
   end
-  
-  belongs_to :company
 
 end
