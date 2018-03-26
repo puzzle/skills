@@ -45,8 +45,10 @@ class CompaniesController < ApplicationController
     end
 
     # Only allow a trusted parameter "white list" through
-
+# rubocop:disable LineLength
     def company_params
-      params.require(:company).permit(:name)
+      params.require(:company).permit(:name, :web, :email, :phone, :partnermanager, :contact_person, :email_contact_person,
+             :phone_contact_person, :crm, :level, :picture, :my_company)
     end
+# rubocop:enable LineLength
 end

@@ -139,7 +139,7 @@ describe PeopleController do
         nested_keys = %w(advanced_trainings activities projects educations)
         nested_attrs = json['data']['relationships']
 
-        expect(nested_attrs.count).to eq(4)
+        expect(nested_attrs.count).to eq(5)
         json_object_includes_keys(nested_attrs, nested_keys)
       end
 
