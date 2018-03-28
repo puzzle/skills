@@ -1,8 +1,8 @@
 class CompanySerializer < ApplicationSerializer
-# rubocop:disable LineLength
-  attributes :id, :name, :web, :email, :phone, :partnermanager, :contact_person, :email_contact_person,
-             :phone_contact_person, :crm, :level, :picture, :my_company, :created_at, :updated_at
-# rubocop:enable LineLength
+
+  attributes :id, :name, :web, :email, :phone, :partnermanager, :contact_person,
+             :email_contact_person, :phone_contact_person, :crm, :level, :picture,
+             :my_company, :created_at, :updated_at
 
   def picture_path
     "/api/companies/#{object.id}/picture?#{Time.now}"

@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20180323155440) do
     t.string "crm"
     t.string "level"
     t.string "picture"
-    t.boolean "my_company"
+    t.boolean "my_company", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
