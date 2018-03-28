@@ -39,10 +39,6 @@ hr {
   /* Main Content
   -------------------------------------------------- */
 
-  #inner-main {
-    margin-top: 70px;
-  }
-
   #left-grid {
     margin-right: 0;
   }
@@ -593,4 +589,75 @@ form textarea{
 #export-dropdown{
   margin-left: 5px;
   margin-top: 1px;
+}
+
+
+/* Companies Page
+----------------------------------------------------- */
+.btn-w-1 {
+  width: 160px;
+}
+
+.table-uebersicht td {
+  padding-bottom: 5px;
+  vertical-align: top;
+  font-size: 90%;
+}
+
+.table-uebersicht tr td:first-child {
+  text-align: right;
+  font-weight: bold;
+  padding-right: 10px;
+}
+
+.table-uebersicht tr:first-child {
+  font-size: 140%;
+}
+
+.skill {
+  width: 100px;
+}
+
+
+.full {
+  width: 100%;
+}
+
+.profil-knopf {
+  width: 100%;
+  text-align: left;
+  padding: 12px;
+}
+
+/* Sandwich Icon */
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0, 0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+/* Symbol für offenes / geschlossenes Tab */
+[data-toggle="collapse"] .angle:before {
+  content: "\f106";  /* this is your text. You can also use UTF-8 character codes as I do here */
+  font-family: FontAwesome;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+[data-toggle="collapse"].collapsed .angle:before {
+  content: "\f107";
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.edit:before {
+  content: "\f044";
+  font-size: 20px;
+}
+
+/* Style Fixes */
+a:focus {
+  outline: none;
+}
+
+button::-moz-focus-inner {
+  border: 0;
 }
