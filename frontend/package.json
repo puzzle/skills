@@ -41,7 +41,6 @@
     "ember-welcome-page": "^3.0.0",
     "eslint-plugin-ember": "^5.0.0",
     "loader.js": "^4.2.3",
-
     "ember-basic-dropdown": "^0.33.5",
     "ember-bootstrap-datepicker": "^2.0.1",
     "ember-changeset": "^1.2.3",
