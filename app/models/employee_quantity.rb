@@ -8,8 +8,8 @@
 #  company_id            :integer
 
 class EmployeeQuantity < ApplicationRecord
-  belongs_to :company
-  
+  belongs_to :company, touch: true
+
   validates :category, :quantity, presence: true
   validates :category, length: { maximum: 100 }
   validates :quantity, numericality: { greater_than_or_equal_to: 0 }

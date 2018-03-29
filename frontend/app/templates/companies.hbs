@@ -10,7 +10,7 @@
     </form>
   </div>
   <div class="col-sm-6">
-    <button type="button" class="btn btn-outline-success float-right ml-2 btn-w-1">Neues Profil</button>
+    {{#link-to "companies.new"}}<button type="button" class="btn btn-outline-success float-right ml-2 btn-w-1">Neues Profil</button>{{/link-to}}
     <div class="dropdown">
       <button type="button" class="btn btn-outline-primary dropdown-toggle float-right btn-w-1" data-toggle="dropdown">Export</button>
       <div class="dropdown-menu">
@@ -219,4 +219,6 @@
       </div>
     </div>
   </div>
+  {{outlet}}
 </div>
+

@@ -1,0 +1,26 @@
+<section id="profil" class="section">
+  {{#form-for newCompany submit=(action 'submit') as |f|}}
+    <div class="row-fluid">
+      <h2>Firma erfassen</h2>
+      <div class="span5">
+        <span class="section-title">Firmen Details</span>
+      </div>
+      <div class="pull-right">
+        {{f.submit "Speichern"}}
+      </div>
+    </div>
+    <hr>
+    <div class="form-inline" id="profile-content-edit">
+      {{f.text-field 'name'}}
+      {{f.text-field 'web'}}
+      {{f.text-field 'email' label="eMail"}}
+      {{f.text-field 'phone' label="Telefon"}}
+      {{f.text-field 'partnermanager'}}
+      {{f.text-field 'contactPerson' label="Ansprechperson"}}
+      {{f.text-field 'emailContactPerson' label="eMail"}}
+      {{f.text-field 'phoneContactPerson' label="Telefon"}}
+      {{f.text-field 'crm' label="CRM"}}
+      {{f.text-field 'level'}}
+    </div>
+  {{/form-for}}
+</section>
