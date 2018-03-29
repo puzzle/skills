@@ -8,7 +8,7 @@ import editPage from 'frontend/tests/pages/person-edit';
 moduleForAcceptance('Acceptance | create person');
 
 test('creating a new person', async function(assert) {
-  assert.expect(12);
+  assert.expect(11);
 
   authenticateSession(this.application, {
     ldap_uid: 'development_user',
@@ -29,7 +29,6 @@ test('creating a new person', async function(assert) {
     language: 'Schwizerdütsch',
     maritalStatus: 'Ledig',
     status: 4,
-    company: 'Skilift Schwandi',
   });
 
   assert.ok(/^\/people\/\d+$/.test(currentURL()));
@@ -42,7 +41,6 @@ test('creating a new person', async function(assert) {
   assert.equal(editPage.profileData.language, 'Schwizerdütsch');
   assert.equal(editPage.profileData.maritalStatus, 'Ledig');
   assert.equal(editPage.profileData.status, 'Partner');
-  assert.equal(editPage.profileData.company, 'Skilift Schwandi');
 });
 
 skip('creating an empty new person', async function(assert) {

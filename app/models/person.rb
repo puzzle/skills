@@ -30,6 +30,8 @@ class Person < ApplicationRecord
                3 => 'Bewerber',
                4 => 'Partner' }.freeze
 
+  belongs_to :company
+
   mount_uploader :picture, PictureUploader
   has_many :projects, dependent: :destroy
   has_many :activities, dependent: :destroy
@@ -45,7 +47,7 @@ class Person < ApplicationRecord
   validates :birthdate, :language, :location, :name, :origin,
             :role, :title, :status_id, presence: true
   validates :location, :language, :martial_status, :name, :origin,
-            :role, :title, :variation_name, :company, length: { maximum: 100 }
+            :role, :title, :variation_name, length: { maximum: 100 }
 
   validate :valid_person
   validate :picture_size
@@ -61,8 +63,7 @@ class Person < ApplicationRecord
                     :origin,
                     :role,
                     :title,
-                    :competences,
-                    :company
+                    :competences
                   ],
                   associated_against: {
                     projects: [:description, :title, :role, :technology],

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180316104707) do
+ActiveRecord::Schema.define(version: 20180323155440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(version: 20180316104707) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
-    t.string "location"
     t.string "web"
     t.string "email"
     t.string "phone"
@@ -50,11 +49,8 @@ ActiveRecord::Schema.define(version: 20180316104707) do
     t.string "phone_contact_person"
     t.string "crm"
     t.string "level"
-    t.integer "number_MA_total"
-    t.integer "number_MA_dev"
-    t.integer "number_MA_sys_mid"
-    t.integer "number_MA_PL"
-    t.integer "number_MA_UX"
+    t.string "picture"
+    t.boolean "my_company", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -68,6 +64,15 @@ ActiveRecord::Schema.define(version: 20180316104707) do
     t.integer "year_to"
     t.integer "person_id"
     t.index ["person_id"], name: "index_educations_on_person_id"
+  end
+
+  create_table "employee_quantities", force: :cascade do |t|
+    t.string "category"
+    t.integer "quantity"
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_employee_quantities_on_company_id"
   end
 
   create_table "expertise_categories", force: :cascade do |t|
@@ -94,6 +99,14 @@ ActiveRecord::Schema.define(version: 20180316104707) do
     t.index ["expertise_category_id"], name: "index_expertise_topics_on_expertise_category_id"
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.string "location"
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_locations_on_company_id"
+  end
+
   create_table "people", id: :serial, force: :cascade do |t|
     t.datetime "birthdate"
     t.string "language"
@@ -112,7 +125,8 @@ ActiveRecord::Schema.define(version: 20180316104707) do
     t.string "type"
     t.string "picture"
     t.string "competences"
-    t.string "company"
+    t.bigint "company_id"
+    t.index ["company_id"], name: "index_people_on_company_id"
     t.index ["status_id"], name: "index_people_on_status_id"
   end
 
@@ -139,4 +153,7 @@ ActiveRecord::Schema.define(version: 20180316104707) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "employee_quantities", "companies"
+  add_foreign_key "locations", "companies"
+  add_foreign_key "people", "companies"
 end

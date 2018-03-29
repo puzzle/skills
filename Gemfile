@@ -19,7 +19,7 @@ gem 'pg_search'
 gem 'puma', '~> 3.0'
 gem 'rack'
 gem 'rails-i18n', '~> 5.0.4'
-gem 'seed-fu'
+gem 'seed-fu', '~> 2.3.7'
 gem 'sqlite3'
 
 group :metrics do

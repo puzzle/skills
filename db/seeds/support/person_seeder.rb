@@ -103,7 +103,8 @@ class PersonSeeder
       p.origin = Faker::StarWars.planet
       p.role = Faker::Company.profession
       p.title = Faker::Name.title
-      p.status_id = rand(1..4)
+      p.status_id = rand(1..4) 
+      p.company_id = rand(1..4)
       competences = ""
       rand(5..15).times{ competences << "#{Faker::Superhero.power}\n" }
       p.competences = competences
