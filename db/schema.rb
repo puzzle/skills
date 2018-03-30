@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180323155440) do
+ActiveRecord::Schema.define(version: 20180320200954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20180323155440) do
     t.string "crm"
     t.string "level"
     t.string "picture"
-    t.boolean "my_company", default: false
+    t.boolean "my_company"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(version: 20180323155440) do
     t.string "type"
     t.string "picture"
     t.string "competences"
+    t.string "company"
     t.bigint "company_id"
     t.index ["company_id"], name: "index_people_on_company_id"
     t.index ["status_id"], name: "index_people_on_status_id"

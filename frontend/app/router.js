@@ -14,7 +14,9 @@ Router.map(function() {
     });
   });
   this.route('login');
-  this.route('companies');
+  this.route('companies', function() {
+    this.route('show', { path: '/:company_id' });
+  });
 });
 
 export default Router;
