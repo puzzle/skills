@@ -20,12 +20,12 @@ class Company < ApplicationRecord
   has_many :people
   has_many :locations, dependent: :destroy
   has_many :employee_quantities, dependent: :destroy
-  
+
   mount_uploader :picture, PictureUploader
 
   validate :picture_size
-  validates :name, :my_company, presence: true
-  validates :name, :web, :email, :phone, :partnermanager, :contact_person, 
+  validates :name, presence: true
+  validates :name, :web, :email, :phone, :partnermanager, :contact_person,
             :email_contact_person, :phone_contact_person, :crm, :level, length: { maximum: 100 }
 
 

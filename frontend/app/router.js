@@ -16,6 +16,7 @@ Router.map(function() {
   this.route('login');
   this.route('companies', function() {
     this.route('show', { path: '/:company_id' });
+    this.route('new');
   });
 });
 
