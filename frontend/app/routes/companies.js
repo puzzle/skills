@@ -16,6 +16,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
   model({ q }) {
     return this.get('ajax').request('/companies', { data: { q } })
       .then(response => response.data);
+  },
 
   actions: {
     reloadCompaniesList() {
