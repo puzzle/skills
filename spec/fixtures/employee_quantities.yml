@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: employee_quantities
+#
+#  id          :integer          not null, primary key
+#  category    :string
+#  quantity    :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  company_id  :integer
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+entwicklung:
+  category: Anzahl MA Entwicklung
+  quantity: 50
+  updated_at: 2016-10-20 13:18:39
+  created_at: 2016-10-20 13:18:39
+  company: firma
+
+ux:
+  category: Anzahl MA UX
+  quantity: 30
+  updated_at: 2016-10-20 13:18:39
+  created_at: 2016-10-20 13:18:39
+  company: partner
