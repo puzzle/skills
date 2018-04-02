@@ -2,7 +2,7 @@
     <ul>
       {{#each companies as |company|}}
         <li>
-          {{~company.attributes.name~}}
+          {{#link-to "companies.show" company.id}}{{~company.attributes.name~}}{{/link-to}}
         </li>
       {{/each}}
     </ul>
