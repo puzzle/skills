@@ -13,7 +13,6 @@ const Person = DS.Model.extend({
   title: DS.attr('string'),
   competences: DS.attr('string'),
   statusId: DS.attr('number', { defaultValue: 1 }),
-  company: DS.attr('string'),
   updatedAt: DS.attr('date'),
 
   variationName: DS.attr('string'),

@@ -24,7 +24,11 @@
                   <td>Name</td><td>{{company.name}}</td>
                 </tr>
                 <tr>
-                  <td>Standorte</td><td>TODO<br>TODO</td>
+                  <td>Standorte:</td><td>
+                    {{#each company.locations as |location|}}
+                      {{location.location}}<br>
+                    {{/each}}
+                  </td>
                 </tr>
                 <tr>
                   <td>Web</td><td><a href="https://{{company.web}}">{{company.web}}</a></td>
@@ -61,21 +65,11 @@
                 <tr>
                   <td>Level</td><td>{{company.level}}</td>
                 </tr>
+                {{#each company.employeeQuantities as |quantity|}}
                 <tr>
-                  <td>Anz MA Total</td><td>TODO</td>
+                  <td>{{quantity.category}}</td><td>{{quantity.amount}}</td>
                 </tr>
-                <tr>
-                  <td>Anz MA Entwicklung</td><td>TODO</td>
-                </tr>
-                <tr>
-                  <td>Anz MA SYS/MID</td><td>TODO</td>
-                </tr>
-                <tr>
-                  <td>Anz MA PL</td><td>TODO</td>
-                </tr>
-                <tr>
-                  <td>Anz MA UX</td><td>TODO</td>
-                </tr>
+                {{/each}}
               </table>
             </div>
           </div>

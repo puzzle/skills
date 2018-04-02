@@ -17,7 +17,7 @@ export default DS.Model.extend({
   updatedAt: DS.attr('date'),
 
   locations: DS.hasMany('location'),
-  employeeQuantities: DS.hasMany('employeeQuantity'), //SCHREIBFEHLER!!!!!
+  employeeQuantities: DS.hasMany('employeeQuantity'),
   people: DS.hasMany('person')
 
 
