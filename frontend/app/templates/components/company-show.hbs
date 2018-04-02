@@ -24,7 +24,7 @@
                   <td>Name</td><td>{{company.name}}</td>
                 </tr>
                 <tr>
-                  <td>Standorte:</td><td>
+                  <td>Standorte</td><td>
                     {{#each company.locations as |location|}}
                       {{location.location}}<br>
                     {{/each}}
@@ -67,7 +67,7 @@
                 </tr>
                 {{#each company.employeeQuantities as |quantity|}}
                 <tr>
-                  <td>{{quantity.category}}</td><td>{{quantity.amount}}</td>
+                  <td>{{quantity.category}}</td><td>{{quantity.quantity}}</td>
                 </tr>
                 {{/each}}
               </table>
