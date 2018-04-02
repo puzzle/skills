@@ -33,91 +33,7 @@
       <span class="text-right d-block controls"><a href="#" class="mr-2 open-button">+ alles ausklappen</a><a href="#" class="close-button">- alles einklappen</a></span>
     </div>
   </div>
-  <div id="accordion">
-    <div class="card mb-3">
-      <div class="card-header bg-primary">
-        <div class="row">
-          <div class="col-sm-6">
-            <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Übersicht</a>
-          </div>
-          <div class="col-sm-6 text-right d-block">
-            <a class="card-link text-white"><i class="fa edit"></i></a>
-            <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><i class="fa angle"></i></a>
-          </div>
-        </div>
-      </div>
-      <div id="collapseOne" class="collapse multi-collapse show border border-primary rounded-bottom">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-sm-2">
-              <img class="img-fluid" alt="FIRMENLOGO" src="img/puzzle_logo.png">
-            </div>
-            <div class="col-sm-10 row">
-              <div class="col-sm-4">
-                <table class="table-uebersicht">
-                  <tr>
-                    <td>Name</td><td>Puzzle ITC GmbH</td>
-                  </tr>
-                  <tr>
-                    <td>Standorte</td><td>Belpstrasse 37, 3007 Bern<br>Neugasse 10, 8005 Zürich</td>
-                  </tr>
-                  <tr>
-                    <td>Web</td><td><a href="http://puzzle.ch">www.puzzle.ch</a></td>
-                  </tr>
-                  <tr>
-                    <td>eMail</td><td><a href="mailto:info@puzzle.ch">info@puzzle.ch</a></td>
-                  </tr>
-                  <tr>
-                    <td>Telefon</td><td>+41 31 370 22 00</td>
-                  </tr>
-                </table>
-              </div>
-              <div class="col-sm-4">
-                <table class="table-uebersicht">
-                  <tr>
-                    <td>Partnermanager</td><td>Mark Waber</td>
-                  </tr>
-                  <tr>
-                    <td>Ansprechperson</td><td>Martin Gafner, CSO</td>
-                  </tr>
-                  <tr>
-                    <td>eMail</td><td><a href="mailto:gafner@puzzle.ch">gafner@puzzle.ch</a></td>
-                  </tr>
-                  <tr>
-                    <td>Telefon</td><td>+41 31 370 22 00</td>
-                  </tr>
-                  <tr>
-                    <td>CRM</td><td><a href="http://hä.ch">Highrise Link</a></td>
-                  </tr>
-                </table>
-              </div>
-              <div class="col-sm-4">
-                <table class="table-uebersicht">
-                  <tr>
-                    <td>Level</td><td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Anz MA Total</td><td>100</td>
-                  </tr>
-                  <tr>
-                    <td>Anz MA Entwicklung</td><td>50</td>
-                  </tr>
-                  <tr>
-                    <td>Anz MA SYS/MID</td><td>30</td>
-                  </tr>
-                  <tr>
-                    <td>Anz MA PL</td><td>5</td>
-                  </tr>
-                  <tr>
-                    <td>Anz MA UX</td><td>5</td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      {{outlet}}
     <div class="card mb-3">
       <div class="card-header bg-primary">
         <div class="row">
@@ -220,5 +136,4 @@
       </div>
     </div>
   </div>
-  {{outlet}}
-</div>
+
