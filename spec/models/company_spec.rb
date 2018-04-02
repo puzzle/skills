@@ -14,7 +14,7 @@
 #  crm                   :string
 #  level                 :string
 #  picture               :string
-#  my_company            :boolean
+#  my_company            :boolean, default: false
 
 require 'rails_helper'
 

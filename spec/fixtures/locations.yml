@@ -1,0 +1,24 @@
+# == Schema Information
+#
+# Table name: locations
+#
+#  id          :integer          not null, primary key
+#  location    :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  company_id  :integer
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+bern:
+  location: Bern
+  updated_at: 2016-10-20 13:18:39
+  created_at: 2016-10-20 13:18:39
+  company: firma
+
+zuerich:
+  location: Zürich
+  updated_at: 2016-10-20 13:18:39
+  created_at: 2016-10-20 13:18:39
+  company: partner

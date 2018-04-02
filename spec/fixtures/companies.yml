@@ -1,0 +1,50 @@
+# == Schema Information
+#
+# Table name: companies
+#
+#  id                    :integer          not null, primary key
+#  name                  :string
+#  web                   :string
+#  email                 :string
+#  phone                 :string
+#  partnermanager        :string
+#  contact_person        :string
+#  email_contact_person  :string
+#  phone_contact_person  :string
+#  crm                   :string
+#  level                 :string
+#  picture               :string
+#  my_company            :boolean, default: false
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+firma:
+  name: Firma
+  web: www.example.com
+  email: info@example.com
+  phone: +41 00 000 00 00
+  partnermanager: Urs Müller
+  contact_person: Philip Müller
+  email_contact_person: pmueller@example.com
+  crm: crm
+  level: A
+  my_company: true
+  updated_at: 2016-10-20 13:15:11
+  created_at: 2016-10-20 13:15:11
+
+partner:
+  name: Partner
+  web: www.example.org
+  email: info@example.org
+  phone: +41 11 111 11 11
+  partnermanager: Urs Fischer
+  contact_person: Philip Fischer
+  email_contact_person: pfischer@example.org
+  crm: crm
+  level: B
+  my_company: false
+  updated_at: 2016-10-20 13:15:11
+  created_at: 2016-10-20 13:15:11
