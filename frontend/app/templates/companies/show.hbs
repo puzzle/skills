@@ -1,1 +1,8 @@
+{{component (if personEditing 'person-edit' 'person-show' )
+            person=model
+            submit=(action (toggle 'personEditing' this))
+            model-header-title = 'Personalien'
+            personEditing=(action (toggle 'personEditing' this))
+}}
+
 {{company-show company=model}}
