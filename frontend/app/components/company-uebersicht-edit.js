@@ -15,7 +15,7 @@ export default Component.extend({
     submit(changeset) {
       return changeset.save()
         .then(() => this.sendAction('submit'))
-    .then(() => this.get('notify').success('Firmen übersicht wurde aktualisiert!'))
+    .then(() => this.get('notify').success('Firmenübersicht wurde aktualisiert!'))
     .catch(() => {
         let company = this.get('company');
       let errors = person.get('company').slice(); // clone array as rollbackAttributes mutates

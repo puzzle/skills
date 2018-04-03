@@ -1,0 +1,73 @@
+<div id="collapseOne" class="collapse multi-collapse show border border-primary rounded-bottom">
+  <div class="card-body">
+    <p>HELP</p>
+    {{#with (changeset company validations) as |changeset|}}
+      {{#form-for changeset submit=(action 'submit') as |f|}}
+        <div class="row">
+          <div class="col-sm-12">
+            {{f.submit "Speichern"}}
+            {{f.reset "Reset"}}
+            <a onclick={{companyEditing}} class="pull-right">
+              {{if companyEditing  'Abbrechen' 'Editieren...'}}
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2">
+            <img class="img-fluid" alt="FIRMENLOGO" src="img/puzzle_logo.png">
+          </div>
+          <div class="col-sm-10 row">
+            <div class="col-sm-4">
+              <table class="table-uebersicht">
+                <tr>
+                  <td>{{f.text-field 'name' label="Name"}}</td>
+                </tr>
+                <tr>
+                  <td>Standorte TODO</td>
+                </tr>
+                <tr>
+                  <td>{{f.text-field 'web' label="Web"}}</td>
+                </tr>
+                <tr>
+                  <td>{{f.text-field 'email' label="Email"}}</td>
+                </tr>
+                <tr>
+                  <td>{{f.text-field 'phone' label="Telefon"}}</td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-sm-4">
+              <table class="table-uebersicht">
+                <tr>
+                  <td>{{f.text-field 'partnermanager' label="Partnermanager"}}</td>
+                </tr>
+                <tr>
+                  <td>{{f.text-field 'contactPerson' label="Ansprechperson"}}</td>
+                </tr>
+                <tr>
+                  <td>{{f.text-field 'emailContactPerson' label="Email"}}</td>
+                </tr>
+                <tr>
+                  <td>{{f.text-field 'phoneContactPerson' label="Telefon"}}</td>
+                </tr>
+                <tr>
+                  <td>{{f.text-field 'crm' label="CRM"}}</td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-sm-4">
+              <table class="table-uebersicht">
+                <tr>
+                  <td>{{f.text-field 'level' label="Level"}}</td>
+                </tr>
+                <td>
+                  Mitarbeiter anzahl TODO
+                </td>
+              </table>
+            </div>
+          </div>
+        </div>
+      {{/form-for}}
+    {{/with}}
+  </div>
+</div>
