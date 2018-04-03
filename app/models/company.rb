@@ -17,7 +17,7 @@
 #  my_company            :boolean
 
 class Company < ApplicationRecord
-  has_many :people
+  has_many :people, dependent: :destroy
   has_many :locations, dependent: :destroy
   has_many :employee_quantities, dependent: :destroy
 
