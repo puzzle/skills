@@ -1,5 +1,5 @@
 <section id="profil" class="section">
-  {{#form-for newCompany submit=(action 'submit') as |f|}}
+  {{#form-for newCompany submit=(action 'submit' newCompany newLocation) as |f|}}
     <div class="row-fluid">
       <h2>Firma erfassen</h2>
       <div class="span5">
@@ -12,6 +12,12 @@
     <hr>
     <div class="form-inline" id="profile-content-edit">
       {{f.text-field 'name'}}
+
+      {{#fields-for newLocation as |l|}}
+        {{l.text-field 'location' label="Standort"}}
+      {{/fields-for}}
+
+
       {{f.text-field 'web'}}
       {{f.text-field 'email' label="eMail"}}
       {{f.text-field 'phone' label="Telefon"}}
@@ -21,6 +27,8 @@
       {{f.text-field 'phoneContactPerson' label="Telefon"}}
       {{f.text-field 'crm' label="CRM"}}
       {{f.text-field 'level'}}
+
     </div>
   {{/form-for}}
+
 </section>
