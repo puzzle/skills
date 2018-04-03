@@ -1,12 +1,16 @@
+<div class="card-header bg-primary">
+  <div class="row">
+    <div class="col-sm-6">
+      <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Übersicht</a>
+    </div>
+    <div class="col-sm-6 text-right d-block">
+      <a onclick={{companyEditing}} data-test-person-edit-form-toggle class="card-link text-white"><i class="fa edit"></i></a>
+      <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><i class="fa angle"></i></a>
+    </div>
+  </div>
+</div>
 <div id="collapseOne" class="collapse multi-collapse show border border-primary rounded-bottom">
   <div class="card-body">
-    <div class="row">
-      <div class="col-sm-12">
-          <a onclick={{companyEditing}} data-test-person-edit-form-toggle class="pull-right">
-            {{if companyEditing  'Editieren' 'Abbrechen'}}
-          </a>
-      </div>
-    </div>
     <div class="row">
       <div class="col-sm-2">
         <img class="img-fluid" alt="FIRMENLOGO" src="img/puzzle_logo.png">

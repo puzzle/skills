@@ -634,6 +634,7 @@ form textarea{
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0, 0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
+/* Symbole für Tabs */
 /* Symbol für offenes / geschlossenes Tab */
 [data-toggle="collapse"] .angle:before {
   content: "\f106";  /* this is your text. You can also use UTF-8 character codes as I do here */
@@ -650,6 +651,16 @@ form textarea{
 
 .edit:before {
   content: "\f044";
+  font-size: 20px;
+}
+
+.save:before {
+  content: "\f0c7";
+  font-size: 20px;
+}
+
+.abort:before {
+  content: "\f00d";
   font-size: 20px;
 }
 
