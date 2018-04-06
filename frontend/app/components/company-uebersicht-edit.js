@@ -6,6 +6,7 @@ import CompanyModel from '../models/company';
 export default Component.extend({
   store: service(),
   i18n: service(),
+  router: service(),
 
   personPictureUploadPath: computed('company.id', function() {
     return `/company/${this.get('company.id')}/picture`;
@@ -27,6 +28,11 @@ export default Component.extend({
       this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
     });
     });
+    },
+    deleteCompany(companyToDelete) {
+      companyToDelete.destroyRecord();
+      this.get('router').transitionTo('companies');
+      window.location.reload(true);
     }
   }
 

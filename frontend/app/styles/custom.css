@@ -664,6 +664,11 @@ form textarea{
   font-size: 20px;
 }
 
+.trash:before {
+  content: "\f014";
+  font-size: 20px;
+}
+
 /* Style Fixes */
 a:focus {
   outline: none;
