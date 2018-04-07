@@ -1,9 +1,9 @@
 <div>
-    <ul>
-      {{#each companies as |company|}}
-        <li>
-          {{#link-to "companies.show" company.id}}{{~company.attributes.name~}}{{/link-to}}
-        </li>
-      {{/each}}
-    </ul>
+  <ul>
+    {{#each companies as |company|}}
+      <li>
+        {{#link-to "companies.show" company.id}}{{~company.attributes.name~}}{{/link-to}}
+      </li>
+    {{/each}}
+  </ul>
 </div>

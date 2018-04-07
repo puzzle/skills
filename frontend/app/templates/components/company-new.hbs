@@ -13,9 +13,12 @@
     <div class="form-inline" id="profile-content-edit">
       {{f.text-field 'name'}}
 
-      {{#fields-for newLocation as |l|}}
-        {{l.text-field 'location' label="Standort"}}
-      {{/fields-for}}
+      <button type="button" {{action 'addLocations' newCompany}}>Neue Adresse</button>
+      {{#each newCompany.locations as |location|}}
+        {{#fields-for location as |l|}}
+          {{l.text-field 'location' label="Standort"}}
+        {{/fields-for}}
+      {{/each}}
 
 
       {{f.text-field 'web'}}

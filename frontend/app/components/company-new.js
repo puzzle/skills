@@ -5,20 +5,22 @@ export default Component.extend({
   store: service(),
   i18n: service(),
 
-
   actions: {
-    submit(newCompany, newLocation) {
+    submit(newCompany) {
       return newCompany.save()
         .then(() => this.sendAction('submit', newCompany))
         .then(() => this.get('notify').success('Firma wurde erstellt'))
         .then(function() {
-          newLocation.save(); //TODO: catch error
+          //save all locations
+          //newCompany.get('locations').then(locations => locations.save());
+
+          newCompany.get('locations').toArray().forEach(function(location) {
+            location.save();
+          })
         });
     },
 
-    // TODO: use later?
-    addLocations() {
-      let company = this.get('model');
+    addLocations(company) {
       let location = this.get('store').createRecord('location');
       location.set('company', company);
     }
