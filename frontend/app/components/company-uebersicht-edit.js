@@ -15,10 +15,10 @@ export default Component.extend({
   actions: {
     submit(changeset) {
       return changeset.save()
-        .then(() => this.sendAction('submit'))
+    .then(() => this.sendAction('submit'))
     .then(() => this.get('notify').success('Firmenübersicht wurde aktualisiert!'))
     .catch(() => {
-        let company = this.get('company');
+      let company = this.get('company');
       let errors = person.get('company').slice(); // clone array as rollbackAttributes mutates
 
       person.rollbackAttributes();
@@ -29,6 +29,7 @@ export default Component.extend({
     });
     });
     },
+
     deleteCompany(companyToDelete) {
       companyToDelete.destroyRecord();
       this.get('router').transitionTo('companies');
