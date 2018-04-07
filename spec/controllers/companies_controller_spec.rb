@@ -3,7 +3,6 @@ require 'rails_helper'
 describe CompaniesController do
   describe 'CompaniesController' do
     before { auth(:ken) }
-    before { load_pictures }
 
     describe 'GET index' do
       it 'returns all companies without nested models without any filter' do
@@ -15,7 +14,7 @@ describe CompaniesController do
 
         expect(companies.count).to eq(2)
         firma_attrs = companies.first['attributes']
-        expect(firma_attrs.count).to eq(14)
+        expect(firma_attrs.count).to eq(13)
         expect(firma_attrs.first[1]).to eq('Firma')
         json_object_includes_keys(firma_attrs, keys)
         expect(companies).not_to include('relationships')
@@ -25,7 +24,7 @@ describe CompaniesController do
     describe 'GET show' do
       it 'returns company with nested modules' do
         keys = %w[name web email phone partnermanager contact_person email_contact_person
-                  phone_contact_person crm level picture my_company]
+                  phone_contact_person crm level my_company]
 
         firma = companies(:firma)
 
@@ -33,7 +32,7 @@ describe CompaniesController do
 
         firma_attrs = json['data']['attributes']
 
-        expect(firma_attrs.count).to eq(14)
+        expect(firma_attrs.count).to eq(13)
         json_object_includes_keys(firma_attrs, keys)
 
         nested_keys = %w(locations employee_quantities people)
@@ -49,7 +48,7 @@ describe CompaniesController do
         company = {name: "firma123", web: "www.firma.123", email: "info@firma.123", phone: "123",
                    partnermanager: "Paul", contact_person: "Felix",
                    email_contact_person: "felix@firma.123", phone_contact_person: "123456",
-                   crm: "crm123", level: "X", picture: "test.png", my_company: false}
+                   crm: "crm123", level: "X", my_company: false}
 
         process :create, method: :post, params: { data: { attributes: company } }
 
@@ -57,8 +56,6 @@ describe CompaniesController do
         expect(new_company).not_to eq(nil)
         expect(new_company.contact_person).to eq('Felix')
         expect(new_company.level).to eq('X')
-        #expect(new_company.picture.url)
-        #  .to include("#{Rails.root}/uploads/person/picture/#{new_person.id}/picture.png")
       end
     end
 
