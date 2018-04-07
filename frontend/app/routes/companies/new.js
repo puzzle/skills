@@ -9,6 +9,9 @@ export default Route.extend({
   actions: {
     createCompany(company) {
       this.send('reloadCompaniesList');
+
+      this.transitionTo('companies.show', company);
+      //company.get('locations').filterBy('isNew').invoke('unloadRecord');
     }
   }
 });
