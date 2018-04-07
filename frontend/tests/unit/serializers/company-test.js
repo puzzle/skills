@@ -1,24 +1,21 @@
-import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
-import { run } from '@ember/runloop';
+import { moduleForModel, test } from 'ember-qunit';
 
-module('Unit | Serializer | company', function(hooks) {
-  setupTest(hooks);
+moduleForModel('company', 'Unit | Serializer | company', {
+  needs: [
+    'model:location',
+    'model:employee-quantity',
+    'model:person',
+    'serializer:company',
+  ]
+});
 
-  // Replace this with your real tests.
-  test('it exists', function(assert) {
-    let store = this.owner.lookup('service:store');
-    let serializer = store.serializerFor('company');
+test('it does not serialize unpermitted attrs', function(assert) {
+  let record = this.subject();
 
-    assert.ok(serializer);
-  });
+  let { data: { attributes: attrs } } = record.serialize();
 
-  test('it serializes records', function(assert) {
-    let store = this.owner.lookup('service:store');
-    let record = run(() => store.createRecord('company', {}));
-
-    let serializedRecord = record.serialize();
-
-    assert.ok(serializedRecord);
-  });
+  assert.notOk('created_at' in attrs);
+  assert.notOk('updated_at' in attrs);
+  assert.notOk('my_company' in attrs);
+  assert.ok('name' in attrs);
 });

@@ -23,7 +23,6 @@ export default create({
   language: fillable('[name="person[language]"]'),
   maritalStatus: fillable('[name="person[martialStatus]"]'),
   status: selectable('[name="person[statusId]"]'),
-  company: fillable('[name="person[company]"]'),
 
   async createPerson(person) {
     await Object.keys(person)

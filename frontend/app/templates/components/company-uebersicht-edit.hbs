@@ -1,3 +1,4 @@
+<section id="profil-uebersicht" class="section">
 {{#with (changeset company validations) as |changeset|}}
   {{#form-for changeset submit=(action 'submit') as |f|}}
     <div class="card-header bg-primary">
@@ -72,3 +73,4 @@
     </div>
   {{/form-for}}
 {{/with}}
+</section>
