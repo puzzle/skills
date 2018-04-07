@@ -8,10 +8,6 @@ export default Component.extend({
   i18n: service(),
   router: service(),
 
-  personPictureUploadPath: computed('company.id', function() {
-    return `/company/${this.get('company.id')}/picture`;
-  }),
-
   actions: {
     submit(changeset) {
       return changeset.save()
