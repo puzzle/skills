@@ -1,16 +1,30 @@
-<div id="accordion">
-  {{! übersichts Tab}}
-  <div class="card mb-3">
-    {{component (if companyEditing 'company-uebersicht-edit' 'company-uebersicht' )
-        company=company
-        submit=(action (toggle 'companyEditing' this))
-        model-header-title = 'Firmen Übersicht'
-        companyEditing=(action (toggle 'companyEditing' this))
-    }}
+<div class="row">
+  <div class="col-sm-12">
+    <span class="text-right d-block">
+      <strong>Letztes Update <span class="text-danger"><time datetime={{moment-format company.updatedAt}}>{{moment-format company.updatedAt 'L'}}</time></span></strong>
+    </span>
   </div>
 </div>
-<div>
-  <div class="card mb-3">
+<hr class="">
+<div class="collapse-group">
+  <div class="row mb-3">
+    <div class="col-sm-12">
+      <span class="text-right d-block controls"><a href="#" class="mr-2 open-button">+ alles ausklappen</a><a href="#" class="close-button">- alles einklappen</a></span>
+    </div>
+  </div>
+  <div id="accordion">
+    {{!Übersichts Tab}}
+    <div class="card mb-3">
+      {{component (if companyEditing 'company-uebersicht-edit' 'company-uebersicht' )
+                  company=company
+                  submit=(action (toggle 'companyEditing' this))
+                  model-header-title = 'Firmen Übersicht'
+                  companyEditing=(action (toggle 'companyEditing' this))
+      }}
+    </div>
+
+    {{!Angebot Tab}}
+    <div class="card mb-3">
       <div class="card-header bg-primary">
         <div class="row">
           <div class="col-sm-6">
@@ -22,7 +36,7 @@
           </div>
         </div>
       </div>
-      <div id="collapseTwo" class="collapse  multi-collapse border border-primary rounded-bottom">
+      <div id="collapseTwo" class="collapse border border-primary rounded-bottom">
         <div class="card-body">
           <div class="row mb-1">
             <div class="col-sm-3">
@@ -67,6 +81,8 @@
         </div>
       </div>
     </div>
+
+    {{!Profile Tab}}
     <div class="card">
       <div class="card-header bg-primary">
         <div class="row">
@@ -79,7 +95,7 @@
           </div>
         </div>
       </div>
-      <div id="collapseThree" class="collapse  multi-collapse border border-primary rounded-bottom">
+      <div id="collapseThree" class="collapse border border-primary rounded-bottom">
         <div class="card-body">
           <div class="row mb-1">
             <div class="col-sm-3">
@@ -112,3 +128,15 @@
       </div>
     </div>
   </div>
+</div>
+
+<script>
+
+  $(".open-button").on("click", function() {
+    $(this).closest('.collapse-group').find('.collapse').collapse('show');
+  });
+
+  $(".close-button").on("click", function() {
+    $(this).closest('.collapse-group').find('.collapse').collapse('hide');
+  });
+</script>

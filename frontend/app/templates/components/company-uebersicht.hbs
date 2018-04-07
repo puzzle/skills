@@ -9,67 +9,62 @@
     </div>
   </div>
 </div>
-<div id="collapseOne" class="collapse multi-collapse show border border-primary rounded-bottom">
+<div id="collapseOne" class="collapse show border border-primary rounded-bottom">
   <div class="card-body">
     <div class="row">
-      <div class="col-sm-2">
-        <img class="img-fluid" alt="FIRMENLOGO" src="img/puzzle_logo.png">
-      </div>
-      <div class="col-sm-10 row">
-        <div class="col-sm-4">
-          <table class="table-uebersicht">
-            <tr>
-              <td>Name</td><td>{{company.name}}</td>
-            </tr>
-            <tr>
-              <td>Standorte</td><td>
-              {{#each company.locations as |location|}}
-                {{location.location}}<br>
-              {{/each}}
-            </td>
-            </tr>
-            <tr>
-              <td>Web</td><td><a href="https://{{company.web}}">{{company.web}}</a></td>
-            </tr>
-            <tr>
-              <td>eMail</td><td><a href="mailto:{{company.email}}">{{company.email}}</a></td>
-            </tr>
-            <tr>
-              <td>Telefon</td><td>{{company.phone}}</td>
-            </tr>
-          </table>
-        </div>
-        <div class="col-sm-4">
-          <table class="table-uebersicht">
-            <tr>
-              <td>Partnermanager</td><td>M{{company.partnermanager}}</td>
-            </tr>
-            <tr>
-              <td>Ansprechperson</td><td>{{company.contactPerson}}</td>
-            </tr>
-            <tr>
-              <td>eMail</td><td><a href="mailto:{{company.emailContactPerson}}">{{company.emailContactPerson}}</a></td>
-            </tr>
-            <tr>
-              <td>Telefon</td><td>{{company.phoneContactPerson}}</td>
-            </tr>
-            <tr>
-              <td>CRM</td><td><a href="https://{{company.crm}}">{{company.crm}}</a></td>
-            </tr>
-          </table>
-        </div>
-        <div class="col-sm-4">
-          <table class="table-uebersicht">
-            <tr>
-              <td>Level</td><td>{{company.level}}</td>
-            </tr>
-            {{#each company.employeeQuantities as |quantity|}}
-              <tr>
-                <td>{{quantity.category}}</td><td>{{quantity.quantity}}</td>
-              </tr>
+      <div class="col-sm-4">
+        <table class="table-uebersicht">
+          <tr>
+            <td>Name</td><td>{{company.name}}</td>
+          </tr>
+          <tr>
+            <td>Standorte</td><td>
+            {{#each company.locations as |location|}}
+              {{location.location}}<br>
             {{/each}}
-          </table>
-        </div>
+          </td>
+          </tr>
+          <tr>
+            <td>Web</td><td><a href="https://{{company.web}}">{{company.web}}</a></td>
+          </tr>
+          <tr>
+            <td>eMail</td><td><a href="mailto:{{company.email}}">{{company.email}}</a></td>
+          </tr>
+          <tr>
+            <td>Telefon</td><td>{{company.phone}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-sm-4">
+        <table class="table-uebersicht">
+          <tr>
+            <td>PM</td><td>{{company.partnermanager}}</td>
+          </tr>
+          <tr>
+            <td>Ansprechperson</td><td>{{company.contactPerson}}</td>
+          </tr>
+          <tr>
+            <td>eMail</td><td><a href="mailto:{{company.emailContactPerson}}">{{company.emailContactPerson}}</a></td>
+          </tr>
+          <tr>
+            <td>Telefon</td><td>{{company.phoneContactPerson}}</td>
+          </tr>
+          <tr>
+            <td>CRM</td><td><a href="https://{{company.crm}}">{{company.crm}}</a></td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-sm-4">
+        <table class="table-uebersicht">
+          <tr>
+            <td>Level</td><td>{{company.level}}</td>
+          </tr>
+          {{#each company.employeeQuantities as |quantity|}}
+            <tr>
+              <td>{{quantity.category}}</td><td>{{quantity.quantity}}</td>
+            </tr>
+          {{/each}}
+        </table>
       </div>
     </div>
   </div>

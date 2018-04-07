@@ -669,6 +669,23 @@ form textarea{
   font-size: 20px;
 }
 
+/* Table Styling in Tabs */
+.table-uebersicht {
+  width: 100%;
+}
+
+.table-uebersicht td:first-child, .table-uebersicht label {
+  width: 30%;
+}
+
+.table-uebersicht td:last-child {
+  width: 70%;
+}
+
+.table-uebersicht input {
+    width: 60%;
+  }
+
 /* Style Fixes */
 a:focus {
   outline: none;
@@ -677,3 +694,4 @@ a:focus {
 button::-moz-focus-inner {
   border: 0;
 }
+
