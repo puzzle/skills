@@ -1,45 +1,87 @@
 <section id="profil" class="section">
-  {{#form-for newCompany submit=(action 'submit' newCompany newLocation) as |f|}}
-    <div class="row-fluid">
-      <h2>Firma erfassen</h2>
-      <div class="span5">
-        <span class="section-title">Firmen Details</span>
-      </div>
-      <div class="pull-right">
-        {{f.submit "Speichern"}}
-      </div>
+  <div id="accordion">
+    <div class="card mb-3">
+      {{#form-for newCompany submit=(action 'submit' newCompany) as |f|}}
+        <div class="card-header bg-primary">
+          <div class="row">
+            <div class="col-sm-6">
+              <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Firma Erfassen</a>
+            </div>
+            <div class="col-sm-6 text-right d-block">
+              {{! TODO: Submit via action submit doesnt work, are you sure message after click on delete button}}
+              <a {{action 'submit' newCompany}} class="card-link text-white"><i class="fa save"></i></a>
+            </div>
+          </div>
+        </div>
+        <div id="collapseOne" class="collapse show border border-primary rounded-bottom">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-4">
+                <table class="table-uebersicht">
+                  <tr>
+                    <td>{{f.text-field 'name' label="Name"}}</td>
+                  </tr>
+                  <tr>
+                  <button type="button" {{action 'addLocations' newCompany}}>Neue Adresse</button>
+                  {{#each newCompany.locations as |location|}}
+                    {{#fields-for location as |l|}}
+                      {{l.text-field 'location' label="Standort"}}
+                    {{/fields-for}}
+                  {{/each}}
+                  </tr>
+                  <tr>
+                    <td>{{f.text-field 'web' label="Web"}}</td>
+                  </tr>
+                  <tr>
+                    <td>{{f.text-field 'email' label="Email"}}</td>
+                  </tr>
+                  <tr>
+                    <td>{{f.text-field 'phone' label="Telefon"}}</td>
+                  </tr>
+                </table>
+              </div>
+              <div class="col-sm-4">
+                <table class="table-uebersicht">
+                  <tr>
+                    <td>{{f.text-field 'partnermanager' label="PM"}}</td>
+                  </tr>
+                  <tr>
+                    <td>{{f.text-field 'contactPerson' label="Ansprechperson"}}</td>
+                  </tr>
+                  <tr>
+                    <td>{{f.text-field 'emailContactPerson' label="Email"}}</td>
+                  </tr>
+                  <tr>
+                    <td>{{f.text-field 'phoneContactPerson' label="Telefon"}}</td>
+                  </tr>
+                  <tr>
+                    <td>{{f.text-field 'crm' label="CRM"}}</td>
+                  </tr>
+                </table>
+              </div>
+              <div class="col-sm-4">
+                <table class="table-uebersicht">
+                  <tr>
+                    <td>{{f.text-field 'level' label="Level"}}</td>
+                  </tr>
+                  <button type="button" {{action 'addEmployeeQuantity' newCompany}}>Neue Mitarbeiter-Anzahl</button>
+                  {{#each newCompany.employeeQuantities as |quantity|}}
+                    {{#fields-for quantity as |q|}}
+                      {{q.text-field 'category' label="Kategorie"}}
+                      {{q.text-field 'quantity' label="Anzahl"}}
+                    {{/fields-for}}
+                  {{/each}}
+                </table>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                {{f.reset "Reset"}}
+              </div>
+            </div>
+          </div>
+        </div>
+      {{/form-for}}
     </div>
-    <hr>
-    <div class="form-inline" id="profile-content-edit">
-      {{f.text-field 'name'}}
-
-      <button type="button" {{action 'addLocations' newCompany}}>Neue Adresse</button>
-      {{#each newCompany.locations as |location|}}
-        {{#fields-for location as |l|}}
-          {{l.text-field 'location' label="Standort"}}
-        {{/fields-for}}
-      {{/each}}
-
-
-      {{f.text-field 'web'}}
-      {{f.text-field 'email' label="eMail"}}
-      {{f.text-field 'phone' label="Telefon"}}
-      {{f.text-field 'partnermanager'}}
-      {{f.text-field 'contactPerson' label="Ansprechperson"}}
-      {{f.text-field 'emailContactPerson' label="eMail"}}
-      {{f.text-field 'phoneContactPerson' label="Telefon"}}
-      {{f.text-field 'crm' label="CRM"}}
-      {{f.text-field 'level'}}
-      <button type="button" {{action 'addEmployeeQuantity' newCompany}}>Neue Mitarbeiter-Anzahl</button>
-      {{#each newCompany.employeeQuantities as |quantity|}}
-        {{#fields-for quantity as |q|}}
-          {{q.text-field 'category' label="Kategorie"}}
-          {{q.text-field 'quantity' label="Anzahl"}}
-        {{/fields-for}}
-      {{/each}}
-
-
-    </div>
-  {{/form-for}}
-
+  </div>
 </section>
