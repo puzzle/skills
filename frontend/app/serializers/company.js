@@ -4,9 +4,8 @@ import DS from 'ember-data';
 
 export default ApplicationSerializer.extend({
   attrs: {
-    updatedAt: { serialize: false },
     createdAt: { serialize: false },
-    picture: { serialize: false },
+    updatedAt: { serialize: false },
     myCompany: { serialize: false }
   },
 });

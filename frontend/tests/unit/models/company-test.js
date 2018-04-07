@@ -1,14 +1,6 @@
-import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
-import { run } from '@ember/runloop';
+import { moduleForModel } from 'ember-qunit';
 
-module('Unit | Model | company', function(hooks) {
-  setupTest(hooks);
-
-  // Replace this with your real tests.
-  test('it exists', function(assert) {
-    let store = this.owner.lookup('service:store');
-    let model = run(() => store.createRecord('company', {}));
-    assert.ok(model);
-  });
+moduleForModel('company', 'Unit | Model | company', {
+  // Specify the other units that are required for this test.
+  needs: ['model:location', 'model:employee quantity', 'model:people']
 });
