@@ -6,10 +6,11 @@
           <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Übersicht</a>
         </div>
         <div class="col-sm-6 text-right d-block">
-          {{! TODO: Submit via action submit doesnt work, are you sure message after click on delete button}}
-          <a class="card-link text-white"><i class="fa save"></i></a>
+          {{! TODO: are you sure message after click on delete button and decide if we want a reset icon}}
+          <a {{action 'submit' changeset}}class="card-link text-white"><i class="fa save"></i></a>
           <a onclick={{companyEditing}} class="card-link text-white"><i class="fa abort"></i></a>
           <a {{action 'deleteCompany' company}} class="card-link text-white"><i class="fa trash"></i></a>
+          <a class="card-link text-white"><i class="fa reset"></i></a>
           <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><i class="fa angle"></i></a>
         </div>
       </div>
@@ -64,7 +65,6 @@
         </div>
         <div class="row">
           <div class="col-sm-12">
-            {{f.submit "Speichern, funktioniert hier"}}
             {{f.reset "Reset"}}
           </div>
         </div>
