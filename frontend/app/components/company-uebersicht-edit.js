@@ -13,7 +13,7 @@ export default Component.extend({
     .then(() => this.get('notify').success('Firmenübersicht wurde aktualisiert!'))
     .catch(() => {
       let company = this.get('company');
-      let errors = person.get('company').slice(); // clone array as rollbackAttributes mutates
+      let errors = company.get('errors').slice(); // clone array as rollbackAttributes mutates
           company.rollbackAttributes();
           errors.forEach(({ attribute, message }) => {
             let translated_attribute = this.get('i18n').t(`company.${attribute}`)['string']
@@ -26,7 +26,9 @@ export default Component.extend({
     deleteCompany(companyToDelete) {
       companyToDelete.destroyRecord();
       this.get('router').transitionTo('companies');
-      window.location.reload(true);
+      setTimeout(function(){
+        window.location.reload();
+      });
     }
   }
 
