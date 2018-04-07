@@ -6,26 +6,31 @@ export default Component.extend({
   i18n: service(),
   router: service(),
 
-
   actions: {
-    submit(newCompany, newLocation) {
-      return newCompany.save()
-        .then(() => this.sendAction('submit', newCompany))
-        .then(() => this.get('notify').success('Firma wurde erstellt'))
-        .then(() => this.get('router').transitionTo('companies'))
+    submit(newCompany) {
+      newCompany.save()
         .then(function() {
-          newLocation.save(); //TODO: catch error
         })
-        
+        .then(() => this.sendAction('submit', newCompany))
+        .then(() => this.get('notify').success('Firma wurde erstellt'));
+
+      newCompany.get('locations').toArray().forEach(function(location) {
+        location.save();
+      });
+      newCompany.get('employeeQuantities').toArray().forEach(function(employeeQuantity) {
+        employeeQuantity.save();
+      });
+
     },
 
-    // TODO: use later?
-    addLocations() {
-      let company = this.get('model');
+    addLocations(company) {
       let location = this.get('store').createRecord('location');
       location.set('company', company);
+    },
+
+    addEmployeeQuantity(company) {
+      let employeeQuantity = this.get('store').createRecord('employee-quantity');
+      employeeQuantity.set('company', company);
     }
-
-
   }
 });

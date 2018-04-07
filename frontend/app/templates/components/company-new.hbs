@@ -75,7 +75,35 @@
           </div>
         </div>
       </div>
-    {{/form-for}}
-  </div>
-</div>
+    </div>
+    <hr>
+    <div class="form-inline" id="profile-content-edit">
+      {{f.text-field 'name'}}
+
+      <button type="button" {{action 'addLocations' newCompany}}>Neue Adresse</button>
+      {{#each newCompany.locations as |location|}}
+        {{#fields-for location as |l|}}
+          {{l.text-field 'location' label="Standort"}}
+        {{/fields-for}}
+      {{/each}}
+
+
+      {{f.text-field 'web'}}
+      {{f.text-field 'email' label="eMail"}}
+      {{f.text-field 'phone' label="Telefon"}}
+      {{f.text-field 'partnermanager'}}
+      {{f.text-field 'contactPerson' label="Ansprechperson"}}
+      {{f.text-field 'emailContactPerson' label="eMail"}}
+      {{f.text-field 'phoneContactPerson' label="Telefon"}}
+      {{f.text-field 'crm' label="CRM"}}
+      {{f.text-field 'level'}}
+      <button type="button" {{action 'addEmployeeQuantity' newCompany}}>Neue Mitarbeiter-Anzahl</button>
+      {{#each newCompany.employeeQuantities as |quantity|}}
+        {{#fields-for quantity as |q|}}
+          {{q.text-field 'category' label="Kategorie"}}
+          {{q.text-field 'quantity' label="Anzahl"}}
+        {{/fields-for}}
+      {{/each}}
+    </div>
+  {{/form-for}}
 </section>
