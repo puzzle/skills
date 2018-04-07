@@ -6,12 +6,12 @@
   </div>
 </div>
 <hr class="">
-<div class="row mb-3">
-  <div class="col-sm-12">
-    <span class="text-right d-block controls"><a href="#" class="mr-2 open-button">+ alles ausklappen</a><a href="#" class="close-button">- alles einklappen</a></span>
-  </div>
-</div>
 <div class="collapse-group">
+  <div class="row mb-3">
+    <div class="col-sm-12">
+      <span class="text-right d-block controls"><a href="#" class="mr-2 open-button">+ alles ausklappen</a><a href="#" class="close-button">- alles einklappen</a></span>
+    </div>
+  </div>
   <div id="accordion">
     {{!Übersichts Tab}}
     <div class="card mb-3">
@@ -36,7 +36,7 @@
           </div>
         </div>
       </div>
-      <div id="collapseTwo" class="collapse show border border-primary rounded-bottom">
+      <div id="collapseTwo" class="collapse border border-primary rounded-bottom">
         <div class="card-body">
           <div class="row mb-1">
             <div class="col-sm-3">
@@ -131,6 +131,7 @@
 </div>
 
 <script>
+
   $(".open-button").on("click", function() {
     $(this).closest('.collapse-group').find('.collapse').collapse('show');
   });
