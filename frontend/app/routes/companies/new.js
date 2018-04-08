@@ -10,7 +10,7 @@ export default Route.extend({
     createCompany(company) {
       let id = company.get('id');
       this.send('reloadCompaniesList');
-      this.transitionTo('companies.show', id).then(() => window.location.reload());
+      this.transitionTo('companies.show', id);
     }
   }
 });

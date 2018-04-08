@@ -15,9 +15,10 @@ export default Component.extend({
           changeset.get('locations').filterBy('hasDirtyAttributes').toArray().forEach(function(location) {
             location.save();
           });
-          changeset.get('employeeQuantities').filterBy('hasDirtyAttributes').toArray().forEach(function(employeeQuantity) {
-            employeeQuantity.save();
-          });
+          changeset.get('employeeQuantities')
+            .filterBy('hasDirtyAttributes').toArray().forEach(function(employeeQuantity) {
+              employeeQuantity.save();
+            });
         })
         .catch(() => {
           let company = this.get('company');

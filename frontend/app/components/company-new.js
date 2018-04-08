@@ -32,6 +32,14 @@ export default Component.extend({
     addEmployeeQuantity(company) {
       let employeeQuantity = this.get('store').createRecord('employee-quantity');
       employeeQuantity.set('company', company);
+    },
+
+    deleteLocation(location) {
+      location.destroyRecord();
+    },
+
+    deleteEmployeeQuantity(quantity) {
+      quantity.destroyRecord();
     }
   }
 });
