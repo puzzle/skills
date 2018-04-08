@@ -10,7 +10,7 @@ const { resolve } = RSVP;
 
 export default create({
   visit: visitable('/companies/new'),
-  submit: clickable('#profil .form-button--submit'),
+  submit: clickable('#profil #submit-button'),
   name: fillable('[name="company[name]"]'),
   web: fillable('[name="company[web]"]'),
   email: fillable('[name="company[email]"]'),
