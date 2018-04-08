@@ -680,15 +680,15 @@ form textarea{
 }
 
 .table-uebersicht td:first-child, .table-uebersicht label {
-  width: 30%;
+  width: 50%;
 }
 
 .table-uebersicht td:last-child {
-  width: 70%;
+  width: 50%;
 }
 
 .table-uebersicht input {
-    width: 60%;
+    width: 45%;
   }
 
 /* Style Fixes */

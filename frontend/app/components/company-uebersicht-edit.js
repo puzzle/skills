@@ -9,11 +9,11 @@ export default Component.extend({
   actions: {
     submit(changeset) {
       return changeset.save()
-    .then(() => this.sendAction('submit'))
-    .then(() => this.get('notify').success('Firmenübersicht wurde aktualisiert!'))
-    .catch(() => {
-      let company = this.get('company');
-      let errors = company.get('errors').slice(); // clone array as rollbackAttributes mutates
+        .then(() => this.sendAction('submit'))
+        .then(() => this.get('notify').success('Firmenübersicht wurde aktualisiert!'))
+        .catch(() => {
+          let company = this.get('company');
+          let errors = company.get('errors').slice(); // clone array as rollbackAttributes mutates
           company.rollbackAttributes();
           errors.forEach(({ attribute, message }) => {
             let translated_attribute = this.get('i18n').t(`company.${attribute}`)['string']
@@ -26,7 +26,7 @@ export default Component.extend({
     deleteCompany(companyToDelete) {
       companyToDelete.destroyRecord();
       this.get('router').transitionTo('companies');
-      setTimeout(function(){
+      setTimeout(function() {
         window.location.reload();
       });
     }
