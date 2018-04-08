@@ -11,7 +11,7 @@ import {
 
 export default create({
   visit: visitable('/companies/:company_id'),
-  toggleEditFormButton: clickable('[data-test-person-edit-form-toggle]'),
+  toggleEditFormButton: clickable('[data-test-company-edit-form-toggle]'),
 
   toggleEditForm() {
     this.toggleEditFormButton();
@@ -21,7 +21,7 @@ export default create({
 
   editForm: {
     scope: '#profil-uebersicht',
-    submit: clickable('.form-button--submit'),
+    submit: clickable('#submit-button'),
     reset: clickable('.form-button--reset'),
     name: fillable('[name="company[name]"]'),
     web: fillable('[name="company[web]"]'),
