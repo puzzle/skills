@@ -54,7 +54,7 @@ export default Component.extend({
       location.destroyRecord();
     },
 
-    deleteEmployeeQuanityty(quantity) {
+    deleteEmployeeQuantity(quantity) {
       quantity.destroyRecord();
     }
 
