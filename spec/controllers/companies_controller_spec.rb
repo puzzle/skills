@@ -73,13 +73,22 @@ describe CompaniesController do
     end
 
     describe 'DELETE destroy' do
-      it 'destroys existing company' do
-        firma = companies(:firma)
+      it 'destroys existing company which is not my company' do
+        firma = companies(:partner)
         process :destroy, method: :delete, params: { id: firma.id }
 
         expect(Company.exists?(firma.id)).to eq(false)
         expect(Location.exists?(company_id: firma.id)).to eq(false)
         expect(EmployeeQuantity.exists?(company_id: firma.id)).to eq(false)
+      end
+      
+      it 'does not destroy my company' do
+        firma = companies(:firma)
+        process :destroy, method: :delete, params: { id: firma.id }
+
+        expect(Company.exists?(firma.id)).to eq(true)
+        expect(Location.exists?(company_id: firma.id)).to eq(true)
+        expect(EmployeeQuantity.exists?(company_id: firma.id)).to eq(true)
       end
     end   
   end

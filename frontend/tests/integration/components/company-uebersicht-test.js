@@ -5,21 +5,29 @@ moduleForComponent('company-uebersicht', 'Integration | Component | company uebe
   integration: true
 });
 
-test('it renders', function(assert) {
+test('it renders company-uebersicht', function(assert) {
+  this.set('company', {
+    name: 'Firma',
+    web: 'www.example.org',
+    email: 'info@example.org',
+    phone: '123456789',
+    partnermanager: 'Christoph Kolumbus',
+    contactPerson: 'Urs Fischer',
+    emailContactPerson: 'urs@fischer.ch',
+    phoneContactPerson: '987654321',
+    crm: 'crm123',
+    level: 'X',
+  });
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  this.render(hbs`{{company-uebersicht company=company}}`);
 
-  this.render(hbs`{{company-uebersicht}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#company-uebersicht}}
-      template block text
-    {{/company-uebersicht}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.ok(this.$().text().indexOf('Firma') !== -1);
+  assert.ok(this.$().text().indexOf('www.example.org') !== -1);
+  assert.ok(this.$().text().indexOf('123456789') !== -1);
+  assert.ok(this.$().text().indexOf('Christoph Kolumbus' !== -1));
+  assert.ok(this.$().text().indexOf('Urs Fischer' !== -1));
+  assert.ok(this.$().text().indexOf('urs@fischer.ch' !== -1));
+  assert.ok(this.$().text().indexOf('987654321' !== -1));
+  assert.ok(this.$().text().indexOf('crm123' !== -1));
+  assert.ok(this.$().text().indexOf('X' !== -1));
 });

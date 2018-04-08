@@ -9,4 +9,11 @@ class CompaniesController < CrudController
     @companies = Company.all
     render json: @companies
   end
+  
+  def destroy
+    company = Company.find(params[:id])
+    unless company.my_company
+      company.destroy
+    end
+  end
 end

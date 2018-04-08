@@ -124,7 +124,6 @@ ActiveRecord::Schema.define(version: 20180320200954) do
     t.string "type"
     t.string "picture"
     t.string "competences"
-    t.string "company"
     t.bigint "company_id"
     t.index ["company_id"], name: "index_people_on_company_id"
     t.index ["status_id"], name: "index_people_on_status_id"
