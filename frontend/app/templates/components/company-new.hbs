@@ -29,9 +29,9 @@
                   {{#each newCompany.locations as |location|}}
                     {{#fields-for location as |l|}}
                       <tr>
-                        <td>
+                        <td class="nextToDelete">
                           {{l.text-field 'location' label="Standort"}}
-                          <a {{action 'deleteLocation' location}} role="button" class="card-link"><i class="fa trash"></i></a>
+                          <a {{action 'deleteLocation' location}} role="button" class="deleteField"><i class="fa trash"></i></a>
                         </td>
                       </tr>
                     {{/fields-for}}
@@ -79,12 +79,14 @@
                   {{#each newCompany.employeeQuantities as |quantity|}}
                     {{#fields-for quantity as |q|}}
                       <tr>
-                        <td>{{q.text-field 'category' label="Kategorie"}}</td>
+                        <td class="nextToDelete">
+                          {{q.text-field 'category' label="Kategorie"}}
+                          <a {{action 'deleteEmployeeQuantity' quantity}} role="button" class="deleteField"><i class="fa trash"></i></a>
+                        </td>
                       </tr>
                       <tr>
                         <td>{{q.text-field 'quantity' label="Anzahl"}}</td>
                       </tr>
-                      <a {{action 'deleteEmployeeQuantity' quantity}} role="button" class="card-link"><i class="fa trash"></i></a>
                     {{/fields-for}}
                   {{/each}}
                 </table>

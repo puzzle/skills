@@ -691,6 +691,21 @@ form textarea{
   width: 45%;
 }
 
+.table-uebersicht .nextToDelete {
+  position: relative;
+}
+
+.table-uebersicht .nextToDelete input {
+  width: 40%;
+  margin-right: 5%;
+}
+
+.table-uebersicht .deleteField {
+  position: absolute;
+  top: 5px;
+  right: 12px;
+}
+
 /* Style Fixes */
 a:focus {
   outline: none;
