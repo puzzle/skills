@@ -8,6 +8,12 @@ export default Component.extend({
 
   actions: {
     submit(changeset) {
+      changeset.get('locations').toArray().forEach(function(location) {
+        location.save();
+      });
+      changeset.get('employeeQuantities').toArray().forEach(function(employeeQuantity) {
+        employeeQuantity.save();
+      });
       return changeset.save()
         .then(() => this.sendAction('submit'))
         .then(() => this.get('notify').success('Firmenübersicht wurde aktualisiert!'))
@@ -29,7 +35,18 @@ export default Component.extend({
       setTimeout(function() {
         window.location.reload();
       });
+    },
+
+    addLocations(company) {
+      let location = this.get('store').createRecord('location');
+      location.set('company', company);
+    },
+
+    addEmployeeQuantity(company) {
+      let employeeQuantity = this.get('store').createRecord('employee-quantity');
+      employeeQuantity.set('company', company);
     }
+
   }
 
 });
