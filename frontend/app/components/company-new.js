@@ -8,19 +8,20 @@ export default Component.extend({
 
   actions: {
     submit(newCompany) {
-      newCompany.save()
+      return newCompany.save()
         .then(function() {
         })
         .then(() => this.sendAction('submit', newCompany))
-        .then(() => this.get('notify').success('Firma wurde erstellt'));
-
-      newCompany.get('locations').toArray().forEach(function(location) {
-        location.save();
-      });
-      newCompany.get('employeeQuantities').toArray().forEach(function(employeeQuantity) {
-        employeeQuantity.save();
-      });
-
+        .then(() => this.get('notify').success('Firma wurde erstellt'))
+        .then(function() {
+          newCompany.get('locations').toArray().forEach(function(location) {
+            newCompany.get('locations').pushObject(location);
+            location.save();
+          });
+          newCompany.get('employeeQuantities').toArray().forEach(function(employeeQuantity) {
+            employeeQuantity.save();
+          });
+        });
     },
 
     addLocations(company) {

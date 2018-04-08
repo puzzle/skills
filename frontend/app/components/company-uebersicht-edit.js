@@ -8,15 +8,17 @@ export default Component.extend({
 
   actions: {
     submit(changeset) {
-      changeset.get('locations').toArray().forEach(function(location) {
-        location.save();
-      });
-      changeset.get('employeeQuantities').toArray().forEach(function(employeeQuantity) {
-        employeeQuantity.save();
-      });
-      return changeset.save()
+      changeset.save()
         .then(() => this.sendAction('submit'))
         .then(() => this.get('notify').success('Firmenübersicht wurde aktualisiert!'))
+        .then(function() {
+          changeset.get('locations').filterBy('hasDirtyAttributes').toArray().forEach(function(location) {
+            location.save();
+          });
+          changeset.get('employeeQuantities').filterBy('hasDirtyAttributes').toArray().forEach(function(employeeQuantity) {
+            employeeQuantity.save();
+          });
+        })
         .catch(() => {
           let company = this.get('company');
           let errors = company.get('errors').slice(); // clone array as rollbackAttributes mutates
@@ -27,6 +29,7 @@ export default Component.extend({
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
         });
+
     },
 
     deleteCompany(companyToDelete) {
@@ -45,6 +48,14 @@ export default Component.extend({
     addEmployeeQuantity(company) {
       let employeeQuantity = this.get('store').createRecord('employee-quantity');
       employeeQuantity.set('company', company);
+    },
+
+    deleteLocation(location) {
+      location.destroyRecord();
+    },
+
+    deleteEmployeeQuanityty(quantity) {
+      quantity.destroyRecord();
     }
 
   }
