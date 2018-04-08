@@ -9,7 +9,7 @@
             </div>
             <div class="col-sm-6 text-right d-block">
               {{! TODO: Submit via action submit doesnt work, are you sure message after click on delete button}}
-              <a {{action 'submit' newCompany}} class="card-link text-white"><i class="fa save"></i></a>
+              <a {{action 'submit' newCompany}} role="button" class="card-link text-white"><i class="fa save"></i></a>
             </div>
           </div>
         </div>
@@ -22,12 +22,12 @@
                     <td>{{f.text-field 'name' label="Name"}}</td>
                   </tr>
                   <tr>
-                  <button type="button" {{action 'addLocations' newCompany}}>Neue Adresse</button>
-                  {{#each newCompany.locations as |location|}}
-                    {{#fields-for location as |l|}}
-                      {{l.text-field 'location' label="Standort"}}
-                    {{/fields-for}}
-                  {{/each}}
+                    <button type="button" {{action 'addLocations' newCompany}}>Neue Adresse</button>
+                    {{#each newCompany.locations as |location|}}
+                      {{#fields-for location as |l|}}
+                        {{l.text-field 'location' label="Standort"}}
+                      {{/fields-for}}
+                    {{/each}}
                   </tr>
                   <tr>
                     <td>{{f.text-field 'web' label="Web"}}</td>
