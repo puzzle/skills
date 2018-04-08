@@ -25,6 +25,18 @@
                 <tr>
                   <td>{{f.text-field 'name' label="Name"}}</td>
                 </tr>
+                <tr>
+                  <td>
+                    <button class="btn btn-success form-field--control" type="button" {{action 'addLocations' company}}>Neue Adresse</button>
+                  </td>
+                </tr>
+                {{#each company.locations as |location|}}
+                  {{#fields-for location as |l|}}
+                    <tr>
+                      <td>{{l.text-field 'location' label="Standort"}}</td>
+                    </tr>
+                  {{/fields-for}}
+                {{/each}}
                 {{!TODO: Standorte}}
                 <tr>
                   <td>{{f.text-field 'web' label="Web"}}</td>
@@ -61,6 +73,21 @@
                 <tr>
                   <td>{{f.text-field 'level' label="Level"}}</td>
                 </tr>
+                <tr>
+                  <td>
+                    <button class ="btn btn-success form-field--control" type="button" {{action 'addEmployeeQuantity' company}}>Neue Mitarbeiter-Anzahl</button>
+                  </td>
+                </tr>
+                {{#each company.employeeQuantities as |quantity|}}
+                  {{#fields-for quantity as |q|}}
+                    <tr>
+                      <td>{{q.text-field 'category' label="Kategorie"}}</td>
+                    </tr>
+                    <tr>
+                      <td>{{q.text-field 'quantity' label="Anzahl"}}</td>
+                    </tr>
+                  {{/fields-for}}
+                {{/each}}
                 {{!TODO: Mitarbeiter}}
               </table>
             </div>
