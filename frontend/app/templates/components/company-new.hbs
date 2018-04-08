@@ -22,13 +22,17 @@
                     <td>{{f.text-field 'name' label="Name"}}</td>
                   </tr>
                   <tr>
-                    <button type="button" {{action 'addLocations' newCompany}}>Neue Adresse</button>
-                    {{#each newCompany.locations as |location|}}
-                      {{#fields-for location as |l|}}
-                        {{l.text-field 'location' label="Standort"}}
-                      {{/fields-for}}
-                    {{/each}}
+                    <td>
+                      <button class="btn btn-success form-field--control" type="button" {{action 'addLocations' newCompany}}>Neue Adresse</button>
+                    </td>
                   </tr>
+                  {{#each newCompany.locations as |location|}}
+                    {{#fields-for location as |l|}}
+                      <tr>
+                        <td>{{l.text-field 'location' label="Standort"}}</td>
+                      </tr>
+                    {{/fields-for}}
+                  {{/each}}
                   <tr>
                     <td>{{f.text-field 'web' label="Web"}}</td>
                   </tr>
@@ -64,19 +68,22 @@
                   <tr>
                     <td>{{f.text-field 'level' label="Level"}}</td>
                   </tr>
-                  <button type="button" {{action 'addEmployeeQuantity' newCompany}}>Neue Mitarbeiter-Anzahl</button>
+                  <tr>
+                    <td>
+                      <button class="btn btn-success form-field--control" type="button" {{action 'addEmployeeQuantity' newCompany}}>Neue Mitarbeiter-Anzahl</button>
+                    </td>
+                  </tr>
                   {{#each newCompany.employeeQuantities as |quantity|}}
                     {{#fields-for quantity as |q|}}
-                      {{q.text-field 'category' label="Kategorie"}}
-                      {{q.text-field 'quantity' label="Anzahl"}}
+                      <tr>
+                        <td>{{q.text-field 'category' label="Kategorie"}}</td>
+                      </tr>
+                      <tr>
+                        <td>{{q.text-field 'quantity' label="Anzahl"}}</td>
+                      </tr>
                     {{/fields-for}}
                   {{/each}}
                 </table>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-12">
-                {{f.reset "Reset"}}
               </div>
             </div>
           </div>

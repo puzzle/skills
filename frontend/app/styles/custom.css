@@ -687,9 +687,9 @@ form textarea{
   width: 50%;
 }
 
-.table-uebersicht input {
-    width: 45%;
-  }
+.table-uebersicht input, .table-uebersicht button {
+  width: 45%;
+}
 
 /* Style Fixes */
 a:focus {
