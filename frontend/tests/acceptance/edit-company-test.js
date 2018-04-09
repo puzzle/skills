@@ -15,11 +15,10 @@ moduleForAcceptance('Acceptance | edit company', {
 });
 
 skip('/company/:id edit company data', async function(assert) {
-  assert.expect(7);
+  assert.expect(13);
 
-  await applicationPage.visitHome('/');
-  //this doesn't work
-  await applicationPage.MenuItem('Bob Anderson');
+  await applicationPage.visitCompanies('/companies');
+  await applicationPage.companiesMenuItem('firma');
 
   await page.toggleEditForm();
   await page.editForm.name('FirmaXYZ');
@@ -44,4 +43,6 @@ skip('/company/:id edit company data', async function(assert) {
   assert.equal(page.profileData.phoneContactPerson, '23475788273785423');
   assert.equal(page.profileData.crm, 'crmXYZ');
   assert.equal(page.profileData.level, 'Z');
+  assert.equal(page.profileData.name, 'firma');
+
 });
