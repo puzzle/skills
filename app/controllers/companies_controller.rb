@@ -5,15 +5,4 @@ class CompaniesController < CrudController
 
   self.nested_models = %i[locations employee_quantities people]
 
-  def index
-    @companies = Company.all
-    render json: @companies
-  end
-  
-  def destroy
-    company = Company.find(params[:id])
-    unless company.my_company
-      company.destroy
-    end
-  end
 end

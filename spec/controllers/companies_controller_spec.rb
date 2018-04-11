@@ -45,10 +45,10 @@ describe CompaniesController do
 
     describe 'POST create' do
       it 'creates new company' do
-        company = {name: "firma123", web: "www.firma.123", email: "info@firma.123", phone: "123",
-                   partnermanager: "Paul", contact_person: "Felix",
-                   email_contact_person: "felix@firma.123", phone_contact_person: "123456",
-                   crm: "crm123", level: "X", my_company: false}
+        company = {name: 'firma123', web: 'www.firma.123', email: 'info@firma.123', phone: '123',
+                   partnermanager: 'Paul', contact_person: 'Felix',
+                   email_contact_person: 'felix@firma.123', phone_contact_person: '123456',
+                   crm: 'crm123', level: 'X', my_company: false}
 
         process :create, method: :post, params: { data: { attributes: company } }
 
