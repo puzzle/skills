@@ -1,0 +1,106 @@
+<div id="profil-uebersicht">
+  {{#with (changeset company validations) as |changeset|}}
+    {{#form-for changeset submit=(action 'submit') as |f|}}
+      <div class="card-header bg-primary">
+        <div class="row">
+          <div class="col-sm-6">
+            <a class="card-link text-white" href="#">Übersicht</a>
+          </div>
+          <div class="col-sm-6 text-right d-block">
+            {{! TODO: are you sure message after click on delete button and decide if we want a reset icon}}
+            <a {{action 'submit' changeset}} role="button" id="submit-button" class="card-link text-white"><i class="fa save"></i></a>
+            <a onclick={{companyEditing}} role="button" class="card-link text-white"><i class="fa abort"></i></a>
+            {{#unless company.myCompany}}
+              <a {{action 'deleteCompany' company}} role="button" class="card-link text-white"><i class="fa trash"></i></a>
+            {{/unless}}
+            <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#"><i class="fa angle"></i></a>
+          </div>
+        </div>
+      </div>
+      <div id="collapseOne" class="collapse show border border-primary rounded-bottom">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-4">
+              <table class="table-uebersicht">
+                <tr>
+                  <td>{{f.text-field 'name' label="Name"}}</td>
+                </tr>
+                <tr>
+                  <td>
+                    <button class="btn btn-success form-field--control" type="button" {{action 'addLocations' company}}>Neue Adresse</button>
+                  </td>
+                </tr>
+                {{#each company.locations as |location|}}
+                  {{#fields-for location as |l|}}
+                    <tr>
+                      <td class="nextToDelete">
+                        {{l.text-field 'location' label="Standort"}}
+                        <a {{action 'deleteLocation' location}} role="button" class="deleteField"><i class="fa trash"></i></a>
+                      </td>
+                    </tr>
+                  {{/fields-for}}
+                {{/each}}
+                <tr>
+                  <td>{{f.text-field 'web' label="Web"}}</td>
+                </tr>
+                <tr>
+                  <td>{{f.text-field 'email' label="Email"}}</td>
+                </tr>
+                <tr>
+                  <td>{{f.text-field 'phone' label="Telefon"}}</td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-sm-4">
+              <table class="table-uebersicht">
+                <tr>
+                  <td>{{f.text-field 'partnermanager' label="PM"}}</td>
+                </tr>
+                <tr>
+                  <td>{{f.text-field 'contactPerson' label="Ansprechperson"}}</td>
+                </tr>
+                <tr>
+                  <td>{{f.text-field 'emailContactPerson' label="Email"}}</td>
+                </tr>
+                <tr>
+                  <td>{{f.text-field 'phoneContactPerson' label="Telefon"}}</td>
+                </tr>
+                <tr>
+                  <td>{{f.text-field 'crm' label="CRM"}}</td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-sm-4">
+              <table class="table-uebersicht">
+                <tr>
+                  <td>{{f.text-field 'level' label="Level"}}</td>
+                </tr>
+                <tr>
+                  <td>
+                    <button class ="btn btn-success form-field--control" type="button" {{action 'addEmployeeQuantity' company}}>Neue Mitarbeiter-Anzahl</button>
+                  </td>
+                </tr>
+                {{#each company.employeeQuantities as |quantity|}}
+                  {{#fields-for quantity as |q|}}
+                    <tr>
+                      <td class="nextToDelete">
+                        {{q.text-field 'category' label="Kategorie"}}
+                        <a {{action 'deleteEmployeeQuantity' quantity}} role="button" class="deleteField"><i class="fa trash"></i></a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        {{q.text-field 'quantity' label="Anzahl"}}
+                      </td>
+                    </tr>
+                  {{/fields-for}}
+                {{/each}}
+                {{!TODO: Mitarbeiter}}
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    {{/form-for}}
+  {{/with}}
+</div>

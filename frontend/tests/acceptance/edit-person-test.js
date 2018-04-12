@@ -18,7 +18,7 @@ test('/people/:id edit person data', async function(assert) {
   assert.expect(7);
 
   await applicationPage.visitHome('/');
-  await applicationPage.menuItem('Bob Anderson');
+  await applicationPage.peopleMenuItem('Bob Anderson');
 
   await page.toggleEditForm();
   await page.editForm.name('Hansjoggeli');
@@ -45,7 +45,7 @@ test('/people/:id edit person competences', async function(assert) {
   assert.expect(4);
 
   await applicationPage.visitHome('/');
-  await applicationPage.menuItem('Bob Anderson');
+  await applicationPage.peopleMenuItem('Bob Anderson');
 
   await page.competences.toggleForm();
   await page.competences.textarea(
@@ -69,7 +69,7 @@ test('Creating a new variation', async function(assert) {
   assert.expect(12);
 
   await applicationPage.visitHome('/');
-  await applicationPage.menuItem('Bob Anderson');
+  await applicationPage.peopleMenuItem('Bob Anderson');
 
   assert.ok(page.personActions.originCVIsActive);
 

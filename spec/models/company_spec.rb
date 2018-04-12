@@ -14,7 +14,7 @@
 #  crm                   :string
 #  level                 :string
 #  picture               :string
-#  my_company            :boolean
+#  my_company            :boolean, default: false
 
 require 'rails_helper'
 
@@ -27,7 +27,6 @@ describe Company do
         company.valid?
 
         expect(company.errors[:name].first).to eq('muss ausgefüllt werden')
-        expect(company.errors[:my_company].first).to eq('muss ausgefüllt werden')
       end
 
       it 'should not be more than 100 characters' do

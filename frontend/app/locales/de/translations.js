@@ -45,6 +45,16 @@ export default {
     lastUse: 'Letztmals angewendet',
     skillLevel: 'Erfahrungswert',
     comment: 'Bemerkung'
+  },
+
+  'company': {
+    name: 'Name',
+    web: 'Web',
+    email: 'eMail',
+    phone: 'Telefon',
+    partnermanager: 'Partnermanager',
+    contactPerson: 'Ansprechperson',
+    level: 'Level'
   }
 
 

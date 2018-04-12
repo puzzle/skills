@@ -1,15 +1,16 @@
-<div class="form-login">
-  <img src="/assets/images/logo.png" alt="">
-  <form class="form-inline {{if loading 'form-loading'}}" {{action 'authenticate' on='submit'}}>
+<div class="form-login text-center">
+  <form class="form-signin {{if loading 'form-loading'}}" {{action 'authenticate' on='submit'}}>
+    <img src="/assets/images/logo.png" alt="logo" width="auto" height="72">
     <div class="form-group login-form-user">
       {{input type="text" value=identification class="form-control" placeholder="Username" disabled=loading autofocus=true required='required'}}
     </div>
     <div class="form-group login-form-password">
       {{input type="password" value=password class="form-control" placeholder="Password" disabled=loading required='required'}}
     </div>
-    <button type="submit" class="btn btn-primary" disabled={{loading}}>
+    <button type="submit" class="btn btn-lg btn-primary btn-block" disabled={{loading}}>
       {{#if loading}}Logging in...{{else}}Login{{/if}}
     </button>
+    <p class="mt-5 mb-3 text-muted">&copy; PSE Puzzle 2018</p>
     {{#if errorMessage}}
       <p class="error-message">{{errorMessage}}</p>
     {{/if}}

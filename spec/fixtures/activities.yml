@@ -17,9 +17,7 @@
 
 swisscom:
   description: Swisscom
-  updated_at: 2016-10-20 13:18:39
   updated_by: MyString
-  created_at: 2016-10-20 13:18:39
   role: User Experience Consultant
   year_from: 2000
   year_to: 2010
@@ -27,9 +25,7 @@ swisscom:
 
 ascom:
   description: Ascom
-  updated_at: 2016-10-20 13:18:39
   updated_by: MyString
-  created_at: 2016-10-20 13:18:39
   role: Project Manager
   year_from: 2010
   year_to: 2015

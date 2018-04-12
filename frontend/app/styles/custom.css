@@ -634,6 +634,7 @@ form textarea{
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0, 0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
+/* Symbole für Tabs */
 /* Symbol für offenes / geschlossenes Tab */
 [data-toggle="collapse"] .angle:before {
   content: "\f106";  /* this is your text. You can also use UTF-8 character codes as I do here */
@@ -653,6 +654,58 @@ form textarea{
   font-size: 20px;
 }
 
+.save:before {
+  content: "\f0c7";
+  font-size: 20px;
+}
+
+.abort:before {
+  content: "\f00d";
+  font-size: 20px;
+}
+
+.trash:before {
+  content: "\f014";
+  font-size: 20px;
+}
+
+.reset:before {
+  content: "\f0e2";
+  font-size: 20px;
+}
+
+/* Table Styling in Tabs */
+.table-uebersicht {
+  width: 100%;
+}
+
+.table-uebersicht td:first-child, .table-uebersicht label {
+  width: 50%;
+}
+
+.table-uebersicht td:last-child {
+  width: 50%;
+}
+
+.table-uebersicht input, .table-uebersicht button {
+  width: 45%;
+}
+
+.table-uebersicht .nextToDelete {
+  position: relative;
+}
+
+.table-uebersicht .nextToDelete input {
+  width: 40%;
+  margin-right: 5%;
+}
+
+.table-uebersicht .deleteField {
+  position: absolute;
+  top: 5px;
+  right: 12px;
+}
+
 /* Style Fixes */
 a:focus {
   outline: none;
@@ -661,3 +714,4 @@ a:focus {
 button::-moz-focus-inner {
   border: 0;
 }
+
