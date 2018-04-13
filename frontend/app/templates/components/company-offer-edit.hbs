@@ -12,35 +12,23 @@
 <div id="collapseTwo" class="collapse show border border-primary rounded-bottom">
   <div class="card-body">
     <div class="row mb-1">
-      <div class="col-sm-3">
-        <span class="p-2">Datenbanken</span>
-      </div>
-      <div class="col-sm-9">
-        <span class="badge badge-success p-2 mr-2 skill" href="#">Mongo DB</span>
-        <span class="badge badge-success p-2 mr-2 skill" href="#">PostgreSQL</span>
-      </div>
-    </div>
-    {{#form-for newOffer submit=(action 'submit' newOffer) as |f|}}
-      <div class="row mb-1">
+      {{#each company.offers as |offer|}}
         <div class="col-sm-3">
-          
+          <span class="p-2">{{offer.category}}</span>
         </div>
         <div class="col-sm-9">
           {{! Quelle: http://ember-power-select.com/cookbook/create-custom-options}}
           {{#power-select-multiple
             options=options
-            selected=selected
-            onchange=(action (mut selected))
+            selected=offer.offer
+            onchange=(action (mut offer.offer))
             onkeydown=(action "createOnEnter")
-          as |number|}}
-            {{number}}
+          as |offer|}}
+            {{offer}}
           {{/power-select-multiple}}
-          <p>Selected Values: {{selected}}</p>
-          <a {{action 'submit' newOffer}} role="button" id="submit-button" class="card-link text-white"><i class="fa save text-dark"></i></a>
         </div>
-      </div>
-      {{input type="hidden" name="offer" value=selected}}
-    {{/form-for}}
+      {{/each}}
+    </div>
     <div class="row mb-1">
       <div class="col-sm-3">
         <span class="p-2">Weiteres (Bemerkungen)</span>
