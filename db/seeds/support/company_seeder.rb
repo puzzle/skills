@@ -9,7 +9,7 @@ class CompanySeeder
       company = seed_company(name, flag).first
       
       break unless company
-      associations = [:location, :employee_quantity]
+      associations = [:location, :employee_quantity, :offer]
       associations.each do |a|
         seed_association(a, company.id)
       end
@@ -52,6 +52,14 @@ class CompanySeeder
       category = Faker::Hacker.noun
       a.category = "Total MA #{category}"
       a.quantity = Faker::Number.between(10, 100)
+      a.company_id = company_id
+    end
+  end
+  
+  def seed_offer(company_id)
+    Offer.seed do |a|
+      a.category = Faker::Hacker.noun
+      a.offer = ["Java", "Ruby", "Javascript", "C++", "C", "C#"]
       a.company_id = company_id
     end
   end
