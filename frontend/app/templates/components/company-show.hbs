@@ -25,7 +25,12 @@
 
     {{!Angebot Tab}}
     <div class="card mb-3">
-      {{company-skills}}
+      {{component (if companySkillsEditing 'company-skills-edit' 'company-skills' )
+                  company=company
+                  submit=(action (toggle 'companySkillsEditing' this))
+                  model-header-title = 'Firmen Skills'
+                  companySkillsEditing=(action (toggle 'companySkillsEditing' this))
+      }}
     </div>
 
     {{!Profile Tab}}

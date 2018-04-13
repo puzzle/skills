@@ -4,7 +4,7 @@
       <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Angebot</a>
     </div>
     <div class="col-sm-6 text-right d-block">
-      <a class="card-link text-white"><i class="fa edit"></i></a>
+      <a onclick={{companySkillsEditing}} data-test-company-edit-form-toggle class="card-link text-white"><i class="fa edit"></i></a>
       <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><i class="fa angle"></i></a>
     </div>
 
@@ -53,9 +53,3 @@
     </div>
   </div>
 </div>
-{{ember-selectize
-  content=company
-  optionValuePath="content.name"
-  optionLabelPath="content.name"
-  selection=company
-  placeholder="Select an item" }}
