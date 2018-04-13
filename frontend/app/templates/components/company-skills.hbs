@@ -7,6 +7,7 @@
       <a class="card-link text-white"><i class="fa edit"></i></a>
       <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><i class="fa angle"></i></a>
     </div>
+
   </div>
 </div>
 <div id="collapseTwo" class="collapse border border-primary rounded-bottom">
@@ -52,3 +53,9 @@
     </div>
   </div>
 </div>
+{{ember-selectize
+  content=company
+  optionValuePath="content.name"
+  optionLabelPath="content.name"
+  selection=company
+  placeholder="Select an item" }}

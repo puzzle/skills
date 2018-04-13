@@ -3790,6 +3790,15 @@ ember-cli-sass@^7.0.0:
     broccoli-sass-source-maps "^2.0.0"
     ember-cli-version-checker "^1.0.2"
 
+ember-cli-selectize@^0.5.12:
+  version "0.5.12"
+  resolved "https://registry.yarnpkg.com/ember-cli-selectize/-/ember-cli-selectize-0.5.12.tgz#38af65b12d01d8ff20ba252235105bed10b7111a"
+  dependencies:
+    ember-cli-babel "^5.1.6"
+    ember-cli-import-polyfill "^0.2.0"
+    ember-getowner-polyfill "^1.1.1"
+    ember-new-computed "^1.0.0"
+
 ember-cli-shims@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/ember-cli-shims/-/ember-cli-shims-1.2.0.tgz#0f53aff0aab80b5f29da3a9731bac56169dd941f"
@@ -4072,7 +4081,7 @@ ember-get-helper@~1.1.0:
     ember-cli-babel "^5.1.6"
     ember-cli-version-checker "^1.1.3"
 
-ember-getowner-polyfill@^1.1.0, ember-getowner-polyfill@^1.2.2:
+ember-getowner-polyfill@^1.1.0, ember-getowner-polyfill@^1.1.1, ember-getowner-polyfill@^1.2.2:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/ember-getowner-polyfill/-/ember-getowner-polyfill-1.2.5.tgz#ceff8a09897d0d7e05c821bb71666a95eb26dc92"
   dependencies:
@@ -4164,6 +4173,12 @@ ember-native-dom-helpers@^0.5.3, ember-native-dom-helpers@^0.5.4:
   dependencies:
     broccoli-funnel "^1.1.0"
     ember-cli-babel "^6.6.0"
+
+ember-new-computed@^1.0.0:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/ember-new-computed/-/ember-new-computed-1.0.3.tgz#592af8a778e0260ce7e812687c3aedface1622bf"
+  dependencies:
+    ember-cli-babel "^5.1.5"
 
 ember-notify@^5.2.0:
   version "5.2.1"
