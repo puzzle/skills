@@ -7,5 +7,6 @@ class CompanySerializer < ApplicationSerializer
   has_many :people, include: :all
   has_many :locations, include: :all
   has_many :employee_quantities, include: :all
+  has_many :offers, include: :all
 
 end
