@@ -22,6 +22,7 @@ class Company < ApplicationRecord
   has_many :people, dependent: :nullify
   has_many :locations, dependent: :destroy
   has_many :employee_quantities, dependent: :destroy
+  has_many :offers, dependent: :destroy
 
   validates :name, presence: true
   validates :name, :web, :email, :phone, :partnermanager, :contact_person,
