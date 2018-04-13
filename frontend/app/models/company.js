@@ -17,7 +17,8 @@ export default DS.Model.extend({
 
   locations: DS.hasMany('location'),
   employeeQuantities: DS.hasMany('employeeQuantity'),
-  people: DS.hasMany('person')
+  people: DS.hasMany('person'),
+  offers: DS.hasMany('offer')
 
 
 });

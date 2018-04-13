@@ -1,21 +1,22 @@
 // app/transforms/array.js
-import Ember from 'ember';
 import DS from 'ember-data';
+import { A } from '@ember/array';
+import { isArray } from '@ember/array';
 
 export default DS.Transform.extend({
   deserialize: function(serialized) {
-    if (Ember.isArray(serialized)) {
-      return Ember.A(serialized);
+    if (isArray(serialized)) {
+      return A(serialized);
     } else {
-      return Ember.A();
+      return A();
     }
   },
 
   serialize: function(deserialized) {
-    if (Ember.isArray(deserialized)) {
-      return Ember.A(deserialized);
+    if (isArray(deserialized)) {
+      return A(deserialized);
     } else {
-      return Ember.A();
+      return A();
     }
   }
 });
