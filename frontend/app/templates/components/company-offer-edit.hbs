@@ -11,24 +11,31 @@
 </div>
 <div id="collapseTwo" class="collapse show border border-primary rounded-bottom">
   <div class="card-body">
-    <div class="row mb-1">
-      {{#each company.offers as |offer|}}
-        <div class="col-sm-3">
-          <span class="p-2">{{offer.category}}</span>
-        </div>
-        <div class="col-sm-9">
-          {{! Quelle: http://ember-power-select.com/cookbook/create-custom-options}}
-          {{#power-select-multiple
-            options=options
-            selected=offer.offer
-            onchange=(action (mut offer.offer))
-            onkeydown=(action "createOnEnter")
-          as |offer|}}
-            {{offer}}
-          {{/power-select-multiple}}
-        </div>
-      {{/each}}
-    </div>
+    {{#each company.offers as |offer|}}
+      {{#with (changeset offer validations) as |changeset|}}
+        <form onsubmit={{action 'submit' changeset}} id="form_offer">
+          <div class="row mb-1">
+            <div class="col-sm-3">
+              <span class="p-2">{{input value=changeset.category type="text"}}</span>
+              <input type="submit">
+            </div>
+            <div class="col-sm-9">
+              {{! Quelle: http://ember-power-select.com/cookbook/create-custom-options}}
+              {{#power-select-multiple
+                options=options
+                selected=changeset.offer
+                onchange=(action (mut changeset.offer))
+                onkeydown=(action "createOnEnter")
+              as |offer|}}
+                {{offer}}
+              {{/power-select-multiple}}
+
+              {{input value=changeset.offer type="text"}}
+            </div>
+          </div>
+        </form>
+      {{/with}}
+    {{/each}}
     <div class="row mb-1">
       <div class="col-sm-3">
         <span class="p-2">Weiteres (Bemerkungen)</span>

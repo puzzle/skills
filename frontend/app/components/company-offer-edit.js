@@ -11,12 +11,21 @@ export default Component.extend({
   selected: [],
 
   actions: {
-    submit(newOffer) {
-      return newOffer.save()
-        .then(function() {
-        })
-        .then(() => this.sendAction('submit', newOffer))
-    .then(() => this.get('notify').success('Angebot wurde erstellt'))
+    submit(changeset) {
+      return changeset.save()
+        .then(() => this.sendAction('submit'))
+        .then(() => this.get('notify').success('Angebot wurde aktualisiert!'))
+        .catch(() => {
+            let offer = this.get('offer');
+          let errors = offer.get('errors').slice(); // clone array as rollbackAttributes mutates
+
+          offer.rollbackAttributes();
+          errors.forEach(({ attribute, message }) => {
+            let translated_attribute = this.get('i18n').t(`offer.${attribute}`)['string']
+            changeset.pushErrors(attribute, message);
+          this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
+        });
+        });
     },
 
     createOnEnter(select, e) {
