@@ -17,12 +17,15 @@
         <span class="p-2">Politics</span>
       </div>
       <div class="col-sm-9">
-        {{ember-selectize
-          content=streets
-          optionValuePath="content.id"
-          optionLabelPath="content.name"
-          selection=model.item
-          placeholder="Select an item" }}
+        {{! Quelle: http://ember-power-select.com/cookbook/create-custom-options}}
+        {{#power-select-multiple
+            options=options
+            selected=selected
+            onchange=(action (mut selected))
+            onkeydown=(action "createOnEnter")
+          as |number|}}
+            {{number}}
+          {{/power-select-multiple}}
       </div>
     </div>
     <div class="row mb-1">
