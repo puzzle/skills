@@ -7,38 +7,10 @@
       <a onclick={{companyOfferEditing}} data-test-company-edit-form-toggle class="card-link text-white"><i class="fa edit"></i></a>
       <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><i class="fa angle"></i></a>
     </div>
-
   </div>
 </div>
 <div id="collapseTwo" class="collapse show border border-primary rounded-bottom">
   <div class="card-body">
-    <div class="row mb-1">
-      <div class="col-sm-3">
-        <span class="p-2">Politics</span>
-      </div>
-      <div class="col-sm-9">
-        {{! Quelle: http://ember-power-select.com/cookbook/create-custom-options}}
-        {{#power-select-multiple
-          options=options
-          selected=selected
-          onchange=(action (mut selected))
-          onkeydown=(action "createOnEnter")
-        as |number|}}
-          {{number}}
-        {{/power-select-multiple}}
-      </div>
-    </div>
-    <div class="row mb-1">
-      <div class="col-sm-3">
-        <span class="p-2">Great People</span>
-      </div>
-      <div class="col-sm-9">
-        <span class="badge badge-success p-2 mr-2 skill" href="#">Big Hands</span>
-        <span class="badge badge-success p-2 mr-2 skill" href="#">Oranges</span>
-        <span class="badge badge-success p-2 mr-2 skill" href="#">Great Guy</span>
-        <span class="badge badge-success p-2 mr-2 skill" href="#">Confident</span>
-      </div>
-    </div>
     <div class="row mb-1">
       <div class="col-sm-3">
         <span class="p-2">Datenbanken</span>
@@ -48,6 +20,27 @@
         <span class="badge badge-success p-2 mr-2 skill" href="#">PostgreSQL</span>
       </div>
     </div>
+    {{#form-for newOffer submit=(action 'submit' newOffer) as |f|}}
+      <div class="row mb-1">
+        <div class="col-sm-3">
+          
+        </div>
+        <div class="col-sm-9">
+          {{! Quelle: http://ember-power-select.com/cookbook/create-custom-options}}
+          {{#power-select-multiple
+            options=options
+            selected=selected
+            onchange=(action (mut selected))
+            onkeydown=(action "createOnEnter")
+          as |number|}}
+            {{number}}
+          {{/power-select-multiple}}
+          <p>Selected Values: {{selected}}</p>
+          <a {{action 'submit' newOffer}} role="button" id="submit-button" class="card-link text-white"><i class="fa save text-dark"></i></a>
+        </div>
+      </div>
+      {{input type="hidden" name="offer" value=selected}}
+    {{/form-for}}
     <div class="row mb-1">
       <div class="col-sm-3">
         <span class="p-2">Weiteres (Bemerkungen)</span>
