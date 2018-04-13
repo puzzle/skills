@@ -11,6 +11,9 @@
 </div>
 <div id="collapseTwo" class="collapse border border-primary rounded-bottom">
   <div class="card-body">
+    {{#each company.offers as |offer|}}
+      {{offer.category}}<br>
+    {{/each}}
     <div class="row mb-1">
       <div class="col-sm-3">
         <span class="p-2">Politics</span>

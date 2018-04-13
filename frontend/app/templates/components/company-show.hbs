@@ -26,7 +26,7 @@
     {{!Angebot Tab}}
     <div class="card mb-3">
       {{component (if companyOfferEditing 'company-offer-edit' 'company-offer' )
-                  company=company
+                  offer=offer
                   submit=(action (toggle 'companyOfferEditing' this))
                   model-header-title = 'Firmen Skills'
                   companyOfferEditing=(action (toggle 'companyOfferEditing' this))
