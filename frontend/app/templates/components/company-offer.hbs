@@ -4,28 +4,22 @@
       <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Angebot</a>
     </div>
     <div class="col-sm-6 text-right d-block">
-      <a onclick={{companySkillsEditing}} data-test-company-edit-form-toggle class="card-link text-white"><i class="fa edit"></i></a>
+      <a onclick={{companyOfferEditing}} data-test-company-edit-form-toggle class="card-link text-white"><i class="fa edit"></i></a>
       <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><i class="fa angle"></i></a>
     </div>
-
   </div>
 </div>
-<div id="collapseTwo" class="collapse show border border-primary rounded-bottom">
+<div id="collapseTwo" class="collapse border border-primary rounded-bottom">
   <div class="card-body">
     <div class="row mb-1">
       <div class="col-sm-3">
         <span class="p-2">Politics</span>
       </div>
       <div class="col-sm-9">
-        {{! Quelle: http://ember-power-select.com/cookbook/create-custom-options}}
-        {{#power-select-multiple
-            options=options
-            selected=selected
-            onchange=(action (mut selected))
-            onkeydown=(action "createOnEnter")
-          as |number|}}
-            {{number}}
-          {{/power-select-multiple}}
+        <span class="badge badge-success p-2 mr-2 skill" href="#">Free Speech</span>
+        <span class="badge badge-success p-2 mr-2 skill" href="#">2. Amendment</span>
+        <span class="badge badge-success p-2 mr-2 skill" href="#">Healthcare</span>
+        <span class="badge badge-success p-2 mr-2 skill" href="#">Best Education</span>
       </div>
     </div>
     <div class="row mb-1">

@@ -25,11 +25,11 @@
 
     {{!Angebot Tab}}
     <div class="card mb-3">
-      {{component (if companySkillsEditing 'company-skills-edit' 'company-skills' )
+      {{component (if companyOfferEditing 'company-offer-edit' 'company-offer' )
                   company=company
-                  submit=(action (toggle 'companySkillsEditing' this))
+                  submit=(action (toggle 'companyOfferEditing' this))
                   model-header-title = 'Firmen Skills'
-                  companySkillsEditing=(action (toggle 'companySkillsEditing' this))
+                  companyOfferEditing=(action (toggle 'companyOfferEditing' this))
       }}
     </div>
 
