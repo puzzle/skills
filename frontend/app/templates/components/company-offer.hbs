@@ -12,39 +12,17 @@
 <div id="collapseTwo" class="collapse border border-primary rounded-bottom">
   <div class="card-body">
     {{#each company.offers as |offer|}}
-      {{offer.category}}<br>
+      <div class="row mb-1">
+        <div class="col-sm-3">
+          <span class="p-2">{{offer.category}}</span>
+        </div>
+        <div class="col-sm-9">
+          {{#each offer.offer as |offer|}}
+            <span class="badge badge-success p-2 mr-2 skill" href="#">{{offer}}</span>
+          {{/each}}
+        </div>
+      </div>
     {{/each}}
-    <div class="row mb-1">
-      <div class="col-sm-3">
-        <span class="p-2">Politics</span>
-      </div>
-      <div class="col-sm-9">
-        <span class="badge badge-success p-2 mr-2 skill" href="#">Free Speech</span>
-        <span class="badge badge-success p-2 mr-2 skill" href="#">2. Amendment</span>
-        <span class="badge badge-success p-2 mr-2 skill" href="#">Healthcare</span>
-        <span class="badge badge-success p-2 mr-2 skill" href="#">Best Education</span>
-      </div>
-    </div>
-    <div class="row mb-1">
-      <div class="col-sm-3">
-        <span class="p-2">Great People</span>
-      </div>
-      <div class="col-sm-9">
-        <span class="badge badge-success p-2 mr-2 skill" href="#">Big Hands</span>
-        <span class="badge badge-success p-2 mr-2 skill" href="#">Oranges</span>
-        <span class="badge badge-success p-2 mr-2 skill" href="#">Great Guy</span>
-        <span class="badge badge-success p-2 mr-2 skill" href="#">Confident</span>
-      </div>
-    </div>
-    <div class="row mb-1">
-      <div class="col-sm-3">
-        <span class="p-2">Datenbanken</span>
-      </div>
-      <div class="col-sm-9">
-        <span class="badge badge-success p-2 mr-2 skill" href="#">Mongo DB</span>
-        <span class="badge badge-success p-2 mr-2 skill" href="#">PostgreSQL</span>
-      </div>
-    </div>
     <div class="row mb-1">
       <div class="col-sm-3">
         <span class="p-2">Weiteres (Bemerkungen)</span>
