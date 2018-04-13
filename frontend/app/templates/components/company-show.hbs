@@ -48,31 +48,26 @@
       </div>
       <div id="collapseThree" class="collapse border border-primary rounded-bottom">
         <div class="card-body">
+          {{#each company.people as |person|}}
+            <div class="row mb-1">
+              <div class="col-sm-3">
+                {{#link-to "person" person.id}}
+                  <span class="badge badge-info profil-knopf" href="#">{{person.name}}</span>
+                {{/link-to}}
+              </div>
+              <div class="col-sm-3">
+                <span class="badge border border-secondary profil-knopf" href="#">{{person.role}}</span>
+              </div>
+              <div class="col-sm-3">
+                <span class="badge border border-secondary profil-knopf" href="#">{{person.title}}</span>
+              </div>
+            </div>
+          {{/each}}
           <div class="row mb-1">
             <div class="col-sm-3">
-              <span class="badge badge-info profil-knopf" href="#">Donald J. Trump</span>
-            </div>
-            <div class="col-sm-3">
-              <span class="badge border border-secondary profil-knopf" href="#">President</span>
-            </div>
-            <div class="col-sm-3">
-              <span class="badge border border-secondary profil-knopf" href="#">TV Celebrity</span>
-            </div>
-          </div>
-          <div class="row mb-1">
-            <div class="col-sm-3">
-              <span class="badge badge-info profil-knopf" href="#">Darth Vader</span>
-            </div>
-            <div class="col-sm-3">
-              <span class="badge border border-secondary profil-knopf" href="#">Imperator</span>
-            </div>
-            <div class="col-sm-3">
-              <span class="badge border border-secondary profil-knopf" href="#">Lebensmitteltechnologe FH</span>
-            </div>
-          </div>
-          <div class="row mb-1">
-            <div class="col-sm-3">
-              <span class="badge badge-success profil-knopf" href="#">Neues Profil</span>
+              {{#link-to "people.new"}}
+                <span class="badge badge-success profil-knopf" href="#">Neues Profil</span>
+              {{/link-to}}
             </div>
           </div>
         </div>
