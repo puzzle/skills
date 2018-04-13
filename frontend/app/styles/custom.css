@@ -706,6 +706,10 @@ form textarea{
   right: 12px;
 }
 
+.card {
+  border: 0px solid;
+}
+
 /* Style Fixes */
 a:focus {
   outline: none;
@@ -714,4 +718,3 @@ a:focus {
 button::-moz-focus-inner {
   border: 0;
 }
-
