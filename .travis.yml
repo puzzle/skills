@@ -9,6 +9,8 @@ rvm:
 install:
  - bundle update rubocop
  - bundle install --path vendor/bundle
+ - npm install -g ember-cli
+ - npm install -g bower
  - npm install
  - bower install
 before_script:
