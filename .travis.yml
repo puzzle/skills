@@ -9,6 +9,8 @@ rvm:
 install:
  - bundle update rubocop
  - bundle install --path vendor/bundle
+ - npm install
+ - bower install
 before_script:
  - psql -c 'create database travis_ci_test;' -U postgres
  - cp config/database.yml.travis config/database.yml
@@ -19,4 +21,4 @@ script:
  - bundle exec rake spec
  - bundle exec rake brakeman
  - bundle exec rake rubocop
-# TODO add npm, frontend tests
+ - bundle exec rake spec:frontend
