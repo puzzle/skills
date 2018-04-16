@@ -1,4 +1,8 @@
 language: ruby
+branches:
+  only:
+    - master
+    - uni-master
 cache: bundler
 rvm:
  - 2.2
