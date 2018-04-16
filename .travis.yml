@@ -1,0 +1,17 @@
+language: ruby
+cache: bundler
+rvm:
+ - 2.2
+install:
+ - bundle install --path vendor/bundle
+before_script:
+ - psql -c 'create database travis_ci_test;' -U postgres
+ - cp config/database.yml.travis config/database.yml
+ - bundle exec rake db:setup
+ - bundle exec rake db:migrate
+script:
+ - bundle --deployment
+ - bundle exec rake spec
+ - bundle exec rake brakeman
+ - bundle exec rake rubocop
+# TODO add npm, frontend tests
