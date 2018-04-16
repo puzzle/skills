@@ -1,30 +1,42 @@
-language: ruby, node_js
-
-node_js:
-  - node
-
 branches:
   only:
     - master
     - uni-master
-cache: bundler
-rvm:
- - 2.2
-install:
- - bundle update rubocop
- - bundle install --path vendor/bundle
- - npm install -g ember-cli
- - npm install -g bower
- - npm install
- - bower install
-before_script:
- - psql -c 'create database travis_ci_test;' -U postgres
- - cp config/database.yml.travis config/database.yml
- - bundle exec rake db:setup
- - bundle exec rake db:migrate
-script:
- - bundle --deployment
- - bundle exec rake spec
- - bundle exec rake brakeman
- - bundle exec rake rubocop
- - bundle exec rake spec:frontend
+
+matrix:
+  include:
+    - language: ruby
+      cache: bundler
+      rvm:
+       - 2.2
+      install:
+       - bundle update rubocop
+       - bundle install --path vendor/bundle
+       - npm install -g ember-cli
+       - npm install -g bower
+      before_script:
+       - psql -c 'create database travis_ci_test;' -U postgres
+       - cp config/database.yml.travis config/database.yml
+       - bundle exec rake db:setup
+       - bundle exec rake db:migrate
+      script:
+       - bundle --deployment
+       - bundle exec rake spec
+       - bundle exec rake brakeman
+       - bundle exec rake rubocop
+       
+     - language: node_js
+       node_js:
+         - node
+       cache: bundler
+       rvm:
+       - 2.2
+       before_install:
+        - cd frontend
+       install:
+        - npm install
+        - bower install
+       before_script:
+       - cd ..
+       script:
+        - bundle exec rake spec:frontend
