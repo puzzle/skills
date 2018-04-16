@@ -5,7 +5,9 @@ branches:
 
 matrix:
   include:
-    - language: ruby
+    - language: ruby, node_js
+      node_js:
+         - node
       cache: bundler
       rvm:
        - 2.2
@@ -24,3 +26,15 @@ matrix:
        - bundle exec rake spec
        - bundle exec rake brakeman
        - bundle exec rake rubocop
+     
+     - language: node_js
+       node_js:
+         - node
+       cache: bundler
+       rvm:
+       - 2.2
+       before_install:
+        - cd frontend
+       install:
+        - npm install
+        - bower install
