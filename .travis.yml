@@ -18,7 +18,7 @@ install:
   - bundle update rubocop
   - npm install -g ember-cli
   - npm install -g bower
-  - npm install frontend
+  - npm --prefix ./frontend install ./frontend
 
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
@@ -31,4 +31,5 @@ script:
   - bundle exec rake spec
   - bundle exec rake brakeman
   - bundle exec rake rubocop
+  - bundle exec rake frontend:prepare
   - bundle exec rake spec:frontend
