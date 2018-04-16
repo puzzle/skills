@@ -24,7 +24,7 @@ gem 'sqlite3'
 
 group :metrics do
   gem 'brakeman'
-  gem 'rubocop'
+  gem 'rubocop', '~> 0.54.0'
 end
 
 group :development, :test do
