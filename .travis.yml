@@ -21,6 +21,7 @@ install:
   - npm --prefix ./frontend install ./frontend
 
 before_script:
+  - bundle exec rake frontend:prepare
   - psql -c 'create database travis_ci_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
   - bundle exec rake db:setup
@@ -31,5 +32,4 @@ script:
   - bundle exec rake spec
   - bundle exec rake brakeman
   - bundle exec rake rubocop
-  - bundle exec rake frontend:prepare
   - bundle exec rake spec:frontend
