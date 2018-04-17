@@ -17,6 +17,7 @@ install:
   - bundle install --path vendor/bundle
   - bundle update rubocop
   - npm install -g ember-cli
+  - npm i -g npm
   - npm install -g bower
   - npm --prefix ./frontend install ./frontend
 
