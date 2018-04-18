@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 module ErrorSerializer
   def self.serialize(errors)
     return if errors.nil?

@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 class AttributeDeserializer
   def initialize(params, options = {})
     @params = params
@@ -30,7 +28,7 @@ class AttributeDeserializer
   def process_models_hash(attrs, model)
     model.each do |key, value|
       model_attrs = attrs.delete(key.to_s)
-      next unless model_attrs.present?
+      next if model_attrs.blank?
       attrs["#{key}_attributes"] = model_attrs
       if model_attrs.is_a?(Array)
         model_attrs.each { |ma| process_nested_models(ma, Array.wrap(value)) }

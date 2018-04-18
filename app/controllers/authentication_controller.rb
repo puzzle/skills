@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 require 'ldap_tools'
 
 class AuthenticationController < ApplicationController

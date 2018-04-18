@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 class PersonRelationsController < CrudController
   def person_id
     params['data']['relationships']['person']['data']['id']

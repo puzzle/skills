@@ -1,4 +1,4 @@
-# encoding: utf-8
+
 # == Schema Information
 #
 # Table name: people
@@ -34,6 +34,7 @@ class Person::Variation < Person
   default_scope { all.order(:variation_name) }
   scope :list, -> { all.order(:name) }
 
+  # rubocop:disable Metrics/MethodLength
   def self.create_variation(variation_name, person_id)
     ActiveRecord::Base.transaction do
       person = Person.find(person_id)
@@ -48,6 +49,7 @@ class Person::Variation < Person
       person_variation
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   def clone_associations(assoc_names, person)
     assoc_names.each do |assoc_name|

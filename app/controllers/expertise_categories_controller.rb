@@ -1,9 +1,7 @@
-# encoding: utf-8
-
 class ExpertiseCategoriesController < CrudController
-  self.permitted_attrs = [:name, :discipline]
+  self.permitted_attrs = %i[name discipline]
 
-  self.nested_models = [:expertise_topic]
+  self.nested_models = %i[expertise_topic]
 
   def fetch_entries
     raise unless params[:discipline]

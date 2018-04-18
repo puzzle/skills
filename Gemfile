@@ -1,32 +1,30 @@
-# encoding: utf-8
-
 source 'https://rubygems.org'
 
 gem 'rails', '5.1.4'
 
 gem 'active_model_serializers', '~> 0.10.6'
 gem 'activerecord-postgresql-adapter'
+gem 'airbrake', '~> 5.0'
 gem 'annotate'
 gem 'carrierwave'
+gem 'database_cleaner'
+gem 'deep_cloneable', '~> 2.2.2'
 gem 'faker'
-gem 'odf-report'
 gem 'mini_magick'
 gem 'mysql2'
 gem 'net-ldap', '~> 0.14.0'
+gem 'odf-report'
 gem 'pg', '0.19.0.pre20160409114042'
 gem 'pg_search'
 gem 'puma', '~> 3.0'
 gem 'rack'
 gem 'rails-i18n', '~> 5.0.4'
-gem 'seed-fu'
+gem 'seed-fu', '~> 2.3.7'
 gem 'sqlite3'
-gem 'deep_cloneable', '~> 2.2.2'
-gem 'airbrake', '~> 5.0'
-gem 'database_cleaner'
 
 group :metrics do
   gem 'brakeman'
-  gem 'rubocop'
+  gem 'rubocop', '~> 0.54.0'
 end
 
 group :development, :test do
@@ -51,4 +49,4 @@ group :test do
   gem 'simplecov', '~> 0.12.0'
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

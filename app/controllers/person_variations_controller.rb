@@ -1,7 +1,5 @@
-# encoding: utf-8
-
 class PersonVariationsController < CrudController
-  self.permitted_attrs = PeopleController.permitted_attrs + [:variation_name, :person_id]
+  self.permitted_attrs = PeopleController.permitted_attrs + %i[variation_name person_id]
 
   self.nested_models = PeopleController.nested_models
 
@@ -17,7 +15,7 @@ class PersonVariationsController < CrudController
     else
       render json: variation.errors.details, status: :unprocessable_entity
     end
-  rescue => e
+  rescue StandardError => e
     render json: e.message, status: :unprocessable_entity
   end
 
