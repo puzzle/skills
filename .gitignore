@@ -30,6 +30,7 @@
 
 /node_modules
 /yarn.lock
+<<<<<<< HEAD
 
 
 # Created by https://www.gitignore.io/api/intellij
@@ -99,5 +100,4 @@ fabric.properties
 # Sonarlint plugin
 .idea/sonarlint
 
-
-# End of https://www.gitignore.io/api/intellij
+.project
