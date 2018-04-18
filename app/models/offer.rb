@@ -9,4 +9,7 @@
 
 class Offer < ApplicationRecord
   belongs_to :company
+  
+  validates :category, presence: true
+  validates :category, length: { maximum: 100 }
 end

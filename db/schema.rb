@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20180413121716) do
     t.string "phone_contact_person"
     t.string "crm"
     t.string "level"
+    t.string "offer_comment"
     t.boolean "my_company", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

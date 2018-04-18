@@ -11,6 +11,7 @@ export default DS.Model.extend({
   phoneContactPerson: DS.attr('string'),
   crm: DS.attr('string'),
   level: DS.attr('string'),
+  offerComment: DS.attr('string'),
   myCompany: DS.attr('boolean'),
   createdAt: DS.attr('date'),
   updatedAt: DS.attr('date'),

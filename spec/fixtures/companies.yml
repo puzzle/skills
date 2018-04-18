@@ -13,6 +13,7 @@
 #  phone_contact_person  :string
 #  crm                   :string
 #  level                 :string
+#  offer_comment         :string
 #  my_company            :boolean, default: false
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
@@ -30,6 +31,7 @@ firma:
   email_contact_person: pmueller@example.com
   crm: crm
   level: A
+  offer_comment: Bemerkung Angebot
   my_company: true
 
 partner:
@@ -42,4 +44,5 @@ partner:
   email_contact_person: pfischer@example.org
   crm: crm
   level: B
+  offer_comment: Bemerkung Angebot
   my_company: false

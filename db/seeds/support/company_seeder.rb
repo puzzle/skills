@@ -36,6 +36,7 @@ class CompanySeeder
       co.phone_contact_person = Faker::PhoneNumber.cell_phone
       co.crm = "crm"
       co.level = ["A", "B", "C", "D", "E", "F"].sample
+      co.offer_comment = Faker::Hacker.say_something_smart
       co.my_company = flag
     end
   end

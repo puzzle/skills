@@ -43,7 +43,7 @@ describe EmployeeQuantitiesController do
   end
 
   describe 'PUT update' do
-    it 'updates existing employee quantity' do
+    it 'updates existing company' do
       employee_quantity = employee_quantities(:entwicklung)
       updated_attributes = { quantity: 170 }
 
@@ -56,7 +56,7 @@ describe EmployeeQuantitiesController do
   end
 
   describe 'DELETE destroy' do
-    it 'destroys existing employee quantity' do
+    it 'destroys existing company' do
       employee_quantity = employee_quantities(:entwicklung)
       process :destroy, method: :delete, params: {
         type: 'Company', company_id: firma.id, id: employee_quantity.id

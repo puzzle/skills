@@ -11,6 +11,7 @@ class CreateCompanies < ActiveRecord::Migration[5.1]
       t.string :phone_contact_person
       t.string :crm
       t.string :level
+      t.string :offer_comment
       t.boolean :my_company
 
       t.timestamps
