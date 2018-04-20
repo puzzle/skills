@@ -17,6 +17,8 @@ export default Component.extend({
         .then(() => this.get('notify').success('Angebot wurde aktualisiert!'))
         .catch(() => {
             let offer = this.get('offer');
+            this.get('notify').alert(offer);
+
           let errors = offer.get('errors').slice(); // clone array as rollbackAttributes mutates
 
           offer.rollbackAttributes();
@@ -26,6 +28,12 @@ export default Component.extend({
           this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
         });
         });
+    },
+
+    deleteOffer(offerToDelete) {
+      //remove overlay from delete confirmation
+      $('.modal-backdrop').remove();
+      offerToDelete.destroyRecord();
     },
 
     createOnEnter(select, e) {
