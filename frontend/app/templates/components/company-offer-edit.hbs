@@ -36,13 +36,18 @@
         </form>
       {{/with}}
     {{/each}}
-    <div class="row mb-1">
-      <div class="col-sm-3">
-        <span class="p-2">Weiteres (Bemerkungen)</span>
-      </div>
-      <div class="col-sm-9">
-        <textarea class="form-control" rows="1">{{company.offerComment}}</textarea>
-      </div>
-    </div>
+    {{#with (changeset company validations) as |offerComment|}}
+      <form onsubmit={{action 'submit' offerComment}} id="form_comment">
+        <div class="row mb-1">
+          <div class="col-sm-3">
+            <span class="p-2">Weiteres (Bemerkungen)</span>
+          </div>
+          <div class="col-sm-9">
+              {{input type="textarea" value=offerComment.offerComment }}
+          </div>
+          <input type="submit">
+        </div>
+      </form>
+    {{/with}}
   </div>
 </div>

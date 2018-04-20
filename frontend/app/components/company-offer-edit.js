@@ -17,6 +17,8 @@ export default Component.extend({
         .then(() => this.get('notify').success('Angebot wurde aktualisiert!'))
         .catch(() => {
             let offer = this.get('offer');
+            this.get('notify').alert(offer);
+
           let errors = offer.get('errors').slice(); // clone array as rollbackAttributes mutates
 
           offer.rollbackAttributes();
