@@ -6,6 +6,6 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    this.sortProperties = ['attributes.level:asc'];
+    this.sortProperties = ['attributes.level:asc', 'attributes.name:asc'];
   }
 });

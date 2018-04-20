@@ -27,6 +27,7 @@ describe Company do
         company.valid?
 
         expect(company.errors[:name].first).to eq('muss ausgefüllt werden')
+        expect(company.errors[:level].first).to eq('muss ausgefüllt werden')
       end
 
       it 'should not be more than 100 characters' do
@@ -54,7 +55,7 @@ describe Company do
         expect(company.errors[:crm].first).to eq('ist zu lang (mehr als 100 Zeichen)')
         expect(company.errors[:level].first).to eq('ist zu lang (mehr als 100 Zeichen)')
       end
-      
+
       it 'should not be more than 500 characters' do
         company = Company.new
         company.name = 'Test'
