@@ -30,6 +30,10 @@ export default Component.extend({
         });
     },
 
+    deleteOffer(offerToDelete) {
+      offerToDelete.destroyRecord();
+    },
+
     createOnEnter(select, e) {
       if (e.keyCode === 13 && select.isOpen &&
         !select.highlighted && !isBlank(select.searchText)) {

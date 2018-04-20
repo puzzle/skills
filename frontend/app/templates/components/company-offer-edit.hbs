@@ -14,12 +14,11 @@
     {{#each company.offers as |offer|}}
       {{#with (changeset offer validations) as |changeset|}}
         <form onsubmit={{action 'submit' changeset}} id="form_offer">
-          <div class="row mb-1">
+          <div class="row mb-2">
             <div class="col-sm-3">
-              <span class="p-2">{{input value=changeset.category type="text"}}</span>
-              <input type="submit">
+              {{input value=changeset.category type="text" class="form-control"}}
             </div>
-            <div class="col-sm-9">
+            <div class="col-sm-8">
               {{! Quelle: http://ember-power-select.com/cookbook/create-custom-options}}
               {{#power-select-multiple
                 options=options
@@ -29,8 +28,10 @@
               as |offer|}}
                 {{offer}}
               {{/power-select-multiple}}
-
-              {{input value=changeset.offer type="text"}}
+            </div>
+            <div class="col-sm-1">
+              <a {{action 'submit' changeset}} role="button" id="submit-button" class="card-link text-black"><i class="fa save"></i></a>
+              <a {{action 'deleteOffer' offer}} role="button" class="card-link text-black"><i class="fa trash"></i></a>
             </div>
           </div>
         </form>
@@ -42,10 +43,12 @@
           <div class="col-sm-3">
             <span class="p-2">Weiteres (Bemerkungen)</span>
           </div>
-          <div class="col-sm-9">
-              {{input type="textarea" value=offerComment.offerComment }}
+          <div class="col-sm-8">
+              {{input type="textarea" value=offerComment.offerComment class="form-control"}}
           </div>
-          <input type="submit">
+          <div class="col-sm-1">
+            <a {{action 'submit' offerComment}} role="button" id="submit-button" class="card-link text-black"><i class="fa save"></i></a>
+          </div>
         </div>
       </form>
     {{/with}}
