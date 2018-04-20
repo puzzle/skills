@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import { A } from '@ember/array';
 import { isBlank } from '@ember/utils';
 import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 import $ from 'jquery';
 
 export default Component.extend({
@@ -10,8 +11,19 @@ export default Component.extend({
   options: A(['Scrum', 'CI/CD', 'Hermes', 'BA', 'Java EE', 'Java SE', 'PHP', 'Docker', 'OpenShift', 'Ember', 'Angular', 'Git']),
   selected: A([]),
 
+  newOffer: computed(function() {
+    return this.get('store').createRecord('offer');
+  }),
+
+  willDestroyElement() {
+    if (this.get('newOffer.isNew')) {
+      this.get('newOffer').destroyRecord();
+    }
+  },
+
   actions: {
-    submit(changeset) {
+    submit(changeset, company) {
+      changeset.set('company', company);
       return changeset.save()
         .then(() => this.sendAction('submit'))
         .then(() => this.get('notify').success('Angebot wurde aktualisiert!'))
