@@ -32,13 +32,14 @@ describe OffersController do
 
   describe 'POST create' do
     it 'creates new offer' do
-      offer = { category: 'Datenbanken', offer: Array['Mongo DB', 'PostgreSQL']}
+      offer = { category: 'Datenbanken', offer: ['Mongo DB', 'PostgreSQL']}
 
       post :create, params: create_params(offer, firma.id, 'offer')
 
       new_offer = Offer.find_by(category: 'Datenbanken')
       expect(new_offer).not_to eq(nil)
       expect(new_offer.category).to eq('Datenbanken')
+      expect(new_offer.offer).to eq(['Mongo DB', 'PostgreSQL'])
     end
   end
 
