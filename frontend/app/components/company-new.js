@@ -9,8 +9,6 @@ export default Component.extend({
   actions: {
     submit(newCompany) {
       return newCompany.save()
-        .then(function() {
-        })
         .then(() => this.sendAction('submit', newCompany))
         .then(() => this.get('notify').success('Firma wurde erstellt'))
         .then(function() {
@@ -29,12 +27,7 @@ export default Component.extend({
             let translated_attribute = this.get('i18n').t(`company.${attribute}`)['string']
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
-
-
-
         });
-
-
     },
 
     addLocations(company) {
