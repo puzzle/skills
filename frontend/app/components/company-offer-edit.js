@@ -7,7 +7,7 @@ import $ from 'jquery';
 export default Component.extend({
   store: service(),
   i18n: service(),
-  options: A(['Barcelona', 'London', 'New York', 'Porto']),
+  options: A(['Scrum', 'CI/CD', 'Hermes', 'BA', 'Java EE', 'Java SE', 'PHP', 'Docker', 'OpenShift', 'Ember', 'Angular', 'Git']),
   selected: A([]),
 
   actions: {
