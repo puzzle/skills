@@ -1,3 +1,3 @@
 class OffersController < CompanyRelationsController
-  self.permitted_attrs = %i[category offer company_id]
+  self.permitted_attrs = [:category, { :offer => [] }, :company_id]
 end
