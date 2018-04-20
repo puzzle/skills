@@ -9,8 +9,6 @@ export default Component.extend({
   actions: {
     submit(newCompany) {
       return newCompany.save()
-        .then(function() {
-        })
         .then(() => this.sendAction('submit', newCompany))
         .then(() => this.get('notify').success('Firma wurde erstellt'))
         .then(function() {
@@ -20,6 +18,14 @@ export default Component.extend({
           });
           newCompany.get('employeeQuantities').toArray().forEach(function(employeeQuantity) {
             employeeQuantity.save();
+          });
+        })
+        .catch(() => {
+          let company = this.get('newCompany');
+          let errors = company.get('errors').slice();
+          errors.forEach(({ attribute, message }) => {
+            let translated_attribute = this.get('i18n').t(`company.${attribute}`)['string']
+            this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
         });
     },
