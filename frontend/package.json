@@ -24,6 +24,7 @@
     "ember-changeset": "^1.2.3",
     "ember-changeset-validations": "^1.2.7",
     "ember-cli": "~3.0.2",
+    "ember-cli-active-link-wrapper": "^0.3.2",
     "ember-cli-app-version": "^3.0.0",
     "ember-cli-babel": "^6.6.0",
     "ember-cli-code-coverage": "^0.4.1",
@@ -73,6 +74,7 @@
   "dependencies": {
     "bootstrap": "^4.1.0",
     "jquery": "^3.3.1",
+    "npm": "^5.8.0",
     "popper.js": "^1.14.3",
     "to": "^0.2.9",
     "update": "^0.7.4"
