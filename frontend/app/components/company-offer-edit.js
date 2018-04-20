@@ -2,13 +2,13 @@ import Component from '@ember/component';
 import { A } from '@ember/array';
 import { isBlank } from '@ember/utils';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
+import $ from 'jquery';
 
 export default Component.extend({
   store: service(),
   i18n: service(),
   options: A(['Barcelona', 'London', 'New York', 'Porto']),
-  selected: [],
+  selected: A([]),
 
   actions: {
     submit(changeset) {
@@ -16,8 +16,8 @@ export default Component.extend({
         .then(() => this.sendAction('submit'))
         .then(() => this.get('notify').success('Angebot wurde aktualisiert!'))
         .catch(() => {
-            let offer = this.get('offer');
-            this.get('notify').alert(offer);
+          let offer = this.get('offer');
+          this.get('notify').alert(offer);
 
           let errors = offer.get('errors').slice(); // clone array as rollbackAttributes mutates
 
@@ -25,8 +25,8 @@ export default Component.extend({
           errors.forEach(({ attribute, message }) => {
             let translated_attribute = this.get('i18n').t(`offer.${attribute}`)['string']
             changeset.pushErrors(attribute, message);
-          this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
-        });
+            this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
+          });
         });
     },
 

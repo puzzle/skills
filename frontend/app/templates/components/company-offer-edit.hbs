@@ -31,7 +31,8 @@
             </div>
             <div class="col-sm-1">
               <a {{action 'submit' changeset}} role="button" id="submit-button" class="card-link text-black"><i class="fa save"></i></a>
-              <a data-toggle="modal" data-target="#deleteConfirmationModal{{index}}" role="button" class="card-link text-black"><i class="fa trash"></i></a>            </div>
+              <a data-toggle="modal" data-target="#deleteConfirmationModal{{index}}" role="button" class="card-link text-black"><i class="fa trash"></i></a>
+            </div>
           </div>
         </form>
       {{/with}}
@@ -62,7 +63,7 @@
             <span class="p-2">Weiteres (Bemerkungen)</span>
           </div>
           <div class="col-sm-8">
-              {{input type="textarea" value=offerComment.offerComment class="form-control"}}
+            {{input type="textarea" value=offerComment.offerComment class="form-control"}}
           </div>
           <div class="col-sm-1">
             <a {{action 'submit' offerComment}} role="button" id="submit-button" class="card-link text-black"><i class="fa save"></i></a>
