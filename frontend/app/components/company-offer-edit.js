@@ -31,6 +31,8 @@ export default Component.extend({
     },
 
     deleteOffer(offerToDelete) {
+      //remove overlay from delete confirmation
+      $('.modal-backdrop').remove();
       offerToDelete.destroyRecord();
     },
 

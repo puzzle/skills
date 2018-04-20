@@ -11,7 +11,7 @@
 </div>
 <div id="collapseTwo" class="collapse show border border-primary rounded-bottom">
   <div class="card-body">
-    {{#each company.offers as |offer|}}
+    {{#each company.offers as |offer index|}}
       {{#with (changeset offer validations) as |changeset|}}
         <form onsubmit={{action 'submit' changeset}} id="form_offer">
           <div class="row mb-2">
@@ -31,11 +31,29 @@
             </div>
             <div class="col-sm-1">
               <a {{action 'submit' changeset}} role="button" id="submit-button" class="card-link text-black"><i class="fa save"></i></a>
-              <a {{action 'deleteOffer' offer}} role="button" class="card-link text-black"><i class="fa trash"></i></a>
-            </div>
+              <a data-toggle="modal" data-target="#deleteConfirmationModal{{index}}" role="button" class="card-link text-black"><i class="fa trash"></i></a>            </div>
           </div>
         </form>
       {{/with}}
+      <div class="modal fade" id="deleteConfirmationModal{{index}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Löschen bestätigen</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Wills du dieses Angebot wirklich löschen?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">abbrechen</button>
+              <button type="button" class="btn btn-primary" {{action 'deleteOffer' offer}}>löschen</button>
+            </div>
+          </div>
+        </div>
+      </div>
     {{/each}}
     {{#with (changeset company validations) as |offerComment|}}
       <form onsubmit={{action 'submit' offerComment}} id="form_comment">
