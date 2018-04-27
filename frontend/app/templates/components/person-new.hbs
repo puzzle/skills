@@ -27,14 +27,14 @@
         {{f.text-field 'location' label="Wohnort"}}
         {{f.text-field 'language' label="Sprache"}}
         {{f.text-field 'martialStatus' label="Zivilstand"}}
-        {{f.select-field 'statusId' statusData
-          label="Status"
-          optionLabelPath="label"
-          optionTargetPath="id"
-          }}
-        {{#if newPerson.isPartner}}
-          {{f.text-field 'company' label='Firma'}}
-        {{/if}}
+        {{#power-select
+          selected=newPerson.company
+          options=companiesToSelect
+          onchange=(action (mut newPerson.company))
+          as |company|
+        }}
+          {{company.name}}
+        {{/power-select}}
       </div>
     </div>
   {{/form-for}}

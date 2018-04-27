@@ -8,10 +8,8 @@ export default Component.extend({
   i18n: service(),
 
   companiesToSelect: computed(function(){
-    console.log(this.get('store').findAll('company'));
     return this.get('store').findAll('company');
   }),
-
 
 
   personPictureUploadPath: computed('person.id', function() {
