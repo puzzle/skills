@@ -22,25 +22,38 @@
       {{component (if personEditing 'person-edit' 'person-show' )
                   person=model
                   submit=(action (toggle 'personEditing' this))
-                  model-header-title = 'Personalien'
                   personEditing=(action (toggle 'personEditing' this))
       }}
     </div>
 
-    {{!Angebot Tab}}
+    {{!Kompetenzen Tab}}
     <div class="card mb-3">
-      {{component (if companyOfferEditing 'company-offer-edit' 'company-offer' )
-                  company=company
-                  submit=(action (toggle 'companyOfferEditing' this))
-                  model-header-title = 'Firmen Skills'
-                  companyOfferEditing=(action (toggle 'companyOfferEditing' this))
+      {{component (if competencesEditing 'competences-edit' 'competences-show' )
+                  person=model
+                  submit=(action (toggle 'competencesEditing' this))
+                  competencesEditing=(action (toggle 'competencesEditing' this))
       }}
+    </div>
+
+    {{!Ausbildungen Tab}}
+    <div class="card mb-3">
+      {{educations-show educations=model.educations personId=model.id}}
+    </div>
+
+    {{!Weiterbildungen Tab}}
+    <div class="card mb-3">
+      {{advanced-trainings-show  advanced-trainings=model.advancedTrainings personId=model.id}}
+    </div>
+
+    {{!Aktivitäten Tab}}
+    <div class="card mb-3">
+      {{activities-show activities=model.activities personId=model.id}}
+    </div>
+
+    {{!Projekte Tab}}
+    <div class="card mb-3">
+      {{projects-show projects=model.projects personId=model.id}}
     </div>
   </div>
 </div>
 
-{{competences-show person=model}}
-{{educations-show educations=model.educations personId=model.id}}
-{{advanced-trainings-show  advanced-trainings=model.advancedTrainings personId=model.id}}
-{{activities-show activities=model.activities personId=model.id}}
-{{projects-show projects=model.projects personId=model.id}}
