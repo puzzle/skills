@@ -1,90 +1,71 @@
-{{! Profile heading }}
-<div class="row-fluid">
-  <div class="span5">
-    <span class="section-title">
-      Personalien<br>
-      <span class="text-mute">
-        Zuletzt bearbeitet am
-        <time datetime={{moment-format person.updatedAt}}>
-          {{moment-format person.updatedAt 'L LT'}}
-        </time>
-      </span>
-    </span>
-  </div>
-  <div class="pull-right">
-    <a onclick={{personEditing}} data-test-person-edit-form-toggle class="pull-right">
-      {{if personEditing  'Editieren' 'Abbrechen'}}
-    </a>
+<div class="card-header bg-primary">
+  <div class="row">
+    <div class="col-sm-6">
+      <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Personalien</a>
+    </div>
+    <div class="col-sm-6 text-right d-block">
+      <a onclick={{personEditing}} data-test-company-edit-form-toggle class="card-link text-white"><i class="fa edit"></i></a>
+      <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><i class="fa angle"></i></a>
+    </div>
   </div>
 </div>
-
-<hr>
-
-{{! Profile content }}
-<section id="profil" class="section">
-  <div id="profile-content-show" class="row-fluid">
-    {{! Avatar img }}
-    <div class="span2">
-      <img id="img-avatar-read"
-          src={{person.picturePath}}
-          class="img-polaroid profil-img"
-          alt="">
+<div id="collapseOne" class="collapse show border border-primary rounded-bottom">
+  <div class="card-body">
+    <div class="row" id="profile-uebersicht-content-show">
+      <div class="col-sm-2">
+        <img id="img-avatar-read"
+             src={{person.picturePath}}
+               class="img-polaroid profil-img"
+        alt="">
+      </div>
+      <div class="col-sm-5">
+        <table class="table-uebersicht">
+          <tr>
+            <td>Firma</td><td data-test-person-company>{{person.company}}</td>
+          </tr>
+          <tr>
+            <td>Name</td><td data-test-person-name>{{person.name}}</td>
+          </tr>
+          <tr>
+            <td>Titel</td><td data-test-person-title>{{person.title}}</td>
+          </tr>
+          <tr>
+            <td>Funktion</td><td data-test-person-role>{{person.role}}</td>
+          </tr>
+          <tr>
+            <td>Geb. Datum</td>
+            <td>
+              <time datetime={{moment-format person.birthdate}} data-test-person-birthdate>
+                {{~moment-format person.birthdate 'L'~}}
+              </time>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-sm-5">
+        <table class="table-uebersicht">
+          <tr>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Nationalität</td><td data-test-person-origin>{{person.origin}}</td>
+          </tr>
+          <tr>
+            <td>Wohnort</td><td data-test-person-location>{{person.location}}</td>
+          </tr>
+          <tr>
+            <td>Sprachen</td><td data-test-person-language>{{person.language}}</td>
+          </tr>
+          <tr>
+            <td>Zivilstand</td><td data-test-person-language>{{person.language}}</td>
+          </tr>
+          {{#each company.employeeQuantities as |quantity|}}
+            <tr>
+              <td>{{quantity.category}}</td><td>{{quantity.quantity}}</td>
+            </tr>
+          {{/each}}
+        </table>
+      </div>
     </div>
-    {{! Profile left row }}
-    <div class="span5">
-      <dl class="dl-horizontal">
-        <dt>Name</dt>
-        <dd data-test-person-name>{{person.name}}</dd>
-      </dl>
-      <dl class="dl-horizontal">
-        <dt>Titel</dt>
-        <dd data-test-person-title>{{person.title}}</dd>
-      </dl>
-      <dl class="dl-horizontal">
-        <dt>Funktion</dt>
-        <dd data-test-person-role>{{person.role}}</dd>
-      </dl>
-      <dl class="dl-horizontal">
-        <dt>Geb.Datum</dt>
-        <dd>
-          <time datetime={{moment-format person.birthdate}}
-              data-test-person-birthdate>
-            {{~moment-format person.birthdate 'L'~}}
-          </time>
-        </dd>
-      </dl>
-    </div>
-    {{! /Profile left row }}
-
-    {{! Profile right row }}
-    <div class="span5">
-      <dl class="dl-horizontal">
-        <dt>Nationalität</dt>
-        <dd data-test-person-origin>{{person.origin}}</dd>
-      </dl>
-      <dl class="dl-horizontal">
-        <dt>Wohnort</dt>
-        <dd data-test-person-location>{{person.location}}</dd>
-      </dl>
-      <dl class="dl-horizontal">
-        <dt>Sprachen</dt>
-        <dd data-test-person-language>{{person.language}}</dd>
-      </dl>
-      <dl class="dl-horizontal">
-        <dt>Zivilstand</dt>
-        <dd data-test-person-marital-status>{{person.martialStatus}}</dd>
-      </dl>
-      <dl class="dl-horizontal">
-        <dt>Status</dt>
-        <dd data-test-person-status>{{person.status}}</dd>
-      </dl>
-      {{#if person.isPartner}}
-        <dl class="dl-horizontal">
-          <dt>Firma</dt>
-          <dd data-test-person-company>{{person.company}}</dd>
-        </dl>
-      {{/if}}
-    </div>
-    {{! /Profile right row }}
   </div>
-</section>
+</div>

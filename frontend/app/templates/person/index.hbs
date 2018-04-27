@@ -2,12 +2,43 @@
   {{error.detail}}
 {{/each}}
 
-{{component (if personEditing 'person-edit' 'person-show' )
-  person=model
-  submit=(action (toggle 'personEditing' this))
-  model-header-title = 'Personalien'
-  personEditing=(action (toggle 'personEditing' this))
-  }}
+<div class="row">
+  <div class="col-sm-12">
+    <span class="text-right d-block">
+      <strong>Letztes Update <span class="text-danger"><time datetime={{moment-format model.updatedAt}}>{{moment-format model.updatedAt 'L LT'}}</time></span></strong>
+    </span>
+  </div>
+</div>
+<hr class="">
+<div class="collapse-group">
+  <div class="row mb-3">
+    <div class="col-sm-12">
+      <span class="text-right d-block controls"><a href="#" class="mr-2 open-button">+ alles ausklappen</a><a href="#" class="close-button">- alles einklappen</a></span>
+    </div>
+  </div>
+  <div id="accordion">
+    {{!Personalien Tab}}
+    <div class="card mb-3">
+      {{component (if personEditing 'person-edit' 'person-show' )
+                  person=model
+                  submit=(action (toggle 'personEditing' this))
+                  model-header-title = 'Personalien'
+                  personEditing=(action (toggle 'personEditing' this))
+      }}
+    </div>
+
+    {{!Angebot Tab}}
+    <div class="card mb-3">
+      {{component (if companyOfferEditing 'company-offer-edit' 'company-offer' )
+                  company=company
+                  submit=(action (toggle 'companyOfferEditing' this))
+                  model-header-title = 'Firmen Skills'
+                  companyOfferEditing=(action (toggle 'companyOfferEditing' this))
+      }}
+    </div>
+  </div>
+</div>
+
 {{competences-show person=model}}
 {{educations-show educations=model.educations personId=model.id}}
 {{advanced-trainings-show  advanced-trainings=model.advancedTrainings personId=model.id}}
