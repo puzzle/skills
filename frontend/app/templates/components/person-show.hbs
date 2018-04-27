@@ -22,16 +22,7 @@
         <table class="table-uebersicht">
           <tr>
             <td>Firma</td>
-            <td data-test-person-company>
-              {{#power-select
-                  selected=changeset.company
-                  options=companiesToSelect
-                  onchange=(action (mut changeset.company))
-                  as |company|
-                }}
-                {{company.name}}
-              {{/power-select}}
-            </td>
+            <td data-test-person-company>{{person.company.name}}</td>
           </tr>
           <tr>
             <td>Name</td><td data-test-person-name>{{person.name}}</td>

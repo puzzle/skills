@@ -689,8 +689,9 @@ form textarea{
   width: 50%;
 }
 
-.table-uebersicht input, .table-uebersicht button {
+.table-uebersicht input, .table-uebersicht button, .table-uebersicht .ember-power-select-trigger {
   width: 45%;
+  float: right;
 }
 
 .table-uebersicht .nextToDelete {
