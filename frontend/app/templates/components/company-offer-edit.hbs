@@ -5,37 +5,36 @@
     </div>
     <div class="col-sm-6 text-right d-block">
       <a onclick={{companyOfferEditing}} data-test-company-edit-form-toggle class="card-link text-white"><i class="fa abort"></i></a>
+      <a {{action 'submitAll' company}} role="button" id="submit-button" class="card-link text-white"><i class="fa save"></i></a>
       <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><i class="fa angle"></i></a>
     </div>
   </div>
 </div>
 <div id="collapseTwo" class="collapse show border border-primary rounded-bottom">
   <div class="card-body">
-    {{#each company.offers as |offer index|}}
-      {{#with (changeset offer validations) as |changeset|}}
-        <form onsubmit={{action 'submit' changeset}} id="form_offer">
-          <div class="row mb-2">
-            <div class="col-sm-3">
-              {{input value=changeset.category type="text" class="form-control"}}
-            </div>
-            <div class="col-sm-8">
-              {{! Quelle: http://ember-power-select.com/cookbook/create-custom-options}}
-              {{#power-select-multiple
-                options=options
-                selected=changeset.offer
-                onchange=(action (mut changeset.offer))
-                onkeydown=(action "createOnEnter")
-              as |offer|}}
-                {{offer}}
-              {{/power-select-multiple}}
-            </div>
-            <div class="col-sm-1">
-              <a {{action 'submit' changeset company}} role="button" id="submit-button" class="card-link text-black"><i class="fa save"></i></a>
-              <a data-toggle="modal" data-target="#deleteConfirmationModal{{index}}" role="button" class="card-link text-black"><i class="fa trash"></i></a>
-            </div>
+    {{#each company.offers as |changeset|}}
+      <form onsubmit={{action 'submit' changeset}} id="form_offer">
+        <div class="row mb-2">
+          <div class="col-sm-3">
+            {{input value=changeset.category type="text" class="form-control"}}
           </div>
-        </form>
-      {{/with}}
+          <div class="col-sm-8">
+            {{! Quelle: http://ember-power-select.com/cookbook/create-custom-options}}
+            {{#power-select-multiple
+              options=options
+              selected=changeset.offer
+              onchange=(action (mut changeset.offer))
+              onkeydown=(action "createOnEnter")
+            as |offer|}}
+              {{offer}}
+            {{/power-select-multiple}}
+          </div>
+          <div class="col-sm-1">
+            <a {{action 'submit' changeset company}} role="button" id="submit-button" class="card-link text-black"><i class="fa save"></i></a>
+            <a data-toggle="modal" data-target="#deleteConfirmationModal{{index}}" role="button" class="card-link text-black"><i class="fa trash"></i></a>
+          </div>
+        </div>
+      </form>
       <div class="modal fade" id="deleteConfirmationModal{{index}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -57,7 +56,7 @@
       </div>
     {{/each}}
     <form onsubmit={{action 'submit' newOffer}} id="form_offer">
-     <div class="row mb-2">
+      <div class="row mb-2">
         <div class="col-sm-3">
           {{input value=newOffer.category type="text" class="form-control"}}
         </div>
@@ -76,20 +75,18 @@
         </div>
       </div>
     </form>
-    {{#with (changeset company validations) as |offerComment|}}
-      <form onsubmit={{action 'submit' offerComment}} id="form_comment">
-        <div class="row mb-1">
-          <div class="col-sm-3">
-            <span class="p-2">Weiteres (Bemerkungen)</span>
-          </div>
-          <div class="col-sm-8">
-            {{input type="textarea" value=offerComment.offerComment class="form-control"}}
-          </div>
-          <div class="col-sm-1">
-            <a {{action 'submit' offerComment}} role="button" id="submit-button" class="card-link text-black"><i class="fa save"></i></a>
-          </div>
+    <form onsubmit={{action 'submit' offerComment}} id="form_comment">
+      <div class="row mb-1">
+        <div class="col-sm-3">
+          <span class="p-2">Weiteres (Bemerkungen)</span>
         </div>
-      </form>
-    {{/with}}
+        <div class="col-sm-8">
+          {{input type="textarea" value=company.offerComment class="form-control"}}
+        </div>
+        <div class="col-sm-1">
+          <a {{action 'submit' offerComment}} role="button" id="submit-button" class="card-link text-black"><i class="fa save"></i></a>
+        </div>
+      </div>
+    </form>
   </div>
 </div>
