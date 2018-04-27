@@ -9,9 +9,8 @@ export default Component.extend({
 
   companiesToSelect: computed(function(){
     console.log(this.get('store').findAll('company'));
-    return this.get('store').peekAll('company');
+    return this.get('store').findAll('company');
   }),
-  defaultCompany: '1',
 
 
 
@@ -43,9 +42,6 @@ export default Component.extend({
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
         });
-    },
-    chooseCompany(company){
-      this.set('defaultCompany', company);
     }
   }
 

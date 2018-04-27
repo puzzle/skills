@@ -53,12 +53,12 @@
             {{f.text-field 'company' label='Firma'}}
           {{/if}}
           {{#power-select
-              selected=defaultCompany
+              selected=changeset.company
               options=companiesToSelect
-              onchange=(action "chooseCompany")
+              onchange=(action (mut changeset.company))
               as |company|
             }}
-            {{company}}
+            {{company.name}}
           {{/power-select}}
         </div>
       </div>
