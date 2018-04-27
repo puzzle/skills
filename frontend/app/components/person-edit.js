@@ -7,6 +7,14 @@ export default Component.extend({
   store: service(),
   i18n: service(),
 
+  companiesToSelect: computed(function(){
+    console.log(this.get('store').findAll('company'));
+    return this.get('store').peekAll('company');
+  }),
+  defaultCompany: '1',
+
+
+
   personPictureUploadPath: computed('person.id', function() {
     return `/people/${this.get('person.id')}/picture`;
   }),
@@ -35,6 +43,9 @@ export default Component.extend({
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
         });
+    },
+    chooseCompany(company){
+      this.set('defaultCompany', company);
     }
   }
 

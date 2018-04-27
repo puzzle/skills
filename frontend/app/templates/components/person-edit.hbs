@@ -52,6 +52,14 @@
           {{#if (eq changeset.statusId 4)}}
             {{f.text-field 'company' label='Firma'}}
           {{/if}}
+          {{#power-select
+              selected=defaultCompany
+              options=companiesToSelect
+              onchange=(action "chooseCompany")
+              as |company|
+            }}
+            {{company}}
+          {{/power-select}}
         </div>
       </div>
     {{/form-for}}
