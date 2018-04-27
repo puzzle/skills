@@ -11,7 +11,6 @@ export default Component.extend({
   companiesToSelect: computed(function(){
     return this.get('store').findAll('company');
   }),
-  selected: 'Test',
 
 
   statusData: computed(function() {
