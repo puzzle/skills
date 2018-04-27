@@ -1,0 +1,18 @@
+<div class="dropdown">
+  <button type="button" class="btn btn-outline-primary dropdown-toggle float-right btn-w-1" data-toggle="dropdown">Export</button>
+  <div class="dropdown-menu">
+    <a onclick={{pipe (action 'exportCvOdt' person.id) dd.actions.close}}>
+      {{#if person.originPersonId}}
+        Aktuelle Variante
+      {{else}}
+        Aktuelles CV
+      {{/if}}
+    </a>
+    <a onclick={{pipe (action 'exportDevFws' person.id) dd.actions.close}}>
+      Fachwissensskala Entwickler
+    </a>
+    <a onclick={{pipe (action 'exportSysFws' person.id) dd.actions.close}}>
+      Fachwissensskala Systemtechniker
+    </a>
+  </div>
+</div>

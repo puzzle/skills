@@ -608,6 +608,8 @@ form textarea{
   text-align: right;
   font-weight: bold;
   padding-right: 10px;
+  height: 35px;
+  min-height: 35px;
 }
 
 .table-uebersicht tr:first-child {

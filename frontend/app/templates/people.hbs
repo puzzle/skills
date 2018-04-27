@@ -1,31 +1,12 @@
 <div class="row mb-2">
-  <div class="col-sm-6">
-    <form class="form-inline" action="#">
-      <div class="input-group" style="width: 100%;">
-        <input type="text" class="form-control" placeholder="Profil / Text suchen...">
-        <div class="input-group-prepend">
-          <button class="btn btn-outline-primary rounded-right" type="submit">Go!</button>
-        </div>
-      </div>
-    </form>
-  </div>
-  <div class="col-sm-6">
-    {{#link-to "people.new"}}<button type="button" class="btn btn-outline-success float-right ml-2 btn-w-1">Neues Profil</button>{{/link-to}}
-    <div class="dropdown">
-      <button type="button" class="btn btn-outline-primary dropdown-toggle float-right btn-w-1" data-toggle="dropdown">Export</button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">ODT</a>
-        <a class="dropdown-item" href="#">PDF</a>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-sm-3">
+  <div class="col-sm-7">
     {{people-list people=model search=q onSearch=(action (mut q))}}
   </div>
-  <div class="col-sm-9">
-    {{outlet}}
+  <div class="col-sm-5">
+    {{#link-to "people.new"}}<button type="button" class="btn btn-outline-success float-right ml-2 btn-w-1">Neues Profil</button>{{/link-to}}
+    {{!TODO: person instead of people in model}}
+    {{person-export person=model}}
   </div>
 </div>
+{{outlet}}
 

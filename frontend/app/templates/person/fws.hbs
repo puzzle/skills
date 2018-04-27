@@ -1,17 +1,20 @@
-<div>
-  <ul class="nav nav-tabs nav-tabs-fws" role="tablist">
-    <li class={{if (eq discipline 'development') 'active'}}>
-      <a href="#" aria-controls="development" role="tab" onclick={{action (mut discipline) 'development'}}>Entwickler</a>
-    </li>
-    <li class={{if (eq discipline 'system_engineering') 'active'}}>
-      <a href="#" aria-controls="system_engineering" role="tab" onclick={{action (mut discipline) 'system_engineering'}}>Systemtechniker</a>
-    </li>
-  </ul>
-
-  <div id="expertise-categories">
-    <div class="tab-content">
-      <div role="tabpanel" id="development" class="tab-pane active">
-        {{expertise-categories-show person=model discipline=discipline}}
+<div class="row">
+  <div class="col-sm-12 mb-2">
+    <ul class="nav nav-tabs container-fluid" role="tablist">
+      <li class="{{if (eq discipline 'development') 'active'}} nav-item">
+        <a href="#" aria-controls="development" class="nav-link" role="tab" onclick={{action (mut discipline) 'development'}}>Entwickler</a>
+      </li>
+      <li class="{{if (eq discipline 'system_engineering') 'active'}} nav-item">
+        <a href="#" aria-controls="system_engineering" role="tab" class="nav-link" onclick={{action (mut discipline) 'system_engineering'}}>Systemtechniker</a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-sm-12 mt-4">
+    <div id="expertise-categories">
+      <div class="tab-content">
+        <div role="tabpanel" id="development" class="tab-pane active">
+          {{expertise-categories-show person=model discipline=discipline}}
+        </div>
       </div>
     </div>
   </div>
