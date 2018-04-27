@@ -7,7 +7,6 @@
             <a class="card-link text-white" href="#">Übersicht</a>
           </div>
           <div class="col-sm-6 text-right d-block">
-            {{! TODO: are you sure message after click on delete button and decide if we want a reset icon}}
             <a {{action 'submit' changeset}} role="button" id="submit-button" class="card-link text-white"><i class="fa save"></i></a>
             <a onclick={{personEditing}} role="button" class="card-link text-white"><i class="fa abort"></i></a>
             <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#"><i class="fa angle"></i></a>
@@ -43,7 +42,16 @@
           <div class="col-sm-5">
             <table class="table-uebersicht">
               <tr>
-                <td>TODO FIRMA</td>
+                <td data-test-person-company>
+                  {{#power-select
+                    selected=changeset.company
+                    options=companiesToSelect
+                    onchange=(action (mut changeset.company))
+                  as |company|
+                  }}
+                    {{company.name}}
+                  {{/power-select}}
+                </td>
               </tr>
               <tr>
                 <td>{{f.text-field 'origin' label="Nationalität"}}</td>
