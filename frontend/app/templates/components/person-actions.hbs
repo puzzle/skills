@@ -2,10 +2,10 @@
   <div class="col-sm-12">
     <ul class="nav nav-tabs container-fluid" id="variation-selection">
       {{#link-to "person" (or person.originPersonId person) tagName="li" class="nav-item"}}
-        <a class="{{if person.fws 'active'}} nav-link">CV</a>
+        <a class="{{if isActive 'active'}} nav-link">CV</a>
       {{/link-to}}
       {{#link-to "person.fws" (or person.originPersonId person) tagName="li" class="nav-item"}}
-        <a class="{{if fws 'active'}} nav-link">Fachwissensskala</a>
+        <a class="{{if isActive 'active'}} nav-link">Fachwissensskala</a>
       {{/link-to}}
     </ul>
   </div>
