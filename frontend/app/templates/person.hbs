@@ -1,13 +1,3 @@
-<div class="row">
-  <div class="col-sm-7">
-    {{person-actions person=model onDelete=(route-action 'reloadPeopleList')}}
-  </div>
-  <div class="col-sm-5">
-    <span class="text-right d-block">
-      <strong>Letztes Update <span class="text-danger"><time datetime={{moment-format model.updatedAt}}>{{moment-format model.updatedAt 'L LT'}}</time></span></strong>
-    </span>
-  </div>
-</div>
-<hr class="">
+{{person-actions person=model onDelete=(route-action 'reloadPeopleList')}}
 
 {{outlet}}

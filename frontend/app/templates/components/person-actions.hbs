@@ -1,71 +1,96 @@
-<div id="variation">
-  <div class="row">
-    <ul class="nav nav-tabs" id="variation-selection">
-      <li id="actual-cv-pill" class="nav-item">
-        {{#link-to "person" (or person.originPersonId person) class="nav-link"}}CV{{/link-to}}
-      </li>
+<div class="row">
+  <div class="col-sm-12">
+    <ul class="nav nav-tabs container-fluid" id="variation-selection">
+      {{#link-to "person" (or person.originPersonId person) tagName="li" class="nav-item"}}
+        <a class="{{if person.fws 'active'}} nav-link">CV</a>
+      {{/link-to}}
       {{#link-to "person.fws" (or person.originPersonId person) tagName="li" class="nav-item"}}
-        <a class="nav-link">Fachwissensskala</a>
+        <a class="{{if fws 'active'}} nav-link">Fachwissensskala</a>
       {{/link-to}}
     </ul>
   </div>
+</div>
+<div class="row mt-2">
+  <div class="col-sm-7">
+    <div id="variation">
+      <ul class="list-unstyled float-left">
+        <li id="variation-cv-pill" class="{{if person.originPersonId 'active'}}">
+          {{#basic-dropdown onOpen=(action 'loadPersonVariations' person.originPersonId person.id) as |dd|}}
+            {{#dd.trigger class="btn btn-outline-primary dropdown-toggle btn-w-1 mr-2"}}
+              {{#if person.originPersonId}}
+                {{person.variationName}}
+              {{else}}
+                Varianten
+              {{/if}}
+              <b class="caret"></b>
+            {{/dd.trigger}}
+            {{#dd.content}}
+              <ul class="content-bootstrap-feel dropdown-menu"
+                  data-test-variation-dropdown-content>
+                {{#each personVariations as |pv|}}
+                  <li id="change-variation-link"
+                      class={{if (eq pv.id person.id) 'active'}}>
+                    {{#link-to "person" pv.id click=(action dd.actions.close)}}
+                      {{~pv.attributes.variation_name~}}
+                    {{/link-to}}
+                  </li>
+                {{/each}}
+                {{#unless person.originPersonId}}
+                  {{#if personVariations.length}}<hr>{{/if}}
+                  <li>
+                    <a class="new-variation-link"
+                       onclick={{pipe dd.actions.close (toggle 'createVariationModal' this)}}>
+                      Neue Variante erstellen...
+                    </a>
+                  </li>
+                {{/unless}}
+              </ul>
+            {{/dd.content}}
+          {{/basic-dropdown}}
+        </li>
+      </ul>
 
-  <div class="row">
-    <ul>
-      <li id="variation-cv-pill" class={{if person.originPersonId 'active'}} class="btn btn-outline-primary dropdown-toggle btn-w-1">
-      {{#basic-dropdown onOpen=(action 'loadPersonVariations' person.originPersonId person.id) as |dd|}}
-        {{#dd.trigger class="btn btn-default"}}
-          {{#if person.originPersonId}}
-            {{person.variationName}}
-          {{else}}
-            Varianten
-          {{/if}}
-          <b class="caret"></b>
-        {{/dd.trigger}}
-        {{#dd.content}}
-          <ul class="content-bootstrap-feel dropdown-menu"
-              data-test-variation-dropdown-content>
-            {{#each personVariations as |pv|}}
-              <li id="change-variation-link"
-                  class={{if (eq pv.id person.id) 'active'}}>
-                {{#link-to "person" pv.id click=(action dd.actions.close)}}
-                  {{~pv.attributes.variation_name~}}
-                {{/link-to}}
-              </li>
-            {{/each}}
-            {{#unless person.originPersonId}}
-              {{#if personVariations.length}}<hr>{{/if}}
-              <li>
-                <a class="new-variation-link"
-                   onclick={{pipe dd.actions.close (toggle 'createVariationModal' this)}}>
-                  Neue Variante erstellen...
-                </a>
-              </li>
-            {{/unless}}
-          </ul>
-        {{/dd.content}}
-      {{/basic-dropdown}}
-      </li>
-    </ul>
-
-    <div class="dropdown">
-      <button type="button" class="btn btn-outline-primary dropdown-toggle float-right btn-w-1" data-toggle="dropdown">Optionen</button>
-      <div class="dropdown-menu">
-        {{!TODO update or create not working}}
-        {{#if person.originPersonId}}
-          <a onclick={{action (toggle 'updateVariationModal' this)}} class="dropdown-item" href="#">Varianten Name ändern...</a>
-          <a onclick={{action (toggle 'deletePersonConfirm' this)}} class="dropdown-item">Variante Löschen</a>
-        {{else}}
-          <a class="new-variation-link"
-             onclick={{action (toggle 'createVariationModal' this)}} class="dropdown-item">
-            Neue Variante erstellen...
-          </a>
-          <a onclick={{action (toggle 'deletePersonConfirm' this)}} class="dropdown-item">CV Löschen</a>
-        {{/if}}
-      </div>
+      <ul class="list-unstyled float-left">
+        <li class="dropdown right">
+          {{#basic-dropdown as |dd|}}
+            {{#dd.trigger class="btn btn-outline-primary dropdown-toggle btn-w-1"}}Optionen <b class="caret"></b>{{/dd.trigger}}
+            {{#dd.content}}
+              <ul class="content-bootstrap-feel dropdown-menu">
+                {{#if person.originPersonId}}
+                  <li>
+                    <a class="update-variation-link"
+                       onclick={{pipe dd.actions.close (toggle 'updateVariationModal' this)}}>
+                      Varianten Name ändern...
+                    </a>
+                  </li>
+                  <li>
+                    <a onclick={{pipe dd.actions.close (toggle 'deletePersonConfirm' this)}}>Variante Löschen</a>
+                  </li>
+                {{else}}
+                  <li>
+                    <a class="new-variation-link"
+                       onclick={{pipe dd.actions.close (toggle 'createVariationModal' this)}}>
+                      Neue Variante erstellen...
+                    </a>
+                  </li>
+                  <li>
+                    <a onclick={{pipe dd.actions.close (toggle 'deletePersonConfirm' this)}}>CV Löschen</a>
+                  </li>
+                {{/if}}
+              </ul>
+            {{/dd.content}}
+          {{/basic-dropdown}}
+        </li>
+      </ul>
     </div>
   </div>
+  <div class="col-sm-5">
+    <span class="text-right d-block">
+      <strong>Letztes Update <span class="text-danger"><time datetime={{moment-format person.updatedAt}}>{{moment-format person.updatedAt 'L LT'}}</time></span></strong>
+    </span>
+  </div>
 </div>
+
 
 
 {{#if createVariationModal}}
