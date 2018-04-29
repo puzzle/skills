@@ -42,6 +42,18 @@
           <div class="col-sm-5">
             <table class="table-uebersicht">
               <tr>
+                <td>{{f.text-field 'origin' label="Nationalität"}}</td>
+              </tr>
+              <tr>
+                <td>{{f.text-field 'location' label="Wohnort"}}</td>
+              </tr>
+              <tr>
+                <td>{{f.text-field 'language' label="Sprache"}}</td>
+              </tr>
+              <tr>
+                <td>{{f.text-field 'martialStatus' label="Zivilstand"}}</td>
+              </tr>
+              <tr>
                 <td>
                   <label>Firma</label>
                   {{#power-select
@@ -53,18 +65,6 @@
                     {{company.name}}
                   {{/power-select}}
                 </td>
-              </tr>
-              <tr>
-                <td>{{f.text-field 'origin' label="Nationalität"}}</td>
-              </tr>
-              <tr>
-                <td>{{f.text-field 'location' label="Wohnort"}}</td>
-              </tr>
-              <tr>
-                <td>{{f.text-field 'language' label="Sprache"}}</td>
-              </tr>
-              <tr>
-                <td>{{f.text-field 'martialStatus' label="Zivilstand"}}</td>
               </tr>
             </table>
           </div>
