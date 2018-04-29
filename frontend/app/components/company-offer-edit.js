@@ -12,8 +12,15 @@ export default Component.extend({
   options: A(['Scrum', 'CI/CD', 'Hermes', 'BA', 'Java EE', 'Java SE', 'PHP', 'Docker', 'OpenShift', 'Ember', 'Angular', 'Git']),
   selected: A([]),
 
+  init() {
+    this._super(...arguments);
+    this.get('newOffer').set('company', this.get('company'));
+
+  },
+
   newOffer: computed(function() {
-    return this.get('store').createRecord('offer');
+    let newOffer = this.get('store').createRecord('offer');
+    return newOffer;
   }),
 
   willDestroyElement() {
@@ -41,24 +48,6 @@ export default Component.extend({
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
         });
-    },
-
-    submitAll(company) {
-      let changedOffers = company.get('offers').filterBy('hasDirtyAttributes', true);
-      let newOffer = this.get('newOffer');
-      newOffer.set('company', company);
-
-      if (newOffer.get('category') != "" && newOffer.get('category') != null) {
-        changedOffers.pushObject(newOffer);
-      }
-
-
-      return company.save()
-        .then(() =>
-          Promise.all([
-            changedOffers.map(offer => offer.save())
-          ])
-        );
     },
 
     deleteOffer(offerToDelete) {
