@@ -82,50 +82,11 @@
     </div>
 
     {{!Profile Tab}}
-    <div class="card">
-      <div class="card-header bg-primary">
-        <div class="row">
-          <div class="col-sm-6">
-            <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Profile</a>
-          </div>
-          <div class="col-sm-6 text-right d-block">
-            <a class="card-link text-white"><i class="fa edit"></i></a>
-            <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><i class="fa angle"></i></a>
-          </div>
-        </div>
-      </div>
-      <div id="collapseThree" class="collapse border border-primary rounded-bottom">
-        <div class="card-body">
-          <div class="row mb-1">
-            <div class="col-sm-3">
-              <span class="badge badge-info profil-knopf" href="#">Donald J. Trump</span>
-            </div>
-            <div class="col-sm-3">
-              <span class="badge border border-secondary profil-knopf" href="#">President</span>
-            </div>
-            <div class="col-sm-3">
-              <span class="badge border border-secondary profil-knopf" href="#">TV Celebrity</span>
-            </div>
-          </div>
-          <div class="row mb-1">
-            <div class="col-sm-3">
-              <span class="badge badge-info profil-knopf" href="#">Darth Vader</span>
-            </div>
-            <div class="col-sm-3">
-              <span class="badge border border-secondary profil-knopf" href="#">Imperator</span>
-            </div>
-            <div class="col-sm-3">
-              <span class="badge border border-secondary profil-knopf" href="#">Lebensmitteltechnologe FH</span>
-            </div>
-          </div>
-          <div class="row mb-1">
-            <div class="col-sm-3">
-              <span class="badge badge-success profil-knopf" href="#">Neues Profil</span>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="card mb-3">
+      {{company-profiles company=company}}
     </div>
+
+
   </div>
 </div>
 
