@@ -685,6 +685,10 @@ form textarea{
   width: 50%;
 }
 
+.table-uebersicht label {
+  float: left;
+}
+
 .table-uebersicht td:last-child {
   width: 50%;
 }
@@ -728,6 +732,11 @@ li.ember-power-select-multiple-option {
 
 li:hover.ember-power-select-multiple-option {
   background-color: #1e7e34;
+}
+
+span.ember-power-select-selected-item {
+  display: block;
+  text-align: left;
 }
 
 /* Style Fixes */

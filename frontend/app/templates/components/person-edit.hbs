@@ -21,6 +21,19 @@
           <div class="col-sm-5">
             <table class="table-uebersicht">
               <tr>
+                <td>
+                  <label>Firma</label>
+                  {{#power-select
+                    selected=person.company
+                    options=companiesToSelect
+                    onchange=(action (mut person.company))
+                  as |company|
+                  }}
+                    {{company.name}}
+                  {{/power-select}}
+                </td>
+              </tr>
+              <tr>
                 <td>{{f.text-field 'name' label="Name"}}</td>
               </tr>
               <tr>
@@ -42,6 +55,9 @@
           <div class="col-sm-5">
             <table class="table-uebersicht">
               <tr>
+                <td>{{!Leere Zeile aus Layout-Gründen}}</td>
+              </tr>
+              <tr>
                 <td>{{f.text-field 'origin' label="Nationalität"}}</td>
               </tr>
               <tr>
@@ -52,19 +68,6 @@
               </tr>
               <tr>
                 <td>{{f.text-field 'martialStatus' label="Zivilstand"}}</td>
-              </tr>
-              <tr>
-                <td>
-                  <label>Firma</label>
-                  {{#power-select
-                    selected=changeset.company
-                    options=companiesToSelect
-                    onchange=(action (mut changeset.company))
-                  as |company|
-                  }}
-                    {{company.name}}
-                  {{/power-select}}
-                </td>
               </tr>
             </table>
           </div>
