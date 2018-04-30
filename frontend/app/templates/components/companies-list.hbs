@@ -1,5 +1,7 @@
 <div class="list-group" id="companies-list">
   {{#each sortedCompanies as |company|}}
-    {{#link-to "companies.show" company.id class="list-group-item"}}{{~company.attributes.name~}}{{/link-to}}
+    {{#link-to "companies.show" company.id class="list-group-item"}}
+      {{~company.name~}}
+    {{/link-to}}
   {{/each}}
 </div>

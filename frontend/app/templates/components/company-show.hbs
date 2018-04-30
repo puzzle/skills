@@ -15,7 +15,7 @@
   <div id="accordion">
     {{!Übersichts Tab}}
     <div class="card mb-3">
-      {{component (if companyEditing 'company-uebersicht-edit' 'company-uebersicht' )
+      {{component (if companyEditing 'company-overview-edit' 'company-overview' )
                   company=company
                   submit=(action (toggle 'companyEditing' this))
                   model-header-title = 'Firmen Übersicht'
