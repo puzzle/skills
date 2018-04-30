@@ -706,6 +706,7 @@ form textarea{
   right: 12px;
 }
 
+
 /* Power Select */
 li.ember-power-select-multiple-option {
   color: #fff;
@@ -725,6 +726,8 @@ li.ember-power-select-multiple-option {
 
 li:hover.ember-power-select-multiple-option {
   background-color: #1e7e34;
+.card {
+  border: 0px solid;
 }
 
 /* Style Fixes */
@@ -735,4 +738,3 @@ a:focus {
 button::-moz-focus-inner {
   border: 0;
 }
-
