@@ -3,6 +3,7 @@ import { A } from '@ember/array';
 import { isBlank } from '@ember/utils';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
+import { Promise } from 'rsvp'
 import $ from 'jquery';
 
 export default Component.extend({
@@ -12,8 +13,15 @@ export default Component.extend({
     'Docker', 'OpenShift', 'Ember', 'Angular', 'Git']),
   selected: A([]),
 
+  init() {
+    this._super(...arguments);
+    this.get('newOffer').set('company', this.get('company'));
+
+  },
+
   newOffer: computed(function() {
-    return this.get('store').createRecord('offer');
+    let newOffer = this.get('store').createRecord('offer');
+    return newOffer;
   }),
 
   willDestroyElement() {
@@ -49,7 +57,7 @@ export default Component.extend({
       offerToDelete.destroyRecord();
     },
 
-    createOnEnter(select, e) {
+    createOnEnter(select, e, offer) {
       if (e.keyCode === 13 && select.isOpen &&
         !select.highlighted && !isBlank(select.searchText)) {
 
