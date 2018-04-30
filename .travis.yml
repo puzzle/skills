@@ -11,7 +11,7 @@ node_js:
 cache: bundler
 
 rvm:
-  - 2.2
+  - 2.3
 
 install:
   - bundle install --path vendor/bundle
