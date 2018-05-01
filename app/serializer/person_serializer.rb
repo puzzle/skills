@@ -1,6 +1,8 @@
 class PersonSerializer < ApplicationSerializer
   type :people
 
+  belongs_to :company
+
   attributes :id, :birthdate, :language, :picture_path, :location,
              :martial_status, :updated_by, :name, :origin, :role, :title, :competences,
              :origin_person_id, :variation_name, :status_id, :company,
