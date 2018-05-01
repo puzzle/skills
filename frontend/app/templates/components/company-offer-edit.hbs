@@ -11,7 +11,7 @@
 </div>
 <div id="collapseTwo" class="collapse show border border-primary rounded-bottom">
   <div class="card-body">
-    {{#each company.offers as |changeset|}}
+    {{#each company.offers as |changeset index|}}
       <form onsubmit={{action 'submit' changeset}} id="form_offer">
         <div class="row mb-2">
           <div class="col-sm-3">
