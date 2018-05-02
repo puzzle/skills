@@ -4,7 +4,7 @@ class CrudController < ListController
 
   # GET /users/1
   def show(options = {})
-    render_entry(options[:render_options])
+    render_entry({ include: '*' }.merge(options[:render_options] || {}))
   end
 
   # POST /users

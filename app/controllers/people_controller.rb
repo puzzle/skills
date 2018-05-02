@@ -1,6 +1,5 @@
 class PeopleController < CrudController
   self.permitted_attrs = %i[birthdate picture language location
-<<<<<<< HEAD
                             martial_status updated_by name origin role title
                             competences status_id variation_name company company_id]
 

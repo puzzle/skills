@@ -4,7 +4,7 @@ class ListController < ApplicationController
            to: 'self.class'
 
   class_attribute :render_options
-  self.render_options = { include: '**' }
+  self.render_options = {}
 
   # GET /users
   def index(options = {})

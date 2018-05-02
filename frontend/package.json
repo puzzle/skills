@@ -13,6 +13,7 @@
   "scripts": {
     "build": "ember build",
     "build-prod": "ember build --prod",
+    "lint:js": "eslint ./*.js app blueprints config lib server tests",
     "start": "ember serve --proxy=http://localhost:3000/",
     "test": "ember test",
     "bower-install": "bower install"
