@@ -55,21 +55,8 @@ export default Component.extend({
       offerToDelete.destroyRecord();
     },
 
-    createOnEnter(select, e, offer) {
-      if (e.keyCode === 13) {
-        let selected = this.get('selected');
-        console.log(selected);
-        if (!selected.includes(select.searchText)) {
-          this.get('options').pushObject(select.searchText);
-          console.log(select.searchText);
-          select.actions.choose(select.searchText);
-        }
-      }
-    },
-
     createOffer(selected, searchText)
     {
-      console.log(searchText);
       this.get('options').pushObject(searchText);
       selected.pushObject(searchText);
     }
