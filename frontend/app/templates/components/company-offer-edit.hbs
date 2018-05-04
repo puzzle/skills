@@ -54,6 +54,7 @@
         </div>
       </div>
     {{/each}}
+    <a role="button" class="card-link text-dark" {{action 'createNewOffer' company}}><i class="fa add"></i></a>
     <form onsubmit={{action 'submit' offerComment}} id="form_comment">
       <div class="row mb-1">
         <div class="col-sm-3">

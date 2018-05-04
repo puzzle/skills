@@ -50,6 +50,10 @@ export default Component.extend({
         });
     },
 
+    createNewOffer(company) {
+      this.get('store').createRecord('offer', { company });
+    },
+
     deleteOffer(offerToDelete) {
       //remove overlay from delete confirmation
       $('.modal-backdrop').remove();
