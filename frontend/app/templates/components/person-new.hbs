@@ -52,15 +52,17 @@
                 <td> {{f.text-field 'martialStatus' label="Zivilstand"}}</td>
               </tr>
               <tr>
-                <label>Firma</label>
-                {{#power-select
-                  selected=newPerson.company
-                  options=companiesToSelect
-                  onchange=(action (mut newPerson.company))
-                  as |company|
-                  }}
-                  {{company.name}}
-                {{/power-select}}
+                <td>
+                  <label>Firma</label>
+                  {{#power-select
+                    selected=newPerson.company
+                    options=companiesToSelect
+                    onchange=(action (mut newPerson.company))
+                    as |company|
+                    }}
+                    {{company.name}}
+                  {{/power-select}}
+                </td>  
               </tr>
             </table>
           </div>
