@@ -1,8 +1,6 @@
 import Component from '@ember/component';
 import { A } from '@ember/array';
-import { isBlank } from '@ember/utils';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
 import $ from 'jquery';
 
 export default Component.extend({
@@ -22,12 +20,12 @@ export default Component.extend({
       company.save()
         .then (() => this.sendAction('submit'))
         .then (() => this.get('notify').success('Successfully saved!'))
-        .then (() => 
+        .then (() =>
           Promise.all([
             ...company
-               .get('offers')
-               .map(offer => offer.save())
-            ])
+              .get('offers')
+              .map(offer => offer.save())
+          ])
         )
         .catch(() => {
           let offer = this.get('offer');
@@ -57,13 +55,13 @@ export default Component.extend({
     createOffer(selected, searchText)
     {
       let options = this.get('options');
-      if(!options.includes(searchText)) {
-      this.get('options').pushObject(searchText);
+      if (!options.includes(searchText)) {
+        this.get('options').pushObject(searchText);
       }
-      if(selected.includes(searchText)) {
-        this.get('notify').alert("Already added!", {closeAfter: 4000});
+      if (selected.includes(searchText)) {
+        this.get('notify').alert("Already added!", { closeAfter: 4000 });
       }
-      else{
+      else {
         selected.pushObject(searchText);
       }
     }
