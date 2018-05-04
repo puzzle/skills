@@ -5,7 +5,8 @@ import { computed } from '@ember/object';
 export default Component.extend({
   store: service(),
   peopleToSelect: computed(function() {
-    return this.get('store').findAll('person');
+    let people = this.get('store').findAll('person');
+    return people;
   }),
   selected: '',
   router: service(),
