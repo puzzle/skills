@@ -10,25 +10,14 @@
 </div>
 <div id="collapseEducation" class="collapse show border border-primary rounded-bottom">
   <div class="card-body">
-    <div class="row" id="competence-content-show">
-      <table class="table table-striped table-hover">
-        <thead>
-        <tr>
-          <th>Zeit</th>
-          <th>Beschreibung</th>
-          <th class="action-header">Aktion</th>
-        </tr>
-        </thead>
-        <tbody>
+    <div class="container-fluid" id="competence-content-show">
         {{#each sortedEducations as |education|}}
-          {{#if educationEditing}}
+          {{#if (eq educationEditing education)}}
             {{education-edit education=education done=(action (toggle 'educationEditing' this))}}
           {{else}}
             {{education-show selectEducation = (action (mut educationEditing)) education=education}}
           {{/if}}
         {{/each}}
-        </tbody>
-      </table>
     </div>
     <button onclick={{action (toggle 'educationNew' this)}}
               id="button-new-educations"

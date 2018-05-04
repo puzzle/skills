@@ -1,47 +1,36 @@
 {{#with (changeset education validations) as |changeset|}}
   <form onsubmit={{action 'submit' changeset}} id="form_education">
-    <div id="education-content-edit" class="row-fluid" style="display: block;">
-      <div class="span10">
-        <div class="row-fluid">
-          <div class="span2">
-            {{input value=changeset.year_from type="number" class="input-mini"}}
-          </div>
-          <div class="span10">
-            {{input value=changeset.title class="input-xxlarge"}}
-          </div>
+    <div id="education-content-edit">
+      <div class="row">
+        <div class="col-sm-5">
+            {{input value=changeset.year_from type="number" class="year"}} - {{input value=changeset.year_to type="number" class="year"}}
         </div>
-        <div class="row-fluid">
-          <div class="span2">
-            {{input value=changeset.year_to type="number" class="input-mini"}}
-          </div>
-          <div class="span10">
-            {{input value=changeset.location class="input-xxlarge"}}
-          </div>
+        <div class="col-sm-5">
+          {{input value=changeset.title class="input-xxlarge"}}{{input value=changeset.location class="input-xxlarge"}}
         </div>
-      </div>
-      <div class="span2">
-        <button class="btn btn-primary btn-block btn-mini">
-          Speichern
-        </button>
-        <button class="btn btn-inverse btn-block btn-mini"
-            type="button"
-            onclick={{action done}}>
-          Abbrechen
-        </button>
-        {{#confirm-dialog
-          text="Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?"
-          confirmButton="Löschen"
-          cancelButton="Abbrechen"
-          confirmAction=(action 'confirmDestroy' education)
-          confirmButtonClass="btn btn-danger"
-          cancelButtonClass="btn pull-right"
-          okCssIcon="fa fa-check-circle-o"
-          cancelCssIcon="fa fa-ban"
-          }}
-          <button class="btn btn-danger btn-block btn-mini" type="button">
-            Löschen
+        <div class="col-sm-2">
+           <a onclick={{action 'submit' changeset}} role="button" id="submit-button" class="card-link text-dark"><i class="fa save"></i></a>
+
+          <button class="btn btn-inverse btn-block btn-mini"
+                  type="button"
+                  onclick={{action done}}>
+            Abbrechen
           </button>
-        {{/confirm-dialog}}
+          {{#confirm-dialog
+            text="Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?"
+            confirmButton="Löschen"
+            cancelButton="Abbrechen"
+            confirmAction=(action 'confirmDestroy' education)
+            confirmButtonClass="btn btn-danger"
+            cancelButtonClass="btn pull-right"
+            okCssIcon="fa fa-check-circle-o"
+            cancelCssIcon="fa fa-ban"
+          }}
+            <button class="btn btn-danger btn-block btn-mini" type="button">
+              Löschen
+            </button>
+          {{/confirm-dialog}}
+        </div>
       </div>
     </div>
   </form>

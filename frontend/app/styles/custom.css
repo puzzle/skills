@@ -21,20 +21,6 @@ hr {
 }
 
 
-/* Override Bootstrap
--------------------------------------------------- */
-  .form-horizontal .control-group {
-    margin-bottom: 10px !important;
-  }
-
-  .form-horizontal .control-label{
-    width: 90px !important;
-  }
-
-  .form-horizontal .controls {
-    margin-left: 100px !important;
-  }
-
 
   /* Main Content
   -------------------------------------------------- */
@@ -747,4 +733,10 @@ a:focus {
 
 button::-moz-focus-inner {
   border: 0;
+}
+
+
+/* Input grössen */
+.year {
+  width: 75px;
 }

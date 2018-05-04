@@ -1,17 +1,17 @@
-<tr id="template_education_record" class="template">
-  <td id="show_year" class="show-year-cell">
+<div class="row mb-2">
+  <div class="col-sm-3">
     {{education.year_from}}
     {{#if (eq education.year_to null)}}
       - heute
     {{else if (not-eq education.year_from education.year_to)}}
       - {{education.year_to}}
     {{/if}}
-  </td>
-  <td id="show_description" class="show-description-cell">
-    {{education.title}}
+  </div>
+  <div class="col-sm-8">
+    <strong>{{education.title}}</strong>
     <br>{{education.location}}
-  </td>
-  <td>
+  </div>
+  <div class="col-sm-1 text-right">
     <a onclick={{action selectEducation education}} data-test-company-edit-form-toggle class="card-link text-dark"><i class="fa edit"></i></a>
-  </td>
-</tr>
+  </div>
+</div>
