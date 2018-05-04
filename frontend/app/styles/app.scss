@@ -3,12 +3,17 @@
 @import "ember-power-select/themes/bootstrap";
 @import "ember-power-select";
 @import "normalize";
+
+//Set Bootstrap values from brand.puzzle.ch
+$primary: #1E5A96 !default;
+$success: #61B44B !default;
+
 @import "../../bower_components/bootstrap/scss/bootstrap";
 @import "toaster.mini";
 @import "custom";
 @import "fws";
 @import "ember-basic-dropdown";
-
+@import "ember-power-select";
 
 html,
 button,
@@ -397,4 +402,7 @@ textarea {
   box-sizing: border-box;
 }
 
-@import "ember-power-select";
+
+$theme-colors: (
+  primary: #ff00ff
+) !default;
