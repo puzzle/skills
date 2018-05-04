@@ -21,14 +21,14 @@
           </div>
           <div class="col-sm-8">
             {{! Quelle: http://ember-power-select.com/cookbook/create-custom-options}}
-            {{#power-select-multiple
+            {{#power-select-multiple-with-create
               options=options
               selected=changeset.offer
               onchange=(action (mut changeset.offer))
-              onkeydown=(action "createOnEnter")
+              oncreate=(action "createOffer" changeset.offer)
             as |offer|}}
               {{offer}}
-            {{/power-select-multiple}}
+            {{/power-select-multiple-with-create}}
           </div>
           <div class="col-sm-1">
             <a data-toggle="modal" data-target="#deleteConfirmationModal{{index}}" role="button" class="card-link text-black"><i class="fa trash"></i></a>
