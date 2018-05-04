@@ -14,19 +14,6 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    this.get('newOffer').set('company', this.get('company'));
-
-  },
-
-  newOffer: computed(function() {
-    let newOffer = this.get('store').createRecord('offer');
-    return newOffer;
-  }),
-
-  willDestroyElement() {
-    if (this.get('newOffer.isNew')) {
-      this.get('newOffer').destroyRecord();
-    }
   },
 
   actions: {
@@ -62,6 +49,19 @@ export default Component.extend({
                .map(offer => offer.save())
             ])
         )
+        .catch(() => {
+          let offer = this.get('offer');
+          this.get('notify').alert(offer);
+
+          let errors = offer.get('errors').slice(); // clone array as rollbackAttributes mutates
+
+          offer.rollbackAttributes();
+          errors.forEach(({ attribute, message }) => {
+            let translated_attribute = this.get('i18n').t(`offer.${attribute}`)['string']
+            changeset.pushErrors(attribute, message);
+            this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
+          });
+        });
     },
 
     createNewOffer(company) {
