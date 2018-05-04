@@ -30,7 +30,7 @@ export default Component.extend({
   },
 
   actions: {
-    submit(changeset, company) {
+    /*submit(changeset, company) {
       changeset.set('company', company);
       return changeset.save()
         .then(() => this.sendAction('submit'))
@@ -48,6 +48,20 @@ export default Component.extend({
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
         });
+    },*/
+
+    submit(company) {
+      company.save()
+        .then (() => this.sendAction('submit'))
+        .then (() => this.get('notify').success('Yaii'))
+        .then (() => 
+          Promise.all([
+            ...company
+               .get('offers')
+               .filterBy('hasDirtyAttributes')
+               .map(offer => offer.save())
+            ])
+        )
     },
 
     createNewOffer(company) {

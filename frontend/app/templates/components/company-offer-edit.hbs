@@ -6,6 +6,8 @@
     <div class="col-sm-6 text-right d-block">
       <a onclick={{companyOfferEditing}} data-test-company-edit-form-toggle class="card-link text-white"><i class="fa abort"></i></a>
       <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><i class="fa angle"></i></a>
+      <a {{action 'submit' company}} role="button" id="submit-button" class="card-link text-white">
+        <i class="fa save"></i></a>
     </div>
   </div>
 </div>
@@ -29,7 +31,6 @@
             {{/power-select-multiple}}
           </div>
           <div class="col-sm-1">
-            <a {{action 'submit' changeset company}} role="button" id="submit-button" class="card-link text-black"><i class="fa save"></i></a>
             <a data-toggle="modal" data-target="#deleteConfirmationModal{{index}}" role="button" class="card-link text-black"><i class="fa trash"></i></a>
           </div>
         </div>
