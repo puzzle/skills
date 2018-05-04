@@ -12,10 +12,6 @@
     <br>{{education.location}}
   </td>
   <td>
-    <button onclick={{action selectEducation education}}
-        id="button-edit-educations"
-        class="btn btn-link">
-      Editieren
-    </button>
+    <a onclick={{action selectEducation education}} data-test-company-edit-form-toggle class="card-link text-dark"><i class="fa edit"></i></a>
   </td>
 </tr>
