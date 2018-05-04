@@ -46,6 +46,7 @@ export default Component.extend({
     },
 
     deleteCompany(companyToDelete) {
+      $('.modal-backdrop').remove();
       companyToDelete
         .destroyRecord()
         .then(() => this.get('router').transitionTo('companies'));
