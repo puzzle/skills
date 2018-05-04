@@ -1,6 +1,6 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
-import { Promise } from 'rsvp'
+import $ from 'jquery';
 
 export default Component.extend({
   store: service(),

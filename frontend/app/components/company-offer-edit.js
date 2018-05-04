@@ -3,7 +3,6 @@ import { A } from '@ember/array';
 import { isBlank } from '@ember/utils';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
-import { Promise } from 'rsvp'
 import $ from 'jquery';
 
 export default Component.extend({

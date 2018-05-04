@@ -45,13 +45,13 @@
                 </div>
               {{/panel.toggle}}
               {{#panel.body}}
-                  {{#each people as |person|}}
-                    <span class="badge badge-success p-2 mr-2 mb-2 skill" href="#">
-                      {{#link-to "person" person.id click=(action 'scrollToTop')}}
-                        {{~person.attributes.name~}}
-                      {{/link-to}}
-                    </span>
-                  {{/each}}
+                {{#each people as |person|}}
+                  <span class="badge badge-success p-2 mr-2 mb-2 skill" href="#">
+                    {{#link-to "person" person.id click=(action 'scrollToTop')}}
+                      {{~person.attributes.name~}}
+                    {{/link-to}}
+                  </span>
+                {{/each}}
               {{/panel.body}}
             {{/panels.panel}}
           {{/each-in}}
@@ -59,7 +59,7 @@
       {{else}}
         {{#each filteredList as |person|}}
           {{#link-to "person" person.id click=(action 'scrollToTop') class="badge badge-success p-2 mr-2 mb-2 skill"}}
-              {{~person.attributes.name~}}
+            {{~person.attributes.name~}}
           {{/link-to}}
         {{/each}}
       {{/if}}

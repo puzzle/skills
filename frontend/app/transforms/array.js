@@ -4,7 +4,7 @@ import { A } from '@ember/array';
 import { isArray } from '@ember/array';
 
 export default DS.Transform.extend({
-  deserialize: function(serialized) {
+  deserialize(serialized) {
     if (isArray(serialized)) {
       return A(serialized);
     } else {
@@ -12,7 +12,7 @@ export default DS.Transform.extend({
     }
   },
 
-  serialize: function(deserialized) {
+  serialize(deserialized) {
     if (isArray(deserialized)) {
       return A(deserialized);
     } else {

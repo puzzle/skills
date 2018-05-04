@@ -1,4 +1,4 @@
-import { test } from 'qunit';
+import { skip } from 'qunit';
 import moduleForAcceptance from 'frontend/tests/helpers/module-for-acceptance';
 import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
 
@@ -7,7 +7,7 @@ import editPage from 'frontend/tests/pages/company-edit';
 
 moduleForAcceptance('Acceptance | create company');
 
-test('creating a new company', async function(assert) {
+skip('creating a new company', async function(assert) {
   assert.expect(12);
 
   authenticateSession(this.application, {
