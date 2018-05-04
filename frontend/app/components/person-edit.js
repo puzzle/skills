@@ -7,7 +7,7 @@ export default Component.extend({
   store: service(),
   i18n: service(),
 
-  companiesToSelect: computed(function(){
+  companiesToSelect: computed(function() {
     return this.get('store').findAll('company');
   }),
 

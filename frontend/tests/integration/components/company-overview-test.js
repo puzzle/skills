@@ -1,11 +1,11 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('company-uebersicht', 'Integration | Component | company uebersicht', {
+moduleForComponent('company-overview', 'Integration | Component | company overview', {
   integration: true
 });
 
-test('it renders company-uebersicht', function(assert) {
+test('it renders company-overview', function(assert) {
   this.set('company', {
     name: 'Firma',
     web: 'www.example.org',
@@ -19,7 +19,7 @@ test('it renders company-uebersicht', function(assert) {
     level: 'X',
   });
 
-  this.render(hbs`{{company-uebersicht company=company}}`);
+  this.render(hbs`{{company-overview company=company}}`);
 
   assert.ok(this.$().text().indexOf('Firma') !== -1);
   assert.ok(this.$().text().indexOf('www.example.org') !== -1);
