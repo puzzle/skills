@@ -14,6 +14,10 @@ export default Component.extend({
     this._super(...arguments);
   },
 
+  suggestion(term) {
+    return `"${term}" hinzufügen!`;
+  },
+
   actions: {
 
     submit(company) {
@@ -58,6 +62,7 @@ export default Component.extend({
       if (!options.includes(searchText)) {
         this.get('options').pushObject(searchText);
       }
+
       if (selected.includes(searchText)) {
         this.get('notify').alert("Already added!", { closeAfter: 4000 });
       }
