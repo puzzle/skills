@@ -25,6 +25,8 @@
               options=options
               selected=changeset.offer
               onchange=(action (mut changeset.offer))
+              onfocus=(action "handleFocus")
+              onblur=(action "handleBlur")
               oncreate=(action "createOffer" changeset.offer)
               buildSuggestion=suggestion
             as |offer|}}

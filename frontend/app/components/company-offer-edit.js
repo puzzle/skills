@@ -2,13 +2,15 @@ import Component from '@ember/component';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
 import $ from 'jquery';
+import Controller from '@ember/controller';
+import { isBlank } from '@ember/utils';
 
 export default Component.extend({
   store: service(),
   i18n: service(),
   options: A(['Scrum', 'CI/CD', 'Hermes', 'BA', 'Java EE', 'Java SE', 'PHP',
     'Docker', 'OpenShift', 'Ember', 'Angular', 'Git']),
-  selected: A([]),
+  selected: A(['test']),
 
   init() {
     this._super(...arguments);
@@ -16,6 +18,14 @@ export default Component.extend({
 
   suggestion(term) {
     return `"${term}" hinzufügen!`;
+  },
+
+  focusComesFromOutside(e) {
+    let blurredEl = e.relatedTarget;
+    if (isBlank(blurredEl)) {
+      return false;
+    }
+    return !blurredEl.classList.contains('ember-power-select-search-input');
   },
 
   actions: {
@@ -44,6 +54,17 @@ export default Component.extend({
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
         });
+    },
+
+    handleFocus(select, e) {
+      console.debug('EPS focused!');
+      if (this.focusComesFromOutside(e)) {
+        select.actions.open();
+      }
+    },
+
+    handleBlur() {
+      console.debug('EPS blurred!');
     },
 
     createNewOffer(company) {
