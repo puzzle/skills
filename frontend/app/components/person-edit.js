@@ -7,6 +7,11 @@ export default Component.extend({
   store: service(),
   i18n: service(),
 
+  companiesToSelect: computed(function() {
+    return this.get('store').findAll('company');
+  }),
+
+
   personPictureUploadPath: computed('person.id', function() {
     return `/people/${this.get('person.id')}/picture`;
   }),

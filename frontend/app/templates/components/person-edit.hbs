@@ -1,59 +1,78 @@
-<section id="profil" class="section">
+<div id="profil">
   {{#with (changeset person validations) as |changeset|}}
     {{#form-for changeset submit=(action 'submit') as |f|}}
-      <div class="row-fluid">
-        <div class="span5">
-          <span class="section-title">
-            Personalien<br>
-            <span class="text-mute">
-              Zuletzt bearbeitet am
-              <time datetime={{moment-format person.updatedAt}}>
-                {{moment-format person.updatedAt 'L LT'}}
-              </time>
-            </span>
-          </span>
-        </div>
-        <div class="pull-right">
-          {{f.submit "Speichern"}}
-          {{f.reset "Reset"}}
-          <a onclick={{personEditing}} class="pull-right">
-            {{if personEditing  'Abbrechen' 'Editieren...'}}
-          </a>
-        </div>
-      </div>
-
-      {{! Horizontal ruler }}
-      <div class="row-fluid">
-        <div class="span12"><hr></div>
-      </div>
-      <div class="row-fluid" id="profile-content-edit">
-        {{picture-edit picturePath=person.picturePath uploadPath=personPictureUploadPath}}
-        <div class="span5">
-          {{f.text-field 'name' label="Name"}}
-          {{f.text-field 'title' label="Titel"}}
-          {{f.text-field 'role' label="Funktion"}}
-          <div class="text-field form-group">
-            <label class="label-date form-field--label" for='date_location'>Geb.Datum</label>
-            <div id="date_location">
-              {{bootstrap-datepicker format='dd.mm.yyyy' value=changeset.birthdate autoclose=true}}
-            </div>
+      <div class="card-header bg-primary">
+        <div class="row">
+          <div class="col-sm-6">
+            <a class="card-link text-white" href="#">Übersicht</a>
+          </div>
+          <div class="col-sm-6 text-right d-block">
+            <a {{action 'submit' changeset}} role="button" id="submit-button" class="card-link text-white"><i class="fa save"></i></a>
+            <a onclick={{personEditing}} role="button" class="card-link text-white"><i class="fa abort"></i></a>
+            <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#"><i class="fa angle"></i></a>
           </div>
         </div>
-        <div class="span5">
-          {{f.text-field 'origin' label="Nationalität"}}
-          {{f.text-field 'location' label="Wohnort"}}
-          {{f.text-field 'language' label="Sprache"}}
-          {{f.text-field 'martialStatus' label="Zivilstand"}}
-          {{f.select-field 'statusId' statusData
-            label="Status"
-            optionLabelPath="label"
-            optionTargetPath="id"
-            }}
-          {{#if (eq changeset.statusId 4)}}
-            {{f.text-field 'company' label='Firma'}}
-          {{/if}}
+      </div>
+      <div id="collapseOne" class="collapse show border border-primary rounded-bottom">
+        <div class="card-body row">
+          <div class="col-sm-2" id="profile-content-edit">
+            {{picture-edit picturePath=person.picturePath uploadPath=personPictureUploadPath}}
+          </div>
+          <div class="col-sm-5">
+            <table class="table-uebersicht">
+              <tr>
+                <td>
+                  <label>Firma</label>
+                  {{#power-select
+                    selected=person.company
+                    options=companiesToSelect
+                    onchange=(action (mut person.company))
+                  as |company|
+                  }}
+                    {{company.name}}
+                  {{/power-select}}
+                </td>
+              </tr>
+              <tr>
+                <td>{{f.text-field 'name' label="Name"}}</td>
+              </tr>
+              <tr>
+                <td>{{f.text-field 'title' label="Titel"}}</td>
+              </tr>
+              <tr>
+                <td>{{f.text-field 'role' label="Funktion"}}</td>
+              </tr>
+              <tr>
+                <td>
+                  <label class="label-date form-field--label" for='date_location'>Geb.Datum</label>
+                  <div id="date_location">
+                    {{bootstrap-datepicker format='dd.mm.yyyy' value=changeset.birthdate autoclose=true}}
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="col-sm-5">
+            <table class="table-uebersicht">
+              <tr>
+                <td>{{!Leere Zeile aus Layout-Gründen}}</td>
+              </tr>
+              <tr>
+                <td>{{f.text-field 'origin' label="Nationalität"}}</td>
+              </tr>
+              <tr>
+                <td>{{f.text-field 'location' label="Wohnort"}}</td>
+              </tr>
+              <tr>
+                <td>{{f.text-field 'language' label="Sprache"}}</td>
+              </tr>
+              <tr>
+                <td>{{f.text-field 'martialStatus' label="Zivilstand"}}</td>
+              </tr>
+            </table>
+          </div>
         </div>
       </div>
     {{/form-for}}
   {{/with}}
-</section>
+</div>

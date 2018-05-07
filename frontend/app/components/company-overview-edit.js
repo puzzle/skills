@@ -1,6 +1,6 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
-import { Promise } from 'rsvp'
+import $ from 'jquery';
 
 export default Component.extend({
   store: service(),
@@ -46,6 +46,7 @@ export default Component.extend({
     },
 
     deleteCompany(companyToDelete) {
+      $('.modal-backdrop').remove();
       companyToDelete
         .destroyRecord()
         .then(() => this.get('router').transitionTo('companies'));

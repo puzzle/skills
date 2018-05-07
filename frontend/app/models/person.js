@@ -15,6 +15,8 @@ const Person = DS.Model.extend({
   statusId: DS.attr('number', { defaultValue: 1 }),
   updatedAt: DS.attr('date'),
 
+  company: DS.belongsTo('company'),
+
   variationName: DS.attr('string'),
   originPersonId: DS.attr('number'),
 

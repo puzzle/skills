@@ -2,14 +2,59 @@
   {{error.detail}}
 {{/each}}
 
-{{component (if personEditing 'person-edit' 'person-show' )
-  person=model
-  submit=(action (toggle 'personEditing' this))
-  model-header-title = 'Personalien'
-  personEditing=(action (toggle 'personEditing' this))
-  }}
-{{competences-show person=model}}
-{{educations-show educations=model.educations personId=model.id}}
-{{advanced-trainings-show  advanced-trainings=model.advancedTrainings personId=model.id}}
-{{activities-show activities=model.activities personId=model.id}}
-{{projects-show projects=model.projects personId=model.id}}
+<div class="collapse-group">
+  <div class="row mb-3">
+    <div class="col-sm-12">
+      <span class="text-right d-block controls"><a href="#" class="mr-2 open-button">+ alles ausklappen</a><a href="#" class="close-button">- alles einklappen</a></span>
+    </div>
+  </div>
+  <div id="accordion">
+    {{!Personalien Tab}}
+    <div class="card mb-3">
+      {{component (if personEditing 'person-edit' 'person-show' )
+                  person=model
+                  submit=(action (toggle 'personEditing' this))
+                  personEditing=(action (toggle 'personEditing' this))
+      }}
+    </div>
+
+    {{!Kompetenzen Tab}}
+    <div class="card mb-3">
+      {{component (if competencesEditing 'competences-edit' 'competences-show' )
+                  person=model
+                  submit=(action (toggle 'competencesEditing' this))
+                  competencesEditing=(action (toggle 'competencesEditing' this))
+      }}
+    </div>
+
+    {{!Ausbildungen Tab}}
+    <div class="card mb-3">
+      {{educations-show educations=model.educations personId=model.id}}
+    </div>
+
+    {{!Weiterbildungen Tab}}
+    <div class="card mb-3">
+      {{advanced-trainings-show  advanced-trainings=model.advancedTrainings personId=model.id}}
+    </div>
+
+    {{!Aktivitäten Tab}}
+    <div class="card mb-3">
+      {{activities-show activities=model.activities personId=model.id}}
+    </div>
+
+    {{!Projekte Tab}}
+    <div class="card mb-3">
+      {{projects-show projects=model.projects personId=model.id}}
+    </div>
+  </div>
+</div>
+
+<script>
+  $(".open-button").on("click", function() {
+    $(this).closest('.collapse-group').find('.collapse').collapse('show');
+  });
+
+  $(".close-button").on("click", function() {
+    $(this).closest('.collapse-group').find('.collapse').collapse('hide');
+  });
+</script>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180320200954) do
+ActiveRecord::Schema.define(version: 20180413121716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20180320200954) do
     t.string "phone_contact_person"
     t.string "crm"
     t.string "level"
+    t.string "offer_comment"
     t.boolean "my_company", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -106,6 +107,15 @@ ActiveRecord::Schema.define(version: 20180320200954) do
     t.index ["company_id"], name: "index_locations_on_company_id"
   end
 
+  create_table "offers", force: :cascade do |t|
+    t.string "category"
+    t.text "offer", default: [], array: true
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_offers_on_company_id"
+  end
+
   create_table "people", id: :serial, force: :cascade do |t|
     t.datetime "birthdate"
     t.string "language"
@@ -154,5 +164,6 @@ ActiveRecord::Schema.define(version: 20180320200954) do
 
   add_foreign_key "employee_quantities", "companies"
   add_foreign_key "locations", "companies"
+  add_foreign_key "offers", "companies"
   add_foreign_key "people", "companies"
 end

@@ -1,21 +1,23 @@
-<section id="competence" class="section">
-  <button onclick={{action (toggle 'competenceEdit' this)}}
-      id="button-new-competences"
-      class="btn btn-link pull-right">
-    {{if competenceEdit 'Abbrechen' 'Editieren'}}
-  </button>
-  {{#if competenceEdit}}
-    {{competences-edit person=person done=(action (toggle 'competenceEdit' this))}}
-  {{else}}
-    {{model-header title="Kompetenzen"}}
-    <div id="competence-content-show" class="row-fluid">
-      <div class="span12">
-        <ul>
-          {{#each competenceList as |competence|}}
-            <li>{{competence}}</li>
-          {{/each}}
-        </ul>
-      </div>
+
+<div class="card-header bg-primary">
+  <div class="row">
+    <div class="col-sm-6">
+      <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Kernkompetenzen</a>
     </div>
-  {{/if}}
-</section>
+    <div class="col-sm-6 text-right d-block">
+      <a onclick={{competencesEditing}} data-test-company-edit-form-toggle class="card-link text-white"><i class="fa edit"></i></a>
+      <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><i class="fa angle"></i></a>
+    </div>
+  </div>
+</div>
+<div id="collapseTwo" class="collapse show border border-primary rounded-bottom">
+  <div class="card-body">
+    <div class="row" id="competence-content-show">
+      <ul>
+        {{#each competenceList as |competence|}}
+          <li>{{competence}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>

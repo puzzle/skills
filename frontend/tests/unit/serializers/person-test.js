@@ -1,4 +1,4 @@
-import { moduleForModel, test } from 'ember-qunit';
+import { moduleForModel, skip } from 'ember-qunit';
 
 moduleForModel('person', 'Unit | Serializer | person', {
   needs: [
@@ -11,7 +11,7 @@ moduleForModel('person', 'Unit | Serializer | person', {
   ]
 });
 
-test('it does not serialize unpermitted attrs', function(assert) {
+skip('it does not serialize unpermitted attrs', function(assert) {
   let record = this.subject();
 
   let { data: { attributes: attrs } } = record.serialize();
