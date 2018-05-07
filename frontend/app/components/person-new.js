@@ -2,6 +2,8 @@ import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import PersonModel from '../models/person';
+import Controller from '@ember/controller';
+import { isBlank } from '@ember/utils';
 
 export default Component.extend({
   i18n: service(),
@@ -21,6 +23,14 @@ export default Component.extend({
       });
   }),
 
+  focusComesFromOutside(e) {
+    let blurredEl = e.relatedTarget;
+    if (isBlank(blurredEl)) {
+      return false;
+    }
+    return !blurredEl.classList.contains('ember-power-select-search-input');
+  },
+
   actions: {
     submit(newPerson) {
       return newPerson.save()
@@ -32,6 +42,17 @@ export default Component.extend({
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
         });
+    },
+
+    handleFocus(select, e) {
+      console.debug('EPS focused!');
+      if (this.focusComesFromOutside(e)) {
+        select.actions.open();
+      }
+    },
+
+    handleBlur() {
+      console.debug('EPS blurred!');
     }
   }
 });
