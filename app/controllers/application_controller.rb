@@ -4,7 +4,7 @@ class ApplicationController < ActionController::API
 
   def authorize
     return if Rails.env.development? && ENV['ENABLE_AUTH'].blank?
-    return if ENV['DISABLE_AUTH']
+    return if ENV['DISABLE_AUTH'].present?
 
     if auth_params_present?
       return if authenticates?
