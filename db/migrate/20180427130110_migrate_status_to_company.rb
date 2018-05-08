@@ -5,10 +5,10 @@ def up
     #             3 => 'Bewerber',
     #             4 => 'Partner' }.freeze
     
-    employees = Company.create!(name: 'Firma')
-    ex_employees = Company.create!(name: 'Ex-Mitarbeiter')
-    candidates = Company.create!(name: 'Bewerber')
-    partner = Company.create!(name: 'Partner')
+    employees = Company.create!(name: 'Firma', my_company: true)
+    ex_employees = Company.create!(name: 'Ex-Mitarbeiter', my_company: false)
+    candidates = Company.create!(name: 'Bewerber', my_company: false)
+    partner = Company.create!(name: 'Partner', my_company: false)
  
 
     Person.find_each do |person|
