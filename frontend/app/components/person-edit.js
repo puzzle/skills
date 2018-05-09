@@ -2,7 +2,6 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import PersonModel from '../models/person';
 
 export default Component.extend({
   store: service(),

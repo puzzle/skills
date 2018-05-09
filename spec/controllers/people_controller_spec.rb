@@ -104,7 +104,7 @@ describe PeopleController do
 
         expect(people.count).to eq(2)
         alice_attrs = people.first['attributes']
-        expect(alice_attrs.count).to eq(2)
+        expect(alice_attrs.count).to eq(1)
         expect(alice_attrs.first[1]).to eq('Alice Mante')
         json_object_includes_keys(alice_attrs, keys)
         expect(people).not_to include('relationships')
@@ -132,7 +132,7 @@ describe PeopleController do
 
         bob_attrs = json['data']['attributes']
 
-        expect(bob_attrs.count).to eq(16)
+        expect(bob_attrs.count).to eq(14)
         json_object_includes_keys(bob_attrs, keys)
         # expect(bob_attrs['picture-path']).to eq("/api/people/#{bob.id}/picture")
 
@@ -153,7 +153,7 @@ describe PeopleController do
         bob_attrs = json['data']['attributes']
 
         expect(json['data']['type']).to eq('people')
-        expect(bob_attrs.count).to eq(16)
+        expect(bob_attrs.count).to eq(14)
         json_object_includes_keys(bob_attrs, keys)
       end
     end

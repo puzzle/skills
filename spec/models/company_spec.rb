@@ -27,7 +27,6 @@ describe Company do
         company.valid?
 
         expect(company.errors[:name].first).to eq('muss ausgefüllt werden')
-        expect(company.errors[:level].first).to eq('muss ausgefüllt werden')
       end
 
       it 'should not be more than 100 characters' do
