@@ -12,10 +12,6 @@ def up
     partner = Company.create!(name: 'Partner', my_company: false)
 
     Person.find_each do |person|
-      
-      @status_ids = Hash.new
-      @status_ids[person.id] = person.status_id
-
       case person.status_id
       when 1
         person.update!(company: employees)
@@ -35,10 +31,5 @@ def up
 
   def down
     add_column :people, :status_id
-
-    Person.find_each do |person|
-      hashed_status_id = @status_ids[person.id]
-      person.update!(status_id: hashed_status_id)
-    end
   end
 end
