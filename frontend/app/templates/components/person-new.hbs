@@ -1,40 +1,72 @@
 <section id="profil" class="section">
   {{#form-for newPerson submit=(action 'submit') as |f|}}
-    <div class="row-fluid">
-      <h2>Mitarbeiter erfassen</h2>
-      <div class="span5">
-        <span class="section-title">Personalien</span>
-      </div>
-      <div class="pull-right">
-        {{f.submit "Speichern"}}
-      </div>
-    </div>
-    <hr>
-    <div class="row-fluid" id="profile-content-edit">
-      <div class="span5">
-        {{f.text-field 'name'}}
-        {{f.text-field 'title' label="Titel"}}
-        {{f.text-field 'role' label="Funktion"}}
-        <div class="text-field form-group">
-          <label class="label-date form-field--label" for='date_location'>Geb.Datum</label>
-          <div id="date_location">
-            {{bootstrap-datepicker format='dd.mm.yyyy' value=newPerson.birthdate autoclose=true}}
-          </div>
+    <div class="card-header bg-primary">
+      <div class="row">
+        <div class="col-sm-6">
+          <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Person Erfassen</a>
+        </div>
+        <div class="col-sm-6 text-right d-block">
+          {{! TODO: Submit via action submit doesnt work, are you sure message after click on delete button}}
+          <a {{action 'submit' newPerson}} role="button" id="submit-button" class="card-link text-white"><i class="fa save"></i></a>
         </div>
       </div>
-      <div class="span5">
-        {{f.text-field 'origin' label="Nationalität"}}
-        {{f.text-field 'location' label="Wohnort"}}
-        {{f.text-field 'language' label="Sprache"}}
-        {{f.text-field 'martialStatus' label="Zivilstand"}}
-        {{f.select-field 'statusId' statusData
-          label="Status"
-          optionLabelPath="label"
-          optionTargetPath="id"
-          }}
-        {{#if newPerson.isPartner}}
-          {{f.text-field 'company' label='Firma'}}
-        {{/if}}
+    </div>
+    <div id="collapseOne" class="collapse show border border-primary rounded-bottom">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <table class="table-uebersicht">
+              <tr>
+                <td>{{f.text-field 'name'}}</td>
+              </tr>
+              <tr>
+                <td>{{f.text-field 'title' label="Titel"}}</td>
+              </tr>
+              <tr>
+                <td>{{f.text-field 'role' label="Funktion"}}</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="text-field form-group">
+                    <label class="label-date form-field--label" for='date_location'>Geb.Datum</label>
+                    <div id="date_location">
+                      {{bootstrap-datepicker format='dd.mm.yyyy' value=newPerson.birthdate autoclose=true}}
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="col-sm-6">
+            <table class="table-uebersicht">
+              <tr>
+                <td>{{f.text-field 'origin' label="Nationalität"}}</td>
+              </tr>
+              <tr>
+                <td>{{f.text-field 'location' label="Wohnort"}}</td>
+              </tr>
+              <tr>
+                <td>{{f.text-field 'language' label="Sprache"}}</td>
+              </tr>
+              <tr>
+                <td> {{f.text-field 'martialStatus' label="Zivilstand"}}</td>
+              </tr>
+              <tr>
+                <td>
+                  <label>Firma</label>
+                  {{#power-select
+                    selected=newPerson.company
+                    options=companiesToSelect
+                    onchange=(action (mut newPerson.company))
+                    as |company|
+                    }}
+                    {{company.name}}
+                  {{/power-select}}
+                </td>  
+              </tr>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   {{/form-for}}

@@ -1,0 +1,24 @@
+# == Schema Information
+#
+# Table name: offers
+#
+#  id                    :integer          not null, primary key
+#  category              :string
+#  offer                 :array
+#  company_id            :integer
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+technologien:
+  category: Technologien
+  offer:
+    - Java
+    - Angular
+  company: firma
+
+werkzeuge:
+  category: Werkzeuge
+  offer:
+    - git
+    - Jenkins
+  company: partner

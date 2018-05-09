@@ -608,6 +608,8 @@ form textarea{
   text-align: right;
   font-weight: bold;
   padding-right: 10px;
+  height: 35px;
+  min-height: 35px;
 }
 
 .table-uebersicht tr:first-child {
@@ -615,7 +617,7 @@ form textarea{
 }
 
 .skill {
-  width: 100px;
+  min-width: 100px;
 }
 
 
@@ -683,12 +685,17 @@ form textarea{
   width: 50%;
 }
 
+.table-uebersicht label {
+  float: left;
+}
+
 .table-uebersicht td:last-child {
   width: 50%;
 }
 
-.table-uebersicht input, .table-uebersicht button {
+.table-uebersicht input, .table-uebersicht button, .table-uebersicht .ember-power-select-trigger {
   width: 45%;
+  float: right;
 }
 
 .table-uebersicht .nextToDelete {
@@ -706,6 +713,33 @@ form textarea{
   right: 12px;
 }
 
+
+/* Power Select */
+li.ember-power-select-multiple-option {
+  color: #fff;
+  background-color: #28a745;
+  border: 0px solid;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  min-width: 100px;
+}
+
+li:hover.ember-power-select-multiple-option {
+  background-color: #1e7e34;
+}
+
+span.ember-power-select-selected-item {
+  display: block;
+  text-align: left;
+}
+
 /* Style Fixes */
 a:focus {
   outline: none;
@@ -714,4 +748,3 @@ a:focus {
 button::-moz-focus-inner {
   border: 0;
 }
-

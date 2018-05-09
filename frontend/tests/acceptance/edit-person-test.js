@@ -1,4 +1,4 @@
-import { test } from 'qunit';
+import { skip } from 'qunit';
 import moduleForAcceptance from 'frontend/tests/helpers/module-for-acceptance';
 import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
 
@@ -14,7 +14,7 @@ moduleForAcceptance('Acceptance | edit person', {
   }
 });
 
-test('/people/:id edit person data', async function(assert) {
+skip('/people/:id edit person data', async function(assert) {
   assert.expect(7);
 
   await applicationPage.visitHome('/');
@@ -41,7 +41,7 @@ test('/people/:id edit person data', async function(assert) {
   assert.equal(page.profileData.status, 'Bewerber');
 });
 
-test('/people/:id edit person competences', async function(assert) {
+skip('/people/:id edit person competences', async function(assert) {
   assert.expect(4);
 
   await applicationPage.visitHome('/');
@@ -65,7 +65,7 @@ test('/people/:id edit person competences', async function(assert) {
   assert.equal(page.competences.list(2).text, 'Competence 3');
 });
 
-test('Creating a new variation', async function(assert) {
+skip('Creating a new variation', async function(assert) {
   assert.expect(12);
 
   await applicationPage.visitHome('/');

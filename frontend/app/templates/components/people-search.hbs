@@ -1,0 +1,11 @@
+{{#power-select
+  selected=selected
+  options=peopleToSelect
+  searchEnabled=true
+  searchField="name"
+  placeholder="Person Suchen"
+  onchange=(action 'changePerson')
+as |person|
+}}
+  {{person.name}}
+{{/power-select}}

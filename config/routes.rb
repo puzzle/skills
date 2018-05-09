@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   scope '/api' do
@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
     resources :employee_quantities, controller: 'employee_quantities'
     resources :locations, controller: 'locations'
+    resources :offers, controller: 'offers'
 
     resources :companies, controller: 'companies'
 

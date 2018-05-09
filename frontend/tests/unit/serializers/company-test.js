@@ -5,6 +5,7 @@ moduleForModel('company', 'Unit | Serializer | company', {
     'model:location',
     'model:employee-quantity',
     'model:person',
+    'model:offer',
     'serializer:company',
   ]
 });

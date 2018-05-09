@@ -4,8 +4,14 @@ import { computed } from '@ember/object';
 import PersonModel from '../models/person';
 
 export default Component.extend({
-
   i18n: service(),
+
+  store: Ember.inject.service(),
+
+  companiesToSelect: computed(function() {
+    return this.get('store').findAll('company');
+  }),
+
 
   statusData: computed(function() {
     return Object.keys(PersonModel.STATUSES)

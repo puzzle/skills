@@ -2,14 +2,13 @@ import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 
 export default Component.extend({
-
   i18n: service(),
 
   actions: {
-    submit(changeset, event) {
-      event.preventDefault();
-      return changeset.save()
-        .then(competence => this.sendAction('done'))
+    submit(changeset) {
+
+      changeset.save()
+        .then(competence => this.sendAction('submit'))
         .then(() => this.get('notify').success('Kompetenzen wurden aktualisiert!'))
         .catch(() => {
           let competence = this.get('competence');

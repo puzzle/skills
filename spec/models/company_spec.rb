@@ -13,7 +13,7 @@
 #  phone_contact_person  :string
 #  crm                   :string
 #  level                 :string
-#  picture               :string
+#  offer_comment         :string
 #  my_company            :boolean, default: false
 
 require 'rails_helper'
@@ -27,6 +27,7 @@ describe Company do
         company.valid?
 
         expect(company.errors[:name].first).to eq('muss ausgefüllt werden')
+        expect(company.errors[:level].first).to eq('muss ausgefüllt werden')
       end
 
       it 'should not be more than 100 characters' do
@@ -53,6 +54,15 @@ describe Company do
         expect(company.errors[:phone_contact_person].first).to eq('ist zu lang (mehr als 100 Zeichen)')
         expect(company.errors[:crm].first).to eq('ist zu lang (mehr als 100 Zeichen)')
         expect(company.errors[:level].first).to eq('ist zu lang (mehr als 100 Zeichen)')
+      end
+
+      it 'should not be more than 500 characters' do
+        company = Company.new
+        company.name = 'Test'
+        company.offer_comment = SecureRandom.hex(550)
+        company.valid?
+
+        expect(company.errors[:offer_comment].first).to eq('ist zu lang (mehr als 500 Zeichen)')
       end
     end
 end
