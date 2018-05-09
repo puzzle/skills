@@ -168,8 +168,7 @@ describe PeopleController do
                    name: 'test',
                    origin: 'Switzerland',
                    role: 'tester',
-                   title: 'Bsc in tester',
-                   status_id: 2}
+                   title: 'Bsc in tester'}
 
         process :create, method: :post, params: { data: { attributes: person } }
 

@@ -1,4 +1,3 @@
-import { computed } from '@ember/object';
 import DS from 'ember-data';
 
 const Person = DS.Model.extend({
@@ -12,7 +11,6 @@ const Person = DS.Model.extend({
   role: DS.attr('string'),
   title: DS.attr('string'),
   competences: DS.attr('string'),
-  statusId: DS.attr('number', { defaultValue: 1 }),
   updatedAt: DS.attr('date'),
 
   company: DS.belongsTo('company'),
@@ -25,23 +23,6 @@ const Person = DS.Model.extend({
   activities: DS.hasMany('activity'),
   projects: DS.hasMany('project'),
   expertiseTopicSkillValues: DS.hasMany('expertise-topic-skill-value'),
-
-  status: computed('statusId', function() {
-    return Person.STATUSES[this.get('statusId')];
-  }),
-
-  isPartner: computed('statusId', function() {
-    return this.get('statusId') === 4;
-  }),
-});
-
-Person.reopenClass({
-  STATUSES: {
-    1: 'Mitarbeiter',
-    2: 'Ex Mitarbeiter',
-    3: 'Bewerber',
-    4: 'Partner'
-  }
 });
 
 export default Person;

@@ -12,15 +12,6 @@ export default Component.extend({
     return this.get('store').findAll('company');
   }),
 
-
-  statusData: computed(function() {
-    return Object.keys(PersonModel.STATUSES)
-      .map(id => Number(id))
-      .map(id => {
-        return { id, label: PersonModel.STATUSES[id] };
-      });
-  }),
-
   actions: {
     submit(newPerson) {
       return newPerson.save()
