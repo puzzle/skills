@@ -1,4 +1,5 @@
 class MigrateStatusToCompany < ActiveRecord::Migration[5.1]
+
 def up
     #STATUSES = { 1 => 'Mitarbeiter',
     #             2 => 'Ex Mitarbeiter',
@@ -9,9 +10,12 @@ def up
     ex_employees = Company.create!(name: 'Ex-Mitarbeiter', my_company: false)
     candidates = Company.create!(name: 'Bewerber', my_company: false)
     partner = Company.create!(name: 'Partner', my_company: false)
- 
 
     Person.find_each do |person|
+      
+      @status_ids = Hash.new
+      @status_ids[person.id] = person.status_id
+
       case person.status_id
       when 1
         person.update!(company: employees)
@@ -25,9 +29,16 @@ def up
         person.update!(company: nil)
       end
     end
+
+    remove_column :people, :status_id
   end
 
   def down
-    remove_column :people, :status_id
+    add_column :people, :status_id
+
+    Person.find_each do |person|
+      hashed_status_id = @status_ids[person.id]
+      person.update!(status_id: hashed_status_id)
+    end
   end
 end
