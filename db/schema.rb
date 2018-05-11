@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180413121716) do
+ActiveRecord::Schema.define(version: 20180427130110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,10 +47,10 @@ ActiveRecord::Schema.define(version: 20180413121716) do
     t.string "contact_person"
     t.string "email_contact_person"
     t.string "phone_contact_person"
+    t.string "offer_comment"
     t.string "crm"
     t.string "level"
-    t.string "offer_comment"
-    t.boolean "my_company", default: false
+    t.boolean "my_company"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -126,7 +126,6 @@ ActiveRecord::Schema.define(version: 20180413121716) do
     t.string "origin"
     t.string "role"
     t.string "title"
-    t.integer "status_id"
     t.integer "origin_person_id"
     t.string "variation_name"
     t.datetime "created_at", null: false
@@ -136,7 +135,6 @@ ActiveRecord::Schema.define(version: 20180413121716) do
     t.string "competences"
     t.bigint "company_id"
     t.index ["company_id"], name: "index_people_on_company_id"
-    t.index ["status_id"], name: "index_people_on_status_id"
   end
 
   create_table "projects", id: :serial, force: :cascade do |t|

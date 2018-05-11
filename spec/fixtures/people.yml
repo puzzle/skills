@@ -12,7 +12,6 @@
 #  origin           :string
 #  role             :string
 #  title            :string
-#  status_id        :integer
 #  origin_person_id :integer
 #  variation_name   :string
 #  created_at       :datetime         not null
@@ -33,7 +32,6 @@ bob:
   origin: Switzerland
   role: Cleaner
   title: BSc in Cleaning
-  status_id: 1 #Mitarbeiter
   competences: Java\n Ruby
   company: firma
 
@@ -46,6 +44,5 @@ alice:
   origin: England
   role: Secretary
   title: MSc in writing
-  status_id: 2 # Partner
   competences: LaTex\n Puppet\n Bash
   company: partner

@@ -12,7 +12,6 @@
 #  origin           :string
 #  role             :string
 #  title            :string
-#  status_id        :integer
 #  origin_person_id :integer
 #  variation_name   :string
 #  created_at       :datetime         not null
@@ -24,11 +23,6 @@
 
 class Person < ApplicationRecord
   include PgSearch
-
-  STATUSES = { 1 => 'Mitarbeiter',
-               2 => 'Ex Mitarbeiter',
-               3 => 'Bewerber',
-               4 => 'Partner' }.freeze
 
   belongs_to :company
 
@@ -45,13 +39,12 @@ class Person < ApplicationRecord
   before_destroy :destroy_variations
 
   validates :birthdate, :language, :location, :name, :origin,
-            :role, :title, :status_id, presence: true
+            :role, :title, presence: true
   validates :location, :language, :martial_status, :name, :origin,
             :role, :title, :variation_name, length: { maximum: 100 }
 
   validate :valid_person
   validate :picture_size
-  validate :valid_status
 
   scope :list, -> { where(type: nil).order(:name) }
 
@@ -78,10 +71,6 @@ class Person < ApplicationRecord
                     }
                   }
 
-  def status
-    STATUSES[status_id]
-  end
-
   def destroy_variations
     unless is_a?(Person::Variation)
       variations.destroy_all
@@ -93,11 +82,6 @@ class Person < ApplicationRecord
   def picture_size
     return if picture.nil? || picture.size < 10.megabytes
     errors.add(:picture, 'grösse kann maximal 10MB sein')
-  end
-
-  def valid_status
-    return if STATUSES.include?(status_id)
-    errors.add(:status_id, 'unbekannt')
   end
 
   def valid_person

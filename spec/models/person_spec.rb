@@ -12,7 +12,6 @@
 #  origin           :string
 #  role             :string
 #  title            :string
-#  status_id        :integer
 #  origin_person_id :integer
 #  variation_name   :string
 #  created_at       :datetime         not null
@@ -79,7 +78,6 @@ describe Person do
         expect(person.errors[:origin].first).to eq('muss ausgefüllt werden')
         expect(person.errors[:role].first).to eq('muss ausgefüllt werden')
         expect(person.errors[:title].first).to eq('muss ausgefüllt werden')
-        expect(person.errors[:status_id].first).to eq('muss ausgefüllt werden')
       end
 
       it 'should not be more than 100 characters' do
