@@ -52,14 +52,12 @@ export default Component.extend({
     },
 
     handleFocus(select, e) {
-      console.debug('EPS focused!');
       if (this.focusComesFromOutside(e)) {
         select.actions.open();
       }
     },
 
     handleBlur() {
-      console.debug('EPS blurred!');
     }
   }
 

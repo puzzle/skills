@@ -63,7 +63,7 @@ export default Component.extend({
     },
 
     createNewOffer(company) {
-      let newOffer = this.get('store').createRecord('offer', { company });
+      this.get('store').createRecord('offer', { company });
     },
 
     deleteOffer(offerToDelete) {
@@ -78,7 +78,7 @@ export default Component.extend({
       if (!options.includes(searchText)) {
         this.get('options').pushObject(searchText);
       }
-      if(selected == null)
+      if (selected == null)
       {
         // Trying to fix that it doesn't add the first custom created object
         selected = ([]);

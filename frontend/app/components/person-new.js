@@ -2,13 +2,12 @@ import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import PersonModel from '../models/person';
-import Controller from '@ember/controller';
 import { isBlank } from '@ember/utils';
 
 export default Component.extend({
   i18n: service(),
 
-  store: Ember.inject.service(),
+  store: service(),
 
   companiesToSelect: computed(function() {
     return this.get('store').findAll('company');
@@ -45,14 +44,12 @@ export default Component.extend({
     },
 
     handleFocus(select, e) {
-      console.debug('EPS focused!');
       if (this.focusComesFromOutside(e)) {
         select.actions.open();
       }
     },
 
     handleBlur() {
-      console.debug('EPS blurred!');
     }
   }
 });
