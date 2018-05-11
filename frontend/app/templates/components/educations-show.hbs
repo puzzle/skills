@@ -4,6 +4,7 @@
       <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseEducation">Ausbildung</a>
     </div>
     <div class="col-sm-6 text-right d-block">
+      <a onclick={{action (toggle 'educationNew' this)}} role="button" class="card-link text-white"><i class="fa {{~if educationNew ' abort' ' add'~}}"></i></a>
       <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseEducation"><i class="fa angle"></i></a>
     </div>
   </div>
@@ -18,11 +19,9 @@
             {{education-show selectEducation = (action (mut educationEditing)) education=education}}
           {{/if}}
         {{/each}}
+      {{component (if educationNew 'education-new')
+        personId=personId
+        done=(action (toggle 'educationNew' this))}}
     </div>
-    <button onclick={{action (toggle 'educationNew' this)}}
-              id="button-new-educations"
-            class="btn btn-link pull-right">
-      {{~if educationNew 'Abbrechen' 'Neu'~}}
-    </button>
   </div>
 </div>

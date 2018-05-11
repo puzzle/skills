@@ -662,6 +662,11 @@ form textarea{
   font-size: 20px;
 }
 
+.add:before {
+  content: "\f055";
+  font-size: 20px;
+}
+
 /* Table Styling in Tabs */
 .table-uebersicht {
   width: 100%;
@@ -739,4 +744,19 @@ button::-moz-focus-inner {
 /* Input grössen */
 .year {
   width: 75px;
+}
+
+/* Person */
+/* Korrektur Ember */
+.confirm-dialog-button {
+  display: initial !important;
+}
+
+.edit-symbols {
+  display: block;
+}
+
+.edit-symbols a {
+  margin: 0px 0px 0px 8px;
+
 }

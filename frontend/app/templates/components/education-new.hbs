@@ -1,25 +1,21 @@
 <form onsubmit={{action 'submit' newEducation}} id="form_newEducation">
-  <div id="newEducation-content-edit" class="row-fluid" style="display: block;">
-    <div class="span10">
-      <div class="row-fluid">
-        <div class="span2">
-          {{input value=newEducation.year_from type="number" class="input-mini" placeholder="von"}}
-        </div>
-        <div class="span10">
-          {{input value=newEducation.title class="input-xxlarge" placeholder="Ausbildungsart, erhaltener Titel"}}
+  <div id="newEducation-content-edit">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="input-group">
+          {{input value=newEducation.year_from type="number" class="input-mini form-control" placeholder="von"}}
+          {{input value=newEducation.year_to type="number" class="input-mini form-control" placeholder="bis"}}
         </div>
       </div>
-      <div class="row-fluid">
-        <div class="span2">
-          {{input value=newEducation.year_to type="number" class="input-mini" placeholder="bis"}}
-        </div>
-        <div class="span10">
-          {{input value=newEducation.location class="input-xxlarge" placeholder="Ausbildungsort"}}
+      <div class="col-sm-7">
+        <div class="input-group">
+          {{input value=newEducation.title class="input-xxlarge form-control" placeholder="Ausbildungsart, erhaltener Titel"}}
+          {{input value=newEducation.location class="input-xxlarge form-control" placeholder="Ausbildungsort"}}
         </div>
       </div>
-    </div>
-    <div class="span2">
-      <button action="submit" class="btn btn-primary btn-block btn-mini" > Speichern </button>
+      <div class="col-sm-2 text-right">
+        <a onclick={{action 'submit' newEducation}} role="button" id="submit-button" class="text-dark"><i class="fa save"></i></a>
+      </div>
     </div>
   </div>
 </form>
