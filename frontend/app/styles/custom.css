@@ -762,7 +762,7 @@ button::-moz-focus-inner {
 }
 
 .zeile {
-  height: 80px;
+  min-height: 80px;
   padding: 10px;
   border-width: 1px 1px 0px 1px;
   border-style: solid;
@@ -784,5 +784,5 @@ button::-moz-focus-inner {
 }
 
 .zeile .centered-content-input {
-  height: 60px;
+  min-height: 60px;
 }
