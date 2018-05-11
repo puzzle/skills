@@ -1,4 +1,4 @@
- <form onsubmit={{action 'submit' newActivity}} id="form_newActivity">
+<form onsubmit={{action 'submit' newActivity}} id="form_newActivity">
   <div id="newEducation-content-edit" class="zeile">
     <div class="row">
       <div class="col-sm-3">
@@ -7,9 +7,11 @@
           {{input value=newActivity.year_to type="number" class="input-mini form-control" placeholder="bis"}}
         </div>
       </div>
-      <div class="col-sm-7">
-        <div class="input-group centered-content-input">
-          {{input value=newActivity.role class="input-xxlarge form-control" placeholder="Funktion oder Rolle"}}
+      <div class="col-sm-7 row">
+        <div class="col-sm-4">
+          {{input value=newActivity.role class="centered-content-input form-control" placeholder="Rolle"}}
+        </div>
+        <div class="col-sm-8 centered-content-input">
           {{textarea placeholder="Firmenangaben und Beschreibung der Tätigkeit"
                      value=newActivity.description class="input-xxlarge form-control"}}
         </div>
