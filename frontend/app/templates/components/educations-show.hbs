@@ -11,13 +11,15 @@
 </div>
 <div id="collapseEducation" class="collapse show border border-primary rounded-bottom">
   <div class="card-body">
-    <div class="container-fluid" id="competence-content-show">
+    <div id="competence-content-show">
         {{#each sortedEducations as |education|}}
-          {{#if (eq educationEditing education)}}
-            {{education-edit education=education done=(action (toggle 'educationEditing' this))}}
-          {{else}}
-            {{education-show selectEducation = (action (mut educationEditing)) education=education}}
-          {{/if}}
+          <div class="zeile">
+            {{#if (eq educationEditing education)}}
+              {{education-edit education=education done=(action (toggle 'educationEditing' this))}}
+            {{else}}
+              {{education-show selectEducation = (action (mut educationEditing)) education=education}}
+            {{/if}}
+          </div>
         {{/each}}
       {{component (if educationNew 'education-new')
         personId=personId

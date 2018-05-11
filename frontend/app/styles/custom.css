@@ -760,3 +760,29 @@ button::-moz-focus-inner {
   margin: 0px 0px 0px 8px;
 
 }
+
+.zeile {
+  height: 80px;
+  padding: 10px;
+  border-width: 1px 1px 0px 1px;
+  border-style: solid;
+  border-color: black;
+}
+
+.zeile:first-child {
+  border-radius: 10px 10px 0px 0px;
+}
+
+.zeile:last-child {
+  border-width: 1px;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.zeile .centered-content {
+  line-height: 60px;
+  vertical-align: middle;
+}
+
+.zeile .centered-content-input {
+  height: 60px;
+}
