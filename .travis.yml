@@ -21,7 +21,6 @@ install:
   - bundle update rubocop
   - npm install -g ember-cli
   - npm i -g npm
-  - npm install -g bower
   - npm --prefix ./frontend install ./frontend
 
 before_script:
