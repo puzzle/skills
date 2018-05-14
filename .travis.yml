@@ -8,6 +8,9 @@ language: ruby, node_js
 node_js:
   - node
 
+addons:
+  firefox: "latest"
+
 cache: bundler
 
 rvm:
