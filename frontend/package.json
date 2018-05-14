@@ -21,7 +21,6 @@
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^3.0.0",
-    "ember-basic-dropdown": "^0.33.5",
     "ember-bootstrap-datepicker": "^2.0.1",
     "ember-changeset": "^1.2.3",
     "ember-changeset-validations": "^1.2.7",
@@ -46,7 +45,6 @@
     "ember-cli-uglify": "^2.0.0",
     "ember-collapsible-panel": "^2.1.1",
     "ember-composable-helpers": "^2.0.1",
-    "ember-concurrency": "^0.8.3",
     "ember-confirm-dialog": "^1.2.1",
     "ember-data": "~3.0.0",
     "ember-export-application-global": "^2.0.0",
