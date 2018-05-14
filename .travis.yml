@@ -33,4 +33,4 @@ script:
   - bundle exec rake spec
   - bundle exec rake brakeman
   - bundle exec rake rubocop
-  - bundle exec rake spec:frontend
+  - JOBS=1 bundle exec rake spec:frontend
