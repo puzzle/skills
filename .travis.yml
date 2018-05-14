@@ -26,6 +26,7 @@ install:
 
 before_script:
   - bundle exec rake frontend:prepare
+  - export DISPLAY=:99.0
   - psql -c 'create database travis_ci_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
   - bundle exec rake db:setup
