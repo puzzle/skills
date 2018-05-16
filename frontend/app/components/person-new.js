@@ -1,12 +1,13 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import PersonModel from '../models/person';
+import { inject } from '@ember/service';
+
 
 export default Component.extend({
   i18n: service(),
 
-  store: Ember.inject.service(),
+  store: inject(),
 
   companiesToSelect: computed(function() {
     return this.get('store').findAll('company');
