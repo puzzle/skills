@@ -8,7 +8,7 @@
 namespace :frontend do
   desc 'prepare for running front end tests'
   task :prepare do
-    sh 'cd frontend && yarn install && bower install'
+    sh 'cd frontend && yarn install'
   end
 end
 
