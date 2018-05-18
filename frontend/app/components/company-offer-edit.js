@@ -32,15 +32,6 @@ export default Component.extend({
     return !blurredEl.classList.contains('ember-power-select-search-input');
   },
 
-  didDestroyElement() {
-    let offers = this.get('company.offers');
-    offers.forEach(offer => {
-      if(offer.get('isNew')) {
-        offer.destroyRecord();
-      }
-    });
-  },
-
   actions: {
 
     submit(company) {
@@ -56,15 +47,27 @@ export default Component.extend({
         )
         // TODO
         .catch(() => {
-          let offer = this.get('offer');
-          let errors = offer.get('errors').slice(); // clone array as rollbackAttributes mutates
+          let offers = this.get('company.offers');
+          offers.forEach(offer => {
+            let errors = offer.get('errors').slice();
 
-          offer.rollbackAttributes();
-          errors.forEach(({ attribute, message }) => {
-            let translated_attribute = this.get('i18n').t(`offer.${attribute}`)['string']
-            this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
+            offer.rollbackAttributes();
+            errors.forEach(({ attribute, message }) => {
+              let translated_attribute = this.get('i18n').t(`offer.${attribute}`)['string']
+              this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
+            });
           });
         });
+    },
+
+    abortEdit() {
+      let offers = this.get('company.offers');
+      offers.forEach(offer => {
+        if(offer.get('isNew')) {
+          offer.destroyRecord();
+        }
+      });
+      this.sendAction('companyOfferEditing');
     },
 
     handleFocus(select, e) {
