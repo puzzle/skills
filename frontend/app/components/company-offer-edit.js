@@ -36,8 +36,6 @@ export default Component.extend({
 
     submit(company) {
       company.save()
-        .then (() => this.sendAction('submit'))
-        .then (() => this.get('notify').success('Successfully saved!'))
         .then (() =>
           Promise.all([
             ...company
@@ -45,13 +43,18 @@ export default Component.extend({
               .map(offer => offer.save())
           ])
         )
+        .then (() => this.sendAction('submit'))
+        .then (() => this.get('notify').success('Successfully saved!'))
         // TODO
         .catch(() => {
           let offers = this.get('company.offers');
           offers.forEach(offer => {
             let errors = offer.get('errors').slice();
 
-            offer.rollbackAttributes();
+            if (offer.get('id') != null) {
+              offer.rollbackAttributes();
+            }
+
             errors.forEach(({ attribute, message }) => {
               let translated_attribute = this.get('i18n').t(`offer.${attribute}`)['string']
               this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
@@ -63,7 +66,7 @@ export default Component.extend({
     abortEdit() {
       let offers = this.get('company.offers').toArray();
       offers.forEach(offer => {
-        if(offer.get('isNew')) {
+        if (offer.get('isNew')) {
           offer.destroyRecord();
         }
       });

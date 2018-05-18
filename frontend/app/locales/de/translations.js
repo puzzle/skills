@@ -55,6 +55,20 @@ export default {
     partnermanager: 'Partnermanager',
     contactPerson: 'Ansprechperson',
     level: 'Level'
+  },
+
+  'location': {
+    location: 'Standort'
+  },
+
+  'employee-Quantity': {
+    category: 'Kategorie',
+    quantity: 'Anzahl'
+  },
+
+  'offer': {
+    category: 'Kategorie',
+    offer: 'Angebot'
   }
 
 
