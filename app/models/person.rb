@@ -27,6 +27,7 @@ class Person < ApplicationRecord
   belongs_to :company
 
   mount_uploader :picture, PictureUploader
+  has_many :person_competences, dependent: :destroy
   has_many :projects, dependent: :destroy
   has_many :activities, dependent: :destroy
   has_many :advanced_trainings, dependent: :destroy
