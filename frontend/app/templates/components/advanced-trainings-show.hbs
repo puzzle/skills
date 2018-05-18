@@ -15,8 +15,8 @@
       <div id="advancedtraining-content-show">
         {{#each sortedAdvancedTrainings as |advanced-training|}}
           <div class="zeile">
-            {{#if (eq advanced-trainingEditing advanced-training)}}
-              {{advanced-training-edit advanced-training=advanced-trainingEditing done=(action (toggle 'advanced-trainingEditing' this))}}
+            {{#if advanced-trainingEditing}}
+              {{advanced-training-edit advanced-training=advanced-training done=(action (toggle 'advanced-trainingEditing' this))}}
             {{else}}
               {{advanced-training-show selectAdvancedTraining = (action (mut advanced-trainingEditing)) advanced-training=advanced-training}}
             {{/if}}

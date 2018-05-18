@@ -15,8 +15,8 @@
       <div id="competence-content-show">
         {{#each sortedActivities as |activity|}}
           <div class="zeile">
-            {{#if (eq activityEditing activity)}}
-              {{activity-edit activity=activityEditing done=(action (toggle 'activityEditing' this))}}
+            {{#if activityEditing}}
+              {{activity-edit activity=activity done=(action (toggle 'activityEditing' this))}}
             {{else}}
               {{activity-show selectActivity = (action (mut activityEditing)) activity=activity}}
             {{/if}}

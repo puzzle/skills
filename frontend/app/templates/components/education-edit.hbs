@@ -1,38 +1,35 @@
-{{#with (changeset education validations) as |changeset|}}
-  <form onsubmit={{action 'submit' changeset}} id="form_education">
-    <div id="education-content-edit">
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="input-group centered-content-input">
-            {{input value=changeset.year_from type="number" class="year form-control" placeholder="von"}}
-            {{input value=changeset.year_to type="number" class="year form-control" placeholder="bis"}}
-          </div>
-        </div>
-        <div class="col-sm-7">
-          <div class="input-group centered-content-input">
-            {{input value=changeset.title class="input-xxlarge form-control" placeholder="Ausbildungsart, erhaltener Titel"}}
-            {{input value=changeset.location class="input-xxlarge form-control" placeholder="Ausbildungsort"}}
-          </div>
-        </div>
-        <div class="col-sm-2 edit-symbols text-right centered-content">
-          <a onclick={{action 'submit' changeset}} role="button" id="submit-button" class="text-dark"><i class="fa save"></i></a>
-
-          {{#confirm-dialog
-            text="Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?"
-            confirmButton="Löschen"
-            cancelButton="Abbrechen"
-            confirmAction=(action 'confirmDestroy' education)
-            confirmButtonClass="btn btn-danger"
-            cancelButtonClass="btn pull-right"
-            okCssIcon="fa fa-check-circle-o"
-            cancelCssIcon="fa fa-ban"
-          }}
-            <a role="button" class="card-link text-dark"><i class="fa trash"></i></a>
-          {{/confirm-dialog}}
-
-          <a onclick={{action done}} role="button" class="text-dark"><i class="fa abort"></i></a>
+<form onsubmit={{action 'submit' education}} id="form_education">
+  <div id="education-content-edit">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="input-group centered-content-input">
+          {{input value=education.year_from type="number" class="year form-control" placeholder="von"}}
+          {{input value=education.year_to type="number" class="year form-control" placeholder="bis"}}
         </div>
       </div>
+      <div class="col-sm-7">
+        <div class="input-group centered-content-input">
+          {{input value=education.title class="input-xxlarge form-control" placeholder="Ausbildungsart, erhaltener Titel"}}
+          {{input value=education.location class="input-xxlarge form-control" placeholder="Ausbildungsort"}}
+        </div>
+      </div>
+      <div class="col-sm-2 edit-symbols text-right centered-content">
+        <a href="#" onclick={{action 'submit' education}} role="button" id="submit-button" class="text-dark"><i class="fa save"></i></a>
+
+        {{#confirm-dialog
+          text="Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?"
+          confirmButton="Löschen"
+          cancelButton="Abbrechen"
+          confirmAction=(action 'confirmDestroy' education)
+          confirmButtonClass="btn btn-danger"
+          cancelButtonClass="btn pull-right"
+          okCssIcon="fa fa-check-circle-o"
+          cancelCssIcon="fa fa-ban"
+        }}
+          <a role="button" class="card-link text-dark"><i class="fa trash"></i></a>
+        {{/confirm-dialog}}
+        <a onclick={{action done}} role="button" class="text-dark"><i class="fa abort"></i></a>
+      </div>
     </div>
-  </form>
-{{/with}}
+  </div>
+</form>

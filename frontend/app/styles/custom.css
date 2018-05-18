@@ -631,6 +631,11 @@ form textarea{
   font-weight: bold;
 }
 
+a:hover .fa, a:active .fa, a:focus .fa {
+  color: #61B44B;
+  transition: 0.3s;
+}
+
 [data-toggle="collapse"].collapsed .angle:before {
   content: "\f107";
   font-size: 20px;

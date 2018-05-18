@@ -14,7 +14,7 @@
     <div id="competence-content-show">
       {{#each sortedEducations as |education|}}
         <div class="zeile">
-          {{#if (eq educationEditing education)}}
+          {{#if educationEditing}}
             {{education-edit education=education done=(action (toggle 'educationEditing' this))}}
           {{else}}
             {{education-show selectEducation = (action (mut educationEditing)) education=education}}
