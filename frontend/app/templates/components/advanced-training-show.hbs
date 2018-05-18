@@ -1,20 +1,16 @@
-<tr id="template_advancedTraining_record" class="template">
-  <td id="show_year" class="show-year-cell">
+<div class="row">
+  <div class="col-sm-3 centered-content text-center">
     {{advanced-training.year_from}}
     {{#if (eq advanced-training.year_to null)}}
       - heute
     {{else if (not-eq advanced-training.year_from advanced-training.year_to)}}
       - {{advanced-training.year_to}}
     {{/if}}
-  </td>
-  <td id="show_description" class="show-description-cell">
+  </div>
+  <div class="col-sm-8 centered-content">
     {{advanced-training.description}}
-  </td>
-  <td>
-    <button onclick={{action selectAdvancedTraining advanced-training}}
-        id="button-edit-advancedTrainings"
-        class="btn btn-link">
-      Editieren
-    </button>
-  </td>
-</tr>
+  </div>
+  <div class="col-sm-1 text-right centered-content">
+    <a onclick={{action selectAdvancedTraining advanced-training}} role="button" class="card-link text-dark"><i class="fa edit"></i></a>
+  </div>
+</div>

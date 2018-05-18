@@ -1,36 +1,30 @@
-<section id="activity" class="section">
-  <button onclick={{action (toggle 'activityNew' this)}}
-      id="button-new-activities"
-      class="btn btn-link pull-right">
-    {{if activityNew 'Abbrechen' 'Neu'}}
-  </button>
-  {{model-header title="Aktivitäten"}}
-  {{#if activityEditing}}
-    {{activity-edit activity=activityEditing done=(action (toggle 'activityEditing' this))
-    }}
-  {{else}}
-    {{#if activityNew}}
-      {{activity-new personId=personId done=(action (toggle 'activityNew' this))}}
-    {{else}}
-      <div class="row-fluid">
-        <div class="span12">
-          <table id="activity-content-show-table"
-            class="table table-hover table-striped">
-            <thead>
-              <tr>
-                <th>Zeit</th>
-                <th>Aktivität</th>
-                <th class="action-header">Aktion</th>
-              </tr>
-            </thead>
-            <tbody id="activity-content-show">
-              {{#each sortedActivities as |activity|}}
-                {{activity-show selectActivity = (action (mut activityEditing)) activity=activity}}
-              {{/each}}
-            </tbody>
-          </table>
-        </div>
+<div id="activity">
+  <div class="card-header bg-primary">
+    <div class="row">
+      <div class="col-sm-6">
+        <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseActivity">Stationen</a>
       </div>
-    {{/if}}
-  {{/if}}
-</section>
+      <div class="col-sm-6 text-right d-block">
+        <a onclick={{action (toggle 'activityNew' this)}} role="button" class="card-link text-white"><i class="fa {{~if activityNew ' abort' ' add'~}}"></i></a>
+        <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseActivity"><i class="fa angle"></i></a>
+      </div>
+    </div>
+  </div>
+  <div id="collapseActivity" class="collapse show border border-primary rounded-bottom">
+    <div class="card-body">
+      <div id="competence-content-show">
+        {{#each filteredActivities as |activity|}}
+          <div class="zeile">
+            {{#if activityEditing}}
+              {{activity-edit activity=activity done=(action (toggle 'activityEditing' this))}}
+            {{else}}
+              {{activity-show selectActivity = (action (mut activityEditing)) activity=activity}}
+            {{/if}}
+          </div>
+        {{/each}}
+        {{component (if activityNew 'activity-new')
+            personId=personId done=(action (toggle 'activityNew' this))}}
+      </div>
+    </div>
+  </div>
+</div>

@@ -17,13 +17,13 @@ export default Component.extend({
     submit(newPerson) {
       return newPerson.save()
         .then(() => this.sendAction('submit', newPerson))
-        .then(() => this.get('notify').success('Person wurde erstellt!'))
-        .catch(() => {
-          this.get('newPerson.errors').forEach(({ attribute, message }) => {
-            let translated_attribute = this.get('i18n').t(`person.${attribute}`)['string']
-            this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
-          });
-        });
+    .then(() => this.get('notify').success('Person wurde erstellt!'))
+    .catch(() => {
+        this.get('newPerson.errors').forEach(({ attribute, message }) => {
+        let translated_attribute = this.get('i18n').t(`person.${attribute}`)['string']
+        this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
+    });
+    });
     }
   }
 });
