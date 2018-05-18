@@ -1,34 +1,39 @@
-<section id="advancedTraining" class="section">
-  <button onclick={{action (toggle 'advanced-trainingNew' this)}}
-      id="button-new-advanced-trainings"
-      class="btn btn-link pull-right">
-    {{if advanced-trainingNew 'Abbrechen' 'Neu'}}
-  </button>
-  {{model-header title="Weiterbildung"}}
-  {{#if advanced-trainingEditing}}
-    {{advanced-training-edit advanced-training=advanced-trainingEditing done=(action (toggle 'advanced-trainingEditing' this))}}
-  {{else}}
-    {{#if advanced-trainingNew}}
-      {{advanced-training-new personId=personId done=(action (toggle 'advanced-trainingNew' this))}}
-    {{else}}
-      <div id="advancedtraining-content-show" class="row-fluid">
-        <div class="span12">
-          <table class="table table-striped table-hover">
-            <thead>
-              <tr>
-                <th>Zeit</th>
-                <th>Beschreibung</th>
-                <th class="action-header">Aktion</th>
-              </tr>
-            </thead>
-            <tbody id="advanced-training-content-show">
-              {{#each sortedAdvancedTrainings as |advanced-training|}}
-                {{advanced-training-show selectAdvancedTraining = (action (mut advanced-trainingEditing)) advanced-training=advanced-training}}
-              {{/each}}
-            </tbody>
-          </table>
-        </div>
+<div class="advancedTraining">
+  <div class="card-header bg-primary">
+    <div class="row">
+      <div class="col-sm-6">
+        <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseAdvancedTraining">Weiterbildung</a>
       </div>
-    {{/if}}
-  {{/if}}
-</section>
+      <div class="col-sm-6 text-right d-block">
+        <a onclick={{action (toggle 'advanced-trainingNew' this)}} role="button" class="card-link text-white"><i class="fa {{~if advanced-trainingNew ' abort' ' add'~}}"></i></a>
+        <a onclick={{advancedTrainingsEditing}} role="button" class="card-link text-white"><i class="fa edit"></i></a>
+        <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseAdvancedTraining"><i class="fa angle"></i></a>
+      </div>
+    </div>
+  </div>
+  <div id="collapseAdvancedTraining" class="collapse show border border-primary rounded-bottom">
+    <div class="card-body">
+      <div id="advancedtraining-content-show">
+        {{#each filteredAdvancedTrainings as |advanced-training|}}
+          <div class="zeile">
+            <div class="row">
+              <div class="col-sm-3 centered-content text-center">
+                {{advanced-training.year_from}}
+                {{#if (eq advanced-training.year_to null)}}
+                  - heute
+                {{else if (not-eq advanced-training.year_from advanced-training.year_to)}}
+                  - {{advanced-training.year_to}}
+                {{/if}}
+              </div>
+              <div class="col-sm-9 centered-content">
+                {{advanced-training.description}}
+              </div>
+            </div>
+          </div>
+        {{/each}}
+        {{component (if advanced-trainingNew 'advanced-training-new')
+            personId=personId done=(action (toggle 'advanced-trainingNew' this))}}
+      </div>
+    </div>
+  </div>
+</div>

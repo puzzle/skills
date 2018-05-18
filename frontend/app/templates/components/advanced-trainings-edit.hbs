@@ -1,0 +1,51 @@
+<div class="advancedTraining">
+  <div class="card-header bg-primary">
+    <div class="row">
+      <div class="col-sm-6">
+        <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseAdvancedTraining">Weiterbildung</a>
+      </div>
+      <div class="col-sm-6 text-right d-block">
+        <a onclick={{action 'submit' person}} role="button" class="card-link text-white"><i class="fa save"></i></a>
+        <a onclick={{advancedTrainingsEditing}} role="button" class="card-link text-white"><i class="fa abort"></i></a>
+        <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseAdvancedTraining"><i class="fa angle"></i></a>
+      </div>
+    </div>
+  </div>
+  <div id="collapseAdvancedTraining" class="collapse show border border-primary rounded-bottom">
+    <div class="card-body">
+      <div id="advancedtraining-content-show">
+        {{#each filteredAdvancedTrainings as |advanced-training|}}
+          <div class="zeile">
+            <div class="row">
+              <div class="col-sm-3">
+                <div class="input-group centered-content-input">
+                  {{input value=advanced-training.year_from type="number" class="year form-control" placeholder="von"}}
+                  {{input value=advanced-training.year_to type="number" class="year form-control" placeholder="bis"}}
+                </div>
+              </div>
+              <div class="col-sm-7">
+                <div class="input-group centered-content-input">
+                  {{textarea value=advanced-training.description class="input-xxlarge form-control" placeholder="Beschreibung"}}
+                </div>
+              </div>
+              <div class="col-sm-2 edit-symbols text-right centered-content">
+                {{#confirm-dialog
+                  text="Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?"
+                  confirmButton="Löschen"
+                  cancelButton="Abbrechen"
+                  confirmAction=(action 'confirmDestroy' advanced-training)
+                  confirmButtonClass="btn btn-danger"
+                  cancelButtonClass="btn pull-right"
+                  okCssIcon="fa fa-check-circle-o"
+                  cancelCssIcon="fa fa-ban"
+                }}
+                  <a href="#" role="button" class="card-link text-dark"><i class="fa trash"></i></a>
+                {{/confirm-dialog}}
+              </div>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>

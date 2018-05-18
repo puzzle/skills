@@ -21,20 +21,6 @@ hr {
 }
 
 
-/* Override Bootstrap
--------------------------------------------------- */
-  .form-horizontal .control-group {
-    margin-bottom: 10px !important;
-  }
-
-  .form-horizontal .control-label{
-    width: 90px !important;
-  }
-
-  .form-horizontal .controls {
-    margin-left: 100px !important;
-  }
-
 
   /* Main Content
   -------------------------------------------------- */
@@ -645,6 +631,11 @@ form textarea{
   font-weight: bold;
 }
 
+a:hover .fa, a:active .fa, a:focus .fa {
+  color: #61B44B;
+  transition: 0.3s;
+}
+
 [data-toggle="collapse"].collapsed .angle:before {
   content: "\f107";
   font-size: 20px;
@@ -752,4 +743,51 @@ a:focus {
 
 button::-moz-focus-inner {
   border: 0;
+}
+
+
+/* Input grössen */
+.year {
+  width: 75px;
+}
+
+/* Person */
+/* Korrektur Ember */
+.confirm-dialog-button {
+  display: initial !important;
+}
+
+.edit-symbols {
+  display: block;
+}
+
+.edit-symbols a {
+  margin: 0px 0px 0px 8px;
+
+}
+
+.zeile {
+  min-height: 80px;
+  padding: 10px;
+  border-width: 1px 1px 0px 1px;
+  border-style: solid;
+  border-color: black;
+}
+
+.zeile:first-child {
+  border-radius: 10px 10px 0px 0px;
+}
+
+.zeile:last-child {
+  border-width: 1px;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.zeile .centered-content {
+  line-height: 60px;
+  vertical-align: middle;
+}
+
+.zeile .centered-content-input {
+  min-height: 60px;
 }

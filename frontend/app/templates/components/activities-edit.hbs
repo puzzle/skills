@@ -1,0 +1,56 @@
+<div id="activity">
+  <div class="card-header bg-primary">
+    <div class="row">
+      <div class="col-sm-6">
+        <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseActivity">Stationen</a>
+      </div>
+      <div class="col-sm-6 text-right d-block">
+        <a onclick={{action 'submit' person}} role="button" class="card-link text-white"><i class="fa save"></i></a>
+        <a onclick={{activitiesEditing}} role="button" class="card-link text-white"><i class="fa abort"></i></a>
+        <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseActivity"><i class="fa angle"></i></a>
+      </div>
+    </div>
+  </div>
+  <div id="collapseActivity" class="collapse show border border-primary rounded-bottom">
+    <div class="card-body">
+      <div id="competence-content-show">
+        {{#each person.activities as |activity|}}
+          <div class="zeile">
+            <div class="row">
+              <div class="col-sm-3">
+                <div class="input-group centered-content-input">
+                  {{input value=activity.year_from type="number" class="year form-control" placeholder="von"}}
+                  {{input value=activity.year_to type="number" class="year form-control" placeholder="bis"}}
+                </div>
+              </div>
+              <div class="col-sm-7 row">
+                <div class="col-sm-3">
+                  {{input value=activity.role class="form-control centered-content-input" placeholder="Rolle"}}
+                </div>
+                <div class="col-sm-9 centered-content-input">
+                  {{textarea placeholder="Firmenangaben und Beschreibung der Tätigkeit"
+                             value=activity.description class="form-control"}}
+                </div>
+              </div>
+              <div class="col-sm-2 edit-symbols text-right centered-content">
+                {{#confirm-dialog
+                  text="Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?"
+                  confirmButton="Löschen"
+                  cancelButton="Abbrechen"
+                  confirmAction=(action 'confirmDestroy' activity)
+                  confirmButtonClass="btn btn-danger"
+                  cancelButtonClass="btn pull-right"
+                  okCssIcon="fa fa-check-circle-o"
+                  cancelCssIcon="fa fa-ban"
+                }}
+                  <a href="#" role="button" class="card-link text-dark"><i class="fa trash"></i></a>
+                {{/confirm-dialog}}
+              </div>
+            </div>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>
+{{yield}}

@@ -1,28 +1,24 @@
-<form onsubmit={{action 'submit' newActivity}} id="form_education">
-  <div id="education-content-edit" class="row-fluid" style="display: block;">
-    <div class="span10">
-      <div class="row-fluid">
-        <div class="span2">
-          {{input placeholder="von" value=newActivity.year_from type="number" class="input-mini"}}
-        </div>
-        <div class="span10">
-          {{input placeholder="Funktion oder Rolle" value=newActivity.role class="input-xxlarge"}}
+<form onsubmit={{action 'submit' newActivity}} id="form_newActivity">
+  <div id="newEducation-content-edit" class="zeile">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="input-group centered-content-input">
+          {{input value=newActivity.year_from type="number" class="input-mini form-control" placeholder="von"}}
+          {{input value=newActivity.year_to type="number" class="input-mini form-control" placeholder="bis"}}
         </div>
       </div>
-      <div class="row-fluid">
-        <div class="span2">
-          {{input placeholder="bis" value=newActivity.year_to type="number" class="input-mini"}}
+      <div class="col-sm-7 row">
+        <div class="col-sm-4">
+          {{input value=newActivity.role class="centered-content-input form-control" placeholder="Rolle"}}
         </div>
-        <div class="span10">
+        <div class="col-sm-8 centered-content-input">
           {{textarea placeholder="Firmenangaben und Beschreibung der Tätigkeit"
-                  value=newActivity.description class="input-xxlarge"}}
+                     value=newActivity.description class="input-xxlarge form-control"}}
         </div>
       </div>
-    </div>
-    <div class="span2">
-      <button class="btn btn-primary btn-block btn-mini">
-        Speichern
-      </button>
+      <div class="col-sm-2 centered-content text-right">
+        <a href="#" onclick={{action 'submit' newActivity}} role="button" id="submit-button" class="text-dark"><i class="fa save"></i></a>
+      </div>
     </div>
   </div>
 </form>
