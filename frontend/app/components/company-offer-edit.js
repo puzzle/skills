@@ -63,7 +63,8 @@ export default Component.extend({
     },
 
     createNewOffer(company) {
-      this.get('store').createRecord('offer', { company });
+      let offer = this.get('store').createRecord('offer', { company });
+      offer.set('offer', []);
     },
 
     deleteOffer(offerToDelete) {
