@@ -32,6 +32,20 @@ export default Component.extend({
     return !blurredEl.classList.contains('ember-power-select-search-input');
   },
 
+  didDestroyElement() {
+    let offers = this.get('company.offers');
+    offers.forEach(offer => {
+      if(offer.get('isNew')) {
+        offer.destroyRecord();
+      }
+    });
+  },
+
+willDestroyElement() {
+    if (this.get('newEducation.isNew')) {
+      this.get('newEducation').destroyRecord();
+    }
+  },
   actions: {
 
     submit(company) {
