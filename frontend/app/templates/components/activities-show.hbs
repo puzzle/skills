@@ -6,6 +6,7 @@
       </div>
       <div class="col-sm-6 text-right d-block">
         <a onclick={{action (toggle 'activityNew' this)}} role="button" class="card-link text-white"><i class="fa {{~if activityNew ' abort' ' add'~}}"></i></a>
+        <a onclick={{activitiesEditing}} role="button" class="card-link text-white"><i class="fa edit"></i></a>
         <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseActivity"><i class="fa angle"></i></a>
       </div>
     </div>
@@ -13,13 +14,23 @@
   <div id="collapseActivity" class="collapse show border border-primary rounded-bottom">
     <div class="card-body">
       <div id="competence-content-show">
+        {{log filteredActivities}}
         {{#each filteredActivities as |activity|}}
           <div class="zeile">
-            {{#if activityEditing}}
-              {{activity-edit activity=activity done=(action (toggle 'activityEditing' this))}}
-            {{else}}
-              {{activity-show selectActivity = (action (mut activityEditing)) activity=activity}}
-            {{/if}}
+            <div class="row">
+              <div class="col-sm-3 centered-content text-center">
+                {{activity.year_from}}
+                {{#if (eq activity.year_to null)}}
+                  - heute
+                {{else if (not-eq activity.year_from activity.year_to)}}
+                  - {{activity.year_to}}
+                {{/if}}
+              </div>
+              <div class="col-sm-9">
+                <strong>{{activity.role}}</strong>
+                <br>{{~activity.description~}}
+              </div>
+            </div>
           </div>
         {{/each}}
         {{component (if activityNew 'activity-new')

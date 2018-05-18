@@ -49,7 +49,12 @@
 
     {{!Aktivitäten Tab}}
     <div class="card mb-3">
-      {{activities-show activities=model.activities personId=model.id}}
+      {{component (if activitiesEditing 'activities-edit' 'activities-show' )
+                  activities=model.activities
+                  person=model
+                  submit=(action (toggle 'activitiesEditing' this))
+                  activitiesEditing=(action (toggle 'activitiesEditing' this))
+      }}
     </div>
 
     {{!Projekte Tab}}
