@@ -61,7 +61,7 @@ export default Component.extend({
     },
 
     abortEdit() {
-      let offers = this.get('company.offers');
+      let offers = this.get('company.offers').toArray();
       offers.forEach(offer => {
         if(offer.get('isNew')) {
           offer.destroyRecord();

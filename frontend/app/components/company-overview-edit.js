@@ -45,6 +45,23 @@ export default Component.extend({
 
     },
 
+    abortEdit() {
+      let locations = this.get('company.locations').toArray();
+      let employeeQuantities = this.get('company.employeeQuantities').toArray();
+
+      locations.forEach(location => {
+        if(location.get('isNew')) {
+          location.destroyRecord();
+        }
+      });
+      employeeQuantities.forEach(quantity => {
+        if(quantity.get('isNew')) {
+          location.destroyRecord();
+        }
+      });
+      this.sendAction('companyEditing');
+    },
+
     deleteCompany(companyToDelete) {
       $('.modal-backdrop').remove();
       companyToDelete
