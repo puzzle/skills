@@ -13,16 +13,14 @@
   <div id="collapseAdvancedTraining" class="collapse show border border-primary rounded-bottom">
     <div class="card-body">
       <div id="advancedtraining-content-show">
-        {{#each sortedAdvancedTrainings as |advanced-training|}}
-          {{#if advanced-training.id}}
-            <div class="zeile">
-              {{#if advanced-trainingEditing}}
-                {{advanced-training-edit advanced-training=advanced-training done=(action (toggle 'advanced-trainingEditing' this))}}
-              {{else}}
-                {{advanced-training-show selectAdvancedTraining = (action (mut advanced-trainingEditing)) advanced-training=advanced-training}}
-              {{/if}}
-            </div>
-          {{/if}}
+        {{#each filteredAdvancedTrainings as |advanced-training|}}
+          <div class="zeile">
+            {{#if advanced-trainingEditing}}
+              {{advanced-training-edit advanced-training=advanced-training done=(action (toggle 'advanced-trainingEditing' this))}}
+            {{else}}
+              {{advanced-training-show selectAdvancedTraining = (action (mut advanced-trainingEditing)) advanced-training=advanced-training}}
+            {{/if}}
+          </div>
         {{/each}}
         {{component (if advanced-trainingNew 'advanced-training-new')
             personId=personId done=(action (toggle 'advanced-trainingNew' this))}}

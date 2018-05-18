@@ -13,18 +13,15 @@
   <div id="collapseActivity" class="collapse show border border-primary rounded-bottom">
     <div class="card-body">
       <div id="competence-content-show">
-        {{#each sortedActivities as |activity|}}
-          {{#if activity.id}}
-            <div class="zeile">
-              {{#if activityEditing}}
-                {{activity-edit activity=activity done=(action (toggle 'activityEditing' this))}}
-              {{else}}
-                {{activity-show selectActivity = (action (mut activityEditing)) activity=activity}}
-              {{/if}}
-            </div>
-          {{/if}}
+        {{#each filteredActivities as |activity|}}
+          <div class="zeile">
+            {{#if activityEditing}}
+              {{activity-edit activity=activity done=(action (toggle 'activityEditing' this))}}
+            {{else}}
+              {{activity-show selectActivity = (action (mut activityEditing)) activity=activity}}
+            {{/if}}
+          </div>
         {{/each}}
-        {{log activityNew}}
         {{component (if activityNew 'activity-new')
             personId=personId done=(action (toggle 'activityNew' this))}}
       </div>
