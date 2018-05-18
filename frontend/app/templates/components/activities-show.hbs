@@ -14,14 +14,17 @@
     <div class="card-body">
       <div id="competence-content-show">
         {{#each sortedActivities as |activity|}}
-          <div class="zeile">
-            {{#if activityEditing}}
-              {{activity-edit activity=activity done=(action (toggle 'activityEditing' this))}}
-            {{else}}
-              {{activity-show selectActivity = (action (mut activityEditing)) activity=activity}}
-            {{/if}}
-          </div>
+          {{#if activity.id}}
+            <div class="zeile">
+              {{#if activityEditing}}
+                {{activity-edit activity=activity done=(action (toggle 'activityEditing' this))}}
+              {{else}}
+                {{activity-show selectActivity = (action (mut activityEditing)) activity=activity}}
+              {{/if}}
+            </div>
+          {{/if}}
         {{/each}}
+        {{log activityNew}}
         {{component (if activityNew 'activity-new')
             personId=personId done=(action (toggle 'activityNew' this))}}
       </div>

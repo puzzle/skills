@@ -13,13 +13,15 @@
   <div class="card-body">
     <div id="competence-content-show">
       {{#each sortedEducations as |education|}}
-        <div class="zeile">
-          {{#if educationEditing}}
-            {{education-edit education=education done=(action (toggle 'educationEditing' this))}}
-          {{else}}
-            {{education-show selectEducation = (action (mut educationEditing)) education=education}}
-          {{/if}}
-        </div>
+        {{#if education.id}}
+          <div class="zeile">
+            {{#if educationEditing}}
+              {{education-edit education=education done=(action (toggle 'educationEditing' this))}}
+            {{else}}
+              {{education-show selectEducation = (action (mut educationEditing)) education=education}}
+            {{/if}}
+          </div>
+        {{/if}}
       {{/each}}
       {{component (if educationNew 'education-new')
         personId=personId
