@@ -1,5 +1,13 @@
+# == Schema Information
+#
+# Table name: project_technology
+#
+#  id                    :integer          not null, primary key
+#  offer                 :array
+#  project_id            :integer
+
 require 'rails_helper'
 
-RSpec.describe ProjectTechnology, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+describe ProjectTechnology do
 end

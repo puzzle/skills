@@ -1,0 +1,24 @@
+# == Schema Information
+#
+# Table name: person_competences
+#
+#  id                    :integer          not null, primary key
+#  category              :string
+#  offer                 :array
+#  person_id             :integer
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+technologien:
+  category: Technologien
+  offer:
+    - Java
+    - Angular
+  person: bob
+
+werkzeuge:
+  category: Werkzeuge
+  offer:
+    - git
+    - Jenkins
+  person: alice
