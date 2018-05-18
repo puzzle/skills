@@ -5,6 +5,7 @@
     </div>
     <div class="col-sm-6 text-right d-block">
       <a onclick={{action (toggle 'educationNew' this)}} role="button" class="card-link text-white"><i class="fa {{~if educationNew ' abort' ' add'~}}"></i></a>
+      <a onclick={{educationsEditing}} role="button" class="card-link text-white"><i class="fa edit"></i></a>
       <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseEducation"><i class="fa angle"></i></a>
     </div>
   </div>
@@ -14,16 +15,26 @@
     <div id="competence-content-show">
       {{#each filteredEducations as |education|}}
         <div class="zeile">
-          {{#if educationEditing}}
-            {{education-edit education=education done=(action (toggle 'educationEditing' this))}}
-          {{else}}
-            {{education-show selectEducation = (action (mut educationEditing)) education=education}}
-          {{/if}}
+          <div class="row">
+            <div class="col-sm-3 centered-content text-center">
+              {{education.year_from}}
+              {{#if (eq education.year_to null)}}
+                - heute
+              {{else if (not-eq education.year_from education.year_to)}}
+                - {{education.year_to}}
+              {{/if}}
+            </div>
+            <div class="col-sm-9">
+              <strong>{{education.title}}</strong>
+              <br>{{education.location}}
+            </div>
+          </div>
         </div>
       {{/each}}
       {{component (if educationNew 'education-new')
-        personId=personId
-        done=(action (toggle 'educationNew' this))}}
+                  personId=person.id
+                  done=(action (toggle 'educationNew' this))}}
+
     </div>
   </div>
 </div>
