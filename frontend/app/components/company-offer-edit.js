@@ -41,11 +41,6 @@ export default Component.extend({
     });
   },
 
-willDestroyElement() {
-    if (this.get('newEducation.isNew')) {
-      this.get('newEducation').destroyRecord();
-    }
-  },
   actions: {
 
     submit(company) {
