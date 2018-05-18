@@ -14,7 +14,7 @@
   <div class="card-body">
     {{#each company.offers as |offer index|}}
       <div class="row mb-2">
-        <div class="col-sm-3">
+        <div class="col-sm-3" >
           {{input value=offer.category type="text" class="form-control" placeholder="Neue Kategorie"}}
         </div>
         <div class="col-sm-8">
@@ -45,7 +45,7 @@
               </button>
             </div>
             <div class="modal-body">
-              Wills du dieses Angebot wirklich löschen?
+              Willst du dieses Angebot wirklich löschen?
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">abbrechen</button>

@@ -79,11 +79,6 @@ export default Component.extend({
       if (!options.includes(searchText)) {
         this.get('options').pushObject(searchText);
       }
-      if (selected == null)
-      {
-        // Trying to fix that it doesn't add the first custom created object
-        selected = ([]);
-      }
       if (selected.includes(searchText)) {
         this.get('notify').alert("Already added!", { closeAfter: 4000 });
       }
