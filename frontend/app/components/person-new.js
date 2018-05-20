@@ -6,7 +6,6 @@ import { isBlank } from '@ember/utils';
 
 export default Component.extend({
   i18n: service(),
-
   store: service(),
 
   companiesToSelect: computed(function() {
@@ -35,6 +34,7 @@ export default Component.extend({
       return newPerson.save()
         .then(() => this.sendAction('submit', newPerson))
         .then(() => this.get('notify').success('Person wurde erstellt!'))
+        .then(() => this.get('notify').success('Füge nun ein Profilbild hinzu!'))
         .catch(() => {
           this.get('newPerson.errors').forEach(({ attribute, message }) => {
             let translated_attribute = this.get('i18n').t(`person.${attribute}`)['string']

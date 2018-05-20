@@ -57,6 +57,7 @@
                   {{#power-select
                     selected=newPerson.company
                     options=companiesToSelect
+                    searchField="name"
                     onfocus=(action "handleFocus")
                     onblur=(action "handleBlur")
                     onchange=(action (mut newPerson.company))
@@ -64,7 +65,7 @@
                     }}
                     {{company.name}}
                   {{/power-select}}
-                </td>  
+                </td>
               </tr>
             </table>
           </div>
