@@ -20,19 +20,19 @@
           {{#each competence.offer as |offer|}}
             <span class="badge badge-success p-2 mr-2 mb-2 skill" href="#">{{offer}}</span>
           {{/each}}
+          <hr>
         </div>
       </div>
     {{/each}}
-  </div>
-</div>
-<div id="collapseTwo" class="collapse show border border-primary rounded-bottom">
-  <div class="card-body">
     <div class="row" id="competence-content-show">
-      <ul>
+      <div class="col-sm-3">
+        <span class="p-2">Alte Kompetenzenliste</span>
+      </div>
+      <div class="col-sm-9">
         {{#each competenceList as |competence|}}
-          <li>{{competence}}</li>
+          <span class="badge badge-success p-2 mr-2 mb-2 skill" href="#">{{competence}}</span>
         {{/each}}
-      </ul>
+      </div>
     </div>
   </div>
 </div>
