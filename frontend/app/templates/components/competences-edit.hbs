@@ -6,7 +6,7 @@
     <div class="col-sm-6 text-right d-block">
       {{! TODO: are you sure message after click on delete button and decide if we want a reset icon}}
       <a {{action 'submit' person}} role="button" id="submit-button" class="card-link text-white"><i class="fa save"></i></a>
-      <a onclick={{action 'abortEdit'}} class="card-link text-white"><i class="fa abort"></i></a>
+      <a onclick={{action 'abortEdit'}} role="button" class="card-link text-white"><i class="fa abort"></i></a>
       <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#"><i class="fa angle"></i></a>
     </div>
   </div>
@@ -60,12 +60,12 @@
   </div>
 </div>
 {{#if person.competences}}
-<div>
-  <div id="collapseOne" class="collapse show border border-primary rounded-bottom">
-    <div class="card-body row">
-{{textarea value=person.competences class="competences-edit-input" placeholder="Veraltet, nicht mehr ausfüllen!"}}
+  <div>
+    <div id="collapseOne" class="collapse show border border-primary rounded-bottom">
+      <div class="card-body row">
+        {{textarea value=person.competences class="competences-edit-input" placeholder="Veraltet, nicht mehr ausfüllen!"}}
+      </div>
     </div>
   </div>
-</div>
 {{/if}}
 

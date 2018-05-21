@@ -20,7 +20,7 @@
           Erfahrungswert
           <button onclick={{action (toggle 'showInfoModal' this)}}
                     class="btn btn-link">
-          <img class="info-icon" src="/assets/images/info.svg" alt="Info">
+            <img class="info-icon" src="/assets/images/info.svg" alt="Info">
           </button>
         </th>
         <th class="fws-comments-field">Bemerkung</th>
@@ -28,7 +28,7 @@
       </tr>
       {{#if isLoading.isFulfilled}}
         {{#each expertiseTopics as |et|}}
-            {{expertise-topic-skill-value expertiseTopic=et person=person}}
+          {{expertise-topic-skill-value expertiseTopic=et person=person}}
         {{/each}}
       {{/if}}
     </table>

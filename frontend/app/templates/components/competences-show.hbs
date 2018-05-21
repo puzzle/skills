@@ -25,16 +25,16 @@
       </div>
     {{/each}}
     {{#if person.personCompetences}}
-    <div class="row" id="competence-content-show">
-      <div class="col-sm-3">
-        <span class="p-2">Alte Kompetenzenliste</span>
+      <div class="row" id="competence-content-show">
+        <div class="col-sm-3">
+          <span class="p-2">Alte Kompetenzenliste</span>
+        </div>
+        <div class="col-sm-9">
+          {{#each competenceList as |competence|}}
+            <span class="badge badge-success p-2 mr-2 mb-2 skill" href="#">{{competence}}</span>
+          {{/each}}
+        </div>
       </div>
-      <div class="col-sm-9">
-        {{#each competenceList as |competence|}}
-          <span class="badge badge-success p-2 mr-2 mb-2 skill" href="#">{{competence}}</span>
-        {{/each}}
-      </div>
-    </div>
     {{/if}}
   </div>
 </div>
