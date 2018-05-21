@@ -1,18 +1,20 @@
-import { moduleForComponent, skip } from 'ember-qunit';
+import { moduleForComponent, test, skip } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('project-show', 'Integration | Component | project show', {
   integration: true
 });
 
-skip('it renders project', function(assert) {
+test('it renders project', function(assert) {
   this.set('project', {
     title: 'Dreaming Project',
     description: 'Schlafen',
     role: 'Träumer',
-    technology: 'Bed',
     year_from: '1990',
-    year_to: '1991'
+    year_to: '1991',
+    projectTechnologies: [
+      { offer: ['java', 'ruby', 'ember'] }
+    ]
   });
 
   this.render(hbs`{{project-show
@@ -23,9 +25,11 @@ skip('it renders project', function(assert) {
   assert.ok(this.$().text().indexOf('Dreaming Project') !== -1);
   assert.ok(this.$().text().indexOf('Schlafen') !== -1);
   assert.ok(this.$().text().indexOf('Träumer') !== -1);
-  assert.ok(this.$().text().indexOf('Bed') !== -1);
   assert.ok(this.$().text().indexOf('1990') !== -1);
   assert.ok(this.$().text().indexOf('1991') !== -1);
+  assert.ok(this.$().text().indexOf('java') !== -1);
+  assert.ok(this.$().text().indexOf('ruby') !== -1);
+  assert.ok(this.$().text().indexOf('ember') !== -1);
 });
 
 skip('project description, role and technology preserves whitespace', function(assert) {
