@@ -1,36 +1,38 @@
-<div class="card-header bg-primary mt-2">
-  <div class="row">
-    <div class="col-sm-6">
-      <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseFWS{{expertiseCategory.name}}">{{expertiseCategory.name}}</a>
-    </div>
-    <div class="col-sm-6 text-right d-block">
-      <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseFWS{{expertiseCategory.name}}"><i class="fa angle"></i></a>
+<div class="card">
+  <div class="card-header bg-primary mt-2">
+    <div class="row">
+      <div class="col-sm-6">
+        <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseFWS{{expertiseCategory.name}}">{{expertiseCategory.name}}</a>
+      </div>
+      <div class="col-sm-6 text-right d-block">
+        <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseFWS{{expertiseCategory.name}}"><i class="fa angle"></i></a>
+      </div>
     </div>
   </div>
-</div>
-<div id="collapseFWS{{expertiseCategory.name}}" class="show collapse border border-primary rounded-bottom">
-  <div class="card-body">
-    <table class="table fws">
-      <tr>
-        <th class="fws-topic-name">Fachwissen</th>
-        <th>Jahre Erfahrung</th>
-        <th>Anzahl Projekte</th>
-        <th class="fws-last-use">Letztmals angewendet</th>
-        <th>
-          Erfahrungswert
-          <a onclick={{action (toggle 'showInfoModal' this)}} type="button" href="#collapseFWS{{expertiseCategory.name}}">
-            <i class="fa info"></i>
-          </a>
-        </th>
-        <th class="fws-comments-field">Bemerkung</th>
-        <th></th>
-      </tr>
-      {{#if isLoading.isFulfilled}}
-        {{#each expertiseTopics as |et|}}
-          {{expertise-topic-skill-value expertiseTopic=et expertiseCategory=expertiseCategory person=person}}
-        {{/each}}
-      {{/if}}
-    </table>
+  <div id="collapseFWS{{expertiseCategory.name}}" class="show collapse border border-primary rounded-bottom">
+    <div class="card-body">
+      <table class="table fws">
+        <tr>
+          <th class="fws-topic-name">Fachwissen</th>
+          <th>Jahre Erfahrung</th>
+          <th>Anzahl Projekte</th>
+          <th class="fws-last-use">Letztmals angewendet</th>
+          <th>
+            Erfahrungswert
+            <a onclick={{action (toggle 'showInfoModal' this)}} type="button" href="#collapseFWS{{expertiseCategory.name}}">
+              <i class="fa info"></i>
+            </a>
+          </th>
+          <th class="fws-comments-field">Bemerkung</th>
+          <th></th>
+        </tr>
+        {{#if isLoading.isFulfilled}}
+          {{#each expertiseTopics as |et|}}
+            {{expertise-topic-skill-value expertiseTopic=et expertiseCategory=expertiseCategory person=person}}
+          {{/each}}
+        {{/if}}
+      </table>
+    </div>
   </div>
 </div>
 
