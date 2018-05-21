@@ -1,3 +1,20 @@
-{{#each expertiseCategories as |ec|}}
-  {{expertise-topics-show expertiseCategory=ec person=person}}
-{{/each}}
+<div class="collapse-group-fws" id="collapseFWS">
+  <div class="row mb-3">
+    <div class="col-sm-12">
+      <span class="text-right d-block controls"><a href="#collapseFWS" class="mr-2 open-button-fws">+ alles ausklappen</a><a href="#collapseFWS" class="close-button-fws">- alles einklappen</a></span>
+    </div>
+  </div>
+  {{#each expertiseCategories as |ec|}}
+    {{expertise-topics-show expertiseCategory=ec person=person}}
+  {{/each}}
+</div>
+
+<script>
+  $(".open-button-fws").on("click", function() {
+    $(this).closest('.collapse-group-fws').find('.collapse').collapse('show');
+  });
+
+  $(".close-button-fws").on("click", function() {
+    $(this).closest('.collapse-group-fws').find('.collapse').collapse('hide');
+  });
+</script>
