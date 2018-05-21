@@ -94,6 +94,6 @@ export default create({
 
     toggleForm: clickable('#button-new-competences'),
     textarea: fillable('.competences-edit-input'),
-    submit: clickable('.form-button--submit'),
+    submit: clickable('#submit-button'),
   },
 });

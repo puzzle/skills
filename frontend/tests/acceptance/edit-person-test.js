@@ -28,7 +28,6 @@ skip('/people/:id edit person data', async function(assert) {
   await page.editForm.origin('Schwiz');
   await page.editForm.location('Chehrplatz Schwandi');
   await page.editForm.maritalStatus('Verwittwet');
-  await page.editForm.status(3);
   await page.editForm.submit();
 
   assert.equal(page.profileData.name, 'Hansjoggeli');
@@ -37,7 +36,6 @@ skip('/people/:id edit person data', async function(assert) {
   //assert.equal(page.profileData.birthdate, '12.05.2017');
   assert.equal(page.profileData.origin, 'Schwiz');
   assert.equal(page.profileData.location, 'Chehrplatz Schwandi');
-  assert.equal(page.profileData.maritalStatus, 'Verwittwet');
   assert.equal(page.profileData.status, 'Bewerber');
 });
 
@@ -90,5 +88,4 @@ skip('Creating a new variation', async function(assert) {
   assert.equal(page.profileData.origin, 'Switzerland');
   assert.equal(page.profileData.location, 'Bern');
   assert.equal(page.profileData.maritalStatus, 'Single');
-  assert.equal(page.profileData.status, 'Mitarbeiter');
 });

@@ -44,7 +44,10 @@ test('creating a new person', async function(assert) {
 test('creating an empty new person', async function(assert) {
   assert.expect(2);
 
-  authenticateSession(this.application);
+  authenticateSession(this.application, {
+    ldap_uid: 'development_user',
+    token: '1234'
+  });
 
   await page.visit();
 
