@@ -59,19 +59,12 @@
     <a role="button" class="card-link text-dark" {{action 'createNewOffer' person}}><i class="fa add"></i></a>
   </div>
 </div>
-
-
 <div>
-  {{#with (changeset person validations) as |changeset|}}
-    {{#each changeset.errors as |error|}}
-      {{error.detail}}
-    {{/each}}
-    <div id="collapseOne" class="collapse show border border-primary rounded-bottom">
-      <div class="card-body row">
-        {{textarea value=changeset.competences class="competences-edit-input"}}
-      </div>
+  <div id="collapseOne" class="collapse show border border-primary rounded-bottom">
+    <div class="card-body row">
+      {{textarea value=person.competences class="competences-edit-input"}}
     </div>
-  {{/with}}
+  </div>
 </div>
 
 
