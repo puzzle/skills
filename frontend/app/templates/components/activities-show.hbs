@@ -15,7 +15,8 @@
     <div class="card-body">
       <div id="competence-content-show">
         {{component (if activityNew 'activity-new')
-            personId=personId done=(action (toggle 'activityNew' this))}}
+            personId=person.id
+            done=(action (toggle 'activityNew' this))}}
         {{#each filteredActivities as |activity|}}
           <div class="zeile">
             <div class="row">

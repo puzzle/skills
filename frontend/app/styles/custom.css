@@ -801,7 +801,7 @@ button::-moz-focus-inner {
 }
 
 .zeile:first-child {
-  border-radius: 10px 10px 0px 0px;
+  border-radius: 10px 10px 0px 0px !important;
 }
 
 .zeile:last-child {
@@ -816,4 +816,9 @@ button::-moz-focus-inner {
 
 .zeile .centered-content-input {
   min-height: 60px;
+}
+
+/* Bootstrap Fixes */
+.card {
+  border: 0px;
 }
