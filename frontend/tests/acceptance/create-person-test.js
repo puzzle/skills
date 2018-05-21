@@ -1,4 +1,4 @@
-import { skip } from 'qunit';
+import { test } from 'qunit';
 import moduleForAcceptance from 'frontend/tests/helpers/module-for-acceptance';
 import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
 
@@ -7,7 +7,7 @@ import editPage from 'frontend/tests/pages/person-edit';
 
 moduleForAcceptance('Acceptance | create person');
 
-skip('creating a new person', async function(assert) {
+test('creating a new person', async function(assert) {
   assert.expect(11);
 
   authenticateSession(this.application, {
@@ -43,7 +43,7 @@ skip('creating a new person', async function(assert) {
   assert.equal(editPage.profileData.status, 'Partner');
 });
 
-skip('creating an empty new person', async function(assert) {
+test('creating an empty new person', async function(assert) {
   assert.expect(2);
 
   authenticateSession(this.application);
