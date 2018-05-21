@@ -3,11 +3,11 @@
 @import "ember-power-select/themes/bootstrap";
 @import "ember-power-select";
 @import "normalize";
-@import "../../node_modules/bootstrap/scss/bootstrap";
 
 //Set Bootstrap values from brand.puzzle.ch
 $primary: #1E5A96 !default;
 $success: #61B44B !default;
+@import "../../node_modules/bootstrap/scss/bootstrap";
 
 @import "toaster.mini";
 @import "custom";
