@@ -24,19 +24,17 @@
               <br>{{textarea placeholder="Eingesetzte Technologien" value=changeset.technology class="form-control"}}
               <br>
               {{#each project.projectTechnologies as |projectTechnology|}}
-                <div>
-                  {{#power-select-multiple-with-create
-                    options=options
-                    selected=projectTechnology.offer
-                    onchange=(action (mut projectTechnology.offer))
-                    onfocus=(action "handleFocus")
-                    onblur=(action "handleBlur")
-                    oncreate=(action "createTechnology" projectTechnology.offer)
-                    buildSuggestion=suggestion
-                    as |technology|}}
-                    {{technology}}
-                  {{/power-select-multiple-with-create}}
-                </div>
+                {{#power-select-multiple-with-create
+                  options=options
+                  selected=projectTechnology.offer
+                  onchange=(action (mut projectTechnology.offer))
+                  onfocus=(action "handleFocus")
+                  onblur=(action "handleBlur")
+                  oncreate=(action "createTechnology" projectTechnology.offer)
+                  buildSuggestion=suggestion
+                  as |technology|}}
+                  {{technology}}
+                {{/power-select-multiple-with-create}}
               {{/each}}
             </div>
             <div class="col-sm-2 centered-content text-right">
