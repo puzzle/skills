@@ -28,7 +28,7 @@ export default Component.extend({
         });
     },
 
-    submitPerson(person){
+    submitPerson(person) {
       person.save()
         .then (() =>
           Promise.all([
