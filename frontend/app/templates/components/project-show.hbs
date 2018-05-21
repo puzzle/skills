@@ -22,11 +22,15 @@
     <div class="card-body">
       <div class="row">
         <div class="col-sm-2">
-          <strong>Beschreibung</strong>
+          {{#if project.description}}
+            <strong>Beschreibung</strong>
+          {{/if}}
           <br><strong>Technologie</strong>
         </div>
         <div class="col-sm-10">
-          {{~project.description~}}
+          {{#if project.description}}
+            {{~project.description~}}
+          {{/if}}
           <br>
           {{#each project.projectTechnologies as |project-technology|}}
             {{#each project-technology.offer as |offer|}}
