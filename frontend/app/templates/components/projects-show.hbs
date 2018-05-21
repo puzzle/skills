@@ -19,6 +19,7 @@
               <span class="text-right d-block controls"><a href="#collapseProjects" class="mr-2 open-button-project">+ alles ausklappen</a><a href="#collapseProjects" class="close-button-project">- alles einklappen</a></span>
             </div>
           </div>
+          {{component (if projectNew 'project-new') personId=personId done=(action (toggle 'projectNew' this))}}
           {{#each sortedProjects as |project|}}
             {{#if (eq projectEditing project)}}
               {{project-edit project = projectEditing done=(action (toggle 'projectEditing' this))}}
@@ -26,7 +27,6 @@
               {{project-show selectProject = (action (mut projectEditing)) project=project}}
             {{/if}}
           {{/each}}
-          {{component (if projectNew 'project-new') personId=personId done=(action (toggle 'projectNew' this))}}
         </div>
       </div>
     </div>

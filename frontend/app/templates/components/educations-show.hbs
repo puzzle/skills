@@ -13,6 +13,10 @@
 <div id="collapseEducation" class="collapse show border border-primary rounded-bottom">
   <div class="card-body">
     <div id="competence-content-show">
+      {{!todo reload on create}}
+      {{component (if educationNew 'education-new')
+                  personId=person.id
+                  done=(action (toggle 'educationNew' this))}}
       {{#each filteredEducations as |education|}}
         <div class="zeile">
           <div class="row">
@@ -31,11 +35,6 @@
           </div>
         </div>
       {{/each}}
-      {{!todo reload on create}}
-      {{component (if educationNew 'education-new')
-                  personId=person.id
-                  done=(action (toggle 'educationNew' this))}}
-
     </div>
   </div>
 </div>
