@@ -22,7 +22,6 @@
             {{input placeholder="Projekt Titel" value=newProject.title class="form-control"}}
             <br>{{textarea placeholder="Projektbeschreibung" value=newProject.description class="form-control"}}
             <br>{{textarea placeholder="Rolle und Aufgaben" value=newProject.role class="form-control"}}
-            <br>{{textarea placeholder="Eingesetzte Technologien" value=newProject.technology class="form-control"}}
             <br>
             {{#each newProject.projectTechnologies as |projectTechnology index|}}
               <div>

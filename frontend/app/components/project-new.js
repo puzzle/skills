@@ -17,7 +17,8 @@ export default Component.extend({
 
   newProject: computed('personId', function() {
     let project = this.get('store').createRecord('project');
-    this.get('store').createRecord('project-technology', { project });
+    let technology = this.get('store').createRecord('project-technology', { project });
+    technology.set('offer', []);
     return project;
   }),
 
