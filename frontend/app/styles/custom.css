@@ -713,6 +713,19 @@ a:hover .fa, a:active .fa, a:focus .fa {
   right: 12px;
 }
 
+/* FWS */
+table.fws tr td:first-child {
+  width: 200px;
+}
+
+table.fws tr td:nth-child(2), table.fws tr td:nth-child(3), table.fws tr td:nth-child(4),
+table.fws tr td:nth-child(5) {
+  width: 170px;
+}
+
+table.fws tr td:last-child {
+  width: 30px;
+}
 
 /* Power Select */
 li.ember-power-select-multiple-option {
