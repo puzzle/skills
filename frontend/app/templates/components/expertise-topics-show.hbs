@@ -8,7 +8,7 @@
     </div>
   </div>
 </div>
-<div id="collapseFWS{{expertiseCategory.name}}" class="collapse border border-primary rounded-bottom">
+<div id="collapseFWS{{expertiseCategory.name}}" class="show collapse border border-primary rounded-bottom">
   <div class="card-body">
     <table class="table">
       <tr>
@@ -18,7 +18,7 @@
         <th class="fws-last-use">Letztmals angewendet</th>
         <th>
           Erfahrungswert
-          <a onclick={{action (toggle 'showInfoModal' this)}} type="button" href="#">
+          <a onclick={{action (toggle 'showInfoModal' this)}} type="button" href="#collapseFWS{{expertiseCategory.name}}">
             <i class="fa info"></i>
           </a>
         </th>
@@ -27,7 +27,7 @@
       </tr>
       {{#if isLoading.isFulfilled}}
         {{#each expertiseTopics as |et|}}
-          {{expertise-topic-skill-value expertiseTopic=et person=person}}
+          {{expertise-topic-skill-value expertiseTopic=et expertiseCategory=expertiseCategory person=person}}
         {{/each}}
       {{/if}}
     </table>
