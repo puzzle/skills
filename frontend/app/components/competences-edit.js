@@ -52,11 +52,11 @@ export default Component.extend({
         // TODO
         .catch(() => {
           let competences = this.get('person.personCompetences');
-          competences.forEach(offer => {
-            let errors = offer.get('errors').slice();
+          competences.forEach(competence => {
+            let errors = competence.get('errors').slice();
 
-            if (offer.get('id') != null) {
-              offer.rollbackAttributes();
+            if (competence.get('id') != null) {
+              competence.rollbackAttributes();
             }
 
             errors.forEach(({ attribute, message }) => {
