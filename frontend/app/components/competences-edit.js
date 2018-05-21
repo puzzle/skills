@@ -32,10 +32,6 @@ export default Component.extend({
     return !blurredEl.classList.contains('ember-power-select-search-input');
   },
 
-  suggestion(term) {
-    return `"${term}" hinzufügen!`;
-  },
-
   actions: {
 
     submit(person) {
