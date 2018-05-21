@@ -50,12 +50,12 @@ export default Component.extend({
       let employeeQuantities = this.get('company.employeeQuantities').toArray();
 
       locations.forEach(location => {
-        if(location.get('isNew')) {
+        if (location.get('isNew')) {
           location.destroyRecord();
         }
       });
       employeeQuantities.forEach(quantity => {
-        if(quantity.get('isNew')) {
+        if (quantity.get('isNew')) {
           location.destroyRecord();
         }
       });
