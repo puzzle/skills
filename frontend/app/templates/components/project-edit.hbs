@@ -17,8 +17,8 @@
                 {{input value=changeset.year_to type="number" class="input-mini form-control" placeholder="bis"}}
               </div>
             </div>
-            <div class="col-sm-7 row">
-              {{input placeholder="Projekt Titel" value=changeset.title class="form-control"}}
+            <div class="col-sm-7">
+              {{input placeholder="Projekt Titel" value=changeset.title class="form-control mb-2"}}
               <br>{{textarea placeholder="Projektbeschreibung" value=changeset.description class="form-control"}}
               <br>{{textarea placeholder="Rolle und Aufgaben" value=changeset.role class="form-control"}}
               <br>{{textarea placeholder="Eingesetzte Technologien" value=changeset.technology class="form-control"}}
@@ -28,6 +28,7 @@
                   options=options
                   selected=projectTechnology.offer
                   onchange=(action (mut projectTechnology.offer))
+                  placeholder="Eingesetzte Technologien"
                   onfocus=(action "handleFocus")
                   onblur=(action "handleBlur")
                   oncreate=(action "createTechnology" projectTechnology.offer)
