@@ -20,7 +20,9 @@ export default Component.extend({
       , 'Stored Procedures', 'Travis', 'UML', 'Ubuntu', 'VLANs', 'WebSockets', 'WildFly / JBoss EAP']);
   },
 
-
+  suggestion(term) {
+    return `"${term}" hinzufügen!`;
+  },
 
   focusComesFromOutside(e) {
     let blurredEl = e.relatedTarget;
@@ -49,8 +51,8 @@ export default Component.extend({
         .then (() => this.get('notify').success('Successfully saved!'))
         // TODO
         .catch(() => {
-          let offers = this.get('company.offers');
-          offers.forEach(offer => {
+          let competences = this.get('person.personCompetences');
+          competences.forEach(offer => {
             let errors = offer.get('errors').slice();
 
             if (offer.get('id') != null) {
@@ -63,6 +65,16 @@ export default Component.extend({
             });
           });
         });
+    },
+
+    abortEdit() {
+      let competences = this.get('person.personCompetences').toArray();
+      competences.forEach(competence => {
+        if (competence.get('isNew')) {
+          competence.destroyRecord();
+        }
+      });
+      this.sendAction('competencesEditing');
     },
 
     handleFocus(select, e) {
