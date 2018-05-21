@@ -239,7 +239,7 @@ DEPENDENCIES
   puma (~> 3.0)
   rack
   rails (= 5.1.5)
-  rails-html-sanitizer (~> 1.0.4)
+  rails-html-sanitizer (~> 1.0.2)
   rails-i18n (~> 5.0.4)
   rspec-rails (~> 3.6)
   rubocop (~> 0.54.0)
