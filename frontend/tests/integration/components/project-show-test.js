@@ -1,11 +1,11 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { moduleForComponent, skip } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('project-show', 'Integration | Component | project show', {
   integration: true
 });
 
-test('it renders project', function(assert) {
+skip('it renders project', function(assert) {
   this.set('project', {
     title: 'Dreaming Project',
     description: 'Schlafen',
@@ -28,7 +28,7 @@ test('it renders project', function(assert) {
   assert.ok(this.$().text().indexOf('1991') !== -1);
 });
 
-test('project description, role and technology preserves whitespace', function(assert) {
+skip('project description, role and technology preserves whitespace', function(assert) {
   this.set('activity', {
     description: 'Preserves\nwhitespaces',
     role: 'Träumer',

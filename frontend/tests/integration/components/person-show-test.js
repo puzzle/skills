@@ -1,11 +1,11 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { moduleForComponent, skip } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('person-show', 'Integration | Component | person show', {
   integration: true
 });
 
-test('it renders person', function(assert) {
+skip('it renders person', function(assert) {
   this.set('person', {
     name: 'Harry Potter',
     title: 'Zauberer',

@@ -25,7 +25,7 @@ class Company < ApplicationRecord
   has_many :employee_quantities, dependent: :destroy
   has_many :offers, dependent: :destroy
 
-  validates :name, :level, presence: true
+  validates :name, presence: true
   validates :name, :web, :email, :phone, :partnermanager, :contact_person,
             :email_contact_person, :phone_contact_person, :crm, :level, length: { maximum: 100 }
   validates :offer_comment, length: { maximum: 500 }

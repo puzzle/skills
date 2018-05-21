@@ -54,7 +54,6 @@ class PersonSeeder
     person_variation.location = Faker::Pokemon.location
     person_variation.role = Faker::Company.profession
     person_variation.title = Faker::Name.title
-    person_variation.status_id = rand(1..4)
   end
 
   def change_activity(activity)
@@ -103,7 +102,6 @@ class PersonSeeder
       p.origin = Faker::StarWars.planet
       p.role = Faker::Company.profession
       p.title = Faker::Name.title
-      p.status_id = rand(1..4) 
       p.company_id = rand(1..4)
       competences = ""
       rand(5..15).times{ competences << "#{Faker::Superhero.power}\n" }

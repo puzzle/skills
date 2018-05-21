@@ -1,7 +1,6 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import PersonModel from '../models/person';
 import { isBlank } from '@ember/utils';
 
 export default Component.extend({
@@ -10,15 +9,6 @@ export default Component.extend({
 
   companiesToSelect: computed(function() {
     return this.get('store').findAll('company');
-  }),
-
-
-  statusData: computed(function() {
-    return Object.keys(PersonModel.STATUSES)
-      .map(id => Number(id))
-      .map(id => {
-        return { id, label: PersonModel.STATUSES[id] };
-      });
   }),
 
   focusComesFromOutside(e) {

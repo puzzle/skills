@@ -1,7 +1,6 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import PersonModel from '../models/person';
 import { isBlank } from '@ember/utils';
 
 export default Component.extend({
@@ -15,14 +14,6 @@ export default Component.extend({
 
   personPictureUploadPath: computed('person.id', function() {
     return `/people/${this.get('person.id')}/picture`;
-  }),
-
-  statusData: computed(function() {
-    return Object.keys(PersonModel.STATUSES)
-      .map(id => Number(id))
-      .map(id => {
-        return { id, label: PersonModel.STATUSES[id] };
-      });
   }),
 
   focusComesFromOutside(e) {
