@@ -4,7 +4,7 @@
     <input form={{formId}}
         max="80"
         min="0"
-        class="fws-number-input"
+        class="form-control"
         type="number"
         value={{expertiseTopicSkillValue.yearsOfExperience}}
         oninput={{action (mut changeset.yearsOfExperience) value="target.value"}}>
@@ -13,8 +13,7 @@
     <input form={{formId}}
         max="255"
         min="0"
-        class="fws-number-input"
-        class="fws-number-input"
+        class="form-control"
         type="number"
         value={{expertiseTopicSkillValue.numberOfProjects}}
         oninput={{action (mut changeset.numberOfProjects) value="target.value"}}>
@@ -23,7 +22,7 @@
     <input form={{formId}}
         max="4095"
         min="1900"
-        class="fws-year-input"
+        class="form-control"
         type="number"
         value={{expertiseTopicSkillValue.lastUse}}
         oninput={{action (mut changeset.lastUse) value="target.value"}}>
@@ -31,7 +30,7 @@
 
   <td>
     <select form={{formId}}
-        class="fws-select selectpicker"
+        class="form-control"
         onchange={{action (mut changeset.skillLevel)
         value="target.value"}}
         required>
@@ -42,21 +41,19 @@
   </td>
 
   <td>
-    <textarea class="fws-textarea-input"
+    <textarea class="form-control"
         oninput={{action (mut changeset.comment) value="target.value"}}>
       {{~expertiseTopicSkillValue.comment~}}
     </textarea>
   </td>
   <td>
     <form id={{formId}} onsubmit={{action onsubmit changeset}}>
-      <button class="btn-link" title="save">
-        <img class="fws-action-icon" src="/assets/images/save.svg" alt="save icon">
-      </button>
+      <a href="#" title="save"><i class="fa save"></i></a>
     </form>
     <form id={{formId}}>
-      <button onclick={{action cancelEdit changeset}} class="btn-link" title="cancel">
-        <img class="fws-action-icon" src="/assets/images/cross.svg" alt="cancel_icon">
-      </button>
+      <a href="#" onclick={{action cancelEdit changeset}} title="cancel">
+        <i class="fa abort"></i>
+      </a>
     </form>
   </td>
 {{/with}}

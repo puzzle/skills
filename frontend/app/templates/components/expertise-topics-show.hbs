@@ -1,39 +1,39 @@
-{{#if showTopics}}
-  <div role="button" class="expertise-category unfolded" onclick={{action (toggle 'showTopics' this)}} >
-    {{expertiseCategory.name}}
-    <img class="fws-category-unfold-icon" src="/assets/images/chevron-up.svg" alt="Unfold">
+<div class="card-header bg-primary mt-2">
+  <div class="row">
+    <div class="col-sm-6">
+      <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseFWS">{{expertiseCategory.name}}</a>
+    </div>
+    <div class="col-sm-6 text-right d-block">
+      <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseFWS"><i class="fa angle"></i></a>
+    </div>
   </div>
-{{else}}
-  <div role="button" class="expertise-category" onclick={{action (toggle 'showTopics' this)}} >
-    {{expertiseCategory.name}}
-    <img class="fws-category-unfold-icon" src="/assets/images/chevron-down.svg" alt="Unfold">
-  </div>
-{{/if}}
-
-{{#liquid-if showTopics}}
-  <table class="expertise-topic-skill-values-table table">
-    <tr>
-      <th class="fws-topic-name">Fachwissen</th>
-      <th>Jahre Erfahrung</th>
-      <th>Anzahl Projekte</th>
-      <th class="fws-last-use">Letztmals angewendet</th>
-      <th>
-        Erfahrungswert
-        <button onclick={{action (toggle 'showInfoModal' this)}}
-            class="btn btn-link">
+</div>
+<div id="collapseFWS" class="collapse border border-primary rounded-bottom">
+  <div class="card-body">
+    <table class="table">
+      <tr>
+        <th class="fws-topic-name">Fachwissen</th>
+        <th>Jahre Erfahrung</th>
+        <th>Anzahl Projekte</th>
+        <th class="fws-last-use">Letztmals angewendet</th>
+        <th>
+          Erfahrungswert
+          <button onclick={{action (toggle 'showInfoModal' this)}}
+                    class="btn btn-link">
           <img class="info-icon" src="/assets/images/info.svg" alt="Info">
-        </button>
-      </th>
-      <th class="fws-comments-field">Bemerkung</th>
-      <th></th>
-    </tr>
-    {{#if isLoading.isFulfilled}}
-      {{#each expertiseTopics as |et|}}
-        {{expertise-topic-skill-value expertiseTopic=et person=person}}
-      {{/each}}
-    {{/if}}
-  </table>
-{{/liquid-if}}
+          </button>
+        </th>
+        <th class="fws-comments-field">Bemerkung</th>
+        <th></th>
+      </tr>
+      {{#if isLoading.isFulfilled}}
+        {{#each expertiseTopics as |et|}}
+            {{expertise-topic-skill-value expertiseTopic=et person=person}}
+        {{/each}}
+      {{/if}}
+    </table>
+  </div>
+</div>
 
 {{#if showInfoModal}}
   {{#modal-dialog close='closeInfo'}}
