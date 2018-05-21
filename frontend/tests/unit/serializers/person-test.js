@@ -1,17 +1,19 @@
-import { moduleForModel, skip } from 'ember-qunit';
+import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('person', 'Unit | Serializer | person', {
   needs: [
     'model:education',
+    'model:person-competence',
     'model:advanced-training',
     'model:activity',
     'model:project',
     'model:expertise-topic-skill-value',
+    'model:company',
     'serializer:person',
   ]
 });
 
-skip('it does not serialize unpermitted attrs', function(assert) {
+test('it does not serialize unpermitted attrs', function(assert) {
   let record = this.subject();
 
   let { data: { attributes: attrs } } = record.serialize();

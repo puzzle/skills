@@ -28,7 +28,6 @@ test('creating a new person', async function(assert) {
     location: 'Chehrplatz Schwandi',
     language: 'Schwizerdütsch',
     maritalStatus: 'Ledig',
-    status: 4,
   });
 
   assert.ok(/^\/people\/\d+$/.test(currentURL()));
@@ -40,7 +39,6 @@ test('creating a new person', async function(assert) {
   assert.equal(editPage.profileData.location, 'Chehrplatz Schwandi');
   assert.equal(editPage.profileData.language, 'Schwizerdütsch');
   assert.equal(editPage.profileData.maritalStatus, 'Ledig');
-  assert.equal(editPage.profileData.status, 'Partner');
 });
 
 test('creating an empty new person', async function(assert) {
