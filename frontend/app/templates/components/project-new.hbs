@@ -23,9 +23,9 @@
             <br>{{textarea placeholder="Projektbeschreibung" value=newProject.description class="form-control"}}
             <br>{{textarea placeholder="Rolle und Aufgaben" value=newProject.role class="form-control"}}
             <br>
-            {{#each newProject.projectTechnologies as |projectTechnology index|}}
+            {{#each newProject.projectTechnologies as |projectTechnology|}}
               <div>
-              {{#power-select-multiple-with-create
+                {{#power-select-multiple-with-create
                   options=options
                   selected=projectTechnology.offer
                   onchange=(action (mut projectTechnology.offer))
