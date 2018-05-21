@@ -9,7 +9,7 @@
     </div>
   </div>
 </div>
-<div id="collapseTwo" class="collapse border border-primary rounded-bottom">
+<div id="collapseTwo" class="collapse show border border-primary rounded-bottom">
   <div class="card-body">
     {{#each company.offers as |offer|}}
       <div class="row mb-1">
@@ -28,7 +28,7 @@
         <span class="p-2">Weiteres (Bemerkungen)</span>
       </div>
       <div class="col-sm-9">
-        <textarea class="form-control" rows="1">{{company.offerComment}}</textarea>
+        <textarea readonly="readonly" style="background-color: white" class="form-control" rows="1">{{company.offerComment}}</textarea>
       </div>
     </div>
   </div>

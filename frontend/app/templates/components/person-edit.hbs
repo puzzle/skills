@@ -26,6 +26,8 @@
                   {{#power-select
                     selected=person.company
                     options=companiesToSelect
+                    onfocus=(action "handleFocus")
+                    onblur=(action "handleBlur")
                     onchange=(action (mut person.company))
                   as |company|
                   }}

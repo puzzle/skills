@@ -9,7 +9,7 @@
           <div class="col-sm-6 text-right d-block">
             {{! TODO: are you sure message after click on delete button and decide if we want a reset icon}}
             <a {{action 'submit' changeset}} role="button" id="submit-button" class="card-link text-white"><i class="fa save"></i></a>
-            <a onclick={{companyEditing}} role="button" class="card-link text-white"><i class="fa abort"></i></a>
+            <a onclick={{action 'abortEdit'}} role="button" class="card-link text-white"><i class="fa abort"></i></a>
             {{#unless company.myCompany}}
               <a data-toggle="modal" data-target="#deleteConfirmationModal" role="button" class="card-link text-white"><i class="fa trash"></i></a>
             {{/unless}}

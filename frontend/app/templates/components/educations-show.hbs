@@ -31,6 +31,7 @@
           </div>
         </div>
       {{/each}}
+      {{!todo reload on create}}
       {{component (if educationNew 'education-new')
                   personId=person.id
                   done=(action (toggle 'educationNew' this))}}

@@ -3482,6 +3482,24 @@ ember-async-button@1.0.2:
     ember-cli-babel "^5.1.6"
     ember-cli-htmlbars "^1.0.3"
 
+ember-basic-dropdown@^0.33.5:
+  version "0.33.5"
+  resolved "https://registry.yarnpkg.com/ember-basic-dropdown/-/ember-basic-dropdown-0.33.5.tgz#39986d4cc6732edf43fb51eabb70790e99e8ae2c"
+  dependencies:
+    ember-cli-babel "^6.8.1"
+    ember-cli-htmlbars "^2.0.3"
+    ember-native-dom-helpers "^0.5.3"
+    ember-wormhole "^0.5.2"
+
+ember-basic-dropdown@^0.34.0:
+  version "0.34.0"
+  resolved "https://registry.yarnpkg.com/ember-basic-dropdown/-/ember-basic-dropdown-0.34.0.tgz#a0371b7c06756cdd3170e7d4a9ed4f4890bc2d59"
+  dependencies:
+    ember-cli-babel "^6.8.2"
+    ember-cli-htmlbars "^2.0.3"
+    ember-native-dom-helpers "^0.5.4"
+    ember-wormhole "^0.5.2"
+
 ember-basic-dropdown@^1.0.0-beta.3:
   version "1.0.0-beta.4"
   resolved "https://registry.yarnpkg.com/ember-basic-dropdown/-/ember-basic-dropdown-1.0.0-beta.4.tgz#6c1ff2d6f855640bca793a305555b270441ed8f3"
@@ -4187,6 +4205,25 @@ ember-one-way-controls@1.1.2:
     ember-get-helper "~1.1.0"
     ember-invoke-action "1.4.0"
     ember-runtime-enumerable-includes-polyfill "^1.0.1"
+
+ember-power-select-with-create@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/ember-power-select-with-create/-/ember-power-select-with-create-0.5.2.tgz#ea014b8852abe5c77c8027e31b9f81f5bda49804"
+  dependencies:
+    ember-cli-babel "^6.6.0"
+    ember-cli-htmlbars "^2.0.1"
+    ember-power-select "^1.10.1"
+
+ember-power-select@^1.10.1:
+  version "1.10.4"
+  resolved "https://registry.yarnpkg.com/ember-power-select/-/ember-power-select-1.10.4.tgz#7f0bb8c55279375391f2d97591ed65f727061579"
+  dependencies:
+    ember-basic-dropdown "^0.34.0"
+    ember-cli-babel "^6.10.0"
+    ember-cli-htmlbars "^2.0.1"
+    ember-concurrency "^0.8.12"
+    ember-text-measurer "^0.4.0"
+    ember-truth-helpers "^2.0.0"
 
 ember-power-select@^2.0.0-beta.3:
   version "2.0.0-beta.3"

@@ -39,12 +39,22 @@
 
     {{!Weiterbildungen Tab}}
     <div class="card mb-3">
-      {{advanced-trainings-show  advanced-trainings=model.advancedTrainings personId=model.id}}
+      {{component (if advancedTrainingsEditing 'advanced-trainings-edit' 'advanced-trainings-show' )
+                  advanced-trainings=model.advancedTrainings
+                  person=model
+                  submit=(action (toggle 'advancedTrainingsEditing' this))
+                  advancedTrainingsEditing=(action (toggle 'advancedTrainingsEditing' this))
+      }}
     </div>
 
     {{!Aktivitäten Tab}}
     <div class="card mb-3">
-      {{activities-show activities=model.activities personId=model.id}}
+      {{component (if activitiesEditing 'activities-edit' 'activities-show' )
+                  activities=model.activities
+                  person=model
+                  submit=(action (toggle 'activitiesEditing' this))
+                  activitiesEditing=(action (toggle 'activitiesEditing' this))
+      }}
     </div>
 
     {{!Projekte Tab}}

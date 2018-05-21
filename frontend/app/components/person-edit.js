@@ -1,7 +1,7 @@
-
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
+import { isBlank } from '@ember/utils';
 
 export default Component.extend({
   store: service(),
@@ -15,6 +15,14 @@ export default Component.extend({
   personPictureUploadPath: computed('person.id', function() {
     return `/people/${this.get('person.id')}/picture`;
   }),
+
+  focusComesFromOutside(e) {
+    let blurredEl = e.relatedTarget;
+    if (isBlank(blurredEl)) {
+      return false;
+    }
+    return !blurredEl.classList.contains('ember-power-select-search-input');
+  },
 
   actions: {
     submit(changeset) {
@@ -32,6 +40,15 @@ export default Component.extend({
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
         });
+    },
+
+    handleFocus(select, e) {
+      if (this.focusComesFromOutside(e)) {
+        select.actions.open();
+      }
+    },
+
+    handleBlur() {
     }
   }
 

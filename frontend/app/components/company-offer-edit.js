@@ -1,53 +1,89 @@
 import Component from '@ember/component';
-import { A } from '@ember/array';
-import { isBlank } from '@ember/utils';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
 import $ from 'jquery';
+import { isBlank } from '@ember/utils';
 
 export default Component.extend({
   store: service(),
   i18n: service(),
-  options: A(['Scrum', 'CI/CD', 'Hermes', 'BA', 'Java EE', 'Java SE', 'PHP',
-    'Docker', 'OpenShift', 'Ember', 'Angular', 'Git']),
-  selected: A([]),
+  options: (['Advanced Routing', 'Angular'
+    , 'BIND', 'C#', 'C', 'C++', 'CSS', 'CentOS', 'DHCP', 'Debian', 'DelayedJob Sidekiq', 'Docker'
+    , 'EJB CDI', 'Fedora', 'GIT', 'HTML', 'Hybrid Mobile Apps', 'IPv6', 'JMS', 'JPA Hibernate'
+    , 'JQuery', 'JUnit', 'Java SE', 'Java EE', 'Java', 'JavaScript/ECMAScript', 'Javascript', 'Jenkins', 'Linux'
+    , 'Message Queues', 'Minitest', 'Mocha', 'Mockito', 'Network Appliances', 'NoSql', 'Openshift'
+    , 'Passenger', 'Perl', 'Puma', 'Python', 'Qunit', 'R', 'REST', 'Red Hat', 'Relationale DBs', 'Resque'
+    , 'Rspec', 'Ruby on Rails', 'Ruby', 'SASS', 'SQL', 'SUSE', 'Servlets', 'Shell Scripting', 'Sonar'
+    , 'Stored Procedures', 'Travis', 'UML', 'Ubuntu', 'VLANs', 'WebSockets', 'WildFly / JBoss EAP']),
 
   init() {
     this._super(...arguments);
-    this.get('newOffer').set('company', this.get('company'));
-
   },
 
-  newOffer: computed(function() {
-    let newOffer = this.get('store').createRecord('offer');
-    return newOffer;
-  }),
+  suggestion(term) {
+    return `"${term}" hinzufügen!`;
+  },
 
-  willDestroyElement() {
-    if (this.get('newOffer.isNew')) {
-      this.get('newOffer').destroyRecord();
+  focusComesFromOutside(e) {
+    let blurredEl = e.relatedTarget;
+    if (isBlank(blurredEl)) {
+      return false;
     }
+    return !blurredEl.classList.contains('ember-power-select-search-input');
   },
 
   actions: {
-    submit(changeset, company) {
-      changeset.set('company', company);
-      return changeset.save()
-        .then(() => this.sendAction('submit'))
-        .then(() => this.get('notify').success('Angebot wurde aktualisiert!'))
+
+    submit(company) {
+      company.save()
+        .then (() =>
+          Promise.all([
+            ...company
+              .get('offers')
+              .map(offer => offer.save())
+          ])
+        )
+        .then (() => this.sendAction('submit'))
+        .then (() => this.get('notify').success('Successfully saved!'))
+        // TODO
         .catch(() => {
-          let offer = this.get('offer');
-          this.get('notify').alert(offer);
+          let offers = this.get('company.offers');
+          offers.forEach(offer => {
+            let errors = offer.get('errors').slice();
 
-          let errors = offer.get('errors').slice(); // clone array as rollbackAttributes mutates
+            if (offer.get('id') != null) {
+              offer.rollbackAttributes();
+            }
 
-          offer.rollbackAttributes();
-          errors.forEach(({ attribute, message }) => {
-            let translated_attribute = this.get('i18n').t(`offer.${attribute}`)['string']
-            changeset.pushErrors(attribute, message);
-            this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
+            errors.forEach(({ attribute, message }) => {
+              let translated_attribute = this.get('i18n').t(`offer.${attribute}`)['string']
+              this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
+            });
           });
         });
+    },
+
+    abortEdit() {
+      let offers = this.get('company.offers').toArray();
+      offers.forEach(offer => {
+        if (offer.get('isNew')) {
+          offer.destroyRecord();
+        }
+      });
+      this.sendAction('companyOfferEditing');
+    },
+
+    handleFocus(select, e) {
+      if (this.focusComesFromOutside(e)) {
+        select.actions.open();
+      }
+    },
+
+    handleBlur() {
+    },
+
+    createNewOffer(company) {
+      let offer = this.get('store').createRecord('offer', { company });
+      offer.set('offer', []);
     },
 
     deleteOffer(offerToDelete) {
@@ -56,16 +92,19 @@ export default Component.extend({
       offerToDelete.destroyRecord();
     },
 
-    createOnEnter(select, e, offer) {
-      if (e.keyCode === 13 && select.isOpen &&
-        !select.highlighted && !isBlank(select.searchText)) {
-
-        let selected = this.get('selected');
-        if (!selected.includes(select.searchText)) {
-          this.get('options').pushObject(select.searchText);
-          select.actions.choose(select.searchText);
-        }
+    createOffer(selected, searchText)
+    {
+      let options = this.get('options');
+      if (!options.includes(searchText)) {
+        this.get('options').pushObject(searchText);
       }
+      if (selected.includes(searchText)) {
+        this.get('notify').alert("Already added!", { closeAfter: 4000 });
+      }
+      else {
+        selected.pushObject(searchText);
+      }
+
     }
   }
 });
