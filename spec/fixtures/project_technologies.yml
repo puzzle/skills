@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: project_technologies
+#
+#  id                    :integer          not null, primary key
+#  offer                 :array
+#  project_id            :integer
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+duckduckgo_technologies:
+  offer:
+    - Java
+    - Angular
+  project: duckduckgo
+
+google_technologies:
+  offer:
+    - git
+    - Jenkins
+  project: google

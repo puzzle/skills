@@ -3,6 +3,6 @@ class CompaniesController < CrudController
                             partnermanager contact_person email_contact_person
                             phone_contact_person crm level my_company offer_comment]
 
-  self.nested_models = %i[locations employee_quantities people]
+  self.nested_models = %i[locations employee_quantities people offers]
 
 end

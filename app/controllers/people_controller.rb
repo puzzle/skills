@@ -4,7 +4,7 @@ class PeopleController < CrudController
                             competences variation_name company company_id]
 
   self.nested_models = %i[advanced_trainings activities projects
-                          educations]
+                          educations person_competences]
 
 
   skip_before_action :authorize, only: :picture
