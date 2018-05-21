@@ -2,19 +2,20 @@
 #
 # Table name: companies
 #
-#  id                    :integer          not null, primary key
-#  name                  :string
-#  web                   :string
-#  email                 :string
-#  phone                 :string
-#  partnermanager        :string
-#  contact_person        :string
-#  email_contact_person  :string
-#  phone_contact_person  :string
-#  crm                   :string
-#  level                 :string
-#  offer_comment         :string
-#  my_company            :boolean
+#  id                       :integer          not null, primary key
+#  name                     :string
+#  web                      :string
+#  email                    :string
+#  phone                    :string
+#  partnermanager           :string
+#  contact_person           :string
+#  email_contact_person     :string
+#  phone_contact_person     :string
+#  crm                      :string
+#  level                    :string
+#  offer_comment            :string
+#  my_company               :boolean
+#  associations_updatet_at  :timestamp
 
 class Company < ApplicationRecord
 

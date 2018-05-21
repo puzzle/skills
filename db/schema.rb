@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180427130110) do
+ActiveRecord::Schema.define(version: 20180516081438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20180427130110) do
     t.boolean "my_company"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "associations_updatet_at"
   end
 
   create_table "educations", id: :serial, force: :cascade do |t|
@@ -134,6 +135,7 @@ ActiveRecord::Schema.define(version: 20180427130110) do
     t.string "picture"
     t.string "competences"
     t.bigint "company_id"
+    t.datetime "associations_updatet_at"
     t.index ["company_id"], name: "index_people_on_company_id"
   end
 
