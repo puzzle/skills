@@ -19,6 +19,7 @@ const Person = DS.Model.extend({
   originPersonId: DS.attr('number'),
 
   educations: DS.hasMany('education'),
+  personCompetences: DS.hasMany('person-competence'),
   advancedTrainings: DS.hasMany('advanced-training'),
   activities: DS.hasMany('activity'),
   projects: DS.hasMany('project'),

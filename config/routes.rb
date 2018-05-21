@@ -31,6 +31,8 @@ Rails.application.routes.draw do
     resources :projects, controller: 'projects'
     resources :educations, controller: 'educations'
     resources :competences, controller: 'competences'
+    resources :project_technologies, controller: 'project_technologies'
+    resources :person_competences, controller: 'person_competences'
 
     # FWS
     resources :expertise_categories

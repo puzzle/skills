@@ -11,6 +11,22 @@
 </div>
 <div id="collapseTwo" class="collapse show border border-primary rounded-bottom">
   <div class="card-body">
+    {{#each person.personCompetences as |competence|}}
+      <div class="row mb-1">
+        <div class="col-sm-3">
+          <span class="p-2">{{competence.category}}</span>
+        </div>
+        <div class="col-sm-9">
+          {{#each competence.offer as |offer|}}
+            <span class="badge badge-success p-2 mr-2 mb-2 skill" href="#">{{offer}}</span>
+          {{/each}}
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
+<div id="collapseTwo" class="collapse show border border-primary rounded-bottom">
+  <div class="card-body">
     <div class="row" id="competence-content-show">
       <ul>
         {{#each competenceList as |competence|}}
