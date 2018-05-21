@@ -3,10 +3,9 @@ import sortByYear from '../utils/sort-by-year';
 
 
 export default Component.extend({
-  /* exclude where id like null */
-  filteredEducations: function() {
-    return this.get('sortedEducations').filterBy('id');
-  }.property('@each.id'),
+  filtered: function() {
+    return this.get('educations').filterBy('id');
+  }.property('educations.@each'),
 
-  sortedEducations: sortByYear('educations')
+  filteredEducations: sortByYear('filtered'),
 });

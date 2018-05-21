@@ -12,7 +12,7 @@
 <div id="collapseTwo" class="collapse show border border-primary rounded-bottom">
   <div class="card-body">
     {{#each company.offers as |offer|}}
-      <div class="row mb-1">
+      <div class="row">
         <div class="col-sm-3">
           <span class="p-2">{{offer.category}}</span>
         </div>
@@ -20,6 +20,7 @@
           {{#each offer.offer as |offer|}}
             <span class="badge badge-success p-2 mr-2 mb-2 skill" href="#">{{offer}}</span>
           {{/each}}
+          <hr>
         </div>
       </div>
     {{/each}}
