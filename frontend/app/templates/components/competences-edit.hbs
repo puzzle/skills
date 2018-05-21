@@ -23,3 +23,15 @@
     </div>
   {{/with}}
 </div>
+{{person.name}}
+<div>
+  <a role="button" class="card-link text-dark" {{action 'createNewOffer' person}}><i class="fa add"></i></a>
+  <a {{action 'submit' person}} role="button" id="submit-button" class="card-link text-black"><i class="fa save"></i></a>
+  <div>
+    {{#each person.person_competences as |competence|}}
+      <div>
+        {{competence.category}}
+      </div>
+    {{/each}}
+  </div>
+</div>
