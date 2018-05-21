@@ -21,7 +21,7 @@ export default Component.extend({
         .then (() =>
           Promise.all([
             ...person
-              .get('advanced-trainings')
+              .get('advancedTrainings')
               .map(advancedTraining => advancedTraining.save())
           ])
         )

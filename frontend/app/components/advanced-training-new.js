@@ -7,7 +7,7 @@ export default Component.extend({
   i18n: service(),
 
   newAdvancedTraining: computed('personId', function() {
-    return this.get('store').createRecord('advanced-training');
+    return this.get('store').createRecord('advancedTraining');
   }),
 
   willDestroyElement() {
