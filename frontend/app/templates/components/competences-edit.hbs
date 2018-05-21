@@ -59,12 +59,13 @@
     <a role="button" class="card-link text-dark" {{action 'createNewOffer' person}}><i class="fa add"></i></a>
   </div>
 </div>
+{{#if person.competences}}
 <div>
   <div id="collapseOne" class="collapse show border border-primary rounded-bottom">
     <div class="card-body row">
-      {{textarea value=person.competences class="competences-edit-input"}}
+{{textarea value=person.competences class="competences-edit-input" placeholder="Veraltet, nicht mehr ausfüllen!"}}
     </div>
   </div>
 </div>
-
+{{/if}}
 
