@@ -11,7 +11,7 @@
 </div>
 <div id="collapseOne" class="collapse show border border-primary rounded-bottom">
   <div class="card-body">
-    <div class="row" id="profile-uebersicht-content-show">
+    <div class="row" id="profile-content-show">
       <div class="col-sm-2">
         <img id="img-avatar-read"
              src={{person.picturePath}}
@@ -58,7 +58,7 @@
             <td>Sprachen</td><td data-test-person-language>{{person.language}}</td>
           </tr>
           <tr>
-            <td>Zivilstand</td><td data-test-person-marital-staus>{{person.martialStatus}}</td>
+            <td>Zivilstand</td><td data-test-person-marital-status>{{person.martialStatus}}</td>
           </tr>
           {{#each company.employeeQuantities as |quantity|}}
             <tr>

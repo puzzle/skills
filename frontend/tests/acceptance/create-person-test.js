@@ -8,7 +8,7 @@ import editPage from 'frontend/tests/pages/person-edit';
 moduleForAcceptance('Acceptance | create person');
 
 test('creating a new person', async function(assert) {
-  assert.expect(11);
+  assert.expect(10);
 
   authenticateSession(this.application, {
     ldap_uid: 'development_user',
@@ -44,7 +44,10 @@ test('creating a new person', async function(assert) {
 test('creating an empty new person', async function(assert) {
   assert.expect(2);
 
-  authenticateSession(this.application);
+  authenticateSession(this.application, {
+    ldap_uid: 'development_user',
+    token: '1234'
+  });
 
   await page.visit();
 
