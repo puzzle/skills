@@ -20,7 +20,7 @@ export default Component.extend({
   },
 
   suggestion(term) {
-    return `"${term}" hinzufügen!`;
+    return `"${term}" mit Enter hinzufügen!`;
   },
 
   focusComesFromOutside(e) {
