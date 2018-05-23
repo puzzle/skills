@@ -1,11 +1,9 @@
 <div class="row mb-2">
   <div class="col-sm-7">
-    {{people-search person=model}}
+    {{people-search people=model}}
   </div>
   <div class="col-sm-5">
     {{#link-to "people.new"}}<button type="button" class="btn btn-outline-success float-right ml-2 btn-w-1">Neues Profil</button>{{/link-to}}
-    {{!TODO: person instead of people in model}}
-    {{person-export person=model}}
   </div>
 </div>
 {{outlet}}

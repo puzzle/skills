@@ -7,6 +7,24 @@ export default Component.extend({
   download: service(),
 
   actions: {
+    exportCvOdt(personId, e) {
+      e.preventDefault();
+      let url = `/api/people/${personId}.odt`;
+      this.get('download').file(url)
+    },
+
+    exportDevFws(personId, e) {
+      e.preventDefault();
+      let url = `/api/people/${personId}/fws.odt?discipline=development`;
+      this.get('download').file(url)
+    },
+
+    exportSysFws(personId, e) {
+      e.preventDefault();
+      let url = `/api/people/${personId}/fws.odt?discipline=system_engineering`;
+      this.get('download').file(url)
+    },
+
     loadPersonVariations(originPersonId, id = originPersonId) {
       id = originPersonId || id;
       return this.get('ajax')
