@@ -21,8 +21,6 @@ export default Component.extend({
   actions: {
     submit(person) {
       person.save()
-        .then (() => this.sendAction('submit'))
-        .then (() => this.get('notify').success('Successfully saved!'))
         .then (() =>
           Promise.all([
             ...person
@@ -30,16 +28,24 @@ export default Component.extend({
               .map(education => education.save())
           ])
         )
+        .then (() => this.sendAction('submit'))
+        .then (() => this.get('notify').success('Successfully saved!'))
+
 
         .catch(() => {
-          let education = this.get('education');
-          let errors = education.get('errors').slice(); // clone array as rollbackAttributes mutates
+          let educations = person.get('educations');
+          educations.forEach(education => {
+            let errors = education.get('errors').slice(); // clone array as rollbackAttributes mutates
 
-          education.rollbackAttributes();
-          errors.forEach(({ attribute, message }) => {
-            let translated_attribute = this.get('i18n').t(`offer.${attribute}`)['string']
-            this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
+            education.rollbackAttributes();
+            //TODO: rollback does not rollback all records in the forEach, some kind of bug
+
+            errors.forEach(({ attribute, message }) => {
+              let translated_attribute = this.get('i18n').t(`education.${attribute}`)['string']
+              this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
+            });
           });
+
         });
     },
     deleteEducation(education) {

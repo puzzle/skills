@@ -16,8 +16,6 @@ export default Component.extend({
   actions: {
     submit(person) {
       person.save()
-        .then (() => this.sendAction('submit'))
-        .then (() => this.get('notify').success('Successfully saved!'))
         .then (() =>
           Promise.all([
             ...person
@@ -25,15 +23,20 @@ export default Component.extend({
               .map(advancedTraining => advancedTraining.save())
           ])
         )
+        .then (() => this.sendAction('submit'))
+        .then (() => this.get('notify').success('Successfully saved!'))
 
         .catch(() => {
-          let advancedTraining = this.get('advanced-training');
-          let errors = advancedTraining.get('errors').slice(); // clone array as rollbackAttributes mutates
+          let advancedTrainings = this.get('advanced-trainings');
+          advancedTrainings.forEach(advancedTraining => {
+            let errors = advancedTraining.get('errors').slice();
 
-          advancedTraining.rollbackAttributes();
-          errors.forEach(({ attribute, message }) => {
-            let translated_attribute = this.get('i18n').t(`offer.${attribute}`)['string']
-            this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
+            advancedTraining.rollbackAttributes();
+
+            errors.forEach(({ attribute, message }) => {
+              let translated_attribute = this.get('i18n').t(`advancedTraining.${attribute}`)['string']
+              this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
+            });
           });
         });
     },

@@ -23,7 +23,7 @@ export default Component.extend({
       newEducation.set('person', person);
       return newEducation.save()
         .then(education => this.sendAction('done'))
-        .then(() => this.get('notify').success('Weiterbildung wurde hinzugefügt!'))
+        .then(() => this.get('notify').success('Ausbildung wurde hinzugefügt!'))
         .catch(() => {
           this.get('newEducation.errors').forEach(({ attribute, message }) => {
             let translated_attribute = this.get('i18n').t(`education.${attribute}`)['string']

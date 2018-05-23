@@ -13,7 +13,7 @@ export default {
     year_to: 'Jahr bis'
   },
 
-  'advanced-training': {
+  'advancedTraining': {
     description: 'Beschreibung',
     year_from: 'Jahr von',
     year_to: 'Jahr bis'
