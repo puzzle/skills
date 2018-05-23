@@ -16,8 +16,6 @@ export default Component.extend({
   actions: {
     submit(person) {
       person.save()
-        .then (() => this.sendAction('submit'))
-        .then (() => this.get('notify').success('Successfully saved!'))
         .then (() =>
           Promise.all([
             ...person
@@ -25,16 +23,23 @@ export default Component.extend({
               .map(activity => activity.save())
           ])
         )
+        .then (() => this.sendAction('submit'))
+        .then (() => this.get('notify').success('Successfully saved!'))
+
 
         .catch(() => {
-          let activity = this.get('activity');
-          let errors = activity.get('errors').slice(); // clone array as rollbackAttributes mutates
+          let activities = this.get('activities');
+          activities.forEach(activity => {
+            let errors = activity.get('errors').slice(); // clone array as rollbackAttributes mutates
 
-          activity.rollbackAttributes();
-          errors.forEach(({ attribute, message }) => {
-            let translated_attribute = this.get('i18n').t(`offer.${attribute}`)['string']
-            this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
+            activity.rollbackAttributes();
+
+            errors.forEach(({ attribute, message }) => {
+              let translated_attribute = this.get('i18n').t(`activity.${attribute}`)['string']
+              this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
+            });
           });
+
         });
     },
     deleteActivity(activity, event) {

@@ -32,7 +32,7 @@ export default {
     description: 'Beschreibung'
   },
 
-  'person-competence': {
+  'personCompetence': {
     category: 'Kategorie',
     offer: 'Angebot'
   },
