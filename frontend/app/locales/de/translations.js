@@ -1,32 +1,42 @@
 export default {
+  'education': {
+    title: 'Titel',
+    location: 'Ausbildungsort',
+    year_from: 'Jahr von',
+    year_to: 'Jahr bis'
+  },
+
+  'activity': {
+    description: 'Beschreibung',
+    role: 'Rolle',
+    year_from: 'Jahr von',
+    year_to: 'Jahr bis'
+  },
+
+  'advanced-training': {
+    description: 'Beschreibung',
+    year_from: 'Jahr von',
+    year_to: 'Jahr bis'
+  },
+
+  'project': {
+    title: 'Titel',
+    description: 'Beschreibung',
+    role: 'Rolle',
+    technology: 'Technologie',
+    year_from: 'Jahr von',
+    year_to: 'Jahr bis'
+  },
+
   'competence': {
     description: 'Beschreibung'
   },
-  'education': {
-    year_from: 'Jahr von',
-    year_to: 'Jahr bis',
-    title: 'Titel',
-    location: 'Ort'
+
+  'person-competence': {
+    category: 'Kategorie',
+    offer: 'Angebot'
   },
-  'advanced-training': {
-    year_from: 'Jahr von',
-    year_to: 'Jahr bis',
-    description: 'Beschreibung'
-  },
-  'activity': {
-    year_from: 'Jahr von',
-    year_to: 'Jahr bis',
-    description: 'Beschreibung',
-    role: 'Rolle'
-  },
-  'project': {
-    year_from: 'Jahr von',
-    year_to: 'Jahr bis',
-    description: 'Beschreibung',
-    role: 'Rolle',
-    title: 'Titel',
-    technology: 'Technologie'
-  },
+
   'person': {
     birthdate: 'Geburtsdatum',
     language: 'Sprache',
@@ -36,7 +46,12 @@ export default {
     origin: 'Nationalität',
     role: 'Rolle',
     title: 'Titel',
-    competences: 'Kompetenzen'
+    competences: 'Kompetenzen',
+    educations: 'Ausbildungen',
+    advancedTrainings: 'Weiterbildungen',
+    activities: 'Stationen',
+    projects: 'Projekte',
+    personCompetences: 'Kompetenzen'
   },
 
   'expertise-topic-skill-value': {
@@ -69,7 +84,10 @@ export default {
   'offer': {
     category: 'Kategorie',
     offer: 'Angebot'
-  }
+  },
+
+
+
 
 
   // "some.translation.key": "Text for some.translation.key",
