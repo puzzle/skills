@@ -54,6 +54,15 @@ export default Component.extend({
     },
     confirmDestroy(education) {
       this.send('deleteEducation', education);
+    },
+    abortEdit() {
+      let educations = this.get('person.educations').toArray();
+      educations.forEach(education => {
+        if (education.get('hasDirtyAttributes')) {
+          education.rollbackAttributes();
+        }
+      });
+      this.sendAction('educationsEditing');
     }
   }
 });
