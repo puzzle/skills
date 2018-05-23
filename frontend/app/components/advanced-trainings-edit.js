@@ -47,6 +47,15 @@ export default Component.extend({
     },
     confirmDestroy(advancedTraining) {
       this.send('deleteAdvancedTrainings', advancedTraining);
+    },
+    abortEdit() {
+      let advancedTrainings = this.get('person.advancedTrainings').toArray();
+      advancedTrainings.forEach(advancedTraining => {
+        if (advancedTraining.get('hasDirtyAttributes')) {
+          advancedTraining.rollbackAttributes();
+        }
+      });
+      this.sendAction('advancedTrainingsEditing');
     }
   }
 });
