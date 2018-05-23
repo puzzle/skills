@@ -11,7 +11,7 @@
   </div>
 </div>
 <div class="row mt-2">
-  <div class="col-sm-7">
+  <div class="col-sm-8">
     <div id="variation">
       <ul class="list-unstyled float-left">
         <li id="variation-cv-pill" class="{{if person.originPersonId 'active'}}">
@@ -38,7 +38,7 @@
                 {{#unless person.originPersonId}}
                   {{#if personVariations.length}}<hr>{{/if}}
                   <li>
-                    <a class="new-variation-link"
+                    <a href="#" class="new-variation-link"
                        onclick={{pipe dd.actions.close (toggle 'createVariationModal' this)}}>
                       Neue Variante erstellen...
                     </a>
@@ -57,23 +57,23 @@
               <ul class="content-bootstrap-feel dropdown-menu">
                 {{#if person.originPersonId}}
                   <li>
-                    <a class="update-variation-link"
+                    <a href="#" class="update-variation-link"
                        onclick={{pipe dd.actions.close (toggle 'updateVariationModal' this)}}>
                       Varianten Name ändern...
                     </a>
                   </li>
                   <li>
-                    <a onclick={{pipe dd.actions.close (toggle 'deletePersonConfirm' this)}}>Variante Löschen</a>
+                    <a href="#" onclick={{pipe dd.actions.close (toggle 'deletePersonConfirm' this)}}>Variante Löschen</a>
                   </li>
                 {{else}}
                   <li>
-                    <a class="new-variation-link"
+                    <a href="#" class="new-variation-link"
                        onclick={{pipe dd.actions.close (toggle 'createVariationModal' this)}}>
                       Neue Variante erstellen...
                     </a>
                   </li>
                   <li>
-                    <a onclick={{pipe dd.actions.close (toggle 'deletePersonConfirm' this)}}>CV Löschen</a>
+                    <a href="#" onclick={{pipe dd.actions.close (toggle 'deletePersonConfirm' this)}}>CV Löschen</a>
                   </li>
                 {{/if}}
               </ul>
@@ -88,17 +88,21 @@
             {{#dd.content}}
               <ul class="content-bootstrap-feel dropdown-menu">
                 <li>
-                  <a onclick={{pipe (action 'exportCvOdt' person.id) dd.actions.close}}>
+                  <a href="#" class="update-variation-link" onclick={{pipe (action 'exportCvOdt' person.id) dd.actions.close}}>
                     {{#if person.originPersonId}}
                       Aktuelle Variante
                     {{else}}
                       Aktuelles CV
                     {{/if}}
                   </a>
-                  <a onclick={{pipe (action 'exportDevFws' person.id) dd.actions.close}}>
+                </li>
+                <li>
+                  <a href="#" class="update-variation-link" onclick={{pipe (action 'exportDevFws' person.id) dd.actions.close}}>
                     Fachwissensskala Entwickler
                   </a>
-                  <a onclick={{pipe (action 'exportSysFws' person.id) dd.actions.close}}>
+                </li>
+                <li>
+                  <a href="#" class="update-variation-link" onclick={{pipe (action 'exportSysFws' person.id) dd.actions.close}}>
                     Fachwissensskala Systemtechniker
                   </a>
                 </li>
@@ -109,7 +113,7 @@
       </ul>
     </div>
   </div>
-  <div class="col-sm-5">
+  <div class="col-sm-4">
     <span class="text-right d-block">
       <strong>Letztes Update <span class="text-danger"><time datetime={{moment-format person.updatedAt}}>{{moment-format person.updatedAt 'L LT'}}</time></span></strong>
     </span>
