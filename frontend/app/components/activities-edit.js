@@ -49,6 +49,15 @@ export default Component.extend({
     },
     confirmDestroy(activity) {
       this.send('deleteActivity', activity);
+    },
+    abortEdit() {
+      let activities = this.get('person.activities').toArray();
+      activities.forEach(activity => {
+        if (activity.get('hasDirtyAttributes')) {
+          activity.rollbackAttributes();
+        }
+      });
+      this.sendAction('activitiesEditing');
     }
   }
 });
