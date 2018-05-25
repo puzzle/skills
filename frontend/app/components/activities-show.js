@@ -5,7 +5,7 @@ import { computed } from '@ember/object';
 
 export default Component.extend({
   filtered: computed('activities.@each', function() {
-    return this.get('activities').filterBy('id');
+    return this.get('activities');
   }),
 
   filteredActivities: sortByYear('filtered'),
