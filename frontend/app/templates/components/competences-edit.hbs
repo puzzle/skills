@@ -23,6 +23,7 @@
           {{#power-select-multiple-with-create
             options=options
             selected=competence.offer
+            placeholder="Kompetenzen"
             onchange=(action (mut competence.offer))
             onfocus=(action "handleFocus")
             onblur=(action "handleBlur")

@@ -22,6 +22,7 @@
           {{#power-select-multiple-with-create
             options=options
             selected=offer.offer
+            placeholder="Angebotene Technologien"
             onchange=(action (mut offer.offer))
             onfocus=(action "handleFocus")
             onblur=(action "handleBlur")
