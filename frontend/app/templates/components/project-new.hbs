@@ -18,26 +18,24 @@
               {{input value=newProject.year_to type="number" class="input-mini form-control" placeholder="bis"}}
             </div>
           </div>
-          <div class="col-sm-7 row">
+          <div class="col-sm-7">
             {{input placeholder="Projekt Titel" value=newProject.title class="form-control"}}
             <br>{{textarea placeholder="Projektbeschreibung" value=newProject.description class="form-control"}}
             <br>{{textarea placeholder="Rolle und Aufgaben" value=newProject.role class="form-control"}}
             <br>
             {{#each newProject.projectTechnologies as |projectTechnology|}}
-              <div>
-                {{#power-select-multiple-with-create
-                  options=options
-                  selected=projectTechnology.offer
-                  onchange=(action (mut projectTechnology.offer))
-                  onfocus=(action "handleFocus")
-                  onblur=(action "handleBlur")
-                  oncreate=(action "createTechnology" projectTechnology.offer)
-                  placeholder="Eingesetzte Technologien"
-                  buildSuggestion=suggestion
-                  as |technology|}}
-                  {{technology}}
-                {{/power-select-multiple-with-create}}
-              </div>
+              {{#power-select-multiple-with-create
+                options=options
+                selected=projectTechnology.offer
+                onchange=(action (mut projectTechnology.offer))
+                onfocus=(action "handleFocus")
+                onblur=(action "handleBlur")
+                oncreate=(action "createTechnology" projectTechnology.offer)
+                placeholder="Eingesetzte Technologien"
+                buildSuggestion=suggestion
+                as |technology|}}
+                {{technology}}
+              {{/power-select-multiple-with-create}}
             {{/each}}
           </div>
           <div class="col-sm-2 centered-content text-right">
