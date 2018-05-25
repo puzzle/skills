@@ -21,7 +21,9 @@
               {{input placeholder="Projekt Titel" value=changeset.title class="form-control mb-2"}}
               <br>{{textarea placeholder="Projektbeschreibung" value=changeset.description class="form-control"}}
               <br>{{textarea placeholder="Rolle und Aufgaben" value=changeset.role class="form-control"}}
-              <br>{{textarea placeholder="Eingesetzte Technologien" value=changeset.technology class="form-control"}}
+              {{#if changeset.technology}}
+                <br>{{textarea placeholder="Eingesetzte Technologien" value=changeset.technology class="form-control"}}
+              {{/if}}
               <br>
               {{#each project.projectTechnologies as |projectTechnology|}}
                 {{#power-select-multiple-with-create
