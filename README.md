@@ -14,7 +14,7 @@ You will need the following things properly installed on your computer.
 
 ### Development
 
-* `git clone https://git@github.com:puzzle/skills.git`
+* `git clone git@github.com:puzzle/skills.git`
 * `cd skills`
 * `rvm install 2.3`
 * `rvm use 2.3`
