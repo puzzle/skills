@@ -9,11 +9,7 @@ export default Component.extend({
   router: service(),
 
   peopleToSelect: computed(function() {
-    let people = this.get('store').query('person', {
-      filter: {
-        originPersonId: null
-      }
-    });
+    let people = this.get('store').findAll('person');
     return people;
   }),
 
