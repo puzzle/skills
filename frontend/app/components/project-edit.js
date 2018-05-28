@@ -1,9 +1,10 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { isBlank } from '@ember/utils';
+import { isEmpty } from '@ember/utils';
 
 export default Component.extend({
-
+  store: service(),
   i18n: service(),
 
   init() {
@@ -16,6 +17,12 @@ export default Component.extend({
       , 'Passenger', 'Perl', 'Puma', 'Python', 'Qunit', 'R', 'REST', 'Red Hat', 'Relationale DBs', 'Resque'
       , 'Rspec', 'Ruby on Rails', 'Ruby', 'SASS', 'SQL', 'SUSE', 'Servlets', 'Shell Scripting', 'Sonar'
       , 'Stored Procedures', 'Travis', 'UML', 'Ubuntu', 'VLANs', 'WebSockets', 'WildFly / JBoss EAP'];
+
+    let project = this.get('project')
+    if (isEmpty(project.get('projectTechnologies'))) {
+      let technology = this.get('store').createRecord('project-technology', { project });
+      technology.set('offer', []);
+    }
 
   },
 
