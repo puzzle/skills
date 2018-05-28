@@ -14,8 +14,8 @@ You will need the following things properly installed on your computer.
 
 ### Development
 
-* `git clone https://gitlab.puzzle.ch/pitc_puzzlecv/cv2.git`
-* `cd cv2`
+* `git clone https://git@github.com:puzzle/skills.git`
+* `cd skills`
 * `rvm install 2.3`
 * `rvm use 2.3`
 * `gem install bundler`
