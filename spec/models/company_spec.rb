@@ -21,6 +21,15 @@ require 'rails_helper'
 
 describe Company do
 
+    context 'destroy' do
+      it 'is not possible to delete my company' do
+        my_company = companies(:firma)
+        expect do
+          my_company.destroy
+        end.to change{Company.count}.by(0)
+      end
+    end
+
     context 'validations' do
       it 'checks whether required attribute values are present' do
         company = Company.new

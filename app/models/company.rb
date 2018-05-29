@@ -19,7 +19,7 @@
 
 class Company < ApplicationRecord
 
-  before_destroy :check_if_my_company
+  before_destroy :protect_if_my_company
 
   has_many :people, dependent: :nullify
   has_many :locations, dependent: :destroy
@@ -35,8 +35,8 @@ class Company < ApplicationRecord
 
   private
 
-  def check_if_my_company
-    if my_company
+  def protect_if_my_company
+    if my_company?
       errors.add(:base, 'your own company can not be deleted')
       throw(:abort)
     end
