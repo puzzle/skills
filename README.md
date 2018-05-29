@@ -1,5 +1,7 @@
 # Puzzle Skills
 
+[![Build Status](https://travis-ci.org/puzzle/skills.svg)](https://travis-ci.org/puzzle/skills)
+
 ## Back-End
 
 Das Back-End ist umgesetzt mit Ruby on Rails mit einer API Schnittstelle.
