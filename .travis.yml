@@ -1,7 +1,6 @@
 branches:
   only:
     - master
-    - uni-master
 
 language: ruby, node_js
 
