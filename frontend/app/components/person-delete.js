@@ -14,5 +14,4 @@ export default Component.extend({
       }
     }
   }
-
 });

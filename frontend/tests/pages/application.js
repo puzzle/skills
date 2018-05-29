@@ -12,5 +12,9 @@ export default create({
   search: fillable('#field-search'),
   toggleAdvancedSearch: clickable('#toggleSearch'),
 
-  menuItem: clickOnText('#person-list a')
+  peopleMenuItem: clickOnText('#person-list a'),
+
+  visitCompanies: visitable('/companies'),
+
+  companiesMenuItem: clickOnText('#companies-list a')
 })

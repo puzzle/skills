@@ -7,7 +7,7 @@ export default Component.extend({
   i18n: service(),
 
   newAdvancedTraining: computed('personId', function() {
-    return this.get('store').createRecord('advanced-training');
+    return this.get('store').createRecord('advancedTraining');
   }),
 
   willDestroyElement() {
@@ -26,7 +26,7 @@ export default Component.extend({
         .then(() => this.get('notify').success('Weiterbildung wurde hinzugefügt!'))
         .catch(() => {
           this.get('newAdvancedTraining.errors').forEach(({ attribute, message }) => {
-            let translated_attribute = this.get('i18n').t(`advanced-training.${attribute}`)['string']
+            let translated_attribute = this.get('i18n').t(`advancedTraining.${attribute}`)['string']
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
         });

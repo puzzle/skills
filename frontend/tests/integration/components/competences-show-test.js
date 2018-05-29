@@ -13,17 +13,22 @@ test('it renders competences from person', function(assert) {
     birthdate: new Date('2000-01-01'),
     origin: 'Godrics hollow',
     location: 'Hogwarts',
-    competences: 'very much',
     language: 'Parsel',
     martialStatus:  'ledig',
-    status: 'Mitarbeiter'
+    personCompetences: [
+      { category: "frontend", offer: ['test1', 'holz'] },
+      { category: "backend" }
+    ]
   });
 
   this.render(hbs`{{competences-show person=person}}`);
 
   let text = this.$().text();
 
-  assert.ok(text.includes('very much'));
+  assert.ok(text.includes('frontend'));
+  assert.ok(text.includes('backend'));
+  assert.ok(text.includes('test1'));
+  assert.ok(text.includes('holz'));
 
   // doesn't show full person
   assert.ok(!text.includes('Harry Potter'));

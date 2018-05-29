@@ -15,11 +15,9 @@ You will need the following things properly installed on your computer.
 ## Installation
 
 * `npm install -g ember-cli`
-* `npm install -g bower`
 * `git clone <repository-url>` this repository
 * `cd frontend`
 * `npm install`
-* `bower install`
 
 ## Running / Development
 With Mirage Fixtures:
@@ -39,7 +37,8 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Running Tests
 
-* `ember test`
+* `rake spec:frontend:serve` (from skills)[See skills/README.md](https://github.com/puzzle/skills/tree/uni-master#testing)
+* `ember test` (from frontend, acceptance tests are failing)
 * `ember test --server`
 
 ### Building

@@ -1,7 +1,4 @@
 class PersonRelationsController < CrudController
-  def person_id
-    params['data']['relationships']['person']['data']['id']
-  end
 
   def create(options = {})
     build_entry
@@ -15,6 +12,12 @@ class PersonRelationsController < CrudController
 
   def fetch_entries
     model_class.where(person_id: params['person_id'])
+  end
+
+  private
+  
+  def person_id
+    params['data']['relationships']['person']['data']['id']
   end
 
 end

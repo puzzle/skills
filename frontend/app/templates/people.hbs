@@ -1,5 +1,10 @@
-{{people-list people=model search=q onSearch=(action (mut q))}}
-
-<div id="right-grid" class="span9 sub-page">
-  {{outlet}}
+<div class="row mb-2">
+  <div class="col-sm-7">
+    {{people-search people=model}}
+  </div>
+  <div class="col-sm-5">
+    {{#link-to "people.new"}}<button type="button" class="btn btn-outline-success float-right ml-2 btn-w-1">Neues Profil</button>{{/link-to}}
+  </div>
 </div>
+{{outlet}}
+

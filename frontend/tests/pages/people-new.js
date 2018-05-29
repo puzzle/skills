@@ -5,7 +5,6 @@ import {
   create,
   visitable,
   fillable,
-  selectable,
   clickable
 } from 'ember-cli-page-object';
 
@@ -13,7 +12,7 @@ const { resolve } = RSVP;
 
 export default create({
   visit: visitable('/people/new'),
-  submit: clickable('#profil .form-button--submit'),
+  submit: clickable('#profil #submit-button'),
   name: fillable('[name="person[name]"]'),
   title: fillable('[name="person[title]"]'),
   role: fillable('[name="person[role]"]'),
@@ -22,8 +21,6 @@ export default create({
   location: fillable('[name="person[location]"]'),
   language: fillable('[name="person[language]"]'),
   maritalStatus: fillable('[name="person[martialStatus]"]'),
-  status: selectable('[name="person[statusId]"]'),
-  company: fillable('[name="person[company]"]'),
 
   async createPerson(person) {
     await Object.keys(person)

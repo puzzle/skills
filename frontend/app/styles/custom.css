@@ -7,6 +7,12 @@ body {
   /* The html and body elements cannot have any padding or margin. */
 }
 
+body.max-width {
+  width: 100%;
+  max-width: 1350px;
+  margin: 0px auto;
+}
+
 hr {
   display: block;
   height: 1px;
@@ -20,28 +26,13 @@ hr {
   cursor: pointer;
 }
 
-
-/* Override Bootstrap
--------------------------------------------------- */
-  .form-horizontal .control-group {
-    margin-bottom: 10px !important;
-  }
-
-  .form-horizontal .control-label{
-    width: 90px !important;
-  }
-
-  .form-horizontal .controls {
-    margin-left: 100px !important;
-  }
+.mb-end, #collapseFWS .card:last-child {
+  margin-bottom: 50px;
+}
 
 
   /* Main Content
   -------------------------------------------------- */
-
-  #inner-main {
-    margin-top: 70px;
-  }
 
   #left-grid {
     margin-right: 0;
@@ -593,4 +584,241 @@ form textarea{
 #export-dropdown{
   margin-left: 5px;
   margin-top: 1px;
+}
+
+
+/* Companies Page
+----------------------------------------------------- */
+.btn-w-1 {
+  width: 160px;
+}
+
+.table-uebersicht td {
+  padding-bottom: 5px;
+  vertical-align: top;
+  font-size: 90%;
+}
+
+.table-uebersicht tr td:first-child {
+  text-align: right;
+  font-weight: bold;
+  padding-right: 10px;
+  height: 35px;
+  min-height: 35px;
+}
+
+.table-uebersicht tr:first-child {
+  font-size: 140%;
+}
+
+.skill {
+  min-width: 100px;
+}
+
+
+.full {
+  width: 100%;
+}
+
+.profil-knopf {
+  width: 100%;
+  text-align: left;
+  padding: 12px;
+}
+
+/* Sandwich Icon */
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,0,0, 0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+/* Symbole für Tabs */
+/* Symbol für offenes / geschlossenes Tab */
+[data-toggle="collapse"] .angle:before {
+  content: "\f106";  /* this is your text. You can also use UTF-8 character codes as I do here */
+  font-size: 20px;
+  font-weight: bold;
+}
+
+a:hover .fa, a:active .fa, a:focus .fa {
+  color: #61B44B;
+  transition: 0.3s;
+}
+
+[data-toggle="collapse"].collapsed .angle:before {
+  content: "\f107";
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.edit:before {
+  content: "\f044";
+  font-size: 20px;
+}
+
+.save:before {
+  content: "\f0c7";
+  font-size: 20px;
+}
+
+.abort:before {
+  content: "\f00d";
+  font-size: 20px;
+}
+
+.trash:before {
+  content: "\f014";
+  font-size: 20px;
+}
+
+.reset:before {
+  content: "\f0e2";
+  font-size: 20px;
+}
+
+.add:before {
+  content: "\f055";
+  font-size: 20px;
+}
+
+.info:before {
+  content: "\f129";
+  font-size: 20px;
+}
+
+/* Table Styling in Tabs */
+.table-uebersicht {
+  width: 100%;
+}
+
+.table-uebersicht td:first-child, .table-uebersicht label {
+  width: 50%;
+}
+
+.table-uebersicht label {
+  float: left;
+}
+
+.table-uebersicht td:last-child {
+  width: 50%;
+}
+
+.table-uebersicht input, .table-uebersicht button, .table-uebersicht .ember-power-select-trigger {
+  width: 45%;
+  float: right;
+}
+
+.table-uebersicht .nextToDelete {
+  position: relative;
+}
+
+.table-uebersicht .nextToDelete input {
+  width: 40%;
+  margin-right: 5%;
+}
+
+.table-uebersicht .deleteField {
+  position: absolute;
+  top: 5px;
+  right: 12px;
+}
+
+/* FWS */
+table.fws tr td:first-child {
+  width: 200px;
+}
+
+table.fws tr td:nth-child(2), table.fws tr td:nth-child(3), table.fws tr td:nth-child(4),
+table.fws tr td:nth-child(5) {
+  width: 170px;
+}
+
+table.fws tr td:last-child {
+  width: 30px;
+}
+
+/* Power Select */
+li.ember-power-select-multiple-option {
+  color: #fff;
+  background-color: #28a745;
+  border: 0px solid;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  min-width: 100px;
+}
+
+li:hover.ember-power-select-multiple-option {
+  background-color: #1e7e34;
+}
+
+span.ember-power-select-selected-item {
+  display: block;
+  text-align: left;
+}
+
+/* Style Fixes */
+a:focus {
+  outline: none;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+}
+
+
+/* Input grössen */
+.year {
+  width: 75px;
+}
+
+/* Person */
+/* Korrektur Ember */
+.confirm-dialog-button {
+  display: initial !important;
+}
+
+.edit-symbols {
+  display: block;
+}
+
+.edit-symbols a {
+  margin: 0px 0px 0px 8px;
+
+}
+
+.zeile {
+  min-height: 80px;
+  padding: 10px;
+  border-width: 1px 1px 0px 1px;
+  border-style: solid;
+  border-color: black;
+}
+
+.zeile:first-child {
+  border-radius: 10px 10px 0px 0px !important;
+}
+
+.zeile:last-child {
+  border-width: 1px;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.zeile .centered-content {
+  line-height: 60px;
+  vertical-align: middle;
+}
+
+.zeile .centered-content-input {
+  min-height: 60px;
+}
+
+/* Bootstrap Fixes */
+.card {
+  border: 0px;
 }

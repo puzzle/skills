@@ -13,7 +13,6 @@
 #  origin           :string
 #  role             :string
 #  title            :string
-#  status_id        :integer
 #  origin_person_id :integer
 #  variation_name   :string
 #  created_at       :datetime         not null

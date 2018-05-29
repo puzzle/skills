@@ -104,7 +104,7 @@ describe PeopleController do
 
         expect(people.count).to eq(2)
         alice_attrs = people.first['attributes']
-        expect(alice_attrs.count).to eq(2)
+        expect(alice_attrs.count).to eq(1)
         expect(alice_attrs.first[1]).to eq('Alice Mante')
         json_object_includes_keys(alice_attrs, keys)
         expect(people).not_to include('relationships')
@@ -132,14 +132,14 @@ describe PeopleController do
 
         bob_attrs = json['data']['attributes']
 
-        expect(bob_attrs.count).to eq(16)
+        expect(bob_attrs.count).to eq(14)
         json_object_includes_keys(bob_attrs, keys)
         # expect(bob_attrs['picture-path']).to eq("/api/people/#{bob.id}/picture")
 
-        nested_keys = %w(advanced_trainings activities projects educations)
+        nested_keys = %w(advanced_trainings activities projects educations company)
         nested_attrs = json['data']['relationships']
 
-        expect(nested_attrs.count).to eq(4)
+        expect(nested_attrs.count).to eq(6)
         json_object_includes_keys(nested_attrs, nested_keys)
       end
 
@@ -153,7 +153,7 @@ describe PeopleController do
         bob_attrs = json['data']['attributes']
 
         expect(json['data']['type']).to eq('people')
-        expect(bob_attrs.count).to eq(16)
+        expect(bob_attrs.count).to eq(14)
         json_object_includes_keys(bob_attrs, keys)
       end
     end
@@ -168,9 +168,7 @@ describe PeopleController do
                    name: 'test',
                    origin: 'Switzerland',
                    role: 'tester',
-                   title: 'Bsc in tester',
-                   status_id: 2,
-                   company: 'Puzzle ITC GmbH'}
+                   title: 'Bsc in tester'}
 
         process :create, method: :post, params: { data: { attributes: person } }
 
@@ -178,7 +176,6 @@ describe PeopleController do
         expect(new_person).not_to eq(nil)
         expect(new_person.location).to eq('Bern')
         expect(new_person.language).to eq('German')
-        expect(new_person.company).to eq('Puzzle ITC GmbH')
         expect(new_person.picture.url)
           .to include("#{Rails.root}/uploads/person/picture/#{new_person.id}/picture.png")
       end

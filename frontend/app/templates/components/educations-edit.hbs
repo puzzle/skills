@@ -1,0 +1,52 @@
+<div class="card-header bg-primary">
+  <div class="row">
+    <div class="col-sm-6">
+      <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseEducation">Ausbildung</a>
+    </div>
+    <div class="col-sm-6 text-right d-block">
+      <a onclick={{action 'submit' person}} role="button" class="card-link text-white"><i class="fa save"></i></a>
+      <a onclick={{action 'abortEdit'}} role="button" class="card-link text-white"><i class="fa abort"></i></a>
+      <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseEducation"><i class="fa angle"></i></a>
+    </div>
+  </div>
+</div>
+<div id="collapseEducation" class="collapse show border border-primary rounded-bottom">
+  <div class="card-body">
+    <div id="competence-content-show">
+      {{#each person.educations as |education|}}
+        <div class="zeile">
+          <div id="education-content-edit">
+            <div class="row">
+              <div class="col-sm-3">
+                <div class="input-group centered-content-input">
+                  {{input value=education.year_from type="number" class="year form-control" placeholder="von"}}
+                  {{input value=education.year_to type="number" class="year form-control" placeholder="bis"}}
+                </div>
+              </div>
+              <div class="col-sm-7">
+                <div class="input-group centered-content-input">
+                  {{input value=education.title class="input-xxlarge form-control" placeholder="Ausbildungsart, erhaltener Titel"}}
+                  {{input value=education.location class="input-xxlarge form-control" placeholder="Ausbildungsort"}}
+                </div>
+              </div>
+              <div class="col-sm-2 edit-symbols text-right centered-content">
+                {{#confirm-dialog
+                  text="Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?"
+                  confirmButton="Löschen"
+                  cancelButton="Abbrechen"
+                  confirmAction=(action 'confirmDestroy' education)
+                  confirmButtonClass="btn btn-danger"
+                  cancelButtonClass="btn pull-right"
+                  okCssIcon="fa fa-check-circle-o"
+                  cancelCssIcon="fa fa-ban"
+                }}
+                  <a href="#" role="button" class="card-link text-dark"><i class="fa trash"></i></a>
+                {{/confirm-dialog}}
+              </div>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</div>

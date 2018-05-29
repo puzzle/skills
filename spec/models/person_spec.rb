@@ -12,7 +12,6 @@
 #  origin           :string
 #  role             :string
 #  title            :string
-#  status_id        :integer
 #  origin_person_id :integer
 #  variation_name   :string
 #  created_at       :datetime         not null
@@ -79,7 +78,6 @@ describe Person do
         expect(person.errors[:origin].first).to eq('muss ausgefüllt werden')
         expect(person.errors[:role].first).to eq('muss ausgefüllt werden')
         expect(person.errors[:title].first).to eq('muss ausgefüllt werden')
-        expect(person.errors[:status_id].first).to eq('muss ausgefüllt werden')
       end
 
       it 'should not be more than 100 characters' do
@@ -92,7 +90,6 @@ describe Person do
         person.role = SecureRandom.hex(100)
         person.title = SecureRandom.hex(100)
         person.variation_name = SecureRandom.hex(100)
-        person.company = SecureRandom.hex(100)
         person.valid?
 
         expect(person.errors[:location].first).to eq('ist zu lang (mehr als 100 Zeichen)')
@@ -103,7 +100,6 @@ describe Person do
         expect(person.errors[:title].first).to eq('ist zu lang (mehr als 100 Zeichen)')
         expect(person.errors[:variation_name].first).to eq('ist zu lang (mehr als 100 Zeichen)')
         expect(person.errors[:language].first).to eq('ist zu lang (mehr als 100 Zeichen)')
-        expect(person.errors[:company].first).to eq('ist zu lang (mehr als 100 Zeichen)')
       end
     end
   end

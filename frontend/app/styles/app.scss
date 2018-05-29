@@ -1,13 +1,19 @@
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
+@import "ember-power-select/themes/bootstrap";
+@import "ember-power-select";
 @import "normalize";
-@import "bootstrap";
-@import "bootstrap-responsive";
-@import "bootstrap-responsive.mini";
+
+//Set Bootstrap values from brand.puzzle.ch
+$primary: #1E5A96 !default;
+$success: #61B44B !default;
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
 @import "toaster.mini";
 @import "custom";
 @import "fws";
 @import "ember-basic-dropdown";
+@import "ember-power-select";
 
 html,
 button,
@@ -360,23 +366,8 @@ textarea {
   margin-bottom: 10px;
 }
 
-
-.form-inline {
-  width: 220px;
-  margin: 0px auto;
-}
-
 .form-login .btn{
   width: 80px;
-}
-
-#logout-button{
-  margin: 0px;
-  right: 0px;
-  width: 100px;
-  text-align: center;
-  margin-top: -40px;
-  margin-right: 10px;
 }
 
 .preserve-whitespace {
@@ -410,3 +401,8 @@ textarea {
   width: 100%;
   box-sizing: border-box;
 }
+
+
+$theme-colors: (
+  primary: #ff00ff
+) !default;

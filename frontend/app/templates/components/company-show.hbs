@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-sm-12">
+    <span class="text-right d-block">
+      <strong>Letztes Update <span class="text-danger"><time datetime={{moment-format company.updatedAt}}>{{moment-format company.updatedAt 'L LT'}}</time></span></strong>
+    </span>
+  </div>
+</div>
+<hr class="">
+<div class="collapse-group">
+  <div class="row mb-3">
+    <div class="col-sm-12">
+      <span class="text-right d-block controls"><a href="#" class="mr-2 open-button">+ alles ausklappen</a><a href="#" class="close-button">- alles einklappen</a></span>
+    </div>
+  </div>
+  <div id="accordion">
+    {{!Übersichts Tab}}
+    <div class="card mb-3">
+      {{component (if companyEditing 'company-overview-edit' 'company-overview' )
+                  company=company
+                  submit=(action (toggle 'companyEditing' this))
+                  model-header-title = 'Firmen Übersicht'
+                  companyEditing=(action (toggle 'companyEditing' this))
+      }}
+    </div>
+
+    {{!Angebot Tab}}
+    <div class="card mb-3">
+      {{component (if companyOfferEditing 'company-offer-edit' 'company-offer' )
+                  company=company
+                  submit=(action (toggle 'companyOfferEditing' this))
+                  model-header-title = 'Firmen Skills'
+                  companyOfferEditing=(action (toggle 'companyOfferEditing' this))
+      }}
+    </div>
+
+    {{!Profile Tab}}
+    <div class="card mb-end">
+      {{company-profiles company=company}}
+    </div>
+
+
+  </div>
+</div>
+
+<script>
+
+  $(".open-button").on("click", function() {
+    $(this).closest('.collapse-group').find('.collapse').collapse('show');
+  });
+
+  $(".close-button").on("click", function() {
+    $(this).closest('.collapse-group').find('.collapse').collapse('hide');
+  });
+</script>

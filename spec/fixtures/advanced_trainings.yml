@@ -16,18 +16,14 @@
 
 course:
   description: course about how to clean
-  updated_at: 2016-10-20 13:16:37
   updated_by: bob
-  created_at: 2016-10-20 13:16:37
   year_from: 2010
   year_to: 2012
   person: bob
 
 education:
   description: was nice
-  updated_at: 2016-10-20 13:16:37
   updated_by: alice
-  created_at: 2016-10-20 13:16:37
   year_from: 2011
   year_to: 2015
   person: alice

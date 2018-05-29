@@ -14,8 +14,7 @@ test('it renders person', function(assert) {
     origin: 'Godrics hollow',
     location: 'Hogwarts',
     language: 'Parsel',
-    martialStatus:  'ledig',
-    status: 'Mitarbeiter'
+    martialStatus:  'ledig'
   });
 
   this.render(hbs`{{person-show person=person}}`);
@@ -28,5 +27,4 @@ test('it renders person', function(assert) {
   assert.ok(this.$().text().indexOf('Hogwarts' !== -1));
   assert.ok(this.$().text().indexOf('Parsel' !== -1));
   assert.ok(this.$().text().indexOf('ledig' !== -1));
-  assert.ok(this.$().text().indexOf('Mitarbeiter' !== -1));
 });

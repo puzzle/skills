@@ -1,21 +1,40 @@
-<section id="competence" class="section">
-  <button onclick={{action (toggle 'competenceEdit' this)}}
-      id="button-new-competences"
-      class="btn btn-link pull-right">
-    {{if competenceEdit 'Abbrechen' 'Editieren'}}
-  </button>
-  {{#if competenceEdit}}
-    {{competences-edit person=person done=(action (toggle 'competenceEdit' this))}}
-  {{else}}
-    {{model-header title="Kompetenzen"}}
-    <div id="competence-content-show" class="row-fluid">
-      <div class="span12">
-        <ul>
-          {{#each competenceList as |competence|}}
-            <li>{{competence}}</li>
-          {{/each}}
-        </ul>
-      </div>
+<div class="card-header bg-primary">
+  <div class="row">
+    <div class="col-sm-6">
+      <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Kernkompetenzen</a>
     </div>
-  {{/if}}
-</section>
+    <div class="col-sm-6 text-right d-block">
+      <a onclick={{competencesEditing}} data-test-company-edit-form-toggle class="card-link text-white"><i class="fa edit"></i></a>
+      <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><i class="fa angle"></i></a>
+    </div>
+  </div>
+</div>
+<div id="collapseTwo" class="collapse show border border-primary rounded-bottom">
+  <div class="card-body">
+    {{#each person.personCompetences as |competence|}}
+      <div class="row mb-1">
+        <div class="col-sm-3">
+          <span class="p-2">{{competence.category}}</span>
+        </div>
+        <div class="col-sm-9">
+          {{#each competence.offer as |offer|}}
+            <span class="badge badge-success p-2 mr-2 mb-2 skill" href="#">{{offer}}</span>
+          {{/each}}
+          <hr>
+        </div>
+      </div>
+    {{/each}}
+    {{#if person.competences}}
+      <div class="row" id="competence-content-show">
+        <div class="col-sm-3">
+          <span class="p-2">Alte Kompetenzenliste</span>
+        </div>
+        <div class="col-sm-9">
+          {{#each competenceList as |competence|}}
+            <span class="badge badge-success p-2 mr-2 mb-2 skill" href="#">{{competence}}</span>
+          {{/each}}
+        </div>
+      </div>
+    {{/if}}
+  </div>
+</div>

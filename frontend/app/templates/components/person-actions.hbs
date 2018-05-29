@@ -1,107 +1,126 @@
-<section id="variation">
-  <div class="toolbar-pills span12 row-fluid">
-    <ul class="nav nav-pills group-pills" id="variation-selection">
-      <li id="actual-cv-pill" class={{unless person.originPersonId 'active'}}>
-        {{#link-to "person" (or person.originPersonId person)}}aktuelles CV{{/link-to}}
-      </li>
-      <li id="variation-cv-pill" class={{if person.originPersonId 'active'}} class="dropwdown left">
-        {{#basic-dropdown onOpen=(action 'loadPersonVariations' person.originPersonId person.id) as |dd|}}
-          {{#dd.trigger class="btn btn-default"}}
-            {{#if person.originPersonId}}
-              {{person.variationName}}
-            {{else}}
-              Varianten
-            {{/if}}
-            <b class="caret"></b>
-          {{/dd.trigger}}
-          {{#dd.content}}
-            <ul class="content-bootstrap-feel dropdown-menu"
-                data-test-variation-dropdown-content>
-              {{#each personVariations as |pv|}}
-                <li id="change-variation-link"
-                    class={{if (eq pv.id person.id) 'active'}}>
-                  {{#link-to "person" pv.id click=(action dd.actions.close)}}
-                    {{~pv.attributes.variation_name~}}
-                  {{/link-to}}
-                </li>
-              {{/each}}
-              {{#unless person.originPersonId}}
-                {{#if personVariations.length}}<hr>{{/if}}
-                <li>
-                  <a class="new-variation-link"
-                      onclick={{pipe dd.actions.close (toggle 'createVariationModal' this)}}>
-                    Neue Variante erstellen...
-                  </a>
-                </li>
-              {{/unless}}
-            </ul>
-          {{/dd.content}}
-        {{/basic-dropdown}}
-      </li>
-      {{#link-to "person.fws" (or person.originPersonId person) tagName="li"}}
-        <a class="fws-button">Fachwissensskala</a>
+<div class="row">
+  <div class="col-sm-12">
+    <ul class="nav nav-tabs container-fluid" id="variation-selection">
+      {{#link-to "person.index" (or person.originPersonId person) tagName="li" class="nav-item" href="false"}}
+        {{#link-to "person.index" class="nav-link"}}CV{{/link-to}}
+      {{/link-to}}
+      {{#link-to "person.fws" (or person.originPersonId person) tagName="li" class="nav-item" href="false"}}
+        {{#link-to "person.fws" class="nav-link"}}FWS{{/link-to}}
       {{/link-to}}
     </ul>
-    <ul class="nav nav-pills group-pills" id="variation-options">
-      <li class="dropdown right" id="option-pill">
-        {{#basic-dropdown as |dd|}}
-          {{#dd.trigger class="btn btn-default"}}Optionen <b class="caret"></b>{{/dd.trigger}}
-          {{#dd.content}}
-            <ul class="content-bootstrap-feel dropdown-menu">
-              {{#if person.originPersonId}}
-                <li>
-                  <a class="update-variation-link"
-                      onclick={{pipe dd.actions.close (toggle 'updateVariationModal' this)}}>
-                    Varianten Name ändern...
-                  </a>
-                </li>
-                <li>
-                  <a onclick={{pipe dd.actions.close (toggle 'deletePersonConfirm' this)}}>Variante Löschen</a>
-                </li>
-              {{else}}
-                <li>
-                  <a class="new-variation-link"
-                      onclick={{pipe dd.actions.close (toggle 'createVariationModal' this)}}>
-                    Neue Variante erstellen...
-                  </a>
-                </li>
-                <li>
-                  <a onclick={{pipe dd.actions.close (toggle 'deletePersonConfirm' this)}}>CV Löschen</a>
-                </li>
-              {{/if}}
-            </ul>
-          {{/dd.content}}
-        {{/basic-dropdown}}
-      </li>
-      <li id="export-dropdown" class="dropdown left">
-        {{#basic-dropdown as |dd|}}
-          {{#dd.trigger class="btn btn-default"}}Exportieren <b class="caret"></b>{{/dd.trigger}}
-          {{#dd.content}}
-            <ul class="content-bootstrap-feel dropdown-menu">
-              <li>
-                <a onclick={{pipe (action 'exportCvOdt' person.id) dd.actions.close}}>
-                  {{#if person.originPersonId}}
-                    Aktuelle Variante
-                  {{else}}
-                    Aktuelles CV
-                  {{/if}}
-                </a>
-                <a onclick={{pipe (action 'exportDevFws' person.id) dd.actions.close}}>
-                  Fachwissensskala Entwickler
-                </a>
-                <a onclick={{pipe (action 'exportSysFws' person.id) dd.actions.close}}>
-                  Fachwissensskala Systemtechniker
-                </a>
-              </li>
-            </ul>
-          {{/dd.content}}
-        {{/basic-dropdown}}
-      </li>
-    </ul>
   </div>
-</section>
+</div>
+<div class="row mt-2">
+  <div class="col-sm-8">
+    <div id="variation">
+      <ul class="list-unstyled float-left">
+        <li id="variation-cv-pill" class="{{if person.originPersonId 'active'}}">
+          {{#basic-dropdown onOpen=(action 'loadPersonVariations' person.originPersonId person.id) as |dd|}}
+            {{#dd.trigger class="btn btn-outline-primary dropdown-toggle btn-w-1 mr-2"}}
+              {{#if person.originPersonId}}
+                {{person.variationName}}
+              {{else}}
+                Varianten
+              {{/if}}
+              <b class="caret"></b>
+            {{/dd.trigger}}
+            {{#dd.content}}
+              <ul class="content-bootstrap-feel dropdown-menu"
+                  data-test-variation-dropdown-content>
+                {{#each personVariations as |pv|}}
+                  <li id="change-variation-link"
+                      class={{if (eq pv.id person.id) 'active'}}>
+                    {{#link-to "person" pv.id click=(action dd.actions.close)}}
+                      {{~pv.attributes.variation_name~}}
+                    {{/link-to}}
+                  </li>
+                {{/each}}
+                {{#unless person.originPersonId}}
+                  {{#if personVariations.length}}<hr>{{/if}}
+                  <li>
+                    <a href="#" class="new-variation-link"
+                       onclick={{pipe dd.actions.close (toggle 'createVariationModal' this)}}>
+                      Neue Variante erstellen...
+                    </a>
+                  </li>
+                {{/unless}}
+              </ul>
+            {{/dd.content}}
+          {{/basic-dropdown}}
+        </li>
+      </ul>
+      <ul class="list-unstyled float-left">
+        <li class="dropdown right">
+          {{#basic-dropdown as |dd|}}
+            {{#dd.trigger class="btn btn-outline-primary dropdown-toggle btn-w-1 mr-2"}}Optionen <b class="caret"></b>{{/dd.trigger}}
+            {{#dd.content}}
+              <ul class="content-bootstrap-feel dropdown-menu">
+                {{#if person.originPersonId}}
+                  <li>
+                    <a href="#" class="update-variation-link"
+                       onclick={{pipe dd.actions.close (toggle 'updateVariationModal' this)}}>
+                      Varianten Name ändern...
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" onclick={{pipe dd.actions.close (toggle 'deletePersonConfirm' this)}}>Variante Löschen</a>
+                  </li>
+                {{else}}
+                  <li>
+                    <a href="#" class="new-variation-link"
+                       onclick={{pipe dd.actions.close (toggle 'createVariationModal' this)}}>
+                      Neue Variante erstellen...
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" onclick={{pipe dd.actions.close (toggle 'deletePersonConfirm' this)}}>CV Löschen</a>
+                  </li>
+                {{/if}}
+              </ul>
+            {{/dd.content}}
+          {{/basic-dropdown}}
+        </li>
+      </ul>
+      <ul class="list-unstyled float-left">
+        <li class="dropdown right">
+          {{#basic-dropdown as |dd|}}
+            {{#dd.trigger class="btn btn-outline-primary dropdown-toggle btn-w-1"}}Exportieren <b class="caret"></b>{{/dd.trigger}}
+            {{#dd.content}}
+              <ul class="content-bootstrap-feel dropdown-menu">
+                <li>
+                  <a href="#" class="update-variation-link" onclick={{pipe (action 'exportCvOdt' person.id) dd.actions.close}}>
+                    {{#if person.originPersonId}}
+                      Aktuelle Variante
+                    {{else}}
+                      Aktuelles CV
+                    {{/if}}
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="update-variation-link" onclick={{pipe (action 'exportDevFws' person.id) dd.actions.close}}>
+                    Fachwissensskala Entwickler
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="update-variation-link" onclick={{pipe (action 'exportSysFws' person.id) dd.actions.close}}>
+                    Fachwissensskala Systemtechniker
+                  </a>
+                </li>
+              </ul>
+            {{/dd.content}}
+          {{/basic-dropdown}}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <span class="text-right d-block">
+      <strong>Letztes Update <span class="text-danger"><time datetime={{moment-format person.updatedAt}}>{{moment-format person.updatedAt 'L LT'}}</time></span></strong>
+    </span>
+  </div>
+</div>
 
-<hr>
+
 
 {{#if createVariationModal}}
   {{#modal-dialog hasOverlay=false}}
@@ -153,3 +172,5 @@
     </div>
   {{/modal-dialog}}
 {{/if}}
+
+

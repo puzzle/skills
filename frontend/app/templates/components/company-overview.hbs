@@ -1,0 +1,72 @@
+<div class="card-header bg-primary">
+  <div class="row">
+    <div class="col-sm-6">
+      <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Übersicht</a>
+    </div>
+    <div class="col-sm-6 text-right d-block">
+      <a onclick={{companyEditing}} data-test-company-edit-form-toggle class="card-link text-white"><i class="fa edit"></i></a>
+      <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><i class="fa angle"></i></a>
+    </div>
+  </div>
+</div>
+<div id="collapseOne" class="collapse show border border-primary rounded-bottom">
+  <div class="card-body">
+    <div class="row" id="profile-uebersicht-content-show">
+      <div class="col-sm-4">
+        <table class="table-uebersicht">
+          <tr>
+            <td>Name</td><td data-test-company-name>{{company.name}}</td>
+          </tr>
+          <tr>
+            <td>Standorte</td>
+            <td>
+              {{#each company.locations as |location|}}
+                {{location.location}}<br>
+              {{/each}}
+            </td>
+          </tr>
+          <tr>
+            <td>Web</td><td data-test-company-web><a href="https://{{company.web}}">{{company.web}}</a></td>
+          </tr>
+          <tr>
+            <td>eMail</td><td data-test-company-email><a href="mailto:{{company.email}}">{{company.email}}</a></td>
+          </tr>
+          <tr>
+            <td>Telefon</td><td data-test-company-phone>{{company.phone}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-sm-4">
+        <table class="table-uebersicht">
+          <tr>
+            <td>PM</td><td data-test-company-partnermanager>{{company.partnermanager}}</td>
+          </tr>
+          <tr>
+            <td>Ansprechperson</td><td data-test-company-contactPerson>{{company.contactPerson}}</td>
+          </tr>
+          <tr>
+            <td>eMail</td><td data-test-company-emailContactPerson><a href="mailto:{{company.emailContactPerson}}">{{company.emailContactPerson}}</a></td>
+          </tr>
+          <tr>
+            <td>Telefon</td><td data-test-company-phoneContactPerson>{{company.phoneContactPerson}}</td>
+          </tr>
+          <tr>
+            <td>CRM</td><td data-test-company-crm><a href="https://{{company.crm}}">{{company.crm}}</a></td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-sm-4">
+        <table class="table-uebersicht">
+          <tr>
+            <td>Level</td><td data-test-company-level>{{company.level}}</td>
+          </tr>
+          {{#each company.employeeQuantities as |quantity|}}
+            <tr>
+              <td>{{quantity.category}}</td><td>{{quantity.quantity}}</td>
+            </tr>
+          {{/each}}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

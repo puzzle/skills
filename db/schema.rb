@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170922080251) do
+ActiveRecord::Schema.define(version: 20180529072129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,24 @@ ActiveRecord::Schema.define(version: 20170922080251) do
     t.index ["person_id"], name: "index_advanced_trainings_on_person_id"
   end
 
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.string "web"
+    t.string "email"
+    t.string "phone"
+    t.string "partnermanager"
+    t.string "contact_person"
+    t.string "email_contact_person"
+    t.string "phone_contact_person"
+    t.string "offer_comment"
+    t.string "crm"
+    t.string "level"
+    t.boolean "my_company", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "associations_updatet_at"
+  end
+
   create_table "educations", id: :serial, force: :cascade do |t|
     t.text "location"
     t.text "title"
@@ -47,6 +65,15 @@ ActiveRecord::Schema.define(version: 20170922080251) do
     t.integer "year_to"
     t.integer "person_id"
     t.index ["person_id"], name: "index_educations_on_person_id"
+  end
+
+  create_table "employee_quantities", force: :cascade do |t|
+    t.string "category"
+    t.integer "quantity"
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_employee_quantities_on_company_id"
   end
 
   create_table "expertise_categories", force: :cascade do |t|
@@ -73,6 +100,23 @@ ActiveRecord::Schema.define(version: 20170922080251) do
     t.index ["expertise_category_id"], name: "index_expertise_topics_on_expertise_category_id"
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.string "location"
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_locations_on_company_id"
+  end
+
+  create_table "offers", force: :cascade do |t|
+    t.string "category"
+    t.text "offer", default: [], array: true
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_offers_on_company_id"
+  end
+
   create_table "people", id: :serial, force: :cascade do |t|
     t.datetime "birthdate"
     t.string "language"
@@ -83,7 +127,6 @@ ActiveRecord::Schema.define(version: 20170922080251) do
     t.string "origin"
     t.string "role"
     t.string "title"
-    t.integer "status_id"
     t.integer "origin_person_id"
     t.string "variation_name"
     t.datetime "created_at", null: false
@@ -91,8 +134,26 @@ ActiveRecord::Schema.define(version: 20170922080251) do
     t.string "type"
     t.string "picture"
     t.string "competences"
-    t.string "company"
-    t.index ["status_id"], name: "index_people_on_status_id"
+    t.bigint "company_id"
+    t.datetime "associations_updatet_at"
+    t.index ["company_id"], name: "index_people_on_company_id"
+  end
+
+  create_table "person_competences", force: :cascade do |t|
+    t.string "category"
+    t.text "offer", default: [], array: true
+    t.bigint "person_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["person_id"], name: "index_person_competences_on_person_id"
+  end
+
+  create_table "project_technologies", force: :cascade do |t|
+    t.text "offer", default: [], array: true
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_project_technologies_on_project_id"
   end
 
   create_table "projects", id: :serial, force: :cascade do |t|
@@ -118,4 +179,10 @@ ActiveRecord::Schema.define(version: 20170922080251) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "employee_quantities", "companies"
+  add_foreign_key "locations", "companies"
+  add_foreign_key "offers", "companies"
+  add_foreign_key "people", "companies"
+  add_foreign_key "person_competences", "people"
+  add_foreign_key "project_technologies", "projects"
 end

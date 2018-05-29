@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   scope '/api' do
@@ -19,11 +20,19 @@ Rails.application.routes.draw do
       get 'fws', to: 'people#export_fws'
     end
 
+    resources :employee_quantities, controller: 'employee_quantities'
+    resources :locations, controller: 'locations'
+    resources :offers, controller: 'offers'
+
+    resources :companies, controller: 'companies'
+
     resources :advanced_trainings, controller: 'advanced_trainings'
     resources :activities, controller: 'activities'
     resources :projects, controller: 'projects'
     resources :educations, controller: 'educations'
     resources :competences, controller: 'competences'
+    resources :project_technologies, controller: 'project_technologies'
+    resources :person_competences, controller: 'person_competences'
 
     # FWS
     resources :expertise_categories

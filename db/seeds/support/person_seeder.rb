@@ -6,10 +6,15 @@ class PersonSeeder
       person = seed_person(name).first
       break unless person
       seed_image(person)
-      associations = [:activity, :advanced_training, :project, :education]
+      associations = [:activity, :advanced_training, :project, :education, :person_competence]
       associations.each do |a|
         seed_association(a, person.id)
       end
+
+      projects = person.projects.each do |project|
+        seed_project_technology(project.id)
+      end
+
       rand(0..3).times do
         seed_variation(person)
       end
@@ -24,7 +29,7 @@ class PersonSeeder
 
   def seed_variation(person)
     person_variation = Person::Variation.create_variation(Faker::Beer.name, person.id)
-    associations = [:activity, :advanced_training, :project, :education]
+    associations = [:activity, :advanced_training, :project, :education, :person_competence]
     change_variation(person_variation)
     associations.each do |a|
       change_associations(a, person_variation)
@@ -54,7 +59,6 @@ class PersonSeeder
     person_variation.location = Faker::Pokemon.location
     person_variation.role = Faker::Company.profession
     person_variation.title = Faker::Name.title
-    person_variation.status_id = rand(1..4)
   end
 
   def change_activity(activity)
@@ -91,6 +95,12 @@ class PersonSeeder
     education.save!
   end
 
+  def change_person_competence(person_competence)
+    person_competence.category = Faker::Hacker.noun
+    person_competence.offer = ["Java", "Ruby", "Javascript", "C++", "C", "C#"]
+    person_competence.save!
+  end
+
   def seed_person(name)
     Person.seed_once(:name) do |p|
       p.birthdate = Faker::Date.between(20.year.ago, 65.year.ago)
@@ -103,7 +113,7 @@ class PersonSeeder
       p.origin = Faker::StarWars.planet
       p.role = Faker::Company.profession
       p.title = Faker::Name.title
-      p.status_id = rand(1..4)
+      p.company_id = rand(1..4)
       competences = ""
       rand(5..15).times{ competences << "#{Faker::Superhero.power}\n" }
       p.competences = competences
@@ -150,5 +160,20 @@ class PersonSeeder
       e.year_to = Faker::Number.between(1980, 2016)
       e.person_id = person_id
     end
+  end
+
+  def seed_person_competence(person_id)
+    PersonCompetence.seed do |a|
+      a.category = Faker::Hacker.noun
+      a.offer = ["Java", "Ruby", "Javascript", "C++", "C", "C#"]
+      a.person_id = person_id
+    end
+  end
+
+  def seed_project_technology(project_id)
+    ProjectTechnology.seed do |a|
+      a.offer = ["Java", "Ruby", "Javascript", "C++", "C", "C#"]
+      a.project_id = project_id
+    end 
   end
 end
