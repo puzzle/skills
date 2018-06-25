@@ -16,7 +16,7 @@ You will need the following things properly installed on your computer.
 
 * `npm install -g ember-cli`
 * `cd frontend`
-* `npm install`
+* `yarn install`
 
 ## Running / Development
 With Mirage Fixtures:
