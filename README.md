@@ -31,7 +31,7 @@ You will need the following things properly installed on your computer.
 * `createuser puzzlecv -s -l -P` (with password puzzlecv)
 * type `exit`
 
-go back to user / cv2 dir
+go back to skills repo
 * `rails db:setup`
 
 now run backend server
