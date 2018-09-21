@@ -16,6 +16,22 @@
           <div class="col-sm-6">
             <table class="table-uebersicht">
               <tr>
+                <td>
+                  <label>Firma</label>
+                  {{#power-select
+                    selected=newPerson.company
+                    options=companiesToSelect
+                    searchField="name"
+                    onfocus=(action "handleFocus")
+                    onblur=(action "handleBlur")
+                    onchange=(action (mut newPerson.company))
+                    as |company|
+                    }}
+                    {{company.name}}
+                  {{/power-select}}
+                </td>
+              </tr>
+              <tr>
                 <td>{{f.text-field 'name'}}</td>
               </tr>
               <tr>
@@ -39,6 +55,9 @@
           <div class="col-sm-6">
             <table class="table-uebersicht">
               <tr>
+                <td></td>
+              </tr>
+              <tr>
                 <td>{{f.text-field 'origin' label="Nationalität"}}</td>
               </tr>
               <tr>
@@ -50,22 +69,7 @@
               <tr>
                 <td> {{f.text-field 'martialStatus' label="Zivilstand"}}</td>
               </tr>
-              <tr>
-                <td>
-                  <label>Firma</label>
-                  {{#power-select
-                    selected=newPerson.company
-                    options=companiesToSelect
-                    searchField="name"
-                    onfocus=(action "handleFocus")
-                    onblur=(action "handleBlur")
-                    onchange=(action (mut newPerson.company))
-                    as |company|
-                    }}
-                    {{company.name}}
-                  {{/power-select}}
-                </td>
-              </tr>
+
             </table>
           </div>
         </div>
