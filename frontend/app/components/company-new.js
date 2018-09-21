@@ -20,8 +20,6 @@ export default Component.extend({
         )
         .then(() => this.get('notify').success('Firma wurde erstellt'))
         .then(() => this.sendAction('submit', newCompany))
-      // TODO: What if saving the company or its relations fails?
-      //       For example with an empty company name?
     },
 
     addLocations(company) {
