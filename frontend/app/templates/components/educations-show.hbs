@@ -13,7 +13,6 @@
 <div id="collapseEducation" class="collapse show border border-primary rounded-bottom">
   <div class="card-body">
     <div id="competence-content-show">
-      {{!todo reload on create}}
       {{component (if educationNew 'education-new')
                   personId=person.id
                   done=(action (toggle 'educationNew' this))}}

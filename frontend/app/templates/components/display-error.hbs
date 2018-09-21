@@ -14,14 +14,11 @@
 {{else}}
   <p>Something unexpected happened</p>
 {{/if}}
-
 {{#if error.stack}}
   <button class="btn btn-primary" onclick={{toggle 'showStack' this}}>
     Show stack
   </button>
-
   {{#link-to "people" class="btn btn-primary"}}Bring me home{{/link-to}}
-
   {{#if showStack}}
     <pre class="error-stack">{{error.stack}}</pre>
   {{/if}}

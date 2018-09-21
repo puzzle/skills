@@ -22,7 +22,6 @@
                   companyEditing=(action (toggle 'companyEditing' this))
       }}
     </div>
-
     {{!Angebot Tab}}
     <div class="card mb-3">
       {{component (if companyOfferEditing 'company-offer-edit' 'company-offer' )
@@ -32,7 +31,6 @@
                   companyOfferEditing=(action (toggle 'companyOfferEditing' this))
       }}
     </div>
-
     {{!Profile Tab}}
     <div class="card mb-end">
       {{company-profiles company=company}}

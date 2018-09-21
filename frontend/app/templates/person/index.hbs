@@ -17,7 +17,6 @@
                   personEditing=(action (toggle 'personEditing' this))
       }}
     </div>
-
     {{!Kompetenzen Tab}}
     <div class="card mb-3">
       {{component (if competencesEditing 'competences-edit' 'competences-show' )
@@ -26,7 +25,6 @@
                   competencesEditing=(action (toggle 'competencesEditing' this))
       }}
     </div>
-
     {{!Ausbildungen Tab}}
     <div class="card mb-3">
       {{component (if educationsEditing 'educations-edit' 'educations-show' )
@@ -36,7 +34,6 @@
                   educationsEditing=(action (toggle 'educationsEditing' this))
       }}
     </div>
-
     {{!Weiterbildungen Tab}}
     <div class="card mb-3">
       {{component (if advancedTrainingsEditing 'advanced-trainings-edit' 'advanced-trainings-show' )
@@ -46,7 +43,6 @@
                   advancedTrainingsEditing=(action (toggle 'advancedTrainingsEditing' this))
       }}
     </div>
-
     {{!Aktivitäten Tab}}
     <div class="card mb-3">
       {{component (if activitiesEditing 'activities-edit' 'activities-show' )
@@ -56,7 +52,6 @@
                   activitiesEditing=(action (toggle 'activitiesEditing' this))
       }}
     </div>
-
     {{!Projekte Tab}}
     <div class="card mb-end">
       {{projects-show projects=model.projects personId=model.id}}

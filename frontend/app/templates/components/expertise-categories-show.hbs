@@ -8,12 +8,10 @@
     {{expertise-topics-show expertiseCategory=ec person=person}}
   {{/each}}
 </div>
-
 <script>
   $(".open-button-fws").on("click", function() {
     $(this).closest('.collapse-group-fws').find('.collapse').collapse('show');
   });
-
   $(".close-button-fws").on("click", function() {
     $(this).closest('.collapse-group-fws').find('.collapse').collapse('hide');
   });

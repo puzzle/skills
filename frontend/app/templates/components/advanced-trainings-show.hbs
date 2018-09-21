@@ -17,7 +17,6 @@
         {{component (if advanced-trainingNew 'advanced-training-new')
             personId=person.id
             done=(action (toggle 'advanced-trainingNew' this))}}
-
         {{#each filteredAdvancedTrainings as |advanced-training|}}
           <div class="zeile">
             <div class="row">
