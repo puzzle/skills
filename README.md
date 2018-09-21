@@ -29,6 +29,7 @@ You will need the following things properly installed on your computer.
 * `sudo apt-get install postgresql postgresql-contrib`
 * `sudo su - postgres`
 * `createuser puzzlecv -s -l -P` (with password puzzlecv)
+* type `exit`
 
 go back to user / cv2 dir
 * `rails db:setup`
