@@ -22,6 +22,7 @@ You will need the following things properly installed on your computer.
 * `rvm use 2.3`
 * `gem install bundler`
 * `sudo apt-get install libpq-dev`
+* `sudo apt-get install libmysqlclient-dev `
 * `bundle`
 
 #### database setup
