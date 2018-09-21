@@ -26,6 +26,7 @@ You will need the following things properly installed on your computer.
 
 #### database setup
 
+* `sudo apt-get install postgresql postgresql-contrib`
 * `sudo su - postgres`
 * `createuser puzzlecv -s -l -P` (with password puzzlecv)
 
