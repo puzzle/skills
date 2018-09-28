@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '5.1.5'
+gem 'rails', '5.1.6'
 
 gem 'active_model_serializers', '~> 0.10.6'
 gem 'activerecord-postgresql-adapter'
