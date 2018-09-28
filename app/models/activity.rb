@@ -14,7 +14,7 @@
 #
 
 class Activity < ApplicationRecord
-  
+
   after_create :update_associations_updatet_at
   after_update :update_associations_updatet_at
   after_destroy :update_associations_updatet_at
@@ -32,8 +32,8 @@ class Activity < ApplicationRecord
   private
 
   def update_associations_updatet_at
-  	timestamp = DateTime.now
-    self.person.update!(associations_updatet_at: timestamp)
+    timestamp = DateTime.now
+    person.update!(associations_updatet_at: timestamp)
   end
-  
+
 end

@@ -21,8 +21,6 @@ module Odt
     private
 
     attr_accessor :person
-
-    # rubocop:disable Metrics/MethodLength
     # rubocop:disable Metrics/AbcSize
     def insert_general_sections(report)
       report.add_field(:client, 'mg')
@@ -37,7 +35,7 @@ module Odt
       report.add_field(:version, '1.0')
       report.add_field(:comment, 'Aktuelle Ausgabe')
     end
-    # rubocop:enable Metrics/MethodLength
+
     # rubocop:enable Metrics/AbcSize
 
     # rubocop:disable Metrics/AbcSize

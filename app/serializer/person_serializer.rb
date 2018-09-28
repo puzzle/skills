@@ -26,7 +26,7 @@ class PersonSerializer < ApplicationSerializer
   has_many :educations do |serializer|
     serializer.object.educations.list
   end
- 
+
   has_many :person_competences, include: :all
 
 end
