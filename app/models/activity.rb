@@ -32,7 +32,7 @@ class Activity < ApplicationRecord
   private
 
   def update_associations_updatet_at
-    timestamp = DateTime.now
+    timestamp = Time.zone.now
     person.update!(associations_updatet_at: timestamp)
   end
 

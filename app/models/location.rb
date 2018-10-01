@@ -20,7 +20,7 @@ class Location < ApplicationRecord
   private
 
   def update_associations_updatet_at
-    timestamp = DateTime.now
+    timestamp = Time.zone.now
     company.update!(associations_updatet_at: timestamp)
   end
 

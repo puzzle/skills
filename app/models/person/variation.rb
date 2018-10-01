@@ -24,7 +24,7 @@
 
 
 class Person::Variation < Person
-  belongs_to :origin_person, class_name: 'Person', foreign_key: :origin_person_id
+  belongs_to :origin_person, class_name: 'Person', foreign_key: :origin_person_id, inverse_of: false
   belongs_to :status # Needed because STI don't work as expected.
 
   validates :variation_name, uniqueness: { scope: :origin_person_id }

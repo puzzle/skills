@@ -18,10 +18,9 @@ class ExpertiseTopic < ApplicationRecord
                    length: { maximum: 100 },
                    uniqueness: { scope: :expertise_category }
 
-  scope :list, ->(category_id = nil) do
+  scope :list, lambda { |category_id = nil|
     includes(:expertise_category, :expertise_topic_skill_values).
       where(expertise_categories: { id: category_id }).
       where(user_topic: false)
-  end
-
+  }
 end
