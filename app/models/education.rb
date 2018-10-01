@@ -26,7 +26,7 @@ class Education < ApplicationRecord
   validates :location, :title, length: { maximum: 500 }
   validate :year_from_before_year_to
 
-  scope :list, -> { order('year_to IS NOT NULL, year_from desc, year_to desc') }
+  scope :list, -> { order(Arel.sql('year_to IS NOT NULL, year_from desc, year_to desc')) }
 
   private
 
