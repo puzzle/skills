@@ -16,7 +16,6 @@
 
 class ExpertiseTopicSkillValue < ApplicationRecord
   belongs_to :expertise_topic
-  belongs_to :expertise_category
   belongs_to :person, touch: true
 
   enum skill_level: %i[trainee junior professional senior expert]

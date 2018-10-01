@@ -25,7 +25,7 @@
 
 class Person::Variation < Person
   belongs_to :origin_person, class_name: 'Person', foreign_key: :origin_person_id, inverse_of: false
-  belongs_to :status # Needed because STI don't work as expected.
+  #belongs_to :status # Needed because STI don't work as expected.
 
   validates :variation_name, uniqueness: { scope: :origin_person_id }
   validates :variation_name, presence: true
@@ -43,6 +43,7 @@ class Person::Variation < Person
       person_variation.picture = person.picture
       person_variation.origin_person_id = person_id
       person_variation.variation_name = variation_name
+      require 'pry';binding.pry
       person_variation.save!
       person_variation.clone_associations(associations, person)
       person_variation
