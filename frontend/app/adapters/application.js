@@ -1,11 +1,7 @@
 import { underscore } from '@ember/string';
 import DS from 'ember-data';
-import Ember from 'ember';
 import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
-
-const { String: {
-  pluralize
-} } = Ember;
+import { pluralize } from 'ember-inflector'
 
 export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   namespace: 'api',
