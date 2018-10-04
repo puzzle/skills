@@ -25,7 +25,9 @@
 
 class Person::Variation < Person
   belongs_to :origin_person, class_name: 'Person', foreign_key: :origin_person_id, inverse_of: false
-  #belongs_to :status # Needed because STI don't work as expected.
+  # belongs_to :status # Needed because STI don't work as expected.
+  # the preceeding line was commented out after the RoR 5.2.1 update
+  # since now belongs_to relations are always required (also when testing)
 
   validates :variation_name, uniqueness: { scope: :origin_person_id }
   validates :variation_name, presence: true
