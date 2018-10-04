@@ -160,6 +160,8 @@ describe PeopleController do
 
     describe 'POST create' do
       it 'creates new person' do
+
+        company = companies(:partner)
         person = { birthdate: Time.current,
                    picture: fixture_file_upload('files/picture.png', 'image/png'),
                    language: 'German',
@@ -168,7 +170,8 @@ describe PeopleController do
                    name: 'test',
                    origin: 'Switzerland',
                    role: 'tester',
-                   title: 'Bsc in tester'}
+                   title: 'Bsc in tester',
+                   company_id: company.id}
 
         process :create, method: :post, params: { data: { attributes: person } }
 

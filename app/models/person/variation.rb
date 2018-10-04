@@ -43,7 +43,6 @@ class Person::Variation < Person
       person_variation.picture = person.picture
       person_variation.origin_person_id = person_id
       person_variation.variation_name = variation_name
-      require 'pry';binding.pry
       person_variation.save!
       person_variation.clone_associations(associations, person)
       person_variation
