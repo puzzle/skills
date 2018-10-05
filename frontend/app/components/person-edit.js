@@ -7,11 +7,11 @@ export default Component.extend({
   store: service(),
   i18n: service(),
 
-  init(){
+  init() {
     this._super(...arguments);
     this.martialStatuses = (['ledig', 'verheiratet', 'verwittwet', 'eingetragene Partnerschaft', 'geschieden']);
-    this.roles = (['Junior Software Developer', 'Mediocre Software Developer', 'Senior Software Developer', 'Praktikant',
-                   'Lehrling', 'Besucher', 'UX', 'Finances']);
+    this.roles = (['Junior Software Developer', 'Mediocre Software Developer', 'Senior Software Developer',
+      'Praktikant', 'Lehrling', 'Besucher', 'UX', 'Finances']);
   },
 
   companiesToSelect: computed(function() {

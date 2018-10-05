@@ -38,8 +38,9 @@
                 <td>{{f.text-field 'title' label="Titel"}}</td>
               </tr>
               <tr>
-                <td><Label> Funktion </Label>
-                {{#power-select
+                <td>
+                  <Label> Funktion </Label>
+                  {{#power-select
                   selected=newPerson.role
                   options=roles
                   searchEnabled=false
@@ -48,9 +49,9 @@
                   onchange=(action (mut newPerson.role))
                   as |role|
                   }}
-                  {{role}}
-                {{/power-select}}
-              </td>
+                    {{role}}
+                  {{/power-select}}
+                </td>
               </tr>
               <tr>
                 <td>
@@ -79,8 +80,9 @@
                 <td>{{f.text-field 'language' label="Sprache"}}</td>
               </tr>
               <tr>
-                <td><Label> Zivilstand </Label>
-                {{#power-select
+                <td>
+                  <Label> Zivilstand </Label>
+                  {{#power-select
                   selected=newPerson.martialStatus
                   options=martialStatuses
                   searchEnabled=false
@@ -89,9 +91,9 @@
                   onchange=(action (mut newPerson.martialStatus))
                   as |martialStatus|
                   }}
-                  {{martialStatus}}
-                {{/power-select}}
-              </td>
+                    {{martialStatus}}
+                  {{/power-select}}
+                </td>
               </tr>
             </table>
           </div>
