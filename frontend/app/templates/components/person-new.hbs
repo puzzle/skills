@@ -67,7 +67,19 @@
                 <td>{{f.text-field 'language' label="Sprache"}}</td>
               </tr>
               <tr>
-                <td> {{f.text-field 'martialStatus' label="Zivilstand"}}</td>
+                <td><Label> Zivilstand </Label>
+                {{#power-select
+                  selected=newPerson.martialStatus
+                  options=martialStatuses
+                  searchEnabled=false
+                  onfocus=(action "handleFocus")
+                  onblur=(action "handleBlur")
+                  onchange=(action (mut newPerson.martialStatus))
+                  as |martialStatus|
+                  }}
+                  {{martialStatus}}
+                {{/power-select}}
+              </td>
               </tr>
             </table>
           </div>

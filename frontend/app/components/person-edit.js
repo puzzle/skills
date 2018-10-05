@@ -7,6 +7,11 @@ export default Component.extend({
   store: service(),
   i18n: service(),
 
+  init(){
+    this._super(...arguments);
+    this.martialStatuses = (['ledig', 'verheiratet', 'verwittwet', 'eingetragene Partnerschaft', 'geschieden']);
+  },
+
   companiesToSelect: computed(function() {
     return this.get('store').findAll('company');
   }),
