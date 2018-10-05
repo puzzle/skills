@@ -763,6 +763,11 @@ span.ember-power-select-selected-item {
 }
 
 /* Power Select */
+/* options is for the options it displays*/
+li.ember-power-select-option {
+}
+
+/* selected is for the selected option, in this case used to not make the font bold*/
 span.ember-power-select-selected-item {
   font-weight: normal;
 }
