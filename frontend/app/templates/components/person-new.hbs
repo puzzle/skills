@@ -38,7 +38,19 @@
                 <td>{{f.text-field 'title' label="Titel"}}</td>
               </tr>
               <tr>
-                <td>{{f.text-field 'role' label="Funktion"}}</td>
+                <td><Label> Funktion </Label>
+                {{#power-select
+                  selected=newPerson.role
+                  options=roles
+                  searchEnabled=false
+                  onfocus=(action "handleFocus")
+                  onblur=(action "handleBlur")
+                  onchange=(action (mut newPerson.role))
+                  as |role|
+                  }}
+                  {{role}}
+                {{/power-select}}
+              </td>
               </tr>
               <tr>
                 <td>
