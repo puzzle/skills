@@ -10,8 +10,10 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     this.martialStatuses = (['ledig', 'verheiratet', 'verwittwet', 'eingetragene Partnerschaft', 'geschieden']);
-    this.roles = (['Junior Software Developer', 'Mediocre Software Developer', 'Senior Software Developer',
-      'Praktikant', 'Lehrling', 'Besucher', 'UX', 'Finances']);
+    this.roles = (['Software-Entwickler', 'Software-Ingenieur', 'User Experience Consultant', 'Grafik Designer',
+      'Requirements Engineer', 'System-Techniker', 'System-Ingenieur', 'Architekt', 'Solutions Architect',
+      'Projektleiter (M1)', 'Bereichsleiter (M2)', 'Bereichsleiter GL (M3)', 'Kaufmann / Kauffrau', 'Controller',
+      'Marketing- und Kommunikationsfachmann / -fachfrau', 'Verkäufer', 'Key Account Manager']);
   },
 
   companiesToSelect: computed(function() {
