@@ -66,16 +66,17 @@
     "ember-welcome-page": "^3.0.0",
     "eslint-plugin-ember": "^5.0.0",
     "liquid-fire": "^0.28.0",
-    "loader.js": "^4.2.3"
+    "loader.js": "^4.2.3",
+    "watchman": "^1.0.0"
   },
   "engines": {
     "node": ">= 4"
   },
   "dependencies": {
     "bootstrap": "^4.1.1",
-    "popper.js": "^1.14.3",
     "jquery": "^3.3.1",
     "npm": "^5.7.1",
+    "popper.js": "^1.14.3",
     "to": "^0.2.9",
     "update": "^0.7.4"
   }
