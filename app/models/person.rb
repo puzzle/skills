@@ -20,6 +20,7 @@
 #  picture                  :string
 #  competences              :string
 #  associations_updatet_at  :timestamp
+#  company_id               :integer
 
 class Person < ApplicationRecord
   include PgSearch
