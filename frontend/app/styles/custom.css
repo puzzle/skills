@@ -736,7 +736,7 @@ table.fws tr td:last-child {
   width: 30px;
 }
 
-/* Power Select */
+/* Power Select Multiple */
 li.ember-power-select-multiple-option {
   color: #fff;
   background-color: #28a745;
@@ -760,6 +760,11 @@ li:hover.ember-power-select-multiple-option {
 span.ember-power-select-selected-item {
   display: block;
   text-align: left;
+}
+
+/* Power Select */
+span.ember-power-select-selected-item {
+  font-weight: normal;
 }
 
 /* Style Fixes */
