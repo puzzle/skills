@@ -42,7 +42,7 @@
                   <Label> Funktion </Label>
                   {{#power-select
                   selected=newPerson.role
-                  options=roles
+                  options=sortedRoles
                   searchEnabled=false
                   onfocus=(action "handleFocus")
                   onblur=(action "handleBlur")

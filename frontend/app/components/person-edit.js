@@ -16,6 +16,10 @@ export default Component.extend({
       'Marketing- und Kommunikationsfachmann / -fachfrau', 'Verkäufer', 'Key Account Manager']);
   },
 
+  sortedRoles: computed(function() {
+    return this.get('roles').sort()
+  }),
+
   companiesToSelect: computed(function() {
     return this.get('store').findAll('company');
   }),
