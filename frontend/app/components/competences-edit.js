@@ -99,6 +99,7 @@ export default Component.extend({
       else {
         selected.pushObject(searchText);
       }
+      options.sort();
     },
 
     deleteOffer(offerToDelete) {
