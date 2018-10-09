@@ -2,7 +2,7 @@ branches:
   only:
     - master
 
-language: ruby, node_js
+language: ruby
 
 node_js:
   - node
