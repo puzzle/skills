@@ -8,7 +8,7 @@ class PersonSerializer < ApplicationSerializer
              :origin_person_id, :variation_name, :updated_at
 
   def picture_path
-    "/api/people/#{object.id}/picture?#{Time.now}"
+    "/api/people/#{object.id}/picture?#{Time.zone.now}"
   end
 
   has_many :advanced_trainings do |serializer|
@@ -26,7 +26,7 @@ class PersonSerializer < ApplicationSerializer
   has_many :educations do |serializer|
     serializer.object.educations.list
   end
- 
+
   has_many :person_competences, include: :all
 
 end

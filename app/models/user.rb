@@ -1,4 +1,3 @@
-
 # == Schema Information
 #
 # Table name: users
@@ -43,7 +42,7 @@ class User < ApplicationRecord
   end
 
   class << self
-    # TODO refactor and enable rubocop
+    # TODO: refactor and enable rubocop
     # rubocop:disable Metrics/MethodLength
     def authenticate(username, password)
       return { error: 'Ungültige Login Daten' } unless LdapTools.exists?(username)

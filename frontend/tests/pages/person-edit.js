@@ -35,7 +35,6 @@ export default create({
 
   profileData: {
     scope: '#profile-content-show',
-
     name: text('[data-test-person-name]'),
     title: text('[data-test-person-title]'),
     role: text('[data-test-person-role]'),

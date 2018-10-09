@@ -1,4 +1,3 @@
-
 #
 # == Schema Information
 #
@@ -16,7 +15,6 @@
 
 class ExpertiseTopicSkillValue < ApplicationRecord
   belongs_to :expertise_topic
-  belongs_to :expertise_category
   belongs_to :person, touch: true
 
   enum skill_level: %i[trainee junior professional senior expert]
@@ -30,10 +28,10 @@ class ExpertiseTopicSkillValue < ApplicationRecord
             uniqueness: { scope: :person,
                           message: '- Etwas ist schief gelaufen. Bitte Seite neu laden' }
 
-  scope :list, ->(person_id = nil, category_id = nil) do
+  scope :list, lambda { |person_id = nil, category_id = nil|
     includes(:expertise_topic).
       includes(expertise_topic: :expertise_category).
       where(person_id: person_id).
       where(expertise_categories: { id: category_id })
-  end
+  }
 end

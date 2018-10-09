@@ -20,6 +20,7 @@
 #  picture                  :string
 #  competences              :string
 #  associations_updatet_at  :timestamp
+#  company_id               :integer
 
 class Person < ApplicationRecord
   include PgSearch
@@ -35,7 +36,9 @@ class Person < ApplicationRecord
   has_many :expertise_topic_skill_values, dependent: :destroy
   has_many :expertise_topics, through: :expertise_topic_skill_values
   has_many :variations, foreign_key: :origin_person_id,
-                        class_name: 'Person::Variation'
+                        class_name: 'Person::Variation',
+                        dependent: :destroy,
+                        inverse_of: false
 
   before_destroy :destroy_variations
 

@@ -15,7 +15,7 @@ class ProjectRelationsController < CrudController
   end
 
   private
-  
+
   def project_id
     params['data']['relationships']['project']['data']['id']
   end

@@ -13,9 +13,9 @@ class CompanyRelationsController < CrudController
   def fetch_entries
     model_class.where(company_id: params['company_id'])
   end
-  
+
   private
-  
+
   def company_id
     params['data']['relationships']['company']['data']['id']
   end

@@ -1,4 +1,3 @@
-
 #
 # == Schema Information
 #
@@ -19,8 +18,7 @@ class ExpertiseCategory < ApplicationRecord
                    uniqueness: { scope: :discipline },
                    length: { maximum: 100 }
 
-  scope :list, ->(discipline = nil) do
+  scope :list, lambda { |discipline = nil|
     where(discipline: discipline)
-  end
-
+  }
 end

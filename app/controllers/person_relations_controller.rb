@@ -15,7 +15,7 @@ class PersonRelationsController < CrudController
   end
 
   private
-  
+
   def person_id
     params['data']['relationships']['person']['data']['id']
   end

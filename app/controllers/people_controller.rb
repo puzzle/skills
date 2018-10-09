@@ -32,7 +32,7 @@ class PeopleController < CrudController
   end
 
   def export_fws
-    return render status: 404 unless format_odt?
+    return render status: :not_found unless format_odt?
 
     discipline = params['discipline']
     odt_file = Odt::Fws.new(discipline, params[:person_id]).export
@@ -42,7 +42,7 @@ class PeopleController < CrudController
   end
 
   def export_empty_fws
-    return render status: 404 unless format_odt?
+    return render status: :not_found unless format_odt?
 
     discipline = params['discipline']
     odt_file = Odt::Fws.new(discipline).empty_export

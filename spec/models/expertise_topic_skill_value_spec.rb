@@ -24,7 +24,8 @@ describe ExpertiseTopicSkillValue do
       expect(etsv.errors[:number_of_projects].first).to eq(nil)
       expect(etsv.errors[:last_use].first).to eq(nil)
       expect(etsv.errors[:skill_level].first).to eq('muss ausgefüllt werden')
-      expect(etsv.errors.details.count).to eq(1)
+      # Changed this to three since in the new rubyonrails version belongs_to's are required
+      expect(etsv.errors.details.count).to eq(3)
     end
 
     it 'checks validation maximum length for attribute' do
