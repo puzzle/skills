@@ -1,4 +1,3 @@
-
 module Odt
   class Cv
 

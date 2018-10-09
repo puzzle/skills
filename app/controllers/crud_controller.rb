@@ -62,7 +62,7 @@ class CrudController < ListController
   end
 
   def render_errors
-    render json: entry, status: 422,
+    render json: entry, status: :unprocessable_entity,
            adapter: :json_api, serializer: ActiveModel::Serializer::ErrorSerializer
   end
 
