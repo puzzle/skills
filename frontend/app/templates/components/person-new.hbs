@@ -58,7 +58,7 @@
                   <div class="text-field form-group">
                     <label class="label-date form-field--label" for='date_location'>Geb.Datum</label>
                     <div id="date_location">
-                      {{bootstrap-datepicker format='dd.mm.yyyy' value=newPerson.birthdate autoclose=true}}
+                      {{pikaday-input value=newPerson.birthdate onSelection=(action 'saveBirthdate')}}
                     </div>
                   </div>
                 </td>

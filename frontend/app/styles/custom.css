@@ -599,6 +599,10 @@ form textarea{
   font-size: 90%;
 }
 
+.datepicker_fix {
+
+}
+
 .table-uebersicht tr td:first-child {
   text-align: right;
   font-weight: bold;
