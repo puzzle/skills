@@ -66,6 +66,10 @@ export default Component.extend({
     },
 
     handleBlur() {
+    },
+
+    setBirthdate(selectedDate) {
+      this.set('person.birthdate', selectedDate[0]);
     }
   }
 
