@@ -58,7 +58,11 @@
                   <div class="text-field form-group">
                     <label class="label-date form-field--label" for='date_location'>Geb.Datum</label>
                     <div id="date_location">
-                      {{pikaday-input value=newPerson.birthdate onSelection=(action 'saveBirthdate')}}
+                      {{ember-flatpickr
+                        allowInput=true
+                        date='01.01.1990'
+                        dateFormat='d.m.Y'
+                        onChange=(action 'setBirthdate')}}
                     </div>
                   </div>
                 </td>

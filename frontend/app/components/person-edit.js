@@ -55,10 +55,6 @@ export default Component.extend({
         });
     },
 
-    saveBirthdate(date) {
-      this.set('person.birthdate', date);
-    },
-
     handleFocus(select, e) {
       if (this.focusComesFromOutside(e)) {
         select.actions.open();
