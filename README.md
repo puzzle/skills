@@ -27,6 +27,13 @@ You will need the following things properly installed on your computer.
 
 #### database setup
 
+##### Docker
+
+* Install docker and docker-compose https://docs.docker.com/install/linux/docker-ce/ubuntu/
+* `cd $project_git_dir` and `docker-compose up -d`
+
+##### Classic
+
 * `sudo apt-get install postgresql postgresql-contrib`
 * `sudo su - postgres`
 * `createuser puzzlecv -s -l -P` (with password puzzlecv)
