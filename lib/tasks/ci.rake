@@ -3,16 +3,11 @@
 #  See the COPYING file at the top-level directory or at
 #  https://github.com/puzzle/cryptopus.
 
-desc 'Runs the taks for a commit build'
+desc 'Runs the taks for a commit build and nightly build'
 task ci: ['log:clear',
           'db:migrate',
           'spec',
           'frontend:prepare',
-          'spec:frontend']
-
-namespace :ci do
-  desc 'Runs the tasks for the nightly build'
-  task nightly: ['ci',
-                 'brakeman',
-                 'rubocop']
-end
+          'spec:frontend',
+          'brakeman',
+          'rubocop']
