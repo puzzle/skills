@@ -15,6 +15,7 @@ You will need the following things properly installed on your computer.
 
 ## Installation
 
+* `nvm install 8`
 * `npm install -g ember-cli`
 * `cd frontend`
 * `yarn install`
