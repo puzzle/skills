@@ -63,8 +63,8 @@ now run backend server
 * peer review
 * remove obsolete code
 
-### Entity Relationship Diagram
-* run `bundle exec er` to create the current ERD
+#### Entity Relationship Diagram
+* run `bundle exec erd` to create the current ERD
 
 ### LDAP config
 
