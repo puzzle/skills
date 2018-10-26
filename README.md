@@ -63,6 +63,9 @@ now run backend server
 * peer review
 * remove obsolete code
 
+### Entity Relationship Diagram
+* run `bundle exec er` to create the current ERD
+
 ### LDAP config
 
 The following environment variables are required for using ldap:
