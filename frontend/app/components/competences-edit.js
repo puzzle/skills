@@ -102,11 +102,5 @@ export default Component.extend({
       options.sort();
     },
 
-    deleteOffer(offerToDelete) {
-      //remove overlay from delete confirmation
-      $('.modal-backdrop').remove();
-      offerToDelete.destroyRecord();
-    },
-
   }
 });

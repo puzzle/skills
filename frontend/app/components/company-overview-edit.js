@@ -98,15 +98,7 @@ export default Component.extend({
     },
 
     addEmployeeQuantity(company) {
-      this.get("store").createRecord("employee-quantity", { company });
-    },
-
-    deleteLocation(location) {
-      return location.destroyRecord();
-    },
-
-    deleteEmployeeQuantity(quantity) {
-      return quantity.destroyRecord();
+      this.get('store').createRecord('employee-quantity', { company });
     }
   }
 });

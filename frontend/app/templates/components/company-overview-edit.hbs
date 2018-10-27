@@ -30,15 +30,16 @@
                     <button class="btn btn-success form-field--control" type="button" {{action 'addLocations' company}}>Neue Adresse</button>
                   </td>
                 </tr>
-                {{#each company.locations as |location|}}
+                {{#each company.locations as |location index|}}
                   {{#fields-for location as |l|}}
                     <tr>
                       <td class="nextToDelete">
                         {{l.text-field 'location' label="Standort"}}
-                        <a {{action 'deleteLocation' location}} role="button" class="deleteField"><i class="fa trash"></i></a>
+                        <a data-toggle="modal" data-target="#deleteConfirmationModal{{index}}" role="button" class="card-link text-dark deleteField"><i class="fa trash"></i></a>
                       </td>
                     </tr>
                   {{/fields-for}}
+                  {{delete-confirmation object=location index=index}}
                 {{/each}}
                 <tr>
                   <td>{{f.text-field 'web' label="Web"}}</td>
@@ -80,12 +81,12 @@
                     <button class ="btn btn-success form-field--control" type="button" {{action 'addEmployeeQuantity' company}}>Neue Mitarbeiter-Anzahl</button>
                   </td>
                 </tr>
-                {{#each company.employeeQuantities as |quantity|}}
+                {{#each company.employeeQuantities as |quantity index|}}
                   {{#fields-for quantity as |q|}}
                     <tr>
                       <td class="nextToDelete">
                         {{q.text-field 'category' label="Kategorie"}}
-                        <a {{action 'deleteEmployeeQuantity' quantity}} role="button" class="deleteField"><i class="fa trash"></i></a>
+                        <a data-toggle="modal" data-target="#deleteConfirmationModal{{index}}" role="button" class="card-link text-dark deleteField"><i class="fa trash"></i></a>
                       </td>
                     </tr>
                     <tr>
@@ -94,6 +95,7 @@
                       </td>
                     </tr>
                   {{/fields-for}}
+                  {{delete-confirmation object=quantity index=index}}
                 {{/each}}
               </table>
             </div>

@@ -86,12 +86,6 @@ export default Component.extend({
       offer.set('offer', []);
     },
 
-    deleteOffer(offerToDelete) {
-      //remove overlay from delete confirmation
-      $('.modal-backdrop').remove();
-      offerToDelete.destroyRecord();
-    },
-
     createOffer(selected, searchText)
     {
       let options = this.get('options');
