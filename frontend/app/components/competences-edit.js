@@ -1,7 +1,6 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { isBlank } from '@ember/utils';
-import $ from 'jquery';
 
 export default Component.extend({
   i18n: service(),
