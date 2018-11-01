@@ -62,9 +62,10 @@
                   <label class="label-date form-field--label" for='date_location'>Geb.Datum</label>
                   <div id="date_location">
                     {{ember-flatpickr
-                      allowInput=true
+                      allowInput=false
                       date=person.birthdate
                       dateFormat='d.m.Y'
+                      maxDate='today'
                       onChange=(action 'setBirthdate')}}
                   </div>
                 </td>
