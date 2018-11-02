@@ -1,7 +1,7 @@
 language: ruby
 
 node_js:
-  - node
+  - "8"
 
 addons:
   firefox: "latest"
@@ -21,15 +21,10 @@ install:
 before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
-  - bundle exec rake frontend:prepare
   - psql -c 'create database travis_ci_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
   - bundle exec rake db:setup
-  - bundle exec rake db:migrate
 
 script:
   - bundle --deployment
-  - bundle exec rake spec
-  - bundle exec rake brakeman
-  - bundle exec rake rubocop
-  - JOBS=1 bundle exec rake spec:frontend
+  - JOBS=1 bundle exec rake ci

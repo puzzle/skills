@@ -1,0 +1,428 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>app/exporters/odt/cv.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>Skills C0 Coverage Information - Simploco - RCov</h1>
+    <h2>app/exporters/odt/cv.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="app-exporters-odt-cv_rb.html">app/exporters/odt/cv.rb</a></td>
+            <td class='right_align'><tt>123</tt></td>
+            <td class='right_align'><tt>74</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>99.19%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:99px"></div>
+        <div class="uncovered" style="width:1px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>98.65%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:99px"></div>
+        <div class="uncovered" style="width:1px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> module Odt</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line3">3</a>   class Cv</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line4">4</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line5">5</a>     def initialize(person)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line6">6</a>       @person = person</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line7">7</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line8">8</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line9">9</a>     def export</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line10">10</a>       ODFReport::Report.new(&#39;lib/templates/cv_template.odt&#39;) do |r|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line11">11</a>         insert_general_sections(r)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line12">12</a>         insert_personalien(r)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line13">13</a>         insert_competences(r)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line14">14</a>         insert_advanced_trainings(r)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line15">15</a>         insert_educations(r)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line16">16</a>         insert_activities(r)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line17">17</a>         insert_projects(r)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line18">18</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line19">19</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line20">20</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line21">21</a>     private</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line22">22</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line23">23</a>     attr_accessor :person</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line24">24</a>     # rubocop:disable Metrics/AbcSize</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line25">25</a>     def insert_general_sections(report)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line26">26</a>       report.add_field(:client, &#39;mg&#39;)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line27">27</a>       report.add_field(:project, &#39;pcv&#39;)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line28">28</a>       report.add_field(:section, &#39;dev1&#39;)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line29">29</a>       report.add_field(:name, person.name)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line30">30</a>       report.add_field(:title_function, person.role)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line31">31</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line32">32</a>       report.add_field(:header_info, &quot;#{person.name} - Version 1.0&quot;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line33">33</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line34">34</a>       report.add_field(:date, Time.zone.today.strftime(&#39;%d.%m.%Y&#39;))</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line35">35</a>       report.add_field(:version, &#39;1.0&#39;)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line36">36</a>       report.add_field(:comment, &#39;Aktuelle Ausgabe&#39;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line37">37</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line38">38</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line39">39</a>     # rubocop:enable Metrics/AbcSize</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line40">40</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line41">41</a>     # rubocop:disable Metrics/AbcSize</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line42">42</a>     def insert_personalien(report)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line43">43</a>       report.add_field(:title, person.title)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line44">44</a>       report.add_field(:birthdate, Date.parse(person.birthdate.to_s).strftime(&#39;%d.%m.%Y&#39;))</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line45">45</a>       report.add_field(:origin, person.origin)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line46">46</a>       report.add_field(:language, person.language)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line47">47</a>       report.add_image(:profile_picture, person.picture.path) if person.picture.file.present?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line48">48</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line49">49</a>     # rubocop:enable Metrics/AbcSize</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line50">50</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line51">51</a>     def insert_competences(report)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line52">52</a>       bullet = &quot;\u2022&quot;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line53">53</a>       competences_string = &#39;&#39;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line54">54</a>       if person.competences.present?</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line55">55</a>         person.competences.split(&quot;\n&quot;).each do |competence|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line56">56</a>           competences_string &lt;&lt; &quot;#{bullet} #{competence}\n&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line57">57</a>         end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line58">58</a>       end</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line59">59</a>       report.add_field(:competences, competences_string)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line60">60</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line61">61</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line62">62</a>     def insert_educations(report)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line63">63</a>       educations_list = person.educations.list.collect do |e|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line64">64</a>         { year: formatted_year(e), title: &quot;#{e.title}\n#{e.location}&quot; }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line65">65</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line66">66</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line67">67</a>       report.add_table(&#39;EDUCATIONS&#39;, educations_list, header: true) do |t|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line68">68</a>         t.add_column(:year, :year)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line69">69</a>         t.add_column(:education, :title)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line70">70</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line71">71</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line72">72</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line73">73</a>     def insert_advanced_trainings(report)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line74">74</a>       advanced_trainings_list = person.advanced_trainings.list.collect do |at|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line75">75</a>         { year: formatted_year(at), description: at.description }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line76">76</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line77">77</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line78">78</a>       report.add_table(&#39;ADVANCED_TRAININGS&#39;, advanced_trainings_list, header: true) do |t|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line79">79</a>         t.add_column(:year, :year)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line80">80</a>         t.add_column(:advanced_training, :description)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line81">81</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line82">82</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line83">83</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line84">84</a>     def insert_activities(report)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line85">85</a>       activities_list = person.activities.list.collect do |a|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line86">86</a>         { year: formatted_year(a), description: &quot;#{a.role}\n\n#{a.description}&quot; }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line87">87</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line88">88</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line89">89</a>       report.add_table(&#39;ACTIVITIES&#39;, activities_list, header: true) do |t|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line90">90</a>         t.add_column(:year, :year)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line91">91</a>         t.add_column(:activity, :description)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line92">92</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line93">93</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line94">94</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line95">95</a>     def insert_projects(report)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line96">96</a>       projects_list = person.projects.list.collect do |p|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line97">97</a>         { year: formatted_year(p), project: project_description(p) }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line98">98</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line99">99</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line100">100</a>       report.add_table(&#39;PROJECTS&#39;, projects_list, header: true) do |t|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line101">101</a>         t.add_column(:year, :year)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line102">102</a>         t.add_column(:project_description, :project)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line103">103</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line104">104</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line105">105</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line106">106</a>     def project_description(project)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line107">107</a>       str = &#39;&#39;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line108">108</a>       str &lt;&lt; &quot;#{project.title}\n\n&quot;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line109">109</a>       str &lt;&lt; &quot;#{project.description}\n\n&quot;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line110">110</a>       str &lt;&lt; &quot;#{project.role}\n\n&quot;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line111">111</a>       str &lt;&lt; project.technology.to_s</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line112">112</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line113">113</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line114">114</a>     def formatted_year(obj)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line115">115</a>       if obj.year_to.nil?</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line116">116</a>         &quot;#{obj.year_from} - heute&quot;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line117">117</a>       elsif obj.year_from == obj.year_to</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line118">118</a>         obj.year_to</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line119">119</a>       else</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line120">120</a>         &quot;#{obj.year_from} - #{obj.year_to}&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line121">121</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line122">122</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line123">123</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line124">124</a> end</pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2018-10-25 16:05:01 +0200 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>

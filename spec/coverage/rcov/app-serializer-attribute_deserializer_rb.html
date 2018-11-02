@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml'>
+  <head>
+    <title>app/serializer/attribute_deserializer.rb</title>
+    <link href="./assets/0.2.3/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="./assets/0.2.3/print.css" media="print" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <script type="text/javascript" src="./assets/0.2.3/rcov.js"></script>
+  </head>
+  <body>
+    <h1>Skills C0 Coverage Information - Simploco - RCov</h1>
+    <h2>app/serializer/attribute_deserializer.rb</h2>
+
+    <div class="report_table_wrapper">
+      <table class='report' id='report_table'>
+        <thead>
+          <tr>
+            <th class="left_align">Name</th>
+            <th class="right_align">Total Lines</th>
+            <th class="right_align">Lines of Code</th>
+            <th class="left_align">Total Coverage</th>
+            <th class="left_align">Code Coverage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="left_align"><a href="app-serializer-attribute_deserializer_rb.html">app/serializer/attribute_deserializer.rb</a></td>
+            <td class='right_align'><tt>40</tt></td>
+            <td class='right_align'><tt>24</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>77.50%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:78px"></div>
+        <div class="uncovered" style="width:22px"></div>
+      </div></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>62.50%</tt></div>
+      <div class="percent_graph">
+        <div class="covered" style="width:63px"></div>
+        <div class="uncovered" style="width:37px"></div>
+      </div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Key</h3>
+
+    <div class="key"><pre><span class='marked'>Code reported as executed by Ruby looks like this...</span><span class='marked1'>and this: this line is also marked as covered.</span><span class='inferred'>Lines considered as run by rcov, but not reported by Ruby, look like this,</span><span class='inferred1'>and this: these lines were inferred by rcov (using simple heuristics).</span><span class='uncovered'>Finally, here's a line marked as not executed.</span></pre></div>
+
+    <h3>Coverage Details</h3>
+
+    <table class="details">
+      <tbody>
+        <tr class="marked">
+          <td><pre><a name="line2">2</a> class AttributeDeserializer</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line3">3</a>   def initialize(params, options = {})</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line4">4</a>     @params = params</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line5">5</a>     @options = options</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line6">6</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line7">7</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line8">8</a>   def run</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line9">9</a>     if options.key?(:nested_models)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line10">10</a>       process_nested_models(params, Array.wrap(options[:nested_models]))</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line11">11</a>     end</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line12">12</a>     params</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line13">13</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line14">14</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line15">15</a>   private</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line16">16</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line17">17</a>   attr_reader :params, :options</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line18">18</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line19">19</a>   def process_nested_models(attrs, nested_models)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line20">20</a>     nested_models.each do |model|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line21">21</a>       if model.is_a?(Hash)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line22">22</a>         process_models_hash(attrs, model)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line23">23</a>       elsif attrs.key?(model.to_s)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line24">24</a>         attrs[&quot;#{model}_attributes&quot;] = attrs.delete(model.to_s)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line25">25</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line26">26</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line27">27</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line28">28</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line29">29</a>   def process_models_hash(attrs, model)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line30">30</a>     model.each do |key, value|</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line31">31</a>       model_attrs = attrs.delete(key.to_s)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line32">32</a>       next if model_attrs.blank?</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line33">33</a>       attrs[&quot;#{key}_attributes&quot;] = model_attrs</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line34">34</a>       if model_attrs.is_a?(Array)</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line35">35</a>         model_attrs.each { |ma| process_nested_models(ma, Array.wrap(value)) }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line36">36</a>       else</pre></td>
+        </tr>
+        <tr class="uncovered">
+          <td><pre><a name="line37">37</a>         process_nested_models(model_attrs, Array.wrap(value))</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line38">38</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line39">39</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line40">40</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line41">41</a> end</pre></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Generated on 2018-10-25 16:05:01 +0200 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+
+  </body>
+</html>
