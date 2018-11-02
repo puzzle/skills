@@ -4713,6 +4713,13 @@ ember-cookies@^0.3.0:
     ember-cli-babel "^6.8.2"
     ember-getowner-polyfill "^1.1.0 || ^2.0.0"
 
+ember-countries@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/ember-countries/-/ember-countries-2.0.2.tgz#0faa7b946fff71c22b0bb816b728fb04bc2b6470"
+  integrity sha1-D6p7lG//ccIrC7gWtyj7BLwrZHA=
+  dependencies:
+    ember-cli-babel "^5.1.6"
+
 ember-data@~3.0.0:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/ember-data/-/ember-data-3.0.4.tgz#d66473727a87ea85a8561263d949cea89775172f"
@@ -4849,6 +4856,13 @@ ember-hash-helper-polyfill@^0.2.0:
   dependencies:
     ember-cli-babel "^6.8.2"
     ember-cli-version-checker "^2.1.0"
+
+ember-i18n-iso-countries@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/ember-i18n-iso-countries/-/ember-i18n-iso-countries-1.4.0.tgz#46b9f684f49a91d73245c796218523092c9bd6a0"
+  integrity sha1-Rrn2hPSakdcyRceWIYUjCSyb1qA=
+  dependencies:
+    ember-cli-babel "^5.1.7"
 
 ember-i18n@^5.0.1:
   version "5.2.1"

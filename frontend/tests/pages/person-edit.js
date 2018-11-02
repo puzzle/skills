@@ -25,25 +25,18 @@ export default create({
     submit: clickable('#submit-button'),
     name: fillable('[name="person[name]"]'),
     title: fillable('[name="person[title]"]'),
-    role: fillable('[name="person[role]"]'),
-    birthdate: fillable('#date_location > input'),
-    origin: fillable('[name="person[origin]"]'),
     location: fillable('[name="person[location]"]'),
-    language: fillable('[name="person[language]"]'),
-    maritalStatus: fillable('[name="person[martialStatus]"]'),
   },
 
   profileData: {
-    scope: '#profile-content-show',
-
-    name: text('[data-test-person-name]'),
-    title: text('[data-test-person-title]'),
-    role: text('[data-test-person-role]'),
-    birthdate: text('[data-test-person-birthdate]'),
-    origin: text('[data-test-person-origin]'),
-    location: text('[data-test-person-location]'),
-    language: text('[data-test-person-language]'),
-    maritalStatus: text('[data-test-person-marital-status]'),
+    name: text('#data-test-person-name'),
+    title: text('#data-test-person-title'),
+    role: text('#data-test-person-role'),
+    birthdate: text('#data-test-person-birthdate'),
+    origin: text('#data-test-person-origin'),
+    location: text('#data-test-person-location'),
+    language: text('#data-test-person-language'),
+    maritalStatus: text('#data-test-person-marital-status'),
   },
 
   personActions: {
@@ -83,16 +76,15 @@ export default create({
   },
 
   competences: {
-    scope: '#competence',
+    toggleForm: clickable('[data-test-company-edit-form-toggle]'),
 
     list: collection({
-      itemScope: 'ul > li',
+      itemScope: '.old-competence-list-entity',
       item: {
         text: text(),
       },
     }),
 
-    toggleForm: clickable('#button-new-competences'),
     textarea: fillable('.competences-edit-input'),
     submit: clickable('#submit-button'),
   },

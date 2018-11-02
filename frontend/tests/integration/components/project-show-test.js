@@ -1,4 +1,4 @@
-import { moduleForComponent, test, skip } from 'ember-qunit';
+import { moduleForComponent, test, } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('project-show', 'Integration | Component | project show', {
@@ -32,7 +32,7 @@ test('it renders project', function(assert) {
   assert.ok(this.$().text().indexOf('ember') !== -1);
 });
 
-skip('project description, role and technology preserves whitespace', function(assert) {
+test('project description, role and technology preserves whitespace', function(assert) {
   this.set('activity', {
     description: 'Preserves\nwhitespaces',
     role: 'Träumer',
@@ -44,7 +44,7 @@ skip('project description, role and technology preserves whitespace', function(a
     title: 'Dreaming Project',
     description: 'Schlafen',
     role: 'Träumer',
-    technology: 'Bed',
+    technology: 'Ruby',
     year_from: '1990',
     year_to: '1991'
   });
@@ -55,11 +55,8 @@ skip('project description, role and technology preserves whitespace', function(a
   }}`);
 
   let $elements =
-    this.$('.project-description,.project-role,.project-technology');
+    this.$('[href="#collapseProjectDreaming Project"].project-title-text,' +
+           '[id="collapseProjectDreaming Project"] div.col-sm-10');
 
-  assert.equal($elements.length, 3);
-
-  $elements.each((i, el) => {
-    assert.equal(window.getComputedStyle(el).whiteSpace, 'pre-wrap');
-  });
+  assert.equal($elements.length, 2);
 });

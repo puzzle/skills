@@ -1,4 +1,4 @@
-import { skip } from 'qunit';
+import { test } from 'qunit';
 import moduleForAcceptance from 'frontend/tests/helpers/module-for-acceptance';
 import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
 
@@ -14,11 +14,11 @@ moduleForAcceptance('Acceptance | edit company', {
   }
 });
 
-skip('/company/:id edit company data', async function(assert) {
-  assert.expect(13);
+test('/company/:id edit company data', async function(assert) {
+  assert.expect(10);
 
   await applicationPage.visitCompanies('/companies');
-  await applicationPage.companiesMenuItem('firma');
+  await applicationPage.companiesMenuItem('Firma');
 
   await page.toggleEditForm();
   await page.editForm.name('FirmaXYZ');
@@ -43,6 +43,5 @@ skip('/company/:id edit company data', async function(assert) {
   assert.equal(page.profileData.phoneContactPerson, '23475788273785423');
   assert.equal(page.profileData.crm, 'crmXYZ');
   assert.equal(page.profileData.level, 'Z');
-  assert.equal(page.profileData.name, 'firma');
 
 });

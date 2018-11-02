@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+export MOCK_LDAP_AUTH=1
 export RAILS_PORT=3001
 PID_FILE=tmp/pids/frontend-test-server.pid
 SERVER=false

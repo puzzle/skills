@@ -19,6 +19,7 @@
                 <td>
                   <label>Firma</label>
                   {{#power-select
+                    triggerId="company"
                     selected=newPerson.company
                     options=companiesToSelect
                     searchField="name"
@@ -41,6 +42,7 @@
                 <td>
                   <Label> Funktion </Label>
                   {{#power-select
+                  triggerId="role"
                   selected=newPerson.role
                   options=sortedRoles
                   searchEnabled=false
@@ -76,7 +78,20 @@
                 <td></td>
               </tr>
               <tr>
-                <td>{{f.text-field 'origin' label="Nationalität"}}</td>
+                <td>
+                  <Label>Nationalität</Label>
+                  {{#power-select
+                    triggerId="origin"
+                    options=countries
+                    selected=selectedCountry
+                    onchange=(action "setOrigin")
+                    onfocus=(action "handleFocus")
+                    onblur=(action "handleBlur")
+                    searchField="1"
+                    as |country|}}
+                    <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
+                  {{/power-select}}
+                </td>
               </tr>
               <tr>
                 <td>{{f.text-field 'location' label="Wohnort"}}</td>
@@ -88,6 +103,7 @@
                 <td>
                   <Label> Zivilstand </Label>
                   {{#power-select
+                  triggerId="martialStatus"
                   selected=newPerson.martialStatus
                   options=martialStatuses
                   searchEnabled=false

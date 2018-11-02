@@ -2,6 +2,8 @@ import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { isBlank } from '@ember/utils';
+import { getNames } from 'ember-i18n-iso-countries';
+
 
 export default Component.extend({
   store: service(),
@@ -14,6 +16,12 @@ export default Component.extend({
       'Requirements Engineer', 'System-Techniker', 'System-Ingenieur', 'Architekt', 'Solutions Architect',
       'Projektleiter (M1)', 'Bereichsleiter (M2)', 'Bereichsleiter GL (M3)', 'Kaufmann / Kauffrau', 'Controller',
       'Marketing- und Kommunikationsfachmann / -fachfrau', 'Verkäufer', 'Key Account Manager']);
+    let countriesArray = Object.entries(getNames("de"))
+    this.set('countries', countriesArray);
+    let origin = this.get('person.origin');
+    this.selectedCountry = countriesArray.find(function(country) {
+      return country[1] == origin
+    });
   },
 
   sortedRoles: computed(function() {
@@ -35,6 +43,14 @@ export default Component.extend({
       return false;
     }
     return !blurredEl.classList.contains('ember-power-select-search-input');
+  },
+
+  getCountryByName(name) {
+    return this.countries.find(function(country) {
+      if (country.name == name) {
+        return country;
+      }
+    });
   },
 
   actions: {
@@ -66,7 +82,13 @@ export default Component.extend({
 
     setBirthdate(selectedDate) {
       this.set('person.birthdate', selectedDate[0]);
-    }
+    },
+
+    setOrigin(selectedCountry) {
+      this.set('person.origin', selectedCountry[1]);
+      this.set('selectedCountry', selectedCountry);
+    },
+
   }
 
 });
