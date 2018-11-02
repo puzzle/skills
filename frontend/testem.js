@@ -10,7 +10,8 @@ module.exports = {
   ],
   browser_args: {
     Firefox: [
-      '--no-remote'
+      '--no-remote',
+      '--headless'
     ],
     Chrome: [
       //'--disable-gpu',
