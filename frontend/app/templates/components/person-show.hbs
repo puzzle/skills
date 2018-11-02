@@ -25,18 +25,18 @@
             <td data-test-person-company>{{person.company.name}}</td>
           </tr>
           <tr>
-            <td>Name</td><td data-test-person-name>{{person.name}}</td>
+            <td>Name</td><td id="data-test-person-name">{{person.name}}</td>
           </tr>
           <tr>
-            <td>Titel</td><td data-test-person-title>{{person.title}}</td>
+            <td>Titel</td><td id="data-test-person-title">{{person.title}}</td>
           </tr>
           <tr>
-            <td>Funktion</td><td data-test-person-role>{{person.role}}</td>
+            <td>Funktion</td><td id="data-test-person-role">{{person.role}}</td>
           </tr>
           <tr>
             <td>Geb. Datum</td>
             <td>
-              <time datetime={{moment-format person.birthdate}} data-test-person-birthdate>
+              <time datetime={{moment-format person.birthdate}} id="data-test-person-birthdate">
                 {{~moment-format person.birthdate 'L'~}}
               </time>
             </td>
@@ -49,16 +49,16 @@
             <td></td>
           </tr>
           <tr>
-            <td>Nationalität</td><td data-test-person-origin>{{person.origin}}</td>
+            <td>Nationalität</td><td id="data-test-person-origin">{{person.origin}}</td>
           </tr>
           <tr>
-            <td>Wohnort</td><td data-test-person-location>{{person.location}}</td>
+            <td>Wohnort</td><td id="data-test-person-location">{{person.location}}</td>
           </tr>
           <tr>
-            <td>Sprachen</td><td data-test-person-language>{{person.language}}</td>
+            <td>Sprachen</td><td id="data-test-person-language">{{person.language}}</td>
           </tr>
           <tr>
-            <td>Zivilstand</td><td data-test-person-marital-status>{{person.martialStatus}}</td>
+            <td>Zivilstand</td><td id="data-test-person-marital-status">{{person.martialStatus}}</td>
           </tr>
           {{#each company.employeeQuantities as |quantity|}}
             <tr>

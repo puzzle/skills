@@ -24,6 +24,7 @@
                 <td>
                   <label>Firma</label>
                   {{#power-select
+                    triggerId="company"
                     selected=person.company
                     options=companiesToSelect
                     onfocus=(action "handleFocus")
@@ -42,13 +43,32 @@
                 <td>{{f.text-field 'title' label="Titel"}}</td>
               </tr>
               <tr>
-                <td>{{f.text-field 'role' label="Funktion"}}</td>
+                <td>
+                  <Label> Funktion </Label>
+                  {{#power-select
+                  triggerId="role"
+                  selected=person.role
+                  options=sortedRoles
+                  searchEnabled=false
+                  onfocus=(action "handleFocus")
+                  onblur=(action "handleBlur")
+                  onchange=(action (mut person.role))
+                  as |role|
+                  }}
+                    {{role}}
+                  {{/power-select}}
+                </td>
               </tr>
               <tr>
                 <td>
                   <label class="label-date form-field--label" for='date_location'>Geb.Datum</label>
                   <div id="date_location">
-                    {{bootstrap-datepicker format='dd.mm.yyyy' value=changeset.birthdate autoclose=true}}
+                    {{ember-flatpickr
+                      allowInput=false
+                      date=person.birthdate
+                      dateFormat='d.m.Y'
+                      maxDate='today'
+                      onChange=(action 'setBirthdate')}}
                   </div>
                 </td>
               </tr>
@@ -60,7 +80,20 @@
                 <td>{{!Leere Zeile aus Layout-Gründen}}</td>
               </tr>
               <tr>
-                <td>{{f.text-field 'origin' label="Nationalität"}}</td>
+                <td>
+                  <Label>Nationalität</Label>
+                  {{#power-select
+                    triggerId="origin"
+                    options=countries
+                    selected=selectedCountry 
+                    onchange=(action "setOrigin")
+                    onfocus=(action "handleFocus")
+                    onblur=(action "handleBlur")
+                    searchField="1"
+                    as |country|}}
+                    <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
+                  {{/power-select}}
+                </td>
               </tr>
               <tr>
                 <td>{{f.text-field 'location' label="Wohnort"}}</td>
@@ -69,7 +102,21 @@
                 <td>{{f.text-field 'language' label="Sprache"}}</td>
               </tr>
               <tr>
-                <td>{{f.text-field 'martialStatus' label="Zivilstand"}}</td>
+                <td>
+                  <Label> Zivilstand </Label>
+                  {{#power-select
+                  triggerId="martialStatus"
+                  selected=person.martialStatus
+                  options=martialStatuses
+                  searchEnabled=false
+                  onfocus=(action "handleFocus")
+                  onblur=(action "handleBlur")
+                  onchange=(action (mut person.martialStatus))
+                  as |martialStatus|
+                  }}
+                    {{martialStatus}}
+                  {{/power-select}}
+                </td>
               </tr>
             </table>
           </div>

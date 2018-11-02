@@ -260,6 +260,10 @@ hr {
     margin-right: 5px;
   }
 
+  .flag-icon {
+    margin-right: 5px;
+  }
+
   /* Competence Section
   -------------------------------------------------- */
   .vertical-center {
@@ -599,6 +603,10 @@ form textarea{
   font-size: 90%;
 }
 
+.datepicker_fix {
+
+}
+
 .table-uebersicht tr td:first-child {
   text-align: right;
   font-weight: bold;
@@ -736,7 +744,7 @@ table.fws tr td:last-child {
   width: 30px;
 }
 
-/* Power Select */
+/* Power Select Multiple */
 li.ember-power-select-multiple-option {
   color: #fff;
   background-color: #28a745;
@@ -760,6 +768,16 @@ li:hover.ember-power-select-multiple-option {
 span.ember-power-select-selected-item {
   display: block;
   text-align: left;
+}
+
+/* Power Select */
+/* options is for the options it displays*/
+li.ember-power-select-option {
+}
+
+/* selected is for the selected option, in this case used to not make the font bold*/
+span.ember-power-select-selected-item {
+  font-weight: normal;
 }
 
 /* Style Fixes */

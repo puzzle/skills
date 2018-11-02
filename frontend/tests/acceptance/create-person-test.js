@@ -1,13 +1,13 @@
-import { test , skip } from 'qunit';
+import { test } from 'qunit';
 import moduleForAcceptance from 'frontend/tests/helpers/module-for-acceptance';
 import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
-
+import { setFlatpickrDate } from 'ember-flatpickr/test-support/helpers';
 import page from 'frontend/tests/pages/people-new';
 import editPage from 'frontend/tests/pages/person-edit';
 
 moduleForAcceptance('Acceptance | create person');
 
-skip('creating a new person', async function(assert) {
+test('creating a new person', async function(assert) {
   assert.expect(10);
 
   authenticateSession(this.application, {
@@ -19,26 +19,31 @@ skip('creating a new person', async function(assert) {
 
   assert.equal(currentURL(), '/people/new');
 
+  /* eslint "no-undef": "off" */
+  await selectChoose('#role', 'Controller')
+  await selectChoose('#company', 'Firma');
+  await selectChoose('#origin', ".ember-power-select-option", 0);
+  await selectChoose('#martialStatus', 'verheiratet');
+
+  setFlatpickrDate('.flatpickr-input', '26.10.2018')
+
   await page.createPerson({
     name: 'Hansjoggeli',
     title: 'Dr.',
-    role: 'Gigu',
-    birthdate: '12.05.2017',
-    origin: 'Schwiz',
     location: 'Chehrplatz Schwandi',
     language: 'Schwizerdütsch',
-    maritalStatus: 'Ledig',
   });
+
 
   assert.ok(/^\/people\/\d+$/.test(currentURL()));
   assert.equal(editPage.profileData.name, 'Hansjoggeli');
   assert.equal(editPage.profileData.title, 'Dr.');
-  assert.equal(editPage.profileData.role, 'Gigu');
-  assert.equal(editPage.profileData.birthdate, '12.05.2017');
-  assert.equal(editPage.profileData.origin, 'Schwiz');
+  assert.equal(editPage.profileData.role, 'Controller');
+  assert.equal(editPage.profileData.birthdate, '26.10.2018');
+  assert.equal(editPage.profileData.origin, 'Afghanistan');
   assert.equal(editPage.profileData.location, 'Chehrplatz Schwandi');
   assert.equal(editPage.profileData.language, 'Schwizerdütsch');
-  assert.equal(editPage.profileData.maritalStatus, 'Ledig');
+  assert.equal(editPage.profileData.maritalStatus, 'verheiratet');
 });
 
 test('creating an empty new person', async function(assert) {

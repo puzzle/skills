@@ -110,8 +110,8 @@ class PersonSeeder
       p.martial_status = 'ledig'
       p.updated_by = 'seed_user'
       p.name = name.to_s
-      p.origin = Faker::StarWars.planet
-      p.role = Faker::Company.profession
+      p.origin = 'Schweiz'
+      p.role = 'Architekt'
       p.title = Faker::Name.title
       p.company_id = rand(1..4)
       competences = ""
@@ -174,6 +174,6 @@ class PersonSeeder
     ProjectTechnology.seed do |a|
       a.offer = ["Java", "Ruby", "Javascript", "C++", "C", "C#"]
       a.project_id = project_id
-    end 
+    end
   end
 end

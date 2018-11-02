@@ -1,7 +1,7 @@
-import { skip } from 'qunit';
+import { test } from 'qunit';
 import moduleForAcceptance from 'frontend/tests/helpers/module-for-acceptance';
 import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
-
+import { setFlatpickrDate } from 'ember-flatpickr/test-support/helpers';
 import applicationPage from 'frontend/tests/pages/application';
 import page from 'frontend/tests/pages/person-edit';
 
@@ -14,36 +14,39 @@ moduleForAcceptance('Acceptance | edit person', {
   }
 });
 
-skip('/people/:id edit person data', async function(assert) {
-  assert.expect(7);
+test('/people/:id edit person data', async function(assert) {
+  assert.expect(5);
 
   await applicationPage.visitHome('/');
-  await applicationPage.peopleMenuItem('Bob Anderson');
+  await selectChoose('#people-search', '.ember-power-select-option', 0);
 
   await page.toggleEditForm();
+
+  /* eslint "no-undef": "off" */
+  await selectChoose('#role', 'Controller')
+  await selectChoose('#company', 'Firma');
+  await selectChoose('#origin', ".ember-power-select-option", 0);
+  await selectChoose('#martialStatus', 'verheiratet');
+
+  setFlatpickrDate('.flatpickr-input', '26.10.2018')
+
   await page.editForm.name('Hansjoggeli');
   await page.editForm.title('Dr.');
-  await page.editForm.role('Joggeli');
-  await page.editForm.birthdate('12.05.2017');
-  await page.editForm.origin('Schwiz');
   await page.editForm.location('Chehrplatz Schwandi');
-  await page.editForm.maritalStatus('Verwittwet');
   await page.editForm.submit();
 
   assert.equal(page.profileData.name, 'Hansjoggeli');
   assert.equal(page.profileData.title, 'Dr.');
-  assert.equal(page.profileData.role, 'Joggeli');
-  //assert.equal(page.profileData.birthdate, '12.05.2017');
-  assert.equal(page.profileData.origin, 'Schwiz');
+  assert.equal(page.profileData.role, 'Controller');
+  assert.equal(page.profileData.origin, 'Afghanistan');
   assert.equal(page.profileData.location, 'Chehrplatz Schwandi');
-  assert.equal(page.profileData.status, 'Bewerber');
 });
 
-skip('/people/:id edit person competences', async function(assert) {
+test('/people/:id edit person competences', async function(assert) {
   assert.expect(4);
 
   await applicationPage.visitHome('/');
-  await applicationPage.peopleMenuItem('Bob Anderson');
+  await selectChoose('#people-search', '.ember-power-select-option', 0);
 
   await page.competences.toggleForm();
   await page.competences.textarea(
@@ -61,31 +64,4 @@ skip('/people/:id edit person competences', async function(assert) {
   assert.equal(page.competences.list(0).text, 'Competence 1');
   assert.equal(page.competences.list(1).text, 'Competence 2');
   assert.equal(page.competences.list(2).text, 'Competence 3');
-});
-
-skip('Creating a new variation', async function(assert) {
-  assert.expect(12);
-
-  await applicationPage.visitHome('/');
-  await applicationPage.peopleMenuItem('Bob Anderson');
-
-  assert.ok(page.personActions.originCVIsActive);
-
-  const originURL = currentURL();
-
-  await page.createVariation('Dönu.js');
-
-  assert.equal(page.personActions.variationDropdownButtonText, 'Dönu.js');
-  assert.ok(page.personActions.variationDropdownButtonIsActive);
-  assert.notOk(page.personActions.originCVIsActive);
-
-  assert.notEqual(currentURL(), originURL);
-
-  assert.equal(page.profileData.name, 'Bob Anderson');
-  assert.equal(page.profileData.title, 'BSc in Cleaning');
-  assert.equal(page.profileData.role, 'Cleaner');
-  //assert.equal(page.profileData.birthdate, '02.03.2014');
-  assert.equal(page.profileData.origin, 'Switzerland');
-  assert.equal(page.profileData.location, 'Bern');
-  assert.equal(page.profileData.maritalStatus, 'Single');
 });
