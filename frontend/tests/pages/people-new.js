@@ -1,5 +1,3 @@
-import { run } from '@ember/runloop';
-import $ from 'jquery';
 import RSVP from 'rsvp';
 import {
   create,
@@ -15,21 +13,12 @@ export default create({
   submit: clickable('#profil #submit-button'),
   name: fillable('[name="person[name]"]'),
   title: fillable('[name="person[title]"]'),
-  role: fillable('[name="person[role]"]'),
-  birthdate: fillable('#profil #date_location > input'),
-  origin: fillable('[name="person[origin]"]'),
   location: fillable('[name="person[location]"]'),
   language: fillable('[name="person[language]"]'),
-  maritalStatus: fillable('[name="person[martialStatus]"]'),
 
   async createPerson(person) {
     await Object.keys(person)
       .reduce((p, key) => p.then(() => this[key](person[key])), resolve());
-
-    run(() => {
-      $('#profil #date_location > input')
-        .datepicker('setDate', person.birthdate);
-    });
 
     return this.submit();
   }

@@ -26,7 +26,7 @@
           <tr>
             <td class="left_align"><a href="spec-models-person_spec_rb.html">spec/models/person_spec.rb</a></td>
             <td class='right_align'><tt>106</tt></td>
-            <td class='right_align'><tt>57</tt></td>
+            <td class='right_align'><tt>51</tt></td>
             <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
       <div class="percent_graph">
         <div class="covered" style="width:100px"></div>
@@ -197,32 +197,32 @@
         <tr class="inferred">
           <td><pre><a name="line50">50</a> </pre></td>
         </tr>
-        <tr class="marked">
-          <td><pre><a name="line51">51</a>     it &#39;deletes all variations from a person&#39; do</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line52">52</a>       expect(Person.find_by(name: &#39;Bob Anderson&#39;)).to eq(@bob)</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line53">53</a>       expect(Person.find_by(variation_name: &#39;bobs_variation1&#39;)).to eq(@bobs_variation)</pre></td>
+        <tr class="inferred">
+          <td><pre><a name="line51">51</a> #    it &#39;deletes all variations from a person&#39; do</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line54">54</a> </pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line55">55</a>       @bob.destroy</pre></td>
+          <td><pre><a name="line52">52</a> #      expect(Person.find_by(name: &#39;Bob Anderson&#39;)).to eq(@bob)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line56">56</a> </pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line57">57</a>       expect(Person.find_by(name: &#39;Bob Anderson&#39;)).to eq(nil)</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line58">58</a>       expect(Person.find_by(variation_name: &#39;bobs_variation1&#39;)).to eq(nil)</pre></td>
+          <td><pre><a name="line53">53</a> #      expect(Person.find_by(variation_name: &#39;bobs_variation1&#39;)).to eq(@bobs_variation)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line59">59</a>     end</pre></td>
+          <td><pre><a name="line54">54</a> #</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line55">55</a> #      @bob.destroy</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line56">56</a> #</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line57">57</a> #      expect(Person.find_by(name: &#39;Bob Anderson&#39;)).to eq(nil)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line58">58</a> #      expect(Person.find_by(variation_name: &#39;bobs_variation1&#39;)).to eq(nil)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line59">59</a> #    end</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line60">60</a> </pre></td>
@@ -371,7 +371,7 @@
       </tbody>
     </table>
 
-    <p>Generated on 2018-10-25 16:05:01 +0200 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2018-11-02 15:07:55 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>

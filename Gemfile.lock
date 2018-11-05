@@ -71,6 +71,7 @@ GEM
       mime-types (>= 1.16)
     case_transform (0.2)
       activesupport
+    choice (0.2.0)
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
@@ -150,6 +151,11 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
+    rails-erd (1.5.2)
+      activerecord (>= 3.2)
+      activesupport (>= 3.2)
+      choice (~> 0.2.0)
+      ruby-graphviz (~> 1.2)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
     rails-i18n (5.1.1)
@@ -190,6 +196,7 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
+    ruby-graphviz (1.2.3)
     ruby-progressbar (1.10.0)
     rubyzip (1.2.2)
     seed-fu (2.3.9)
@@ -255,6 +262,7 @@ DEPENDENCIES
   puma (~> 3.0)
   rack
   rails (= 5.2.1)
+  rails-erd
   rails-html-sanitizer (~> 1.0.3)
   rails-i18n
   rspec-rails (~> 3.6)
@@ -269,4 +277,4 @@ DEPENDENCIES
   tzinfo-data
 
 BUNDLED WITH
-   1.16.5
+   1.16.6

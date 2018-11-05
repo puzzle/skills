@@ -16,7 +16,7 @@ export default create({
   },
 
   loginForm: {
-    scope: '.form-login',
+    scope: '.form-signin',
 
     username: fillable('.login-form-user > input'),
     password: fillable('.login-form-password > input[type="password"]'),

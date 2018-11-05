@@ -76,7 +76,7 @@ describe ExpertiseTopicSkillValuesController do
       process :update, method: :put, params: update_params(expertise_topic_skill_value.id, updated_attributes)
 
       expertise_topic_skill_value.reload
-      expect(expertise_topic_skill_value.comment).to eq('changed')
+      expect(expertise_topic_skill_value.comment).to eq('changed') ##
     end
   end
 

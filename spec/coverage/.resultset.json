@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/mzurbuchen/git/skills/spec/controllers/activities_controller_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/controllers/activities_controller_spec.rb": [
         1,
         null,
         1,
@@ -95,7 +95,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/rails_helper.rb": [
+      "/home/nrauch/documents/git/skills/spec/rails_helper.rb": [
         null,
         1,
         1,
@@ -148,14 +148,14 @@
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/config/environment.rb": [
+      "/home/nrauch/documents/git/skills/config/environment.rb": [
         null,
         1,
         null,
         null,
         1
       ],
-      "/home/mzurbuchen/git/skills/config/application.rb": [
+      "/home/nrauch/documents/git/skills/config/application.rb": [
         1,
         null,
         null,
@@ -207,13 +207,13 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/config/boot.rb": [
+      "/home/nrauch/documents/git/skills/config/boot.rb": [
         1,
         null,
         1,
         1
       ],
-      "/home/mzurbuchen/git/skills/config/environments/test.rb": [
+      "/home/nrauch/documents/git/skills/config/environments/test.rb": [
         1,
         null,
         null,
@@ -261,10 +261,10 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/config/initializers/active_model_serializer.rb": [
+      "/home/nrauch/documents/git/skills/config/initializers/active_model_serializer.rb": [
         1
       ],
-      "/home/mzurbuchen/git/skills/config/initializers/application_controller_renderer.rb": [
+      "/home/nrauch/documents/git/skills/config/initializers/application_controller_renderer.rb": [
         null,
         null,
         null,
@@ -274,7 +274,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/config/initializers/backtrace_silencers.rb": [
+      "/home/nrauch/documents/git/skills/config/initializers/backtrace_silencers.rb": [
         null,
         null,
         null,
@@ -283,7 +283,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/config/initializers/carrierwave.rb": [
+      "/home/nrauch/documents/git/skills/config/initializers/carrierwave.rb": [
         1,
         1,
         1,
@@ -291,7 +291,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/config/initializers/cors.rb": [
+      "/home/nrauch/documents/git/skills/config/initializers/cors.rb": [
         null,
         null,
         null,
@@ -309,7 +309,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/config/initializers/errbit.rb": [
+      "/home/nrauch/documents/git/skills/config/initializers/errbit.rb": [
         1,
         1,
         1,
@@ -319,13 +319,13 @@
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/config/initializers/filter_parameter_logging.rb": [
+      "/home/nrauch/documents/git/skills/config/initializers/filter_parameter_logging.rb": [
         null,
         null,
         null,
         1
       ],
-      "/home/mzurbuchen/git/skills/config/initializers/inflections.rb": [
+      "/home/nrauch/documents/git/skills/config/initializers/inflections.rb": [
         null,
         null,
         null,
@@ -343,19 +343,95 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/config/initializers/json_api.rb": [
+      "/home/nrauch/documents/git/skills/config/initializers/json_api.rb": [
         1,
         2,
         2,
         null
       ],
-      "/home/mzurbuchen/git/skills/config/initializers/mime_types.rb": [
+      "/home/nrauch/documents/git/skills/config/initializers/mime_types.rb": [
         null,
         null,
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/config/initializers/new_framework_defaults.rb": [
+      "/home/nrauch/documents/git/skills/config/initializers/mock_ldap_out.rb": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        null,
+        null,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        0,
+        null
+      ],
+      "/home/nrauch/documents/git/skills/lib/ldap_tools.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        null,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        2,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/home/nrauch/documents/git/skills/config/initializers/new_framework_defaults.rb": [
         null,
         null,
         null,
@@ -376,7 +452,7 @@
         null,
         1
       ],
-      "/home/mzurbuchen/git/skills/config/initializers/new_framework_defaults_5_2.rb": [
+      "/home/nrauch/documents/git/skills/config/initializers/new_framework_defaults_5_2.rb": [
         null,
         null,
         null,
@@ -387,7 +463,6 @@
         null,
         null,
         null,
-        1,
         null,
         null,
         null,
@@ -396,27 +471,28 @@
         null,
         null,
         null,
-        1,
         null,
         null,
         null,
-        1,
         null,
         null,
         null,
-        1,
         null,
         null,
         null,
-        1,
         null,
         null,
-        1,
         null,
         null,
-        1
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
       ],
-      "/home/mzurbuchen/git/skills/config/initializers/wrap_parameters.rb": [
+      "/home/nrauch/documents/git/skills/config/initializers/wrap_parameters.rb": [
         null,
         null,
         null,
@@ -432,7 +508,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/config/routes.rb": [
+      "/home/nrauch/documents/git/skills/config/routes.rb": [
         1,
         null,
         null,
@@ -483,14 +559,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/support/json_macros.rb": [
-        1,
-        1,
-        33,
-        null,
-        null
-      ],
-      "/home/mzurbuchen/git/skills/spec/support/json_assertion.rb": [
+      "/home/nrauch/documents/git/skills/spec/support/json_assertion.rb": [
         1,
         1,
         19,
@@ -499,7 +568,14 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/support/controller_helpers.rb": [
+      "/home/nrauch/documents/git/skills/spec/support/json_macros.rb": [
+        1,
+        1,
+        33,
+        null,
+        null
+      ],
+      "/home/nrauch/documents/git/skills/spec/support/controller_helpers.rb": [
         1,
         null,
         1,
@@ -518,67 +594,12 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/lib/ldap_tools.rb": [
-        1,
-        null,
-        1,
-        1,
-        1,
-        0,
-        null,
-        null,
-        1,
-        0,
-        0,
-        null,
-        null,
-        null,
-        0,
-        null,
-        null,
-        1,
-        0,
-        0,
-        0,
-        null,
-        0,
-        null,
-        null,
-        1,
-        null,
-        1,
-        0,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        0,
-        null,
-        null,
-        1,
-        0,
-        null,
-        null,
-        1,
-        0,
-        null,
-        null,
-        1,
-        2,
-        1,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/home/mzurbuchen/git/skills/app/controllers/activities_controller.rb": [
+      "/home/nrauch/documents/git/skills/app/controllers/activities_controller.rb": [
         1,
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/controllers/person_relations_controller.rb": [
+      "/home/nrauch/documents/git/skills/app/controllers/person_relations_controller.rb": [
         1,
         null,
         1,
@@ -603,7 +624,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/controllers/crud_controller.rb": [
+      "/home/nrauch/documents/git/skills/app/controllers/crud_controller.rb": [
         null,
         1,
         1,
@@ -709,7 +730,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/controllers/list_controller.rb": [
+      "/home/nrauch/documents/git/skills/app/controllers/list_controller.rb": [
         null,
         1,
         1,
@@ -765,7 +786,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/controllers/application_controller.rb": [
+      "/home/nrauch/documents/git/skills/app/controllers/application_controller.rb": [
         1,
         null,
         1,
@@ -807,7 +828,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/controllers/advanced_trainings_controller_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/controllers/advanced_trainings_controller_spec.rb": [
         1,
         null,
         1,
@@ -904,12 +925,12 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/controllers/advanced_trainings_controller.rb": [
+      "/home/nrauch/documents/git/skills/app/controllers/advanced_trainings_controller.rb": [
         1,
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/controllers/authentication_controller_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/controllers/authentication_controller_spec.rb": [
         1,
         null,
         1,
@@ -1011,7 +1032,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/controllers/authentication_controller.rb": [
+      "/home/nrauch/documents/git/skills/app/controllers/authentication_controller.rb": [
         1,
         null,
         1,
@@ -1048,7 +1069,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/controllers/companies_controller_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/controllers/companies_controller_spec.rb": [
         1,
         null,
         1,
@@ -1156,7 +1177,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/controllers/companies_controller.rb": [
+      "/home/nrauch/documents/git/skills/app/controllers/companies_controller.rb": [
         1,
         1,
         null,
@@ -1166,7 +1187,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/controllers/educations_controller_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/controllers/educations_controller_spec.rb": [
         1,
         null,
         1,
@@ -1262,12 +1283,12 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/controllers/educations_controller.rb": [
+      "/home/nrauch/documents/git/skills/app/controllers/educations_controller.rb": [
         1,
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/controllers/employee_quantities_controller_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/controllers/employee_quantities_controller_spec.rb": [
         1,
         null,
         1,
@@ -1357,12 +1378,12 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/controllers/employee_quantities_controller.rb": [
+      "/home/nrauch/documents/git/skills/app/controllers/employee_quantities_controller.rb": [
         1,
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/controllers/company_relations_controller.rb": [
+      "/home/nrauch/documents/git/skills/app/controllers/company_relations_controller.rb": [
         1,
         null,
         1,
@@ -1387,7 +1408,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/controllers/expertise_categories_controller_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/controllers/expertise_categories_controller_spec.rb": [
         1,
         null,
         1,
@@ -1463,7 +1484,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/controllers/expertise_categories_controller.rb": [
+      "/home/nrauch/documents/git/skills/app/controllers/expertise_categories_controller.rb": [
         1,
         1,
         null,
@@ -1475,7 +1496,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/controllers/expertise_topic_skill_values_controller_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/controllers/expertise_topic_skill_values_controller_spec.rb": [
         1,
         null,
         1,
@@ -1586,7 +1607,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/controllers/expertise_topic_skill_values_controller.rb": [
+      "/home/nrauch/documents/git/skills/app/controllers/expertise_topic_skill_values_controller.rb": [
         1,
         1,
         null,
@@ -1607,7 +1628,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/controllers/expertise_topics_controller_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/controllers/expertise_topics_controller_spec.rb": [
         1,
         null,
         1,
@@ -1687,7 +1708,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/controllers/expertise_topics_controller.rb": [
+      "/home/nrauch/documents/git/skills/app/controllers/expertise_topics_controller.rb": [
         1,
         1,
         null,
@@ -1699,7 +1720,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/controllers/locations_controller_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/controllers/locations_controller_spec.rb": [
         1,
         null,
         1,
@@ -1788,12 +1809,12 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/controllers/locations_controller.rb": [
+      "/home/nrauch/documents/git/skills/app/controllers/locations_controller.rb": [
         1,
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/controllers/offers_controller_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/controllers/offers_controller_spec.rb": [
         1,
         null,
         1,
@@ -1884,12 +1905,12 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/controllers/offers_controller.rb": [
+      "/home/nrauch/documents/git/skills/app/controllers/offers_controller.rb": [
         1,
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/controllers/people_controller_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/controllers/people_controller_spec.rb": [
         1,
         null,
         1,
@@ -2175,7 +2196,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/controllers/people_controller.rb": [
+      "/home/nrauch/documents/git/skills/app/controllers/people_controller.rb": [
         1,
         1,
         null,
@@ -2299,7 +2320,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/controllers/person_competences_controller_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/controllers/person_competences_controller_spec.rb": [
         1,
         null,
         1,
@@ -2390,19 +2411,19 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/controllers/person_competences_controller.rb": [
+      "/home/nrauch/documents/git/skills/app/controllers/person_competences_controller.rb": [
         1,
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/controllers/person_relations_controller_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/controllers/person_relations_controller_spec.rb": [
         1,
         null,
         1,
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/controllers/person_variations_controller_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/controllers/person_variations_controller_spec.rb": [
         1,
         null,
         1,
@@ -2454,7 +2475,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/controllers/person_variations_controller.rb": [
+      "/home/nrauch/documents/git/skills/app/controllers/person_variations_controller.rb": [
         1,
         1,
         null,
@@ -2493,7 +2514,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/controllers/project_technologies_controller_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/controllers/project_technologies_controller_spec.rb": [
         1,
         null,
         1,
@@ -2582,12 +2603,12 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/controllers/project_technologies_controller.rb": [
+      "/home/nrauch/documents/git/skills/app/controllers/project_technologies_controller.rb": [
         1,
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/controllers/project_relations_controller.rb": [
+      "/home/nrauch/documents/git/skills/app/controllers/project_relations_controller.rb": [
         1,
         null,
         1,
@@ -2612,7 +2633,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/controllers/projects_controller_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/controllers/projects_controller_spec.rb": [
         1,
         null,
         1,
@@ -2711,7 +2732,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/controllers/projects_controller.rb": [
+      "/home/nrauch/documents/git/skills/app/controllers/projects_controller.rb": [
         1,
         1,
         null,
@@ -2719,7 +2740,7 @@
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/exporters/odt/cv_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/exporters/odt/cv_spec.rb": [
         1,
         null,
         1,
@@ -2759,7 +2780,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/exporters/odt/cv.rb": [
+      "/home/nrauch/documents/git/skills/app/exporters/odt/cv.rb": [
         1,
         1,
         null,
@@ -2884,7 +2905,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/exporters/odt/fws_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/exporters/odt/fws_spec.rb": [
         1,
         null,
         1,
@@ -2901,7 +2922,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/exporters/odt/fws.rb": [
+      "/home/nrauch/documents/git/skills/app/exporters/odt/fws.rb": [
         1,
         1,
         null,
@@ -2998,7 +3019,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/lib/ldap_tools_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/lib/ldap_tools_spec.rb": [
         1,
         null,
         1,
@@ -3015,7 +3036,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/models/activity_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/models/activity_spec.rb": [
         null,
         null,
         null,
@@ -3109,7 +3130,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/models/activity.rb": [
+      "/home/nrauch/documents/git/skills/app/models/activity.rb": [
         null,
         null,
         null,
@@ -3144,115 +3165,115 @@
         1,
         null,
         1,
-        26,
-        26,
+        23,
+        23,
         null,
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/models/application_record.rb": [
+      "/home/nrauch/documents/git/skills/app/models/application_record.rb": [
         1,
         1,
         null,
         1,
         null,
         1,
-        104,
-        92,
-        null,
-        null
-      ],
-      "/home/mzurbuchen/git/skills/spec/models/advanced_training_spec.rb": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        1,
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        null,
-        1,
-        null,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
+        100,
+        88,
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/models/advanced_training.rb": [
+      "/home/nrauch/documents/git/skills/spec/models/advanced_training_spec.rb": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/home/nrauch/documents/git/skills/app/models/advanced_training.rb": [
         null,
         null,
         null,
@@ -3285,13 +3306,13 @@
         1,
         null,
         1,
-        26,
-        26,
+        23,
+        23,
         null,
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/models/company_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/models/company_spec.rb": [
         null,
         null,
         null,
@@ -3369,7 +3390,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/models/company.rb": [
+      "/home/nrauch/documents/git/skills/app/models/company.rb": [
         null,
         null,
         null,
@@ -3416,7 +3437,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/models/education_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/models/education_spec.rb": [
         null,
         null,
         null,
@@ -3509,7 +3530,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/models/education.rb": [
+      "/home/nrauch/documents/git/skills/app/models/education.rb": [
         null,
         null,
         null,
@@ -3542,13 +3563,13 @@
         1,
         null,
         1,
-        25,
-        25,
+        22,
+        22,
         null,
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/models/employee_quantity_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/models/employee_quantity_spec.rb": [
         null,
         null,
         null,
@@ -3596,7 +3617,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/models/employee_quantity.rb": [
+      "/home/nrauch/documents/git/skills/app/models/employee_quantity.rb": [
         null,
         null,
         null,
@@ -3627,7 +3648,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/models/expertise_category_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/models/expertise_category_spec.rb": [
         null,
         null,
         null,
@@ -3677,7 +3698,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/models/expertise_category.rb": [
+      "/home/nrauch/documents/git/skills/app/models/expertise_category.rb": [
         null,
         null,
         null,
@@ -3703,7 +3724,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/models/expertise_topic_skill_value_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/models/expertise_topic_skill_value_spec.rb": [
         null,
         null,
         null,
@@ -3756,7 +3777,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/models/expertise_topic_skill_value.rb": [
+      "/home/nrauch/documents/git/skills/app/models/expertise_topic_skill_value.rb": [
         null,
         null,
         null,
@@ -3795,7 +3816,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/models/expertise_topic_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/models/expertise_topic_spec.rb": [
         null,
         null,
         null,
@@ -3837,7 +3858,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/models/expertise_topic.rb": [
+      "/home/nrauch/documents/git/skills/app/models/expertise_topic.rb": [
         null,
         null,
         null,
@@ -3864,7 +3885,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/models/location_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/models/location_spec.rb": [
         null,
         null,
         null,
@@ -3895,70 +3916,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/models/location.rb": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        1,
-        1,
-        1,
-        null,
-        1,
-        null,
-        1,
-        1,
-        null,
-        1,
-        null,
-        1,
-        4,
-        4,
-        null,
-        null,
-        null
-      ],
-      "/home/mzurbuchen/git/skills/spec/models/offer_spec.rb": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        1,
-        null,
-        null,
-        null
-      ],
-      "/home/mzurbuchen/git/skills/app/models/offer.rb": [
-        null,
+      "/home/nrauch/documents/git/skills/app/models/location.rb": [
         null,
         null,
         null,
@@ -3987,7 +3945,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/models/person_competence_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/models/offer_spec.rb": [
         null,
         null,
         null,
@@ -4020,7 +3978,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/models/person_competence.rb": [
+      "/home/nrauch/documents/git/skills/app/models/offer.rb": [
         null,
         null,
         null,
@@ -4044,121 +4002,184 @@
         1,
         null,
         1,
-        5,
-        5,
-        null,
-        null,
-        null
-      ],
-      "/home/mzurbuchen/git/skills/spec/models/person_spec.rb": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        1,
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        null,
-        1,
-        1,
-        5,
-        5,
-        null,
-        null,
-        1,
-        1,
-        1,
-        null,
-        1,
-        null,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
+        4,
+        4,
         null,
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/models/person.rb": [
+      "/home/nrauch/documents/git/skills/spec/models/person_competence_spec.rb": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/home/nrauch/documents/git/skills/app/models/person_competence.rb": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        4,
+        4,
+        null,
+        null,
+        null
+      ],
+      "/home/nrauch/documents/git/skills/spec/models/person_spec.rb": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        4,
+        4,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/home/nrauch/documents/git/skills/app/models/person.rb": [
         null,
         null,
         null,
@@ -4237,24 +4258,24 @@
         null,
         null,
         1,
-        4,
         2,
+        1,
         null,
         null,
         null,
         1,
         null,
         1,
-        160,
+        146,
         0,
         null,
         null,
         1,
-        160,
+        146,
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/uploaders/picture_uploader.rb": [
+      "/home/nrauch/documents/git/skills/app/uploaders/picture_uploader.rb": [
         1,
         null,
         1,
@@ -4295,7 +4316,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/models/project_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/models/project_spec.rb": [
         null,
         null,
         null,
@@ -4399,7 +4420,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/models/project.rb": [
+      "/home/nrauch/documents/git/skills/app/models/project.rb": [
         null,
         null,
         null,
@@ -4438,13 +4459,13 @@
         1,
         null,
         1,
-        26,
-        26,
+        23,
+        23,
         null,
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/models/project_technology_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/models/project_technology_spec.rb": [
         null,
         null,
         null,
@@ -4459,7 +4480,7 @@
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/models/project_technology.rb": [
+      "/home/nrauch/documents/git/skills/app/models/project_technology.rb": [
         null,
         null,
         null,
@@ -4474,7 +4495,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/models/user_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/models/user_spec.rb": [
         null,
         null,
         null,
@@ -4505,7 +4526,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/models/user.rb": [
+      "/home/nrauch/documents/git/skills/app/models/user.rb": [
         null,
         null,
         null,
@@ -4589,7 +4610,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/models/variation_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/models/variation_spec.rb": [
         1,
         null,
         1,
@@ -4616,7 +4637,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/models/person/variation.rb": [
+      "/home/nrauch/documents/git/skills/app/models/person/variation.rb": [
         null,
         null,
         null,
@@ -4650,39 +4671,39 @@
         1,
         1,
         null,
-        32,
+        28,
         1,
         null,
         null,
         1,
-        16,
-        16,
-        16,
-        null,
-        16,
-        16,
-        16,
-        16,
-        16,
-        16,
+        15,
+        15,
         15,
         null,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        14,
+        null,
         null,
         null,
         null,
         1,
-        16,
-        64,
-        64,
-        64,
-        64,
-        64,
+        15,
+        60,
+        60,
+        60,
+        60,
+        60,
         null,
         null,
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/serializer/error_serializer_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/serializer/error_serializer_spec.rb": [
         1,
         null,
         1,
@@ -4704,7 +4725,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/serializer/error_serializer.rb": [
+      "/home/nrauch/documents/git/skills/app/serializer/error_serializer.rb": [
         1,
         1,
         1,
@@ -4721,7 +4742,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/spec/uploaders/picture_uploader_spec.rb": [
+      "/home/nrauch/documents/git/skills/spec/uploaders/picture_uploader_spec.rb": [
         1,
         1,
         1,
@@ -4729,25 +4750,25 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/serializer/activity_serializer.rb": [
+      "/home/nrauch/documents/git/skills/app/serializer/activity_serializer.rb": [
         1,
         1,
         null,
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/serializer/application_serializer.rb": [
+      "/home/nrauch/documents/git/skills/app/serializer/application_serializer.rb": [
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/serializer/person_updated_at_serializer.rb": [
+      "/home/nrauch/documents/git/skills/app/serializer/person_updated_at_serializer.rb": [
         1,
         1,
         null,
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/serializer/attribute_deserializer.rb": [
+      "/home/nrauch/documents/git/skills/app/serializer/attribute_deserializer.rb": [
         1,
         1,
         29,
@@ -4789,14 +4810,14 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/serializer/advanced_training_serializer.rb": [
+      "/home/nrauch/documents/git/skills/app/serializer/advanced_training_serializer.rb": [
         1,
         1,
         null,
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/serializers/company_serializer.rb": [
+      "/home/nrauch/documents/git/skills/app/serializers/company_serializer.rb": [
         1,
         null,
         1,
@@ -4810,52 +4831,52 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/serializer/person_in_company_serializer.rb": [
+      "/home/nrauch/documents/git/skills/app/serializer/person_in_company_serializer.rb": [
         1,
         1,
         null,
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/serializers/location_serializer.rb": [
+      "/home/nrauch/documents/git/skills/app/serializers/location_serializer.rb": [
         1,
         1,
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/serializer/company_in_person_serializer.rb": [
+      "/home/nrauch/documents/git/skills/app/serializer/company_in_person_serializer.rb": [
         1,
         1,
         null,
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/serializers/employee_quantity_serializer.rb": [
+      "/home/nrauch/documents/git/skills/app/serializers/employee_quantity_serializer.rb": [
         1,
         1,
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/serializers/offer_serializer.rb": [
+      "/home/nrauch/documents/git/skills/app/serializers/offer_serializer.rb": [
         1,
         1,
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/serializer/education_serializer.rb": [
+      "/home/nrauch/documents/git/skills/app/serializer/education_serializer.rb": [
         1,
         1,
         null,
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/serializer/expertise_category_serializer.rb": [
+      "/home/nrauch/documents/git/skills/app/serializer/expertise_category_serializer.rb": [
         1,
         1,
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/serializer/expertise_topic_skill_value_serializer.rb": [
+      "/home/nrauch/documents/git/skills/app/serializer/expertise_topic_skill_value_serializer.rb": [
         1,
         1,
         null,
@@ -4863,7 +4884,7 @@
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/serializer/expertise_topic_serializer.rb": [
+      "/home/nrauch/documents/git/skills/app/serializer/expertise_topic_serializer.rb": [
         1,
         1,
         null,
@@ -4871,7 +4892,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/serializer/person_serializer.rb": [
+      "/home/nrauch/documents/git/skills/app/serializer/person_serializer.rb": [
         1,
         1,
         null,
@@ -4905,7 +4926,7 @@
         null,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/serializer/project_serializer.rb": [
+      "/home/nrauch/documents/git/skills/app/serializer/project_serializer.rb": [
         1,
         1,
         null,
@@ -4914,36 +4935,36 @@
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/serializers/person_competence_serializer.rb": [
+      "/home/nrauch/documents/git/skills/app/serializers/person_competence_serializer.rb": [
         1,
         1,
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/serializer/people_serializer.rb": [
+      "/home/nrauch/documents/git/skills/app/serializer/people_serializer.rb": [
         1,
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/serializers/project_technology_serializer.rb": [
+      "/home/nrauch/documents/git/skills/app/serializers/project_technology_serializer.rb": [
         1,
         1,
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/serializer/project_in_project_technology_serializer.rb": [
+      "/home/nrauch/documents/git/skills/app/serializer/project_in_project_technology_serializer.rb": [
         1,
         1,
         null,
         1,
         null
       ],
-      "/home/mzurbuchen/git/skills/app/serializers/person_variations_serializer.rb": [
+      "/home/nrauch/documents/git/skills/app/serializers/person_variations_serializer.rb": [
         1,
         1,
         null
       ]
     },
-    "timestamp": 1540476301
+    "timestamp": 1541167675
   }
 }
