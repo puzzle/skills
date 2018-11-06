@@ -7,8 +7,31 @@ export default Component.extend({
   i18n: service(),
   router: service(),
 
+  removeEmptyElements(...records) {
+    let errors = [];
+    records.forEach(record => {
+      record[0].forEach(element => {
+        record[1].forEach(attr => {
+          if (!element.get(attr) || !element.get(attr).length) {
+            let attribute = this.get('i18n').t(`company.${attr}`)['string']
+            errors.addObject(attribute + ' Feld ist leer, der Eintrag wurde nicht gespeichert')
+            if (!element.get('isDeleted')) element.destroyRecord();
+          }
+        })
+      });
+    });
+    return errors
+  },
+
   actions: {
     submit(changeset) {
+      let locations = this.get('company.locations').toArray()
+      let employeeQuantities = this.get('company.employeeQuantities').toArray()
+      let errors = this.removeEmptyElements([locations, ['location']],[employeeQuantities, ['category','quantity']])
+      errors.forEach(error => {
+        this.get('notify').alert(error, { closeAfter: 5000 });
+      });
+
       changeset.save()
         // TODO: This triggers a transition to the company detail page
         //       but we might have errors saving related data further down
@@ -56,7 +79,7 @@ export default Component.extend({
       });
       employeeQuantities.forEach(quantity => {
         if (quantity.get('isNew')) {
-          location.destroyRecord();
+          quantity.destroyRecord();
         }
       });
       this.sendAction('companyEditing');
