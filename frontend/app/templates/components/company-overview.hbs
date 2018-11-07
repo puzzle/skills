@@ -19,7 +19,7 @@
           </tr>
           <tr>
             <td>Standorte</td>
-            <td>
+            <td data-test-locations>
               {{#each company.locations as |location|}}
                 {{location.location}}<br>
               {{/each}}
@@ -62,7 +62,7 @@
           </tr>
           {{#each company.employeeQuantities as |quantity|}}
             <tr>
-              <td>{{quantity.category}}</td><td>{{quantity.quantity}}</td>
+              <td data-test-employee-quantity-category>{{quantity.category}}</td><td data-test-employee-quantity-quantity>{{quantity.quantity}}</td>
             </tr>
           {{/each}}
         </table>

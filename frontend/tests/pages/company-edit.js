@@ -48,6 +48,9 @@ export default create({
     phoneContactPerson: text('[data-test-company-phoneContactPerson]'),
     crm: text('[data-test-company-crm]'),
     level: text('[data-test-company-level]'),
+    locations: text('[data-test-locations]'),
+    employeeQuantity1Category: text('[data-test-employee-quantity-category]'),
+    employeeQuantity1Quantity: text('[data-test-employee-quantity-quantity]'),
   },
 /*
   competences: {

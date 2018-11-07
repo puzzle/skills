@@ -1,42 +1,30 @@
 import { inject as service } from "@ember/service";
 import Component from "@ember/component";
 import $ from "jquery";
-import { isBlank } from "@ember/utils";
 
 export default Component.extend({
   store: service(),
   i18n: service(),
   router: service(),
 
-  removeEmptyElements(...records) {
-    let errors = [];
-    records.forEach(record => {
-      record[0].forEach(element => {
-        record[1].forEach(attr => {
-          if (isBlank(element.get(attr))) {
-            let attribute = this.get("i18n").t(`company.${attr}`)["string"];
-            errors.addObject(
-              attribute + " Feld ist leer, der Eintrag wurde nicht gespeichert"
-            );
-            if (!element.get("isDeleted")) element.destroyRecord();
-          }
-        });
-      });
+  rejectBlankRelationships() {
+    this.rejectBlankEntries("locations", "location");
+    this.rejectBlankEntries("employeeQuantities", "category");
+  },
+
+  rejectBlankEntries(relationshipName, attrName) {
+    let company = this.get("company");
+    let records = company.get(relationshipName).toArray();
+    records = records.filter(record => {
+      let value = record.get(attrName);
+      return Boolean(value) && value != "";
     });
-    return errors;
+    company.set(relationshipName, records);
   },
 
   actions: {
     submit(changeset) {
-      let locations = this.get("company.locations").toArray();
-      let employeeQuantities = this.get("company.employeeQuantities").toArray();
-      let errors = this.removeEmptyElements(
-        [locations, ["location"]],
-        [employeeQuantities, ["category", "quantity"]]
-      );
-      errors.forEach(error => {
-        this.get("notify").alert(error, { closeAfter: 5000 });
-      });
+      this.rejectBlankRelationships();
 
       changeset
         .save()
