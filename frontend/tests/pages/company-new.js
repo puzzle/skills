@@ -1,16 +1,11 @@
-import RSVP from 'rsvp';
-import {
-  create,
-  visitable,
-  fillable,
-  clickable
-} from 'ember-cli-page-object';
+import RSVP from "rsvp";
+import { create, visitable, fillable, clickable } from "ember-cli-page-object";
 
 const { resolve } = RSVP;
 
 export default create({
-  visit: visitable('/companies/new'),
-  submit: clickable('#profil #submit-button'),
+  visit: visitable("/companies/new"),
+  submit: clickable("#profil #submit-button"),
   name: fillable('[name="company[name]"]'),
   web: fillable('[name="company[web]"]'),
   email: fillable('[name="company[email]"]'),
@@ -23,8 +18,10 @@ export default create({
   level: fillable('[name="company[level]"]'),
 
   async createCompany(company) {
-    await Object.keys(company)
-      .reduce((p, key) => p.then(() => this[key](company[key])), resolve());
+    await Object.keys(company).reduce(
+      (p, key) => p.then(() => this[key](company[key])),
+      resolve()
+    );
 
     return this.submit();
   }

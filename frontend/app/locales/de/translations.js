@@ -69,7 +69,10 @@ export default {
     phone: 'Telefon',
     partnermanager: 'Partnermanager',
     contactPerson: 'Ansprechperson',
-    level: 'Level'
+    level: 'Level',
+    location: 'Standort',
+    category: 'Kategorie',
+    quantity: 'Anzahl'
   },
 
   'location': {
