@@ -42,6 +42,9 @@ Make use of the many generators for code, try `ember help generate` for more det
 * `ember test` (from frontend, acceptance tests are failing)
 * `ember test --server`
 
+Run a single frontend test:
+* `ember test --filter="test's title"`
+
 ### Building
 
 * `ember build` (development)
