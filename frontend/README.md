@@ -38,12 +38,20 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Running Tests
 
+#### Test Server
+
+During development run ember test server `bin/frontend-tests.sh server` and access it by webbrowser: http://localhost:7357.
+For debuging add `this.pauseTest()` at the according line in the test file.
+
+#### Console
+
 * `rake spec:frontend:serve` (from skills)[See skills/README.md](https://github.com/puzzle/skills/blob/master/README.md)
 * `ember test` (from frontend, acceptance tests are failing)
 * `ember test --server`
 
 Run a single frontend test:
-* `ember test --filter="test's title"`
+
+* `ember test --filter="test's title"` or enter required filter in ember test server frontend
 
 ### Building
 
