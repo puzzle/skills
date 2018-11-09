@@ -853,6 +853,12 @@ button::-moz-focus-inner {
   background-color: #1E5A96;
 }
 
+.versionText {
+  color: black;
+  font-size: 8px;
+  font-family: "Verdana";
+}
+
 /* Bootstrap Fixes */
 .card {
   border: 0px;
