@@ -836,6 +836,27 @@ button::-moz-focus-inner {
   min-height: 60px;
 }
 
+/* class that stops underlining  */
+.nounderline {
+  text-decoration: none !important;
+}
+
+.noleftpadding {
+  padding: 0 !important;
+}
+
+.hovernavs:hover {
+  background-color: red;
+}
+
+.hovering-nav-bar:hover {
+  background-color: #61B44B;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  background-color: #1E5A96;
+}
+
 /* Bootstrap Fixes */
 .card {
   border: 0px;
