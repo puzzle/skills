@@ -1,9 +1,14 @@
 require 'active_record/fixtures'
 require 'database_cleaner'
 
-DatabaseCleaner.strategy = :truncation
+if Rails.env.test?
+  DatabaseCleaner.strategy = :truncation
+end
 
 class TestApiController < ActionController::API
+
+  before_filter :require_test_env!
+
   def create
     DatabaseCleaner.start
     fixtures_load
@@ -14,6 +19,12 @@ class TestApiController < ActionController::API
   end
 
   private
+
+  # we already check this in config/routes, but just make really sure this never
+  # can be called in production.
+  def require_test_env!
+    raise 'only available in test env' unless Rails.env.test?
+  end
 
   def fixtures_dir
     Rails.root.join('spec', 'fixtures')
