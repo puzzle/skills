@@ -7,7 +7,7 @@ end
 
 class TestApiController < ActionController::API
 
-  before_filter :require_test_env!
+  before_action :require_test_env!
 
   def create
     DatabaseCleaner.start
