@@ -4,7 +4,8 @@ class PersonSerializer < ApplicationSerializer
   belongs_to :company, serializer: CompanyInPersonSerializer
 
   attributes :id, :birthdate, :language, :picture_path, :location,
-             :martial_status, :updated_by, :name, :origin, :role, :title, :competences,
+             :martial_status, :updated_by, :name, :nationality,
+             :nationality2, :role, :title, :competences,
              :origin_person_id, :variation_name, :updated_at
 
   def picture_path

@@ -110,7 +110,7 @@ class PersonSeeder
       p.martial_status = 'ledig'
       p.updated_by = 'seed_user'
       p.name = name.to_s
-      p.origin = 'Schweiz'
+      p.nationality = 'CH'
       p.role = 'Architekt'
       p.title = Faker::Name.title
       p.company_id = rand(1..4)

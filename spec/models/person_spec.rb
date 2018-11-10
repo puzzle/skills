@@ -27,6 +27,8 @@ require 'rails_helper'
 describe Person do
   fixtures :people
 
+  let(:bob) { people(:bob) }
+
   context 'search' do
     it 'finds search term in associated education' do
       people = Person.search('duckduck')
@@ -39,6 +41,39 @@ describe Person do
       expect(people.count).to eq(1)
       expect(people.first.name).to eq('Alice Mante')
     end
+  end
+
+  context 'validations' do
+    context 'nationality' do
+
+      it 'does not accept non country code' do
+        bob.nationality = 'Schwizerland'
+        bob.nationality2 = 'Germany'
+        expect(bob).not_to be_valid
+        expect(bob.errors.messages[:nationality].first).to eq('ist kein gültiger Wert')
+        expect(bob.errors.messages[:nationality2].first).to eq('ist kein gültiger Wert')
+      end
+
+      it 'nationality has to be defined' do
+        bob.nationality = nil
+        expect(bob).not_to be_valid
+        expect(bob.errors.messages[:nationality].first).to eq('muss ausgefüllt werden')
+      end
+
+      it 'accepts valid iso country code' do
+        bob.nationality = 'CA'
+        bob.nationality2 = nil
+        expect(bob).to be_valid
+      end
+
+      it 'accepts blank value for second nationality' do
+        bob.nationality = 'AT'
+        bob.nationality2 = nil
+        expect(bob).to be_valid
+      end
+
+    end
+
   end
 
   context 'variations' do
@@ -75,7 +110,7 @@ describe Person do
         expect(person.errors[:language].first).to eq('muss ausgefüllt werden')
         expect(person.errors[:location].first).to eq('muss ausgefüllt werden')
         expect(person.errors[:name].first).to eq('muss ausgefüllt werden')
-        expect(person.errors[:origin].first).to eq('muss ausgefüllt werden')
+        expect(person.errors[:nationality].first).to eq('muss ausgefüllt werden')
         expect(person.errors[:role].first).to eq('muss ausgefüllt werden')
         expect(person.errors[:title].first).to eq('muss ausgefüllt werden')
       end
@@ -86,7 +121,6 @@ describe Person do
         person.language = SecureRandom.hex(100)
         person.martial_status = SecureRandom.hex(100)
         person.name = SecureRandom.hex(100)
-        person.origin = SecureRandom.hex(100)
         person.role = SecureRandom.hex(100)
         person.title = SecureRandom.hex(100)
         person.variation_name = SecureRandom.hex(100)
@@ -95,7 +129,6 @@ describe Person do
         expect(person.errors[:location].first).to eq('ist zu lang (mehr als 100 Zeichen)')
         expect(person.errors[:martial_status].first).to eq('ist zu lang (mehr als 100 Zeichen)')
         expect(person.errors[:name].first).to eq('ist zu lang (mehr als 100 Zeichen)')
-        expect(person.errors[:origin].first).to eq('ist zu lang (mehr als 100 Zeichen)')
         expect(person.errors[:role].first).to eq('ist zu lang (mehr als 100 Zeichen)')
         expect(person.errors[:title].first).to eq('ist zu lang (mehr als 100 Zeichen)')
         expect(person.errors[:variation_name].first).to eq('ist zu lang (mehr als 100 Zeichen)')

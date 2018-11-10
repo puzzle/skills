@@ -34,5 +34,14 @@ describe Odt::Cv do
 
       expect(formatted_year).to eq('2000 - 2010')
     end
+
+    it 'translates nationalities' do
+      nationalities = Odt::Cv.new(people(:bob)).send(:nationalities)
+      expect(nationalities).to eq('Schweiz, Schweden')
+
+      nationalities = Odt::Cv.new(people(:alice)).send(:nationalities)
+      expect(nationalities).to eq('Australien')
+    end
+
   end
 end

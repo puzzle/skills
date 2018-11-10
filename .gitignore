@@ -22,7 +22,7 @@
 .byebug_history
 
 # Igonre coverage files
-/coverage
+spec/coverage
 
 # Ignore uploaded pictures
 /uploads

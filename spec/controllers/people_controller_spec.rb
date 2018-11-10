@@ -124,7 +124,7 @@ describe PeopleController do
     describe 'GET show' do
       it 'returns person with nested modules' do
         keys = %w[birthdate picture_path language location martial_status
-                  updated_by name origin role title competences]
+                  updated_by name nationality nationality2 role title competences]
 
         bob = people(:bob)
 
@@ -132,7 +132,9 @@ describe PeopleController do
 
         bob_attrs = json['data']['attributes']
 
-        expect(bob_attrs.count).to eq(14)
+        expect(bob_attrs.count).to eq(15)
+        expect(bob_attrs['nationality']).to eq('CH')
+        expect(bob_attrs['nationality2']).to eq('SE')
         json_object_includes_keys(bob_attrs, keys)
         # expect(bob_attrs['picture-path']).to eq("/api/people/#{bob.id}/picture")
 
@@ -146,14 +148,14 @@ describe PeopleController do
       it 'returns person variations with nested modules' do
         bobs_variation1 = Person::Variation.create_variation('bobs_variation1', people(:bob).id)
         keys = %w[birthdate picture_path language location martial_status
-                  updated_by name origin role title variation_name]
+                  updated_by name nationality nationality2 role title variation_name]
 
         process :show, method: :get, params: { id: bobs_variation1.id }
 
         bob_attrs = json['data']['attributes']
 
         expect(json['data']['type']).to eq('people')
-        expect(bob_attrs.count).to eq(14)
+        expect(bob_attrs.count).to eq(15)
         json_object_includes_keys(bob_attrs, keys)
       end
     end
@@ -168,7 +170,8 @@ describe PeopleController do
                    location: 'Bern',
                    martial_status: 'single',
                    name: 'test',
-                   origin: 'Switzerland',
+                   nationality: 'CH',
+                   nationality2: 'FR',
                    role: 'tester',
                    title: 'Bsc in tester',
                    company_id: company.id}
@@ -179,6 +182,8 @@ describe PeopleController do
         expect(new_person).not_to eq(nil)
         expect(new_person.location).to eq('Bern')
         expect(new_person.language).to eq('German')
+        expect(new_person.nationality).to eq('CH')
+        expect(new_person.nationality2).to eq('FR')
         expect(new_person.picture.url)
           .to include("#{Rails.root}/uploads/person/picture/#{new_person.id}/picture.png")
       end

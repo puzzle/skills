@@ -81,10 +81,26 @@
                 <td>
                   <Label>Nationalität</Label>
                   {{#power-select
-                    triggerId="origin"
+                    triggerId="nationality"
                     options=countries
-                    selected=selectedCountry
-                    onchange=(action "setOrigin")
+                    selected=selectedNationality
+                    onchange=(action "setNationality")
+                    onfocus=(action "handleFocus")
+                    onblur=(action "handleBlur")
+                    searchField="1"
+                    as |country|}}
+                    <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
+                  {{/power-select}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <Label>Weitere Nationalität</Label>
+                  {{#power-select
+                    options=countries
+                    allowClear=true
+                    selected=selectedNationality2
+                    onchange=(action "setNationality2")
                     onfocus=(action "handleFocus")
                     onblur=(action "handleBlur")
                     searchField="1"
