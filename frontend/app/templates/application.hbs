@@ -6,51 +6,51 @@
         {{! Fixed navbar }}
         <nav class="navbar p-0 mb-0 navbar-expand-sm">
           <ul class="navbar-nav nav-pills">
-            <!-- Just an image -->
             <nav class="navbar bg-light p-0">
               {{#link-to "people"}}
-              <a class="navbar-brand p-0" href="#">
-                <img src="/assets/logo.png" alt="" height="50" width="50">
-                PuzzleSkills
-                <small class="versionText" color="black">{{app-version versionOnly=true}}</small>
-              </a>
+                <a class="navbar-brand p-0" href="#">
+                  <img src="/assets/logo.png" alt="" height="50" width="50">
+                    PuzzleSkills
+                  <small class="versionText" color="black">{{app-version versionOnly=true}}</small>
+                </a>
               {{/link-to}}
             </nav>
           </ul>
         </nav>
         <nav class="navbar custom-nav-bar p-0 navbar-expand-sm mb-3 bg-primary">
-            <ul class="navbar-nav mr-auto nav-pills">
-              <li class="nav-item hovering-nav-bar">
-                {{#link-to "people" class="nav-link text-white rounded-0"}}
-                  Person
-                {{/link-to}}
-              </li>
-              <li class="nav-item hovering-nav-bar">
-                {{#link-to "companies" class="nav-link text-white rounded-0"}}
-                  Firmenprofile
-                {{/link-to}}
-              </li>
-              <li class="nav-item hovering-nav-bar">
-                <a class="nav-link text-white rounded-0" href="#">Technologien</a>
-              </li>
-            </ul>
-            <ul class="nav justify-content-end">
-              <li class="nav-item hovering-nav-bar" data-toggle="tooltip" data-placement="top" title="Feature Requests">
-                <a href="https://ticket.puzzle.ch/projects/pitc-puzzlecv/backlogs" target="_blank" class="nav-link pull-right text-white">
-                  <i class="fa fa-envelope-open-o text-white" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li class="nav-item hovering-nav-bar" data-toggle="tooltip" data-placement="top" title="Bug Reports">
-                <a href="https://github.com/puzzle/skills/issues" target="_blank" class="nav-link pull-right text-white">
-                  <i class="fa fa-bug text-white" aria-hidden="true"></i>
-                </a>
-              </li>
-              <li class="nav-item hovering-nav-bar">
-                <a id="logout-button" role="button" class="nav-link pull-right text-white" {{action 'invalidateSession'}}>
+          <ul class="navbar-nav mr-auto nav-pills">
+            <li class="nav-item hovering-nav-bar">
+              {{#link-to "people" class="nav-link text-white rounded-0"}}
+                Person
+              {{/link-to}}
+            </li>
+            <li class="nav-item hovering-nav-bar">
+              {{#link-to "companies" class="nav-link text-white rounded-0"}}
+                Firmenprofile
+              {{/link-to}}
+            </li>
+            <li class="nav-item hovering-nav-bar">
+              <a class="nav-link text-white rounded-0" href="#">Technologien</a>
+            </li>
+          </ul>
+          <ul class="nav justify-content-end">
+            <li class="nav-item hovering-nav-bar" data-toggle="tooltip" data-placement="top" title="Feature Requests">
+              <a href="https://ticket.puzzle.ch/projects/pitc-puzzlecv/backlogs" target="_blank" class="nav-link pull-right text-white" rel="noopener">
+                <i class="fa fa-envelope-open-o text-white" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li class="nav-item hovering-nav-bar" data-toggle="tooltip" data-placement="top" title="Bug Reports">
+              <a href="https://github.com/puzzle/skills/issues" target="_blank" class="nav-link pull-right text-white"
+              rel="noopener">
+                <i class="fa fa-bug text-white" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li class="nav-item hovering-nav-bar">
+              <a id="logout-button" role="button" class="nav-link pull-right text-white" {{action 'invalidateSession'}}>
                 Logout
-                </a>
-              </li>
-            </ul>
+              </a>
+            </li>
+          </ul>
         </nav>
       {{/if}}
       {{outlet}}
