@@ -836,6 +836,29 @@ button::-moz-focus-inner {
   min-height: 60px;
 }
 
+/* class that stops underlining  */
+.nounderline {
+  text-decoration: none !important;
+}
+
+.noleftpadding {
+  padding: 0 !important;
+}
+
+.hovering-nav-bar:hover {
+  background-color: #61B44B;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  background-color: #1E5A96;
+}
+
+.versionText {
+  color: black;
+  font-size: 8px;
+  font-family: "Verdana";
+}
+
 /* Bootstrap Fixes */
 .card {
   border: 0px;

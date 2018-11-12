@@ -5,8 +5,11 @@
 @import "normalize";
 
 //Set Bootstrap values from brand.puzzle.ch
-$primary: #1E5A96 !default;
+$primary: #3B7BBE !default;
 $success: #61B44B !default;
+$ember-power-select-selected-background: #CCCCCC;
+$ember-power-select-multiple-selection-background-color: #CCCCCC;
+$ember-power-select-highlighted-background: #2C97A6;
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
 @import "toaster.mini";
