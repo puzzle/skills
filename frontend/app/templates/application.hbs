@@ -11,8 +11,8 @@
               {{#link-to "people"}}
               <a class="navbar-brand p-0" href="#">
                 <img src="/assets/ptime.svg" alt="">
-                PuzzleSkills 
-                <small class="versionText" color="black">{{app-version}}</small>
+                PuzzleSkills
+                <small class="versionText" color="black">{{app-version versionOnly=true}}</small>
               </a>
               {{/link-to}}
             </nav>
@@ -35,6 +35,11 @@
               </li>
             </ul>
             <ul class="nav justify-content-end">
+              <li class="nav-item hovering-nav-bar">
+                <a href="https://ticket.puzzle.ch/projects/pitc-puzzlecv/backlogs" target="_blank" class="nav-link pull-right text-white">
+                  <i class="fa fa-envelope-open-o text-white" aria-hidden="true"></i>
+                </a>
+              </li>
               <li class="nav-item hovering-nav-bar">
                 <a href="https://github.com/puzzle/skills/issues" target="_blank" class="nav-link pull-right text-white">
                   <i class="fa fa-bug text-white" aria-hidden="true"></i>
