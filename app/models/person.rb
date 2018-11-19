@@ -13,11 +13,8 @@
 #  nationality2             :string
 #  role                     :string
 #  title                    :string
-#  origin_person_id         :integer
-#  variation_name           :string
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
-#  type                     :string
 #  picture                  :string
 #  competences              :string
 #  associations_updatet_at  :timestamp
