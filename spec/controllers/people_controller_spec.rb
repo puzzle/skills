@@ -135,7 +135,6 @@ describe PeopleController do
         expect(bob_attrs.count).to eq(13)
         expect(bob_attrs['nationality']).to eq('CH')
         expect(bob_attrs['nationality2']).to eq('SE')
-        expect(bob_attrs.count).to eq(12)
         json_object_includes_keys(bob_attrs, keys)
         # expect(bob_attrs['picture-path']).to eq("/api/people/#{bob.id}/picture")
 

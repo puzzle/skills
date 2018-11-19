@@ -2,19 +2,23 @@
 #
 # Table name: companies
 #
-#  id                    :integer          not null, primary key
-#  name                  :string
-#  web                   :string
-#  email                 :string
-#  phone                 :string
-#  partnermanager        :string
-#  contact_person        :string
-#  email_contact_person  :string
-#  phone_contact_person  :string
-#  crm                   :string
-#  level                 :string
-#  offer_comment         :string
-#  my_company            :boolean, default: false
+#  id                      :bigint(8)        not null, primary key
+#  name                    :string
+#  web                     :string
+#  email                   :string
+#  phone                   :string
+#  partnermanager          :string
+#  contact_person          :string
+#  email_contact_person    :string
+#  phone_contact_person    :string
+#  offer_comment           :string
+#  crm                     :string
+#  level                   :string
+#  my_company              :boolean          default(FALSE)
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  associations_updatet_at :datetime
+#
 
 require 'rails_helper'
 

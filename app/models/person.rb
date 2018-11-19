@@ -2,23 +2,24 @@
 #
 # Table name: people
 #
-#  id                       :integer          not null, primary key
-#  birthdate                :datetime
-#  language                 :string
-#  location                 :string
-#  martial_status           :string
-#  updated_by               :string
-#  name                     :string
-#  nationality              :string
-#  nationality2             :string
-#  role                     :string
-#  title                    :string
-#  created_at               :datetime         not null
-#  updated_at               :datetime         not null
-#  picture                  :string
-#  competences              :string
-#  associations_updatet_at  :timestamp
-#  company_id               :integer
+#  id                      :integer          not null, primary key
+#  birthdate               :datetime
+#  language                :string
+#  location                :string
+#  martial_status          :string
+#  updated_by              :string
+#  name                    :string
+#  role                    :string
+#  title                   :string
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  picture                 :string
+#  competences             :string
+#  company_id              :bigint(8)
+#  associations_updatet_at :datetime
+#  nationality             :string
+#  nationality2            :string
+#
 
 class Person < ApplicationRecord
   include PgSearch
@@ -37,7 +38,7 @@ class Person < ApplicationRecord
 
   validates :birthdate, :language, :location, :name, :nationality,
             :role, :title, presence: true
-  validates :location, :language, :martial_status, :name, :origin,
+  validates :location, :language, :martial_status, :name,
             :role, :title, length: { maximum: 100 }
 
   validates :nationality,
@@ -46,7 +47,6 @@ class Person < ApplicationRecord
             inclusion: { in: ISO3166::Country.all.collect(&:alpha2) },
             allow_blank: true
 
-  validate :valid_person
   validate :picture_size
 
   scope :list, -> { order(:name) }

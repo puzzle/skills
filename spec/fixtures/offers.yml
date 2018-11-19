@@ -2,10 +2,13 @@
 #
 # Table name: offers
 #
-#  id                    :integer          not null, primary key
-#  category              :string
-#  offer                 :array
-#  company_id            :integer
+#  id         :bigint(8)        not null, primary key
+#  category   :string
+#  offer      :text             default([]), is an Array
+#  company_id :bigint(8)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 

@@ -2,25 +2,24 @@
 #
 # Table name: people
 #
-#  id               :integer          not null, primary key
-#  birthdate        :datetime
-#  language         :string
-#  location         :string
-#  martial_status   :string
-#  updated_by       :string
-#  name             :string
-#  origin           :string
-#  role             :string
-#  title            :string
-#  origin_person_id :integer
-#  variation_name   :string
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  type             :string
-#  picture          :string
-#  competences      :string
+#  id                      :integer          not null, primary key
+#  birthdate               :datetime
+#  language                :string
+#  location                :string
+#  martial_status          :string
+#  updated_by              :string
+#  name                    :string
+#  role                    :string
+#  title                   :string
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  picture                 :string
+#  competences             :string
+#  company_id              :bigint(8)
+#  associations_updatet_at :datetime
+#  nationality             :string
+#  nationality2            :string
 #
-
 
 require 'rails_helper'
 
@@ -79,7 +78,6 @@ describe Person do
       person.language = SecureRandom.hex(100)
       person.martial_status = SecureRandom.hex(100)
       person.name = SecureRandom.hex(100)
-      person.origin = SecureRandom.hex(100)
       person.role = SecureRandom.hex(100)
       person.title = SecureRandom.hex(100)
       person.valid?

@@ -3,9 +3,9 @@
 #
 # Table name: expertise_categories
 #
-#  id         :integer          not null, primary key
-#  name       :string
-#  discipline :integer
+#  id         :bigint(8)        not null, primary key
+#  name       :string           not null
+#  discipline :integer          not null
 #
 
 class ExpertiseCategory < ApplicationRecord

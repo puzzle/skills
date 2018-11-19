@@ -1,11 +1,14 @@
 # == Schema Information
 #
-# Table name: person_competence
+# Table name: person_competences
 #
-#  id                    :integer          not null, primary key
-#  category              :string
-#  offer                 :array
-#  person_id            :integer
+#  id         :bigint(8)        not null, primary key
+#  category   :string
+#  offer      :text             default([]), is an Array
+#  person_id  :bigint(8)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 
 require 'rails_helper'
 

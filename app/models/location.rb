@@ -2,9 +2,12 @@
 #
 # Table name: locations
 #
-#  id                    :integer          not null, primary key
-#  location              :string
-#  company_id            :integer
+#  id         :bigint(8)        not null, primary key
+#  location   :string
+#  company_id :bigint(8)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 
 class Location < ApplicationRecord
 
