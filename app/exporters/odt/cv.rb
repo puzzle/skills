@@ -26,7 +26,7 @@ module Odt
       report.add_field(:project, 'pcv')
       report.add_field(:section, 'dev1')
       report.add_field(:name, person.name)
-      report.add_field(:title_function, person.role)
+      report.add_field(:title_function, person.roles)
 
       report.add_field(:header_info, "#{person.name} - Version 1.0")
 

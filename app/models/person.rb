@@ -34,12 +34,12 @@ class Person < ApplicationRecord
   has_many :educations, dependent: :destroy
   has_many :expertise_topic_skill_values, dependent: :destroy
   has_many :expertise_topics, through: :expertise_topic_skill_values
-
+  has_and_belongs_to_many :roles
 
   validates :birthdate, :language, :location, :name, :nationality,
-            :role, :title, presence: true
+            :roles, :title, presence: true
   validates :location, :language, :martial_status, :name,
-            :role, :title, length: { maximum: 100 }
+            :title, length: { maximum: 100 }
 
   validates :nationality,
             inclusion: { in: ISO3166::Country.all.collect(&:alpha2) }
@@ -56,7 +56,6 @@ class Person < ApplicationRecord
                     :language,
                     :location,
                     :name,
-                    :role,
                     :title,
                     :competences
                   ],

@@ -25,7 +25,7 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-models-location_rb.html">app/models/location.rb</a></td>
-            <td class='right_align'><tt>27</tt></td>
+            <td class='right_align'><tt>30</tt></td>
             <td class='right_align'><tt>11</tt></td>
             <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
       <div class="percent_graph">
@@ -63,78 +63,87 @@
           <td><pre><a name="line5">5</a> #</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line6">6</a> #  id                    :integer          not null, primary key</pre></td>
+          <td><pre><a name="line6">6</a> #  id         :bigint(8)        not null, primary key</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line7">7</a> #  location              :string</pre></td>
+          <td><pre><a name="line7">7</a> #  location   :string</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line8">8</a> #  company_id            :integer</pre></td>
+          <td><pre><a name="line8">8</a> #  company_id :bigint(8)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line9">9</a> </pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line10">10</a> class Location &lt; ApplicationRecord</pre></td>
+          <td><pre><a name="line9">9</a> #  created_at :datetime         not null</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line11">11</a> </pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line12">12</a>   after_create :update_associations_updatet_at</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line13">13</a>   after_update :update_associations_updatet_at</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line14">14</a>   after_destroy :update_associations_updatet_at</pre></td>
+          <td><pre><a name="line10">10</a> #  updated_at :datetime         not null</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line15">15</a> </pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line16">16</a>   belongs_to :company, touch: true</pre></td>
+          <td><pre><a name="line11">11</a> #</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line17">17</a> </pre></td>
+          <td><pre><a name="line12">12</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line18">18</a>   validates :location, presence: true</pre></td>
+          <td><pre><a name="line13">13</a> class Location &lt; ApplicationRecord</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line14">14</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line19">19</a>   validates :location, length: { maximum: 100 }</pre></td>
+          <td><pre><a name="line15">15</a>   after_create :update_associations_updatet_at</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line16">16</a>   after_update :update_associations_updatet_at</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line17">17</a>   after_destroy :update_associations_updatet_at</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line18">18</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line19">19</a>   belongs_to :company, touch: true</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line20">20</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line21">21</a>   private</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line22">22</a> </pre></td>
+          <td><pre><a name="line21">21</a>   validates :location, presence: true</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line23">23</a>   def update_associations_updatet_at</pre></td>
+          <td><pre><a name="line22">22</a>   validates :location, length: { maximum: 100 }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line23">23</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line24">24</a>     timestamp = Time.zone.now</pre></td>
+          <td><pre><a name="line24">24</a>   private</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line25">25</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line25">25</a>     company.update!(associations_updatet_at: timestamp)</pre></td>
+          <td><pre><a name="line26">26</a>   def update_associations_updatet_at</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line27">27</a>     timestamp = Time.zone.now</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line28">28</a>     company.update!(associations_updatet_at: timestamp)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line26">26</a>   end</pre></td>
+          <td><pre><a name="line29">29</a>   end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line27">27</a> </pre></td>
+          <td><pre><a name="line30">30</a> </pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line28">28</a> end</pre></td>
+          <td><pre><a name="line31">31</a> end</pre></td>
         </tr>
       </tbody>
     </table>
 
-    <p>Generated on 2018-11-02 15:07:55 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2018-11-19 18:12:34 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>

@@ -78,7 +78,7 @@
           <td><pre><a name="line10">10</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line11">11</a>       process :index, method: :get, params: { type: &#39;Person&#39;, person_id: bob.id }</pre></td>
+          <td><pre><a name="line11">11</a>       process :index, method: :get, params: { person_id: bob.id }</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line12">12</a> </pre></td>
@@ -120,7 +120,7 @@
           <td><pre><a name="line24">24</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line25">25</a>       process :show, method: :get, params: { type: &#39;Person&#39;, person_id: bob.id, id: course.id }</pre></td>
+          <td><pre><a name="line25">25</a>       process :show, method: :get, params: { person_id: bob.id, id: course.id }</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line26">26</a> </pre></td>
@@ -246,7 +246,7 @@
           <td><pre><a name="line66">66</a>       process :destroy, method: :delete, params: {</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line67">67</a>         type: &#39;Person&#39;, person_id: bob.id, id: course.id</pre></td>
+          <td><pre><a name="line67">67</a>          person_id: bob.id, id: course.id</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line68">68</a>       }</pre></td>
@@ -338,7 +338,7 @@
       </tbody>
     </table>
 
-    <p>Generated on 2018-11-02 15:07:55 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2018-11-19 18:12:34 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>

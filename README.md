@@ -80,6 +80,14 @@ The following environment variables are required for using ldap:
 
 Set the Environment variable ENABLE_AUTH to true in backend.
 
+### Managing Roles
+Roles can't be updated, created or deleted through the UI. For this you must use the rails console.
+* Enter the root folder and type `rails c`
+* Establish the connection to the table: `Role.connection`
+* Use `Role.create`, `Role.update` or `Role.delete` for your desired action.
+
+Exact documentation for these methods can be found [here](https://guides.rubyonrails.org/active_record_basics.html#crud-reading-and-writing-data)
+
 ## Front-End
 
 Das Front-End ist umgesetzt mit EmberJS.

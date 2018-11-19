@@ -9,7 +9,7 @@ const Person = DS.Model.extend({
   martialStatus: DS.attr('string'),
   nationality: DS.attr('string', { defaultValue: 'CH' }),
   nationality2: DS.attr('string'),
-  role: DS.attr('string'),
+  roles: DS.hasMany('role'),
   title: DS.attr('string'),
   competences: DS.attr('string'),
   updatedAt: DS.attr('date'),

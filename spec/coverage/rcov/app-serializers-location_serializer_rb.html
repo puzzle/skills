@@ -25,7 +25,7 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-serializers-location_serializer_rb.html">app/serializers/location_serializer.rb</a></td>
-            <td class='right_align'><tt>4</tt></td>
+            <td class='right_align'><tt>15</tt></td>
             <td class='right_align'><tt>3</tt></td>
             <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
       <div class="percent_graph">
@@ -50,22 +50,55 @@
 
     <table class="details">
       <tbody>
-        <tr class="marked">
-          <td><pre><a name="line2">2</a> class LocationSerializer &lt; ApplicationSerializer</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line3">3</a>   attributes :id, :location</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line4">4</a>   belongs_to :company, serializer: CompanyInPersonSerializer</pre></td>
+        <tr class="inferred">
+          <td><pre><a name="line2">2</a> # == Schema Information</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line5">5</a> end</pre></td>
+          <td><pre><a name="line3">3</a> #</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line4">4</a> # Table name: locations</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line5">5</a> #</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line6">6</a> #  id         :bigint(8)        not null, primary key</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line7">7</a> #  location   :string</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line8">8</a> #  company_id :bigint(8)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line9">9</a> #  created_at :datetime         not null</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line10">10</a> #  updated_at :datetime         not null</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line11">11</a> #</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line12">12</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line13">13</a> class LocationSerializer &lt; ApplicationSerializer</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line14">14</a>   attributes :id, :location</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line15">15</a>   belongs_to :company, serializer: CompanyInPersonSerializer</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line16">16</a> end</pre></td>
         </tr>
       </tbody>
     </table>
 
-    <p>Generated on 2018-11-02 15:07:55 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2018-11-19 18:12:34 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>

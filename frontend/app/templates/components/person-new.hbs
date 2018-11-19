@@ -43,15 +43,16 @@
                   <Label> Funktion </Label>
                   {{#power-select
                   triggerId="role"
-                  selected=newPerson.role
+                  selected=newPerson.roles.firstObject
                   options=sortedRoles
                   searchEnabled=false
+                  searchField="name"
                   onfocus=(action "handleFocus")
                   onblur=(action "handleBlur")
-                  onchange=(action (mut newPerson.role))
+                  onchange=(action "setRole")
                   as |role|
                   }}
-                    {{role}}
+                    {{role.name}}
                   {{/power-select}}
                 </td>
               </tr>

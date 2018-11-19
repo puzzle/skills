@@ -1,6 +1,6 @@
 # A generic controller to display, create, update and destroy entries of a certain model class.
 class CrudController < ListController
-  class_attribute :permitted_attrs, :nested_models
+  class_attribute :permitted_attrs, :nested_models, :permitted_relationships
 
   # GET /users/1
   def show(options = {})
@@ -85,17 +85,30 @@ class CrudController < ListController
     return attrs if relationships.blank?
 
     relationships.each do |e, v|
-      attribute_name = "#{e}_id"
-      next unless permitted_param?(attribute_name)
-
-      parent_id = v[:data][:id]
-      attrs[attribute_name] = parent_id
+      attrs[relationship_param_name(e)] = relationship_ids(v, e)
     end
     attrs
   end
 
+  def relationship_param_name(model_name)
+    permitted_param?("#{model_name}_id") ? "#{model_name}_id" : "#{model_name.singularize}_ids"
+  end
+
+  def relationship_ids(model_data, name)
+    return model_data[:data][:id] unless model_data[:data].is_a?(Array)
+    if permitted_relationship?(name)
+      model_data[:data].collect do |e|
+        e[:id]
+      end
+    end
+  end
+
   def permitted_param?(attribute_name)
     permitted_attrs.map(&:to_s).include?(attribute_name)
+  end
+
+  def permitted_relationship?(attribute_name)
+    permitted_relationships.map(&:to_s).include?(attribute_name)
   end
 
   def ivar_name

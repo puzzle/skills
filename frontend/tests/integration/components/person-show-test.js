@@ -9,7 +9,6 @@ test('it renders person', function(assert) {
   this.set('person', {
     name: 'Harry Potter',
     title: 'Zauberer',
-    role: 'Schüler',
     birthdate: new Date('2000-01-01'),
     origin: 'Godrics hollow',
     location: 'Hogwarts',
@@ -21,7 +20,6 @@ test('it renders person', function(assert) {
 
   assert.ok(this.$().text().indexOf('Harry Potter') !== -1);
   assert.ok(this.$().text().indexOf('Zauberer') !== -1);
-  assert.ok(this.$().text().indexOf('Schüler') !== -1);
   assert.ok(this.$().text().indexOf('01.01.2000' !== -1));
   assert.ok(this.$().text().indexOf('Godrics hollow' !== -1));
   assert.ok(this.$().text().indexOf('Hogwarts' !== -1));

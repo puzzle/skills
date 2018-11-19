@@ -25,8 +25,8 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="spec-exporters-odt-cv_spec_rb.html">spec/exporters/odt/cv_spec.rb</a></td>
-            <td class='right_align'><tt>38</tt></td>
-            <td class='right_align'><tt>22</tt></td>
+            <td class='right_align'><tt>47</tt></td>
+            <td class='right_align'><tt>27</tt></td>
             <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
       <div class="percent_graph">
         <div class="covered" style="width:100px"></div>
@@ -159,15 +159,42 @@
           <td><pre><a name="line37">37</a>     end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line38">38</a>   end</pre></td>
+          <td><pre><a name="line38">38</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line39">39</a>     it &#39;translates nationalities&#39; do</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line40">40</a>       nationalities = Odt::Cv.new(people(:bob)).send(:nationalities)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line41">41</a>       expect(nationalities).to eq(&#39;Schweiz, Schweden&#39;)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line39">39</a> end</pre></td>
+          <td><pre><a name="line42">42</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line43">43</a>       nationalities = Odt::Cv.new(people(:alice)).send(:nationalities)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line44">44</a>       expect(nationalities).to eq(&#39;Australien&#39;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line45">45</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line46">46</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line47">47</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line48">48</a> end</pre></td>
         </tr>
       </tbody>
     </table>
 
-    <p>Generated on 2018-11-02 15:07:55 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2018-11-19 18:12:34 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>

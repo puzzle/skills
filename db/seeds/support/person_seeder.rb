@@ -81,7 +81,7 @@ class PersonSeeder
       p.updated_by = 'seed_user'
       p.name = name.to_s
       p.nationality = 'CH'
-      p.role = 'Architekt'
+      p.roles = seed_roles 
       p.title = Faker::Name.title
       p.company_id = rand(1..4)
       competences = ""
@@ -90,10 +90,16 @@ class PersonSeeder
     end
   end
 
+  def seed_roles
+    Role.seed do |a|
+      a.name = Faker::Military.army_rank
+    end
+  end
+
   def seed_activity(person_id)
     Activity.seed do |a|
       a.description = Faker::Hacker.say_something_smart
-      a.role = Faker::Company.profession
+      #a.role = Faker::Company.profession
       a.year_from = Faker::Number.between(1956, 1979)
       a.year_to = Faker::Number.between(1980, 2016)
       a.person_id = person_id
@@ -114,7 +120,7 @@ class PersonSeeder
     Project.seed do |p|
       p.description = Faker::Hacker.say_something_smart
       p.title = Faker::Name.title
-      p.role = Faker::Company.profession
+      #p.role = Faker::Company.profession
       p.technology = Faker::Superhero.power
       p.year_from = Faker::Number.between(1956, 1979)
       p.year_to = Faker::Number.between(1980, 2016)

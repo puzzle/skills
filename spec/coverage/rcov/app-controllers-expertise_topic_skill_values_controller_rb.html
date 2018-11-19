@@ -25,8 +25,8 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-controllers-expertise_topic_skill_values_controller_rb.html">app/controllers/expertise_topic_skill_values_controller.rb</a></td>
-            <td class='right_align'><tt>19</tt></td>
             <td class='right_align'><tt>11</tt></td>
+            <td class='right_align'><tt>6</tt></td>
             <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
       <div class="percent_graph">
         <div class="covered" style="width:100px"></div>
@@ -63,54 +63,30 @@
           <td><pre><a name="line5">5</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line6">6</a>   def create(options = {})</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line7">7</a>     person_id = params[:data][:relationships][:person][:data][:id]</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line8">8</a>     if person_id</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line9">9</a>       raise &#39;not yet implemented&#39; if Person.find(person_id).origin_person_id</pre></td>
+          <td><pre><a name="line6">6</a>   private</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line10">10</a>     end</pre></td>
+          <td><pre><a name="line7">7</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line11">11</a>     super</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line12">12</a>   end</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line13">13</a> </pre></td>
+          <td><pre><a name="line8">8</a>   def fetch_entries</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line14">14</a>   private</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line15">15</a> </pre></td>
+          <td><pre><a name="line9">9</a>     raise unless params[:person_id] &amp;&amp; params[:category_id]</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line16">16</a>   def fetch_entries</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line17">17</a>     raise unless params[:person_id] &amp;&amp; params[:category_id]</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line18">18</a>     ExpertiseTopicSkillValue.list(params[:person_id], params[:category_id])</pre></td>
+          <td><pre><a name="line10">10</a>     ExpertiseTopicSkillValue.list(params[:person_id], params[:category_id])</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line19">19</a>   end</pre></td>
+          <td><pre><a name="line11">11</a>   end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line20">20</a> end</pre></td>
+          <td><pre><a name="line12">12</a> end</pre></td>
         </tr>
       </tbody>
     </table>
 
-    <p>Generated on 2018-11-02 15:07:55 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2018-11-19 18:12:34 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>

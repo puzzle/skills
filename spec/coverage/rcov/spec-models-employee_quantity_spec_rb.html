@@ -25,7 +25,7 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="spec-models-employee_quantity_spec_rb.html">spec/models/employee_quantity_spec.rb</a></td>
-            <td class='right_align'><tt>46</tt></td>
+            <td class='right_align'><tt>49</tt></td>
             <td class='right_align'><tt>19</tt></td>
             <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
       <div class="percent_graph">
@@ -63,135 +63,144 @@
           <td><pre><a name="line5">5</a> #</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line6">6</a> #  id                    :integer          not null, primary key</pre></td>
+          <td><pre><a name="line6">6</a> #  id         :bigint(8)        not null, primary key</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line7">7</a> #  category              :string</pre></td>
+          <td><pre><a name="line7">7</a> #  category   :string</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line8">8</a> #  quantity              :integer</pre></td>
+          <td><pre><a name="line8">8</a> #  quantity   :integer</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line9">9</a> #  company_id            :integer</pre></td>
+          <td><pre><a name="line9">9</a> #  company_id :bigint(8)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line10">10</a> </pre></td>
+          <td><pre><a name="line10">10</a> #  created_at :datetime         not null</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line11">11</a> #  updated_at :datetime         not null</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line12">12</a> #</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line13">13</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line11">11</a> require &#39;rails_helper&#39;</pre></td>
+          <td><pre><a name="line14">14</a> require &#39;rails_helper&#39;</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line12">12</a> </pre></td>
+          <td><pre><a name="line15">15</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line13">13</a> describe EmployeeQuantity do</pre></td>
+          <td><pre><a name="line16">16</a> describe EmployeeQuantity do</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line14">14</a>   context &#39;validations&#39; do</pre></td>
+          <td><pre><a name="line17">17</a>   context &#39;validations&#39; do</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line15">15</a>     it &#39;checks presence of category&#39; do</pre></td>
+          <td><pre><a name="line18">18</a>     it &#39;checks presence of category&#39; do</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line16">16</a>       et = EmployeeQuantity.new</pre></td>
+          <td><pre><a name="line19">19</a>       et = EmployeeQuantity.new</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line17">17</a> </pre></td>
+          <td><pre><a name="line20">20</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line18">18</a>       et.valid?</pre></td>
+          <td><pre><a name="line21">21</a>       et.valid?</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line19">19</a> </pre></td>
+          <td><pre><a name="line22">22</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line20">20</a>       expect(et.errors[:category].first).to eq(&#39;muss ausgefüllt werden&#39;)</pre></td>
+          <td><pre><a name="line23">23</a>       expect(et.errors[:category].first).to eq(&#39;muss ausgefüllt werden&#39;)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line21">21</a>     end</pre></td>
+          <td><pre><a name="line24">24</a>     end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line22">22</a>     </pre></td>
+          <td><pre><a name="line25">25</a>     </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line23">23</a>     it &#39;checks presence of quantity&#39; do</pre></td>
+          <td><pre><a name="line26">26</a>     it &#39;checks presence of quantity&#39; do</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line24">24</a>       et = EmployeeQuantity.new</pre></td>
+          <td><pre><a name="line27">27</a>       et = EmployeeQuantity.new</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line25">25</a> </pre></td>
+          <td><pre><a name="line28">28</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line26">26</a>       et.valid?</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line27">27</a> </pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line28">28</a>       expect(et.errors[:quantity].first).to eq(&#39;muss ausgefüllt werden&#39;)</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line29">29</a>     end</pre></td>
+          <td><pre><a name="line29">29</a>       et.valid?</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line30">30</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line31">31</a>     it &#39;checks length of category&#39; do</pre></td>
+          <td><pre><a name="line31">31</a>       expect(et.errors[:quantity].first).to eq(&#39;muss ausgefüllt werden&#39;)</pre></td>
         </tr>
-        <tr class="marked">
-          <td><pre><a name="line32">32</a>       et = EmployeeQuantity.new(category: SecureRandom.hex(150))</pre></td>
+        <tr class="inferred">
+          <td><pre><a name="line32">32</a>     end</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line33">33</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line34">34</a>       et.valid?</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line35">35</a> </pre></td>
+          <td><pre><a name="line34">34</a>     it &#39;checks length of category&#39; do</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line36">36</a>       expect(et.errors[:category].first).to eq(&#39;ist zu lang (mehr als 100 Zeichen)&#39;)</pre></td>
+          <td><pre><a name="line35">35</a>       et = EmployeeQuantity.new(category: SecureRandom.hex(150))</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line37">37</a>     end</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line38">38</a>     </pre></td>
+          <td><pre><a name="line36">36</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line39">39</a>     it &#39;checks positivity of quantity&#39; do</pre></td>
+          <td><pre><a name="line37">37</a>       et.valid?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line38">38</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line40">40</a>       et = EmployeeQuantity.new(quantity: -1)</pre></td>
+          <td><pre><a name="line39">39</a>       expect(et.errors[:category].first).to eq(&#39;ist zu lang (mehr als 100 Zeichen)&#39;)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line41">41</a> </pre></td>
+          <td><pre><a name="line40">40</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line41">41</a>     </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line42">42</a>       et.valid?</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line43">43</a> </pre></td>
+          <td><pre><a name="line42">42</a>     it &#39;checks positivity of quantity&#39; do</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line44">44</a>       expect(et.errors[:quantity].first).to eq(&#39;muss größer oder gleich 0 sein&#39;)</pre></td>
+          <td><pre><a name="line43">43</a>       et = EmployeeQuantity.new(quantity: -1)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line45">45</a>     end</pre></td>
+          <td><pre><a name="line44">44</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line45">45</a>       et.valid?</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line46">46</a>   end</pre></td>
+          <td><pre><a name="line46">46</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line47">47</a>       expect(et.errors[:quantity].first).to eq(&#39;muss größer oder gleich 0 sein&#39;)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line47">47</a> end</pre></td>
+          <td><pre><a name="line48">48</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line49">49</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line50">50</a> end</pre></td>
         </tr>
       </tbody>
     </table>
 
-    <p>Generated on 2018-11-02 15:07:55 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2018-11-19 18:12:34 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>

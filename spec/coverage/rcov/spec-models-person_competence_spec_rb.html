@@ -25,7 +25,7 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="spec-models-person_competence_spec_rb.html">spec/models/person_competence_spec.rb</a></td>
-            <td class='right_align'><tt>31</tt></td>
+            <td class='right_align'><tt>34</tt></td>
             <td class='right_align'><tt>12</tt></td>
             <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
       <div class="percent_graph">
@@ -57,96 +57,105 @@
           <td><pre><a name="line3">3</a> #</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line4">4</a> # Table name: person_competence</pre></td>
+          <td><pre><a name="line4">4</a> # Table name: person_competences</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line5">5</a> #</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line6">6</a> #  id                    :integer          not null, primary key</pre></td>
+          <td><pre><a name="line6">6</a> #  id         :bigint(8)        not null, primary key</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line7">7</a> #  category              :string</pre></td>
+          <td><pre><a name="line7">7</a> #  category   :string</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line8">8</a> #  offer                 :array</pre></td>
+          <td><pre><a name="line8">8</a> #  offer      :text             default([]), is an Array</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line9">9</a> #  person_id            :integer</pre></td>
+          <td><pre><a name="line9">9</a> #  person_id  :bigint(8)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line10">10</a> </pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line11">11</a> require &#39;rails_helper&#39;</pre></td>
+          <td><pre><a name="line10">10</a> #  created_at :datetime         not null</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line12">12</a> </pre></td>
+          <td><pre><a name="line11">11</a> #  updated_at :datetime         not null</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line12">12</a> #</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line13">13</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line14">14</a> describe PersonCompetence do</pre></td>
+          <td><pre><a name="line14">14</a> require &#39;rails_helper&#39;</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line15">15</a> </pre></td>
         </tr>
-        <tr class="marked">
-          <td><pre><a name="line16">16</a>     context &#39;validations&#39; do</pre></td>
+        <tr class="inferred">
+          <td><pre><a name="line16">16</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line17">17</a>       it &#39;checks whether required attribute values are present&#39; do</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line18">18</a>         person_competence = PersonCompetence.new</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line19">19</a>         person_competence.valid?</pre></td>
+          <td><pre><a name="line17">17</a> describe PersonCompetence do</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line20">20</a> </pre></td>
+          <td><pre><a name="line18">18</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line21">21</a>         expect(person_competence.errors[:category].first).to eq(&#39;muss ausgefüllt werden&#39;)</pre></td>
+          <td><pre><a name="line19">19</a>     context &#39;validations&#39; do</pre></td>
         </tr>
-        <tr class="inferred">
-          <td><pre><a name="line22">22</a>       end</pre></td>
+        <tr class="marked">
+          <td><pre><a name="line20">20</a>       it &#39;checks whether required attribute values are present&#39; do</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line21">21</a>         person_competence = PersonCompetence.new</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line22">22</a>         person_competence.valid?</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line23">23</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line24">24</a>       it &#39;should not be more than 100 characters&#39; do</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line25">25</a>         person_competence = PersonCompetence.new</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line26">26</a>         person_competence.category = SecureRandom.hex(150)</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line27">27</a>         person_competence.valid?</pre></td>
+          <td><pre><a name="line24">24</a>         expect(person_competence.errors[:category].first).to eq(&#39;muss ausgefüllt werden&#39;)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line28">28</a> </pre></td>
+          <td><pre><a name="line25">25</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line26">26</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line29">29</a>         expect(person_competence.errors[:category].first).to eq(&#39;ist zu lang (mehr als 100 Zeichen)&#39;)</pre></td>
+          <td><pre><a name="line27">27</a>       it &#39;should not be more than 100 characters&#39; do</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line28">28</a>         person_competence = PersonCompetence.new</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line29">29</a>         person_competence.category = SecureRandom.hex(150)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line30">30</a>         person_competence.valid?</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line30">30</a>       end</pre></td>
+          <td><pre><a name="line31">31</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line32">32</a>         expect(person_competence.errors[:category].first).to eq(&#39;ist zu lang (mehr als 100 Zeichen)&#39;)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line31">31</a>     end</pre></td>
+          <td><pre><a name="line33">33</a>       end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line32">32</a> end</pre></td>
+          <td><pre><a name="line34">34</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line35">35</a> end</pre></td>
         </tr>
       </tbody>
     </table>
 
-    <p>Generated on 2018-11-02 15:07:55 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2018-11-19 18:12:34 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>

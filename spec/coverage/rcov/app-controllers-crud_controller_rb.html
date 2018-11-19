@@ -25,14 +25,14 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-controllers-crud_controller_rb.html">app/controllers/crud_controller.rb</a></td>
-            <td class='right_align'><tt>104</tt></td>
-            <td class='right_align'><tt>48</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>98.08%</tt></div>
+            <td class='right_align'><tt>117</tt></td>
+            <td class='right_align'><tt>54</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>98.29%</tt></div>
       <div class="percent_graph">
         <div class="covered" style="width:98px"></div>
         <div class="uncovered" style="width:2px"></div>
       </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>95.83%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>96.30%</tt></div>
       <div class="percent_graph">
         <div class="covered" style="width:96px"></div>
         <div class="uncovered" style="width:4px"></div>
@@ -57,7 +57,7 @@
           <td><pre><a name="line3">3</a> class CrudController &lt; ListController</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line4">4</a>   class_attribute :permitted_attrs, :nested_models</pre></td>
+          <td><pre><a name="line4">4</a>   class_attribute :permitted_attrs, :nested_models, :permitted_relationships</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line5">5</a> </pre></td>
@@ -312,25 +312,25 @@
           <td><pre><a name="line88">88</a>     relationships.each do |e, v|</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line89">89</a>       attribute_name = &quot;#{e}_id&quot;</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line90">90</a>       next unless permitted_param?(attribute_name)</pre></td>
+          <td><pre><a name="line89">89</a>       attrs[relationship_param_name(e)] = relationship_ids(v, e)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line91">91</a> </pre></td>
+          <td><pre><a name="line90">90</a>     end</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line92">92</a>       parent_id = v[:data][:id]</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line93">93</a>       attrs[attribute_name] = parent_id</pre></td>
+          <td><pre><a name="line91">91</a>     attrs</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line94">94</a>     end</pre></td>
+          <td><pre><a name="line92">92</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line93">93</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line95">95</a>     attrs</pre></td>
+          <td><pre><a name="line94">94</a>   def relationship_param_name(model_name)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line95">95</a>     permitted_param?(&quot;#{model_name}_id&quot;) ? &quot;#{model_name}_id&quot; : &quot;#{model_name.singularize}_ids&quot;</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line96">96</a>   end</pre></td>
@@ -339,33 +339,72 @@
           <td><pre><a name="line97">97</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line98">98</a>   def permitted_param?(attribute_name)</pre></td>
+          <td><pre><a name="line98">98</a>   def relationship_ids(model_data, name)</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line99">99</a>     permitted_attrs.map(&amp;:to_s).include?(attribute_name)</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line100">100</a>   end</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line101">101</a> </pre></td>
+          <td><pre><a name="line99">99</a>     return model_data[:data][:id] unless model_data[:data].is_a?(Array)</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line102">102</a>   def ivar_name</pre></td>
+          <td><pre><a name="line100">100</a>     if permitted_relationship?(name)</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line103">103</a>     model_class.model_name.param_key</pre></td>
+          <td><pre><a name="line101">101</a>       model_data[:data].collect do |e|</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line102">102</a>         e[:id]</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line104">104</a>   end</pre></td>
+          <td><pre><a name="line103">103</a>       end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line105">105</a> end</pre></td>
+          <td><pre><a name="line104">104</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line105">105</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line106">106</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line107">107</a>   def permitted_param?(attribute_name)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line108">108</a>     permitted_attrs.map(&amp;:to_s).include?(attribute_name)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line109">109</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line110">110</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line111">111</a>   def permitted_relationship?(attribute_name)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line112">112</a>     permitted_relationships.map(&amp;:to_s).include?(attribute_name)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line113">113</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line114">114</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line115">115</a>   def ivar_name</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line116">116</a>     model_class.model_name.param_key</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line117">117</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line118">118</a> end</pre></td>
         </tr>
       </tbody>
     </table>
 
-    <p>Generated on 2018-11-02 15:07:55 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2018-11-19 18:12:34 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>

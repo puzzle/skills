@@ -31,7 +31,7 @@ bob:
   name: Bob Anderson
   nationality: CH
   nationality2: SE
-  role: Cleaner
+  roles: [software-engineer]
   title: BSc in Cleaning
   competences: Java\n Ruby
   company: firma
@@ -43,7 +43,7 @@ alice:
   martial_status: Maried
   name: Alice Mante
   nationality: AU
-  role: Secretary
+  roles: [system-engineer]
   title: MSc in writing
   competences: LaTex\n Puppet\n Bash
   company: partner

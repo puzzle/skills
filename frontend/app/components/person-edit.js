@@ -12,10 +12,6 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     this.martialStatuses = (['ledig', 'verheiratet', 'verwittwet', 'eingetragene Partnerschaft', 'geschieden']);
-    this.roles = (['Software-Entwickler', 'Software-Ingenieur', 'User Experience Consultant', 'Grafik Designer',
-      'Requirements Engineer', 'System-Techniker', 'System-Ingenieur', 'Architekt', 'Solutions Architect',
-      'Projektleiter (M1)', 'Bereichsleiter (M2)', 'Bereichsleiter GL (M3)', 'Kaufmann / Kauffrau', 'Controller',
-      'Marketing- und Kommunikationsfachmann / -fachfrau', 'Verkäufer', 'Key Account Manager']);
     this.initNationalities();
   },
 
@@ -35,7 +31,7 @@ export default Component.extend({
   },
 
   sortedRoles: computed(function() {
-    return this.get('roles').sort()
+    return this.get('store').findAll('role')
   }),
 
   companiesToSelect: computed(function() {
@@ -98,6 +94,10 @@ export default Component.extend({
         this.set('person.nationality2', undefined);
       }
       this.set('selectedNationality2', selectedCountry);
+    },
+
+    setRole(selectedRole) {
+      this.set('person.roles', [selectedRole]);
     },
 
   }

@@ -25,7 +25,7 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-serializers-company_serializer_rb.html">app/serializers/company_serializer.rb</a></td>
-            <td class='right_align'><tt>12</tt></td>
+            <td class='right_align'><tt>34</tt></td>
             <td class='right_align'><tt>6</tt></td>
             <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
       <div class="percent_graph">
@@ -50,46 +50,112 @@
 
     <table class="details">
       <tbody>
-        <tr class="marked">
-          <td><pre><a name="line2">2</a> class CompanySerializer &lt; ApplicationSerializer</pre></td>
+        <tr class="inferred">
+          <td><pre><a name="line2">2</a> # == Schema Information</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line3">3</a> </pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line4">4</a>   attributes :id, :name, :web, :email, :phone, :partnermanager, :contact_person,</pre></td>
+          <td><pre><a name="line3">3</a> #</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line5">5</a>              :email_contact_person, :phone_contact_person, :crm, :level, :offer_comment,</pre></td>
+          <td><pre><a name="line4">4</a> # Table name: companies</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line6">6</a>              :my_company, :created_at, :updated_at</pre></td>
+          <td><pre><a name="line5">5</a> #</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line7">7</a> </pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line8">8</a>   has_many :people, serializer: PersonInCompanySerializer</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line9">9</a>   has_many :locations, include: :all</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line10">10</a>   has_many :employee_quantities, include: :all</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line11">11</a>   has_many :offers, include: :all</pre></td>
+          <td><pre><a name="line6">6</a> #  id                      :bigint(8)        not null, primary key</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line12">12</a> </pre></td>
+          <td><pre><a name="line7">7</a> #  name                    :string</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line13">13</a> end</pre></td>
+          <td><pre><a name="line8">8</a> #  web                     :string</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line9">9</a> #  email                   :string</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line10">10</a> #  phone                   :string</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line11">11</a> #  partnermanager          :string</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line12">12</a> #  contact_person          :string</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line13">13</a> #  email_contact_person    :string</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line14">14</a> #  phone_contact_person    :string</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line15">15</a> #  offer_comment           :string</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line16">16</a> #  crm                     :string</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line17">17</a> #  level                   :string</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line18">18</a> #  my_company              :boolean          default(FALSE)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line19">19</a> #  created_at              :datetime         not null</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line20">20</a> #  updated_at              :datetime         not null</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line21">21</a> #  associations_updatet_at :datetime</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line22">22</a> #</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line23">23</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line24">24</a> class CompanySerializer &lt; ApplicationSerializer</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line25">25</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line26">26</a>   attributes :id, :name, :web, :email, :phone, :partnermanager, :contact_person,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line27">27</a>              :email_contact_person, :phone_contact_person, :crm, :level, :offer_comment,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line28">28</a>              :my_company, :created_at, :updated_at</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line29">29</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line30">30</a>   has_many :people, serializer: PersonInCompanySerializer</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line31">31</a>   has_many :locations, include: :all</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line32">32</a>   has_many :employee_quantities, include: :all</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line33">33</a>   has_many :offers, include: :all</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line34">34</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line35">35</a> end</pre></td>
         </tr>
       </tbody>
     </table>
 
-    <p>Generated on 2018-11-02 15:07:55 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2018-11-19 18:12:34 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>

@@ -23,7 +23,7 @@ test('/people/:id edit person data', async function(assert) {
   await page.toggleEditForm();
 
   /* eslint "no-undef": "off" */
-  await selectChoose('#role', 'Controller')
+  await selectChoose('#role', '.ember-power-select-option', 0)
   await selectChoose('#company', 'Firma');
   await selectChoose('#nationality', "Samoa");
   await selectChoose('#nationality2', "Iran");
@@ -38,9 +38,9 @@ test('/people/:id edit person data', async function(assert) {
 
   assert.equal(page.profileData.name, 'Hansjoggeli');
   assert.equal(page.profileData.title, 'Dr.');
-  assert.equal(page.profileData.role, 'Controller');
   assert.equal(page.profileData.nationality, 'Samoa');
   assert.equal(page.profileData.nationality2, 'Iran');
+  assert.equal(page.profileData.role, 'System-Engineer');
   assert.equal(page.profileData.location, 'Chehrplatz Schwandi');
 });
 

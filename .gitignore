@@ -89,3 +89,6 @@ fabric.properties
 .project
 
 package-lock.json
+
+# Coverage
+/spec/coverage

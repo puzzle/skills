@@ -25,7 +25,7 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-models-person_competence_rb.html">app/models/person_competence.rb</a></td>
-            <td class='right_align'><tt>28</tt></td>
+            <td class='right_align'><tt>31</tt></td>
             <td class='right_align'><tt>11</tt></td>
             <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
       <div class="percent_graph">
@@ -63,81 +63,90 @@
           <td><pre><a name="line5">5</a> #</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line6">6</a> #  id                    :integer          not null, primary key</pre></td>
+          <td><pre><a name="line6">6</a> #  id         :bigint(8)        not null, primary key</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line7">7</a> #  category              :string</pre></td>
+          <td><pre><a name="line7">7</a> #  category   :string</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line8">8</a> #  offer                 :array</pre></td>
+          <td><pre><a name="line8">8</a> #  offer      :text             default([]), is an Array</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line9">9</a> #  person_id            :integer</pre></td>
+          <td><pre><a name="line9">9</a> #  person_id  :bigint(8)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line10">10</a> </pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line11">11</a> class PersonCompetence &lt; ApplicationRecord</pre></td>
+          <td><pre><a name="line10">10</a> #  created_at :datetime         not null</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line12">12</a> </pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line13">13</a>   after_create :update_associations_updatet_at</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line14">14</a>   after_update :update_associations_updatet_at</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line15">15</a>   after_destroy :update_associations_updatet_at</pre></td>
+          <td><pre><a name="line11">11</a> #  updated_at :datetime         not null</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line16">16</a> </pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line17">17</a>   belongs_to :person</pre></td>
+          <td><pre><a name="line12">12</a> #</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line18">18</a> </pre></td>
+          <td><pre><a name="line13">13</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line19">19</a>   validates :category, presence: true</pre></td>
+          <td><pre><a name="line14">14</a> class PersonCompetence &lt; ApplicationRecord</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line15">15</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line20">20</a>   validates :category, length: { maximum: 100 }</pre></td>
+          <td><pre><a name="line16">16</a>   after_create :update_associations_updatet_at</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line17">17</a>   after_update :update_associations_updatet_at</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line18">18</a>   after_destroy :update_associations_updatet_at</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line19">19</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line20">20</a>   belongs_to :person</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line21">21</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line22">22</a>   private</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line23">23</a> </pre></td>
+          <td><pre><a name="line22">22</a>   validates :category, presence: true</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line24">24</a>   def update_associations_updatet_at</pre></td>
+          <td><pre><a name="line23">23</a>   validates :category, length: { maximum: 100 }</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line24">24</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line25">25</a>     timestamp = Time.zone.now</pre></td>
+          <td><pre><a name="line25">25</a>   private</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line26">26</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line26">26</a>     person.update!(associations_updatet_at: timestamp)</pre></td>
+          <td><pre><a name="line27">27</a>   def update_associations_updatet_at</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line28">28</a>     timestamp = Time.zone.now</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line29">29</a>     person.update!(associations_updatet_at: timestamp)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line27">27</a>   end</pre></td>
+          <td><pre><a name="line30">30</a>   end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line28">28</a> </pre></td>
+          <td><pre><a name="line31">31</a> </pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line29">29</a> end</pre></td>
+          <td><pre><a name="line32">32</a> end</pre></td>
         </tr>
       </tbody>
     </table>
 
-    <p>Generated on 2018-11-02 15:07:55 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2018-11-19 18:12:34 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>

@@ -25,7 +25,7 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="spec-models-company_spec_rb.html">spec/models/company_spec.rb</a></td>
-            <td class='right_align'><tt>76</tt></td>
+            <td class='right_align'><tt>80</tt></td>
             <td class='right_align'><tt>42</tt></td>
             <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
       <div class="percent_graph">
@@ -63,225 +63,237 @@
           <td><pre><a name="line5">5</a> #</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line6">6</a> #  id                    :integer          not null, primary key</pre></td>
+          <td><pre><a name="line6">6</a> #  id                      :bigint(8)        not null, primary key</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line7">7</a> #  name                  :string</pre></td>
+          <td><pre><a name="line7">7</a> #  name                    :string</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line8">8</a> #  web                   :string</pre></td>
+          <td><pre><a name="line8">8</a> #  web                     :string</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line9">9</a> #  email                 :string</pre></td>
+          <td><pre><a name="line9">9</a> #  email                   :string</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line10">10</a> #  phone                 :string</pre></td>
+          <td><pre><a name="line10">10</a> #  phone                   :string</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line11">11</a> #  partnermanager        :string</pre></td>
+          <td><pre><a name="line11">11</a> #  partnermanager          :string</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line12">12</a> #  contact_person        :string</pre></td>
+          <td><pre><a name="line12">12</a> #  contact_person          :string</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line13">13</a> #  email_contact_person  :string</pre></td>
+          <td><pre><a name="line13">13</a> #  email_contact_person    :string</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line14">14</a> #  phone_contact_person  :string</pre></td>
+          <td><pre><a name="line14">14</a> #  phone_contact_person    :string</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line15">15</a> #  crm                   :string</pre></td>
+          <td><pre><a name="line15">15</a> #  offer_comment           :string</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line16">16</a> #  level                 :string</pre></td>
+          <td><pre><a name="line16">16</a> #  crm                     :string</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line17">17</a> #  offer_comment         :string</pre></td>
+          <td><pre><a name="line17">17</a> #  level                   :string</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line18">18</a> #  my_company            :boolean, default: false</pre></td>
+          <td><pre><a name="line18">18</a> #  my_company              :boolean          default(FALSE)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line19">19</a> </pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line20">20</a> require &#39;rails_helper&#39;</pre></td>
+          <td><pre><a name="line19">19</a> #  created_at              :datetime         not null</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line21">21</a> </pre></td>
+          <td><pre><a name="line20">20</a> #  updated_at              :datetime         not null</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line22">22</a> </pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line23">23</a> describe Company do</pre></td>
+          <td><pre><a name="line21">21</a> #  associations_updatet_at :datetime</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line24">24</a> </pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line25">25</a>     context &#39;destroy&#39; do</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line26">26</a>       it &#39;is not possible to delete my company&#39; do</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line27">27</a>         my_company = companies(:firma)</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line28">28</a>         expect do</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line29">29</a>           my_company.destroy</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line30">30</a>         end.to change{Company.count}.by(0)</pre></td>
+          <td><pre><a name="line22">22</a> #</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line31">31</a>       end</pre></td>
+          <td><pre><a name="line23">23</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line24">24</a> require &#39;rails_helper&#39;</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line32">32</a>     end</pre></td>
+          <td><pre><a name="line25">25</a> </pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line33">33</a> </pre></td>
+          <td><pre><a name="line26">26</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line34">34</a>     context &#39;validations&#39; do</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line35">35</a>       it &#39;checks whether required attribute values are present&#39; do</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line36">36</a>         company = Company.new</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line37">37</a>         company.valid?</pre></td>
+          <td><pre><a name="line27">27</a> describe Company do</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line38">38</a> </pre></td>
+          <td><pre><a name="line28">28</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line39">39</a>         expect(company.errors[:name].first).to eq(&#39;muss ausgefüllt werden&#39;)</pre></td>
+          <td><pre><a name="line29">29</a>     context &#39;destroy&#39; do</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line30">30</a>       it &#39;is not possible to delete my company&#39; do</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line31">31</a>         my_company = companies(:firma)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line32">32</a>         expect do</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line33">33</a>           my_company.destroy</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line34">34</a>         end.to change{Company.count}.by(0)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line40">40</a>       end</pre></td>
+          <td><pre><a name="line35">35</a>       end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line41">41</a> </pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line42">42</a>       it &#39;should not be more than 100 characters&#39; do</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line43">43</a>         company = Company.new</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line44">44</a>         company.name = SecureRandom.hex(150)</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line45">45</a>         company.web = SecureRandom.hex(150)</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line46">46</a>         company.email = SecureRandom.hex(150)</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line47">47</a>         company.phone = SecureRandom.hex(150)</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line48">48</a>         company.partnermanager = SecureRandom.hex(150)</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line49">49</a>         company.contact_person = SecureRandom.hex(150)</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line50">50</a>         company.email_contact_person = SecureRandom.hex(150)</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line51">51</a>         company.phone_contact_person = SecureRandom.hex(150)</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line52">52</a>         company.crm = SecureRandom.hex(150)</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line53">53</a>         company.level = SecureRandom.hex(150)</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line54">54</a>         company.valid?</pre></td>
+          <td><pre><a name="line36">36</a>     end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line55">55</a> </pre></td>
+          <td><pre><a name="line37">37</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line56">56</a>         expect(company.errors[:name].first).to eq(&#39;ist zu lang (mehr als 100 Zeichen)&#39;)</pre></td>
+          <td><pre><a name="line38">38</a>     context &#39;validations&#39; do</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line57">57</a>         expect(company.errors[:web].first).to eq(&#39;ist zu lang (mehr als 100 Zeichen)&#39;)</pre></td>
+          <td><pre><a name="line39">39</a>       it &#39;checks whether required attribute values are present&#39; do</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line58">58</a>         expect(company.errors[:email].first).to eq(&#39;ist zu lang (mehr als 100 Zeichen)&#39;)</pre></td>
+          <td><pre><a name="line40">40</a>         company = Company.new</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line59">59</a>         expect(company.errors[:phone].first).to eq(&#39;ist zu lang (mehr als 100 Zeichen)&#39;)</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line60">60</a>         expect(company.errors[:partnermanager].first).to eq(&#39;ist zu lang (mehr als 100 Zeichen)&#39;)</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line61">61</a>         expect(company.errors[:contact_person].first).to eq(&#39;ist zu lang (mehr als 100 Zeichen)&#39;)</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line62">62</a>         expect(company.errors[:email_contact_person].first).to eq(&#39;ist zu lang (mehr als 100 Zeichen)&#39;)</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line63">63</a>         expect(company.errors[:phone_contact_person].first).to eq(&#39;ist zu lang (mehr als 100 Zeichen)&#39;)</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line64">64</a>         expect(company.errors[:crm].first).to eq(&#39;ist zu lang (mehr als 100 Zeichen)&#39;)</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line65">65</a>         expect(company.errors[:level].first).to eq(&#39;ist zu lang (mehr als 100 Zeichen)&#39;)</pre></td>
+          <td><pre><a name="line41">41</a>         company.valid?</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line66">66</a>       end</pre></td>
+          <td><pre><a name="line42">42</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line43">43</a>         expect(company.errors[:name].first).to eq(&#39;muss ausgefüllt werden&#39;)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line67">67</a> </pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line68">68</a>       it &#39;should not be more than 500 characters&#39; do</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line69">69</a>         company = Company.new</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line70">70</a>         company.name = &#39;Test&#39;</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line71">71</a>         company.offer_comment = SecureRandom.hex(550)</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line72">72</a>         company.valid?</pre></td>
+          <td><pre><a name="line44">44</a>       end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line73">73</a> </pre></td>
+          <td><pre><a name="line45">45</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line74">74</a>         expect(company.errors[:offer_comment].first).to eq(&#39;ist zu lang (mehr als 500 Zeichen)&#39;)</pre></td>
+          <td><pre><a name="line46">46</a>       it &#39;should not be more than 100 characters&#39; do</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line47">47</a>         company = Company.new</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line48">48</a>         company.name = SecureRandom.hex(150)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line49">49</a>         company.web = SecureRandom.hex(150)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line50">50</a>         company.email = SecureRandom.hex(150)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line51">51</a>         company.phone = SecureRandom.hex(150)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line52">52</a>         company.partnermanager = SecureRandom.hex(150)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line53">53</a>         company.contact_person = SecureRandom.hex(150)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line54">54</a>         company.email_contact_person = SecureRandom.hex(150)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line55">55</a>         company.phone_contact_person = SecureRandom.hex(150)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line56">56</a>         company.crm = SecureRandom.hex(150)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line57">57</a>         company.level = SecureRandom.hex(150)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line58">58</a>         company.valid?</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line75">75</a>       end</pre></td>
+          <td><pre><a name="line59">59</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line60">60</a>         expect(company.errors[:name].first).to eq(&#39;ist zu lang (mehr als 100 Zeichen)&#39;)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line61">61</a>         expect(company.errors[:web].first).to eq(&#39;ist zu lang (mehr als 100 Zeichen)&#39;)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line62">62</a>         expect(company.errors[:email].first).to eq(&#39;ist zu lang (mehr als 100 Zeichen)&#39;)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line63">63</a>         expect(company.errors[:phone].first).to eq(&#39;ist zu lang (mehr als 100 Zeichen)&#39;)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line64">64</a>         expect(company.errors[:partnermanager].first).to eq(&#39;ist zu lang (mehr als 100 Zeichen)&#39;)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line65">65</a>         expect(company.errors[:contact_person].first).to eq(&#39;ist zu lang (mehr als 100 Zeichen)&#39;)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line66">66</a>         expect(company.errors[:email_contact_person].first).to eq(&#39;ist zu lang (mehr als 100 Zeichen)&#39;)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line67">67</a>         expect(company.errors[:phone_contact_person].first).to eq(&#39;ist zu lang (mehr als 100 Zeichen)&#39;)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line68">68</a>         expect(company.errors[:crm].first).to eq(&#39;ist zu lang (mehr als 100 Zeichen)&#39;)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line69">69</a>         expect(company.errors[:level].first).to eq(&#39;ist zu lang (mehr als 100 Zeichen)&#39;)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line76">76</a>     end</pre></td>
+          <td><pre><a name="line70">70</a>       end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line77">77</a> end</pre></td>
+          <td><pre><a name="line71">71</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line72">72</a>       it &#39;should not be more than 500 characters&#39; do</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line73">73</a>         company = Company.new</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line74">74</a>         company.name = &#39;Test&#39;</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line75">75</a>         company.offer_comment = SecureRandom.hex(550)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line76">76</a>         company.valid?</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line77">77</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line78">78</a>         expect(company.errors[:offer_comment].first).to eq(&#39;ist zu lang (mehr als 500 Zeichen)&#39;)</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line79">79</a>       end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line80">80</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line81">81</a> end</pre></td>
         </tr>
       </tbody>
     </table>
 
-    <p>Generated on 2018-11-02 15:07:55 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2018-11-19 18:12:34 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>

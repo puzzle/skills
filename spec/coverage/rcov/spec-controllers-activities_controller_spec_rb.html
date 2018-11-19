@@ -25,7 +25,7 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="spec-controllers-activities_controller_spec_rb.html">spec/controllers/activities_controller_spec.rb</a></td>
-            <td class='right_align'><tt>92</tt></td>
+            <td class='right_align'><tt>91</tt></td>
             <td class='right_align'><tt>44</tt></td>
             <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
       <div class="percent_graph">
@@ -78,7 +78,7 @@
           <td><pre><a name="line10">10</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line11">11</a>       process :index, method: :get, params: { type: &#39;Person&#39;, person_id: bob.id }</pre></td>
+          <td><pre><a name="line11">11</a>       process :index, method: :get, params: { person_id: bob.id }</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line12">12</a> </pre></td>
@@ -120,7 +120,7 @@
           <td><pre><a name="line24">24</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line25">25</a>       process :show, method: :get, params: { type: &#39;Person&#39;, person_id: bob.id, id: activity.id }</pre></td>
+          <td><pre><a name="line25">25</a>       process :show, method: :get, params: { person_id: bob.id, id: activity.id }</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line26">26</a> </pre></td>
@@ -246,7 +246,7 @@
           <td><pre><a name="line66">66</a>       process :destroy, method: :delete, params: {</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line67">67</a>         type: &#39;Person&#39;, person_id: bob.id, id: activity.id</pre></td>
+          <td><pre><a name="line67">67</a>         person_id: bob.id, id: activity.id</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line68">68</a>       }</pre></td>
@@ -290,46 +290,43 @@
         <tr class="inferred">
           <td><pre><a name="line81">81</a>     { data: { attributes: object,</pre></td>
         </tr>
+        <tr class="marked">
+          <td><pre><a name="line82">82</a>               relationships: { person: { data: { id: user_id } } }, type: model_type } }</pre></td>
+        </tr>
         <tr class="inferred">
-          <td><pre><a name="line82">82</a>               relationships: { person: { data: { type: &#39;People&#39;,</pre></td>
+          <td><pre><a name="line83">83</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line84">84</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line83">83</a>                                                  id: user_id } } }, type: model_type } }</pre></td>
+          <td><pre><a name="line85">85</a>   def update_params(object_id, updated_attributes, user_id, model_type)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line84">84</a>   end</pre></td>
+          <td><pre><a name="line86">86</a>     { data: { id: object_id,</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line85">85</a> </pre></td>
+          <td><pre><a name="line87">87</a>               attributes: updated_attributes,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line88">88</a>               relationships: {</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line89">89</a>                 person: { data: { id: user_id } }</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line86">86</a>   def update_params(object_id, updated_attributes, user_id, model_type)</pre></td>
+          <td><pre><a name="line90">90</a>               }, type: model_type }, id: object_id }</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line87">87</a>     { data: { id: object_id,</pre></td>
+          <td><pre><a name="line91">91</a>   end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line88">88</a>               attributes: updated_attributes,</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line89">89</a>               relationships: {</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line90">90</a>                 person: { data: { type: &#39;people&#39;, id: user_id } }</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line91">91</a>               }, type: model_type }, id: object_id }</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line92">92</a>   end</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line93">93</a> end</pre></td>
+          <td><pre><a name="line92">92</a> end</pre></td>
         </tr>
       </tbody>
     </table>
 
-    <p>Generated on 2018-11-02 15:07:55 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2018-11-19 18:12:34 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>

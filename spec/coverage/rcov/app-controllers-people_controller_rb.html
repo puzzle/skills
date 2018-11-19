@@ -25,14 +25,14 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="app-controllers-people_controller_rb.html">app/controllers/people_controller.rb</a></td>
-            <td class='right_align'><tt>122</tt></td>
-            <td class='right_align'><tt>55</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>95.08%</tt></div>
+            <td class='right_align'><tt>124</tt></td>
+            <td class='right_align'><tt>56</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>95.16%</tt></div>
       <div class="percent_graph">
         <div class="covered" style="width:95px"></div>
         <div class="uncovered" style="width:5px"></div>
       </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>89.09%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>89.29%</tt></div>
       <div class="percent_graph">
         <div class="covered" style="width:89px"></div>
         <div class="uncovered" style="width:11px"></div>
@@ -57,10 +57,10 @@
           <td><pre><a name="line3">3</a>   self.permitted_attrs = %i[birthdate picture language location</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line4">4</a>                             martial_status updated_by name origin role title</pre></td>
+          <td><pre><a name="line4">4</a>                             martial_status updated_by name nationality nationality2 role title</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line5">5</a>                             competences variation_name company company_id]</pre></td>
+          <td><pre><a name="line5">5</a>                             competences company company_id]</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line6">6</a> </pre></td>
@@ -69,357 +69,363 @@
           <td><pre><a name="line7">7</a>   self.nested_models = %i[advanced_trainings activities projects</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line8">8</a>                           educations person_competences]</pre></td>
+          <td><pre><a name="line8">8</a>                           educations person_competences roles]</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line9">9</a> </pre></td>
         </tr>
-        <tr class="inferred">
-          <td><pre><a name="line10">10</a> </pre></td>
-        </tr>
         <tr class="marked">
-          <td><pre><a name="line11">11</a>   skip_before_action :authorize, only: :picture</pre></td>
+          <td><pre><a name="line10">10</a>   self.permitted_relationships = %i[roles company]</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line11">11</a> </pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line12">12</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line13">13</a>   def index</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line14">14</a>     people = fetch_entries</pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line15">15</a>     people = people.search(params[:q]) if params[:q].present?</pre></td>
+          <td><pre><a name="line13">13</a>   skip_before_action :authorize, only: :picture</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line16">16</a> </pre></td>
+          <td><pre><a name="line14">14</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line17">17</a>     render json: people, each_serializer: PeopleSerializer</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line18">18</a>   end</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line19">19</a> </pre></td>
+          <td><pre><a name="line15">15</a>   def index</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line20">20</a>   def show</pre></td>
+          <td><pre><a name="line16">16</a>     people = fetch_entries</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line21">21</a>     format_odt? ? export : super</pre></td>
+          <td><pre><a name="line17">17</a>     people = people.search(params[:q]) if params[:q].present?</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line22">22</a>   end</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line23">23</a> </pre></td>
+          <td><pre><a name="line18">18</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line24">24</a>   def update_picture</pre></td>
+          <td><pre><a name="line19">19</a>     render json: people, each_serializer: PeopleSerializer</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line20">20</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line21">21</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line22">22</a>   def show</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line23">23</a>     format_odt? ? export : super</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line24">24</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line25">25</a> </pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line26">26</a>   def update_picture</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line25">25</a>     person.update(picture: params[:picture])</pre></td>
+          <td><pre><a name="line27">27</a>     person.update(picture: params[:picture])</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line26">26</a>     render json: { data: { picture_path: person_picture_path(params[:person_id]) } }</pre></td>
+          <td><pre><a name="line28">28</a>     render json: { data: { picture_path: person_picture_path(params[:person_id]) } }</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line27">27</a>   end</pre></td>
+          <td><pre><a name="line29">29</a>   end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line28">28</a> </pre></td>
+          <td><pre><a name="line30">30</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line29">29</a>   def picture</pre></td>
+          <td><pre><a name="line31">31</a>   def picture</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line30">30</a>     default_avatar_url = &quot;#{Rails.public_path}/default_avatar.png&quot;</pre></td>
+          <td><pre><a name="line32">32</a>     default_avatar_url = &quot;#{Rails.public_path}/default_avatar.png&quot;</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line31">31</a>     picture_url = person.picture.file.nil? ? default_avatar_url : person.picture.url</pre></td>
+          <td><pre><a name="line33">33</a>     picture_url = person.picture.file.nil? ? default_avatar_url : person.picture.url</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line32">32</a>     send_file(picture_url, disposition: &#39;inline&#39;)</pre></td>
+          <td><pre><a name="line34">34</a>     send_file(picture_url, disposition: &#39;inline&#39;)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line33">33</a>   end</pre></td>
+          <td><pre><a name="line35">35</a>   end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line34">34</a> </pre></td>
+          <td><pre><a name="line36">36</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line35">35</a>   def export_fws</pre></td>
+          <td><pre><a name="line37">37</a>   def export_fws</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line36">36</a>     return render status: :not_found unless format_odt?</pre></td>
+          <td><pre><a name="line38">38</a>     return render status: :not_found unless format_odt?</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line37">37</a> </pre></td>
+          <td><pre><a name="line39">39</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line38">38</a>     discipline = params[&#39;discipline&#39;]</pre></td>
+          <td><pre><a name="line40">40</a>     discipline = params[&#39;discipline&#39;]</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line39">39</a>     odt_file = Odt::Fws.new(discipline, params[:person_id]).export</pre></td>
+          <td><pre><a name="line41">41</a>     odt_file = Odt::Fws.new(discipline, params[:person_id]).export</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line40">40</a>     send_data odt_file.generate,</pre></td>
+          <td><pre><a name="line42">42</a>     send_data odt_file.generate,</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line41">41</a>               type: &#39;application/vnd.oasis.opendocument.text&#39;,</pre></td>
+          <td><pre><a name="line43">43</a>               type: &#39;application/vnd.oasis.opendocument.text&#39;,</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line42">42</a>               disposition: content_disposition(&#39;attachment&#39;, fws_filename(discipline, person.name))</pre></td>
+          <td><pre><a name="line44">44</a>               disposition: content_disposition(&#39;attachment&#39;, fws_filename(discipline, person.name))</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line43">43</a>   end</pre></td>
+          <td><pre><a name="line45">45</a>   end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line44">44</a> </pre></td>
+          <td><pre><a name="line46">46</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line45">45</a>   def export_empty_fws</pre></td>
+          <td><pre><a name="line47">47</a>   def export_empty_fws</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line46">46</a>     return render status: :not_found unless format_odt?</pre></td>
+          <td><pre><a name="line48">48</a>     return render status: :not_found unless format_odt?</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line47">47</a> </pre></td>
+          <td><pre><a name="line49">49</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line48">48</a>     discipline = params[&#39;discipline&#39;]</pre></td>
+          <td><pre><a name="line50">50</a>     discipline = params[&#39;discipline&#39;]</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line49">49</a>     odt_file = Odt::Fws.new(discipline).empty_export</pre></td>
+          <td><pre><a name="line51">51</a>     odt_file = Odt::Fws.new(discipline).empty_export</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line50">50</a> </pre></td>
+          <td><pre><a name="line52">52</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line51">51</a>     send_data odt_file.generate,</pre></td>
+          <td><pre><a name="line53">53</a>     send_data odt_file.generate,</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line52">52</a>               type: &#39;application/vnd.oasis.opendocument.text&#39;,</pre></td>
+          <td><pre><a name="line54">54</a>               type: &#39;application/vnd.oasis.opendocument.text&#39;,</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line53">53</a>               disposition: content_disposition(&#39;attachment&#39;, empty_fws_filename(discipline))</pre></td>
+          <td><pre><a name="line55">55</a>               disposition: content_disposition(&#39;attachment&#39;, empty_fws_filename(discipline))</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line54">54</a>   end</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line55">55</a> </pre></td>
-        </tr>
-        <tr class="marked">
-          <td><pre><a name="line56">56</a>   private</pre></td>
+          <td><pre><a name="line56">56</a>   end</pre></td>
         </tr>
         <tr class="inferred">
           <td><pre><a name="line57">57</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line58">58</a>   def person</pre></td>
+          <td><pre><a name="line58">58</a>   private</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line59">59</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line59">59</a>     @person ||= Person.find(params[:person_id])</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line60">60</a>   end</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line61">61</a> </pre></td>
+          <td><pre><a name="line60">60</a>   def person</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line62">62</a>   def fws_filename(discipline, name)</pre></td>
+          <td><pre><a name="line61">61</a>     @person ||= Person.find(params[:person_id])</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line62">62</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line63">63</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line63">63</a>     formatted_name = name.downcase.tr(&#39; &#39;, &#39;-&#39;)</pre></td>
+          <td><pre><a name="line64">64</a>   def fws_filename(discipline, name)</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line64">64</a>     if discipline == &#39;development&#39;</pre></td>
+          <td><pre><a name="line65">65</a>     formatted_name = name.downcase.tr(&#39; &#39;, &#39;-&#39;)</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line65">65</a>       &quot;fachwissensskala-entwicklung-#{formatted_name}.odt&quot;</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line66">66</a>     else</pre></td>
+          <td><pre><a name="line66">66</a>     if discipline == &#39;development&#39;</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line67">67</a>       &quot;fachwissensskala-sys-#{formatted_name}.odt&quot;</pre></td>
+          <td><pre><a name="line67">67</a>       &quot;fachwissensskala-entwicklung-#{formatted_name}.odt&quot;</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line68">68</a>     end</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line69">69</a>   end</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line70">70</a> </pre></td>
+          <td><pre><a name="line68">68</a>     else</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line71">71</a>   def empty_fws_filename(discipline)</pre></td>
+          <td><pre><a name="line69">69</a>       &quot;fachwissensskala-sys-#{formatted_name}.odt&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line70">70</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line71">71</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line72">72</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line72">72</a>     if discipline == &#39;development&#39;</pre></td>
+          <td><pre><a name="line73">73</a>   def empty_fws_filename(discipline)</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line73">73</a>       &#39;fachwissensskala-entwicklung.odt&#39;</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line74">74</a>     else</pre></td>
+          <td><pre><a name="line74">74</a>     if discipline == &#39;development&#39;</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line75">75</a>       &#39;fachwissensskala-sys.odt&#39;</pre></td>
+          <td><pre><a name="line75">75</a>       &#39;fachwissensskala-entwicklung.odt&#39;</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line76">76</a>     end</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line77">77</a>   end</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line78">78</a> </pre></td>
+          <td><pre><a name="line76">76</a>     else</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line79">79</a>   def export</pre></td>
+          <td><pre><a name="line77">77</a>       &#39;fachwissensskala-sys.odt&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line78">78</a>     end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line79">79</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line80">80</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line80">80</a>     odt_file = Odt::Cv.new(entry).export</pre></td>
+          <td><pre><a name="line81">81</a>   def export</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line81">81</a>     send_data odt_file.generate,</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line82">82</a>               type: &#39;application/vnd.oasis.opendocument.text&#39;,</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line83">83</a>               disposition: content_disposition(&#39;attachment&#39;, filename(entry.name))</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line84">84</a>   end</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line85">85</a> </pre></td>
+          <td><pre><a name="line82">82</a>     odt_file = Odt::Cv.new(entry).export</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line86">86</a>   def filename(name)</pre></td>
+          <td><pre><a name="line83">83</a>     send_data odt_file.generate,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line84">84</a>               type: &#39;application/vnd.oasis.opendocument.text&#39;,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line85">85</a>               disposition: content_disposition(&#39;attachment&#39;, filename(entry.name))</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line86">86</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line87">87</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line87">87</a>     &quot;#{name.downcase.tr(&#39; &#39;, &#39;_&#39;)}_cv.odt&quot;</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line88">88</a>   end</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line89">89</a> </pre></td>
+          <td><pre><a name="line88">88</a>   def filename(name)</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line90">90</a>   def format_odt?</pre></td>
+          <td><pre><a name="line89">89</a>     &quot;#{name.downcase.tr(&#39; &#39;, &#39;_&#39;)}_cv.odt&quot;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line90">90</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line91">91</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line91">91</a>     response.request.filtered_parameters[&#39;format&#39;] == &#39;odt&#39;</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line92">92</a>   end</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line93">93</a> </pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line94">94</a>   # UTF-8 Content-Disposition https://tools.ietf.org/html/rfc6266</pre></td>
+          <td><pre><a name="line92">92</a>   def format_odt?</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line95">95</a>   def content_disposition(disposition, filename)</pre></td>
+          <td><pre><a name="line93">93</a>     response.request.filtered_parameters[&#39;format&#39;] == &#39;odt&#39;</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line94">94</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line95">95</a> </pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line96">96</a>   # UTF-8 Content-Disposition https://tools.ietf.org/html/rfc6266</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line96">96</a>     &quot;#{disposition}; &quot; \</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line97">97</a>       &quot;#{content_disposition_filename_ascii(filename)}; &quot; \</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line98">98</a>       &quot;#{content_disposition_filename_utf8(filename)}&quot;</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line99">99</a>   end</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line100">100</a> </pre></td>
+          <td><pre><a name="line97">97</a>   def content_disposition(disposition, filename)</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line101">101</a>   def content_disposition_filename_ascii(filename)</pre></td>
+          <td><pre><a name="line98">98</a>     &quot;#{disposition}; &quot; \</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line102">102</a>     &#39;filename=&quot;&#39; +</pre></td>
+          <td><pre><a name="line99">99</a>       &quot;#{content_disposition_filename_ascii(filename)}; &quot; \</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line103">103</a>       percent_escape(</pre></td>
+          <td><pre><a name="line100">100</a>       &quot;#{content_disposition_filename_utf8(filename)}&quot;</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line104">104</a>         I18n.transliterate(filename),</pre></td>
+          <td><pre><a name="line101">101</a>   end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line105">105</a>         /[^ A-Za-z0-9!#{$+}.^_`|~-]/</pre></td>
+          <td><pre><a name="line102">102</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line106">106</a>       ) + &#39;&quot;&#39;</pre></td>
+          <td><pre><a name="line103">103</a>   def content_disposition_filename_ascii(filename)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line107">107</a>   end</pre></td>
+          <td><pre><a name="line104">104</a>     &#39;filename=&quot;&#39; +</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line108">108</a> </pre></td>
+          <td><pre><a name="line105">105</a>       percent_escape(</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line106">106</a>         I18n.transliterate(filename),</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line107">107</a>         /[^ A-Za-z0-9!#{$+}.^_`|~-]/</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line109">109</a>   def content_disposition_filename_utf8(filename)</pre></td>
+          <td><pre><a name="line108">108</a>       ) + &#39;&quot;&#39;</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line110">110</a>     &quot;filename*=UTF-8&#39;&#39;&quot; +</pre></td>
+          <td><pre><a name="line109">109</a>   end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line111">111</a>       percent_escape(</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line112">112</a>         filename,</pre></td>
-        </tr>
-        <tr class="inferred">
-          <td><pre><a name="line113">113</a>         /[^A-Za-z0-9!#{$&amp;}+.^_`|~-]/</pre></td>
+          <td><pre><a name="line110">110</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line114">114</a>       )</pre></td>
+          <td><pre><a name="line111">111</a>   def content_disposition_filename_utf8(filename)</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line115">115</a>   end</pre></td>
+          <td><pre><a name="line112">112</a>     &quot;filename*=UTF-8&#39;&#39;&quot; +</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line116">116</a> </pre></td>
+          <td><pre><a name="line113">113</a>       percent_escape(</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line114">114</a>         filename,</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line115">115</a>         /[^A-Za-z0-9!#{$&amp;}+.^_`|~-]/</pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line117">117</a>   def percent_escape(string, pattern)</pre></td>
+          <td><pre><a name="line116">116</a>       )</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line117">117</a>   end</pre></td>
+        </tr>
+        <tr class="inferred">
+          <td><pre><a name="line118">118</a> </pre></td>
         </tr>
         <tr class="marked">
-          <td><pre><a name="line118">118</a>     string.gsub(pattern) do |char|</pre></td>
+          <td><pre><a name="line119">119</a>   def percent_escape(string, pattern)</pre></td>
+        </tr>
+        <tr class="marked">
+          <td><pre><a name="line120">120</a>     string.gsub(pattern) do |char|</pre></td>
         </tr>
         <tr class="uncovered">
-          <td><pre><a name="line119">119</a>       char.bytes.map { |byte| format(&#39;%%%02X&#39;, byte) }.join</pre></td>
+          <td><pre><a name="line121">121</a>       char.bytes.map { |byte| format(&#39;%%%02X&#39;, byte) }.join</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line120">120</a>     end</pre></td>
+          <td><pre><a name="line122">122</a>     end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line121">121</a>   end</pre></td>
+          <td><pre><a name="line123">123</a>   end</pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line122">122</a> </pre></td>
+          <td><pre><a name="line124">124</a> </pre></td>
         </tr>
         <tr class="inferred">
-          <td><pre><a name="line123">123</a> end</pre></td>
+          <td><pre><a name="line125">125</a> end</pre></td>
         </tr>
       </tbody>
     </table>
 
-    <p>Generated on 2018-11-02 15:07:55 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
+    <p>Generated on 2018-11-19 18:12:34 +0100 with <a href="https://github.com/fguillen/simplecov-rcov">SimpleCov-RCov 0.2.3</a></p>
 
   </body>
 </html>
