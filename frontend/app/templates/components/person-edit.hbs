@@ -89,6 +89,7 @@
                     onchange=(action "setNationality")
                     onfocus=(action "handleFocus")
                     onblur=(action "handleBlur")
+                    searchField="1"
                     as |country|}}
                     <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
                   {{/power-select}}
