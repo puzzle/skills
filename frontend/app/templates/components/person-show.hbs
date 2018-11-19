@@ -49,8 +49,13 @@
             <td></td>
           </tr>
           <tr>
-            <td>Nationalität</td><td id="data-test-person-origin">{{person.origin}}</td>
+            <td>Nationalität</td><td id="data-test-person-nationality">{{format-country person.nationality}}</td>
           </tr>
+          {{#if person.nationality2}}
+            <tr>
+              <td>Weitere Nationalität</td><td id="data-test-person-nationality2">{{format-country person.nationality2}}</td>
+            </tr>
+          {{/if}}
           <tr>
             <td>Wohnort</td><td id="data-test-person-location">{{person.location}}</td>
           </tr>

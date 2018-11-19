@@ -34,14 +34,13 @@ module Odt
       report.add_field(:version, '1.0')
       report.add_field(:comment, 'Aktuelle Ausgabe')
     end
-
     # rubocop:enable Metrics/AbcSize
 
     # rubocop:disable Metrics/AbcSize
     def insert_personalien(report)
       report.add_field(:title, person.title)
       report.add_field(:birthdate, Date.parse(person.birthdate.to_s).strftime('%d.%m.%Y'))
-      report.add_field(:origin, person.origin)
+      report.add_field(:nationalities, nationalities)
       report.add_field(:language, person.language)
       report.add_image(:profile_picture, person.picture.path) if person.picture.file.present?
     end
@@ -119,5 +118,20 @@ module Odt
         "#{obj.year_from} - #{obj.year_to}"
       end
     end
+
+    def nationalities
+      nationality = format_nationality(person.nationality)
+      nationality2 = format_nationality(person.nationality2).presence
+      [nationality, nationality2].
+        compact.
+        join(', ')
+    end
+
+    def format_nationality(country_code)
+      return '' if country_code.blank?
+      country = ISO3166::Country[country_code]
+      country.translations[I18n.locale.to_s]
+    end
+
   end
 end

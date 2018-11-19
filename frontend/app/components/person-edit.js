@@ -2,7 +2,7 @@ import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { isBlank } from '@ember/utils';
-import { getNames } from 'ember-i18n-iso-countries';
+import { getNames as countryNames } from 'ember-i18n-iso-countries';
 
 
 export default Component.extend({
@@ -16,11 +16,21 @@ export default Component.extend({
       'Requirements Engineer', 'System-Techniker', 'System-Ingenieur', 'Architekt', 'Solutions Architect',
       'Projektleiter (M1)', 'Bereichsleiter (M2)', 'Bereichsleiter GL (M3)', 'Kaufmann / Kauffrau', 'Controller',
       'Marketing- und Kommunikationsfachmann / -fachfrau', 'Verkäufer', 'Key Account Manager']);
-    let countriesArray = Object.entries(getNames("de"))
+    this.initNationalities();
+  },
+
+  initNationalities() {
+    const countriesArray = Object.entries(countryNames("de"))
     this.set('countries', countriesArray);
-    let origin = this.get('person.origin');
-    this.selectedCountry = countriesArray.find(function(country) {
-      return country[1] == origin
+    const nationality = this.get('person.nationality');
+    const nationality2 = this.get('person.nationality2');
+    this.selectedNationality = this.getCountry(nationality);
+    this.selectedNationality2 = this.getCountry(nationality2);
+  },
+
+  getCountry(code) {
+    return this.countries.find(function(country) {
+      return country[0] === code;
     });
   },
 
@@ -44,15 +54,6 @@ export default Component.extend({
     }
     return !blurredEl.classList.contains('ember-power-select-search-input');
   },
-
-  getCountryByName(name) {
-    return this.countries.find(function(country) {
-      if (country.name == name) {
-        return country;
-      }
-    });
-  },
-
   actions: {
     submit(changeset) {
       return changeset.save()
@@ -84,9 +85,19 @@ export default Component.extend({
       this.set('person.birthdate', selectedDate[0]);
     },
 
-    setOrigin(selectedCountry) {
-      this.set('person.origin', selectedCountry[1]);
-      this.set('selectedCountry', selectedCountry);
+    setNationality(selectedCountry) {
+      this.set('person.nationality', selectedCountry[0]);
+      this.set('selectedNationality', selectedCountry);
+    },
+
+    setNationality2(selectedCountry) {
+      if (selectedCountry) {
+        this.set('person.nationality2', selectedCountry[0]);
+      } else {
+        // nationality2 can be blank / cleared
+        this.set('person.nationality2', undefined);
+      }
+      this.set('selectedNationality2', selectedCountry);
     },
 
   }

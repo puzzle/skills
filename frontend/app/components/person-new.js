@@ -2,7 +2,7 @@ import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { isBlank } from '@ember/utils';
-import { getNames } from 'ember-i18n-iso-countries';
+import { getNames as countryNames } from 'ember-i18n-iso-countries';
 
 export default Component.extend({
   i18n: service(),
@@ -15,11 +15,19 @@ export default Component.extend({
       'Requirements Engineer', 'System-Techniker', 'System-Ingenieur', 'Architekt', 'Solutions Architect',
       'Projektleiter (M1)', 'Bereichsleiter (M2)', 'Bereichsleiter GL (M3)', 'Kaufmann / Kauffrau', 'Controller',
       'Marketing- und Kommunikationsfachmann / -fachfrau', 'Verkäufer', 'Key Account Manager']);
-    let countriesArray = Object.entries(getNames("de"))
+    this.initNationalities();
+  },
+
+  initNationalities() {
+    const countriesArray = Object.entries(countryNames("de"))
     this.set('countries', countriesArray);
-    let origin = this.get('person.origin');
-    this.selectedCountry = countriesArray.find(function(country) {
-      return country[1] == origin
+    const nationality = this.get('newPerson.nationality');
+    this.selectedNationality = this.getCountry(nationality);
+  },
+
+  getCountry(code) {
+    return this.countries.find(function(country) {
+      return country[0] === code;
     });
   },
 
@@ -70,5 +78,20 @@ export default Component.extend({
       this.set('newPerson.origin', selectedCountry[1]);
       this.set('selectedCountry', selectedCountry)
     },
+
+    setNationality(selectedCountry) {
+      this.set('newPerson.nationality', selectedCountry[0]);
+      this.set('selectedNationality', selectedCountry);
+    },
+
+    setNationality2(selectedCountry) {
+      if (selectedCountry) {
+        this.set('newPerson.nationality2', selectedCountry[0]);
+      } else {
+        // nationality2 can be blank / cleared
+        this.set('newPerson.nationality2', undefined);
+      }
+      this.set('selectedNationality2', selectedCountry);
+    }
   }
 });

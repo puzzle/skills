@@ -9,7 +9,8 @@
 #  martial_status   :string
 #  updated_by       :string
 #  name             :string
-#  origin           :string
+#  nationality      :string
+#  nationality2     :string
 #  role             :string
 #  title            :string
 #  origin_person_id :integer
@@ -29,7 +30,8 @@ bob:
   location: Bern
   martial_status: Single
   name: Bob Anderson
-  origin: Switzerland
+  nationality: CH
+  nationality2: SE
   role: Cleaner
   title: BSc in Cleaning
   competences: Java\n Ruby
@@ -41,7 +43,7 @@ alice:
   location: London
   martial_status: Maried
   name: Alice Mante
-  origin: England
+  nationality: AU
   role: Secretary
   title: MSc in writing
   competences: LaTex\n Puppet\n Bash

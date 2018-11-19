@@ -9,7 +9,8 @@
 #  martial_status           :string
 #  updated_by               :string
 #  name                     :string
-#  origin                   :string
+#  nationality              :string
+#  nationality2             :string
 #  role                     :string
 #  title                    :string
 #  origin_person_id         :integer
@@ -42,10 +43,16 @@ class Person < ApplicationRecord
 
   before_destroy :destroy_variations
 
-  validates :birthdate, :language, :location, :name, :origin,
+  validates :birthdate, :language, :location, :name, :nationality,
             :role, :title, presence: true
-  validates :location, :language, :martial_status, :name, :origin,
+  validates :location, :language, :martial_status, :name,
             :role, :title, :variation_name, length: { maximum: 100 }
+
+  validates :nationality,
+            inclusion: { in: ISO3166::Country.all.collect(&:alpha2) }
+  validates :nationality2,
+            inclusion: { in: ISO3166::Country.all.collect(&:alpha2) },
+            allow_blank: true
 
   validate :valid_person
   validate :picture_size
@@ -57,7 +64,6 @@ class Person < ApplicationRecord
                     :language,
                     :location,
                     :name,
-                    :origin,
                     :role,
                     :title,
                     :competences

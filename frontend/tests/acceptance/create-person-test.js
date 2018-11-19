@@ -22,7 +22,7 @@ test('creating a new person', async function(assert) {
   /* eslint "no-undef": "off" */
   await selectChoose('#role', 'Controller')
   await selectChoose('#company', 'Firma');
-  await selectChoose('#origin', ".ember-power-select-option", 0);
+  await selectChoose('#nationality', 'Schweden');
   await selectChoose('#martialStatus', 'verheiratet');
 
   setFlatpickrDate('.flatpickr-input', '26.10.2018')
@@ -40,7 +40,7 @@ test('creating a new person', async function(assert) {
   assert.equal(editPage.profileData.title, 'Dr.');
   assert.equal(editPage.profileData.role, 'Controller');
   assert.equal(editPage.profileData.birthdate, '26.10.2018');
-  assert.equal(editPage.profileData.origin, 'Afghanistan');
+  assert.equal(editPage.profileData.nationality, 'Schweden');
   assert.equal(editPage.profileData.location, 'Chehrplatz Schwandi');
   assert.equal(editPage.profileData.language, 'Schwizerdütsch');
   assert.equal(editPage.profileData.maritalStatus, 'verheiratet');
