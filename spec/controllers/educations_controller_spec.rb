@@ -6,7 +6,7 @@ describe EducationsController, type: :controller do
   describe 'GET index' do
     it 'returns all educations' do
       keys = %w(location title year_from year_to updated_by)
-      process :index, method: :get, params: { type: 'Person', person_id: bob.id }
+      process :index, method: :get, params: { person_id: bob.id }
 
       educations = json['data']
 
@@ -20,7 +20,7 @@ describe EducationsController, type: :controller do
     it 'returns education' do
       education = educations(:bsc)
 
-      process :show, method: :get, params: { type: 'Person', person_id: bob.id, id: education.id }
+      process :show, method: :get, params: { person_id: bob.id, id: education.id }
 
       education_attrs = json['data']['attributes']
 
@@ -62,8 +62,7 @@ describe EducationsController, type: :controller do
   describe 'DELETE destroy' do
     it 'destroys existing person' do
       education = educations(:bsc)
-      process :destroy, method: :delete, params: { type: 'Person',
-                                                   person_id: bob.id,
+      process :destroy, method: :delete, params: { person_id: bob.id,
                                                    id: education.id }
 
       expect(Education.exists?(education.id)).to eq(false)

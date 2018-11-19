@@ -7,7 +7,7 @@ describe ActivitiesController do
     it 'returns all activities' do
       keys = %w(description updated_by role year_from)
 
-      process :index, method: :get, params: { type: 'Person', person_id: bob.id }
+      process :index, method: :get, params: { person_id: bob.id }
 
       activities = json['data']
 
@@ -21,7 +21,7 @@ describe ActivitiesController do
     it 'returns activity' do
       activity = activities(:swisscom)
 
-      process :show, method: :get, params: { type: 'Person', person_id: bob.id, id: activity.id }
+      process :show, method: :get, params: { person_id: bob.id, id: activity.id }
 
       activity_attrs = json['data']['attributes']
 
@@ -63,7 +63,7 @@ describe ActivitiesController do
     it 'destroys existing person' do
       activity = activities(:swisscom)
       process :destroy, method: :delete, params: {
-        type: 'Person', person_id: bob.id, id: activity.id
+        person_id: bob.id, id: activity.id
       }
 
       expect(Activity.exists?(activity.id)).to eq(false)
@@ -78,15 +78,14 @@ describe ActivitiesController do
 
   def create_params(object, user_id, model_type)
     { data: { attributes: object,
-              relationships: { person: { data: { type: 'People',
-                                                 id: user_id } } }, type: model_type } }
+              relationships: { person: { data: { id: user_id } } }, type: model_type } }
   end
 
   def update_params(object_id, updated_attributes, user_id, model_type)
     { data: { id: object_id,
               attributes: updated_attributes,
               relationships: {
-                person: { data: { type: 'people', id: user_id } }
+                person: { data: { id: user_id } }
               }, type: model_type }, id: object_id }
   end
 end

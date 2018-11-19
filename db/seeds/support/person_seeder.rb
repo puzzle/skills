@@ -14,10 +14,6 @@ class PersonSeeder
       projects = person.projects.each do |project|
         seed_project_technology(project.id)
       end
-
-      rand(0..3).times do
-        seed_variation(person)
-      end
     end
   end
 
@@ -27,38 +23,12 @@ class PersonSeeder
     end
   end
 
-  def seed_variation(person)
-    person_variation = Person::Variation.create_variation(Faker::Beer.name, person.id)
-    associations = [:activity, :advanced_training, :project, :education, :person_competence]
-    change_variation(person_variation)
-    associations.each do |a|
-      change_associations(a, person_variation)
-    end
-  rescue
-  end
-
-  def change_associations(assoc_name, person_variation)
-    associations = person_variation.send(assoc_name.to_s.pluralize)
-    associations.each do |a|
-      rand(0..1).times do
-        send("change_#{assoc_name}", a)
-      end
-    end
-  end
-
   private
 
   def seed_image(person)
     File.open('spec/fixtures/files/picture.png') do |f|
       person.update_attributes(picture: f)
     end
-  end
-
-  def change_variation(person_variation)
-    person_variation.language = 'Deutsch, Englisch, Französisch'
-    person_variation.location = Faker::Pokemon.location
-    person_variation.role = Faker::Company.profession
-    person_variation.title = Faker::Name.title
   end
 
   def change_activity(activity)

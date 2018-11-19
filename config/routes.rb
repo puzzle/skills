@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   scope '/api' do
@@ -15,8 +15,6 @@ Rails.application.routes.draw do
     resources :people do
       put 'picture', to: 'people#update_picture'
       get 'picture'
-      get 'variations', to: 'person_variations#index'
-      post 'variation', to: 'person_variations#create'
       get 'fws', to: 'people#export_fws'
     end
 

@@ -2,14 +2,14 @@
 #
 # Table name: expertise_topic_skill_values
 #
-#  id                  :integer          not null, primary key
+#  id                  :bigint(8)        not null, primary key
 #  years_of_experience :integer
 #  number_of_projects  :integer
 #  last_use            :integer
-#  skill_level         :string
+#  skill_level         :integer
 #  comment             :string
-#  person_id           :integer
-#  expertise_topic_id  :integer
+#  person_id           :bigint(8)        not null
+#  expertise_topic_id  :bigint(8)        not null
 #
 
 require 'rails_helper'

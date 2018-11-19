@@ -5,7 +5,7 @@ def up
     #             2 => 'Ex Mitarbeiter',
     #             3 => 'Bewerber',
     #             4 => 'Partner' }.freeze
-    
+
     employees = Company.create!(name: 'Firma', my_company: true)
     ex_employees = Company.create!(name: 'Ex-Mitarbeiter', my_company: false)
     candidates = Company.create!(name: 'Bewerber', my_company: false)
@@ -32,4 +32,5 @@ def up
   def down
     add_column :people, :status_id
   end
+
 end

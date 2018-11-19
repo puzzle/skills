@@ -5,8 +5,7 @@ class PersonSerializer < ApplicationSerializer
 
   attributes :id, :birthdate, :language, :picture_path, :location,
              :martial_status, :updated_by, :name, :nationality,
-             :nationality2, :role, :title, :competences,
-             :origin_person_id, :variation_name, :updated_at
+             :nationality2, :role, :title, :competences, :updated_at
 
   def picture_path
     "/api/people/#{object.id}/picture?#{Time.zone.now}"

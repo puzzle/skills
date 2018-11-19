@@ -2,10 +2,10 @@
 #
 # Table name: expertise_topics
 #
-#  id                    :integer          not null, primary key
-#  name                  :string
+#  id                    :bigint(8)        not null, primary key
+#  name                  :string           not null
 #  user_topic            :boolean          default(FALSE)
-#  expertise_category_id :integer
+#  expertise_category_id :bigint(8)        not null
 #
 
 require 'rails_helper'

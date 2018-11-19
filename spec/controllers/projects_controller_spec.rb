@@ -6,7 +6,7 @@ describe ProjectsController do
   describe 'GET index' do
     it 'returns all projects' do
       keys = %w(technology title description role updated_by year_to)
-      process :index, method: :get, params: { type: 'Person', person_id: bob.id }
+      process :index, method: :get, params: { person_id: bob.id }
 
       projects = json['data']
 
@@ -20,7 +20,7 @@ describe ProjectsController do
     it 'returns project' do
       project = projects(:duckduckgo)
 
-      process :show, method: :get, params: { type: 'Person', person_id: bob.id, id: project.id }
+      process :show, method: :get, params: { person_id: bob.id, id: project.id }
 
       project_attrs = json['data']['attributes']
 
@@ -68,8 +68,7 @@ describe ProjectsController do
   describe 'DELETE destroy' do
     it 'destroys existing person' do
       project = projects(:duckduckgo)
-      process :destroy, method: :delete, params: { type: 'Person',
-                                                   person_id: bob.id,
+      process :destroy, method: :delete, params: { person_id: bob.id,
                                                    id: project.id }
 
       expect(Project.exists?(project.id)).to eq(false)

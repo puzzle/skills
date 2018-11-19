@@ -2,26 +2,24 @@
 #
 # Table name: people
 #
-#  id                       :integer          not null, primary key
-#  birthdate                :datetime
-#  language                 :string
-#  location                 :string
-#  martial_status           :string
-#  updated_by               :string
-#  name                     :string
-#  nationality              :string
-#  nationality2             :string
-#  role                     :string
-#  title                    :string
-#  origin_person_id         :integer
-#  variation_name           :string
-#  created_at               :datetime         not null
-#  updated_at               :datetime         not null
-#  type                     :string
-#  picture                  :string
-#  competences              :string
-#  associations_updatet_at  :timestamp
-#  company_id               :integer
+#  id                      :integer          not null, primary key
+#  birthdate               :datetime
+#  language                :string
+#  location                :string
+#  martial_status          :string
+#  updated_by              :string
+#  name                    :string
+#  role                    :string
+#  title                   :string
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  picture                 :string
+#  competences             :string
+#  company_id              :bigint(8)
+#  associations_updatet_at :datetime
+#  nationality             :string
+#  nationality2            :string
+#
 
 class Person < ApplicationRecord
   include PgSearch
@@ -36,17 +34,12 @@ class Person < ApplicationRecord
   has_many :educations, dependent: :destroy
   has_many :expertise_topic_skill_values, dependent: :destroy
   has_many :expertise_topics, through: :expertise_topic_skill_values
-  has_many :variations, foreign_key: :origin_person_id,
-                        class_name: 'Person::Variation',
-                        dependent: :destroy,
-                        inverse_of: false
 
-  before_destroy :destroy_variations
 
   validates :birthdate, :language, :location, :name, :nationality,
             :role, :title, presence: true
   validates :location, :language, :martial_status, :name,
-            :role, :title, :variation_name, length: { maximum: 100 }
+            :role, :title, length: { maximum: 100 }
 
   validates :nationality,
             inclusion: { in: ISO3166::Country.all.collect(&:alpha2) }
@@ -54,10 +47,9 @@ class Person < ApplicationRecord
             inclusion: { in: ISO3166::Country.all.collect(&:alpha2) },
             allow_blank: true
 
-  validate :valid_person
   validate :picture_size
 
-  scope :list, -> { where(type: nil).order(:name) }
+  scope :list, -> { order(:name) }
 
   pg_search_scope :search,
                   against: [
@@ -81,12 +73,6 @@ class Person < ApplicationRecord
                     }
                   }
 
-  def destroy_variations
-    unless is_a?(Person::Variation)
-      variations.destroy_all
-    end
-  end
-
   private
 
   def picture_size
@@ -94,7 +80,4 @@ class Person < ApplicationRecord
     errors.add(:picture, 'grösse kann maximal 10MB sein')
   end
 
-  def valid_person
-    return false unless is_a?(Person::Variation)
-  end
 end

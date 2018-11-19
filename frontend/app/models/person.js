@@ -16,9 +16,6 @@ const Person = DS.Model.extend({
 
   company: DS.belongsTo('company'),
 
-  variationName: DS.attr('string'),
-  originPersonId: DS.attr('number'),
-
   educations: DS.hasMany('education'),
   personCompetences: DS.hasMany('person-competence'),
   advancedTrainings: DS.hasMany('advanced-training'),

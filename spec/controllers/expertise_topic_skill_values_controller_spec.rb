@@ -3,8 +3,6 @@ require 'rails_helper'
 describe ExpertiseTopicSkillValuesController do
   before { auth(:ken) }
 
-  let(:bobs_variation) { Person::Variation.create_variation('bobs_variation', people(:bob).id) }
-
   describe 'GET index' do
     it 'returns all expertise_topic_skill_value_skill_values for given params' do
       keys = %w(years_of_experience number_of_projects last_use skill_level comment)
@@ -48,23 +46,6 @@ describe ExpertiseTopicSkillValuesController do
 
       new_expertise_topic_skill_value = ExpertiseTopicSkillValue.find_by(last_use: 2000)
       expect(new_expertise_topic_skill_value.number_of_projects).to eq(12)
-    end
-
-    it "doesn't create new expertise_topic_skill_value for variation" do
-      expertise_topic_skill_value = { years_of_experience: 1,
-                                      number_of_projects: 12,
-                                      last_use: 2000,
-                                      skill_level: 'expert',
-                                      comment: 'very high level' }
-
-      exception = assert_raises(RuntimeError) do
-        post :create, params: create_params(expertise_topic_skill_value,
-                                            expertise_topics(:rails),
-                                            bobs_variation.id)
-      end
-
-      expect(ExpertiseTopicSkillValue.find_by(last_use: 2000)).to be_nil
-      expect(exception.message).to eq('not yet implemented')
     end
   end
 
