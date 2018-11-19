@@ -7,7 +7,7 @@ describe AdvancedTrainingsController do
     it 'returns all advanced_trainings' do
       keys = %w(description updated_by year_from year_to)
 
-      process :index, method: :get, params: { type: 'Person', person_id: bob.id }
+      process :index, method: :get, params: { person_id: bob.id }
 
       advanced_trainings = json['data']
 
@@ -21,7 +21,7 @@ describe AdvancedTrainingsController do
     it 'returns advanced training' do
       course = advanced_trainings(:course)
 
-      process :show, method: :get, params: { type: 'Person', person_id: bob.id, id: course.id }
+      process :show, method: :get, params: { person_id: bob.id, id: course.id }
 
       course_attrs = json['data']['attributes']
 
@@ -63,7 +63,7 @@ describe AdvancedTrainingsController do
     it 'destroys existing person' do
       course = advanced_trainings(:course)
       process :destroy, method: :delete, params: {
-        type: 'Person', person_id: bob.id, id: course.id
+         person_id: bob.id, id: course.id
       }
 
       expect(AdvancedTraining.exists?(course.id)).to eq(false)

@@ -7,7 +7,7 @@ describe PersonCompetencesController do
     it 'returns all person_competences' do
       keys = %w(category offer)
 
-      process :index, method: :get, params: { type: 'Person', person_id: person.id }
+      process :index, method: :get, params: { person_id: person.id }
 
       person_competences = json['data']
 
@@ -21,7 +21,7 @@ describe PersonCompetencesController do
     it 'returns person_competences' do
       person_competence = person_competences(:technologien)
 
-      process :show, method: :get, params: { type: 'Person', person_id: person.id, id: person_competence.id }
+      process :show, method: :get, params: { person_id: person.id, id: person_competence.id }
 
       person_competence_attrs = json['data']['attributes']
 
@@ -60,7 +60,7 @@ describe PersonCompetencesController do
     it 'destroys existing person_competence' do
       person_competence = person_competences(:technologien)
       process :destroy, method: :delete, params: {
-        type: 'Person', person_id: person.id, id: person_competence.id
+        person_id: person.id, id: person_competence.id
       }
 
       expect(PersonCompetence.exists?(person_competence.id)).to eq(false)

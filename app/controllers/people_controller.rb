@@ -1,7 +1,7 @@
 class PeopleController < CrudController
   self.permitted_attrs = %i[birthdate picture language location
                             martial_status updated_by name nationality nationality2 role title
-                            competences variation_name company company_id]
+                            competences company company_id]
 
   self.nested_models = %i[advanced_trainings activities projects
                           educations person_competences]

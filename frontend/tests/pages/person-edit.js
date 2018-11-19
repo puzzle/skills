@@ -1,11 +1,8 @@
-/* global clickDropdown */
 import {
   create,
   visitable,
   fillable,
   clickable,
-  clickOnText,
-  hasClass,
   collection,
   text
 } from 'ember-cli-page-object';
@@ -38,42 +35,6 @@ export default create({
     location: text('#data-test-person-location'),
     language: text('#data-test-person-language'),
     maritalStatus: text('#data-test-person-marital-status'),
-  },
-
-  personActions: {
-    scope: '.toolbar-pills',
-
-    openVariationDropdown() {
-      return clickDropdown('#variation-cv-pill > .ember-basic-dropdown-trigger');
-    },
-
-    originCVIsActive: hasClass('active', '#actual-cv-pill > a'),
-
-    variationDropdownButtonText:
-      text('#variation-cv-pill > .ember-basic-dropdown-trigger'),
-
-    variationDropdownButtonIsActive: hasClass('active', '#variation-cv-pill'),
-  },
-
-  variationDropdown: {
-    scope: '[data-test-variation-dropdown-content]',
-
-    newVariation: clickable('.new-variation-link'),
-  },
-
-  createVariationDialog: {
-    scope: '[data-test-variation-modal]',
-
-    variationName: fillable('[name="person[variationName]"]'),
-    cancel: clickOnText('Abbrechen'),
-    create: clickable('.btn-primary'),
-  },
-
-  async createVariation(name) {
-    await this.personActions.openVariationDropdown();
-    await this.variationDropdown.newVariation();
-    await this.createVariationDialog.variationName(name);
-    return this.createVariationDialog.create();
   },
 
   competences: {

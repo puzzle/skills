@@ -36,17 +36,12 @@ class Person < ApplicationRecord
   has_many :educations, dependent: :destroy
   has_many :expertise_topic_skill_values, dependent: :destroy
   has_many :expertise_topics, through: :expertise_topic_skill_values
-  has_many :variations, foreign_key: :origin_person_id,
-                        class_name: 'Person::Variation',
-                        dependent: :destroy,
-                        inverse_of: false
 
-  before_destroy :destroy_variations
 
   validates :birthdate, :language, :location, :name, :nationality,
             :role, :title, presence: true
-  validates :location, :language, :martial_status, :name,
-            :role, :title, :variation_name, length: { maximum: 100 }
+  validates :location, :language, :martial_status, :name, :origin,
+            :role, :title, length: { maximum: 100 }
 
   validates :nationality,
             inclusion: { in: ISO3166::Country.all.collect(&:alpha2) }
@@ -57,7 +52,7 @@ class Person < ApplicationRecord
   validate :valid_person
   validate :picture_size
 
-  scope :list, -> { where(type: nil).order(:name) }
+  scope :list, -> { order(:name) }
 
   pg_search_scope :search,
                   against: [
@@ -81,12 +76,6 @@ class Person < ApplicationRecord
                     }
                   }
 
-  def destroy_variations
-    unless is_a?(Person::Variation)
-      variations.destroy_all
-    end
-  end
-
   private
 
   def picture_size
@@ -94,7 +83,4 @@ class Person < ApplicationRecord
     errors.add(:picture, 'grösse kann maximal 10MB sein')
   end
 
-  def valid_person
-    return false unless is_a?(Person::Variation)
-  end
 end

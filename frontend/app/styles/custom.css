@@ -291,33 +291,12 @@ hr {
     border: 0 !important;
   }
 
-  #variation-options {
-    float: right;
-  }
-
-  #variation-selection{
-    float: left;
-  }
-
-  #actual-cv-pill > a {
-    margin: 0px;
-  }
-
-  #variation-cv-pill > a {
-    margin: 0px;
-  }
-
   #option-pill > a{
     border:0px;
     border-radius: 6px;
   }
   #remove-profile {
     color: red;
-  }
-
-  .variation-link.active {
-    background-color: #00aaff;
-    color: white;
   }
 
   .group-pills > li:first-child > a {
@@ -389,13 +368,6 @@ hr {
 
   .action-header{
     width: 0px;
-  }
-
-  #variation-placeholder {
-    height: 14px;
-    max-width: 150px;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   .menu_div ul li a.active {

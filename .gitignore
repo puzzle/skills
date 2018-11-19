@@ -17,6 +17,7 @@
 !/log/.keep
 !/tmp/.keep
 .DS_STORE
+/spec/coverage/*
 
 # Ignore Byebug command history file.
 .byebug_history

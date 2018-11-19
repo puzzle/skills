@@ -132,9 +132,10 @@ describe PeopleController do
 
         bob_attrs = json['data']['attributes']
 
-        expect(bob_attrs.count).to eq(15)
+        expect(bob_attrs.count).to eq(13)
         expect(bob_attrs['nationality']).to eq('CH')
         expect(bob_attrs['nationality2']).to eq('SE')
+        expect(bob_attrs.count).to eq(12)
         json_object_includes_keys(bob_attrs, keys)
         # expect(bob_attrs['picture-path']).to eq("/api/people/#{bob.id}/picture")
 
@@ -143,20 +144,6 @@ describe PeopleController do
 
         expect(nested_attrs.count).to eq(6)
         json_object_includes_keys(nested_attrs, nested_keys)
-      end
-
-      it 'returns person variations with nested modules' do
-        bobs_variation1 = Person::Variation.create_variation('bobs_variation1', people(:bob).id)
-        keys = %w[birthdate picture_path language location martial_status
-                  updated_by name nationality nationality2 role title variation_name]
-
-        process :show, method: :get, params: { id: bobs_variation1.id }
-
-        bob_attrs = json['data']['attributes']
-
-        expect(json['data']['type']).to eq('people')
-        expect(bob_attrs.count).to eq(15)
-        json_object_includes_keys(bob_attrs, keys)
       end
     end
 
@@ -200,19 +187,6 @@ describe PeopleController do
         bob.reload
         expect(bob.location).to eq('test_location')
       end
-
-      it 'updates existing person variation' do
-        bobs_variation1 = Person::Variation.create_variation('bobs_variation1', people(:bob).id)
-        updated_attributes = { location: 'test_location' }
-        process :update, method: :put, params: update_params(bobs_variation1.id,
-                                                             updated_attributes,
-                                                             people(:bob).id,
-                                                             'variations')
-
-        bobs_variation1.reload
-
-        expect(bobs_variation1.location).to eq('test_location')
-      end
     end
 
     describe 'DELETE destroy' do
@@ -225,20 +199,6 @@ describe PeopleController do
         expect(AdvancedTraining.exists?(person_id: bob.id)).to eq(false)
         expect(Project.exists?(person_id: bob.id)).to eq(false)
         expect(Education.exists?(person_id: bob.id)).to eq(false)
-      end
-
-      it 'destroys existing person variation' do
-        bobs_variation2 = Person::Variation.create_variation('bobs_variation1', people(:bob).id)
-
-        process :destroy,
-                method: :delete,
-                params: { person_id: people(:bob).id, id: bobs_variation2.id }
-
-        expect(Person::Variation.exists?(bobs_variation2.id)).to eq(false)
-        expect(Activity.exists?(person_id: bobs_variation2.id)).to eq(false)
-        expect(AdvancedTraining.exists?(person_id: bobs_variation2.id)).to eq(false)
-        expect(Project.exists?(person_id: bobs_variation2.id)).to eq(false)
-        expect(Education.exists?(person_id: bobs_variation2.id)).to eq(false)
       end
     end
   end
