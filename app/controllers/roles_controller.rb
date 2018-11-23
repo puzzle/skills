@@ -1,0 +1,2 @@
+class RolesController < CrudController
+end

@@ -124,7 +124,6 @@ ActiveRecord::Schema.define(version: 2018_11_16_145859) do
     t.string "martial_status"
     t.string "updated_by"
     t.string "name"
-    t.string "role"
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -135,6 +134,13 @@ ActiveRecord::Schema.define(version: 2018_11_16_145859) do
     t.string "nationality"
     t.string "nationality2"
     t.index ["company_id"], name: "index_people_on_company_id"
+  end
+
+  create_table "people_roles", force: :cascade do |t|
+    t.bigint "person_id"
+    t.bigint "role_id"
+    t.index ["person_id"], name: "index_people_roles_on_person_id"
+    t.index ["role_id"], name: "index_people_roles_on_role_id"
   end
 
   create_table "person_competences", force: :cascade do |t|
@@ -166,6 +172,12 @@ ActiveRecord::Schema.define(version: 2018_11_16_145859) do
     t.integer "person_id"
     t.integer "year_from"
     t.index ["person_id"], name: "index_projects_on_person_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", id: :serial, force: :cascade do |t|

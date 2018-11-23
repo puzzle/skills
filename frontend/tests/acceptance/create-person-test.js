@@ -20,7 +20,7 @@ test('creating a new person', async function(assert) {
   assert.equal(currentURL(), '/people/new');
 
   /* eslint "no-undef": "off" */
-  await selectChoose('#role', 'Controller')
+  await selectChoose('#role', '.ember-power-select-option', 0)
   await selectChoose('#company', 'Firma');
   await selectChoose('#nationality', 'Schweden');
   await selectChoose('#martialStatus', 'verheiratet');
@@ -38,7 +38,7 @@ test('creating a new person', async function(assert) {
   assert.ok(/^\/people\/\d+$/.test(currentURL()));
   assert.equal(editPage.profileData.name, 'Hansjoggeli');
   assert.equal(editPage.profileData.title, 'Dr.');
-  assert.equal(editPage.profileData.role, 'Controller');
+  assert.equal(editPage.profileData.role, 'Software-Engineer');
   assert.equal(editPage.profileData.birthdate, '26.10.2018');
   assert.equal(editPage.profileData.nationality, 'Schweden');
   assert.equal(editPage.profileData.location, 'Chehrplatz Schwandi');

@@ -1,4 +1,5 @@
 class AttributeDeserializer
+
   def initialize(params, options = {})
     @params = params
     @options = options

@@ -124,7 +124,7 @@ describe PeopleController do
     describe 'GET show' do
       it 'returns person with nested modules' do
         keys = %w[birthdate picture_path language location martial_status
-                  updated_by name nationality nationality2 role title competences]
+                  updated_by name nationality nationality2 title competences]
 
         bob = people(:bob)
 
@@ -132,16 +132,16 @@ describe PeopleController do
 
         bob_attrs = json['data']['attributes']
 
-        expect(bob_attrs.count).to eq(13)
+        expect(bob_attrs.count).to eq(12)
         expect(bob_attrs['nationality']).to eq('CH')
         expect(bob_attrs['nationality2']).to eq('SE')
         json_object_includes_keys(bob_attrs, keys)
         # expect(bob_attrs['picture-path']).to eq("/api/people/#{bob.id}/picture")
 
-        nested_keys = %w(advanced_trainings activities projects educations company)
+        nested_keys = %w(advanced_trainings activities projects educations company roles)
         nested_attrs = json['data']['relationships']
 
-        expect(nested_attrs.count).to eq(6)
+        expect(nested_attrs.count).to eq(7)
         json_object_includes_keys(nested_attrs, nested_keys)
       end
     end
@@ -150,6 +150,8 @@ describe PeopleController do
       it 'creates new person' do
 
         company = companies(:partner)
+        role1 = roles(:'software-engineer')
+        role2 = roles(:'system-engineer')
         person = { birthdate: Time.current,
                    picture: fixture_file_upload('files/picture.png', 'image/png'),
                    language: 'German',
@@ -158,11 +160,19 @@ describe PeopleController do
                    name: 'test',
                    nationality: 'CH',
                    nationality2: 'FR',
-                   role: 'tester',
                    title: 'Bsc in tester',
-                   company_id: company.id}
+                   }
+        relationships = {company: { data: { id: company.id, type: 'companies' }},
+                         roles: { data: [{ id: role1.id, type: 'role'}, { id: role2.id, type: 'role'}]}}
+        
 
-        process :create, method: :post, params: { data: { attributes: person } }
+        params = { data: {
+          type: 'people',
+          attributes: person, 
+          relationships: relationships
+        }
+        }
+        process :create, method: :post, params: params 
 
         new_person = Person.find_by(name: 'test')
         expect(new_person).not_to eq(nil)
@@ -170,6 +180,7 @@ describe PeopleController do
         expect(new_person.language).to eq('German')
         expect(new_person.nationality).to eq('CH')
         expect(new_person.nationality2).to eq('FR')
+        expect(new_person.roles).to eq([ role1, role2 ])
         expect(new_person.picture.url)
           .to include("#{Rails.root}/uploads/person/picture/#{new_person.id}/picture.png")
       end
@@ -179,12 +190,14 @@ describe PeopleController do
       it 'updates existing person' do
         bob = people(:bob)
 
+        role = roles(:'system-engineer')
         process :update, method: :put, params: {
-          id: bob.id, data: { attributes: { location: 'test_location' } }
+          id: bob.id, data: { attributes: { location: 'test_location' }, relationships: { roles: { data: [ { id: role.id, type: 'role' }]}} }
         }
 
         bob.reload
         expect(bob.location).to eq('test_location')
+        expect(bob.roles).to eq([role])
       end
     end
 

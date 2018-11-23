@@ -22,9 +22,6 @@
 # Ignore Byebug command history file.
 .byebug_history
 
-# Igonre coverage files
-spec/coverage
-
 # Ignore uploaded pictures
 /uploads
 /public/uploads
