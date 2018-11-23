@@ -1,6 +1,5 @@
-import { inject as service } from "@ember/service";
-import Component from "@ember/component";
-import $ from "jquery";
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 
 export default Component.extend({
   store: service(),
@@ -83,14 +82,6 @@ export default Component.extend({
         }
       });
       this.sendAction("companyEditing");
-    },
-
-    deleteCompany(companyToDelete) {
-      $(".modal-backdrop").remove();
-      companyToDelete
-        .destroyRecord()
-        .then(() => this.get("router").transitionTo("companies"));
-      // TODO: Handle error case, display simple notification?
     },
 
     addLocations(company) {

@@ -1,0 +1,23 @@
+<a {{action "openConfirmation"}} class="card-link deleteField" role="button">
+  <i class="fa trash"></i>
+</a>
+
+{{#if showConfirmation}}
+  <div id="delete-confirmation-modal" class="modal fade show text-left" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Löschen bestätigen</h5>
+        </div>
+        <div class="modal-body">
+          {{message}}
+        </div>
+        <div class="modal-footer">
+          <button id="cancel-button" class="btn btn-secondary" {{action "cancel"}}>Abbrechen</button>
+          <button id="delete-button" class="btn btn-primary" {{action "delete" entry transitionTo}}>Löschen</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="modal-backdrop" class="modal-backdrop-transparent modal-transition modal-backdrop-blue"></div>
+{{/if}}

@@ -12,7 +12,7 @@
 </div>
 <div id="collapseTwo" class="collapse show border border-primary rounded-bottom">
   <div class="card-body">
-    {{#each company.offers as |offer index|}}
+    {{#each company.offers as |offer|}}
       <div class="row mb-2">
         <div class="col-sm-3" >
           {{input value=offer.category type="text" class="form-control" placeholder="Neue Kategorie"}}
@@ -31,11 +31,11 @@
             {{offer}}
           {{/power-select-multiple-with-create}}
         </div>
-        <div class="col-sm-1">
-          <a data-toggle="modal" data-target="#deleteConfirmationModal{{index}}" role="button" class="card-link text-black"><i class="fa trash"></i></a>
-        </div>
+        {{delete-with-confirmation
+          message=(concat 'Angebot ' offer.category ' wirklich löschen?')
+          entry=offer
+        }}
       </div>
-      {{delete-confirmation object=offer index=index}}
     {{/each}}
     <a role="button" class="card-link text-dark" {{action 'createNewOffer' company}}><i class="fa add"></i></a>
     <div class="row mb-1">

@@ -12,7 +12,7 @@
 </div>
 <div id="collapseTwo" class="collapse show border border-primary rounded-bottom">
   <div class="card-body">
-    {{#each person.personCompetences as |competence index|}}
+    {{#each person.personCompetences as |competence|}}
       <div class="row mb-2">
         <div class="col-sm-3" >
           {{input value=competence.category type="text" class="form-control" placeholder="Neue Kategorie"}}
@@ -31,11 +31,11 @@
             {{competence}}
           {{/power-select-multiple-with-create}}
         </div>
-        <div class="col-sm-1">
-          <a data-toggle="modal" data-target="#deleteConfirmationModal{{index}}" role="button" class="card-link text-black"><i class="fa trash"></i></a>
-        </div>
+        {{delete-with-confirmation
+          message=(concat 'Kompetenz ' competence.category ' wirklich löschen?')
+          entry=competence
+        }}
       </div>
-      {{delete-confirmation object=competence index=index}}
     {{/each}}
     <a role="button" class="card-link text-dark" {{action 'createNewOffer' person}}><i class="fa add"></i></a>
   </div>
