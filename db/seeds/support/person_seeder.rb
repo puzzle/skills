@@ -92,7 +92,7 @@ class PersonSeeder
 
   def seed_roles
     Role.seed do |a|
-      a.name = Faker::Military.army_rank
+      a.name = Faker::Military.unique.army_rank
     end
   end
 
