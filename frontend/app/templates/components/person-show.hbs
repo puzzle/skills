@@ -31,7 +31,10 @@
             <td>Titel</td><td id="data-test-person-title">{{person.title}}</td>
           </tr>
           <tr>
-            <td>Funktion</td><td id="data-test-person-role">{{person.roles.firstObject.name}}</td>
+            <td>Funktion</td>
+            {{#if person.roles.length}}
+              <td id="data-test-person-role">{{person.roles.firstObject.name}}</td>
+            {{/if}}
           </tr>
           <tr>
             <td>Geb. Datum</td>

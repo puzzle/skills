@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     resources :locations, controller: 'locations'
     resources :offers, controller: 'offers'
 
-    resources :roles, controller: 'roles'
+    resources :roles, only: :index
 
     resources :companies, controller: 'companies'
 

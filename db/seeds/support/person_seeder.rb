@@ -99,7 +99,7 @@ class PersonSeeder
   def seed_activity(person_id)
     Activity.seed do |a|
       a.description = Faker::Hacker.say_something_smart
-      #a.role = Faker::Company.profession
+      a.role = Faker::Company.profession
       a.year_from = Faker::Number.between(1956, 1979)
       a.year_to = Faker::Number.between(1980, 2016)
       a.person_id = person_id
