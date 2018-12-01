@@ -1,7 +1,6 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { isBlank } from '@ember/utils';
-import $ from 'jquery';
 
 export default Component.extend({
   i18n: service(),
@@ -100,12 +99,6 @@ export default Component.extend({
         selected.pushObject(searchText);
       }
       options.sort();
-    },
-
-    deleteOffer(offerToDelete) {
-      //remove overlay from delete confirmation
-      $('.modal-backdrop').remove();
-      offerToDelete.destroyRecord();
     },
 
   }

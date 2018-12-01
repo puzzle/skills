@@ -1,6 +1,5 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import $ from 'jquery';
 import { isBlank } from '@ember/utils';
 
 export default Component.extend({
@@ -84,12 +83,6 @@ export default Component.extend({
     createNewOffer(company) {
       let offer = this.get('store').createRecord('offer', { company });
       offer.set('offer', []);
-    },
-
-    deleteOffer(offerToDelete) {
-      //remove overlay from delete confirmation
-      $('.modal-backdrop').remove();
-      offerToDelete.destroyRecord();
     },
 
     createOffer(selected, searchText)

@@ -6,14 +6,26 @@
           <div class="col-sm-6">
             <a class="card-link text-white" href="#">Übersicht</a>
           </div>
-          <div class="col-sm-6 text-right d-block">
-            {{! TODO: are you sure message after click on delete button and decide if we want a reset icon}}
+          <div class="col-sm-6 text-right d-block text-white">
             {{#unless company.myCompany}}
-              <a data-toggle="modal" data-target="#deleteConfirmationModal" role="button" class="card-link text-white"><i class="fa trash"></i></a>
+              <div id="delete-company-icon">
+                {{delete-with-confirmation
+                  message=(concat 'Firma ' company.name ' wirklich löschen?')
+                  entry=company
+                  transitionTo='companies'
+                  tagName='span'
+                }}
+              </div>
             {{/unless}}
-            <a {{action 'submit' changeset}} role="button" id="submit-button" class="card-link text-white"><i class="fa save"></i></a>
-            <a onclick={{action 'abortEdit'}} role="button" class="card-link text-white"><i class="fa abort"></i></a>
-            <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#"><i class="fa angle"></i></a>
+            <a {{action 'submit' changeset}} role="button" id="submit-button" class="card-link text-white">
+              <i class="fa save"></i>
+            </a>
+            <a onclick={{action 'abortEdit'}} role="button" class="card-link text-white">
+              <i class="fa abort"></i>
+            </a>
+            <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#">
+              <i class="fa angle"></i>
+            </a>
           </div>
         </div>
       </div>
@@ -35,7 +47,10 @@
                     <tr>
                       <td class="nextToDelete">
                         {{l.text-field 'location' label="Standort"}}
-                        <a {{action 'deleteLocation' location}} role="button" class="deleteField"><i class="fa trash"></i></a>
+                        {{delete-with-confirmation
+                          message=(concat 'Standort ' location.location ' wirklich löschen?')
+                          entry=location
+                        }}
                       </td>
                     </tr>
                   {{/fields-for}}
@@ -85,7 +100,10 @@
                     <tr>
                       <td class="nextToDelete">
                         {{q.text-field 'category' label="Kategorie"}}
-                        <a {{action 'deleteEmployeeQuantity' quantity}} role="button" class="deleteField"><i class="fa trash"></i></a>
+                        {{delete-with-confirmation
+                          message=(concat 'Mitarbeiter-Anzahl ' quantity.category ' wirklich löschen?')
+                          entry=quantity
+                        }}
                       </td>
                     </tr>
                     <tr>
@@ -102,23 +120,4 @@
       </div>
     {{/form-for}}
   {{/with}}
-</div>
-<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Löschen bestätigen</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Willst du diese Firma wirklich löschen?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">abbrechen</button>
-        <button type="button" class="btn btn-primary" {{action 'deleteCompany' company}}>löschen</button>
-      </div>
-    </div>
-  </div>
 </div>
