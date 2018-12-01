@@ -5,7 +5,7 @@ moduleForComponent('button-with-confirmation', 'Integration | Component | button
   integration: true
 });
 
-test('it renders the delete confirmation', function(assert) {
+test('renders delete confirmation dialog with confirm message', function(assert) {
   this.set('company', {
     name: 'Firma1',
     web: 'www.example.org',
