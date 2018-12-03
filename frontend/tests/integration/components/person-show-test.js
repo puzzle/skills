@@ -10,19 +10,24 @@ test('it renders person', function(assert) {
     name: 'Harry Potter',
     title: 'Zauberer',
     birthdate: new Date('2000-01-01'),
-    origin: 'Godrics hollow',
+    nationality: 'FR',
     location: 'Hogwarts',
     language: 'Parsel',
-    martialStatus:  'ledig'
+    martialStatus: 'ledig'
   });
+
+  this.set('person.roles', [{
+    name: 'System-Engineer',
+  }]);
 
   this.render(hbs`{{person-show person=person}}`);
 
-  assert.ok(this.$().text().indexOf('Harry Potter') !== -1);
-  assert.ok(this.$().text().indexOf('Zauberer') !== -1);
-  assert.ok(this.$().text().indexOf('01.01.2000' !== -1));
-  assert.ok(this.$().text().indexOf('Godrics hollow' !== -1));
-  assert.ok(this.$().text().indexOf('Hogwarts' !== -1));
-  assert.ok(this.$().text().indexOf('Parsel' !== -1));
-  assert.ok(this.$().text().indexOf('ledig' !== -1));
+  assert.ok(this.$().text().includes('Harry Potter'));
+  assert.ok(this.$().text().includes('Zauberer'));
+  assert.ok(this.$().text().includes('System-Engineer'));
+  assert.ok(this.$().text().includes('01.01.2000'));
+  assert.ok(this.$().text().includes('Frankreich'));
+  assert.ok(this.$().text().includes('Hogwarts'));
+  assert.ok(this.$().text().includes('Parsel'));
+  assert.ok(this.$().text().includes('ledig'));
 });

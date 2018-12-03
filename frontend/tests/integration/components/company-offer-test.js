@@ -18,11 +18,11 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{company-offer company=company}}`);
 
-  assert.ok(this.$().text().indexOf('das ist ein kommentar') !== -1);
-  assert.ok(this.$().text().indexOf('frontend') !== -1);
-  assert.ok(this.$().text().indexOf('ember') !== -1);
-  assert.ok(this.$().text().indexOf('angular' !== -1));
-  assert.ok(this.$().text().indexOf('backend' !== -1));
-  assert.ok(this.$().text().indexOf('java' !== -1));
-  assert.ok(this.$().text().indexOf('ruby' !== -1));
+  assert.ok(this.$().text().includes('das ist ein kommentar'));
+  assert.ok(this.$().text().includes('frontend'));
+  assert.ok(this.$().text().includes('ember'));
+  assert.ok(this.$().text().includes('angular'));
+  assert.ok(this.$().text().includes('backend'));
+  assert.ok(this.$().text().includes('java'));
+  assert.ok(this.$().text().includes('ruby'));
 });
