@@ -11,7 +11,7 @@ class PersonSeeder
         seed_association(a, person.id)
       end
 
-      projects = person.projects.each do |project|
+      person.projects.each do |project|
         seed_project_technology(project.id)
       end
     end
@@ -82,7 +82,7 @@ class PersonSeeder
       p.name = name.to_s
       p.nationality = 'CH'
       p.roles = seed_roles 
-      p.title = Faker::Name.title
+      p.title = Faker::Job.title
       p.company_id = rand(1..4)
       competences = ""
       rand(5..15).times{ competences << "#{Faker::Superhero.power}\n" }
@@ -119,7 +119,7 @@ class PersonSeeder
   def seed_project(person_id)
     Project.seed do |p|
       p.description = Faker::Hacker.say_something_smart
-      p.title = Faker::Name.title
+      p.title = Faker::Job.title
       p.role = Faker::Company.profession
       p.technology = Faker::Superhero.power
       p.start_at = Faker::Date.between(60.year.ago, 40.year.ago)
