@@ -6,7 +6,7 @@
 #  birthdate               :datetime
 #  language                :string
 #  location                :string
-#  martial_status          :string
+#  marital_status          :string
 #  updated_by              :string
 #  name                    :string
 #  title                   :string
@@ -37,7 +37,7 @@ class Person < ApplicationRecord
 
   validates :birthdate, :language, :location, :name, :nationality,
             :roles, :title, presence: true
-  validates :location, :language, :martial_status, :name,
+  validates :location, :language, :name,
             :title, length: { maximum: 100 }
 
   validates :nationality,
@@ -49,6 +49,8 @@ class Person < ApplicationRecord
   validate :picture_size
 
   scope :list, -> { order(:name) }
+
+  enum marital_status: %i[single married widowed registered_partnership divorced]
 
   pg_search_scope :search,
                   against: [

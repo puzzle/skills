@@ -114,16 +114,16 @@
                 <td>
                   <Label> Zivilstand </Label>
                   {{#power-select
-                  triggerId="martialStatus"
-                  selected=newPerson.martialStatus
-                  options=martialStatuses
+                  triggerId="maritalStatus"
+                  selected=selectedMaritalStatus
+                  options=maritalStatuses
                   searchEnabled=false
                   onfocus=(action "handleFocus")
                   onblur=(action "handleBlur")
-                  onchange=(action (mut newPerson.martialStatus))
-                  as |martialStatus|
+                  onchange=(action "setMaritalStatus")
+                  as |maritalStatus|
                   }}
-                    {{martialStatus}}
+                    {{maritalStatus}}
                   {{/power-select}}
                 </td>
               </tr>

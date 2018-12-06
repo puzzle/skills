@@ -123,7 +123,7 @@ describe PeopleController do
 
     describe 'GET show' do
       it 'returns person with nested modules' do
-        keys = %w[birthdate picture_path language location martial_status
+        keys = %w[birthdate picture_path language location marital_status
                   updated_by name nationality nationality2 title competences]
 
         bob = people(:bob)
@@ -156,7 +156,7 @@ describe PeopleController do
                    picture: fixture_file_upload('files/picture.png', 'image/png'),
                    language: 'German',
                    location: 'Bern',
-                   martial_status: 'single',
+                   marital_status: 'single',
                    name: 'test',
                    nationality: 'CH',
                    nationality2: 'FR',

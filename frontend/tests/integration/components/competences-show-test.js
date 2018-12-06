@@ -14,7 +14,7 @@ skip('it renders competences from person', function(assert) {
     origin: 'Godrics hollow',
     location: 'Hogwarts',
     language: 'Parsel',
-    martialStatus:  'ledig',
+    maritalStatus:  'ledig',
     personCompetences: [
       { category: "frontend", offer: ['test1', 'holz'] },
       { category: "backend" }

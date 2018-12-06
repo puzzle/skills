@@ -77,7 +77,7 @@ class PersonSeeder
       p.language = 'Deutsch, Englisch, Französisch'
       p.picture = Faker::Avatar
       p.location = Faker::Pokemon.location
-      p.martial_status = 'ledig'
+      p.marital_status = :single
       p.updated_by = 'seed_user'
       p.name = name.to_s
       p.nationality = 'CH'

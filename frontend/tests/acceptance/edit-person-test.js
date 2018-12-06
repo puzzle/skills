@@ -27,7 +27,8 @@ test('/people/:id edit person data', async function(assert) {
   await selectChoose('#role', '.ember-power-select-option', 0)
   await selectChoose('#company', 'Firma');
   await selectChoose('#nationality', "Samoa");
-  await selectChoose('#martialStatus', 'verheiratet');
+  await selectChoose('#nationality2', "Iran");
+  await selectChoose('#maritalStatus', 'verheiratet');
 
   setFlatpickrDate('.flatpickr-input', '26.10.2018')
 
