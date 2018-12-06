@@ -14,8 +14,8 @@ export default Component.extend({
 
   maritalStatus: computed('person.maritalStatus', function() {
     const maritalStatuses = Person.MARITAL_STATUSES
-    const Key = this.get('person.maritalStatus')
-    return maritalStatuses[Key]
+    const key = this.get('person.maritalStatus')
+    return maritalStatuses[key]
   }),
 
   actions: {

@@ -18,8 +18,6 @@ export default Component.extend({
   initMaritalStatuses() {
     this.maritalStatusesHash = Person.MARITAL_STATUSES
     this.maritalStatuses = Object.values(this.maritalStatusesHash)
-    // const maritalStatusKey = this.get('newPerson.maritalStatus')
-    // this.selectedMaritalStatus = this.maritalStatusesHash[maritalStatusKey]
   },
 
   initNationalities() {

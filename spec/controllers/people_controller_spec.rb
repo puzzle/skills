@@ -166,11 +166,12 @@ describe PeopleController do
                          roles: { data: [{ id: role1.id, type: 'role'}, { id: role2.id, type: 'role'}]}}
         
 
-        params = { data: {
-          type: 'people',
-          attributes: person, 
-          relationships: relationships
-        }
+        params = {
+          data: {
+            type: 'people',
+            attributes: person, 
+            relationships: relationships
+          }
         }
         process :create, method: :post, params: params 
 
