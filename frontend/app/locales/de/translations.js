@@ -2,21 +2,21 @@ export default {
   'education': {
     title: 'Titel',
     location: 'Ausbildungsort',
-    year_from: 'Jahr von',
-    year_to: 'Jahr bis'
+    start_at: 'Datum von',
+    finish_at: 'Datum bis'
   },
 
   'activity': {
     description: 'Beschreibung',
     role: 'Rolle',
-    year_from: 'Jahr von',
-    year_to: 'Jahr bis'
+    start_at: 'Datum von',
+    finish_at: 'Datum bis'
   },
 
   'advancedTraining': {
     description: 'Beschreibung',
-    year_from: 'Jahr von',
-    year_to: 'Jahr bis'
+    start_at: 'Datum von',
+    finish_at: 'Datum bis'
   },
 
   'project': {
@@ -24,8 +24,8 @@ export default {
     description: 'Beschreibung',
     role: 'Rolle',
     technology: 'Technologie',
-    year_from: 'Jahr von',
-    year_to: 'Jahr bis'
+    start_at: 'Datum von',
+    finish_at: 'Datum bis'
   },
 
   'competence': {

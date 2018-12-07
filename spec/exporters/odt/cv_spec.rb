@@ -19,20 +19,20 @@ describe Odt::Cv do
   end
 
   context 'fomatting' do
-    it 'returns just one year if year_from and year_to are the same' do
-      activity = Activity.new(year_to: 2000, year_from: 2000)
+    it 'returns just one date if finish_at and start_at are the same' do
+      activity = Activity.new(start_at: 2000, finish_at: 2000)
 
-      formatted_year = Odt::Cv.new(nil).send(:formatted_year, activity)
+      formatted_date = Odt::Cv.new(nil).send(:formatted_date, activity)
 
-      expect(formatted_year).to eq(2000)
+      expect(formatted_date).to eq(2000)
     end
 
-    it 'returns formatted year_from and year_to if they are not the same' do
-      activity = Activity.new(year_from: 2000, year_to: 2010)
+    it 'returns formatted finish_at and start_at if they are not the same' do
+      activity = Activity.new(finish_at: 2000, start_at: 2010)
 
-      formatted_year = Odt::Cv.new(nil).send(:formatted_year, activity)
+      formatted_date = Odt::Cv.new(nil).send(:formatted_date, activity)
 
-      expect(formatted_year).to eq('2000 - 2010')
+      expect(formatted_date).to eq('2000 - 2010')
     end
 
     it 'translates nationalities' do

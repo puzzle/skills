@@ -1,3 +1,25 @@
+# == Schema Information
+#
+# Table name: people
+#
+#  id                      :integer          not null, primary key
+#  birthdate               :datetime
+#  language                :string
+#  location                :string
+#  martial_status          :string
+#  updated_by              :string
+#  name                    :string
+#  title                   :string
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  picture                 :string
+#  competences             :string
+#  company_id              :bigint(8)
+#  associations_updatet_at :datetime
+#  nationality             :string
+#  nationality2            :string
+#
+
 class PersonSerializer < ApplicationSerializer
   type :people
 

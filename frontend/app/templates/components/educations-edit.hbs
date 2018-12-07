@@ -19,11 +19,10 @@
             <div class="row">
               <div class="col-sm-3">
                 <div class="input-group centered-content-input">
-                  {{input value=education.year_from type="number" class="year form-control" placeholder="von"}}
-                  {{input value=education.year_to type="number" class="year form-control" placeholder="bis"}}
+                  {{daterange-edit entity=education}}
                 </div>
               </div>
-              <div class="col-sm-7">
+              <div class="col-sm-7 content-input">
                 <div class="input-group centered-content-input">
                   {{input value=education.title class="input-xxlarge form-control" placeholder="Ausbildungsart, erhaltener Titel"}}
                   {{input value=education.location class="input-xxlarge form-control" placeholder="Ausbildungsort"}}

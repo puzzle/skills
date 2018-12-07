@@ -5,7 +5,7 @@ describe EducationsController, type: :controller do
 
   describe 'GET index' do
     it 'returns all educations' do
-      keys = %w(location title year_from year_to updated_by)
+      keys = %w(location title finish_at start_at updated_by)
       process :index, method: :get, params: { person_id: bob.id }
 
       educations = json['data']
@@ -32,16 +32,16 @@ describe EducationsController, type: :controller do
     it 'creates new education' do
       education = { title: 'test title',
                     location: 'Bern',
-                    year_from: 2000,
-                    year_to: 2015 }
+                    finish_at: '2013-03-02',
+                    start_at: '2010-10-20' }
 
       post :create, params: create_params(education, bob.id, 'educations')
 
       new_education = Education.find_by(title: 'test title')
       expect(new_education).not_to eq(nil)
       expect(new_education.location).to eq('Bern')
-      expect(new_education.year_from).to eq(2000)
-      expect(new_education.year_to).to eq(2015)
+      expect(new_education.finish_at.to_s).to eq('2013-03-02')
+      expect(new_education.start_at.to_s).to eq('2010-10-20')
     end
   end
 

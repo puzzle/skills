@@ -7,9 +7,9 @@
 #  title      :text
 #  updated_at :datetime
 #  updated_by :string
-#  year_from  :integer
-#  year_to    :integer
 #  person_id  :integer
+#  finish_at  :date
+#  start_at   :date
 #
 
 class Education < ApplicationRecord
@@ -20,12 +20,11 @@ class Education < ApplicationRecord
 
   belongs_to :person, touch: true
 
-  validates :year_from, :person_id, :title, :location, presence: true
-  validates :year_from, :year_to, length: { is: 4 }, allow_blank: true
+  validates :start_at, :person_id, :title, :location, presence: true
   validates :location, :title, length: { maximum: 500 }
-  validate :year_from_before_year_to
+  validate :start_at_before_finish_at
 
-  scope :list, -> { order(Arel.sql('year_to IS NOT NULL, year_from desc, year_to desc')) }
+  scope :list, -> { order(Arel.sql('start_at IS NOT NULL, start_at desc, finish_at desc')) }
 
   private
 

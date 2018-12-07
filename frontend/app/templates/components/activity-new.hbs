@@ -3,12 +3,11 @@
     <div class="row">
       <div class="col-sm-3">
         <div class="input-group centered-content-input">
-          {{input value=newActivity.year_from type="number" class="input-mini form-control" placeholder="von"}}
-          {{input value=newActivity.year_to type="number" class="input-mini form-control" placeholder="bis"}}
+          {{daterange-edit entity=newActivity}}
         </div>
       </div>
       <div class="col-sm-7 row">
-        <div class="col-sm-4">
+        <div class="col-sm-4 content-input">
           {{input value=newActivity.role class="centered-content-input form-control" placeholder="Rolle"}}
         </div>
         <div class="col-sm-8 centered-content-input">

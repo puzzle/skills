@@ -5,11 +5,11 @@
 @import "normalize";
 
 //Set Bootstrap values from brand.puzzle.ch
-$primary: #3B7BBE !default;
-$success: #61B44B !default;
-$ember-power-select-selected-background: #CCCCCC;
-$ember-power-select-multiple-selection-background-color: #CCCCCC;
-$ember-power-select-highlighted-background: #2C97A6;
+$primary: #3b7bbe !default;
+$success: #61b44b !default;
+$ember-power-select-selected-background: #cccccc;
+$ember-power-select-multiple-selection-background-color: #cccccc;
+$ember-power-select-highlighted-background: #2c97a6;
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
 @import "toaster.mini";
@@ -24,7 +24,7 @@ button,
 input,
 select,
 textarea {
-    color: #222;
+  color: #222;
 }
 
 select {
@@ -33,9 +33,9 @@ select {
 }
 
 :root {
-    font-size: 1em;
-    line-height: 1.4;
-    overflow-y: scroll;
+  font-size: 1em;
+  line-height: 1.4;
+  overflow-y: scroll;
 }
 
 /*
@@ -45,13 +45,13 @@ select {
  */
 
 ::-moz-selection {
-    background: #b3d4fc;
-    text-shadow: none;
+  background: #b3d4fc;
+  text-shadow: none;
 }
 
 ::selection {
-    background: #b3d4fc;
-    text-shadow: none;
+  background: #b3d4fc;
+  text-shadow: none;
 }
 
 /*
@@ -59,12 +59,12 @@ select {
  */
 
 hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
 }
 
 /*
@@ -76,7 +76,7 @@ audio,
 canvas,
 img,
 video {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 /*
@@ -84,9 +84,9 @@ video {
  */
 
 fieldset {
-    border: 0;
-    margin: 0;
-    padding: 0;
+  border: 0;
+  margin: 0;
+  padding: 0;
 }
 
 /*
@@ -94,7 +94,7 @@ fieldset {
  */
 
 textarea {
-    resize: vertical;
+  resize: vertical;
 }
 
 /* ==========================================================================
@@ -102,29 +102,19 @@ textarea {
    ========================================================================== */
 
 .browsehappy {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
 }
 
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
 
-
 .label-date {
   padding-right: 8px;
 }
-
-
-
-
-
-
-
-
-
 
 /* ==========================================================================
    Helper classes
@@ -135,18 +125,18 @@ textarea {
  */
 
 .ir {
-    background-color: transparent;
-    border: 0;
-    overflow: hidden;
-    /* IE 6/7 fallback */
-    *text-indent: -9999px;
+  background-color: transparent;
+  border: 0;
+  overflow: hidden;
+  /* IE 6/7 fallback */
+  *text-indent: -9999px;
 }
 
 .ir:before {
-    content: "";
-    display: block;
-    width: 0;
-    height: 150%;
+  content: "";
+  display: block;
+  width: 0;
+  height: 150%;
 }
 
 /*
@@ -154,8 +144,8 @@ textarea {
  */
 
 .hidden {
-    display: none !important;
-    visibility: hidden;
+  display: none !important;
+  visibility: hidden;
 }
 
 /*
@@ -163,14 +153,14 @@ textarea {
  */
 
 .visuallyhidden {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 }
 
 /*
@@ -180,12 +170,12 @@ textarea {
 
 .visuallyhidden.focusable:active,
 .visuallyhidden.focusable:focus {
-    clip: auto;
-    height: auto;
-    margin: 0;
-    overflow: visible;
-    position: static;
-    width: auto;
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
 }
 
 /*
@@ -193,7 +183,7 @@ textarea {
  */
 
 .invisible {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 /*
@@ -210,12 +200,12 @@ textarea {
 
 .clearfix:before,
 .clearfix:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
+  content: " "; /* 1 */
+  display: table; /* 2 */
 }
 
 .clearfix:after {
-    clear: both;
+  clear: both;
 }
 
 /*
@@ -224,7 +214,7 @@ textarea {
  */
 
 .clearfix {
-    *zoom: 1;
+  *zoom: 1;
 }
 
 /* ==========================================================================
@@ -234,14 +224,14 @@ textarea {
    ========================================================================== */
 
 @media only screen and (min-width: 35em) {
-    /* Style adjustments for viewports that meet the condition */
+  /* Style adjustments for viewports that meet the condition */
 }
 
 @media print,
-(-o-min-device-pixel-ratio: 5/4),
-(-webkit-min-device-pixel-ratio: 1.25),
-(min-resolution: 120dpi) {
-    /* Style adjustments for high resolution devices */
+  (-o-min-device-pixel-ratio: 5/4),
+  (-webkit-min-device-pixel-ratio: 1.25),
+  (min-resolution: 120dpi) {
+  /* Style adjustments for high resolution devices */
 }
 
 /* ==========================================================================
@@ -250,88 +240,86 @@ textarea {
    ========================================================================== */
 
 @media print {
-    * {
-        background: transparent !important;
-        color: #000 !important; /* Black prints faster: h5bp.com/s */
-        box-shadow: none !important;
-        text-shadow: none !important;
-    }
+  * {
+    background: transparent !important;
+    color: #000 !important; /* Black prints faster: h5bp.com/s */
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
 
-    a,
-    a:visited {
-        text-decoration: underline;
-    }
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
 
-    a[href]:after {
-        content: " (" attr(href) ")";
-    }
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
 
-    abbr[title]:after {
-        content: " (" attr(title) ")";
-    }
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
 
-    /*
+  /*
      * Don't show links for images, or javascript/internal links
      */
 
-    .ir a:after,
-    a[href^="javascript:"]:after,
-    a[href^="#"]:after {
-        content: "";
-    }
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
 
-    pre,
-    blockquote {
-        border: 1px solid #999;
-        page-break-inside: avoid;
-    }
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
 
-    thead {
-        display: table-header-group; /* h5bp.com/t */
-    }
+  thead {
+    display: table-header-group; /* h5bp.com/t */
+  }
 
-    tr,
-    img {
-        page-break-inside: avoid;
-    }
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
 
-    img {
-        max-width: 100% !important;
-    }
+  img {
+    max-width: 100% !important;
+  }
 
-    @page {
-        margin: 0.5cm;
-    }
+  @page {
+    margin: 0.5cm;
+  }
 
-    p,
-    h2,
-    h3 {
-        orphans: 3;
-        widows: 3;
-    }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
 
-    h2,
-    h3 {
-        page-break-after: avoid;
-    }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
 }
 
 .content-bootstrap-feel {
   display: block;
   background-color: #fff;
-  border: 1px solid rgba(0,0,0,.15);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 4px;
-  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   padding: 5px;
   margin: 2px 0 0;
 }
 
 /* Confirm Dialog */
 
-
 .ember-modal-dialog.ember-view {
   padding: 10px;
-
 }
 
 .dialog-text {
@@ -346,31 +334,30 @@ textarea {
   padding-left: 0;
 }
 
-
 /* Login/Logout */
 
 .form-login {
-    margin: 0px auto;
-    padding-top: 10px;
-    padding-bottom: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-    width: 400px;
+  margin: 0px auto;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 400px;
 }
 
-.form-login img{
- border:0 solid #DDD;
- border-bottom-width:1px;
- padding-bottom:10px;
- text-align: center;
- margin-bottom: 20px;
+.form-login img {
+  border: 0 solid #ddd;
+  border-bottom-width: 1px;
+  padding-bottom: 10px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.form-login input{
+.form-login input {
   margin-bottom: 10px;
 }
 
-.form-login .btn{
+.form-login .btn {
   width: 80px;
 }
 
@@ -406,7 +393,10 @@ textarea {
   box-sizing: border-box;
 }
 
-
 $theme-colors: (
   primary: #ff00ff
 ) !default;
+
+input.invalid {
+  box-shadow: 0 0 3px #cc0000;
+}

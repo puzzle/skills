@@ -5,11 +5,11 @@
 #  id          :integer          not null, primary key
 #  description :text
 #  updated_by  :string
-#  year_from   :integer
-#  year_to     :integer
 #  person_id   :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  finish_at   :date
+#  start_at    :date
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
@@ -17,13 +17,13 @@
 course:
   description: course about how to clean
   updated_by: bob
-  year_from: 2010
-  year_to: 2012
+  finish_at: 2012-12-01
+  start_at: 2010-01-01
   person: bob
 
 education:
   description: was nice
   updated_by: alice
-  year_from: 2011
-  year_to: 2015
+  finish_at: 2015-12-01
+  start_at: 2011-01-01
   person: alice

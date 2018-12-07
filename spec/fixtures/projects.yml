@@ -8,11 +8,11 @@
 #  title       :text
 #  role        :text
 #  technology  :text
-#  year_to     :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  person_id   :integer
-#  year_from   :integer
+#  finish_at   :date
+#  start_at    :date
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
@@ -22,8 +22,8 @@ duckduckgo:
   title: duckduckgo
   role: Senior Software Engineer
   technology: Ruby on Rails
-  year_from: 2010
-  year_to: 2013
+  finish_at: 2013-12-01
+  start_at: 2010-01-01
   person: bob 
 
 google:
@@ -31,6 +31,6 @@ google:
   title: google
   role: Developer
   technology: java
-  year_from: 2012
-  year_to: 2015
+  finish_at: 2015-12-01
+  start_at: 2012-01-01
   person: alice

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_16_145859) do
+ActiveRecord::Schema.define(version: 2018_11_20_072351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,22 +19,22 @@ ActiveRecord::Schema.define(version: 2018_11_16_145859) do
     t.text "description"
     t.string "updated_by"
     t.text "role"
-    t.integer "year_from"
-    t.integer "year_to"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "person_id"
+    t.date "finish_at"
+    t.date "start_at"
     t.index ["person_id"], name: "index_activities_on_person_id"
   end
 
   create_table "advanced_trainings", id: :serial, force: :cascade do |t|
     t.text "description"
     t.string "updated_by"
-    t.integer "year_from"
-    t.integer "year_to"
     t.integer "person_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "finish_at"
+    t.date "start_at"
     t.index ["person_id"], name: "index_advanced_trainings_on_person_id"
   end
 
@@ -61,9 +61,9 @@ ActiveRecord::Schema.define(version: 2018_11_16_145859) do
     t.text "title"
     t.datetime "updated_at"
     t.string "updated_by"
-    t.integer "year_from"
-    t.integer "year_to"
     t.integer "person_id"
+    t.date "finish_at"
+    t.date "start_at"
     t.index ["person_id"], name: "index_educations_on_person_id"
   end
 
@@ -166,11 +166,11 @@ ActiveRecord::Schema.define(version: 2018_11_16_145859) do
     t.text "title"
     t.text "role"
     t.text "technology"
-    t.integer "year_to"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "person_id"
-    t.integer "year_from"
+    t.date "finish_at"
+    t.date "start_at"
     t.index ["person_id"], name: "index_projects_on_person_id"
   end
 

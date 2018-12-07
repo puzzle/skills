@@ -22,11 +22,11 @@
           <div class="zeile">
             <div class="row">
               <div class="col-sm-3 centered-content text-center">
-                {{activity.year_from}}
-                {{#if (eq activity.year_to null)}}
+                {{if (not-eq (moment-format activity.start_at 'DD') "13") (moment-format activity.start_at 'MM.YYYY') (moment-format activity.start_at 'YYYY')}}
+                {{#if (eq activity.finish_at null)}}
                   - heute
-                {{else if (not-eq activity.year_from activity.year_to)}}
-                  - {{activity.year_to}}
+                {{else if (not-eq activity.finish_at activity.start_at)}}
+                  - {{if (not-eq (moment-format activity.finish_at 'DD') "13") (moment-format activity.finish_at 'MM.YYYY') (moment-format activity.finish_at 'YYYY')}}
                 {{/if}}
               </div>
               <div class="col-sm-9">

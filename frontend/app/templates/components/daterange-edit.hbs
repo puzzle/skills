@@ -1,0 +1,55 @@
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <td scope="col"></td>
+      <td class="text-center" scope="col">Monat</td>
+      <td class="text-center" scope="col">Jahr</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th class="align-middle" scope="row">
+        Von:
+      </th>
+      <td>
+        {{#power-select
+        selected=monthFrom
+        options=months
+        searchEnabled=false
+        onfocus=(action "handleFocus")
+        onblur=(action "handleBlur")
+        onchange=(action "setMonthFrom")
+        as |month|
+        }}
+          {{month}}
+        {{/power-select}}
+      </td>
+      <td>
+        <input type="number" value={{yearFrom}} onchange={{action "setYearFrom" value="target.value"}} max="9999"
+        class={{concat (if yearFromInvalid 'invalid') " year form-control" }} placeholder="von">
+      </td>
+    </tr>
+    <tr>
+      <th class="align-middle" scope="row">
+        Bis:
+      </th>
+      <td>
+        {{#power-select
+        selected=monthTo
+        options=months
+        searchEnabled=false
+        onfocus=(action "handleFocus")
+        onblur=(action "handleBlur")
+        onchange=(action "setMonthTo")
+        as |month|
+        }}
+          {{month}}
+        {{/power-select}}
+      </td>
+      <td>
+        <input type="number" value={{yearTo}} onchange={{action "setYearTo" value="target.value"}} max="9999"
+        class={{concat (if yearFromInvalid 'invalid') " year form-control" }} placeholder="von">
+      </td>
+    </tr>
+  </tbody>
+</table>

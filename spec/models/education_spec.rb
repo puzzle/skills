@@ -7,9 +7,9 @@
 #  title      :text
 #  updated_at :datetime
 #  updated_by :string
-#  year_from  :integer
-#  year_to    :integer
 #  person_id  :integer
+#  finish_at  :date
+#  start_at   :date
 #
 
 require 'rails_helper'
@@ -22,7 +22,7 @@ describe Education do
       education = Education.new
       education.valid?
 
-      expect(education.errors[:year_from].first).to eq('muss ausgefüllt werden')
+      expect(education.errors[:start_at].first).to eq('muss ausgefüllt werden')
       expect(education.errors[:person_id].first).to eq('muss ausgefüllt werden')
       expect(education.errors[:title].first).to eq('muss ausgefüllt werden')
       expect(education.errors[:location].first).to eq('muss ausgefüllt werden')
@@ -38,37 +38,27 @@ describe Education do
       expect(education.errors[:title].first).to eq('ist zu lang (mehr als 500 Zeichen)')
     end
 
-    it 'year should not be longer or shorter then 4' do
+    it 'finish_at can be blank' do
       education = educations(:bsc)
-      education.year_from = 12345
-      education.year_to = 12345
+      education.finish_at = nil
+
       education.valid?
 
-      expect(education.errors[:year_from].first).to eq('hat die falsche Länge (muss genau 4 Zeichen haben)')
-      expect(education.errors[:year_to].first).to eq('hat die falsche Länge (muss genau 4 Zeichen haben)')
+      expect(education.errors[:finish_at]).to be_empty
     end
 
-    it 'year_to can be blank' do
+    it 'does not create Education if start_at is later than finish_at' do
       education = educations(:bsc)
-      education.year_to = nil
-
+      education.start_at = '2016-01-01'
       education.valid?
 
-      expect(education.errors[:year_to]).to be_empty
-    end
-
-    it 'does not create Education if year_from is later than year_to' do
-      education = educations(:bsc)
-      education.year_to = 1997
-      education.valid?
-
-      expect(education.errors[:year_from].first).to eq('muss vor Jahr bis sein')
+      expect(education.errors[:start_at].first).to eq('muss vor "Datum bis" sein')
     end
 
     it 'orders education correctly with list scope' do
       bob_id = people(:bob).id
-      Education.create(title: 'test1', location: 'test1', year_from: '2000', person_id: bob_id)
-      Education.create(title: 'test2', location: 'test2', year_from: '2000', year_to: '2030', person_id: bob_id)
+      Education.create(title: 'test1', location: 'test1', start_at: '2012-01-01', person_id: bob_id)
+      Education.create(title: 'test2', location: 'test2', start_at: '2005-01-01', finish_at: '2030-01-01', person_id: bob_id)
 
       list = Education.all.list
 

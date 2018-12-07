@@ -59,44 +59,44 @@ module Odt
 
     def insert_educations(report)
       educations_list = person.educations.list.collect do |e|
-        { year: formatted_year(e), title: "#{e.title}\n#{e.location}" }
+        { date: formatted_date(e), title: "#{e.title}\n#{e.location}" }
       end
 
       report.add_table('EDUCATIONS', educations_list, header: true) do |t|
-        t.add_column(:year, :year)
+        t.add_column(:date, :date)
         t.add_column(:education, :title)
       end
     end
 
     def insert_advanced_trainings(report)
       advanced_trainings_list = person.advanced_trainings.list.collect do |at|
-        { year: formatted_year(at), description: at.description }
+        { date: formatted_date(at), description: at.description }
       end
 
       report.add_table('ADVANCED_TRAININGS', advanced_trainings_list, header: true) do |t|
-        t.add_column(:year, :year)
+        t.add_column(:date, :date)
         t.add_column(:advanced_training, :description)
       end
     end
 
     def insert_activities(report)
       activities_list = person.activities.list.collect do |a|
-        { year: formatted_year(a), description: "#{a.role}\n\n#{a.description}" }
+        { date: formatted_date(a), description: "#{a.role}\n\n#{a.description}" }
       end
 
       report.add_table('ACTIVITIES', activities_list, header: true) do |t|
-        t.add_column(:year, :year)
+        t.add_column(:date, :date)
         t.add_column(:activity, :description)
       end
     end
 
     def insert_projects(report)
       projects_list = person.projects.list.collect do |p|
-        { year: formatted_year(p), project: project_description(p) }
+        { date: formatted_date(p), project: project_description(p) }
       end
 
       report.add_table('PROJECTS', projects_list, header: true) do |t|
-        t.add_column(:year, :year)
+        t.add_column(:date, :date)
         t.add_column(:project_description, :project)
       end
     end
@@ -109,13 +109,13 @@ module Odt
       str << project.technology.to_s
     end
 
-    def formatted_year(obj)
-      if obj.year_to.nil?
-        "#{obj.year_from} - heute"
-      elsif obj.year_from == obj.year_to
-        obj.year_to
+    def formatted_date(obj)
+      if obj.start_at.nil?
+        "#{obj.finish_at} - heute"
+      elsif obj.finish_at == obj.start_at
+        obj.start_at
       else
-        "#{obj.year_from} - #{obj.year_to}"
+        "#{obj.finish_at} - #{obj.start_at}"
       end
     end
 
