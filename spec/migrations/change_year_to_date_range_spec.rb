@@ -1,11 +1,24 @@
 require 'rails_helper'
 migration_file_name = Dir[Rails.root.join('db/migrate/20181120072351_change_year_to_date_range.rb')].first
 require migration_file_name
+
 describe ChangeYearToDateRange do
 
   let(:migration) { ChangeYearToDateRange.new }
   let(:project) { projects(:google) }
   let(:education) { educations(:bsc) }
+
+  def silent
+    verbose = ActiveRecord::Migration.verbose = false
+
+    yield
+
+    ActiveRecord::Migration.verbose = verbose
+  end
+
+  around do |test|
+    silent { test.run }
+  end
 
   context 'up' do
 
