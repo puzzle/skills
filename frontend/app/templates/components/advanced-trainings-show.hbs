@@ -36,9 +36,11 @@
           </div>
         {{/each}}
       </div>
-      <div class="mt-auto">
-        <a onclick={{advancedTrainingsEditing}} role="button" class="edit-buttons"><i class="fa fa-pencil"></i> Bearbeiten</a>
-      </div>
+      {{#if filteredAdvancedTrainings}}
+        <div class="mt-auto">
+          <a onclick={{advancedTrainingsEditing}} role="button" class="edit-buttons"><i class="fa fa-pencil"></i> Bearbeiten</a>
+        </div>
+      {{/if}}
     </div>
   </div>
 </div>
