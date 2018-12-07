@@ -1,14 +1,15 @@
+<nav class="navbar navbar-expand-sm border-black border-left-0 border-right-0 border-top-0 p-0">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a aria-controls="development" class="{{if (eq discipline 'development') 'active'}} nav-link" role="tab" onclick={{action (mut discipline) 'development'}}>Entwickler</a>
+    </li>
+    <li class="nav-item">
+      <a aria-controls="system_engineering" role="tab" class="{{if (eq discipline 'system_engineering') 'active'}} nav-link" onclick={{action (mut discipline) 'system_engineering'}}>Systemtechniker</a>
+    </li>
+  </ul>
+</nav>
+
 <div class="row">
-  <div class="col-sm-12 mb-2">
-    <ul class="nav nav-tabs container-fluid" role="tablist">
-      <li class="nav-item">
-        <a href="#" aria-controls="development" class="{{if (eq discipline 'development') 'active'}} nav-link" role="tab" onclick={{action (mut discipline) 'development'}}>Entwickler</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" aria-controls="system_engineering" role="tab" class="{{if (eq discipline 'system_engineering') 'active'}} nav-link" onclick={{action (mut discipline) 'system_engineering'}}>Systemtechniker</a>
-      </li>
-    </ul>
-  </div>
   <div class="col-sm-12 mt-4">
     <div id="expertise-categories">
       <div class="tab-content">

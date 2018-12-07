@@ -7,5 +7,9 @@ export default Component.extend({
     return this.get('advanced-trainings');
   }),
 
+  amountOfAdvancedTrainings: computed(function() {
+    return this.get('advanced-trainings.length');
+  }),
+
   filteredAdvancedTrainings: sortByYear('filtered'),
 });

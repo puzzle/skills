@@ -40,7 +40,7 @@ test('creating a new person', async function(assert) {
   assert.equal(editPage.profileData.title, 'Dr.');
   assert.equal(editPage.profileData.role, 'Software-Engineer');
   assert.equal(editPage.profileData.birthdate, '26.10.2018');
-  assert.equal(editPage.profileData.nationality, 'Schweden');
+  assert.equal(editPage.profileData.nationalities, 'Schweden');
   assert.equal(editPage.profileData.location, 'Chehrplatz Schwandi');
   assert.equal(editPage.profileData.language, 'Schwizerdütsch');
   assert.equal(editPage.profileData.maritalStatus, 'verheiratet');

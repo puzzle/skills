@@ -13,25 +13,8 @@
     <div id="collapseOne" class="collapse show border border-primary rounded-bottom">
       <div class="card-body">
         <div class="row">
-          <div class="col-sm-6">
-            <table class="table-uebersicht">
-              <tr>
-                <td>
-                  <label>Firma</label>
-                  {{#power-select
-                    triggerId="company"
-                    selected=newPerson.company
-                    options=companiesToSelect
-                    searchField="name"
-                    onfocus=(action "handleFocus")
-                    onblur=(action "handleBlur")
-                    onchange=(action (mut newPerson.company))
-                    as |company|
-                    }}
-                    {{company.name}}
-                  {{/power-select}}
-                </td>
-              </tr>
+          <div class="col-sm-4">
+            <table class="table-person">
               <tr>
                 <td>{{f.text-field 'name' label="Name"}}</td>
               </tr>
@@ -58,6 +41,27 @@
               </tr>
               <tr>
                 <td>
+                  <label>Firma</label>
+                  {{#power-select
+                    triggerId="company"
+                    selected=newPerson.company
+                    options=companiesToSelect
+                    searchField="name"
+                    onfocus=(action "handleFocus")
+                    onblur=(action "handleBlur")
+                    onchange=(action (mut newPerson.company))
+                    as |company|
+                    }}
+                    {{company.name}}
+                  {{/power-select}}
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="col-sm-4">
+            <table class="table-person">
+              <tr>
+                <td>
                   <div class="text-field form-group">
                     <label class="label-date form-field--label" for='date_location'>Geb.Datum</label>
                     <div id="date_location">
@@ -70,13 +74,6 @@
                     </div>
                   </div>
                 </td>
-              </tr>
-            </table>
-          </div>
-          <div class="col-sm-6">
-            <table class="table-uebersicht">
-              <tr>
-                <td></td>
               </tr>
               <tr>
                 <td>
@@ -114,9 +111,6 @@
                 <td>{{f.text-field 'location' label="Wohnort"}}</td>
               </tr>
               <tr>
-                <td>{{f.text-field 'language' label="Sprache"}}</td>
-              </tr>
-              <tr>
                 <td>
                   <Label> Zivilstand </Label>
                   {{#power-select
@@ -132,6 +126,13 @@
                     {{martialStatus}}
                   {{/power-select}}
                 </td>
+              </tr>
+            </table>
+          </div>
+          <div class="col-sm-4">
+            <table class="table-person">
+              <tr>
+                <td>{{f.text-field 'language' label="Sprache"}}</td>
               </tr>
             </table>
           </div>

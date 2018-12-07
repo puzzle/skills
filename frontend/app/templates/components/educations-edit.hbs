@@ -12,7 +12,7 @@
 </div>
 <div id="collapseEducation" class="collapse show border border-primary rounded-bottom">
   <div class="card-body">
-    <div id="competence-content-show">
+    <div id="competence-content-show" class="mb-2">
       {{#each person.educations as |education|}}
         <div class="zeile">
           <div id="education-content-edit">
@@ -47,6 +47,10 @@
           </div>
         </div>
       {{/each}}
+    </div>
+    <div class="mt-auto">
+      <button onclick={{action 'submit' person}} role="button" class="btn btn-primary"><i class="fa save"></i> Speichern</button>
+      <button onclick={{action 'abortEdit'}} role="button" class="btn btn-secondary"><i class="fa abort"></i> Abbrechen</button>
     </div>
   </div>
 </div>

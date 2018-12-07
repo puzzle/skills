@@ -13,6 +13,15 @@ export default Component.extend({
     this._super(...arguments);
     this.martialStatuses = (['ledig', 'verheiratet', 'verwittwet', 'eingetragene Partnerschaft', 'geschieden']);
     this.initNationalities();
+    this.initCheckbox();
+  },
+
+  initCheckbox() {
+    if (this.get('person.nationality2')) {
+      this.set('secondNationality', true)
+    } else {
+      this.set('secondNationality', false)
+    }
   },
 
   initNationalities() {
@@ -37,7 +46,6 @@ export default Component.extend({
   companiesToSelect: computed(function() {
     return this.get('store').findAll('company');
   }),
-
 
   personPictureUploadPath: computed('person.id', function() {
     return `/people/${this.get('person.id')}/picture`;
@@ -75,6 +83,12 @@ export default Component.extend({
     },
 
     handleBlur() {
+    },
+
+    switchNationality(value) {
+      if (value == false) {
+        this.set('person.nationality2', undefined);
+      }
     },
 
     setBirthdate(selectedDate) {

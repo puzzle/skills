@@ -9,8 +9,8 @@
         </div>
       </div>
       <div id="collapseProjectNew" class="show border border-secondary rounded-bottom">
-        <div class="card-body">
-          <div class="row">
+        <div class="card-body d-flex flex-column">
+          <div class="row mb-2">
             <div class="col-sm-3">
               <div class="input-group centered-content-input">
                 {{input value=changeset.year_from type="number" class="input-mini form-control" placeholder="von"}}
@@ -40,24 +40,24 @@
                 {{/power-select-multiple-with-create}}
               {{/each}}
             </div>
-            <div class="col-sm-2 centered-content text-right">
-              <a onclick={{action 'submit' changeset}} role="button" id="submit-button" class="text-dark"><i class="fa save"></i></a>
+          </div>
+          <div class="mt-auto">
+            <button onclick={{action 'submit' changeset}} role="button" id="submit-button" class="btn btn-primary"><i class="fa save"></i> Speichern</button>
 
-              {{#confirm-dialog
-                text="Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?"
-                confirmButton="Löschen"
-                cancelButton="Abbrechen"
-                confirmAction=(action 'confirmDestroy' project)
-                confirmButtonClass="btn btn-danger"
-                cancelButtonClass="btn pull-right"
-                okCssIcon="fa fa-check-circle-o"
-                cancelCssIcon="fa fa-ban"
-              }}
-                <a role="button" class="card-link text-dark"><i class="fa trash"></i></a>
-              {{/confirm-dialog}}
+            {{#confirm-dialog
+              text="Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?"
+              confirmButton="Löschen"
+              cancelButton="Abbrechen"
+              confirmAction=(action 'confirmDestroy' project)
+              confirmButtonClass="btn btn-danger"
+              cancelButtonClass="btn pull-right"
+              okCssIcon="fa fa-check-circle-o"
+              cancelCssIcon="fa fa-ban"
+            }}
+              <button role="button" class="btn btn-danger"><i class="fa trash"></i> Löschen</button>
+            {{/confirm-dialog}}
 
-              <a onclick={{action done}} role="button" class="text-dark"><i class="fa abort"></i></a>
-            </div>
+            <button onclick={{action done}} role="button" class="btn btn-secondary"><i class="fa abort"></i> Abbrechen</button>
           </div>
         </div>
       </div>

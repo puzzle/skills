@@ -5,15 +5,13 @@
         <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseAdvancedTraining">Weiterbildung</a>
       </div>
       <div class="col-sm-6 text-right d-block">
-        <a onclick={{action 'submit' person}} role="button" class="card-link text-white"><i class="fa save"></i></a>
-        <a onclick={{action 'abortEdit'}} role="button" class="card-link text-white"><i class="fa abort"></i></a>
         <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseAdvancedTraining"><i class="fa angle"></i></a>
       </div>
     </div>
   </div>
   <div id="collapseAdvancedTraining" class="collapse show border border-primary rounded-bottom">
-    <div class="card-body">
-      <div id="advancedtraining-content-show">
+    <div class="card-body d-flex flex-column">
+      <div id="advancedtraining-content-show" class="mb-2">
         {{#each filteredAdvancedTrainings as |advanced-training|}}
           <div class="zeile">
             <div class="row">
@@ -45,6 +43,10 @@
             </div>
           </div>
         {{/each}}
+      </div>
+      <div class="mt-auto">
+        <button onclick={{action 'submit' person}} role="button" class="btn btn-primary"><i class="fa save"></i> Speichern</button>
+        <button onclick={{action 'abortEdit'}} role="button" class="btn btn-secondary"><i class="fa abort"></i> Abbrechen</button>
       </div>
     </div>
   </div>

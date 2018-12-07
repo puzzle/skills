@@ -15,7 +15,7 @@ moduleForAcceptance('Acceptance | edit person', {
 });
 
 test('/people/:id edit person data', async function(assert) {
-  assert.expect(6);
+  assert.expect(7);
 
   await applicationPage.visitHome('/');
   await selectChoose('#people-search', '.ember-power-select-option', 0);
@@ -26,7 +26,6 @@ test('/people/:id edit person data', async function(assert) {
   await selectChoose('#role', '.ember-power-select-option', 0)
   await selectChoose('#company', 'Firma');
   await selectChoose('#nationality', "Samoa");
-  await selectChoose('#nationality2', "Iran");
   await selectChoose('#martialStatus', 'verheiratet');
 
   setFlatpickrDate('.flatpickr-input', '26.10.2018')
@@ -38,10 +37,21 @@ test('/people/:id edit person data', async function(assert) {
 
   assert.equal(page.profileData.name, 'Hansjoggeli');
   assert.equal(page.profileData.title, 'Dr.');
-  assert.equal(page.profileData.nationality, 'Samoa');
-  assert.equal(page.profileData.nationality2, 'Iran');
   assert.equal(page.profileData.role, 'System-Engineer');
+  assert.equal(page.profileData.nationalities, 'Samoa');
   assert.equal(page.profileData.location, 'Chehrplatz Schwandi');
+
+  await page.toggleEditForm();
+  await page.toggleNationalities();
+  await selectChoose('#nationality2', "Schweiz");
+  await page.editForm.submit();
+  assert.equal(page.profileData.nationalities, 'Samoa , Schweiz')
+  await page.toggleEditForm();
+  await page.toggleNationalities();
+  await page.editForm.submit();
+  assert.equal(page.profileData.nationalities, 'Samoa')
+
+
 });
 
 test('/people/:id edit person competences', async function(assert) {

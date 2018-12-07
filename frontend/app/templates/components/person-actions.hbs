@@ -1,19 +1,28 @@
-<div class="row">
-  <div class="col-sm-12">
-    <ul class="nav nav-tabs container-fluid">
-      {{#link-to "person.index" (or person.originPersonId person) tagName="li" class="nav-item" href="false"}}
-        {{#link-to "person.index" class="nav-link"}}CV{{/link-to}}
-      {{/link-to}}
-      {{#link-to "person.fws" (or person.originPersonId person) tagName="li" class="nav-item" href="false"}}
-        {{#link-to "person.fws" class="nav-link"}}FWS{{/link-to}}
-      {{/link-to}}
-    </ul>
-  </div>
-</div>
-<div>
-  <span>
-    <p class="text-right">
-      <strong>Letztes Update <span class="text-danger"><time datetime={{moment-format person.updatedAt}}>{{moment-format person.updatedAt 'L LT'}}</time></span></strong>
-    </p>
-  </span>
-</div>
+<nav class="navbar navbar-expand-sm border-black border-left-0 border-right-0 p-0">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link">
+        {{#link-to "person.index"}}
+          CV
+        {{/link-to}}
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link">
+        {{#link-to "person.fws"}}
+          Fachwissensskala
+        {{/link-to}}
+      </a>
+    </li>
+  </ul>
+  <ul class="navbar-nav ml-auto">
+    <span class="text-right d-block">
+      Letztes Update
+      <span class="text-danger">
+        <time datetime={{moment-format person.updatedAt}}>
+          {{moment-format person.updatedAt 'L LT'}}
+        </time>
+      </span>
+    </span>
+  </ul>
+</nav>

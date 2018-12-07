@@ -4,46 +4,20 @@
       <a class="card-link text-white" href="#">Übersicht</a>
     </div>
     <div class="col-sm-6 text-right d-block">
-      <a {{action 'submit' person}} role="button" id="submit-button" class="card-link text-white"><i class="fa save"></i></a>
-      <a onclick={{action 'abortEdit'}} role="button" class="card-link text-white"><i class="fa abort"></i></a>
       <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#"><i class="fa angle"></i></a>
     </div>
   </div>
 </div>
-<div id="collapseTwo" class="collapse show border border-primary rounded-bottom">
-  <div class="card-body">
-    {{#each person.personCompetences as |competence|}}
-      <div class="row mb-2">
-        <div class="col-sm-3" >
-          {{input value=competence.category type="text" class="form-control" placeholder="Neue Kategorie"}}
-        </div>
-        <div class="col-sm-8">
-          {{#power-select-multiple-with-create
-            options=options
-            selected=competence.offer
-            placeholder="Kompetenzen"
-            onchange=(action (mut competence.offer))
-            onfocus=(action "handleFocus")
-            onblur=(action "handleBlur")
-            oncreate=(action "createOffer" competence.offer)
-            buildSuggestion=suggestion
-            as |competence|}}
-            {{competence}}
-          {{/power-select-multiple-with-create}}
-        </div>
-        {{delete-with-confirmation
-          message=(concat 'Kompetenz ' competence.category ' wirklich löschen?')
-          entry=competence
-        }}
-      </div>
-    {{/each}}
-    <a role="button" class="card-link text-dark" {{action 'createNewOffer' person}}><i class="fa add"></i></a>
-  </div>
-</div>
 <div>
   <div id="collapseOne" class="collapse show border border-primary rounded-bottom">
-    <div class="card-body row">
-      {{textarea value=person.competences class="competences-edit-input" placeholder="Veraltet, nicht mehr ausfüllen!"}}
+    <div class="card-body d-flex flex-column">
+      <div class="row">
+        {{textarea value=person.competences class="competences-edit-input"}}
+      </div>
+      <div class="mt-2">
+        <button {{action 'submit' person}} role="button" id="submit-button" class="btn btn-primary"><i class="fa save"></i> Speichern</button>
+        <button onclick={{action 'abortEdit'}} role="button" class="btn btn-secondary"><i class="fa abort"></i> Abbrechen</button>
+      </div>
     </div>
   </div>
 </div>

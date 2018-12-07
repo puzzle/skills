@@ -20,7 +20,7 @@ gem 'odf-report'
 gem 'pg', '0.19.0.pre20160409114042'
 gem 'pg_search'
 gem 'puma', '~> 3.0'
-gem 'rack'
+gem 'rack', '~> 2.0.6'
 gem 'rails-erd', group: :development
 gem 'rails-html-sanitizer', '~> 1.0.3'
 gem 'rails-i18n'

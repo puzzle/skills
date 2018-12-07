@@ -2,16 +2,18 @@
   <div class="card-header bg-primary">
     <div class="row">
       <div class="col-sm-6">
-        <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseProjects">Projekte</a>
+        <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseProjects">Projekte ({{amountOfProjects}})</a>
       </div>
       <div class="col-sm-6 text-right d-block">
-        <a onclick={{action (toggle 'projectNew' this)}} role="button" class="card-link text-white"><i class="fa {{~if projectNew ' abort' ' add'~}}"></i></a>
         <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseProjects"><i class="fa angle"></i></a>
       </div>
     </div>
   </div>
   <div id="collapseProjects" class="collapse show border border-primary rounded-bottom">
     <div class="card-body">
+      <div>
+        <a onclick={{action (toggle 'projectNew' this)}} role="button" class="{{~if projectNew 'abort-edit-buttons' 'edit-buttons'~}}"><i class="fa {{~if projectNew ' abort' ' add'~}}"></i>{{~if projectNew ' hinzufügen abbrechen' ' Projekt hinzufügen'~}}</a>
+      </div>
       <div id="competence-content-show">
         <div class="collapse-group-project">
           <div class="row mb-3">

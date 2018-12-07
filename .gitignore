@@ -17,6 +17,7 @@
 !/log/.keep
 !/tmp/.keep
 .DS_STORE
+spec/coverage/.last_run.json
 /spec/coverage/*
 
 # Ignore Byebug command history file.

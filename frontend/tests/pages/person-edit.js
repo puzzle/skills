@@ -10,10 +10,16 @@ import {
 export default create({
   visit: visitable('/people/:person_id'),
   toggleEditFormButton: clickable('[data-test-person-edit-form-toggle]'),
+  toggleNationalitiesCheckbox: clickable('#toggle-nationalities-id'),
 
   toggleEditForm() {
     this.toggleEditFormButton();
 
+    return this.editForm;
+  },
+
+  toggleNationalities() {
+    this.toggleNationalitiesCheckbox();
     return this.editForm;
   },
 
@@ -30,8 +36,7 @@ export default create({
     title: text('#data-test-person-title'),
     role: text('#data-test-person-role'),
     birthdate: text('#data-test-person-birthdate'),
-    nationality: text('#data-test-person-nationality'),
-    nationality2: text('#data-test-person-nationality2'),
+    nationalities: text('#data-test-person-nationalities'),
     location: text('#data-test-person-location'),
     language: text('#data-test-person-language'),
     maritalStatus: text('#data-test-person-marital-status'),

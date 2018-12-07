@@ -569,17 +569,49 @@ form textarea{
   width: 160px;
 }
 
-.table-uebersicht td {
+.table-company td {
   padding-bottom: 5px;
   vertical-align: top;
   font-size: 90%;
 }
 
-.datepicker_fix {
-
+.table-company {
+  width: 100%;
 }
 
-.table-uebersicht tr td:first-child {
+.table-company td:first-child, .table-company label {
+  width: 50%;
+}
+
+.table-company label {
+  float: left;
+}
+
+.table-company td:last-child {
+  width: 50%;
+}
+
+.table-company input, .table-company button, .table-company .ember-power-select-trigger {
+  width: 45%;
+  float: right;
+}
+
+.table-company .nextToDelete {
+  position: relative;
+}
+
+.table-company .nextToDelete input {
+  width: 40%;
+  margin-right: 5%;
+}
+
+.table-company .deleteField {
+  position: absolute;
+  top: 5px;
+  right: 12px;
+}
+
+.table-company tr td:first-child {
   text-align: right;
   font-weight: bold;
   padding-right: 10px;
@@ -587,8 +619,40 @@ form textarea{
   min-height: 35px;
 }
 
-.table-uebersicht tr:first-child {
+.table-company tr:first-child {
   font-size: 140%;
+}
+
+
+/* Person Übersicht*/
+
+.table-person {
+
+}
+
+.table-person input, .table-person .ember-power-select-trigger {
+  width: 100%;
+  float: right;
+}
+
+.table-person label {
+  float: left;
+  text-align: left;
+  margin-bottom: 0px !important;
+  margin-top: 5px !important;
+}
+
+.table-person tr {
+  height:100%;
+}
+
+.table-person .description {
+  color: grey;
+}
+
+.table-person .checkbox {
+  outline: none;
+  height: 35px;
 }
 
 .skill {
@@ -619,10 +683,10 @@ form textarea{
   font-weight: bold;
 }
 
-a:hover .fa, a:active .fa, a:focus .fa {
+/*a:hover .fa, a:active .fa, a:focus .fa {
   color: #61B44B;
   transition: 0.3s;
-}
+}*/
 
 [data-toggle="collapse"].collapsed .angle:before {
   content: "\f107";
@@ -846,22 +910,80 @@ button::-moz-focus-inner {
   text-decoration: none !important;
 }
 
-.noleftpadding {
-  padding: 0 !important;
+.content-bootstrap-feel {
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  padding: 5px;
+  margin: 2px 0 0;
 }
 
+.no-grey-border{
+  border: 0 !important;
+  text-decoration: none !important;
+  outline: 0 !important;
+}
+
+/* Hovering State of the top navbar */
 .hovering-nav-bar:hover {
   background-color: #61B44B;
 }
 
+/* Selected state of the top navbar */
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
   background-color: #1E5A96;
 }
 
+/* Text right next to the PuzzleSkills Logo */
 .versionText {
   color: black;
   font-size: 8px;
   font-family: "Verdana";
+}
+
+/* Border with custom color */
+.border-black {
+   border:1px solid #b5b5b5;
+}
+
+/* For all the bearbeiten,speichern und abbrechen "buttons" */
+.edit-buttons {
+  color: #1E5A96 !important;
+}
+
+.edit-buttons:active {
+  outline: none !important;
+}
+
+.edit-buttons:hover {
+  color: green !important;
+}
+
+.abort-edit-buttons:hover, .abort-edit-buttons i:hover {
+  color: red !important;
+}
+
+/* These two are for the CV and Fachwissensskala options under person-actions */
+.navbar .navbar-nav .nav-item .nav-link .active {
+  color: #1E5A96;
+}
+
+.navbar .navbar-nav .nav-item .nav-link a{
+  color: #8e8e8e ;
+}
+
+.navbar .navbar-nav .nav-item .nav-link a:hover {
+  text-decoration: none;
+}
+
+/* These two are for Entwickler and Systemtechniker under Fachwissenskala*/
+.navbar .navbar-nav .nav-item .active{
+  color: #1E5A96;
+}
+
+.navbar .navbar-nav .nav-item a{
+  color: #8e8e8e ;
 }
 
 /* Bootstrap Fixes */

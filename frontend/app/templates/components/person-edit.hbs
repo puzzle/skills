@@ -4,38 +4,30 @@
       <div class="card-header bg-primary">
         <div class="row">
           <div class="col-sm-6">
-            <a class="card-link text-white" href="#">Übersicht</a>
+            <a class="card-link text-white" href="#">Personalien</a>
           </div>
           <div class="col-sm-6 text-right d-block">
-            <a {{action 'submit' changeset}} role="button" id="submit-button" class="card-link text-white"><i class="fa save"></i></a>
-            <a onclick={{personEditing}} role="button" class="card-link text-white"><i class="fa abort"></i></a>
             <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#"><i class="fa angle"></i></a>
           </div>
         </div>
       </div>
       <div id="collapseOne" class="collapse show border border-primary rounded-bottom">
         <div class="card-body row">
-          <div class="col-sm-2" id="profile-content-edit">
-            {{picture-edit picturePath=person.picturePath uploadPath=personPictureUploadPath}}
-          </div>
-          <div class="col-sm-5">
-            <table class="table-uebersicht">
+          <div class="col-sm-3 d-flex flex-column" id="profile-content-edit">
+            <table class="table-person">
               <tr>
-                <td>
-                  <label>Firma</label>
-                  {{#power-select
-                    triggerId="company"
-                    selected=person.company
-                    options=companiesToSelect
-                    onfocus=(action "handleFocus")
-                    onblur=(action "handleBlur")
-                    onchange=(action (mut person.company))
-                  as |company|
-                  }}
-                    {{company.name}}
-                  {{/power-select}}
-                </td>
+                <div>
+                  {{picture-edit picturePath=person.picturePath uploadPath=personPictureUploadPath}}
+                </div>
               </tr>
+            </table>
+            <div class="mt-auto">
+              <button {{action 'submit' changeset}} role="button" id="submit-button" class="btn btn-primary"><i class="fa save"></i> Speichern</button>
+              <button onclick={{personEditing}} role="button" class="btn btn-secondary"><i class="fa abort"></i> Abbrechen</button>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <table class="table-person">
               <tr>
                 <td>{{f.text-field 'name' label="Name"}}</td>
               </tr>
@@ -62,6 +54,26 @@
               </tr>
               <tr>
                 <td>
+                  <label>Firma</label>
+                  {{#power-select
+                    triggerId="company"
+                    selected=person.company
+                    options=companiesToSelect
+                    onfocus=(action "handleFocus")
+                    onblur=(action "handleBlur")
+                    onchange=(action (mut person.company))
+                  as |company|
+                  }}
+                    {{company.name}}
+                  {{/power-select}}
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="col-sm-3">
+            <table class="table-person">
+              <tr>
+                <td>
                   <label class="label-date form-field--label" for='date_location'>Geb.Datum</label>
                   <div id="date_location">
                     {{ember-flatpickr
@@ -73,51 +85,8 @@
                   </div>
                 </td>
               </tr>
-            </table>
-          </div>
-          <div class="col-sm-5">
-            <table class="table-uebersicht">
-              <tr>
-                <td>{{!Leere Zeile aus Layout-Gründen}}</td>
-              </tr>
-              <tr>
-                <td>
-                  <Label>Nationalität</Label>
-                  {{#power-select
-                    triggerId="nationality"
-                    options=countries
-                    selected=selectedNationality
-                    onchange=(action "setNationality")
-                    onfocus=(action "handleFocus")
-                    onblur=(action "handleBlur")
-                    searchField="1"
-                    as |country|}}
-                    <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
-                  {{/power-select}}
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <Label>Weitere Nationalität</Label>
-                  {{#power-select
-                    triggerId="nationality2"
-                    options=countries
-                    allowClear=true
-                    selected=selectedNationality2
-                    onchange=(action "setNationality2")
-                    onfocus=(action "handleFocus")
-                    onblur=(action "handleBlur")
-                    searchField="1"
-                    as |country|}}
-                    <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
-                  {{/power-select}}
-                </td>
-              </tr>
               <tr>
                 <td>{{f.text-field 'location' label="Wohnort"}}</td>
-              </tr>
-              <tr>
-                <td>{{f.text-field 'language' label="Sprache"}}</td>
               </tr>
               <tr>
                 <td>
@@ -135,6 +104,54 @@
                     {{martialStatus}}
                   {{/power-select}}
                 </td>
+              </tr>
+              <tr>
+                <td>
+                  <Label>Doppelbürger</Label>
+                  {{input type="checkbox" checked=secondNationality click=(action "switchNationality" value="target.checked")
+                    id="toggle-nationalities-id" class="checkbox"}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <Label>Erste Nationlität</Label>
+                  {{#power-select
+                    triggerId="nationality"
+                    options=countries
+                    selected=selectedNationality
+                    onchange=(action "setNationality")
+                    onfocus=(action "handleFocus")
+                    onblur=(action "handleBlur")
+                    searchField="1"
+                    as |country|}}
+                    <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
+                  {{/power-select}}
+                </td>
+              </tr>
+              <tr>
+                {{#if secondNationality}}
+                  <td>
+                    <Label>Zweite Nationalität</Label>
+                    {{#power-select
+                      triggerId="nationality2"
+                      options=countries
+                      selected=selectedNationality2
+                      onchange=(action "setNationality2")
+                      onfocus=(action "handleFocus")
+                      onblur=(action "handleBlur")
+                      searchField="1"
+                      as |country|}}
+                      <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
+                    {{/power-select}}
+                  </td>
+                {{/if}}
+              </tr>
+            </table>
+          </div>
+          <div class="col-sm-3">
+            <table class="table-person">
+              <tr>
+                <td>{{f.text-field 'language' label="Sprachen"}}</td>
               </tr>
             </table>
           </div>

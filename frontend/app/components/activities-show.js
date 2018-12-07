@@ -8,5 +8,9 @@ export default Component.extend({
     return this.get('activities');
   }),
 
+  amountOfActivities: computed(function() {
+    return this.get('activities.length');
+  }),
+
   filteredActivities: sortByYear('filtered'),
 });

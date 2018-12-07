@@ -1,79 +1,141 @@
-<div class="card-header bg-primary">
-  <div class="row">
-    <div class="col-sm-6">
-      <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Personalien</a>
-    </div>
-    <div class="col-sm-6 text-right d-block">
-      <a onclick={{personEditing}} data-test-person-edit-form-toggle class="card-link text-white"><i class="fa edit"></i></a>
-      <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><i class="fa angle"></i></a>
-    </div>
+<div class="d-flex">
+  <div class="mr-auto p-2"></div>
+  <div class="p-2">
+    {{#basic-dropdown as |dd|}}
+      {{#dd.trigger}}
+        <a class="edit-buttons">
+          <td><i class="fa fa-cog" aria-hidden="true"></i> Mehr Optionen</td>
+        </a>
+      {{/dd.trigger}}
+      {{#dd.content class="content-bootstrap-feel"}}
+        <a onclick={{action 'deletePerson' person}} role="button" class="edit-buttons">
+          <td><i class="fa fa-trash-o" aria-hidden="true"></i> Profil löschen</td>
+        </a>
+      {{/dd.content}}
+    {{/basic-dropdown}}
+  </div>
+  <div class="p-2">
+    <a onclick={{pipe (action 'exportCvOdt' person.id)}} class="edit-buttons">
+      <td><i class="fa fa-download" aria-hidden="true"></i> Export</td>
+    </a>
   </div>
 </div>
-<div id="collapseOne" class="collapse show border border-primary rounded-bottom">
-  <div class="card-body">
-    <div class="row" id="profile-content-show">
-      <div class="col-sm-2">
-        <img id="img-avatar-read"
-             src={{person.picturePath}}
-               class="img-polaroid profil-img"
-        alt="">
+<div class="card">
+  <div class="card-header bg-primary">
+    <div class="row">
+      <div class="col-sm-6">
+        <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Personalien</a>
       </div>
-      <div class="col-sm-5">
-        <table class="table-uebersicht">
-          <tr>
-            <td>Firma</td>
-            <td data-test-person-company>{{person.company.name}}</td>
-          </tr>
-          <tr>
-            <td>Name</td><td id="data-test-person-name">{{person.name}}</td>
-          </tr>
-          <tr>
-            <td>Titel</td><td id="data-test-person-title">{{person.title}}</td>
-          </tr>
-          <tr>
-            <td>Funktion</td>
-            {{#if person.roles.length}}
-              <td id="data-test-person-role">{{person.roles.firstObject.name}}</td>
-            {{/if}}
-          </tr>
-          <tr>
-            <td>Geb. Datum</td>
-            <td>
-              <time datetime={{moment-format person.birthdate}} id="data-test-person-birthdate">
-                {{~moment-format person.birthdate 'L'~}}
-              </time>
-            </td>
-          </tr>
-        </table>
+      <div class="col-sm-6 text-right d-block">
+        <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><i class="fa angle"></i></a>
       </div>
-      <div class="col-sm-5">
-        <table class="table-uebersicht">
-          <tr>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Nationalität</td><td id="data-test-person-nationality">{{format-country person.nationality}}</td>
-          </tr>
-          {{#if person.nationality2}}
+    </div>
+  </div>
+  <div id="collapseOne" class="collapse show border border-primary rounded-bottom">
+    <div class="card-body">
+      <div class="row" id="profile-content-show">
+        <div class="col-sm-3">
+          <table>
             <tr>
-              <td>Weitere Nationalität</td><td id="data-test-person-nationality2">{{format-country person.nationality2}}</td>
+              <img id="img-avatar-read" src={{person.picturePath}} class="img-polaroid profil-img rounded-circle" alt="">
             </tr>
-          {{/if}}
-          <tr>
-            <td>Wohnort</td><td id="data-test-person-location">{{person.location}}</td>
-          </tr>
-          <tr>
-            <td>Sprachen</td><td id="data-test-person-language">{{person.language}}</td>
-          </tr>
-          <tr>
-            <td>Zivilstand</td><td id="data-test-person-marital-status">{{person.martialStatus}}</td>
-          </tr>
-          {{#each company.employeeQuantities as |quantity|}}
+            <div class="mt-4">
+            </div>
             <tr>
-              <td>{{quantity.category}}</td><td>{{quantity.quantity}}</td>
+              <a onclick={{personEditing}} class="edit-buttons" data-test-person-edit-form-toggle>
+                <td><i class="fa fa-pencil" aria-hidden="true"></i> Bearbeiten</td>
+              </a>
             </tr>
-          {{/each}}
-        </table>
+          </table>
+        </div>
+        <div class="col-sm-3">
+          <table class="table-person">
+            <tr class="description">
+              <td class="">Name</td>
+            </tr>
+            <tr>
+              <td id="data-test-person-name">{{person.name}}</td>
+            </tr>
+            <div class="mb-2">
+            </div>
+            <tr class="description">
+              <td>Titel</td>
+            </tr>
+            <tr>
+              <td id="data-test-person-title">{{person.title}}</td>
+            </tr>
+            <div class="mb-2">
+            </div>
+            <tr class="description">
+              <td>Funktion</td>
+            </tr>
+            <tr>
+              {{#if person.roles.length}}
+                <td id="data-test-person-role">{{person.roles.firstObject.name}}</td>
+              {{/if}}
+            </tr>
+            <div class="mb-2">
+            </div>
+            <tr class="description">
+              <td>Firma</td>
+            </tr>
+            <tr>
+              <td data-test-person-company>{{person.company.name}}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="col">
+          <table class="table-person">
+            <tr class="description">
+              <td>Geb. Datum</td>
+            </tr>
+            <tr>
+              <td>
+                <time datetime={{moment-format person.birthdate}} id="data-test-person-birthdate">
+                  {{~moment-format person.birthdate 'L'~}}
+                </time>
+              </td>
+            </tr>
+            <div class="mb-2">
+            </div>
+            <tr class="description">
+              <td>Nationalität{{#if person.nationality2}}en{{/if}}</td>
+            </tr>
+            <tr>
+              <td id="data-test-person-nationalities">
+                {{format-country person.nationality}}{{#if person.nationality2}} , {{format-country person.nationality2}}{{/if}}
+              </td>
+            </tr>
+            <div class="mb-2">
+            </div>
+            <tr class="description">
+              <td>Wohnort</td>
+            </tr>
+            <tr>
+              <td id="data-test-person-location">{{person.location}}</td>
+            </tr>
+            <div class="mb-2">
+            </div>
+            <tr class="description">
+              <td>Zivilstand</td>
+            </tr>
+            <tr>
+              <td id="data-test-person-marital-status">{{person.martialStatus}}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="col">
+          <table class="table-person">
+            <div class="mb-2">
+            </div>
+            <tr class="description">
+              <td>Sprachen</td>
+            </tr>
+            <tr>
+              <td id="data-test-person-language">{{person.language}}</td>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
   </div>
