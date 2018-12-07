@@ -3,8 +3,8 @@ class ApplicationRecord < ActiveRecord::Base
 
   private
 
-  def year_from_before_year_to
-    return if year_from.nil? || year_to.nil?
-    errors.add(:year_from, 'muss vor Jahr bis sein') if year_from > year_to
+  def start_at_before_finish_at
+    return if finish_at.nil? || start_at.nil?
+    errors.add(:start_at, 'muss vor "Datum bis" sein') if start_at > finish_at
   end
 end

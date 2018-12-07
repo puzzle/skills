@@ -180,7 +180,9 @@ describe PeopleController do
         expect(new_person.language).to eq('German')
         expect(new_person.nationality).to eq('CH')
         expect(new_person.nationality2).to eq('FR')
-        expect(new_person.roles).to eq([ role1, role2 ])
+        [role1, role2].each do |role|
+          expect(new_person.roles).to include(role)
+        end
         expect(new_person.picture.url)
           .to include("#{Rails.root}/uploads/person/picture/#{new_person.id}/picture.png")
       end

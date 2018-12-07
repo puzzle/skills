@@ -3,11 +3,10 @@
     <div class="row">
       <div class="col-sm-3">
         <div class="input-group centered-content-input">
-          {{input value=newAdvancedTraining.year_from type="number" class="input-mini form-control" placeholder="von"}}
-          {{input value=newAdvancedTraining.year_to type="number" class="input-mini form-control" placeholder="bis"}}
+          {{daterange-edit entity=newAdvancedTraining}}
         </div>
       </div>
-      <div class="col-sm-7">
+      <div class="col-sm-7 content-input">
         {{textarea placeholder="Beschreibung" value=newAdvancedTraining.description class="input-xxlarge form-control"}}
       </div>
       <div class="col-sm-2 centered-content text-right">

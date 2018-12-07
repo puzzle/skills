@@ -5,7 +5,7 @@ describe ProjectsController do
 
   describe 'GET index' do
     it 'returns all projects' do
-      keys = %w(technology title description role updated_by year_to)
+      keys = %w(technology title description role updated_by start_at)
       process :index, method: :get, params: { person_id: bob.id }
 
       projects = json['data']
@@ -35,8 +35,8 @@ describe ProjectsController do
     it 'creates new project' do
       project = { description: 'test description',
                   updated_by: 'Bob',
-                  year_from: 2010,
-                  year_to: 2015,
+                  finish_at: '2013-03-02',
+                  start_at: '2010-10-20',
                   title: 'test title',
                   technology: 'test technology',
                   role: 'test role' }
@@ -45,8 +45,8 @@ describe ProjectsController do
 
       new_project = Project.find_by(description: 'test description')
       expect(new_project).not_to eq(nil)
-      expect(new_project.year_from).to eq(2010)
-      expect(new_project.year_to).to eq(2015)
+      expect(new_project.finish_at.to_s).to eq('2013-03-02')
+      expect(new_project.start_at.to_s).to eq('2010-10-20')
       expect(new_project.title).to eq('test title')
       expect(new_project.technology).to eq('test technology')
       expect(new_project.role).to eq('test role')

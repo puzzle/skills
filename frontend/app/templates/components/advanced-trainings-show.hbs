@@ -22,11 +22,11 @@
           <div class="zeile">
             <div class="row">
               <div class="col-sm-3 centered-content text-center">
-                {{advanced-training.year_from}}
-                {{#if (eq advanced-training.year_to null)}}
+                {{if (not-eq (moment-format advanced-training.start_at 'DD') "13") (moment-format advanced-training.start_at 'MM.YYYY') (moment-format advanced-training.start_at 'YYYY')}}
+                {{#if (eq advanced-training.finish_at null)}}
                   - heute
-                {{else if (not-eq advanced-training.year_from advanced-training.year_to)}}
-                  - {{advanced-training.year_to}}
+                {{else if (not-eq advanced-training.finish_at advanced-training.start_at)}}
+                  - {{if (not-eq (moment-format advanced-training.finish_at 'DD') "13") (moment-format advanced-training.finish_at 'MM.YYYY') (moment-format advanced-training.finish_at 'YYYY')}}
                 {{/if}}
               </div>
               <div class="col-sm-9 centered-content">

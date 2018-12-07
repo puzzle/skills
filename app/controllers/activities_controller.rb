@@ -1,3 +1,3 @@
 class ActivitiesController < PersonRelationsController
-  self.permitted_attrs = %i[description role technology year_from year_to person_id]
+  self.permitted_attrs = %i[description role technology finish_at start_at person_id]
 end

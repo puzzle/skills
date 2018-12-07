@@ -8,11 +8,11 @@
 #  title       :text
 #  role        :text
 #  technology  :text
-#  year_to     :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  person_id   :integer
-#  year_from   :integer
+#  finish_at   :date
+#  start_at    :date
 #
 
 require 'rails_helper'
@@ -25,7 +25,7 @@ describe Project do
       project = Project.new
       project.valid?
 
-      expect(project.errors[:year_from].first).to eq('muss ausgefüllt werden')
+      expect(project.errors[:start_at].first).to eq('muss ausgefüllt werden')
       expect(project.errors[:person_id].first).to eq('muss ausgefüllt werden')
       expect(project.errors[:role].first).to eq('muss ausgefüllt werden')
       expect(project.errors[:title].first).to eq('muss ausgefüllt werden')
@@ -49,37 +49,27 @@ describe Project do
     end
 
 
-    it 'does not create Project if year_from is later than year_to' do
+    it 'does not create Project if start_at is later than finish_at' do
       project = projects(:duckduckgo)
-      project.year_to = 1997
+      project.start_at = '2016-01-01'
       project.valid?
 
-      expect(project.errors[:year_from].first).to eq('muss vor Jahr bis sein')
+      expect(project.errors[:start_at].first).to eq('muss vor "Datum bis" sein')
     end
 
-    it 'year should not be longer or shorter then 4' do
+    it 'finish_at can be blank' do
       project = projects(:duckduckgo)
-      project.year_from = 12345
-      project.year_to = 12345
-      project.valid?
-
-      expect(project.errors[:year_from].first).to eq('hat die falsche Länge (muss genau 4 Zeichen haben)')
-      expect(project.errors[:year_to].first).to eq('hat die falsche Länge (muss genau 4 Zeichen haben)')
-    end
-
-    it 'year_to can be blank' do
-      project = projects(:duckduckgo)
-      project.year_to = nil
+      project.finish_at = nil
 
       project.valid?
 
-      expect(project.errors[:year_to]).to be_empty
+      expect(project.errors[:finish_at]).to be_empty
     end
 
     it 'orders projects correctly with list scope' do
       bob_id = people(:bob).id
-      Project.create(title: 'test1', role: 'test1', technology: 'test', year_from: '2000', person_id: bob_id)
-      Project.create(title: 'test2', role: 'test2', technology: 'test', year_from: '2000', year_to: '2030', person_id: bob_id)
+      Project.create(title: 'test1', role: 'test1', technology: 'test', start_at: '2014-01-01', person_id: bob_id)
+      Project.create(title: 'test2', role: 'test2', technology: 'test', start_at: '2000-01-01', finish_at: '2030-01-01', person_id: bob_id)
 
       list = Project.all.list
 

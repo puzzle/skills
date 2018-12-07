@@ -1,3 +1,3 @@
 class EducationsController < PersonRelationsController
-  self.permitted_attrs = %i[location title year_from year_to person_id]
+  self.permitted_attrs = %i[location title finish_at start_at person_id]
 end

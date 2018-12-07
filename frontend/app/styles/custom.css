@@ -861,7 +861,8 @@ button::-moz-focus-inner {
 
 /* Input grössen */
 .year {
-  width: 75px;
+  width: 80px;
+  height: 35px;
 }
 
 /* Person */
@@ -885,6 +886,7 @@ button::-moz-focus-inner {
   border-width: 1px 1px 0px 1px;
   border-style: solid;
   border-color: black;
+  vertical-align: middle;
 }
 
 .zeile:first-child {
@@ -905,6 +907,15 @@ button::-moz-focus-inner {
   min-height: 60px;
 }
 
+.zeile .centered-content-input textarea {
+  height: 100%;
+}
+
+div.content-input  {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 /* class that stops underlining  */
 .nounderline {
   text-decoration: none !important;

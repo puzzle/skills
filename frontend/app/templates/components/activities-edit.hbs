@@ -17,12 +17,11 @@
             <div class="row">
               <div class="col-sm-3">
                 <div class="input-group centered-content-input">
-                  {{input value=activity.year_from type="number" class="year form-control" placeholder="von"}}
-                  {{input value=activity.year_to type="number" class="year form-control" placeholder="bis"}}
+                  {{daterange-edit entity=activity}}
                 </div>
               </div>
               <div class="col-sm-7 row">
-                <div class="col-sm-3">
+                <div class="col-sm-3 content-input">
                   {{input value=activity.role class="form-control centered-content-input" placeholder="Rolle"}}
                 </div>
                 <div class="col-sm-9 centered-content-input">

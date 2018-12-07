@@ -1,9 +1,8 @@
 import DS from 'ember-data';
+import DaterangeModel from './daterange-model';
 
-export default DS.Model.extend({
+export default DaterangeModel.extend({
   description: DS.attr('string'),
   role: DS.attr('string'),
-  year_from: DS.attr('number'),
-  year_to: DS.attr('number'),
   person: DS.belongsTo('person')
 });

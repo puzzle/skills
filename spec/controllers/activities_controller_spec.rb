@@ -5,7 +5,7 @@ describe ActivitiesController do
 
   describe 'GET index' do
     it 'returns all activities' do
-      keys = %w(description updated_by role year_from)
+      keys = %w(description updated_by role finish_at)
 
       process :index, method: :get, params: { person_id: bob.id }
 
@@ -33,16 +33,16 @@ describe ActivitiesController do
     it 'creates new activity' do
       activity = { description: 'test description',
                    updated_by: 'Bob',
-                   year_from: 2000,
-                   year_to: 2015,
+                   finish_at: '2013-03-02',
+                   start_at: '2010-10-20',
                    role: 'test role' }
 
       post :create, params: create_params(activity, bob.id, 'activity')
 
       new_activity = Activity.find_by(description: 'test description')
       expect(new_activity).not_to eq(nil)
-      expect(new_activity.year_from).to eq(2000)
-      expect(new_activity.year_to).to eq(2015)
+      expect(new_activity.finish_at.to_s).to eq('2013-03-02')
+      expect(new_activity.start_at.to_s).to eq('2010-10-20')
     end
   end
 

@@ -9,7 +9,6 @@
 #  martial_status          :string
 #  updated_by              :string
 #  name                    :string
-#  role                    :string
 #  title                   :string
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null

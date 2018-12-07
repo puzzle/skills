@@ -5,7 +5,7 @@ describe AdvancedTrainingsController do
 
   describe 'GET index' do
     it 'returns all advanced_trainings' do
-      keys = %w(description updated_by year_from year_to)
+      keys = %w(description updated_by finish_at start_at)
 
       process :index, method: :get, params: { person_id: bob.id }
 
@@ -33,15 +33,15 @@ describe AdvancedTrainingsController do
     it 'creates new advanced training' do
       advanced_training = { description: 'test description',
                             updated_by: 'Bob',
-                            year_from: 2000,
-                            year_to: 2015 }
+                            finish_at: '2013-03-02',
+                            start_at: '2010-10-20' }
 
       post :create, params: create_params(advanced_training, bob.id, 'advanced-training')
 
       new_at = AdvancedTraining.find_by(description: 'test description')
       expect(new_at).not_to eq(nil)
-      expect(new_at.year_from).to eq(2000)
-      expect(new_at.year_to).to eq(2015)
+      expect(new_at.finish_at.to_s).to eq('2013-03-02')
+      expect(new_at.start_at.to_s).to eq('2010-10-20')
     end
   end
 

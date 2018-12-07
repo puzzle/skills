@@ -10,8 +10,8 @@ test('it renders project', function(assert) {
     title: 'Dreaming Project',
     description: 'Schlafen',
     role: 'Träumer',
-    year_from: '1990',
-    year_to: '1991',
+    finish_at: new Date(1990, 1, 1),
+    start_at: new Date(1991, 1, 1),
     projectTechnologies: [
       { offer: ['java', 'ruby', 'ember'] }
     ]

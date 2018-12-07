@@ -34,16 +34,16 @@ class PersonSeeder
   def change_activity(activity)
     activity.description = Faker::Hacker.say_something_smart
     activity.role = Faker::Company.profession
-    activity.year_from = Faker::Number.between(1956, 1979)
-    activity.year_to = Faker::Number.between(1980, 2016)
+    activity.start_at = Faker::Date.between(60.year.ago, 40.year.ago)
+    activity.finish_at = Faker::Date.between(30.year.ago, 2.year.ago)
     activity.save!
   end
 
   def change_advanced_training(advanced_training)
     advanced_training.description = Faker::Hacker.say_something_smart
     advanced_training.created_at = Time.now
-    advanced_training.year_from = Faker::Number.between(1956, 1979)
-    advanced_training.year_to = Faker::Number.between(1980, 2016)
+    advanced_training.start_at = Faker::Date.between(60.year.ago, 40.year.ago)
+    advanced_training.finish_at = Faker::Date.between(30.year.ago, 2.year.ago)
     advanced_training.save!
   end
 
@@ -52,16 +52,16 @@ class PersonSeeder
     project.title = Faker::Name.title
     project.role = Faker::Company.profession
     project.technology = Faker::Superhero.power
-    project.year_from = Faker::Number.between(1956, 1979)
-    project.year_to = Faker::Number.between(1980, 2016)
+    project.start_at = Faker::Date.between(60.year.ago, 40.year.ago)
+    project.finish_at = Faker::Date.between(30.year.ago, 2.year.ago)
     project.save!
   end
 
   def change_education(education)
     education.location = Faker::Educator.university
     education.title = Faker::Educator.course
-    education.year_from = Faker::Number.between(1956, 1979)
-    education.year_to = Faker::Number.between(1980, 2016)
+    education.start_at = Faker::Date.between(60.year.ago, 40.year.ago)
+    education.finish_at = Faker::Date.between(30.year.ago, 2.year.ago)
     education.save!
   end
 
@@ -100,8 +100,8 @@ class PersonSeeder
     Activity.seed do |a|
       a.description = Faker::Hacker.say_something_smart
       a.role = Faker::Company.profession
-      a.year_from = Faker::Number.between(1956, 1979)
-      a.year_to = Faker::Number.between(1980, 2016)
+      a.start_at = Faker::Date.between(60.year.ago, 40.year.ago)
+      a.finish_at = Faker::Date.between(30.year.ago, 2.year.ago)
       a.person_id = person_id
     end
   end
@@ -110,8 +110,8 @@ class PersonSeeder
     AdvancedTraining.seed do |a|
       a.description = Faker::Hacker.say_something_smart
       a.created_at = Time.now
-      a.year_from = Faker::Number.between(1956, 1979)
-      a.year_to = Faker::Number.between(1980, 2016)
+      a.start_at = Faker::Date.between(60.year.ago, 40.year.ago)
+      a.finish_at = Faker::Date.between(30.year.ago, 2.year.ago)
       a.person_id = person_id
     end
   end
@@ -120,10 +120,10 @@ class PersonSeeder
     Project.seed do |p|
       p.description = Faker::Hacker.say_something_smart
       p.title = Faker::Name.title
-      #p.role = Faker::Company.profession
+      p.role = Faker::Company.profession
       p.technology = Faker::Superhero.power
-      p.year_from = Faker::Number.between(1956, 1979)
-      p.year_to = Faker::Number.between(1980, 2016)
+      p.start_at = Faker::Date.between(60.year.ago, 40.year.ago)
+      p.finish_at = Faker::Date.between(30.year.ago, 2.year.ago)
       p.person_id = person_id
     end
   end
@@ -132,8 +132,8 @@ class PersonSeeder
     Education.seed do |e|
       e.location = Faker::Educator.university
       e.title = Faker::Educator.course
-      e.year_from = Faker::Number.between(1956, 1979)
-      e.year_to = Faker::Number.between(1980, 2016)
+      e.start_at = Faker::Date.between(60.year.ago, 40.year.ago)
+      e.finish_at = Faker::Date.between(30.year.ago, 2.year.ago)
       e.person_id = person_id
     end
   end
