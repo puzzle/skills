@@ -817,6 +817,10 @@ form textarea{
   z-index: 1040;
 }
 
+.person-error-message {
+  min-width: 320px !important;
+}
+
 /* FWS */
 table.fws tr td:first-child {
   width: 200px;

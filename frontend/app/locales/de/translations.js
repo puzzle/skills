@@ -54,6 +54,8 @@ export default {
     projects: 'Projekte',
     personCompetences: 'Kompetenzen',
     level: 'Sprachniveau',
+    company: 'Firma',
+    roles: 'Rollen'
   },
 
   'expertise-topic-skill-value': {
