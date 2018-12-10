@@ -3,9 +3,11 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { isBlank } from '@ember/utils';
 import { getNames as countryNames } from 'ember-i18n-iso-countries';
+import { on } from '@ember/object/evented';
+import { EKMixin , keyUp } from 'ember-keyboard';
 
 
-export default Component.extend({
+export default Component.extend(EKMixin, {
   store: service(),
   i18n: service(),
 
@@ -15,6 +17,14 @@ export default Component.extend({
     this.initNationalities();
     this.initCheckbox();
   },
+
+  activateKeyboard: on('init', function() {
+    this.set('keyboardActivated', true);
+  }),
+
+  aFunction: on(keyUp('Escape'), function() {
+    this.personEditing();
+  }),
 
   initCheckbox() {
     if (this.get('person.nationality2')) {
@@ -58,6 +68,7 @@ export default Component.extend({
     }
     return !blurredEl.classList.contains('ember-power-select-search-input');
   },
+
   actions: {
     submit(changeset) {
       return changeset.save()

@@ -1,8 +1,11 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { isBlank } from '@ember/utils';
+import { on } from '@ember/object/evented';
+import { EKMixin , keyUp } from 'ember-keyboard';
 
-export default Component.extend({
+
+export default Component.extend(EKMixin, {
   i18n: service(),
   store: service(),
 
@@ -30,6 +33,18 @@ export default Component.extend({
     }
     return !blurredEl.classList.contains('ember-power-select-search-input');
   },
+
+  activateKeyboard: on('init', function() {
+    this.set('keyboardActivated', true);
+  }),
+
+  abortCompetences: on(keyUp('Escape'), function() {
+    let person = this.get('person');
+    if (person.get('hasDirtyAttributes')) {
+      person.rollbackAttributes();
+    }
+    this.competencesEditing();
+  }),
 
   actions: {
 
@@ -79,27 +94,7 @@ export default Component.extend({
     },
 
     handleBlur() {
-    },
-
-    createNewOffer(person) {
-      let competence = this.get('store').createRecord('personCompetence', { person });
-      competence.set('offer', []);
-    },
-
-    createOffer(selected, searchText)
-    {
-      let options = this.get('options');
-      if (!options.includes(searchText)) {
-        this.get('options').pushObject(searchText);
-      }
-      if (selected.includes(searchText)) {
-        this.get('notify').alert("Already added!", { closeAfter: 4000 });
-      }
-      else {
-        selected.pushObject(searchText);
-      }
-      options.sort();
-    },
+    }
 
   }
 });

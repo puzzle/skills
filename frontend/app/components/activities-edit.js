@@ -2,8 +2,11 @@ import Component from '@ember/component';
 import sortByYear from '../utils/sort-by-year';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
+import { on } from '@ember/object/evented';
+import { EKMixin , keyUp } from 'ember-keyboard';
 
-export default Component.extend({
+
+export default Component.extend(EKMixin, {
   /* exclude where id like null */
   filteredActivities: computed('@each.id', function() {
     return this.get('sortedActivities').filterBy('id');
@@ -12,6 +15,20 @@ export default Component.extend({
   sortedActivities: sortByYear('activities'),
 
   i18n: service(),
+
+  activateKeyboard: on('init', function() {
+    this.set('keyboardActivated', true);
+  }),
+
+  abortActivities: on(keyUp('Escape'), function() {
+    let activities = this.get('person.activities').toArray();
+    activities.forEach(activity => {
+      if (activity.get('hasDirtyAttributes')) {
+        activity.rollbackAttributes();
+      }
+    });
+    this.activitiesEditing();
+  }),
 
   actions: {
     submit(person) {

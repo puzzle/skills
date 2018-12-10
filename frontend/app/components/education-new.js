@@ -1,13 +1,26 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
+import { on } from '@ember/object/evented';
+import { EKMixin , keyUp } from 'ember-keyboard';
 
-export default Component.extend({
+export default Component.extend(EKMixin, {
   store: service(),
   i18n: service(),
 
   newEducation: computed('personId', function() {
     return this.get('store').createRecord('education');
+  }),
+
+  activateKeyboard: on('init', function() {
+    this.set('keyboardActivated', true);
+  }),
+
+  abortEducationNew: on(keyUp('Escape'), function() {
+    if (this.get('newEducation.isNew')) {
+      this.get('newEducation').destroyRecord();
+    }
+    this.done();
   }),
 
   willDestroyElement() {

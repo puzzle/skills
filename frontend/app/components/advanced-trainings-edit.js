@@ -1,17 +1,29 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import sortByYear from "../utils/sort-by-year";
-import { computed } from '@ember/object';
+import { on } from '@ember/object/evented';
+import { EKMixin , keyUp } from 'ember-keyboard';
 
-export default Component.extend({
-  /* exclude where id like null */
-  filteredAdvancedTrainings: computed('@each.id', function() {
-    return this.get('sortedAdvancedTrainings').filterBy('id');
-  }),
+
+export default Component.extend(EKMixin, {
 
   sortedAdvancedTrainings: sortByYear('advanced-trainings'),
 
   i18n: service(),
+
+  activateKeyboard: on('init', function() {
+    this.set('keyboardActivated', true);
+  }),
+
+  abortAdvancedTrainings: on(keyUp('Escape'), function() {
+    let advancedTrainings = this.get('person.advancedTrainings').toArray();
+    advancedTrainings.forEach(advancedTraining => {
+      if (advancedTraining.get('hasDirtyAttributes')) {
+        advancedTraining.rollbackAttributes();
+      }
+    });
+    this.advancedTrainingsEditing();
+  }),
 
   actions: {
     submit(person) {
@@ -40,9 +52,8 @@ export default Component.extend({
           });
         });
     },
-    deleteAdvancedTrainings(advancedTraining) {
+    deleteAdvancedTrainings(advancedTraining, event) {
       advancedTraining.destroyRecord()
-        .then(advanced_training => this.sendAction('done'))
         .then(() => this.get('notify').success('Weiterbildung wurde entfernt!'))
     },
     confirmDestroy(advancedTraining) {

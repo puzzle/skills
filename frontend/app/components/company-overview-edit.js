@@ -1,7 +1,9 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
+import { on } from '@ember/object/evented';
+import { EKMixin , keyUp } from 'ember-keyboard';
 
-export default Component.extend({
+export default Component.extend(EKMixin, {
   store: service(),
   i18n: service(),
   router: service(),
@@ -20,6 +22,37 @@ export default Component.extend({
     });
     company.set(relationshipName, records);
   },
+
+  activateKeyboard: on('init', function() {
+    this.set('keyboardActivated', true);
+  }),
+
+  abortEducations: on(keyUp('Escape'), function() {
+    let company = this.get('company')
+    if (company.get('hasDirtyAttributes$')) {
+      company.rollbackAttributes()
+    }
+    let locations = this.get("company.locations").toArray();
+    let employeeQuantities = this.get("company.employeeQuantities").toArray();
+
+    locations.forEach(location => {
+      if (location.get("isNew")) {
+        location.destroyRecord();
+      }
+      if (location.get('hasDirtyAttributes')) {
+        location.rollbackAttributes();
+      }
+    });
+    employeeQuantities.forEach(quantity => {
+      if (quantity.get("isNew")) {
+        quantity.destroyRecord();
+      }
+      if (quantity.get('hasDirtyAttributes')) {
+        quantity.rollbackAttributes();
+      }
+    });
+    this.sendAction("companyEditing");
+  }),
 
   actions: {
     submit(changeset) {

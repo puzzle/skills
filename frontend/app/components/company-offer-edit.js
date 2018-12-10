@@ -1,8 +1,10 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { isBlank } from '@ember/utils';
+import { on } from '@ember/object/evented';
+import { EKMixin , keyUp } from 'ember-keyboard';
 
-export default Component.extend({
+export default Component.extend(EKMixin, {
   store: service(),
   i18n: service(),
 
@@ -29,6 +31,23 @@ export default Component.extend({
     }
     return !blurredEl.classList.contains('ember-power-select-search-input');
   },
+
+  activateKeyboard: on('init', function() {
+    this.set('keyboardActivated', true);
+  }),
+
+  abortEducations: on(keyUp('Escape'), function() {
+    let offers = this.get('company.offers').toArray();
+    offers.forEach(offer => {
+      if (offer.get('isNew')) {
+        offer.destroyRecord();
+      }
+      if (offer.get('hasDirtyAttributes')) {
+        offer.rollbackAttributes();
+      }
+    });
+    this.companyOfferEditing();
+  }),
 
   actions: {
 

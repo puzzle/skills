@@ -2,8 +2,10 @@ import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { isBlank } from '@ember/utils';
+import { on } from '@ember/object/evented';
+import { EKMixin , keyUp } from 'ember-keyboard';
 
-export default Component.extend({
+export default Component.extend(EKMixin, {
   store: service(),
   i18n: service(),
 
@@ -31,6 +33,17 @@ export default Component.extend({
       this.get('newProject').destroyRecord();
     }
   },
+
+  activateKeyboard: on('init', function() {
+    this.set('keyboardActivated', true);
+  }),
+
+  abortProjectNew: on(keyUp('Escape'), function() {
+    if (this.get('newProject.isNew')) {
+      this.get('newProject').destroyRecord();
+    }
+    this.done();
+  }),
 
   suggestion(term) {
     return `"${term}" mit Enter hinzufügen!`;
