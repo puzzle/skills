@@ -14,7 +14,7 @@ export default DS.Model.extend({
 
   toDate(year, month, day) {
     let date = new Date(1970, month, day);
-    if (!isNaN(year)) date.setFullYear(year);
+    if (!isNaN(year)) date.setFullYear(year, month, day);
     return date;
   },
 
@@ -23,4 +23,3 @@ export default DS.Model.extend({
     return false;
   }
 });
-
