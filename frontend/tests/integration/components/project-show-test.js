@@ -22,14 +22,14 @@ test('it renders project', function(assert) {
     selectProject=(action (mut projectEditing))
   }}`);
 
-  assert.ok(this.$().text().indexOf('Dreaming Project') !== -1);
-  assert.ok(this.$().text().indexOf('Schlafen') !== -1);
-  assert.ok(this.$().text().indexOf('Träumer') !== -1);
-  assert.ok(this.$().text().indexOf('1990') !== -1);
-  assert.ok(this.$().text().indexOf('1991') !== -1);
-  assert.ok(this.$().text().indexOf('java') !== -1);
-  assert.ok(this.$().text().indexOf('ruby') !== -1);
-  assert.ok(this.$().text().indexOf('ember') !== -1);
+  assert.ok(this.$().text().includes('Dreaming Project'));
+  assert.ok(this.$().text().includes('Schlafen'));
+  assert.ok(this.$().text().includes('Träumer'));
+  assert.ok(this.$().text().includes('1990'));
+  assert.ok(this.$().text().includes('1991'));
+  assert.ok(this.$().text().includes('java'));
+  assert.ok(this.$().text().includes('ruby'));
+  assert.ok(this.$().text().includes('ember'));
 });
 
 test('project description, role and technology preserves whitespace', function(assert) {

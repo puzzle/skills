@@ -21,13 +21,13 @@ test('it renders company-overview', function(assert) {
 
   this.render(hbs`{{company-overview company=company}}`);
 
-  assert.ok(this.$().text().indexOf('Firma') !== -1);
-  assert.ok(this.$().text().indexOf('www.example.org') !== -1);
-  assert.ok(this.$().text().indexOf('123456789') !== -1);
-  assert.ok(this.$().text().indexOf('Christoph Kolumbus' !== -1));
-  assert.ok(this.$().text().indexOf('Urs Fischer' !== -1));
-  assert.ok(this.$().text().indexOf('urs@fischer.ch' !== -1));
-  assert.ok(this.$().text().indexOf('987654321' !== -1));
-  assert.ok(this.$().text().indexOf('crm123' !== -1));
-  assert.ok(this.$().text().indexOf('X' !== -1));
+  assert.ok(this.$().text().includes('Firma'));
+  assert.ok(this.$().text().includes('www.example.org'));
+  assert.ok(this.$().text().includes('123456789'));
+  assert.ok(this.$().text().includes('Christoph Kolumbus'));
+  assert.ok(this.$().text().includes('Urs Fischer'));
+  assert.ok(this.$().text().includes('urs@fischer.ch'));
+  assert.ok(this.$().text().includes('987654321'));
+  assert.ok(this.$().text().includes('crm123'));
+  assert.ok(this.$().text().includes('X'));
 });
