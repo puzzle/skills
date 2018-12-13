@@ -16,15 +16,16 @@ test('renders delete confirmation dialog with confirm message', function(assert)
     emailContactPerson: 'urs@fischer.ch',
     phoneContactPerson: '987654321',
     crm: 'crm123',
-    level: 'X'
+    level: 'X',
+    toString: 'Firma1'
   });
 
-  this.render(hbs`{{delete-with-confirmation message='Firma Firma1 wirklich löschen?' entry=company}}`);
+  this.render(hbs`{{delete-with-confirmation entry=company}}`);
 
   this.$('.deleteField').click()
 
   assert.ok(this.$().text().includes('Löschen bestätigen'));
-  assert.ok(this.$().text().includes('Firma Firma1 wirklich löschen?'));
+  assert.ok(this.$().text().includes('Firma1 wirklich löschen?'));
   assert.ok(this.$().text().includes('Abbrechen'));
   assert.ok(this.$().text().includes('Löschen'));
 });

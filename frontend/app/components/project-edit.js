@@ -77,14 +77,6 @@ export default Component.extend(EKMixin, {
           });
         });
     },
-    deleteProject(project) {
-      project.destroyRecord()
-        .then(project => this.sendAction('done'))
-        .then(() => this.get('notify').success('Projekt wurde entfernt!'));
-    },
-    confirmDestroy(project) {
-      this.send('deleteProject', project);
-    },
 
     handleFocus(select, e) {
       if (this.focusComesFromOutside(e)) {

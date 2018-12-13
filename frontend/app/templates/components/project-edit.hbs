@@ -42,20 +42,12 @@
           </div>
           <div class="mt-auto">
             <button onclick={{action 'submit' changeset}} role="button" id="submit-button" class="btn btn-primary"><i class="fa save"></i> Speichern</button>
-
-            {{#confirm-dialog
-              text="Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?"
-              confirmButton="Löschen"
-              cancelButton="Abbrechen"
-              confirmAction=(action 'confirmDestroy' project)
-              confirmButtonClass="btn btn-danger"
-              cancelButtonClass="btn pull-right"
-              okCssIcon="fa fa-check-circle-o"
-              cancelCssIcon="fa fa-ban"
+            {{#delete-with-confirmation
+              entry=project
+              class='btn btn-danger text-white no-hover'
             }}
-              <button role="button" class="btn btn-danger"><i class="fa trash"></i> Löschen</button>
-            {{/confirm-dialog}}
-
+              Löschen
+            {{/delete-with-confirmation}}
             <button onclick={{action done}} role="button" class="btn btn-secondary"><i class="fa abort"></i> Abbrechen</button>
           </div>
         </div>

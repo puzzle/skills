@@ -28,19 +28,10 @@
                   {{input value=education.location class="input-xxlarge form-control" placeholder="Ausbildungsort"}}
                 </div>
               </div>
-              <div class="col-sm-2 edit-symbols text-right centered-content">
-                {{#confirm-dialog
-                  text="Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?"
-                  confirmButton="Löschen"
-                  cancelButton="Abbrechen"
-                  confirmAction=(action 'confirmDestroy' education)
-                  confirmButtonClass="btn btn-danger"
-                  cancelButtonClass="btn pull-right"
-                  okCssIcon="fa fa-check-circle-o"
-                  cancelCssIcon="fa fa-ban"
+              <div id="delete-education-icon">
+                {{delete-with-confirmation
+                  entry=education
                 }}
-                  <a href="#" role="button" class="card-link text-dark"><i class="fa trash"></i></a>
-                {{/confirm-dialog}}
               </div>
             </div>
           </div>

@@ -1,5 +1,5 @@
-<a {{action "openConfirmation"}} class="card-link deleteField" role="button">
-  <i class="fa trash"></i>
+<a {{action "openConfirmation"}} id="deleteButton" class="card-link deleteField" role="button">
+  <i class="fa trash"></i> {{yield}}
 </a>
 
 {{#if showConfirmation}}
@@ -10,7 +10,7 @@
           <h5 class="modal-title">Löschen bestätigen</h5>
         </div>
         <div class="modal-body">
-          {{message}}
+          {{t "delete-confirmation.message" name=entry.toString}}
         </div>
         <div class="modal-footer">
           <button id="cancel-button" class="btn btn-secondary" {{action "cancel"}}>Abbrechen</button>

@@ -4,7 +4,6 @@ import sortByYear from "../utils/sort-by-year";
 import { on } from '@ember/object/evented';
 import { EKMixin , keyUp } from 'ember-keyboard';
 
-
 export default Component.extend(EKMixin, {
 
   sortedAdvancedTrainings: sortByYear('advanced-trainings'),
@@ -52,13 +51,7 @@ export default Component.extend(EKMixin, {
           });
         });
     },
-    deleteAdvancedTrainings(advancedTraining, event) {
-      advancedTraining.destroyRecord()
-        .then(() => this.get('notify').success('Weiterbildung wurde entfernt!'))
-    },
-    confirmDestroy(advancedTraining) {
-      this.send('deleteAdvancedTrainings', advancedTraining);
-    },
+
     abortEdit() {
       let advancedTrainings = this.get('person.advancedTrainings').toArray();
       advancedTrainings.forEach(advancedTraining => {

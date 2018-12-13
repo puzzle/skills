@@ -8,9 +8,13 @@
         </a>
       {{/dd.trigger}}
       {{#dd.content class="content-bootstrap-feel"}}
-        <a onclick={{action 'deletePerson' person}} role="button" class="edit-buttons">
-          <td><i class="fa fa-trash-o" aria-hidden="true"></i> Profil löschen</td>
-        </a>
+        {{#delete-with-confirmation
+          entry=person
+          transitionTo="people"
+          class='edit-buttons'
+        }}
+          Profil Löschen
+        {{/delete-with-confirmation}}
       {{/dd.content}}
     {{/basic-dropdown}}
   </div>

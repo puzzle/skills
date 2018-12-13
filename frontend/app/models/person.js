@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import { computed } from '@ember/object';
 
 const Person = DS.Model.extend({
   name: DS.attr('string'),
@@ -22,6 +23,10 @@ const Person = DS.Model.extend({
   activities: DS.hasMany('activity'),
   projects: DS.hasMany('project'),
   expertiseTopicSkillValues: DS.hasMany('expertise-topic-skill-value'),
+
+  toString: computed('name', function() {
+    return this.get('name');
+  })
 });
 
 export default Person;
