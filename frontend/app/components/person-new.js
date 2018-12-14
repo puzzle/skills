@@ -71,7 +71,10 @@ export default Component.extend({
           });
           errors.forEach(({ attribute, message }) => {
             let translated_attribute = this.get('i18n').t(`person.${attribute}`)['string']
-            this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
+            this.get('notify').alert(`${translated_attribute} ${message}`, {
+              closeAfter: 8000,
+              classNames: ['person-error-message']
+            });
           });
         });
     },

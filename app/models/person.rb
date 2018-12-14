@@ -36,7 +36,7 @@ class Person < ApplicationRecord
   has_many :language_skills, dependent: :delete_all
 
   validates :birthdate, :location, :name, :nationality,
-            :roles, :title, presence: true
+            :roles, :title, :marital_status, presence: true
   validates :location, :name,
             :title, length: { maximum: 100 }
 
