@@ -5,7 +5,10 @@
 <div id="person-collapse-group" class="collapse-group">
   <div class="row mb-3">
     <div class="col-sm-12">
-      <span class="text-right d-block controls"><a href="#person-collapse-group" class="mr-2 open-button">+ alles ausklappen</a><a href="#person-collapse-group" class="close-button">- alles einklappen</a></span>
+      <span class="text-right d-block controls">
+        <a href="#person-collapse-group" class="mr-2 open-button" hidden=true>+ alles ausklappen</a>
+        <a href="#person-collapse-group" class="close-button">- alles einklappen</a>
+      </span>
     </div>
   </div>
   <div id="accordion">
@@ -62,9 +65,13 @@
 <script>
   $(".open-button").on("click", function() {
     $(this).closest('.collapse-group').find('.collapse').collapse('show');
+    $('.open-button').attr('hidden', true);
+    $('.close-button').attr('hidden', false);
   });
 
   $(".close-button").on("click", function() {
     $(this).closest('.collapse-group').find('.collapse').collapse('hide');
+    $('.close-button').attr('hidden', true);
+    $('.open-button').attr('hidden', false);
   });
 </script>
