@@ -24,7 +24,7 @@ export default Component.extend(EKMixin, {
 
   aFunction: on(keyUp('Escape'), function() {
     const person = this.get('person')
-    if(person.get('hasDirtyAttributes')){
+    if (person.get('hasDirtyAttributes')) {
       person.rollbackAttributes();
     }
     this.personEditing();
@@ -100,7 +100,7 @@ export default Component.extend(EKMixin, {
 
     abortEdit() {
       const person = this.get('person')
-      if(person.get('hasDirtyAttributes')){
+      if (person.get('hasDirtyAttributes')) {
         person.rollbackAttributes();
       }
       this.personEditing();
