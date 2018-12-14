@@ -23,6 +23,10 @@ export default Component.extend(EKMixin, {
   }),
 
   aFunction: on(keyUp('Escape'), function() {
+    const person = this.get('person')
+    if(person.get('hasDirtyAttributes')){
+      person.rollbackAttributes();
+    }
     this.personEditing();
   }),
 
@@ -92,6 +96,14 @@ export default Component.extend(EKMixin, {
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
         });
+    },
+
+    abortEdit() {
+      const person = this.get('person')
+      if(person.get('hasDirtyAttributes')){
+        person.rollbackAttributes();
+      }
+      this.personEditing();
     },
 
     handleFocus(select, e) {
