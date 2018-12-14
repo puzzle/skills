@@ -25,20 +25,9 @@
                   {{textarea value=advanced-training.description class="input-xxlarge form-control" placeholder="Beschreibung"}}
                 </div>
               </div>
-              <div class="col-sm-2 edit-symbols text-right centered-content">
-                {{#confirm-dialog
-                  text="Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?"
-                  confirmButton="Löschen"
-                  cancelButton="Abbrechen"
-                  confirmAction=(action 'confirmDestroy' advanced-training)
-                  confirmButtonClass="btn btn-danger"
-                  cancelButtonClass="btn pull-right"
-                  okCssIcon="fa fa-check-circle-o"
-                  cancelCssIcon="fa fa-ban"
-                }}
-                  <a href="#" role="button" class="card-link text-dark"><i class="fa trash"></i></a>
-                {{/confirm-dialog}}
-              </div>
+              {{delete-with-confirmation
+                entry=advanced-training
+              }}
             </div>
           </div>
         {{/each}}

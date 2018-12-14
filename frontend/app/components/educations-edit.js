@@ -64,13 +64,6 @@ export default Component.extend(EKMixin, {
 
         });
     },
-    deleteEducation(education) {
-      education.destroyRecord()
-        .then(() => this.get('notify').success('Weiterbildung wurde entfernt!'));
-    },
-    confirmDestroy(education) {
-      this.send('deleteEducation', education);
-    },
     abortEdit() {
       let educations = this.get('person.educations').toArray();
       educations.forEach(education => {

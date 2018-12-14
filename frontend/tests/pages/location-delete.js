@@ -1,7 +1,6 @@
 import {
   create,
   visitable,
-  fillable,
   clickable,
   text
 } from 'ember-cli-page-object';
@@ -9,6 +8,13 @@ import {
 export default create({
   visit: visitable('/companies/:company_id'),
   toggleEditFormButton: clickable('[data-test-company-edit-form-toggle]'),
+  deleteButton: clickable('#deleteButton'),
+
+  pressDeleteButton() {
+    this.deleteButton();
+
+    return this.deleteConfirmation;
+  },
 
   toggleEditForm() {
     this.toggleEditFormButton();
@@ -17,19 +23,13 @@ export default create({
   },
 
   editForm: {
-    scope: '#profil-uebersicht',
     submit: clickable('#submit-button'),
-    reset: clickable('.form-button--reset'),
-    name: fillable('[name="company[name]"]'),
-    web: fillable('[name="company[web]"]'),
-    email: fillable('[name="company[email]"]'),
-    phone: fillable('[name="company[phone]"]'),
-    partnermanager: fillable('[name="company[partnermanager]"]'),
-    contactPerson: fillable('[name="company[contactPerson]"]'),
-    emailContactPerson: fillable('[name="company[emailContactPerson]"]'),
-    phoneContactPerson: fillable('[name="company[phoneContactPerson]"]'),
-    crm: fillable('[name="company[crm]"]'),
-    level: fillable('[name="company[level]"]'),
+  },
+
+  deleteConfirmation: {
+    scope: '#delete-confirmation-modal',
+    submit: clickable('#delete-button'),
+    cancel: clickable('#cancel-button')
   },
 
   profileData: {

@@ -14,6 +14,7 @@ export default {
   },
 
   'advancedTraining': {
+    name: 'Weiterbildung',
     description: 'Beschreibung',
     start_at: 'Datum von',
     finish_at: 'Datum bis'
@@ -89,17 +90,8 @@ export default {
     offer: 'Angebot'
   },
 
-
-
-
-
-  // "some.translation.key": "Text for some.translation.key",
-  //
-  // "a": {
-  //   "nested": {
-  //     "key": "Text for a.nested.key"
-  //   }
-  // },
-  //
-  // "key.with.interpolation": "Text with {{anInterpolation}}"
+  'delete-confirmation': {
+    message: "{{name}} wirklich löschen?",
+    success: "{{name}} wurde entfernt"
+  }
 };

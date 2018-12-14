@@ -20,29 +20,15 @@
                   {{daterange-edit entity=activity}}
                 </div>
               </div>
-              <div class="col-sm-7 row">
-                <div class="col-sm-3 content-input">
-                  {{input value=activity.role class="form-control centered-content-input" placeholder="Rolle"}}
-                </div>
-                <div class="col-sm-9 centered-content-input">
-                  {{textarea placeholder="Firmenangaben und Beschreibung der Tätigkeit"
-                             value=activity.description class="form-control"}}
+              <div class="col-sm-7">
+                <div class="input-group centered-content-input">
+                  {{input value=activity.role class="form-control" placeholder="Rolle"}}
+                  {{textarea value=activity.description class="input-xxlarge form-control" placeholder="Firmenangaben und Beschreibung der Tätigkeit"}}
                 </div>
               </div>
-              <div class="col-sm-2 edit-symbols text-right centered-content">
-                {{#confirm-dialog
-                  text="Sind Sie sicher, dass Sie diesen Eintrag löschen möchten?"
-                  confirmButton="Löschen"
-                  cancelButton="Abbrechen"
-                  confirmAction=(action 'confirmDestroy' activity)
-                  confirmButtonClass="btn btn-danger"
-                  cancelButtonClass="btn pull-right"
-                  okCssIcon="fa fa-check-circle-o"
-                  cancelCssIcon="fa fa-ban"
-                }}
-                  <a href="#" role="button" class="card-link text-dark"><i class="fa trash"></i></a>
-                {{/confirm-dialog}}
-              </div>
+              {{delete-with-confirmation
+                entry=activity
+              }}
             </div>
           </div>
         {{/each}}

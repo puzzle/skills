@@ -766,7 +766,26 @@ form textarea{
   right: 12px;
 }
 
+.trash:hover {
+  color: green;
+}
+
+.no-hover:hover i {
+  color: white !important;
+}
+
 #delete-company-icon {
+  position: absolute;
+  left: 490px;
+}
+
+#delete-education-icon {
+  padding-top: 6px;
+}
+
+#delete-acitivty-icon {
+  padding-top: 6px;
+  padding-right: 60px;
   position: absolute;
   left: 490px;
 }

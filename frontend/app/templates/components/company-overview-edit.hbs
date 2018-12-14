@@ -10,7 +10,6 @@
             {{#unless company.myCompany}}
               <div id="delete-company-icon">
                 {{delete-with-confirmation
-                  message=(concat 'Firma ' company.name ' wirklich löschen?')
                   entry=company
                   transitionTo='companies'
                   tagName='span'
@@ -48,7 +47,6 @@
                       <td class="nextToDelete">
                         {{l.text-field 'location' label="Standort"}}
                         {{delete-with-confirmation
-                          message=(concat 'Standort ' location.location ' wirklich löschen?')
                           entry=location
                         }}
                       </td>
@@ -101,7 +99,6 @@
                       <td class="nextToDelete">
                         {{q.text-field 'category' label="Kategorie"}}
                         {{delete-with-confirmation
-                          message=(concat 'Mitarbeiter-Anzahl ' quantity.category ' wirklich löschen?')
                           entry=quantity
                         }}
                       </td>

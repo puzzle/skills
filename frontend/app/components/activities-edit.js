@@ -59,14 +59,6 @@ export default Component.extend(EKMixin, {
 
         });
     },
-    deleteActivity(activity, event) {
-      activity.destroyRecord()
-        .then(activity => this.sendAction('done'))
-        .then(() => this.get('notify').success('Aktivität wurde entfernt!'));
-    },
-    confirmDestroy(activity) {
-      this.send('deleteActivity', activity);
-    },
     abortEdit() {
       let activities = this.get('person.activities').toArray();
       activities.forEach(activity => {
