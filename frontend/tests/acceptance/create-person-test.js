@@ -7,7 +7,7 @@ import editPage from 'frontend/tests/pages/person-edit';
 
 moduleForAcceptance('Acceptance | create person');
 
-test('creating a new person', async function(assert) {
+skip('creating a new person', async function(assert) {
   assert.expect(10);
 
   authenticateSession(this.application, {
