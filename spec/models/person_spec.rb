@@ -6,7 +6,7 @@
 #  birthdate               :datetime
 #  language                :string
 #  location                :string
-#  martial_status          :string
+#  marital_status          :string
 #  updated_by              :string
 #  name                    :string
 #  title                   :string
@@ -75,13 +75,11 @@ describe Person do
       person = people(:bob)
       person.location = SecureRandom.hex(100)
       person.language = SecureRandom.hex(100)
-      person.martial_status = SecureRandom.hex(100)
       person.name = SecureRandom.hex(100)
       person.title = SecureRandom.hex(100)
       person.valid?
 
       expect(person.errors[:location].first).to eq('ist zu lang (mehr als 100 Zeichen)')
-      expect(person.errors[:martial_status].first).to eq('ist zu lang (mehr als 100 Zeichen)')
       expect(person.errors[:name].first).to eq('ist zu lang (mehr als 100 Zeichen)')
       expect(person.errors[:title].first).to eq('ist zu lang (mehr als 100 Zeichen)')
       expect(person.errors[:language].first).to eq('ist zu lang (mehr als 100 Zeichen)')

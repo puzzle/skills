@@ -27,7 +27,7 @@ test('/people/:id edit person data', async function(assert) {
   await selectChoose('#role', '.ember-power-select-option', 0)
   await selectChoose('#company', 'Firma');
   await selectChoose('#nationality', "Samoa");
-  await selectChoose('#martialStatus', 'verheiratet');
+  await selectChoose('#maritalStatus', 'verheiratet');
 
   setFlatpickrDate('.flatpickr-input', '26.10.2018')
 
@@ -51,8 +51,6 @@ test('/people/:id edit person data', async function(assert) {
   await page.toggleNationalities();
   await page.editForm.submit();
   assert.equal(page.profileData.nationalities, 'Samoa')
-
-
 });
 
 test('/people/:id abort with escape', async function(assert) {

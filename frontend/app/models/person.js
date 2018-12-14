@@ -7,7 +7,7 @@ const Person = DS.Model.extend({
   picturePath: DS.attr('string'),
   language: DS.attr('string'),
   location: DS.attr('string'),
-  martialStatus: DS.attr('string'),
+  maritalStatus: DS.attr('string'),
   nationality: DS.attr('string', { defaultValue: 'CH' }),
   nationality2: DS.attr('string'),
   roles: DS.hasMany('role'),
@@ -27,6 +27,13 @@ const Person = DS.Model.extend({
   toString: computed('name', function() {
     return this.get('name');
   })
+});
+
+Person.reopenClass({
+  MARITAL_STATUSES: { single: 'ledig',
+    married: 'verheiratet',
+    registered_partnership: 'eingetragene Partnerschaft',
+    divorced: 'geschieden' }
 });
 
 export default Person;

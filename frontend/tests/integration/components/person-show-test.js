@@ -13,7 +13,7 @@ test('it renders person', function(assert) {
     nationality: 'FR',
     location: 'Hogwarts',
     language: 'Parsel',
-    martialStatus: 'ledig'
+    maritalStatus: 'single'
   });
 
   this.set('person.roles', [{

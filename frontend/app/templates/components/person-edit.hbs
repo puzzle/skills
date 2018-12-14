@@ -23,7 +23,7 @@
             </table>
             <div class="mt-auto">
               <button {{action 'submit' changeset}} role="button" id="submit-button" class="btn btn-primary"><i class="fa save"></i> Speichern</button>
-              <button onclick={{personEditing}} role="button" class="btn btn-secondary"><i class="fa abort"></i> Abbrechen</button>
+              <button onclick={{action "abortEdit"}} role="button" class="btn btn-secondary"><i class="fa abort"></i> Abbrechen</button>
             </div>
           </div>
           <div class="col-sm-3">
@@ -92,16 +92,16 @@
                 <td>
                   <Label> Zivilstand </Label>
                   {{#power-select
-                  triggerId="martialStatus"
-                  selected=person.martialStatus
-                  options=martialStatuses
+                  triggerId="maritalStatus"
+                  selected=selectedMaritalStatus
+                  options=maritalStatuses
                   searchEnabled=false
                   onfocus=(action "handleFocus")
                   onblur=(action "handleBlur")
-                  onchange=(action (mut person.martialStatus))
-                  as |martialStatus|
+                  onchange=(action "setMaritalStatus")
+                  as |maritalStatus|
                   }}
-                    {{martialStatus}}
+                    {{maritalStatus}}
                   {{/power-select}}
                 </td>
               </tr>

@@ -42,7 +42,7 @@ export default {
     birthdate: 'Geburtsdatum',
     language: 'Sprache',
     location: 'Wohnort',
-    martialStatus: 'Zivilstand',
+    maritalStatus: 'Zivilstand',
     name: 'Name',
     origin: 'Nationalität',
     role: 'Rolle',

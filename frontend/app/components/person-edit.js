@@ -5,7 +5,7 @@ import { isBlank } from '@ember/utils';
 import { getNames as countryNames } from 'ember-i18n-iso-countries';
 import { on } from '@ember/object/evented';
 import { EKMixin , keyUp } from 'ember-keyboard';
-
+import Person from '../models/person';
 
 export default Component.extend(EKMixin, {
   store: service(),
@@ -13,7 +13,7 @@ export default Component.extend(EKMixin, {
 
   init() {
     this._super(...arguments);
-    this.martialStatuses = (['ledig', 'verheiratet', 'verwittwet', 'eingetragene Partnerschaft', 'geschieden']);
+    this.initMaritalStatuses();
     this.initNationalities();
     this.initCheckbox();
   },
@@ -23,7 +23,7 @@ export default Component.extend(EKMixin, {
   }),
 
   aFunction: on(keyUp('Escape'), function() {
-    this.personEditing();
+    this.send('abortEdit');
   }),
 
   initCheckbox() {
@@ -32,6 +32,13 @@ export default Component.extend(EKMixin, {
     } else {
       this.set('secondNationality', false)
     }
+  },
+
+  initMaritalStatuses() {
+    this.maritalStatusesHash = Person.MARITAL_STATUSES
+    this.maritalStatuses = Object.values(this.maritalStatusesHash)
+    const maritalStatusKey = this.get('person.maritalStatus')
+    this.selectedMaritalStatus = this.maritalStatusesHash[maritalStatusKey]
   },
 
   initNationalities() {
@@ -87,6 +94,14 @@ export default Component.extend(EKMixin, {
         });
     },
 
+    abortEdit() {
+      const person = this.get('person')
+      if (person.get('hasDirtyAttributes')) {
+        person.rollbackAttributes();
+      }
+      this.personEditing();
+    },
+
     handleFocus(select, e) {
       if (this.focusComesFromOutside(e)) {
         select.actions.open();
@@ -123,6 +138,13 @@ export default Component.extend(EKMixin, {
 
     setRole(selectedRole) {
       this.set('person.roles', [selectedRole]);
+    },
+
+    setMaritalStatus(selectedMaritalStatus) {
+      const obj = this.maritalStatusesHash
+      const key = Object.keys(obj).find(key => obj[key] === selectedMaritalStatus);
+      this.set('person.maritalStatus', key);
+      this.set('selectedMaritalStatus', selectedMaritalStatus);
     },
 
   }

@@ -3,6 +3,7 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { isBlank } from '@ember/utils';
 import { getNames as countryNames } from 'ember-i18n-iso-countries';
+import Person from '../models/person';
 
 export default Component.extend({
   i18n: service(),
@@ -10,8 +11,13 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    this.martialStatuses = ['ledig', 'verheiratet', 'verwittwet', 'eingetragene Partnerschaft', 'geschieden'];
+    this.initMaritalStatuses();
     this.initNationalities();
+  },
+
+  initMaritalStatuses() {
+    this.maritalStatusesHash = Person.MARITAL_STATUSES
+    this.maritalStatuses = Object.values(this.maritalStatusesHash)
   },
 
   initNationalities() {
@@ -89,8 +95,17 @@ export default Component.extend({
       }
       this.set('selectedNationality2', selectedCountry);
     },
+
     setRole(selectedRole) {
       this.set('newPerson.roles', [selectedRole]);
-    }
+    },
+
+    setMaritalStatus(selectedMaritalStatus) {
+      const obj = this.maritalStatusesHash
+      const key = Object.keys(obj).find(key => obj[key] === selectedMaritalStatus);
+      this.set('newPerson.maritalStatus', key);
+      this.set('selectedMaritalStatus', selectedMaritalStatus);
+    },
+
   }
 });
