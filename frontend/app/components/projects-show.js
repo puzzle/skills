@@ -6,7 +6,7 @@ import { computed } from '@ember/object';
 export default Component.extend({
   sortedProjects: sortByYear('projects'),
 
-  amountOfProjects: computed(function() {
+  amountOfProjects: computed('projects.@each', function() {
     return this.get('projects.length');
   })
 });
