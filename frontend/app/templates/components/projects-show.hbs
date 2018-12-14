@@ -18,7 +18,10 @@
         <div class="collapse-group-project">
           <div class="row mb-3">
             <div class="col-sm-12">
-              <span class="text-right d-block controls"><a href="#collapseProjects" class="mr-2 open-button-project">+ alles ausklappen</a><a href="#collapseProjects" class="close-button-project">- alles einklappen</a></span>
+              <span class="text-right d-block controls">
+                <a href="#collapseProjects" class="mr-2 open-button-project" hidden=true>+ alles ausklappen</a>
+                <a href="#collapseProjects" class="close-button-project">- alles einklappen</a>
+              </span>
             </div>
           </div>
           {{component (if projectNew 'project-new') personId=personId done=(action (toggle 'projectNew' this))}}
@@ -37,9 +40,13 @@
 <script>
   $(".open-button-project").on("click", function() {
     $(this).closest('.collapse-group-project').find('.collapse').collapse('show');
+    $('.open-button-project').attr('hidden', true);
+    $('.close-button-project').attr('hidden', false);
   });
 
   $(".close-button-project").on("click", function() {
     $(this).closest('.collapse-group-project').find('.collapse').collapse('hide');
+    $('.close-button-project').attr('hidden', true);
+    $('.open-button-project').attr('hidden', false);
   });
 </script>

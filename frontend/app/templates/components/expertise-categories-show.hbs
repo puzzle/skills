@@ -1,7 +1,10 @@
 <div class="collapse-group-fws" id="collapseFWS">
   <div class="row mb-3">
     <div class="col-sm-12">
-      <span class="text-right d-block controls"><a href="#collapseFWS" class="mr-2 open-button-fws">+ alles ausklappen</a><a href="#collapseFWS" class="close-button-fws">- alles einklappen</a></span>
+      <span class="text-right d-block controls">
+        <a href="#collapseFWS" class="mr-2 open-button-fws" hidden=true>+ alles ausklappen</a>
+        <a href="#collapseFWS" class="close-button-fws">- alles einklappen</a>
+      </span>
     </div>
   </div>
   {{#each expertiseCategories as |ec|}}
@@ -11,8 +14,12 @@
 <script>
   $(".open-button-fws").on("click", function() {
     $(this).closest('.collapse-group-fws').find('.collapse').collapse('show');
+    $('.open-button-fws').attr('hidden', true);
+    $('.close-button-fws').attr('hidden', false);
   });
   $(".close-button-fws").on("click", function() {
     $(this).closest('.collapse-group-fws').find('.collapse').collapse('hide');
+    $('.close-button-fws').attr('hidden', true);
+    $('.open-button-fws').attr('hidden', false);
   });
 </script>
