@@ -4,7 +4,6 @@
 #
 #  id                      :integer          not null, primary key
 #  birthdate               :datetime
-#  language                :string
 #  location                :string
 #  marital_status          :string
 #  updated_by              :string
@@ -34,10 +33,11 @@ class Person < ApplicationRecord
   has_many :expertise_topic_skill_values, dependent: :destroy
   has_many :expertise_topics, through: :expertise_topic_skill_values
   has_and_belongs_to_many :roles
+  has_many :language_skills, dependent: :delete_all
 
-  validates :birthdate, :language, :location, :name, :nationality,
+  validates :birthdate, :location, :name, :nationality,
             :roles, :title, presence: true
-  validates :location, :language, :name,
+  validates :location, :name,
             :title, length: { maximum: 100 }
 
   validates :nationality,
@@ -54,8 +54,6 @@ class Person < ApplicationRecord
 
   pg_search_scope :search,
                   against: [
-                    :language,
-                    :location,
                     :name,
                     :title,
                     :competences

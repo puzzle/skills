@@ -12,12 +12,17 @@ test('it renders person', function(assert) {
     birthdate: new Date('2000-01-01'),
     nationality: 'FR',
     location: 'Hogwarts',
-    language: 'Parsel',
     maritalStatus: 'single'
   });
 
   this.set('person.roles', [{
     name: 'System-Engineer',
+  }]);
+
+  this.set('person.languageSkills', [{
+    language: 'DE',
+    level: 'A1',
+    certificate: ''
   }]);
 
   this.render(hbs`{{person-show person=person}}`);
@@ -28,6 +33,6 @@ test('it renders person', function(assert) {
   assert.ok(this.$().text().includes('01.01.2000'));
   assert.ok(this.$().text().includes('Frankreich'));
   assert.ok(this.$().text().includes('Hogwarts'));
-  assert.ok(this.$().text().includes('Parsel'));
+  assert.ok(this.$().text().includes('DE'));
   assert.ok(this.$().text().includes('ledig'));
 });

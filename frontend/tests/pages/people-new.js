@@ -14,7 +14,6 @@ export default create({
   name: fillable('[name="person[name]"]'),
   title: fillable('[name="person[title]"]'),
   location: fillable('[name="person[location]"]'),
-  language: fillable('[name="person[language]"]'),
 
   async createPerson(person) {
     await Object.keys(person)

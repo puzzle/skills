@@ -100,6 +100,16 @@ ActiveRecord::Schema.define(version: 2018_11_26_123058) do
     t.index ["expertise_category_id"], name: "index_expertise_topics_on_expertise_category_id"
   end
 
+  create_table "language_skills", force: :cascade do |t|
+    t.string "language"
+    t.string "level"
+    t.string "certificate"
+    t.bigint "person_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["person_id"], name: "index_language_skills_on_person_id"
+  end
+
   create_table "locations", force: :cascade do |t|
     t.string "location"
     t.bigint "company_id"
@@ -119,7 +129,6 @@ ActiveRecord::Schema.define(version: 2018_11_26_123058) do
 
   create_table "people", id: :serial, force: :cascade do |t|
     t.datetime "birthdate"
-    t.string "language"
     t.string "location"
     t.string "updated_by"
     t.string "name"
@@ -190,6 +199,7 @@ ActiveRecord::Schema.define(version: 2018_11_26_123058) do
   end
 
   add_foreign_key "employee_quantities", "companies"
+  add_foreign_key "language_skills", "people"
   add_foreign_key "locations", "companies"
   add_foreign_key "offers", "companies"
   add_foreign_key "people", "companies"

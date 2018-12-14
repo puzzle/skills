@@ -130,13 +130,27 @@
         </div>
         <div class="col">
           <table class="table-person">
-            <div class="mb-2">
-            </div>
             <tr class="description">
-              <td>Sprachen</td>
+              <td>Sprachen<a href="http://www.europaeischer-referenzrahmen.de/" target="_blank" rel="noopener"><i class="ml-2 fa fa-question-circle" aria-hidden="true"></i></a></td>
             </tr>
             <tr>
-              <td id="data-test-person-language">{{person.language}}</td>
+              <div class="border rounded mt-2">
+                <table class="table table-borderless">
+                  <tbody>
+                    {{#each person.languageSkills as |skill|}}
+                      <tr>
+                        <td data-test-person-language class="description">{{skill.language}}</td>
+                        <td class="language-level"><img alt="" src="/assets/language-levels/{{to-lowercase skill.level}}.svg"></td>
+                        <td class="language-certificate">
+                          {{#if skill.certificate}}
+                            <img alt="" src="/assets/icon_certificate.svg">
+                          {{/if}}
+                        </td>
+                      </tr>
+                    {{/each}}
+                  </tbody>
+                </table>
+              </div>
             </tr>
           </table>
         </div>

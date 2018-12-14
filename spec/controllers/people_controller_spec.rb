@@ -16,7 +16,7 @@ describe PeopleController do
 
         expect_any_instance_of(ODFReport::Report)
           .to receive(:add_field)
-          .exactly(14).times
+          .exactly(13).times
           .and_call_original
 
         expect_any_instance_of(ODFReport::Report)
@@ -26,7 +26,7 @@ describe PeopleController do
 
         expect_any_instance_of(ODFReport::Report)
           .to receive(:add_table)
-          .exactly(4).times
+          .exactly(5).times
           .and_call_original
 
         process :show, method: :get, format: 'odt', params: { id: bob.id }
@@ -123,7 +123,7 @@ describe PeopleController do
 
     describe 'GET show' do
       it 'returns person with nested modules' do
-        keys = %w[birthdate picture_path language location marital_status
+        keys = %w[birthdate picture_path location marital_status
                   updated_by name nationality nationality2 title competences]
 
         bob = people(:bob)
@@ -132,16 +132,16 @@ describe PeopleController do
 
         bob_attrs = json['data']['attributes']
 
-        expect(bob_attrs.count).to eq(12)
+        expect(bob_attrs.count).to eq(11)
         expect(bob_attrs['nationality']).to eq('CH')
         expect(bob_attrs['nationality2']).to eq('SE')
         json_object_includes_keys(bob_attrs, keys)
         # expect(bob_attrs['picture-path']).to eq("/api/people/#{bob.id}/picture")
 
-        nested_keys = %w(advanced_trainings activities projects educations company roles)
+        nested_keys = %w(advanced_trainings activities projects educations company roles language_skills)
         nested_attrs = json['data']['relationships']
 
-        expect(nested_attrs.count).to eq(7)
+        expect(nested_attrs.count).to eq(8)
         json_object_includes_keys(nested_attrs, nested_keys)
       end
     end
@@ -154,7 +154,6 @@ describe PeopleController do
         role2 = roles(:'system-engineer')
         person = { birthdate: Time.current,
                    picture: fixture_file_upload('files/picture.png', 'image/png'),
-                   language: 'German',
                    location: 'Bern',
                    marital_status: 'single',
                    name: 'test',
@@ -178,7 +177,6 @@ describe PeopleController do
         new_person = Person.find_by(name: 'test')
         expect(new_person).not_to eq(nil)
         expect(new_person.location).to eq('Bern')
-        expect(new_person.language).to eq('German')
         expect(new_person.nationality).to eq('CH')
         expect(new_person.nationality2).to eq('FR')
         [role1, role2].each do |role|
@@ -214,6 +212,7 @@ describe PeopleController do
         expect(AdvancedTraining.exists?(person_id: bob.id)).to eq(false)
         expect(Project.exists?(person_id: bob.id)).to eq(false)
         expect(Education.exists?(person_id: bob.id)).to eq(false)
+        expect(LanguageSkill.exists?(person_id: bob.id)).to eq(false)
       end
     end
   end

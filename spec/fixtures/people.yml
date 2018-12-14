@@ -4,7 +4,6 @@
 #
 #  id                      :integer          not null, primary key
 #  birthdate               :datetime
-#  language                :string
 #  location                :string
 #  marital_status          :string
 #  updated_by              :string
@@ -24,7 +23,6 @@
 
 bob:
   birthdate: 2014-03-02 13:15:11
-  language: German
   location: Bern
   marital_status: <%= Person.marital_statuses[:single] %>
   name: Bob Anderson
@@ -37,7 +35,6 @@ bob:
 
 alice:
   birthdate: 2016-10-20 13:15:11
-  language: English
   location: London
   marital_status: <%= Person.marital_statuses[:married] %>
   name: Alice Mante

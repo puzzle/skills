@@ -52,7 +52,8 @@ export default {
     advancedTrainings: 'Weiterbildungen',
     activities: 'Stationen',
     projects: 'Projekte',
-    personCompetences: 'Kompetenzen'
+    personCompetences: 'Kompetenzen',
+    level: 'Sprachniveau',
   },
 
   'expertise-topic-skill-value': {

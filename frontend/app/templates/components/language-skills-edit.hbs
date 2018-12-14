@@ -1,0 +1,56 @@
+<ul class="nav nav-tabs">
+  {{#each person.languageSkills as |skill|}}
+    <li class="nav-item">
+      <a class= "nav-link {{if (eq skill.language selectedLanguage.iso1) "active"}}" onclick={{action 'setSkill' skill}} role="button">{{skill.language}}</a>
+    </li>
+  {{/each}}
+  <li class="nav-item">
+    <a class="nav-link language-button" onclick={{action 'newSkill'}} role="button" rel="noopener"><i class="fa fa-plus" aria-hidden="true"></i></a>
+  </li>
+</ul>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 pl-0">
+      {{#power-select
+      triggerClass="mt-2"
+      triggerId="language"
+      selected=selectedLanguage
+      options=languages
+      onfocus=(action "handleFocus")
+      onblur=(action "handleBlur")
+      onchange=(action "setLanguage")
+      disabled=isObligatoryLanguage
+      searchField="name"
+      as |language|
+      }}
+        {{#if (not-eq language.iso1 "-")}}{{language.name}} ({{language.iso1}}){{/if}}
+      {{/power-select}}
+
+    </div>
+    <div class="col-md-2 pl-0 pt-2">
+      {{#unless isObligatoryLanguage}} 
+        {{#delete-with-confirmation
+          entry=selectedSkill
+          class='edit-buttons'
+        }}
+        {{/delete-with-confirmation}}
+      {{/unless}}
+    </div>
+  </div>
+</div>
+<Label class="description mt-2">Level</Label>
+{{#power-select
+triggerClass="w-50 d-block"
+triggerId="level"
+selected=selectedSkill.level
+searchEnabled=false
+options=levels
+onfocus=(action "handleFocus")
+onblur=(action "handleBlur")
+onchange=(action (mut selectedSkill.level))
+as |level|
+}}
+  {{level}}
+{{/power-select}}
+<Label class="description mt-2">Zertifikat</Label>
+{{input class="w-100" placeholder="Leer lassen, falls keines" id="certificateInput" value=selectedSkill.certificate}}

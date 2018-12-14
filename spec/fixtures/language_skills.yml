@@ -1,0 +1,31 @@
+# == Schema Information
+#
+# Table name: person_competences
+#
+#  id         :bigint(8)        not null, primary key
+#  category   :string
+#  offer      :text             default([]), is an Array
+#  person_id  :bigint(8)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+deutsch:
+  language: DE
+  level: Muttersprache
+  certificate: TELC
+  person: bob
+
+englisch:
+  language: EN
+  level: B1
+  certificate: TELC
+  person: alice
+
+spanisch:
+  language: ES
+  level: C2
+  certificate: TELC
+  person: bob

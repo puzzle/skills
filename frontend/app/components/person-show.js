@@ -28,6 +28,6 @@ export default Component.extend({
       e.preventDefault();
       let url = `/api/people/${personId}.odt`;
       this.get('download').file(url)
-    },
+    }
   }
 });
