@@ -4,7 +4,6 @@
 #
 #  id                      :integer          not null, primary key
 #  birthdate               :datetime
-#  language                :string
 #  location                :string
 #  martial_status          :string
 #  updated_by              :string
@@ -25,7 +24,7 @@ class PersonSerializer < ApplicationSerializer
 
   belongs_to :company, serializer: CompanyInPersonSerializer
 
-  attributes :id, :birthdate, :language, :picture_path, :location,
+  attributes :id, :birthdate, :picture_path, :location,
              :marital_status, :updated_by, :name, :nationality,
              :nationality2, :title, :competences, :updated_at
 
@@ -49,6 +48,10 @@ class PersonSerializer < ApplicationSerializer
 
   has_many :educations do |serializer|
     serializer.object.educations.list
+  end
+
+  has_many :language_skills do |serializer|
+    serializer.object.language_skills.list
   end
 
   has_many :person_competences, include: :all

@@ -52,11 +52,24 @@ export default Component.extend({
   actions: {
     submit(newPerson) {
       return newPerson.save()
+        .then (() =>
+          Promise.all([
+            ...newPerson
+              .get('languageSkills')
+              .map(languageSkill => languageSkill.save())
+          ])
+        )
         .then(() => this.sendAction('submit', newPerson))
         .then(() => this.get('notify').success('Person wurde erstellt!'))
         .then(() => this.get('notify').success('Füge nun ein Profilbild hinzu!'))
         .catch(() => {
-          this.get('newPerson.errors').forEach(({ attribute, message }) => {
+          let errors = []
+          errors.concat(this.get('newPerson.errors'))
+          let languageSkills = this.get('newPerson.languageSkills');
+          languageSkills.forEach(skill => {
+            errors = errors.concat(skill.get('errors').slice())
+          });
+          errors.forEach(({ attribute, message }) => {
             let translated_attribute = this.get('i18n').t(`person.${attribute}`)['string']
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });

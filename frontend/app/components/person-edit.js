@@ -79,11 +79,23 @@ export default Component.extend(EKMixin, {
   actions: {
     submit(changeset) {
       return changeset.save()
+        .then (() =>
+          Promise.all([
+            ...changeset
+              .get('languageSkills')
+              .map(languageSkill => languageSkill.save())
+          ])
+        )
         .then(() => this.sendAction('submit'))
         .then(() => this.get('notify').success('Personalien wurden aktualisiert!'))
         .catch(() => {
           let person = this.get('person');
+          let languageSkills = this.get('person.languageSkills');
           let errors = person.get('errors').slice(); // clone array as rollbackAttributes mutates
+
+          languageSkills.forEach(skill => {
+            errors = errors.concat(skill.get('errors').slice())
+          });
 
           person.rollbackAttributes();
           errors.forEach(({ attribute, message }) => {
@@ -99,7 +111,13 @@ export default Component.extend(EKMixin, {
       if (person.get('hasDirtyAttributes')) {
         person.rollbackAttributes();
       }
-      this.personEditing();
+      let languageSkills = this.get('person.languageSkills').toArray();
+      languageSkills.forEach(skill => {
+        if (skill.get('isNew')) {
+          skill.destroyRecord();
+        }
+      });
+      this.sendAction('personEditing');
     },
 
     handleFocus(select, e) {

@@ -5,7 +5,6 @@ const Person = DS.Model.extend({
   name: DS.attr('string'),
   birthdate: DS.attr('date'),
   picturePath: DS.attr('string'),
-  language: DS.attr('string'),
   location: DS.attr('string'),
   maritalStatus: DS.attr('string'),
   nationality: DS.attr('string', { defaultValue: 'CH' }),
@@ -23,6 +22,7 @@ const Person = DS.Model.extend({
   activities: DS.hasMany('activity'),
   projects: DS.hasMany('project'),
   expertiseTopicSkillValues: DS.hasMany('expertise-topic-skill-value'),
+  languageSkills: DS.hasMany('language-skill'),
 
   toString: computed('name', function() {
     return this.get('name');

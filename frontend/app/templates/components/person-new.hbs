@@ -129,10 +129,18 @@
               </tr>
             </table>
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-3">
             <table class="table-person">
               <tr>
-                <td>{{f.text-field 'language' label="Sprache"}}</td>
+                <td>{{!Leere Zeile aus Layout-Gründen}}</td>
+              </tr>
+              <tr>
+                <td class="description">Sprachen<a href="http://www.europaeischer-referenzrahmen.de/" target="_blank" rel="noopener"><i class="ml-2 fa fa-question-circle" aria-hidden="true"></i></a></td>
+              </tr>
+              <tr>
+                <div class="border rounded mt-2 p-2">
+                  {{language-skills-edit person=newPerson}}
+                </div>
               </tr>
             </table>
           </div>

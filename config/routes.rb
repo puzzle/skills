@@ -11,6 +11,7 @@ Rails.application.routes.draw do
         get 'fws', to: 'people#export_empty_fws'
       end
     end
+    resources 'languages', only: :index, controller: 'languages'
 
     resources :people do
       put 'picture', to: 'people#update_picture'
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
 
     resources :companies, controller: 'companies'
 
+    resources :language_skills, controller: 'language_skills'
     resources :advanced_trainings, controller: 'advanced_trainings'
     resources :activities, controller: 'activities'
     resources :projects, controller: 'projects'

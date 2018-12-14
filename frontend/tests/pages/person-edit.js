@@ -38,7 +38,7 @@ export default create({
     birthdate: text('#data-test-person-birthdate'),
     nationalities: text('#data-test-person-nationalities'),
     location: text('#data-test-person-location'),
-    language: text('#data-test-person-language'),
+    language: text('[data-test-person-language]', { multiple: true }),
     maritalStatus: text('#data-test-person-marital-status'),
   },
 

@@ -1,3 +1,4 @@
+require 'i18n_data'
 module Odt
   class Cv
 
@@ -11,6 +12,7 @@ module Odt
         insert_personalien(r)
         insert_competences(r)
         insert_advanced_trainings(r)
+        insert_languages(r)
         insert_educations(r)
         insert_activities(r)
         insert_projects(r)
@@ -42,7 +44,6 @@ module Odt
       report.add_field(:title, person.title)
       report.add_field(:birthdate, Date.parse(person.birthdate.to_s).strftime('%d.%m.%Y'))
       report.add_field(:nationalities, nationalities)
-      report.add_field(:language, person.language)
       report.add_image(:profile_picture, person.picture.path) if person.picture.file.present?
     end
     # rubocop:enable Metrics/AbcSize
@@ -58,49 +59,106 @@ module Odt
       report.add_field(:competences, competences_string)
     end
 
+    def insert_languages(report)
+      languages_list = person.language_skills.list.collect do |l|
+        language = I18nData.languages('DE')[l.language]
+        { language: language, level: l.level, certificate: l.certificate }
+      end
+
+      report.add_table('LANGUAGES', languages_list, header: true) do |t|
+        t.add_column(:language, :language)
+        t.add_column(:level, :level)
+        t.add_column(:certificate, :certificate)
+      end
+    end
+
+    # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/MethodLength
     def insert_educations(report)
       educations_list = person.educations.list.collect do |e|
-        { date: formatted_date(e), title: "#{e.title}\n#{e.location}" }
+        { year_from: e.start_at.year,
+          month_from: formatted_month(e.start_at),
+          year_to: e.finish_at.year,
+          month_to: formatted_month(e.finish_at),
+          title: "#{e.title}\n#{e.location}" }
       end
 
       report.add_table('EDUCATIONS', educations_list, header: true) do |t|
-        t.add_column(:date, :date)
+        t.add_column(:month_from, :month_from)
+        t.add_column(:year_from, :year_from)
+        t.add_column(:month_to, :month_to)
+        t.add_column(:year_to, :year_to)
         t.add_column(:education, :title)
       end
     end
+    # rubocop:enable Metrics/AbcSize
+    # rubocop:enable Metrics/MethodLength
 
+    # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/MethodLength
     def insert_advanced_trainings(report)
       advanced_trainings_list = person.advanced_trainings.list.collect do |at|
-        { date: formatted_date(at), description: at.description }
+        { year_from: at.start_at.year,
+          month_from: formatted_month(at.start_at),
+          year_to: at.finish_at.year,
+          month_to: formatted_month(at.finish_at),
+          description: at.description }
       end
 
       report.add_table('ADVANCED_TRAININGS', advanced_trainings_list, header: true) do |t|
-        t.add_column(:date, :date)
+        t.add_column(:month_from, :month_from)
+        t.add_column(:year_from, :year_from)
+        t.add_column(:month_to, :month_to)
+        t.add_column(:year_to, :year_to)
         t.add_column(:advanced_training, :description)
       end
     end
+    # rubocop:enable Metrics/AbcSize
+    # rubocop:enable Metrics/MethodLength
 
+    # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/MethodLength
     def insert_activities(report)
       activities_list = person.activities.list.collect do |a|
-        { date: formatted_date(a), description: "#{a.role}\n\n#{a.description}" }
+        { year_from: a.start_at.year,
+          month_from: formatted_month(a.start_at),
+          year_to: a.finish_at.year,
+          month_to: formatted_month(a.finish_at),
+          description: "#{a.role}\n\n#{a.description}" }
       end
 
       report.add_table('ACTIVITIES', activities_list, header: true) do |t|
-        t.add_column(:date, :date)
+        t.add_column(:month_from, :month_from)
+        t.add_column(:year_from, :year_from)
+        t.add_column(:month_to, :month_to)
+        t.add_column(:year_to, :year_to)
         t.add_column(:activity, :description)
       end
     end
+    # rubocop:enable Metrics/AbcSize
+    # rubocop:enable Metrics/MethodLength
 
+    # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/MethodLength
     def insert_projects(report)
       projects_list = person.projects.list.collect do |p|
-        { date: formatted_date(p), project: project_description(p) }
+        { year_from: p.start_at.year,
+          month_from: formatted_month(p.start_at),
+          year_to: p.finish_at.year,
+          month_to: formatted_month(p.finish_at),
+          project: project_description(p) }
       end
 
       report.add_table('PROJECTS', projects_list, header: true) do |t|
-        t.add_column(:date, :date)
+        t.add_column(:month_from, :month_from)
+        t.add_column(:year_from, :year_from)
+        t.add_column(:month_to, :month_to)
+        t.add_column(:year_to, :year_to)
         t.add_column(:project_description, :project)
       end
     end
+    # rubocop:enable Metrics/AbcSize
+    # rubocop:enable Metrics/MethodLength
 
     def project_description(project)
       str = ''
@@ -110,14 +168,8 @@ module Odt
       str << project.technology.to_s
     end
 
-    def formatted_date(obj)
-      if obj.start_at.nil?
-        "#{obj.finish_at} - heute"
-      elsif obj.finish_at == obj.start_at
-        obj.start_at
-      else
-        "#{obj.finish_at} - #{obj.start_at}"
-      end
+    def formatted_month(date)
+      [13, 14].include?(date.day) ? '' : "#{date.month}."
     end
 
     def nationalities

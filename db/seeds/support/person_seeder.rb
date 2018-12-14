@@ -1,12 +1,11 @@
 # encoding: utf-8
-
 class PersonSeeder
   def seed_people(names)
     names.each do |name|
       person = seed_person(name).first
       break unless person
       seed_image(person)
-      associations = [:activity, :advanced_training, :project, :education, :person_competence]
+      associations = [:activity, :advanced_training, :project, :education, :person_competence, :language_skill]
       associations.each do |a|
         seed_association(a, person.id)
       end
@@ -74,7 +73,6 @@ class PersonSeeder
   def seed_person(name)
     Person.seed_once(:name) do |p|
       p.birthdate = Faker::Date.between(20.year.ago, 65.year.ago)
-      p.language = 'Deutsch, Englisch, Französisch'
       p.picture = Faker::Avatar
       p.location = Faker::Pokemon.location
       p.marital_status = :single
@@ -150,6 +148,15 @@ class PersonSeeder
     ProjectTechnology.seed do |a|
       a.offer = ["Java", "Ruby", "Javascript", "C++", "C", "C#"]
       a.project_id = project_id
+    end
+  end
+
+  def seed_language_skill(person_id)
+    LanguageSkill.seed do |a|
+      a.language = LanguageList::COMMON_LANGUAGES.collect{|l| l.iso_639_1.upcase}.sample
+      a.level = %w{Keine A1 A2 B1 B2 C1 C2 Muttersprache}.sample
+      a.certificate = Faker::Educator.university
+      a.person_id = person_id
     end
   end
 end

@@ -19,20 +19,10 @@ describe Odt::Cv do
   end
 
   context 'fomatting' do
-    it 'returns just one date if finish_at and start_at are the same' do
-      activity = Activity.new(start_at: 2000, finish_at: 2000)
+    it 'returns no month if day is 13' do
+      formatted_month = Odt::Cv.new(nil).send(:formatted_month, Date.new(2000, 2, 13))
 
-      formatted_date = Odt::Cv.new(nil).send(:formatted_date, activity)
-
-      expect(formatted_date).to eq(2000)
-    end
-
-    it 'returns formatted finish_at and start_at if they are not the same' do
-      activity = Activity.new(finish_at: 2000, start_at: 2010)
-
-      formatted_date = Odt::Cv.new(nil).send(:formatted_date, activity)
-
-      expect(formatted_date).to eq('2000 - 2010')
+      expect(formatted_month).to eq('')
     end
 
     it 'translates nationalities' do

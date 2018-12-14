@@ -595,7 +595,6 @@ form textarea{
   width: 45%;
   float: right;
 }
-
 .table-company .nextToDelete {
   position: relative;
 }
@@ -646,7 +645,7 @@ form textarea{
   height:100%;
 }
 
-.table-person .description {
+.description {
   color: grey;
 }
 
@@ -1019,4 +1018,12 @@ div.content-input  {
 /* Bootstrap Fixes */
 .card {
   border: 0px;
+}
+
+.language-button {
+  color: #3B7BBE !important;
+}
+
+.language-button:hover {
+  color: #295584 !important;
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="106px" height="15px" viewBox="0 0 106 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>a1</title>
+    <desc>Created with Sketch.</desc>
+    <g id="PuzzleCV-v3" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-401.000000, -336.000000)">
+            <g id="a1" transform="translate(401.000000, 336.000000)">
+                <rect id="Rectangle" fill="#278CC7" x="0" y="9" width="16" height="6"></rect>
+                <rect id="Rectangle" fill="#EBEBEB" x="18" y="9" width="16" height="6"></rect>
+                <rect id="Rectangle" fill="#EBEBEB" x="36" y="9" width="16" height="6"></rect>
+                <rect id="Rectangle" fill="#EBEBEB" x="54" y="9" width="16" height="6"></rect>
+                <rect id="Rectangle" fill="#EBEBEB" x="72" y="9" width="16" height="6"></rect>
+                <rect id="Rectangle" fill="#EBEBEB" x="90" y="9" width="16" height="6"></rect>
+                <g transform="translate(3.000000, 0.000000)" fill="#999999">
+                    <path d="M4.29199219,5.38085938 L1.61621094,5.38085938 L0.981445312,7.21191406 L0,7.21191406 L2.56347656,0.102539062 L3.38867188,0.102539062 L5.8984375,7.21191406 L4.91699219,7.21191406 L4.29199219,5.38085938 Z M1.89453125,4.57519531 L4.01855469,4.57519531 L2.98339844,1.5234375 L2.95410156,1.5234375 L1.89453125,4.57519531 Z" id="Combined-Shape"></path>
+                    <polygon id="Path" points="9.58007812 7.21191406 8.61328125 7.21191406 8.61328125 0.991210938 7.06542969 1.00585938 7.06542969 0.263671875 9.58007812 0"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
