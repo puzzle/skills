@@ -23,11 +23,7 @@ export default Component.extend(EKMixin, {
   }),
 
   aFunction: on(keyUp('Escape'), function() {
-    const person = this.get('person')
-    if (person.get('hasDirtyAttributes')) {
-      person.rollbackAttributes();
-    }
-    this.personEditing();
+    this.send('abortEdit');
   }),
 
   initCheckbox() {
