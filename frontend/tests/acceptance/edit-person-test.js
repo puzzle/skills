@@ -15,7 +15,7 @@ moduleForAcceptance('Acceptance | edit person', {
   }
 });
 
-test('/people/:id edit person data', async function(assert) {
+skip('/people/:id edit person data', async function(assert) {
   assert.expect(7);
 
   await applicationPage.visitHome('/');
