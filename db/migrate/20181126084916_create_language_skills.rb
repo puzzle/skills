@@ -9,7 +9,11 @@ class CreateLanguageSkills < ActiveRecord::Migration[5.2]
       t.timestamps
     end
 
-    # TODO Migrate people to have standart languages
+    Person.find_each do |p|
+      LanguageSkill.create(language: 'DE', level: 'Keine', certificate: '', person_id: p.id)
+      LanguageSkill.create(language: 'EN', level: 'Keine', certificate: '', person_id: p.id)
+      LanguageSkill.create(language: 'FR', level: 'Keine', certificate: '', person_id: p.id)
+    end
 
     remove_column :people, :language
   end
