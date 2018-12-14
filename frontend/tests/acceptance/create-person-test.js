@@ -20,9 +20,9 @@ test('creating a new person', async function(assert) {
   assert.equal(currentURL(), '/people/new');
 
   /* eslint "no-undef": "off" */
-  await selectChoose('#role', '.ember-power-select-option', 0)
+  await selectChoose('#role', '.ember-power-select-option', 0);
   await selectChoose('#company', 'Firma');
-  await selectChoose('#nationality', 'Schweden');
+  await selectChoose('#nationality', '.ember-power-select-option', 0);
   await selectChoose('#maritalStatus', 'verheiratet');
 
   setFlatpickrDate('.flatpickr-input', '26.10.2018')
@@ -37,7 +37,7 @@ test('creating a new person', async function(assert) {
   assert.equal(editPage.profileData.title, 'Dr.');
   assert.equal(editPage.profileData.role, 'Software-Engineer');
   assert.equal(editPage.profileData.birthdate, '26.10.2018');
-  assert.equal(editPage.profileData.nationalities, 'Schweden');
+  assert.equal(editPage.profileData.nationalities, 'Afghanistan');
   assert.equal(editPage.profileData.location, 'Chehrplatz Schwandi');
   assert.equal(editPage.profileData.maritalStatus, 'ledig');
   assert.ok(['DE', 'EN', 'FR'].includes(editPage.profileData.language[0]));
