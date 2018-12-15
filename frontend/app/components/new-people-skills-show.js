@@ -5,7 +5,7 @@ import { computed } from '@ember/object';
 export default Component.extend({
   store: inject(),
   ajax: inject(),
-  i18n: inject(),
+  intl: inject(),
 
   didReceiveAttrs() {
     this._super(...arguments);
@@ -74,7 +74,7 @@ export default Component.extend({
             let errors = peopleSkill.get('errors').slice()
             peopleSkill.set('person', null);
             errors.forEach(({ attribute, message }) => {
-              let translated_attribute = this.get('i18n').t(`peopleSkill.${attribute}`)['string']
+              let translated_attribute = this.get('intl').t(`peopleSkill.${attribute}`)
               let msg = translated_attribute + ' von ' + peopleSkill.get('skill.title') + ' ' + message
               this.get('notify').alert(msg, { closeAfter: 10000 });
             });

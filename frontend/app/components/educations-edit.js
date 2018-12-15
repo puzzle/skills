@@ -6,6 +6,8 @@ import { EKMixin , keyUp } from 'ember-keyboard';
 import { observer } from '@ember/object';
 
 export default Component.extend(EKMixin, {
+  intl: service(),
+
   init() {
     this._super(...arguments);
     this.sortedEducations = sortByYear('educations').volatile()
@@ -28,9 +30,6 @@ export default Component.extend(EKMixin, {
   abortEducations: on(keyUp('Escape'), function() {
     this.send('abortEdit')
   }),
-
-  i18n: service(),
-
 
   actions: {
     notify() {
@@ -64,7 +63,7 @@ export default Component.extend(EKMixin, {
             //TODO: rollback does not rollback all records in the forEach, some kind of bug
 
             errors.forEach(({ attribute, message }) => {
-              let translated_attribute = this.get('i18n').t(`education.${attribute}`)['string']
+              let translated_attribute = this.get('intl').t(`education.${attribute}`)
               this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
             });
           });

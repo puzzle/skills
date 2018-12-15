@@ -5,7 +5,6 @@ import { on } from '@ember/object/evented';
 import { EKMixin , keyUp } from 'ember-keyboard';
 import { observer } from '@ember/object';
 
-
 export default Component.extend(EKMixin, {
 
   willDestroyElement() {
@@ -18,7 +17,7 @@ export default Component.extend(EKMixin, {
     this.set('alreadyAborted', true)
   }),
 
-  i18n: service(),
+  intl: service(),
 
   activateKeyboard: on('init', function() {
     this.set('keyboardActivated', true);
@@ -60,7 +59,7 @@ export default Component.extend(EKMixin, {
             activity.rollbackAttributes();
 
             errors.forEach(({ attribute, message }) => {
-              let translated_attribute = this.get('i18n').t(`activity.${attribute}`)['string']
+              let translated_attribute = this.get('intl').t(`activity.${attribute}`);
               this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
             });
           });

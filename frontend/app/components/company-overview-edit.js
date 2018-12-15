@@ -5,7 +5,7 @@ import { EKMixin , keyUp } from 'ember-keyboard';
 
 export default Component.extend(EKMixin, {
   store: service(),
-  i18n: service(),
+  intl: service(),
   router: service(),
 
   rejectBlankRelationships() {
@@ -89,9 +89,9 @@ export default Component.extend(EKMixin, {
           //       invalid state. Maybe there is a better way to handle
           //       these validations/rollbacks in Ember these days?
           errors.forEach(({ attribute, message }) => {
-            let translated_attribute = this.get("i18n").t(
+            let translated_attribute = this.get('intl').t(
               `company.${attribute}`
-            )["string"];
+            )
             changeset.pushErrors(attribute, message);
             this.get("notify").alert(`${translated_attribute} ${message}`, {
               closeAfter: 10000

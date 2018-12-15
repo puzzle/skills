@@ -7,7 +7,7 @@ import { EKMixin , keyUp } from 'ember-keyboard';
 
 export default Component.extend(EKMixin, {
   store: service(),
-  i18n: service(),
+  intl: service(),
 
   newProject: computed('personId', function() {
     let project = this.get('store').createRecord('project');
@@ -76,7 +76,7 @@ export default Component.extend(EKMixin, {
         .catch(() => {
           this.set('newProject.person', null);
           this.get('newProject.errors').forEach(({ attribute, message }) => {
-            let translated_attribute = this.get('i18n').t(`project.${attribute}`)['string']
+            let translated_attribute = this.get('intl').t(`project.${attribute}`)
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
         });

@@ -6,7 +6,7 @@ import { EKMixin , keyUp } from 'ember-keyboard';
 
 export default Component.extend(EKMixin, {
   store: service(),
-  i18n: service(),
+  intl: service(),
 
   newAdvancedTraining: computed('personId', function() {
     return this.get('store').createRecord('advancedTraining');
@@ -53,7 +53,7 @@ export default Component.extend(EKMixin, {
         .catch(() => {
           this.set('newAdvancedTraining.person', null);
           this.get('newAdvancedTraining.errors').forEach(({ attribute, message }) => {
-            let translated_attribute = this.get('i18n').t(`advancedTraining.${attribute}`)['string']
+            let translated_attribute = this.get('intl').t(`advancedTraining.${attribute}`)
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
         });

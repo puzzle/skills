@@ -4,7 +4,7 @@ import { computed } from '@ember/object';
 
 export default Component.extend({
   store: inject(),
-  i18n: inject(),
+  intl: inject(),
 
   init() {
     this._super(...arguments);
@@ -87,7 +87,7 @@ export default Component.extend({
         if (this.get('selectedCategory.content') != null) this.set('newSkill.category', this.get('selectedCategory'))
         let skill = this.get('newSkill').save().catch(() => {
           this.get('newSkill.errors').forEach(({ attribute, message }) => {
-            let translated_attribute = this.get('i18n').t(`skill.${attribute}`)['string']
+            let translated_attribute = this.get('intl').t(`skill.${attribute}`)
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
         });
@@ -103,7 +103,7 @@ export default Component.extend({
         .catch(() => {
           this.set('newPeopleSkill.person', null);
           this.get('newPeopleSkill.errors').forEach(({ attribute, message }) => {
-            let translated_attribute = this.get('i18n').t(`peopleSkill.${attribute}`)['string']
+            let translated_attribute = this.get('intl').t(`peopleSkill.${attribute}`)
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
         });
