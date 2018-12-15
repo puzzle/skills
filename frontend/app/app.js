@@ -9,7 +9,11 @@ window.Promise = RSVP.Promise;
 const App = Application.extend({
   modulePrefix: config.modulePrefix,
   podModulePrefix: config.podModulePrefix,
-  Resolver
+  Resolver,
+
+  ready() {
+    this.intl.set('locales', ['de']);
+  }
 });
 
 loadInitializers(App, config.modulePrefix);
