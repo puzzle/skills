@@ -4,7 +4,7 @@ import { isPresent } from '@ember/utils';
 
 export default Component.extend({
   router: service(),
-  i18n: service(),
+  intl: service(),
 
   actions: {
     openConfirmation() {
@@ -16,9 +16,9 @@ export default Component.extend({
     },
 
     delete(entry, transitionTo) {
-      const message = this.get('i18n')
+      const message = this.get('intl')
         .t('delete-confirmation.success',
-          { name: entry.get('toString') })['string']
+          { name: entry.get('toString') });
 
       entry.destroyRecord().then(() => {
         this.set('showConfirmation', false);

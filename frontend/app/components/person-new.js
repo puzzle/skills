@@ -5,8 +5,8 @@ import { isBlank } from '@ember/utils';
 import { getNames as countryNames } from 'ember-i18n-iso-countries';
 import Person from '../models/person';
 
-export default ApplicationComponent.extend({
-  i18n: service(),
+export default Component.extend({
+  intl: service(),
   store: service(),
   router: service(),
 
@@ -71,7 +71,7 @@ export default ApplicationComponent.extend({
             errors = errors.concat(skill.get('errors').slice())
           });
           errors.forEach(({ attribute, message }) => {
-            let translated_attribute = this.get('i18n').t(`person.${attribute}`)['string']
+            let translated_attribute = this.get('intl').t(`person.${attribute}`)
             this.get('notify').alert(`${translated_attribute} ${message}`, {
               closeAfter: 8000,
               classNames: ['person-error-message']

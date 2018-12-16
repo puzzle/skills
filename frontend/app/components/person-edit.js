@@ -9,7 +9,7 @@ import Person from '../models/person';
 
 export default ApplicationComponent.extend(EKMixin, {
   store: service(),
-  i18n: service(),
+  intl: service(),
 
   init() {
     this._super(...arguments);
@@ -101,7 +101,7 @@ export default ApplicationComponent.extend(EKMixin, {
 
           person.rollbackAttributes();
           errors.forEach(({ attribute, message }) => {
-            let translated_attribute = this.get('i18n').t(`person.${attribute}`)['string']
+            let translated_attribute = this.get('intl').t(`person.${attribute}`)
             changeset.pushErrors(attribute, message);
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });

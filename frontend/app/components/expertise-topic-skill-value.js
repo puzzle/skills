@@ -4,7 +4,7 @@ import { computed } from '@ember/object';
 
 export default Component.extend({
   store: service(),
-  i18n: service(),
+  intl: service(),
 
   tagName: 'tr',
   classNames: [ 'content-row' ],
@@ -39,7 +39,8 @@ export default Component.extend({
           let errors = expertiseTopicSkillValue.get('errors').slice();
           expertiseTopicSkillValue.rollbackAttributes()
           errors.forEach(({ attribute, message }) => {
-            let translated_attribute = this.get('i18n').t(`expertise-topic-skill-value.${attribute}`)['string']
+            let translated_attribute = this.get('intl')
+              .t(`expertise-topic-skill-value.${attribute}`)
             changeset.pushErrors(attribute, message);
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
