@@ -31,8 +31,8 @@
           {{#if project.projectTechnologies}}
             <br>
             {{#each project.projectTechnologies as |project-technology|}}
-              {{#each project-technology.offer as |offer|}}
-                <span class="badge badge-success p-2 mr-2 mb-2 skill" href="#">{{offer}}</span>
+              {{#each project-technology.offer as |offer index|}}
+                <span href="#">{{if index ", "}}{{offer}}</span>
               {{/each}}
             {{/each}}
           {{else}}

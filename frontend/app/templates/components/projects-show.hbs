@@ -1,5 +1,5 @@
 <div id="projects">
-  <div class="card-header bg-primary">
+  <div class="card-header bg-info">
     <div class="row">
       <div class="col-sm-6">
         <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseProjects">Projekte ({{amountOfProjects}})</a>
@@ -9,7 +9,7 @@
       </div>
     </div>
   </div>
-  <div id="collapseProjects" class="collapse show border border-primary rounded-bottom">
+  <div id="collapseProjects" class="collapse show border border-info rounded-bottom">
     <div class="card-body">
       <div>
         <a onclick={{action (toggle 'projectNew' this)}} role="button" class="{{~if projectNew 'abort-edit-buttons' 'edit-buttons'~}}"><i class="fa {{~if projectNew ' abort' ' add'~}}"></i>{{~if projectNew ' hinzufügen abbrechen' ' Projekt hinzufügen'~}}</a>
