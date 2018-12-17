@@ -7,7 +7,7 @@
 //Set Bootstrap values from brand.puzzle.ch
 $primary: #3b7bbe !default;
 $success: #61b44b !default;
-$info: #b0cce5 !default;
+$info: #F5F5F5 !default;
 
 $ember-power-select-selected-background: #cccccc;
 $ember-power-select-multiple-selection-background-color: #cccccc;
@@ -20,6 +20,9 @@ $ember-power-select-highlighted-background: #2c97a6;
 @import "ember-basic-dropdown";
 @import "ember-power-select";
 @import "flag-icon.min";
+
+// Roboto Font
+@import url(http://fonts.googleapis.com/css?family=Roboto);
 
 html,
 button,

@@ -1,8 +1,8 @@
 <div class="mb-2">
-  <div class="card-header bg-secondary">
+  <div class="card-header bg-info">
     <div class="row">
       <div class="col-sm-6">
-        <a class="card-link text-white project-title-text" data-toggle="collapse" data-parent="#accordion" href="#collapseProject{{project.title}}">
+        <a class="card-link text-dark project-title-text" data-toggle="collapse" data-parent="#accordion" href="#collapseProject{{project.title}}">
           {{if (not-eq (moment-format project.start_at 'DD') "13") (moment-format project.start_at 'MM.YYYY') (moment-format project.start_at 'YYYY')}}
           {{#if (eq project.finish_at null)}}
             - heute
@@ -17,27 +17,18 @@
       </div>
     </div>
   </div>
-  <div id="collapseProject{{project.title}}" class="collapse border border-secondary rounded-bottom show">
+  <div id="collapseProject{{project.title}}" class="collapse border border-info rounded-bottom show">
     <div class="card-body d-flex flex-column">
       <div class="row">
         <div class="col-sm-2">
           <strong>Beschreibung</strong>
           <br><strong>Rolle</strong>
-          <br><strong>Technologie</strong>
+          <br><strong>Technologie(n)</strong>
         </div>
         <div class="col-sm-10">
           {{~project.description~}}
           <br> {{project.role}}
-          {{#if project.projectTechnologies}}
-            <br>
-            {{#each project.projectTechnologies as |project-technology|}}
-              {{#each project-technology.offer as |offer index|}}
-                <span href="#">{{if index ", "}}{{offer}}</span>
-              {{/each}}
-            {{/each}}
-          {{else}}
-            <br>{{~project.technology~}}
-          {{/if}}
+          <br>{{~project.technology~}}
         </div>
       </div>
       <div class="mt-auto">

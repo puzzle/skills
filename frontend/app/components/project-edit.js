@@ -87,19 +87,5 @@ export default Component.extend(EKMixin, {
     handleBlur() {
     },
 
-    createTechnology(selected, searchText)
-    {
-      let options = this.get('options');
-      if (!options.includes(searchText)) {
-        this.get('options').pushObject(searchText);
-      }
-      if (selected.includes(searchText)) {
-        this.get('notify').alert("Already added!", { closeAfter: 4000 });
-      }
-      else {
-        selected.pushObject(searchText);
-      }
-
-    }
   }
 });

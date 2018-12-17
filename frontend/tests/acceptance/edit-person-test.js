@@ -63,7 +63,7 @@ test('/people/:id abort with escape', async function(assert) {
   await triggerKeyUp('Escape');
 
   // Testing if the header of competence-show is there, stherefore profing we're in show
-  assert.equal($('#competence-show-header').attr('class'), "card-header bg-primary");
+  assert.equal($('#competence-show-header').attr('class'), "card-header bg-info");
 });
 
 skip('/people/:id edit person competences', async function(assert) {

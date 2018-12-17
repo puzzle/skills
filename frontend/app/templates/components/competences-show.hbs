@@ -1,7 +1,7 @@
 <div class="card-header bg-info" id="competence-show-header">
   <div class="row">
     <div class="col-sm-6">
-      <a class="card-link text-dark" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Kernkompetenzen ({{amountOfCompetences}})</a>
+      <a class="card-link text-dark header-text" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Kernkompetenzen ({{amountOfCompetences}})</a>
     </div>
     <div class="col-sm-6 text-right d-block">
       <a class="card-link text-dark" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><i class="fa angle"></i></a>
@@ -12,9 +12,7 @@
   <div class="card-body d-flex flex-column">
     {{#if person.competences}}
       <div class="row" id="competence-content-show">
-        <div class="col-sm-3">
-          <span class="p-2">Kernkompetenzen</span>
-        </div>
+
         <div class="col-sm-9">
           {{#each competenceList as |competence|}}
             <span href="#">{{competence}}</span><br>
@@ -22,7 +20,7 @@
         </div>
       </div>
     {{/if}}
-    <div class="mt-auto">
+    <div class="mt-3">
       <a onclick={{competencesEditing}} data-test-company-edit-form-toggle class="edit-buttons"><i class="fa fa-pencil"></i> Bearbeiten</a>
     </div>
   </div>

@@ -12,9 +12,7 @@ test('it renders project', function(assert) {
     role: 'Träumer',
     finish_at: new Date(1990, 1, 1),
     start_at: new Date(1991, 1, 1),
-    projectTechnologies: [
-      { offer: ['java', 'ruby', 'ember'] }
-    ]
+    technology: 'Java'
   });
 
   this.render(hbs`{{project-show
@@ -27,9 +25,7 @@ test('it renders project', function(assert) {
   assert.ok(this.$().text().includes('Träumer'));
   assert.ok(this.$().text().includes('1990'));
   assert.ok(this.$().text().includes('1991'));
-  assert.ok(this.$().text().includes('java'));
-  assert.ok(this.$().text().includes('ruby'));
-  assert.ok(this.$().text().includes('ember'));
+  assert.ok(this.$().text().includes('Java'));
 });
 
 test('project description, role and technology preserves whitespace', function(assert) {
