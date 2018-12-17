@@ -19,18 +19,20 @@
   </div>
   <div id="collapseProject{{project.title}}" class="collapse border border-info rounded-bottom show">
     <div class="card-body d-flex flex-column">
-      <div class="row">
-        <div class="col-sm-2">
-          <strong>Beschreibung</strong>
-          <br><strong>Rolle</strong>
-          <br><strong>Technologie(n)</strong>
-        </div>
-        <div class="col-sm-10">
-          {{~project.description~}}
-          <br> {{project.role}}
-          <br>{{~project.technology~}}
-        </div>
-      </div>
+      <table class="table table-borderless">
+        <tr>
+          <th scope="row"> Beschreibung </th>
+          <td> {{project.description}}</td>
+        </tr>
+        <tr>
+          <th scope="row"> Rolle </th>
+          <td> {{project.role}}</td>
+        </tr>
+        <tr>
+          <th scope="row"> Technologie(n) </th>
+          <td> {{project.technology}}</td>
+        </tr>
+      </table>
       <div class="mt-auto">
         <a onclick={{action selectProject project}} role="button" class="edit-buttons"><i class="fa fa-pencil"></i> Bearbeiten</a>
       </div>
