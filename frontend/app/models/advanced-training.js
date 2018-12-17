@@ -5,8 +5,6 @@ import { htmlSafe } from '@ember/template';
 import { inject as service } from '@ember/service';
 
 export default DaterangeModel.extend({
-  intl: service(),
-
   description: DS.attr('string'),
   person: DS.belongsTo('person'),
 
