@@ -17,15 +17,15 @@ export default Component.extend({
       let finish_at = this.get('entity.finish_at');
       let start_at = this.get('entity.start_at');
       this.monthFrom = this.getSelectedMonth(start_at);
-      this.yearFrom = start_at.getFullYear();
+      if (start_at != null) this.yearFrom = start_at.getFullYear();
       this.monthTo = this.getSelectedMonth(finish_at);
-      this.yearTo = finish_at.getFullYear();
+      if (finish_at != null) this.yearTo = finish_at.getFullYear();
     }
   },
 
   getSelectedMonth(date) {
-    if (date.getDate() == 13) return "-";
-    return date.getMonth() + 1;
+    if (date == null) return;
+    return date.getDate() == 13 ?  "-" : date.getMonth() + 1;
   },
 
   validateYear(year, attr) {
