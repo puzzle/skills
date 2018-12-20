@@ -1041,3 +1041,12 @@ div.content-input  {
 .language-button:hover {
   color: #295584 !important;
 }
+
+.abort-button {
+  color: #238BCA;
+  background-color: transparent;
+}
+
+.abort-button:hover {
+  color: #295584;
+}
