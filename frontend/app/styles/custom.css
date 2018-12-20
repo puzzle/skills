@@ -1050,3 +1050,7 @@ div.content-input  {
 .abort-button:hover {
   color: #295584;
 }
+
+.updated-at {
+  font-size: 12px;
+}
