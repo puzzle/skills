@@ -1,14 +1,14 @@
 {{#with (changeset project validations) as |changeset|}}
   <form onsubmit={{action 'submit' changeset}} id="form_project">
     <div class="mb-2" id="project-content-edit">
-      <div class="card-header bg-secondary">
+      <div class="card-header bg-info">
         <div class="row">
           <div class="col-sm-12">
-            <a class="card-link text-white">Projekt bearbeiten</a>
+            <a class="card-link text-dark">Projekt bearbeiten</a>
           </div>
         </div>
       </div>
-      <div id="collapseProjectNew" class="show border border-secondary rounded-bottom">
+      <div id="collapseProjectNew" class="show border border-info rounded-bottom">
         <div class="card-body d-flex flex-column">
           <div class="row mb-2">
             <div class="col-sm-3">
@@ -20,24 +20,7 @@
               {{input placeholder="Projekt Titel" value=changeset.title class="form-control mb-2"}}
               <br>{{textarea placeholder="Projektbeschreibung" value=changeset.description class="form-control"}}
               <br>{{textarea placeholder="Rolle und Aufgaben" value=changeset.role class="form-control"}}
-              {{#if changeset.technology}}
-                <br>{{textarea placeholder="Eingesetzte Technologien" value=changeset.technology class="form-control"}}
-              {{/if}}
-              <br>
-              {{#each project.projectTechnologies as |projectTechnology|}}
-                {{#power-select-multiple-with-create
-                  options=options
-                  selected=projectTechnology.offer
-                  onchange=(action (mut projectTechnology.offer))
-                  placeholder="Eingesetzte Technologien"
-                  onfocus=(action "handleFocus")
-                  onblur=(action "handleBlur")
-                  oncreate=(action "createTechnology" projectTechnology.offer)
-                  buildSuggestion=suggestion
-                  as |technology|}}
-                  {{technology}}
-                {{/power-select-multiple-with-create}}
-              {{/each}}
+              <br>{{textarea placeholder="Eingesetzte Technologien" value=changeset.technology class="form-control"}}
             </div>
           </div>
           <div class="mt-auto">

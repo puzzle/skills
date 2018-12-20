@@ -1,17 +1,17 @@
 <div id="profil">
   {{#with (changeset person validations) as |changeset|}}
     {{#form-for changeset submit=(action 'submit') as |f|}}
-      <div class="card-header bg-primary">
+      <div class="card-header bg-info">
         <div class="row">
           <div class="col-sm-6">
-            <a class="card-link text-white" href="#">Personalien</a>
+            <a class="card-link text-dark header-text" href="#">Personalien</a>
           </div>
           <div class="col-sm-6 text-right d-block">
-            <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#"><i class="fa angle"></i></a>
+            <a class="card-link text-dark" data-toggle="collapse" data-parent="#accordion" href="#"><i class="fa angle"></i></a>
           </div>
         </div>
       </div>
-      <div id="collapseOne" class="collapse show border border-primary rounded-bottom">
+      <div id="collapseOne" class="collapse show border border-info rounded-bottom">
         <div class="card-body row">
           <div class="col-sm-3 d-flex flex-column" id="profile-content-edit">
             <table class="table-person">
@@ -114,7 +114,7 @@
               </tr>
               <tr>
                 <td>
-                  <Label>Erste Nationlität</Label>
+                  <Label>Erste Nationalität</Label>
                   {{#power-select
                     triggerId="nationality"
                     options=countries

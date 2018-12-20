@@ -1,8 +1,8 @@
 <div class="mb-2">
-  <div class="card-header bg-secondary">
+  <div class="card-header bg-info">
     <div class="row">
       <div class="col-sm-6">
-        <a class="card-link text-white project-title-text" data-toggle="collapse" data-parent="#accordion" href="#collapseProject{{project.title}}">
+        <a class="card-link text-dark project-title-text" data-toggle="collapse" data-parent="#accordion" href="#collapseProject{{project.title}}">
           {{if (not-eq (moment-format project.start_at 'DD') "13") (moment-format project.start_at 'MM.YYYY') (moment-format project.start_at 'YYYY')}}
           {{#if (eq project.finish_at null)}}
             - heute
@@ -13,12 +13,12 @@
         </a>
       </div>
       <div class="col-sm-6 text-right d-block">
-        <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseProject{{project.title}}"><i class="fa angle"></i></a>
+        <a class="card-link text-dark" data-toggle="collapse" data-parent="#accordion" href="#collapseProject{{project.title}}"><i class="fa angle"></i></a>
       </div>
     </div>
   </div>
-  <div id="collapseProject{{project.title}}" class="collapse border border-secondary rounded-bottom show">
-    <div class="card-body">
+  <div id="collapseProject{{project.title}}" class="collapse border border-info rounded-bottom show">
+    <div class="card-body d-flex flex-column">
       <table class="table table-borderless table-sm">
         <tr>
           <th scope="row" class="w-25"> Beschreibung </th>

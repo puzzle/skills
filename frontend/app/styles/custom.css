@@ -5,6 +5,7 @@ html {
 body {
   margin: 0 0 30px; /* bottom = footer height */
   /* The html and body elements cannot have any padding or margin. */
+  font-family: 'Roboto', sans-serif;
 }
 
 body.max-width {
@@ -973,6 +974,11 @@ div.content-input  {
   color: black;
   font-size: 8px;
   font-family: "Verdana";
+}
+
+/* Text in Headers of person */
+.header-text {
+  font-size: 18px;
 }
 
 /* Border with custom color */
