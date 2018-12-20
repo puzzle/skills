@@ -1,14 +1,14 @@
-<div class="card-header bg-primary">
+<div class="card-header bg-info">
   <div class="row">
     <div class="col-sm-6">
-      <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseEducation">Ausbildung ({{amountOfEducations}})</a>
+      <a class="card-link text-dark header-text" data-toggle="collapse" data-parent="#accordion" href="#collapseEducation">Ausbildung ({{amountOfEducations}})</a>
     </div>
     <div class="col-sm-6 text-right d-block">
-      <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseEducation"><i class="fa angle"></i></a>
+      <a class="card-link text-dark" data-toggle="collapse" data-parent="#accordion" href="#collapseEducation"><i class="fa angle"></i></a>
     </div>
   </div>
 </div>
-<div id="collapseEducation" class="collapse show border border-primary rounded-bottom">
+<div id="collapseEducation" class="collapse show border border-info rounded-bottom">
   <div class="card-body d-flex flex-column">
     <div class="mb-2">
       <a onclick={{action (toggle 'educationNew' this)}} role="button" class="{{~if educationNew 'abort-edit-buttons' 'edit-buttons'~}}"><i class="fa {{~if educationNew ' abort' ' add'~}}"></i> {{~if educationNew ' hinzufügen abbrechen' ' Ausbildung hinzufügen'~}}</a>
