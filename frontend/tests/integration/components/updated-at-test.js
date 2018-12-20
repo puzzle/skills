@@ -13,11 +13,11 @@ test('it renders', function(assert) {
     nationality: 'FR',
     location: 'Hogwarts',
     maritalStatus: 'single',
-    updatedAt: new Date('2008-02-09') 
+    updatedAt: new Date('2008-02-09')
   });
-  
+
   this.render(hbs`{{updated-at entry=person}}`);
-  
+
   assert.ok(this.$().text().includes('Zuletzt bearbeitet:'));
   assert.ok(this.$().text().includes('09.02.2008'));
 });
