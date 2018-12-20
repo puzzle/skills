@@ -144,6 +144,9 @@
                         <td class="language-certificate">
                           {{#if skill.certificate}}
                             <img alt="" src="/assets/icon_certificate.svg">
+                            {{#ember-tooltip side="right"}}
+                              {{skill.certificate}}
+                            {{/ember-tooltip}}
                           {{/if}}
                         </td>
                       </tr>
