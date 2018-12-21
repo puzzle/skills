@@ -13,7 +13,7 @@
     <div class="mb-2">
       <a onclick={{action (toggle 'educationNew' this)}} role="button" class="{{~if educationNew 'abort-edit-buttons' 'edit-buttons'~}}"><i class="fa {{~if educationNew ' abort' ' add'~}}"></i> {{~if educationNew ' hinzufügen abbrechen' ' Ausbildung hinzufügen'~}}</a>
     </div>
-    <div id="competence-content-show" class="mb-2">
+    <div id="competence-content-show">
       {{component (if educationNew 'education-new')
                   personId=person.id
                   done=(action (toggle 'educationNew' this))}}

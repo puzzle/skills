@@ -30,7 +30,9 @@
                       <tr>
                         <td class="nextToDelete" data-test-location>
                           {{l.text-field 'location' label="Standort"}}
-                          <a {{action 'deleteLocation' location}} role="button" class="deleteField"><i class="fa trash"></i></a>
+                          {{delete-with-confirmation
+                            entry=location
+                          }}
                         </td>
                       </tr>
                     {{/fields-for}}
@@ -80,7 +82,9 @@
                       <tr>
                         <td class="nextToDelete" data-test-employee-quantity-category>
                           {{q.text-field 'category' label="Kategorie"}}
-                          <a {{action 'deleteEmployeeQuantity' quantity}} role="button" class="deleteField"><i class="fa trash"></i></a>
+                          {{delete-with-confirmation
+                            entry=quantity
+                          }}
                         </td>
                       </tr>
                       <tr>

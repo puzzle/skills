@@ -648,7 +648,6 @@ form textarea{
   min-width: 100px;
 }
 
-
 .full {
   width: 100%;
 }
@@ -671,11 +670,6 @@ form textarea{
   font-size: 20px;
   font-weight: bold;
 }
-
-/*a:hover .fa, a:active .fa, a:focus .fa {
-  color: #61B44B;
-  transition: 0.3s;
-}*/
 
 [data-toggle="collapse"].collapsed .angle:before {
   content: "\f107";
@@ -897,7 +891,7 @@ button::-moz-focus-inner {
   padding: 10px;
   border-width: 1px 1px 0px 1px;
   border-style: solid;
-  border-color: black;
+  border-color: #D6D6D6;
   vertical-align: middle;
 }
 
