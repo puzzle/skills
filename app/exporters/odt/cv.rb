@@ -76,9 +76,9 @@ module Odt
     # rubocop:disable Metrics/MethodLength
     def insert_educations(report)
       educations_list = person.educations.list.collect do |e|
-        { year_from: e.start_at.year,
+        { year_from: formatted_year(e.start_at),
           month_from: formatted_month(e.start_at),
-          year_to: e.finish_at.year,
+          year_to: formatted_year(e.finish_at),
           month_to: formatted_month(e.finish_at),
           title: "#{e.title}\n#{e.location}" }
       end
@@ -98,9 +98,9 @@ module Odt
     # rubocop:disable Metrics/MethodLength
     def insert_advanced_trainings(report)
       advanced_trainings_list = person.advanced_trainings.list.collect do |at|
-        { year_from: at.start_at.year,
+        { year_from: formatted_year(at.start_at),
           month_from: formatted_month(at.start_at),
-          year_to: at.finish_at.year,
+          year_to: formatted_year(at.finish_at),
           month_to: formatted_month(at.finish_at),
           description: at.description }
       end
@@ -120,9 +120,9 @@ module Odt
     # rubocop:disable Metrics/MethodLength
     def insert_activities(report)
       activities_list = person.activities.list.collect do |a|
-        { year_from: a.start_at.year,
+        { year_from: formatted_year(a.start_at),
           month_from: formatted_month(a.start_at),
-          year_to: a.finish_at.year,
+          year_to: formatted_year(a.finish_at),
           month_to: formatted_month(a.finish_at),
           description: "#{a.role}\n\n#{a.description}" }
       end
@@ -142,9 +142,9 @@ module Odt
     # rubocop:disable Metrics/MethodLength
     def insert_projects(report)
       projects_list = person.projects.list.collect do |p|
-        { year_from: p.start_at.year,
+        { year_from: formatted_year(p.start_at),
           month_from: formatted_month(p.start_at),
-          year_to: p.finish_at.year,
+          year_to: formatted_year(p.finish_at),
           month_to: formatted_month(p.finish_at),
           project: project_description(p) }
       end
@@ -169,7 +169,12 @@ module Odt
     end
 
     def formatted_month(date)
+      return '' unless date
       [13, 14].include?(date.day) ? '' : "#{date.month}."
+    end
+
+    def formatted_year(date)
+      date ? date.year : 'heute'
     end
 
     def nationalities
