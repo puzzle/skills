@@ -33,7 +33,7 @@
               </tr>
               <tr>
                 <td>
-                  <Label>Funktion</Label>
+                  <label>Funktion</label>
                   {{#power-select
                   triggerId="role"
                   selected=person.roles.firstObject
@@ -87,7 +87,7 @@
               </tr>
               <tr>
                 <td>
-                  <Label> Zivilstand </Label>
+                  <label>Zivilstand</label>
                   {{#power-select
                   triggerId="maritalStatus"
                   selected=selectedMaritalStatus
@@ -104,14 +104,14 @@
               </tr>
               <tr>
                 <td>
-                  <Label>Doppelbürger</Label>
+                  <label>Doppelbürger</label>
                   {{input type="checkbox" checked=secondNationality click=(action "switchNationality" value="target.checked")
                     id="toggle-nationalities-id" class="checkbox"}}
                 </td>
               </tr>
               <tr>
                 <td>
-                  <Label>Erste Nationalität</Label>
+                  <label>Erste Nationalität</label>
                   {{#power-select
                     triggerId="nationality"
                     options=countries
@@ -128,7 +128,7 @@
               <tr>
                 {{#if secondNationality}}
                   <td>
-                    <Label>Zweite Nationalität</Label>
+                    <label>Zweite Nationalität</label>
                     {{#power-select
                       triggerId="nationality2"
                       options=countries
