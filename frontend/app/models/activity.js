@@ -1,6 +1,7 @@
 import DS from 'ember-data';
 import DaterangeModel from './daterange-model';
 import { computed } from '@ember/object';
+import { htmlSafe } from '@ember/template';
 
 export default DaterangeModel.extend({
   description: DS.attr('string'),
@@ -9,5 +10,9 @@ export default DaterangeModel.extend({
 
   toString: computed('role', function() {
     return this.get('role');
+  }),
+
+  lineBreakDescription: computed('description', function() {
+    return htmlSafe(this.get('description').replace(/\n/g, '<br>'));
   })
 });

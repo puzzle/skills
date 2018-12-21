@@ -2,7 +2,6 @@ import Component from '@ember/component';
 import sortByYear from '../utils/sort-by-year';
 import { computed } from '@ember/object';
 
-
 export default Component.extend({
   filtered: computed('activities.@each', function() {
     return this.get('activities');
@@ -12,5 +11,5 @@ export default Component.extend({
     return this.get('activities.length');
   }),
 
-  filteredActivities: sortByYear('filtered'),
+  filteredActivities: sortByYear('filtered')
 });
