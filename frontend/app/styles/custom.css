@@ -233,16 +233,6 @@ hr {
   #profile-content-show dd {
     margin-left: 120px;
   }
-  .form-field--label{
-    margin-top: 5px;
-    float: left;
-    text-align: right;
-  }
-
-  .form-field--control{
-    width: 200px;
-    margin-left: 10px;
-  }
 
   .form-button--submit, .form-button--reset {
     background-color: rgba(255, 255, 255, 0)!important;
@@ -629,7 +619,7 @@ form textarea{
 
 }
 
-.table-person input, .table-person .ember-power-select-trigger {
+.table-person input, .table-person, .table-person .ember-power-select-trigger {
   width: 100%;
   float: right;
 }
