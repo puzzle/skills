@@ -8,7 +8,7 @@
           </div>
           <div class="col-sm-6 text-right d-block text-white">
             {{#unless company.myCompany}}
-              <div id="delete-company-icon">
+              <div id="delete-company-icon pull-right">
                 {{delete-with-confirmation
                   entry=company
                   transitionTo='companies'
@@ -16,15 +16,6 @@
                 }}
               </div>
             {{/unless}}
-            <a {{action 'submit' changeset}} role="button" id="submit-button" class="card-link text-white">
-              <i class="fa save"></i>
-            </a>
-            <a onclick={{action 'abortEdit'}} role="button" class="card-link text-white">
-              <i class="fa abort"></i>
-            </a>
-            <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#">
-              <i class="fa angle"></i>
-            </a>
           </div>
         </div>
       </div>
@@ -112,6 +103,10 @@
                 {{/each}}
               </table>
             </div>
+          </div>
+          <div class="mt-2">
+            <button {{action 'submit' changeset}} id="submit-button" class="btn btn-primary">Speichern</button>
+            <button {{action 'abortEdit'}} class="btn abort-button">Abbrechen</button>
           </div>
         </div>
       </div>
