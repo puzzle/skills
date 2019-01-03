@@ -1,8 +1,8 @@
 <div class="mb-2">
-  <div class="card-header bg-info">
+  <div class="card-header bg-info" data-toggle="collapse" data-parent="#accordion" href="#collapseProject{{project.title}}">
     <div class="row">
       <div class="col-sm-6">
-        <a class="card-link text-dark project-title-text" data-toggle="collapse" data-parent="#accordion" href="#collapseProject{{project.title}}">
+        <a class="card-link text-dark project-title-text">
           {{if (not-eq (moment-format project.start_at 'DD') "13") (moment-format project.start_at 'MM.YYYY') (moment-format project.start_at 'YYYY')}}
           {{#if (eq project.finish_at null)}}
             - heute
