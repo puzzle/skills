@@ -18,19 +18,19 @@ export default DaterangeModel.extend({
 
   lineBreakDescription: computed('description', function() {
     let description = this.get('description')
-    if(description == null){return ''}
+    if (description == null) {return ''}
     return htmlSafe(description.replace(/\n/g, '<br>'));
   }),
 
   lineBreakRole: computed('role', function() {
     let role = this.get('role')
-    if(role == null){return ''}
+    if (role == null) {return ''}
     return htmlSafe(role.replace(/\n/g, '<br>'));
   }),
 
   lineBreakTechnology: computed('technology', function() {
     let technology = this.get('technology')
-    if(technology == null){return ''}
+    if (technology == null) {return ''}
     return htmlSafe(technology.replace(/\n/g, '<br>'));
   })
 });
