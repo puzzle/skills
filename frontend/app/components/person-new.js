@@ -80,6 +80,34 @@ export default Component.extend({
         });
     },
 
+    setRoleWithTab(select, e)
+    {
+      if (e.keyCode == 9) {
+        this.send('setRole', select.highlighted)
+      }
+    },
+
+    setCompanyWithTab(select, e)
+    {
+      if (e.keyCode == 9) {
+        this.set('newPerson.company', select.highlighted)
+      }
+    },
+
+    setNationalityWithTab(select, e)
+    {
+      if (e.keyCode == 9) {
+        this.send('setNationality', select.highlighted)
+      }
+    },
+
+    setNationality2WithTab(select, e)
+    {
+      if (e.keyCode == 9) {
+        this.send('setNationality2', select.highlighted)
+      }
+    },
+
     abortCreate() {
       this.get('newPerson').destroyRecord();
       this.get('router').transitionTo("people");

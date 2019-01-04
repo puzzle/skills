@@ -53,6 +53,20 @@ export default Component.extend({
   },
 
   actions: {
+    setLanguageWithTab(select, e)
+    {
+      if (e.keyCode == 9) {
+        this.send('setLanguage', select.highlighted)
+      }
+    },
+
+    setLevelWithTab(select, e)
+    {
+      if (e.keyCode == 9) {
+        this.set('selectedSkill.level', select.highlighted)
+      }
+    },
+
     setLanguage(language) {
       if (!this.get('selectedSkill.isNew')) this.set('selectedLanguage.disabled', false);
       language.set('disabled', true);

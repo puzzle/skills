@@ -106,6 +106,34 @@ export default Component.extend(EKMixin, {
         });
     },
 
+    setRoleWithTab(select, e)
+    {
+      if (e.keyCode == 9) {
+        this.send('setRole', select.highlighted)
+      }
+    },
+
+    setCompanyWithTab(select, e)
+    {
+      if (e.keyCode == 9) {
+        this.set('person.company', select.highlighted)
+      }
+    },
+
+    setNationalityWithTab(select, e)
+    {
+      if (e.keyCode == 9) {
+        this.send('setNationality', select.highlighted)
+      }
+    },
+
+    setNationality2WithTab(select, e)
+    {
+      if (e.keyCode == 9) {
+        this.send('setNationality2', select.highlighted)
+      }
+    },
+
     abortEdit() {
       const person = this.get('person')
       if (person.get('hasDirtyAttributes')) {

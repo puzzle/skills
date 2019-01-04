@@ -30,6 +30,7 @@
                   onfocus=(action "handleFocus")
                   onblur=(action "handleBlur")
                   onchange=(action "setRole")
+                  onkeydown=(action "setRoleWithTab")
                   as |role|
                   }}
                     {{role.name}}
@@ -47,6 +48,7 @@
                     onfocus=(action "handleFocus")
                     onblur=(action "handleBlur")
                     onchange=(action (mut newPerson.company))
+                    onkeydown=(action "setCompanyWithTab")
                     as |company|
                     }}
                     {{company.name}}
@@ -82,6 +84,7 @@
                     onchange=(action "setNationality")
                     onfocus=(action "handleFocus")
                     onblur=(action "handleBlur")
+                    onkeydown=(action "setNationalityWithTab")
                     searchField="1"
                     as |country|}}
                     <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
@@ -98,6 +101,7 @@
                     onchange=(action "setNationality2")
                     onfocus=(action "handleFocus")
                     onblur=(action "handleBlur")
+                    onkeydown=(action "setNationality2WithTab")
                     searchField="1"
                     as |country|}}
                     <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
