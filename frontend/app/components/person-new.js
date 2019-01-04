@@ -8,6 +8,7 @@ import Person from '../models/person';
 export default Component.extend({
   i18n: service(),
   store: service(),
+  router: service(),
 
   init() {
     this._super(...arguments);
@@ -77,6 +78,11 @@ export default Component.extend({
             });
           });
         });
+    },
+
+    abortCreate() {
+      this.get('newPerson').destroyRecord();
+      this.get('router').transitionTo("people");
     },
 
     handleFocus(select, e) {

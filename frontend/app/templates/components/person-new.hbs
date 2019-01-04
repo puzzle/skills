@@ -5,9 +5,6 @@
         <div class="col-sm-6">
           <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Person Erfassen</a>
         </div>
-        <div class="col-sm-6 text-right d-block">
-          <a {{action 'submit' newPerson}} role="button" id="submit-button" class="card-link text-white"><i class="fa save"></i></a>
-        </div>
       </div>
     </div>
     <div id="collapseOne" class="collapse show border border-primary rounded-bottom">
@@ -145,6 +142,8 @@
             </table>
           </div>
         </div>
+        <button {{action 'submit' newPerson}} role="button" id="submit-button" class="btn btn-primary "><i class="fa save"></i> Speichern</button>
+        <button onclick={{action "abortCreate"}} role="button" class="btn btn-secondary"><i class="fa abort"></i> Abbrechen</button>
       </div>
     </div>
   {{/form-for}}
