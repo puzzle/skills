@@ -12,6 +12,8 @@ export default DaterangeModel.extend({
   }),
 
   lineBreakDescription: computed('description', function() {
-    return htmlSafe(this.get('description').replace(/\n/g, '<br>'));
+    let description = this.get('description')
+    if(description == null){return ''}
+    return htmlSafe(description.replace(/\n/g, '<br>'));
   })
 });

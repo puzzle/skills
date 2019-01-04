@@ -17,14 +17,20 @@ export default DaterangeModel.extend({
   }),
 
   lineBreakDescription: computed('description', function() {
-    return htmlSafe(this.get('description').replace(/\n/g, '<br>'));
+    let description = this.get('description')
+    if(description == null){return ''}
+    return htmlSafe(description.replace(/\n/g, '<br>'));
   }),
 
   lineBreakRole: computed('role', function() {
-    return htmlSafe(this.get('role').replace(/\n/g, '<br>'));
+    let role = this.get('role')
+    if(role == null){return ''}
+    return htmlSafe(role.replace(/\n/g, '<br>'));
   }),
 
   lineBreakTechnology: computed('technology', function() {
-    return htmlSafe(this.get('technology').replace(/\n/g, '<br>'));
+    let technology = this.get('technology')
+    if(technology == null){return ''}
+    return htmlSafe(technology.replace(/\n/g, '<br>'));
   })
 });
