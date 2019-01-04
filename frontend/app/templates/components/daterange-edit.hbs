@@ -19,6 +19,7 @@
         onfocus=(action "handleFocus")
         onblur=(action "handleBlur")
         onchange=(action "setMonthFrom")
+        onkeydown=(action "confirmOnTabFrom")
         as |month|
         }}
           {{month}}
@@ -41,6 +42,7 @@
         onfocus=(action "handleFocus")
         onblur=(action "handleBlur")
         onchange=(action "setMonthTo")
+        onkeydown=(action "confirmOnTabTo")
         as |month|
         }}
           {{month}}

@@ -48,6 +48,19 @@ export default Component.extend({
   },
 
   actions: {
+
+    confirmOnTabFrom(select,e) {
+      if (e.keyCode == 9) {
+        this.send('setMonthFrom', select.highlighted)
+      }
+    },
+
+    confirmOnTabTo(select,e) {
+      if (e.keyCode == 9) {
+        this.send('setMonthTo', select.highlighted)
+      }
+    },
+
     setMonthFrom(month) {
       // sets day to 13 if no month is selected. Used as conditional in show hbs.
       if (isNaN(month)) {
