@@ -16,13 +16,11 @@
     </li>
   </ul>
   <ul class="navbar-nav ml-auto">
-    <span class="text-right d-block">
+    <span class="text-right d-block last-update-text">
       Letztes Update
-      <span class="text-danger">
-        <time datetime={{moment-format person.updatedAt}}>
-          {{moment-format person.updatedAt 'L LT'}}
-        </time>
-      </span>
+      <time datetime={{moment-format person.updatedAt}}>
+        {{moment-format person.updatedAt 'L LT'}}
+      </time>
     </span>
   </ul>
 </nav>

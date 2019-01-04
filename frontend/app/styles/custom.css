@@ -975,6 +975,11 @@ div.content-input  {
   font-family: "Verdana";
 }
 
+.last-update-text {
+  color: grey;
+  font-size: 13px;
+}
+
 /* Text in Headers of person */
 .header-text {
   font-size: 18px;
