@@ -1,16 +1,11 @@
 import Component from '@ember/component';
 import sortByYear from '../utils/sort-by-year';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
 import { on } from '@ember/object/evented';
 import { EKMixin , keyUp } from 'ember-keyboard';
 
 
 export default Component.extend(EKMixin, {
-  /* exclude where id like null */
-  filteredActivities: computed('@each.id', function() {
-    return this.get('sortedActivities').filterBy('id');
-  }),
 
   sortedActivities: sortByYear('activities'),
 
