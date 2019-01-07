@@ -134,6 +134,13 @@ export default Component.extend(EKMixin, {
       }
     },
 
+    setMaritalStatusWithTab(select, e)
+    {
+      if (e.keyCode == 9) {
+        this.send('setMaritalStatus', select.highlighted)
+      }
+    },
+
     abortEdit() {
       const person = this.get('person')
       if (person.get('hasDirtyAttributes')) {
