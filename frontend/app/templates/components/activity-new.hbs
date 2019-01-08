@@ -7,13 +7,10 @@
         </div>
       </div>
       <div class="col-sm-7 row">
-        <div class="col-sm-4 content-input">
-          {{input value=newActivity.role class="centered-content-input form-control" placeholder="Rolle"}}
-        </div>
-        <div class="col-sm-8 centered-content-input">
-          {{textarea placeholder="Firmenangaben und Beschreibung der Tätigkeit"
-                     value=newActivity.description class="input-xxlarge form-control"}}
-        </div>
+        <label for="{{concat elementId '-new-role'}}">Rolle</label>
+        {{input value=newActivity.role class="centered-content-input form-control"}}
+        <label class="mt-2" for="{{concat elementId '-new-desc'}}">Firmenangaben und Beschreibung der Tätigkeit</label>
+        {{textarea value=newActivity.description class="input-xxlarge form-control"}}
       </div>
       <div class="col-sm-2 centered-content text-right">
         <a href="#" onclick={{action 'submit' newActivity}} role="button" id="submit-button" class="text-dark"><i class="fa save"></i></a>
