@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="106px" height="6px" viewBox="0 0 106 6" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="127px" height="7px" viewBox="0 0 127 7" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
-    <title>a1 copy</title>
+    <title>a0</title>
     <desc>Created with Sketch.</desc>
     <g id="PuzzleCV-v3" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Artboard" transform="translate(-401.000000, -385.000000)" fill="#EBEBEB">
-            <g id="a1-copy" transform="translate(401.000000, 385.000000)">
-                <rect id="Rectangle" x="0" y="0" width="16" height="6"></rect>
-                <rect id="Rectangle" x="18" y="0" width="16" height="6"></rect>
-                <rect id="Rectangle" x="36" y="0" width="16" height="6"></rect>
-                <rect id="Rectangle" x="54" y="0" width="16" height="6"></rect>
-                <rect id="Rectangle" x="72" y="0" width="16" height="6"></rect>
-                <rect id="Rectangle" x="90" y="0" width="16" height="6"></rect>
+        <g id="Language-Levels" transform="translate(-554.000000, -498.000000)" fill="#EBEBEB">
+            <g id="a0" transform="translate(554.000000, 498.000000)">
+                <rect id="Rectangle" x="0" y="0" width="19.1698113" height="7"></rect>
+                <rect id="Rectangle" x="21.5660377" y="0" width="19.1698113" height="7"></rect>
+                <rect id="Rectangle" x="43.1320755" y="0" width="19.1698113" height="7"></rect>
+                <rect id="Rectangle" x="64.6981132" y="0" width="19.1698113" height="7"></rect>
+                <rect id="Rectangle" x="86.2641509" y="0" width="19.1698113" height="7"></rect>
+                <rect id="Rectangle" x="107.830189" y="0" width="19.1698113" height="7"></rect>
             </g>
         </g>
     </g>
