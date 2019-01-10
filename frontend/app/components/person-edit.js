@@ -116,7 +116,17 @@ export default Component.extend(EKMixin, {
         if (skill.get('isNew')) {
           skill.destroyRecord();
         }
+        if(skill.get('hasDirtyAttributes')) {
+          skill.rollbackAttributes();
+        }
       });
+      let companies = this.get('store').findAll('company').toArray();
+      companies.forEach(company => {
+        if (company.get('hasDirtyAttributes')) {
+          company.rollbackAttributes();
+        }
+      })
+
       this.sendAction('personEditing');
     },
 
