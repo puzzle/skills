@@ -17,10 +17,14 @@
               </div>
             </div>
             <div class="col-sm-7">
-              {{input placeholder="Projektname" value=changeset.title class="form-control mb-2"}}
-              <br>{{textarea placeholder="Projektbeschreibung" value=changeset.description class="form-control"}}
-              <br>{{textarea placeholder="Rolle und Aufgaben" value=changeset.role class="form-control"}}
-              <br>{{textarea placeholder="Eingesetzte Technologien" value=changeset.technology class="form-control"}}
+              <label for="{{concat elementId '-name'}}">Projekt</label>
+              {{input id=(concat elementId '-name') value=changeset.title class="form-control mb-2"}}
+              <label for="{{concat elementId '-desc'}}">Beschreibung</label>
+              {{textarea id=(concat elementId '-desc') value=changeset.description class="form-control"}}
+              <label for="{{concat elementId '-role'}}">Rolle und Aufgaben</label>
+              {{textarea id=(concat elementId '-role') value=changeset.role class="form-control"}}
+              <label for="{{concat elementId '-tech'}}">Eingesetzte Technologien</label>
+              {{textarea id=(concat elementId '-tech') value=changeset.technology class="form-control"}}
             </div>
           </div>
           <div class="mt-auto">

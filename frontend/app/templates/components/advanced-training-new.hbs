@@ -7,7 +7,8 @@
         </div>
       </div>
       <div class="col-sm-7 content-input">
-        {{textarea placeholder="Beschreibung" value=newAdvancedTraining.description class="input-xxlarge form-control"}}
+        <label for="{{concat elementId '-new-desc'}}">Beschreibung</label>
+        {{textarea id=(concat elementId '-new-desc') value=newAdvancedTraining.description class="input-xxlarge form-control"}}
       </div>
       <div class="col-sm-2 centered-content text-right">
         <a href="#" onclick={{action 'submit' newAdvancedTraining}} role="button" id="submit-button" class="text-dark"><i class="fa save"></i></a>

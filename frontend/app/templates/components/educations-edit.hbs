@@ -18,10 +18,10 @@
                 </div>
               </div>
               <div class="col-sm-7 content-input">
-                <div class="input-group centered-content-input">
-                  {{input value=education.title class="input-xxlarge form-control" placeholder="Mein Abschluss"}}
-                  {{input value=education.location class="input-xxlarge form-control" placeholder="Mein Ausbildungsort"}}
-                </div>
+                <label for="{{concat elementId '-' education.id '-title'}}">Ausbildung</label>
+                {{input id=(concat elementId '-' education.id '-title') value=education.title class="input-xxlarge form-control"}}
+                <label class="mt-2" for="{{concat elementId '-' education.id '-loc'}}">Ausbildungsort</label>
+                {{textarea id=(concat elementId '-' education.id '-loc') value=education.location class="input-xxlarge form-control"}}
               </div>
               <div id="delete-education-icon">
                 {{delete-with-confirmation

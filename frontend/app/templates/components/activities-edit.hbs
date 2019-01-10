@@ -18,10 +18,10 @@
                 </div>
               </div>
               <div class="col-sm-7">
-                <div class="input-group centered-content-input">
-                  {{input value=activity.role class="form-control" placeholder="Rolle"}}
-                  {{textarea value=activity.description class="input-xxlarge form-control" placeholder="Firmenangaben und Beschreibung der Tätigkeit"}}
-                </div>
+                <label for="{{concat elementId '-' activity.id '-role'}}">Rolle</label>
+                {{input id=(concat elementId '-' activity.id '-role') value=activity.role class="form-control"}}
+                <label class="mt-2" for="{{concat elementId '-' activity.id '-desc'}}">Firmenangaben und Beschreibung der Tätigkeit</label>
+                {{textarea id=(concat elementId '-' activity.id '-desc') value=activity.description class="input-xxlarge form-control"}}
               </div>
               {{delete-with-confirmation
                 entry=activity
