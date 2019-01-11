@@ -233,16 +233,6 @@ hr {
   #profile-content-show dd {
     margin-left: 120px;
   }
-  .form-field--label{
-    margin-top: 5px;
-    float: left;
-    text-align: right;
-  }
-
-  .form-field--control{
-    width: 200px;
-    margin-left: 10px;
-  }
 
   .form-button--submit, .form-button--reset {
     background-color: rgba(255, 255, 255, 0)!important;
@@ -595,6 +585,7 @@ form textarea{
   width: 45%;
   float: right;
 }
+
 .table-company .nextToDelete {
   position: relative;
 }
@@ -629,7 +620,7 @@ form textarea{
 
 }
 
-.table-person input, .table-person .ember-power-select-trigger {
+.table-person input, .table-person, .table-person .ember-power-select-trigger {
   width: 100%;
   float: right;
 }
@@ -658,7 +649,6 @@ form textarea{
   min-width: 100px;
 }
 
-
 .full {
   width: 100%;
 }
@@ -681,11 +671,6 @@ form textarea{
   font-size: 20px;
   font-weight: bold;
 }
-
-/*a:hover .fa, a:active .fa, a:focus .fa {
-  color: #61B44B;
-  transition: 0.3s;
-}*/
 
 [data-toggle="collapse"].collapsed .angle:before {
   content: "\f107";
@@ -907,7 +892,7 @@ button::-moz-focus-inner {
   padding: 10px;
   border-width: 1px 1px 0px 1px;
   border-style: solid;
-  border-color: black;
+  border-color: #D6D6D6;
   vertical-align: middle;
 }
 
@@ -1040,4 +1025,17 @@ div.content-input  {
 
 .language-button:hover {
   color: #295584 !important;
+}
+
+.abort-button {
+  color: #238BCA;
+  background-color: transparent;
+}
+
+.abort-button:hover {
+  color: #295584;
+}
+
+.updated-at {
+  font-size: 12px;
 }

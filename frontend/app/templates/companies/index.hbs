@@ -3,6 +3,12 @@
     {{companies-list companies=model}}
   </div>
   <div class="col-sm-6">
-    {{#link-to "companies.new"}}<button type="button" class="btn btn-outline-success float-right ml-2 btn-w-1">Neues Profil</button>{{/link-to}}
+    {{#link-to "companies.new"}}
+      <a class="float-right mr-2">
+        <i class="fa fa-plus-square-o" aria-hidden="true">
+        </i>
+        Neue Firma
+      </a>
+    {{/link-to}}
   </div>
 </div>
