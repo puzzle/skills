@@ -19,6 +19,7 @@
       onfocus=(action "handleFocus")
       onblur=(action "handleBlur")
       onchange=(action "setLanguage")
+      onkeydown=(action "setWithTab" 'setLanguage')
       disabled=isObligatoryLanguage
       searchField="name"
       as |language|
@@ -28,7 +29,7 @@
 
     </div>
     <div class="col-md-2 pl-0 pt-2">
-      {{#unless isObligatoryLanguage}} 
+      {{#unless isObligatoryLanguage}}
         {{#delete-with-confirmation
           entry=selectedSkill
           class='edit-buttons'
@@ -48,6 +49,7 @@ options=levels
 onfocus=(action "handleFocus")
 onblur=(action "handleBlur")
 onchange=(action (mut selectedSkill.level))
+onkeydown=(action "setWithTab" 'setLevel')
 as |level|
 }}
   {{level}}

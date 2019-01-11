@@ -1,7 +1,7 @@
-import Component from '@ember/component';
+import ApplicationComponent from './application-component';
 import { inject } from '@ember/service';
 
-export default Component.extend({
+export default ApplicationComponent.extend({
   store: inject(),
   init() {
     this._super(...arguments);
@@ -53,6 +53,10 @@ export default Component.extend({
   },
 
   actions: {
+    setLevel(level) {
+      this.set('selectedSkill.level', level)
+    },
+
     setLanguage(language) {
       if (!this.get('selectedSkill.isNew')) this.set('selectedLanguage.disabled', false);
       language.set('disabled', true);

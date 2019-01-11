@@ -1,7 +1,7 @@
-import Component from '@ember/component';
+import ApplicationComponent from './application-component';
 import { isBlank } from '@ember/utils';
 
-export default Component.extend({
+export default ApplicationComponent.extend({
 
   yearFromInvalid: false,
   yearToInvalid: false,

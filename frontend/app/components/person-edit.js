@@ -1,5 +1,5 @@
 import { inject as service } from '@ember/service';
-import Component from '@ember/component';
+import ApplicationComponent from './application-component';
 import { computed } from '@ember/object';
 import { isBlank } from '@ember/utils';
 import { getNames as countryNames } from 'ember-i18n-iso-countries';
@@ -7,7 +7,7 @@ import { on } from '@ember/object/evented';
 import { EKMixin , keyUp } from 'ember-keyboard';
 import Person from '../models/person';
 
-export default Component.extend(EKMixin, {
+export default ApplicationComponent.extend(EKMixin, {
   store: service(),
   i18n: service(),
 
@@ -152,6 +152,10 @@ export default Component.extend(EKMixin, {
         this.set('person.nationality2', undefined);
       }
       this.set('selectedNationality2', selectedCountry);
+    },
+
+    setCompany(company) {
+      this.set('person.company', company)
     },
 
     setRole(selectedRole) {
