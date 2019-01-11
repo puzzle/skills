@@ -6,12 +6,12 @@ import { EKMixin , keyUp } from 'ember-keyboard';
 
 export default Component.extend(EKMixin, {
 
-  sortedAdvancedTrainings: sortByYear('advanced-trainings'),
 
   i18n: service(),
 
   activateKeyboard: on('init', function() {
     this.set('keyboardActivated', true);
+    this.sortedAdvancedTrainings = sortByYear('advanced-trainings').volatile()
   }),
 
   abortAdvancedTrainings: on(keyUp('Escape'), function() {

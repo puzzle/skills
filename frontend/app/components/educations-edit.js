@@ -7,10 +7,10 @@ import { EKMixin , keyUp } from 'ember-keyboard';
 
 export default Component.extend(EKMixin, {
 
-  sortedEducations: sortByYear('educations'),
 
   init() {
     this._super(...arguments);
+    this.sortedEducations = sortByYear('educations').volatile()
   },
 
   activateKeyboard: on('init', function() {

@@ -7,12 +7,12 @@ import { EKMixin , keyUp } from 'ember-keyboard';
 
 export default Component.extend(EKMixin, {
 
-  sortedActivities: sortByYear('activities'),
 
   i18n: service(),
 
   activateKeyboard: on('init', function() {
     this.set('keyboardActivated', true);
+    this.sortedActivities = sortByYear('activities').volatile()
   }),
 
   abortActivities: on(keyUp('Escape'), function() {
