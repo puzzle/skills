@@ -23,7 +23,7 @@
                 <label class="mt-2" for="{{concat elementId '-' education.id '-loc'}}">Ausbildungsort</label>
                 {{textarea id=(concat elementId '-' education.id '-loc') value=education.location class="input-xxlarge form-control"}}
               </div>
-              <div id="delete-education-icon">
+              <div id="delete-education-icon" onclick={{action 'notify'}}>
                 {{delete-with-confirmation
                   entry=education
                 }}

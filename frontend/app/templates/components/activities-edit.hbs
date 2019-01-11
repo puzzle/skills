@@ -23,9 +23,11 @@
                 <label class="mt-2" for="{{concat elementId '-' activity.id '-desc'}}">Firmenangaben und Beschreibung der Tätigkeit</label>
                 {{textarea id=(concat elementId '-' activity.id '-desc') value=activity.description class="input-xxlarge form-control"}}
               </div>
+              <div onclick={{action 'notify'}}>
               {{delete-with-confirmation
                 entry=activity
               }}
+              </div>
             </div>
           </div>
         {{/each}}

@@ -29,7 +29,16 @@ export default Component.extend(EKMixin, {
 
   i18n: service(),
 
+
   actions: {
+    notify() {
+      let length = this.get('sortedEducations').length
+      setTimeout(() => {
+        if(length > this.get('sortedEducations').length) {
+          return this.notifyPropertyChange('sortedEducations');
+        }
+      }, 500);
+    },
     submit(person) {
       person.save()
         .then (() =>

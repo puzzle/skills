@@ -25,6 +25,14 @@ export default Component.extend(EKMixin, {
   }),
 
   actions: {
+    notify() {
+      let length = this.get('sortedAdvancedTrainings').length
+      setTimeout(() => {
+        if(length > this.get('sortedAdvancedTrainings').length) {
+          return this.notifyPropertyChange('sortedAdvancedTrainings');
+        }
+      }, 500);
+    },
     submit(person) {
       person.save()
         .then (() =>

@@ -54,7 +54,7 @@ export default Component.extend({
         this.get('entity').setStartAt(this.yearFrom, 0, 14)
       }
       else {
-        this.get('entity').setStartAt(this.yearFrom, month - 1, 1)
+        this.get('entity').setStartAt(this.yearFrom, month, 1)
       }
       this.set('monthFrom', month);
     },
@@ -65,7 +65,7 @@ export default Component.extend({
         this.get('entity').setFinishAt(this.yearTo, 11, 14)
       }
       else {
-        this.get('entity').setFinishAt(this.yearTo, month - 1, 1)
+        this.get('entity').setFinishAt(this.yearTo, month, 1)
       }
       this.set('monthTo', month);
     },
