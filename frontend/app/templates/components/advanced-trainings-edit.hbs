@@ -21,10 +21,10 @@
                 <label for="{{concat elementId '-' advanced-training.id '-desc'}}">Beschreibung</label>
                 {{textarea id=(concat elementId '-' advanced-training.id '-desc') value=advanced-training.description class="input-xxlarge form-control"}}
               </div>
-              <div onclick={{action 'notify'}}>
-              {{delete-with-confirmation
-                entry=advanced-training
-              }}
+              <div onclick={{action 'notify'}} role="button">
+                {{delete-with-confirmation
+                  entry=advanced-training
+                }}
               </div>
             </div>
           </div>

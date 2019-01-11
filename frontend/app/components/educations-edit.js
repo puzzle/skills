@@ -34,7 +34,7 @@ export default Component.extend(EKMixin, {
     notify() {
       let length = this.get('sortedEducations').length
       setTimeout(() => {
-        if(length > this.get('sortedEducations').length) {
+        if (length > this.get('sortedEducations').length) {
           return this.notifyPropertyChange('sortedEducations');
         }
       }, 500);
