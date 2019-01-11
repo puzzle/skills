@@ -121,7 +121,8 @@
                   searchEnabled=false
                   onfocus=(action "handleFocus")
                   onblur=(action "handleBlur")
-                  onchange=(action "setWithTab" 'setMaritalStatus')
+                  onchange=(action "setMaritalStatus")
+                  onkeydown=(action "setWithTab" 'setMaritalStatus')
                   as |maritalStatus|
                   }}
                     {{maritalStatus}}

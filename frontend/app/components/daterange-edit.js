@@ -48,7 +48,6 @@ export default ApplicationComponent.extend({
   },
 
   actions: {
-
     setMonthFrom(month) {
       // sets day to 13 if no month is selected. Used as conditional in show hbs.
       if (isNaN(month)) {
