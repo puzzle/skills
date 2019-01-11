@@ -1,7 +1,7 @@
-import Component from '@ember/component';
+import ApplicationComponent from './application-component';
 import { isBlank } from '@ember/utils';
 
-export default Component.extend({
+export default ApplicationComponent.extend({
 
   yearFromInvalid: false,
   yearToInvalid: false,
@@ -48,18 +48,6 @@ export default Component.extend({
   },
 
   actions: {
-
-    confirmOnTabFrom(select,e) {
-      if (e.keyCode == 9) {
-        this.send('setMonthFrom', select.highlighted)
-      }
-    },
-
-    confirmOnTabTo(select,e) {
-      if (e.keyCode == 9) {
-        this.send('setMonthTo', select.highlighted)
-      }
-    },
 
     setMonthFrom(month) {
       // sets day to 13 if no month is selected. Used as conditional in show hbs.

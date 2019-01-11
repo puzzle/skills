@@ -1,5 +1,5 @@
 import { inject as service } from '@ember/service';
-import Component from '@ember/component';
+import ApplicationComponent from './application-component';
 import { computed } from '@ember/object';
 import { isBlank } from '@ember/utils';
 import { getNames as countryNames } from 'ember-i18n-iso-countries';
@@ -7,7 +7,7 @@ import { on } from '@ember/object/evented';
 import { EKMixin , keyUp } from 'ember-keyboard';
 import Person from '../models/person';
 
-export default Component.extend(EKMixin, {
+export default ApplicationComponent.extend(EKMixin, {
   store: service(),
   i18n: service(),
 
@@ -106,41 +106,6 @@ export default Component.extend(EKMixin, {
         });
     },
 
-    setRoleWithTab(select, e)
-    {
-      if (e.keyCode == 9) {
-        this.send('setRole', select.highlighted)
-      }
-    },
-
-    setCompanyWithTab(select, e)
-    {
-      if (e.keyCode == 9) {
-        this.set('person.company', select.highlighted)
-      }
-    },
-
-    setNationalityWithTab(select, e)
-    {
-      if (e.keyCode == 9) {
-        this.send('setNationality', select.highlighted)
-      }
-    },
-
-    setNationality2WithTab(select, e)
-    {
-      if (e.keyCode == 9) {
-        this.send('setNationality2', select.highlighted)
-      }
-    },
-
-    setMaritalStatusWithTab(select, e)
-    {
-      if (e.keyCode == 9) {
-        this.send('setMaritalStatus', select.highlighted)
-      }
-    },
-
     abortEdit() {
       const person = this.get('person')
       if (person.get('hasDirtyAttributes')) {
@@ -187,6 +152,10 @@ export default Component.extend(EKMixin, {
         this.set('person.nationality2', undefined);
       }
       this.set('selectedNationality2', selectedCountry);
+    },
+
+    setCompany(company) {
+      this.set('person.company', company)
     },
 
     setRole(selectedRole) {

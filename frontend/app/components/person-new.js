@@ -1,11 +1,11 @@
 import { inject as service } from '@ember/service';
-import Component from '@ember/component';
+import ApplicationComponent from './application-component';
 import { computed } from '@ember/object';
 import { isBlank } from '@ember/utils';
 import { getNames as countryNames } from 'ember-i18n-iso-countries';
 import Person from '../models/person';
 
-export default Component.extend({
+export default ApplicationComponent.extend({
   i18n: service(),
   store: service(),
   router: service(),
@@ -144,6 +144,10 @@ export default Component.extend({
         this.set('newPerson.nationality2', undefined);
       }
       this.set('selectedNationality2', selectedCountry);
+    },
+
+    setCompany(company) {
+      this.set('newPerson.company', company)
     },
 
     setRole(selectedRole) {

@@ -43,7 +43,7 @@
                   onfocus=(action "handleFocus")
                   onblur=(action "handleBlur")
                   onchange=(action "setRole")
-                  onkeydown=(action "setRoleWithTab")
+                  onkeydown=(action "setWithTab" 'setRole')
                   as |role|
                   }}
                     {{role.name}}
@@ -60,7 +60,7 @@
                     onfocus=(action "handleFocus")
                     onblur=(action "handleBlur")
                     onchange=(action (mut person.company))
-                    onkeydown=(action "setCompanyWithTab")
+                    onkeydown=(action "setWithTab" 'setCompany')
                   as |company|
                   }}
                     {{company.name}}
@@ -98,7 +98,7 @@
                   onfocus=(action "handleFocus")
                   onblur=(action "handleBlur")
                   onchange=(action "setMaritalStatus")
-                  onkeydown=(action "setMaritalStatusWithTab")
+                  onkeydown=(action "setWithTab" 'setMaritalStatus')
                   as |maritalStatus|
                   }}
                     {{maritalStatus}}
@@ -122,7 +122,7 @@
                     onchange=(action "setNationality")
                     onfocus=(action "handleFocus")
                     onblur=(action "handleBlur")
-                    onkeydown=(action "setNationalityWithTab")
+                    onkeydown=(action "setWithTab" 'setNationality')
                     searchField="1"
                     as |country|}}
                     <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
@@ -140,7 +140,7 @@
                       onchange=(action "setNationality2")
                       onfocus=(action "handleFocus")
                       onblur=(action "handleBlur")
-                      onkeydown=(action "setNationality2WithTab")
+                      onkeydown=(action "setWithTab" 'setNationality2')
                       searchField="1"
                       as |country|}}
                       <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
