@@ -118,7 +118,7 @@ export default Component.extend(EKMixin, {
         if (skill.get('isNew')) {
           skill.destroyRecord();
         }
-        if(skill.get('hasDirtyAttributes')) {
+        if (skill.get('hasDirtyAttributes')) {
           skill.rollbackAttributes();
         }
       });
