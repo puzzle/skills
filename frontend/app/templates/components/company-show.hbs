@@ -1,5 +1,16 @@
-<div class="row">
-  {{updated-at entry=company}}
+<div class="d-flex justify-content-between">
+  <div>
+    {{updated-at entry=company}}
+  </div>
+  <div>
+    {{#link-to "companies.new"}}
+      <a>
+        <i class="fa fa-plus-square-o" aria-hidden="true">
+        </i>
+        Neue Firma
+      </a>
+    {{/link-to}}
+  </div>
 </div>
 <hr class="">
 <div class="collapse-group">
