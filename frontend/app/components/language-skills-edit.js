@@ -1,7 +1,7 @@
-import Component from '@ember/component';
+import ApplicationComponent from './application-component';
 import { inject } from '@ember/service';
 
-export default Component.extend({
+export default ApplicationComponent.extend({
   store: inject(),
   init() {
     this._super(...arguments);
@@ -53,18 +53,8 @@ export default Component.extend({
   },
 
   actions: {
-    setLanguageWithTab(select, e)
-    {
-      if (e.keyCode == 9) {
-        this.send('setLanguage', select.highlighted)
-      }
-    },
-
-    setLevelWithTab(select, e)
-    {
-      if (e.keyCode == 9) {
-        this.set('selectedSkill.level', select.highlighted)
-      }
+    setLevel(level) {
+      this.set('selectedSkill.level', level)
     },
 
     setLanguage(language) {

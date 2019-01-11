@@ -19,7 +19,7 @@
       onfocus=(action "handleFocus")
       onblur=(action "handleBlur")
       onchange=(action "setLanguage")
-      onkeydown=(action "setLanguageWithTab")
+      onkeydown=(action "setWithTab" 'setLanguage')
       disabled=isObligatoryLanguage
       searchField="name"
       as |language|
@@ -49,7 +49,7 @@ options=levels
 onfocus=(action "handleFocus")
 onblur=(action "handleBlur")
 onchange=(action (mut selectedSkill.level))
-onkeydown=(action "setLevelWithTab")
+onkeydown=(action "setWithTab" 'setLevel')
 as |level|
 }}
   {{level}}
