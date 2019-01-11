@@ -15,13 +15,7 @@ export default Component.extend(EKMixin, {
   }),
 
   abortAdvancedTrainings: on(keyUp('Escape'), function() {
-    let advancedTrainings = this.get('person.advancedTrainings').toArray();
-    advancedTrainings.forEach(advancedTraining => {
-      if (advancedTraining.get('hasDirtyAttributes')) {
-        advancedTraining.rollbackAttributes();
-      }
-    });
-    this.advancedTrainingsEditing();
+    this.send('abortEdit')
   }),
 
   actions: {
