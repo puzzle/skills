@@ -16,6 +16,8 @@ export default Component.extend(EKMixin, {
     this.initMaritalStatuses();
     this.initNationalities();
     this.initCheckbox();
+    this.callBackRole = this.get('person.roles.firstObject');
+    this.callBackCompany = this.get('person.company');
   },
 
   activateKeyboard: on('init', function() {
@@ -120,12 +122,9 @@ export default Component.extend(EKMixin, {
           skill.rollbackAttributes();
         }
       });
-      let companies = this.get('store').findAll('company').toArray();
-      companies.forEach(company => {
-        if (company.get('hasDirtyAttributes')) {
-          company.rollbackAttributes();
-        }
-      })
+      this.set('person.company', this.get('callBackCompany'))
+      this.set('person.roles', [this.get('callBackRole')])
+
 
       this.sendAction('personEditing');
     },
