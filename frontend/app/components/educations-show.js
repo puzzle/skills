@@ -4,13 +4,9 @@ import { computed } from '@ember/object';
 
 
 export default Component.extend({
-  filtered: computed('educations.@each', function() {
-    return this.get('educations');
-  }),
-
   amountOfEducations: computed('educations.@each', function() {
     return this.get('educations.length')
   }),
 
-  filteredEducations: sortByYear('filtered'),
+  sortedEducations: sortByYear('educations'),
 });

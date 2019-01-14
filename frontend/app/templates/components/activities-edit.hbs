@@ -9,7 +9,7 @@
   <div id="collapseActivity" class="collapse show border border-info rounded-bottom">
     <div class="card-body d-flex flex-column">
       <div id="competence-content-show" class="mb-2">
-        {{#each person.activities as |activity|}}
+        {{#each sortedActivities as |activity|}}
           <div class="zeile">
             <div class="row">
               <div class="col-sm-3">
@@ -23,9 +23,11 @@
                 <label class="mt-2" for="{{concat elementId '-' activity.id '-desc'}}">Firmenangaben und Beschreibung der Tätigkeit</label>
                 {{textarea id=(concat elementId '-' activity.id '-desc') value=activity.description class="input-xxlarge form-control"}}
               </div>
-              {{delete-with-confirmation
-                entry=activity
-              }}
+              <div onclick={{action 'notify'}} role="button">
+                {{delete-with-confirmation
+                  entry=activity
+                }}
+              </div>
             </div>
           </div>
         {{/each}}
