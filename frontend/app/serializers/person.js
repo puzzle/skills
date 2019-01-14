@@ -4,6 +4,5 @@ export default ApplicationSerializer.extend({
   attrs: {
     picturePath: { serialize: false },
     updatedAt: { serialize: false },
-    originPersonId: { serialize: false },
   },
 });

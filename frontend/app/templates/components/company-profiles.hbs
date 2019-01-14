@@ -12,21 +12,19 @@
   <div id="collapseThree" class="collapse show border border-primary rounded-bottom">
     <div class="card-body">
       {{#each originalPeople as |person|}}
-        {{#if (eq person.originPersonId null)}}
-          <div class="row mb-1">
-            <div class="col-sm-3">
-              {{#link-to "person" person.id}}
-                <span class="badge badge-info profil-knopf" href="#">{{person.name}}</span>
-              {{/link-to}}
-            </div>
-            <div class="col-sm-3">
-              <span class="badge border border-secondary profil-knopf" href="#">{{person.title}}</span>
-            </div>
-            <div class="col-sm-3">
-              <span class="badge border border-secondary profil-knopf" href="#">{{person.role}}</span>
-            </div>
+        <div class="row mb-1">
+          <div class="col-sm-3">
+            {{#link-to "person" person.id}}
+              <span class="badge badge-info profil-knopf" href="#">{{person.name}}</span>
+            {{/link-to}}
           </div>
-        {{/if}}
+          <div class="col-sm-3">
+            <span class="badge border border-secondary profil-knopf" href="#">{{person.title}}</span>
+          </div>
+          <div class="col-sm-3">
+            <span class="badge border border-secondary profil-knopf" href="#">{{person.role}}</span>
+          </div>
+        </div>
       {{/each}}
       <div class="row mb-1">
         <div class="col-sm-3">
