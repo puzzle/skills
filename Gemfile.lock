@@ -57,6 +57,7 @@ GEM
       rake (>= 10.4, < 13.0)
     arel (9.0.0)
     ast (2.4.0)
+    bleib (0.0.8)
     bootsnap (1.3.2)
       msgpack (~> 1.0)
     brakeman (4.3.1)
@@ -250,6 +251,7 @@ DEPENDENCIES
   activerecord-postgresql-adapter
   airbrake (~> 5.0)
   annotate
+  bleib (= 0.0.8)
   bootsnap
   brakeman
   bullet

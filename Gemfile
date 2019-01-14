@@ -4,6 +4,7 @@ gem 'rails', '5.2.1'
 
 gem 'active_model_serializers'
 gem 'activerecord-postgresql-adapter'
+gem 'bleib', '0.0.8' # For deployment
 gem 'airbrake', '~> 5.0'
 gem 'annotate'
 gem 'bootsnap'
