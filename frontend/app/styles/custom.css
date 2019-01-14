@@ -948,6 +948,11 @@ div.content-input  {
   background-color: #61B44B;
 }
 
+/* Daterange table */
+.daterange-table tr td:not(:first-child) {
+  width: 80px;
+}
+
 /* Selected state of the top navbar */
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
   background-color: #1E5A96;

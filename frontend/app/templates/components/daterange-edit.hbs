@@ -1,4 +1,4 @@
-<table class="table table-sm">
+<table class="table table-sm daterange-table">
   <thead>
     <tr>
       <td scope="col"></td>
@@ -14,7 +14,7 @@
       <td>
         {{#power-select
         selected=monthFrom
-        options=months
+        options=months2
         searchEnabled=false
         onfocus=(action "handleFocus")
         onblur=(action "handleBlur")
@@ -39,6 +39,7 @@
         selected=monthTo
         options=months
         searchEnabled=false
+        matchTriggerWidth=true
         onfocus=(action "handleFocus")
         onblur=(action "handleBlur")
         onchange=(action "setMonthTo")
@@ -49,9 +50,11 @@
         {{/power-select}}
       </td>
       <td>
+      {{#unless (eq monthTo "heute")}}
         <input type="number" value={{yearTo}} onchange={{action "setYearTo" value="target.value"}} max="9999"
         class={{concat (if yearFromInvalid 'invalid') " year form-control" }} placeholder="bis">
-      </td>
+      {{/unless}}
+    </td>
     </tr>
   </tbody>
 </table>
