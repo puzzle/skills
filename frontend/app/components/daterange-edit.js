@@ -8,7 +8,8 @@ export default ApplicationComponent.extend({
 
   init() {
     this._super(...arguments);
-    this.months = ["-"].concat(Array(12).fill().map((x,i) => i + 1 + ""));
+    this.monthsToSelect = ["heute", "-"].concat(Array(13).fill().map((x,i) => i + 1 + ""));
+    this.monthsFromSelect = ["-"].concat(Array(13).fill().map((x,i) => i + 1 + ""));
     this.initProperties();
   },
 
@@ -24,7 +25,7 @@ export default ApplicationComponent.extend({
   },
 
   getSelectedMonth(date) {
-    if (date == null) return;
+    if (date == null) return "heute";
     return date.getDate() == 13 ?  "-" : date.getMonth() + 1;
   },
 
@@ -61,7 +62,7 @@ export default ApplicationComponent.extend({
 
     setMonthTo(month) {
       // sets day to 13 if no month is selected. Used as conditional in show hbs.
-      if (isNaN(month)) {
+      if (month == "-") {
         this.get('entity').setFinishAt(this.yearTo, 11, 14)
       }
       else {
