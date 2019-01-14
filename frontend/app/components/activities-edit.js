@@ -39,7 +39,7 @@ export default Component.extend(EKMixin, {
         )
         .then (() => this.sendAction('submit'))
         .then (() => this.get('notify').success('Successfully saved!'))
-        .then (() => document.getElementById('activity').scrollIntoView({ behavior: 'smooth' }))
+        .then (() => $('#activity')[0].scrollIntoView({ behavior: 'smooth' }))
 
         .catch(() => {
           let activities = this.get('activities');
@@ -64,7 +64,7 @@ export default Component.extend(EKMixin, {
         }
       });
       this.sendAction('activitiesEditing');
-      document.getElementById('activity').scrollIntoView({ behavior: 'smooth' });
+      $('#activity')[0].scrollIntoView({ behavior: 'smooth' });
     }
   }
 });
