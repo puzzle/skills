@@ -63,15 +63,12 @@ export default ApplicationComponent.extend({
     setMonthTo(month) {
       // sets day to 13 if no month is selected. Used as conditional in show hbs.
       if (month == "today") {
-        console.log('today')
         this.get('entity').setFinishAt(null)
       }
       else if (month == "-") {
-        console.log('-')
         this.get('entity').setFinishAt(this.yearTo, 11, 14)
       }
       else {
-        console.log(month)
         this.get('entity').setFinishAt(this.yearTo, month, 1)
       }
       this.set('monthTo', month);

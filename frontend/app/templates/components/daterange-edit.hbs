@@ -50,11 +50,11 @@
         {{/power-select}}
       </td>
       <td>
-      {{#unless (eq monthTo "heute")}}
-        <input type="number" value={{yearTo}} onchange={{action "setYearTo" value="target.value"}} max="9999"
-        class={{concat (if yearFromInvalid 'invalid') " year form-control" }} placeholder="bis">
-      {{/unless}}
-    </td>
+        {{#if (not-eq monthTo "heute")}}
+          <input type="number" value={{yearTo}} onchange={{action "setYearTo" value="target.value"}} max="9999"
+          class={{concat (if yearFromInvalid 'invalid') " year form-control" }} placeholder="bis">
+        {{/if}}
+      </td>
     </tr>
   </tbody>
 </table>

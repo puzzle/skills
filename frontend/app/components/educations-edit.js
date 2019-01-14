@@ -70,6 +70,7 @@ export default Component.extend(EKMixin, {
         }
       });
       this.sendAction('educationsEditing');
+      document.getElementById('educationsHeader').scrollIntoView({ behavior: 'smooth' });
     }
   }
 });

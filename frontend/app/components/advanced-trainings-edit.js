@@ -62,6 +62,7 @@ export default Component.extend(EKMixin, {
         }
       });
       this.sendAction('advancedTrainingsEditing');
+      document.getElementById('advancedTrainingsHeader').scrollIntoView({ behavior: 'smooth' });
     }
   }
 });

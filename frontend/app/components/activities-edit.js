@@ -64,6 +64,7 @@ export default Component.extend(EKMixin, {
         }
       });
       this.sendAction('activitiesEditing');
+      document.getElementById('activity').scrollIntoView({ behavior: 'smooth' });
     }
   }
 });
