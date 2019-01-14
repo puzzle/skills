@@ -44,7 +44,7 @@ export default Component.extend(EKMixin, {
         )
         .then (() => this.sendAction('submit'))
         .then (() => this.get('notify').success('Successfully saved!'))
-        .then (() => $('#educationsHeader')[0].scrollIntoView({ behavior: 'smooth' }))
+        .then (() => this.$('#educationsHeader')[0].scrollIntoView({ behavior: 'smooth' }))
 
         .catch(() => {
           let educations = person.get('educations');
@@ -70,7 +70,7 @@ export default Component.extend(EKMixin, {
         }
       });
       this.sendAction('educationsEditing');
-      $('#educationsHeader')[0].scrollIntoView({ behavior: 'smooth' });
+      this.$('#educationsHeader')[0].scrollIntoView({ behavior: 'smooth' });
     }
   }
 });

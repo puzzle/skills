@@ -38,7 +38,7 @@ export default Component.extend(EKMixin, {
         )
         .then (() => this.sendAction('submit'))
         .then (() => this.get('notify').success('Successfully saved!'))
-        .then (() => $('#advancedTrainingsHeader')[0].scrollIntoView({ behavior: 'smooth' }))
+        .then (() => this.$('#advancedTrainingsHeader')[0].scrollIntoView({ behavior: 'smooth' }))
         .catch(() => {
           let advancedTrainings = this.get('advanced-trainings');
           advancedTrainings.forEach(advancedTraining => {
@@ -62,7 +62,7 @@ export default Component.extend(EKMixin, {
         }
       });
       this.sendAction('advancedTrainingsEditing');
-      $('#advancedTrainingsHeader')[0].scrollIntoView({ behavior: 'smooth' });
+      this.$('#advancedTrainingsHeader')[0].scrollIntoView({ behavior: 'smooth' });
     }
   }
 });
