@@ -8,8 +8,8 @@ export default ApplicationComponent.extend({
 
   init() {
     this._super(...arguments);
-    this.months = ["heute", "-"].concat(Array(13).fill().map((x,i) => i + 1 + ""));
-    this.months2 = ["-"].concat(Array(13).fill().map((x,i) => i + 1 + ""));
+    this.monthsToSelect = ["heute", "-"].concat(Array(13).fill().map((x,i) => i + 1 + ""));
+    this.monthsFromSelect = ["-"].concat(Array(13).fill().map((x,i) => i + 1 + ""));
     this.initProperties();
   },
 

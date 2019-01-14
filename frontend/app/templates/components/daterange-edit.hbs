@@ -14,7 +14,7 @@
       <td>
         {{#power-select
         selected=monthFrom
-        options=months2
+        options=monthsFromSelect
         searchEnabled=false
         onfocus=(action "handleFocus")
         onblur=(action "handleBlur")
@@ -37,7 +37,7 @@
       <td>
         {{#power-select
         selected=monthTo
-        options=months
+        options=monthsToSelect
         searchEnabled=false
         matchTriggerWidth=true
         onfocus=(action "handleFocus")

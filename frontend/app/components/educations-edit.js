@@ -44,7 +44,7 @@ export default Component.extend(EKMixin, {
         )
         .then (() => this.sendAction('submit'))
         .then (() => this.get('notify').success('Successfully saved!'))
-
+        .then (() => document.getElementById('educationsHeader').scrollIntoView({ behavior: 'smooth' }))
 
         .catch(() => {
           let educations = person.get('educations');

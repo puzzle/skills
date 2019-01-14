@@ -38,7 +38,7 @@ export default Component.extend(EKMixin, {
         )
         .then (() => this.sendAction('submit'))
         .then (() => this.get('notify').success('Successfully saved!'))
-
+        .then (() => document.getElementById('advancedTrainingsHeader').scrollIntoView({ behavior: 'smooth' }))
         .catch(() => {
           let advancedTrainings = this.get('advanced-trainings');
           advancedTrainings.forEach(advancedTraining => {
