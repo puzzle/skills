@@ -7,6 +7,6 @@ services:
     ports:
       - '5432:5432'
     environment:
-      - POSTGRES_DB=cv2_developmnet
+      - POSTGRES_DB=cv2_development
       - POSTGRES_USER=puzzlecv
       - POSTGRES_PASSWORD=puzzlecv
