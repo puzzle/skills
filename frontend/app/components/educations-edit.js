@@ -18,13 +18,7 @@ export default Component.extend(EKMixin, {
   }),
 
   abortEducations: on(keyUp('Escape'), function() {
-    let educations = this.get('person.educations').toArray();
-    educations.forEach(education => {
-      if (education.get('hasDirtyAttributes')) {
-        education.rollbackAttributes();
-      }
-    });
-    this.sendAction('educationsEditing');
+    this.send('abortEdit')
   }),
 
   i18n: service(),

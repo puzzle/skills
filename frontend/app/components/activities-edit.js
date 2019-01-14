@@ -16,13 +16,7 @@ export default Component.extend(EKMixin, {
   }),
 
   abortActivities: on(keyUp('Escape'), function() {
-    let activities = this.get('person.activities').toArray();
-    activities.forEach(activity => {
-      if (activity.get('hasDirtyAttributes')) {
-        activity.rollbackAttributes();
-      }
-    });
-    this.activitiesEditing();
+    this.send('abortEdit')
   }),
 
   actions: {
