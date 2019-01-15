@@ -75,7 +75,8 @@ module Odt
     # rubocop:disable Metrics/AbcSize
     # rubocop:disable Metrics/MethodLength
     def insert_educations(report)
-      educations_list = person.educations.list.collect do |e|
+      educations_list = person.educations.list.to_a.sort(&sort_by_daterange)
+      educations_list.collect! do |e|
         { year_from: formatted_year(e.start_at),
           month_from: formatted_month(e.start_at),
           year_to: formatted_year(e.finish_at),
@@ -97,7 +98,8 @@ module Odt
     # rubocop:disable Metrics/AbcSize
     # rubocop:disable Metrics/MethodLength
     def insert_advanced_trainings(report)
-      advanced_trainings_list = person.advanced_trainings.list.collect do |at|
+      advanced_trainings_list = person.advanced_trainings.list.sort(&sort_by_daterange)
+      advanced_trainings_list.collect! do |at|
         { year_from: formatted_year(at.start_at),
           month_from: formatted_month(at.start_at),
           year_to: formatted_year(at.finish_at),
@@ -119,7 +121,8 @@ module Odt
     # rubocop:disable Metrics/AbcSize
     # rubocop:disable Metrics/MethodLength
     def insert_activities(report)
-      activities_list = person.activities.list.collect do |a|
+      activities_list = person.activities.list.sort(&sort_by_daterange)
+      activities_list.collect! do |a|
         { year_from: formatted_year(a.start_at),
           month_from: formatted_month(a.start_at),
           year_to: formatted_year(a.finish_at),
@@ -141,7 +144,8 @@ module Odt
     # rubocop:disable Metrics/AbcSize
     # rubocop:disable Metrics/MethodLength
     def insert_projects(report)
-      projects_list = person.projects.list.collect do |p|
+      projects_list = person.projects.list.sort(&sort_by_daterange)
+      projects_list.collect! do |p|
         { year_from: formatted_year(p.start_at),
           month_from: formatted_month(p.start_at),
           year_to: formatted_year(p.finish_at),
@@ -191,5 +195,40 @@ module Odt
       country.translations[I18n.locale.to_s]
     end
 
+    def sort_by_daterange
+      @sort_by_daterange ||= proc do |a, b|
+        a_finish_at = a.finish_at
+        b_finish_at = b.finish_at
+
+        result ||= compare_dates(a_finish_at, b_finish_at)
+
+        a_start_at = a.start_at
+        b_start_at = b.start_at
+        result ||= compare_dates(a_start_at, b_start_at)
+
+        result || 0
+      end
+    end
+
+    def compare_dates(date1, date2)
+      result ||= check_for_today(date1, date2)
+      if date1.present? && date2.present?
+        result ||= check_for_thirteenth(date1, date2)
+        result ||= date2 - date1 if date2 != date1
+      end
+      result
+    end
+
+    def check_for_today(date1, date2)
+      return -1 if date1.nil? && date2.present?
+      return 1 if date1.present? && date2.nil?
+    end
+
+    def check_for_thirteenth(date1, date2)
+      if date1.year == date2.year
+        return 1 if date1.day == 13 && date2.day != 13
+        return -1 if date1.day != 13 && date2.day == 13
+      end
+    end
   end
 end
