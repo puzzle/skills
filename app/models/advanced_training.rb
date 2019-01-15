@@ -26,7 +26,7 @@ class AdvancedTraining < ApplicationRecord
   validates :description, length: { maximum: 5000 }
   validate :start_at_before_finish_at
 
-  scope :list, -> {sort(&sort_by_daterange)}
+  scope :list, -> { sort(&sort_by_daterange) }
 
   private
 

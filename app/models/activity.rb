@@ -28,7 +28,7 @@ class Activity < ApplicationRecord
   validates :role, length: { maximum: 500 }
   validate :start_at_before_finish_at
 
-  scope :list, -> {sort(&sort_by_daterange)}
+  scope :list, -> { sort(&sort_by_daterange) }
 
   private
 
