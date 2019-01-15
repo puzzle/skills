@@ -60,13 +60,17 @@ describe Activity do
       bob_id = people(:bob).id
       Activity.create(description: 'test1', role: 'test', start_at: '2002-01-01', person_id: bob_id)
       Activity.create(description: 'test2', role: 'test', start_at: '2001-01-01', finish_at: '2030-01-01', person_id: bob_id)
+      Activity.create(description: 'test3', role: 'test', start_at: '2001-01-01', finish_at: '2030-01-13', person_id: bob_id)
+      Activity.create(description: 'test4', role: 'test', start_at: '2001-01-13', finish_at: '2030-01-01', person_id: bob_id)
 
       list = Activity.all.list
 
-      expect(list.first.description).to eq('Ascom')
-      expect(list.second.description).to eq('test1')
-      expect(list.third.description).to eq('test2')
-      expect(list.fourth.description).to eq('Swisscom')
+      expect(list[0].description).to eq('test1')
+      expect(list[1].description).to eq('test2')
+      expect(list[2].description).to eq('test4')
+      expect(list[3].description).to eq('test3')
+      expect(list[4].description).to eq('Ascom')
+      expect(list[5].description).to eq('Swisscom')
     end
   end
 

@@ -70,13 +70,17 @@ describe Project do
       bob_id = people(:bob).id
       Project.create(title: 'test1', role: 'test1', technology: 'test', start_at: '2014-01-01', person_id: bob_id)
       Project.create(title: 'test2', role: 'test2', technology: 'test', start_at: '2000-01-01', finish_at: '2030-01-01', person_id: bob_id)
+      Project.create(title: 'test3', role: 'test2', technology: 'test', start_at: '2000-01-01', finish_at: '2030-01-13', person_id: bob_id)
+      Project.create(title: 'test4', role: 'test2', technology: 'test', start_at: '2000-01-13', finish_at: '2030-01-01', person_id: bob_id)
 
       list = Project.all.list
 
-      expect(list.first.title).to eq('test1')
-      expect(list.second.title).to eq('google')
-      expect(list.third.title).to eq('duckduckgo')
-      expect(list.fourth.title).to eq('test2')
+      expect(list[0].title).to eq('test1')
+      expect(list[1].title).to eq('test2')
+      expect(list[2].title).to eq('test4')
+      expect(list[3].title).to eq('test3')
+      expect(list[4].title).to eq('google')
+      expect(list[5].title).to eq('duckduckgo')
     end
   end
 
