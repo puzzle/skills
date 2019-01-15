@@ -1,14 +1,13 @@
 module SortByDaterange
   def sort_by_daterange
     @sort_by_daterange ||= proc do |a, b|
-      a_finish_at = a.finish_at
-      b_finish_at = b.finish_at
+      result = nil
+      [:finish_at, :start_at].each do |attr|
+        a_date = a[attr]
+        b_date = b[attr]
 
-      result ||= compare_dates(a_finish_at, b_finish_at)
-
-      a_start_at = a.start_at
-      b_start_at = b.start_at
-      result ||= compare_dates(a_start_at, b_start_at)
+        result ||= compare_dates(a_date, b_date)
+      end
 
       result || 0
     end
