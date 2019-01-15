@@ -1,17 +1,17 @@
-module SortByDaterange
-  def sort_by_daterange
-    @sort_by_daterange ||= proc do |a, b|
-      result = nil
-      [:finish_at, :start_at].each do |attr|
+module DaterangeSort
+  def by_daterange
+    proc do |a, b|
+      [:finish_at, :start_at].select do |attr|
         a_date = a[attr]
         b_date = b[attr]
 
-        result ||= compare_dates(a_date, b_date)
-      end
-
-      result || 0
+        result = compare_dates(a_date, b_date)
+        break result if result.present?
+      end.presence || 0
     end
   end
+
+  private
 
   def compare_dates(date1, date2)
     result ||= check_for_today(date1, date2)

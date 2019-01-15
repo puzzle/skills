@@ -11,8 +11,7 @@
 #  finish_at  :date
 #  start_at   :date
 #
-require 'sort_by_daterange'
-include SortByDaterange
+include DaterangeSort
 class Education < ApplicationRecord
 
   after_create :update_associations_updatet_at
@@ -25,7 +24,7 @@ class Education < ApplicationRecord
   validates :location, :title, length: { maximum: 500 }
   validate :start_at_before_finish_at
 
-  scope :list, -> { sort(&sort_by_daterange) }
+  scope :list, -> { sort(&by_daterange) }
 
   private
 

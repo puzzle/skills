@@ -12,8 +12,7 @@
 #  start_at    :date
 #
 
-require 'sort_by_daterange'
-include SortByDaterange
+include DaterangeSort
 class AdvancedTraining < ApplicationRecord
 
   after_create :update_associations_updatet_at
@@ -26,7 +25,7 @@ class AdvancedTraining < ApplicationRecord
   validates :description, length: { maximum: 5000 }
   validate :start_at_before_finish_at
 
-  scope :list, -> { sort(&sort_by_daterange) }
+  scope :list, -> { sort(&by_daterange) }
 
   private
 
