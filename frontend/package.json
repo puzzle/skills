@@ -58,6 +58,7 @@
     "ember-moment": "7.3.0",
     "ember-native-dom-helpers": "^0.5.4",
     "ember-notify": "^5.2.0",
+    "ember-pikaday": "^2.3.1",
     "ember-power-select-with-create": "^0.5.2",
     "ember-resolver": "^4.0.0",
     "ember-route-action-helper": "^2.0.3",
