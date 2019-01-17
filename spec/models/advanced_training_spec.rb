@@ -56,13 +56,17 @@ describe AdvancedTraining do
       bob_id = people(:bob).id
       AdvancedTraining.create(description: 'test1', start_at: '2000-01-01', person_id: bob_id)
       AdvancedTraining.create(description: 'test2', start_at: '2016-01-01', finish_at: '2030-01-01', person_id: bob_id)
+      AdvancedTraining.create(description: 'test3', start_at: '2016-01-01', finish_at: '2030-01-13', person_id: bob_id)
+      AdvancedTraining.create(description: 'test4', start_at: '2016-01-13', finish_at: '2030-01-01', person_id: bob_id)
 
       list = AdvancedTraining.all.list
 
-      expect(list.first.description).to eq('test2')
-      expect(list.second.description).to eq('was nice')
-      expect(list.third.description).to eq('course about how to clean')
-      expect(list.fourth.description).to eq('test1')
+      expect(list[0].description).to eq('test1')
+      expect(list[1].description).to eq('test2')
+      expect(list[2].description).to eq('test4')
+      expect(list[3].description).to eq('test3')
+      expect(list[4].description).to eq('was nice')
+      expect(list[5].description).to eq('course about how to clean')
     end
   end
 

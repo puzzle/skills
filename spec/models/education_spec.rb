@@ -58,14 +58,18 @@ describe Education do
     it 'orders education correctly with list scope' do
       bob_id = people(:bob).id
       Education.create(title: 'test1', location: 'test1', start_at: '2012-01-01', person_id: bob_id)
-      Education.create(title: 'test2', location: 'test2', start_at: '2005-01-01', finish_at: '2030-01-01', person_id: bob_id)
+      Education.create(title: 'test2', location: 'test2', start_at: '2005-01-01', finish_at: '2030-01-13', person_id: bob_id)
+      Education.create(title: 'test3', location: 'test3', start_at: '2005-01-01', finish_at: '2030-01-01', person_id: bob_id)
+      Education.create(title: 'test4', location: 'test4', start_at: '2004-01-01', finish_at: '2030-01-01', person_id: bob_id)
 
       list = Education.all.list
 
-      expect(list.first.location).to eq('test1')
-      expect(list.second.location).to eq('University of London')
-      expect(list.third.location).to eq('test2')
-      expect(list.fourth.location).to eq('Uni Bern')
+      expect(list[0].location).to eq('test1')
+      expect(list[1].location).to eq('test3')
+      expect(list[2].location).to eq('test4')
+      expect(list[3].location).to eq('test2')
+      expect(list[4].location).to eq('University of London')
+      expect(list[5].location).to eq('Uni Bern')
     end
   end
 

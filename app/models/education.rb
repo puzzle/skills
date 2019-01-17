@@ -11,7 +11,7 @@
 #  finish_at  :date
 #  start_at   :date
 #
-
+include DaterangeSort
 class Education < ApplicationRecord
 
   after_create :update_associations_updatet_at
@@ -24,7 +24,7 @@ class Education < ApplicationRecord
   validates :location, :title, length: { maximum: 500 }
   validate :start_at_before_finish_at
 
-  scope :list, -> { order(Arel.sql('start_at IS NOT NULL, start_at desc, finish_at desc')) }
+  scope :list, -> { sort(&by_daterange) }
 
   private
 
@@ -32,5 +32,4 @@ class Education < ApplicationRecord
     timestamp = Time.zone.now
     person.update!(associations_updatet_at: timestamp)
   end
-
 end

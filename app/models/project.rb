@@ -15,6 +15,7 @@
 #  start_at    :date
 #
 
+include DaterangeSort
 class Project < ApplicationRecord
 
   after_create :update_associations_updatet_at
@@ -30,7 +31,7 @@ class Project < ApplicationRecord
   validates :title, length: { maximum: 500 }
   validate :start_at_before_finish_at
 
-  scope :list, -> { order(Arel.sql('start_at IS NOT NULL, start_at desc, finish_at desc')) }
+  scope :list, -> { sort(&by_daterange) }
 
   private
 
