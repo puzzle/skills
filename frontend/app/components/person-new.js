@@ -5,7 +5,7 @@ import { isBlank } from '@ember/utils';
 import { getNames as countryNames } from 'ember-i18n-iso-countries';
 import Person from '../models/person';
 
-export default Component.extend({
+export default ApplicationComponent.extend({
   intl: service(),
   store: service(),
   router: service(),
