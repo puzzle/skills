@@ -12,7 +12,7 @@
   <div id="collapseProjects" class="collapse show border border-info rounded-bottom">
     <div class="card-body">
       <div>
-        <a onclick={{action (toggle 'projectNew' this)}} role="button" class="edit-buttons"><i class="fa {{~if projectNew ' abort' ' add'~}}"></i>{{~if projectNew ' hinzufügen abbrechen' ' Projekt hinzufügen'~}}</a>
+        <a onclick={{action (toggle 'projectNew' this)}} role="button" class={{~if projectNew 'abort-edit-buttons' 'edit-buttons'~}}><i class="fa {{~if projectNew ' abort' ' add'~}}"></i>{{~if projectNew ' hinzufügen abbrechen' ' Projekt hinzufügen'~}}</a>
       </div>
       <div id="competence-content-show">
         <div class="collapse-group-project">
