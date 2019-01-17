@@ -145,7 +145,7 @@ export default ApplicationComponent.extend(EKMixin, {
     },
 
     setBirthdate(selectedDate) {
-      this.set('person.birthdate', selectedDate[0]);
+      this.set('person.birthdate', selectedDate);
     },
 
     setNationality(selectedCountry) {
