@@ -95,7 +95,7 @@ export default ApplicationComponent.extend({
     },
 
     setBirthdate(selectedDate) {
-      this.set('newPerson.birthdate', selectedDate[0]);
+      this.set('newPerson.birthdate', selectedDate);
     },
 
     setOrigin(selectedCountry) {

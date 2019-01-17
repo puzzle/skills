@@ -67,12 +67,9 @@
                   <div class="text-field form-group">
                     <label class="label-date form-field--label" for='date_location'>Geburtsdatum</label>
                     <div id="date_location">
-                      {{ember-flatpickr
-                        allowInput=false
-                        date='01.01.1990'
-                        dateFormat='d.m.Y'
-                        maxDate='today'
-                        onChange=(action 'setBirthdate')}}
+                      {{pikaday-input
+                        onSelection=(action "setBirthdate")
+                        value=newPerson.birthdate}}
                     </div>
                   </div>
                 </td>
