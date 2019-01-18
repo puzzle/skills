@@ -1,9 +1,10 @@
-import { test, skip } from 'qunit';
+import { test } from 'qunit';
 import moduleForAcceptance from 'frontend/tests/helpers/module-for-acceptance';
 import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
 import page from 'frontend/tests/pages/people-new';
 import editPage from 'frontend/tests/pages/person-edit';
 import { openDatepicker } from 'ember-pikaday/helpers/pikaday';
+import $ from 'jquery';
 
 moduleForAcceptance('Acceptance | create person');
 
@@ -20,13 +21,14 @@ test('creating a new person', async function(assert) {
   assert.equal(currentURL(), '/people/new');
 
   // Selection for all the power selects
+  /* eslint "no-undef": "off" */
   await selectChoose('#role', '.ember-power-select-option', 0);
   await selectChoose('#company', 'Firma');
   await selectChoose('#nationality', '.ember-power-select-option', 0);
   await selectChoose('#maritalStatus', 'verheiratet');
 
   // interactor is the interactable object for the pikaday-datepicker
-  let interactor = openDatepicker(Ember.$('.birthdate_pikaday > input'));
+  let interactor = openDatepicker($('.birthdate_pikaday > input'));
 
   // Cant be more/less than +/- 10 Years from today
   interactor.selectDate(new Date(2019,1,19))
