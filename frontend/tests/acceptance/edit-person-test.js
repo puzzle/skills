@@ -1,7 +1,6 @@
 import { test, skip } from 'qunit';
 import moduleForAcceptance from 'frontend/tests/helpers/module-for-acceptance';
 import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
-import { setFlatpickrDate } from 'ember-flatpickr/test-support/helpers';
 import applicationPage from 'frontend/tests/pages/application';
 import page from 'frontend/tests/pages/person-edit';
 import { triggerKeyUp } from 'ember-keyboard';
@@ -28,8 +27,6 @@ test('/people/:id edit person data', async function(assert) {
   await selectChoose('#company', 'Firma');
   await selectChoose('#nationality', "Samoa");
   await selectChoose('#maritalStatus', 'verheiratet');
-
-  setFlatpickrDate('.flatpickr-input', '26.10.2018')
 
   await page.editForm.name('Hansjoggeli');
   await page.editForm.title('Dr.');

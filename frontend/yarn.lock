@@ -3728,6 +3728,7 @@ broccoli-uglify-sourcemap@^2.1.1:
     walk-sync "^0.3.2"
     workerpool "^2.3.0"
 
+<<<<<<< HEAD
 brorand@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/brorand/-/brorand-1.1.0.tgz#12c25efe40a45e3c323eb8675a0a0ce57b22371f"
@@ -3793,6 +3794,9 @@ browserify-zlib@^0.2.0:
     pako "~1.0.5"
 
 browserslist@^3.1.1, browserslist@^3.2.6:
+=======
+browserslist@^3.2.6:
+>>>>>>> Changed pickaday to older version and removed flatpickr
   version "3.2.8"
   resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-3.2.8.tgz#b0005361d6471f0f5952797a76fc985f1f978fc6"
   integrity sha512-WHVocJYavUwVgVViC0ORikPHQquXwVh939TaelZ4WDqpWgTX/FsGhl/+P4qBUAGcRvtOgDgC+xftNWWp2RUTAQ==
@@ -6015,14 +6019,6 @@ ember-deep-set@^0.1.4:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-diff-attrs@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/ember-diff-attrs/-/ember-diff-attrs-0.2.1.tgz#ad9592ab8ba63d796bb9b1633801fe27ca43fc74"
-  integrity sha1-rZWSq4umPXlrubFjOAH+J8pD/HQ=
-  dependencies:
-    ember-cli-babel "^6.6.0"
-    ember-weakmap "^3.0.0"
-
 ember-export-application-global@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ember-export-application-global/-/ember-export-application-global-2.0.0.tgz#8d6d7619ac8a1a3f8c43003549eb21ebed685bd2"
@@ -6055,6 +6051,7 @@ ember-factory-for-polyfill@^1.3.1:
     node-fetch "^2.0.0-alpha.9"
     rollup-plugin-babel "^3.0.7"
 
+<<<<<<< HEAD
 ember-flatpickr@^2.7.0:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/ember-flatpickr/-/ember-flatpickr-2.7.0.tgz#a660b7f60de8bca1fdaa765e6c8caa958c205915"
@@ -6070,6 +6067,12 @@ ember-form-for@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ember-form-for/-/ember-form-for-2.0.0.tgz#ff1b58af21aa07efbbb1e2a44c67c474d04b8778"
   integrity sha1-/xtYryGqB++7seKkTGfEdNBLh3g=
+=======
+ember-form-for@2.0.0-alpha.15:
+  version "2.0.0-alpha.15"
+  resolved "https://registry.yarnpkg.com/ember-form-for/-/ember-form-for-2.0.0-alpha.15.tgz#5e750d490216f6275deed0088613901dbcd963a4"
+  integrity sha1-XnUNSQIW9idd7tAIhhOQHbzZY6Q=
+>>>>>>> Changed pickaday to older version and removed flatpickr
   dependencies:
     ember-cli-babel "6.12.0"
     ember-cli-htmlbars "^2.0.3"
@@ -6240,13 +6243,13 @@ ember-notify@^5.2.0:
     ember-invoke-action "^1.5.0"
     ember-runtime-enumerable-includes-polyfill "^2.0.0"
 
-ember-pikaday@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/ember-pikaday/-/ember-pikaday-2.3.1.tgz#c70eaefcbe3fd7306bf72f27acfdd9be117aecb6"
-  integrity sha512-pFFyamXuoKO8Qd/NPygWlvlMTL/hXuJ3cdXQ4jlZEmw0Py+4KApQCaTOlPIBrXbLCabh2+CkqSuBv6dP8+F1dg==
+ember-pikaday@~2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/ember-pikaday/-/ember-pikaday-2.2.6.tgz#c3dd878af716262fc808f57fbdcc362697008a4c"
+  integrity sha512-QErKt+eFGcGHEmI+mea3sMTGbd2mkTUlAchZaQofsqhqHi9hKaD3qIEME8jXoZO5kmOatNvE8BhV4mQyQ7q22w==
   dependencies:
-    ember-cli-babel "^6.16.0"
-    ember-cli-htmlbars "^3.0.0"
+    ember-cli-babel "^6.6.0"
+    ember-cli-htmlbars "^1.1.1"
     ember-cli-moment-shim "^3.6.0"
     ember-cli-node-assets "^0.2.2"
     fastboot-transform "^0.1.1"
@@ -6450,15 +6453,6 @@ ember-validators@^1.2.0:
   dependencies:
     ember-cli-babel "^6.9.2"
     ember-require-module "^0.2.0"
-
-ember-weakmap@^3.0.0:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/ember-weakmap/-/ember-weakmap-3.3.1.tgz#5188b035f5bfb17397067ea635300ae4e1205e11"
-  integrity sha512-pClKGFyByX03R2Y9ZogXHWXreeHzFZcuZj8EOOqj7fVYx0QDNiXBWo+jGhTl/pINlvjw4Z6fMFHlItrq1tZFxA==
-  dependencies:
-    browserslist "^3.1.1"
-    debug "^3.1.0"
-    ember-cli-babel "^6.6.0"
 
 ember-welcome-page@^3.0.0:
   version "3.2.0"
@@ -7296,7 +7290,7 @@ fast-sourcemap-concat@^1.4.0:
     source-map-url "^0.3.0"
     sourcemap-validator "^1.1.0"
 
-fastboot-transform@^0.1.1, fastboot-transform@^0.1.3:
+fastboot-transform@^0.1.1:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/fastboot-transform/-/fastboot-transform-0.1.3.tgz#7dea0b117594afd8772baa6c9b0919644e7f7dcd"
   integrity sha512-6otygPIJw1ARp1jJb+6KVO56iKBjhO+5x59RSC9qiZTbZRrv+HZAuP00KD3s+nWMvcFDemtdkugki9DNFTTwCQ==
@@ -7554,11 +7548,6 @@ flat-cache@^1.2.1:
     del "^2.0.2"
     graceful-fs "^4.1.2"
     write "^0.2.1"
-
-flatpickr@^4.5.2:
-  version "4.5.2"
-  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.5.2.tgz#47c8ad472a096e5fb7e74b809b0703535383f20d"
-  integrity sha512-jDy4QYGpmiy7+Qk8QvKJ4spjDdxcx9cxMydmq1x427HkKWBw0qizLYeYM2F6tMcvvqGjU5VpJS55j4LnsaBblA==
 
 flush-write-stream@^1.0.0:
   version "1.0.3"
