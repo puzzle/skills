@@ -74,7 +74,7 @@
               <tr>
                 <td>
                   <label class="label-date form-field--label" for='date_location'>Geburtsdatum</label>
-                  <div id="date_location">
+                  <div id="date_location" class="birthdate_pikaday">
                     {{pikaday-input
                       onSelection=(action "setBirthdate")
                       value=person.birthdate}}

@@ -3,10 +3,8 @@ import { merge } from '@ember/polyfills';
 import Application from '../../app';
 import config from '../../config/environment';
 import registerPowerSelectHelpers from 'ember-power-select/test-support/helpers';
-import registerFlatpickrHelpers from 'ember-flatpickr/test-support/helpers';
 import { setContext } from 'ember-test-helpers';
 
-registerFlatpickrHelpers();
 registerPowerSelectHelpers();
 
 export default function startApp(attrs) {
