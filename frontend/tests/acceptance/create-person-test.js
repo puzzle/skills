@@ -2,7 +2,6 @@ import { test } from 'qunit';
 import moduleForAcceptance from 'frontend/tests/helpers/module-for-acceptance';
 import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
 import page from 'frontend/tests/pages/people-new';
-import editPage from 'frontend/tests/pages/person-edit';
 import { openDatepicker } from 'ember-pikaday/helpers/pikaday';
 import $ from 'jquery';
 
@@ -50,14 +49,14 @@ test('creating a new person', async function(assert) {
   assert.ok(/^\/people\/\d+$/.test(currentURL()));
 
   // Assert that all we entered above actually made it into the profile correctly
-  assert.equal(editPage.profileData.name, 'Dolores');
-  assert.equal(editPage.profileData.title, 'Dr.');
-  assert.equal(editPage.profileData.role, 'Software-Engineer');
-  assert.equal(editPage.profileData.birthdate, '19.02.2019');
-  assert.equal(editPage.profileData.nationalities, 'Afghanistan');
-  assert.equal(editPage.profileData.location, 'Westworld');
-  assert.equal(editPage.profileData.maritalStatus, 'verheiratet');
-  assert.ok(['DE', 'EN', 'FR'].includes(editPage.profileData.language[0]));
+  assert.equal(page.profileData.name, 'Dolores');
+  assert.equal(page.profileData.title, 'Dr.');
+  assert.equal(page.profileData.role, 'Software-Engineer');
+  assert.equal(page.profileData.birthdate, '19.02.2019');
+  assert.equal(page.profileData.nationalities, 'Afghanistan');
+  assert.equal(page.profileData.location, 'Westworld');
+  assert.equal(page.profileData.maritalStatus, 'verheiratet');
+  assert.ok(['DE', 'EN', 'FR'].includes(page.profileData.language[0]));
 });
 
 test('creating an empty new person', async function(assert) {
