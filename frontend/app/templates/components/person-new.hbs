@@ -11,7 +11,7 @@
       <div class="card-body">
         <div class="row">
           <div class="col-sm-4">
-            <table class="table-person">
+            <table class="table-person mb-3">
               <tr>
                 <td>{{f.text-field 'name' label="Name"}}</td>
               </tr>
@@ -55,6 +55,9 @@
                   {{/power-select}}
                 </td>
               </tr>
+              <tr>
+                <td>{{f.text-field 'location' label="Wohnort (Stadt)"}}</td>
+              </tr>
             </table>
           </div>
           <div class="col-sm-4">
@@ -76,7 +79,14 @@
               </tr>
               <tr>
                 <td>
-                  <Label>Nationalität</Label>
+                  <label>Doppelbürger</label>
+                  {{input type="checkbox" checked=secondNationality click=(action "switchNationality" value="target.checked")
+                    id="toggle-nationalities-id" class="checkbox"}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label>Erste Nationalität</label>
                   {{#power-select
                     triggerId="nationality"
                     options=countries
@@ -92,24 +102,23 @@
                 </td>
               </tr>
               <tr>
-                <td>
-                  <Label>Weitere Nationalität</Label>
-                  {{#power-select
-                    options=countries
-                    allowClear=true
-                    selected=selectedNationality2
-                    onchange=(action "setNationality2")
-                    onfocus=(action "handleFocus")
-                    onblur=(action "handleBlur")
-                    onkeydown=(action "setWithTab" 'setNationality2')
-                    searchField="1"
-                    as |country|}}
-                    <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
-                  {{/power-select}}
-                </td>
-              </tr>
-              <tr>
-                <td>{{f.text-field 'location' label="Wohnort (Stadt)"}}</td>
+                {{#if secondNationality}}
+                  <td>
+                    <label>Zweite Nationalität</label>
+                    {{#power-select
+                      triggerId="nationality2"
+                      options=countries
+                      selected=selectedNationality2
+                      onchange=(action "setNationality2")
+                      onfocus=(action "handleFocus")
+                      onblur=(action "handleBlur")
+                      onkeydown=(action "setWithTab" 'setNationality2')
+                      searchField="1"
+                      as |country|}}
+                      <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
+                    {{/power-select}}
+                  </td>
+                {{/if}}
               </tr>
               <tr>
                 <td>

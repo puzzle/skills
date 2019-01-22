@@ -133,5 +133,10 @@ export default ApplicationComponent.extend({
       this.set('selectedMaritalStatus', selectedMaritalStatus);
     },
 
+    switchNationality(value) {
+      if (value == false) {
+        this.set('newPerson.nationality2', undefined);
+      }
+    },
   }
 });
