@@ -22,15 +22,15 @@ test('creating a new person', async function(assert) {
   // Selection for all the power selects
   /* eslint "no-undef": "off" */
   await selectChoose('#role', '.ember-power-select-option', 0);
-  await selectChoose('#company', 'Firma');
+  await selectChoose('#company', '.ember-power-select-option', 0);
   await selectChoose('#nationality', '.ember-power-select-option', 0);
-  await selectChoose('#maritalStatus', 'verheiratet');
+  await selectChoose('#maritalStatus', '.ember-power-select-option', 0);
 
   // interactor is the interactable object for the pikaday-datepicker
-  let interactor = openDatepicker($('.birthdate_pikaday > input'));
+  let interactor = await openDatepicker($('.birthdate_pikaday > input'));
 
   // Cant be more/less than +/- 10 Years from today
-  interactor.selectDate(new Date(2019,1,19))
+  await interactor.selectDate(new Date(2019,1,19))
 
   // Testing if pikaday got the right dates
   assert.equal(interactor.selectedDay(), 19)
@@ -45,6 +45,11 @@ test('creating a new person', async function(assert) {
   // Actually creating the person with the above entered
   await page.newPersonPage.createPerson({});
 
+  for (let i = 0; i < 3; i++) {
+    if (/^\/people\/\d+$/.test(currentURL())) break;
+    setTimeout(() => {},500);
+  }
+
   // Current Url now should be "people/d+" where d+ = any amount of numbers (like an id)
   assert.ok(/^\/people\/\d+$/.test(currentURL()));
 
@@ -55,7 +60,7 @@ test('creating a new person', async function(assert) {
   assert.equal(page.profileData.birthdate, '19.02.2019');
   assert.equal(page.profileData.nationalities, 'Afghanistan');
   assert.equal(page.profileData.location, 'Westworld');
-  assert.equal(page.profileData.maritalStatus, 'verheiratet');
+  assert.equal(page.profileData.maritalStatus, 'ledig');
   assert.ok(['DE', 'EN', 'FR'].includes(page.profileData.language[0]));
 });
 

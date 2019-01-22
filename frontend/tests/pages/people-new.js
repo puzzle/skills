@@ -18,8 +18,8 @@ export default create({
     title: fillable('[name="person[title]"]'),
     location: fillable('[name="person[location]"]'),
 
-    async createPerson(person) {
-      await Object.keys(person)
+    createPerson(person) {
+      Object.keys(person)
         .reduce((p, key) => p.then(() => this[key](person[key])), resolve());
 
       return this.submit();
