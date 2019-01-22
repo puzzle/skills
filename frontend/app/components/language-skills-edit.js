@@ -1,5 +1,6 @@
 import ApplicationComponent from './application-component';
 import { inject } from '@ember/service';
+import sortByLanguage from '../utils/sort-by-language';
 
 export default ApplicationComponent.extend({
   store: inject(),
@@ -13,6 +14,8 @@ export default ApplicationComponent.extend({
     this.set('isObligatoryLanguage', this.obligatoryLanguages.includes(this.selectedSkill.get('language')));
   },
 
+  sortedLanguageSkills: sortByLanguage('person.languageSkills').volatile(),
+
   getLanguagesList() {
     let languages = this.get('store').findAll('language');
     languages.then(() => {
@@ -23,11 +26,9 @@ export default ApplicationComponent.extend({
       personLanguages.then(() => {
         let languageIsos = personLanguages.map(x => x.get('language').toLowerCase());
         this.get('languages').forEach(function(language) {
-          if (languageIsos.includes(language.get('iso1').toLowerCase())) {
-            language.set('disabled', true);
-          }
+          language.set('disabled', languageIsos.includes(language.get('iso1').toLowerCase()));
         }, this)
-        return languages
+        return languages;
       })
     })
   },
@@ -42,14 +43,14 @@ export default ApplicationComponent.extend({
   },
 
   getSelectedLanguage(language) {
-    let languages = this.get('languages')
+    let languages = this.get('languages');
     let selected = languages.map(x => {
       if (x.get('iso1').toLowerCase() == language.toLowerCase()) {
         return x;
       }
     }).filter(function(n) {return n !== undefined});
-    if (!selected.length) return { name: "-", iso1: "-" }
-    return selected[0]
+    if (!selected.length) return { name: "-", iso1: "-" };
+    return selected[0];
   },
 
   actions: {
@@ -70,26 +71,28 @@ export default ApplicationComponent.extend({
       this.set('isObligatoryLanguage', this.obligatoryLanguages.includes(this.selectedSkill.get('language')));
     },
 
-    newSkill() {
+    createSkill() {
       this.set('selectedLanguage', { iso1: '-' });
       this.set('isObligatoryLanguage', false);
-      if (this.get('person.languageSkills').map(x => x.get('language')).includes('-')) return;
-      let skillDummy = { certificate: '', level: '', language: '-', person: this.get('person') };
-      let newSkill = this.get('store').createRecord('languageSkill', skillDummy);
-      this.set('selectedSkill', newSkill);
-      let skills = this.get('person.languageSkills');
-      skills.then(() => {
-        skills.pushObject(newSkill);
-      })
+      if (!this.get('person.languageSkills').map(x => x.get('language')).includes('-')) {
+        let newSkill = this.get('store').createRecord('languageSkill');
+        newSkill.set('language', '-');
+        newSkill.set('person', this.get('person'));
+        this.send('setSkill', newSkill);
+        this.notifyPropertyChange('sortedLanguageSkills');
+      }
     },
 
     deleteSkill(skill) {
-      skill.destroyRecord()
-        .then(skill => this.sendAction('done'))
-        .then(() => this.get('notify').success('Sprache wurde entfernt!'))
-      let language = this.getSelectedLanguage(skill.get('language'))
-      language.set('disabled', false)
-      this.send('setSkill', this.get('person.languageSkills.firstObject'));
+      let language = this.getSelectedLanguage(skill.get('language'));
+      if (language.iso1 != '-') language.set('disabled', false);
+      let length = this.get('person.languageSkills.length');
+      setTimeout(() => {
+        if (length > this.get('person.languageSkills.length')) {
+          this.send('setSkill', this.get('person.languageSkills.firstObject'));
+          this.notifyPropertyChange('sortedLanguageSkills');
+        }
+      }, 500)
     },
 
     handleFocus(select, e) {

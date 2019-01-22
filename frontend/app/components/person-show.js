@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
+import sortByLanguage from '../utils/sort-by-language';
 import Person from '../models/person';
 
 export default Component.extend({
@@ -11,6 +12,8 @@ export default Component.extend({
   init() {
     this._super(...arguments);
   },
+
+  sortedLanguageSkills: sortByLanguage('person.languageSkills'),
 
   maritalStatus: computed('person.maritalStatus', function() {
     const maritalStatuses = Person.MARITAL_STATUSES

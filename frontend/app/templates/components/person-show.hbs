@@ -28,7 +28,7 @@
   <div class="card-header bg-info" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
     <div class="row">
       <div class="col-sm-6">
-        <a class="card-link text-dark header-text" >Personalien</a>
+        <a class="card-link text-dark header-text">Personalien</a>
       </div>
       <div class="col-sm-6 text-right d-block">
         <a class="card-link text-dark" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><i class="fa angle"></i></a>
@@ -137,7 +137,7 @@
               <div class="border rounded mt-2">
                 <table class="table table-borderless">
                   <tbody>
-                    {{#each person.languageSkills as |skill|}}
+                    {{#each sortedLanguageSkills as |skill|}}
                       <tr>
                         <td data-test-person-language class="description">{{skill.language}}</td>
                         <td class="language-level"><img alt="" src="/assets/language-levels/{{to-lowercase skill.level}}.svg"></td>
