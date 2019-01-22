@@ -45,16 +45,20 @@ test('creating a new person', async function(assert) {
   // Actually creating the person with the above entered
   await page.newPersonPage.createPerson({});
 
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
   for (let i = 0; i < 3; i++) {
     if (/^\/people\/\d+$/.test(currentURL())) break;
-    setTimeout(() => {},500);
+    await sleep(500)
   }
 
   // Current Url now should be "people/d+" where d+ = any amount of numbers (like an id)
-  assert.ok(/^\/people\/\d+$/.test(currentURL()));
+  assert.ok(/^\/people\/\d+$/.test(currentURL(), 'url, current url: ' + currentURL()));
 
   // Assert that all we entered above actually made it into the profile correctly
-  assert.equal(page.profileData.name, 'Dolores');
+  assert.equal(page.profileData.name, 'Dolores', 'name, current url: ' + currentURL());
   assert.equal(page.profileData.title, 'Dr.');
   assert.equal(page.profileData.role, 'Software-Engineer');
   assert.equal(page.profileData.birthdate, '19.02.2019');
