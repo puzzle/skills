@@ -1,5 +1,5 @@
 <div class="mb-2">
-  <div class="card-header bg-info" data-toggle="collapse" data-parent="#accordion" href="#collapseProject{{project.title}}">
+  <div class="card-header bg-info" data-toggle="collapse" data-parent="#accordion" href="#collapseProject{{project.id}}">
     <div class="row">
       <div class="col-sm-6">
         <a class="card-link text-dark project-title-text">
@@ -13,11 +13,11 @@
         </a>
       </div>
       <div class="col-sm-6 text-right d-block">
-        <a class="card-link text-dark" data-toggle="collapse" data-parent="#accordion" href="#collapseProject{{project.title}}"><i class="fa angle"></i></a>
+        <a class="card-link text-dark" data-toggle="collapse" data-parent="#accordion" href="#collapseProject{{project.id}}"><i class="fa angle"></i></a>
       </div>
     </div>
   </div>
-  <div id="collapseProject{{project.title}}" class="collapse border border-info rounded-bottom show">
+  <div id="collapseProject{{project.id}}" class="collapse border border-info rounded-bottom show">
     <div class="card-body d-flex flex-column">
       <table class="table table-borderless table-sm">
         <tr>
