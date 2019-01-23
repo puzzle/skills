@@ -4,10 +4,9 @@ import { computed } from '@ember/object';
 import { on } from '@ember/object/evented';
 import { EKMixin , keyUp } from 'ember-keyboard';
 
-
 export default Component.extend(EKMixin, {
   store: service(),
-  i18n: service(),
+  intl: service(),
 
   newActivity: computed('personId', function() {
     return this.get('store').createRecord('activity');
@@ -40,7 +39,7 @@ export default Component.extend(EKMixin, {
         .then(() => this.get('notify').success('Aktivität wurde hinzugefügt!'))
         .catch(() => {
           this.get('newActivity.errors').forEach(({ attribute, message }) => {
-            let translated_attribute = this.get('i18n').t(`activity.${attribute}`)['string']
+            let translated_attribute = this.get('intl').t(`activity.${attribute}`)
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
         });
