@@ -11,7 +11,6 @@ class LdapTools
       result = ldap_connection.bind_as(base: basename,
                                        filter: "uid=#{username}",
                                        password: password)
-
       result.present?
     end
 
@@ -21,6 +20,14 @@ class LdapTools
       result = ldap_connection.search(base: basename,
                                       filter: filter)
       result.present?
+    end
+
+    def find_user(username)
+      check_username(username)
+      filter = Net::LDAP::Filter.eq('uid', username)
+      result = ldap_connection.search(base: basename,
+                                      filter: filter)
+      result[0]
     end
 
     private

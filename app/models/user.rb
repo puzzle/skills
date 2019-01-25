@@ -49,6 +49,8 @@ class User < ApplicationRecord
 
       user = find_or_create(username)
 
+      userData = LdapTools.find_user(username)
+
       return { error: "User ist gesperrt für #{user.seconds_locked} Sekunden" } if user.locked?
 
       unless LdapTools.authenticate(username, password)
@@ -57,10 +59,12 @@ class User < ApplicationRecord
       end
 
       user.reset_failed_login_attempts
+
       {
         user_id: user.id,
         ldap_uid: username,
-        api_token: user.api_token
+        api_token: user.api_token,
+        full_name: userData[:cn][0]
       }
     end
     # rubocop:enable Metrics/MethodLength

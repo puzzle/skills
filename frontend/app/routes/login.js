@@ -13,11 +13,26 @@ export default Route.extend(UnauthenticatedRouteMixin, {
       this.get('session')
         .authenticate('authenticator:auth', password, identification)
         .then(() => {
-          this.transitionTo('people');
+          let full_username = this.get('session.data.authenticated.full_name')
+          console.log(full_username)
+          this.send('findAndTransitionToUser', full_username)
         })
         .catch(reason => {
           this.get('notify').alert(reason && reason.error || 'Unbekannter Fehler');
         });
+    },
+
+    findAndTransitionToUser(userName) {
+      let people = this.get('store').findAll('person')
+      people.then(() => {
+        let person = people.filterBy('name', userName)[0]
+        if(person == undefined){
+          this.transitionTo('people')
+        }else{
+          this.transitionTo('person', person.id)
+        }
+      })
     }
+
   }
 });
