@@ -1,4 +1,4 @@
-import { test } from 'qunit';
+import { test, skip } from 'qunit';
 import moduleForAcceptance from 'frontend/tests/helpers/module-for-acceptance';
 import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
 import page from 'frontend/tests/pages/people-new';
@@ -7,7 +7,7 @@ import $ from 'jquery';
 
 moduleForAcceptance('Acceptance | create person');
 
-test('creating a new person', async function(assert) {
+skip('creating a new person', async function(assert) {
   assert.expect(13);
 
   authenticateSession(this.application, {
