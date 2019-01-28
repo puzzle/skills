@@ -1,12 +1,15 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { setupIntl } from 'ember-intl/test-support';
 import { render, click } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | Component | button-with-cofirmation', function(hooks) {
   setupRenderingTest(hooks);
-  setupIntl(hooks, 'de');
+
+  hooks.beforeEach(function() {
+    this.intl = this.owner.lookup('service:intl');
+    this.intl.setLocale('de');
+  })
 
   test('renders delete confirmation dialog with confirm message', async function(assert) {
 
