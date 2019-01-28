@@ -12,9 +12,9 @@ export default Controller.extend({
       let people = this.get('store').findAll('person')
       people.then(() => {
         let person = people.filterBy('name', username)[0]
-        if(person == undefined){
+        if (person == undefined) {
           this.get('router').transitionTo('people')
-        }else{
+        } else {
           this.get('router').transitionTo('person', person.id)
         }
       })

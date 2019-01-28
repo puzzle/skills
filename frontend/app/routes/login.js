@@ -14,7 +14,6 @@ export default Route.extend(UnauthenticatedRouteMixin, {
         .authenticate('authenticator:auth', password, identification)
         .then(() => {
           let full_username = this.get('session.data.authenticated.full_name')
-          console.log(full_username)
           this.send('findAndTransitionToUser', full_username)
         })
         .catch(reason => {
@@ -26,9 +25,9 @@ export default Route.extend(UnauthenticatedRouteMixin, {
       let people = this.get('store').findAll('person')
       people.then(() => {
         let person = people.filterBy('name', userName)[0]
-        if(person == undefined){
+        if (person == undefined) {
           this.transitionTo('people')
-        }else{
+        } else {
           this.transitionTo('person', person.id)
         }
       })
