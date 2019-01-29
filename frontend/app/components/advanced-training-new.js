@@ -29,13 +29,25 @@ export default Component.extend(EKMixin, {
     }
   },
 
+  setInitialState(context) {
+    context.set('newAdvancedTraining', context.get('store').createRecord('advancedTraining'));
+  },
+
   actions: {
-    submit(newAdvancedTraining, event) {
+    abortNew(event) {
+      event.preventDefault();
+      this.sendAction('done');
+    },
+
+    submit(newAdvancedTraining, initNew, event) {
       event.preventDefault();
       let person = this.get('store').peekRecord('person', this.get('personId'));
       newAdvancedTraining.set('person', person);
       return newAdvancedTraining.save()
-        .then(education => this.sendAction('done'))
+        .then(advancedTraining => {
+          if (!initNew) this.sendAction('done');
+          this.sendAction('setInitialState', this)
+        })
         .then(() => this.get('notify').success('Weiterbildung wurde hinzugefügt!'))
         .catch(() => {
           this.get('newAdvancedTraining.errors').forEach(({ attribute, message }) => {

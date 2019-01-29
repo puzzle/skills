@@ -11,7 +11,7 @@
 <div id="collapseEducation" class="collapse show border border-info rounded-bottom">
   <div class="card-body d-flex flex-column">
     <div class="mb-2">
-      <a onclick={{action (toggle 'educationNew' this)}} role="button" class="{{~if educationNew 'abort-edit-buttons' 'edit-buttons'~}}"><i class="fa {{~if educationNew ' abort' ' add'~}}"></i> {{~if educationNew ' hinzufügen abbrechen' ' Ausbildung hinzufügen'~}}</a>
+      <a onclick={{action (toggle 'educationNew' this)}} role="button" class="{{~unless educationNew 'edit-buttons'~}}"><i class="fa {{~unless educationNew ' add'~}}"></i> {{~unless educationNew ' Ausbildung hinzufügen'~}}</a>
     </div>
     <div id="competence-content-show">
       {{component (if educationNew 'education-new')
@@ -37,9 +37,11 @@
       {{/each}}
     </div>
     {{#if sortedEducations}}
-      <div>
-        <a onclick={{educationsEditing}} role="button" class="edit-buttons"><i class="fa fa-pencil"></i> Bearbeiten</a>
-      </div>
+      {{#unless educationNew}}
+        <div>
+          <a onclick={{educationsEditing}} role="button" class="edit-buttons"><i class="fa fa-pencil"></i> Bearbeiten</a>
+        </div>
+      {{/unless}}
     {{/if}}
   </div>
 </div>

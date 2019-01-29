@@ -33,9 +33,11 @@
           <td> {{project.lineBreakTechnology}}</td>
         </tr>
       </table>
-      <div class="mt-auto">
-        <a onclick={{action selectProject project}} role="button" class="edit-buttons"><i class="fa fa-pencil"></i> Bearbeiten</a>
-      </div>
+      {{#if selectProject}}
+        <div class="mt-auto">
+          <a onclick={{action selectProject project}} role="button" class="edit-buttons"><i class="fa fa-pencil"></i> Bearbeiten</a>
+        </div>
+      {{/if}}
     </div>
   </div>
 </div>

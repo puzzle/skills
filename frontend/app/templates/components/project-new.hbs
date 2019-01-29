@@ -27,8 +27,10 @@
             <label for="{{concat elementId '-tech'}}">Eingesetzte Technologien</label>
             {{textarea id=(concat elementId '-tech') value=newProject.technology class="form-control"}}
           </div>
-          <div class="col-sm-2 centered-content text-right">
-            <a onclick={{action 'submit' newProject}} role="button" id="submit-button" class="text-dark"><i class="fa save"></i></a>
+          <div class="col-md-2 centered-content d-flex flex-column mt-4 px-4">
+            <button onclick={{action 'submit' newProject false}} role="button" id="submit-button" class="btn btn-primary m-2">Speichern</button>
+            <button onclick={{action 'submit' newProject true}} role="button" class="btn btn-info border m-2">Speichern & Neu</button>
+            <a href="#" onclick={{action 'abortNew'}} role="button" id="submit-button" class="abort-edit-buttons text-center mx-4">Abbrechen</a>
           </div>
         </div>
       </div>

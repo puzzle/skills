@@ -12,7 +12,7 @@
   <div id="collapseAdvancedTraining" class="collapse show border border-info rounded-bottom">
     <div class="card-body d-flex flex-column">
       <div class="mb-2">
-        <a onclick={{action (toggle 'advanced-trainingNew' this)}} role="button" class="{{~if advanced-trainingNew 'abort-edit-buttons' 'edit-buttons'~}}"><i class="fa {{~if advanced-trainingNew ' abort' ' add'~}}"></i> {{~if advanced-trainingNew ' hinzufügen abbrechen' ' Weiterbildung hinzufügen'~}}</a>
+        <a onclick={{action (toggle 'advanced-trainingNew' this)}} role="button" class="{{~unless advanced-trainingNew 'edit-buttons'~}}"><i class="fa {{~unless advanced-trainingNew ' add'~}}"></i> {{~unless advanced-trainingNew ' Weiterbildung hinzufügen'~}}</a>
       </div>
       <div id="advancedtraining-content-show" class="mb-2">
         {{component (if advanced-trainingNew 'advanced-training-new')
@@ -37,9 +37,11 @@
         {{/each}}
       </div>
       {{#if filteredAdvancedTrainings}}
-        <div class="mt-auto">
-          <a onclick={{advancedTrainingsEditing}} role="button" class="edit-buttons"><i class="fa fa-pencil"></i> Bearbeiten</a>
-        </div>
+        {{#unless advanced-trainingNew}}
+          <div class="mt-auto">
+            <a onclick={{advancedTrainingsEditing}} role="button" class="edit-buttons"><i class="fa fa-pencil"></i> Bearbeiten</a>
+          </div>
+        {{/unless}}
       {{/if}}
     </div>
   </div>
