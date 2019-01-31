@@ -7,6 +7,9 @@ import $ from 'jquery';
 
 moduleForAcceptance('Acceptance | create person');
 
+/* Currently we are skipping this test since it works locally but fails on
+   our Travis Server (Seemingly due to some failing page loads). Optimally you
+   would run this test locally but put it back on skip when pushing to Github */
 skip('creating a new person', async function(assert) {
   assert.expect(13);
 
