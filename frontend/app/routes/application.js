@@ -7,11 +7,9 @@ import { UnauthorizedError, ForbiddenError } from 'ember-ajax/errors';
 export default Route.extend(ApplicationRouteMixin, {
   session: service(),
   moment: service(),
-  intl: service(),
 
   beforeModel() {
     this.get('moment').setLocale('de');
-    this.get('intl').setLocale(['de']);
   },
 
   isAuthError(error) {

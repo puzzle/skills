@@ -8,7 +8,7 @@ export default DaterangeModel.extend({
   person: DS.belongsTo('person'),
 
   toString: computed('description', function() {
-    return this.get('intl').t('advancedTraining.name').toString();
+    return this.get('i18n').t('advancedTraining.name').toString();
   }),
 
   lineBreakDescription: computed('description', function() {

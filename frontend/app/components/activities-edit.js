@@ -4,10 +4,11 @@ import { inject as service } from '@ember/service';
 import { on } from '@ember/object/evented';
 import { EKMixin , keyUp } from 'ember-keyboard';
 
+
 export default Component.extend(EKMixin, {
 
 
-  intl: service(),
+  i18n: service(),
 
   activateKeyboard: on('init', function() {
     this.set('keyboardActivated', true);
@@ -48,7 +49,7 @@ export default Component.extend(EKMixin, {
             activity.rollbackAttributes();
 
             errors.forEach(({ attribute, message }) => {
-              let translated_attribute = this.get('intl').t(`activity.${attribute}`);
+              let translated_attribute = this.get('i18n').t(`activity.${attribute}`)['string']
               this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
             });
           });
