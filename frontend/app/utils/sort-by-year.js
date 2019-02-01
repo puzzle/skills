@@ -18,11 +18,11 @@ export default function sortByYear(property) {
       let aFinishAt = get(a,'finish_at')
       let bFinishAt = get(b,'finish_at')
 
-      if (aFinishAt === null && bFinishAt !== null) return -1;
-      if (aFinishAt !== null && bFinishAt === null) return  1;
-      if (aFinishAt !== null && bFinishAt !== null) {
+      if (aFinishAt == null && bFinishAt != null) return -1;
+      if (aFinishAt != null && bFinishAt == null) return  1;
+      if (aFinishAt != null && bFinishAt != null) {
         let result = checkForThirteenth(aFinishAt, bFinishAt)
-        if (result !== null) return result;
+        if (result != null) return result;
         if (bFinishAt.getTime() != aFinishAt.getTime()) return bFinishAt - aFinishAt;
       }
 
@@ -30,8 +30,10 @@ export default function sortByYear(property) {
       let aStartAt = get(a,'start_at')
       let bStartAt = get(b,'start_at')
 
-      let result = checkForThirteenth(aStartAt, bStartAt)
-      if (result !== null) return result;
+      if (aStartAt && bStartAt) {
+        let result = checkForThirteenth(aStartAt, bStartAt)
+        if (result != null) return result;
+      }
 
       if (bStartAt != aStartAt) return bStartAt - aStartAt;
 

@@ -7,7 +7,7 @@ export default Component.extend({
     return this.get('activities');
   }),
 
-  amountOfActivities: computed('activities.@each', function() {
+  amountOfActivities: computed('activities', function() {
     return this.get('activities.length');
   }),
 
