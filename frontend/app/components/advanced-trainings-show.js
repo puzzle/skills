@@ -7,7 +7,7 @@ export default Component.extend({
     return this.get('advanced-trainings');
   }),
 
-  amountOfAdvancedTrainings: computed('advanced-trainings.@each', function() {
+  amountOfAdvancedTrainings: computed('advanced-trainings', function() {
     return this.get('advanced-trainings.length');
   }),
 

@@ -4,7 +4,7 @@ import { computed } from '@ember/object';
 
 
 export default Component.extend({
-  amountOfEducations: computed('educations.@each', function() {
+  amountOfEducations: computed('educations', function() {
     return this.get('educations.length')
   }),
 
