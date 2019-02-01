@@ -1,7 +1,6 @@
 import { test, skip } from 'qunit';
 import moduleForAcceptance from 'frontend/tests/helpers/module-for-acceptance';
 import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
-import { setFlatpickrDate } from 'ember-flatpickr/test-support/helpers';
 import page from 'frontend/tests/pages/people-new';
 import editPage from 'frontend/tests/pages/person-edit';
 
@@ -25,7 +24,6 @@ skip('creating a new person', async function(assert) {
   await selectChoose('#nationality', '.ember-power-select-option', 0);
   await selectChoose('#maritalStatus', 'verheiratet');
 
-  setFlatpickrDate('.flatpickr-input', '26.10.2018')
   await page.createPerson({
     name: 'Hansjoggeli',
     title: 'Dr.',
