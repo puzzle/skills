@@ -55,7 +55,11 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.airbrake = {
+      host: process.env.EMBER_AIRBRAKE_HOST,
+      projectId:  '42', // needs to be set to anything when using with errbit
+      projectKey: process.env.EMBER_AIRBRAKE_API_KEY
+    }
   }
 
   return ENV;

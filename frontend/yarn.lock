@@ -281,6 +281,11 @@ agentkeepalive@^3.3.0, agentkeepalive@^3.4.1:
   dependencies:
     humanize-ms "^1.2.1"
 
+airbrake-js@^0.5.9:
+  version "0.5.9"
+  resolved "https://registry.yarnpkg.com/airbrake-js/-/airbrake-js-0.5.9.tgz#f63aa98c412601694694ff003a4c571154cfb4e6"
+  integrity sha1-9jqpjEEmAWlGlP8AOkxXEVTPtOY=
+
 ajv-keywords@^2.1.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-2.1.1.tgz#617997fc5f60576894c435f940d819e135b80762"
@@ -4240,12 +4245,21 @@ ember-changeset@1.5.0, ember-changeset@^1.2.3:
     ember-cli-babel "^6.8.2"
     ember-deep-set "^0.1.4"
 
-ember-cli-active-link-wrapper@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/ember-cli-active-link-wrapper/-/ember-cli-active-link-wrapper-0.3.2.tgz#43582f6b1c157ab9f0a5a5f66348e5a3b65de1dc"
-  integrity sha1-Q1gvaxwVernwpaX2Y0jlo7Zd4dw=
+ember-cli-active-link-wrapper@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-active-link-wrapper/-/ember-cli-active-link-wrapper-0.5.0.tgz#daf7d6eecde81546fbaca30a05396bce647f2540"
+  integrity sha512-i2bF1kDTpe2W4WFhRUg6KSoMcJewjIMIwMOY5s4/mB0VyeevQ1bs0Rh7KiwPqceUqReOoTIIrLXQdBV//E4CQg==
   dependencies:
-    ember-cli-babel "^5.1.5"
+    ember-cli-babel "^6.16.0"
+
+ember-cli-airbrake@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/ember-cli-airbrake/-/ember-cli-airbrake-0.2.1.tgz#8228ec29eca15d105cc67cade7024f73d3ac2883"
+  integrity sha512-/Zrl4ADDAalkN+JB3MYRL+mP0AZ2wxILLQafWpyasNvRxCqR3E8d/1FRO7GlpeJUlRczRLRdF8TgZe8gBRTigg==
+  dependencies:
+    airbrake-js "^0.5.9"
+    ember-cli-babel "^6.3.0"
+    ember-cli-version-checker "^2.0.0"
 
 ember-cli-app-version@^3.0.0:
   version "3.2.0"
@@ -4255,7 +4269,7 @@ ember-cli-app-version@^3.0.0:
     ember-cli-babel "^6.12.0"
     git-repo-version "^1.0.2"
 
-ember-cli-babel@^5.1.5, ember-cli-babel@^5.1.6, ember-cli-babel@^5.1.7:
+ember-cli-babel@^5.1.6, ember-cli-babel@^5.1.7:
   version "5.2.8"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-5.2.8.tgz#0356b03cc3fdff5d0f2ecaa46a0e1cfaebffd876"
   integrity sha512-Mt9OOB5RaZwjde+LYef8EgwNVCAzsYDv4ktshblaXxr4m/Xm5/7/rxEu42RNrYkoy/qWpT9uhaD+JKK4riMf+w==
