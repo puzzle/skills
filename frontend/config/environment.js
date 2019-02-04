@@ -2,6 +2,8 @@
 'use strict';
 
 module.exports = function(environment) {
+  require('dotenv').config()
+
   let ENV = {
     modulePrefix: 'frontend',
     environment,
