@@ -9,6 +9,10 @@ module LdapToolsTestMock
     def self.exists?(username)
       username == 'ken'
     end
+
+    def self.find_user(username)
+      {cn: ["ken"]}
+    end
   end
 end
 

@@ -15,11 +15,11 @@
           </ul>
           <ul class="navbar-nav ml-auto">
             {{#if session.data.authenticated.full_name}}
-            <li class="nav-item border-black border-bottom-0 border-top-0 border-right-0">
-              <a id="logout-button" role="button" class="nav-link pull-right" {{action 'transitionToProfile'}}>
-                <i class="fa fa-user-circle" aria-hidden="true"></i> {{session.data.authenticated.full_name}}
-              </a>
-            </li>
+              <li class="nav-item border-black border-bottom-0 border-top-0 border-right-0">
+                <a id="logout-button" role="button" class="nav-link pull-right" {{action 'transitionToProfile'}}>
+                  <i class="fa fa-user-circle" aria-hidden="true"></i> {{session.data.authenticated.full_name}}
+                </a>
+              </li>
             {{/if}}
             <li class="nav-item border-black border-bottom-0 border-top-0">
               <a href="https://twiki.puzzle.ch/bin/view/Puzzle/PuzzleSkills" target="_blank" class="nav-link pull-right" rel="noopener" role="button">

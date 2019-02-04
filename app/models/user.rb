@@ -48,8 +48,7 @@ class User < ApplicationRecord
       return { error: 'Ungültige Login Daten' } unless LdapTools.exists?(username)
 
       user = find_or_create(username)
-
-      userData = LdapTools.find_user(username)
+      user_data = LdapTools.find_user(username)
 
       return { error: "User ist gesperrt für #{user.seconds_locked} Sekunden" } if user.locked?
 
@@ -64,7 +63,7 @@ class User < ApplicationRecord
         user_id: user.id,
         ldap_uid: username,
         api_token: user.api_token,
-        full_name: userData[:cn][0]
+        full_name: user_data[:cn][0]
       }
     end
     # rubocop:enable Metrics/MethodLength
