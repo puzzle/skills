@@ -25,6 +25,7 @@ export default Component.extend({
 
   actions: {
     changePerson(person) {
+      this.set('selected', person);
       person.reload();
       this.get('router').transitionTo('person' , person);
     },
