@@ -12,7 +12,7 @@
   <div id="collapseProjects" class="collapse show border border-info rounded-bottom">
     <div class="card-body">
       <div>
-        <a onclick={{action (toggle 'projectNew' this)}} role="button" class={{~if (or projectEditing projectNew) '' 'edit-buttons'~}}><i class="fa {{~if (or projectEditing projectNew) '' ' add'~}}"></i>{{~if (or projectEditing projectNew) '' ' Projekt hinzufügen'~}}</a>
+        <a onclick={{action 'toggleProjectNew' true}} role="button" class={{~if (or projectEditing projectNew) '' 'edit-buttons'~}}><i class="fa {{~if (or projectEditing projectNew) '' ' add'~}}"></i>{{~if (or projectEditing projectNew) '' ' Projekt hinzufügen'~}}</a>
       </div>
       <div id="competence-content-show">
         <div class="collapse-group-project">
@@ -24,7 +24,7 @@
               </span>
             </div>
           </div>
-          {{component (if projectNew 'project-new') personId=personId done=(action (toggle 'projectNew' this))}}
+          {{component (if projectNew 'project-new') personId=personId done=(action 'toggleProjectNew')}}
           {{#each sortedProjects as |project|}}
             {{#if (eq projectEditing project)}}
               {{project-edit project=projectEditing done=(action (toggle 'projectEditing' this))}}

@@ -20,7 +20,7 @@ export default Component.extend(EKMixin, {
     if (this.get('newAdvancedTraining.isNew')) {
       this.get('newAdvancedTraining').destroyRecord();
     }
-    this.done();
+    this.done(false);
   }),
 
   willDestroyElement() {
@@ -31,12 +31,13 @@ export default Component.extend(EKMixin, {
 
   setInitialState(context) {
     context.set('newAdvancedTraining', context.get('store').createRecord('advancedTraining'));
+    context.sendAction('done', true)
   },
 
   actions: {
     abortNew(event) {
       event.preventDefault();
-      this.sendAction('done');
+      this.sendAction('done', false);
     },
 
     submit(newAdvancedTraining, initNew, event) {
@@ -45,11 +46,12 @@ export default Component.extend(EKMixin, {
       newAdvancedTraining.set('person', person);
       return newAdvancedTraining.save()
         .then(advancedTraining => {
-          if (!initNew) this.sendAction('done');
-          this.sendAction('setInitialState', this)
+          this.sendAction('done');
+          if (initNew) this.sendAction('setInitialState', this)
         })
         .then(() => this.get('notify').success('Weiterbildung wurde hinzugefügt!'))
         .catch(() => {
+          this.set('newAdvancedTraining.person', null);
           this.get('newAdvancedTraining.errors').forEach(({ attribute, message }) => {
             let translated_attribute = this.get('i18n').t(`advancedTraining.${attribute}`)['string']
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });

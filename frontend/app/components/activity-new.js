@@ -21,7 +21,7 @@ export default Component.extend(EKMixin, {
     if (this.get('newActivity.isNew')) {
       this.get('newActivity').destroyRecord();
     }
-    this.done();
+    this.done(false);
   }),
 
   willDestroyElement() {
@@ -32,12 +32,13 @@ export default Component.extend(EKMixin, {
 
   setInitialState(context) {
     context.set('newActivity', context.get('store').createRecord('activity'));
+    context.sendAction('done', true)
   },
 
   actions: {
     abortNew(event) {
       event.preventDefault();
-      this.sendAction('done');
+      this.sendAction('done', false);
     },
 
     submit(newActivity, initNew, event) {
@@ -46,11 +47,12 @@ export default Component.extend(EKMixin, {
       newActivity.set('person', person);
       return newActivity.save()
         .then(activity => {
-          if (!initNew) this.sendAction('done');
-          this.sendAction('setInitialState', this);
+          this.sendAction('done', false);
+          if (initNew) this.sendAction('setInitialState', this);
         })
         .then(() => this.get('notify').success('Aktivität wurde hinzugefügt!'))
         .catch(() => {
+          this.set('newActivity.person', null)
           this.get('newActivity.errors').forEach(({ attribute, message }) => {
             let translated_attribute = this.get('i18n').t(`activity.${attribute}`)['string']
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });

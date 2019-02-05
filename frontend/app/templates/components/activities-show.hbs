@@ -12,13 +12,13 @@
   <div id="collapseActivity" class="collapse show border border-info rounded-bottom">
     <div class="card-body d-flex flex-column">
       <div class="mb-2">
-        <a onclick={{action (toggle 'activityNew' this)}} role="button" class="{{~unless activityNew 'edit-buttons'~}}"><i class="fa {{~unless activityNew ' add'~}}"></i>{{~unless activityNew ' Station hinzufügen'~}}</a>
+        <a onclick={{action 'toggleActivityNew' true}} role="button" class="{{~unless activityNew 'edit-buttons'~}}"><i class="fa {{~unless activityNew ' add'~}}"></i>{{~unless activityNew ' Station hinzufügen'~}}</a>
       </div>
       <div id="competence-content-show" class="mb-2">
         {{component (if activityNew 'activity-new')
             personId=person.id
-            done=(action (toggle 'activityNew' this))}}
-        {{#each filteredActivities as |activity|}}
+            done=(action 'toggleActivityNew')}}
+        {{#each sortedActivities as |activity|}}
           <div class="zeile">
             <div class="row">
               <div class="col-sm-3 centered-content text-center">
@@ -37,7 +37,7 @@
           </div>
         {{/each}}
       </div>
-      {{#if filteredActivities}}
+      {{#if sortedActivities}}
         {{#unless activityNew}}
           <div class="mt-auto">
             <a onclick={{activitiesEditing}} role="button" class="edit-buttons"><i class="fa fa-pencil"></i> Bearbeiten</a>

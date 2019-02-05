@@ -30,7 +30,7 @@ export default Component.extend(EKMixin, {
     if (this.get('newProject.isNew')) {
       this.get('newProject').destroyRecord();
     }
-    this.done();
+    this.done(false);
   }),
 
   suggestion(term) {
@@ -47,12 +47,13 @@ export default Component.extend(EKMixin, {
 
   setInitialState(context) {
     context.set('newProject', context.get('store').createRecord('project'));
+    context.sendAction('done', true)
   },
 
   actions: {
     abortNew(event) {
       event.preventDefault();
-      this.sendAction('done');
+      this.sendAction('done', false);
     },
 
     submit(newProject, initNew, event) {
@@ -68,11 +69,12 @@ export default Component.extend(EKMixin, {
           ])
         )
         .then(project => {
-          if (!initNew) this.sendAction('done');
-          this.sendAction('setInitialState', this);
+          this.sendAction('done', false);
+          if (initNew) this.sendAction('setInitialState', this);
         })
         .then(() => this.get('notify').success('Projekt wurde hinzugefügt!'))
         .catch(() => {
+          this.set('newProject.person', null);
           this.get('newProject.errors').forEach(({ attribute, message }) => {
             let translated_attribute = this.get('i18n').t(`project.${attribute}`)['string']
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });

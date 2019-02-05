@@ -3,13 +3,17 @@ import sortByYear from '../utils/sort-by-year';
 import { computed } from '@ember/object';
 
 export default Component.extend({
-  filtered: computed('activities.@each', function() {
-    return this.get('activities');
+  amountOfActivities: computed('sortedActivities', function() {
+    return this.get('sortedActivities.length');
   }),
 
-  amountOfActivities: computed('activities', function() {
-    return this.get('activities.length');
-  }),
+  sortedActivities: sortByYear('activities'),
 
-  filteredActivities: sortByYear('filtered')
+  actions: {
+    toggleActivityNew(triggerNew) {
+      this.set('activityNew', triggerNew)
+      this.set('sortedActivities', triggerNew ? sortByYear('activities').volatile() : sortByYear('activities'))
+      this.notifyPropertyChange('amountOfActivities');
+    }
+  }
 });
