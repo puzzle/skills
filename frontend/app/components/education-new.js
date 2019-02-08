@@ -20,7 +20,7 @@ export default Component.extend(EKMixin, {
     if (this.get('newEducation.isNew')) {
       this.get('newEducation').destroyRecord();
     }
-    this.done();
+    this.done(false);
   }),
 
   willDestroyElement() {
@@ -29,15 +29,29 @@ export default Component.extend(EKMixin, {
     }
   },
 
+  setInitialState(context) {
+    context.set('newEducation', context.get('store').createRecord('education'))
+    context.sendAction('done', true);
+  },
+
   actions: {
-    submit(newEducation, event) {
+    abortNew(event) {
+      event.preventDefault();
+      this.sendAction('done', false);
+    },
+
+    submit(newEducation, initNew, event) {
       event.preventDefault();
       let person = this.get('store').peekRecord('person', this.get('personId'));
       newEducation.set('person', person);
       return newEducation.save()
-        .then(education => this.sendAction('done'))
+        .then(education => {
+          this.sendAction('done', false);
+          if (initNew) this.sendAction('setInitialState', this);
+        })
         .then(() => this.get('notify').success('Ausbildung wurde hinzugefügt!'))
         .catch(() => {
+          this.set('newEducation.person', null);
           this.get('newEducation.errors').forEach(({ attribute, message }) => {
             let translated_attribute = this.get('i18n').t(`education.${attribute}`)['string']
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });

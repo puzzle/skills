@@ -4,9 +4,17 @@ import { computed } from '@ember/object';
 
 
 export default Component.extend({
-  amountOfEducations: computed('educations', function() {
-    return this.get('educations.length')
+  amountOfEducations: computed('sortedEducations', function() {
+    return this.get('sortedEducations.length')
   }),
 
   sortedEducations: sortByYear('educations'),
+
+  actions: {
+    toggleEducationNew(triggerNew) {
+      this.set('educationNew', triggerNew)
+      this.set('sortedEducations', triggerNew ? sortByYear('educations').volatile() : sortByYear('educations'))
+      this.notifyPropertyChange('amountOfEducations');
+    }
+  }
 });

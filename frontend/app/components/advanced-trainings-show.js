@@ -3,13 +3,18 @@ import sortByYear from '../utils/sort-by-year';
 import { computed } from '@ember/object';
 
 export default Component.extend({
-  filtered: computed('advanced-trainings.@each', function() {
-    return this.get('advanced-trainings');
+  amountOfAdvancedTrainings: computed('sortedAdvancedTrainings', function() {
+    return this.get('sortedAdvancedTrainings.length');
   }),
 
-  amountOfAdvancedTrainings: computed('advanced-trainings', function() {
-    return this.get('advanced-trainings.length');
-  }),
+  sortedAdvancedTrainings: sortByYear('advanced-trainings'),
 
-  filteredAdvancedTrainings: sortByYear('filtered'),
+  actions: {
+    toggleAdvancedTrainingNew(triggerNew) {
+      this.set('advanced-trainingNew', triggerNew)
+      const sortedTrainings = sortByYear('advanced-trainings')
+      this.set('sortedAdvancedTrainings', triggerNew ? sortedTrainings.volatile() : sortedTrainings)
+      this.notifyPropertyChange('amountOfAdvancedTrainings');
+    }
+  }
 });

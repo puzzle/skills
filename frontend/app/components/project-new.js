@@ -9,18 +9,6 @@ export default Component.extend(EKMixin, {
   store: service(),
   i18n: service(),
 
-  init() {
-    this._super(...arguments);
-    this.options = ['Advanced Routing', 'Angular'
-      , 'BIND', 'C#', 'C', 'C++', 'CSS', 'CentOS', 'DHCP', 'Debian', 'DelayedJob Sidekiq', 'Docker'
-      , 'EJB CDI', 'Fedora', 'GIT', 'HTML', 'Hybrid Mobile Apps', 'IPv6', 'JMS', 'JPA Hibernate'
-      , 'JQuery', 'JUnit', 'Java SE', 'Java EE', 'Java', 'JavaScript/ECMAScript', 'Javascript', 'Jenkins', 'Linux'
-      , 'Message Queues', 'Minitest', 'Mocha', 'Mockito', 'Network Appliances', 'NoSql', 'Openshift'
-      , 'Passenger', 'Perl', 'Puma', 'Python', 'Qunit', 'R', 'REST', 'Red Hat', 'Relationale DBs', 'Resque'
-      , 'Rspec', 'Ruby on Rails', 'Ruby', 'SASS', 'SQL', 'SUSE', 'Servlets', 'Shell Scripting', 'Sonar'
-      , 'Stored Procedures', 'Travis', 'UML', 'Ubuntu', 'VLANs', 'WebSockets', 'WildFly / JBoss EAP'];
-  },
-
   newProject: computed('personId', function() {
     let project = this.get('store').createRecord('project');
     let technology = this.get('store').createRecord('project-technology', { project });
@@ -42,7 +30,7 @@ export default Component.extend(EKMixin, {
     if (this.get('newProject.isNew')) {
       this.get('newProject').destroyRecord();
     }
-    this.done();
+    this.done(false);
   }),
 
   suggestion(term) {
@@ -57,8 +45,18 @@ export default Component.extend(EKMixin, {
     return !blurredEl.classList.contains('ember-power-select-search-input');
   },
 
+  setInitialState(context) {
+    context.set('newProject', context.get('store').createRecord('project'));
+    context.sendAction('done', true)
+  },
+
   actions: {
-    submit(newProject, event) {
+    abortNew(event) {
+      event.preventDefault();
+      this.sendAction('done', false);
+    },
+
+    submit(newProject, initNew, event) {
       event.preventDefault();
       let person = this.get('store').peekRecord('person', this.get('personId'));
       newProject.set('person', person);
@@ -70,9 +68,13 @@ export default Component.extend(EKMixin, {
               .map(projectTechnology => projectTechnology.save())
           ])
         )
-        .then(project => this.sendAction('done'))
+        .then(project => {
+          this.sendAction('done', false);
+          if (initNew) this.sendAction('setInitialState', this);
+        })
         .then(() => this.get('notify').success('Projekt wurde hinzugefügt!'))
         .catch(() => {
+          this.set('newProject.person', null);
           this.get('newProject.errors').forEach(({ attribute, message }) => {
             let translated_attribute = this.get('i18n').t(`project.${attribute}`)['string']
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });

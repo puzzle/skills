@@ -42,6 +42,15 @@ module('Integration | Component | daterange-edit', function(hooks) {
 
   test('it renders daterange-edit without data', async function(assert) {
     this.set('project', {
+      start_at: new Date(1970, 0, 0),
+      finish_at: new Date(1970, 0, 0),
+      setFinishAt(year, month, day) {
+        this.finish_at.setFullYear(null, 11, 13)
+      },
+      setStartAt(year, month, day) {
+        this.start_at.setFullYear(null, 0, 13)
+      },
+
       isNew: true
     });
 
@@ -50,8 +59,8 @@ module('Integration | Component | daterange-edit', function(hooks) {
     let months = this.$(".ember-power-select-selected-item");
     let years = this.$("input[type=number]")
 
-    assert.equal(months[0], undefined);
-    assert.equal(months[1], undefined);
+    assert.equal(months[0].innerText, "-");
+    assert.equal(months[1].innerText, "-");
     assert.equal(years[0].value, "");
     assert.equal(years[1].value, "");
   });

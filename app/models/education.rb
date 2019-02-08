@@ -22,6 +22,7 @@ class Education < ApplicationRecord
 
   validates :start_at, :person_id, :title, :location, presence: true
   validates :location, :title, length: { maximum: 500 }
+  validate :daterange_year_length
   validate :start_at_before_finish_at
 
   scope :list, -> { sort(&by_daterange) }
