@@ -82,7 +82,6 @@
   "dependencies": {
     "@babel/core": "^7.0.0-beta.42",
     "bootstrap": "^4.1.1",
-    "dotenv": "^6.2.0",
     "ember-cli-update": "^0.27.1",
     "global": "^4.3.2",
     "jquery": "^3.3.1",
