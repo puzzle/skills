@@ -5,8 +5,6 @@ import { pluralize } from 'ember-inflector'
 
 export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   namespace: 'api',
-  //authorizer: 'authorizer:auth',
-  //coalesceFindRequests: true,
 
   authorize(xhr) {
     let api_token = this.get('session.data.authenticated.token');
