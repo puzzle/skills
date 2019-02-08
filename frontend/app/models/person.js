@@ -24,7 +24,7 @@ const Person = DS.Model.extend({
   expertiseTopicSkillValues: DS.hasMany('expertise-topic-skill-value'),
   languageSkills: DS.hasMany('language-skill'),
 
-  toString: computed('name', function() {
+  instanceToString: computed('name', function() {
     return this.get('name');
   })
 });

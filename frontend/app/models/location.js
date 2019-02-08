@@ -5,7 +5,7 @@ export default DS.Model.extend({
   location: DS.attr('string'),
   company: DS.belongsTo('company'),
 
-  toString: computed('location', function() {
+  instanceToString: computed('location', function() {
     return this.get('location');
   })
 });

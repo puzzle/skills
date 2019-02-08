@@ -6,7 +6,7 @@ export default DS.Model.extend({
   offer: DS.attr('array'),
   company: DS.belongsTo('company'),
 
-  toString: computed('category', function() {
+  instanceToString: computed('category', function() {
     return this.get('category');
   })
 });

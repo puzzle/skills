@@ -18,7 +18,7 @@ export default Component.extend({
     delete(entry, transitionTo) {
       const message = this.get('i18n')
         .t('delete-confirmation.success',
-          { name: entry.get('toString') })['string']
+          { name: entry.get('instanceToString') })['string']
 
       entry.destroyRecord().then(() => {
         this.set('showConfirmation', false);

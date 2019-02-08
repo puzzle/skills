@@ -22,7 +22,7 @@ export default DS.Model.extend({
   people: DS.hasMany('person'),
   offers: DS.hasMany('offer'),
 
-  toString: computed('name', function() {
+  instanceToString: computed('name', function() {
     return this.get('name');
   })
 });
