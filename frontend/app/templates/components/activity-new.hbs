@@ -6,13 +6,13 @@
           {{daterange-edit entity=newActivity}}
         </div>
       </div>
-      <div class="col-sm-7 row">
+      <div class="col-sm-6 content-input">
         <label for="{{concat elementId '-new-role'}}">Rolle</label>
         {{input value=newActivity.role class="centered-content-input form-control"}}
         <label class="mt-2" for="{{concat elementId '-new-desc'}}">Firmenangaben und Beschreibung der Tätigkeit</label>
         {{textarea value=newActivity.description class="input-xxlarge form-control"}}
       </div>
-      <div class="col-md-2 centered-content d-flex flex-column mt-4 px-4">
+      <div class="col-md-3 centered-content d-flex flex-column mt-4 px-5">
         <button onclick={{action 'submit' newActivity false}} role="button" id="submit-button" class="btn btn-primary m-2">Speichern</button>
         <button onclick={{action 'submit' newActivity true}} role="button" class="btn btn-info border m-2">Speichern & Neu</button>
         <a href="#" onclick={{action 'abortNew'}} role="button" id="submit-button" class="abort-edit-buttons text-center mx-4">Abbrechen</a>

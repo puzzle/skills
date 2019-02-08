@@ -30,6 +30,7 @@ class Project < ApplicationRecord
   validates :description, :technology, :role, length: { maximum: 5000 }
   validates :title, length: { maximum: 500 }
   validate :start_at_before_finish_at
+  validate :daterange_year_length
 
   scope :list, -> { sort(&by_daterange) }
 

@@ -25,6 +25,7 @@ class Activity < ApplicationRecord
   validates :start_at, :person_id, :role, presence: true
   validates :description, length: { maximum: 5000 }
   validates :role, length: { maximum: 500 }
+  validate :daterange_year_length
   validate :start_at_before_finish_at
 
   scope :list, -> { sort(&by_daterange) }

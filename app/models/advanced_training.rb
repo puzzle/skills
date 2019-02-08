@@ -24,6 +24,7 @@ class AdvancedTraining < ApplicationRecord
   validates :start_at, :person_id, :description, presence: true
   validates :description, length: { maximum: 5000 }
   validate :start_at_before_finish_at
+  validate :daterange_year_length
 
   scope :list, -> { sort(&by_daterange) }
 
