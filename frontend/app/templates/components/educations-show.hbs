@@ -1,7 +1,7 @@
 <div id="educationsHeader" class="card-header bg-info" data-toggle="collapse" data-parent="#accordion" href="#collapseEducation" >
   <div class="row">
     <div class="col-sm-6">
-      <a class="card-link text-dark header-text">Ausbildung ({{amountOfEducations}})</a>
+      <a class="card-link text-dark header-text" id='amount-of-educations'>Ausbildung ({{amountOfEducations}})</a>
     </div>
     <div class="col-sm-6 text-right d-block">
       <a class="card-link text-dark" data-toggle="collapse" data-parent="#accordion" href="#collapseEducation"><i class="fa angle"></i></a>
@@ -29,7 +29,7 @@
               {{/if}}
             </div>
             <div class="col-sm-9">
-              <strong>{{education.title}}</strong>
+              <strong class='education-entity'>{{education.title}}</strong>
               <br>{{education.location}}
             </div>
           </div>
@@ -39,7 +39,10 @@
     {{#if sortedEducations}}
       {{#unless educationNew}}
         <div>
-          <a onclick={{educationsEditing}} role="button" class="edit-buttons"><i class="fa fa-pencil"></i> Bearbeiten</a>
+          <a onclick={{educationsEditing}} role="button" class="edit-buttons" id='edit-education-button'>
+            <i class="fa fa-pencil"></i>
+            Bearbeiten
+          </a>
         </div>
       {{/unless}}
     {{/if}}
