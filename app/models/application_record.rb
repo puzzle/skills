@@ -9,7 +9,7 @@ class ApplicationRecord < ActiveRecord::Base
   end
 
   def daterange_year_length
-    msg = 'enthält ein zu kurzes Jahr (4 Ziffern)'
+    msg = 'muss ein Jahr mit 4 Ziffern enthalten'
     { start_at: start_at, finish_at: finish_at }.each do |key, value|
       next if value.nil?
       errors.add(key, msg) unless value.year.to_i.between?(1000, 9999)
