@@ -44,15 +44,29 @@ export default create({
 
   competences: {
     toggleForm: clickable('[data-test-company-edit-form-toggle]'),
+    submit: clickable('#submit-button'),
 
     list: collection({
-      itemScope: '.old-competence-list-entity',
+      itemScope: '.competence-entity',
+      item: {
+        text: text(),
+      },
+    }),
+  },
+
+  educations: {
+    amountOf: text('#amount-of-educations'),
+    toggleForm: clickable('#edit-education-button'),
+
+    list: collection({
+      itemScope: '.education-entity',
       item: {
         text: text(),
       },
     }),
 
-    textarea: fillable('.competences-edit-input'),
-    submit: clickable('#submit-button'),
+    submit: clickable('#submit-education-button'),
+    delete: clickable('#deleteButton'),
+    confirm: clickable('#delete-button'),
   },
 });

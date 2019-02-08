@@ -1,4 +1,4 @@
-import { test, skip } from 'qunit';
+import { test } from 'qunit';
 import moduleForAcceptance from 'frontend/tests/helpers/module-for-acceptance';
 import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
 import applicationPage from 'frontend/tests/pages/application';
@@ -101,26 +101,26 @@ test('/people/:id abort with escape', async function(assert) {
   assert.equal($('#competence-show-header').attr('class'), "card-header bg-info");
 });
 
-skip('/people/:id edit person competences', async function(assert) {
-  assert.expect(4);
+test('/people/:id edit person competences', async function(assert) {
+  assert.expect(6);
 
   await applicationPage.visitHome('/');
   await selectChoose('#people-search', '.ember-power-select-option', 0);
 
   await page.competences.toggleForm();
-  await page.competences.textarea(
-    '\n' +
+  await fillIn(
+    'textarea',
     'Competence 1\n' +
     '\n' +
     'Competence 2\n' +
-    'Competence 3\n' +
-    '\n' +
-    '\n'
+    'Competence 3\n'
   );
   await page.competences.submit();
 
-  assert.equal(page.competences.list().count, 3);
+  assert.equal(page.competences.list().count, 5);
   assert.equal(page.competences.list(0).text, 'Competence 1');
-  assert.equal(page.competences.list(1).text, 'Competence 2');
-  assert.equal(page.competences.list(2).text, 'Competence 3');
+  assert.equal(page.competences.list(1).text, '');
+  assert.equal(page.competences.list(2).text, 'Competence 2');
+  assert.equal(page.competences.list(3).text, 'Competence 3');
+  assert.equal(page.competences.list(4).text, '');
 });
