@@ -8,9 +8,20 @@ export default Component.extend({
   selected: '',
   router: service(),
 
+  init() {
+    this._super(...arguments);
+    const currentId = this.get('router.currentState.routerJsState.params.person.person_id');
+    if (currentId) this.set('selected', this.get('store').find('person', currentId))
+  },
+
   peopleToSelect: computed(function() {
-    let people = this.get('store').findAll('person');
-    return people;
+    return this.get('store').findAll('person', { reload: true })
+      .then(people => people.toArray().sort((a, b) => {
+        if (a.get('name') < b.get('name')) return -1;
+        if (a.get('name') > b.get('name')) return 1;
+        return 0;
+      })
+      )
   }),
 
   focusComesFromOutside(e) {
