@@ -11,53 +11,56 @@
       </span>
     </div>
   </div>
-  <div id="accordion">
-    {{!Personalien Tab}}
-    <div class="card mb-3">
-      {{component (if personEditing 'person-edit' 'person-show' )
-                  person=model
-                  submit=(action (toggle 'personEditing' this))
-                  personEditing=(action (toggle 'personEditing' this))
-      }}
-    </div>
-    {{!Kompetenzen Tab}}
-    <div class="card mb-3">
-      {{component (if competencesEditing 'competences-edit' 'competences-show' )
-                  person=model
-                  submit=(action (toggle 'competencesEditing' this))
-                  competencesEditing=(action (toggle 'competencesEditing' this))
-      }}
-    </div>
-    {{!Ausbildungen Tab}}
-    <div class="card mb-3">
-      {{component (if educationsEditing 'educations-edit' 'educations-show' )
-                  educations=model.educations
-                  person=model
-                  submit=(action (toggle 'educationsEditing' this))
-                  educationsEditing=(action (toggle 'educationsEditing' this))
-      }}
-    </div>
-    {{!Weiterbildungen Tab}}
-    <div class="card mb-3">
-      {{component (if advancedTrainingsEditing 'advanced-trainings-edit' 'advanced-trainings-show' )
-                  advanced-trainings=model.advancedTrainings
-                  person=model
-                  submit=(action (toggle 'advancedTrainingsEditing' this))
-                  advancedTrainingsEditing=(action (toggle 'advancedTrainingsEditing' this))
-      }}
-    </div>
-    {{!Aktivitäten Tab}}
-    <div class="card mb-3">
-      {{component (if activitiesEditing 'activities-edit' 'activities-show' )
-                  activities=model.activities
-                  person=model
-                  submit=(action (toggle 'activitiesEditing' this))
-                  activitiesEditing=(action (toggle 'activitiesEditing' this))
-      }}
-    </div>
-    {{!Projekte Tab}}
-    <div class="card mb-end">
-      {{projects-show projects=model.projects personId=model.id}}
+  {{person-sidebar}}
+  <div class="col-sm-10 float-right position-relative p-0">
+    <div id="accordion">
+      {{!Personalien Tab}}
+      <div class="card mb-3" id="particulars">
+        {{component (if personEditing 'person-edit' 'person-show' )
+                    person=model
+                    submit=(action (toggle 'personEditing' this))
+                    personEditing=(action (toggle 'personEditing' this))
+        }}
+      </div>
+      {{!Kompetenzen Tab}}
+      <div class="card mb-3" id="competences">
+        {{component (if competencesEditing 'competences-edit' 'competences-show' )
+                    person=model
+                    submit=(action (toggle 'competencesEditing' this))
+                    competencesEditing=(action (toggle 'competencesEditing' this))
+        }}
+      </div>
+      {{!Ausbildungen Tab}}
+      <div class="card mb-3" id="educations">
+        {{component (if educationsEditing 'educations-edit' 'educations-show' )
+                    educations=model.educations
+                    person=model
+                    submit=(action (toggle 'educationsEditing' this))
+                    educationsEditing=(action (toggle 'educationsEditing' this))
+        }}
+      </div>
+      {{!Weiterbildungen Tab}}
+      <div class="card mb-3" id="advancedTrainings">
+        {{component (if advancedTrainingsEditing 'advanced-trainings-edit' 'advanced-trainings-show' )
+                    advanced-trainings=model.advancedTrainings
+                    person=model
+                    submit=(action (toggle 'advancedTrainingsEditing' this))
+                    advancedTrainingsEditing=(action (toggle 'advancedTrainingsEditing' this))
+        }}
+      </div>
+      {{!Aktivitäten Tab}}
+      <div class="card mb-3" id="activities">
+        {{component (if activitiesEditing 'activities-edit' 'activities-show' )
+                    activities=model.activities
+                    person=model
+                    submit=(action (toggle 'activitiesEditing' this))
+                    activitiesEditing=(action (toggle 'activitiesEditing' this))
+        }}
+      </div>
+      {{!Projekte Tab}}
+      <div class="card mb-end" id="projects">
+        {{projects-show projects=model.projects personId=model.id}}
+      </div>
     </div>
   </div>
 </div>

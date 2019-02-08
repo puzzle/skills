@@ -1048,3 +1048,32 @@ div.content-input  {
 .updated-at {
   font-size: 12px;
 }
+
+#person-sidebar {
+  margin-top: 41px;
+  float: left;
+  width: 15%;
+}
+
+#person-sidebar li.nav-item {
+  height:60px;
+}
+
+#person-sidebar a.nav-link {
+  height:100%;
+  background-color: #F5F5F5;
+}
+
+#person-sidebar a.nav-link.active {
+  background-color: #3B7BBE !important;
+  color: #fff !important;
+}
+
+#accordion {
+  position: relative;
+  height: auto;
+}
+
+.is-sticky, .sticky-wrapper {
+  height: 0px !important;
+}

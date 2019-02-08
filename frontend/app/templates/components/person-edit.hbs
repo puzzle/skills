@@ -10,64 +10,68 @@
       </div>
       <div id="collapseOne" class="collapse show border border-info rounded-bottom">
         <div class="card-body row">
-          <div class="col-sm-3 d-flex flex-column" id="profile-content-edit">
-            <table class="table-person">
-              <tr>
-                <div>
-                  {{picture-edit picturePath=person.picturePath uploadPath=personPictureUploadPath}}
-                </div>
-              </tr>
-            </table>
-            <div class="mt-auto">
-              <button {{action 'submit' changeset}} role="button" id="submit-button" class="btn btn-primary ">Speichern</button>
-              <button onclick={{action "abortEdit"}} role="button" class="btn abort-button">Abbrechen</button>
+          <div class="col-sm-5 d-flex flex-column justify-content-between">
+            <div class="d-flex">
+              <div class="col-sm-5 d-flex flex-column" id="profile-content-edit">
+                <table class="table-person">
+                  <tr>
+                    <div>
+                      {{picture-edit picturePath=person.picturePath uploadPath=personPictureUploadPath}}
+                    </div>
+                  </tr>
+                </table>
+              </div>
+              <div class="col-sm-7">
+                <table class="table-person">
+                  <tr>
+                    <td>{{f.text-field 'name' label="Name"}}</td>
+                  </tr>
+                  <tr>
+                    <td>{{f.text-field 'title' label="Abschluss"}}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label>Funktion</label>
+                      {{#power-select
+                      triggerId="role"
+                      selected=person.roles.firstObject
+                      options=sortedRoles
+                      searchEnabled=true
+                      searchField="name"
+                      onfocus=(action "handleFocus")
+                      onblur=(action "handleBlur")
+                      onchange=(action "setRole")
+                      onkeydown=(action "setWithTab" 'setRole')
+                      as |role|
+                      }}
+                        {{role.name}}
+                      {{/power-select}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label>Firma/Kategorie</label>
+                      {{#power-select
+                      triggerId="company"
+                      selected=person.company
+                      options=companiesToSelect
+                      onfocus=(action "handleFocus")
+                      onblur=(action "handleBlur")
+                      onchange=(action (mut person.company))
+                      onkeydown=(action "setWithTab" 'setCompany')
+                      as |company|
+                      }}
+                        {{company.name}}
+                      {{/power-select}}
+                    </td>
+                  </tr>
+                </table>
+              </div>
             </div>
-          </div>
-          <div class="col-sm-3">
-            <table class="table-person">
-              <tr>
-                <td>{{f.text-field 'name' label="Name"}}</td>
-              </tr>
-              <tr>
-                <td>{{f.text-field 'title' label="Abschluss"}}</td>
-              </tr>
-              <tr>
-                <td>
-                  <label>Funktion</label>
-                  {{#power-select
-                  triggerId="role"
-                  selected=person.roles.firstObject
-                  options=sortedRoles
-                  searchEnabled=true
-                  searchField="name"
-                  onfocus=(action "handleFocus")
-                  onblur=(action "handleBlur")
-                  onchange=(action "setRole")
-                  onkeydown=(action "setWithTab" 'setRole')
-                  as |role|
-                  }}
-                    {{role.name}}
-                  {{/power-select}}
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label>Firma/Kategorie</label>
-                  {{#power-select
-                    triggerId="company"
-                    selected=person.company
-                    options=companiesToSelect
-                    onfocus=(action "handleFocus")
-                    onblur=(action "handleBlur")
-                    onchange=(action (mut person.company))
-                    onkeydown=(action "setWithTab" 'setCompany')
-                  as |company|
-                  }}
-                    {{company.name}}
-                  {{/power-select}}
-                </td>
-              </tr>
-            </table>
+            <div class="d-flex justify-content-start">
+              <button {{action 'submit' changeset}} role="button" id="submit-button" class="btn btn-primary mr-3">Speichern</button>
+              <button onclick={{action "abortEdit"}} role="button" class="btn abort-button ml-3">Abbrechen</button>
+            </div>
           </div>
           <div class="col-sm-3">
             <table class="table-person">
@@ -86,7 +90,7 @@
               </tr>
               <tr>
                 <td>
-                  <label>Zivilstand</label>
+                  <label> Zivilstand </label>
                   {{#power-select
                   triggerId="maritalStatus"
                   selected=selectedMaritalStatus
@@ -106,22 +110,22 @@
                 <td>
                   <label>Doppelbürger</label>
                   {{input type="checkbox" checked=secondNationality click=(action "switchNationality" value="target.checked")
-                    id="toggle-nationalities-id" class="checkbox"}}
+                  id="toggle-nationalities-id" class="checkbox"}}
                 </td>
               </tr>
               <tr>
                 <td>
                   <label>Erste Nationalität</label>
                   {{#power-select
-                    triggerId="nationality"
-                    options=countries
-                    selected=selectedNationality
-                    onchange=(action "setNationality")
-                    onfocus=(action "handleFocus")
-                    onblur=(action "handleBlur")
-                    onkeydown=(action "setWithTab" 'setNationality')
-                    searchField="1"
-                    as |country|}}
+                  triggerId="nationality"
+                  options=countries
+                  selected=selectedNationality
+                  onchange=(action "setNationality")
+                  onfocus=(action "handleFocus")
+                  onblur=(action "handleBlur")
+                  onkeydown=(action "setWithTab" 'setNationality')
+                  searchField="1"
+                  as |country|}}
                     <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
                   {{/power-select}}
                 </td>
@@ -131,15 +135,15 @@
                   <td>
                     <label>Zweite Nationalität</label>
                     {{#power-select
-                      triggerId="nationality2"
-                      options=countries
-                      selected=selectedNationality2
-                      onchange=(action "setNationality2")
-                      onfocus=(action "handleFocus")
-                      onblur=(action "handleBlur")
-                      onkeydown=(action "setWithTab" 'setNationality2')
-                      searchField="1"
-                      as |country|}}
+                    triggerId="nationality2"
+                    options=countries
+                    selected=selectedNationality2
+                    onchange=(action "setNationality2")
+                    onfocus=(action "handleFocus")
+                    onblur=(action "handleBlur")
+                    onkeydown=(action "setWithTab" 'setNationality2')
+                    searchField="1"
+                    as |country|}}
                       <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
                     {{/power-select}}
                   </td>
@@ -147,7 +151,7 @@
               </tr>
             </table>
           </div>
-          <div class="col-sm-3">
+          <div class="col-sm-4">
             <table>
               <tr>
                 <td>{{!Leere Zeile aus Layout-Gründen}}</td>
