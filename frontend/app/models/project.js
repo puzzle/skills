@@ -12,7 +12,7 @@ export default DaterangeModel.extend({
 
   projectTechnologies: DS.hasMany('project-technology'),
 
-  toString: computed('title', function() {
+  instanceToString: computed('title', function() {
     return this.get('title');
   }),
 

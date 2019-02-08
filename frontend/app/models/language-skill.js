@@ -7,7 +7,7 @@ export default DS.Model.extend({
 
   person: DS.belongsTo('person'),
 
-  toString: computed('language', function() {
+  instanceToString: computed('language', function() {
     return this.get('language');
   })
 });

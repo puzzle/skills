@@ -17,7 +17,7 @@ test('renders delete confirmation dialog with confirm message', function(assert)
     phoneContactPerson: '987654321',
     crm: 'crm123',
     level: 'X',
-    toString: 'Firma1'
+    instanceToString: 'Firma1'
   });
 
   this.render(hbs`{{delete-with-confirmation entry=company}}`);

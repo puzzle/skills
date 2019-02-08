@@ -10,7 +10,7 @@
           <h5 class="modal-title">Löschen bestätigen</h5>
         </div>
         <div class="modal-body">
-          {{t "delete-confirmation.message" name=entry.toString}}
+          {{t "delete-confirmation.message" name=entry.instanceToString}}
         </div>
         <div class="modal-footer">
           <button id="cancel-button" class="btn btn-secondary" {{action "cancel"}}>Abbrechen</button>

@@ -7,7 +7,7 @@ export default DaterangeModel.extend({
   location: DS.attr('string'),
   person: DS.belongsTo('person'),
 
-  toString: computed('title', function() {
+  instanceToString: computed('title', function() {
     return this.get('title');
   })
 });
