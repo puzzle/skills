@@ -102,7 +102,7 @@ describe PeopleController do
 
         people = json['data']
 
-        expect(people.count).to eq(2)
+        expect(people.count).to eq(3)
         alice_attrs = people.first['attributes']
         expect(alice_attrs.count).to eq(1)
         expect(alice_attrs.first[1]).to eq('Alice Mante')
@@ -163,16 +163,16 @@ describe PeopleController do
                    }
         relationships = {company: { data: { id: company.id, type: 'companies' }},
                          roles: { data: [{ id: role1.id, type: 'role'}, { id: role2.id, type: 'role'}]}}
-        
+
 
         params = {
           data: {
             type: 'people',
-            attributes: person, 
+            attributes: person,
             relationships: relationships
           }
         }
-        process :create, method: :post, params: params 
+        process :create, method: :post, params: params
 
         new_person = Person.find_by(name: 'test')
         expect(new_person).not_to eq(nil)

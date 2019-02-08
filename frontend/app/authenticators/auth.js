@@ -24,8 +24,10 @@ export default Base.extend({
       }
     }).then(response => {
       return {
+        user_id: response.user_id,
+        ldap_uid: response.ldap_uid,
         token: response.api_token,
-        ldap_uid: response.ldap_uid
+        full_name: response.full_name
       }
     }, (xhr, status, error) => {
       throw xhr.payload

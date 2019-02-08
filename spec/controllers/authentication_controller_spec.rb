@@ -32,6 +32,7 @@ describe AuthenticationController do
                             last_failed_login_attempt_at: Time.current)
 
       allow(LdapTools).to receive(:exists?).and_return(true)
+      allow(LdapTools).to receive(:find_user).and_return({})
 
       process :sign_in, method: :post, params: { username: 'kanderson', password: 'test' }
 
@@ -47,6 +48,7 @@ describe AuthenticationController do
                             last_failed_login_attempt_at: Time.current - 30.seconds)
 
       allow(LdapTools).to receive(:exists?).and_return(ken.ldap_uid)
+      allow(LdapTools).to receive(:find_user).and_return({:cn=>["Peter"]})
       allow(LdapTools).to receive(:authenticate).and_return(true)
 
       process :sign_in, method: :post, params: { username: 'kanderson', password: 'test' }
@@ -64,6 +66,7 @@ describe AuthenticationController do
 
     it 'creates new user if uid does not exist' do
       allow(LdapTools).to receive(:exists?).and_return(true)
+      allow(LdapTools).to receive(:find_user).and_return({:cn=>["Peter"]})
       allow(LdapTools).to receive(:authenticate).and_return(true)
 
       process :sign_in, method: :post, params: { username: 'newUser', password: 'test' }
@@ -74,6 +77,7 @@ describe AuthenticationController do
     it 'updates failed login attempts on invalid login' do
       ken = users(:ken)
       allow(LdapTools).to receive(:exists?).and_return(true)
+      allow(LdapTools).to receive(:find_user).and_return({})
       allow(LdapTools).to receive(:authenticate).and_return(false)
 
       process :sign_in, method: :post, params: { username: 'kanderson', password: 'test' }
@@ -86,6 +90,7 @@ describe AuthenticationController do
 
     it 'does not return api_token on invalid login' do
       allow(LdapTools).to receive(:exists?).and_return(true)
+      allow(LdapTools).to receive(:find_user).and_return({})
       allow(LdapTools).to receive(:authenticate).and_return(false)
 
       process :sign_in, method: :post, params: { username: 'kanderson', password: 'test' }

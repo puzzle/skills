@@ -3,17 +3,20 @@ import { test } from 'qunit';
 import moduleForAcceptance from 'frontend/tests/helpers/module-for-acceptance';
 
 import page from 'frontend/tests/pages/login';
+import personPage from 'frontend/tests/pages/person-edit';
 
 moduleForAcceptance('Acceptance | login');
 
-test('login with valid credentials works', async function(assert) {
+test('login with valid credentials works and redirects to profile', async function(assert) {
   await page.visit();
 
   // Need data to an actual valid user in fixtures..
   // As I see it, login only works through ldap for now..
   await page.login('ken', 'password');
 
-  assert.equal(currentURL(), '/people');
+
+  assert.equal(personPage.profileData.name, "ken")
+  assert.ok(/\/people\/\d+$/.test(currentURL()));
 });
 
 test('login with invalid credentials rejects', async function(assert) {

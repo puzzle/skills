@@ -43,3 +43,14 @@ alice:
   title: MSc in writing
   competences: LaTex\n Puppet\n Bash
   company: partner
+
+ken:
+  birthdate: 1995-08-26 03:15:11
+  location: Hinterfüdligen
+  marital_status: <%= Person.marital_statuses[:married] %>
+  name: ken
+  nationality: AU
+  roles: [system-engineer]
+  title: MA in sending silly memes
+  competences: LaTex\n Puppet\n Bash
+  company: partner
