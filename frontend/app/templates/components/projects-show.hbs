@@ -27,7 +27,7 @@
           {{component (if projectNew 'project-new') personId=personId done=(action 'toggleProjectNew')}}
           {{#each sortedProjects as |project|}}
             {{#if (eq projectEditing project)}}
-              {{project-edit project=projectEditing done=(action (toggle 'projectEditing' this))}}
+              {{project-edit project=projectEditing done=(action 'toggleProjectEditing')}}
             {{else}}
               {{project-show selectProject = (if (or projectEditing projectNew) null (action (mut projectEditing))) project=project}}
             {{/if}}

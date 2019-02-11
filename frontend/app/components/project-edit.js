@@ -17,7 +17,6 @@ export default Component.extend(EKMixin, {
       let technology = this.get('store').createRecord('project-technology', { project });
       technology.set('offer', []);
     }
-
   },
 
   suggestion(term) {
@@ -67,6 +66,14 @@ export default Component.extend(EKMixin, {
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
           });
         });
+    },
+
+    abortEdit() {
+      let project = this.get('project')
+      if (project.get('hasDirtyAttributes')) {
+        project.rollbackAttributes();
+      }
+      this.done();
     },
 
     handleFocus(select, e) {

@@ -4,14 +4,15 @@ import { computed, observer } from '@ember/object';
 
 
 export default Component.extend({
-  sortedProjects: sortByYear('projects'),
+  sortedProjects: sortByYear('projects').volatile(),
 
   amountOfProjects: computed('sortedProjects', function() {
     return this.get('sortedProjects.length');
   }),
 
-  projectsChanged: observer('sortedProjects', function() {
+  projectsChanged: observer('projects.@each', function() {
     if (this.get('projectEditing.isDeleted')) this.set('projectEditing', null)
+    this.notifyPropertyChange('sortedProjects');
   }),
 
   actions: {
@@ -19,6 +20,11 @@ export default Component.extend({
       this.set('projectNew', triggerNew)
       this.set('sortedProjects', triggerNew ? sortByYear('projects').volatile() : sortByYear('projects'))
       this.notifyPropertyChange('amountOfProjects');
+    },
+
+    toggleProjectEditing() {
+      this.notifyPropertyChange('sortedProjects');
+      this.set('projectEditing', null);
     }
   }
 });
