@@ -11,7 +11,7 @@ export default Component.extend({
   }),
 
   projectsChanged: observer('sortedProjects', function() {
-    this.set('projectEditing', null)
+    if (this.get('projectEditing.isDeleted')) this.set('projectEditing', null)
   }),
 
   actions: {
