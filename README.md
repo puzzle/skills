@@ -2,11 +2,11 @@
 
 [![Build Status](https://travis-ci.org/puzzle/skills.svg)](https://travis-ci.org/puzzle/skills)
 
-PuzzleSkills ist eine Open Source Webapplikation für das Skill-Management. User können mit PuzzleSkills ihre CVs verwalten. Darauf aufbauend wird PuzzleSkills um praktische Features rund um das Thema Skill-Management erweitert.
+PuzzleSkills is a open source webapplication for skill management. Users can manage their profiles and CVs with PuzzleSkills. We are working on additional skill management features.
 
 ## Back-End
 
-Das Back-End ist umgesetzt mit Ruby on Rails mit einer API Schnittstelle.
+The Back-End is built with Ruby on Rails with an API interface.
 
 ### Prerequisites
 
@@ -92,6 +92,6 @@ Exact documentation for these methods can be found [here](https://guides.rubyonr
 
 ## Front-End
 
-Das Front-End ist umgesetzt mit EmberJS.
+The Front-End is built with EmberJS.
 
-see frontend/README.md
+See frontend/README.md
