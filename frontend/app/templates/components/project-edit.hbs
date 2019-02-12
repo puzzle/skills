@@ -6,9 +6,11 @@
           <div class="col-sm-12">
             <a class="card-link text-dark">Projekt bearbeiten</a>
             <div class="pull-right">
-              {{delete-with-confirmation
+              {{#delete-with-confirmation
                 entry=project
               }}
+                Löschen
+              {{/delete-with-confirmation}}
             </div>
           </div>
         </div>
