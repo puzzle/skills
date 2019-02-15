@@ -1,3 +1,7 @@
+<a {{action "openConfirmation"}} id="deleteButton" class="card-link deleteField" role="button">
+  <i class="fa trash"></i> {{yield}}
+</a>
+
 {{#if showConfirmation}}
   <div id="delete-confirmation-modal" class="modal fade show text-left" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -17,7 +21,3 @@
   </div>
   <div id="modal-backdrop" class="modal-backdrop-transparent modal-transition modal-backdrop-blue"></div>
 {{/if}}
-{{!-- {{else}} --}}
-<a {{action "openConfirmation"}} id="deleteButton" class="card-link deleteField" role="button">
-  <i class="fa trash"></i> {{yield}}
-</a>
