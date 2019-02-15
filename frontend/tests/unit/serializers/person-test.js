@@ -9,6 +9,9 @@ moduleForModel('person', 'Unit | Serializer | person', {
     'model:project',
     'model:expertise-topic-skill-value',
     'model:company',
+    'model:role',
+    'model:skill',
+    'model:language-skill',
     'serializer:person',
   ]
 });

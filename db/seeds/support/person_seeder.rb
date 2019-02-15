@@ -99,6 +99,7 @@ class PersonSeeder
       p.updated_by = 'seed_user'
       p.name = name.to_s
       p.nationality = 'CH'
+      p.skills = seed_skills
       p.title = Faker::Job.title
       p.company_id = rand(1..4)
       competences = ""
@@ -106,6 +107,15 @@ class PersonSeeder
       p.competences = competences
       p.email = Faker::Internet.email
       p.department = 'sys'
+    end
+  end
+
+  def seed_skills
+    Skill.seed do |s|
+      s.title = Faker::ProgrammingLanguage.unique.name
+      s.radar = rand(0..3)
+      s.portfolio = rand(0..2)
+      s.default_set = rand(1..3) > 1
     end
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_18_072905) do
+ActiveRecord::Schema.define(version: 2019_02_12_145742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -156,6 +156,13 @@ ActiveRecord::Schema.define(version: 2019_01_18_072905) do
     t.index ["role_id"], name: "index_people_roles_on_role_id"
   end
 
+  create_table "people_skills", force: :cascade do |t|
+    t.bigint "person_id"
+    t.bigint "skill_id"
+    t.index ["person_id"], name: "index_people_skills_on_person_id"
+    t.index ["skill_id"], name: "index_people_skills_on_skill_id"
+  end
+
   create_table "person_competences", force: :cascade do |t|
     t.string "category"
     t.text "offer", default: [], array: true
@@ -189,6 +196,15 @@ ActiveRecord::Schema.define(version: 2019_01_18_072905) do
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string "title"
+    t.integer "radar"
+    t.integer "portfolio"
+    t.boolean "default_set"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

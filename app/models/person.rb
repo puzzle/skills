@@ -35,6 +35,7 @@ class Person < ApplicationRecord
   has_many :expertise_topic_skill_values, dependent: :destroy
   has_many :expertise_topics, through: :expertise_topic_skill_values
   has_and_belongs_to_many :roles
+  has_and_belongs_to_many :skills
   has_many :language_skills, dependent: :delete_all
   has_many :people_roles, dependent: :destroy
 
