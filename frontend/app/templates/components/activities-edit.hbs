@@ -24,9 +24,11 @@
                 {{textarea id=(concat elementId '-' activity.id '-desc') value=activity.description class="input-xxlarge form-control"}}
               </div>
               <div onclick={{action 'notify'}} role="button">
-                {{delete-with-confirmation
+                {{#delete-with-confirmation
                   entry=activity
                 }}
+                  Löschen
+                {{/delete-with-confirmation}}
               </div>
             </div>
           </div>

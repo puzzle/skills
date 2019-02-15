@@ -31,9 +31,11 @@
             {{offer}}
           {{/power-select-multiple-with-create}}
         </div>
-        {{delete-with-confirmation
+        {{#delete-with-confirmation
           entry=offer
         }}
+          Löschen
+        {{/delete-with-confirmation}}
       </div>
     {{/each}}
     <a role="button" class="card-link text-dark" {{action 'createNewOffer' company}}><i class="fa add"></i></a>

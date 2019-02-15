@@ -754,10 +754,6 @@ form textarea{
   right: 12px;
 }
 
-.trash:hover {
-  color: green;
-}
-
 .no-hover:hover i {
   color: white !important;
 }
@@ -984,7 +980,7 @@ div.content-input  {
    border:1px solid #b5b5b5;
 }
 
-/* For all the bearbeiten,speichern und abbrechen "buttons" */
+/* For all the bearbeiten,speichern, löschen und abbrechen "buttons" */
 .edit-buttons {
   color: #1E5A96 !important;
 }
@@ -997,6 +993,17 @@ div.content-input  {
   color: green !important;
 }
 
+.delete-buttons {
+  color: #1E5A96 !important;
+}
+
+.delete-buttons:active {
+  outline: none !important;
+}
+
+.delete-buttons:hover {
+  color: red !important;
+}
 .abort-edit-buttons {
   color: #1E5A96 !important;
 }

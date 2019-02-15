@@ -22,9 +22,11 @@
                 {{textarea id=(concat elementId '-' advanced-training.id '-desc') value=advanced-training.description class="input-xxlarge form-control"}}
               </div>
               <div onclick={{action 'notify'}} role="button">
-                {{delete-with-confirmation
+                {{#delete-with-confirmation
                   entry=advanced-training
                 }}
+                  Löschen
+                {{/delete-with-confirmation}}
               </div>
             </div>
           </div>

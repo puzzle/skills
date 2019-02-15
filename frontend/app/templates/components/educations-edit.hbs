@@ -24,9 +24,11 @@
                 {{textarea id=(concat elementId '-' education.id '-loc') value=education.location class="input-xxlarge form-control"}}
               </div>
               <div id="delete-education-icon" onclick={{action 'notify'}} role="button">
-                {{delete-with-confirmation
+                {{#delete-with-confirmation
                   entry=education
                 }}
+                  Löschen
+                {{/delete-with-confirmation}}
               </div>
             </div>
           </div>
