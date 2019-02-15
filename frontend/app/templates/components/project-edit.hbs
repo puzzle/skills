@@ -1,45 +1,43 @@
 {{#with (changeset project validations) as |changeset|}}
-  <form onsubmit={{action 'submit' changeset}} id="form_project">
-    <div class="mb-2" id="project-content-edit">
-      <div class="card-header bg-info">
-        <div class="row">
-          <div class="col-sm-12">
-            <a class="card-link text-dark">Projekt bearbeiten</a>
-            <div class="pull-right">
-              {{#delete-with-confirmation
-                entry=project
-              }}
-                Löschen
-              {{/delete-with-confirmation}}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="collapseProjectNew" class="show border border-info rounded-bottom">
-        <div class="card-body d-flex flex-column">
-          <div class="row mb-2">
-            <div class="col-sm-3">
-              <div class="input-group centered-content-input">
-                {{daterange-edit entity=project}}
-              </div>
-            </div>
-            <div class="col-sm-7">
-              <label for="{{concat elementId '-name'}}">Projekt</label>
-              {{input id=(concat elementId '-name') value=changeset.title class="form-control mb-2"}}
-              <label for="{{concat elementId '-desc'}}">Beschreibung</label>
-              {{textarea id=(concat elementId '-desc') value=changeset.description class="form-control"}}
-              <label for="{{concat elementId '-role'}}">Rolle und Aufgaben</label>
-              {{textarea id=(concat elementId '-role') value=changeset.role class="form-control"}}
-              <label for="{{concat elementId '-tech'}}">Eingesetzte Technologien</label>
-              {{textarea id=(concat elementId '-tech') value=changeset.technology class="form-control"}}
-            </div>
-          </div>
-          <div class="mt-auto">
-            <button onclick={{action 'submit' changeset}} role="button" id="submit-button" class="btn btn-primary">Speichern</button>
-            <button onclick={{action done}} role="button" class="btn abort-button">Abbrechen</button>
+  <div class="mb-2" id="project-content-edit">
+    <div class="card-header bg-info">
+      <div class="row">
+        <div class="col-sm-12">
+          <a class="card-link text-dark">Projekt bearbeiten</a>
+          <div class="pull-right">
+            {{#delete-with-confirmation
+               entry=project
+            }}
+              Löschen
+            {{/delete-with-confirmation}}
           </div>
         </div>
       </div>
     </div>
-  </form>
+    <div id="collapseProjectNew" class="show border border-info rounded-bottom">
+      <div class="card-body d-flex flex-column">
+        <div class="row mb-2">
+          <div class="col-sm-3">
+            <div class="input-group centered-content-input">
+              {{daterange-edit entity=project}}
+            </div>
+          </div>
+          <div class="col-sm-7">
+            <label for="{{concat elementId '-name'}}">Projekt</label>
+            {{input id=(concat elementId '-name') value=changeset.title class="form-control mb-2"}}
+            <label for="{{concat elementId '-desc'}}">Beschreibung</label>
+            {{textarea id=(concat elementId '-desc') value=changeset.description class="form-control"}}
+            <label for="{{concat elementId '-role'}}">Rolle und Aufgaben</label>
+            {{textarea id=(concat elementId '-role') value=changeset.role class="form-control"}}
+            <label for="{{concat elementId '-tech'}}">Eingesetzte Technologien</label>
+            {{textarea id=(concat elementId '-tech') value=changeset.technology class="form-control"}}
+          </div>
+        </div>
+        <div class="mt-auto">
+          <button onclick={{action 'submit' changeset}} role="button" id="submit-button" class="btn btn-primary">Speichern</button>
+          <button onclick={{action 'abortEdit'}} role="button" class="btn abort-button">Abbrechen</button>
+        </div>
+      </div>
+    </div>
+  </div>
 {{/with}}
