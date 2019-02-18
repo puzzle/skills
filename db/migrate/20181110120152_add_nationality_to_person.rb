@@ -11,10 +11,9 @@ class AddNationalityToPerson < ActiveRecord::Migration[5.1]
 
     Person.find_each do |p|
       connection = ActiveRecord::Base.connection
-      nationality = connection.execute "SELECT nationality FROM people WHERE id = #{p.id}"
-      nationality2 = connection.execute "SELECT nationality2 FROM people WHERE id = #{p.id}"
-      origin = nationality.values[0][0].to_s
-      origin += ", " + nationality2.values[0][0].to_s unless nationality2.values[0][0].nil?
+      nationalities = connection.execute "SELECT nationality, nationality2 FROM people WHERE id = #{p.id}"
+      origin = nationalities.values[0][0].to_s
+      origin += ", " + nationalities.values[0][1].to_s unless nationalities.values[0][1].nil?
       connection.execute "UPDATE people SET origin = '#{origin}' WHERE id = #{p.id}"
     end
 
