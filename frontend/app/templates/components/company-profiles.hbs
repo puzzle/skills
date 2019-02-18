@@ -19,17 +19,18 @@
             {{/link-to}}
           </div>
           <div class="col-sm-3">
-            <span class="badge border border-secondary profil-knopf" href="#">{{person.title}}</span>
-          </div>
-          <div class="col-sm-3">
-            <span class="badge border border-secondary profil-knopf" href="#">{{person.role}}</span>
+            <span class="badge border profil-knopf" href="#">{{person.title}}</span>
           </div>
         </div>
       {{/each}}
       <div class="row mb-1">
-        <div class="col-sm-3">
+        <div class="col">
           {{#link-to "people.new"}}
-            <span class="badge badge-success profil-knopf" href="#">Neues Profil</span>
+            <a class="ml-1">
+              <i class="fa fa-plus-square-o" aria-hidden="true">
+              </i>
+              Neues Profil
+            </a>
           {{/link-to}}
         </div>
       </div>

@@ -18,7 +18,7 @@
         </div>
         <div class="col-sm-9">
           {{#each offer.offer as |offer|}}
-            <span class="badge badge-success p-2 mr-2 mb-2 skill" href="#">{{offer}}</span>
+            <span class="badge badge-light p-2 mr-2 mb-2 skill" href="#">{{offer}}</span>
           {{/each}}
           <hr>
         </div>
@@ -29,7 +29,9 @@
         <span class="p-2">Weiteres (Bemerkungen)</span>
       </div>
       <div class="col-sm-9">
-        <textarea readonly="readonly" style="background-color: white" class="form-control" rows="1">{{company.offerComment}}</textarea>
+        <div readonly="readonly" class="form-control bg-white" rows="1">
+          {{company.offerComment}}
+        </div>
       </div>
     </div>
   </div>

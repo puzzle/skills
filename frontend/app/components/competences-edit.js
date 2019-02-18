@@ -4,11 +4,9 @@ import { isBlank } from '@ember/utils';
 import { on } from '@ember/object/evented';
 import { EKMixin , keyUp } from 'ember-keyboard';
 
-
 export default Component.extend(EKMixin, {
   i18n: service(),
   store: service(),
-
 
   init() {
     this._super(...arguments);
@@ -27,10 +25,8 @@ export default Component.extend(EKMixin, {
   },
 
   focusComesFromOutside(e) {
-    let blurredEl = e.relatedTarget;
-    if (isBlank(blurredEl)) {
-      return false;
-    }
+    const blurredEl = e.relatedTarget;
+    if (isBlank(blurredEl)) return false;
     return !blurredEl.classList.contains('ember-power-select-search-input');
   },
 
@@ -39,15 +35,12 @@ export default Component.extend(EKMixin, {
   }),
 
   abortCompetences: on(keyUp('Escape'), function() {
-    let person = this.get('person');
-    if (person.get('hasDirtyAttributes')) {
-      person.rollbackAttributes();
-    }
+    const person = this.get('person')
+    if (person.get('hasDirtyAttributes')) person.rollbackAttributes();
     this.competencesEditing();
   }),
 
   actions: {
-
     submit(person) {
       person.save()
         .then (() =>
@@ -59,7 +52,6 @@ export default Component.extend(EKMixin, {
         )
         .then (() => this.sendAction('submit'))
         .then (() => this.get('notify').success('Successfully saved!'))
-        // TODO
         .catch(() => {
           let competences = this.get('person.personCompetences');
           competences.forEach(competence => {
@@ -78,13 +70,9 @@ export default Component.extend(EKMixin, {
     },
 
     abortEdit() {
-      let competences = this.get('person.personCompetences').toArray();
-      competences.forEach(competence => {
-        if (competence.get('isNew')) {
-          competence.destroyRecord();
-        }
-      });
-      this.sendAction('competencesEditing');
+      const person = this.get('person')
+      if (person.get('hasDirtyAttributes')) person.rollbackAttributes();
+      this.competencesEditing();
     },
 
     handleFocus(select, e) {
@@ -93,8 +81,6 @@ export default Component.extend(EKMixin, {
       }
     },
 
-    handleBlur() {
-    }
-
+    handleBlur() {}
   }
 });

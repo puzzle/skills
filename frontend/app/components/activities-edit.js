@@ -4,19 +4,16 @@ import { inject as service } from '@ember/service';
 import { on } from '@ember/object/evented';
 import { EKMixin , keyUp } from 'ember-keyboard';
 
-
 export default Component.extend(EKMixin, {
-
-
   i18n: service(),
 
   activateKeyboard: on('init', function() {
     this.set('keyboardActivated', true);
-    this.sortedActivities = sortByYear('activities').volatile()
+    this.sortedActivities = sortByYear('activities').volatile();
   }),
 
   abortActivities: on(keyUp('Escape'), function() {
-    this.send('abortEdit')
+    this.send('abortEdit');
   }),
 
   actions: {
@@ -28,6 +25,7 @@ export default Component.extend(EKMixin, {
         }
       }, 500);
     },
+
     submit(person) {
       person.save()
         .then (() =>
@@ -56,6 +54,7 @@ export default Component.extend(EKMixin, {
 
         });
     },
+
     abortEdit() {
       let activities = this.get('person.activities').toArray();
       activities.forEach(activity => {

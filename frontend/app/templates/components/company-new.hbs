@@ -15,14 +15,14 @@
         <div id="collapseOne" class="collapse show border border-primary rounded-bottom">
           <div class="card-body">
             <div class="row">
-              <div class="col-sm-4">
-                <table class="table-uebersicht">
+              <div class="col">
+                <table class="table-company">
                   <tr>
                     <td>{{f.text-field 'name' label="Name"}}</td>
                   </tr>
                   <tr>
                     <td>
-                      <button data-test-add-location class="btn btn-success form-field--control" type="button" {{action 'addLocations' newCompany}}>Neue Adresse</button>
+                      <button data-test-add-location class="btn btn-light form-field--control" type="button" {{action 'addLocations' newCompany}}>Neue Adresse</button>
                     </td>
                   </tr>
                   {{#each newCompany.locations as |location|}}
@@ -48,8 +48,8 @@
                   </tr>
                 </table>
               </div>
-              <div class="col-sm-4">
-                <table class="table-uebersicht">
+              <div class="col">
+                <table class="table-company">
                   <tr>
                     <td>{{f.text-field 'partnermanager' label="PM"}}</td>
                   </tr>
@@ -67,14 +67,14 @@
                   </tr>
                 </table>
               </div>
-              <div class="col-sm-4">
-                <table class="table-uebersicht">
+              <div class="col">
+                <table class="table-company">
                   <tr>
                     <td>{{f.text-field 'level' label="Level"}}</td>
                   </tr>
                   <tr>
                     <td>
-                      <button data-test-add-employee-quantity class="btn btn-success form-field--control" type="button" {{action 'addEmployeeQuantity' newCompany}}>Neue Mitarbeiter-Anzahl</button>
+                      <button data-test-add-employee-quantity class="btn btn-light form-field--control" type="button" {{action 'addEmployeeQuantity' newCompany}}>Neue Mitarbeiter-Anzahl</button>
                     </td>
                   </tr>
                   {{#each newCompany.employeeQuantities as |quantity|}}
