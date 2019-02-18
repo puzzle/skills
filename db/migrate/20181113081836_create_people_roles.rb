@@ -11,7 +11,7 @@ class CreatePeopleRoles < ActiveRecord::Migration[5.2]
       t.belongs_to :role, index: true
     end
 
-    remove_column :people, :role
+    remove_column :people, :role, :string
   end
 
 end
