@@ -8,6 +8,7 @@ class MigrateMaritalStatus < ActiveRecord::Migration[5.2]
     Person.find_each do |person|
       old_value = person.martial_status || 'ledig'
       person.marital_status = MARITAL_MAP[old_value.to_sym]
+      person.marital_status = :single if person.marital_status.nil?
       person.save!
     end
 

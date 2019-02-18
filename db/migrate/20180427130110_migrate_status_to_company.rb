@@ -12,17 +12,18 @@ def up
     partner = Company.create!(name: 'Partner', my_company: false)
 
     Person.find_each do |person|
+      connection = ActiveRecord::Base.connection
       case person.status_id
       when 1
-        person.update!(company: employees)
+        connection.execute "UPDATE people SET company_id = #{employees.id} WHERE id = #{person.id}"
       when 2
-        person.update!(company: ex_employees)
+        connection.execute "UPDATE people SET company_id = #{ex_employees.id} WHERE id = #{person.id}"
       when 3
-        person.update!(company: candidates)
+        connection.execute "UPDATE people SET company_id = #{candidates.id} WHERE id = #{person.id}"
       when 4
-        person.update!(company: partner)
+        connection.execute "UPDATE people SET company_id = #{partner.id} WHERE id = #{person.id}"
       else
-        person.update!(company: nil)
+        connection.execute "UPDATE people SET company_id = null WHERE id = #{person.id}"
       end
     end
 

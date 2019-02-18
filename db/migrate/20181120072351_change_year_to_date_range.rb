@@ -8,7 +8,17 @@ class ChangeYearToDateRange < ActiveRecord::Migration[5.2]
       klazz = table.to_s.classify.constantize
       klazz.reset_column_information
       klazz.find_each do |e|
-        update_start_at_and_finish_at(e)
+        currentSchema = table.to_s
+        currentSchemaSingular = currentSchema[0...-1]
+
+        connection = ActiveRecord::Base.connection
+        if e.year_to == nil || e.year_to == 0 then
+          connection.execute "UPDATE #{currentSchema} SET finish_at = null WHERE #{currentSchema}.id = #{e.id}"
+        else
+          connection.execute "UPDATE #{currentSchema} SET finish_at = '#{e.year_to}-12-13' WHERE #{currentSchema}.id = #{e.id}"
+        end
+
+        connection.execute "UPDATE #{currentSchema} SET start_at = '#{e.year_from}-1-13' WHERE #{currentSchema}.id = #{e.id}"
       end
       remove_column table, :year_to
       remove_column table, :year_from
@@ -31,12 +41,6 @@ class ChangeYearToDateRange < ActiveRecord::Migration[5.2]
   end
 
   private
-
-  def update_start_at_and_finish_at(entry)
-    entry.finish_at = Date.new(entry.year_to, 12, 13)
-    entry.start_at = Date.new(entry.year_from, 1, 13)
-    entry.save!
-  end
 
   def revert_year_from(entry)
     entry.year_to = entry.finish_at.year
