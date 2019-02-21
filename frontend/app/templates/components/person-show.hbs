@@ -86,7 +86,9 @@
                   <td id="data-test-person-role">
                     {{peopleRole.role.name}}
                     {{peopleRole.level}}
-                    {{peopleRole.percent}}%
+                    {{#if peopleRole.percent}}
+                      {{peopleRole.percent}}%
+                    {{/if}}
                   </td>
                 </tr>
               {{/each}}

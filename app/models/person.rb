@@ -39,8 +39,7 @@ class Person < ApplicationRecord
   has_many :people_roles, dependent: :destroy
 
   validates :birthdate, :location, :name, :nationality,
-            :title, :marital_status,
-            :email, :department, presence: true
+            :title, :marital_status, presence: true
   validates :location, :name, :title,
             :email, :department, length: { maximum: 100 }
 

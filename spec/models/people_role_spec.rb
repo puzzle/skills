@@ -23,8 +23,6 @@ describe PeopleRole do
       expect(people_role.errors[:role].first).to eq('muss ausgefüllt werden')
       expect(people_role.errors[:person_id].first).to eq('muss ausgefüllt werden')
       expect(people_role.errors[:role_id].first).to eq('muss ausgefüllt werden')
-      expect(people_role.errors[:level].first).to eq('muss ausgefüllt werden')
-      expect(people_role.errors[:percent].first).to eq('muss ausgefüllt werden')
     end
     
     it 'percent must be a number between 0 and 200' do

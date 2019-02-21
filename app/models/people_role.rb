@@ -13,7 +13,7 @@ class PeopleRole < ApplicationRecord
   belongs_to :person
   belongs_to :role
 
-  validates :person_id, :role_id, :level, presence: true
+  validates :person_id, :role_id, presence: true
 
   validate :percent_must_be_a_number
 
@@ -22,8 +22,7 @@ class PeopleRole < ApplicationRecord
   private
 
   def percent_must_be_a_number
-    return errors.add(:percent, 'muss ausgefüllt werden') if percent.nil?
-    return if percent.between?(0, 200) 
+    return if percent.nil? || percent.between?(0, 200)
     errors.add(:percent, 'muss zwischen 0 und 200 sein')
   end
 end
