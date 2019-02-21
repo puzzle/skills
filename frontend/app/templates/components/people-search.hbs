@@ -1,6 +1,6 @@
 {{#power-select
   triggerId="people-search"
-  selected=selected
+  selected=selectedPerson
   options=peopleToSelect
   searchEnabled=true
   searchField="name"
@@ -10,5 +10,7 @@
   onchange=(action 'changePerson')
 as |person|
 }}
-  {{person.name}} <small>({{person.company.name}})</small>
+  {{#if person.company.name}}
+    {{person.name}} <small>({{person.company.name}})</small>
+  {{/if}}
 {{/power-select}}

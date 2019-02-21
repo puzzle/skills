@@ -10,9 +10,12 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    const currentId = this.get('router.currentState.routerJsState.params.person.person_id');
-    if (currentId) this.set('selected', this.get('store').find('person', currentId))
   },
+
+  selectedPerson: computed(function() {
+    const currentId = this.get('router.currentState.routerJsState.params.person.person_id');
+    if (currentId) return this.get('store').find('person', currentId)
+  }),
 
   peopleToSelect: computed(function() {
     return this.get('store').findAll('person', { reload: true })
@@ -32,11 +35,9 @@ export default Component.extend({
     return !blurredEl.classList.contains('ember-power-select-search-input');
   },
 
-
-
   actions: {
     changePerson(person) {
-      this.set('selected', person);
+      this.notifyPropertyChange('selectedPerson');
       person.reload();
       this.get('router').transitionTo('person' , person);
     },
