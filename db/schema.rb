@@ -135,7 +135,6 @@ ActiveRecord::Schema.define(version: 2018_11_26_123058) do
     t.datetime "created_at"
     t.string "picture"
     t.string "competences"
-    t.string "company"
     t.bigint "company_id"
     t.datetime "associations_updatet_at"
     t.string "nationality"

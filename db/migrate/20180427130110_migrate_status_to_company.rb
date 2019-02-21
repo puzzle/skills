@@ -31,7 +31,23 @@ def up
   end
 
   def down
-    add_column :people, :status_id
+    add_column :people, :status_id, :integer
+
+    Person.find_each do |person|
+      connection = ActiveRecord::Base.connection
+      case person.company.name
+      when "Firma"
+        connection.execute "UPDATE people SET status_id = 1 WHERE id = #{person.id}"
+      when "Ex-Mitarbeiter"
+        connection.execute "UPDATE people SET status_id = 2 WHERE id = #{person.id}"
+      when "Bewerber"
+        connection.execute "UPDATE people SET status_id = 3 WHERE id = #{person.id}"
+      when "Partner"
+        connection.execute "UPDATE people SET status_id = 4 WHERE id = #{person.id}"
+      else
+        connection.execute "UPDATE people SET status_id = 1 WHERE id = #{person.id}"
+      end
+    end
   end
 
 end
