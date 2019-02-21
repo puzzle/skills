@@ -20,5 +20,4 @@ describe Role do
       expect(role.errors[:name].first).to eq('ist zu lang (mehr als 100 Zeichen)')
     end
   end
-
 end

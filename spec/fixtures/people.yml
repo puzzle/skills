@@ -5,7 +5,6 @@
 #  id                      :integer          not null, primary key
 #  birthdate               :datetime
 #  location                :string
-#  marital_status          :string
 #  updated_by              :string
 #  name                    :string
 #  title                   :string
@@ -17,6 +16,9 @@
 #  associations_updatet_at :datetime
 #  nationality             :string
 #  nationality2            :string
+#  marital_status          :integer          default("single"), not null
+#  email                   :string
+#  department              :string
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
@@ -32,6 +34,8 @@ bob:
   title: BSc in Cleaning
   competences: Java\n Ruby
   company: firma
+  email: bob@example.com
+  department: /sys
 
 alice:
   birthdate: 2016-10-20 13:15:11
@@ -43,6 +47,8 @@ alice:
   title: MSc in writing
   competences: LaTex\n Puppet\n Bash
   company: partner
+  email: alice@example.com
+  department: /sys
 
 ken:
   birthdate: 1995-08-26 03:15:11
@@ -54,3 +60,5 @@ ken:
   title: MA in sending silly memes
   competences: LaTex\n Puppet\n Bash
   company: partner
+  email: kenthemaster@testi.com
+  department: /ux

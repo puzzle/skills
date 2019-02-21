@@ -5,7 +5,6 @@
 #  id                      :integer          not null, primary key
 #  birthdate               :datetime
 #  location                :string
-#  marital_status          :string
 #  updated_by              :string
 #  name                    :string
 #  title                   :string
@@ -17,6 +16,9 @@
 #  associations_updatet_at :datetime
 #  nationality             :string
 #  nationality2            :string
+#  marital_status          :integer          default("single"), not null
+#  email                   :string
+#  department              :string
 #
 
 class Person < ApplicationRecord
@@ -34,11 +36,13 @@ class Person < ApplicationRecord
   has_many :expertise_topics, through: :expertise_topic_skill_values
   has_and_belongs_to_many :roles
   has_many :language_skills, dependent: :delete_all
+  has_many :people_roles, dependent: :destroy
 
   validates :birthdate, :location, :name, :nationality,
-            :roles, :title, :marital_status, presence: true
-  validates :location, :name,
-            :title, length: { maximum: 100 }
+            :title, :marital_status,
+            :email, :department, presence: true
+  validates :location, :name, :title,
+            :email, :department, length: { maximum: 100 }
 
   validates :nationality,
             inclusion: { in: ISO3166::Country.all.collect(&:alpha2) }

@@ -17,7 +17,7 @@ moduleForAcceptance('Acceptance | edit person', {
 });
 
 test('/people/:id edit person data', async function(assert) {
-  assert.expect(11);
+  assert.expect(15);
 
   // Go to the start page and select a user from the dropdown
   await applicationPage.visitHome('/');
@@ -28,7 +28,11 @@ test('/people/:id edit person data', async function(assert) {
 
   // Selection for all the power selects
   /* eslint "no-undef": "off" */
-  await selectChoose('#role', '.ember-power-select-option', 0)
+  await selectChoose('.role-dropdown', 'System-Engineer');
+  await selectChoose('.level-dropdown', 'S3');
+  await page.editForm.rolePercent('20');
+
+  await selectChoose('#department', '/dev/one');
   await selectChoose('#company', 'Firma');
   await selectChoose('#nationality', "Samoa");
   await selectChoose('#maritalStatus', 'verheiratet');
@@ -46,6 +50,7 @@ test('/people/:id edit person data', async function(assert) {
 
   // Fill out the persons text fields
   await page.editForm.name('Hansjoggeli');
+  await page.editForm.email('hansjoggeli@example.com');
   await page.editForm.title('Dr.');
   await page.editForm.location('Chehrplatz Schwandi');
 
@@ -54,11 +59,15 @@ test('/people/:id edit person data', async function(assert) {
 
   // Assert that all we changed is present
   assert.equal(page.profileData.name, 'Hansjoggeli');
+  assert.equal(page.profileData.email, 'hansjoggeli@example.com');
   assert.equal(page.profileData.title, 'Dr.');
-  assert.equal(page.profileData.role, 'System-Engineer');
+  assert.equal(page.profileData.role, 'System-Engineer S3 20%');
+  assert.equal(page.profileData.department, '/dev/one');
+  assert.equal(page.profileData.company, 'Firma');
+  assert.equal(page.profileData.birthdate, '19.02.2019')
   assert.equal(page.profileData.nationalities, 'Samoa');
   assert.equal(page.profileData.location, 'Chehrplatz Schwandi');
-  assert.equal(page.profileData.birthdate, '19.02.2019')
+  assert.equal(page.profileData.maritalStatus, 'verheiratet');
 
   // Toggle Edit again
   await page.toggleEditForm();

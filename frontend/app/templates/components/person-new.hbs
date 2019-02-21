@@ -16,24 +16,81 @@
                 <td>{{f.text-field 'name' label="Name"}}</td>
               </tr>
               <tr>
+                <td>{{f.text-field 'email' label="Email"}}</td>
+              </tr>
+              <tr>
                 <td>{{f.text-field 'title' label="Abschluss"}}</td>
               </tr>
               <tr>
+                <label>Funktionen</label>
+              </tr>
+              {{#each newPerson.peopleRoles as |peopleRole|}}
+                <div class="border rounded mt-2 p-2">
+                  <tr>
+                    <td>
+                      <label class="description role-description">Rolle</label>
+                      <div class='role-dropdown'>
+                        {{#power-select
+                        selected=peopleRole.role
+                        options=sortedRoles
+                        onchange=(action "setRole" peopleRole)
+                        disabled=usedRoles
+                        as |role|
+                        }}
+                          {{role.name}}
+                        {{/power-select}}
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label class="description role-description">Stufe</label>
+                      <div class='level-dropdown'>
+                        {{#power-select
+                        selected=peopleRole.level
+                        options=roleLevels
+                        onchange=(action "setRoleLevel" peopleRole)
+                        as |level|
+                        }}
+                          {{level}}
+                        {{/power-select}}
+                      </div>
+                      <div class='percent-field'>
+                        <input placeholder='in %' type="number" value={{peopleRole.percent}} onchange={{action 'setRolePercent' peopleRole}} max='9999'>
+                      </div>
+                      <div class='delete-role-icon'>
+                        {{delete-with-confirmation
+                          entry=peopleRole
+                          class='edit-buttons'
+                        }}
+                      </div>
+                    </td>
+                  </tr>
+                </div>
+              {{/each}}
+              <tr>
                 <td>
-                  <Label> Funktion </Label>
+                  <a class="nav-link language-button" role="button" {{action 'addRole' newPerson}}>
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    Neue Funktion
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label>Organisationseinheit</label>
                   {{#power-select
-                  triggerId="role"
-                  selected=newPerson.roles.firstObject
-                  options=sortedRoles
-                  searchEnabled=false
-                  searchField="name"
-                  onfocus=(action "handleFocus")
-                  onblur=(action "handleBlur")
-                  onchange=(action "setRole")
-                  onkeydown=(action "setWithTab" 'setRole')
-                  as |role|
-                  }}
-                    {{role.name}}
+                    triggerId="department"
+                    selected=newPerson.department
+                    options=departments
+                    searchField="name"
+                    onfocus=(action "handleFocus")
+                    onblur=(action "handleBlur")
+                    onchange=(action (mut newPerson.department))
+                    onkeydown=(action "setWithTab" 'setDepartment')
+                    as |department|
+                    }}
+                    {{department}}
                   {{/power-select}}
                 </td>
               </tr>

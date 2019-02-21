@@ -617,13 +617,7 @@ form textarea{
   font-size: 140%;
 }
 
-
 /* Person Übersicht*/
-
-.table-person {
-
-}
-
 .table-person input, .table-person, .table-person .ember-power-select-trigger {
   width: 100%;
   float: right;
@@ -638,6 +632,14 @@ form textarea{
 
 .table-person tr {
   height:100%;
+}
+
+.table-person input, .input-field {
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  font-size: 1rem;
+  line-height: 1.2;
+  padding: 0.35rem 0.55rem;
 }
 
 .description {
@@ -1091,4 +1093,30 @@ div.content-input  {
 
 .is-sticky, .sticky-wrapper {
   height: 0px !important;
+}
+
+.role-description {
+  width: 17%;
+}
+
+.role-dropdown {
+  width: 83%;
+  display: inline-block;
+}
+
+.level-dropdown {
+  width: 36%;
+  display: inline-block;
+}
+
+.percent-field {
+  width: 37%;
+  display: inline-block;
+}
+
+.delete-role-icon {
+  width: 4%;
+  display: inline-block;
+  position: relative;
+  top: -10px;
 }

@@ -40,7 +40,7 @@
 </div>
 <Label class="description mt-2">Level</Label>
 {{#power-select
-triggerClass="w-50 d-block"
+triggerClass="w-70 d-block"
 triggerId="level"
 selected=selectedSkill.level
 searchEnabled=false
@@ -54,4 +54,4 @@ as |level|
   {{level}}
 {{/power-select}}
 <Label class="description mt-2">Zertifikat</Label>
-{{input class="w-100" placeholder="Leer lassen, falls keines" id="certificateInput" value=selectedSkill.certificate}}
+{{input class="w-100 input-field" placeholder="Leer lassen, falls keines" id="certificateInput" value=selectedSkill.certificate}}

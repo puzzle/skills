@@ -62,6 +62,14 @@
             <div class="mb-2">
             </div>
             <tr class="description">
+              <td>Email</td>
+            </tr>
+            <tr>
+              <td id="data-test-person-email">{{person.email}}</td>
+            </tr>
+            <div class="mb-2">
+            </div>
+            <tr class="description">
               <td>Abschluss</td>
             </tr>
             <tr>
@@ -72,10 +80,24 @@
             <tr class="description">
               <td>Funktion</td>
             </tr>
+            {{#if person.peopleRoles.length}}
+              {{#each person.peopleRoles as |peopleRole|}}
+                <tr>
+                  <td id="data-test-person-role">
+                    {{peopleRole.role.name}}
+                    {{peopleRole.level}}
+                    {{peopleRole.percent}}%
+                  </td>
+                </tr>
+              {{/each}}
+            {{/if}}
+            <div class="mb-2">
+            </div>
+            <tr class="description">
+              <td>Organisationseinheit</td>
+            </tr>
             <tr>
-              {{#if person.roles.length}}
-                <td id="data-test-person-role">{{person.roles.firstObject.name}}</td>
-              {{/if}}
+              <td id="data-test-person-department">{{person.department}}</td>
             </tr>
             <div class="mb-2">
             </div>
@@ -83,7 +105,7 @@
               <td>Firma/Kategorie</td>
             </tr>
             <tr>
-              <td data-test-person-company>{{person.company.name}}</td>
+              <td id="data-test-person-company">{{person.company.name}}</td>
             </tr>
           </table>
         </div>

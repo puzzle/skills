@@ -5,7 +5,6 @@
 #  id                      :integer          not null, primary key
 #  birthdate               :datetime
 #  location                :string
-#  marital_status          :string
 #  updated_by              :string
 #  name                    :string
 #  title                   :string
@@ -17,6 +16,9 @@
 #  associations_updatet_at :datetime
 #  nationality             :string
 #  nationality2            :string
+#  marital_status          :integer          default("single"), not null
+#  email                   :string
+#  department              :string
 #
 
 require 'rails_helper'

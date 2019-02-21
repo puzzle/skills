@@ -1,0 +1,22 @@
+# == Schema Information
+#
+# Table name: people_roles
+#
+#  id        :bigint(8)        not null, primary key
+#  person_id :bigint(8)
+#  role_id   :bigint(8)
+#  level     :string
+#  percent   :decimal(5, 2)
+#
+
+people-role1:
+  level: S1
+  percent: 100
+  role: software-engineer
+  person: bob
+
+people-role2:
+  level: S2
+  percent: 80
+  role: system-engineer
+  person: alice

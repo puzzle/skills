@@ -39,13 +39,17 @@ export default {
   },
 
   'person': {
+    person: 'Person',
     birthdate: 'Geburtsdatum',
     language: 'Sprache',
     location: 'Wohnort',
     maritalStatus: 'Zivilstand',
     name: 'Name',
+    email: 'Email',
+    department: 'Organisationseinheit',
     origin: 'Nationalität',
     role: 'Rolle',
+    percent: 'Prozent',
     title: 'Titel',
     competences: 'Kompetenzen',
     educations: 'Ausbildungen',
@@ -53,7 +57,7 @@ export default {
     activities: 'Stationen',
     projects: 'Projekte',
     personCompetences: 'Kompetenzen',
-    level: 'Sprachniveau',
+    level: 'Stufe',
     company: 'Firma',
     roles: 'Rollen'
   },

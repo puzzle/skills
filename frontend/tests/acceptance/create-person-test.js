@@ -25,6 +25,7 @@ skip('creating a new person', async function(assert) {
   // Selection for all the power selects
   /* eslint "no-undef": "off" */
   await selectChoose('#role', '.ember-power-select-option', 0);
+  await selectChoose('#department', '/dev/ruby');
   await selectChoose('#company', 'Firma');
   await selectChoose('#nationality', '.ember-power-select-option', 0);
   await selectChoose('#maritalStatus', 'verheiratet');
@@ -42,6 +43,7 @@ skip('creating a new person', async function(assert) {
 
   // Filling out the text fields
   await page.newPersonPage.name('Dolores')
+  await page.newPersonPage.email('dolores@example.com')
   await page.newPersonPage.title('Dr.');
   await page.newPersonPage.location('Westworld');
 
@@ -53,8 +55,11 @@ skip('creating a new person', async function(assert) {
 
   // Assert that all we entered above actually made it into the profile correctly
   assert.equal(page.profileData.name, 'Dolores');
+  assert.equal(page.profileData.email, 'dolores@example.com');
   assert.equal(page.profileData.title, 'Dr.');
   assert.equal(page.profileData.role, 'Software-Engineer');
+  assert.equal(page.profileData.department, '/dev/ruby');
+  assert.equal(page.profileData.company, 'Firma');
   assert.equal(page.profileData.birthdate, '19.02.2019');
   assert.equal(page.profileData.nationalities, 'Afghanistan');
   assert.equal(page.profileData.location, 'Westworld');
