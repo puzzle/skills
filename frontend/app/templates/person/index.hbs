@@ -3,14 +3,6 @@
 {{/each}}
 
 <div id="person-collapse-group" class="collapse-group">
-  <div class="row">
-    <div class="col-sm-12">
-      <span class="text-right d-block controls">
-        <a href="#person-collapse-group" class="mr-2 open-button" hidden=true>+ Details einblenden</a>
-        <a href="#person-collapse-group" class="close-button">- Details ausblenden</a>
-      </span>
-    </div>
-  </div>
   {{person-sidebar}}
   <div class="col-sm-10 float-right position-relative p-0">
     <div id="accordion">
@@ -64,17 +56,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  $(".open-button").on("click", function() {
-    $(this).closest('.collapse-group').find('.collapse').collapse('show');
-    $('.open-button').attr('hidden', true);
-    $('.close-button').attr('hidden', false);
-  });
-
-  $(".close-button").on("click", function() {
-    $(this).closest('.collapse-group').find('.collapse').collapse('hide');
-    $('.close-button').attr('hidden', true);
-    $('.open-button').attr('hidden', false);
-  });
-</script>
