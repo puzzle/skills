@@ -7,8 +7,7 @@ class MigrateMaritalStatus < ActiveRecord::Migration[5.2]
 
     Person.find_each do |person|
       old_value = person.martial_status || 'ledig'
-      person.marital_status = MARITAL_MAP[old_value.to_sym]
-      person.marital_status = :single if person.marital_status.nil?
+      person.marital_status = MARITAL_MAP[normalize_marital(old_value)]
       person.save!
     end
 
@@ -29,6 +28,15 @@ class MigrateMaritalStatus < ActiveRecord::Migration[5.2]
   end
 
   private
+
+  def normalize_marital(value)
+    return :ledig if value.downcase.include? "ledig"
+    return :verheiratet if value.downcase.include? "verheiratet"
+    return :verwitwet if value.downcase.include? "verwitwet"
+    return :"eingetragene Partnerschaft" if value.downcase.include? "eingetragene Partnerschaft"
+    return :geschieden if value.downcase.include? "geschieden"
+    return :single
+  end
 
   MARITAL_MAP = { ledig: :single,
                   verheiratet: :married,

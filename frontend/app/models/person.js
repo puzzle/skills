@@ -32,6 +32,7 @@ const Person = DS.Model.extend({
 Person.reopenClass({
   MARITAL_STATUSES: { single: 'ledig',
     married: 'verheiratet',
+    widowed: 'verwitwet',
     registered_partnership: 'eingetragene Partnerschaft',
     divorced: 'geschieden' }
 });
