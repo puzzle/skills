@@ -258,6 +258,14 @@ hr {
     margin-right: 5px;
   }
 
+  /* Skills Section
+  -------------------------------------------------- */
+
+  /*Column Highlighting*/
+  #skills-list-table thead th:nth-of-type(even) {
+    background: #E5E5E5 !important;
+  }
+
   /* Competence Section
   -------------------------------------------------- */
   .vertical-center {

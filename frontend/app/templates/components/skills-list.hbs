@@ -1,0 +1,60 @@
+<div class="row mb-3">
+  <div class="col-sm-12">
+    {{!-- Insert search-bar here --}}
+    searchbar placeholder
+  </div>
+  <div class="col-sm-4">
+    {{!-- Insert filter-options here --}}
+    filter-options placeholder
+  </div>
+  <div class="col-sm-4">
+    {{!-- Insert category-options here --}}
+    category-options placeholder
+  </div>
+  <div class="col-sm-4">
+    {{!-- Insert correct link-to route once finished --}}
+    {{#link-to "skills"}}
+      <a class="float-right">
+        <i class="fa fa-download" aria-hidden="true">
+        </i>
+        CSV Export
+      </a>
+    {{/link-to}}
+    {{!-- Insert correct link-to route once finished --}}
+    {{#link-to "skills"}}
+      <a class="float-right mr-5">
+        <i class="fa fa-plus-square-o" aria-hidden="true">
+        </i>
+        Neuer Puzzle-Skill
+      </a>
+    {{/link-to}}
+  </div>
+</div>
+<div class="mb-end">
+  <table id="skills-list-table" class="table">
+    <thead>
+      <tr>
+        <th scope="col" class="bg-info header-text text-secondary">Skill</th>
+        <th scope="col" class="text-secondary">Radar</th>
+        <th scope="col" class="bg-info text-secondary">Portfolio</th>
+        <th scope="col" class="text-secondary">Kategorie</th>
+        <th scope="col" class="bg-info text-secondary">Default-Set</th>
+        <th scope="col" class="text-secondary">Members</th>
+        <th scope="col" class="bg-info text-secondary"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sortedSkills as |skill|}}
+        <tr>
+          <td>{{skill.title}}</td>
+          <td class="bg-info">{{if skill.radar skill.radar "-"}}</td>
+          <td>{{if skill.portfolio skill.portfolio "-"}}</td>
+          <td class="bg-info">{{if skill.category skill.category.title "-"}}</td>
+          <td>{{if (eq skill.defaultSet null) "NEU" (if skill.defaultSet "Ja" "Nein")}}</td>
+          <td class="bg-info">{{skill.people.length}}</td>
+          <td><a class="edit-buttons"><i class="fa fa-pencil"></i></a></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

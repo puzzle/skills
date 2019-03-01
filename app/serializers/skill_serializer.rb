@@ -12,17 +12,9 @@
 #  category_id :bigint(8)
 #
 
-require 'yaml'
+class SkillSerializer < ApplicationSerializer
+  attributes :id, :title, :radar, :portfolio, :default_set, :category_id
 
-class Skill < ApplicationRecord
-  has_and_belongs_to_many :people
-  belongs_to :category, optional: true
-
-  enum radar: Settings.radar
-  enum portfolio: Settings.portfolio
-
-  validates :title, presence: true
-  validates :title, length: { maximum: 100 }
-
-  scope :list, -> { order(:title) }
+  has_many :people, serializer: PeopleSerializer
+  belongs_to :category
 end

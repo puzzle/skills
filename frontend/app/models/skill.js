@@ -4,7 +4,7 @@ export default DS.Model.extend({
   title: DS.attr('string'),
   radar: DS.attr('string'),
   portfolio: DS.attr('string'),
-  defaultSet: DS.attr('boolean'),
+  defaultSet: DS.attr('boolean', { allowNull: true }),
 
   people: DS.hasMany('person'),
   category: DS.belongsTo('category')

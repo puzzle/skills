@@ -18,6 +18,7 @@ Router.map(function() {
     this.route('show', { path: '/:company_id' });
     this.route('new');
   });
+  this.route('skills', function() {});
 });
 
 export default Router;

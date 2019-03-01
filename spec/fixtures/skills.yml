@@ -12,17 +12,20 @@
 #  category_id :bigint(8)
 #
 
-require 'yaml'
 
-class Skill < ApplicationRecord
-  has_and_belongs_to_many :people
-  belongs_to :category, optional: true
+rails:
+  title: Rails
+  radar: 0
+  portfolio: 0
+  default_set: true
+  category: ruby
+  people: [bob, alice]
 
-  enum radar: Settings.radar
-  enum portfolio: Settings.portfolio
 
-  validates :title, presence: true
-  validates :title, length: { maximum: 100 }
-
-  scope :list, -> { order(:title) }
-end
+junit:
+  title: JUnit
+  radar: 2
+  portfolio: 1
+  default_set: false
+  category: java
+  people: [ken]
