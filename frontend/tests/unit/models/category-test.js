@@ -1,8 +1,8 @@
 import { moduleForModel, test } from 'ember-qunit';
 
-moduleForModel('skill', 'Unit | Model | skill', {
+moduleForModel('category', 'Unit | Model | category', {
   // Specify the other units that are required for this test.
-  needs: ['model:person', 'model:category']
+  needs: ['model:skill']
 });
 
 test('it exists', function(assert) {

@@ -6,5 +6,6 @@ export default DS.Model.extend({
   portfolio: DS.attr('string'),
   defaultSet: DS.attr('boolean'),
 
-  people: DS.hasMany('person')
+  people: DS.hasMany('person'),
+  category: DS.belongsTo('category')
 });

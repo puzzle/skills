@@ -13,6 +13,7 @@
 
 class Skill < ApplicationRecord
   has_and_belongs_to_many :people
+  belongs_to :category
 
   enum radar: Settings.radar
   enum portfolio: Settings.portfolio

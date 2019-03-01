@@ -90,6 +90,11 @@ Roles can't be updated, created or deleted through the UI. For this you must use
 
 Exact documentation for these methods can be found [here](https://guides.rubyonrails.org/active_record_basics.html#crud-reading-and-writing-data)
 
+### Managing Categories
+Categories can be added using the [skill_config.yml](https://github.com/puzzle/skills/blob/master/config/skill_config.yml) file.
+
+But they can't be removed or updated this way. They have to be updated/deleted manually like the roles above.
+
 ## Front-End
 
 The Front-End is built with EmberJS.
