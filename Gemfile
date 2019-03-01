@@ -9,6 +9,7 @@ gem 'annotate'
 gem 'bleib', '0.0.8' # For deployment
 gem 'bootsnap'
 gem 'carrierwave'
+gem 'config'
 gem 'countries'
 gem 'database_cleaner'
 gem 'faker'

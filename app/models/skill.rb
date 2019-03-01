@@ -14,8 +14,8 @@
 class Skill < ApplicationRecord
   has_and_belongs_to_many :people
 
-  enum radar: %i[adopt trial assess hold]
-  enum portfolio: %i[aktiv passiv abbauen]
+  enum radar: Settings.radar
+  enum portfolio: Settings.portfolio
 
   validates :title, presence: true
   validates :title, length: { maximum: 100 }
