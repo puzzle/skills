@@ -46,14 +46,15 @@ export default Component.extend(EKMixin, {
   actions: {
     submit(changeset, event) {
       event.preventDefault();
-      return changeset.save()
-        .then(() =>
+      return Promise.all([changeset.get('hasDirtyAttributes') ? changeset.save() : null])
+      // Commented this because projectTechnologies seem useless for the moment
+        /*.then(() =>
           Promise.all([
             ...changeset
               .get('projectTechnologies')
               .map(projectTechnology => projectTechnology.save())
           ])
-        )
+        )*/
         .then(project => this.sendAction('done'))
         .then(() => this.get('notify').success('Projekt wurde aktualisiert!'))
         .catch(() => {

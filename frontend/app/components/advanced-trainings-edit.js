@@ -33,7 +33,7 @@ export default Component.extend(EKMixin, {
           Promise.all([
             ...person
               .get('advancedTrainings')
-              .map(advancedTraining => advancedTraining.save())
+              .map(advancedTraining => advancedTraining.get('hasDirtyAttributes') ? advancedTraining.save() : null)
           ])
         )
         .then (() => this.sendAction('submit'))

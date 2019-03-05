@@ -39,7 +39,7 @@ export default Component.extend(EKMixin, {
           Promise.all([
             ...person
               .get('educations')
-              .map(education => education.save())
+              .map(education => education.get('hasDirtyAttributes') ? education.save() : null)
           ])
         )
         .then (() => this.sendAction('submit'))

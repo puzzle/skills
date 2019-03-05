@@ -19,7 +19,10 @@ export default ApplicationComponent.extend(EKMixin, {
     this.departments = Person.DEPARTMENTS;
     this.roleLevels = Person.ROLE_LEVELS;
     this.callBackCompany = this.get('person.company');
-    this.callBackRoleIds = this.get('person.peopleRoles').map(peopleRole => peopleRole.get('role.id'));
+    this.callBackRoleIds = {}
+    this.get('person.peopleRoles').forEach(peopleRole =>
+      this.callBackRoleIds[peopleRole.get('id')] =  peopleRole.get('role.id')
+    );
   },
 
   activateKeyboard: on('init', function() {
@@ -100,10 +103,12 @@ export default ApplicationComponent.extend(EKMixin, {
           Promise.all([
             ...changeset
               .get('languageSkills')
-              .map(languageSkill => languageSkill.save()),
+              .map(languageSkill => languageSkill.get('hasDirtyAttributes') ? languageSkill.save() : null),
             ...changeset
               .get('peopleRoles')
-              .map(peopleRole => peopleRole.save())
+              .map(peopleRole =>
+                peopleRole.get('hasDirtyAttributes') ||
+                peopleRole.get('role.id') != this.callBackRoleIds[peopleRole.get('id')] ? peopleRole.save() : null)
           ])
         )
         .then(() => this.sendAction('submit'))
@@ -163,12 +168,10 @@ export default ApplicationComponent.extend(EKMixin, {
         }
       });
 
-      let i = 0
       this.get('person.peopleRoles').forEach(peopleRole => {
-        let oldRoleId = this.get('callBackRoleIds').objectAt(i)
+        let oldRoleId = this.get('callBackRoleIds.' + peopleRole.get('id'))
         let role = this.get('store').peekRecord('role', oldRoleId)
         peopleRole.set('role', role)
-        i++
       });
 
       this.sendAction('personEditing');

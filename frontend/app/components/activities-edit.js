@@ -34,7 +34,7 @@ export default Component.extend(EKMixin, {
           Promise.all([
             ...person
               .get('activities')
-              .map(activity => activity.save())
+              .map(activity => activity.get('hasDirtyAttributes') ? activity.save() : null)
           ])
         )
         .then (() => this.sendAction('submit'))
