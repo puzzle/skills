@@ -10,19 +10,6 @@ class SkillsController < CrudController
   private
 
   def fetch_entries
-    apply_filters(super)
-  end
-
-  def apply_filters(entries)
-    case params[:defaultSet]
-    when 'true'
-      entries = entries.where(default_set: true)
-    when 'new'
-      entries = entries.where(default_set: nil)
-    end
-    if params[:category].present?
-      entries = entries.joins(:category).where(categories: { parent_id: params[:category] })
-    end
-    entries
+    SkillsFilter.new(super, params[:category], params[:title], params[:defaultSet]).scope
   end
 end

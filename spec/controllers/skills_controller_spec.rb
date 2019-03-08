@@ -14,9 +14,20 @@ describe SkillsController do
 
         expect(skills.count).to eq(3)
         bash_attrs = skills.first['attributes']
-        expect(bash_attrs.count).to eq (5)
+       expect(bash_attrs.count).to eq (5)
         expect(bash_attrs['title']).to eq ('Bash')
         json_object_includes_keys(bash_attrs, keys)
+      end
+      
+      it 'returns skills where title contains a' do
+        get :index, params: { title: 'a' }
+
+        skills = json['data']
+        expect(skills.count).to eq(2)
+        first_skill_attrs = skills.first['attributes']
+        expect(first_skill_attrs['title']).to eq ('Bash')
+        second_skill_attrs = skills.second['attributes']
+        expect(second_skill_attrs['title']).to eq ('Rails')
       end
 
       it 'returns skills with default_set true' do

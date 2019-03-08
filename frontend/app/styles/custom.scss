@@ -266,6 +266,10 @@ hr {
     background: #E5E5E5 !important;
   }
 
+  #skills-list-table {
+    table-layout: fixed;
+  }
+
   /* defaultSet Filter */
   #skills-list-defaultSet-filter button.btn.active {
     background: #fff !important;
@@ -1174,4 +1178,22 @@ div.content-input  {
 
 .new-profile-button {
   margin-left: 65%;
+}
+
+.search-field {
+  max-width: 300px;
+}
+
+.search-skill-field {
+  padding-bottom: 15px;
+}
+
+.no-click {
+  pointer-events: none;
+}
+
+.search-icon {
+  background: white;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }

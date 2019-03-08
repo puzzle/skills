@@ -12,7 +12,6 @@
 #  category_id :bigint(8)
 #
 
-
 rails:
   title: Rails
   radar: 0
@@ -20,7 +19,6 @@ rails:
   default_set: true
   category: ruby
   people: [bob, alice]
-
 
 junit:
   title: JUnit

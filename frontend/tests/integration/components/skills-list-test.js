@@ -16,6 +16,7 @@ module('Integration | Component | skills-list', function(hooks) {
   hooks.beforeEach(function(assert) {
     this.owner.register('service:store', storeStub);
   });
+
   test('it renders without data', async function(assert) {
 
     await render(hbs`{{skills-list}}`);

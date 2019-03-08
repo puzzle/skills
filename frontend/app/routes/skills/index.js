@@ -7,13 +7,19 @@ export default Route.extend(AuthenticatedRouteMixin, {
       refreshModel: true,
       replace: true
     },
+
     category: {
+      refreshModel: true,
+      replace: true
+    },
+
+    title: {
       refreshModel: true,
       replace: true
     }
   },
 
-  model({ defaultSet, category }) {
-    return this.store.query('skill', { defaultSet, category })
+  model({ defaultSet, category, title }) {
+    return this.store.query('skill', { defaultSet, category, title })
   },
 });
