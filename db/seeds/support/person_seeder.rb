@@ -2,13 +2,14 @@
 class PersonSeeder
   def seed_people(names)
     seed_roles
+    seed_skills
 
     names.each do |name|
       person = seed_person(name).first
       break unless person
       seed_people_roles(person)
       seed_image(person)
-      associations = [:activity, :advanced_training, :project, :education, :person_competence, :language_skill]
+      associations = [:activity, :advanced_training, :project, :education, :person_competence, :language_skill, :people_skill]
       associations.each do |a|
         seed_association(a, person.id)
       end
@@ -99,7 +100,6 @@ class PersonSeeder
       p.updated_by = 'seed_user'
       p.name = name.to_s
       p.nationality = 'CH'
-      p.skills = seed_skills
       p.title = Faker::Job.title
       p.company_id = rand(1..4)
       competences = ""
@@ -111,40 +111,14 @@ class PersonSeeder
   end
 
   def seed_skills
-    Skill.seed do |s|
-      s.title = Faker::ProgrammingLanguage.unique.name
-      s.radar = rand(0..3)
-      s.portfolio = rand(0..2)
-      s.default_set = rand(1..3) > 1
-    end
-  end
-
-  def seed_skills
-    Skill.seed do |s|
-      s.title = Faker::ProgrammingLanguage.unique.name
-      s.radar = rand(0..3)
-      s.portfolio = rand(0..2)
-      s.default_set = rand(1..3) > 1
-    end
-  end
-
-  def seed_skills
-    Skill.seed do |s|
-      s.title = Faker::ProgrammingLanguage.unique.name
-      s.radar = rand(0..3)
-      s.portfolio = rand(0..2)
-      s.default_set = rand(1..3) > 1
-      s.category = Category.all_children.sample
-    end
-  end
-
-  def seed_skills
-    Skill.seed do |s|
-      s.title = Faker::ProgrammingLanguage.unique.name
-      s.radar = rand(0..3)
-      s.portfolio = rand(0..2)
-      s.default_set = rand(1..3) > 1
-      s.category = Category.all_children.sample
+    20.times do
+      Skill.seed do |s|
+        s.title = Faker::ProgrammingLanguage.unique.name
+        s.radar = rand(0..3)
+        s.portfolio = rand(0..2)
+        s.default_set = rand(1..3) > 1
+        s.category = Category.all_children.sample
+      end
     end
   end
 
@@ -155,6 +129,17 @@ class PersonSeeder
       a.start_at = start_at_date
       a.finish_at = finish_at_date
       a.person_id = person_id
+    end
+  end
+
+  def seed_people_skill(person_id)
+    PeopleSkill.seed do |ps|
+      ps.skill_id = rand(1..20)
+      ps.interest = rand(1..5)
+      ps.level = rand(1..5)
+      ps.certificate = rand(1..3) > 1
+      ps.core_competence = rand(1..3) > 1
+      ps.person_id = person_id
     end
   end
 
