@@ -49,11 +49,10 @@ module Odt
     # rubocop:enable Metrics/AbcSize
 
     def insert_competences(report)
-      bullet = "\u2022"
       competences_string = ''
       if person.competences.present?
         person.competences.split("\n").each do |competence|
-          competences_string << "#{bullet} #{competence}\n"
+          competences_string << "#{competence}\n"
         end
       end
       report.add_field(:competences, competences_string)
