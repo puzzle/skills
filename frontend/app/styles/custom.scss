@@ -266,6 +266,22 @@ hr {
     background: #E5E5E5 !important;
   }
 
+  /* defaultSet Filter */
+  #skills-list-defaultSet-filter button.btn.active {
+    background: #fff !important;
+  }
+
+  /* category Filter */
+  #category-filter-dropdown {
+    width: 60%;
+    display: inline-block;
+  }
+
+  #category-filter-label {
+    float:left;
+    margin: 5px 20px 0 0;
+  }
+
   /* Competence Section
   -------------------------------------------------- */
   .vertical-center {

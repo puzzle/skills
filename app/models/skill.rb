@@ -17,6 +17,7 @@ require 'yaml'
 class Skill < ApplicationRecord
   has_and_belongs_to_many :people
   belongs_to :category, optional: true
+  has_one :parent_category, through: :category, source: :parent
 
   enum radar: Settings.radar
   enum portfolio: Settings.portfolio

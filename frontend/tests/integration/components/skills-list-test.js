@@ -2,10 +2,20 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
+import Service from '@ember/service';
+
+const storeStub = Service.extend({
+  query(type, options) {
+    return Promise.all(['Software Engineering', 'Beratung', 'System Engineer', 'Delivery'])
+  },
+});
 
 module('Integration | Component | skills-list', function(hooks) {
   setupRenderingTest(hooks);
 
+  hooks.beforeEach(function(assert) {
+    this.owner.register('service:store', storeStub);
+  });
   test('it renders without data', async function(assert) {
 
     await render(hbs`{{skills-list}}`);

@@ -17,4 +17,5 @@ class SkillSerializer < ApplicationSerializer
 
   has_many :people, serializer: PeopleSerializer
   belongs_to :category
+  has_one :parent_category
 end

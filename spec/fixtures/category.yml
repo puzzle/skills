@@ -2,10 +2,17 @@
 software-engineering:
   title: Software-Engineering
 
+system-engineering:
+  title: System-Engineering
+
+linux-engineering:
+  title: Linux-Engineering
+  parent: system-engineering
+
 ruby:
   title: Ruby
-  parent_id: software-engineering.id
+  parent: software-engineering
 
 java:
   title: Java
-  parent_id: software-engineering.id
+  parent: software-engineering

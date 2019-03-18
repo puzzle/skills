@@ -4,12 +4,10 @@
     searchbar placeholder
   </div>
   <div class="col-sm-4">
-    {{!-- Insert filter-options here --}}
-    filter-options placeholder
+    {{skillset-defaultset-filter}}
   </div>
   <div class="col-sm-4">
-    {{!-- Insert category-options here --}}
-    category-options placeholder
+    {{skillset-category-filter}}
   </div>
   <div class="col-sm-4">
     {{!-- Insert correct link-to route once finished --}}
@@ -38,21 +36,23 @@
         <th scope="col" class="text-secondary">Radar</th>
         <th scope="col" class="bg-info text-secondary">Portfolio</th>
         <th scope="col" class="text-secondary">Kategorie</th>
-        <th scope="col" class="bg-info text-secondary">Default-Set</th>
-        <th scope="col" class="text-secondary">Members</th>
-        <th scope="col" class="bg-info text-secondary"></th>
+        <th scope="col" class="bg-info text-secondary">Subkategorie</th>
+        <th scope="col" class="text-secondary">Default-Set</th>
+        <th scope="col" class="bg-info text-secondary">Members</th>
+        <th scope="col" class="text-secondary"></th>
       </tr>
     </thead>
     <tbody>
       {{#each sortedSkills as |skill|}}
         <tr>
-          <td>{{skill.title}}</td>
+          <td class="skillname">{{skill.title}}</td>
           <td class="bg-info">{{if skill.radar skill.radar "-"}}</td>
           <td>{{if skill.portfolio skill.portfolio "-"}}</td>
-          <td class="bg-info">{{if skill.category skill.category.title "-"}}</td>
-          <td>{{if (eq skill.defaultSet null) "NEU" (if skill.defaultSet "Ja" "Nein")}}</td>
-          <td class="bg-info">{{skill.people.length}}</td>
-          <td><a class="edit-buttons"><i class="fa fa-pencil"></i></a></td>
+          <td class="bg-info">{{if skill.parentCategory skill.parentCategory.title "-"}}</td>
+          <td>{{if skill.category skill.category.title "-"}}</td>
+          <td class="bg-info">{{if (eq skill.defaultSet null) "NEU" (if skill.defaultSet "Ja" "Nein")}}</td>
+          <td>{{skill.people.length}}</td>
+          <td class="bg-info"><a class="edit-buttons"><i class="fa fa-pencil"></i></a></td>
         </tr>
       {{/each}}
     </tbody>

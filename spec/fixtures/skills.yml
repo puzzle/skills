@@ -29,3 +29,10 @@ junit:
   default_set: false
   category: java
   people: [ken]
+
+bash:
+  title: Bash
+  radar: 1
+  portfolio: 2
+  category: linux-engineering
+  people: [bob, ken]

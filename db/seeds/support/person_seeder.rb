@@ -148,6 +148,16 @@ class PersonSeeder
     end
   end
 
+  def seed_skills
+    Skill.seed do |s|
+      s.title = Faker::ProgrammingLanguage.unique.name
+      s.radar = rand(0..3)
+      s.portfolio = rand(0..2)
+      s.default_set = rand(1..3) > 1
+      s.category = Category.all_children.sample
+    end
+  end
+
   def seed_activity(person_id)
     Activity.seed do |a|
       a.description = Faker::Hacker.say_something_smart

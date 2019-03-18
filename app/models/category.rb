@@ -25,4 +25,6 @@ class Category < ApplicationRecord
 
   scope :all_parents, -> { where(parent_id: nil) }
   scope :all_children, -> { where.not(parent_id: nil) }
+
+  scope :list, -> { order(:title) }
 end
