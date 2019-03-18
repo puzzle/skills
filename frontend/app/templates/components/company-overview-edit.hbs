@@ -7,7 +7,7 @@
             <a class="card-link text-white" href="#">Übersicht</a>
           </div>
           <div class="col-sm-6 text-right d-block text-white">
-            {{#unless company.myCompany}}
+            {{#if (not-eq company.companyType 'mine')}}
               <div id="delete-company-icon">
                 {{delete-with-confirmation
                   entry=company
@@ -15,7 +15,7 @@
                   tagName='span'
                 }}
               </div>
-            {{/unless}}
+            {{/if}}
             <a {{action 'submit' changeset}} role="button" id="submit-button" class="card-link text-white">
               <i class="fa save"></i>
             </a>

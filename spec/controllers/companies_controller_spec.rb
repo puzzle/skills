@@ -24,7 +24,7 @@ describe CompaniesController do
     describe 'GET show' do
       it 'returns company with nested modules' do
         keys = %w[name web email phone partnermanager contact_person email_contact_person
-                  phone_contact_person crm level offer_comment my_company]
+                  phone_contact_person crm level offer_comment company_type]
 
         firma = companies(:firma)
 

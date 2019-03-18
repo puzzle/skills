@@ -13,7 +13,7 @@ export default DS.Model.extend({
   crm: DS.attr('string'),
   level: DS.attr('string'),
   offerComment: DS.attr('string'),
-  myCompany: DS.attr('boolean'),
+  companyType: DS.attr('string'),
   createdAt: DS.attr('date'),
   updatedAt: DS.attr('date'),
 

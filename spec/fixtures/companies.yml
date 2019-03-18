@@ -33,7 +33,7 @@ firma:
   crm: crm
   level: A
   offer_comment: Bemerkung Angebot
-  my_company: true
+  company_type: 0
 
 partner:
   name: Partner
@@ -46,4 +46,4 @@ partner:
   crm: crm
   level: B
   offer_comment: Bemerkung Angebot
-  my_company: false
+  company_type: 3

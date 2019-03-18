@@ -9,6 +9,6 @@ companies = ['Firma',
          'Bewerber',
          'Partner']
          
-my_company_flags = [true, false, false, false]
+company_types = [0, 2, 1, 3]
 
-seeder.seed_companies(companies, my_company_flags)
+seeder.seed_companies(companies, company_types)
