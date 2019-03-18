@@ -16,6 +16,7 @@ require 'yaml'
 
 class Skill < ApplicationRecord
   has_and_belongs_to_many :people
+  has_many :people_skills, dependent: :destroy
   belongs_to :category, optional: true
   has_one :parent_category, through: :category, source: :parent
 

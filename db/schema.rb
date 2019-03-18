@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_08_102137) do
+ActiveRecord::Schema.define(version: 2019_03_08_132916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -167,6 +167,10 @@ ActiveRecord::Schema.define(version: 2019_03_08_102137) do
   create_table "people_skills", force: :cascade do |t|
     t.bigint "person_id"
     t.bigint "skill_id"
+    t.integer "level"
+    t.integer "interest"
+    t.boolean "certificate", default: false
+    t.boolean "core_competence", default: false
     t.index ["person_id"], name: "index_people_skills_on_person_id"
     t.index ["skill_id"], name: "index_people_skills_on_skill_id"
   end

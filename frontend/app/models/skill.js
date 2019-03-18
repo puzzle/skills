@@ -7,6 +7,7 @@ export default DS.Model.extend({
   defaultSet: DS.attr('boolean', { allowNull: true }),
 
   people: DS.hasMany('person'),
+  peopleSkills: DS.hasMany('people-skill'),
   category: DS.belongsTo('category'),
   parentCategory: DS.belongsTo('category', { inverse: null })
 });
