@@ -4,6 +4,6 @@ export default ApplicationSerializer.extend({
   attrs: {
     createdAt: { serialize: false },
     updatedAt: { serialize: false },
-    myCompany: { serialize: false }
+    companyType: { serialize: false }
   },
 });

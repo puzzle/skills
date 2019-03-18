@@ -37,7 +37,7 @@ class CompanySeeder
       co.crm = "crm"
       co.level = ["A", "B", "C", "D", "E", "F"].sample
       co.offer_comment = Faker::Hacker.say_something_smart
-      co.my_company = flag
+      co.company_type = flag
     end
   end
 

@@ -29,6 +29,8 @@ class Company < ApplicationRecord
   has_many :employee_quantities, dependent: :destroy
   has_many :offers, dependent: :destroy
 
+  enum company_type: %i[mine candidate external other]
+
   validates :name, presence: true
   validates :name, :web, :email, :phone, :partnermanager, :contact_person,
             :email_contact_person, :phone_contact_person, :crm, :level, length: { maximum: 100 }
@@ -39,7 +41,7 @@ class Company < ApplicationRecord
   private
 
   def protect_if_my_company
-    if my_company?
+    if self.mine?
       errors.add(:base, 'your own company can not be deleted')
       throw(:abort)
     end
