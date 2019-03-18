@@ -38,6 +38,7 @@ class Person < ApplicationRecord
   has_and_belongs_to_many :skills
   has_many :language_skills, dependent: :delete_all
   has_many :people_roles, dependent: :destroy
+  has_many :people_skills, dependent: :destroy
 
   validates :birthdate, :location, :name, :nationality,
             :title, :marital_status, presence: true
