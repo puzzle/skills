@@ -3,53 +3,56 @@
     <div class="row-fluid">
       {{#if session.isAuthenticated}}
         {{! Navbar with logo }}
-        <nav class="navbar p-0 navbar-expand-sm">
-          <ul class="navbar-nav">
-            {{#link-to "people"}}
-              <a class="navbar-brand p-0" href="#">
-                <img src="/logo.png" alt="" height="40" width="40">
-                  PuzzleSkills
-                <small class="versionText" color="black">{{app-version versionOnly=true}}</small>
-              </a>
-            {{/link-to}}
-          </ul>
-          <ul class="navbar-nav ml-auto">
-            {{#if session.data.authenticated.full_name}}
-              <li class="nav-item border-black border-bottom-0 border-top-0 border-right-0">
-                <a id="logout-button" role="button" class="nav-link pull-right" {{action 'transitionToProfile'}}>
-                  <i class="fa fa-user-circle" aria-hidden="true"></i> {{session.data.authenticated.full_name}}
+        <div class='header top'>
+          <nav class="navbar p-0 navbar-expand-sm">
+            <ul class="navbar-nav">
+              {{#link-to "people"}}
+                <a class="navbar-brand p-0" href="#">
+                  <img src="/logo.png" alt="" height="40" width="40">
+                    PuzzleSkills
+                  <small class="versionText" color="black">{{app-version versionOnly=true}}</small>
+                </a>
+              {{/link-to}}
+            </ul>
+            <ul class="navbar-nav ml-auto">
+              {{#if session.data.authenticated.full_name}}
+                <li class="nav-item border-black border-bottom-0 border-top-0 border-right-0">
+                  <a id="logout-button" role="button" class="nav-link pull-right" {{action 'transitionToProfile'}}>
+                    <i class="fa fa-user-circle" aria-hidden="true"></i> {{session.data.authenticated.full_name}}
+                  </a>
+                </li>
+              {{/if}}
+              <li class="nav-item border-black border-bottom-0 border-top-0">
+                <a href="https://twiki.puzzle.ch/bin/view/Puzzle/PuzzleSkills" target="_blank" class="nav-link pull-right" rel="noopener" role="button">
+                  <i class="fa fa-life-ring" aria-hidden="true"></i>
                 </a>
               </li>
-            {{/if}}
-            <li class="nav-item border-black border-bottom-0 border-top-0">
-              <a href="https://twiki.puzzle.ch/bin/view/Puzzle/PuzzleSkills" target="_blank" class="nav-link pull-right" rel="noopener" role="button">
-                <i class="fa fa-life-ring" aria-hidden="true"></i>
-              </a>
-            </li>
-            <li class="nav-item border-black border-bottom-0 border-top-0 border-left-0">
-              <a id="logout-button" role="button" class="nav-link pull-right" {{action 'invalidateSession'}}>
-                Logout
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <nav class="navbar custom-nav-bar p-0 navbar-expand-sm mb-3 bg-primary">
-          <ul class="navbar-nav mr-auto nav-pills">
-            <li class="nav-item hovering-nav-bar">
-              {{#link-to "people" class="nav-link text-white rounded-0"}}
-                Person
-              {{/link-to}}
-            </li>
-            <li class="nav-item hovering-nav-bar">
-              {{#link-to "companies" class="nav-link text-white rounded-0"}}
-                Firmenprofile
-              {{/link-to}}
-            </li>
-
-          </ul>
-        </nav>
+              <li class="nav-item border-black border-bottom-0 border-top-0 border-left-0">
+                <a id="logout-button" role="button" class="nav-link pull-right" {{action 'invalidateSession'}}>
+                  Logout
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <nav class="navbar custom-nav-bar p-0 navbar-expand-sm bg-primary">
+            <ul class="navbar-nav mr-auto nav-pills">
+              <li class="nav-item hovering-nav-bar">
+                {{#link-to "people" class="nav-link text-white rounded-0"}}
+                  Person
+                {{/link-to}}
+              </li>
+              <li class="nav-item hovering-nav-bar">
+                {{#link-to "companies" class="nav-link text-white rounded-0"}}
+                  Firmenprofile
+                {{/link-to}}
+              </li>
+            </ul>
+          </nav>
+        </div>
       {{/if}}
-      {{outlet}}
+      <div class="outlet">
+        {{outlet}}
+      </div>
     </div>
   </div>
 </main>

@@ -520,6 +520,7 @@ form textarea{
 .ember-notify-cn .ember-notify{
   min-width: 300px;
   height: 50px;
+  z-index: 9000 !important;
 }
 
 .ember-notify-cn.ember-view{
@@ -1063,13 +1064,13 @@ div.content-input  {
 }
 
 #person-sidebar {
-  margin-top: 41px;
+  margin-top: 23px;
   float: left;
   width: 15%;
 }
 
 #person-sidebar li.nav-item {
-  height:52px;
+  height: 52px;
 }
 
 #person-sidebar a.nav-link {
@@ -1119,4 +1120,34 @@ div.content-input  {
   display: inline-block;
   position: relative;
   top: -10px;
+}
+
+.updated-at-person {
+  margin-top: 4%;
+}
+
+.header {
+  background-color: white;
+  width: 100%;
+  max-width: 1290px;
+  margin-right: auto;
+  margin-left: auto;
+  position: fixed;
+  z-index: 1020 !important;
+}
+
+.top {
+  top: 0;
+}
+
+.outlet {
+  margin-top: 7%;
+}
+
+.people-search {
+  width: 60%;
+}
+
+.new-profile-button {
+  margin-left: 65%;
 }

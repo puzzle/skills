@@ -9,6 +9,27 @@
     </li>
   </ul>
   <ul class="navbar-nav ml-auto">
-    {{updated-at entry=person}}
+    <div class="p-2">
+      {{#basic-dropdown as |dd|}}
+        {{#dd.trigger}}
+          <a class="edit-buttons">
+            <td><i class="fa fa-cog" aria-hidden="true"></i> Mehr Optionen</td>
+          </a>
+        {{/dd.trigger}}
+        {{#dd.content class="content-bootstrap-feel"}}
+          {{#delete-with-confirmation
+            entry=person
+            transitionTo="people"
+          }}
+            Profil Löschen
+          {{/delete-with-confirmation}}
+        {{/dd.content}}
+      {{/basic-dropdown}}
+    </div>
+    <div class="p-2">
+      <a onclick={{pipe (action 'exportCvOdt' person.id)}} class="edit-buttons">
+        <td><i class="fa fa-download" aria-hidden="true"></i> Export</td>
+      </a>
+    </div>
   </ul>
 </nav>

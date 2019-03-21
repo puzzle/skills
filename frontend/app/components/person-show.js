@@ -22,11 +22,6 @@ export default Component.extend({
   }),
 
   actions: {
-    deletePerson(personToDelete) {
-      personToDelete.destroyRecord();
-      this.get('router').transitionTo('people');
-    },
-
     exportCvOdt(personId, e) {
       e.preventDefault();
       let url = `/api/people/${personId}.odt`;
