@@ -24,14 +24,5 @@ export default Component.extend({
       let url = `/api/people/${personId}/fws.odt?discipline=system_engineering`;
       this.get('download').file(url)
     },
-
-    deletePerson(personToDelete) {
-      personToDelete.destroyRecord().then(() => {
-        this.toggleProperty('deletePersonConfirm');
-        this.get('router').transitionTo('people')
-          .then(() => this.sendAction('onDelete'))
-          .then(() => this.get('notify').success('Person gelöscht!'));
-      });
-    }
   }
 });
