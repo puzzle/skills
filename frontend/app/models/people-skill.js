@@ -1,8 +1,8 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  level: DS.attr('integer'),
-  interest: DS.attr('integer'),
+  level: DS.attr('number'),
+  interest: DS.attr('number'),
   certificate: DS.attr('boolean'),
   core_competence: DS.attr('boolean'),
 

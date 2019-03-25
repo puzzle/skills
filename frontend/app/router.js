@@ -11,6 +11,7 @@ Router.map(function() {
     this.route('new');
     this.route('person', { path: '/:person_id', resetNamespace: true }, function() {
       this.route('fws');
+      this.route('skills');
     });
   });
   this.route('login');

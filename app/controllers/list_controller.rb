@@ -34,7 +34,8 @@ class ListController < ApplicationController
   class << self
     # The ActiveRecord class of the model.
     def model_class
-      @model_class ||= controller_name.classify.constantize
+      model_name = controller_path.classify.remove('::')
+      @model_class ||= model_name.constantize
     end
 
     # The identifier of the model used for form parameters.

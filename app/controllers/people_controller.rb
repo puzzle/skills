@@ -4,9 +4,10 @@ class PeopleController < CrudController
                             competences company company_id email department]
 
   self.nested_models = %i[advanced_trainings activities projects
-                          educations person_competences language_skills people_roles]
+                          educations person_competences language_skills people_roles
+                          people_skills categories]
 
-  self.permitted_relationships = %i[company people_roles]
+  self.permitted_relationships = %i[company people_roles people_skills categories]
 
   skip_before_action :authorize, only: :picture
 
