@@ -1,25 +1,65 @@
-PeopleSkills:
-{{#each person.peopleSkills as |peopleSkill|}}
-  {{peopleSkill.level}}, 
-{{/each}}
-
+<br>
+<div class="card-header bg-info" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+  <div class="row">
+    <div class="col-sm-6">
+      <a class="card-link text-dark header-text">Skills ({{amountOfPeopleSkills}})</a>
+    </div>
+    <div class="col-sm-6 text-right d-block">
+      <a class="card-link text-dark" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><i class="fa angle"></i></a>
+    </div>
+  </div>
+</div>
+<div class="show border border-info rounded-bottom">
+  <div class="card-body d-flex flex-column">
+    {{#if person.peopleSkills}}
+      {{#each parentCategories as |parentCategory|}}
+        <div class="row pb-2">
+          <div class="col">
+            <div class="card-header bg-info">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="text-dark header-text">{{parentCategory.title}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="show border border-info rounded-bottom">
+              <div class="card-body d-flex flex-column">
+                {{#each person.peopleSkills as |peopleSkill|}}
+                  {{#if (eq parentCategory.title peopleSkill.skill.parentCategory.title)}}
+                    <div class="show border border-info rounded-bottom">
+                      <div class="card-body d-flex flex-column">
+                        <div class="row">
+                          <div class="col">
+                            {{peopleSkill.skill.title}}
+                          </div>
+                          <div class="col">
+                            {{peopleSkill.level}}
+                          </div>
+                          <div class="col">
+                            {{peopleSkill.interest}}
+                          </div>
+                          <div class="col">
+                            {{peopleSkill.certificate}}
+                          </div>
+                          <div class="col">
+                            {{peopleSkill.core_competence}}
+                          </div>
+                        </div>
+                        <br>
+                      </div>
+                    </div>
+                  {{/if}}
+                {{/each}}
+              </div>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    {{/if}}
+    <div class="mt-3">
+      <a class="edit-buttons"><i class="fa fa-pencil"></i> Bearbeiten</a>
+    </div>
+  </div>
+</div>
 <br>
 <br>
-All Skills:
-{{#each skills as |skill|}}
-  {{skill.title}}, 
-{{/each}}
-
-<br>
-<br>
-Parent Kategorien:
-{{#each parentCategories as |category|}}
-  {{category.title}}, 
-{{/each}}
-
-<br>
-<br>
-Child Kategorien:
-{{#each childCategories as |skill|}}
-  {{skill.title}}, 
-{{/each}}

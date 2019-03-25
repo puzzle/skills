@@ -15,5 +15,9 @@ export default Component.extend({
 
   childCategories: computed(function() {
     return this.get('store').query('category', { scope: 'children' });
+  }),
+
+  amountOfPeopleSkills: computed('person.peopleSkills', function() {
+    return this.get('person.peopleSkills.length')
   })
 });
