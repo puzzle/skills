@@ -8,6 +8,7 @@ class PersonSeeder
       person = seed_person(name).first
       break unless person
       seed_people_roles(person)
+      seed_people_skill(person.id)
       seed_image(person)
       associations = [:activity, :advanced_training, :project, :education, :person_competence, :language_skill, :people_skill]
       associations.each do |a|
@@ -122,16 +123,6 @@ class PersonSeeder
     end
   end
 
-  def seed_skills
-    Skill.seed do |s|
-      s.title = Faker::ProgrammingLanguage.unique.name
-      s.radar = rand(0..3)
-      s.portfolio = rand(0..2)
-      s.default_set = rand(1..3) > 1
-      s.category = Category.all_children.sample
-    end
-  end
-
   def seed_activity(person_id)
     Activity.seed do |a|
       a.description = Faker::Hacker.say_something_smart
@@ -144,12 +135,12 @@ class PersonSeeder
 
   def seed_people_skill(person_id)
     PeopleSkill.seed do |ps|
+      ps.person_id = person_id
       ps.skill_id = rand(1..20)
       ps.interest = rand(1..5)
       ps.level = rand(1..5)
       ps.certificate = rand(1..3) > 1
       ps.core_competence = rand(1..3) > 1
-      ps.person_id = person_id
     end
   end
 

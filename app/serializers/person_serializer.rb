@@ -41,6 +41,8 @@ class PersonSerializer < ApplicationSerializer
 
   has_many :roles
 
+  has_many :skills
+
   has_many :activities do |serializer|
     serializer.object.activities.list
   end
@@ -48,6 +50,8 @@ class PersonSerializer < ApplicationSerializer
   has_many :people_roles do |serializer|
     serializer.object.people_roles
   end
+
+  has_many :people_skills
 
   has_many :projects do |serializer|
     serializer.object.projects.list

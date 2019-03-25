@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2019_03_08_132916) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "associations_updatet_at"
-    t.integer "company_type", default: 0, null: false
+    t.integer "company_type", default: 3, null: false
   end
 
   create_table "educations", id: :serial, force: :cascade do |t|

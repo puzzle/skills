@@ -1,0 +1,25 @@
+PeopleSkills:
+{{#each person.peopleSkills as |peopleSkill|}}
+  {{peopleSkill.level}}, 
+{{/each}}
+
+<br>
+<br>
+All Skills:
+{{#each skills as |skill|}}
+  {{skill.title}}, 
+{{/each}}
+
+<br>
+<br>
+Parent Kategorien:
+{{#each parentCategories as |category|}}
+  {{category.title}}, 
+{{/each}}
+
+<br>
+<br>
+Child Kategorien:
+{{#each childCategories as |skill|}}
+  {{skill.title}}, 
+{{/each}}
