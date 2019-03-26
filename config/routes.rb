@@ -20,6 +20,8 @@ Rails.application.routes.draw do
       resources :skills, controller: 'people/skills'
     end
 
+    resources :people_skills, controller: 'people/skills'
+
     resources :employee_quantities, controller: 'employee_quantities'
     resources :locations, controller: 'locations'
     resources :offers, controller: 'offers'

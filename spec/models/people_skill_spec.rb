@@ -24,8 +24,6 @@ describe PeopleSkill do
       expect(people_skill.errors[:skill].first).to eq('muss ausgefüllt werden')
       expect(people_skill.errors[:person].first).to eq('muss ausgefüllt werden')
       expect(people_skill.errors[:skill].first).to eq('muss ausgefüllt werden')
-      expect(people_skill.errors[:core_competence].first).to eq('muss ausgefüllt werden')
-      expect(people_skill.errors[:certificate].first).to eq('muss ausgefüllt werden')
     end
     
     it 'checks whether level is between 1 and 5' do
