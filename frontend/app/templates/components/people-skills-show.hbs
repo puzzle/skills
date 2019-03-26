@@ -28,24 +28,11 @@
                   {{#if (eq parentCategory.title peopleSkill.skill.parentCategory.title)}}
                     <div class="show border border-info rounded-bottom">
                       <div class="card-body d-flex flex-column">
-                        <div class="row">
-                          <div class="col">
-                            {{peopleSkill.skill.title}}
-                          </div>
-                          <div class="col">
-                            {{peopleSkill.level}}
-                          </div>
-                          <div class="col">
-                            {{peopleSkill.interest}}
-                          </div>
-                          <div class="col">
-                            {{peopleSkill.certificate}}
-                          </div>
-                          <div class="col">
-                            {{peopleSkill.core_competence}}
-                          </div>
-                        </div>
-                        <br>
+                        {{#if peopleSkillsEditing}}
+                          {{people-skill-edit peopleSkill=peopleSkill}}
+                        {{else}}
+                          {{people-skill-show peopleSkill=peopleSkill}}
+                        {{/if}}
                       </div>
                     </div>
                   {{/if}}
@@ -57,7 +44,12 @@
       {{/each}}
     {{/if}}
     <div class="mt-3">
-      <a class="edit-buttons"><i class="fa fa-pencil"></i> Bearbeiten</a>
+      {{#if peopleSkillsEditing}}
+        <button onclick={{action 'submit' person}} role="button" class="btn btn-primary" id="submit-education-button">Speichern</button>
+        <button onclick={{action 'abortEdit'}} role="button" class="btn abort-button">Abbrechen</button>
+      {{else}}
+        <a class="edit-buttons" role="button" onclick={{action (toggle 'peopleSkillsEditing' this)}}><i class="fa fa-pencil"></i> Bearbeiten</a>
+      {{/if}}
     </div>
   </div>
 </div>
