@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     resources :locations, controller: 'locations'
     resources :offers, controller: 'offers'
 
-    resources :categories, only: :index
+    resources :categories, only: [:index, :show], controller: 'categories'
     resources :roles, only: :index
     resources :skills, controller: 'skills'
 
