@@ -1,57 +1,61 @@
-<br>
-<div class="card-header bg-info" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-  <div class="row">
-    <div class="col-sm-6">
-      <a class="card-link text-dark header-text">Skills ({{amountOfPeopleSkills}})</a>
-    </div>
-    <div class="col-sm-6 text-right d-block">
-      <a class="card-link text-dark" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><i class="fa angle"></i></a>
+<div id="peopleSkillsHeader" class="pt-3 pb-5">
+  <div class="card-header bg-info">
+    <div class="row">
+      <div class="col-sm-6">
+        <a class="card-link text-dark header-text">Skills ({{amountOfPeopleSkills}})</a>
+      </div>
+      <div class="col-sm-6 text-right d-block">
+        <a class="card-link text-dark" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><i class="fa angle"></i></a>
+      </div>
     </div>
   </div>
-</div>
-<div class="show border border-info rounded-bottom">
-  <div class="card-body d-flex flex-column">
-    {{#if person.peopleSkills}}
-      {{#each parentCategories as |parentCategory|}}
-        <div class="row pb-2">
-          <div class="col">
-            <div class="card-header bg-info">
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="text-dark header-text">{{parentCategory.title}}</div>
+  <div id="collapseTwo" class="collapse show border border-info rounded-bottom">
+    <div class="card-body d-flex flex-column">
+      {{#if person.peopleSkills}}
+        {{#each parentCategories as |parentCategory|}}
+          <div class="row pb-2">
+            <div class="col">
+              <div class="card-header bg-info">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="text-dark header-text">{{parentCategory.title}}</div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="show border border-info rounded-bottom">
-              <div class="card-body d-flex flex-column">
-                {{#each person.peopleSkills as |peopleSkill|}}
-                  {{#if (eq parentCategory.title peopleSkill.skill.parentCategory.title)}}
-                    <div class="show border border-info rounded-bottom">
-                      <div class="card-body d-flex flex-column">
-                        {{#if peopleSkillsEditing}}
-                          {{people-skill-edit peopleSkill=peopleSkill}}
-                        {{else}}
-                          {{people-skill-show peopleSkill=peopleSkill}}
+              {{#each childCategories as |childCategory|}}
+                {{#if (eq parentCategory.title childCategory.parent.title)}}
+                  <div class="show border border-info rounded-bottom">
+                    <div class="card-body d-flex flex-column">
+                      {{childCategory.title}} ({{childCategory.skills.length}})
+                      {{#each person.peopleSkills as |peopleSkill|}}
+                        {{#if (eq childCategory.title peopleSkill.skill.category.title)}}
+                          <div class="show border border-info rounded-bottom">
+                            <div class="card-body d-flex flex-column">
+                              {{#if peopleSkillsEditing}}
+                                {{people-skill-edit peopleSkill=peopleSkill}}
+                              {{else}}
+                                {{people-skill-show peopleSkill=peopleSkill}}
+                              {{/if}}
+                            </div>
+                          </div>
                         {{/if}}
-                      </div>
+                      {{/each}}
                     </div>
-                  {{/if}}
-                {{/each}}
-              </div>
+                  </div>
+                {{/if}}
+              {{/each}}
             </div>
           </div>
-        </div>
-      {{/each}}
-    {{/if}}
-    <div class="mt-3">
-      {{#if peopleSkillsEditing}}
-        <button onclick={{action 'submit' person}} role="button" class="btn btn-primary" id="submit-education-button">Speichern</button>
-        <button onclick={{action 'abortEdit'}} role="button" class="btn abort-button">Abbrechen</button>
-      {{else}}
-        <a class="edit-buttons" role="button" onclick={{action (toggle 'peopleSkillsEditing' this)}}><i class="fa fa-pencil"></i> Bearbeiten</a>
+        {{/each}}
       {{/if}}
+      <div class="mt-3">
+        {{#if peopleSkillsEditing}}
+          <button onclick={{action 'submit' person}} role="button" class="btn btn-primary" id="submit-education-button">Speichern</button>
+          <button onclick={{action 'abortEdit'}} role="button" class="btn abort-button">Abbrechen</button>
+        {{else}}
+          <a class="edit-buttons" role="button" onclick={{action (toggle 'peopleSkillsEditing' this)}}><i class="fa fa-pencil"></i> Bearbeiten</a>
+        {{/if}}
+      </div>
     </div>
   </div>
 </div>
-<br>
-<br>

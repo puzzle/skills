@@ -57,6 +57,7 @@ export default Component.extend({
 
         });
     },
+
     abortEdit() {
       let peopleSkills = this.get('person.peopleSkills').toArray();
       peopleSkills.forEach(peopleSkill => {
