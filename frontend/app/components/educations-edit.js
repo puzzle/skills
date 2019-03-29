@@ -3,15 +3,23 @@ import { inject as service } from '@ember/service';
 import sortByYear from '../utils/sort-by-year';
 import { on } from '@ember/object/evented';
 import { EKMixin , keyUp } from 'ember-keyboard';
-
+import { observer } from '@ember/object';
 
 export default Component.extend(EKMixin, {
-
-
   init() {
     this._super(...arguments);
     this.sortedEducations = sortByYear('educations').volatile()
   },
+
+  willDestroyElement() {
+    this._super(...arguments);
+    if (!this.get('alreadyAborted')) this.send('abortEdit');
+  },
+
+  personChanged: observer('person', function() {
+    this.send('abort');
+    this.set('alreadyAborted', true)
+  }),
 
   activateKeyboard: on('init', function() {
     this.set('keyboardActivated', true);
@@ -42,6 +50,7 @@ export default Component.extend(EKMixin, {
               .map(education => education.get('hasDirtyAttributes') ? education.save() : null)
           ])
         )
+        .then (() => this.set('alreadyAborted', true))
         .then (() => this.sendAction('submit'))
         .then (() => this.get('notify').success('Successfully saved!'))
         .then (() => this.$('#educationsHeader')[0].scrollIntoView({ behavior: 'smooth' }))
@@ -62,7 +71,7 @@ export default Component.extend(EKMixin, {
 
         });
     },
-    abortEdit() {
+    abort() {
       let educations = this.get('person.educations').toArray();
       educations.forEach(education => {
         if (education.get('hasDirtyAttributes')) {
@@ -70,6 +79,11 @@ export default Component.extend(EKMixin, {
         }
       });
       this.sendAction('educationsEditing');
+    },
+
+    abortEdit() {
+      this.send('abort');
+      this.set('alreadyAborted', true);
       this.$('#educationsHeader')[0].scrollIntoView({ behavior: 'smooth' });
     }
   }

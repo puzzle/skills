@@ -1,6 +1,6 @@
 import { inject as service } from '@ember/service';
 import ApplicationComponent from './application-component';
-import { computed } from '@ember/object';
+import { computed, observer } from '@ember/object';
 import { isBlank } from '@ember/utils';
 import { getNames as countryNames } from 'ember-i18n-iso-countries';
 import { on } from '@ember/object/evented';
@@ -16,13 +16,23 @@ export default ApplicationComponent.extend(EKMixin, {
     this.initMaritalStatuses();
     this.initNationalities();
     this.initCheckbox();
-    this.departments = Person.DEPARTMENTS;
-    this.roleLevels = Person.ROLE_LEVELS;
+    this.set('departments', Person.DEPARTMENTS);
+    this.set('roleLevels', Person.ROLE_LEVELS);
     this.callBackCompany = this.get('person.company');
     this.callBackRoleIds = {}
     this.get('person.peopleRoles').forEach(peopleRole =>
       this.callBackRoleIds[peopleRole.get('id')] =  peopleRole.get('role.id')
     );
+  },
+
+  personChanged: observer('person', function() {
+    this.send('abortEdit');
+    this.set('alreadyAborted', true)
+  }),
+
+  willDestroyElement() {
+    this._super(...arguments);
+    if (!this.get('alreadyAborted')) this.send('abortEdit');
   },
 
   activateKeyboard: on('init', function() {
@@ -43,9 +53,9 @@ export default ApplicationComponent.extend(EKMixin, {
 
   initMaritalStatuses() {
     this.maritalStatusesHash = Person.MARITAL_STATUSES
-    this.maritalStatuses = Object.values(this.maritalStatusesHash)
+    this.set('maritalStatuses', Object.values(this.maritalStatusesHash))
     const maritalStatusKey = this.get('person.maritalStatus')
-    this.selectedMaritalStatus = this.maritalStatusesHash[maritalStatusKey]
+    this.set('selectedMaritalStatus', this.maritalStatusesHash[maritalStatusKey])
   },
 
   initNationalities() {
@@ -53,8 +63,8 @@ export default ApplicationComponent.extend(EKMixin, {
     this.set('countries', countriesArray);
     const nationality = this.get('person.nationality');
     const nationality2 = this.get('person.nationality2');
-    this.selectedNationality = this.getCountry(nationality);
-    this.selectedNationality2 = this.getCountry(nationality2);
+    this.set('selectedNationality', this.getCountry(nationality));
+    this.set('selectedNationality2', this.getCountry(nationality2));
   },
 
   getCountry(code) {
@@ -111,6 +121,7 @@ export default ApplicationComponent.extend(EKMixin, {
                 peopleRole.get('role.id') != this.callBackRoleIds[peopleRole.get('id')] ? peopleRole.save() : null)
           ])
         )
+        .then (() => this.set('alreadyAborted', true))
         .then(() => this.sendAction('submit'))
         .then(() => this.get('notify').success('Personalien wurden aktualisiert!'))
         .catch(() => {
@@ -174,6 +185,7 @@ export default ApplicationComponent.extend(EKMixin, {
         peopleRole.set('role', role)
       });
 
+      this.set('alreadyAborted', true);
       this.sendAction('personEditing');
     },
 

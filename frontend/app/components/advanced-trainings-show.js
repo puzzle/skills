@@ -1,10 +1,15 @@
 import Component from '@ember/component';
 import sortByYear from '../utils/sort-by-year';
-import { computed } from '@ember/object';
+import { computed, observer } from '@ember/object';
 
 export default Component.extend({
+
   amountOfAdvancedTrainings: computed('sortedAdvancedTrainings', function() {
     return this.get('sortedAdvancedTrainings.length');
+  }),
+
+  personChanged: observer('person', function() {
+    this.send('toggleAdvancedTrainingNew', false);
   }),
 
   sortedAdvancedTrainings: sortByYear('advanced-trainings'),

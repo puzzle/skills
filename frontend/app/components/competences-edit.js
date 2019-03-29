@@ -3,6 +3,7 @@ import Component from '@ember/component';
 import { isBlank } from '@ember/utils';
 import { on } from '@ember/object/evented';
 import { EKMixin , keyUp } from 'ember-keyboard';
+import { observer } from '@ember/object';
 
 
 export default Component.extend(EKMixin, {
@@ -21,6 +22,17 @@ export default Component.extend(EKMixin, {
       , 'Rspec', 'Ruby on Rails', 'Ruby', 'SASS', 'SQL', 'SUSE', 'Servlets', 'Shell Scripting', 'Sonar'
       , 'Stored Procedures', 'Travis', 'UML', 'Ubuntu', 'VLANs', 'WebSockets', 'WildFly / JBoss EAP']);
   },
+
+  willDestroyElement() {
+    this._super(...arguments);
+    if (!this.get('alreadyAborted')) this.send('abortEdit');
+  },
+
+  personChanged: observer('person', function() {
+    this.send('abortEdit');
+    this.set('alreadyAborted', true)
+  }),
+
 
   suggestion(term) {
     return `"${term}" mit Enter hinzufügen!`;
@@ -57,6 +69,7 @@ export default Component.extend(EKMixin, {
               .map(personCompetence => personCompetence.save())
           ])
         )
+        .then (() => this.set('alreadyAborted', true))
         .then (() => this.sendAction('submit'))
         .then (() => this.get('notify').success('Successfully saved!'))
         // TODO
@@ -84,6 +97,7 @@ export default Component.extend(EKMixin, {
           competence.destroyRecord();
         }
       });
+      this.set('alreadyAborted', true);
       this.sendAction('competencesEditing');
     },
 

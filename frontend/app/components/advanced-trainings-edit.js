@@ -3,9 +3,19 @@ import Component from '@ember/component';
 import sortByYear from "../utils/sort-by-year";
 import { on } from '@ember/object/evented';
 import { EKMixin , keyUp } from 'ember-keyboard';
+import { observer } from '@ember/object';
 
 export default Component.extend(EKMixin, {
 
+  willDestroyElement() {
+    this._super(...arguments);
+    if (!this.get('alreadyAborted')) this.send('abortEdit');
+  },
+
+  personChanged: observer('person', function() {
+    this.send('abort');
+    this.set('alreadyAborted', true)
+  }),
 
   i18n: service(),
 
@@ -36,6 +46,7 @@ export default Component.extend(EKMixin, {
               .map(advancedTraining => advancedTraining.get('hasDirtyAttributes') ? advancedTraining.save() : null)
           ])
         )
+        .then (() => this.set('alreadyAborted', true))
         .then (() => this.sendAction('submit'))
         .then (() => this.get('notify').success('Successfully saved!'))
         .then (() => this.$('#advancedTrainingsHeader')[0].scrollIntoView({ behavior: 'smooth' }))
@@ -54,7 +65,7 @@ export default Component.extend(EKMixin, {
         });
     },
 
-    abortEdit() {
+    abort() {
       let advancedTrainings = this.get('person.advancedTrainings').toArray();
       advancedTrainings.forEach(advancedTraining => {
         if (advancedTraining.get('hasDirtyAttributes')) {
@@ -62,6 +73,11 @@ export default Component.extend(EKMixin, {
         }
       });
       this.sendAction('advancedTrainingsEditing');
+    },
+
+    abortEdit() {
+      this.send('abort');
+      this.set('alreadyAborted', true);
       this.$('#advancedTrainingsHeader')[0].scrollIntoView({ behavior: 'smooth' });
     }
   }
