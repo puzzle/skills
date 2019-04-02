@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import { isBlank } from '@ember/utils';
+import $ from 'jquery';
 
 export default Component.extend({
   store: service(),
@@ -35,11 +36,24 @@ export default Component.extend({
     return !blurredEl.classList.contains('ember-power-select-search-input');
   },
 
+  changeText(person) {
+    const text = person.get('name') + ' <small>(' + person.get('company.name') + ')</small>';
+    const searchFieldText = $('#people-search').children().first();
+    if (searchFieldText) searchFieldText.html(text) && searchFieldText.css('color', 'black');
+  },
+
   actions: {
     changePerson(person) {
       this.notifyPropertyChange('selectedPerson');
       person.reload();
-      this.get('router').transitionTo('person' , person);
+      this.get('router').transitionTo('person' , person)
+      this.changeText(person);
+      //this.get('router').transitionTo('person' , person)
+      //  .then (() => {
+      //    const text = person.get('name') + ' <small>(' + person.get('company.name') + ')</small>';
+      //    const searchFieldText = $('#people-search').children().first();
+      //    if (searchFieldText) searchFieldText.html(text) && searchFieldText.css('color', 'black');
+      //  });
     },
 
     handleFocus(select, e) {

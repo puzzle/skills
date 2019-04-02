@@ -3,6 +3,7 @@ import Route from '@ember/routing/route';
 import DS from 'ember-data';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 import { UnauthorizedError, ForbiddenError } from 'ember-ajax/errors';
+import $ from 'jquery';
 
 export default Route.extend(ApplicationRouteMixin, {
   session: service(),
@@ -23,8 +24,14 @@ export default Route.extend(ApplicationRouteMixin, {
         this.get('session').invalidate();
       }
     },
+
     invalidateSession() {
       this.get('session').invalidate();
+    },
+
+    clearSelectedPerson() {
+      const searchFieldText = $('#people-search').children().first();
+      if (searchFieldText) searchFieldText.text('Person suchen') && searchFieldText.css('color', 'grey');
     }
   }
 });

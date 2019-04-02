@@ -36,9 +36,11 @@
         <nav class="navbar custom-nav-bar p-0 navbar-expand-sm mb-3 bg-primary">
           <ul class="navbar-nav mr-auto nav-pills">
             <li class="nav-item hovering-nav-bar">
-              {{#link-to "people" class="nav-link text-white rounded-0"}}
-                Person
-              {{/link-to}}
+              <span {{action 'clearSelectedPerson'}}>
+                {{#link-to "people" class="nav-link text-white rounded-0"}}
+                  Person
+                {{/link-to}}
+              </span>
             </li>
             <li class="nav-item hovering-nav-bar">
               {{#link-to "companies" class="nav-link text-white rounded-0"}}

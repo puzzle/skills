@@ -1,4 +1,5 @@
 import { inject as service } from '@ember/service';
+import Route from '@ember/routing/route';
 import Component from '@ember/component';
 import { isPresent } from '@ember/utils';
 
@@ -20,6 +21,7 @@ export default Component.extend({
         .t('delete-confirmation.success',
           { name: entry.get('instanceToString') })['string']
 
+      debugger;
       entry.destroyRecord().then(() => {
         this.set('showConfirmation', false);
         if (isPresent(transitionTo)) {
