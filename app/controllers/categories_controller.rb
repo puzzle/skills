@@ -5,6 +5,7 @@ class CategoriesController < CrudController
 
   def fetch_entries
     return Category.all_parents if params[:scope] == 'parents'
+    return Category.all_children if params[:scope] == 'children'
     super
   end
 end

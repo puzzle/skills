@@ -10,8 +10,6 @@
 #
 
 class CategorySerializer < ApplicationSerializer
-  type :categories
-
   attributes :id, :title, :parent_id
   belongs_to :parent
   has_many :children

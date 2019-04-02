@@ -1,0 +1,116 @@
+<a type="button" class="edit-buttons" data-toggle="modal" data-target="#people-skill-new-modal">
+  <i class="fa fa-plus" aria-hidden="true"></i> Neuer Skill hinzufügen
+</a>
+
+<div class="modal fade" id="people-skill-new-modal" tabindex="-1" role="dialog" aria-labelledby="people-skill-new-modal-label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="people-skill-new-modal-label">Neuer Skill hinzufügen</h5>
+        <button type="button" class="close" onclick={{action 'abortNew'}} aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row my-3">
+            <div class="col-md-3">Skill</div>
+            <div class="col-md-9 people-skill-new-dropdowns">
+              {{#power-select-with-create
+                triggerId="people-skill-new-skill"
+                renderInPlace=true
+                class="w-100"
+                dropdownClass="w-100"
+                options=dropdownSkills
+                selected=newPeopleSkill.skill
+                searchField="title"
+                onchange=(action (mut newPeopleSkill.skill))
+                oncreate=(action "setupNewSkill")
+                buildSuggestion=(action "customSuggestion")
+                as |skill|
+              }}
+                {{skill.title}}
+              {{/power-select-with-create}}
+            </div>
+          </div>
+          <div class="row my-3">
+            <div class="col-md-3">Kategorie</div>
+            <div class="col-md-9 people-skill-new-dropdowns">
+              {{#power-select
+                triggerId="people-skill-new-category"
+                renderInPlace=true
+                class="w-100"
+                dropdownClass="w-100"
+                options=childCategories
+                disabled=(eq newSkillSelected false)
+                selected=selectedCategory
+                onchange=(action 'setCategory')
+                as |category|
+              }}
+                {{category.parent.title}} - {{category.title}}
+              {{/power-select}}
+            </div>
+          </div>
+          <div class="row my-3">
+            <div class="col-md-3">Level</div>
+            <div class="col-md-9 people-skill-new-dropdowns">
+              {{#power-select
+                triggerId="people-skill-new-level"
+                renderInPlace=true
+                class="w-100"
+                dropdownClass="w-100"
+                searchEnabled=false
+                options=interestLevelOptions
+                selected=newPeopleSkill.level
+                onchange=(action (mut newPeopleSkill.level))
+                as |level|
+              }}
+                {{level}}
+              {{/power-select}}
+            </div>
+          </div>
+          <div class="row my-3">
+            <div class="col-md-3">Interesse</div>
+            <div class="col-md-9 people-skill-new-dropdowns">
+              {{#power-select
+                triggerId="people-skill-new-interest"
+                renderInPlace=true
+                class="w-100"
+                dropdownClass="w-100"
+                searchEnabled=false
+                options=interestLevelOptions
+                selected=newPeopleSkill.interest
+                onchange=(action (mut newPeopleSkill.interest))
+                as |interest|
+              }}
+                {{interest}}
+              {{/power-select}}
+            </div>
+          </div>
+          <div id="certificate-toggle" class="row my-3">
+            <div class="col-md-3">Zertifikat vorhanden</div>
+            {{x-toggle
+            theme='material'
+            size='medium'
+            value=newPeopleSkill.certificate
+            onToggle=(action (mut newPeopleSkill.certificate))
+            }}
+          </div>
+          <div id="coreCompetence-toggle" class="row my-3">
+            <div class="col-md-3">Kernkompetenz</div>
+            {{x-toggle
+            theme='material'
+            size='medium'
+            value=newPeopleSkill.core_competence
+            onToggle=(action (mut newPeopleSkill.core_competence))
+            }}
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" onclick={{action 'abortNew'}} class="btn btn-secondary">Abbrechen</button>
+        <button id="people-skill-new-submit-button" type="button" onclick={{action 'submit'}} class="btn btn-primary">Speichern</button>
+      </div>
+    </div>
+  </div>
+</div>

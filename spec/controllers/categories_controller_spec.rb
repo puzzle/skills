@@ -27,7 +27,6 @@ describe CategoriesController do
         categories = json['data']
 
         expect(categories.count).to eq(2)
-        software_engineering_attrs = categories.first['attributes']
         category_titles = categories.map { |c| c['attributes']['title'] }
         expect(category_titles).to include('Software-Engineering')
         expect(category_titles).to include('System-Engineering')

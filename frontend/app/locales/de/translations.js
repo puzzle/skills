@@ -26,6 +26,22 @@ export default {
     monthTo: 'Monat bis'
   },
 
+  'skill': {
+    title: 'Titel',
+    radar: 'Radar',
+    portfolio: 'Portfolio',
+    default_set: 'DefaultSet',
+    category: 'Kategorie'
+  },
+
+  'peopleSkill': {
+    level: 'Niveau',
+    interest: 'Interesse',
+    certificate: 'Zertifikat',
+    core_competence: 'Kernkompetenz',
+    skill: 'Skill'
+  },
+
   'project': {
     title: 'Titel',
     description: 'Beschreibung',

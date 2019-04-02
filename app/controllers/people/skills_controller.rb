@@ -1,5 +1,5 @@
 class People::SkillsController < CrudController
-  self.permitted_attrs = %i[person_id skill_id level intereset certificate core_competence]
+  self.permitted_attrs = %i[person_id skill_id level interest certificate core_competence]
 
   self.nested_models = %i[category]
 

@@ -18,6 +18,8 @@ describe PeopleSkill do
   context 'validations' do
     it 'checks whether required attribute values are present' do
       people_skill = PeopleSkill.new
+      people_skill.certificate = nil
+      people_skill.core_competence = nil
       people_skill.valid?
 
       expect(people_skill.errors[:person].first).to eq('muss ausgefüllt werden')

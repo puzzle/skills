@@ -11,6 +11,9 @@
   </div>
   <div id="collapseTwo" class="collapse show border border-info rounded-bottom">
     <div class="card-body d-flex flex-column">
+      {{people-skill-new peopleSkills=person.peopleSkills
+                         childCategories=childCategories
+                         person=person}}
       {{#if person.peopleSkills}}
         {{#each parentCategories as |parentCategory|}}
           <div class="row pb-2">
@@ -26,7 +29,7 @@
                 {{#if (eq parentCategory.title childCategory.parent.title)}}
                   <div class="show border border-info rounded-bottom">
                     <div class="card-body d-flex flex-column">
-                      {{childCategory.title}} ({{childCategory.skills.length}})
+                      {{childCategory.title}}
                       {{#each person.peopleSkills as |peopleSkill|}}
                         {{#if (eq childCategory.title peopleSkill.skill.category.title)}}
                           <div class="show border border-info rounded-bottom">
