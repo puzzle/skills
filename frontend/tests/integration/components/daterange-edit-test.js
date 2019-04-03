@@ -8,8 +8,10 @@ module('Integration | Component | daterange-edit', function(hooks) {
 
   test('it renders daterange-edit with data and month', async function(assert) {
     this.set('project', {
-      start_at: new Date(2000, 9, 21),
-      finish_at: new Date(2005, 2, 12)
+      yearFrom: 2000,
+      monthFrom: 10,
+      yearTo: 2005,
+      monthTo: 3
     });
 
     await render(hbs`{{daterange-edit entity=project}}`);
@@ -25,8 +27,10 @@ module('Integration | Component | daterange-edit', function(hooks) {
 
   test('it renders daterange-edit with data no month', async function(assert) {
     this.set('project', {
-      start_at: new Date(2000, 0, 13),
-      finish_at: new Date(2005, 11, 13)
+      yearFrom: 2000,
+      monthFrom: null,
+      yearTo: 2005,
+      monthTo: null
     });
 
     await render(hbs`{{daterange-edit entity=project}}`);
@@ -42,15 +46,6 @@ module('Integration | Component | daterange-edit', function(hooks) {
 
   test('it renders daterange-edit without data', async function(assert) {
     this.set('project', {
-      start_at: new Date(1970, 0, 0),
-      finish_at: new Date(1970, 0, 0),
-      setFinishAt(year, month, day) {
-        this.finish_at.setFullYear(null, 11, 13)
-      },
-      setStartAt(year, month, day) {
-        this.start_at.setFullYear(null, 0, 13)
-      },
-
       isNew: true
     });
 

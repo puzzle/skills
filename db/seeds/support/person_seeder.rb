@@ -136,8 +136,7 @@ class PersonSeeder
     Activity.seed do |a|
       a.description = Faker::Hacker.say_something_smart
       a.role = Faker::Company.profession
-      a.start_at = start_at_date
-      a.finish_at = finish_at_date
+      seed_daterange(a)
       a.person_id = person_id
     end
   end
@@ -157,8 +156,7 @@ class PersonSeeder
     AdvancedTraining.seed do |a|
       a.description = Faker::Hacker.say_something_smart
       a.created_at = Time.now
-      a.start_at = start_at_date
-      a.finish_at = finish_at_date
+      seed_daterange(a)
       a.person_id = person_id
     end
   end
@@ -169,8 +167,7 @@ class PersonSeeder
       p.title = Faker::Job.title
       p.role = Faker::Company.profession
       p.technology = Faker::Superhero.power
-      p.start_at = start_at_date
-      p.finish_at = finish_at_date
+      seed_daterange(p)
       p.person_id = person_id
     end
   end
@@ -179,8 +176,7 @@ class PersonSeeder
     Education.seed do |e|
       e.location = Faker::Educator.university
       e.title = Faker::Educator.course
-      e.start_at = start_at_date
-      e.finish_at = finish_at_date
+      seed_daterange(e)
       e.person_id = person_id
     end
   end
@@ -209,13 +205,23 @@ class PersonSeeder
     end
   end
 
-  def start_at_date
-    date = Faker::Date.between(60.year.ago, 40.year.ago)
-    Date.new(date.year, date.month, 1)
+  def seed_daterange(record)
+      year_to = random_year_to
+      record.year_to = year_to
+      record.month_to = year_to ? random_month : nil
+      record.year_from = rand(1960..1980)
+      record.month_from = random_month
   end
 
-  def finish_at_date
-    date = Faker::Date.between(30.year.ago, 2.year.ago)
-    Date.new(date.year, date.month, 1)
+  def random_year_to
+    years = [nil]
+    10.times { years << rand(1985..2015) }
+    years.sample
+  end
+
+  def random_month
+    months = [nil]
+    10.times { months << rand(1..12) }
+    months.sample
   end
 end

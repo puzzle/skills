@@ -8,8 +8,10 @@
 #  updated_at :datetime
 #  updated_by :string
 #  person_id  :integer
-#  finish_at  :date
-#  start_at   :date
+#  year_from  :integer          not null
+#  year_to    :integer
+#  month_from :integer
+#  month_to   :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
@@ -17,13 +19,13 @@
 bsc:
   location: Uni Bern
   title: BSc in Cleaning
-  finish_at: 2010-12-01
-  start_at: 2000-01-01
+  year_to: 2010
+  year_from: 2000
   person: bob
 
 msc:
   location: University of London
   title: MSc in writing
-  finish_at: 2015-12-01
-  start_at: 2010-01-01
+  year_to: 2015
+  year_from: 2010
   person: alice

@@ -8,12 +8,14 @@
 #  person_id   :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  finish_at   :date
-#  start_at    :date
+#  year_from   :integer          not null
+#  year_to     :integer
+#  month_from  :integer
+#  month_to    :integer
 #
 
-include DaterangeSort
 class AdvancedTraining < ApplicationRecord
+  include DaterangeModel
 
   after_create :update_associations_updatet_at
   after_update :update_associations_updatet_at
@@ -21,12 +23,8 @@ class AdvancedTraining < ApplicationRecord
 
   belongs_to :person, touch: true
 
-  validates :start_at, :person_id, :description, presence: true
+  validates :person_id, :description, presence: true
   validates :description, length: { maximum: 5000 }
-  validate :start_at_before_finish_at
-  validate :daterange_year_length
-
-  scope :list, -> { sort(&by_daterange) }
 
   private
 

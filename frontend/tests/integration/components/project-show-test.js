@@ -10,8 +10,10 @@ test('it renders project', function(assert) {
     title: 'Dreaming Project',
     lineBreakDescription: 'Schlafen',
     lineBreakRole: 'Träumer',
-    finish_at: new Date(1990, 1, 1),
-    start_at: new Date(1991, 1, 1),
+    yearFrom: 1990,
+    monthFrom: 2,
+    yearTo: 1991,
+    monthTo: 2,
     lineBreakTechnology: 'Java'
   });
 

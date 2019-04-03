@@ -1,3 +1,3 @@
 class AdvancedTrainingsController < PersonRelationsController
-  self.permitted_attrs = %i[description finish_at start_at person_id]
+  self.permitted_attrs = %i[description year_to month_to year_from month_from person_id]
 end

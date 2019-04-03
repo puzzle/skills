@@ -11,8 +11,10 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  person_id   :integer
-#  finish_at   :date
-#  start_at    :date
+#  year_from   :integer          not null
+#  year_to     :integer
+#  month_from  :integer
+#  month_to    :integer
 #
 
 require 'rails_helper'
@@ -25,7 +27,7 @@ describe Project do
       project = Project.new
       project.valid?
 
-      expect(project.errors[:start_at].first).to eq('muss ausgefüllt werden')
+      expect(project.errors[:year_from].first).to eq('muss ausgefüllt werden')
       expect(project.errors[:person_id].first).to eq('muss ausgefüllt werden')
       expect(project.errors[:role].first).to eq('muss ausgefüllt werden')
       expect(project.errors[:title].first).to eq('muss ausgefüllt werden')
@@ -51,27 +53,27 @@ describe Project do
 
     it 'does not create Project if start_at is later than finish_at' do
       project = projects(:duckduckgo)
-      project.start_at = '2016-01-01'
+      project.year_from = 2016
       project.valid?
 
-      expect(project.errors[:start_at].first).to eq('muss vor "Datum bis" sein')
+      expect(project.errors[:year_from].first).to eq('muss vor "Datum bis" sein')
     end
 
-    it 'finish_at can be blank' do
+    it 'year_to can be blank' do
       project = projects(:duckduckgo)
-      project.finish_at = nil
+      project.year_to = nil
 
       project.valid?
 
-      expect(project.errors[:finish_at]).to be_empty
+      expect(project.errors[:year_to]).to be_empty
     end
 
     it 'orders projects correctly with list scope' do
       bob_id = people(:bob).id
-      Project.create(title: 'test1', role: 'test1', technology: 'test', start_at: '2014-01-01', person_id: bob_id)
-      Project.create(title: 'test2', role: 'test2', technology: 'test', start_at: '2000-01-01', finish_at: '2030-01-01', person_id: bob_id)
-      Project.create(title: 'test3', role: 'test2', technology: 'test', start_at: '2000-01-01', finish_at: '2030-01-13', person_id: bob_id)
-      Project.create(title: 'test4', role: 'test2', technology: 'test', start_at: '2000-01-13', finish_at: '2030-01-01', person_id: bob_id)
+      Project.create(title: 'test1', role: 'test1', technology: 'test', year_from: 2014, month_from: 1, person_id: bob_id)
+      Project.create(title: 'test2', role: 'test2', technology: 'test', year_from: 2000, month_from: 1, year_to: 2030, month_to: 1, person_id: bob_id)
+      Project.create(title: 'test3', role: 'test2', technology: 'test', year_from: 2000, month_from: 1, year_to: 2030, month_to: nil, person_id: bob_id)
+      Project.create(title: 'test4', role: 'test2', technology: 'test', year_from: 2000, month_from: nil, year_to: 2030, month_to: 1, person_id: bob_id)
 
       list = Project.all.list
 

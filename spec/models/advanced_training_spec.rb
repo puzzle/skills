@@ -8,8 +8,10 @@
 #  person_id   :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  finish_at   :date
-#  start_at    :date
+#  year_from   :integer          not null
+#  year_to     :integer
+#  month_from  :integer
+#  month_to    :integer
 #
 
 require 'rails_helper'
@@ -22,7 +24,7 @@ describe AdvancedTraining do
       advanced_training = AdvancedTraining.new
       advanced_training.valid?
 
-      expect(advanced_training.errors[:start_at].first).to eq('muss ausgefüllt werden')
+      expect(advanced_training.errors[:year_from].first).to eq('muss ausgefüllt werden')
       expect(advanced_training.errors[:person_id].first).to eq('muss ausgefüllt werden')
     end
 
@@ -37,27 +39,27 @@ describe AdvancedTraining do
 
     it 'does not create AdvancedTraining if start_at is later than finish_at' do
       advanced_training = advanced_trainings(:course)
-      advanced_training.start_at = '2016-01-01'
+      advanced_training.year_from = 2016
       advanced_training.valid?
 
-      expect(advanced_training.errors[:start_at].first).to eq('muss vor "Datum bis" sein')
+      expect(advanced_training.errors[:year_from].first).to eq('muss vor "Datum bis" sein')
     end
 
-    it 'finish_at can be blank' do
+    it 'year_to can be blank' do
       advanced_training = advanced_trainings(:course)
-      advanced_training.finish_at = nil
+      advanced_training.year_to = nil
 
       advanced_training.valid?
 
-      expect(advanced_training.errors[:finish_at]).to be_empty
+      expect(advanced_training.errors[:year_to]).to be_empty
     end
 
     it 'orders projects correctly with list scope' do
       bob_id = people(:bob).id
-      AdvancedTraining.create(description: 'test1', start_at: '2000-01-01', person_id: bob_id)
-      AdvancedTraining.create(description: 'test2', start_at: '2016-01-01', finish_at: '2030-01-01', person_id: bob_id)
-      AdvancedTraining.create(description: 'test3', start_at: '2016-01-01', finish_at: '2030-01-13', person_id: bob_id)
-      AdvancedTraining.create(description: 'test4', start_at: '2016-01-13', finish_at: '2030-01-01', person_id: bob_id)
+      AdvancedTraining.create(description: 'test1', year_from: 2000, month_from: 1, person_id: bob_id)
+      AdvancedTraining.create(description: 'test2', year_from: 2016, month_from: 1, year_to: 2030, month_to: 1, person_id: bob_id)
+      AdvancedTraining.create(description: 'test3', year_from: 2016, month_from: 1, year_to: 2030, month_to: nil, person_id: bob_id)
+      AdvancedTraining.create(description: 'test4', year_from: 2016, month_from: nil, year_to: 2030, month_to: 1, person_id: bob_id)
 
       list = AdvancedTraining.all.list
 

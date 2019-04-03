@@ -8,8 +8,10 @@
 #  updated_at :datetime
 #  updated_by :string
 #  person_id  :integer
-#  finish_at  :date
-#  start_at   :date
+#  year_from  :integer          not null
+#  year_to    :integer
+#  month_from :integer
+#  month_to   :integer
 #
 
 require 'rails_helper'
@@ -22,7 +24,7 @@ describe Education do
       education = Education.new
       education.valid?
 
-      expect(education.errors[:start_at].first).to eq('muss ausgefüllt werden')
+      expect(education.errors[:year_from].first).to eq('muss ausgefüllt werden')
       expect(education.errors[:person_id].first).to eq('muss ausgefüllt werden')
       expect(education.errors[:title].first).to eq('muss ausgefüllt werden')
       expect(education.errors[:location].first).to eq('muss ausgefüllt werden')
@@ -38,29 +40,29 @@ describe Education do
       expect(education.errors[:title].first).to eq('ist zu lang (mehr als 500 Zeichen)')
     end
 
-    it 'finish_at can be blank' do
+    it 'year_to can be blank' do
       education = educations(:bsc)
-      education.finish_at = nil
+      education.year_to = nil
 
       education.valid?
 
-      expect(education.errors[:finish_at]).to be_empty
+      expect(education.errors[:year_to]).to be_empty
     end
 
     it 'does not create Education if start_at is later than finish_at' do
       education = educations(:bsc)
-      education.start_at = '2016-01-01'
+      education.year_from = 2016
       education.valid?
 
-      expect(education.errors[:start_at].first).to eq('muss vor "Datum bis" sein')
+      expect(education.errors[:year_from].first).to eq('muss vor "Datum bis" sein')
     end
 
     it 'orders education correctly with list scope' do
       bob_id = people(:bob).id
-      Education.create(title: 'test1', location: 'test1', start_at: '2012-01-01', person_id: bob_id)
-      Education.create(title: 'test2', location: 'test2', start_at: '2005-01-01', finish_at: '2030-01-13', person_id: bob_id)
-      Education.create(title: 'test3', location: 'test3', start_at: '2005-01-01', finish_at: '2030-01-01', person_id: bob_id)
-      Education.create(title: 'test4', location: 'test4', start_at: '2004-01-01', finish_at: '2030-01-01', person_id: bob_id)
+      Education.create(title: 'test1', location: 'test1', year_from: 2012, month_from: 1, person_id: bob_id)
+      Education.create(title: 'test2', location: 'test2', year_from: 2005, month_from: 1, year_to: 2030, month_to: nil, person_id: bob_id)
+      Education.create(title: 'test3', location: 'test3', year_from: 2005, month_from: 1, year_to: 2030, month_to: 1, person_id: bob_id)
+      Education.create(title: 'test4', location: 'test4', year_from: 2004, month_from: 1, year_to: 2030, month_to: 1, person_id: bob_id)
 
       list = Education.all.list
 

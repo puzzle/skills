@@ -9,8 +9,10 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  person_id   :integer
-#  finish_at   :date
-#  start_at    :date
+#  year_from   :integer          not null
+#  year_to     :integer
+#  month_from  :integer
+#  month_to    :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
@@ -19,14 +21,14 @@ swisscom:
   description: Swisscom
   updated_by: MyString
   role: User Experience Consultant
-  finish_at: 2010-12-01
-  start_at: 2000-01-01
+  year_to: 2010
+  year_from: 2000
   person: bob
 
 ascom:
   description: Ascom
   updated_by: MyString
   role: Project Manager
-  finish_at: 2015-12-01
-  start_at: 2010-01-01
+  year_to: 2015
+  year_from: 2010
   person: alice

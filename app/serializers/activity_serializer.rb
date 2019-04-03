@@ -9,12 +9,14 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  person_id   :integer
-#  finish_at   :date
-#  start_at    :date
+#  year_from   :integer          not null
+#  year_to     :integer
+#  month_from  :integer
+#  month_to    :integer
 #
 
 class ActivitySerializer < ApplicationSerializer
-  attributes :id, :description, :updated_by, :role, :finish_at, :start_at
+  attributes :id, :description, :updated_by, :role, :year_to, :month_from, :year_from, :month_to
 
   belongs_to :person, serializer: PersonUpdatedAtSerializer
 end

@@ -21,11 +21,11 @@
         <div class="zeile">
           <div class="row">
             <div class="col-sm-3 centered-content text-center">
-              {{if (not-eq (moment-format education.start_at 'DD') "13") (moment-format education.start_at 'MM.YYYY') (moment-format education.start_at 'YYYY')}}
-              {{#if (eq education.finish_at null)}}
+              {{if education.monthFrom (concat (moment-format education.monthFrom 'MM') '.')}}{{education.yearFrom}}
+              {{#if (eq education.yearTo null)}}
                 - heute
-              {{else if (not-eq education.finish_at education.start_at)}}
-                - {{if (not-eq (moment-format education.finish_at 'DD') "13") (moment-format education.finish_at 'MM.YYYY') (moment-format education.finish_at 'YYYY')}}
+              {{else if (or (not-eq education.yearFrom education.yearTo) (not-eq education.monthFrom education.monthTo))}}
+                - {{if education.monthTo (concat (moment-format education.monthTo 'MM') '.')}}{{education.yearTo}}
               {{/if}}
             </div>
             <div class="col-sm-9">
