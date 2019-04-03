@@ -13,20 +13,20 @@
       </th>
       <td>
         {{#power-select
-        selected=monthFrom
+        selected=selectedMonthFrom
         options=monthsFromSelect
         searchEnabled=false
         onfocus=(action "handleFocus")
         onblur=(action "handleBlur")
-        onchange=(action "setMonthFrom")
-        onkeydown=(action "setWithTab" 'setMonthFrom')
+        onchange=(action "setMonth" "From")
+        onkeydown=(action "setWithTab" 'setMonth')
         as |month|
         }}
           {{month}}
         {{/power-select}}
       </td>
       <td>
-        <input type="number" value={{if (not-eq yearFrom 0) yearFrom}} onchange={{action "setYearFrom" value="target.value"}} max="9999"
+        <input type="number" value={{entity.yearFrom}} onchange={{action "setYearFrom" value="target.value"}} max="9999"
         class={{concat (if yearFromInvalid 'invalid') " year form-control" }} placeholder="von">
       </td>
     </tr>
@@ -36,22 +36,22 @@
       </th>
       <td>
         {{#power-select
-        selected=monthTo
+        selected=selectedMonthTo
         options=monthsToSelect
         searchEnabled=false
         onfocus=(action "handleFocus")
         onblur=(action "handleBlur")
-        onchange=(action "setMonthTo")
-        onkeydown=(action "setWithTab" 'setMonthTo')
+        onchange=(action "setMonth" "To")
+        onkeydown=(action "setWithTab" 'setMonth' "To")
         as |month|
         }}
           {{month}}
         {{/power-select}}
       </td>
       <td>
-        {{#if (not-eq monthTo "heute")}}
-          <input type="number" value={{if (not-eq yearTo 0) yearTo}} onchange={{action "setYearTo" value="target.value"}} max="9999"
-          class={{concat (if yearFromInvalid 'invalid') " year form-control" }} placeholder="bis">
+        {{#if (not-eq selectedMonthTo 'heute')}}
+          <input type="number" value={{entity.yearTo}} max="9999" onchange={{action "setYearTo" value="target.value"}}
+            class={{concat (if yearFromInvalid 'invalid') " year form-control" }} placeholder="bis">
         {{/if}}
       </td>
     </tr>

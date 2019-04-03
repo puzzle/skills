@@ -76,10 +76,10 @@ module Odt
     # rubocop:disable Metrics/MethodLength
     def insert_educations(report)
       educations_list = person.educations.list.collect do |e|
-        { year_from: formatted_year(e.start_at),
-          month_from: formatted_month(e.start_at),
-          year_to: formatted_year(e.finish_at),
-          month_to: formatted_month(e.finish_at),
+        { year_from: formatted_year(e.year_from),
+          month_from: formatted_month(e.month_from),
+          year_to: formatted_year(e.year_to),
+          month_to: formatted_month(e.month_to),
           title: "#{e.title}\n#{e.location}" }
       end
 
@@ -98,10 +98,10 @@ module Odt
     # rubocop:disable Metrics/MethodLength
     def insert_advanced_trainings(report)
       advanced_trainings_list = person.advanced_trainings.list.collect do |at|
-        { year_from: formatted_year(at.start_at),
-          month_from: formatted_month(at.start_at),
-          year_to: formatted_year(at.finish_at),
-          month_to: formatted_month(at.finish_at),
+        { year_from: formatted_year(at.year_from),
+          month_from: formatted_month(at.month_from),
+          year_to: formatted_year(at.year_to),
+          month_to: formatted_month(at.month_to),
           description: at.description }
       end
 
@@ -120,10 +120,10 @@ module Odt
     # rubocop:disable Metrics/MethodLength
     def insert_activities(report)
       activities_list = person.activities.list.collect do |a|
-        { year_from: formatted_year(a.start_at),
-          month_from: formatted_month(a.start_at),
-          year_to: formatted_year(a.finish_at),
-          month_to: formatted_month(a.finish_at),
+        { year_from: formatted_year(a.year_from),
+          month_from: formatted_month(a.month_from),
+          year_to: formatted_year(a.year_to),
+          month_to: formatted_month(a.month_to),
           description: "#{a.role}\n\n#{a.description}" }
       end
 
@@ -142,10 +142,10 @@ module Odt
     # rubocop:disable Metrics/MethodLength
     def insert_projects(report)
       projects_list = person.projects.list.collect do |p|
-        { year_from: formatted_year(p.start_at),
-          month_from: formatted_month(p.start_at),
-          year_to: formatted_year(p.finish_at),
-          month_to: formatted_month(p.finish_at),
+        { year_from: formatted_year(p.year_from),
+          month_from: formatted_month(p.month_from),
+          year_to: formatted_year(p.year_to),
+          month_to: formatted_month(p.month_to),
           project: project_description(p) }
       end
 
@@ -168,13 +168,12 @@ module Odt
       str << project.technology.to_s
     end
 
-    def formatted_month(date)
-      return '' unless date
-      [13, 14].include?(date.day) ? '' : "#{date.month}."
+    def formatted_month(month)
+      month ? "#{sprintf '%02d', month}." : ''
     end
 
-    def formatted_year(date)
-      date ? date.year : 'heute'
+    def formatted_year(year)
+      year ? year : 'heute'
     end
 
     def nationalities

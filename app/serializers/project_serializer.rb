@@ -11,12 +11,15 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  person_id   :integer
-#  finish_at   :date
-#  start_at    :date
+#  year_from   :integer          not null
+#  year_to     :integer
+#  month_from  :integer
+#  month_to    :integer
 #
 
 class ProjectSerializer < ApplicationSerializer
-  attributes :id, :updated_by, :title, :description, :role, :technology, :finish_at, :start_at
+  attributes :id, :updated_by, :title, :description, :role,
+             :technology, :year_to, :month_to, :year_from, :month_from
 
   belongs_to :person, serializer: PersonUpdatedAtSerializer
 

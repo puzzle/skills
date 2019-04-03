@@ -14,10 +14,10 @@
 #  offer_comment           :string
 #  crm                     :string
 #  level                   :string
-#  my_company              :boolean          default(FALSE)
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  associations_updatet_at :datetime
+#  company_type            :integer          default("other"), not null
 #
 
 class Company < ApplicationRecord

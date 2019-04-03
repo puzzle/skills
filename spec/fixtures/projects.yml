@@ -11,8 +11,10 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  person_id   :integer
-#  finish_at   :date
-#  start_at    :date
+#  year_from   :integer          not null
+#  year_to     :integer
+#  month_from  :integer
+#  month_to    :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
@@ -22,8 +24,8 @@ duckduckgo:
   title: duckduckgo
   role: Senior Software Engineer
   technology: Ruby on Rails
-  finish_at: 2013-12-01
-  start_at: 2010-01-01
+  year_to: 2013
+  year_from: 2010
   person: bob 
 
 google:
@@ -31,6 +33,6 @@ google:
   title: google
   role: Developer
   technology: java
-  finish_at: 2015-12-01
-  start_at: 2012-01-01
+  year_to: 2015
+  year_from: 2012
   person: alice

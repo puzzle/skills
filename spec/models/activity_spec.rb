@@ -9,8 +9,10 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  person_id   :integer
-#  finish_at   :date
-#  start_at    :date
+#  year_from   :integer          not null
+#  year_to     :integer
+#  month_from  :integer
+#  month_to    :integer
 #
 
 require 'rails_helper'
@@ -23,7 +25,7 @@ describe Activity do
       activity = Activity.new
       activity.valid?
 
-      expect(activity.errors[:start_at].first).to eq('muss ausgefüllt werden')
+      expect(activity.errors[:year_from].first).to eq('muss ausgefüllt werden')
       expect(activity.errors[:person_id].first).to eq('muss ausgefüllt werden')
       expect(activity.errors[:role].first).to eq('muss ausgefüllt werden')
     end
@@ -41,27 +43,27 @@ describe Activity do
 
     it 'does not create Activity if start_at is later than finish_at' do
       activity = activities(:ascom)
-      activity.start_at = '2016-01-01'
+      activity.year_from = 2016
       activity.valid?
 
-      expect(activity.errors[:start_at].first).to eq('muss vor "Datum bis" sein')
+      expect(activity.errors[:year_from].first).to eq('muss vor "Datum bis" sein')
     end
 
-    it 'finish_at can be blank' do
+    it 'year_to can be blank' do
       activity = activities(:ascom)
-      activity.finish_at = nil
+      activity.year_to = nil
 
       activity.valid?
 
-      expect(activity.errors[:finish_at]).to be_empty
+      expect(activity.errors[:year_to]).to be_empty
     end
 
     it 'orders activties correctly with list scope' do
       bob_id = people(:bob).id
-      Activity.create(description: 'test1', role: 'test', start_at: '2002-01-01', person_id: bob_id)
-      Activity.create(description: 'test2', role: 'test', start_at: '2001-01-01', finish_at: '2030-01-01', person_id: bob_id)
-      Activity.create(description: 'test3', role: 'test', start_at: '2001-01-01', finish_at: '2030-01-13', person_id: bob_id)
-      Activity.create(description: 'test4', role: 'test', start_at: '2001-01-13', finish_at: '2030-01-01', person_id: bob_id)
+      Activity.create(description: 'test1', role: 'test', year_from: 2002, month_from: 1, person_id: bob_id)
+      Activity.create(description: 'test2', role: 'test', year_from: 2001, month_from: 1, year_to: 2030, month_to: 1, person_id: bob_id)
+      Activity.create(description: 'test3', role: 'test', year_from: 2001, month_from: 1, year_to: 2030, month_to: nil, person_id: bob_id)
+      Activity.create(description: 'test4', role: 'test', year_from: 2001, month_from: nil, year_to: 2030, month_to: 1, person_id: bob_id)
 
       list = Activity.all.list
 

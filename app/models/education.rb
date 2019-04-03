@@ -8,11 +8,14 @@
 #  updated_at :datetime
 #  updated_by :string
 #  person_id  :integer
-#  finish_at  :date
-#  start_at   :date
+#  year_from  :integer          not null
+#  year_to    :integer
+#  month_from :integer
+#  month_to   :integer
 #
-include DaterangeSort
+
 class Education < ApplicationRecord
+  include DaterangeModel
 
   after_create :update_associations_updatet_at
   after_update :update_associations_updatet_at
@@ -20,12 +23,8 @@ class Education < ApplicationRecord
 
   belongs_to :person, touch: true
 
-  validates :start_at, :person_id, :title, :location, presence: true
+  validates :person_id, :title, :location, presence: true
   validates :location, :title, length: { maximum: 500 }
-  validate :daterange_year_length
-  validate :start_at_before_finish_at
-
-  scope :list, -> { sort(&by_daterange) }
 
   private
 

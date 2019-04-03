@@ -5,14 +5,14 @@ describe AdvancedTrainingsController do
 
   describe 'GET index' do
     it 'returns all advanced_trainings' do
-      keys = %w(description updated_by finish_at start_at)
+      keys = %w(description updated_by year_to year_from)
 
       process :index, method: :get, params: { person_id: bob.id }
 
       advanced_trainings = json['data']
 
       expect(advanced_trainings.count).to eq(1)
-      expect(advanced_trainings.first['attributes'].count).to eq(4)
+      expect(advanced_trainings.first['attributes'].count).to eq(6)
       json_object_includes_keys(advanced_trainings.first['attributes'], keys)
     end
   end
@@ -33,15 +33,19 @@ describe AdvancedTrainingsController do
     it 'creates new advanced training' do
       advanced_training = { description: 'test description',
                             updated_by: 'Bob',
-                            finish_at: '2013-03-02',
-                            start_at: '2010-10-20' }
+                            year_to: 2013,
+                            month_to: 3,
+                            year_from: 2010,
+                            month_from: 10 }
 
       post :create, params: create_params(advanced_training, bob.id, 'advanced-training')
 
       new_at = AdvancedTraining.find_by(description: 'test description')
       expect(new_at).not_to eq(nil)
-      expect(new_at.finish_at.to_s).to eq('2013-03-02')
-      expect(new_at.start_at.to_s).to eq('2010-10-20')
+      expect(new_at.year_to).to eq(2013)
+      expect(new_at.month_to).to eq(3)
+      expect(new_at.year_from).to eq(2010)
+      expect(new_at.month_from).to eq(10)
     end
   end
 

@@ -26,60 +26,60 @@ test('it sorts by finish_at and start_at', function(assert) {
 
   const thing = Thing.create({
     educations: [
-      { start_at: new Date(1994, 2, 1), finish_at: new Date(2000, 1, 1) },
-      { start_at: new Date(1989, 4, 1), finish_at: new Date(1989, 8, 1) },
-      { start_at: new Date(1990, 5, 1), finish_at: new Date(1994, 3, 1) },
-      { start_at: new Date(1990, 9, 1), finish_at: new Date(1995, 2, 1) },
-      { start_at: new Date(1989, 11, 1), finish_at: new Date(1989, 5, 1) },
-      { start_at: new Date(1994, 7, 1), finish_at: new Date(1999, 8, 1) },
-      { start_at: new Date(1995, 10, 1), finish_at: new Date(2000, 4, 1) },
-      { start_at: new Date(1993, 2, 1), finish_at: null },
-      { start_at: new Date(2000, 4, 1), finish_at: null },
+      { yearFrom: 1994, monthFrom: 2, yearTo: 2000, monthTo: 1 },
+      { yearFrom: 1989, monthFrom: 4, yearTo: 1989, monthTo: 8 },
+      { yearFrom: 1990, monthFrom: 5, yearTo: 1994, monthTo: 3 },
+      { yearFrom: 1990, monthFrom: 9, yearTo: 1995, monthTo: 2 },
+      { yearFrom: 1989, monthFrom: 11, yearTo: 1989, monthTo: 5 },
+      { yearFrom: 1994, monthFrom: 7, yearTo: 1999, monthTo: 8 },
+      { yearFrom: 1995, monthFrom: 10, yearTo: 2000, monthTo: 4 },
+      { yearFrom: 1993, monthFrom: 2, yearTo: null, monthTo: null },
+      { yearFrom: 2000, monthFrom: 4, yearTo: null, monthTo: null },
     ],
   });
 
   assert.deepEqual(thing.get('sortedEducations'), [
-    { start_at: new Date(2000, 4, 1), finish_at: null },
-    { start_at: new Date(1993, 2, 1), finish_at: null },
-    { start_at: new Date(1995, 10, 1), finish_at: new Date(2000, 4, 1) },
-    { start_at: new Date(1994, 2, 1), finish_at: new Date(2000, 1, 1) },
-    { start_at: new Date(1994, 7, 1), finish_at: new Date(1999, 8, 1) },
-    { start_at: new Date(1990, 9, 1), finish_at: new Date(1995, 2, 1) },
-    { start_at: new Date(1990, 5, 1), finish_at: new Date(1994, 3, 1) },
-    { start_at: new Date(1989, 4, 1), finish_at: new Date(1989, 8, 1) },
-    { start_at: new Date(1989, 11, 1), finish_at: new Date(1989, 5, 1) },
+    { yearFrom: 2000, monthFrom: 4, yearTo: null, monthTo: null },
+    { yearFrom: 1993, monthFrom: 2, yearTo: null, monthTo: null },
+    { yearFrom: 1995, monthFrom: 10, yearTo: 2000, monthTo: 4 },
+    { yearFrom: 1994, monthFrom: 2, yearTo: 2000, monthTo: 1 },
+    { yearFrom: 1994, monthFrom: 7, yearTo: 1999, monthTo: 8 },
+    { yearFrom: 1990, monthFrom: 9, yearTo: 1995, monthTo: 2 },
+    { yearFrom: 1990, monthFrom: 5, yearTo: 1994, monthTo: 3 },
+    { yearFrom: 1989, monthFrom: 4, yearTo: 1989, monthTo: 8 },
+    { yearFrom: 1989, monthFrom: 11, yearTo: 1989, monthTo: 5 },
   ]);
 });
 
-test('it sorts by finish_at and start_at and considers 13th', function(assert) {
+test('it sorts by finish_at and start_at and considers null months', function(assert) {
   const Thing = EmberObject.extend({
     sortedEducations: sortByYear('educations'),
   });
 
   const thing = Thing.create({
     educations: [
-      { start_at: new Date(1990, 5, 13), finish_at: new Date(1994, 3, 13) },
-      { start_at: new Date(1993, 2, 1), finish_at: null },
-      { start_at: new Date(1989, 4, 1), finish_at: new Date(1989, 8, 1) },
-      { start_at: new Date(1990, 9, 1), finish_at: new Date(1995, 2, 1) },
-      { start_at: new Date(1990, 5, 1), finish_at: new Date(1994, 3, 1) },
-      { start_at: new Date(2000, 4, 1), finish_at: null },
-      { start_at: new Date(1990, 9, 1), finish_at: new Date(1995, 2, 13) },
-      { start_at: new Date(1993, 2, 13), finish_at: null },
-      { start_at: new Date(1989, 4, 13), finish_at: new Date(1989, 8, 1) },
+      { yearFrom: 1990, monthFrom: 5, yearTo: 1994, monthTo: null },
+      { yearFrom: 1993, monthFrom: 2, yearTo: null, monthTo: null },
+      { yearFrom: 1989, monthFrom: 4, yearTo: 1989, monthTo: 8 },
+      { yearFrom: 1990, monthFrom: 9, yearTo: 1995, monthTo: 2 },
+      { yearFrom: 1990, monthFrom: 5, yearTo: 1994, monthTo: 3 },
+      { yearFrom: 2000, monthFrom: 4, yearTo: null, monthTo: null },
+      { yearFrom: 1990, monthFrom: 9, yearTo: 1995, monthTo: null },
+      { yearFrom: 1993, monthFrom: null, yearTo: null, monthTo: null },
+      { yearFrom: 1989, monthFrom: null, yearTo: 1989, monthTo: 8 },
     ],
   });
 
   assert.deepEqual(thing.get('sortedEducations'), [
-    { start_at: new Date(2000, 4, 1), finish_at: null },
-    { start_at: new Date(1993, 2, 1), finish_at: null },
-    { start_at: new Date(1993, 2, 13), finish_at: null },
-    { start_at: new Date(1990, 9, 1), finish_at: new Date(1995, 2, 1) },
-    { start_at: new Date(1990, 9, 1), finish_at: new Date(1995, 2, 13) },
-    { start_at: new Date(1990, 5, 1), finish_at: new Date(1994, 3, 1) },
-    { start_at: new Date(1990, 5, 13), finish_at: new Date(1994, 3, 13) },
-    { start_at: new Date(1989, 4, 1), finish_at: new Date(1989, 8, 1) },
-    { start_at: new Date(1989, 4, 13), finish_at: new Date(1989, 8, 1) },
+    { yearFrom: 2000, monthFrom: 4, yearTo: null, monthTo: null },
+    { yearFrom: 1993, monthFrom: 2, yearTo: null, monthTo: null },
+    { yearFrom: 1993, monthFrom: null, yearTo: null, monthTo: null },
+    { yearFrom: 1990, monthFrom: 9, yearTo: 1995, monthTo: 2 },
+    { yearFrom: 1990, monthFrom: 9, yearTo: 1995, monthTo: null },
+    { yearFrom: 1990, monthFrom: 5, yearTo: 1994, monthTo: 3 },
+    { yearFrom: 1990, monthFrom: 5, yearTo: 1994, monthTo: null },
+    { yearFrom: 1989, monthFrom: 4, yearTo: 1989, monthTo: 8 },
+    { yearFrom: 1989, monthFrom: null, yearTo: 1989, monthTo: 8 },
   ]);
 });
 
@@ -90,43 +90,45 @@ test('it recomputes on changes', function(assert) {
 
   const thing = Thing.create({
     educations: [
-      { start_at: new Date(1994, 4, 1), finish_at: new Date(2000, 0, 1) },
-      { start_at: new Date(1993, 2, 1), finish_at: null },
-      { start_at: new Date(1994, 6, 1), finish_at: new Date(1999, 3, 1) },
+      { yearFrom: 1994, monthFrom: 4, yearTo: 2000, monthTo: 1 },
+      { yearFrom: 1993, monthFrom: 2, yearTo: null, monthTo: null },
+      { yearFrom: 1994, monthFrom: 6, yearTo: 1999, monthTo: 3 },
     ],
   });
 
   assert.deepEqual(thing.get('sortedEducations'), [
-    { start_at: new Date(1993, 2, 1), finish_at: null },
-    { start_at: new Date(1994, 4, 1), finish_at: new Date(2000, 0, 1) },
-    { start_at: new Date(1994, 6, 1), finish_at: new Date(1999, 3, 1) },
+    { yearFrom: 1993, monthFrom: 2, yearTo: null, monthTo: null },
+    { yearFrom: 1994, monthFrom: 4, yearTo: 2000, monthTo: 1 },
+    { yearFrom: 1994, monthFrom: 6, yearTo: 1999, monthTo: 3 },
   ]);
 
   thing.set('educations', [
-    { start_at: new Date(1994, 3, 1), finish_at: new Date(2000, 6, 1) },
-    { start_at: new Date(1993, 6, 1), finish_at: new Date(2001, 9, 1) },
-    { start_at: new Date(1994, 8, 1), finish_at: new Date(1999, 11, 1) },
+    { yearFrom: 1994, monthFrom: 3, yearTo: 2000, monthTo: 6 },
+    { yearFrom: 1993, monthFrom: 6, yearTo: 2001, monthTo: 9 },
+    { yearFrom: 1994, monthFrom: 8, yearTo: 1999, monthTo: 11 },
   ]);
 
   assert.deepEqual(thing.get('sortedEducations'), [
-    { start_at: new Date(1993, 6, 1), finish_at: new Date(2001, 9, 1) },
-    { start_at: new Date(1994, 3, 1), finish_at: new Date(2000, 6, 1) },
-    { start_at: new Date(1994, 8, 1), finish_at: new Date(1999, 11, 1) },
+    { yearFrom: 1993, monthFrom: 6, yearTo: 2001, monthTo: 9 },
+    { yearFrom: 1994, monthFrom: 3, yearTo: 2000, monthTo: 6 },
+    { yearFrom: 1994, monthFrom: 8, yearTo: 1999, monthTo: 11 },
   ]);
 
-  set(thing.get('educations')[0], 'finish_at', new Date(1991, 4, 1));
+  set(thing.get('educations')[0], 'yearTo', 1991);
+  set(thing.get('educations')[0], 'monthTo', 4);
 
   assert.deepEqual(thing.get('sortedEducations'), [
-    { start_at: new Date(1993, 6, 1), finish_at: new Date(2001, 9, 1) },
-    { start_at: new Date(1994, 8, 1), finish_at: new Date(1999, 11, 1) },
-    { start_at: new Date(1994, 3, 1), finish_at: new Date(1991, 4, 1) },
+    { yearFrom: 1993, monthFrom: 6, yearTo: 2001, monthTo: 9 },
+    { yearFrom: 1994, monthFrom: 8, yearTo: 1999, monthTo: 11 },
+    { yearFrom: 1994, monthFrom: 3, yearTo: 1991, monthTo: 4 },
   ]);
 
-  set(thing.get('educations')[1], 'finish_at', null);
+  set(thing.get('educations')[1], 'yearTo', null);
+  set(thing.get('educations')[1], 'monthTo', null);
 
   assert.deepEqual(thing.get('sortedEducations'), [
-    { start_at: new Date(1993, 6, 1), finish_at: null },
-    { start_at: new Date(1994, 8, 1), finish_at: new Date(1999, 11, 1) },
-    { start_at: new Date(1994, 3, 1), finish_at: new Date(1991, 4, 1) },
+    { yearFrom: 1993, monthFrom: 6, yearTo: null, monthTo: null },
+    { yearFrom: 1994, monthFrom: 8, yearTo: 1999, monthTo: 11 },
+    { yearFrom: 1994, monthFrom: 3, yearTo: 1991, monthTo: 4 },
   ]);
 });

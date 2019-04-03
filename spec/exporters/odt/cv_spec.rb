@@ -19,12 +19,6 @@ describe Odt::Cv do
   end
 
   context 'fomatting' do
-    it 'returns no month if day is 13' do
-      formatted_month = Odt::Cv.new(nil).send(:formatted_month, Date.new(2000, 2, 13))
-
-      expect(formatted_month).to eq('')
-    end
-
     it 'translates nationalities' do
       nationalities = Odt::Cv.new(people(:bob)).send(:nationalities)
       expect(nationalities).to eq('Schweiz, Schweden')

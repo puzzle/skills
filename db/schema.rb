@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_08_102137) do
+ActiveRecord::Schema.define(version: 2019_03_18_091758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,8 +22,10 @@ ActiveRecord::Schema.define(version: 2019_03_08_102137) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "person_id"
-    t.date "finish_at"
-    t.date "start_at"
+    t.integer "year_from", null: false
+    t.integer "year_to"
+    t.integer "month_from"
+    t.integer "month_to"
     t.index ["person_id"], name: "index_activities_on_person_id"
   end
 
@@ -33,8 +35,10 @@ ActiveRecord::Schema.define(version: 2019_03_08_102137) do
     t.integer "person_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "finish_at"
-    t.date "start_at"
+    t.integer "year_from", null: false
+    t.integer "year_to"
+    t.integer "month_from"
+    t.integer "month_to"
     t.index ["person_id"], name: "index_advanced_trainings_on_person_id"
   end
 
@@ -53,7 +57,7 @@ ActiveRecord::Schema.define(version: 2019_03_08_102137) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "associations_updatet_at"
-    t.integer "company_type", default: 0, null: false
+    t.integer "company_type", default: 3, null: false
   end
 
   create_table "educations", id: :serial, force: :cascade do |t|
@@ -62,8 +66,10 @@ ActiveRecord::Schema.define(version: 2019_03_08_102137) do
     t.datetime "updated_at"
     t.string "updated_by"
     t.integer "person_id"
-    t.date "finish_at"
-    t.date "start_at"
+    t.integer "year_from", null: false
+    t.integer "year_to"
+    t.integer "month_from"
+    t.integer "month_to"
     t.index ["person_id"], name: "index_educations_on_person_id"
   end
 
@@ -182,8 +188,10 @@ ActiveRecord::Schema.define(version: 2019_03_08_102137) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "person_id"
-    t.date "finish_at"
-    t.date "start_at"
+    t.integer "year_from", null: false
+    t.integer "year_to"
+    t.integer "month_from"
+    t.integer "month_to"
     t.index ["person_id"], name: "index_projects_on_person_id"
   end
 
