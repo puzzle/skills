@@ -103,9 +103,9 @@ class PersonSeeder
       p.nationality = 'CH'
       p.title = Faker::Job.title
       p.company_id = rand(1..4)
-      competences = ""
-      rand(5..15).times{ competences << "#{Faker::Superhero.power}\n" }
-      p.competences = competences
+      competence_notes = ""
+      rand(5..15).times{ competence_notes << "#{Faker::Superhero.power}\n" }
+      p.competence_notes = competence_notes
       p.email = Faker::Internet.email
       p.department = 'sys'
     end

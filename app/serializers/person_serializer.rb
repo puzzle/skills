@@ -28,7 +28,7 @@ class PersonSerializer < ApplicationSerializer
 
   attributes :id, :birthdate, :picture_path, :location,
              :marital_status, :updated_by, :name, :nationality,
-             :nationality2, :title, :competences, :email,
+             :nationality2, :title, :competence_notes, :email,
              :department, :updated_at
 
   def picture_path

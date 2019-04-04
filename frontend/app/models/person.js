@@ -10,7 +10,7 @@ const Person = DS.Model.extend({
   nationality: DS.attr('string', { defaultValue: 'CH' }),
   nationality2: DS.attr('string'),
   title: DS.attr('string'),
-  competences: DS.attr('string'),
+  competenceNotes: DS.attr('string'),
   email: DS.attr('string'),
   department: DS.attr('string'),
   updatedAt: DS.attr('date'),

@@ -1,0 +1,45 @@
+<div class="card-header bg-info" id="competence-show-header" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+  <div class="row">
+    <div class="col-sm-6">
+      <a class="card-link text-dark header-text">Kernkompetenzen ({{coreCompetenceSkillsAmount}})</a>
+    </div>
+    <div class="col-sm-6 text-right d-block">
+      <a class="card-link text-dark" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><i class="fa angle"></i></a>
+    </div>
+  </div>
+</div>
+<div id="collapseTwo" class="collapse show border border-info rounded-bottom">
+  <div class="card-body d-flex flex-column px-5">
+    <div class="" id="competence-content-show">
+      {{#each-in coreCompetencesObj as |category skills|}}
+        <div class="row py-3 border-bottom">
+          <div class="col-md-3 description">
+            {{category}}
+          </div>
+
+          <div class="col-md-9 d-flex align-items-center">
+            {{#each skills as |skill|}}
+              {{skill.title}}
+              {{#if (not-eq skill skills.lastObject)}}
+                <i class="fa fa-circle mx-2" aria-hidden="true"></i>
+              {{/if}}
+            {{/each}}
+          </div>
+        </div>
+      {{/each-in}}
+      <div class="row py-3 border-bottom">
+        <div class="col-md-3 description">
+          Notizen Member
+        </div>
+
+        <div class="col-md-9">
+          {{component (if competenceNotesEditing 'competence-notes-edit' 'competence-notes-show' )
+          person=person
+          submit=(action (toggle 'competenceNotesEditing' this))
+          competenceNotesEditing=(action (toggle 'competenceNotesEditing' this))
+          }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,6 +8,6 @@ export default DS.Model.extend({
 
   people: DS.hasMany('person'),
   peopleSkills: DS.hasMany('people-skill'),
-  category: DS.belongsTo('category'),
-  parentCategory: DS.belongsTo('category', { inverse: null })
+  category: DS.belongsTo('category', { inverse: 'skills' }),
+  parentCategory: DS.belongsTo('category', { inverse: 'childrenSkills' })
 });

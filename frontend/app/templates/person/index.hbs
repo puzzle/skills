@@ -14,12 +14,9 @@
                     personEditing=(action (toggle 'personEditing' this))
         }}
       </div>
-      {{!Kompetenzen Tab}}
       <div class="card mb-3" id="competences">
-        {{component (if competencesEditing 'competences-edit' 'competences-show' )
+        {{component 'core-competences-show'
                     person=model
-                    submit=(action (toggle 'competencesEditing' this))
-                    competencesEditing=(action (toggle 'competencesEditing' this))
         }}
       </div>
       {{!Ausbildungen Tab}}

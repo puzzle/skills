@@ -2,8 +2,8 @@ import { computed } from '@ember/object';
 import Component from '@ember/component';
 
 export default Component.extend({
-  competenceList: computed('person.competences', function() {
-    let competences = this.get('person.competences')
+  competenceNotesList: computed('person.competenceNotes', function() {
+    let competences = this.get('person.competenceNotes')
     if (competences == null) return '';
     return competences
       .split('\n')

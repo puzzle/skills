@@ -49,13 +49,31 @@ module Odt
     # rubocop:enable Metrics/AbcSize
 
     def insert_competences(report)
-      competences_string = ''
-      if person.competences.present?
-        person.competences.split("\n").each do |competence|
-          competences_string << "#{competence}\n"
-        end
+      competences_list = [core_competences_list, competence_notes_list].flatten
+      report.add_table('COMPETENCES', competences_list, header: true) do |t|
+        t.add_column(:category, :category)
+        t.add_column(:competence, :competence)
       end
-      report.add_field(:competences, competences_string)
+    end
+
+    def core_competences_list
+      core_competence_skill_ids = person.people_skills.where(core_competence: true).pluck(:skill_id)
+      Category.all_parents.map do |parent_c|
+        skills = Skill.joins(:category)
+                      .where(categories: { parent_id: parent_c.id }, id: core_competence_skill_ids)
+                      .pluck(:title)
+        next if skills.blank?
+        { category: parent_c.title, competence: skills.join(', ') }
+      end.compact
+    end
+
+    def competence_notes_list
+      if person.competence_notes.present?
+        {
+          category: 'Notizen',
+          competence: person.competence_notes.split("\n").join(', ')
+        }
+      end
     end
 
     def insert_languages(report)

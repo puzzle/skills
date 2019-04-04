@@ -16,7 +16,7 @@ describe PeopleController do
 
         expect_any_instance_of(ODFReport::Report)
           .to receive(:add_field)
-          .exactly(13).times
+          .exactly(12).times
           .and_call_original
 
         expect_any_instance_of(ODFReport::Report)
@@ -26,7 +26,7 @@ describe PeopleController do
 
         expect_any_instance_of(ODFReport::Report)
           .to receive(:add_table)
-          .exactly(5).times
+          .exactly(6).times
           .and_call_original
 
         process :show, method: :get, format: 'odt', params: { id: bob.id }
@@ -124,7 +124,7 @@ describe PeopleController do
     describe 'GET show' do
       it 'returns person with nested modules' do
         keys = %w[birthdate picture_path location marital_status
-                  updated_by name nationality nationality2 title competences]
+                  updated_by name nationality nationality2 title competence_notes]
 
         bob = people(:bob)
 

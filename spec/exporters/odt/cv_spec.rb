@@ -11,9 +11,9 @@ describe Odt::Cv do
       Odt::Cv.new(person).export
     end
 
-    it 'can export without competences' do
+    it 'can export without competence_notes' do
       person = people(:bob)
-      person.competences = nil
+      person.competence_notes = nil
       Odt::Cv.new(person).export
     end
   end

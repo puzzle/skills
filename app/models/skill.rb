@@ -12,8 +12,6 @@
 #  category_id :bigint(8)
 #
 
-require 'yaml'
-
 class Skill < ApplicationRecord
   has_and_belongs_to_many :people
   has_many :people_skills, dependent: :destroy
