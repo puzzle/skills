@@ -145,7 +145,11 @@ module Odt
           month_from: formatted_month(p.month_from),
           year_to: formatted_year(p.year_to),
           month_to: formatted_month(p.month_to),
-          project: project_description(p) }
+          project_title: p.title,
+          project_description: p.description,
+          project_role: p.role,
+          project_technology: p.technology.to_s
+        }
       end
 
       report.add_table('PROJECTS', projects_list, header: true) do |t|
@@ -153,19 +157,14 @@ module Odt
         t.add_column(:year_from, :year_from)
         t.add_column(:month_to, :month_to)
         t.add_column(:year_to, :year_to)
-        t.add_column(:project_description, :project)
+        t.add_column(:project_title, :project_title)
+        t.add_column(:project_description, :project_description)
+        t.add_column(:project_role, :project_role)
+        t.add_column(:project_technology, :project_technology)
       end
     end
     # rubocop:enable Metrics/AbcSize
     # rubocop:enable Metrics/MethodLength
-
-    def project_description(project)
-      str = ''
-      str << "#{project.title}\n\n"
-      str << "#{project.description}\n\n"
-      str << "#{project.role}\n\n"
-      str << project.technology.to_s
-    end
 
     def formatted_month(month)
       month ? "#{sprintf '%02d', month}." : ''
