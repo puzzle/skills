@@ -18,6 +18,7 @@ Router.map(function() {
     this.route('show', { path: '/:company_id' });
     this.route('new');
   });
+  this.route('cv_search');
 });
 
 export default Router;

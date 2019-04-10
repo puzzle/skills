@@ -293,7 +293,7 @@ hr {
     color: red;
   }
 
-  .group-pills > li:first-child > a {
+  .group-pills > a {
     border-bottom-right-radius:  0px;
     border: 1px solid #e8ebf0;
     border-top-right-radius: 0px;
@@ -303,6 +303,46 @@ hr {
     border-bottom-left-radius:  0px;
     border: 1px solid #e8ebf0;
     border-top-left-radius: 0px;
+  }
+
+  #cv-search-results div:nth-of-type(even) a {
+    background: #61B44B;
+  }
+
+  #cv-search-results {
+    min-height: 80px;
+  }
+
+  #cv-searchbar input {
+    border:none;
+    background:none;
+    outline:none;
+    padding:0 0;
+    margin:0 0;
+    font:inherit;
+    width: 96%;
+  }
+
+  #cv-search-clear-button {
+    border: none;
+    background: #FFFFFF;
+    visibility: hidden;
+  }
+
+  .cv-search-pills {
+    display: block;
+    background: #69B978;
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    border-radius: 5px;
+    padding: 0.5em 0.25em;
+    width:25%;
+  }
+
+  .cv-search-pills:hover {
+    color: #ffffff;
+    text-decoration: none;
+    background: #4e903c !important;
   }
 
   [class^="icon-"],

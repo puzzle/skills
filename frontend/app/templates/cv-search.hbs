@@ -1,0 +1,17 @@
+{{cv-searchbar}}
+<div class="card mt-4 mb-5">
+  <div class="card-header bg-info">
+    <p class="text-dark header-text mb-0">Suchresultate</p>
+  </div>
+  <div id="cv-search-results" class="border border-info rounded-bottom">
+    {{#if model}}
+      {{#each model as |person|}}
+        {{#link-to "person" person class="cv-search-pills m-2"}}
+          {{person.name}}
+        {{/link-to}}
+      {{/each}}
+    {{else}}
+      <p class="m-2">Keine Resultate</p>
+    {{/if}}
+  </div>
+</div>
