@@ -19,6 +19,7 @@ Router.map(function() {
     this.route('new');
   });
   this.route('skills', function() {});
+  this.route('cv_search');
 });
 
 export default Router;
