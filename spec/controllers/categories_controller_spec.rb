@@ -28,8 +28,11 @@ describe CategoriesController do
 
         expect(categories.count).to eq(2)
         software_engineering_attrs = categories.first['attributes']
+        category_titles = categories.map { |c| c['attributes']['title'] }
+        expect(category_titles).to include('Software-Engineering')
+        expect(category_titles).to include('System-Engineering')
+        software_engineering_attrs = categories.second['attributes']
         expect(software_engineering_attrs.count).to eq (2)
-        expect(software_engineering_attrs['title']).to eq ('Software-Engineering')
         expect(software_engineering_attrs['parent_id']).to eq (nil)
         json_object_includes_keys(software_engineering_attrs, keys)
       end

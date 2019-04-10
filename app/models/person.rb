@@ -61,9 +61,12 @@ class Person < ApplicationRecord
                   against: [
                     :name,
                     :title,
-                    :competences
+                    :competences,
+                    :department
                   ],
                   associated_against: {
+                    skills: :title,
+                    roles: :name,
                     projects: [:description, :title, :role, :technology],
                     activities: [:description, :role],
                     educations: [:location, :title],
