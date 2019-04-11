@@ -99,4 +99,4 @@ But they can't be removed or updated this way. They have to be updated/deleted m
 
 The Front-End is built with EmberJS.
 
-See frontend/README.md
+See [frontend/README.md](https://github.com/puzzle/skills/blob/master/frontend/README.md)
