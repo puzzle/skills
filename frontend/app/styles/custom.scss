@@ -109,6 +109,20 @@ hr {
 
   /* Personlist navbar
   -------------------------------------------------- */
+
+  #scrollToTopButton {
+    position: fixed;
+    bottom: 80px;
+    right: 80px;
+    visibility: hidden;
+  }
+
+  #scrollToTopButton button {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+  }
+
   #form-search {
     margin: 0px;
   }
