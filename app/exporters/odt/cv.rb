@@ -61,14 +61,17 @@ module Odt
     def insert_languages(report)
       languages_list = person.language_skills.list.collect do |l|
         language = I18nData.languages('DE')[l.language]
-        { language: language, level: l.level, certificate: l.certificate }
+        { language: language, level: language_skill_level(l) }
       end
 
       report.add_table('LANGUAGES', languages_list, header: true) do |t|
         t.add_column(:language, :language)
         t.add_column(:level, :level)
-        t.add_column(:certificate, :certificate)
       end
+    end
+
+    def language_skill_level(ls)
+      ls.level + (ls.certificate.blank? ? '' : ' / Zertifikat: ' + ls.certificate)
     end
 
     # rubocop:disable Metrics/AbcSize
