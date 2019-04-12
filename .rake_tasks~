@@ -5,6 +5,8 @@ airbrake:install_heroku_deploy_hook
 airbrake:test
 app:template
 app:update
+bleib:wait_for_database
+bleib:wait_for_migrations
 brakeman
 ci
 db:create
@@ -14,6 +16,7 @@ db:fixtures:load
 db:migrate
 db:migrate:status
 db:rollback
+db:schedule_jobs
 db:schema:cache:clear
 db:schema:cache:dump
 db:schema:dump
@@ -28,6 +31,10 @@ dev:cache
 erd
 frontend:prepare
 initializers
+jobs:check[max_age]
+jobs:clear
+jobs:work
+jobs:workoff
 log:clear
 middleware
 notes
@@ -39,14 +46,19 @@ rubocop
 secret
 spec
 spec:controllers
+spec:domain
 spec:exporters
 spec:frontend
 spec:frontend:serve
+spec:jobs
 spec:lib
+spec:migrations
 spec:models
+spec:seeders
 spec:serializer
 spec:uploaders
 stats
+sync
 test
 test:db
 test:features
