@@ -28,6 +28,7 @@ module Skills
     config.autoload_paths += %W( #{config.root}/app/uploaders) #
     config.i18n.default_locale = :de
 
+    config.active_job.queue_adapter = :delayed_job
     config.filter_parameters += [:authorizationToken]
 
     KEYCLOAK_ENV_VARS = %w[
