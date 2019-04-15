@@ -22,11 +22,11 @@
           <div class="zeile">
             <div class="row">
               <div class="col-sm-3 centered-content text-center">
-                {{if activity.monthFrom (concat (moment-format activity.monthFrom 'MM') '.')}}{{activity.yearFrom}}
+                {{if activity.monthFrom (concat (moment-format activity.monthFrom 'MM' 'MM') '.')}}{{activity.yearFrom}}
                 {{#if (eq activity.yearTo null)}}
                   - heute
                 {{else if (or (not-eq activity.yearFrom activity.yearTo) (not-eq activity.monthFrom activity.monthTo))}}
-                  - {{if activity.monthTo (concat (moment-format activity.monthTo 'MM') '.')}}{{activity.yearTo}}
+                  - {{if activity.monthTo (concat (moment-format activity.monthTo 'MM' 'MM') '.')}}{{activity.yearTo}}
                 {{/if}}
               </div>
               <div class="col-sm-9">
