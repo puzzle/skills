@@ -3,11 +3,11 @@
     <div class="row">
       <div class="col-sm-6">
         <a class="card-link text-dark project-title-text">
-          {{if project.monthFrom (concat (moment-format project.monthFrom 'MM') '.')}}{{project.yearFrom}}
+          {{if project.monthFrom (concat (moment-format project.monthFrom 'MM' 'MM') '.')}}{{project.yearFrom}}
           {{#if (eq project.yearTo null)}}
             - heute
           {{else if (or (not-eq project.yearFrom project.yearTo) (not-eq project.monthFrom project.monthTo))}}
-            - {{if project.monthTo (concat (moment-format project.monthTo 'MM') '.')}}{{project.yearTo}}
+            - {{if project.monthTo (concat (moment-format project.monthTo 'MM' 'MM') '.')}}{{project.yearTo}}
           {{/if}}
           | {{project.title}}
         </a>
