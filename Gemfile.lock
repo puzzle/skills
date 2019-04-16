@@ -66,9 +66,13 @@ GEM
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     aes_key_wrap (1.1.0)
+    airbrake (5.8.1)
+      airbrake-ruby (~> 1.8)
+    airbrake-ruby (1.8.0)
     annotate (3.1.1)
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 14.0)
+    arel (9.0.0)
     ast (2.4.1)
     bindata (2.4.8)
     bleib (0.0.8)
@@ -100,6 +104,8 @@ GEM
       i18n_data (~> 0.10.0)
       sixarm_ruby_unaccent (~> 1.1)
       unicode_utils (~> 1.4)
+    crack (0.4.3)
+      safe_yaml (~> 1.0.0)
     crass (1.0.6)
     daemons (1.3.1)
     database_cleaner (1.8.5)
@@ -161,11 +167,13 @@ GEM
     ffi (1.14.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    hashdiff (0.3.8)
+    hirb (0.7.3)
+      concurrent-ruby (~> 1.0)
     http-accept (1.7.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (1.8.9)
-      concurrent-ruby (~> 1.0)
     i18n_data (0.10.0)
     image_processing (1.12.1)
       mini_magick (>= 4.9.5, < 5)
@@ -307,6 +315,7 @@ GEM
     ruby-vips (2.0.17)
       ffi (~> 1.9)
     rubyzip (2.3.0)
+    safe_yaml (1.0.5)
     seed-fu (2.3.9)
       activerecord (>= 3.1)
       activesupport (>= 3.1)
@@ -340,6 +349,10 @@ GEM
     unicode_utils (1.4.0)
     uniform_notifier (1.13.0)
     websocket-driver (0.7.3)
+    webmock (3.5.1)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
+      hashdiff
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     zeitwerk (2.4.2)
@@ -391,6 +404,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
+  webmock
 
 BUNDLED WITH
    1.17.3

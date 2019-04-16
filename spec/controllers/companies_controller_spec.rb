@@ -11,10 +11,10 @@ describe CompaniesController do
 
         companies = json['data']
 
-        expect(companies.count).to eq(2)
+        expect(companies.count).to eq(3)
         firma_attrs = companies.first['attributes']
-        expect(firma_attrs.count).to eq(3)
-        expect(firma_attrs.first[1]).to eq('Firma')
+        expect(firma_attrs.count).to eq(14)
+        expect(firma_attrs.first[1]).to eq('Ex-Mitarbeiter')
         json_object_includes_keys(firma_attrs, keys)
         expect(companies).not_to include('relationships')
       end
