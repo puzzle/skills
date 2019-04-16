@@ -62,6 +62,7 @@ end
 group :test do
   gem 'simplecov', '~> 0.12.0'
   gem 'simplecov-rcov'
+  gem 'webmock'
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
