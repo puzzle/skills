@@ -8,7 +8,10 @@ class SynchronizeDataJob < CronJob
 
   queue_as :sync_data
 
-  #self.cron_expression = '47 2 * * *'
+  # Everyday at 02:47
+  # self.cron_expression = '47 2 * * *'
+
+  # Every minute for testing
   self.cron_expression = '* * * * *'
 
   def perform
@@ -105,7 +108,8 @@ class SynchronizeDataJob < CronJob
       # set people roles
       pid = new_person['puzzle_time_id']
       employment_roles = new_person.delete('employment_roles')
-      set_people_roles(employment_roles, pid)
+      filtered_people_roles = filter_people_roles(employment_roles, pid)
+      set_people_roles(filtered_people_roles, pid)
 
       # set full name
       firstname = new_person.delete('firstname')
@@ -128,10 +132,24 @@ class SynchronizeDataJob < CronJob
     end
   end
 
-  def set_people_roles(employment_roles, pid)
-    @people_roles << employment_roles.map do |employment_role|
-      employment_role.merge!('pid' => pid)
+  def filter_people_roles(people_roles, pid)
+    people_roles.map do |people_role|
+      people_role if people_role_new?(people_role, pid)
+    end.compact
+  end
+  
+  def people_role_new?(people_role, pid)
+    person = Person.find_by(puzzle_time_id: pid)
+    person_role_names = person.roles.pluck(:name)
+    return if person_role_names.include?(people_role['name'])
+    true
+  end
+
+  def set_people_roles(people_roles, pid)
+    @people_roles << people_roles.map do |people_role|
+      people_role.merge!('pid' => pid)
     end.first
+    @people_roles = @people_roles.compact
   end
 
   def create_new_people_roles
@@ -193,14 +211,6 @@ class SynchronizeDataJob < CronJob
     end.compact
   end
 
-  def my_company_id
-    Company.find_by(company_type: 'mine').id
-  end
-
-  def external_company_id
-    Company.find_by(company_type: 'external').id
-  end
-
   def all_people_hash
     all_people_hash = JSON.parse(response)['data']
     filter_people(all_people_hash)
@@ -217,6 +227,7 @@ class SynchronizeDataJob < CronJob
     end
   end
 
+  # returns array with hashes of valid people
   def filter_people(people_hash)
     people_hash.map do |person_hash|
       if person_valid?(person_hash)
@@ -250,14 +261,11 @@ class SynchronizeDataJob < CronJob
     true
   end
 
+  # Get person data from API
   def response(params = nil)
-    uri = URI.parse(url)
-    uri.query = URI.encode_www_form(params) if params
-    http = Net::HTTP.new(uri.host, uri.port)
-    request = Net::HTTP::Get.new(uri.request_uri)
-    # erwartet das json zurückgegeben wird
-    request['Accept'] = 'application/vnd.api+json'
-    request['Authorization'] = auth_token
+    uri = uri(params)
+    http = http(uri)
+    request = request(uri)
     begin
       response = http.request(request)
     rescue Errno::ECONNREFUSED
@@ -266,6 +274,7 @@ class SynchronizeDataJob < CronJob
       # oder Timeout::Error ?
       raise 'connection timeout'
     end
+
     if response.code == '200'
       response.body
     elsif response.code == '401'
@@ -273,6 +282,23 @@ class SynchronizeDataJob < CronJob
     else
       # to do
     end
+  end
+
+  def uri(params)
+    uri = URI.parse(url)
+    uri.query = URI.encode_www_form(params) if params
+    uri
+  end
+
+  def http(uri)
+    Net::HTTP.new(uri.host, uri.port)
+  end
+
+  def request(uri)
+    request = Net::HTTP::Get.new(uri.request_uri)
+    request['Accept'] = 'application/vnd.api+json'
+    request['Authorization'] = auth_token
+    request
   end
 
   def auth_token
@@ -299,6 +325,14 @@ class SynchronizeDataJob < CronJob
   def url_valid?
     uri = URI.parse(url) rescue false
     uri.kind_of?(URI::HTTP) || uri.kind_of?(URI::HTTPS)
+  end
+
+  def my_company_id
+    Company.find_by(company_type: 'mine').id
+  end
+
+  def external_company_id
+    Company.find_by(company_type: 'external').id
   end
 
   def example_birthdate
