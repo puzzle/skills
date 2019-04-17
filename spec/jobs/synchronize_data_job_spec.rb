@@ -3,32 +3,88 @@ require 'rails_helper'
 describe SynchronizeDataJob do
   let(:job) { SynchronizeDataJob.new }
 
+  let(:my_company) { Company.find_by(company_type: 'mine') }
+  
+  let(:external_company) { Company.find_by(company_type: 'external') }
+
+  let(:empty_json) { '{"data":[]}' }
+  
+  let(:invalid_json) { '{"data":["invalid"]}' }
+
+  let(:new_person_json) do
+    '{"data": [{
+      "id": "99",
+      "type": "employee",
+      "attributes":{
+        "shortname": "TS","firstname": "Tony","lastname": "Stark",
+        "email": "ironman@example.ch","marital_status": "single",
+        "nationalities": ["US","CH"],"graduation": "BSc in Informatics",
+        "department_shortname": "D1",
+        "employment_roles": [{"name": "Boss","percent": 90.00}]
+      }
+    }]}'
+  end
+
+  let(:updated_person_json) do
+    '{"data": [{
+      "id": "99",
+      "type": "employee",
+      "attributes":{
+        "shortname": "BB","firstname": "Bruce","lastname": "Banner",
+        "email": "hulk@example.ch","marital_status": "married",
+        "nationalities": ["FR","IT"],"graduation": "Student",
+        "department_shortname": "D2",
+        "employment_roles": [{"name": "Trainee","percent": 70.00}]
+      }
+    }]}'
+  end
+  
+  let(:person_with_missing_attributes_json) do
+    '{"data": [{
+      "id": "99",
+      "type": "employee",
+      "attributes":{
+        "email": "ironman@example.ch","marital_status": "single",
+        "nationalities": ["US","CH"],"graduation": "BSc in Informatics",
+        "department_shortname": "D1",
+        "employment_roles": [{"name": "Boss","percent": 90.00}]
+      }
+    }]}'
+  end
+
+  before do
+    allow(ENV).to receive(:[])     
+    allow(ENV).to receive(:[]).with('RAILS_API_USER').and_return('bob')
+    allow(ENV).to receive(:[]).with('RAILS_API_PASSWORD').and_return('password')
+    allow(ENV).to receive(:[]).with('RAILS_API_URL').and_return('http://localhost:4000/api/v1/employees')
+  end
+
   it 'marks deleted person as ex employee' do
-    # allow_any_instance_of(SynchronizeDataJob).to receive(:response).and_return(employees_json(ex_employee_hash))
-
     stub_request(:get, 'http://localhost:4000/api/v1/employees').
-      to_return(status: [200, 'OK'], body: empty_body)
+      to_return(status: [200, 'OK'], body: empty_json)
 
+    person = Person.find_by(puzzle_time_key: 42)
     expect(Person.count).to eq(3)
+    expect(person.company_id).to eq(my_company.id)
 
     job.perform
 
+    person = Person.find_by(puzzle_time_key: 42)
     expect(Person.count).to eq(3)
-    person = Person.find_by(puzzle_time_id: 42)
-    expect(person.name).to eq('Tony Stark')
-    expect(person.title).to eq('BSc in Informatics')
+    expect(person.company_id).to eq(external_company.id)
   end
 
   it 'creates new person' do
-    allow_any_instance_of(SynchronizeDataJob).to receive(:response).and_return(employees_json(new_employee_hash))
+    stub_request(:get, 'http://localhost:4000/api/v1/employees').
+      to_return(status: [200, 'OK'], body: new_person_json)
 
     expect(Person.count).to eq(3)
-    expect(Person.pluck(:puzzle_time_id).include?('42')).to eq(false)
+    expect(Person.pluck(:puzzle_time_key).include?('99')).to eq(false)
 
     job.perform
 
     expect(Person.count).to eq(4)
-    person = Person.find_by(puzzle_time_id: 42)
+    person = Person.find_by(puzzle_time_key: 99)
     expect(person.name).to eq('Tony Stark')
     expect(person.title).to eq('BSc in Informatics')
     expect(person.company_id).to eq(my_company.id)
@@ -37,55 +93,131 @@ describe SynchronizeDataJob do
     expect(person.marital_status).to eq('single')
     expect(person.email).to eq('ironman@example.ch')
     expect(person.department).to eq('D1')
-  end
 
-  private
-
-  let(:empty_body) do
-    '{"data":[{}]}'
-  end
-
-  let(:test) do
-    '{"data":[{"id":112,"updated_at":"2018-09-19T08:24:32.211+02:00","type":"section"},
-    {"id":100,"updated_at":"2018-09-20T15:41:42.475+02:00","type":"manual"}]}'
-  end
-
-  def bob
-    @bob ||= people(:bob)
-  end
-
-  def my_company
-    Company.find_by(company_type: 'mine')
-  end
-
-  def employees_json(hash)
-    # generates json from hash
-    JSON.generate('data': [hash])
-  end
-
-  def new_employee_hash
-    {
-      'id' => '42',
-      'type' => 'employee',
-      'attributes' => {
-        'shortname' => 'TS',
-        'firstname' => 'Tony',
-        'lastname' => 'Stark',
-        'email' => 'ironman@example.ch',
-        'marital_status' => 'single',
-        'nationalities' => ['US', 'CH'],
-        'graduation' => 'BSc in Informatics',
-        'department_shortname' => 'D1',
-        'employment_roles' => [{
-          'name' => 'Boss',
-          'percent' => 100.00
-        }]
-      }
-    }
+    people_role = person.people_roles[0]
+    expect(person.people_roles.count).to eq(1)
+    expect(people_role.percent).to eq(90.00)
+    expect(people_role.role.name).to eq('Boss')
   end
   
-  def ex_employee_hash
-    {
-    }
+  it 'creates new person and updates person' do
+    stub_request(:get, 'http://localhost:4000/api/v1/employees').
+      to_return(status: [200, 'OK'], body: new_person_json)
+
+    expect(Person.count).to eq(3)
+    expect(Person.pluck(:puzzle_time_key).include?('99')).to eq(false)
+
+    job.perform
+
+    expect(Person.count).to eq(4)
+    person = Person.find_by(puzzle_time_key: 99)
+    expect(person.name).to eq('Tony Stark')
+    expect(person.title).to eq('BSc in Informatics')
+    expect(person.company_id).to eq(my_company.id)
+    expect(person.nationality).to eq('US')
+    expect(person.nationality2).to eq('CH')
+    expect(person.marital_status).to eq('single')
+    expect(person.email).to eq('ironman@example.ch')
+    expect(person.department).to eq('D1')
+
+    people_role = person.people_roles[0]
+    expect(person.people_roles.count).to eq(1)
+    expect(people_role.percent).to eq(90.00)
+    expect(people_role.role.name).to eq('Boss')
+    
+    delayed_job = instance_double('Delayed::Job', run_at: DateTime.new(2001, 1, 1))
+    allow(Delayed::Job).to receive(:where) { [delayed_job] }
+    
+    stub_request(:get, 'http://localhost:4000/api/v1/employees').
+      to_return(status: [200, 'OK'], body: updated_person_json)
+
+    stub_request(:get, 'http://localhost:4000/api/v1/employees?last_run_at=2001-01-01T00:00:00%2B00:00').
+      to_return(status: [200, 'OK'], body: updated_person_json)
+    
+    job.perform
+    
+    expect(Person.count).to eq(4)
+    person = Person.find_by(puzzle_time_key: 99)
+    expect(person.name).to eq('Bruce Banner')
+    expect(person.title).to eq('Student')
+    expect(person.company_id).to eq(my_company.id)
+    expect(person.nationality).to eq('FR')
+    expect(person.nationality2).to eq('IT')
+    expect(person.marital_status).to eq('married')
+    expect(person.email).to eq('hulk@example.ch')
+    expect(person.department).to eq('D2')
+
+    people_role = person.people_roles[0]
+    expect(person.people_roles.count).to eq(1)
+    expect(people_role.percent).to eq(70.00)
+    expect(people_role.role.name).to eq('Trainee')
+  end
+  
+  it 'does not create person if json invalid' do
+    stub_request(:get, 'http://localhost:4000/api/v1/employees').
+      to_return(status: [200, 'OK'], body: invalid_json)
+
+    expect(Person.count).to eq(3)
+    expect(Person.pluck(:puzzle_time_key).include?('99')).to eq(false)
+    expect(Airbrake).to receive(:notify)
+      .with("person not valid", {:person=>"invalid"})
+      .at_least(:once)
+
+    job.perform
+    
+    expect(Person.count).to eq(3)
+    expect(Person.pluck(:puzzle_time_key).include?('99')).to eq(false)
+  end
+
+  it 'does not create person if missing attributes' do
+    stub_request(:get, 'http://localhost:4000/api/v1/employees').
+      to_return(status: [200, 'OK'], body: person_with_missing_attributes_json)
+
+    expect(Person.count).to eq(3)
+    expect(Person.pluck(:puzzle_time_key).include?('99')).to eq(false)
+    expect(Airbrake).to receive(:notify)
+      .with("person not valid", {:person=>
+                                   {"attributes"=>
+                                      {"department_shortname"=>"D1",
+                                       "email"=>"ironman@example.ch",
+                                       "employment_roles"=>[{"name"=>"Boss", "percent"=>90.0}],
+                                       "graduation"=>"BSc in Informatics",
+                                       "marital_status"=>"single",
+                                       "nationalities"=>["US", "CH"]},
+                                       "id"=>"99",
+                                       "type"=>"employee"}})
+      .at_least(:once)
+
+    job.perform
+
+    expect(Person.count).to eq(3)
+    expect(Person.pluck(:puzzle_time_key).include?('99')).to eq(false)
+  end
+  
+  it 'raises error if credentials false' do
+    stub_request(:get, 'http://localhost:4000/api/v1/employees').
+      to_return(status: [401, 'Unauthorized'])
+
+    expect do
+      job.perform
+    end.to raise_error('unauthorized')
+  end
+  
+  it 'raises error if server not available' do
+    stub_request(:get, 'http://localhost:4000/api/v1/employees').
+      to_raise(Errno::ECONNREFUSED)
+
+    expect do
+      job.perform
+    end.to raise_error('server not available')
+  end
+
+  it 'raises error if connection timeout' do
+    stub_request(:get, 'http://localhost:4000/api/v1/employees').
+      to_raise(Errno::ETIMEDOUT)
+
+    expect do
+      job.perform
+    end.to raise_error('connection timeout')
   end
 end
