@@ -53,6 +53,8 @@ class Person < ApplicationRecord
             inclusion: { in: ISO3166::Country.all.collect(&:alpha2) },
             allow_blank: true
 
+  validates :puzzle_time_key, uniqueness: true, if: :puzzle_time_key_present?
+
   validate :picture_size
 
   scope :list, -> { order(:name) }
@@ -84,5 +86,9 @@ class Person < ApplicationRecord
   def picture_size
     return if picture.nil? || picture.size < 10.megabytes
     errors.add(:picture, 'grösse kann maximal 10MB sein')
+  end
+
+  def puzzle_time_key_present?
+    puzzle_time_key.present?
   end
 end

@@ -153,7 +153,7 @@ ActiveRecord::Schema.define(version: 2021_02_09_074707) do
     t.string "email"
     t.integer "department_id"
     t.string "department"
-    t.integer "puzzle_time_id"
+    t.integer "puzzle_time_key"
     t.index ["company_id"], name: "index_people_on_company_id"
   end
 
