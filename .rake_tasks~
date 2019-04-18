@@ -54,6 +54,7 @@ spec:jobs
 spec:lib
 spec:migrations
 spec:models
+spec:performance
 spec:seeders
 spec:serializer
 spec:uploaders

@@ -16,9 +16,9 @@ class PuzzleTime::CreatePeopleTask
 
     def new_people
       people.map do |person|
-        pid = person.values[0].to_i
-        if new_ids.include? pid
-          person.values[2].merge!('puzzle_time_key' => pid)
+        puzzle_time_key = person['id'].to_i
+        if new_ids.include? puzzle_time_key
+          person['attributes'].merge!('puzzle_time_key' => puzzle_time_key)
         end
       end.compact
     end
@@ -28,7 +28,7 @@ class PuzzleTime::CreatePeopleTask
     end
 
     def puzzle_time_ids
-      people.map { |person| person.values[0].to_i }
+      people.pluck('id').map(&:to_i)
     end
 
     def puzzle_skills_ids

@@ -36,7 +36,7 @@ class PuzzleTime::PeopleFilter
     pid.to_i.positive?
   end
 
-  # check attributes
+  # checks if mandatory attributes present and valid
   def attributes_valid?(person)
     attributes = person.values[2]
 
@@ -45,14 +45,11 @@ class PuzzleTime::PeopleFilter
       return unless attributes[attribute].is_a?(String)
     end
 
-    # checks nationalities
     return unless attributes['nationalities'].is_a?(Array)
-
     return unless roles_valid?(attributes)
     true
   end
 
-  # checks roles
   def roles_valid?(attributes)
     attributes['employment_roles'].each do |role|
       return unless role['name'].is_a?(String)

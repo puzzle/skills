@@ -6,10 +6,7 @@ class SynchronizeDataJob < CronJob
   queue_as :sync_data
 
   # Everyday at 02:47
-  # self.cron_expression = '47 2 * * *'
-
-  # Every minute
-  self.cron_expression = '* * * * *'
+  self.cron_expression = '47 2 * * *'
 
   def perform
     return unless ptime.config_valid?
@@ -21,7 +18,7 @@ class SynchronizeDataJob < CronJob
     PuzzleTime::CreatePeopleTask.create_people(people)
     PuzzleTime::MarkExEmployeesTask.mark_ex_employees(people)
     PuzzleTime::SynchronizeUpdatedPeopleTask.synchronize_updated_people(updated_people)
-    PuzzleTime::CreatePeopleRolesTask.create_people_roles(people | updated_people)
+    PuzzleTime::SyncPeopleRolesTask.sync_people_roles(people | updated_people)
   end
 
   private
