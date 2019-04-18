@@ -15,7 +15,7 @@ class PuzzleTime::MarkExEmployeesTask
     end
 
     def puzzle_time_ids
-      people.map { |person| person.values[0].to_i }
+      people.map { |person| person['id'].to_i }
     end
 
     def puzzle_skills_ids

@@ -12,7 +12,7 @@ describe PeopleRolesController do
 
       people_roles = json['data']
 
-      expect(people_roles.count).to eq(5)
+      expect(people_roles.count).to eq(2)
       expect(people_roles.first['attributes'].count).to eq(4)
       json_object_includes_keys(people_roles.first['attributes'], keys)
       json_object_includes_keys(people_roles.first['relationships'], relationships)

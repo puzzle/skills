@@ -9,46 +9,46 @@ describe SynchronizeDataJob, performance: true do
     allow(ENV).to receive(:[]).with('RAILS_API_PASSWORD').and_return('password')
     allow(ENV).to receive(:[]).with('RAILS_API_URL').and_return('http://localhost:4000/api/v1/employees')
   end
+  
+  if ENV['PERFORMANCE_TESTING']
+    it 'synchronizes 10 people' do
+      people_count = 10
+      people = load_people(people_count)
+      before = get_memory_usage_kb
 
-  #it 'synchronizes 10 people' do
-  #  before1 = get_memory_usage_kb
-  #  people = load_people(10)
-  #  after1 = get_memory_usage_kb
-  #  puts "Memory: #{(after1 - before1) / 1000.0} mb"
+      stub_request(:get, 'http://localhost:4000/api/v1/employees').
+        to_return(status: [200, 'OK'], body: people)
 
-  #  before = get_memory_usage_kb
+      expect(Person.count).to eq(3)
 
-  #  stub_request(:get, 'http://localhost:4000/api/v1/employees').
-  #    to_return(status: [200, 'OK'], body: people)
+      job.perform
 
-  #  expect(Person.count).to eq(3)
+      expect(Person.count).to eq(people_count + 2)
 
-  #  job.perform
+      after = get_memory_usage_kb
+      puts "Memory: #{(after - before) / 1000.0} mb"
+    end
+    
+    it 'synchronizes 1000 people' do
+      people_count = 1000
+      people = load_people(people_count)
+      before = get_memory_usage_kb
 
-  #  expect(Person.count).to eq(12)
+      stub_request(:get, 'http://localhost:4000/api/v1/employees').
+        to_return(status: [200, 'OK'], body: people)
 
-  #  after = get_memory_usage_kb
-  #  puts "Memory: #{(after - before) / 1000.0} mb"
-  #end
+      expect(Person.count).to eq(3)
 
-  #it 'synchronizes 1000 people' do
-  #  before1 = get_memory_usage_kb
-  #  people = load_people(1000)
-  #  after1 = get_memory_usage_kb
-  #  puts "Memory: #{(after1 - before1) / 1000.0} mb"
+      job.perform
 
-  #  stub_request(:get, 'http://localhost:4000/api/v1/employees').
-  #    to_return(status: [200, 'OK'], body: people)
+      expect(Person.count).to eq(people_count + 1)
 
-  #  expect(Person.count).to eq(3)
+      after = get_memory_usage_kb
+      puts "Memory: #{(after - before) / 1000.0} mb"
+    end
+  end
 
-  #  job.perform
-
-  #  expect(Person.count).to eq(1001)
-
-  #  after = get_memory_usage_kb
-  #  puts "Memory: #{(after - before) / 1000.0} mb"
-  #end
+  private
 
   def load_people(number)
     JSON.generate('data': people(number))

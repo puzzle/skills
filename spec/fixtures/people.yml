@@ -30,7 +30,6 @@ bob:
   name: Bob Anderson
   nationality: CH
   nationality2: SE
-  roles: [software-engineer]
   title: BSc in Cleaning
   competences: Java\n Ruby
   company: firma
@@ -44,7 +43,6 @@ alice:
   marital_status: <%= Person.marital_statuses[:married] %>
   name: Alice Mante
   nationality: AU
-  roles: [system-engineer]
   title: MSc in writing
   competences: LaTex\n Puppet\n Bash
   company: partner
@@ -57,7 +55,6 @@ ken:
   marital_status: <%= Person.marital_statuses[:married] %>
   name: ken
   nationality: AU
-  roles: [system-engineer]
   title: MA in sending silly memes
   competences: LaTex\n Puppet\n Bash
   company: partner

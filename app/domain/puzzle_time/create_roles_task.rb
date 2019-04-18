@@ -25,17 +25,15 @@ class PuzzleTime::CreateRolesTask
     end
     
     def role_names
-      people_attributes.map do |person|
-        person['employment_roles'].map do |person_roles|
-          person_roles.values[0]
-        end.first
+      people_attributes.flat_map do |person|
+        person['employment_roles'].pluck('name')
       end.uniq
     end
     
     def people_attributes
       people.map do |person|
-        pid = person.values[0].to_i
-          person.values[2].merge!('puzzle_time_key' => pid)
+        puzzle_time_key = person['id'].to_i
+        person['attributes'].merge!('puzzle_time_key' => puzzle_time_key)
       end.compact
     end
   end
