@@ -11,11 +11,13 @@ class PuzzleTime
     config_present? && url_valid?
   end
 
+  # all people from puzzle time
   def people
     people = JSON.parse(fetch_people)['data']
     PeopleFilter.new(people).filter
   end
 
+  # updated people from puzzle time
   def updated_people
     last_runned_job = Delayed::Job.where(queue: 'sync_data').last
     if last_runned_job

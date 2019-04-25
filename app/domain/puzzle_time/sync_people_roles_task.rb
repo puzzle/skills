@@ -7,15 +7,8 @@ class PuzzleTime::SyncPeopleRolesTask
           [ person_id, person['attributes']['employment_roles'] ]
         end
 
-      people_roles_to_create = person_id_with_roles
-        .flat_map do |(person_id, people_roles)|
-          people_roles_to_create(person_id, people_roles)
-        end
-
-      people_roles_to_delete = person_id_with_roles
-        .flat_map do |(person_id, people_roles)|
-          people_roles_to_delete(person_id, people_roles)
-        end
+      people_roles_to_create = people_roles_to_create(person_id_with_roles)
+      people_roles_to_delete = people_roles_to_delete(person_id_with_roles)
 
       PeopleRole.delete(people_roles_to_delete)
       PeopleRole.create!(people_roles_to_create)
@@ -23,12 +16,28 @@ class PuzzleTime::SyncPeopleRolesTask
 
     private
 
+    # selects only people with roles
     def people_with_roles(people)
-      people
-        .select { |person| person['attributes']['employment_roles'] }
+      people.select do |person|
+        person['attributes']['employment_roles']
+      end
     end
 
-    def people_roles_to_create(person_id, people_roles)
+    def people_roles_to_create(person_id_with_roles)
+      person_id_with_roles
+        .flat_map do |(person_id, people_roles)|
+          people_roles_to_create_of_person(person_id, people_roles)
+        end
+    end
+
+    def people_roles_to_delete(person_id_with_roles)
+      person_id_with_roles
+        .flat_map do |(person_id, people_roles)|
+          people_roles_to_delete_of_person(person_id, people_roles)
+        end
+    end
+
+    def people_roles_to_create_of_person(person_id, people_roles)
       people_roles.map do |people_role|
         role_id = Role.find_by(name: people_role['name']).id
 
@@ -46,13 +55,14 @@ class PuzzleTime::SyncPeopleRolesTask
       PeopleRole.exists?(person_id: person_id, role_id: role_id)
     end
 
-    def people_roles_to_delete(person_id, people_roles)
+    def people_roles_to_delete_of_person(person_id, people_roles)
       role_names = people_roles.pluck('name')
       role_ids = Role.where(name: role_names).pluck(:id)
 
       removed_people_role_ids(person_id, role_ids)
     end
 
+    # ids of people roles which were removed in puzzle time
     def removed_people_role_ids(person_id, role_ids)
       PeopleRole
         .where(person_id: person_id)

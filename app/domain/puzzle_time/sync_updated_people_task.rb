@@ -1,28 +1,24 @@
-class PuzzleTime::SynchronizeUpdatedPeopleTask
+class PuzzleTime::SyncUpdatedPeopleTask
   class << self
     attr_reader :updated_people
   
-    def synchronize_updated_people(updated_people)
-      updated_people = people_attributes_with_key(updated_people)
-
-      updated_people.each do |updated_person|
+    def sync_updated_people(updated_people)
+      people_attributes(updated_people).each do |updated_person|
         puzzle_time_key = updated_person['puzzle_time_key']
         person = Person.find_by(puzzle_time_key: puzzle_time_key)
         attributes = attributes(updated_person)
         person.update_attributes!(attributes)
       end
-      # Person.find_by(puzzle_time_key: puzzle_time_keys).update_attributes!(people_to_update)
-      # Person.update(puzzle_time_keys, people_to_update)
     end
 
     private
 
-    def people_attributes_with_key(updated_people)
+    def people_attributes(updated_people)
       updated_people
-        .map { |updated_person| 
-            pid = updated_person['id'].to_i
-            updated_person['attributes'].merge!('puzzle_time_key' => pid)
-        }
+        .map do |updated_person|
+          puzzle_time_key = updated_person['id'].to_i
+          updated_person['attributes'].merge!('puzzle_time_key' => puzzle_time_key)
+        end.compact
     end
 
     def attributes(updated_person)
