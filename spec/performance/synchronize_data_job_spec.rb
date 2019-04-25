@@ -10,42 +10,40 @@ describe SynchronizeDataJob, performance: true do
     allow(ENV).to receive(:[]).with('RAILS_API_URL').and_return('http://localhost:4000/api/v1/employees')
   end
   
-  if ENV['PERFORMANCE_TESTING']
-    it 'synchronizes 10 people' do
-      people_count = 10
-      people = load_people(people_count)
-      before = get_memory_usage_kb
+  it 'synchronizes 10 people' do
+    people_count = 10
+    people = load_people(people_count)
+    before = get_memory_usage_kb
 
-      stub_request(:get, 'http://localhost:4000/api/v1/employees').
-        to_return(status: [200, 'OK'], body: people)
+    stub_request(:get, 'http://localhost:4000/api/v1/employees').
+      to_return(status: [200, 'OK'], body: people)
 
-      expect(Person.count).to eq(3)
+    expect(Person.count).to eq(3)
 
-      job.perform
+    job.perform
 
-      expect(Person.count).to eq(people_count + 2)
+    expect(Person.count).to eq(people_count + 2)
 
-      after = get_memory_usage_kb
-      puts "Memory: #{(after - before) / 1000.0} mb"
-    end
-    
-    it 'synchronizes 1000 people' do
-      people_count = 1000
-      people = load_people(people_count)
-      before = get_memory_usage_kb
+    after = get_memory_usage_kb
+    puts "Memory: #{(after - before) / 1000.0} mb"
+  end
+  
+  it 'synchronizes 1000 people' do
+    people_count = 1000
+    people = load_people(people_count)
+    before = get_memory_usage_kb
 
-      stub_request(:get, 'http://localhost:4000/api/v1/employees').
-        to_return(status: [200, 'OK'], body: people)
+    stub_request(:get, 'http://localhost:4000/api/v1/employees').
+      to_return(status: [200, 'OK'], body: people)
 
-      expect(Person.count).to eq(3)
+    expect(Person.count).to eq(3)
 
-      job.perform
+    job.perform
 
-      expect(Person.count).to eq(people_count + 1)
+    expect(Person.count).to eq(people_count + 1)
 
-      after = get_memory_usage_kb
-      puts "Memory: #{(after - before) / 1000.0} mb"
-    end
+    after = get_memory_usage_kb
+    puts "Memory: #{(after - before) / 1000.0} mb"
   end
 
   private

@@ -19,9 +19,9 @@ class PuzzleTime::CreateRolesTask
     end
     
     def new_role_names
-      role_names.map do |role_name|
-        Role.exists?(:name => role_name)? nil : role_name 
-      end.compact
+      role_names.reject do |role_name|
+        Role.exists?(:name => role_name)
+      end
     end
     
     def role_names

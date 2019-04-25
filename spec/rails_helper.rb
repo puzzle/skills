@@ -48,6 +48,9 @@ RSpec.configure do |config|
   config.include(ControllerHelpers, type: :controller)
   config.include(PerformanceHelpers, type: :feature, performance: true)
 
+  # exclude performance tests
+  config.filter_run_excluding performance: true
+
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
 

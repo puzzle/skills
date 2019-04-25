@@ -17,7 +17,7 @@ class SynchronizeDataJob < CronJob
     PuzzleTime::CreateRolesTask.create_roles(people)
     PuzzleTime::CreatePeopleTask.create_people(people)
     PuzzleTime::MarkExEmployeesTask.mark_ex_employees(people)
-    PuzzleTime::SynchronizeUpdatedPeopleTask.synchronize_updated_people(updated_people)
+    PuzzleTime::SyncUpdatedPeopleTask.sync_updated_people(updated_people)
     PuzzleTime::SyncPeopleRolesTask.sync_people_roles(people | updated_people)
   end
 

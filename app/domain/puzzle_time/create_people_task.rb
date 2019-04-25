@@ -14,6 +14,7 @@ class PuzzleTime::CreatePeopleTask
     
     private
 
+    # only in puzzle time existing people
     def new_people
       people.map do |person|
         puzzle_time_key = person['id'].to_i

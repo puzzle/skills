@@ -79,7 +79,7 @@ describe SynchronizeDataJob do
       to_return(status: [200, 'OK'], body: new_person_json)
 
     expect(Person.count).to eq(3)
-    expect(Person.pluck(:puzzle_time_key).include?('99')).to eq(false)
+    expect(Person.pluck(:puzzle_time_key).include?(99)).to eq(false)
 
     job.perform
 
@@ -105,7 +105,7 @@ describe SynchronizeDataJob do
       to_return(status: [200, 'OK'], body: new_person_json)
 
     expect(Person.count).to eq(3)
-    expect(Person.pluck(:puzzle_time_key).include?('99')).to eq(false)
+    expect(Person.pluck(:puzzle_time_key).include?(99)).to eq(false)
 
     job.perform
 
@@ -158,7 +158,7 @@ describe SynchronizeDataJob do
       to_return(status: [200, 'OK'], body: invalid_json)
 
     expect(Person.count).to eq(3)
-    expect(Person.pluck(:puzzle_time_key).include?('99')).to eq(false)
+    expect(Person.pluck(:puzzle_time_key).include?(99)).to eq(false)
     expect(Airbrake).to receive(:notify)
       .with("person not valid", {:person=>"invalid"})
       .at_least(:once)
@@ -166,7 +166,7 @@ describe SynchronizeDataJob do
     job.perform
     
     expect(Person.count).to eq(3)
-    expect(Person.pluck(:puzzle_time_key).include?('99')).to eq(false)
+    expect(Person.pluck(:puzzle_time_key).include?(99)).to eq(false)
   end
 
   it 'does not create person if missing attributes' do
@@ -174,7 +174,7 @@ describe SynchronizeDataJob do
       to_return(status: [200, 'OK'], body: person_with_missing_attributes_json)
 
     expect(Person.count).to eq(3)
-    expect(Person.pluck(:puzzle_time_key).include?('99')).to eq(false)
+    expect(Person.pluck(:puzzle_time_key).include?(99)).to eq(false)
     expect(Airbrake).to receive(:notify)
       .with("person not valid", {:person=>
                                    {"attributes"=>
@@ -191,7 +191,7 @@ describe SynchronizeDataJob do
     job.perform
 
     expect(Person.count).to eq(3)
-    expect(Person.pluck(:puzzle_time_key).include?('99')).to eq(false)
+    expect(Person.pluck(:puzzle_time_key).include?(99)).to eq(false)
   end
   
   it 'raises error if credentials false' do

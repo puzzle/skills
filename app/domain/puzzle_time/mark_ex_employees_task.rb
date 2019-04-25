@@ -5,7 +5,8 @@ class PuzzleTime::MarkExEmployeesTask
     def mark_ex_employees(people)
       @people = people
 
-      Person.where(puzzle_time_key: ex_employee_ids).update_all(company_id: external_company_id)
+      Person.where(puzzle_time_key: ex_employee_ids)
+        .update_all(company_id: external_company_id)
     end
     
     private

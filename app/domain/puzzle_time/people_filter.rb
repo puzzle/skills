@@ -8,7 +8,7 @@ class PuzzleTime::PeopleFilter
     @people = people
   end
 
-  # returns array with hashes of valid people
+  # returns only valid people
   def filter
     return [] if people.empty?
     people.select do |person|
