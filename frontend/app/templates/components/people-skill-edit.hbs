@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col">
-    {{peopleSkill.skill.title}}
+    <strong>{{peopleSkill.skill.title}}</strong>
   </div>
   <div class="col">
     <label class="description">Niveau</label>
@@ -31,12 +31,12 @@
     {{/power-select}}
   </div>
   <div class="col">
-    {{input type="checkbox" checked=peopleSkill.certificate}}
-    <label class="description">Zertifikat</label>
+    {{input type="checkbox" id=(concat peopleSkill.id "-certificate") checked=peopleSkill.certificate}}
+    <label class="description" for="{{concat peopleSkill.id "-certificate"}}">Zertifikat</label>
   </div>
   <div class="col">
-    {{input type="checkbox" checked=peopleSkill.core_competence}}
-    <label class="description">Kernkompetenz</label>
+    {{input type="checkbox" id=(concat peopleSkill.id "-coreCompetence") checked=peopleSkill.core_competence}}
+    <label class="description" for="{{concat peopleSkill.id "-coreCompetence"}}">Kernkompetenz</label>
   </div>
 </div>
 <br>

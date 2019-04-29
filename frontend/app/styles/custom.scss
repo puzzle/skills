@@ -305,6 +305,10 @@ hr {
     
   }
 
+  .parent-categories-text {
+    font-weight: 550;
+  }
+
   /* Competence Section
   -------------------------------------------------- */
   .vertical-center {
@@ -1071,6 +1075,10 @@ div.content-input  {
 }
 
 /* For all the bearbeiten,speichern, löschen und abbrechen "buttons" */
+.fa-check-square {
+  color: #1E5A96 !important;
+}
+
 .edit-buttons {
   color: #1E5A96 !important;
 }

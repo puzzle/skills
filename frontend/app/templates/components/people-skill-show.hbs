@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col people-skill-skillname">
-    {{peopleSkill.skill.title}}
+    <strong>{{peopleSkill.skill.title}}</strong>
   </div>
   <div class="col people-skill-level">
     {{peopleSkill.level}}
@@ -9,10 +9,20 @@
     {{peopleSkill.interest}}
   </div>
   <div class="col people-skill-certificate">
-    {{peopleSkill.certificate}}
+    {{#if peopleSkill.certificate}}
+      <i class="fa fa-check-square" aria-hidden="true"></i>
+    {{else}}
+      <i class="fa fa-square-o" aria-hidden="true"></i>
+    {{/if}}
+    <span class="description ml-2">Zertifikat</span>
   </div>
   <div class="col people-skill-coreCompetence">
-    {{peopleSkill.core_competence}}
+    {{#if peopleSkill.coreCompetence}}
+      <i class="fa fa-check-square" aria-hidden="true"></i>
+    {{else}}
+      <i class="fa fa-square-o" aria-hidden="true"></i>
+    {{/if}}
+    <span class="description ml-2">Kernkompetenz</span>
   </div>
 </div>
 <br>

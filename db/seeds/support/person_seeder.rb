@@ -8,9 +8,9 @@ class PersonSeeder
       person = seed_person(name).first
       break unless person
       seed_people_roles(person)
-      seed_people_skill(person.id)
+      seed_people_skills(person.id)
       seed_image(person)
-      associations = [:activity, :advanced_training, :project, :education, :person_competence, :language_skill, :people_skill]
+      associations = [:activity, :advanced_training, :project, :education, :person_competence, :language_skill, :people_skills]
       associations.each do |a|
         seed_association(a, person.id)
       end
@@ -132,8 +132,8 @@ class PersonSeeder
     end
   end
 
-  def seed_people_skill(person_id)
-    PeopleSkill.seed do |ps|
+  def seed_people_skills(person_id)
+    PeopleSkill.seed_once(:person_id, :skill_id) do |ps|
       ps.person_id = person_id
       ps.skill_id = rand(1..20)
       ps.interest = rand(1..5)

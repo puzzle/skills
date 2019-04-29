@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       put 'picture', to: 'people#update_picture'
       get 'picture'
       get 'fws', to: 'people#export_fws'
-      resources :skills, controller: 'people/skills'
+      resources :skills
     end
 
     resources :people_skills, controller: 'people/skills'
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     resources :locations, controller: 'locations'
     resources :offers, controller: 'offers'
 
-    resources :categories, only: [:index, :show], controller: 'categories'
+    resources :categories, only: [:index, :show]
     resources :roles, only: :index
     resources :skills, controller: 'skills'
 

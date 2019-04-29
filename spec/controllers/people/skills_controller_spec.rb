@@ -5,6 +5,8 @@ describe People::SkillsController do
     before { auth(:ken) }
     before { load_pictures }
 
+    let(:ken) { users(:ken) }
+
     describe 'GET index' do
       it 'returns kens skills' do
         keys = %w[person_id skill_id level interest certificate core_competence]
@@ -20,11 +22,5 @@ describe People::SkillsController do
         json_object_includes_keys(junit_attrs, keys)
       end
     end
-  end
-
-  private
-  
-  def ken
-    @ken ||= users(:ken)
   end
 end

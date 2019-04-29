@@ -22,8 +22,8 @@ describe PeopleSkill do
       people_skill.core_competence = nil
       people_skill.valid?
 
-      expect(people_skill.errors[:person].first).to eq('muss ausgefüllt werden')
-      expect(people_skill.errors[:skill].first).to eq('muss ausgefüllt werden')
+      expect(people_skill.errors[:certificate].first).to eq('muss ausgefüllt werden')
+      expect(people_skill.errors[:core_competence].first).to eq('muss ausgefüllt werden')
       expect(people_skill.errors[:person].first).to eq('muss ausgefüllt werden')
       expect(people_skill.errors[:skill].first).to eq('muss ausgefüllt werden')
     end
@@ -52,6 +52,23 @@ describe PeopleSkill do
       people_skill.interest = -1
       people_skill.valid?
       expect(people_skill.errors[:interest].first).to eq('muss größer oder gleich 0 sein')
+    end
+
+    it 'checks if skill_id is unique' do
+      # bob already knows rails
+      person = people(:bob)
+
+      people_skill = PeopleSkill.new
+      people_skill.certificate = true
+      people_skill.core_competence = false
+      people_skill.interest = 1
+      people_skill.level = 2
+      people_skill.skill = skills(:rails)
+      people_skill.person = person
+
+      people_skill.valid?
+
+      expect(people_skill.errors[:person_id].first).to eq('Pro Person kann ein Skill nicht mehrmals ausgewählt werden')
     end
   end
 end

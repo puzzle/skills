@@ -21,7 +21,7 @@
               <div class="card-header bg-info">
                 <div class="row">
                   <div class="col-sm-6">
-                    <div class="text-dark header-text">{{parentCategory.title}}</div>
+                    <div class="text-dark header-text parent-categories-text">{{parentCategory.title}}</div>
                   </div>
                 </div>
               </div>
@@ -29,7 +29,7 @@
                 {{#if (eq parentCategory.title childCategory.parent.title)}}
                   <div class="show border border-info rounded-bottom">
                     <div class="card-body d-flex flex-column">
-                      {{childCategory.title}}
+                      <h5 class="description">{{childCategory.title}}</h5>
                       {{#each person.peopleSkills as |peopleSkill|}}
                         {{#if (eq childCategory.title peopleSkill.skill.category.title)}}
                           <div class="show border border-info rounded-bottom">

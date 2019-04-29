@@ -11,6 +11,7 @@ export default Component.extend({
     this.set('newSkill', this.get('store').createRecord('skill'));
     this.set('newPeopleSkill', this.get('store').createRecord('peopleSkill'));
     this.set('interestLevelOptions', [1,2,3,4,5]);
+    ['level', 'interest'].forEach(attr => { this.set('newPeopleSkill.' + attr, 1) })
   },
 
   didInsertElement() {
@@ -80,11 +81,12 @@ export default Component.extend({
           this.get('newSkill.errors').forEach(({ attribute, message }) => {
             let translated_attribute = this.get('i18n').t(`skill.${attribute}`)['string']
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
+            this.set('newSkill', null);
           });
           return
         });
         await skill
-        this.set('newPeopleSkill.skill', skill);
+        this.set('newPeopleSkill.skill', this.get('newSkill'));
       }
       this.set('newPeopleSkill.person', this.get('person'));
       return this.get('newPeopleSkill').save()

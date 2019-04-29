@@ -22,5 +22,9 @@ class PeopleSkill < ApplicationRecord
                                                allow_nil: true,
                                                less_than_or_equal_to: 5 }
 
+  validates :person_id, uniqueness: { scope: :skill_id,
+                                      message: 'Pro Person kann ein Skill nicht'\
+                                               ' mehrmals ausgewählt werden' }
+
   scope :list, -> { order(:person_id, :skill_id) }
 end

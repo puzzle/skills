@@ -24,7 +24,5 @@ module('Integration | Component | people-skill-show', function(hooks) {
     assert.ok(text.includes('Rails'));
     assert.ok(text.includes('2'));
     assert.ok(text.includes('3'));
-    assert.ok(text.includes('false'));
-    assert.ok(text.includes('true'));
   });
 });
