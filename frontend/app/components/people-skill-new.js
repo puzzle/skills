@@ -10,7 +10,6 @@ export default Component.extend({
     this._super(...arguments);
     this.set('newSkill', this.get('store').createRecord('skill'));
     this.set('newPeopleSkill', this.get('store').createRecord('peopleSkill'));
-    this.set('interestLevelOptions', [1,2,3,4,5]);
     ['level', 'interest'].forEach(attr => { this.set('newPeopleSkill.' + attr, 1) })
   },
 
@@ -23,12 +22,12 @@ export default Component.extend({
     /* eslint-enable no-global-jquery, no-undef, jquery-ember-run  */
   },
 
-  dropdownSkills: computed('peopleSkills', function() {
+  dropdownSkills: computed('person.peopleSkills.@each.id', function() {
     const peopleSkillsIds = this.peopleSkills.map(peopleSkill => peopleSkill.get('skill.id'))
     let skills = this.get('store').findAll('skill', { reload: true })
     return skills.then(() => {
       skills = skills.filter(skill => !peopleSkillsIds.includes(skill.get('id')))
-      return skills;
+      return skills.sort((a, b) => a.get('title') < b.get('title') ? -1 : 1);
     })
   }),
 
@@ -43,8 +42,16 @@ export default Component.extend({
   }),
 
   abort() {
+    this.get('newSkill').deleteRecord();
+    this.get('newPeopleSkill').deleteRecord();
     this.set('newSkill', this.get('store').createRecord('skill'));
     this.set('newPeopleSkill', this.get('store').createRecord('peopleSkill'));
+    this.notifyPropertyChange('dropdownSkills');
+    ['level', 'interest'].forEach(attr => { this.set('newPeopleSkill.' + attr, 1) })
+  },
+
+  categorySearchMatcher(category, term) {
+    return `${category.get('title')} ${category.get('parent.title')}`.indexOf(term);
   },
 
   actions: {
@@ -52,6 +59,7 @@ export default Component.extend({
       return `${term} neu hinzufügen!`;
 
     },
+
     setCategory(category) {
       this.set((this.get('newSkillSelected') ? 'newSkill' : 'newPeopleSkill.skill') + '.category', category);
     },
@@ -81,13 +89,13 @@ export default Component.extend({
           this.get('newSkill.errors').forEach(({ attribute, message }) => {
             let translated_attribute = this.get('i18n').t(`skill.${attribute}`)['string']
             this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 10000 });
-            this.set('newSkill', null);
           });
-          return
         });
         await skill
+        if (this.get('newSkill.errors.length')) return;
         this.set('newPeopleSkill.skill', this.get('newSkill'));
       }
+
       this.set('newPeopleSkill.person', this.get('person'));
       return this.get('newPeopleSkill').save()
         .then(() => this.get('notify').success('Member-Skill wurde hinzugefügt!'))

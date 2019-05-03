@@ -7,7 +7,7 @@ import page from 'frontend/tests/pages/person-skills';
 moduleForAcceptance('Acceptance | create peopleSkill');
 
 test('creating a new peopleSkill', async function(assert) {
-  assert.expect(3);
+  assert.expect(2);
 
   authenticateSession(this.application, {
     ldap_uid: 'development_user',
@@ -25,17 +25,14 @@ test('creating a new peopleSkill', async function(assert) {
   /* eslint "no-undef": "off" */
   await page.newPeopleSkillModal.openModalButton();
   await selectChoose('#people-skill-new-skill', 'Bash');
-  await selectChoose('#people-skill-new-level', '3');
-  await selectChoose('#people-skill-new-interest', '2');
+  $(".people-skill-new-dropdowns .slider-tick:eq(2)").mousedown()
+  await page.newPeopleSkillModal.interestButtons.objectAt(3).clickOn();
   await page.newPeopleSkillModal.certificateToggle();
 
   await page.newPeopleSkillModal.createPeopleSkill({});
-  //await new Promise(resolve => setTimeout(resolve, 2000));
 
   let names = page.peopleSkillsTable.skillNames.toArray().map(name => name.text)
   assert.ok(names.includes('Bash'));
   let levels = page.peopleSkillsTable.levels.toArray().map(name => name.text)
-  assert.ok(levels.includes('3'));
-  let interests = page.peopleSkillsTable.interests.toArray().map(name => name.text)
-  assert.ok(interests.includes('2'));
+  assert.ok(levels.map(name => name.includes('Trainee')).includes(true));
 });

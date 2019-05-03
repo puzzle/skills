@@ -34,6 +34,7 @@
     "ember-cli-eslint": "^4.2.1",
     "ember-cli-htmlbars": "^2.0.1",
     "ember-cli-htmlbars-inline-precompile": "^1.0.0",
+    "ember-cli-icon-rating": "^2.0.1",
     "ember-cli-inject-live-reload": "^1.4.1",
     "ember-cli-moment-shim": "^3.7.1",
     "ember-cli-page-object": "^1.11.0",
@@ -42,6 +43,7 @@
     "ember-cli-shims": "^1.2.0",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-sticky": "^0.6.4",
+    "ember-cli-string-helpers": "^2.0.0",
     "ember-cli-template-lint": "^0.7.3",
     "ember-cli-uglify": "^2.0.0",
     "ember-collapsible-panel": "^3.2.1",
@@ -75,6 +77,7 @@
     "eslint-plugin-ember": "^5.0.0",
     "liquid-fire": "^0.28.0",
     "loader.js": "^4.2.3",
+    "ui-ember-slider": "github:ifad/ui-slider",
     "watchman": "^1.0.0"
   },
   "engines": {

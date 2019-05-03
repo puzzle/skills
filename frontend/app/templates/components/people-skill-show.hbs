@@ -2,11 +2,27 @@
   <div class="col people-skill-skillname">
     <strong>{{peopleSkill.skill.title}}</strong>
   </div>
-  <div class="col people-skill-level">
-    {{peopleSkill.level}}
+  <div class="col justify-content-center people-skill-level">
+    <p class="description level-interest-title">{{levelName}}</p>
+    {{ui-slider
+    value=peopleSkill.level
+    ticks='0,1,2,3,4,5'
+    ticksLabels='0,1,2,3,4,5'
+    tooltip='hide'
+    disabled=true
+    min=0
+    max=5
+    immediateResponse=true
+    }}
   </div>
   <div class="col people-skill-interest">
-    {{peopleSkill.interest}}
+    <p class="description level-interest-title">Interesse</p>
+    {{icon-rating
+    fillColor='#238BCA'
+    readOnly=true
+    value=peopleSkill.interest
+    onClick=(action (mut newPeopleSkill.interest))
+    }}
   </div>
   <div class="col people-skill-certificate">
     {{#if peopleSkill.certificate}}

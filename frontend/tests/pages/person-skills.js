@@ -15,7 +15,8 @@ export default create({
     submit: clickable('#people-skill-new-submit-button'),
 
     openModalButton: clickable('a.edit-buttons[data-target="#people-skill-new-modal"]'),
-
+    levelButtons: collection('.people-skill-new-dropdowns .slider-tick'),
+    interestButtons: collection('.people-skill-new-dropdowns .icon-rating-icon'),
     certificateToggle: clickable('#certificate-toggle input[type="checkbox"]'),
     coreCompetenceToggle: clickable('#coreCompetence-toggle input[type="checkbox"]'),
 

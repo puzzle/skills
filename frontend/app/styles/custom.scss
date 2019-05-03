@@ -300,9 +300,10 @@ hr {
     margin: 5px 20px 0 0;
   }
 
-  .people-skill-new-dropdowns .ember-basic-dropdown-content-wormhole-origin {
+  .people-skill-new-dropdowns .ember-basic-dropdown-content-wormhole-origin, .icon-rating-wrapper {
     width: 100% !important;
-    
+    cursor: pointer;
+
   }
 
   .parent-categories-text {
@@ -312,10 +313,64 @@ hr {
   /* Member-Skills Section
   -------------------------------------------------- */
 
+  .slider-handle {
+    background-image: linear-gradient(to bottom, #3B7BBE 0%, #3B7BBE 100%) !important;
+  }
+
+  .slider-selection, .slider-tick.in-selection {
+    background-image: linear-gradient(to bottom, #3FA8E0 0%, #3FA8E0 100%);
+  }
+
+  .slider-5-ticks .slider-tick-label {
+    width: 32.5px !important;
+  }
+
+  .people-skill-interest .icon-rating-wrapper {
+    margin-left: 16%;
+  }
+
+
   .fa-circle {
     font-size: 0.5em !important;
     color: #69B978;
   }
+
+  #people-skill-new-modal .ui-slider {
+    margin-left: 2%;
+  }
+
+  .ui-slider {
+    margin-left: 5%;
+  }
+
+  .level-interest-title {
+    width: 73%;
+    text-align: center;
+  }
+
+  .slider-horizontal {
+    max-width: 130px;
+  }
+
+  .slider-tick-label-container {
+    width: 130px;
+    margin-left: -16.25px !important;
+  }
+
+  .slider-tick-label {
+    width: 27px !important;
+    color: grey;
+    font-size: 0.8em;
+  }
+
+  .slider-tick, .slider-handle {
+    cursor: pointer;
+  }
+
+  .slider.slider-disabled .slider-track, .slider.slider-disabled .slider-tick {
+    cursor: default;
+  }
+
   /* Competence Section
   -------------------------------------------------- */
   .vertical-center {

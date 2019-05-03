@@ -3,32 +3,38 @@
     <strong>{{peopleSkill.skill.title}}</strong>
   </div>
   <div class="col">
-    <label class="description">Niveau</label>
-    {{#power-select
-    selected=peopleSkill.level
-    options=interestLevelOptions
-    searchEnabled=false
-    onfocus=(action "handleFocus")
-    onblur=(action "handleBlur")
-    onchange=(action (mut peopleSkill.level))
-    as |level|
-    }}
-      {{level}}
-    {{/power-select}}
+    <label class="description level-interest-title">{{levelName}}</label>
+    {{#if peopleSkill.id}}
+      <div class="slider-5-ticks">
+        {{ui-slider
+        value=peopleSkill.level
+        ticks='1,2,3,4,5'
+        ticksLabels='1,2,3,4,5'
+        tooltip='hide'
+        min=1
+        max=5
+        immediateResponse=true
+        }}
+      </div>
+    {{else}}
+      {{ui-slider
+      value=peopleSkill.level
+      ticks='0,1,2,3,4,5'
+      ticksLabels='0,1,2,3,4,5'
+      tooltip='hide'
+      min=0
+      max=5
+      immediateResponse=true
+      }}
+    {{/if}}
   </div>
-  <div class="col">
-    <label class="description">Interesse</label>
-    {{#power-select
-    selected=peopleSkill.interest
-    options=interestLevelOptions
-    searchEnabled=false
-    onfocus=(action "handleFocus")
-    onblur=(action "handleBlur")
-    onchange=(action (mut peopleSkill.interest))
-    as |interest|
+  <div class="col people-skill-interest">
+    <label class="description level-interest-title">Interesse</label>
+    {{icon-rating
+    fillColor='#238BCA'
+    value=peopleSkill.interest
+    onClick=(action (mut peopleSkill.interest))
     }}
-      {{interest}}
-    {{/power-select}}
   </div>
   <div class="col">
     {{input type="checkbox" id=(concat peopleSkill.id "-certificate") checked=peopleSkill.certificate}}

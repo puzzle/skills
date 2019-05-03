@@ -42,6 +42,7 @@
                 class="w-100"
                 dropdownClass="w-100"
                 options=childCategories
+                matcher=categorySearchMatcher
                 disabled=(eq newSkillSelected false)
                 selected=selectedCategory
                 onchange=(action 'setCategory')
@@ -54,37 +55,27 @@
           <div class="row my-3">
             <div class="col-md-3">Level</div>
             <div class="col-md-9 people-skill-new-dropdowns">
-              {{#power-select
-                triggerId="people-skill-new-level"
-                renderInPlace=true
-                class="w-100"
-                dropdownClass="w-100"
-                searchEnabled=false
-                options=interestLevelOptions
-                selected=newPeopleSkill.level
-                onchange=(action (mut newPeopleSkill.level))
-                as |level|
-              }}
-                {{level}}
-              {{/power-select}}
+              <div class="slider-5-ticks">
+                {{ui-slider
+                value=newPeopleSkill.level
+                ticks='1,2,3,4,5'
+                ticksLabels='1,2,3,4,5'
+                tooltip='hide'
+                min=1
+                max=5
+                }}            
+              </div>
             </div>
           </div>
           <div class="row my-3">
             <div class="col-md-3">Interesse</div>
             <div class="col-md-9 people-skill-new-dropdowns">
-              {{#power-select
-                triggerId="people-skill-new-interest"
-                renderInPlace=true
-                class="w-100"
-                dropdownClass="w-100"
-                searchEnabled=false
-                options=interestLevelOptions
-                selected=newPeopleSkill.interest
-                onchange=(action (mut newPeopleSkill.interest))
-                as |interest|
+              {{icon-rating
+              size='lg'
+              fillColor='#238BCA'
+              value=newPeopleSkill.interest
+              onClick=(action (mut newPeopleSkill.interest))
               }}
-                {{interest}}
-              {{/power-select}}
             </div>
           </div>
           <div id="certificate-toggle" class="row my-3">
@@ -101,8 +92,8 @@
             {{x-toggle
             theme='material'
             size='medium'
-            value=newPeopleSkill.core_competence
-            onToggle=(action (mut newPeopleSkill.core_competence))
+            value=newPeopleSkill.coreCompetence
+            onToggle=(action (mut newPeopleSkill.coreCompetence))
             }}
           </div>
         </div>
