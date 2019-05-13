@@ -1,7 +1,7 @@
 <main id="main" class="container-fluid">
   <div id="inner-main" class="container-fluid">
     <div class="row-fluid">
-      {{#if session.isAuthenticated}}
+      {{#if session.authenticated}}
         {{! Navbar with logo }}
         <div class='header top'>
           <nav class="navbar p-0 navbar-expand-sm">
@@ -15,10 +15,10 @@
               {{/link-to}}
             </ul>
             <ul class="navbar-nav ml-auto">
-              {{#if session.data.authenticated.full_name}}
+              {{#if session.authenticated}}
                 <li class="nav-item border-black border-bottom-0 border-top-0 border-right-0">
                   <a id="logout-button" role="button" class="nav-link pull-right" {{action 'transitionToProfile'}}>
-                    <i class="fa fa-user-circle" aria-hidden="true"></i> {{session.data.authenticated.full_name}}
+                    <i class="fa fa-user-circle" aria-hidden="true"></i> A Boy Has No Name
                   </a>
                 </li>
               {{/if}}
@@ -28,7 +28,7 @@
                 </a>
               </li>
               <li class="nav-item border-black border-bottom-0 border-top-0 border-left-0">
-                <a id="logout-button" role="button" class="nav-link pull-right" {{action 'invalidateSession'}}>
+                <a id="logout-button" role="button" class="nav-link pull-right" {{action 'logoutUser'}}>
                   Logout
                 </a>
               </li>

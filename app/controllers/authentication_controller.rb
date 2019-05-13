@@ -1,7 +1,7 @@
 require 'ldap_tools'
 
 class AuthenticationController < ApplicationController
-  skip_before_action :authorize
+  # skip_before_action :authorize
 
   def sign_in
     development_json = { ldap_uid: 'development_user', api_token: '1234' }

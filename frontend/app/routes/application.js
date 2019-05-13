@@ -1,15 +1,37 @@
 import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
 import DS from 'ember-data';
-import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 import { UnauthorizedError, ForbiddenError } from 'ember-ajax/errors';
 
-export default Route.extend(ApplicationRouteMixin, {
-  session: service(),
+export default Route.extend({
+  session: service('keycloak-session'),
   moment: service(),
 
-  beforeModel() {
+  beforeModel: function() {
     this.get('moment').setLocale('de');
+    this._super(...arguments);
+
+    var session = this.get('session');
+
+    // Keycloak constructor arguments as described in the keycloak documentation.
+    var options = {
+      'url': 'server.com', //add your url here
+      'realm': 'realm', // add your realm here
+      'clientId': 'clientId', // add your clientId here
+      'credentials': {
+        secret: "1234" // add your secret here
+      }
+    };
+
+    // this will result in a newly constructed keycloak object
+    session.installKeycloak(options);
+
+    // set any keycloak init parameters where defaults need to be overidden
+    session.set('responseMode', 'fragment');
+    // finally init the service and return promise to pause router.
+    return session.initKeycloak();
+
+
   },
 
   isAuthError(error) {

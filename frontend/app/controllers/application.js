@@ -3,7 +3,7 @@ import Controller from '@ember/controller';
 
 
 export default Controller.extend({
-  session: service('session'),
+  session: service('keycloak-session'),
   router: service(),
 
   actions: {
@@ -18,6 +18,11 @@ export default Controller.extend({
           this.get('router').transitionTo('person', person.id)
         }
       })
+    },
+
+    logoutUser() {
+      let session = this.get('session');
+      session.logout()
     }
   }
 })

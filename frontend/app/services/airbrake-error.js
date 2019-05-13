@@ -4,7 +4,7 @@ import Ember from 'ember';
 
 export default Service.extend({
   airbrake: service(),
-  session: service(),
+  session: service('keycloak-session'),
 
   init() {
     this._super(...arguments);
