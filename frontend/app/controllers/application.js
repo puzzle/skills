@@ -3,7 +3,7 @@ import Controller from "@ember/controller";
 import ENV from "../config/environment";
 
 export default Controller.extend({
-  session: service("session"),
+  session: service('keycloak-session'),
   router: service(),
   helplink: ENV.helplink,
 
@@ -18,7 +18,12 @@ export default Controller.extend({
         } else {
           this.get("router").transitionTo("person", person.id);
         }
-      });
+      })
+    },
+
+    logoutUser() {
+      let session = this.get('session');
+      session.logout()
     }
   }
 });

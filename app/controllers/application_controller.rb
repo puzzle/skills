@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
 
-  before_action :authorize
+  # before_action :authorize
 
   def authorize
     return if Rails.env.development? && ENV['ENABLE_AUTH'].blank?

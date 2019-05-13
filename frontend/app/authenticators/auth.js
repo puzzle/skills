@@ -7,7 +7,7 @@ const { Promise } = RSVP;
 
 export default Base.extend({
   ajax: service(),
-  session: service("session"),
+  session: service('keycloak-session'),
 
   restore(data) {
     if (isEmpty(data.token)) {
