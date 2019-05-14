@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_04_060802) do
+ActiveRecord::Schema.define(version: 2019_05_14_113640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -181,15 +181,6 @@ ActiveRecord::Schema.define(version: 2019_04_04_060802) do
     t.index ["skill_id"], name: "index_people_skills_on_skill_id"
   end
 
-  create_table "person_competences", force: :cascade do |t|
-    t.string "category"
-    t.text "offer", default: [], array: true
-    t.bigint "person_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["person_id"], name: "index_person_competences_on_person_id"
-  end
-
   create_table "project_technologies", force: :cascade do |t|
     t.text "offer", default: [], array: true
     t.bigint "project_id"
@@ -246,6 +237,5 @@ ActiveRecord::Schema.define(version: 2019_04_04_060802) do
   add_foreign_key "locations", "companies"
   add_foreign_key "offers", "companies"
   add_foreign_key "people", "companies"
-  add_foreign_key "person_competences", "people"
   add_foreign_key "project_technologies", "projects"
 end

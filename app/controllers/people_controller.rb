@@ -4,7 +4,7 @@ class PeopleController < CrudController
                             competence_notes company company_id email department]
 
   self.nested_models = %i[advanced_trainings activities projects
-                          educations person_competences language_skills people_roles
+                          educations language_skills people_roles
                           people_skills categories]
 
   self.permitted_relationships = %i[company people_roles people_skills categories]

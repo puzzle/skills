@@ -10,7 +10,7 @@ class PersonSeeder
       seed_people_roles(person)
       seed_people_skills(person.id)
       seed_image(person)
-      associations = [:activity, :advanced_training, :project, :education, :person_competence, :language_skill, :people_skills]
+      associations = [:activity, :advanced_training, :project, :education, :language_skill, :people_skills]
       associations.each do |a|
         seed_association(a, person.id)
       end
@@ -84,12 +84,6 @@ class PersonSeeder
     education.start_at = Faker::Date.between(60.year.ago, 40.year.ago)
     education.finish_at = Faker::Date.between(30.year.ago, 2.year.ago)
     education.save!
-  end
-
-  def change_person_competence(person_competence)
-    person_competence.category = Faker::Hacker.noun
-    person_competence.offer = ["Java", "Ruby", "Javascript", "C++", "C", "C#"]
-    person_competence.save!
   end
 
   def seed_person(name)
@@ -169,14 +163,6 @@ class PersonSeeder
       e.title = Faker::Educator.course
       seed_daterange(e)
       e.person_id = person_id
-    end
-  end
-
-  def seed_person_competence(person_id)
-    PersonCompetence.seed do |a|
-      a.category = Faker::Hacker.noun
-      a.offer = ["Java", "Ruby", "Javascript", "C++", "C", "C#"]
-      a.person_id = person_id
     end
   end
 

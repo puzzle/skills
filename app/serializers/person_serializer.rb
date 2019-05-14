@@ -64,7 +64,4 @@ class PersonSerializer < ApplicationSerializer
   has_many :language_skills do |serializer|
     serializer.object.language_skills.list
   end
-
-  has_many :person_competences, include: :all
-
 end
