@@ -7,18 +7,18 @@ export default Route.extend({
   session: service('keycloak-session'),
   moment: service(),
 
-  beforeModel: function() {
+  beforeModel() {
     this.get('moment').setLocale('de');
     this._super(...arguments);
 
-    var session = this.get('session');
+    let session = this.get('session');
 
     // Keycloak constructor arguments as described in the keycloak documentation.
-    var options = {
-      'url': 'server_url', //add your url here
-      'realm': 'realm_name', // add your realm here
-      'clientId': 'client_name', // add your clientId here
-      'credentials': {
+    let options = {
+      url: 'server_url', //add your url here
+      realm: 'realm_name', // add your realm here
+      clientId: 'client_name', // add your clientId here
+      credentials: {
         secret: "1234" // add your secret here
       }
     }
