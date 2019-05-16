@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
+import { computed, observer } from '@ember/object';
 
 export default Component.extend({
   store: service(),
@@ -9,23 +9,53 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     this.set('peopleSkillsEditing', false);
+    this.setMemberSkillset();
   },
+
+  peopleSkillsChanged: observer('person.peopleSkills', function() {
+    this.setMemberSkillset();
+  }),
 
   skills: computed(function() {
     return this.get('store').findAll('skill', { reload: true });
   }),
 
-  parentCategories: computed(function() {
-    return this.get('store').query('category', { scope: 'parents' });
-  }),
-
-  childCategories: computed(function() {
-    return this.get('store').query('category', { scope: 'children' });
-  }),
-
   amountOfPeopleSkills: computed('person.peopleSkills', function() {
     return this.get('person.peopleSkills.length')
   }),
+
+  memberSkillset: computed('skillset', function() {
+    return this.get('skillset');
+  }),
+
+  setMemberSkillset() {
+    let categories = this.get('store').findAll('category')
+    categories.then(categories => {
+      this.set('parentCategories', categories.filter(c => c.parent_id == null))
+      let memberSkillset = this.refreshMemberSkillset();
+      this.set('skillset', memberSkillset);
+    })
+  },
+
+  refreshMemberSkillset() {
+    let hash = {}
+    let peopleSkills = this.get('person.peopleSkills')
+    this.get('parentCategories').forEach(parentCategory => {
+      let childCategoriesWithSkills = parentCategory.get('children').map(childCategory => {
+        let title = childCategory.get('title')
+        let skillIds = childCategory.get('skills').map(skill => skill.get('id'))
+        let childCategorySkills = peopleSkills.map(peopleSkill => {
+          let skillId = peopleSkill.get('skill.id')
+          if (skillIds.includes(skillId)) return peopleSkill
+        }).filter(Boolean);
+        return [title, childCategorySkills]
+      })
+      if (childCategoriesWithSkills) {
+        hash[parentCategory.get('title')] = childCategoriesWithSkills
+      }
+    })
+    return hash
+  },
 
   actions: {
     submit(person) {
