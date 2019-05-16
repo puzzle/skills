@@ -15,13 +15,13 @@ export default Route.extend({
 
     // Keycloak constructor arguments as described in the keycloak documentation.
     var options = {
-      'url': 'server.com', //add your url here
-      'realm': 'realm', // add your realm here
-      'clientId': 'clientId', // add your clientId here
+      'url': 'server_url', //add your url here
+      'realm': 'realm_name', // add your realm here
+      'clientId': 'client_name', // add your clientId here
       'credentials': {
         secret: "1234" // add your secret here
       }
-    };
+    }
 
     // this will result in a newly constructed keycloak object
     session.installKeycloak(options);
