@@ -23,7 +23,7 @@ module('Integration | Component | skills-list', function(hooks) {
 
     let text = this.$().text();
 
-    assert.ok(text.includes('CSV Export'));
+    assert.ok(text.includes('Export'));
     assert.ok(text.includes('Neuer Puzzle-Skill'));
     assert.ok(text.includes('Skill'));
     assert.ok(text.includes('Radar'));

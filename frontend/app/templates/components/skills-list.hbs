@@ -9,14 +9,11 @@
     {{skillset-category-filter}}
   </div>
   <div class="col-sm-4">
-    {{!-- Insert correct link-to route once finished --}}
-    {{#link-to "skills"}}
-      <a class="float-right">
-        <i class="fa fa-download" aria-hidden="true">
-        </i>
-        CSV Export
-      </a>
-    {{/link-to}}
+    <a onclick={{pipe (action 'exportSkillsetOdt')}} class="edit-buttons" data-toggle="tooltip" data-placement="top" title="Exportiert das gesamte Skillset">
+      <i class="fa fa-download" aria-hidden="true">
+      </i>
+      Export
+    </a>
     {{!-- Insert correct link-to route once finished --}}
     {{#link-to "skills"}}
       <a class="float-right mr-5">
@@ -56,3 +53,8 @@
     </tbody>
   </table>
 </div>
+<script>
+  $(document).ready(() => {
+    $('[data-toggle="tooltip"]').tooltip();
+  })
+</script>

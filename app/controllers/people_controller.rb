@@ -1,4 +1,6 @@
 class PeopleController < CrudController
+  include OdtExportController
+
   self.permitted_attrs = %i[birthdate picture location
                             marital_status updated_by name nationality nationality2 title
                             competence_notes company company_id email department]
@@ -81,44 +83,6 @@ class PeopleController < CrudController
     odt_file = Odt::Cv.new(entry).export
     send_data odt_file.generate,
               type: 'application/vnd.oasis.opendocument.text',
-              disposition: content_disposition('attachment', filename(entry.name))
+              disposition: content_disposition('attachment', filename(entry.name, 'cv'))
   end
-
-  def filename(name)
-    "#{name.downcase.tr(' ', '_')}_cv.odt"
-  end
-
-  def format_odt?
-    response.request.filtered_parameters['format'] == 'odt'
-  end
-
-  # UTF-8 Content-Disposition https://tools.ietf.org/html/rfc6266
-  def content_disposition(disposition, filename)
-    "#{disposition}; " \
-      "#{content_disposition_filename_ascii(filename)}; " \
-      "#{content_disposition_filename_utf8(filename)}"
-  end
-
-  def content_disposition_filename_ascii(filename)
-    'filename="' +
-      percent_escape(
-        I18n.transliterate(filename),
-        /[^ A-Za-z0-9!#{$+}.^_`|~-]/
-      ) + '"'
-  end
-
-  def content_disposition_filename_utf8(filename)
-    "filename*=UTF-8''" +
-      percent_escape(
-        filename,
-        /[^A-Za-z0-9!#{$&}+.^_`|~-]/
-      )
-  end
-
-  def percent_escape(string, pattern)
-    string.gsub(pattern) do |char|
-      char.bytes.map { |byte| format('%%%02X', byte) }.join
-    end
-  end
-
 end
