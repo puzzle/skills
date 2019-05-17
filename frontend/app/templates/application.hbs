@@ -49,11 +49,13 @@
               CV Suche
             {{/link-to}}
           </li>
-          <li class="nav-item hovering-nav-bar">
-            {{#link-to "skills" class="nav-link text-white rounded-0"}}
-              Skillset
-            {{/link-to}}
-          </li>
+            {{#if isAdmin}}
+              <li class="nav-item hovering-nav-bar">
+                {{#link-to "skills" class="nav-link text-white rounded-0"}}
+                  Skillset
+                {{/link-to}}
+              </li>
+            {{/if}}
         </ul>
       </nav>
     </div>
