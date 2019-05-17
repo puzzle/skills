@@ -16,7 +16,7 @@
           {{#if session.authenticated}}
             <li class="nav-item border-black border-bottom-0 border-top-0 border-right-0">
               <a id="logout-button" role="button" class="nav-link pull-right" {{action 'transitionToProfile'}}>
-                <i class="fa fa-user-circle" aria-hidden="true"></i> A Boy Has No Name
+                <i class="fa fa-user-circle" aria-hidden="true"></i> {{username}}
               </a>
             </li>
           {{/if}}
