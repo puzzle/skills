@@ -17,10 +17,9 @@ Rails.application.routes.draw do
       put 'picture', to: 'people#update_picture'
       get 'picture'
       get 'fws', to: 'people#export_fws'
-      resources :skills
     end
 
-    resources :people_skills, controller: 'people/skills'
+    resources :people_skills
 
     resources :employee_quantities, controller: 'employee_quantities'
     resources :locations, controller: 'locations'

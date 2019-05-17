@@ -18,7 +18,7 @@ describe SkillsController do
         expect(bash_attrs['title']).to eq ('Bash')
         json_object_includes_keys(bash_attrs, keys)
       end
-      
+
       it 'returns skills where title contains a' do
         get :index, params: { title: 'a' }
 
