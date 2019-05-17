@@ -7,8 +7,11 @@ export default Controller.extend({
   router: service(),
 
   init() {
-    let sessionInfo = this.get('session.tokenParsed')
-    this.username = sessionInfo.given_name + " " + sessionInfo.family_name;
+    this._super(...arguments)
+    let session = this.get('session')
+    let sessionInfo = session.get('tokenParsed')
+    this.set('username', sessionInfo.given_name + " " + sessionInfo.family_name)
+    this.set('isAdmin', session.hasResourceRole('ADMIN'))
   },
 
   actions: {
