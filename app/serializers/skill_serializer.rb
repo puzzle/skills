@@ -15,7 +15,7 @@
 class SkillSerializer < ApplicationSerializer
   attributes :id, :title, :radar, :portfolio, :default_set, :category_id
 
-  has_many :people, serializer: PeopleSerializer
+  has_many :people, serializer: PersonUpdatedAtSerializer
   belongs_to :category
   has_one :parent_category
 end
