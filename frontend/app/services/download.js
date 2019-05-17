@@ -20,8 +20,7 @@ export default Service.extend({
       document.body.removeChild(link);
     };
     xhr.open('GET', url);
-    xhr.setRequestHeader('api-token', this.get('session.data.authenticated.token'));
-    xhr.setRequestHeader('ldap-uid', this.get('session.data.authenticated.ldap_uid'));
+    xhr.setRequestHeader('Authorization', ('Bearer ' + this.get('session.token')));
     xhr.send();
   }
 });

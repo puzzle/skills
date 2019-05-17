@@ -9,8 +9,6 @@ class PeopleController < CrudController
 
   self.permitted_relationships = %i[company people_roles people_skills categories]
 
-  # skip_before_action :authorize, only: :picture
-
   def index
     people = fetch_entries
     people = people.search(params[:q]) if params[:q].present?

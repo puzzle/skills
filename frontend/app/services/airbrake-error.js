@@ -10,8 +10,9 @@ export default Service.extend({
     this._super(...arguments);
 
     Ember.onerror = error => {
-      const ldap_uid = this.get('session.session.authenticated.ldap_uid');
-      const session = { ldap_uid,
+      const sessionInfo = this.get('session.tokenParsed');
+      const username = sessionInfo.given_name + " " + sessionInfo.family_name;
+      const session = { username,
         name: error.toLocaleString(),
         url: window.location.href,
         filename: error.fileName,
