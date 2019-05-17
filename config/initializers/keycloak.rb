@@ -3,6 +3,6 @@ Keycloak.configure do |config|
   config.realm_id   = "pitc"
   config.logger     = Rails.logger
   config.skip_paths = {
-    get: ["/^\/api\/people/.+"]
+    get: [""]
   }
 end

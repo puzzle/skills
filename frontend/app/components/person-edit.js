@@ -10,6 +10,7 @@ import Person from '../models/person';
 export default ApplicationComponent.extend(EKMixin, {
   store: service(),
   i18n: service(),
+  session: service('keycloak-session'),
 
   init() {
     this._super(...arguments);
@@ -24,6 +25,13 @@ export default ApplicationComponent.extend(EKMixin, {
       this.callBackRoleIds[peopleRole.get('id')] =  peopleRole.get('role.id')
     );
   },
+
+  picturePath: computed('person.picturePath', function(){
+    if (this.get('person.picturePath')) {
+      let path = this.get('person.picturePath') + "&authorizationToken=" + this.get('session.token')
+      return path
+    }
+  }),
 
   personChanged: observer('person', function() {
     this.send('abortEdit');
