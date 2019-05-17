@@ -142,10 +142,7 @@
                         <td class="language-level"><img alt="" src="/assets/language-levels/{{to-lowercase skill.level}}.svg"></td>
                         <td class="language-certificate">
                           {{#if skill.certificate}}
-                            <img alt="" src="/assets/icon_certificate.svg">
-                            {{#ember-tooltip side="right"}}
-                              {{skill.certificate}}
-                            {{/ember-tooltip}}
+                            <img alt="" src="/assets/icon_certificate.svg" data-toggle="tooltip" data-placement="right" title="{{skill.certificate}}">
                           {{/if}}
                         </td>
                       </tr>
@@ -160,3 +157,8 @@
     </div>
   </div>
 </div>
+<script>
+  $(document).ready(() => {
+    $('[data-toggle="tooltip"]').tooltip();
+  })
+</script>
