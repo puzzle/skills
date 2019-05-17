@@ -8,10 +8,14 @@ export default Component.extend({
   ajax: service(),
   router: service(),
   download: service(),
+  session: service('keycloak-session'),
 
-  init() {
-    this._super(...arguments);
-  },
+  picturePath: computed('person.picturePath', function(){
+    if (this.get('person.picturePath')) {
+      let path = this.get('person.picturePath') + "&authorizationToken=" + this.get('session.token')
+      return path
+    }
+  }),
 
   sortedLanguageSkills: sortByLanguage("person.languageSkills"),
 
