@@ -53,4 +53,18 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # Bullet configuration 
+  config.after_initialize do
+    Bullet.enable = true
+
+    # Add Bullet to Sentry, probably interesting in the future
+    Bullet.sentry = false
+    # Log to the Bullet log file (Rails.root/log/bullet.log)
+    Bullet.bullet_logger = true
+    # Add warnings directly to the Rails log
+    Bullet.rails_logger = true
+    # Add notifications to airbrake
+    Bullet.airbrake = true
+  end
 end
