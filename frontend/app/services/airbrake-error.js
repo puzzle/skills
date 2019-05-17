@@ -4,15 +4,16 @@ import Ember from "ember";
 
 export default Service.extend({
   airbrake: service(),
-  session: service('keycloak-session'),
+  session: service("keycloak-session"),
 
   init() {
     this._super(...arguments);
 
     Ember.onerror = error => {
-      const ldap_uid = this.get("session.session.authenticated.ldap_uid");
+      const sessionInfo = this.get("session.tokenParsed");
+      const username = sessionInfo.given_name + " " + sessionInfo.family_name;
       const session = {
-        ldap_uid,
+        username,
         name: error.toLocaleString(),
         url: window.location.href,
         filename: error.fileName,
