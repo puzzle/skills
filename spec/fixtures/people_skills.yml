@@ -11,9 +11,18 @@
 #  core_competence :boolean          default(FALSE)
 #
 
-class PeopleSkillSerializer < ApplicationSerializer
-  attributes :id, :person_id, :skill_id, :level, :interest, :certificate, :core_competence
-
-  belongs_to :person, serializer: PersonUpdatedAtSerializer
-  belongs_to :skill, serializer: SkillSerializer
-end
+bob_rails:
+  skill: rails
+  person: bob
+  level: 3
+  interest: 5
+  certificate: false
+  core_competence: true
+  
+alice_junit:
+  skill: junit
+  person: alice
+  level: 4
+  interest: 1
+  certificate: true
+  core_competence: false

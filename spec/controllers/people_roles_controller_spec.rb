@@ -21,7 +21,7 @@ describe PeopleRolesController do
 
   describe 'GET show' do
     it 'returns people role' do
-      people_role = people_roles('people-role1')
+      people_role = people_roles('bob_software_engineer')
 
       process :show, method: :get, params: { person_id: bob.id, id: people_role.id }
 
@@ -49,7 +49,7 @@ describe PeopleRolesController do
 
   describe 'PUT update' do
     it 'updates existing person' do
-      people_role = people_roles('people-role1')
+      people_role = people_roles('bob_software_engineer')
       updated_attributes = { percent: 50,
                              level: 'S9000' }
 
@@ -66,7 +66,7 @@ describe PeopleRolesController do
 
   describe 'DELETE destroy' do
     it 'destroys existing person' do
-      people_role = people_roles('people-role1')
+      people_role = people_roles('bob_software_engineer')
 
       process :destroy, method: :delete, params: {
          person_id: bob.id, id: people_role.id

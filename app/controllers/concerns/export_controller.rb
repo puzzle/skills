@@ -1,15 +1,19 @@
-module OdtExportController
+module ExportController
   extend ActiveSupport::Concern
 
   private
 
-  def filename(name, type = nil)
-    return "#{name.downcase.tr(' ', '_')}_#{type}.odt" if type
-    "#{name.downcase.tr(' ', '_')}.odt"
+  def filename(name, document_type = nil, file_type = 'odt')
+    return "#{name.downcase.tr(' ', '_')}_#{document_type}.#{file_type}" if document_type
+    "#{name.downcase.tr(' ', '_')}.#{file_type}"
   end
 
   def format_odt?
     response.request.filtered_parameters['format'] == 'odt'
+  end
+
+  def format_csv?
+    response.request.filtered_parameters['format'] == 'csv'
   end
 
   # UTF-8 Content-Disposition https://tools.ietf.org/html/rfc6266

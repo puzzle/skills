@@ -1,5 +1,5 @@
 class SkillsController < CrudController
-  include OdtExportController
+  include ExportController
 
   self.permitted_attrs = %i[title radar portfolio default_set category_id]
 
