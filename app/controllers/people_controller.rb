@@ -1,5 +1,5 @@
 class PeopleController < CrudController
-  include OdtExportController
+  include ExportController
 
   self.permitted_attrs = %i[birthdate picture location
                             marital_status updated_by name nationality nationality2 title

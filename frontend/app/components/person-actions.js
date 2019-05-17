@@ -7,9 +7,11 @@ export default Component.extend({
   download: service(),
 
   actions: {
-    exportCvOdt(personId, e) {
+    startExport(personId, e) {
       e.preventDefault();
-      let url = `/api/people/${personId}.odt`;
+      const currentURL = this.get('router.currentURL')
+      let format = currentURL.includes('skills') ? 'csv' : 'odt'
+      let url = `/api/${currentURL}.${format}`;
       this.get('download').file(url)
     },
 

@@ -26,7 +26,7 @@ describe PeopleRole do
     end
     
     it 'percent must be a number between 0 and 200' do
-      people_role = people_roles(:'people-role1')
+      people_role = people_roles(:'bob_software_engineer')
       people_role.percent = 300
       people_role.valid?
 

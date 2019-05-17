@@ -9,13 +9,13 @@
 #  percent   :decimal(5, 2)
 #
 
-people-role1:
+bob_software_engineer:
   level: S1
   percent: 100
   role: software-engineer
   person: bob
 
-people-role2:
+alive_system_engineer:
   level: S2
   percent: 80
   role: system-engineer
