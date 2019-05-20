@@ -1,6 +1,12 @@
 <div class="row">
-  <div class="col people-skill-skillname">
-    <strong>{{peopleSkill.skill.title}}</strong>
+  <div class="col pt-4 people-skill-skillname">
+    {{#if showPersonName}}
+      {{#link-to 'person' peopleSkill.person}}
+        <span data-dismiss="modal">{{peopleSkill.person.name}}</span>
+      {{/link-to}}
+    {{else}}
+      <strong>{{peopleSkill.skill.title}}</strong>
+    {{/if}}
   </div>
   <div class="col justify-content-center people-skill-level">
     <p class="description level-interest-title">{{levelName}}</p>
@@ -24,7 +30,7 @@
     onClick=(action (mut newPeopleSkill.interest))
     }}
   </div>
-  <div class="col people-skill-certificate">
+  <div class="col pt-4 people-skill-certificate">
     {{#if peopleSkill.certificate}}
       <i class="fa fa-check-square" aria-hidden="true"></i>
     {{else}}
@@ -32,7 +38,7 @@
     {{/if}}
     <span class="description ml-2">Zertifikat</span>
   </div>
-  <div class="col people-skill-coreCompetence">
+  <div class="col pt-4 people-skill-coreCompetence">
     {{#if peopleSkill.coreCompetence}}
       <i class="fa fa-check-square" aria-hidden="true"></i>
     {{else}}

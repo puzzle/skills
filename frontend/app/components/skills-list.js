@@ -7,5 +7,11 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     this.sortProperties = ['title:asc'];
+  },
+
+  actions: {
+    toggleSkillShow(skill) {
+      this.set('currentShowSkill', skill)
+    }
   }
 });
