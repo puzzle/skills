@@ -10,10 +10,23 @@ class SkillsController < CrudController
     render json: fetch_entries, each_serializer: SkillSerializer, include: '*'
   end
 
+  def unrated_by_person
+    person_id = params[:person_id]
+    if person_id.present?
+      entries = Skill.default_set
+                     .where.not(id: PeopleSkill.where(person_id: person_id)
+                                               .pluck(:skill_id))
+    end
+    render json: (entries || fetch_entries), each_serializer: SkillSerializer, include: '*'
+  end
+
   private
 
   def fetch_entries
-    SkillsFilter.new(super, params[:category], params[:title], params[:defaultSet]).scope
+    SkillsFilter.new(super,
+                     params[:category],
+                     params[:title],
+                     params[:defaultSet]).scope
   end
 
   def export

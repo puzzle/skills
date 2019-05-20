@@ -12,7 +12,7 @@ class SkillsFilter
     filtered_entries = filter_by_default_set
     if category.present?
       filtered_entries = filtered_entries.joins(:category)
-        .where(categories: { parent_id: category })
+                                         .where(categories: { parent_id: category })
     end
     if title.present?
       filtered_entries = filtered_entries.where('lower(skills.title) like lower(?)', "%#{title}%")

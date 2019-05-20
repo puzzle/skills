@@ -1,32 +1,18 @@
-<div class="row">
-  <div class="col">
+<div class="row h-100">
+  <div class="col flex-column d-flex justify-content-center">
     <strong>{{peopleSkill.skill.title}}</strong>
   </div>
-  <div class="col">
+  <div class="col mb-4 peopleSkillEditLevel">
     <label class="description level-interest-title">{{levelName}}</label>
-    {{#if peopleSkill.id}}
-      <div class="slider-5-ticks">
-        {{ui-slider
-        value=peopleSkill.level
-        ticks='1,2,3,4,5'
-        ticksLabels='1,2,3,4,5'
-        tooltip='hide'
-        min=1
-        max=5
-        immediateResponse=true
-        }}
-      </div>
-    {{else}}
-      {{ui-slider
-      value=peopleSkill.level
-      ticks='0,1,2,3,4,5'
-      ticksLabels='0,1,2,3,4,5'
-      tooltip='hide'
-      min=0
-      max=5
-      immediateResponse=true
-      }}
-    {{/if}}
+    {{ui-slider
+    value=levelValue
+    ticks='1,2,3,4,5'
+    ticksLabels='1,2,3,4,5'
+    tooltip='hide'
+    min=1
+    max=5
+    immediateResponse=true
+    }}
   </div>
   <div class="col people-skill-interest">
     <label class="description level-interest-title">Interesse</label>
@@ -36,13 +22,16 @@
     onClick=(action (mut peopleSkill.interest))
     }}
   </div>
-  <div class="col">
-    {{input type="checkbox" id=(concat peopleSkill.id "-certificate") checked=peopleSkill.certificate}}
-    <label class="description" for="{{concat peopleSkill.id "-certificate"}}">Zertifikat</label>
+  <div class="col flex-column d-flex justify-content-center">
+    <div class="row">
+      {{input type="checkbox" id=(concat peopleSkill.skill.id "-certificate") checked=peopleSkill.certificate}}
+      <label class="description ml-2 mb-0" for="{{concat peopleSkill.skill.id "-certificate"}}">Zertifikat</label>
+    </div>
   </div>
-  <div class="col">
-    {{input type="checkbox" id=(concat peopleSkill.id "-coreCompetence") checked=peopleSkill.core_competence}}
-    <label class="description" for="{{concat peopleSkill.id "-coreCompetence"}}">Kernkompetenz</label>
+  <div class="col flex-column d-flex justify-content-center">
+    <div class="row">
+      {{input type="checkbox" id=(concat peopleSkill.skill.id "-coreCompetence") checked=peopleSkill.coreCompetence}}
+      <label class="description ml-2 mb-0" for="{{concat peopleSkill.skill.id "-coreCompetence"}}">Kernkompetenz</label>
+    </div>
   </div>
 </div>
-<br>

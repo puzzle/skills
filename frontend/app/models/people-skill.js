@@ -8,4 +8,8 @@ export default DS.Model.extend({
 
   person: DS.belongsTo('person'),
   skill: DS.belongsTo('skill'),
+
+  hasChangedAfterCreation() {
+    return ['level', 'interest', 'certificate', 'coreCompetence'].map(attr =>  Boolean(this.get(attr))).includes(true)
+  }
 });

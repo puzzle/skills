@@ -5,6 +5,8 @@ describe SkillsController do
     before { auth(:ken) }
     before { load_pictures }
 
+    let(:ken) { users(:ken) }
+
     describe 'GET index' do
       it 'returns all skills with nested models' do
         keys = %w[title radar portfolio default_set]
@@ -66,6 +68,28 @@ describe SkillsController do
         expect(skills.count).to eq(1)
         rails_attrs = skills.first['attributes']
         expect(rails_attrs['title']).to eq ('Rails')
+      end
+    end
+
+    describe 'GET unrated_for_person' do
+      it 'returns all unrated PeopleSkills of ken' do
+        process :unrated_by_person, params: { type: 'Person', person_id: ken.id }
+
+        skills = json['data']
+        new_skill_attrs = skills.first['attributes']
+
+        expect(new_skill_attrs['title']).to eq ('Rails')
+        expect(new_skill_attrs['radar']).to eq ('adopt')
+        expect(new_skill_attrs['default_set']).to eq (true)
+        expect(skills(:rails).default_set).to eq (true)
+      end
+
+      it 'returns all skills if no person_id is given' do
+        process :unrated_by_person
+
+        skills = json['data']
+
+        expect(skills.count).to eq(3)
       end
     end
   end

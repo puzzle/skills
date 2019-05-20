@@ -25,4 +25,6 @@ class Skill < ApplicationRecord
   validates :title, length: { maximum: 100 }
 
   scope :list, -> { order(:title) }
+
+  scope :default_set, -> { where(default_set: true) }
 end

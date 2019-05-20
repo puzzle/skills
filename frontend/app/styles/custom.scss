@@ -306,6 +306,26 @@ hr {
 
   }
 
+  /* PeopleSkills Section
+  -------------------------------------------------- */
+
+  .people-skill-new-dropdowns .ember-basic-dropdown-content-wormhole-origin {
+    width: 100% !important;
+  }
+
+  #new-people-skills-show {
+    border: 1px solid green;
+    padding: 2% 3%;
+  }
+
+  .new-people-skill-show {
+    border-top: 1px solid #dee2e6;
+  }
+
+  #new-people-skills-show:last-of-type div.new-people-skill-show {
+    border-bottom: 1px solid #dee2e6;
+  }
+
   .parent-categories-text {
     font-weight: 550;
   }
@@ -358,7 +378,7 @@ hr {
   }
 
   .slider-tick-label {
-    width: 27px !important;
+    width: 32.5px !important;
     color: grey;
     font-size: 0.8em;
   }
@@ -369,6 +389,18 @@ hr {
 
   .slider.slider-disabled .slider-track, .slider.slider-disabled .slider-tick {
     cursor: default;
+  }
+
+  .disabled-slider .slider-handle {
+    background-image: linear-gradient(to bottom, #BFB6B9 0%, #BFB6B9 100%);
+  }
+
+  .disabled-slider .slider-selection {
+    background-image: linear-gradient(to bottom, #E6DADE 0%, #E6DADE 100%);
+  }
+
+  .disabled-slider .slider-tick.round.in-selection {
+    background-image: linear-gradient(to bottom, #E6DADE 0%, #E6DADE 100%);
   }
 
   /* Competence Section

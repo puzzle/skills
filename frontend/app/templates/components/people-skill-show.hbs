@@ -5,12 +5,12 @@
   <div class="col justify-content-center people-skill-level">
     <p class="description level-interest-title">{{levelName}}</p>
     {{ui-slider
-    value=peopleSkill.level
-    ticks='0,1,2,3,4,5'
-    ticksLabels='0,1,2,3,4,5'
+    value=levelValue
+    ticks='1,2,3,4,5'
+    ticksLabels='1,2,3,4,5'
     tooltip='hide'
     disabled=true
-    min=0
+    min=1
     max=5
     immediateResponse=true
     }}

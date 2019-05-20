@@ -12,7 +12,7 @@ export default Component.extend({
   },
 
   skills: computed(function() {
-    return this.get('store').findAll('skill');
+    return this.get('store').findAll('skill', { reload: true });
   }),
 
   parentCategories: computed(function() {

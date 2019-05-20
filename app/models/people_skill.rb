@@ -17,10 +17,13 @@ class PeopleSkill < ApplicationRecord
 
   validates :certificate, :core_competence, exclusion: { in: [nil],
                                                          message: 'muss ausgefüllt werden' }
+
+  validates :level, :interest, presence: { message: 'ist nicht ausgefüllt' }
+
   validates :level, :interest, numericality: { only_integer: true,
                                                greater_than_or_equal_to: 0,
-                                               allow_nil: true,
-                                               less_than_or_equal_to: 5 }
+                                               less_than_or_equal_to: 5,
+                                               allow_nil: true }
 
   validates :person_id, uniqueness: { scope: :skill_id,
                                       message: 'Pro Person kann ein Skill nicht'\

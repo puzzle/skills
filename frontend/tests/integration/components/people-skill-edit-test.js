@@ -14,7 +14,7 @@ module('Integration | Component | people-skill-edit', function(hooks) {
       level: 2,
       interest: 3,
       certificate: false,
-      core_competence: true
+      coreCompetence: true
     })
 
     await render(hbs`{{people-skill-edit peopleSkill=peopleSkill}}`);
@@ -23,8 +23,7 @@ module('Integration | Component | people-skill-edit', function(hooks) {
     let checkboxes = this.$('[type="checkbox"]');
 
     assert.ok(text.includes('Rails'));
-    assert.ok(text.includes('2'));
-    assert.ok(text.includes('3'));
+    assert.ok(text.includes('Junior'));
     assert.notOk(checkboxes[0].checked);
     assert.ok(checkboxes[1].checked);
   });

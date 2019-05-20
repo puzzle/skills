@@ -28,7 +28,11 @@ Rails.application.routes.draw do
 
     resources :categories, only: [:index, :show]
     resources :roles, only: :index
-    resources :skills, controller: 'skills'
+    resources :skills do 
+      collection do
+        get 'unrated_by_person'
+      end
+    end
 
     resources :companies, controller: 'companies'
 
