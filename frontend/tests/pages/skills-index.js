@@ -15,6 +15,10 @@ export default create({
     skillsetSearchfield: fillable('#skillsetSearchfield'),
     skills: {
       skillNames: collection('#skills-list-table .skillname')
+    },
+
+    skillModal: {
+      personNames: collection('#skill-show-modal .people-skill-skillname')
     }
   }
 });

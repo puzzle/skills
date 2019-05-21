@@ -1,3 +1,4 @@
+  {{skill-show skill=currentShowSkill}}
 <div class="row mb-3">
   <div class="col-sm-12 search-skill-field">
     {{list-filter}}
@@ -39,15 +40,15 @@
     </thead>
     <tbody>
       {{#each sortedSkills as |skill|}}
-        <tr>
+        <tr role="button" onclick={{action 'toggleSkillShow' skill}} data-toggle="modal" data-target="#skill-show-modal">
           <td class="skillname">{{skill.title}}</td>
-          <td class="bg-info">{{if skill.radar skill.radar "-"}}</td>
+          <td class="">{{if skill.radar skill.radar "-"}}</td>
           <td>{{if skill.portfolio skill.portfolio "-"}}</td>
-          <td class="bg-info">{{if skill.parentCategory skill.parentCategory.title "-"}}</td>
+          <td class="">{{if skill.parentCategory skill.parentCategory.title "-"}}</td>
           <td>{{if skill.category skill.category.title "-"}}</td>
-          <td class="bg-info">{{if (eq skill.defaultSet null) "NEU" (if skill.defaultSet "Ja" "Nein")}}</td>
+          <td class="">{{if (eq skill.defaultSet null) "NEU" (if skill.defaultSet "Ja" "Nein")}}</td>
           <td>{{skill.people.length}}</td>
-          <td class="bg-info"><a class="edit-buttons"><i class="fa fa-pencil"></i></a></td>
+          <td class=""><a class="edit-buttons"><i class="fa fa-pencil"></i></a></td>
         </tr>
       {{/each}}
     </tbody>

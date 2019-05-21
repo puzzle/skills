@@ -17,5 +17,9 @@ export default Component.extend({
       let url = '/api/skills?format=odt';
       this.get('download').file(url)
     },
+
+    toggleSkillShow(skill) {
+      this.set('currentShowSkill', skill)
+    }
   }
 });

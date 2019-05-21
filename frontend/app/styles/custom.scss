@@ -14,6 +14,10 @@ body.max-width {
   margin: 0px auto;
 }
 
+body.modal-open {
+  padding-right: 0 !important
+}
+
 hr {
   display: block;
   height: 1px;
@@ -277,11 +281,20 @@ hr {
 
   /*Column Highlighting*/
   #skills-list-table thead th:nth-of-type(even) {
-    background: #E5E5E5 !important;
+    background: #E5E5E5;
   }
 
   #skills-list-table {
     table-layout: fixed;
+  }
+
+  #skills-list-table tbody td:nth-of-type(even) {
+    background: #F5F5F5;
+  }
+
+  #skills-list-table tr:hover td {
+    background: #E5E5E5 !important;
+    cursor: pointer;
   }
 
   /* defaultSet Filter */
@@ -298,6 +311,24 @@ hr {
   #category-filter-label {
     float:left;
     margin: 5px 20px 0 0;
+  }
+
+  #skill-show-modal .modal-dialog {
+    width: 74%;
+    max-width: 74%;
+  }
+
+  #skill-show-modal .container-fluid > div {
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  #skill-show-modal .container-fluid div:nth-of-type(1) {
+    border-top: 0px;
+  }
+
+  #skill-show-modal .container-fluid div:nth-of-type(n) {
+    border-bottom: 0px;
   }
 
   .people-skill-new-dropdowns .ember-basic-dropdown-content-wormhole-origin, .icon-rating-wrapper {
