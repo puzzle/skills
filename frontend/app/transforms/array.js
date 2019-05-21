@@ -1,7 +1,7 @@
 // app/transforms/array.js
-import DS from 'ember-data';
-import { A } from '@ember/array';
-import { isArray } from '@ember/array';
+import DS from "ember-data";
+import { A } from "@ember/array";
+import { isArray } from "@ember/array";
 
 export default DS.Transform.extend({
   deserialize(serialized) {

@@ -1,7 +1,6 @@
-import DS from 'ember-data';
+import DS from "ember-data";
 
 export default DS.Model.extend({
-  name: DS.attr('string'),
-  iso1: DS.attr('string')
-
+  name: DS.attr("string"),
+  iso1: DS.attr("string")
 });

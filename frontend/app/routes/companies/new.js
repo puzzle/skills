@@ -1,13 +1,13 @@
-import Route from '@ember/routing/route';
+import Route from "@ember/routing/route";
 
 export default Route.extend({
   model() {
-    return this.store.createRecord('company');
+    return this.store.createRecord("company");
   },
 
   actions: {
     companyCreated(company) {
-      this.transitionTo('companies.show', company.id);
+      this.transitionTo("companies.show", company.id);
     }
   }
 });

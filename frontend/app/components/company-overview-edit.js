@@ -1,7 +1,7 @@
-import { inject as service } from '@ember/service';
-import Component from '@ember/component';
-import { on } from '@ember/object/evented';
-import { EKMixin , keyUp } from 'ember-keyboard';
+import { inject as service } from "@ember/service";
+import Component from "@ember/component";
+import { on } from "@ember/object/evented";
+import { EKMixin, keyUp } from "ember-keyboard";
 
 export default Component.extend(EKMixin, {
   store: service(),
@@ -23,14 +23,14 @@ export default Component.extend(EKMixin, {
     company.set(relationshipName, records);
   },
 
-  activateKeyboard: on('init', function() {
-    this.set('keyboardActivated', true);
+  activateKeyboard: on("init", function() {
+    this.set("keyboardActivated", true);
   }),
 
-  abortEducations: on(keyUp('Escape'), function() {
-    let company = this.get('company')
-    if (company.get('hasDirtyAttributes$')) {
-      company.rollbackAttributes()
+  abortEducations: on(keyUp("Escape"), function() {
+    let company = this.get("company");
+    if (company.get("hasDirtyAttributes$")) {
+      company.rollbackAttributes();
     }
     let locations = this.get("company.locations").toArray();
     let employeeQuantities = this.get("company.employeeQuantities").toArray();
@@ -39,7 +39,7 @@ export default Component.extend(EKMixin, {
       if (location.get("isNew")) {
         location.destroyRecord();
       }
-      if (location.get('hasDirtyAttributes')) {
+      if (location.get("hasDirtyAttributes")) {
         location.rollbackAttributes();
       }
     });
@@ -47,7 +47,7 @@ export default Component.extend(EKMixin, {
       if (quantity.get("isNew")) {
         quantity.destroyRecord();
       }
-      if (quantity.get('hasDirtyAttributes')) {
+      if (quantity.get("hasDirtyAttributes")) {
         quantity.rollbackAttributes();
       }
     });
@@ -89,9 +89,9 @@ export default Component.extend(EKMixin, {
           //       invalid state. Maybe there is a better way to handle
           //       these validations/rollbacks in Ember these days?
           errors.forEach(({ attribute, message }) => {
-            let translated_attribute = this.get('intl').t(
+            let translated_attribute = this.get("intl").t(
               `company.${attribute}`
-            )
+            );
             changeset.pushErrors(attribute, message);
             this.get("notify").alert(`${translated_attribute} ${message}`, {
               closeAfter: 10000
@@ -122,7 +122,7 @@ export default Component.extend(EKMixin, {
     },
 
     addEmployeeQuantity(company) {
-      this.get('store').createRecord('employee-quantity', { company });
+      this.get("store").createRecord("employee-quantity", { company });
     }
   }
 });

@@ -1,6 +1,6 @@
-import { inject as service } from '@ember/service';
-import Component from '@ember/component';
-import { isBlank } from '@ember/utils';
+import { inject as service } from "@ember/service";
+import Component from "@ember/component";
+import { isBlank } from "@ember/utils";
 
 export default Component.extend({
   store: service(),
@@ -8,21 +8,30 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    this.get('store').query('category', { scope: 'parents' }).then(categories => {
-      this.set('categories', [{ id: '', title: 'Alle' }].concat(categories.toArray()));
-      this.set('selectedCategory', this.get('categories').find(category =>
-        category.id == this.get('router.currentState.routerJsState.queryParams.category')
-      ))
-    })
+    this.get("store")
+      .query("category", { scope: "parents" })
+      .then(categories => {
+        this.set(
+          "categories",
+          [{ id: "", title: "Alle" }].concat(categories.toArray())
+        );
+        this.set(
+          "selectedCategory",
+          this.get("categories").find(
+            category =>
+              category.id ==
+              this.get("router.currentState.routerJsState.queryParams.category")
+          )
+        );
+      });
   },
-
 
   focusComesFromOutside(e) {
     let blurredEl = e.relatedTarget;
     if (isBlank(blurredEl)) {
       return false;
     }
-    return !blurredEl.classList.contains('ember-power-select-search-input');
+    return !blurredEl.classList.contains("ember-power-select-search-input");
   },
 
   actions: {
@@ -32,12 +41,13 @@ export default Component.extend({
       }
     },
 
-    handleBlur() {
-    },
+    handleBlur() {},
 
     setCategoryFilter(category) {
-      this.set('selectedCategory', category)
-      this.get('router').transitionTo({ queryParams: { category: category.id } })
+      this.set("selectedCategory", category);
+      this.get("router").transitionTo({
+        queryParams: { category: category.id }
+      });
     }
   }
 });

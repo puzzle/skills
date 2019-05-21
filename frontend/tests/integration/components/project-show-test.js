@@ -1,20 +1,20 @@
-import { moduleForComponent, test, skip } from 'ember-qunit';
-import hbs from 'htmlbars-inline-precompile';
+import { moduleForComponent, test, skip } from "ember-qunit";
+import hbs from "htmlbars-inline-precompile";
 
-moduleForComponent('project-show', 'Integration | Component | project show', {
+moduleForComponent("project-show", "Integration | Component | project show", {
   integration: true
 });
 
-test('it renders project', function(assert) {
-  this.set('project', {
-    title: 'Dreaming Project',
-    lineBreakDescription: 'Schlafen',
-    lineBreakRole: 'Träumer',
+test("it renders project", function(assert) {
+  this.set("project", {
+    title: "Dreaming Project",
+    lineBreakDescription: "Schlafen",
+    lineBreakRole: "Träumer",
     yearFrom: 1990,
     monthFrom: 2,
     yearTo: 1991,
     monthTo: 2,
-    lineBreakTechnology: 'Java'
+    lineBreakTechnology: "Java"
   });
 
   this.render(hbs`{{project-show
@@ -22,29 +22,53 @@ test('it renders project', function(assert) {
     selectProject=(action (mut projectEditing))
   }}`);
 
-  assert.ok(this.$().text().includes('Dreaming Project'));
-  assert.ok(this.$().text().includes('Schlafen'));
-  assert.ok(this.$().text().includes('Träumer'));
-  assert.ok(this.$().text().includes('1990'));
-  assert.ok(this.$().text().includes('1991'));
-  assert.ok(this.$().text().includes('Java'));
+  assert.ok(
+    this.$()
+      .text()
+      .includes("Dreaming Project")
+  );
+  assert.ok(
+    this.$()
+      .text()
+      .includes("Schlafen")
+  );
+  assert.ok(
+    this.$()
+      .text()
+      .includes("Träumer")
+  );
+  assert.ok(
+    this.$()
+      .text()
+      .includes("1990")
+  );
+  assert.ok(
+    this.$()
+      .text()
+      .includes("1991")
+  );
+  assert.ok(
+    this.$()
+      .text()
+      .includes("Java")
+  );
 });
 
-skip('project description, role and technology preserves whitespace', function(assert) {
-  this.set('activity', {
-    description: 'Preserves\nwhitespaces',
-    role: 'Träumer',
-    year_from: '1990',
-    year_to: '1991'
+skip("project description, role and technology preserves whitespace", function(assert) {
+  this.set("activity", {
+    description: "Preserves\nwhitespaces",
+    role: "Träumer",
+    year_from: "1990",
+    year_to: "1991"
   });
 
-  this.set('project', {
-    title: 'Dreaming Project',
-    description: 'Schlafen',
-    role: 'Träumer',
-    technology: 'Ruby',
-    year_from: '1990',
-    year_to: '1991'
+  this.set("project", {
+    title: "Dreaming Project",
+    description: "Schlafen",
+    role: "Träumer",
+    technology: "Ruby",
+    year_from: "1990",
+    year_to: "1991"
   });
 
   this.render(hbs`{{project-show
@@ -52,9 +76,10 @@ skip('project description, role and technology preserves whitespace', function(a
     selectProject=(action (mut projectEditing))
   }}`);
 
-  let $elements =
-    this.$('[href="#collapseProjectDreaming Project"].project-title-text,' +
-           '[id="collapseProjectDreaming Project"] div.col-sm-10');
+  let $elements = this.$(
+    '[href="#collapseProjectDreaming Project"].project-title-text,' +
+      '[id="collapseProjectDreaming Project"] div.col-sm-10'
+  );
 
   assert.equal($elements.length, 2);
 });

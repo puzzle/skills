@@ -1,4 +1,4 @@
-import Route from '@ember/routing/route';
+import Route from "@ember/routing/route";
 
 export default Route.extend({
   queryParams: {
@@ -9,6 +9,6 @@ export default Route.extend({
   },
 
   model({ q }) {
-    return this.store.query('company', { q });
-  },
+    return this.store.query("company", { q });
+  }
 });

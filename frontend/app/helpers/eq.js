@@ -1,6 +1,6 @@
-import { helper } from '@ember/component/helper';
+import { helper } from "@ember/component/helper";
 
-export function eq([ firstArg, ...restArgs ]) {
+export function eq([firstArg, ...restArgs]) {
   return restArgs.every(a => a === firstArg);
 }
 

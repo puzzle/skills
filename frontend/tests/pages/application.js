@@ -3,18 +3,18 @@ import {
   visitable,
   fillable,
   clickable,
-  clickOnText,
-} from 'ember-cli-page-object';
+  clickOnText
+} from "ember-cli-page-object";
 
 export default create({
-  visitHome: visitable('/'),
+  visitHome: visitable("/"),
 
-  search: fillable('#field-search'),
-  toggleAdvancedSearch: clickable('#toggleSearch'),
+  search: fillable("#field-search"),
+  toggleAdvancedSearch: clickable("#toggleSearch"),
 
-  peopleMenuItem: clickOnText('#person-list a'),
+  peopleMenuItem: clickOnText("#person-list a"),
 
-  visitCompanies: visitable('/companies'),
+  visitCompanies: visitable("/companies"),
 
-  companiesMenuItem: clickOnText('#companies-list a')
-})
+  companiesMenuItem: clickOnText("#companies-list a")
+});

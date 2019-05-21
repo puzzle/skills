@@ -1,5 +1,5 @@
 export function initialize(app) {
-  app.inject('route', 'service',  'service:airbrake-error');
+  app.inject("route", "service", "service:airbrake-error");
 }
 
 export default {

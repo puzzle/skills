@@ -1,9 +1,9 @@
-import { run } from '@ember/runloop';
-import { merge } from '@ember/polyfills';
-import Application from '../../app';
-import config from '../../config/environment';
-import registerPowerSelectHelpers from 'ember-power-select/test-support/helpers';
-import { setContext } from 'ember-test-helpers';
+import { run } from "@ember/runloop";
+import { merge } from "@ember/polyfills";
+import Application from "../../app";
+import config from "../../config/environment";
+import registerPowerSelectHelpers from "ember-power-select/test-support/helpers";
+import { setContext } from "ember-test-helpers";
 
 registerPowerSelectHelpers();
 
@@ -16,7 +16,8 @@ export default function startApp(attrs) {
     application.setupForTesting();
     application.injectTestHelpers();
     /* eslint "no-undef": "off" */
-    QUnit.config.current.testEnvironment.owner = application.__deprecatedInstance__;
+    QUnit.config.current.testEnvironment.owner =
+      application.__deprecatedInstance__;
     setContext(QUnit.config.current.testEnvironment);
     return application;
   });

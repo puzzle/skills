@@ -1,11 +1,11 @@
-import { moduleForModel, test } from 'ember-qunit';
+import { moduleForModel, test } from "ember-qunit";
 
-moduleForModel('advanced-training', 'Unit | Model | advanced training', {
+moduleForModel("advanced-training", "Unit | Model | advanced training", {
   // Specify the other units that are required for this test.
-  needs: ['model:person', 'service:intl']
+  needs: ["model:person", "service:intl"]
 });
 
-test('it exists', function(assert) {
+test("it exists", function(assert) {
   let model = this.subject();
   // let store = this.store();
   assert.ok(!!model);

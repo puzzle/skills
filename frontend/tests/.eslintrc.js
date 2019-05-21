@@ -3,6 +3,6 @@ module.exports = {
     embertest: true
   },
   rules: {
-    'ember/no-global-jquery': 0
-  },
+    "ember/no-global-jquery": 0
+  }
 };

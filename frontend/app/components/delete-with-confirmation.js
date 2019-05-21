@@ -1,6 +1,6 @@
-import { inject as service } from '@ember/service';
-import Component from '@ember/component';
-import { isPresent } from '@ember/utils';
+import { inject as service } from "@ember/service";
+import Component from "@ember/component";
+import { isPresent } from "@ember/utils";
 
 export default Component.extend({
   router: service(),
@@ -8,24 +8,24 @@ export default Component.extend({
 
   actions: {
     openConfirmation() {
-      this.set('showConfirmation', true);
+      this.set("showConfirmation", true);
     },
 
     cancel() {
-      this.set('showConfirmation', false);
+      this.set("showConfirmation", false);
     },
 
     delete(entry, transitionTo) {
-      const message = this.get('intl')
-        .t('delete-confirmation.success',
-          { name: entry.get('instanceToString') })['string']
+      const message = this.get("intl").t("delete-confirmation.success", {
+        name: entry.get("instanceToString")
+      })["string"];
 
       entry.destroyRecord().then(() => {
-        this.set('showConfirmation', false);
+        this.set("showConfirmation", false);
         if (isPresent(transitionTo)) {
-          this.get('router').transitionTo(transitionTo);
+          this.get("router").transitionTo(transitionTo);
         }
-        this.get('notify').success(message);
+        this.get("notify").success(message);
       });
     }
   }

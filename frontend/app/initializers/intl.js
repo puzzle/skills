@@ -1,5 +1,5 @@
 export function initialize(app) {
-  app.inject('model', 'intl', 'service:intl');
+  app.inject("model", "intl", "service:intl");
 }
 
 export default { initialize };

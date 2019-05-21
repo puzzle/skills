@@ -1,8 +1,8 @@
-import Component from '@ember/component';
-import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
-import sortByLanguage from '../utils/sort-by-language';
-import Person from '../models/person';
+import Component from "@ember/component";
+import { inject as service } from "@ember/service";
+import { computed } from "@ember/object";
+import sortByLanguage from "../utils/sort-by-language";
+import Person from "../models/person";
 
 export default Component.extend({
   ajax: service(),
@@ -13,19 +13,19 @@ export default Component.extend({
     this._super(...arguments);
   },
 
-  sortedLanguageSkills: sortByLanguage('person.languageSkills'),
+  sortedLanguageSkills: sortByLanguage("person.languageSkills"),
 
-  maritalStatus: computed('person.maritalStatus', function() {
-    const maritalStatuses = Person.MARITAL_STATUSES
-    const key = this.get('person.maritalStatus')
-    return maritalStatuses[key]
+  maritalStatus: computed("person.maritalStatus", function() {
+    const maritalStatuses = Person.MARITAL_STATUSES;
+    const key = this.get("person.maritalStatus");
+    return maritalStatuses[key];
   }),
 
   actions: {
     exportCvOdt(personId, e) {
       e.preventDefault();
       let url = `/api/people/${personId}.odt`;
-      this.get('download').file(url)
+      this.get("download").file(url);
     }
   }
 });

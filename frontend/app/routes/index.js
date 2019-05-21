@@ -1,7 +1,7 @@
-import Route from '@ember/routing/route';
+import Route from "@ember/routing/route";
 
 export default Route.extend({
   beforeModel() {
-    this.transitionTo('people');
+    this.transitionTo("people");
   }
 });

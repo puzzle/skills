@@ -1,6 +1,6 @@
-import { helper } from '@ember/component/helper';
+import { helper } from "@ember/component/helper";
 
-export function notEq([ firstArg, ...restArgs ]) {
+export function notEq([firstArg, ...restArgs]) {
   return restArgs.every(a => a !== firstArg);
 }
 

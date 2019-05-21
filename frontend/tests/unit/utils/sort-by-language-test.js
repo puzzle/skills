@@ -1,27 +1,27 @@
-import EmberObject, { set } from '@ember/object';
-import sortByLanguage from 'frontend/utils/sort-by-language';
-import { module, test } from 'qunit';
+import EmberObject, { set } from "@ember/object";
+import sortByLanguage from "frontend/utils/sort-by-language";
+import { module, test } from "qunit";
 
-module('Unit | Utility | sort by language');
+module("Unit | Utility | sort by language");
 
-test('it returns an empty array if collection is not available', function(assert) {
+test("it returns an empty array if collection is not available", function(assert) {
   const Thing = EmberObject.extend({
-    sortedLanguageSkills: sortByLanguage('languageSkills'),
+    sortedLanguageSkills: sortByLanguage("languageSkills")
   });
 
   const thing = Thing.create({
-    languageSkills: null,
+    languageSkills: null
   });
 
-  const sorted = thing.get('sortedLanguageSkills');
+  const sorted = thing.get("sortedLanguageSkills");
 
   assert.ok(Array.isArray(sorted));
   assert.equal(sorted.length, 0);
 });
 
-test('it sorts by language', function(assert) {
+test("it sorts by language", function(assert) {
   const Thing = EmberObject.extend({
-    sortedLanguageSkills: sortByLanguage('languageSkills'),
+    sortedLanguageSkills: sortByLanguage("languageSkills")
   });
 
   const thing = Thing.create({
@@ -32,24 +32,24 @@ test('it sorts by language', function(assert) {
       { language: "FR" },
       { language: "BN" },
       { language: "EN" },
-      { language: "ES" },
-    ],
+      { language: "ES" }
+    ]
   });
 
-  assert.deepEqual(thing.get('sortedLanguageSkills'), [
+  assert.deepEqual(thing.get("sortedLanguageSkills"), [
     { language: "DE" },
     { language: "EN" },
     { language: "FR" },
     { language: "AF" },
     { language: "BN" },
     { language: "ES" },
-    { language: "SR" },
+    { language: "SR" }
   ]);
 });
 
-test('it recomputes on changes', function(assert) {
+test("it recomputes on changes", function(assert) {
   const Thing = EmberObject.extend({
-    sortedLanguageSkills: sortByLanguage('languageSkills'),
+    sortedLanguageSkills: sortByLanguage("languageSkills")
   });
 
   const thing = Thing.create({
@@ -61,11 +61,11 @@ test('it recomputes on changes', function(assert) {
       { language: "NL" },
       { language: "BN" },
       { language: "EN" },
-      { language: "ES" },
-    ],
+      { language: "ES" }
+    ]
   });
 
-  assert.deepEqual(thing.get('sortedLanguageSkills'), [
+  assert.deepEqual(thing.get("sortedLanguageSkills"), [
     { language: "DE" },
     { language: "EN" },
     { language: "FR" },
@@ -73,32 +73,32 @@ test('it recomputes on changes', function(assert) {
     { language: "BN" },
     { language: "ES" },
     { language: "NL" },
-    { language: "SR" },
+    { language: "SR" }
   ]);
 
-  thing.set('languageSkills', [
+  thing.set("languageSkills", [
     { language: "RU" },
     { language: "EN" },
     { language: "DE" },
     { language: "SV" },
-    { language: "FR" },
+    { language: "FR" }
   ]);
 
-  assert.deepEqual(thing.get('sortedLanguageSkills'), [
+  assert.deepEqual(thing.get("sortedLanguageSkills"), [
     { language: "DE" },
     { language: "EN" },
     { language: "FR" },
     { language: "RU" },
-    { language: "SV" },
+    { language: "SV" }
   ]);
 
-  set(thing.get('languageSkills')[0], 'language', "VI");
+  set(thing.get("languageSkills")[0], "language", "VI");
 
-  assert.deepEqual(thing.get('sortedLanguageSkills'), [
+  assert.deepEqual(thing.get("sortedLanguageSkills"), [
     { language: "DE" },
     { language: "EN" },
     { language: "FR" },
     { language: "SV" },
-    { language: "VI" },
+    { language: "VI" }
   ]);
 });

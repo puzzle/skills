@@ -1,5 +1,5 @@
-import { inject as service } from '@ember/service';
-import Component from '@ember/component';
+import { inject as service } from "@ember/service";
+import Component from "@ember/component";
 
 export default Component.extend({
   router: service(),
@@ -7,7 +7,7 @@ export default Component.extend({
   actions: {
     deletePerson(personToDelete) {
       personToDelete.destroyRecord();
-      this.get('router').transitionTo('people');
+      this.get("router").transitionTo("people");
     }
   }
 });

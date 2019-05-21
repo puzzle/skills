@@ -1,13 +1,13 @@
-import DS from 'ember-data';
-import { computed } from '@ember/object';
+import DS from "ember-data";
+import { computed } from "@ember/object";
 export default DS.Model.extend({
-  language: DS.attr('string'),
-  level: DS.attr('string'),
-  certificate: DS.attr('string'),
+  language: DS.attr("string"),
+  level: DS.attr("string"),
+  certificate: DS.attr("string"),
 
-  person: DS.belongsTo('person'),
+  person: DS.belongsTo("person"),
 
-  instanceToString: computed('language', function() {
-    return this.get('language');
+  instanceToString: computed("language", function() {
+    return this.get("language");
   })
 });

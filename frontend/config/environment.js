@@ -1,15 +1,15 @@
 /* eslint-env node */
-'use strict';
+"use strict";
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'frontend',
+    modulePrefix: "frontend",
     environment,
-    rootURL: '/',
-    locationType: 'auto',
+    rootURL: "/",
+    locationType: "auto",
     EmberENV: {
       FEATURES: {
-        'ds-extended-errors': true
+        "ds-extended-errors": true
       },
       EXTEND_PROTOTYPES: {
         // Prevent Ember Data from overriding Date.parse.
@@ -18,45 +18,45 @@ module.exports = function(environment) {
     },
 
     APP: {
-      documentExportHost: ''
+      documentExportHost: ""
     },
 
-    'ember-form-for': {
-      errorsPath: 'error.PROPERTY_NAME.validation',
+    "ember-form-for": {
+      errorsPath: "error.PROPERTY_NAME.validation"
     },
-    'moment': {
-      includeLocales: [ 'de' ],
+    moment: {
+      includeLocales: ["de"]
     }
   };
 
-  if (environment === 'development') {
+  if (environment === "development") {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    ENV.APP.documentExportHost = 'http://localhost:3000'
+    ENV.APP.documentExportHost = "http://localhost:3000";
   }
 
-  if (environment === 'test') {
+  if (environment === "test") {
     // Testem prefers this...
-    ENV.locationType = 'none';
+    ENV.locationType = "none";
 
     // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
-    ENV.APP.rootElement = '#ember-testing';
+    ENV.APP.rootElement = "#ember-testing";
     ENV.APP.documentExportHost =
-      'http://localhost:' + (process.env.RAILS_PORT || '3000')
+      "http://localhost:" + (process.env.RAILS_PORT || "3000");
   }
 
-  if (environment === 'production') {
+  if (environment === "production") {
     ENV.airbrake = {
       host: process.env.EMBER_AIRBRAKE_HOST,
-      projectId:  '42', // needs to be set to anything when using with errbit
+      projectId: "42", // needs to be set to anything when using with errbit
       projectKey: process.env.EMBER_AIRBRAKE_API_KEY
-    }
+    };
   }
 
   return ENV;

@@ -1,7 +1,7 @@
-import { inject as service } from '@ember/service';
-import PromiseProxyMixin from '@ember/object/promise-proxy-mixin';
-import ObjectProxy from '@ember/object/proxy';
-import Component from '@ember/component';
+import { inject as service } from "@ember/service";
+import PromiseProxyMixin from "@ember/object/promise-proxy-mixin";
+import ObjectProxy from "@ember/object/proxy";
+import Component from "@ember/component";
 
 const ObjectPromiseProxy = ObjectProxy.extend(PromiseProxyMixin);
 
@@ -12,43 +12,42 @@ export default Component.extend({
     let formData = new FormData();
 
     if (!/\.(?:jpe?g|png|gif|svg|bmp)$/i.test(file.name)) {
-      this.get('notify').alert('Invalider Datentyp');
-      return
+      this.get("notify").alert("Invalider Datentyp");
+      return;
     }
 
-    if (file.size > 10000000) { //10MB
-      this.get('notify').alert('Datei ist zu gross, max 10MB');
-      return
+    if (file.size > 10000000) {
+      //10MB
+      this.get("notify").alert("Datei ist zu gross, max 10MB");
+      return;
     }
 
-    formData.append('picture', file);
+    formData.append("picture", file);
 
-    let res = this.get('ajax').put(this.get('uploadPath'), {
+    let res = this.get("ajax").put(this.get("uploadPath"), {
       contentType: false,
       processData: false,
       timeout: 5000,
       data: formData
     });
 
-    let oldPicture = this.get('picturePath');
-    this.set('picturePath', URL.createObjectURL(file));
+    let oldPicture = this.get("picturePath");
+    this.set("picturePath", URL.createObjectURL(file));
 
     res
       .then(res =>
-        this.set('picturePath', `${res.data.picture_path}?${Date.now()}`)
+        this.set("picturePath", `${res.data.picture_path}?${Date.now()}`)
       )
-      .then(() =>
-        this.get('notify').success('Profilbild wurde aktualisiert!')
-      )
+      .then(() => this.get("notify").success("Profilbild wurde aktualisiert!"))
       .catch(err => {
-        this.get('notify').error(err.message)
-        this.set('picturePath', oldPicture)
+        this.get("notify").error(err.message);
+        this.set("picturePath", oldPicture);
       });
 
-    this.set('response', ObjectPromiseProxy.create({ promise: res }))
+    this.set("response", ObjectPromiseProxy.create({ promise: res }));
   },
   didInsertElement() {
-    this.$('.img-input').on('change', e => {
+    this.$(".img-input").on("change", e => {
       if (e.target.files.length) {
         this.uploadImage(e.target.files[0]);
         e.target.value = null;
@@ -57,7 +56,7 @@ export default Component.extend({
   },
   actions: {
     changePicture() {
-      this.$('.img-input').click();
+      this.$(".img-input").click();
     }
   }
 });

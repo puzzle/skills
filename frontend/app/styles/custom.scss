@@ -5,7 +5,7 @@ html {
 body {
   margin: 0 0 30px; /* bottom = footer height */
   /* The html and body elements cannot have any padding or margin. */
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 body.max-width {
@@ -15,7 +15,7 @@ body.max-width {
 }
 
 body.modal-open {
-  padding-right: 0 !important
+  padding-right: 0 !important;
 }
 
 hr {
@@ -27,681 +27,679 @@ hr {
   padding: 0;
 }
 
-.pointer{
+.pointer {
   cursor: pointer;
 }
 
-.mb-end, #collapseFWS .card:last-child {
+.mb-end,
+#collapseFWS .card:last-child {
   margin-bottom: 50px;
 }
 
-
-  /* Main Content
+/* Main Content
   -------------------------------------------------- */
 
-  #left-grid {
-    margin-right: 0;
-  }
+#left-grid {
+  margin-right: 0;
+}
 
-  #right-grid {
-    margin-left: 0;
-    padding-left: 20px;
-    border-left: 1px solid #ccc;
-  }
+#right-grid {
+  margin-left: 0;
+  padding-left: 20px;
+  border-left: 1px solid #ccc;
+}
 
-  #extended-search-form{
-    border-left: 1px solid #ccc;
-    margin-left: 0px;
-    padding-left: 20px;
-  }
+#extended-search-form {
+  border-left: 1px solid #ccc;
+  margin-left: 0px;
+  padding-left: 20px;
+}
 
-  .section {
-    margin-bottom: 70px;
-  }
+.section {
+  margin-bottom: 70px;
+}
 
-  .section-title{
-    font-size: 16px;
-    font-weight: bold;
-  }
+.section-title {
+  font-size: 16px;
+  font-weight: bold;
+}
 
-  .section-title a{
-    color: #333
-  }
+.section-title a {
+  color: #333;
+}
 
-  .btn-space {
-    margin-left: 10px;
-  }
+.btn-space {
+  margin-left: 10px;
+}
 
-  /* Sticky footer styles
+/* Sticky footer styles
   -------------------------------------------------- */
 
-  /* Wrapper for page content to push down footer */
-  #wrap {
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    /* Negative indent footer by it's height */
-    margin: 0 auto -60px;
-  }
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by it's height */
+  margin: 0 auto -60px;
+}
 
-  /* Set the fixed height of the footer here */
-  #push {
-    height: 60px;
-    margin-top: 50px;
-  }
+/* Set the fixed height of the footer here */
+#push {
+  height: 60px;
+  margin-top: 50px;
+}
 
+#footer {
+  height: 30px;
+  margin-top: 50px;
+  background-color: #888888;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+#footer > div.container {
+  height: inherit;
+  color: white;
+  font-size: 0.8em;
+}
+
+#footer > div.container > p {
+  text-align: center;
+  margin: 0px;
+}
+
+/* Personlist navbar
+  -------------------------------------------------- */
+
+#scrollToTopButton {
+  position: fixed;
+  bottom: 80px;
+  right: 80px;
+  visibility: hidden;
+}
+
+#scrollToTopButton button {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+#form-search {
+  margin: 0px;
+}
+
+#div-create-person {
+  text-align: right;
+}
+.round-border {
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+div.row-fluid.person-list > div.span10 > div.container-fluid.round-border {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.menu_div ul {
+  padding: 0px;
+  margin: 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  color: #fff;
+  list-style: none;
+  text-indent: 15px;
+}
+.menu_div ul li {
+  background: #3f3f3f;
+  line-height: 35px;
+  border-bottom: 1px solid #333;
+}
+.menu_div ul li a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.menu_div ul li a:hover {
+  background: #4577d4;
+}
+.menu_div ul li a:active {
+  background: #29477f;
+}
+
+.menu_div ul li.active {
+  background: #4577d4;
+}
+
+/* Responsive behavior
+  -------------------------------------------------- */
+
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
   #footer {
-    height: 30px;
-    margin-top: 50px;
-    background-color: #888888;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
+}
 
-  #footer > div.container {
-    height: inherit;
-    color: white;
-    font-size: 0.8em;
-  }
+/* All Section
+  -------------------------------------------------- */
+.show-description-cell {
+  width: 550px !important;
+}
 
-  #footer > div.container > p{
-    text-align: center;
-    margin: 0px;
-  }
+.show-year-cell {
+  width: 100px !important;
+}
 
-  /* Personlist navbar
+.ember-power-select-search-input {
+  box-sizing: border-box !important;
+}
+
+/* Profile Section
+  -------------------------------------------------- */
+.fileUpload {
+  position: relative;
+  overflow: hidden;
+  margin-top: 5px;
+}
+.fileUpload input.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  width: 140px;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+#img-avatar-read {
+  margin-top: 9px;
+}
+
+.img-avatar-edit {
+  width: 128px;
+  height: 119px;
+  object-fit: cover;
+  box-sizing: border-box;
+}
+
+#profile-content-show dl {
+  margin-bottom: 10px;
+}
+#profile-content-show dt {
+  width: 100px;
+}
+#profile-content-show dd {
+  margin-left: 120px;
+}
+
+.form-button--submit,
+.form-button--reset {
+  background-color: rgba(255, 255, 255, 0) !important;
+  border: none !important;
+  color: #08c;
+}
+
+.form-button--submit:hover,
+.form-button--reset:hover {
+  color: #005580;
+  text-decoration: underline;
+}
+
+.pull-right {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.flag-icon {
+  margin-right: 5px;
+}
+
+/* Skills Section
   -------------------------------------------------- */
 
-  #scrollToTopButton {
-    position: fixed;
-    bottom: 80px;
-    right: 80px;
-    visibility: hidden;
-  }
+/*Column Highlighting*/
+#skills-list-table thead th:nth-of-type(even) {
+  background: #e5e5e5;
+}
 
-  #scrollToTopButton button {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-  }
+#skills-list-table {
+  table-layout: fixed;
+}
 
-  #form-search {
-    margin: 0px;
-  }
+#skills-list-table tbody td:nth-of-type(even) {
+  background: #f5f5f5;
+}
 
-  #div-create-person {
-    text-align: right;
-  }
-  .round-border {
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-  }
+#skills-list-table tr:hover td {
+  background: #e5e5e5 !important;
+  cursor: pointer;
+}
 
-  div.row-fluid.person-list > div.span10 > div.container-fluid.round-border {
-    padding-left: 0;
-    padding-right: 0;
-  }
+/* defaultSet Filter */
+#skills-list-defaultSet-filter button.btn.active {
+  background: #fff !important;
+}
 
-  .menu_div ul
-  {
-    padding:0px;
-    margin:0px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:15px;
-    color:#FFF;
-    list-style:none;
-    text-indent:15px;
+/* category Filter */
+#category-filter-dropdown {
+  width: 60%;
+  display: inline-block;
+}
 
-  }
-  .menu_div ul li
-  {
-    background:#3f3f3f;
-    line-height:35px;
-    border-bottom:1px solid #333;
-  }
-  .menu_div ul li a
-  {
-    text-decoration:none;
-    color:#FFF;
-    display:block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .menu_div ul li a:hover
-  {
-    background: #4577D4;
-  }
-  .menu_div ul li a:active
-  {
-    background: #29477F;
-  }
+#category-filter-label {
+  float: left;
+  margin: 5px 20px 0 0;
+}
 
-  .menu_div ul li.active {
-    background: #4577D4;
-  }
+#skill-show-modal .modal-dialog {
+  width: 74%;
+  max-width: 74%;
+}
 
+#skill-show-modal .container-fluid > div {
+  border-top: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+}
 
-  /* Responsive behavior
+#skill-show-modal .container-fluid div:nth-of-type(1) {
+  border-top: 0px;
+}
+
+#skill-show-modal .container-fluid div:nth-of-type(n) {
+  border-bottom: 0px;
+}
+
+.people-skill-new-dropdowns .ember-basic-dropdown-content-wormhole-origin,
+.icon-rating-wrapper {
+  width: 100% !important;
+  cursor: pointer;
+}
+
+/* PeopleSkills Section
   -------------------------------------------------- */
 
-  /* Lastly, apply responsive CSS fixes as necessary */
-  @media (max-width: 767px) {
-    #footer {
-      margin-left: -20px;
-      margin-right: -20px;
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-  }
+.people-skill-new-dropdowns .ember-basic-dropdown-content-wormhole-origin {
+  width: 100% !important;
+}
 
+#new-people-skills-show {
+  border: 1px solid green;
+  padding: 2% 3%;
+}
 
-  /* All Section
-  -------------------------------------------------- */
-  .show-description-cell{
-    width: 550px !important;
-  }
+.new-people-skill-show {
+  border-top: 1px solid #dee2e6;
+}
 
-  .show-year-cell{
-    width: 100px !important;
-  }
+#new-people-skills-show:last-of-type div.new-people-skill-show {
+  border-bottom: 1px solid #dee2e6;
+}
 
-  .ember-power-select-search-input {
-    box-sizing: border-box !important;
-  }
+.parent-categories-text {
+  font-weight: 550;
+}
 
-
-  /* Profile Section
-  -------------------------------------------------- */
-  .fileUpload {
-    position: relative;
-    overflow: hidden;
-    margin-top: 5px;
-  }
-  .fileUpload input.upload {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 0;
-    padding: 0;
-    width: 140px;
-    font-size: 20px;
-    cursor: pointer;
-    opacity: 0;
-    filter: alpha(opacity=0);
-  }
-
-  #img-avatar-read {
-    margin-top: 9px;
-  }
-
-  .img-avatar-edit {
-    width: 128px;
-    height: 119px;
-    object-fit: cover;
-    box-sizing: border-box;
-  }
-
-  #profile-content-show dl {
-    margin-bottom: 10px;
-  }
-  #profile-content-show dt {
-    width: 100px;
-  }
-  #profile-content-show dd {
-    margin-left: 120px;
-  }
-
-  .form-button--submit, .form-button--reset {
-    background-color: rgba(255, 255, 255, 0)!important;
-    border: none!important;
-    color: #08c;
-  }
-
-  .form-button--submit:hover, .form-button--reset:hover{
-    color: #005580;
-    text-decoration: underline;
-  }
-
-  .pull-right {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-
-  .flag-icon {
-    margin-right: 5px;
-  }
-
-  /* Skills Section
+/* Member-Skills Section
   -------------------------------------------------- */
 
-  /*Column Highlighting*/
-  #skills-list-table thead th:nth-of-type(even) {
-    background: #E5E5E5;
-  }
+.slider-handle {
+  background-image: linear-gradient(
+    to bottom,
+    #3b7bbe 0%,
+    #3b7bbe 100%
+  ) !important;
+}
 
-  #skills-list-table {
-    table-layout: fixed;
-  }
+.slider-selection,
+.slider-tick.in-selection {
+  background-image: linear-gradient(to bottom, #3fa8e0 0%, #3fa8e0 100%);
+}
 
-  #skills-list-table tbody td:nth-of-type(even) {
-    background: #F5F5F5;
-  }
+.slider-5-ticks .slider-tick-label {
+  width: 32.5px !important;
+}
 
-  #skills-list-table tr:hover td {
-    background: #E5E5E5 !important;
-    cursor: pointer;
-  }
+.people-skill-interest .icon-rating-wrapper {
+  margin-left: 16%;
+}
 
-  /* defaultSet Filter */
-  #skills-list-defaultSet-filter button.btn.active {
-    background: #fff !important;
-  }
+.fa-circle {
+  font-size: 0.5em !important;
+  color: #69b978;
+}
 
-  /* category Filter */
-  #category-filter-dropdown {
-    width: 60%;
-    display: inline-block;
-  }
+#people-skill-new-modal .ui-slider {
+  margin-left: 2%;
+}
 
-  #category-filter-label {
-    float:left;
-    margin: 5px 20px 0 0;
-  }
+.ui-slider {
+  margin-left: 5%;
+}
 
-  #skill-show-modal .modal-dialog {
-    width: 74%;
-    max-width: 74%;
-  }
+.level-interest-title {
+  width: 73%;
+  text-align: center;
+}
 
-  #skill-show-modal .container-fluid > div {
-    border-top: 1px solid #dee2e6;
-    border-bottom: 1px solid #dee2e6;
-  }
+.slider-horizontal {
+  max-width: 130px;
+}
 
-  #skill-show-modal .container-fluid div:nth-of-type(1) {
-    border-top: 0px;
-  }
+.slider-tick-label-container {
+  width: 130px;
+  margin-left: -16.25px !important;
+}
 
-  #skill-show-modal .container-fluid div:nth-of-type(n) {
-    border-bottom: 0px;
-  }
+.slider-tick-label {
+  width: 32.5px !important;
+  color: grey;
+  font-size: 0.8em;
+}
 
-  .people-skill-new-dropdowns .ember-basic-dropdown-content-wormhole-origin, .icon-rating-wrapper {
-    width: 100% !important;
-    cursor: pointer;
+.slider-tick,
+.slider-handle {
+  cursor: pointer;
+}
 
-  }
+.slider.slider-disabled .slider-track,
+.slider.slider-disabled .slider-tick {
+  cursor: default;
+}
 
-  /* PeopleSkills Section
+.disabled-slider .slider-handle {
+  background-image: linear-gradient(to bottom, #bfb6b9 0%, #bfb6b9 100%);
+}
+
+.disabled-slider .slider-selection {
+  background-image: linear-gradient(to bottom, #e6dade 0%, #e6dade 100%);
+}
+
+.disabled-slider .slider-tick.round.in-selection {
+  background-image: linear-gradient(to bottom, #e6dade 0%, #e6dade 100%);
+}
+
+/* Competence Section
   -------------------------------------------------- */
+.vertical-center {
+  vertical-align: middle;
+}
 
-  .people-skill-new-dropdowns .ember-basic-dropdown-content-wormhole-origin {
-    width: 100% !important;
-  }
-
-  #new-people-skills-show {
-    border: 1px solid green;
-    padding: 2% 3%;
-  }
-
-  .new-people-skill-show {
-    border-top: 1px solid #dee2e6;
-  }
-
-  #new-people-skills-show:last-of-type div.new-people-skill-show {
-    border-bottom: 1px solid #dee2e6;
-  }
-
-  .parent-categories-text {
-    font-weight: 550;
-  }
-
-  /* Member-Skills Section
+/* Activity & Project Section
   -------------------------------------------------- */
+#project div.span4 button,
+#activity div.span4 button {
+  margin-left: 10px;
+}
 
-  .slider-handle {
-    background-image: linear-gradient(to bottom, #3B7BBE 0%, #3B7BBE 100%) !important;
-  }
+.project-title,
+.activity-role {
+  font-weight: bold;
+}
 
-  .slider-selection, .slider-tick.in-selection {
-    background-image: linear-gradient(to bottom, #3FA8E0 0%, #3FA8E0 100%);
-  }
+.project-title,
+.project-role,
+.project-description,
+.project-technology,
+.activity-role,
+.activity-description {
+  border: 0 !important;
+}
 
-  .slider-5-ticks .slider-tick-label {
-    width: 32.5px !important;
-  }
+#option-pill > a {
+  border: 0px;
+  border-radius: 6px;
+}
+#remove-profile {
+  color: red;
+}
 
-  .people-skill-interest .icon-rating-wrapper {
-    margin-left: 16%;
-  }
+.group-pills > a {
+  border-bottom-right-radius: 0px;
+  border: 1px solid #e8ebf0;
+  border-top-right-radius: 0px;
+}
 
+.group-pills > li:last-child > a {
+  border-bottom-left-radius: 0px;
+  border: 1px solid #e8ebf0;
+  border-top-left-radius: 0px;
+}
 
-  .fa-circle {
-    font-size: 0.5em !important;
-    color: #69B978;
-  }
+#cv-search-results div:nth-of-type(even) a {
+  background: #61b44b;
+}
 
-  #people-skill-new-modal .ui-slider {
-    margin-left: 2%;
-  }
+#cv-search-results {
+  min-height: 80px;
+}
 
-  .ui-slider {
-    margin-left: 5%;
-  }
+#cv-searchbar input {
+  border: none;
+  background: none;
+  outline: none;
+  padding: 0 0;
+  margin: 0 0;
+  font: inherit;
+  width: 96%;
+}
 
-  .level-interest-title {
-    width: 73%;
-    text-align: center;
-  }
+#cv-search-clear-button {
+  border: none;
+  background: #ffffff;
+  visibility: hidden;
+}
 
-  .slider-horizontal {
-    max-width: 130px;
-  }
+.cv-search-pills {
+  display: block;
+  background: #69b978;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  border-radius: 5px;
+  padding: 0.5em 0.25em;
+  width: 25%;
+}
 
-  .slider-tick-label-container {
-    width: 130px;
-    margin-left: -16.25px !important;
-  }
+.cv-search-pills:hover {
+  color: #ffffff;
+  text-decoration: none;
+  background: #4e903c !important;
+}
 
-  .slider-tick-label {
-    width: 32.5px !important;
-    color: grey;
-    font-size: 0.8em;
-  }
+[class^="icon-"],
+[class*=" icon-"] {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-top: 1px;
+  *margin-right: 0.3em;
+  line-height: 14px;
+  vertical-align: top;
+  background-image: url("../img/glyphicons-halflings.png");
+  background-repeat: no-repeat;
+}
+.icon-white {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-top: 1px;
+  *margin-right: 0.3em;
+  line-height: 14px;
+  vertical-align: middle;
+  background-image: url("../img/glyphicons-halflings-white.png");
+  background-repeat: no-repeat;
+}
 
-  .slider-tick, .slider-handle {
-    cursor: pointer;
-  }
+[class^="icon-"]:hover,
+[class*=" icon-"]:hover {
+  background-image: url("../img/glyphicons-halflings-005580.png");
+}
 
-  .slider.slider-disabled .slider-track, .slider.slider-disabled .slider-tick {
-    cursor: default;
-  }
+a {
+  cursor: pointer;
+}
+dd {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
-  .disabled-slider .slider-handle {
-    background-image: linear-gradient(to bottom, #BFB6B9 0%, #BFB6B9 100%);
-  }
+td,
+th {
+  max-width: 550px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
-  .disabled-slider .slider-selection {
-    background-image: linear-gradient(to bottom, #E6DADE 0%, #E6DADE 100%);
-  }
+#competence-content-show > div > ul > li {
+  max-width: 800px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  list-style-type: circle;
+}
 
-  .disabled-slider .slider-tick.round.in-selection {
-    background-image: linear-gradient(to bottom, #E6DADE 0%, #E6DADE 100%);
-  }
+.project-title,
+.project-description,
+.project-role,
+.activity-role {
+  padding-bottom: 10px;
+}
 
-  /* Competence Section
-  -------------------------------------------------- */
-  .vertical-center {
-    vertical-align: middle;
-  }
+.action-header {
+  width: 0px;
+}
 
-  /* Activity & Project Section
-  -------------------------------------------------- */
-  #project div.span4 button,
-  #activity div.span4 button {
-    margin-left: 10px;
-  }
+.menu_div ul li a.active {
+  background: none repeat scroll 0 0 #4577d4;
+}
 
-  .project-title,
-  .activity-role{
-    font-weight: bold;
-  }
+a.disabled-link,
+a.disabled-link:visited,
+a.disabled-link:active,
+a.disabled-link:hover {
+  background-color: #d9d9d9 !important;
+  color: #aaa !important;
+}
 
-  .project-title,
-  .project-role,
-  .project-description,
-  .project-technology,
-  .activity-role,
-  .activity-description {
-    border: 0 !important;
-  }
+.img-avatar-edit:hover {
+  opacity: 0.8;
+}
 
-  #option-pill > a{
-    border:0px;
-    border-radius: 6px;
-  }
-  #remove-profile {
-    color: red;
-  }
-
-  .group-pills > a {
-    border-bottom-right-radius:  0px;
-    border: 1px solid #e8ebf0;
-    border-top-right-radius: 0px;
-  }
-
-  .group-pills > li:last-child > a {
-    border-bottom-left-radius:  0px;
-    border: 1px solid #e8ebf0;
-    border-top-left-radius: 0px;
-  }
-
-  #cv-search-results div:nth-of-type(even) a {
-    background: #61B44B;
-  }
-
-  #cv-search-results {
-    min-height: 80px;
-  }
-
-  #cv-searchbar input {
-    border:none;
-    background:none;
-    outline:none;
-    padding:0 0;
-    margin:0 0;
-    font:inherit;
-    width: 96%;
-  }
-
-  #cv-search-clear-button {
-    border: none;
-    background: #FFFFFF;
-    visibility: hidden;
-  }
-
-  .cv-search-pills {
-    display: block;
-    background: #69B978;
-    border: 1px solid #FFFFFF;
-    color: #FFFFFF;
-    border-radius: 5px;
-    padding: 0.5em 0.25em;
-    width:25%;
-  }
-
-  .cv-search-pills:hover {
-    color: #ffffff;
-    text-decoration: none;
-    background: #4e903c !important;
-  }
-
-  [class^="icon-"],
-  [class*=" icon-"] {
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    margin-top: 1px;
-    *margin-right: .3em;
-    line-height: 14px;
-    vertical-align: top;
-    background-image: url("../img/glyphicons-halflings.png");
-    background-repeat: no-repeat;
-  }
-  .icon-white {
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    margin-top: 1px;
-    *margin-right: .3em;
-    line-height: 14px;
-    vertical-align: middle;
-    background-image: url("../img/glyphicons-halflings-white.png");
-    background-repeat: no-repeat;
-  }
-
-
-  [class^="icon-"]:hover,
-  [class*=" icon-"]:hover {
-    background-image: url("../img/glyphicons-halflings-005580.png");
-  }
-
-  a{
-    cursor:pointer;
-  }
-  dd{
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  td,th{
-    max-width:550px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  #competence-content-show > div > ul > li{
-    max-width:800px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    list-style-type: circle;
-  }
-
-  .project-title, .project-description, .project-role, .activity-role{
-    padding-bottom: 10px;
-  }
-
-  .action-header{
-    width: 0px;
-  }
-
-  .menu_div ul li a.active {
-    background: none repeat scroll 0 0 #4577d4;
-  }
-
-  a.disabled-link,
-  a.disabled-link:visited ,
-  a.disabled-link:active,
-  a.disabled-link:hover {
-    background-color:#d9d9d9 !important;
-    color:#aaa !important;
-  }
-
-  .img-avatar-edit:hover{
-    opacity: 0.8;
-  }
-
-
-  /*
+/*
   We set the element we are applying our loading mask to relative
    */
-  .loading-mask {
-    position: relative;
-  }
+.loading-mask {
+  position: relative;
+}
 
-  /*
+/*
   Because we set .loading-mask relative, we can span our ::before
   element over the whole parent element
    */
-  .loading-mask::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.25);
-  }
+.loading-mask::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.25);
+}
 
-  /*
+/*
   Spin animation for .loading-mask::after
    */
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(359deg);
-    }
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
   }
+  to {
+    transform: rotate(359deg);
+  }
+}
 
-  /*
+/*
   The loading throbber is a single spinning element with three
   visible borders and a border-radius of 50%.
   Instead of a border we could also use a font-icon or any
   image using the content attribute. c
    */
-  .loading-mask::after {
-    content: "";
-    position: absolute;
-    border-width: 3px;
-    border-style: solid;
-    border-color: transparent rgb(255, 255, 255) rgb(255, 255, 255);
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    top: calc(50% - 12px);
-    left: calc(50% - 12px);
-    animation: 2s linear 0s normal none infinite running spin;
-    filter: drop-shadow(0 0 2 rgba(0, 0, 0, 0.33));
-  }
+.loading-mask::after {
+  content: "";
+  position: absolute;
+  border-width: 3px;
+  border-style: solid;
+  border-color: transparent rgb(255, 255, 255) rgb(255, 255, 255);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  top: calc(50% - 12px);
+  left: calc(50% - 12px);
+  animation: 2s linear 0s normal none infinite running spin;
+  filter: drop-shadow(0 0 2 rgba(0, 0, 0, 0.33));
+}
 
-  .nav-pills .right div{
-    display: block;
-    border-bottom-right-radius: 0px;
-    border-top-right-radius: 0px;
-    margin-top: 2px;
-    margin-right: -4px;
-  }
+.nav-pills .right div {
+  display: block;
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
+  margin-top: 2px;
+  margin-right: -4px;
+}
 
-  .nav-pills .left div{
-    display: block;
-    border-bottom-left-radius: 0px;
-    border-top-left-radius: 0px;
-    margin-left: 1px;
-    height: 22px;
-  }
+.nav-pills .left div {
+  display: block;
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+  margin-left: 1px;
+  height: 22px;
+}
 
-  .ember-basic-dropdown-content-wormhole-origin{
-    position: absolute;
-  }
+.ember-basic-dropdown-content-wormhole-origin {
+  position: absolute;
+}
 
-  .nav-pills li div{
-    background: none;
-    color: #0088cc;
-    border: 1px solid #e8ebf0;
-    box-shadow: none;
-  }
+.nav-pills li div {
+  background: none;
+  color: #0088cc;
+  border: 1px solid #e8ebf0;
+  box-shadow: none;
+}
 
-  .nav-pills .active div{
-    background: #0088cc;
-    color: #fff;
-    text-shadow: none;
-  }
+.nav-pills .active div {
+  background: #0088cc;
+  color: #fff;
+  text-shadow: none;
+}
 
-  .nav-pills li div .caret{
-    border-top: 4px solid #0088CC;
-  }
+.nav-pills li div .caret {
+  border-top: 4px solid #0088cc;
+}
 
-  .nav-pills .active div .caret{
-    border-top: 4px solid #fff;
-  }
-
-
+.nav-pills .active div .caret {
+  border-top: 4px solid #fff;
+}
 
 /* Forms
 -------------------------------------------------- */
 
-form textarea{
+form textarea {
   height: 60px;
   margin-bottom: 10px;
 }
-
 
 /* Form Errors
 -------------------------------------------------- */
@@ -712,67 +710,63 @@ form textarea{
 
 .form-field--has-errors input {
   border-color: #a94442;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
 .form-field--has-errors input:focus {
   border-color: #843534;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
 }
 
-.form-field--errors{
+.form-field--errors {
   display: none;
 }
 
-.competences-edit-input{
+.competences-edit-input {
   width: 95%;
   height: 250px;
   margin-left: 15px;
 }
 
-
-.ember-notify-cn .ember-notify{
+.ember-notify-cn .ember-notify {
   min-width: 300px;
   height: 50px;
   z-index: 9000 !important;
 }
 
-.ember-notify-cn.ember-view{
+.ember-notify-cn.ember-view {
   top: 0px;
   bottom: auto;
   margin-right: 20px;
 }
 
-.ember-notify .close{
+.ember-notify .close {
   right: 0px;
   font-size: 30px;
 }
 
-
 /* Buttons
 -------------------------------------------------- */
 
-.btn-primary{
-  color: white!important;
+.btn-primary {
+  color: white !important;
 }
 
-.async-button:hover{
-  background-position: 0px 0px!important;
+.async-button:hover {
+  background-position: 0px 0px !important;
 }
-
 
 .btn-link {
-  padding:0!important;
+  padding: 0 !important;
   cursor: pointer;
 }
 
-#export-dropdown{
+#export-dropdown {
   margin-left: 5px;
   margin-top: 1px;
 }
-
 
 /* Companies Page
 ----------------------------------------------------- */
@@ -790,7 +784,8 @@ form textarea{
   width: 100%;
 }
 
-.table-company td:first-child, .table-company label {
+.table-company td:first-child,
+.table-company label {
   width: 45%;
 }
 
@@ -802,7 +797,9 @@ form textarea{
   width: 50%;
 }
 
-.table-company input, .table-company button, .table-company .ember-power-select-trigger {
+.table-company input,
+.table-company button,
+.table-company .ember-power-select-trigger {
   width: 50%;
   float: right;
 }
@@ -835,7 +832,9 @@ form textarea{
 }
 
 /* Person Übersicht*/
-.table-person input, .table-person, .table-person .ember-power-select-trigger {
+.table-person input,
+.table-person,
+.table-person .ember-power-select-trigger {
   width: 100%;
   float: right;
 }
@@ -848,10 +847,11 @@ form textarea{
 }
 
 .table-person tr {
-  height:100%;
+  height: 100%;
 }
 
-.table-person input, .input-field {
+.table-person input,
+.input-field {
   border: 1px solid #ced4da;
   border-radius: 5px;
   font-size: 1rem;
@@ -890,7 +890,7 @@ form textarea{
 /* Symbole für Tabs */
 /* Symbol für offenes / geschlossenes Tab */
 [data-toggle="collapse"] .angle:before {
-  content: "\f106";  /* this is your text. You can also use UTF-8 character codes as I do here */
+  content: "\f106"; /* this is your text. You can also use UTF-8 character codes as I do here */
   font-size: 20px;
   font-weight: bold;
 }
@@ -941,7 +941,8 @@ form textarea{
   width: 100%;
 }
 
-.table-uebersicht td:first-child, .table-uebersicht label {
+.table-uebersicht td:first-child,
+.table-uebersicht label {
   width: 50%;
 }
 
@@ -953,7 +954,9 @@ form textarea{
   width: 50%;
 }
 
-.table-uebersicht input, .table-uebersicht button, .table-uebersicht .ember-power-select-trigger {
+.table-uebersicht input,
+.table-uebersicht button,
+.table-uebersicht .ember-power-select-trigger {
   width: 50%;
   float: right;
 }
@@ -1030,7 +1033,9 @@ table.fws tr td:first-child {
   width: 200px;
 }
 
-table.fws tr td:nth-child(2), table.fws tr td:nth-child(3), table.fws tr td:nth-child(4),
+table.fws tr td:nth-child(2),
+table.fws tr td:nth-child(3),
+table.fws tr td:nth-child(4),
 table.fws tr td:nth-child(5) {
   width: 170px;
 }
@@ -1084,7 +1089,6 @@ button::-moz-focus-inner {
   border: 0;
 }
 
-
 /* Input grössen */
 .year {
   width: 80px;
@@ -1103,7 +1107,6 @@ button::-moz-focus-inner {
 
 .edit-symbols a {
   margin: 0px 0px 0px 8px;
-
 }
 
 .zeile {
@@ -1111,7 +1114,7 @@ button::-moz-focus-inner {
   padding: 10px;
   border-width: 1px 1px 0px 1px;
   border-style: solid;
-  border-color: #D6D6D6;
+  border-color: #d6d6d6;
   vertical-align: middle;
 }
 
@@ -1137,7 +1140,7 @@ button::-moz-focus-inner {
   height: 100%;
 }
 
-div.content-input  {
+div.content-input {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1149,14 +1152,14 @@ div.content-input  {
 
 .content-bootstrap-feel {
   background-color: #fff;
-  border: 1px solid rgba(0,0,0,.15);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 4px;
-  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   padding: 5px;
   margin: 2px 0 0;
 }
 
-.no-grey-border{
+.no-grey-border {
   border: 0 !important;
   text-decoration: none !important;
   outline: 0 !important;
@@ -1164,7 +1167,7 @@ div.content-input  {
 
 /* Hovering State of the top navbar */
 .hovering-nav-bar:hover {
-  background-color: #61B44B;
+  background-color: #61b44b;
 }
 
 /* Daterange table */
@@ -1173,8 +1176,9 @@ div.content-input  {
 }
 
 /* Selected state of the top navbar */
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  background-color: #1E5A96;
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background-color: #1e5a96;
 }
 
 /* Text right next to the PuzzleSkills Logo */
@@ -1196,16 +1200,16 @@ div.content-input  {
 
 /* Border with custom color */
 .border-black {
-   border:1px solid #b5b5b5;
+  border: 1px solid #b5b5b5;
 }
 
 /* For all the bearbeiten,speichern, löschen und abbrechen "buttons" */
 .fa-check-square {
-  color: #1E5A96 !important;
+  color: #1e5a96 !important;
 }
 
 .edit-buttons {
-  color: #1E5A96 !important;
+  color: #1e5a96 !important;
 }
 
 .edit-buttons:active {
@@ -1217,7 +1221,7 @@ div.content-input  {
 }
 
 .delete-buttons {
-  color: #1E5A96 !important;
+  color: #1e5a96 !important;
 }
 
 .delete-buttons:active {
@@ -1228,20 +1232,21 @@ div.content-input  {
   color: red !important;
 }
 .abort-edit-buttons {
-  color: #1E5A96 !important;
+  color: #1e5a96 !important;
 }
 
-.abort-edit-buttons:hover, .abort-edit-buttons i:hover {
+.abort-edit-buttons:hover,
+.abort-edit-buttons i:hover {
   color: red !important;
 }
 
 /* These two are for the CV and Fachwissensskala options under person-actions */
 .navbar .navbar-nav .nav-item .nav-link .active {
-  color: #1E5A96;
+  color: #1e5a96;
 }
 
-.navbar .navbar-nav .nav-item .nav-link a{
-  color: #8e8e8e ;
+.navbar .navbar-nav .nav-item .nav-link a {
+  color: #8e8e8e;
 }
 
 .navbar .navbar-nav .nav-item .nav-link a:hover {
@@ -1249,12 +1254,12 @@ div.content-input  {
 }
 
 /* These two are for Entwickler and Systemtechniker under Fachwissenskala*/
-.navbar .navbar-nav .nav-item .active{
-  color: #1E5A96;
+.navbar .navbar-nav .nav-item .active {
+  color: #1e5a96;
 }
 
-.navbar .navbar-nav .nav-item a{
-  color: #8e8e8e ;
+.navbar .navbar-nav .nav-item a {
+  color: #8e8e8e;
 }
 
 /* Bootstrap Fixes */
@@ -1263,7 +1268,7 @@ div.content-input  {
 }
 
 .language-button {
-  color: #3B7BBE !important;
+  color: #3b7bbe !important;
 }
 
 .language-button:hover {
@@ -1271,7 +1276,7 @@ div.content-input  {
 }
 
 .abort-button {
-  color: #238BCA;
+  color: #238bca;
   background-color: transparent;
 }
 
@@ -1294,12 +1299,12 @@ div.content-input  {
 }
 
 #person-sidebar a.nav-link {
-  height:100%;
-  background-color: #F5F5F5;
+  height: 100%;
+  background-color: #f5f5f5;
 }
 
 #person-sidebar a.nav-link.active {
-  background-color: #3B7BBE !important;
+  background-color: #3b7bbe !important;
   color: #fff !important;
 }
 
@@ -1312,7 +1317,8 @@ div.content-input  {
   height: auto;
 }
 
-.is-sticky, .sticky-wrapper {
+.is-sticky,
+.sticky-wrapper {
   height: 0px !important;
 }
 

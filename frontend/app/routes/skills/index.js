@@ -1,5 +1,5 @@
-import Route from '@ember/routing/route';
-import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
+import Route from "@ember/routing/route";
+import AuthenticatedRouteMixin from "ember-simple-auth/mixins/authenticated-route-mixin";
 
 export default Route.extend(AuthenticatedRouteMixin, {
   queryParams: {
@@ -20,6 +20,6 @@ export default Route.extend(AuthenticatedRouteMixin, {
   },
 
   model({ defaultSet, category, title }) {
-    return this.store.query('skill', { defaultSet, category, title })
-  },
+    return this.store.query("skill", { defaultSet, category, title });
+  }
 });

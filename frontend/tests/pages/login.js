@@ -1,12 +1,7 @@
-import {
-  create,
-  visitable,
-  fillable,
-  clickable,
-} from 'ember-cli-page-object';
+import { create, visitable, fillable, clickable } from "ember-cli-page-object";
 
 export default create({
-  visit: visitable('/login'),
+  visit: visitable("/login"),
 
   async login(username, password) {
     await this.loginForm.username(username);
@@ -16,11 +11,11 @@ export default create({
   },
 
   loginForm: {
-    scope: '.form-signin',
+    scope: ".form-signin",
 
-    username: fillable('.login-form-user > input'),
+    username: fillable(".login-form-user > input"),
     password: fillable('.login-form-password > input[type="password"]'),
 
-    submit: clickable('.btn-primary'),
-  },
-})
+    submit: clickable(".btn-primary")
+  }
+});

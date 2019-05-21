@@ -5,12 +5,12 @@ import {
   clickable,
   collection,
   text
-} from 'ember-cli-page-object';
+} from "ember-cli-page-object";
 
 export default create({
-  visit: visitable('/people/:person_id'),
-  toggleEditFormButton: clickable('[data-test-person-edit-form-toggle]'),
-  toggleNationalitiesCheckbox: clickable('#toggle-nationalities-id'),
+  visit: visitable("/people/:person_id"),
+  toggleEditFormButton: clickable("[data-test-person-edit-form-toggle]"),
+  toggleNationalitiesCheckbox: clickable("#toggle-nationalities-id"),
 
   toggleEditForm() {
     this.toggleEditFormButton();
@@ -24,54 +24,54 @@ export default create({
   },
 
   editForm: {
-    scope: '#profil',
-    submit: clickable('#submit-button'),
+    scope: "#profil",
+    submit: clickable("#submit-button"),
     name: fillable('[name="person[name]"]'),
     email: fillable('[name="person[email]"]'),
     title: fillable('[name="person[title]"]'),
     location: fillable('[name="person[location]"]'),
-    rolePercent: fillable('[name="person[role-percent]"]'),
+    rolePercent: fillable('[name="person[role-percent]"]')
   },
 
   profileData: {
-    name: text('#data-test-person-name'),
-    email: text('#data-test-person-email'),
-    title: text('#data-test-person-title'),
-    role: text('#data-test-person-role'),
-    department: text('#data-test-person-department'),
-    company: text('#data-test-person-company'),
-    birthdate: text('#data-test-person-birthdate'),
-    nationalities: text('#data-test-person-nationalities'),
-    location: text('#data-test-person-location'),
-    language: text('[data-test-person-language]', { multiple: true }),
-    maritalStatus: text('#data-test-person-marital-status'),
+    name: text("#data-test-person-name"),
+    email: text("#data-test-person-email"),
+    title: text("#data-test-person-title"),
+    role: text("#data-test-person-role"),
+    department: text("#data-test-person-department"),
+    company: text("#data-test-person-company"),
+    birthdate: text("#data-test-person-birthdate"),
+    nationalities: text("#data-test-person-nationalities"),
+    location: text("#data-test-person-location"),
+    language: text("[data-test-person-language]", { multiple: true }),
+    maritalStatus: text("#data-test-person-marital-status")
   },
 
   competences: {
-    toggleForm: clickable('[data-test-company-edit-form-toggle]'),
-    submit: clickable('#submit-button'),
+    toggleForm: clickable("[data-test-company-edit-form-toggle]"),
+    submit: clickable("#submit-button"),
 
     list: collection({
-      itemScope: '.competence-entity',
+      itemScope: ".competence-entity",
       item: {
-        text: text(),
-      },
-    }),
+        text: text()
+      }
+    })
   },
 
   educations: {
-    amountOf: text('#amount-of-educations'),
-    toggleForm: clickable('#edit-education-button'),
+    amountOf: text("#amount-of-educations"),
+    toggleForm: clickable("#edit-education-button"),
 
     list: collection({
-      itemScope: '.education-entity',
+      itemScope: ".education-entity",
       item: {
-        text: text(),
-      },
+        text: text()
+      }
     }),
 
-    submit: clickable('#submit-education-button'),
-    delete: clickable('#deleteButton'),
-    confirm: clickable('#delete-button'),
-  },
+    submit: clickable("#submit-education-button"),
+    delete: clickable("#deleteButton"),
+    confirm: clickable("#delete-button")
+  }
 });

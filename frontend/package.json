@@ -15,7 +15,20 @@
     "build-prod": "ember build --prod",
     "lint:js": "eslint ./*.js app blueprints config lib server tests",
     "start": "ember serve --proxy=http://localhost:3000/",
-    "test": "ember test"
+    "test": "ember test",
+    "format": "prettier --write \"./**/*.{js,json,css,scss,yaml}\"",
+    "eslint-check": "eslint --print-config . | eslint-config-prettier-check"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "./**/*.{js,json,css,scss,yaml}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
@@ -72,9 +85,14 @@
     "ember-tether": "^1.0.0-beta.0",
     "ember-toggle": "^5.3.2",
     "ember-welcome-page": "^3.0.0",
+    "eslint-config-prettier": "^4.3.0",
     "eslint-plugin-ember": "^5.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "husky": "^2.3.0",
+    "lint-staged": "^8.1.7",
     "liquid-fire": "^0.28.0",
     "loader.js": "^4.2.3",
+    "prettier": "1.17.1",
     "ui-ember-slider": "github:ifad/ui-slider",
     "watchman": "^1.0.0"
   },
@@ -84,6 +102,7 @@
   "dependencies": {
     "@babel/core": "^7.0.0-beta.42",
     "bootstrap": "^4.1.1",
+    "bootstrap-slider": "^10.6.1",
     "ember-cli-update": "^0.27.1",
     "ember-intl": "^3.5.2",
     "global": "^4.3.2",

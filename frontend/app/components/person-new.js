@@ -1,9 +1,9 @@
-import { inject as service } from '@ember/service';
-import ApplicationComponent from './application-component';
-import { computed } from '@ember/object';
-import { isBlank } from '@ember/utils';
-import { getNames as countryNames } from 'ember-i18n-iso-countries';
-import Person from '../models/person';
+import { inject as service } from "@ember/service";
+import ApplicationComponent from "./application-component";
+import { computed } from "@ember/object";
+import { isBlank } from "@ember/utils";
+import { getNames as countryNames } from "ember-i18n-iso-countries";
+import Person from "../models/person";
 
 export default ApplicationComponent.extend({
   intl: service(),
@@ -19,14 +19,14 @@ export default ApplicationComponent.extend({
   },
 
   initMaritalStatuses() {
-    this.maritalStatusesHash = Person.MARITAL_STATUSES
-    this.maritalStatuses = Object.values(this.maritalStatusesHash)
+    this.maritalStatusesHash = Person.MARITAL_STATUSES;
+    this.maritalStatuses = Object.values(this.maritalStatusesHash);
   },
 
   initNationalities() {
-    const countriesArray = Object.entries(countryNames("de"))
-    this.set('countries', countriesArray);
-    const nationality = this.get('newPerson.nationality');
+    const countriesArray = Object.entries(countryNames("de"));
+    this.set("countries", countriesArray);
+    const nationality = this.get("newPerson.nationality");
     this.selectedNationality = this.getCountry(nationality);
   },
 
@@ -37,11 +37,11 @@ export default ApplicationComponent.extend({
   },
 
   sortedRoles: computed(function() {
-    return this.get('store').findAll('role')
+    return this.get("store").findAll("role");
   }),
 
   companiesToSelect: computed(function() {
-    return this.get('store').findAll('company');
+    return this.get("store").findAll("company");
   }),
 
   focusComesFromOutside(e) {
@@ -49,51 +49,55 @@ export default ApplicationComponent.extend({
     if (isBlank(blurredEl)) {
       return false;
     }
-    return !blurredEl.classList.contains('ember-power-select-search-input');
+    return !blurredEl.classList.contains("ember-power-select-search-input");
   },
 
   actions: {
     submit(newPerson) {
-      return newPerson.save()
-        .then (() =>
+      return newPerson
+        .save()
+        .then(() =>
           Promise.all([
             ...newPerson
-              .get('languageSkills')
+              .get("languageSkills")
               .map(languageSkill => languageSkill.save()),
             // Nicht so! peopleRoles an Person anhängen und speichern
-            ...newPerson
-              .get('peopleRoles')
-              .map(peopleRole => peopleRole.save())
+            ...newPerson.get("peopleRoles").map(peopleRole => peopleRole.save())
           ])
         )
-        .then(() => this.sendAction('submit', newPerson))
-        .then(() => this.get('notify').success('Person wurde erstellt!'))
-        .then(() => this.get('notify').success('Füge nun ein Profilbild hinzu!'))
+        .then(() => this.sendAction("submit", newPerson))
+        .then(() => this.get("notify").success("Person wurde erstellt!"))
+        .then(() =>
+          this.get("notify").success("Füge nun ein Profilbild hinzu!")
+        )
         .catch(() => {
+          let errors = newPerson.get("errors").slice();
 
-          let errors = newPerson.get('errors').slice();
-
-          newPerson.get('languageSkills').forEach(skill => {
-            errors = errors.concat(skill.get('errors').slice())
+          newPerson.get("languageSkills").forEach(skill => {
+            errors = errors.concat(skill.get("errors").slice());
           });
 
-          newPerson.get('peopleRoles').forEach(peopleRole => {
-            let prErrors = peopleRole.get('errors').slice();
-            const roleIdError = prErrors.findBy('attribute', 'role_id');
+          newPerson.get("peopleRoles").forEach(peopleRole => {
+            let prErrors = peopleRole.get("errors").slice();
+            const roleIdError = prErrors.findBy("attribute", "role_id");
             prErrors.removeObject(roleIdError);
-            errors = errors.concat(prErrors)
+            errors = errors.concat(prErrors);
           });
 
           errors.forEach(({ attribute, message }) => {
-            let translated_attribute = this.get('intl').t(`person.${attribute}`)
-            this.get('notify').alert(`${translated_attribute} ${message}`, { closeAfter: 8000 });
+            let translated_attribute = this.get("intl").t(
+              `person.${attribute}`
+            );
+            this.get("notify").alert(`${translated_attribute} ${message}`, {
+              closeAfter: 8000
+            });
           });
         });
     },
 
     abortCreate() {
-      this.get('newPerson').destroyRecord();
-      this.get('router').transitionTo('people');
+      this.get("newPerson").destroyRecord();
+      this.get("router").transitionTo("people");
     },
 
     handleFocus(select, e) {
@@ -102,68 +106,69 @@ export default ApplicationComponent.extend({
       }
     },
 
-    handleBlur() {
-    },
+    handleBlur() {},
 
     setBirthdate(selectedDate) {
-      this.set('newPerson.birthdate', selectedDate);
+      this.set("newPerson.birthdate", selectedDate);
     },
 
     setOrigin(selectedCountry) {
-      this.set('newPerson.origin', selectedCountry[1]);
-      this.set('selectedCountry', selectedCountry)
+      this.set("newPerson.origin", selectedCountry[1]);
+      this.set("selectedCountry", selectedCountry);
     },
 
     setNationality(selectedCountry) {
-      this.set('newPerson.nationality', selectedCountry[0]);
-      this.set('selectedNationality', selectedCountry);
+      this.set("newPerson.nationality", selectedCountry[0]);
+      this.set("selectedNationality", selectedCountry);
     },
 
     setNationality2(selectedCountry) {
       if (selectedCountry) {
-        this.set('newPerson.nationality2', selectedCountry[0]);
+        this.set("newPerson.nationality2", selectedCountry[0]);
       } else {
         // nationality2 can be blank / cleared
-        this.set('newPerson.nationality2', undefined);
+        this.set("newPerson.nationality2", undefined);
       }
-      this.set('selectedNationality2', selectedCountry);
+      this.set("selectedNationality2", selectedCountry);
     },
 
     setDepartment(department) {
-      this.set('newPerson.department', department)
+      this.set("newPerson.department", department);
     },
 
     setCompany(company) {
-      this.set('newPerson.company', company)
+      this.set("newPerson.company", company);
     },
 
     setRole(peopleRole, selectedRole) {
-      peopleRole.set('role', selectedRole);
+      peopleRole.set("role", selectedRole);
     },
 
     setRoleLevel(peopleRole, level) {
-      peopleRole.set('level', level);
+      peopleRole.set("level", level);
     },
 
     setRolePercent(peopleRole, event) {
-      peopleRole.set('percent', event.target.value);
+      peopleRole.set("percent", event.target.value);
     },
 
     setMaritalStatus(selectedMaritalStatus) {
-      const obj = this.maritalStatusesHash
-      const key = Object.keys(obj).find(key => obj[key] === selectedMaritalStatus);
-      this.set('newPerson.maritalStatus', key);
-      this.set('selectedMaritalStatus', selectedMaritalStatus);
+      const obj = this.maritalStatusesHash;
+      const key = Object.keys(obj).find(
+        key => obj[key] === selectedMaritalStatus
+      );
+      this.set("newPerson.maritalStatus", key);
+      this.set("selectedMaritalStatus", selectedMaritalStatus);
     },
 
     switchNationality(value) {
       if (value == false) {
-        this.set('newPerson.nationality2', undefined);
+        this.set("newPerson.nationality2", undefined);
       }
     },
 
     addRole(newPerson) {
-      this.get('store').createRecord('people-role', { person: newPerson });
-    },
+      this.get("store").createRecord("people-role", { person: newPerson });
+    }
   }
 });
