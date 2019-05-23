@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe ExpertiseCategoriesController do
-  before { auth(:ken) }
 
   describe 'GET index' do
     it 'returns all expertise categories for discipline' do
@@ -62,7 +61,7 @@ describe ExpertiseCategoriesController do
       expect(ExpertiseCategory.exists?(expertise_category.id)).to be false
     end
   end
-  
+
   private
 
   def update_params(object_id, updated_attributes)

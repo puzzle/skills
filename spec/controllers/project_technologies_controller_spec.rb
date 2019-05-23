@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe ProjectTechnologiesController do
-  before { auth(:ken) }
 
   describe 'GET index' do
     it 'returns all project_technology' do

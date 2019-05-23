@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe ExpertiseTopicsController do
-  before { auth(:ken) }
 
   describe 'GET index' do
     it 'returns all expertise_topics for given category' do
@@ -61,7 +60,7 @@ describe ExpertiseTopicsController do
       expect(ExpertiseTopic.exists?(expertise_topic.id)).to be false
     end
   end
-  
+
   private
 
   def create_params(object, parent_id)

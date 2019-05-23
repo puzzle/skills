@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe EmployeeQuantitiesController do
-  before { auth(:ken) }
 
   describe 'GET index' do
     it 'returns all employee quantities' do
