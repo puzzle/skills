@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe PeopleController do
   describe 'PeopleController' do
-    before { auth(:ken) }
     before { load_pictures }
 
     describe 'Export person as odt' do
@@ -161,8 +160,8 @@ describe PeopleController do
                    email: 'test@example.com',
                    department: '/sys'
                    }
-        
-        relationships = { 
+
+        relationships = {
           company: { data: { id: company.id, type: 'companies' }},
         }
 
@@ -174,7 +173,7 @@ describe PeopleController do
           }
         }
 
-        process :create, method: :post, params: params 
+        process :create, method: :post, params: params
 
         new_person = Person.find_by(name: 'test')
         expect(new_person).not_to eq(nil)
@@ -216,39 +215,6 @@ describe PeopleController do
         expect(LanguageSkill.exists?(person_id: bob.id)).to eq(false)
         expect(PeopleRole.exists?(person_id: bob.id)).to eq(false)
       end
-    end
-  end
-
-  describe 'authentication' do
-    it 'renders unauthorized without headers' do
-      process :index, method: :get
-      expect(response.status).to eq(401)
-    end
-
-    it 'render unauthorized if user does not exists' do
-      @request.headers['ldap-uid'] = 0o000
-      @request.headers['api-token'] = 'test'
-      process :index, method: :get
-
-      expect(response.status).to eq(401)
-    end
-
-    it 'render unauthorized if api_token doesnt match' do
-      @request.headers['ldap-uid'] = users(:ken).ldap_uid
-      @request.headers['api-token'] = 'wrong token'
-      process :index, method: :get
-
-      expect(response.status).to eq(401)
-    end
-
-    it 'does nothing if api_token is correct' do
-      ken = users(:ken)
-      @request.headers['ldap-uid'] = ken.ldap_uid
-      @request.headers['api-token'] = ken.api_token
-      process :index, method: :get
-
-
-      expect(response.status).to eq(200)
     end
   end
 

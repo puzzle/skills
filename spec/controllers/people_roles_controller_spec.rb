@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe PeopleRolesController do
-  before { auth(:ken) }
 
   describe 'GET index' do
     it 'returns all people_roles' do
@@ -81,7 +80,7 @@ describe PeopleRolesController do
   def bob
     @bob ||= people(:bob)
   end
-  
+
   def role
     @role ||= roles('software-engineer')
   end

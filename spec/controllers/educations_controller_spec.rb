@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe EducationsController, type: :controller do
-  before { auth(:ken) }
 
   describe 'GET index' do
     it 'returns all educations' do

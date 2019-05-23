@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe ExpertiseTopicSkillValuesController do
-  before { auth(:ken) }
 
   describe 'GET index' do
     it 'returns all expertise_topic_skill_value_skill_values for given params' do

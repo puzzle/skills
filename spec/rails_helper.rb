@@ -40,8 +40,6 @@ RSpec.configure do |config|
     self.class.fixtures :all
   end
 
-  config.infer_spec_type_from_file_location!
-
   config.include(JsonMacros, type: :controller)
   config.include(JsonAssertion, type: :controller)
   config.include(ControllerHelpers, type: :controller)

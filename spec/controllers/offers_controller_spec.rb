@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe OffersController do
-  before { auth(:ken) }
 
   describe 'GET index' do
     it 'returns all offers' do

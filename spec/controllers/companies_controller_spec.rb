@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe CompaniesController do
   describe 'CompaniesController' do
-    before { auth(:ken) }
 
     describe 'GET index' do
       it 'returns all companies without nested models without any filter' do
@@ -81,7 +80,7 @@ describe CompaniesController do
         expect(Location.exists?(company_id: firma.id)).to eq(false)
         expect(EmployeeQuantity.exists?(company_id: firma.id)).to eq(false)
       end
-      
+
       it 'does not destroy my company' do
         firma = companies(:firma)
         process :destroy, method: :delete, params: { id: firma.id }
@@ -90,7 +89,7 @@ describe CompaniesController do
         expect(Location.exists?(company_id: firma.id)).to eq(true)
         expect(EmployeeQuantity.exists?(company_id: firma.id)).to eq(true)
       end
-    end   
+    end
   end
 
   private

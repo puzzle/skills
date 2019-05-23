@@ -1,6 +1,5 @@
 require 'rails_helper'
 describe LanguageSkillsController, type: :controller do
-  before { auth(:ken) }
 
   describe 'GET show' do
     it 'returns language_skill' do

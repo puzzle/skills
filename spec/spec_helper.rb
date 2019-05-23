@@ -19,11 +19,16 @@
 
 require 'simplecov'
 require 'simplecov-rcov'
+require 'support/keycloak_helpers'
 SimpleCov.start
 SimpleCov.coverage_dir 'spec/coverage'
 SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
 
 RSpec.configure do |config|
+
+  config.before(:suite) do
+    $private_key = OpenSSL::PKey::RSA.generate(1024)
+  end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe LocationsController do
-  before { auth(:ken) }
 
   describe 'GET index' do
     it 'returns all locations' do

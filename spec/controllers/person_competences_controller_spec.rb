@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe PersonCompetencesController do
-  before { auth(:ken) }
 
   describe 'GET index' do
     it 'returns all person_competences' do
