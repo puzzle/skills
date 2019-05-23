@@ -26,4 +26,23 @@ describe 'Keycloak' do
     get '/api/companies', :params => '', :headers => headers
     expect(response.status).to eq(200)
   end
+
+  it 'fails to access skills without the admin role' do
+    headers = {
+      'ACCEPT' => 'application/json',
+      'Authorization' => "Bearer #{jwt}"
+     }
+    get '/api/skills', :params => '', :headers => headers
+    expect(response.status).to eq(401)
+  end
+
+  it 'succeeds to access skills with the admin role' do
+    headers = {
+      'ACCEPT' => 'application/json',
+      'Authorization' => "Bearer #{jwt}"
+     }
+    SkillsController.any_instance.stub(:has_admin_flag?).and_return(true)
+    get '/api/skills', :params => '', :headers => headers
+    expect(response.status).to eq(200)
+  end
 end
