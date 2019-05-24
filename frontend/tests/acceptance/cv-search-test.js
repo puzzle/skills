@@ -1,14 +1,10 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'frontend/tests/helpers/module-for-acceptance';
-import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
+
 import page from 'frontend/tests/pages/cv-search';
 
 moduleForAcceptance('Acceptance | cv search', {
   beforeEach() {
-    authenticateSession(this.application, {
-      ldap_uid: 'development_user',
-      token: '1234'
-    });
   }
 });
 

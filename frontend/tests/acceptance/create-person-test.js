@@ -1,6 +1,6 @@
 import { test, skip } from 'qunit';
 import moduleForAcceptance from 'frontend/tests/helpers/module-for-acceptance';
-import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
+
 import page from 'frontend/tests/pages/people-new';
 import { openDatepicker } from 'ember-pikaday/helpers/pikaday';
 import $ from 'jquery';
@@ -12,11 +12,6 @@ moduleForAcceptance('Acceptance | create person');
    would run this test locally but put it back on skip when pushing to Github */
 skip('creating a new person', async function(assert) {
   assert.expect(13);
-
-  authenticateSession(this.application, {
-    ldap_uid: 'development_user',
-    token: '1234'
-  });
 
   // Visits person/new
   await page.newPersonPage.visit();
@@ -69,11 +64,6 @@ skip('creating a new person', async function(assert) {
 
 test('creating an empty new person', async function(assert) {
   assert.expect(2);
-
-  authenticateSession(this.application, {
-    ldap_uid: 'development_user',
-    token: '1234'
-  });
 
   await page.newPersonPage.visit();
 

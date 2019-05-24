@@ -5,6 +5,7 @@ class SkillsController < CrudController
   def authorize_admin
     return if Rails.env.development? && ENV['ENABLE_AUTH'].blank?
     return if ENV['DISABLE_AUTH'].present?
+    return if Rails.env.test?
 
     return if has_admin_flag?
 

@@ -1,17 +1,10 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'frontend/tests/helpers/module-for-acceptance';
-import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
+
 import applicationPage from 'frontend/tests/pages/application';
 import page from 'frontend/tests/pages/location-delete';
 
-moduleForAcceptance('Acceptance | delete location', {
-  beforeEach() {
-    authenticateSession(this.application, {
-      ldap_uid: 'development_user',
-      token: '1234'
-    });
-  }
-});
+moduleForAcceptance('Acceptance | delete location', {});
 
 test('submit delete location', async function(assert) {
   assert.expect(11);

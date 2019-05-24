@@ -1,6 +1,6 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'frontend/tests/helpers/module-for-acceptance';
-import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
+
 
 import page from 'frontend/tests/pages/company-new';
 import editPage from 'frontend/tests/pages/company-edit';
@@ -9,11 +9,6 @@ moduleForAcceptance('Acceptance | create company');
 
 test('creating a new company with location and employee quantity', async function(assert) {
   assert.expect(15);
-
-  authenticateSession(this.application, {
-    ldap_uid: 'development_user',
-    token: '1234'
-  });
 
   await page.visit();
 

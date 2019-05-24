@@ -10,7 +10,7 @@ export default Component.extend({
   download: service(),
   session: service('keycloak-session'),
 
-  picturePath: computed('person.picturePath', function(){
+  picturePath: computed('person.picturePath', function() {
     if (this.get('person.picturePath')) {
       let path = this.get('person.picturePath') + "&authorizationToken=" + this.get('session.token')
       return path

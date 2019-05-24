@@ -1,18 +1,11 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'frontend/tests/helpers/module-for-acceptance';
-import { authenticateSession } from 'frontend/tests/helpers/ember-simple-auth';
+
 
 import applicationPage from 'frontend/tests/pages/application';
 import page from 'frontend/tests/pages/company-edit';
 
-moduleForAcceptance('Acceptance | edit company', {
-  beforeEach() {
-    authenticateSession(this.application, {
-      ldap_uid: 'development_user',
-      token: '1234'
-    });
-  }
-});
+moduleForAcceptance('Acceptance | edit company', {});
 
 test('/company/:id edit company data', async function(assert) {
   assert.expect(10);
