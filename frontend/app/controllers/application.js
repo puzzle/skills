@@ -1,9 +1,11 @@
 import { inject as service } from "@ember/service";
 import Controller from "@ember/controller";
+import ENV from "../config/environment";
 
 export default Controller.extend({
   session: service("session"),
   router: service(),
+  helplink: ENV.helplink,
 
   actions: {
     transitionToProfile() {

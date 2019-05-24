@@ -7,6 +7,7 @@ module.exports = function(environment) {
     environment,
     rootURL: "/",
     locationType: "auto",
+    helplink: process.env.HELPLINK,
     EmberENV: {
       FEATURES: {
         "ds-extended-errors": true
