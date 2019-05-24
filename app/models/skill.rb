@@ -13,8 +13,8 @@
 #
 
 class Skill < ApplicationRecord
-  has_and_belongs_to_many :people
   has_many :people_skills, dependent: :destroy
+  has_many :people, through: :people_skills
   belongs_to :category
   has_one :parent_category, through: :category, source: :parent
 

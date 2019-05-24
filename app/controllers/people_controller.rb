@@ -21,7 +21,16 @@ class PeopleController < CrudController
   end
 
   def show
-    format_odt? ? export : super
+    if format_odt?
+      export
+      return
+    end
+
+    @person = Person.includes(people_roles: :role,
+                              people_skills: {
+                                skill: [:people, :category, :parent_category]
+                              }).find(params.fetch(:id))
+    super
   end
 
   def update_picture
@@ -57,6 +66,10 @@ class PeopleController < CrudController
   end
 
   private
+
+  def fetch_entries
+    Person.includes(:company).list
+  end
 
   def person
     @person ||= Person.find(params[:person_id])

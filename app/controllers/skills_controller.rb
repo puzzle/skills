@@ -11,11 +11,14 @@ class SkillsController < CrudController
   end
 
   def unrated_by_person
-    person_id = params[:person_id]
-    if person_id.present?
-      entries = Skill.default_set
-                     .where.not(id: PeopleSkill.where(person_id: person_id)
-                                               .pluck(:skill_id))
+    if params[:person_id].present?
+      relations = [
+        { category: [:children, :parent] },
+        { parent_category: [:children, :parent] },
+        :people, people_skills: :person
+      ]
+      entries = Skill.includes(relations).default_set.where
+                     .not(id: PeopleSkill.where(person_id: params[:person_id]).pluck(:skill_id))
     end
     render json: (entries || fetch_entries), each_serializer: SkillSerializer, include: '*'
   end
@@ -23,10 +26,13 @@ class SkillsController < CrudController
   private
 
   def fetch_entries
-    SkillsFilter.new(super,
-                     params[:category],
-                     params[:title],
-                     params[:defaultSet]).scope
+    if params[:format]
+      entries = Skill.includes(:people, :parent_category, category: :parent).list
+    else
+      entries = Skill.includes(:people, parent_category: [:children, :parent],
+                               category: [:children, :parent]).list
+    end
+    SkillsFilter.new(entries, params[:category], params[:title], params[:defaultSet]).scope
   end
 
   def export

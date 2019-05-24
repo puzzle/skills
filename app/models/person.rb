@@ -33,11 +33,11 @@ class Person < ApplicationRecord
   has_many :educations, dependent: :destroy
   has_many :expertise_topic_skill_values, dependent: :destroy
   has_many :expertise_topics, through: :expertise_topic_skill_values
-  has_and_belongs_to_many :roles
-  has_and_belongs_to_many :skills
   has_many :language_skills, dependent: :delete_all
   has_many :people_roles, dependent: :destroy
   has_many :people_skills, dependent: :destroy
+  has_many :skills, through: :people_skills
+  has_many :roles, through: :people_roles
 
   validates :birthdate, :location, :name, :nationality,
             :title, :marital_status, presence: true

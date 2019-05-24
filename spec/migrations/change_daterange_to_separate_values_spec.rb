@@ -10,9 +10,13 @@ describe ChangeDaterangeToSeparateValues do
 
   def silent
     verbose = ActiveRecord::Migration.verbose = false
+    # disabling Bullet here because we
+    # enabled it to late to actually improve this migration
+    Bullet.enable = false
 
     yield
 
+    Bullet.enable = true
     ActiveRecord::Migration.verbose = verbose
   end
 
