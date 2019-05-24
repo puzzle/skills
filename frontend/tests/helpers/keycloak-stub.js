@@ -30,5 +30,4 @@ export default Service.extend({
   updateToken() {
     return new Promise((resolve, reject) => { resolve() })
   }
-
 })
