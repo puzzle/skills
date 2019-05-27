@@ -1,6 +1,7 @@
 import Component from "@ember/component";
 import { inject } from "@ember/service";
 import { computed } from "@ember/object";
+import { getOwner } from "@ember/application";
 
 export default Component.extend({
   store: inject(),
@@ -130,6 +131,12 @@ export default Component.extend({
           this.get("notify").success("Member-Skill wurde hinzugefügt!")
         )
         .then(() => this.send("abortNew"))
+        .then(() => {
+          // reload model hook with data for member skillset
+          getOwner(this)
+            .lookup("route:person.skills")
+            .doRefresh();
+        })
         .catch(() => {
           this.set("newPeopleSkill.person", null);
           this.get("newPeopleSkill.errors").forEach(

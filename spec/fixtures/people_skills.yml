@@ -26,3 +26,11 @@ alice_junit:
   interest: 1
   certificate: true
   core_competence: false
+
+alice_rails:
+  skill: rails
+  person: alice
+  level: 0
+  interest: 0
+  certificate: false
+  core_competence: false

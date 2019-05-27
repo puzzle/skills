@@ -1,6 +1,7 @@
 import { inject as service } from "@ember/service";
 import Component from "@ember/component";
 import { observer } from "@ember/object";
+import $ from "jquery";
 
 export default Component.extend({
   ajax: service(),
@@ -27,6 +28,15 @@ export default Component.extend({
       .then(response => {
         this.set("unratedSkillsAmount", response.data.length);
       });
+  },
+
+  didRender() {
+    const currentURL = this.get("router.currentURL");
+    if (currentURL.includes("skills")) {
+      $("#peopleSkillsLink").addClass("active");
+    } else {
+      $("#peopleSkillsLink").removeClass("active");
+    }
   },
 
   actions: {

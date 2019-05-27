@@ -325,6 +325,10 @@ div.row-fluid.person-list > div.span10 > div.container-fluid.round-border {
   background: #fff !important;
 }
 
+#skills-list-rated-filter button.btn.active {
+  background: #fff !important;
+}
+
 /* category Filter */
 #category-filter-dropdown {
   width: 60%;
@@ -1451,4 +1455,15 @@ div.content-input {
   color: #2ec02e;
   font-weight: 900;
   margin-left: 5px;
+}
+
+.filter-buttons::after,
+.filter-buttons:visited,
+.filter-buttons:active,
+.filter-buttons:focus {
+  box-shadow: none;
+}
+
+.filter-buttons:focus {
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.24), 0 1px 1px 0 rgba(0, 0, 0, 0.19) !important;
 }

@@ -26,6 +26,7 @@ test("creating a new peopleSkill", async function(assert) {
   await page.newPeopleSkillModal.openModalButton();
   await selectChoose("#people-skill-new-skill", "Bash");
   $(".people-skill-new-dropdowns .slider-tick:eq(2)").mousedown();
+  await page.newPeopleSkillModal.levelButtons.objectAt(1).clickOn();
   await page.newPeopleSkillModal.interestButtons.objectAt(3).clickOn();
   await page.newPeopleSkillModal.certificateToggle();
 
@@ -35,6 +36,7 @@ test("creating a new peopleSkill", async function(assert) {
     .toArray()
     .map(name => name.text);
   assert.ok(names.includes("Bash"));
+
   let levels = page.peopleSkillsTable.levels.toArray().map(name => name.text);
-  assert.ok(levels.map(name => name.includes("Trainee")).includes(true));
+  assert.ok(levels.includes("Trainee"));
 });

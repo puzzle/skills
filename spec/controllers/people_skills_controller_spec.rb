@@ -30,7 +30,7 @@ describe PeopleSkillsController do
 
         skills = json['data']
 
-        expect(skills.count).to eq(1)
+        expect(skills.count).to eq(2)
         skill_attrs = skills.first['attributes']
         expect(skill_attrs.count).to eq (6)
         expect(skill_attrs['skill_id']).to eq (rails.id)

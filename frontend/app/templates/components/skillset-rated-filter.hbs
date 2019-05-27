@@ -1,0 +1,13 @@
+<div id="skills-list-rated-filter">
+  <div class="btn-group" role="group">
+    {{#link-to "person.skills" (query-params personId=personId rated="") tagName="button" elementId="memberSkillsetAll" classNames="btn border border-right-0 filter-buttons"}}
+      Alle
+    {{/link-to}}
+    {{#link-to "person.skills" (query-params personId=personId rated="true") tagName="button" elementId="memberSkillsetRated" classNames="btn border filter-buttons"}}
+      Bewertet
+    {{/link-to}}
+    {{#link-to "person.skills" (query-params personId=personId rated="false") tagName="button" elementId="memberSkillsetUnrated" classNames="btn border border-left-0 filter-buttons"}}
+      Unbewertet
+    {{/link-to}}
+  </div>
+</div>

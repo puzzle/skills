@@ -38,7 +38,7 @@ export default create({
 
   peopleSkillsTable: {
     skillNames: collection(".people-skill-skillname"),
-    levels: collection(".people-skill-level"),
+    levels: collection(".level-title"),
     interests: collection(".people-skill-interest")
   }
 });

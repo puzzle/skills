@@ -1,12 +1,12 @@
 <div id="skills-list-defaultSet-filter">
   <div class="btn-group" role="group">
-    {{#link-to "skills" (query-params defaultSet="") tagName="button" elementId="defaultFilterAll" classNames="btn border border-right-0"}}
+    {{#link-to "skills" (query-params defaultSet="") tagName="button" elementId="defaultFilterAll" classNames="btn border border-right-0 filter-buttons"}}
       Alle
     {{/link-to}}
-    {{#link-to "skills" (query-params defaultSet="new") tagName="button" elementId="defaultFilterNew" classNames="btn border"}}
+    {{#link-to "skills" (query-params defaultSet="new") tagName="button" elementId="defaultFilterNew" classNames="btn border filter-buttons"}}
       Neue
     {{/link-to}}
-    {{#link-to "skills" (query-params defaultSet="true") tagName="button" elementId="defaultFilterDefault" classNames="btn border border-left-0"}}
+    {{#link-to "skills" (query-params defaultSet="true") tagName="button" elementId="defaultFilterDefault" classNames="btn border border-left-0 filter-buttons"}}
       Default
     {{/link-to}}
   </div>

@@ -45,6 +45,8 @@ person:
     roles: Rollen
 peopleSkill:
     skill: Skill
+    interest: Interesse
+    level: Level
 expertise-topic-skill-value:
     yearsOfExperience: Jahre
     numberOfProjects: Projekte

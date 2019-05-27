@@ -1,11 +1,13 @@
 import Component from "@ember/component";
 import { inject } from "@ember/service";
 import { computed } from "@ember/object";
+import { getOwner } from "@ember/application";
 
 export default Component.extend({
   store: inject(),
   ajax: inject(),
   intl: inject(),
+  router: inject(),
 
   didReceiveAttrs() {
     this._super(...arguments);
@@ -55,8 +57,13 @@ export default Component.extend({
         "newPeopleSkills",
         this.get("newPeopleSkills").removeObject(peopleSkill)
       );
-      peopleSkill.save();
-      this.notifyPropertyChange("newPeopleSkills");
+      peopleSkill.save().then(() => {
+        this.notifyPropertyChange("newPeopleSkills");
+        // reload model hook with data for member skillset
+        getOwner(this)
+          .lookup("route:person.skills")
+          .doRefresh();
+      });
     },
 
     async submit(person) {
@@ -81,6 +88,12 @@ export default Component.extend({
           })
           .then(() => window.scroll({ top: 0, behavior: "smooth" }))
           .then(() => this.get("notify").success("Successfully saved!"))
+          .then(() => {
+            // reload model hook with data for member skillset
+            getOwner(this)
+              .lookup("route:person.skills")
+              .doRefresh();
+          })
           .catch(() => {
             let errors = peopleSkill.get("errors").slice();
             peopleSkill.set("person", null);

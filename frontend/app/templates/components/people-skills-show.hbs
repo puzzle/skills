@@ -28,14 +28,14 @@
 {{/nav-sidebar}}
 <div class="col-sm-10 float-right position-relative">
   {{new-people-skills-show person=person skills=skills}}
-  {{people-skill-new peopleSkills=person.peopleSkills
+  {{people-skill-new peopleSkills=peopleSkills
                      childCategories=childCategories
                      person=person}}
   <div id="peopleSkillsHeader" class="pt-3 pb-5">
     <div class="card-header bg-info">
       <div class="row">
         <div class="col-sm-6">
-          <a class="card-link text-dark header-text">Skills ({{amountOfPeopleSkills}})</a>
+          <a class="card-link text-dark header-text">Skills ({{peopleSkills.length}})</a>
         </div>
         <div class="col-sm-6 text-right d-block">
           <a class="card-link text-dark" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
@@ -46,7 +46,12 @@
     </div>
     <div id="collapseTwo" class="collapse show border border-info rounded-bottom">
       <div class="card-body d-flex flex-column">
-        {{#if person.peopleSkills}}
+        <div class="row mb-3">
+          <div class="col-sm-10">
+            {{skillset-rated-filter personId=person.id}}
+          </div>
+        </div>
+        {{#if peopleSkills}}
           {{#each skillset as |parentCategory|}}
             <div id="parentCategory-{{parentCategory.id}}" class="row pb-2">
               <div class="col">

@@ -23,7 +23,8 @@ class PeopleSkillsController < CrudController
                                   :people, people_skills: :person
                                ])
     if params.key?(:person_id)
-      base.where(person_id: params[:person_id])
+      people_skills = base.where(person_id: params[:person_id])
+      PeopleSkillsFilter.new(people_skills, params[:rated]).scope
     else params.key?(:skill_id)
       base.where(skill_id: params[:skill_id])
     end
@@ -31,7 +32,6 @@ class PeopleSkillsController < CrudController
 
   def export
     entries = PeopleSkill.where(person_id: params[:person_id])
-
 
     send_data Csv::PeopleSkills.new(entries).export,
       type: :csv,

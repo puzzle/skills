@@ -33,6 +33,7 @@ export default Component.extend({
   peopleSkillsChanged: observer(
     "person.peopleSkills",
     "person.peopleSkills.length",
+    "peopleSkills",
     function() {
       this.get("person.peopleSkills").then(() => {
         this.setMemberSkillset();
@@ -65,7 +66,7 @@ export default Component.extend({
     let hash = [];
     // We require this hash because we want to order these entries and because the length
     // of the categories would not be possible to get by iterating over the models directly
-    let peopleSkills = this.get("person.peopleSkills");
+    let peopleSkills = this.get("peopleSkills");
     this.get("parentCategories").forEach(parentCategory => {
       let childCategoriesWithSkills = parentCategory
         .get("children")
@@ -147,7 +148,7 @@ export default Component.extend({
     },
 
     abortEdit() {
-      let peopleSkills = this.get("person.peopleSkills").toArray();
+      let peopleSkills = this.get("peopleSkills").toArray();
       peopleSkills.forEach(peopleSkill => {
         if (peopleSkill.get("hasDirtyAttributes")) {
           peopleSkill.rollbackAttributes();
