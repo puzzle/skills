@@ -121,6 +121,28 @@ hr {
   visibility: hidden;
 }
 
+.badge-pill {
+  position: relative;
+  top: -0.6em;
+}
+
+#scrollToTopButton {
+  position: fixed;
+  bottom: 80px;
+  right: 80px;
+  visibility: hidden;
+}
+
+#scrollToTopButton button {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+#form-search {
+  margin: 0px;
+}
+
 #scrollToTopButton button {
   border-radius: 50%;
   width: 40px;

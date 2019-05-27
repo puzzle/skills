@@ -1,10 +1,33 @@
 import { inject as service } from "@ember/service";
 import Component from "@ember/component";
+import { observer } from "@ember/object";
 
 export default Component.extend({
   ajax: service(),
   router: service(),
   download: service(),
+  store: service(),
+
+  init() {
+    this._super(...arguments);
+    this.refreshUnratedSkillsAmount();
+  },
+
+  peopleSkillsChanged: observer("person.peopleSkills.@each.id", function() {
+    this.refreshUnratedSkillsAmount();
+  }),
+
+  refreshUnratedSkillsAmount() {
+    this.get("ajax")
+      .request("/skills/unrated_by_person", {
+        data: {
+          person_id: this.get("person.id")
+        }
+      })
+      .then(response => {
+        this.set("unratedSkillsAmount", response.data.length);
+      });
+  },
 
   actions: {
     startExport(personId, e) {

@@ -79,9 +79,6 @@ describe SkillsController do
         new_skill_attrs = skills.first['attributes']
 
         expect(new_skill_attrs['title']).to eq ('Rails')
-        expect(new_skill_attrs['radar']).to eq ('adopt')
-        expect(new_skill_attrs['default_set']).to eq (true)
-        expect(skills(:rails).default_set).to eq (true)
       end
 
       it 'returns all skills if no person_id is given' do

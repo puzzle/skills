@@ -12,15 +12,12 @@ class SkillsController < CrudController
 
   def unrated_by_person
     if params[:person_id].present?
-      relations = [
-        { category: [:children, :parent] },
-        { parent_category: [:children, :parent] },
-        :people, people_skills: :person
-      ]
-      entries = Skill.includes(relations).default_set.where
+      entries = Skill.default_set.where
                      .not(id: PeopleSkill.where(person_id: params[:person_id]).pluck(:skill_id))
+    else
+      entries = Skill.list 
     end
-    render json: (entries || fetch_entries), each_serializer: SkillSerializer, include: '*'
+    render json: entries, each_serializer: SkillMinimalSerializer, include: '*'
   end
 
   private
