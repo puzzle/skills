@@ -1,7 +1,6 @@
 module KeycloakTools
   def authorize_admin
     return if Rails.env.development? && ENV['ENABLE_AUTH'].blank?
-    return if ENV['DISABLE_AUTH'].present?
     return if Rails.env.test? && ENV['FRONTEND_TESTS'] == '1'
 
     return if has_admin_flag?
