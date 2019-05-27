@@ -20,6 +20,15 @@ export default Component.extend({
 
     toggleSkillShow(skill) {
       this.set("currentShowSkill", skill);
+    },
+
+    refreshList(skill) {
+      this.set(
+        "skills",
+        this.get("skills")
+          .toArray()
+          .addObject(skill)
+      );
     }
   }
 });

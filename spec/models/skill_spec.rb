@@ -29,6 +29,25 @@ describe Skill do
       skill.valid?
 
       expect(skill.errors[:title].first).to eq('muss ausgefüllt werden')
+      expect(skill.errors[:category].first).to eq('muss ausgefüllt werden')
+    end
+
+    it 'should not have same named skills with the same category' do
+      skill = Skill.new
+      skill.title = 'Rails'
+      skill.category = Category.all[3]
+      skill.valid?
+
+      expect(skill.errors[:base].first).to eq('Dieser Skill existiert bereits')
+    end
+    
+    it 'could have same named skills with different category' do
+      skill = Skill.new
+      skill.title = 'Rails'
+      skill.category = Category.all[1]
+      skill.valid?
+
+      expect(skill.errors[:base].first).to eq(nil)
     end
   end
 end

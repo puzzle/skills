@@ -1,0 +1,88 @@
+<a id="new-skill-link" class="edit-buttons" role="button" data-toggle="modal" data-target="#skill-new-modal">
+  <i class="fa fa-plus" aria-hidden="true"></i> Neuer Skill
+</a>
+
+<div class="modal fade" id="skill-new-modal" tabindex="-1" role="dialog" aria-labelledby="skill-new-modal-label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="skill-new-modal-label">Neuer Skill erstellen</h5>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row my-3">
+            <div class="col-md-3">Titel</div>
+            <div class="col-md-9">
+              {{input id=(concat elementId '-new-title') value=newSkill.title class="form-control" name="new-skill-title"}}
+            </div>
+          </div>
+          <div class="row my-3">
+            <div class="col-md-3">Kategorie</div>
+            <div class="col-md-9 people-skill-new-dropdowns">
+              {{#power-select
+                triggerId="skill-new-category"
+                renderInPlace=true
+                class="w-100"
+                dropdownClass="w-100"
+                options=childCategories
+                matcher=categorySearchMatcher
+                disabled=(eq newSkillSelected false)
+                selected=selectedCategory
+                onchange=(action 'setCategory')
+                onblur=(action "handleBlur")
+                onfocus=(action "handleFocus")
+                onkeydown=(action "setWithKey" 'setCategory')
+                as |category|
+              }}
+                {{category.parent.title}} - {{category.title}}
+              {{/power-select}}
+            </div>
+          </div>
+          <div class="row my-3">
+            <div class="col-md-3">Radar</div>
+            <div class="col-md-9 people-skill-new-dropdowns">
+              {{#power-select
+                triggerId="skill-new-radar"
+                renderInPlace=true
+                class="w-100"
+                dropdownClass="w-100"
+                options=radarOptions
+                selected=newSkill.radar
+                onchange=(action 'setRadar')
+                onblur=(action "handleBlur")
+                onfocus=(action "handleFocus")
+                onkeydown=(action "setWithKey" 'setRadar')
+                as |radar|
+              }}
+                {{radar}}
+              {{/power-select}}
+            </div>
+          </div>
+          <div class="row my-3">
+            <div class="col-md-3">Portfolio</div>
+            <div class="col-md-9 people-skill-new-dropdowns">
+              {{#power-select
+                triggerId="skill-new-portfolio"
+                renderInPlace=true
+                class="w-100"
+                dropdownClass="w-100"
+                options=portfolioOptions
+                selected=newSkill.portfolio
+                onchange=(action 'setPortfolio')
+                onfocus=(action "handleFocus")
+                onkeydown=(action "setWithKey" 'setPortfolio')
+                as |portfolio|
+              }}
+                {{portfolio}}
+              {{/power-select}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" onclick={{action 'abortNew'}} class="btn btn-secondary">Abbrechen</button>
+        <button id="skill-new-submit-button" type="button" onclick={{action 'submit'}} class="btn btn-primary">Speichern</button>
+      </div>
+    </div>
+  </div>
+</div>

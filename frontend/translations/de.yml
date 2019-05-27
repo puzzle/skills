@@ -47,6 +47,9 @@ peopleSkill:
     skill: Skill
     interest: Interesse
     level: Level
+skill:
+    title: Skill
+    category: Kategorie
 expertise-topic-skill-value:
     yearsOfExperience: Jahre
     numberOfProjects: Projekte

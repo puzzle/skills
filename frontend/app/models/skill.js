@@ -1,6 +1,6 @@
 import DS from "ember-data";
 
-export default DS.Model.extend({
+const Skill = DS.Model.extend({
   title: DS.attr("string"),
   radar: DS.attr("string"),
   portfolio: DS.attr("string"),
@@ -11,3 +11,16 @@ export default DS.Model.extend({
   category: DS.belongsTo("category", { inverse: "skills" }),
   parentCategory: DS.belongsTo("category", { inverse: "childrenSkills" })
 });
+
+Skill.reopenClass({
+  RADAR_OPTIONS: {
+    hold: "hold",
+    adopt: "adopt",
+    trial: "trial",
+    divorced: "assess"
+  },
+
+  PORTFOLIO_OPTIONS: { active: "aktiv", passive: "passiv", reduce: "abbauen" }
+});
+
+export default Skill;

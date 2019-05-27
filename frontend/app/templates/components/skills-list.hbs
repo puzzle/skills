@@ -3,26 +3,20 @@
   <div class="col-sm-12 search-skill-field">
     {{list-filter}}
   </div>
-  <div class="col-sm-4">
+  <div class="col-sm-3">
     {{skillset-defaultset-filter}}
   </div>
-  <div class="col-sm-4">
+  <div class="col-sm-5">
     {{skillset-category-filter}}
   </div>
-  <div class="col-sm-4">
+  <div class="col-sm-1">
     <a onclick={{pipe (action 'exportSkillsetOdt')}} class="edit-buttons" data-toggle="tooltip" data-placement="top" title="Exportiert das gesamte Skillset">
-      <i class="fa fa-download" aria-hidden="true">
-      </i>
+      <i class="fa fa-download" aria-hidden="true"></i>
       Export
     </a>
-    {{!-- Insert correct link-to route once finished --}}
-    {{#link-to "skills"}}
-      <a class="float-right mr-5">
-        <i class="fa fa-plus-square" aria-hidden="true">
-        </i>
-        Neuer Skill
-      </a>
-    {{/link-to}}
+  </div>
+  <div class="col-sm-2">
+    {{skill-new refreshList=(action 'refreshList')}}
   </div>
 </div>
 <div class="mb-end">

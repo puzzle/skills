@@ -12,6 +12,10 @@ const storeStub = Service.extend({
       "System Engineer",
       "Delivery"
     ]);
+  },
+
+  createRecord(model) {
+    return null;
   }
 });
 
@@ -28,7 +32,7 @@ module("Integration | Component | skills-list", function(hooks) {
     let text = this.$().text();
 
     assert.ok(text.includes("Export"));
-    assert.ok(text.includes("Neuer Skill"));
+    assert.ok(text.includes("Neuer Skill erstellen"));
     assert.ok(text.includes("Skill"));
     assert.ok(text.includes("Radar"));
     assert.ok(text.includes("Members"));
