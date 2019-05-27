@@ -33,8 +33,11 @@ export default Component.extend({
     startExport(personId, e) {
       e.preventDefault();
       const currentURL = this.get("router.currentURL");
-      let format = currentURL.includes("skills") ? "csv" : "odt";
-      let url = `/api/${currentURL}.${format}`;
+      url = currentURL.includes("skills")
+        ? "people_skills.csv?person_id=" + this.get("person.id")
+        : "person/" + this.get("person.id") + "odt";
+
+      let url = `/api/${url}`;
       this.get("download").file(url);
     },
 
