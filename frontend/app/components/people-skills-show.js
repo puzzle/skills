@@ -31,7 +31,10 @@ export default Component.extend({
   setMemberSkillset() {
     let categories = this.get("store").findAll("category");
     categories.then(categories => {
-      this.set("parentCategories", categories.filter(c => c.parent_id == null));
+      this.set(
+        "parentCategories",
+        categories.filter(c => c.get("parent.content") == null)
+      );
       let memberSkillset = this.refreshMemberSkillset();
       this.set("skillset", memberSkillset);
     });
