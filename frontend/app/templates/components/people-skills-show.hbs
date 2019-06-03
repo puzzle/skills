@@ -1,68 +1,88 @@
-{{new-people-skills-show person=person skills=skills}}
-<div id="peopleSkillsHeader" class="pt-3 pb-5">
-  <div class="card-header bg-info">
-    <div class="row">
-      <div class="col-sm-6">
-        <a class="card-link text-dark header-text">Skills ({{amountOfPeopleSkills}})</a>
-      </div>
-      <div class="col-sm-6 text-right d-block">
-        <a class="card-link text-dark" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-          <i class="fa angle"></i>
+{{#nav-sidebar items=sidebarItems}}
+  <ul class="nav flex-column mt-4">
+    {{#if peopleSkillsEditing}}
+      <li class="d-flex flex-column nav-link">
+        <p><i class="fa fa-pencil"></i> Bearbeiten</p>
+      </li>
+      <li class="d-flex flex-column nav-link">
+        <button onclick={{action 'submit' person}} role="button" class="btn btn-primary" id="submit-education-button">Speichern</button>
+      </li>
+      <li class="nav-link">
+        <button onclick={{action 'abortEdit'}} role="button" class="btn abort-button w-100">Abbrechen</button>
+      </li>
+    {{else}}
+      <li class="nav-item">
+        <a class="nav-link edit-buttons" role="button" onclick={{action (toggle 'peopleSkillsEditing' this)}}>
+          <i class="fa fa-pencil"></i> Bearbeiten
         </a>
+      </li>
+    {{/if}}
+  </ul>
+  <ul class="nav flex-column mt-4">
+    <li class="nav-item">
+      <a role="button" class="nav-link edit-buttons" data-toggle="modal" data-target="#people-skill-new-modal">
+        <i class="fa fa-plus" aria-hidden="true"></i> Neuer Skill hinzufügen
+      </a>
+    </li>
+  </ul>
+{{/nav-sidebar}}
+<div class="col-sm-10 float-right position-relative">
+  {{new-people-skills-show person=person skills=skills}}
+  {{people-skill-new peopleSkills=person.peopleSkills
+                     childCategories=childCategories
+                     person=person}}
+  <div id="peopleSkillsHeader" class="pt-3 pb-5">
+    <div class="card-header bg-info">
+      <div class="row">
+        <div class="col-sm-6">
+          <a class="card-link text-dark header-text">Skills ({{amountOfPeopleSkills}})</a>
+        </div>
+        <div class="col-sm-6 text-right d-block">
+          <a class="card-link text-dark" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+            <i class="fa angle"></i>
+          </a>
+        </div>
       </div>
     </div>
-  </div>
-  <div id="collapseTwo" class="collapse show border border-info rounded-bottom">
-    <div class="card-body d-flex flex-column">
-      {{people-skill-new peopleSkills=person.peopleSkills
-                         childCategories=childCategories
-                         person=person}}
-      {{#if person.peopleSkills}}
-        {{#each-in memberSkillset as |parentCategory childCategoriesWithSkills|}}
-          <div class="row pb-2">
-            <div class="col">
-              <div class="card-header bg-info">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="text-dark header-text parent-categories-text">
-                      {{parentCategory}}
+    <div id="collapseTwo" class="collapse show border border-info rounded-bottom">
+      <div class="card-body d-flex flex-column">
+        {{#if person.peopleSkills}}
+          {{#each memberSkillset as |parentCategory|}}
+            <div id="parentCategory-{{parentCategory.id}}" class="row pb-2">
+              <div class="col">
+                <div class="card-header bg-info">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="text-dark header-text parent-categories-text">
+                        {{parentCategory.title}}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              {{#each childCategoriesWithSkills as |childCategoryWithSkills|}}
-                <div class="show border border-info rounded-bottom">
-                  <div class="card-body d-flex flex-column">
-                    <h5 class="description">
-                      {{childCategoryWithSkills.[0]}}
-                      ({{childCategoryWithSkills.[1].length}})
-                    </h5>
-                    {{#each childCategoryWithSkills.[1] as |skill|}}
-                      <div class="show border border-info rounded-bottom">
-                        <div class="card-body d-flex flex-column">
-                          {{#if peopleSkillsEditing}}
-                            {{people-skill-edit peopleSkill=skill}}
-                          {{else}}
-                            {{people-skill-show peopleSkill=skill}}
-                          {{/if}}
+                {{#each parentCategory.children as |child|}}
+                  <div class="show border border-info rounded-bottom">
+                    <div class="card-body d-flex flex-column">
+                      <h5 class="description">
+                        {{child.title}}
+                        ({{child.skills.length}})
+                      </h5>
+                      {{#each child.skills as |skill|}}
+                        <div class="show border border-info rounded-bottom">
+                          <div class="card-body d-flex flex-column">
+                            {{#if peopleSkillsEditing}}
+                              {{people-skill-edit peopleSkill=skill}}
+                            {{else}}
+                              {{people-skill-show peopleSkill=skill}}
+                            {{/if}}
+                          </div>
                         </div>
-                      </div>
-                    {{/each}}
+                      {{/each}}
+                    </div>
                   </div>
-                </div>
-              {{/each}}
+                {{/each}}
+              </div>
             </div>
-          </div>
-        {{/each-in}}
-      {{/if}}
-      <div class="mt-3">
-        {{#if peopleSkillsEditing}}
-          <button onclick={{action 'submit' person}} role="button" class="btn btn-primary" id="submit-education-button">Speichern</button>
-          <button onclick={{action 'abortEdit'}} role="button" class="btn abort-button">Abbrechen</button>
-        {{else}}
-          <a class="edit-buttons" role="button" onclick={{action (toggle 'peopleSkillsEditing' this)}}>
-            <i class="fa fa-pencil"></i> Bearbeiten
-          </a>
+          {{/each}}
         {{/if}}
       </div>
     </div>
