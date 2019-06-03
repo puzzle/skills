@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe People::SkillsController do
   describe 'PeopleSkillsController' do
-    # before { auth(:ken) }
     before { load_pictures }
 
     let(:ken) { users(:ken) }
@@ -10,7 +9,7 @@ describe People::SkillsController do
     describe 'GET index' do
       it 'returns kens skills' do
         keys = %w[person_id skill_id level interest certificate core_competence]
-      
+
         process :index, method: :get, params: { type: 'Person', person_id: ken.id }
 
         skills = json['data']

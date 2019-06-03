@@ -5936,7 +5936,7 @@ ember-keyboard@^4.0.0:
     babel-plugin-transform-object-rest-spread "^6.26.0"
     ember-cli-babel "^6.6.0"
 
-ember-keycloak-auth@^0.3.0:
+ember-keycloak-auth@~0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/ember-keycloak-auth/-/ember-keycloak-auth-0.3.0.tgz#6c03ac6c0dee361709e2f9fb00f4336e301f7cce"
   integrity sha512-ysMqzLmxKtl5Y2tZbBAVWsAgEC/lT0awBaZrkW1fSdYEdo4E4D2JniAsLroWcRIBcBW6sEN45OSm8orUl+wWCQ==
