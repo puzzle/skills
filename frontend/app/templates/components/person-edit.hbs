@@ -132,7 +132,8 @@
                     <div id="date_location" class="birthdate_pikaday">
                       {{pikaday-input
                         onSelection=(action "setBirthdate")
-                        value=person.birthdate}}
+                        value=person.birthdate
+                        useUTC=true}}
                     </div>
                   </td>
                 </tr>
