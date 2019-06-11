@@ -1317,10 +1317,10 @@ div.content-input {
 }
 
 #person-sidebar li.nav-item {
-  height: 52px;
+  min-height: 52px;
 }
 
-#person-sidebar a.nav-link {
+#person-sidebar .nav-link {
   height: 100%;
   background-color: #f5f5f5;
 }

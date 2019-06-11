@@ -1,11 +1,11 @@
 import Component from "@ember/component";
-import { computed } from "@ember/object";
 import $ from "jquery";
 
 export default Component.extend({
-  myStickyOptions: computed(function() {
-    return { topSpacing: 70 };
-  }),
+  init() {
+    this._super(...arguments);
+    this.set("myStickyOptions", { topSpacing: 70 });
+  },
 
   actions: {
     scrollTo(target) {

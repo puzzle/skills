@@ -9,11 +9,31 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     this.set("peopleSkillsEditing", false);
-    this.setMemberSkillset();
+    const categories = this.get("store").findAll("category");
+    categories.then(() => {
+      this.set("categories", categories);
+      this.set(
+        "childCategories",
+        categories.filter(c => c.get("parent.content") != null)
+      );
+      this.setMemberSkillset();
+    });
   },
 
+  sidebarItems: computed("parentCategories", function() {
+    let hash = {};
+
+    if (!this.get("parentCategories")) return;
+    this.get("parentCategories").forEach(category => {
+      hash[category.get("title")] = "#parentCategory-" + category.id;
+    });
+    return hash;
+  }),
+
   peopleSkillsChanged: observer("person.peopleSkills", function() {
-    this.setMemberSkillset();
+    this.get("person.peopleSkills").then(() => {
+      this.setMemberSkillset();
+    });
   }),
 
   skills: computed(function() {
@@ -29,19 +49,18 @@ export default Component.extend({
   }),
 
   setMemberSkillset() {
-    let categories = this.get("store").findAll("category");
-    categories.then(categories => {
-      this.set(
-        "parentCategories",
-        categories.filter(c => c.get("parent.content") == null)
-      );
-      let memberSkillset = this.refreshMemberSkillset();
-      this.set("skillset", memberSkillset);
-    });
+    this.set(
+      "parentCategories",
+      this.get("categories").filter(c => c.get("parent.content") == null)
+    );
+    let memberSkillset = this.refreshMemberSkillset();
+    this.set("skillset", memberSkillset);
   },
 
   refreshMemberSkillset() {
-    let hash = {};
+    let hash = [];
+    // We require this hash because we want to order these entries and because the length
+    // of the categories would not be possible to get by iterating over the models directly
     let peopleSkills = this.get("person.peopleSkills");
     this.get("parentCategories").forEach(parentCategory => {
       let childCategoriesWithSkills = parentCategory
@@ -57,10 +76,17 @@ export default Component.extend({
               if (skillIds.includes(skillId)) return peopleSkill;
             })
             .filter(Boolean);
-          return [title, childCategorySkills];
+          return {
+            title,
+            skills: childCategorySkills
+          };
         });
       if (childCategoriesWithSkills) {
-        hash[parentCategory.get("title")] = childCategoriesWithSkills;
+        hash.addObject({
+          id: parentCategory.get("id"),
+          title: parentCategory.get("title"),
+          children: childCategoriesWithSkills
+        });
       }
     });
     return hash;
