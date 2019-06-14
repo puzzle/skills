@@ -21,7 +21,7 @@ test("filters nothing and shows every skill", async function(assert) {
 
   let names = page.indexPage.skills.skillNames.toArray().map(name => name.text);
   assert.ok(names.includes("JUnit"));
-  assert.ok(names.includes("Bash"));
+  assert.ok(names.includes("• Bash"));
   assert.ok(names.includes("Rails"));
 });
 
@@ -54,7 +54,7 @@ test("filters only defaultSet by new", async function(assert) {
   let names = page.indexPage.skills.skillNames.toArray().map(name => name.text);
   assert.notOk(names.includes("JUnit"));
   assert.notOk(names.includes("Rails"));
-  assert.ok(names.includes("Bash"));
+  assert.ok(names.includes("• Bash"));
 });
 
 test("filters only category by System-Engineering", async function(assert) {
@@ -77,7 +77,7 @@ test("filters only category by System-Engineering", async function(assert) {
 
   assert.notOk(names.includes("JUnit"));
   assert.notOk(names.includes("Rails"));
-  assert.ok(names.includes("Bash"));
+  assert.ok(names.includes("• Bash"));
 });
 
 test("filters skills by title like a", async function(assert) {
@@ -95,7 +95,7 @@ test("filters skills by title like a", async function(assert) {
     .toArray()
     .map(name => name.text);
   assert.notOk(names.includes("JUnit"));
-  assert.ok(names.includes("Bash"));
+  assert.ok(names.includes("• Bash"));
   assert.ok(names.includes("Rails"));
 });
 
