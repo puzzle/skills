@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe PuzzleTime::CreatePeopleTask do
+describe PeopleSync::CreatePeopleTask do
 
   let(:new_person) do
     [{
@@ -45,12 +45,12 @@ describe PuzzleTime::CreatePeopleTask do
   context 'create people' do
     it 'creates new person' do
       expect(Person.count).to eq(3)
-      expect(Person.pluck(:puzzle_time_key).include?(58)).to eq(false)
+      expect(Person.pluck(:remote_key).include?(58)).to eq(false)
 
-      PuzzleTime::CreatePeopleTask.create_people(new_person)
+      PeopleSync::CreatePeopleTask.create_people(new_person)
 
       expect(Person.count).to eq(4)
-      person = Person.find_by(puzzle_time_key: 58)
+      person = Person.find_by(remote_key: 58)
       expect(person.name).to eq('Bruce Banner')
       expect(person.title).to eq('MSc in Informatics')
       expect(person.nationality).to eq('US')
@@ -62,12 +62,12 @@ describe PuzzleTime::CreatePeopleTask do
 
     it 'does not create existing person' do
       expect(Person.count).to eq(3)
-      expect(Person.pluck(:puzzle_time_key).include?(42)).to eq(true)
+      expect(Person.pluck(:remote_key).include?(42)).to eq(true)
 
-      PuzzleTime::CreatePeopleTask.create_people(existing_person)
+      PeopleSync::CreatePeopleTask.create_people(existing_person)
 
       expect(Person.count).to eq(3)
-      person = Person.find_by(puzzle_time_key: 42)
+      person = Person.find_by(remote_key: 42)
       expect(person.name).to eq('Bob Anderson')
       expect(person.title).to eq('BSc in Cleaning')
       expect(person.nationality).to eq('CH')

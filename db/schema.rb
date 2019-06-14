@@ -174,7 +174,7 @@ ActiveRecord::Schema.define(version: 2019_04_12_133520) do
     t.integer "marital_status", default: 0, null: false
     t.string "email"
     t.string "department"
-    t.integer "puzzle_time_key"
+    t.integer "remote_key"
     t.index ["company_id"], name: "index_people_on_company_id"
   end
 

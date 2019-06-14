@@ -1,4 +1,4 @@
-class PuzzleTime::CreateRolesTask
+class PeopleSync::CreateRolesTask
   class << self
     attr_reader :people
     
@@ -32,8 +32,8 @@ class PuzzleTime::CreateRolesTask
     
     def people_attributes
       people.map do |person|
-        puzzle_time_key = person['id'].to_i
-        person['attributes'].merge!('puzzle_time_key' => puzzle_time_key)
+        remote_key = person['id'].to_i
+        person['attributes'].merge!('remote_key' => remote_key)
       end.compact
     end
   end

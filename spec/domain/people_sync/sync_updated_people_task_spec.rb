@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe PuzzleTime::SyncUpdatedPeopleTask do
+describe PeopleSync::SyncUpdatedPeopleTask do
 
   let(:updated_person) do
     [{
@@ -25,7 +25,7 @@ describe PuzzleTime::SyncUpdatedPeopleTask do
   context 'synchronize updated people' do
     it 'synchronizes updated person' do
       expect(Person.count).to eq(3)
-      person = Person.find_by(puzzle_time_key: 42)
+      person = Person.find_by(remote_key: 42)
       expect(person.name).to eq('Bob Anderson')
       expect(person.title).to eq('BSc in Cleaning')
       expect(person.nationality).to eq('CH')
@@ -34,10 +34,10 @@ describe PuzzleTime::SyncUpdatedPeopleTask do
       expect(person.email).to eq('bob@example.com')
       expect(person.department).to eq('/sys')
 
-      PuzzleTime::SyncUpdatedPeopleTask.sync_updated_people(updated_person)
+      PeopleSync::SyncUpdatedPeopleTask.sync_updated_people(updated_person)
 
       expect(Person.count).to eq(3)
-      person = Person.find_by(puzzle_time_key: 42)
+      person = Person.find_by(remote_key: 42)
       expect(person.name).to eq('Bruce Banner')
       expect(person.title).to eq('MSc in Informatics')
       expect(person.nationality).to eq('US')

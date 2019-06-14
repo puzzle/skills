@@ -1,4 +1,4 @@
-class PuzzleTime::CreatePeopleTask
+class PeopleSync::CreatePeopleTask
   class << self
     attr_reader :people
 
@@ -14,31 +14,31 @@ class PuzzleTime::CreatePeopleTask
     
     private
 
-    # only in puzzle time existing people
+    # only in remote system existing people
     def new_people
       people.map do |person|
-        puzzle_time_key = person['id'].to_i
-        if new_ids.include? puzzle_time_key
-          person['attributes'].merge!('puzzle_time_key' => puzzle_time_key)
+        remote_key = person['id'].to_i
+        if new_ids.include? remote_key
+          person['attributes'].merge!('remote_key' => remote_key)
         end
       end.compact
     end
 
     def new_ids
-      puzzle_time_ids - puzzle_skills_ids
+      remote_ids - puzzle_skills_ids
     end
 
-    def puzzle_time_ids
+    def remote_ids
       people.pluck('id').map(&:to_i)
     end
 
     def puzzle_skills_ids
-      Person.all.pluck(:puzzle_time_key).compact
+      Person.all.pluck(:remote_key).compact
     end
 
     def attributes(new_person)
       {
-        'puzzle_time_key' => new_person['puzzle_time_key'],
+        'remote_key' => new_person['remote_key'],
         'name' => fullname(new_person),
         'nationality' => new_person['nationalities'].first,
         'nationality2' => new_person['nationalities'].second,

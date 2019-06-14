@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe PuzzleTime::SyncPeopleRolesTask do
+describe PeopleSync::SyncPeopleRolesTask do
   let(:person_with_roles) do
     [{
       "id"=>"42",
@@ -83,56 +83,56 @@ describe PuzzleTime::SyncPeopleRolesTask do
 
   context 'sync people roles' do
     it 'creates new people roles' do
-      bob = Person.find_by(puzzle_time_key: 42)  
+      bob = Person.find_by(remote_key: 42)  
       expect(bob.people_roles.count).to eq(1)
       role_ids = bob.people_roles.pluck(:role_id)
       expect(Role.where(id: role_ids).pluck(:name)).to eq(['Software-Engineer'])
       
-      PuzzleTime::SyncPeopleRolesTask.sync_people_roles(person_with_roles)
+      PeopleSync::SyncPeopleRolesTask.sync_people_roles(person_with_roles)
 
-      bob = Person.find_by(puzzle_time_key: 42)  
+      bob = Person.find_by(remote_key: 42)  
       expect(bob.people_roles.count).to eq(2)
       role_ids = bob.people_roles.pluck(:role_id)
       expect(Role.where(id: role_ids).pluck(:name)).to eq(['Software-Engineer', 'Scrummaster'])
     end
     
     it 'does not create already existing people role' do
-      bob = Person.find_by(puzzle_time_key: 42)  
+      bob = Person.find_by(remote_key: 42)  
       expect(bob.people_roles.count).to eq(1)
       role_ids = bob.people_roles.pluck(:role_id)
       expect(Role.where(id: role_ids).pluck(:name)).to eq(['Software-Engineer'])
       
-      PuzzleTime::SyncPeopleRolesTask.sync_people_roles(person_with_existing_role)
+      PeopleSync::SyncPeopleRolesTask.sync_people_roles(person_with_existing_role)
 
-      bob = Person.find_by(puzzle_time_key: 42)  
+      bob = Person.find_by(remote_key: 42)  
       expect(bob.people_roles.count).to eq(1)
       role_ids = bob.people_roles.pluck(:role_id)
       expect(Role.where(id: role_ids).pluck(:name)).to eq(['Software-Engineer'])
     end
   
     it 'deletes removed people roles' do
-      bob = Person.find_by(puzzle_time_key: 42)  
+      bob = Person.find_by(remote_key: 42)  
       expect(bob.people_roles.count).to eq(1)
       role_ids = bob.people_roles.pluck(:role_id)
         expect(Role.where(id: role_ids).pluck(:name)).to eq(['Software-Engineer'])
       
-      PuzzleTime::SyncPeopleRolesTask.sync_people_roles(person_with_removed_role)
+      PeopleSync::SyncPeopleRolesTask.sync_people_roles(person_with_removed_role)
 
-      bob = Person.find_by(puzzle_time_key: 42)  
+      bob = Person.find_by(remote_key: 42)  
       expect(bob.people_roles.count).to eq(0)
       role_ids = bob.people_roles.pluck(:role_id)
       expect(Role.where(id: role_ids).pluck(:name)).to eq([])
     end
   
     it 'deletes and creates people roles' do
-      bob = Person.find_by(puzzle_time_key: 42)  
+      bob = Person.find_by(remote_key: 42)  
       expect(bob.people_roles.count).to eq(1)
       role_ids = bob.people_roles.pluck(:role_id)
         expect(Role.where(id: role_ids).pluck(:name)).to eq(['Software-Engineer'])
       
-      PuzzleTime::SyncPeopleRolesTask.sync_people_roles(person_with_removed_and_new_role)
+      PeopleSync::SyncPeopleRolesTask.sync_people_roles(person_with_removed_and_new_role)
 
-      bob = Person.find_by(puzzle_time_key: 42)  
+      bob = Person.find_by(remote_key: 42)  
       expect(bob.people_roles.count).to eq(1)
       role_ids = bob.people_roles.pluck(:role_id)
       expect(Role.where(id: role_ids).pluck(:name)).to eq(['Scrummaster'])

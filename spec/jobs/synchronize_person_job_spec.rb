@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe SynchronizeDataJob do
-  let(:job) { SynchronizeDataJob.new }
+describe SynchronizePersonJob do
+  let(:job) { SynchronizePersonJob }
 
   let(:my_company) { Company.find_by(company_type: 'mine') }
   
@@ -63,13 +63,13 @@ describe SynchronizeDataJob do
     stub_request(:get, 'http://localhost:4000/api/v1/employees').
       to_return(status: [200, 'OK'], body: empty_json)
 
-    person = Person.find_by(puzzle_time_key: 42)
+    person = Person.find_by(remote_key: 42)
     expect(Person.count).to eq(3)
     expect(person.company_id).to eq(my_company.id)
 
     job.perform
 
-    person = Person.find_by(puzzle_time_key: 42)
+    person = Person.find_by(remote_key: 42)
     expect(Person.count).to eq(3)
     expect(person.company_id).to eq(external_company.id)
   end
@@ -79,12 +79,12 @@ describe SynchronizeDataJob do
       to_return(status: [200, 'OK'], body: new_person_json)
 
     expect(Person.count).to eq(3)
-    expect(Person.pluck(:puzzle_time_key).include?(99)).to eq(false)
+    expect(Person.pluck(:remote_key).include?(99)).to eq(false)
 
     job.perform
 
     expect(Person.count).to eq(4)
-    person = Person.find_by(puzzle_time_key: 99)
+    person = Person.find_by(remote_key: 99)
     expect(person.name).to eq('Tony Stark')
     expect(person.title).to eq('BSc in Informatics')
     expect(person.company_id).to eq(my_company.id)
@@ -105,12 +105,12 @@ describe SynchronizeDataJob do
       to_return(status: [200, 'OK'], body: new_person_json)
 
     expect(Person.count).to eq(3)
-    expect(Person.pluck(:puzzle_time_key).include?(99)).to eq(false)
+    expect(Person.pluck(:remote_key).include?(99)).to eq(false)
 
     job.perform
 
     expect(Person.count).to eq(4)
-    person = Person.find_by(puzzle_time_key: 99)
+    person = Person.find_by(remote_key: 99)
     expect(person.name).to eq('Tony Stark')
     expect(person.title).to eq('BSc in Informatics')
     expect(person.company_id).to eq(my_company.id)
@@ -131,13 +131,13 @@ describe SynchronizeDataJob do
     stub_request(:get, 'http://localhost:4000/api/v1/employees').
       to_return(status: [200, 'OK'], body: updated_person_json)
 
-    stub_request(:get, 'http://localhost:4000/api/v1/employees?last_run_at=2001-01-01T00:00:00%2B00:00').
+    stub_request(:get, 'http://localhost:4000/api/v1/employees?update_since=2001-01-01T00:00:00%2B00:00').
       to_return(status: [200, 'OK'], body: updated_person_json)
     
     job.perform
     
     expect(Person.count).to eq(4)
-    person = Person.find_by(puzzle_time_key: 99)
+    person = Person.find_by(remote_key: 99)
     expect(person.name).to eq('Bruce Banner')
     expect(person.title).to eq('Student')
     expect(person.company_id).to eq(my_company.id)
@@ -158,7 +158,7 @@ describe SynchronizeDataJob do
       to_return(status: [200, 'OK'], body: invalid_json)
 
     expect(Person.count).to eq(3)
-    expect(Person.pluck(:puzzle_time_key).include?(99)).to eq(false)
+    expect(Person.pluck(:remote_key).include?(99)).to eq(false)
     expect(Airbrake).to receive(:notify)
       .with("person not valid", {:person=>"invalid"})
       .at_least(:once)
@@ -166,7 +166,7 @@ describe SynchronizeDataJob do
     job.perform
     
     expect(Person.count).to eq(3)
-    expect(Person.pluck(:puzzle_time_key).include?(99)).to eq(false)
+    expect(Person.pluck(:remote_key).include?(99)).to eq(false)
   end
 
   it 'does not create person if missing attributes' do
@@ -174,7 +174,7 @@ describe SynchronizeDataJob do
       to_return(status: [200, 'OK'], body: person_with_missing_attributes_json)
 
     expect(Person.count).to eq(3)
-    expect(Person.pluck(:puzzle_time_key).include?(99)).to eq(false)
+    expect(Person.pluck(:remote_key).include?(99)).to eq(false)
     expect(Airbrake).to receive(:notify)
       .with("person not valid", {:person=>
                                    {"attributes"=>
@@ -191,7 +191,7 @@ describe SynchronizeDataJob do
     job.perform
 
     expect(Person.count).to eq(3)
-    expect(Person.pluck(:puzzle_time_key).include?(99)).to eq(false)
+    expect(Person.pluck(:remote_key).include?(99)).to eq(false)
   end
   
   it 'raises error if credentials false' do

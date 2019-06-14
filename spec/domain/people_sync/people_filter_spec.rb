@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe PuzzleTime::PeopleFilter do
+describe PeopleSync::PeopleFilter do
   let(:empty) do
     []
   end
@@ -189,43 +189,43 @@ describe PuzzleTime::PeopleFilter do
 
   context 'filter people' do
     it 'returns an empty array if people missing' do
-      expect(PuzzleTime::PeopleFilter.new(empty).filter).to eq([])
+      expect(PeopleSync::PeopleFilter.new(empty).filter).to eq([])
     end
     
     it 'returns only valid people' do
-      expect(PuzzleTime::PeopleFilter.new(people_hash).filter).to eq(valid_person)
+      expect(PeopleSync::PeopleFilter.new(people_hash).filter).to eq(valid_person)
     end
     
     it 'does not return person without puzzle time key' do
-      expect(PuzzleTime::PeopleFilter.new(person_without_puzzle_time_key).filter).to eq([])
+      expect(PeopleSync::PeopleFilter.new(person_without_puzzle_time_key).filter).to eq([])
     end
 
     it 'does not return person if puzzle time key not a number' do
-      expect(PuzzleTime::PeopleFilter.new(person_with_invalid_puzzle_time_key).filter).to eq([])
+      expect(PeopleSync::PeopleFilter.new(person_with_invalid_puzzle_time_key).filter).to eq([])
     end
     
     it 'does not return person if puzzle time key is a negative number' do
-      expect(PuzzleTime::PeopleFilter.new(person_with_negative_puzzle_time_key).filter).to eq([])
+      expect(PeopleSync::PeopleFilter.new(person_with_negative_puzzle_time_key).filter).to eq([])
     end
     
     it 'does not return person if an attribute is missing' do
-      expect(PuzzleTime::PeopleFilter.new(person_with_a_missing_attribute).filter).to eq([])
+      expect(PeopleSync::PeopleFilter.new(person_with_a_missing_attribute).filter).to eq([])
     end
     
     it 'does not return person if an attribute is nil' do
-      expect(PuzzleTime::PeopleFilter.new(person_with_an_empty_attribute).filter).to eq([])
+      expect(PeopleSync::PeopleFilter.new(person_with_an_empty_attribute).filter).to eq([])
     end
     
     it 'does not return person if nationalities not an array' do
-      expect(PuzzleTime::PeopleFilter.new(person_with_invalid_nationalities).filter).to eq([])
+      expect(PeopleSync::PeopleFilter.new(person_with_invalid_nationalities).filter).to eq([])
     end
     
     it 'does not return person if roles invalid' do
-      expect(PuzzleTime::PeopleFilter.new(person_with_invalid_roles).filter).to eq([])
+      expect(PeopleSync::PeopleFilter.new(person_with_invalid_roles).filter).to eq([])
     end
     
     it 'does not return person if hash invalid' do
-      expect(PuzzleTime::PeopleFilter.new(invalid_person_hash).filter).to eq([])
+      expect(PeopleSync::PeopleFilter.new(invalid_person_hash).filter).to eq([])
     end
   end
 end
