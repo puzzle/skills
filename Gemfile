@@ -11,6 +11,7 @@ gem 'bootsnap'
 gem 'carrierwave'
 gem 'config'
 gem 'countries'
+gem 'database_cleaner'
 gem 'i18n_data'
 gem 'language_list'
 gem 'mini_magick'
@@ -49,7 +50,6 @@ end
 
 group :test do
   gem 'simplecov', '~> 0.12.0'
-  gem 'database_cleaner'
   gem 'simplecov-rcov'
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
