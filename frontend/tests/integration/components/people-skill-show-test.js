@@ -22,7 +22,26 @@ module("Integration | Component | people-skill-show", function(hooks) {
     let text = this.$().text();
 
     assert.ok(text.includes("Rails"));
-    assert.ok(text.includes("2"));
-    assert.ok(text.includes("3"));
+    assert.ok(text.includes("Junior"));
+    assert.equal(
+      this.$(".icon-rating-icon")[0].getAttribute("style"),
+      "color: #238BCA"
+    );
+    assert.equal(
+      this.$(".icon-rating-icon")[1].getAttribute("style"),
+      "color: #238BCA"
+    );
+    assert.equal(
+      this.$(".icon-rating-icon")[2].getAttribute("style"),
+      "color: #238BCA"
+    );
+    assert.equal(
+      this.$(".icon-rating-icon")[3].getAttribute("style"),
+      "color: #BDBDBD"
+    );
+    assert.equal(
+      this.$(".icon-rating-icon")[4].getAttribute("style"),
+      "color: #BDBDBD"
+    );
   });
 });

@@ -446,8 +446,34 @@ div.row-fluid.person-list > div.span10 > div.container-fluid.round-border {
 }
 
 .level-interest-title {
+}
+
+.skillset-level-title {
   width: 73%;
   text-align: center;
+  margin-bottom: -2px;
+  margin-left: -10px;
+}
+
+.skillset-interest-title {
+  width: 73%;
+  text-align: center;
+  margin-bottom: -2px;
+  margin-left: -5px;
+}
+
+.member-skillset-level-title {
+  width: 73%;
+  text-align: center;
+  margin-bottom: -2px;
+  margin-left: 20px;
+}
+
+.member-skillset-interest-title {
+  width: 73%;
+  text-align: center;
+  margin-bottom: -2px;
+  margin-left: 15px;
 }
 
 .slider-horizontal {
@@ -1471,4 +1497,27 @@ div.content-input {
 #new-skill-link {
   color: #3b7bbe;
   margin-left: 25%;
+}
+
+.people-skillset-category {
+  margin-top: -12px;
+  margin-bottom: -12px;
+}
+
+.people-skillset-skill {
+  margin-top: -20px;
+  margin-bottom: -40px;
+}
+
+.people-skills-header {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.people-skill-title {
+  text-shadow: 0.05em 0 0 currentColor;
+}
+
+.fs-15 {
+  font-size: 15px;
 }

@@ -11,9 +11,11 @@
       <a class="nav-link">
         {{#link-to "person.skills" (query-params personId=personId rated="true") id="peopleSkillsLink"}}
           Skills
-          <span class="badge badge-pill badge-success">
-            {{unratedSkillsAmount}}
-          </span>
+          {{#if unratedSkillsAmount}}
+            <span class="badge badge-pill badge-success">
+              {{unratedSkillsAmount}}
+            </span>
+          {{/if}}
         {{/link-to}}
       </a>
     </li>

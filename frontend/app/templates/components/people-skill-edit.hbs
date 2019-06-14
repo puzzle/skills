@@ -1,13 +1,12 @@
 <div class="row h-100">
-  <div class="col flex-column d-flex justify-content-center">
-    <strong>{{peopleSkill.skill.title}}</strong>
+  <div class="col pt-3 people-skill-skillname">
+    <div class="people-skill-title">{{peopleSkill.skill.title}}</div>
   </div>
   <div class="col mb-4 peopleSkillEditLevel">
-    <label class="description level-interest-title">{{levelName}}</label>
+    <label class="description level-title">{{levelName}}</label>
     {{ui-slider
     value=levelValue
     ticks='1,2,3,4,5'
-    ticksLabels='1,2,3,4,5'
     tooltip='hide'
     min=1
     max=5
@@ -15,7 +14,7 @@
     }}
   </div>
   <div class="col people-skill-interest">
-    <label class="description level-interest-title">Interesse</label>
+    <label class="description interest-title">Interesse</label>
     {{icon-rating
     fillColor='#238BCA'
     value=peopleSkill.interest

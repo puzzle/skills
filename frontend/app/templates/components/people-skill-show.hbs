@@ -1,19 +1,18 @@
 <div class="row">
-  <div class="col pt-4 people-skill-skillname">
+  <div class="col pt-3 people-skill-skillname">
     {{#if showPersonName}}
       {{#link-to 'person' peopleSkill.person}}
         <span data-dismiss="modal">{{peopleSkill.person.name}}</span>
       {{/link-to}}
     {{else}}
-      <strong>{{peopleSkill.skill.title}}</strong>
+      <div class="people-skill-title">{{peopleSkill.skill.title}}</div>
     {{/if}}
   </div>
   <div class="col justify-content-center people-skill-level">
-    <p class="description level-interest-title level-title">{{levelName}}</p>
+    <p class="description {{skillClass}}-level-title">{{levelName}}</p>
     {{ui-slider
     value=levelValue
     ticks='1,2,3,4,5'
-    ticksLabels='1,2,3,4,5'
     tooltip='hide'
     disabled=true
     min=1
@@ -23,7 +22,7 @@
     }}
   </div>
   <div class="col people-skill-interest">
-    <p class="description level-interest-title">Interesse</p>
+    <p class="description {{skillClass}}-interest-title">Interesse</p>
     {{icon-rating
     fillColor='#238BCA'
     readOnly=true
@@ -31,7 +30,7 @@
     onClick=(action (mut newPeopleSkill.interest))
     }}
   </div>
-  <div class="col pt-4 people-skill-certificate">
+  <div class="col pt-3 people-skill-certificate">
     {{#if peopleSkill.certificate}}
       <i class="fa fa-check-square" aria-hidden="true"></i>
     {{else}}
@@ -39,7 +38,7 @@
     {{/if}}
     <span class="description ml-2">Zertifikat</span>
   </div>
-  <div class="col pt-4 people-skill-coreCompetence">
+  <div class="col pt-3 people-skill-coreCompetence">
     {{#if peopleSkill.coreCompetence}}
       <i class="fa fa-check-square" aria-hidden="true"></i>
     {{else}}

@@ -1,7 +1,10 @@
 import Component from "@ember/component";
 import { computed, observer } from "@ember/object";
+import { inject as service } from "@ember/service";
 
 export default Component.extend({
+  router: service(),
+
   init() {
     this._super(...arguments);
     this.set("levelValue", this.get("peopleSkill.level"));
@@ -15,6 +18,12 @@ export default Component.extend({
         this.$(".in-selection").removeClass("in-selection");
       });
     }
+  },
+
+  didRender() {
+    const currentURL = this.get("router.currentURL");
+    const skillClass = currentURL == "/skills" ? "skillset" : "member-skillset";
+    this.set("skillClass", skillClass);
   },
 
   levelName: computed("peopleSkill.level", function() {
