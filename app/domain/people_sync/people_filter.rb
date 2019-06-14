@@ -1,4 +1,4 @@
-class PuzzleTime::PeopleFilter
+class PeopleSync::PeopleFilter
   attr_reader :people
   
   STRING_ATTRIBUTES = ['firstname', 'lastname', 'email', 'marital_status',

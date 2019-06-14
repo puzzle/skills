@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe PuzzleTime do
+describe PeopleSync::PuzzleTime do
   let(:people_json) do
     '{"data": [
        {
@@ -198,17 +198,17 @@ describe PuzzleTime do
     
     it 'parses and returns updated people' do
       url = 'http://localhost:4000/api/v1/employees?'
-      query_param = 'last_run_at=2001-01-01%2000:00:00%20UTC'
+      query_param = 'update_since=2001-01-01%2000:00:00%20UTC'
 
       stub_request(:get, "#{url}#{query_param}").
         to_return(status: [200, 'OK'], body: people_json)
       
-      last_runned_at = DateTime.new(2001, 1, 1)
+      update_since = DateTime.new(2001, 1, 1)
       delayed_job = Delayed::Job.create!(
                            handler: '',
-                           queue: 'sync_data',
+                           queue: 'person_sync',
                            cron: '* * * * *')
-      delayed_job.update_attribute(:run_at, last_runned_at)
+      delayed_job.update_attribute(:run_at, update_since)
 
       expect(puzzle_time.updated_people).to eq(people_hash)
     end
@@ -217,6 +217,6 @@ describe PuzzleTime do
   private
 
   def puzzle_time
-    @puzzle_time ||= PuzzleTime.new
+    @puzzle_time ||= PeopleSync::PuzzleTime.new
   end
 end

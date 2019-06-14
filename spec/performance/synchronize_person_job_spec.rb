@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe SynchronizeDataJob, performance: true do
-  let(:job) { SynchronizeDataJob.new }
+describe SynchronizePersonJob, performance: true do
+  let(:job) { SynchronizePersonJob.new }
   
   before do
     allow(ENV).to receive(:[])     

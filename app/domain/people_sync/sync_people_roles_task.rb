@@ -1,9 +1,9 @@
-class PuzzleTime::SyncPeopleRolesTask
+class PeopleSync::SyncPeopleRolesTask
   class << self
     def sync_people_roles(people)
       person_id_with_roles = people_with_roles(people)
         .map do |person|
-          person_id = Person.find_by(puzzle_time_key: person['id']).id
+          person_id = Person.find_by(remote_key: person['id']).id
           [ person_id, person['attributes']['employment_roles'] ]
         end
 

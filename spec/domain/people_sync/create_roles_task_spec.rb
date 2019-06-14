@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe PuzzleTime::CreateRolesTask do
+describe PeopleSync::CreateRolesTask do
   let(:person_with_new_roles) do
     [{
       "id"=>"42",
@@ -51,7 +51,7 @@ describe PuzzleTime::CreateRolesTask do
                                            'System-Engineer',
                                            'Scrummaster'])
 
-      PuzzleTime::CreateRolesTask.create_roles(person_with_new_roles)
+      PeopleSync::CreateRolesTask.create_roles(person_with_new_roles)
 
       expect(Role.all.pluck(:name)).to eq(['Software-Engineer',
                                            'System-Engineer',
@@ -65,7 +65,7 @@ describe PuzzleTime::CreateRolesTask do
                                            'System-Engineer',
                                            'Scrummaster'])
 
-      PuzzleTime::CreateRolesTask.create_roles(person_with_existing_roles)
+      PeopleSync::CreateRolesTask.create_roles(person_with_existing_roles)
 
       expect(Role.all.pluck(:name)).to eq(['Software-Engineer',
                                            'System-Engineer',
