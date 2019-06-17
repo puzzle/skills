@@ -223,15 +223,6 @@ ActiveRecord::Schema.define(version: 2019_07_03_124059) do
     t.index ["category_id"], name: "index_skills_on_category_id"
   end
 
-  create_table "users", id: :serial, force: :cascade do |t|
-    t.string "ldap_uid"
-    t.string "api_token"
-    t.integer "failed_login_attempts", default: 0
-    t.datetime "last_failed_login_attempt_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   add_foreign_key "categories", "categories", column: "parent_id"
   add_foreign_key "employee_quantities", "companies"
   add_foreign_key "language_skills", "people"
