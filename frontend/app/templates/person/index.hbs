@@ -3,7 +3,15 @@
 {{/each}}
 
 <div id="person-collapse-group" class="collapse-group">
-  {{#nav-sidebar items=sidebarItems}}{{/nav-sidebar}}
+  {{#nav-sidebar items=sidebarItems}}
+    <ul class="nav flex-column mt-4">
+      <li class="d-flex flex-column nav-link">
+        <a onclick={{pipe (action 'startExport' model.id)}} class="edit-buttons">
+          <td><i class="fa fa-download" aria-hidden="true"></i> Export</td>
+        </a>
+      </li>
+    </ul>
+  {{/nav-sidebar}}
   <div class="col-sm-10 float-right position-relative">
     <div id="accordion">
       {{!Personalien Tab}}
