@@ -2,7 +2,7 @@
   <ul class="nav flex-column mt-4">
     {{#if peopleSkillsEditing}}
       <li class="d-flex flex-column nav-link">
-        <p><i class="fa fa-pencil"></i> Bearbeiten</p>
+        <p><i class="fa fa-edit"></i> Bearbeiten</p>
       </li>
       <li class="d-flex flex-column nav-link">
         <button onclick={{action 'submit' person}} role="button" class="btn btn-primary" id="submit-education-button">Speichern</button>
@@ -13,7 +13,7 @@
     {{else}}
       <li class="nav-item">
         <a class="nav-link edit-buttons" role="button" onclick={{action (toggle 'peopleSkillsEditing' this)}}>
-          <i class="fa fa-pencil"></i> Skills bearbeiten
+          <i class="fa fa-edit"></i> Skills bearbeiten
         </a>
       </li>
     {{/if}}

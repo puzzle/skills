@@ -18,7 +18,7 @@
     {{!-- Insert correct link-to route once finished --}}
     {{#link-to "skills"}}
       <a class="float-right mr-5">
-        <i class="fa fa-plus-square-o" aria-hidden="true">
+        <i class="fa fa-plus-square" aria-hidden="true">
         </i>
         Neuer Skill
       </a>
@@ -56,7 +56,7 @@
           <td class="">{{if (eq skill.defaultSet null) "NEU" (if skill.defaultSet "Ja" "Nein")}}</td>
           <td class="">{{if skill.radar skill.radar "-"}}</td>
           <td>{{if skill.portfolio skill.portfolio "-"}}</td>
-          <td class=""><a class="edit-buttons"><i class="fa fa-pencil"></i></a></td>
+          <td class=""><a class="edit-buttons"><i class="fa fa-edit"></i></a></td>
         </tr>
       {{/each}}
     </tbody>
