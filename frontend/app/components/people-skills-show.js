@@ -30,11 +30,15 @@ export default Component.extend({
     return hash;
   }),
 
-  peopleSkillsChanged: observer("person.peopleSkills", function() {
-    this.get("person.peopleSkills").then(() => {
-      this.setMemberSkillset();
-    });
-  }),
+  peopleSkillsChanged: observer(
+    "person.peopleSkills",
+    "person.peopleSkills.length",
+    function() {
+      this.get("person.peopleSkills").then(() => {
+        this.setMemberSkillset();
+      });
+    }
+  ),
 
   skills: computed(function() {
     return this.get("store").findAll("skill", { reload: true });
@@ -133,6 +137,13 @@ export default Component.extend({
             });
           });
         });
+    },
+
+    resetPeopleSkill(peopleSkill) {
+      ["interest", "level", "certificate", "coreCompetence"].forEach(attr => {
+        peopleSkill.set(attr, 0);
+      });
+      peopleSkill.save();
     },
 
     abortEdit() {

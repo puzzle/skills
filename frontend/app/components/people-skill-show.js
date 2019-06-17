@@ -1,5 +1,5 @@
 import Component from "@ember/component";
-import { computed } from "@ember/object";
+import { computed, observer } from "@ember/object";
 
 export default Component.extend({
   init() {
@@ -27,5 +27,19 @@ export default Component.extend({
       "Expert"
     ];
     return levelNames[this.get("peopleSkill.level")];
-  })
+  }),
+
+  levelChanged: observer("peopleSkill.level", function() {
+    this.set("levelValue", this.get("peopleSkill.level"));
+  }),
+
+  actions: {
+    hasChanged() {
+      if (!this.get("peopleSkill.level")) {
+        this.sliderHandle = this.$(".slider-handle:first");
+        this.sliderHandle.removeClass("slider-handle");
+        this.$(".in-selection").removeClass("in-selection");
+      }
+    }
+  }
 });

@@ -1,4 +1,5 @@
 import DS from "ember-data";
+import { computed } from "@ember/object";
 
 export default DS.Model.extend({
   level: DS.attr("number"),
@@ -9,9 +10,15 @@ export default DS.Model.extend({
   person: DS.belongsTo("person"),
   skill: DS.belongsTo("skill"),
 
-  hasChangedAfterCreation() {
-    return ["level", "interest", "certificate", "coreCompetence"]
-      .map(attr => Boolean(this.get(attr)))
-      .includes(true);
-  }
+  isRated: computed(
+    "level",
+    "interest",
+    "certificate",
+    "coreCompetence",
+    function() {
+      return ["level", "interest", "certificate", "coreCompetence"]
+        .map(attr => Boolean(this.get(attr)))
+        .includes(true);
+    }
+  )
 });

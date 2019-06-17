@@ -64,7 +64,7 @@ export default Component.extend({
       this.get("newPeopleSkills")
         .toArray()
         .forEach(ps => {
-          if (ps.hasChangedAfterCreation()) {
+          if (ps.get("isRated")) {
             ps.set("person", this.get("person"));
             changedPeopleSkills.push(ps);
           }

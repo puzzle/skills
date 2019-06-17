@@ -19,6 +19,7 @@
     min=1
     max=5
     immediateResponse=true
+    action=(action 'hasChanged')
     }}
   </div>
   <div class="col people-skill-interest">
@@ -46,5 +47,6 @@
     {{/if}}
     <span class="description ml-2">Kernkompetenz</span>
   </div>
+  {{yield}}
 </div>
 <br>

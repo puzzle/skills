@@ -47,7 +47,7 @@
     <div id="collapseTwo" class="collapse show border border-info rounded-bottom">
       <div class="card-body d-flex flex-column">
         {{#if person.peopleSkills}}
-          {{#each memberSkillset as |parentCategory|}}
+          {{#each skillset as |parentCategory|}}
             <div id="parentCategory-{{parentCategory.id}}" class="row pb-2">
               <div class="col">
                 <div class="card-header bg-info">
@@ -72,7 +72,15 @@
                             {{#if peopleSkillsEditing}}
                               {{people-skill-edit peopleSkill=skill}}
                             {{else}}
-                              {{people-skill-show peopleSkill=skill}}
+                              {{#people-skill-show peopleSkill=skill}}
+                                <div class="col-md-1 pt-4">
+                                  {{#if skill.isRated}}
+                                    <a class="edit-buttons" role="button" onclick={{action 'resetPeopleSkill' skill}}>
+                                      <i class="fa fa-repeat"></i>
+                                    </a>
+                                  {{/if}}
+                                </div>
+                              {{/people-skill-show}}
                             {{/if}}
                           </div>
                         </div>
