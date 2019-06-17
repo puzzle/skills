@@ -35,7 +35,7 @@ export default Component.extend({
       const currentURL = this.get("router.currentURL");
       url = currentURL.includes("skills")
         ? "people_skills.csv?person_id=" + this.get("person.id")
-        : "person/" + this.get("person.id") + "odt";
+        : "people/" + this.get("person.id") + ".odt";
 
       let url = `/api/${url}`;
       this.get("download").file(url);
