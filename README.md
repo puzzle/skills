@@ -1,6 +1,6 @@
 # PuzzleSkills
 
-[![Build Status](https://travis-ci.org/puzzle/skills.svg)](https://travis-ci.org/puzzle/skills)
+[![Build Status](https://travis-ci.org/puzzle/skills.svg?branch=master)](https://travis-ci.org/puzzle/skills)
 
 PuzzleSkills is a open source webapplication for skill management. Users can manage their profiles and CVs with PuzzleSkills. We are working on additional skill management features.
 
