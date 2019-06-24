@@ -5,22 +5,22 @@ describe PeopleSkillsController do
     before { auth(:ken) }
     before { load_pictures }
 
-    let(:ken) { users(:ken) }
+    let(:bob) { people(:bob) }
     let(:rails) { skills(:rails) }
 
     describe 'GET index' do
-      it 'returns kens people_skills' do
+      it 'returns bobs people_skills' do
         keys = %w[person_id skill_id level interest certificate core_competence]
       
-        process :index, method: :get, params: { type: 'Person', person_id: ken.id }
+        process :index, method: :get, params: { type: 'Person', person_id: bob.id }
 
         skills = json['data']
 
-        expect(skills.count).to eq(2)
-        junit_attrs = skills.first['attributes']
-        expect(junit_attrs.count).to eq (6)
-        expect(junit_attrs['person_id']).to eq (ken.id)
-        json_object_includes_keys(junit_attrs, keys)
+        expect(skills.count).to eq(1)
+        rails_attrs = skills.first['attributes']
+        expect(rails_attrs.count).to eq (6)
+        expect(rails_attrs['person_id']).to eq (bob.id)
+        json_object_includes_keys(rails_attrs, keys)
       end
 
       it 'returns Rails skills' do
@@ -30,7 +30,7 @@ describe PeopleSkillsController do
 
         skills = json['data']
 
-        expect(skills.count).to eq(3)
+        expect(skills.count).to eq(1)
         skill_attrs = skills.first['attributes']
         expect(skill_attrs.count).to eq (6)
         expect(skill_attrs['skill_id']).to eq (rails.id)

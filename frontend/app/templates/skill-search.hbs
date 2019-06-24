@@ -1,0 +1,27 @@
+{{#power-select
+selected=selectedSkill
+options=skills
+onchange=(action 'setSkill')
+searchField="title"
+triggerClass="w-75"
+as |skill|
+}}
+  {{skill.title}}
+{{/power-select}}
+
+<div class="card mt-4 mb-5">
+  <div class="card-header bg-info">
+    <p class="text-dark header-text mb-0">Suchresultate</p>
+  </div>
+  <div id="skill-search-results" class="px-2 border border-info rounded-bottom">
+    {{#if results}}
+      {{#each results as |peopleSkill|}}
+        <div class="p-2">
+          {{people-skill-show peopleSkill=peopleSkill showPersonName=true}}
+        </div>
+      {{/each}}
+    {{else}}
+      <p class="m-2">Keine Resultate</p>
+    {{/if}}
+  </div>
+</div>

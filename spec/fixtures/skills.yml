@@ -18,7 +18,6 @@ rails:
   portfolio: 0
   default_set: true
   category: ruby
-  people: [bob, alice]
 
 junit:
   title: JUnit
@@ -26,11 +25,9 @@ junit:
   portfolio: 1
   default_set: false
   category: java
-  people: [ken]
 
 bash:
   title: Bash
   radar: 1
   portfolio: 2
   category: linux-engineering
-  people: [bob, ken]

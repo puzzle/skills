@@ -19,17 +19,18 @@ test("shows Rails and its peopleSkills", async function(assert) {
 
   assert.equal(currentURL(), "/skills");
 
-  await page.indexPage.skills.skillNames.toArray()[0].clickOn();
+  await page.indexPage.skills.skillNames.toArray()[2].clickOn();
 
   let names = page.indexPage.skillModal.personNames
     .toArray()
     .map(name => name.text);
-  assert.ok(names.includes("ken"));
+  assert.notOk(names.includes("ken"));
   assert.ok(names.includes("Bob Anderson"));
+  await page.indexPage.skillModal.closeButton();
 });
 
 test("shows JUnit and its peopleSkills", async function(assert) {
-  assert.expect(2);
+  assert.expect(3);
 
   await page.indexPage.visit();
 
@@ -40,5 +41,7 @@ test("shows JUnit and its peopleSkills", async function(assert) {
   let names = page.indexPage.skillModal.personNames
     .toArray()
     .map(name => name.text);
-  assert.ok(names.includes("ken"));
+  assert.notOk(names.includes("ken"));
+  assert.ok(names.includes("Alice Mante"));
+  await page.indexPage.skillModal.closeButton();
 });

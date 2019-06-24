@@ -25,6 +25,7 @@ Router.map(function() {
   });
   this.route("skills", function() {});
   this.route("cv_search");
+  this.route("skill_search");
 });
 
 export default Router;

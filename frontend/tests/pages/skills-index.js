@@ -13,11 +13,13 @@ export default create({
     newFilterButton: clickable("#defaultFilterNew"),
     defaultFilterButton: clickable("#defaultFilterDefault"),
     skillsetSearchfield: fillable("#skillsetSearchfield"),
+
     skills: {
       skillNames: collection("#skills-list-table .skillname")
     },
 
     skillModal: {
+      closeButton: clickable(".close"),
       personNames: collection("#skill-show-modal .people-skill-skillname")
     }
   }

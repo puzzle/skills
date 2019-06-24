@@ -24,7 +24,8 @@ module Csv
     end
 
     def entries
-      @entries ||= skills.joins(:category, :people)
+      @entries ||= skills.joins(:category)
+                         .left_outer_joins(:people)
                          .joins('INNER JOIN categories AS parents
                                  ON parents.id=categories.parent_id')
                          .group(:'skills.id', :'parents.id', :'categories.id')
