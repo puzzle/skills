@@ -44,15 +44,17 @@
                 <p class="green-point">&#8226;</p>
               {{/if}}
             </span>
-            {{skill.title}}
+            <span>
+              {{skill.title}}
+            </span>
           </td>
           <td>{{skill.people.length}}</td>
-          <td class="">{{if skill.parentCategory skill.parentCategory.title "-"}}</td>
+          <td>{{if skill.parentCategory skill.parentCategory.title "-"}}</td>
           <td>{{if skill.category skill.category.title "-"}}</td>
-          <td class="">{{if (eq skill.defaultSet null) "NEU" (if skill.defaultSet "Ja" "Nein")}}</td>
-          <td class="">{{if skill.radar skill.radar "-"}}</td>
+          <td>{{if (eq skill.defaultSet null) "NEU" (if skill.defaultSet "Ja" "Nein")}}</td>
+          <td>{{if skill.radar skill.radar "-"}}</td>
           <td>{{if skill.portfolio skill.portfolio "-"}}</td>
-          <td class=""><a class="edit-buttons"><i class="fa fa-edit"></i></a></td>
+          <td><a class="edit-buttons"><i class="fa fa-edit"></i></a></td>
         </tr>
       {{/each}}
     </tbody>

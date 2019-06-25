@@ -307,6 +307,18 @@ div.row-fluid.person-list > div.span10 > div.container-fluid.round-border {
   font-weight: normal;
 }
 
+#skills-list-table .skillname span {
+  cursor: pointer;
+  color: #3b7bbe;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+#skills-list-table .skillname span:hover {
+  color: #295584;
+  text-decoration: underline;
+}
+
 .w-9 {
   width: 9%;
 }
