@@ -7,6 +7,10 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     this.filterAction = this.get("filter");
+    this.set(
+      "value",
+      this.get("router.currentState.routerJsState.queryParams.title")
+    );
   },
 
   actions: {
