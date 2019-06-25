@@ -48,9 +48,7 @@ export default Component.extend(EKMixin, {
     submit(changeset, event) {
       event.preventDefault();
       return (
-        Promise.all([
-          changeset.get("hasDirtyAttributes") ? changeset.save() : null
-        ])
+        Promise.all([changeset.get("changes").length ? changeset.save() : null])
           // Commented this because projectTechnologies seem useless for the moment
           /*.then(() =>
           Promise.all([
