@@ -35,6 +35,11 @@ export default Component.extend({
             }
           })
           .filter(x => x !== undefined);
+        peopleSkills.sort((a, b) => {
+          if (a.get("skill.title") > b.get("skill.title")) return 1;
+          if (a.get("skill.title") < b.get("skill.title")) return -1;
+          return 0;
+        });
         this.set("newPeopleSkills", peopleSkills);
       });
   },
