@@ -1,4 +1,5 @@
-  {{skill-show skill=currentShowSkill}}
+  {{skill-show skill=currentSkill}}
+  {{skill-edit skill=currentSkill}}
 <div class="row mb-3">
   <div class="col-sm-12 search-skill-field">
     {{list-filter}}
@@ -35,8 +36,8 @@
     </thead>
     <tbody>
       {{#each sortedSkills as |skill|}}
-        <tr role="button" onclick={{action 'toggleSkillShow' skill}} data-toggle="modal" data-target="#skill-show-modal">
-          <td class="skillname">
+        <tr role="button" onclick={{action 'toggleSkill' skill}}>
+          <td data-toggle="modal" data-target="#skill-show-modal" class="skillname show-skill">
             <span class="w-9 mr-2 d-inline-block">
               {{#if skill.defaultSet}}
                 <img class="w-100" alt="defaultSet Logo" src="/assets/min-logo.png">
@@ -48,13 +49,29 @@
               {{skill.title}}
             </span>
           </td>
-          <td>{{skill.people.length}}</td>
-          <td>{{if skill.parentCategory skill.parentCategory.title "-"}}</td>
-          <td>{{if skill.category skill.category.title "-"}}</td>
-          <td>{{if (eq skill.defaultSet null) "NEU" (if skill.defaultSet "Ja" "Nein")}}</td>
-          <td>{{if skill.radar skill.radar "-"}}</td>
-          <td>{{if skill.portfolio skill.portfolio "-"}}</td>
-          <td><a class="edit-buttons"><i class="fa fa-edit"></i></a></td>
+          <td data-toggle="modal" data-target="#skill-show-modal" class="show-skill">
+            {{skill.people.length}}
+          </td>
+          <td data-toggle="modal" data-target="#skill-show-modal" class="show-skill">
+            {{if skill.parentCategory skill.parentCategory.title "-"}}
+          </td>
+          <td data-toggle="modal" data-target="#skill-show-modal" class="show-skill">
+            {{if skill.category skill.category.title "-"}}
+          </td>
+          <td data-toggle="modal" data-target="#skill-show-modal" class="show-skill">
+            {{if (eq skill.defaultSet null) "NEU" (if skill.defaultSet "Ja" "Nein")}}
+          </td>
+          <td data-toggle="modal" data-target="#skill-show-modal" class="show-skill">
+            {{if skill.radar skill.radar "-"}}
+          </td>
+          <td data-toggle="modal" data-target="#skill-show-modal" class="show-skill">
+            {{if skill.portfolio skill.portfolio "-"}}
+          </td>
+          <td data-toggle="modal" data-target="#skill-edit-modal" class="edit-skill">
+            <a class="edit-buttons">
+              <i class="fa fa-edit"></i>
+            </a>
+          </td>
         </tr>
       {{/each}}
     </tbody>

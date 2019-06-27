@@ -18,8 +18,8 @@ export default Component.extend({
       this.get("download").file(url);
     },
 
-    toggleSkillShow(skill) {
-      this.set("currentShowSkill", skill);
+    toggleSkill(skill) {
+      this.set("currentSkill", skill);
     },
 
     refreshList(skill) {

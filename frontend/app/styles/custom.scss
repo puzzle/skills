@@ -301,6 +301,7 @@ div.row-fluid.person-list > div.span10 > div.container-fluid.round-border {
 
 #skills-list-table {
   table-layout: fixed;
+  line-height: 15px;
 }
 
 #skills-list-table th {
@@ -327,7 +328,12 @@ div.row-fluid.person-list > div.span10 > div.container-fluid.round-border {
   background: #f5f5f5;
 }
 
-#skills-list-table tr:hover td {
+#skills-list-table tr:hover > td.show-skill {
+  background: #e5e5e5 !important;
+  cursor: pointer;
+}
+
+#skills-list-table td.edit-skill:hover {
   background: #e5e5e5 !important;
   cursor: pointer;
 }
@@ -352,21 +358,25 @@ div.row-fluid.person-list > div.span10 > div.container-fluid.round-border {
   margin: 5px 20px 0 0;
 }
 
-#skill-show-modal .modal-dialog {
+#skill-show-modal .modal-dialog,
+#skill-edit-modal .modal-dialog {
   width: 74%;
   max-width: 74%;
 }
 
-#skill-show-modal .container-fluid > div {
+#skill-show-modal .container-fluid > div,
+#skill-edit-modal .container-fluid > div {
   border-top: 1px solid #dee2e6;
   border-bottom: 1px solid #dee2e6;
 }
 
-#skill-show-modal .container-fluid div:nth-of-type(1) {
+#skill-show-modal .container-fluid div:nth-of-type(1),
+#skill-edit-modal .container-fluid div:nth-of-type(1) {
   border-top: 0px;
 }
 
-#skill-show-modal .container-fluid div:nth-of-type(n) {
+#skill-show-modal .container-fluid div:nth-of-type(n),
+#skill-edit-modal .container-fluid div:nth-of-type(n) {
   border-bottom: 0px;
 }
 
@@ -1532,4 +1542,8 @@ div.content-input {
 
 .fs-15 {
   font-size: 15px;
+}
+
+.skillname {
+  color: #1e5a96;
 }
