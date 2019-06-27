@@ -4,10 +4,10 @@
 
 <div id="person-collapse-group" class="collapse-group">
   {{#nav-sidebar items=sidebarItems}}
-    <ul class="nav flex-column mt-4">
-      <li class="d-flex flex-column nav-link">
-        <a onclick={{pipe (action 'startExport' model.id)}} class="edit-buttons">
-          <td><i class="fa fa-download" aria-hidden="true"></i> Export</td>
+    <ul class="nav flex-column mt-2">
+      <li class="d-flex flex-column nav-link border">
+        <a role="button" class="edit-buttons" onclick={{pipe (action 'startExport' model.id)}}>
+          <i class="fa fa-download" aria-hidden="true"></i> Export
         </a>
       </li>
     </ul>

@@ -21,7 +21,7 @@
         {{#each sortedActivities as |activity|}}
           <div class="zeile">
             <div class="row">
-              <div class="col-sm-3 centered-content text-center">
+              <div class="col-sm-3 text-center">
                 {{if activity.monthFrom (concat (moment-format activity.monthFrom 'MM' 'MM') '.')}}{{activity.yearFrom}}
                 {{#if (eq activity.yearTo null)}}
                   - heute

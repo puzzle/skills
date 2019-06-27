@@ -1,25 +1,23 @@
 {{#nav-sidebar items=sidebarItems}}
-  <ul class="nav flex-column mt-4">
+  <ul class="nav flex-column mt-2 border">
     {{#if peopleSkillsEditing}}
       <li class="d-flex flex-column nav-link">
-        <p><i class="fa fa-edit"></i> Bearbeiten</p>
-      </li>
-      <li class="d-flex flex-column nav-link">
+        <div class="mb-2 text-center">
+          <i class="fa fa-edit"></i> Bearbeiten
+        </div>
         <button onclick={{action 'submit' person}} role="button" class="btn btn-primary" id="submit-education-button">Speichern</button>
-      </li>
-      <li class="nav-link">
-        <button onclick={{action 'abortEdit'}} role="button" class="btn abort-button w-100">Abbrechen</button>
+        <button onclick={{action 'abortEdit'}} role="button" class="btn abort-button w-100 mt-1">Abbrechen</button>
       </li>
     {{else}}
-      <li class="nav-item">
-        <a class="nav-link edit-buttons" role="button" onclick={{action (toggle 'peopleSkillsEditing' this)}}>
+      <li class="d-flex flex-column nav-link">
+        <a role="button" class="edit-buttons" onclick={{action (toggle 'peopleSkillsEditing' this)}}>
           <i class="fa fa-edit"></i> Skills bearbeiten
         </a>
       </li>
     {{/if}}
   </ul>
-  <ul class="nav flex-column mt-4">
-    <li class="d-flex flex-column nav-link">
+  <ul class="nav flex-column mt-2">
+    <li class="d-flex flex-column nav-link border">
       <a role="button" class="edit-buttons" data-toggle="modal" data-target="#people-skill-new-modal">
         <i class="fa fa-plus" aria-hidden="true"></i> Skill hinzufügen
       </a>

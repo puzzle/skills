@@ -21,7 +21,7 @@
         {{#each sortedAdvancedTrainings as |advanced-training|}}
           <div class="zeile">
             <div class="row">
-              <div class="col-sm-3 centered-content text-center">
+              <div class="col-sm-3 text-center">
                 {{if advanced-training.monthFrom (concat (moment-format advanced-training.monthFrom 'MM' 'MM') '.')}}{{advanced-training.yearFrom}}
                 {{#if (eq advanced-training.yearTo null)}}
                   - heute
