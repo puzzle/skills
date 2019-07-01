@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'csv'
 
 module Csv
@@ -8,8 +10,6 @@ module Csv
     end
 
     def export
-      entries = fetch_entries
-
       CSV.generate(headers: true) do |csv|
         csv << %w(Skill Kategorie Subkategorie Interesse Niveau Zertifikat Kernkompetenz)
         entries.each { |entry| csv << entry }
@@ -25,11 +25,11 @@ module Csv
        people_skills.level, people_skills.certificate, people_skills.core_competence'
     end
 
-    def fetch_entries
+    def entries
       @entries ||= people_skills.joins(skill: :category)
-                              .joins('INNER JOIN categories AS parents
+                                .joins('INNER JOIN categories AS parents
                                       ON parents.id=categories.parent_id')
-                              .pluck(Arel.sql(export_attributes))
+                                .pluck(Arel.sql(export_attributes))
     end
 
   end

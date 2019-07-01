@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 gem 'rails', '5.2.2.1'
@@ -34,8 +36,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code
   # to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'rspec-rails', '~> 3.6'
   gem 'faker'
+  gem 'rspec-rails', '~> 3.6'
 end
 
 group :development do
@@ -43,9 +45,9 @@ group :development do
   gem 'pry'
   # Spring speeds up development by keeping your application
   # running in the background. Read more: https://github.com/rails/spring
+  gem 'rails-erd'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'rails-erd'
 end
 
 group :test do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ErrorSerializer
   def self.serialize(errors)
     return if errors.nil?

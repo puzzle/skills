@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CompanyInPersonSerializer < ApplicationSerializer
   type :companies
 

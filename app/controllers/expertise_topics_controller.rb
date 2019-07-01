@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ExpertiseTopicsController < CrudController
   self.permitted_attrs = %i[name user_topic expertise_category_id]
 
