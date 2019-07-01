@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '5.2.1'
+gem 'rails', '5.2.2.1'
 
 gem 'active_model_serializers'
 gem 'activerecord-postgresql-adapter'
@@ -18,12 +18,12 @@ gem 'mini_magick'
 gem 'net-ldap', '~> 0.16.0'
 gem 'nokogiri', '~> 1.8.2'
 gem 'odf-report'
-gem 'pg', '0.19.0.pre20160409114042'
+gem 'pg'
 gem 'pg_search'
-gem 'puma', '~> 3.0'
-gem 'rack', '~> 2.0.6'
+gem 'puma'
+gem 'rack'
 gem 'rails-i18n'
-gem 'seed-fu', '~> 2.3.7'
+gem 'seed-fu'
 
 group :metrics do
   gem 'brakeman'
@@ -49,7 +49,7 @@ group :development do
 end
 
 group :test do
-  gem 'simplecov', '~> 0.12.0'
+  gem 'simplecov'
   gem 'simplecov-rcov'
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -9,7 +9,7 @@ addons:
 cache: bundler
 
 rvm:
-  - 2.3
+  - 2.5
 
 install:
   - bundle install --path vendor/bundle
