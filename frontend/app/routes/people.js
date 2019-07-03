@@ -4,6 +4,7 @@ import AuthenticatedRouteMixin from "ember-simple-auth/mixins/authenticated-rout
 
 export default Route.extend(AuthenticatedRouteMixin, {
   ajax: service(),
+  selectedPerson: service(),
 
   queryParams: {
     q: {
@@ -18,9 +19,24 @@ export default Route.extend(AuthenticatedRouteMixin, {
       .then(response => response.data);
   },
 
+  redirect(model, transition) {
+    if (this.get("selectedPerson.isPresent")) {
+      this.transitionTo(
+        this.get("selectedPerson.selectedSubRoute"),
+        this.get("selectedPerson.personId"),
+        { queryParams: this.get("selectedPerson.queryParams") || {} }
+      );
+    }
+  },
+
   actions: {
     reloadPeopleList() {
       this.refresh();
+    },
+
+    willTransition(transition) {
+      if (transition.targetName === "people.index")
+        this.get("selectedPerson").clear();
     }
   }
 });

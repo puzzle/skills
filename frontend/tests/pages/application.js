@@ -11,7 +11,7 @@ export default create({
 
   search: fillable("#field-search"),
   toggleAdvancedSearch: clickable("#toggleSearch"),
-
+  profileMenuItem: clickable('a.nav-link[href="/people"]'),
   peopleMenuItem: clickOnText("#person-list a"),
 
   visitCompanies: visitable("/companies"),

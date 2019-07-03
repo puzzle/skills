@@ -11,6 +11,12 @@ const { resolve } = RSVP;
 export default create({
   visit: visitable("/people/:person_id/skills"),
 
+  filterButtons: {
+    all: clickable("#memberSkillsetAll"),
+    rated: clickable("#memberSkillsetRated"),
+    unrated: clickable("#memberSkillsetUnrated")
+  },
+
   newPeopleSkillModal: {
     submit: clickable("#people-skill-new-submit-button"),
 
