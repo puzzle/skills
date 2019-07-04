@@ -2,12 +2,16 @@ import Component from "@ember/component";
 import { inject } from "@ember/service";
 import { computed } from "@ember/object";
 import { getOwner } from "@ember/application";
+import ENV from "../config/environment";
 
 export default Component.extend({
   store: inject(),
   ajax: inject(),
   intl: inject(),
   router: inject(),
+
+  isLoading: true,
+  minimumLoadTime: 1000,
 
   didReceiveAttrs() {
     this._super(...arguments);
@@ -18,6 +22,8 @@ export default Component.extend({
   },
 
   refreshNewPeopleSkills(skills) {
+    this.set("isLoading", true);
+    let loadBegin = Date.now();
     this.get("ajax")
       .request("/skills/unrated_by_person", {
         data: {
@@ -25,6 +31,18 @@ export default Component.extend({
         }
       })
       .then(response => {
+        let loadEnd = Date.now();
+        // have to disable the minimumLoadTime in tests
+        if (
+          loadEnd - loadBegin > this.get("minimumLoadTime") ||
+          ENV.environment == "test"
+        ) {
+          this.set("isLoading", false);
+        } else {
+          setTimeout(() => {
+            this.set("isLoading", false);
+          }, this.get("minimumLoadTime") - (loadEnd - loadBegin));
+        }
         let responseIds = response.data.map(skill => skill.id);
         let peopleSkills = skills
           .map(skill => {
