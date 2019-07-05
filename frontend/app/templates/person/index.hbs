@@ -58,20 +58,7 @@
       <div class="card mb-end" id="projects">
         {{projects-show projects=model.projects personId=model.id}}
       </div>
+      {{scroll-to-top-button}}
     </div>
   </div>
 </div>
-<div id="scrollToTopButton">
-  {{scroll-to-top-button}}
-</div>
-
-<script>
-  $(document).scroll(function() { 
-     if($(window).scrollTop() !== 0) {
-       $("#scrollToTopButton").addClass('visible');
-     }
-     else {
-       $("#scrollToTopButton").removeClass('visible');
-     }
-  });
-</script>
