@@ -1,6 +1,6 @@
 import Component from "@ember/component";
 import { inject } from "@ember/service";
-import { computed } from "@ember/object";
+import { computed, observer } from "@ember/object";
 import { getOwner } from "@ember/application";
 import ENV from "../config/environment";
 
@@ -61,6 +61,19 @@ export default Component.extend({
         this.set("newPeopleSkills", peopleSkills);
       });
   },
+
+  peopleSkillsChanged: observer("person.peopleSkills.length", function() {
+    const personSkillsIds = this.get("person.peopleSkills").map(ps =>
+      ps.get("skill.id")
+    );
+    const peopleSkill = this.get("newPeopleSkills")
+      .filter(ps => personSkillsIds.includes(ps.get("skill.id")))
+      .get("firstObject");
+    this.set(
+      "newPeopleSkills",
+      this.get("newPeopleSkills").removeObject(peopleSkill)
+    );
+  }),
 
   newPeopleSkillsAmount: computed("newPeopleSkills", function() {
     return this.get("newPeopleSkills.length");

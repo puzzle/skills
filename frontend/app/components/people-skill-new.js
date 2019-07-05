@@ -26,7 +26,7 @@ export default Component.extend({
   },
 
   dropdownSkills: computed("person.peopleSkills.@each.id", function() {
-    const peopleSkillsIds = this.peopleSkills.map(peopleSkill =>
+    const peopleSkillsIds = this.get("person.peopleSkills").map(peopleSkill =>
       peopleSkill.get("skill.id")
     );
     let skills = this.get("store").findAll("skill", { reload: true });
