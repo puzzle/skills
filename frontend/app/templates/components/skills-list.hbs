@@ -1,28 +1,33 @@
   {{skill-show skill=currentSkill}}
   {{skill-edit skill=currentSkill}}
-<div class="row mb-3">
-  <div class="col-sm-12 search-skill-field">
-    {{list-filter}}
+  <div id="skillset-header" class="header pt-3">
+    <div class="row mb-3">
+      <div class="col-sm-12 search-skill-field">
+        {{list-filter}}
+      </div>
+      <div class="col-sm-3">
+        {{skillset-defaultset-filter}}
+      </div>
+      <div class="col-sm-5">
+        {{skillset-category-filter}}
+      </div>
+      <div class="col-sm-1">
+        <a onclick={{pipe (action 'exportSkillsetOdt')}} class="edit-buttons" data-toggle="tooltip" data-placement="top" title="Exportiert das gesamte Skillset">
+          <i class="fa fa-download" aria-hidden="true"></i>
+          Export
+        </a>
+      </div>
+      <div class="col-sm-2">
+        <a id="new-skill-link" class="edit-buttons" role="button" data-toggle="modal" data-target="#skill-new-modal">
+          <i class="fa fa-plus" aria-hidden="true"></i> Neuer Skill
+        </a>
+      </div>
+    </div>
   </div>
-  <div class="col-sm-3">
-    {{skillset-defaultset-filter}}
-  </div>
-  <div class="col-sm-5">
-    {{skillset-category-filter}}
-  </div>
-  <div class="col-sm-1">
-    <a onclick={{pipe (action 'exportSkillsetOdt')}} class="edit-buttons" data-toggle="tooltip" data-placement="top" title="Exportiert das gesamte Skillset">
-      <i class="fa fa-download" aria-hidden="true"></i>
-      Export
-    </a>
-  </div>
-  <div class="col-sm-2">
-    {{skill-new refreshList=(action 'refreshList')}}
-  </div>
-</div>
 <div class="mb-end">
+  {{skill-new refreshList=(action 'refreshList')}}
   <table id="skills-list-table" class="table">
-    <thead>
+    <thead class="position-sticky">
       <tr>
         <th scope="col" class="bg-info header-text text-secondary">Skill</th>
         <th scope="col" class="w-9 text-secondary">Members</th>
@@ -34,7 +39,7 @@
         <th scope="col" class="w-9 text-secondary">Bearbeiten</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="mt-5">
       {{#each sortedSkills as |skill|}}
         <tr role="button" onclick={{action 'toggleSkill' skill}}>
           <td data-toggle="modal" data-target="#skill-show-modal" class="skillname show-skill">

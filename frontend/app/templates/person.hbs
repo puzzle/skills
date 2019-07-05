@@ -1,2 +1,6 @@
-{{person-actions person=model onDelete=(route-action 'reloadPeopleList')}}
-{{outlet}}
+<div id="person-actions" class="header">
+  {{person-actions person=model onDelete=(route-action 'reloadPeopleList')}}
+</div>
+<div class="mt-11">
+  {{outlet}}
+</div>

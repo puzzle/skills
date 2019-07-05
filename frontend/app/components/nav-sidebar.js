@@ -4,7 +4,7 @@ import $ from "jquery";
 export default Component.extend({
   init() {
     this._super(...arguments);
-    this.set("myStickyOptions", { topSpacing: 70 });
+    this.set("myStickyOptions", { topSpacing: 160 });
   },
 
   actions: {

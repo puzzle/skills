@@ -295,6 +295,11 @@ div.row-fluid.person-list > div.span10 > div.container-fluid.round-border {
   -------------------------------------------------- */
 
 /*Column Highlighting*/
+
+#skillset-header {
+  top: 80px;
+}
+
 #skills-list-table thead th:nth-of-type(even) {
   background: #e5e5e5;
 }
@@ -302,6 +307,16 @@ div.row-fluid.person-list > div.span10 > div.container-fluid.round-border {
 #skills-list-table {
   table-layout: fixed;
   line-height: 15px;
+}
+
+#skills-list-table thead {
+  top: 203px;
+}
+
+#skills-list-table tbody:before {
+  content: "";
+  display: block;
+  height: 110px;
 }
 
 #skills-list-table th {
@@ -388,6 +403,10 @@ div.row-fluid.person-list > div.span10 > div.container-fluid.round-border {
 
 /* Skills Search Section
   -------------------------------------------------- */
+
+#skill-search-header {
+  top: 80px;
+}
 
 #skill-search-results {
   min-height: 80px;
@@ -588,6 +607,10 @@ div.row-fluid.person-list > div.span10 > div.container-fluid.round-border {
 
 #cv-search-results {
   min-height: 80px;
+}
+
+#cv-searchbar-header {
+  top: 80px;
 }
 
 #cv-searchbar input {
@@ -1461,7 +1484,7 @@ div.content-input {
   margin-right: auto;
   margin-left: auto;
   position: fixed;
-  z-index: 1020 !important;
+  z-index: 999 !important;
 }
 
 .top {
@@ -1472,12 +1495,40 @@ div.content-input {
   margin-top: 90px;
 }
 
+#people-search-header {
+  padding-top: 8px;
+  top: 80px;
+  max-width: 1290px;
+  background-color: white;
+  z-index: 999 !important;
+}
+
+#person-actions {
+  top: 130px;
+}
+
+.mt-8 {
+  margin-top: 8rem !important;
+}
+
+.mt-11 {
+  margin-top: 11rem !important;
+}
+
+.mt-12 {
+  margin-top: 12rem !important;
+}
+
+.mt-13 {
+  margin-top: 13rem !important;
+}
+
 .people-search {
   width: 60%;
 }
 
 .new-profile-button {
-  margin-left: 65%;
+  margin-left: 64%;
 }
 
 .search-field {

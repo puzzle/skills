@@ -1,8 +1,10 @@
-{{cv-searchbar}}
-<div class="card mt-4 mb-5">
-  <div class="card-header bg-info">
+<div id="cv-searchbar-header" class="header">
+  {{cv-searchbar}}
+  <div class="card-header bg-info mt-3">
     <p class="text-dark header-text mb-0">Suchresultate</p>
   </div>
+</div>
+<div class="card mt-12 mb-5">
   <div id="cv-search-results" class="border border-info rounded-bottom">
     {{#if model}}
       {{#each model as |person|}}
