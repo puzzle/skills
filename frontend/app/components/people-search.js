@@ -5,17 +5,21 @@ import { isBlank } from "@ember/utils";
 
 export default Component.extend({
   store: service(),
-  selected: "",
   router: service(),
 
   init() {
     this._super(...arguments);
-    const currentId = this.get(
-      "router.currentState.routerJsState.params.person.person_id"
-    );
-    if (currentId)
-      this.set("selected", this.get("store").find("person", currentId));
   },
+
+  selected: computed(
+    "router.currentState.routerJsState.params.person.person_id",
+    function() {
+      const currentId = this.get(
+        "router.currentState.routerJsState.params.person.person_id"
+      );
+      if (currentId) return this.get("store").find("person", currentId);
+    }
+  ),
 
   peopleToSelect: computed(function() {
     return this.get("store")

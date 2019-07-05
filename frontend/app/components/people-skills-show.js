@@ -156,6 +156,10 @@ export default Component.extend({
       });
       this.set("peopleSkillsEditing", false);
       this.$("#peopleSkillsHeader")[0].scrollIntoView({ behavior: "smooth" });
+    },
+
+    toggleSkillShow(skill) {
+      this.set("currentSkill", skill);
     }
   }
 });

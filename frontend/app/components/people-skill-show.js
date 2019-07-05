@@ -43,6 +43,11 @@ export default Component.extend({
   }),
 
   actions: {
+    changePerson(person) {
+      person.then(person => person.reload());
+      this.get("router").transitionTo("person", person);
+    },
+
     hasChanged() {
       if (!this.get("peopleSkill.level")) {
         this.sliderHandle = this.$(".slider-handle:first");

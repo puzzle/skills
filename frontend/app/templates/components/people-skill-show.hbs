@@ -1,14 +1,14 @@
 <div class="row">
-  <div class="col pt-3 people-skill-skillname">
+  <div onclick={{toggleSkillShow}} data-toggle={{if toggleSkillShow "modal"}} data-target="#skill-show-modal" class="col pt-3 people-skill-skillname">
     {{#if showPersonName}}
-      {{#link-to 'person.skills' peopleSkill.person}}
+      <a role="button" onclick={{action 'changePerson' peopleSkill.person}} class="edit-buttons">
         <span data-dismiss="modal">{{peopleSkill.person.name}}</span>
-      {{/link-to}}
+      </a>
     {{else}}
       <div class="people-skill-title">{{peopleSkill.skill.title}}</div>
     {{/if}}
   </div>
-  <div class="col justify-content-center people-skill-level">
+  <div onclick={{toggleSkillShow}} data-toggle={{if toggleSkillShow "modal"}} data-target="#skill-show-modal" class="col justify-content-center people-skill-level">
     <p class="description {{skillClass}}-level-title">{{levelName}}</p>
     {{ui-slider
     value=levelValue
@@ -21,7 +21,7 @@
     action=(action 'hasChanged')
     }}
   </div>
-  <div class="col people-skill-interest">
+  <div onclick={{toggleSkillShow}} data-toggle={{if toggleSkillShow "modal"}} data-target="#skill-show-modal" class="col people-skill-interest">
     <p class="description {{skillClass}}-interest-title">Interesse</p>
     {{icon-rating
     fillColor='#238BCA'
@@ -30,7 +30,7 @@
     onClick=(action (mut newPeopleSkill.interest))
     }}
   </div>
-  <div class="col pt-3 people-skill-certificate">
+  <div onclick={{toggleSkillShow}} data-toggle={{if toggleSkillShow "modal"}} data-target="#skill-show-modal" class="col pt-3 people-skill-certificate">
     {{#if peopleSkill.certificate}}
       <i class="fa fa-check-square" aria-hidden="true"></i>
     {{else}}
@@ -38,7 +38,7 @@
     {{/if}}
     <span class="description ml-2">Zertifikat</span>
   </div>
-  <div class="col pt-3 people-skill-coreCompetence">
+  <div onclick={{toggleSkillShow}} data-toggle={{if toggleSkillShow "modal"}} data-target="#skill-show-modal" class="col pt-3 people-skill-coreCompetence">
     {{#if peopleSkill.coreCompetence}}
       <i class="fa fa-check-square" aria-hidden="true"></i>
     {{else}}
