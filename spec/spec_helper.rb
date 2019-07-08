@@ -18,11 +18,8 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
 require 'simplecov'
-require 'simplecov-rcov'
 SimpleCov.start
 SimpleCov.coverage_dir 'spec/coverage'
-# TODO re-enable as soon as https://github.com/fguillen/simplecov-rcov/issues/20 is fixed
-#SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

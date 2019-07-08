@@ -256,8 +256,6 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
-    simplecov-rcov (0.2.3)
-      simplecov (>= 0.4.1)
     sixarm_ruby_unaccent (1.2.0)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
@@ -330,7 +328,6 @@ DEPENDENCIES
   rubocop (~> 0.54.0)
   seed-fu
   simplecov
-  simplecov-rcov
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
