@@ -50,7 +50,7 @@
             {{skillset-rated-filter personId=person.id}}
           </div>
         </div>
-        {{#if peopleSkills}}
+        {{#if skillset}}
           {{#each skillset as |parentCategory|}}
             <div id="parentCategory-{{parentCategory.id}}" class="row pb-2">
               <div class="col">
@@ -77,10 +77,10 @@
                               {{people-skill-edit peopleSkill=skill}}
                             {{else}}
                               {{#people-skill-show peopleSkill=skill toggleSkillShow=(action 'toggleSkillShow' skill.skill)}}
-                                <div class="col-md-1 pt-4">
+                                <div class="col-md-1 pt-3">
                                   {{#if skill.isRated}}
-                                    <a role="button" class="edit-buttons" onclick={{action 'resetPeopleSkill' skill}}>
-                                      <i class="fa fa-repeat"></i>
+                                    <a class="edit-buttons" role="button" onclick={{action 'resetPeopleSkill' skill}} data-toggle="tooltip" data-placement="top" title="Reset Skill">
+                                      <i class="fa fa-redo"></i>
                                     </a>
                                   {{/if}}
                                 </div>
@@ -95,6 +95,11 @@
               </div>
             </div>
           {{/each}}
+          <script>
+            $(document).ready(() => {
+              $('[data-toggle="tooltip"]').tooltip();
+            })
+          </script>
         {{/if}}
       </div>
     </div>
