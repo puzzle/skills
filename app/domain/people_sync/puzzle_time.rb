@@ -8,9 +8,8 @@ module PeopleSync
   
     # updated people from puzzle time
     def updated_people
-      last_runned_job = Delayed::Job.where(queue: 'person_sync').last
-      if last_runned_job
-        params = { update_since: last_runned_job.run_at }
+      if last_runned_at
+        params = { update_since: last_runned_at }
         updated_people = JSON.parse(fetch_people(params))['data']
         PeopleFilter.new(updated_people).filter
       else
@@ -19,6 +18,11 @@ module PeopleSync
     end
   
     private
+
+    def last_runned_at
+      job = SynchronizeJob.find_by(name: 'people_sync')
+      job.last_runned_at if job
+    end
   
     # get people from API
     def fetch_people(params = nil)
