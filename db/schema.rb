@@ -224,6 +224,22 @@ ActiveRecord::Schema.define(version: 2021_02_09_074707) do
     t.index ["category_id"], name: "index_skills_on_category_id"
   end
 
+  create_table "synchronize_jobs", force: :cascade do |t|
+    t.string "name"
+    t.datetime "last_runned_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", id: :serial, force: :cascade do |t|
+    t.string "ldap_uid"
+    t.string "api_token"
+    t.integer "failed_login_attempts", default: 0
+    t.datetime "last_failed_login_attempt_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "categories", "categories", column: "parent_id"
   add_foreign_key "language_skills", "people"
   add_foreign_key "people", "companies"

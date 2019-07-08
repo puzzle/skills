@@ -19,11 +19,18 @@ class SynchronizePersonJob < CronJob
     PeopleSync::MarkExEmployeesTask.mark_ex_employees(people)
     PeopleSync::SyncUpdatedPeopleTask.sync_updated_people(updated_people)
     PeopleSync::SyncPeopleRolesTask.sync_people_roles(people | updated_people)
+
+    synchronize_people_job.update_last_runned_at
   end
 
   private
 
   def self.ptime
     @ptime ||= PeopleSync::PuzzleTime.new
+  end
+  
+  def self.synchronize_people_job
+    job = SynchronizeJob.find_by(name: 'people_sync')
+    job.present? ? job : SynchronizeJob.create!(name: 'people_sync')
   end
 end
