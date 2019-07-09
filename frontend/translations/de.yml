@@ -20,6 +20,7 @@ project:
     technology: Technologie
     start_at: 'Datum von'
     finish_at: 'Datum bis'
+    yearFrom: 'Datum von'
 competence:
     description: Beschreibung
 personCompetence:

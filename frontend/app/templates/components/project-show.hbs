@@ -1,23 +1,18 @@
 <div class="mb-2">
-  <div class="card-header bg-info" data-toggle="collapse" data-parent="#accordion" href="#collapseProject{{project.id}}">
+  <div class="card-header bg-info">
     <div class="row">
-      <div class="col-sm-6">
-        <a class="card-link text-dark project-title-text">
-          {{if project.monthFrom (concat (moment-format project.monthFrom 'MM' 'MM') '.')}}{{project.yearFrom}}
-          {{#if (eq project.yearTo null)}}
-            - heute
-          {{else if (or (not-eq project.yearFrom project.yearTo) (not-eq project.monthFrom project.monthTo))}}
-            - {{if project.monthTo (concat (moment-format project.monthTo 'MM' 'MM') '.')}}{{project.yearTo}}
-          {{/if}}
-          | {{project.title}}
-        </a>
-      </div>
-      <div class="col-sm-6 text-right d-block">
-        <a class="card-link text-dark" data-toggle="collapse" data-parent="#accordion" href="#collapseProject{{project.id}}"><i class="fa angle"></i></a>
+      <div class="col-sm-6 project-title-text">
+        {{if project.monthFrom (concat (moment-format project.monthFrom 'MM' 'MM') '.')}}{{project.yearFrom}}
+        {{#if (eq project.yearTo null)}}
+          - heute
+        {{else if (or (not-eq project.yearFrom project.yearTo) (not-eq project.monthFrom project.monthTo))}}
+          - {{if project.monthTo (concat (moment-format project.monthTo 'MM' 'MM') '.')}}{{project.yearTo}}
+        {{/if}}
+        | {{project.title}}
       </div>
     </div>
   </div>
-  <div id="collapseProject{{project.id}}" class="collapse border border-info rounded-bottom show">
+  <div class="border border-info rounded-bottom show">
     <div class="card-body d-flex flex-column">
       <table class="table table-borderless table-sm">
         <tr>

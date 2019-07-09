@@ -2,19 +2,19 @@
   <div class="mb-2" id="project-content-edit">
     <div class="card-header bg-info">
       <div class="row">
-        <div class="col-sm-12">
-          <a class="card-link text-dark">Projekt bearbeiten</a>
-          <div class="pull-right">
-            {{#delete-with-confirmation
-               entry=project
-            }}
-              Löschen
-            {{/delete-with-confirmation}}
-          </div>
+        <div class="col-sm-6">
+          Projekt bearbeiten
+        </div>
+        <div class="col-sm-6 text-right d-block">
+          {{#delete-with-confirmation
+             entry=project
+          }}
+            Löschen
+          {{/delete-with-confirmation}}
         </div>
       </div>
     </div>
-    <div id="collapseProjectNew" class="show border border-info rounded-bottom">
+    <div class="border border-info rounded-bottom">
       <div class="card-body d-flex flex-column">
         <div class="row mb-2">
           <div class="col-sm-3">
