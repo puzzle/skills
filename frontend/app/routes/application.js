@@ -2,11 +2,13 @@ import { inject as service } from "@ember/service";
 import Route from "@ember/routing/route";
 import DS from "ember-data";
 import { UnauthorizedError, ForbiddenError } from "ember-ajax/errors";
+import config from "../config/environment";
 
 export default Route.extend({
   session: service("keycloak-session"),
   moment: service(),
   intl: service(),
+  config,
 
   beforeModel() {
     this.get("moment").setLocale("de");
@@ -18,9 +20,9 @@ export default Route.extend({
     let options = {
       url: "server_url", //add your url here
       realm: "realm_name", // add your realm here
-      clientId: "client_name", // add your clientId here
+      clientId: this.config.keycloak.clientId, // add your clientId here
       credentials: {
-        secret: "1234" // add your secret here
+        secret: this.config.keycloak.secret // add your secret here
       }
     };
 
