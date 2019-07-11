@@ -9,7 +9,7 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     this.set("peopleSkillsEditing", false);
-    const categories = this.get("store").findAll("category");
+    const categories = this.get("store").findAll("category", { reload: true });
     categories.then(() => {
       this.set("categories", categories);
       this.set(
@@ -34,6 +34,7 @@ export default Component.extend({
     "person.peopleSkills",
     "person.peopleSkills.length",
     "peopleSkills",
+    "categories",
     function() {
       this.get("person.peopleSkills").then(() => {
         this.setMemberSkillset();

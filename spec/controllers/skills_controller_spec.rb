@@ -51,7 +51,7 @@ describe SkillsController do
       end
 
       it 'returns skills with parent category software-engineering' do
-        parent_category = category(:'software-engineering')
+        parent_category = categories(:'software-engineering')
         get :index, params: { category: parent_category.id }
 
         skills = json['data']
@@ -61,7 +61,7 @@ describe SkillsController do
       end
 
       it 'returns skills with parent category software-engineering and defaultSet true' do
-        parent_category = category(:'software-engineering')
+        parent_category = categories(:'software-engineering')
         get :index, params: { category: parent_category.id, defaultSet: 'true' }
 
         skills = json['data']

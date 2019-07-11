@@ -27,5 +27,36 @@ describe Category do
 
       expect(category.errors[:title].first).to eq('muss ausgefüllt werden')
     end
+
+    it 'should have a unique position' do
+      category = Category.new
+      category.position = 100
+      category.valid?
+
+      expect(category.errors[:position].first).to eq('ist bereits vergeben')
+    end
+  end
+
+  context 'orders' do
+    it 'orders all_parents correctly' do
+      category = Category.create!(title: 'Diverses', position: 300)
+
+      categories = Category.all_parents
+      expect(categories.first).to eq(categories(:'software-engineering'))
+      expect(categories.second).to eq(categories(:'system-engineering'))
+      expect(categories.third).to eq(category)
+    end
+
+    it 'orders all children correctly' do
+      categories = Category.all_children
+      expect(categories.first).to eq(categories(:ruby))
+      expect(categories.second).to eq(categories(:java))
+      expect(categories.third).to eq(categories(:'linux-engineering'))
+    end
+
+    it 'orders all skills correctly' do
+      categories = Category.list.pluck(:title)
+      expect(categories).to eq(['Software-Engineering', 'Ruby', 'Java', 'System-Engineering', 'Linux-Engineering'])
+    end
   end
 end

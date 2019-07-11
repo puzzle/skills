@@ -1,18 +1,23 @@
 
 software-engineering:
+  position: 100
   title: Software-Engineering
 
 system-engineering:
+  position: 200
   title: System-Engineering
 
 linux-engineering:
+  position: 201
   title: Linux-Engineering
   parent: system-engineering
 
 ruby:
+  position: 101
   title: Ruby
   parent: software-engineering
 
 java:
+  position: 102
   title: Java
   parent: software-engineering

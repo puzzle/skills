@@ -11,7 +11,8 @@
 
 class Category < ApplicationRecord
   has_many :skills, dependent: :destroy
-  belongs_to :parent, foreign_key: :parent_id,
+  belongs_to :parent, optional: true,
+                      foreign_key: :parent_id,
                       class_name: :Category,
                       inverse_of: :children
 
@@ -22,10 +23,11 @@ class Category < ApplicationRecord
 
 
   validates :title, presence: true
+  validates :position, uniqueness: true
   validates :title, length: { maximum: 100 }
 
-  scope :all_parents, -> { where(parent_id: nil) }
-  scope :all_children, -> { where.not(parent_id: nil) }
+  scope :all_parents, -> { order(:position).where(parent_id: nil) }
+  scope :all_children, -> { order(:position).where.not(parent_id: nil) }
 
-  scope :list, -> { order(:title) }
+  scope :list, -> { order(:position) }
 end

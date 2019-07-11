@@ -1,5 +1,5 @@
 class CategoriesController < CrudController
-  self.permitted_attrs = %i[title parent_id]
+  self.permitted_attrs = %i[title position parent_id]
 
   private
 

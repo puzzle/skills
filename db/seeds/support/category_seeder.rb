@@ -1,14 +1,16 @@
 class CategorySeeder
-  def seed_categories(categories_hash)
-    categories_hash.each do |parent, children|
-      parent_category = Category.seed_once(:title) do |pc|
+  def seed_categories(categories)
+    categories.each_with_index do |(parent, children), parent_index|
+      parent_category = Category.seed(:title) do |pc|
         pc.title = parent
+        pc.position = (1 + parent_index) * 100
       end.first || Category.find_by(title: parent)
 
-      children.each do |child|
-        Category.seed_once(:title) do |cc|
+      children.each_with_index do |child, child_index|
+        Category.seed(:title) do |cc|
           cc.title = child
           cc.parent_id = parent_category.id
+          cc.position = parent_category.position + child_index  + 1
         end
       end
     end
