@@ -15,6 +15,11 @@ RUN \
   # Call post-assemble script when assembling
   echo -e "\n\$STI_SCRIPTS_PATH/post-assemble" >> $STI_SCRIPTS_PATH/assemble
 
+RUN \
+    # Install yarn (install without dep check since nodejs is installed via tar)
+    wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo && \
+    rpm -Uvh --nodeps $(repoquery --location yarn)
+
 USER 1001
 
 ENV RAILS_ENV=production
