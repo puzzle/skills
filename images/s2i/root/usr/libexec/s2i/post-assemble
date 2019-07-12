@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -ex
+
+cd /opt/app-root/src
+
+echo $OPENSHIFT_BUILD_COMMIT > BUILD_INFO
