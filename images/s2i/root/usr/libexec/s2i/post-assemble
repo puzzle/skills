@@ -2,6 +2,10 @@
 
 set -ex
 
-cd /opt/app-root/src
-
+pushd /opt/app-root/src
 echo $OPENSHIFT_BUILD_COMMIT > BUILD_INFO
+popd
+
+pushd /opt/app-root/src/frontend
+yarn install
+popd
