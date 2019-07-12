@@ -4,7 +4,7 @@ describe SkillsController do
   describe 'SkillsController' do
     before { load_pictures }
 
-    let(:ken) { users(:ken) }
+    let(:bob) { people(:bob) }
 
     describe 'GET index' do
       it 'returns all skills with nested models' do
@@ -77,8 +77,8 @@ describe SkillsController do
     end
 
     describe 'GET unrated_for_person' do
-      it 'returns all unrated PeopleSkills of ken' do
-        process :unrated_by_person, params: { type: 'Person', person_id: ken.id }
+      it 'returns all unrated PeopleSkills of bob' do
+        process :unrated_by_person, params: { type: 'Person', person_id: bob.id }
 
         skills = json['data']
         new_skill_attrs = skills.first['attributes']

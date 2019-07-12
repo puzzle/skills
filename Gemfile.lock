@@ -225,6 +225,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    rb-readline (0.5.5)
     rest-client (2.0.2)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
@@ -314,6 +315,7 @@ DEPENDENCIES
   i18n_data
   keycloak-api-rails
   language_list
+  listen (~> 3.0.5)
   mini_magick
   net-ldap (~> 0.16.0)
   nokogiri (~> 1.8.2)
@@ -326,6 +328,7 @@ DEPENDENCIES
   rails (= 5.2.1)
   rails-erd
   rails-i18n
+  rb-readline
   rest-client
   rspec-rails (~> 3.6)
   rubocop (~> 0.54.0)
