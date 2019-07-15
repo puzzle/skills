@@ -2,8 +2,6 @@ FROM centos/ruby-25-centos7
 
 USER root
 
-ADD ./root /
-
 # for minimagick gem
 RUN yum install -y ImageMagick
 
@@ -11,7 +9,11 @@ RUN yum install -y ImageMagick
 RUN wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo && \
     rpm -Uvh --nodeps $(repoquery --location yarn)
 
+# reduce image size
 RUN yum clean all -y && rm -rf /var/cache/yum
+
+# copy files needed for assembly into container
+ADD ./root /
 
 RUN \
   # Call restore-artifacts sscript when assembling

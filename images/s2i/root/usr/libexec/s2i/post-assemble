@@ -9,8 +9,5 @@ popd
 pushd /opt/app-root/src/frontend
 yarn install
 yarn build-prod
-popd
-
-pushd /opt/app-root/src
-bundle exec rake assets:precompile
+mv -v dist/* /opt/app-root/src/public/
 popd
