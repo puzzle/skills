@@ -1,44 +1,31 @@
 categories:
-  Beratung:
-    - Digital Consulting
-    - Tech Consulting
-    - Open Source Consulting
   UX Design:
     - UX Methoden
     - UX Tools
   Software Engineering:
     - Java
     - Ruby
-    - Frontend
+    - Frontend / JavaScript
     - Multiplatform Apps
     - Web- & Application Server
     - Streaming & Messaging
-    - DB / DB-Server
-    - AI & ML
-    - API Mgmt & Microservices
-  Architektur & Design:
-    - Software Design
-    - Software Architektur
+    - Datenbanken / DB-Server
+    - Machine Learning / AI
+    - Lightning Network
   Delivery:
     - CI/CD
-    - Container Platform / PaaS
-    - Container Engineering
+    - Container Platforms & Engineering
   System Engineering:
-    - Cloud Management
-    - Config & Workflow Mgmt
-    - Virtualisierung
-    - Hochverfügbarkeit
+    - Cloud-, Configuration- & Worflow Managment
     - Linux Engineering
+    - Virtualisierung & HA
+    - Monitoring & Reporting
     - Security & Auth
-    - Neworking
-    - Packaging
-    - Backup Services
-    - Mail Service
   Diverses:
     - Sprachen
     - Tools
     - Vorgehensmethoden
-    - Ohne Kategorien
+    - Ohne Kategorie
 
 radar:
   - adopt
