@@ -1,16 +1,8 @@
 import { test } from "qunit";
 import moduleForAcceptance from "frontend/tests/helpers/module-for-acceptance";
-import { authenticateSession } from "frontend/tests/helpers/ember-simple-auth";
 import page from "frontend/tests/pages/skills-index";
 
-moduleForAcceptance("Acceptance | edit skill", {
-  beforeEach() {
-    authenticateSession(this.application, {
-      ldap_uid: "development_user",
-      token: "1234"
-    });
-  }
-});
+moduleForAcceptance("Acceptance | edit skill", {});
 
 test("edits Rails to Travis CI", async function(assert) {
   assert.expect(7);

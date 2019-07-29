@@ -1,8 +1,8 @@
-import Service from '@ember/service';
+import Service from "@ember/service";
 
 export default Service.extend({
-  tokenParsed: '1234',
-  keycloak: Object.freeze([{ token: '1234' }]),
+  tokenParsed: "1234",
+  keycloak: Object.freeze([{ token: "1234" }]),
 
   hasResourceRole(resource, role) {},
 
@@ -13,6 +13,8 @@ export default Service.extend({
   checkTransition(transition) {},
 
   updateToken() {
-    return new Promise((resolve, reject) => { resolve() })
+    return new Promise((resolve, reject) => {
+      resolve();
+    });
   }
-})
+});
