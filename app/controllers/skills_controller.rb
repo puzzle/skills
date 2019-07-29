@@ -5,6 +5,8 @@ class SkillsController < CrudController
 
   self.nested_models = %i[children parents]
 
+  self.permitted_relationships = %i[category people]
+
   def index
     return export if params[:format]
     render json: fetch_entries, each_serializer: SkillSerializer, include: '*'

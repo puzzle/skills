@@ -1,0 +1,87 @@
+<td>
+  {{input id=(concat elementId '-edit-title') value=changeset.title class="form-control" name="edit-skill-title" placeholder="Titel"}}
+</td>
+<td>
+  {{skill.people.length}}
+</td>
+<td class="skill-edit-dropdown overflow-visible">
+  {{#power-select
+  renderInPlace=true
+  triggerClass="skill-edit-parent-category"
+  class="w-100"
+  dropdownClass="w-100"
+  options=parentCategories
+  selected=selectedParent
+  onchange=(action 'setParentCategory')
+  searchField="title"
+  onblur=(action "handleBlur")
+  onfocus=(action "handleFocus")
+  as |category|
+  }}
+    {{category.title}}
+  {{/power-select}}
+</td>
+<td class="skill-edit-dropdown overflow-visible">
+  {{#power-select
+  renderInPlace=true
+  triggerClass="skill-edit-child-category"
+  class="w-100"
+  options=selectableChildCategories
+  selected=changeset.category.content
+  onchange=(action (mut changeset.category))
+  searchField='title'
+  onblur=(action "handleBlur")
+  onfocus=(action "handleFocus")
+  as |category|
+  }}
+    {{category.title}}
+  {{/power-select}}
+</td>
+<td>
+  <div class="d-flex justify-content-center mt-2">
+    {{input type="checkbox" id=(concat elementId "-edit-defaultSet") checked=changeset.defaultSet}}
+  </div>
+</td>
+<td class="skill-edit-dropdown overflow-visible">
+  {{#power-select
+  searchEnabled=false
+  renderInPlace=true
+  triggerClass="skill-edit-radar"
+  class="w-100"
+  options=radarOptions
+  selected=changeset.radar
+  onchange=(action (mut changeset.radar))
+  onblur=(action "handleBlur")
+  onfocus=(action "handleFocus")
+  as |radar|
+  }}
+    {{radar}}
+  {{/power-select}}
+</td>
+<td class="skill-edit-dropdown overflow-visible">
+  {{#power-select
+  searchEnabled=false
+  renderInPlace=true
+  triggerClass="skill-edit-portfolio"
+  class="w-100"
+  options=portfolioOptions
+  selected=changeset.portfolio
+  onchange=(action (mut changeset.portfolio))
+  onblur=(action "handleBlur")
+  onfocus=(action "handleFocus")
+  as |portfolio|
+  }}
+    {{portfolio}}
+  {{/power-select}}
+</td>
+<td>
+  <div class="d-flex justify-content-around">
+    <a role="button" onclick={{action 'submit'}} class="skill-edit-save edit-buttons">
+      <i class="fa fa-save"></i>
+    </a>
+    <a role="button" onclick={{action 'abort'}} class="edit-buttons">
+      <i class="fa fa-times"></i>
+    </a>
+    {{#delete-with-confirmation entry=skill}}{{/delete-with-confirmation}}
+  </div>
+</td>

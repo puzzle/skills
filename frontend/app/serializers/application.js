@@ -7,5 +7,12 @@ export default DS.JSONAPISerializer.extend({
   },
   keyForRelationship(key) {
     return underscore(key);
+  },
+  serializeBelongsTo(snapshot, json, relationship) {
+    // do not serialize the attribute!
+    if (relationship.options && relationship.options.readOnly) {
+      return;
+    }
+    this._super(...arguments);
   }
 });

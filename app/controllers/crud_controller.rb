@@ -84,8 +84,8 @@ class CrudController < ListController
 
     return attrs if relationships.blank?
 
-    relationships.each do |e, v|
-      attrs[relationship_param_name(e)] = relationship_ids(v, e)
+    relationships.each do |model_name, data|
+      attrs[relationship_param_name(model_name)] = relationship_ids(data, model_name)
     end
     attrs
   end
@@ -95,6 +95,7 @@ class CrudController < ListController
   end
 
   def relationship_ids(model_data, name)
+    return unless model_data[:data]
     return model_data[:data][:id] unless model_data[:data].is_a?(Array)
     if permitted_relationship?(name)
       model_data[:data].collect do |e|

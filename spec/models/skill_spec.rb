@@ -38,7 +38,7 @@ describe Skill do
       skill.category = Category.all[3]
       skill.valid?
 
-      expect(skill.errors[:base].first).to eq('Dieser Skill existiert bereits')
+      expect(skill.errors[:title].first).to eq('ist bereits vergeben')
     end
     
     it 'could have same named skills with different category' do

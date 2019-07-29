@@ -313,6 +313,14 @@ div.row-fluid.person-list > div.span10 > div.container-fluid.round-border {
   background: #e5e5e5;
 }
 
+#skills-list-table .ember-basic-dropdown-content-wormhole-origin {
+  width: 100% !important;
+}
+
+#skills-list-table .skill-edit-dropdown .ember-basic-dropdown-content {
+  z-index: 998 !important;
+}
+
 #skills-list-table {
   table-layout: fixed;
   line-height: 15px;
@@ -320,6 +328,7 @@ div.row-fluid.person-list > div.span10 > div.container-fluid.round-border {
 
 #skills-list-table thead {
   top: 203px;
+  z-index: 999 !important;
 }
 
 #skills-list-table tbody:before {
@@ -1610,4 +1619,8 @@ div.content-input {
 .people-skill-link:hover {
   background: #e5e5e5 !important;
   cursor: pointer;
+}
+
+.overflow-visible {
+  overflow: visible;
 }

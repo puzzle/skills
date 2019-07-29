@@ -1,4 +1,5 @@
 import DS from "ember-data";
+import { computed } from "@ember/object";
 
 const Skill = DS.Model.extend({
   title: DS.attr("string"),
@@ -9,7 +10,14 @@ const Skill = DS.Model.extend({
   people: DS.hasMany("person"),
   peopleSkills: DS.hasMany("people-skill"),
   category: DS.belongsTo("category", { inverse: "skills" }),
-  parentCategory: DS.belongsTo("category", { inverse: "childrenSkills" })
+  parentCategory: DS.belongsTo("category", {
+    inverse: "childrenSkills",
+    readOnly: true
+  }),
+
+  instanceToString: computed("title", function() {
+    return this.get("title");
+  })
 });
 
 Skill.reopenClass({

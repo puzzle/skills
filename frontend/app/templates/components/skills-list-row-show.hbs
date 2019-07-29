@@ -1,0 +1,35 @@
+<td data-toggle="modal" data-target="#skill-show-modal" class="skillname show-skill">
+  <span class="w-9 mr-2 d-inline-block">
+    {{#if skill.defaultSet}}
+      <img class="w-100" alt="defaultSet Logo" src="/assets/min-logo.png">
+    {{else if (eq skill.defaultSet null)}}
+      <p class="green-point">&#8226;</p>
+    {{/if}}
+  </span>
+  <span>
+    {{skill.title}}
+  </span>
+</td>
+<td data-toggle="modal" data-target="#skill-show-modal" class="show-skill">
+  {{skill.people.length}}
+</td>
+<td data-toggle="modal" data-target="#skill-show-modal" class="show-skill">
+  {{if skill.parentCategory skill.parentCategory.title "-"}}
+</td>
+<td data-toggle="modal" data-target="#skill-show-modal" class="show-skill">
+  {{if skill.category skill.category.title "-"}}
+</td>
+<td data-toggle="modal" data-target="#skill-show-modal" class="show-skill">
+  {{if (eq skill.defaultSet null) "NEU" (if skill.defaultSet "Ja" "Nein")}}
+</td>
+<td data-toggle="modal" data-target="#skill-show-modal" class="show-skill">
+  {{if skill.radar skill.radar "-"}}
+</td>
+<td data-toggle="modal" data-target="#skill-show-modal" class="show-skill">
+  {{if skill.portfolio skill.portfolio "-"}}
+</td>
+<td>
+  <a role="button" onclick={{startEditing}} class="edit-buttons skill-edit-button">
+    <i class="fa fa-edit"></i>
+  </a>
+</td>
