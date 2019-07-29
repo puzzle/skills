@@ -18,8 +18,8 @@ export default Route.extend({
 
     // Keycloak constructor arguments as described in the keycloak documentation.
     let options = {
-      url: "server_url", //add your url here
-      realm: "realm_name", // add your realm here
+      url: this.config.keycloak.url, //add your url here
+      realm: this.config.keycloak.realm, // add your realm here
       clientId: this.config.keycloak.clientId, // add your clientId here
       credentials: {
         secret: this.config.keycloak.secret // add your secret here
