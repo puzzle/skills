@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PeopleRolesController < CrudController
   self.permitted_attrs = %i[level percent role_id person_id]
 

@@ -18,12 +18,20 @@ export default create({
     defaultSetToggle: clickable('#default-set-toggle input[type="checkbox"]'),
     newSkillSubmitButton: clickable("#skill-new-submit-button"),
     skills: {
-      skillNames: collection("#skills-list-table .skillname")
+      skillRow: collection("#skills-list-table tr"),
+      skillNames: collection("#skills-list-table .skillname"),
+      skillEditButtons: collection("#skills-list-table .skill-edit-button")
     },
 
     skillModal: {
       closeButton: clickable(".close"),
       personNames: collection("#skill-show-modal .people-skill-skillname")
+    },
+
+    skillEdit: {
+      skillName: fillable('#skills-list-table input[name="edit-skill-title"]'),
+      skillDefaultSet: clickable('#skills-list-table input[type="checkbox"]'),
+      save: clickable("#skills-list-table .skill-edit-save")
     }
   }
 });

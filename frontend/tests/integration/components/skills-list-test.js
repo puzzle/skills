@@ -5,6 +5,10 @@ import hbs from "htmlbars-inline-precompile";
 import Service from "@ember/service";
 
 const storeStub = Service.extend({
+  createRecord(model) {
+    return null;
+  },
+
   query(type, options) {
     return Promise.all([
       "Software Engineering",
@@ -14,8 +18,33 @@ const storeStub = Service.extend({
     ]);
   },
 
-  createRecord(model) {
-    return null;
+  findAll(model, options) {
+    return Promise.all([
+      {
+        title: "Software Engineering",
+        get() {
+          return null;
+        }
+      },
+      {
+        title: "UX Tools",
+        get() {
+          return { title: "UX Design" };
+        }
+      },
+      {
+        title: "System Engineer",
+        get() {
+          return null;
+        }
+      },
+      {
+        title: "Diverses",
+        get() {
+          return { title: "Keine Kategorie" };
+        }
+      }
+    ]);
   }
 });
 
@@ -41,6 +70,9 @@ module("Integration | Component | skills-list", function(hooks) {
   test("it renders with data", async function(assert) {
     this.set("skills", [
       {
+        get() {
+          return { title: "Ruby" };
+        },
         title: "Ruby",
         portfolio: "aktiv",
         radar: "assess",
@@ -50,6 +82,9 @@ module("Integration | Component | skills-list", function(hooks) {
         people: ["person1", "person2"]
       },
       {
+        get() {
+          return { title: "Jenkins" };
+        },
         title: "Jenkins",
         portfolio: "passiv",
         radar: "assess",

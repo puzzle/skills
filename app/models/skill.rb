@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: skills
@@ -23,22 +25,9 @@ class Skill < ApplicationRecord
 
   validates :title, presence: true
   validates :title, length: { maximum: 100 }
-  
-  validate :skill_uniqueness
+  validates_uniqueness_of :title, scope: :category_id
 
   scope :list, -> { order(:title) }
 
   scope :default_set, -> { where(default_set: true) }
-
-  private
-
-  def skill_uniqueness
-    same_named_skills = Skill.where(title: title)
-    return if same_named_skills.empty?
-
-    category_ids = same_named_skills.map(&:category).pluck(:id)
-    return if category_ids.exclude?(category.id)
-
-    errors.add(:base, 'Dieser Skill existiert bereits')
-  end
 end

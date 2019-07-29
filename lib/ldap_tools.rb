@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'net/ldap'
 
 class LdapTools
@@ -52,7 +54,7 @@ class LdapTools
     end
 
     def check_username(username)
-      unless username =~ /^([a-zA-Z]|\d)+$/
+      unless username.match?(/^([a-zA-Z]|\d)+$/)
         raise ActiveRecord::StatementInvalid, 'invalid username'
       end
     end

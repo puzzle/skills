@@ -1,29 +1,16 @@
 <div id="projects">
-  <div class="card-header bg-info" data-toggle="collapse" data-parent="#accordion" href="#collapseProjects">
+  <div class="card-header bg-info">
     <div class="row">
-      <div class="col-sm-6">
-        <a class="card-link text-dark header-text">Projekte ({{amountOfProjects}})</a>
-      </div>
-      <div class="col-sm-6 text-right d-block">
-        <a class="card-link text-dark" data-toggle="collapse" data-parent="#accordion" href="#collapseProjects"><i class="fa angle"></i></a>
+      <div class="col-sm-6 header-text">
+        Projekte ({{amountOfProjects}})
       </div>
     </div>
   </div>
-  <div id="collapseProjects" class="collapse show border border-info rounded-bottom">
+  <div class="border border-info rounded-bottom">
     <div class="card-body">
-      <div>
-        <a onclick={{action 'toggleProjectNew' true}} role="button" class={{~if (or projectEditing projectNew) '' 'edit-buttons'~}}><i class="fa {{~if (or projectEditing projectNew) '' ' add'~}}"></i>{{~if (or projectEditing projectNew) '' ' Projekt hinzufügen'~}}</a>
-      </div>
+      <a onclick={{action 'toggleProjectNew' true}} role="button" class={{~if (or projectEditing projectNew) '' 'edit-buttons'~}}><i class="fa {{~if (or projectEditing projectNew) '' ' add'~}}"></i>{{~if (or projectEditing projectNew) '' ' Projekt hinzufügen'~}}</a>
       <div id="competence-content-show">
-        <div class="collapse-group-project">
-          <div class="row mb-3">
-            <div class="col-sm-12">
-              <span class="text-right d-block controls">
-                <a href="#collapseProjects" class="mr-2 open-button-project" hidden=true>+ Details einblenden</a>
-                <a href="#collapseProjects" class="close-button-project">- Details ausblenden</a>
-              </span>
-            </div>
-          </div>
+        <div class="mt-2">
           {{component (if projectNew 'project-new') personId=personId done=(action 'toggleProjectNew')}}
           {{#each sortedProjects as |project|}}
             {{#if (eq projectEditing project)}}
@@ -37,16 +24,3 @@
     </div>
   </div>
 </div>
-<script>
-  $(".open-button-project").on("click", function() {
-    $(this).closest('.collapse-group-project').find('.collapse').collapse('show');
-    $('.open-button-project').attr('hidden', true);
-    $('.close-button-project').attr('hidden', false);
-  });
-
-  $(".close-button-project").on("click", function() {
-    $(this).closest('.collapse-group-project').find('.collapse').collapse('hide');
-    $('.close-button-project').attr('hidden', true);
-    $('.open-button-project').attr('hidden', false);
-  });
-</script>

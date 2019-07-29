@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -ex
+
+pushd /opt/app-root/src
+echo $OPENSHIFT_BUILD_COMMIT > BUILD_INFO
+popd
+
+pushd /opt/app-root/src/frontend
+yarn install
+yarn build-prod
+mv -v dist/* /opt/app-root/src/public/
+popd

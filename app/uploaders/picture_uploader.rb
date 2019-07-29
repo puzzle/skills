@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PictureUploader < CarrierWave::Uploader::Base
 
   EXTENSION_WHITE_LIST = %w[jpg jpeg gif png svg bmp].freeze

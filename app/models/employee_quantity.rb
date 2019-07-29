@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: employee_quantities
@@ -24,7 +26,7 @@ class EmployeeQuantity < ApplicationRecord
   validates :category, length: { maximum: 100 }
   validates :quantity, numericality: { greater_than_or_equal_to: 0 }
 
-  private
+  # private
 
   # This hook is being commented because it caused deadlocks on travis and is not used currently
   # def update_associations_updatet_at

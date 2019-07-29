@@ -9,7 +9,7 @@ export default Component.extend({
 
   actions: {
     scrollTo(target) {
-      const topOfElement = $(target)[0].offsetTop + 80;
+      const topOfElement = $(target)[0].offsetTop - 15;
       window.scroll({ top: topOfElement, behavior: "smooth" });
       return false;
     }

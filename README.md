@@ -20,12 +20,12 @@ You will need the following things properly installed on your computer.
 
 * `git clone https://github.com/puzzle/skills.git`
 * `cd skills`
-* `rvm install 2.3`
-* `rvm use 2.3`
+* `rvm install 2.5`
+* `rvm use 2.5`
 * `gem install bundler`
 * `sudo apt-get install libpq-dev`
 * `sudo apt-get install libmysqlclient-dev `
-* `bundle`
+* `bundle install`
 
 #### database setup
 

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'keycloak_tools'
 
 class SkillsController < CrudController
@@ -9,6 +10,8 @@ class SkillsController < CrudController
   self.permitted_attrs = %i[title radar portfolio default_set category_id]
 
   self.nested_models = %i[children parents]
+
+  self.permitted_relationships = %i[category people]
 
   def index
     return export if params[:format]

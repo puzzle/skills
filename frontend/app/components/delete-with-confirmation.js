@@ -6,6 +6,8 @@ export default Component.extend({
   router: service(),
   intl: service(),
 
+  tagName: "span",
+
   actions: {
     openConfirmation() {
       this.set("showConfirmation", true);

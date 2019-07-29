@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProjectRelationsController < CrudController
 
   def create(options = {})

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+cd
+
+# Restore build artifacts
+if [ -d /tmp/artifacts/bundle ]; then
+    echo "Restoring bundle..."
+
+    rm -rf bundle
+    mv /tmp/artifacts/bundle .
+fi

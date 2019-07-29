@@ -1,15 +1,12 @@
 <div class="advancedTraining">
-  <div class="card-header bg-info" data-toggle="collapse" data-parent="#accordion" href="#collapseAdvancedTraining">
+  <div class="card-header bg-info">
     <div class="row">
-      <div class="col-sm-6">
-        <a class="card-link text-dark header-text">Weiterbildung ({{amountOfAdvancedTrainings}})</a>
-      </div>
-      <div class="col-sm-6 text-right d-block">
-        <a class="card-link text-dark" data-toggle="collapse" data-parent="#accordion" href="#collapseAdvancedTraining"><i class="fa angle"></i></a>
+      <div class="col-sm-6 header-text">
+        Weiterbildung ({{amountOfAdvancedTrainings}})
       </div>
     </div>
   </div>
-  <div id="collapseAdvancedTraining" class="collapse show border border-info rounded-bottom">
+  <div class="border border-info rounded-bottom">
     <div class="card-body d-flex flex-column">
       <div class="mb-2">
         <a onclick={{action 'toggleAdvancedTrainingNew' true}} role="button" class="{{~unless advanced-trainingNew 'edit-buttons'~}}"><i class="fa {{~unless advanced-trainingNew ' add'~}}"></i> {{~unless advanced-trainingNew ' Weiterbildung hinzufügen'~}}</a>

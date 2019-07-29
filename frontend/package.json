@@ -33,6 +33,7 @@
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^3.0.0",
+    "ember-array-contains-helper": "^2.0.0",
     "ember-bootstrap-datepicker": "^2.0.1",
     "ember-changeset": "^1.2.3",
     "ember-changeset-validations": "^1.2.7",

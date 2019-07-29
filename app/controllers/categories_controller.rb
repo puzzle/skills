@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CategoriesController < CrudController
   self.permitted_attrs = %i[title position parent_id]
 
