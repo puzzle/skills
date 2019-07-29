@@ -8,6 +8,13 @@ module.exports = function(environment) {
     rootURL: "/",
     locationType: "auto",
     helplink: process.env.HELPLINK,
+    keycloak: {
+      url: process.env.EMBER_KEYCLOAK_SERVER_URL,
+      realm: process.env.EMBER_KEYCLOAK_REALM_NAME,
+      clientId: process.env.EMBER_KEYCLOAK_CLIENT_ID,
+      secret: process.env.EMBER_KEYCLOAK_SECRET
+    },
+
     EmberENV: {
       FEATURES: {
         "ds-extended-errors": true

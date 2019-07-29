@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'i18n_data'
 require 'language_list'
 class LanguagesController < ApplicationController
@@ -14,7 +16,7 @@ class LanguagesController < ApplicationController
   def common_languages
     @common_languages ||= I18nData.languages('DE').collect do |language|
       info = LanguageList::LanguageInfo.find(language[0])
-      if info && info.common?
+      if info&.common?
         language
       end
     end.compact

@@ -1,9 +1,9 @@
 import Route from "@ember/routing/route";
-import AuthenticatedRouteMixin from "ember-simple-auth/mixins/authenticated-route-mixin";
 import { inject as service } from "@ember/service";
 import RSVP from "rsvp";
+import KeycloakAuthenticatedRouteMixin from "ember-keycloak-auth/mixins/keycloak-authenticated-route";
 
-export default Route.extend(AuthenticatedRouteMixin, {
+export default Route.extend(KeycloakAuthenticatedRouteMixin, {
   selectedPerson: service(),
   router: service(),
   queryParams: {

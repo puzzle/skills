@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe AdvancedTrainingsController do
-  before { auth(:ken) }
 
   describe 'GET index' do
     it 'returns all advanced_trainings' do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'i18n_data'
 module Odt
   class Cv
@@ -88,8 +90,9 @@ module Odt
       end
     end
 
-    def language_skill_level(ls)
-      ls.level + (ls.certificate.blank? ? '' : ' / Zertifikat: ' + ls.certificate)
+    def language_skill_level(language_skill)
+      language_skill.level +
+        (language_skill.certificate.blank? ? '' : ' / Zertifikat: ' + language_skill.certificate)
     end
 
     # rubocop:disable Metrics/AbcSize
@@ -169,8 +172,7 @@ module Odt
           project_title: p.title,
           project_description: p.description,
           project_role: p.role,
-          project_technology: p.technology.to_s
-        }
+          project_technology: p.technology.to_s }
       end
 
       report.add_table('PROJECTS', projects_list, header: true) do |t|
@@ -188,7 +190,7 @@ module Odt
     # rubocop:enable Metrics/MethodLength
 
     def formatted_month(month)
-      month ? "#{sprintf '%02d', month}." : ''
+      month ? "#{format '%02d', month}." : ''
     end
 
     def formatted_year(year)

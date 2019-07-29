@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PeopleController < CrudController
   include ExportController
 
@@ -10,8 +12,6 @@ class PeopleController < CrudController
                           people_skills categories]
 
   self.permitted_relationships = %i[company people_roles people_skills categories]
-
-  skip_before_action :authorize, only: :picture
 
   def index
     people = fetch_entries

@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe CategoriesController do
   describe 'CategoriesController' do
-    before { auth(:ken) }
 
     describe 'GET index' do
       it 'returns all categories' do

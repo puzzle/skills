@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SkillsFilter
   attr_reader :entries, :category, :title, :default_set
 
@@ -21,7 +23,7 @@ class SkillsFilter
   end
 
   private
-  
+
   def filter_by_default_set
     case default_set
     when 'true'

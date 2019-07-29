@@ -1,7 +1,7 @@
 import Service, { inject as service } from "@ember/service";
 
 export default Service.extend({
-  session: service(),
+  session: service("keycloak-session"),
 
   file(url) {
     let xhr = new XMLHttpRequest();
@@ -21,12 +21,8 @@ export default Service.extend({
     };
     xhr.open("GET", url);
     xhr.setRequestHeader(
-      "api-token",
-      this.get("session.data.authenticated.token")
-    );
-    xhr.setRequestHeader(
-      "ldap-uid",
-      this.get("session.data.authenticated.ldap_uid")
+      "Authorization",
+      "Bearer " + this.get("session.token")
     );
     xhr.send();
   }

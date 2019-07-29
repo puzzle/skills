@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A generic controller to display, create, update and destroy entries of a certain model class.
 class CrudController < ListController
   class_attribute :permitted_attrs, :nested_models, :permitted_relationships

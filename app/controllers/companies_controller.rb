@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CompaniesController < CrudController
   self.permitted_attrs = %i[name web email phone
                             partnermanager contact_person email_contact_person

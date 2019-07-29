@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PeopleSkillsFilter
   attr_reader :entries, :rated
 

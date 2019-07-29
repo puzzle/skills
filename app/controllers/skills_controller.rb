@@ -1,5 +1,11 @@
+# frozen_string_literal: true
+require 'keycloak_tools'
+
 class SkillsController < CrudController
   include ExportController
+  include KeycloakTools
+  
+  before_action :authorize_admin
 
   self.permitted_attrs = %i[title radar portfolio default_set category_id]
 
@@ -20,6 +26,12 @@ class SkillsController < CrudController
       entries = Skill.list
     end
     render json: entries, each_serializer: SkillMinimalSerializer, include: '*'
+  end
+
+  protected
+
+  def render_unauthorized(message = 'unauthorized')
+    render json: message, status: :unauthorized
   end
 
   private

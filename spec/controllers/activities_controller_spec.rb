@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 describe ActivitiesController do
-  before { auth(:ken) }
-
+  
   describe 'GET index' do
     it 'returns all activities' do
       keys = %w(description updated_by role year_to)

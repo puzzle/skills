@@ -1,6 +1,5 @@
 import { test } from "qunit";
 import moduleForAcceptance from "frontend/tests/helpers/module-for-acceptance";
-import { authenticateSession } from "frontend/tests/helpers/ember-simple-auth";
 import applicationPage from "frontend/tests/pages/application";
 import page from "frontend/tests/pages/person-skills";
 import skillSearchPage from "frontend/tests/pages/skill-search";
@@ -10,11 +9,6 @@ moduleForAcceptance("Acceptance | redirect to last profile");
 
 test("redirect to last visited cv page", async function(assert) {
   assert.expect(3);
-
-  authenticateSession(this.application, {
-    ldap_uid: "development_user",
-    token: "1234"
-  });
 
   // Go to the start page and select a user from the dropdown
   await applicationPage.visitHome("/");
@@ -37,11 +31,6 @@ test("redirect to last visited cv page", async function(assert) {
 test("redirect to last skill page", async function(assert) {
   assert.expect(3);
 
-  authenticateSession(this.application, {
-    ldap_uid: "development_user",
-    token: "1234"
-  });
-
   // Go to the start page and select a user from the dropdown
   await applicationPage.visitHome("/");
   await selectChoose("#people-search", ".ember-power-select-option", 0);
@@ -63,11 +52,6 @@ test("redirect to last skill page", async function(assert) {
 
 test("redirect to last skill page using same rated filter", async function(assert) {
   assert.expect(3);
-
-  authenticateSession(this.application, {
-    ldap_uid: "development_user",
-    token: "1234"
-  });
 
   // Go to the start page and select a user from the dropdown
   await applicationPage.visitHome("/");
@@ -99,11 +83,6 @@ test("redirect to last skill page using same rated filter", async function(asser
 test("do not redirect after visiting only people page", async function(assert) {
   assert.expect(4);
 
-  authenticateSession(this.application, {
-    ldap_uid: "development_user",
-    token: "1234"
-  });
-
   // Go to the start page and select a user from the dropdown
   await applicationPage.visitHome("/");
   /* eslint "no-undef": "off" */
@@ -128,11 +107,6 @@ test("do not redirect after visiting only people page", async function(assert) {
 
 test("redirects correctly after switching between subroutes", async function(assert) {
   assert.expect(5);
-
-  authenticateSession(this.application, {
-    ldap_uid: "development_user",
-    token: "1234"
-  });
 
   // Go to the start page and select a user from the dropdown
   await applicationPage.visitHome("/");

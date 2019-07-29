@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: companies
@@ -41,7 +43,7 @@ class Company < ApplicationRecord
   private
 
   def protect_if_my_company
-    if self.mine?
+    if mine?
       errors.add(:base, 'your own company can not be deleted')
       throw(:abort)
     end

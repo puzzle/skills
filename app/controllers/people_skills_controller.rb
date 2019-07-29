@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PeopleSkillsController < CrudController
   include ExportController
 
@@ -8,7 +10,7 @@ class PeopleSkillsController < CrudController
   def index
     return export if format_csv?
 
-    if params.keys.select{|k| %w[person_id skill_id].include?(k)}.length != 1
+    if params.keys.select { |k| %w[person_id skill_id].include?(k) }.length != 1
       return head 400
     end
 
@@ -21,11 +23,11 @@ class PeopleSkillsController < CrudController
     base = PeopleSkill.includes(:person, skill: [
                                   :category, :parent_category,
                                   :people, people_skills: :person
-                               ])
+                                ])
     if params.key?(:person_id)
       people_skills = base.where(person_id: params[:person_id])
       PeopleSkillsFilter.new(people_skills, params[:rated]).scope
-    else params.key?(:skill_id)
+    elsif params.key?(:skill_id)
       base.where(skill_id: params[:skill_id])
     end
   end
@@ -34,8 +36,8 @@ class PeopleSkillsController < CrudController
     entries = PeopleSkill.where(person_id: params[:person_id])
 
     send_data Csv::PeopleSkills.new(entries).export,
-      type: :csv,
-      disposition: disposition
+              type: :csv,
+              disposition: disposition
   end
 
   def disposition

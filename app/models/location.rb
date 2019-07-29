@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: locations
@@ -22,7 +24,7 @@ class Location < ApplicationRecord
   validates :location, presence: true
   validates :location, length: { maximum: 100 }
 
-  private
+  # private
 
   # def update_associations_updatet_at
   #   timestamp = Time.zone.now

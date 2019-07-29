@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe PeopleSkillsController do
   describe 'PeopleSkillsController' do
-    before { auth(:ken) }
     before { load_pictures }
 
     let(:bob) { people(:bob) }

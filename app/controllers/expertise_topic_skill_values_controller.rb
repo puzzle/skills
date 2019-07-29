@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ExpertiseTopicSkillValuesController < CrudController
   self.permitted_attrs = %i[years_of_experience number_of_projects last_use
                             skill_level comment expertise_topic_id person_id]

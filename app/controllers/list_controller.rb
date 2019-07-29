@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A generic controller to display entries of a certain model class.
 class ListController < ApplicationController
   delegate :model_class, :model_identifier, :model_serializer, :list_serializer,
