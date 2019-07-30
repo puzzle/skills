@@ -4,12 +4,15 @@ describe SkillsController do
   describe 'SkillsController' do
     before { load_pictures }
 
+    before(:each) do 
+      SkillsController.any_instance.stub(:has_admin_flag?).and_return(true)
+    end
+
     let(:bob) { people(:bob) }
 
     describe 'GET index' do
       it 'returns all skills with nested models' do
         keys = %w[title radar portfolio default_set]
-        SkillsController.any_instance.stub(:has_admin_flag?).and_return(true)
         get :index
 
         skills = json['data']
@@ -22,7 +25,6 @@ describe SkillsController do
       end
 
       it 'returns skills where title contains a' do
-        SkillsController.any_instance.stub(:has_admin_flag?).and_return(true)
         get :index, params: { title: 'a' }
 
         skills = json['data']
@@ -34,7 +36,6 @@ describe SkillsController do
       end
 
       it 'returns skills with default_set true' do
-        SkillsController.any_instance.stub(:has_admin_flag?).and_return(true)
         get :index, params: { defaultSet: 'true' }
 
         skills = json['data']
@@ -44,7 +45,6 @@ describe SkillsController do
       end
 
       it 'returns skills with default_set new' do
-        SkillsController.any_instance.stub(:has_admin_flag?).and_return(true)
         get :index, params: { defaultSet: 'new' }
 
         skills = json['data']
@@ -54,7 +54,6 @@ describe SkillsController do
       end
 
       it 'returns skills with parent category software-engineering' do
-        SkillsController.any_instance.stub(:has_admin_flag?).and_return(true)
         parent_category = categories(:'software-engineering')
         get :index, params: { category: parent_category.id }
 
@@ -65,7 +64,6 @@ describe SkillsController do
       end
 
       it 'returns skills with parent category software-engineering and defaultSet true' do
-        SkillsController.any_instance.stub(:has_admin_flag?).and_return(true)
         parent_category = categories(:'software-engineering')
         get :index, params: { category: parent_category.id, defaultSet: 'true' }
 
@@ -81,9 +79,17 @@ describe SkillsController do
         process :unrated_by_person, params: { type: 'Person', person_id: bob.id }
 
         skills = json['data']
-        new_skill_attrs = skills.first['attributes']
 
-        expect(new_skill_attrs['title']).to eq ('Rails')
+        expect(skills).to be_empty
+      end
+
+      it 'returns all unrated PeopleSkills of ken' do
+        process :unrated_by_person, params: { type: 'Person', person_id: people(:ken).id }
+
+        skills = json['data']
+        unrated_skill_attrs = skills.first['attributes']
+
+        expect(unrated_skill_attrs['title']).to eq ('Rails')
       end
 
       it 'returns all skills if no person_id is given' do
