@@ -9,7 +9,9 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     this.set("peopleSkillsEditing", false);
-    const categories = this.get("store").findAll("category", { reload: true });
+    // we cant use findAll here because that method preloads
+    // previously loaded records which screws with our ordering
+    const categories = this.get("store").query("category", {});
     categories.then(() => {
       this.set("categories", categories);
       this.set(
