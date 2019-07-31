@@ -4,7 +4,9 @@ export default Service.extend({
   tokenParsed: "1234",
   keycloak: Object.freeze([{ token: "1234" }]),
 
-  hasResourceRole(resource, role) {},
+  hasResourceRole(resource, role) {
+    return resource === "ADMIN";
+  },
 
   installKeycloak(parameters) {},
 

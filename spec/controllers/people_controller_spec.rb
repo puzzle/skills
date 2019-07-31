@@ -15,7 +15,7 @@ describe PeopleController do
 
         expect_any_instance_of(ODFReport::Report)
           .to receive(:add_field)
-          .exactly(12).times
+          .exactly(13).times
           .and_call_original
 
         expect_any_instance_of(ODFReport::Report)
