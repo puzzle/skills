@@ -12,6 +12,7 @@ export default Route.extend({
 
   beforeModel() {
     this.get("moment").setLocale("de");
+    this.get("intl").setLocale(["de"]);
     this._super(...arguments);
 
     let session = this.get("session");

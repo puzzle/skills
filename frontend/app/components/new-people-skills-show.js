@@ -67,7 +67,9 @@ export default Component.extend({
       ps.get("skill.id")
     );
     const peopleSkill = this.get("newPeopleSkills")
-      .filter(ps => personSkillsIds.includes(ps.get("skill.id")))
+      .filter(
+        ps => personSkillsIds.includes(ps.get("skill.id")) && !ps.get("errors")
+      )
       .get("firstObject");
     this.set(
       "newPeopleSkills",
