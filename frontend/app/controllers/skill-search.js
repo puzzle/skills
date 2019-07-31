@@ -20,12 +20,6 @@ export default Controller.extend({
     return skillId ? this.get("store").peekRecord("skill", skillId) : null;
   }),
 
-  results: computed("model", function() {
-    return this.get("model")
-      ? this.get("model").filter(ps => ps.get("isRated"))
-      : null;
-  }),
-
   actions: {
     setSkill(skill) {
       this.get("router").transitionTo({

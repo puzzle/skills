@@ -17,7 +17,7 @@ class PeopleSkillsFilter
   def filter_by_rated
     if rated == 'true'
       return entries.where.not(interest: 0)
-                          .or(entries.where.not(level: 0))
+                    .or(entries.where.not(level: 0))
     elsif rated == 'false'
       return entries.where(interest: 0, level: 0)
     end

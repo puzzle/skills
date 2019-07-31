@@ -24,11 +24,11 @@ class PeopleSkillsController < CrudController
                                   :category, :parent_category,
                                   :people, people_skills: :person
                                 ])
+    people_skills = PeopleSkillsFilter.new(base, params[:rated]).scope
     if params.key?(:person_id)
-      people_skills = base.where(person_id: params[:person_id])
-      PeopleSkillsFilter.new(people_skills, params[:rated]).scope
+      people_skills.where(person_id: params[:person_id])
     elsif params.key?(:skill_id)
-      base.where(skill_id: params[:skill_id])
+      people_skills.where(skill_id: params[:skill_id])
     end
   end
 

@@ -8,7 +8,8 @@ export default Component.extend({
   peopleSkills: computed("skill", function() {
     if (this.get("skill.id") != null) {
       return this.get("store").query("peopleSkill", {
-        skill_id: this.get("skill.id")
+        skill_id: this.get("skill.id"),
+        rated: "true"
       });
     }
   })

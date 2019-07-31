@@ -11,7 +11,8 @@ export default Route.extend({
   model({ skill_id }) {
     if (skill_id) {
       return this.store.query("peopleSkill", {
-        skill_id
+        skill_id,
+        rated: "true"
       });
     }
   }
