@@ -5,7 +5,7 @@ class SkillsController < CrudController
   include ExportController
   include KeycloakTools
   
-  before_action :authorize_admin
+  before_action :authorize_admin, only: [:create, :update, :destroy]
 
   self.permitted_attrs = %i[title radar portfolio default_set category_id]
 
