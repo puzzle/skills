@@ -38,9 +38,9 @@ export default ApplicationComponent.extend({
   },
 
   categorySearchMatcher(category, term) {
-    return `${category.get("title")} ${category.get("parent.title")}`.indexOf(
-      term
-    );
+    return `${category.get("title").toLowerCase()} ${category
+      .get("parent.title")
+      .toLowerCase()}`.indexOf(term.toLowerCase());
   },
 
   closeSelect(e, select) {
