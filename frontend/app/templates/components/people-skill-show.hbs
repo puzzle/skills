@@ -9,7 +9,7 @@
     {{/if}}
   </div>
   <div onclick={{toggleSkillShow}} data-toggle={{if toggleSkillShow "modal"}} data-target="#skill-show-modal" class="col justify-content-center people-skill-level">
-    <p class="description {{skillClass}}-level-title">{{levelName}}</p>
+    <p class="description skillset-level-title">{{levelName}}</p>
     {{ui-slider
     value=levelValue
     ticks='1,2,3,4,5'
@@ -22,7 +22,7 @@
     }}
   </div>
   <div onclick={{toggleSkillShow}} data-toggle={{if toggleSkillShow "modal"}} data-target="#skill-show-modal" class="col people-skill-interest">
-    <p class="description {{skillClass}}-interest-title">Interesse</p>
+    <p class="description skillset-interest-title">Interesse</p>
     {{icon-rating
     fillColor='#238BCA'
     readOnly=true
