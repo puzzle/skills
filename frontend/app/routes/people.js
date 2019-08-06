@@ -20,6 +20,7 @@ export default Route.extend(KeycloakAuthenticatedRouteMixin, {
   },
 
   redirect(model, transition) {
+    if (this.isTransitioningToSpecificPerson(transition)) return;
     if (this.get("selectedPerson.isPresent")) {
       this.transitionTo(
         this.get("selectedPerson.selectedSubRoute"),
@@ -27,6 +28,16 @@ export default Route.extend(KeycloakAuthenticatedRouteMixin, {
         { queryParams: this.get("selectedPerson.queryParams") || {} }
       );
     }
+  },
+
+  isTransitioningToSpecificPerson(transition) {
+    const transitionPersonId = transition.intent.contexts
+      ? transition.intent.contexts.get("firstObject")
+      : null;
+    return (
+      transitionPersonId != null &&
+      transitionPersonId != this.get("selectedPerson.personId")
+    );
   },
 
   actions: {

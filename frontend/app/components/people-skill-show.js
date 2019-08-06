@@ -44,8 +44,11 @@ export default Component.extend({
 
   actions: {
     changePerson(person) {
-      person.then(person => person.reload());
-      this.get("router").transitionTo("person", person);
+      person.then(person => {
+        person.reload().then(person => {
+          this.get("router").transitionTo("person.skills", person.get("id"));
+        });
+      });
     },
 
     hasChanged() {
