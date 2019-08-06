@@ -32,5 +32,5 @@ test("creating a new peopleSkill", async function(assert) {
   assert.ok(names.includes("Bash"));
 
   let levels = page.peopleSkillsTable.levels.toArray().map(name => name.text);
-  assert.ok(levels.includes("Trainee"));
+  assert.ok(levels.includes("Trainee 1"));
 });
