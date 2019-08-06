@@ -19,11 +19,13 @@ install:
   - npm --prefix ./frontend install ./frontend
 
 before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - psql -c 'create database travis_ci_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
+  - psql -c 'create database travis_ci_test;' -U postgres
   - bundle exec rake db:setup
+
+services:
+  - xvfb
+  - postgresql
 
 script:
   - bundle --deployment
