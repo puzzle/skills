@@ -32,8 +32,10 @@ radar:
   - trial
   - assess
   - hold
+  - n/a
 
 portfolio:
   - aktiv
   - passiv
   - abbauen
+  - nein
