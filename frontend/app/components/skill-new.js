@@ -33,7 +33,9 @@ export default ApplicationComponent.extend({
   },
 
   abort() {
-    this.get("newSkill").deleteRecord();
+    if (!this.get("newSkill.id")) {
+      this.get("newSkill").deleteRecord();
+    }
     this.set("newSkill", this.get("store").createRecord("skill"));
   },
 
