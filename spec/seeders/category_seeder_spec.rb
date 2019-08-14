@@ -20,7 +20,7 @@ describe CategorySeeder do
         expect do
           SeedFu.quiet = true
           seeder.seed_categories(categories)
-        end.to change { Category.count }.by(6)
+        end.to change { Category.count }.by(1)
         categories.flatten(2).each do |category|
           expect(Category.all.map(&:title)).to include(category.to_s)
         end
