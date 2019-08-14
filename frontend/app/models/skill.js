@@ -25,10 +25,16 @@ Skill.reopenClass({
     hold: "hold",
     adopt: "adopt",
     trial: "trial",
-    divorced: "assess"
+    assess: "assess",
+    na: "n/a"
   },
 
-  PORTFOLIO_OPTIONS: { active: "aktiv", passive: "passiv", reduce: "abbauen" }
+  PORTFOLIO_OPTIONS: {
+    active: "aktiv",
+    passive: "passiv",
+    reduce: "abbauen",
+    nein: "nein"
+  }
 });
 
 export default Skill;
