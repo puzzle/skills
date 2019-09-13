@@ -31,7 +31,7 @@ module Odt
       report.add_field(:section, 'dev1')
       report.add_field(:name, person.name)
       # For the moment we only take the first role, will change when there are many per person
-      report.add_field(:title_function, person.roles[0].name)
+      report.add_field(:title_function, person.roles[0].try(:name))
 
       report.add_field(:header_info, "#{person.name} - Version 1.0")
 
