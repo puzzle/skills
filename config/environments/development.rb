@@ -64,7 +64,5 @@ Rails.application.configure do
     Bullet.bullet_logger = true
     # Add warnings directly to the Rails log
     Bullet.rails_logger = true
-    # Add notifications to airbrake
-    Bullet.airbrake = true
   end
 end
