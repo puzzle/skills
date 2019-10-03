@@ -28,6 +28,7 @@ gem 'rack'
 gem 'rails-i18n'
 gem 'rest-client'
 gem 'seed-fu'
+gem 'sentry-raven'
 
 group :metrics do
   gem 'brakeman'
