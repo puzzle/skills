@@ -4,7 +4,7 @@ import ENV from "../config/environment";
 
 export function initialize(application) {
   Sentry.init({
-    dsn: ENV.sentry.dsn,
+    dsn: ENV.sentryDsn,
     integrations: [new Ember()]
   });
 }

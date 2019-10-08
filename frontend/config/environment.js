@@ -6,9 +6,7 @@ module.exports = function(environment) {
     modulePrefix: "frontend",
     environment,
     rootURL: "/",
-    sentry: {
-      dsn: ""
-    },
+    sentryDsn: "",
     locationType: "auto",
     helplink: process.env.HELPLINK,
     keycloak: {
@@ -63,9 +61,7 @@ module.exports = function(environment) {
   }
 
   if (environment === "production") {
-    sentry: {
-      dsn: process.env.EMBER_SENTRY_DSN;
-    }
+    ENV.sentryDsn = process.env.EMBER_SENTRY_DSN;
   }
 
   return ENV;
