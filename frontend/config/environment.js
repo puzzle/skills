@@ -61,7 +61,7 @@ module.exports = function(environment) {
   }
 
   if (environment === "production") {
-    ENV.sentryDsn = process.env.EMBER_SENTRY_DSN;
+    ENV.sentryDsn = process.env.SENTRY_DSN_FRONTEND;
   }
 
   return ENV;
