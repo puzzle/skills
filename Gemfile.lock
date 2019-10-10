@@ -157,15 +157,15 @@ GEM
     mimemagic (0.3.3)
     mini_magick (4.9.5)
     mini_mime (1.0.2)
-    mini_portile2 (2.3.0)
+    mini_portile2 (2.4.0)
     minitest (5.11.3)
     msgpack (1.3.0)
     multipart-post (2.1.1)
     net-ldap (0.16.1)
     netrc (0.11.0)
     nio4r (2.3.1)
-    nokogiri (1.8.5)
-      mini_portile2 (~> 2.3.0)
+    nokogiri (1.10.4)
+      mini_portile2 (~> 2.4.0)
     odf-report (0.6.0)
       nokogiri (>= 1.5.0)
       rubyzip (~> 1.2.0)
@@ -254,7 +254,7 @@ GEM
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-graphviz (1.2.4)
     ruby-progressbar (1.10.1)
-    rubyzip (1.2.3)
+    rubyzip (1.2.4)
     seed-fu (2.3.9)
       activerecord (>= 3.1)
       activesupport (>= 3.1)
@@ -315,7 +315,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   mini_magick
   net-ldap (~> 0.16.0)
-  nokogiri (~> 1.8.2)
+  nokogiri (~> 1.10.4)
   odf-report
   pg
   pg_search
