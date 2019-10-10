@@ -6,7 +6,6 @@ gem 'rails', '5.2.2.1'
 
 gem 'active_model_serializers'
 gem 'activerecord-postgresql-adapter'
-gem 'airbrake', '~> 5.0'
 gem 'annotate'
 gem 'bleib', '0.0.8' # For deployment
 gem 'bootsnap'
@@ -28,6 +27,7 @@ gem 'rack'
 gem 'rails-i18n'
 gem 'rest-client'
 gem 'seed-fu'
+gem 'sentry-raven'
 
 group :metrics do
   gem 'brakeman'
