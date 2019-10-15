@@ -3,7 +3,7 @@ Keycloak.configure do |config|
   config.realm_id   = ENV['RAILS_KEYCLOAK_REALM_ID']
   config.logger     = Rails.logger
   config.skip_paths = {
-    get: [/^\/assets\/.+/, /^\/styles\/.+/, /^\/healthz/]
+    get: [/^\/assets\/.+/, /^\/styles\/.+/, /^\/healthz/, /^\/env_settings/]
   }
   if (Rails.env.test? && ENV['FRONTEND_TESTS'].present?) || Rails.env.development?
     test_skips = {

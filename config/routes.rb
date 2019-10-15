@@ -22,8 +22,6 @@ Rails.application.routes.draw do
     resources :locations, controller: 'locations'
     resources :offers, controller: 'offers'
 
-    resources :environment, controller: 'environment'
-
     resources :categories, only: [:index, :show]
     resources :roles, only: :index
     resources :skills do 
@@ -51,6 +49,8 @@ Rails.application.routes.draw do
     if Rails.env.test?
       resource 'test_api', controller: 'test_api', only: [:create, :destroy]
     end
+
+    get 'env_settings', to: 'env_settings#index'
   end
 
   get '*path', to: 'static_assets#index'
