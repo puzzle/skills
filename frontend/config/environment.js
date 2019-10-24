@@ -9,7 +9,6 @@ module.exports = function(environment) {
     sentryDsn: "",
     locationType: "auto",
     helplink: "",
-    rails_url: "",
     keycloak: {
       url: "",
       realm: "",
@@ -58,7 +57,7 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = "#ember-testing";
     ENV.APP.documentExportHost =
-      "http://localhost:" + (ENV.rails_url || "3000");
+      "http://localhost:" + (process.env.RAILS_PORT || "3000");
   }
 
   if (environment === "production") {

@@ -11,7 +11,6 @@ class EnvSettingsController < ApplicationController
   def values
     {
       sentry: ENV['SENTRY_DSN_FRONTEND'],
-      rails_port: ENV['RAILS_PORT'],
       helplink: ENV['HELPLINK'],
       keycloak: keycloak_info
     }
