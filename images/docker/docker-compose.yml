@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  db:
+    image: postgres:9.5.7
+    container_name: skills_db
+    ports:
+      - '5432:5432'
+    restart: always
+    environment:
+      RAILS_DB_HOST: db
+      POSTGRES_DB: cv2_development
+      POSTGRES_USER: puzzlecv
+      POSTGRES_PASSWORD: puzzlecv
+  web:
+    image: puzzle/skills:latest
+    container_name: skills
+    command: rails server -p 3000 -b 0.0.0.0
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+    environment:
+      RAILS_DB_HOST: db
+      RAILS_DB_NAME: cv2_development

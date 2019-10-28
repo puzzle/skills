@@ -8,6 +8,6 @@ popd
 
 pushd /opt/app-root/src/frontend
 yarn install
-yarn build-prod
+yarn build
 mv -v dist/* /opt/app-root/src/public/
 popd
