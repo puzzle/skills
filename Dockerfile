@@ -18,7 +18,7 @@ RUN wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo && \
 RUN yum clean all -y && rm -rf /var/cache/yum
 
 # copy files needed for assembly into container
-ADD ./images/docker/root /
+ADD ./images/s2i/root /
 
 RUN \
   # Call restore-artifacts sscript when assembling

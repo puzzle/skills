@@ -1,3 +1,6 @@
 frontend/node_modules
 frontend/tmp
 uploads/person/picture/
+spec/coverage
+tmp
+log

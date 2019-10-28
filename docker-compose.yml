@@ -3,6 +3,7 @@ version: '2'
 services:
   db:
     image: postgres:9.5.7
+    container_name: skills_db
     ports:
       - '5432:5432'
     environment:
