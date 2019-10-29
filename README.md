@@ -117,16 +117,12 @@ For ubuntu:
   Prerequisites [docker](https://docs.docker.com/install/linux/docker-ce/ubuntu) && [docker-compose](https://docs.docker.com/compose/install)
 
   1. `$ mkdir -p skills && cd skills`
-  2. `$ wget https://raw.githubusercontent.com/puzzle/skills/master/images/docker/docker-compose.yml`
-  3. `$ docker-compose up -d`
-  4. `$ docker exec -it skills /bin/bash`
-  5. `$ bundle exec rake db:setup`
-  6. open http://localhost:3000 in the browser
-
-For testing purposes Keycloak can be disabled
-  1. open [docker-compose.yml](https://github.com/puzzle/skills/config/docker/postgresql/docker-compose.yml)
-  2. enable RAILS_KEYCLAOK_DISABLED: 'true'
-
+  1. `$ wget https://raw.githubusercontent.com/puzzle/skills/master/images/docker/docker-compose.yml`
+  1. Edit / Adjust env vars to set up keycloak auth or disable it (uncomment KEYCLOAK_DISABLED, comment all other KEYCLOAK env vars)
+  1. `$ docker-compose up -d`
+  1. `$ docker exec -it skills /bin/bash`
+  1. `$ bundle exec rake db:setup`
+  1. open http://localhost:3000 in the browser
 
 ## Front-End
 

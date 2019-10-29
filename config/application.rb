@@ -31,7 +31,7 @@ require 'rails/test_unit/railtie'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Puzzlecv2
+module Skills
   class Application < Rails::Application
     # Initialize configuration defaults for oiginally generated Rails version (new in 5.2.1)
     config.load_defaults 5.0
@@ -48,5 +48,20 @@ module Puzzlecv2
     config.i18n.default_locale = :de
 
     config.filter_parameters += [:authorizationToken]
+
+    KEYCLOAK_ENV_VARS = %w[
+      RAILS_KEYCLOAK_SERVER_URL
+      RAILS_KEYCLOAK_REALM_ID
+      EMBER_KEYCLOAK_SERVER_URL
+      EMBER_KEYCLOAK_REALM_NAME
+      EMBER_KEYCLOAK_CLIENT_ID
+      EMBER_KEYCLOAK_SECRET
+    ].freeze
+
+    def keycloak_disabled?
+      KEYCLOAK_ENV_VARS.none? { |e| ENV[e].present? } &&
+        ENV['KEYCLOAK_DISABLED'].present?
+    end
+
   end
 end
