@@ -14,10 +14,11 @@ services:
   web:
     image: puzzle/skills:latest
     container_name: skills
-    command: rails server -p 3000 -b 0.0.0.0
     ports:
       - '3000:3000'
     depends_on:
       - db
     environment:
       RAILS_DB_HOST: db
+      RAILS_SERVE_STATIC_FILES: 1
+      # RAILS_KEYCLAOK_DISABLED: 'true'

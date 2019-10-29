@@ -1,9 +1,8 @@
 FROM centos/ruby-25-centos7
 
-ENV RAILS_ENV=development
-ENV RACK_ENV=development
+ENV RAILS_ENV=production
+ENV RACK_ENV=production
 ENV SECRET_KEY_BASE=cannot-be-blank-for-production-env-when-building
-ENV RAILS_SERVE_STATIC_FILES=1
 
 USER root
 
@@ -32,3 +31,9 @@ COPY . /tmp/src
 RUN $STI_SCRIPTS_PATH/assemble
 
 USER 1001
+
+# make sure unique secret key is set by operator
+ENV SECRET_KEY_BASE=
+ENV RAILS_LOG_TO_STDOUT=1
+
+CMD bundle exec puma -t 8

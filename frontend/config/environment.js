@@ -10,6 +10,7 @@ module.exports = function(environment) {
     locationType: "auto",
     helplink: "",
     keycloak: {
+      disable: "",
       url: "",
       realm: "",
       clientId: "",

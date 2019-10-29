@@ -18,6 +18,7 @@ class EnvSettingsController < ApplicationController
 
   def keycloak_info
     {
+      disable: keycloak_disabled? ? 'true' : nil,
       url: ENV['EMBER_KEYCLOAK_SERVER_URL'],
       realm: ENV['EMBER_KEYCLOAK_REALM_NAME'],
       clientId: ENV['EMBER_KEYCLOAK_CLIENT_ID'],

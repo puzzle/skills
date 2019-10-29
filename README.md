@@ -123,6 +123,11 @@ For ubuntu:
   5. `$ bundle exec rake db:setup`
   6. open http://localhost:3000 in the browser
 
+For testing purposes Keycloak can be disabled
+  1. open [docker-compose.yml](https://github.com/puzzle/skills/config/docker/postgresql/docker-compose.yml)
+  2. enable RAILS_KEYCLAOK_DISABLED: 'true'
+
+
 ## Front-End
 
 The Front-End is built with EmberJS.
