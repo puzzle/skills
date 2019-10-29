@@ -8,12 +8,12 @@ module.exports = function(environment) {
     rootURL: "/",
     sentryDsn: "",
     locationType: "auto",
-    helplink: process.env.HELPLINK,
+    helplink: "",
     keycloak: {
-      url: process.env.EMBER_KEYCLOAK_SERVER_URL,
-      realm: process.env.EMBER_KEYCLOAK_REALM_NAME,
-      clientId: process.env.EMBER_KEYCLOAK_CLIENT_ID,
-      secret: process.env.EMBER_KEYCLOAK_SECRET
+      url: "",
+      realm: "",
+      clientId: "",
+      secret: ""
     },
 
     EmberENV: {
@@ -63,6 +63,5 @@ module.exports = function(environment) {
   if (environment === "production") {
     ENV.sentryDsn = process.env.SENTRY_DSN_FRONTEND;
   }
-
   return ENV;
 };

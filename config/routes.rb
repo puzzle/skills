@@ -49,6 +49,8 @@ Rails.application.routes.draw do
     if Rails.env.test?
       resource 'test_api', controller: 'test_api', only: [:create, :destroy]
     end
+
+    get 'env_settings', to: 'env_settings#index'
   end
 
   get '*path', to: 'static_assets#index'
