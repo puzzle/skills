@@ -3,7 +3,7 @@
 class PeopleController < CrudController
   include ExportController
 
-  self.permitted_attrs = %i[birthdate picture location
+  self.permitted_attrs = %i[birthdate location
                             marital_status updated_by name nationality nationality2 title
                             competence_notes company company_id email department]
 
@@ -31,17 +31,6 @@ class PeopleController < CrudController
                                 skill: [:people, :category, :parent_category]
                               }).find(params.fetch(:id))
     super
-  end
-
-  def update_picture
-    person.update(picture: params[:picture])
-    render json: { data: { picture_path: person_picture_path(params[:person_id]) } }
-  end
-
-  def picture
-    default_avatar_url = "#{Rails.public_path}/default_avatar.png"
-    picture_url = person.picture.file.nil? ? default_avatar_url : person.picture.url
-    send_file(picture_url, disposition: 'inline')
   end
 
   def export_fws

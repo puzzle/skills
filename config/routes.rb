@@ -11,8 +11,8 @@ Rails.application.routes.draw do
     resources 'languages', only: :index, controller: 'languages'
 
     resources :people do
-      put 'picture', to: 'people#update_picture'
-      get 'picture'
+      put 'picture', to: 'picture#update'
+      get 'picture', to: 'picture#index'
       get 'fws', to: 'people#export_fws'
     end
 
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
     resources :categories, only: [:index, :show]
     resources :roles, only: :index
-    resources :skills do 
+    resources :skills do
       collection do
         get 'unrated_by_person'
       end
