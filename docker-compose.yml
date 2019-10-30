@@ -7,7 +7,6 @@ services:
     ports:
       - '5432:5432'
     environment:
-      - RAILS_DB_HOST=db
       - POSTGRES_DB=cv2_development
       - POSTGRES_USER=puzzlecv
       - POSTGRES_PASSWORD=puzzlecv
