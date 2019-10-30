@@ -8,7 +8,7 @@ services:
       - '5432:5432'
     restart: always
     environment:
-      POSTGRES_DB: cv2_'development
+      POSTGRES_DB: cv2_production
       POSTGRES_USER: puzzlecv
       POSTGRES_PASSWORD: puzzlecv
   web:
@@ -23,8 +23,4 @@ services:
       RAILS_SERVE_STATIC_FILES: 1
       #SENTRY_DSN_FRONTEND: '123456'
       HELPLINK: 'https://help.my-skills.test'
-      EMBER_KEYCLOAK_SERVER_URL: 'keycloak.my-skills.test'
-      EMBER_KEYCLOAK_SECRET: '1234'
-      EMBER_KEYCLOAK_CLIENT_ID: 'test-client-id'
-      EMBER_KEYCLOAK_REALM_NAME: 'realm'
-      # KEYCLOAK_DISABLED: 'true'
+      KEYCLOAK_DISABLED: 'true'

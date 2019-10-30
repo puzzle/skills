@@ -118,7 +118,6 @@ For ubuntu:
 
   1. `$ mkdir -p skills && cd skills`
   1. `$ wget https://raw.githubusercontent.com/puzzle/skills/master/images/docker/docker-compose.yml`
-  1. Edit / Adjust env vars to set up keycloak auth or disable it (uncomment KEYCLOAK_DISABLED, comment all other KEYCLOAK env vars)
   1. `$ docker-compose up -d`
   1. `$ docker exec -it skills /bin/bash`
   1. `$ bundle exec rake db:setup`
