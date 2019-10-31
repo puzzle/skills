@@ -16,7 +16,7 @@ services:
     image: puzzle/skills:latest
     container_name: skills_web
     ports:
-      - '3000:3000'
+      - '8080:3000'
     depends_on:
       - db
     env_file:
