@@ -14,7 +14,7 @@ You will need the following things properly installed on your computer.
 
 -   [Git](http://git-scm.com/)
 -   [RVM](http://rvm.io/)
--   PostgreSQL
+-   PostgreSQL or Docker to install postgresql container
 
 ### Development
 

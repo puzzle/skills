@@ -10,10 +10,11 @@ services:
     env_file:
       - psql-prod.env
     environment:
-      POSTGRES_DB: cv2_production
+      POSTGRES_USER: skills_production
+      POSTGRES_DB: skills_production
   web:
     image: puzzle/skills:latest
-    container_name: skills
+    container_name: skills_web
     ports:
       - '3000:3000'
     depends_on:
@@ -29,4 +30,7 @@ services:
       # EMBER_KEYCLOAK_SECRET: '1234'
       # EMBER_KEYCLOAK_CLIENT_ID: 'test-client-id'
       # EMBER_KEYCLOAK_REALM_NAME: 'realm'
-      KEYCLOAK_DISABLED: 'true'
+      KEYCLOAK_DISABLED: 1
+volumes:
+  skills-postgresql:
+  skills-store:

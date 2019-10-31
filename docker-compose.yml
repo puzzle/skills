@@ -3,10 +3,10 @@ version: '2'
 services:
   db:
     image: postgres:9.5.7
-    container_name: skills_db
+    container_name: skills_dev_db
     ports:
       - '5432:5432'
     environment:
-      - POSTGRES_DB=cv2_development
-      - POSTGRES_USER=puzzlecv
-      - POSTGRES_PASSWORD=puzzlecv
+      - POSTGRES_DB=skills_development
+      - POSTGRES_USER=skills
+      - POSTGRES_PASSWORD=skills

@@ -1,26 +1,19 @@
-
 default: &default
   adapter: <%= ENV['RAILS_DB_ADAPTER'] || 'postgresql' %>
   host: <%= ENV['RAILS_DB_HOST'] || '127.0.0.1' %>
   port: <%= ENV['RAILS_DB_PORT'] || 5432 %>
-  username: <%= ENV['RAILS_DB_USERNAME'] || 'puzzlecv' %>
-  password: <%= ENV['RAILS_DB_PASSWORD'] || 'puzzlecv' %>
+  username: <%= ENV['RAILS_DB_USERNAME'] || "skills" %>
+  password: <%= ENV['RAILS_DB_PASSWORD'] || "skills" %>
+  database: <%= ENV['RAILS_DB_NAME'] || "skills_#{Rails.env}" %>
   pool: 5
   timeout: 5000
   encoding: unicode
 
-
 development:
   <<: *default
-  database: <%= ENV['RAILS_DB_NAME'] || "cv2_development" %>
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: <%= ENV['RAILS_DB_NAME'] || "cv2_test" %>
 
 production:
   <<: *default
-  database: <%= ENV['RAILS_DB_NAME'] || "cv2_production" %>
