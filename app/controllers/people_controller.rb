@@ -33,27 +33,6 @@ class PeopleController < CrudController
     super
   end
 
-  def export_fws
-    return render status: :not_found unless format_odt?
-
-    discipline = params['discipline']
-    odt_file = Odt::Fws.new(discipline, params[:person_id]).export
-    send_data odt_file.generate,
-              type: 'application/vnd.oasis.opendocument.text',
-              disposition: content_disposition('attachment', fws_filename(discipline, person.name))
-  end
-
-  def export_empty_fws
-    return render status: :not_found unless format_odt?
-
-    discipline = params['discipline']
-    odt_file = Odt::Fws.new(discipline).empty_export
-
-    send_data odt_file.generate,
-              type: 'application/vnd.oasis.opendocument.text',
-              disposition: content_disposition('attachment', empty_fws_filename(discipline))
-  end
-
   private
 
   def fetch_entries
@@ -62,23 +41,6 @@ class PeopleController < CrudController
 
   def person
     @person ||= Person.find(params[:person_id])
-  end
-
-  def fws_filename(discipline, name)
-    formatted_name = name.downcase.tr(' ', '-')
-    if discipline == 'development'
-      "fachwissensskala-entwicklung-#{formatted_name}.odt"
-    else
-      "fachwissensskala-sys-#{formatted_name}.odt"
-    end
-  end
-
-  def empty_fws_filename(discipline)
-    if discipline == 'development'
-      'fachwissensskala-entwicklung.odt'
-    else
-      'fachwissensskala-sys.odt'
-    end
   end
 
   def export

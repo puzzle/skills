@@ -3,17 +3,15 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   scope '/api' do
-    scope 'documents' do
-      scope 'templates' do
-        get 'fws', to: 'people#export_empty_fws'
-      end
-    end
+
     resources 'languages', only: :index, controller: 'languages'
 
     resources :people do
-      put 'picture', to: 'picture#update'
-      get 'picture', to: 'picture#index'
-      get 'fws', to: 'people#export_fws'
+      member do
+        put 'picture', to: 'people/picture#update'
+        get 'picture', to: 'people/picture#show'
+      end
+        get 'fws', to: 'people#export_fws'
     end
 
     resources :people_skills
