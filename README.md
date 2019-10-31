@@ -121,9 +121,9 @@ For ubuntu:
   1. `$ wget https://raw.githubusercontent.com/puzzle/skills/master/config/docker/postgresql/psql-prod.env.tmpl -O psql-prod.env`
   1. edit psql-prod.env
   1. `$ docker-compose up -d`
-  1. `$ docker exec -it skills /bin/bash`
+  1. `$ docker exec -it skills_web /bin/bash`
   1. `$ bundle exec rake db:setup`
-  1. open http://localhost:3000 in the browser
+  1. open http://localhost:8080 in the browser
 
 ## Front-End
 

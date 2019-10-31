@@ -12,6 +12,8 @@ services:
     environment:
       POSTGRES_USER: skills_production
       POSTGRES_DB: skills_production
+    volumes:
+      - skills-postgresql:/var/lib/postgresql/data
   web:
     image: puzzle/skills:latest
     container_name: skills_web
@@ -23,6 +25,7 @@ services:
       - psql-prod.env
     environment:
       RAILS_DB_HOST: db
+      RAILS_DB_USERNAME: skills_production
       RAILS_SERVE_STATIC_FILES: 1
       #SENTRY_DSN_FRONTEND: '123456'
       HELPLINK: 'https://help.my-skills.test'
@@ -31,6 +34,8 @@ services:
       # EMBER_KEYCLOAK_CLIENT_ID: 'test-client-id'
       # EMBER_KEYCLOAK_REALM_NAME: 'realm'
       KEYCLOAK_DISABLED: 1
+    volumes:
+      - skills-store:/opt/app-root/src/uploads/
 volumes:
   skills-postgresql:
   skills-store:

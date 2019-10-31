@@ -17,7 +17,8 @@ Keycloak.configure do |config|
       get: [/^.+/],
       post: [/^.+/],
       delete: [/^.+/],
-      patch: [/^.+/]
+      patch: [/^.+/],
+      put: [/^.+/]
     }
     config.skip_paths.merge!(test_skips)
   end
