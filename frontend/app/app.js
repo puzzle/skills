@@ -20,6 +20,7 @@ $.getJSON("/api/env_settings", function(envSettings) {
   config.keycloak.clientId = envSettings.keycloak.clientId;
   config.keycloak.secret = envSettings.keycloak.secret;
   config.helplink = envSettings.helplink;
+  config.keycloak.disable = envSettings.keycloak.disable;
 });
 
 loadInitializers(App, config.modulePrefix);
