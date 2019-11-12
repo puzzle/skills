@@ -11,7 +11,6 @@ Rails.application.routes.draw do
         put 'picture', to: 'people/picture#update'
         get 'picture', to: 'people/picture#show'
       end
-        get 'fws', to: 'people#export_fws'
     end
 
     resources :people_skills
