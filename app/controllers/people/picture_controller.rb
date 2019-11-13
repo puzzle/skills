@@ -21,7 +21,7 @@ module People
       @person ||= Person.find(params[:id])
     end
 
-    def default_avatar_url
+    def default_avatar_path
       "#{Rails.public_path}/default_avatar.png"
     end
   end

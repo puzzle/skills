@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe PeopleController do
   describe 'PeopleController' do
-      before { load_pictures }
+    before { load_pictures }
 
     describe 'Export person as odt' do
       it 'returns bob' do
@@ -78,7 +78,7 @@ describe PeopleController do
         process :show, method: :get, params: { id: bob.id }
 
         bob_attrs = json['data']['attributes']
-        
+
         expect(bob_attrs.count).to eq(13)
         expect(bob_attrs['nationality']).to eq('CH')
         expect(bob_attrs['nationality2']).to eq('SE')
