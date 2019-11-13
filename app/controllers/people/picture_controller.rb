@@ -11,7 +11,7 @@ module People
     end
 
     def show
-      picture_url = person.picture.file.nil? ? default_avatar_url : person.picture.url
+      picture_url = person.picture.file.nil? ? default_avatar_path : person.picture.url
       send_file(picture_url, disposition: 'inline')
     end
 
