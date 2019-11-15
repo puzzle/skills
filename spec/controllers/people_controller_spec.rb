@@ -37,58 +37,6 @@ describe PeopleController do
           /filename="bob_anderson_cv.odt"/
         )
       end
-
-      it 'returns fws bob development' do
-        bob = people(:bob)
-
-        expect_any_instance_of(Odt::Fws)
-          .to receive(:export)
-          .exactly(1).times
-          .and_call_original
-
-        process :export_fws, method: :get, format: 'odt', params: { discipline: 'development', person_id: bob.id }
-        expect(@response['Content-Disposition']).to match(
-          /attachment; filename=\"fachwissensskala-entwicklung-bob-anderson.odt\"/
-        )
-      end
-
-      it 'returns fws bob sys' do
-        bob = people(:bob)
-
-        expect_any_instance_of(Odt::Fws)
-          .to receive(:export)
-          .exactly(1).times
-          .and_call_original
-
-        process :export_fws, method: :get, format: 'odt', params: { discipline: 'system_engineering', person_id: bob.id }
-        expect(@response['Content-Disposition']).to match(
-          /attachment; filename=\"fachwissensskala-sys-bob-anderson.odt\"/
-        )
-      end
-
-      it 'returns empty development fws' do
-        expect_any_instance_of(Odt::Fws)
-          .to receive(:empty_export)
-          .exactly(1).times
-          .and_call_original
-
-        process :export_empty_fws, method: :get, format: 'odt', params: { discipline: 'development'}
-        expect(@response['Content-Disposition']).to match(
-          /attachment; filename=\"fachwissensskala-entwicklung.odt\"/
-        )
-      end
-
-      it 'returns empty system_enigneer fws' do
-        expect_any_instance_of(Odt::Fws)
-          .to receive(:empty_export)
-          .exactly(1).times
-          .and_call_original
-
-        process :export_empty_fws, method: :get, format: 'odt', params: { discipline: 'system_engineering'}
-        expect(@response['Content-Disposition']).to match(
-          /attachment; filename=\"fachwissensskala-sys.odt\"/
-        )
-      end
     end
 
     describe 'GET index' do
@@ -135,7 +83,7 @@ describe PeopleController do
         expect(bob_attrs['nationality']).to eq('CH')
         expect(bob_attrs['nationality2']).to eq('SE')
         json_object_includes_keys(bob_attrs, keys)
-        # expect(bob_attrs['picture-path']).to eq("/api/people/#{bob.id}/picture")
+        expect(bob_attrs['picture_path']).to match("/api/people/#{bob.id}/picture\?")
 
         nested_keys = %w(advanced_trainings activities projects educations company roles language_skills people_roles people_skills skills)
         nested_attrs = json['data']['relationships']
@@ -150,7 +98,6 @@ describe PeopleController do
         company = companies(:partner)
 
         person = { birthdate: Time.current,
-                   picture: fixture_file_upload('files/picture.png', 'image/png'),
                    location: 'Bern',
                    marital_status: 'single',
                    name: 'test',
@@ -180,8 +127,6 @@ describe PeopleController do
         expect(new_person.location).to eq('Bern')
         expect(new_person.nationality).to eq('CH')
         expect(new_person.nationality2).to eq('FR')
-        expect(new_person.picture.url)
-          .to include("#{Rails.root}/uploads/person/picture/#{new_person.id}/picture.png")
       end
     end
 

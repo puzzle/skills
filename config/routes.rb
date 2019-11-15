@@ -3,17 +3,14 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   scope '/api' do
-    scope 'documents' do
-      scope 'templates' do
-        get 'fws', to: 'people#export_empty_fws'
-      end
-    end
+
     resources 'languages', only: :index, controller: 'languages'
 
     resources :people do
-      put 'picture', to: 'people#update_picture'
-      get 'picture'
-      get 'fws', to: 'people#export_fws'
+      member do
+        put 'picture', to: 'people/picture#update'
+        get 'picture', to: 'people/picture#show'
+      end
     end
 
     resources :people_skills
@@ -24,7 +21,7 @@ Rails.application.routes.draw do
 
     resources :categories, only: [:index, :show]
     resources :roles, only: :index
-    resources :skills do 
+    resources :skills do
       collection do
         get 'unrated_by_person'
       end
