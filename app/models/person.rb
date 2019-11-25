@@ -24,7 +24,7 @@
 #
 
 class Person < ApplicationRecord
-  include PgSearch
+  include PgSearch::Model
 
   belongs_to :company
 
