@@ -4,8 +4,8 @@ describe SkillsController do
   describe 'SkillsController' do
     before { load_pictures }
 
-    before(:each) do 
-      SkillsController.any_instance.stub(:has_admin_flag?).and_return(true)
+    before(:each) do
+      allow_any_instance_of(SkillsController).to receive(:has_admin_flag?).and_return(true)
     end
 
     let(:bob) { people(:bob) }
