@@ -34,7 +34,7 @@ class PersonSeeder
       person.update_attributes(picture: f)
     end
   end
- 
+
   def seed_roles
     10.times do
       Role.seed do |r|
@@ -42,7 +42,7 @@ class PersonSeeder
       end
     end
   end
-  
+
   def seed_people_roles(person)
     PeopleRole.seed do |pr|
       pr.person_id = person.id
@@ -88,9 +88,9 @@ class PersonSeeder
 
   def seed_person(name)
     Person.seed_once(:name) do |p|
-      p.birthdate = Faker::Date.between(20.year.ago, 65.year.ago)
+      p.birthdate = Faker::Date.between(from: 20.year.ago, to: 65.year.ago)
       p.picture = Faker::Avatar
-      p.location = Faker::Pokemon.location
+      p.location = Faker::Games::Pokemon.location
       p.marital_status = :single
       p.updated_by = 'seed_user'
       p.name = name.to_s

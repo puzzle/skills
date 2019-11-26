@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'rails', '6.0.0'
+gem 'rails', '6.0.1'
 
 gem 'active_model_serializers'
 gem 'activerecord-postgresql-adapter'
@@ -38,8 +38,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code
   # to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'pry'
   gem 'faker'
+  gem 'pry'
   gem 'rspec-rails', '~> 3.6'
 end
 
@@ -59,3 +59,17 @@ group :test do
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+
+{
+  "realm": "pitc",
+  "auth-server-url": "https://sso-test.puzzle.ch/auth/",
+  "ssl-required": "external",
+  "resource": "pitc-skills-backend",
+  "verify-token-audience": true,
+  "credentials": {
+    "secret": "a60e5d3b-ae33-4e7a-8dd3-8d6ce5734b61"
+  },
+  "use-resource-role-mappings": true,
+  "confidential-port": 0
+}

@@ -3,11 +3,11 @@
 class CompanySeeder
   def seed_companies(companies, my_company_flags)
     my_company_flags.reverse!
-    
+
     companies.each do |name|
       flag = my_company_flags.pop
       company = seed_company(name, flag).first
-      
+
       break unless company
       associations = [:location, :employee_quantity, :offer]
       associations.each do |a|
@@ -15,7 +15,7 @@ class CompanySeeder
       end
     end
   end
-  
+
   def seed_association(assoc_name, company_id)
     rand(1..3).times do
       send("seed_#{assoc_name}", company_id)
@@ -23,15 +23,15 @@ class CompanySeeder
   end
 
   private
-  
+
   def seed_company(name, flag)
     Company.seed do |co|
       co.name = name
       co.web = "www.example.com"
       co.email = "info@example.ch"
       co.phone = Faker::PhoneNumber.cell_phone
-      co.partnermanager =  Faker::StarTrek.character
-      co.contact_person = Faker::StarWars.character
+      co.partnermanager =  Faker::TvShows::StarTrek.character
+      co.contact_person = Faker::Movies::StarWars.character
       co.email_contact_person = Faker::Internet.email
       co.phone_contact_person = Faker::PhoneNumber.cell_phone
       co.crm = "crm"
@@ -43,11 +43,11 @@ class CompanySeeder
 
   def seed_location(company_id)
     Location.seed do |a|
-      a.location = Faker::Pokemon.location
+      a.location = Faker::Games::Pokemon.location
       a.company_id = company_id
     end
   end
-  
+
   def seed_employee_quantity(company_id)
     EmployeeQuantity.seed do |a|
       category = Faker::Hacker.noun
@@ -56,7 +56,7 @@ class CompanySeeder
       a.company_id = company_id
     end
   end
-  
+
   def seed_offer(company_id)
     Offer.seed do |a|
       a.category = Faker::Hacker.noun
