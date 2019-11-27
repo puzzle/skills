@@ -25,10 +25,8 @@ class PeopleController < CrudController
       export
       return
     end
-    @person = Person.includes(people_roles: :role,
-                              people_skills: {
-                                skill: [:category]
-                              }).find(params.fetch(:id))
+    @person = Person.includes(projects: :project_technologies,
+                              people_roles: :role).find(params.fetch(:id))
     super
   end
 

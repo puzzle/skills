@@ -85,10 +85,10 @@ describe PeopleController do
         json_object_includes_keys(bob_attrs, keys)
         expect(bob_attrs['picture_path']).to match("/api/people/#{bob.id}/picture\?")
 
-        nested_keys = %w(advanced_trainings activities projects educations company roles language_skills people_roles people_skills skills)
+        nested_keys = %w(advanced_trainings activities projects educations company roles language_skills people_roles)
         nested_attrs = json['data']['relationships']
 
-        expect(nested_attrs.count).to eq(10)
+        expect(nested_attrs.count).to eq(8)
         json_object_includes_keys(nested_attrs, nested_keys)
       end
     end
