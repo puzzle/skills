@@ -37,26 +37,13 @@ class PersonSerializer < ApplicationSerializer
     "/api/people/#{object.id}/picture?#{Time.zone.now}"
   end
 
-  has_many :advanced_trainings do |serializer|
-    serializer.object.advanced_trainings.list
-  end
-
+  has_many :advanced_trainings
   has_many :roles
-
-  has_many :skills
+  has_many :people_roles
+  has_many :projects
 
   has_many :activities do |serializer|
     serializer.object.activities.list
-  end
-
-  has_many :people_roles do |serializer|
-    serializer.object.people_roles
-  end
-
-  has_many :people_skills
-
-  has_many :projects do |serializer|
-    serializer.object.projects.list
   end
 
   has_many :educations do |serializer|
