@@ -25,7 +25,7 @@ class Skill < ApplicationRecord
 
   validates :title, presence: true
   validates :title, length: { maximum: 100 }
-  validates_uniqueness_of :title, scope: :category_id
+  validates :title, uniqueness: { scope: :category_id }
 
   scope :list, -> { order(:title) }
 

@@ -1,11 +1,12 @@
 # frozen_string_literal: true
+
 require 'keycloak_tools'
 
 class SkillsController < CrudController
   include ExportController
   include KeycloakTools
-  
-  before_action :authorize_admin, only: [:create, :update, :destroy]
+
+  before_action :authorize_admin, except: :index
 
   self.permitted_attrs = %i[title radar portfolio default_set category_id]
 
