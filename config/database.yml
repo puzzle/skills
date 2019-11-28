@@ -4,7 +4,7 @@ default: &default
   port: <%= ENV['RAILS_DB_PORT'] || 5432 %>
   username: <%= ENV['RAILS_DB_USERNAME'] || "skills" %>
   password: <%= ENV['RAILS_DB_PASSWORD'] || "skills" %>
-  database: <%= ENV['RAILS_DB_NAME'] || "skills_#{Rails.env}" %>
+  database: <%= ENV['RAILS_DB_NAME'] || "skills_development" %>
   pool: 5
   timeout: 5000
   encoding: unicode
@@ -14,6 +14,8 @@ development:
 
 test:
   <<: *default
+  database: <%= ENV['RAILS_DB_NAME'] || "skills_test" %>
 
 production:
   <<: *default
+  database: <%= ENV['RAILS_DB_NAME'] || "skills_production" %>
