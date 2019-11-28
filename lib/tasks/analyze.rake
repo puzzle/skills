@@ -9,10 +9,10 @@ task :brakeman do
   end
 end
 
-desc 'Run rubocop-must.yml and fail if there are issues'
+desc 'Run rubocop and fail if there are issues'
 task :rubocop do
   begin
-    sh 'rubocop --config .rubocop-must.yml'
+    sh 'rubocop'
   rescue
     abort('RuboCop failed!')
   end

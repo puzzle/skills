@@ -5,7 +5,7 @@ describe SkillsController do
     before { load_pictures }
 
     before(:each) do
-      allow_any_instance_of(SkillsController).to receive(:has_admin_flag?).and_return(true)
+      allow_any_instance_of(SkillsController).to receive(:admin_flag?).and_return(true)
     end
 
     let(:bob) { people(:bob) }

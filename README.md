@@ -60,9 +60,9 @@ now run backend server
 #### Definition of Done (DoD) for new Code / Features
 
 -   implementation (inclusive correspondent frontend and backend tests)
--   `rake spec` passes
--   `rake spec:frontend` passes
--   `rake rubocop` passes
+-   `rails spec` passes
+-   `rails spec:frontend` passes
+-   `rubocop` passes
 -   manual testing (start server, frontend and click through the new feature)
 -   peer review
 -   remove obsolete code
