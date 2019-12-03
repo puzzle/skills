@@ -13,6 +13,7 @@ gem 'carrierwave'
 gem 'config'
 gem 'countries'
 gem 'database_cleaner'
+gem 'faker'
 gem 'i18n_data'
 gem 'keycloak-api-rails'
 gem 'language_list'
@@ -38,7 +39,6 @@ group :development, :test do
   # Call 'byebug' anywhere in the code
   # to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'faker'
   gem 'pry'
   gem 'rspec-rails', '~> 3.6'
 end
