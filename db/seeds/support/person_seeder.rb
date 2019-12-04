@@ -101,7 +101,7 @@ class PersonSeeder
       rand(5..15).times{ competence_notes << "#{Faker::Superhero.power}\n" }
       p.competence_notes = competence_notes
       p.email = Faker::Internet.email
-      p.department = 'sys'
+      p.department = '/sys'
     end
   end
 
