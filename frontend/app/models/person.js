@@ -12,9 +12,9 @@ const Person = DS.Model.extend({
   title: DS.attr("string"),
   competenceNotes: DS.attr("string"),
   email: DS.attr("string"),
-  department: DS.attr("string"),
   updatedAt: DS.attr("date"),
 
+  department: DS.belongsTo("department"),
   company: DS.belongsTo("company"),
 
   educations: DS.hasMany("education"),
@@ -38,19 +38,6 @@ Person.reopenClass({
     registered_partnership: "eingetragene Partnerschaft",
     divorced: "geschieden"
   },
-
-  DEPARTMENTS: [
-    "/dev/one",
-    "/dev/two",
-    "/dev/tre",
-    "/dev/ruby",
-    "/mid",
-    "/ux",
-    "/zh",
-    "/sys",
-    "/bs",
-    "Funktionsbereiche"
-  ],
 
   ROLE_LEVELS: ["Keine", "S1", "S2", "S3", "S4", "S5", "S6"]
 });

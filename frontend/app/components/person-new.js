@@ -14,7 +14,6 @@ export default ApplicationComponent.extend({
     this._super(...arguments);
     this.initMaritalStatuses();
     this.initNationalities();
-    this.departments = Person.DEPARTMENTS;
     this.roleLevels = Person.ROLE_LEVELS;
   },
 
@@ -35,6 +34,10 @@ export default ApplicationComponent.extend({
       return country[0] === code;
     });
   },
+
+  departmentsToSelect: computed(function() {
+    return this.get("store").findAll("department");
+  }),
 
   sortedRoles: computed(function() {
     return this.get("store").findAll("role");

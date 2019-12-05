@@ -10,11 +10,15 @@ test("it renders person", function(assert) {
     name: "Bewerber"
   });
 
+  this.set("department", {
+    name: "/sys"
+  });
+
   this.set("person", {
     name: "Harry Potter",
     email: "harry@hogwarts.com",
     title: "Zauberer",
-    department: "/sys",
+    department: this.get("department"),
     company: this.get("company"),
     birthdate: new Date("2000-01-01"),
     nationality: "FR",
