@@ -20,18 +20,19 @@
 #  nationality2            :string
 #  marital_status          :integer          default("single"), not null
 #  email                   :string
-#  department              :string
+#  department_id           :integer
 #
 
 class PersonSerializer < ApplicationSerializer
   type :people
 
   belongs_to :company, serializer: CompanyInPersonSerializer
+  belongs_to :department
 
   attributes :id, :birthdate, :picture_path, :location,
              :marital_status, :updated_by, :name, :nationality,
              :nationality2, :title, :competence_notes, :email,
-             :department, :updated_at
+             :updated_at
 
   def picture_path
     "/api/people/#{object.id}/picture?#{Time.zone.now}"

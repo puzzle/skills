@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     end
 
     resources :companies, controller: 'companies'
-
+    resources :departments, controller: 'departments'
     resources :language_skills, controller: 'language_skills'
     resources :advanced_trainings, controller: 'advanced_trainings'
     resources :activities, controller: 'activities'

@@ -1,0 +1,15 @@
+
+dev-one:
+  name: /dev/one
+
+dev-two:
+  name: /dev/two
+
+sys:
+  name: /sys
+
+ux:
+  name: /ux
+
+mid:
+  name: /mid

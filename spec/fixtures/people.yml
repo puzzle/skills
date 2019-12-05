@@ -18,7 +18,7 @@
 #  nationality2            :string
 #  marital_status          :integer          default("single"), not null
 #  email                   :string
-#  department              :string
+#  department_id           :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
@@ -35,7 +35,7 @@ bob:
   competence_notes: Java\n Ruby
   company: firma
   email: bob@example.com
-  department: /sys
+  department: sys
 
 alice:
   birthdate: 2016-10-20 13:15:11
@@ -48,7 +48,7 @@ alice:
   competence_notes: LaTex\n Puppet\n Bash
   company: partner
   email: alice@example.com
-  department: /sys
+  department: sys
 
 ken:
   birthdate: 1995-08-26 03:15:11
@@ -61,4 +61,4 @@ ken:
   competence_notes: LaTex\n Puppet\n Bash
   company: partner
   email: kenthemaster@testi.com
-  department: /ux
+  department: ux
