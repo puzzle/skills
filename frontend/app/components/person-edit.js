@@ -109,6 +109,9 @@ export default ApplicationComponent.extend(EKMixin, {
   companiesToSelect: computed(function() {
     return this.get("store").findAll("company");
   }),
+  departmentsToSelect: computed(function() {
+    return this.get("store").findAll("department");
+  }),
 
   personPictureUploadPath: computed("person.id", function() {
     return `/people/${this.get("person.id")}/picture`;

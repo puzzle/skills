@@ -93,14 +93,14 @@
                     {{#power-select
                       triggerId="department"
                       selected=person.department
-                      options=departments
+                      options=departmentsToSelect
                       onfocus=(action "handleFocus")
                       onblur=(action "handleBlur")
                       onchange=(action (mut person.department))
                       onkeydown=(action "setWithTab" 'setDepartment')
                     as |department|
                     }}
-                      {{department}}
+                      {{department.name}}
                     {{/power-select}}
                   </td>
                 </tr>
