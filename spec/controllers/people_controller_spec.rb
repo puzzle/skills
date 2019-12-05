@@ -79,7 +79,7 @@ describe PeopleController do
 
         bob_attrs = json['data']['attributes']
 
-        expect(bob_attrs.count).to eq(13)
+        expect(bob_attrs.count).to eq(12)
         expect(bob_attrs['nationality']).to eq('CH')
         expect(bob_attrs['nationality2']).to eq('SE')
         json_object_includes_keys(bob_attrs, keys)
@@ -88,7 +88,7 @@ describe PeopleController do
         nested_keys = %w(advanced_trainings activities projects educations company roles language_skills people_roles)
         nested_attrs = json['data']['relationships']
 
-        expect(nested_attrs.count).to eq(8)
+        expect(nested_attrs.count).to eq(9)
         json_object_includes_keys(nested_attrs, nested_keys)
       end
     end
@@ -96,6 +96,7 @@ describe PeopleController do
     describe 'POST create' do
       it 'creates new person' do
         company = companies(:partner)
+        department = departments(:sys)
 
         person = { birthdate: Time.current,
                    location: 'Bern',
@@ -105,11 +106,11 @@ describe PeopleController do
                    nationality2: 'FR',
                    title: 'Bsc in tester',
                    email: 'test@example.com',
-                   department: '/sys'
                    }
 
         relationships = {
           company: { data: { id: company.id, type: 'companies' }},
+          department: {data: {id: department.id, name: department.name}}
         }
 
         params = {

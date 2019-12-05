@@ -18,7 +18,7 @@
 #  nationality2            :string
 #  marital_status          :integer          default("single"), not null
 #  email                   :string
-#  department              :string
+#  department_id           :integer
 #
 
 require 'rails_helper'

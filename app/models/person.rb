@@ -20,13 +20,14 @@
 #  nationality2            :string
 #  marital_status          :integer          default("single"), not null
 #  email                   :string
-#  department              :string
+#  department_id           :int
 #
 
 class Person < ApplicationRecord
   include PgSearch::Model
 
   belongs_to :company
+  belongs_to :department
 
   mount_uploader :picture, PictureUploader
   has_many :projects, dependent: :destroy
@@ -44,7 +45,7 @@ class Person < ApplicationRecord
   validates :birthdate, :location, :name, :nationality,
             :title, :marital_status, presence: true
   validates :location, :name, :title,
-            :email, :department, length: { maximum: 100 }
+            :email, length: { maximum: 100 }
 
   validates :nationality,
             inclusion: { in: ISO3166::Country.all.collect(&:alpha2) }
@@ -62,10 +63,10 @@ class Person < ApplicationRecord
                   against: [
                     :name,
                     :title,
-                    :department,
                     :competence_notes
                   ],
                   associated_against: {
+                    department: :name,
                     roles: :name,
                     projects: [:description, :title, :role, :technology],
                     activities: [:description, :role],

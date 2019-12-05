@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_26_065819) do
+ActiveRecord::Schema.define(version: 2019_12_03_161009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,12 @@ ActiveRecord::Schema.define(version: 2019_11_26_065819) do
     t.datetime "updated_at", null: false
     t.datetime "associations_updatet_at"
     t.integer "company_type", default: 3, null: false
+  end
+
+  create_table "departments", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "educations", id: :serial, force: :cascade do |t|
@@ -158,7 +164,7 @@ ActiveRecord::Schema.define(version: 2019_11_26_065819) do
     t.string "nationality2"
     t.integer "marital_status", default: 0, null: false
     t.string "email"
-    t.string "department"
+    t.integer "department_id"
     t.index ["company_id"], name: "index_people_on_company_id"
   end
 

@@ -5,13 +5,13 @@ class PeopleController < CrudController
 
   self.permitted_attrs = %i[birthdate location
                             marital_status updated_by name nationality nationality2 title
-                            competence_notes company company_id email department]
+                            competence_notes company_id email department_id]
 
   self.nested_models = %i[advanced_trainings activities projects
                           educations language_skills people_roles
                           people_skills categories]
 
-  self.permitted_relationships = %i[company people_roles people_skills categories]
+  self.permitted_relationships = %i[people_roles people_skills]
 
   def index
     people = fetch_entries
@@ -26,7 +26,7 @@ class PeopleController < CrudController
       return
     end
     @person = Person.includes(projects: :project_technologies,
-                              people_roles: :role).find(params.fetch(:id))
+                                           people_roles: :role).find(params.fetch(:id))
     super
   end
 
