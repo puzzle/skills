@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_03_161009) do
+ActiveRecord::Schema.define(version: 2019_12_05_142211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -168,11 +168,17 @@ ActiveRecord::Schema.define(version: 2019_12_03_161009) do
     t.index ["company_id"], name: "index_people_on_company_id"
   end
 
+  create_table "people_role_levels", force: :cascade do |t|
+    t.string "level"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "people_roles", force: :cascade do |t|
     t.bigint "person_id"
     t.bigint "role_id"
-    t.string "level"
     t.decimal "percent", precision: 5, scale: 2
+    t.integer "people_role_level_id"
     t.index ["person_id"], name: "index_people_roles_on_person_id"
     t.index ["role_id"], name: "index_people_roles_on_role_id"
   end
