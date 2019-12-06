@@ -14,6 +14,7 @@
 class PeopleRole < ApplicationRecord
   belongs_to :person
   belongs_to :role
+  belongs_to :people_role_level
 
   validates :person_id, :role_id, presence: true
 
