@@ -1,6 +1,5 @@
 class CreatePersonRoleLevel < ActiveRecord::Migration[6.0]
   def up
-
     
     create_table :person_role_levels do |t|
       t.string :level
@@ -8,7 +7,6 @@ class CreatePersonRoleLevel < ActiveRecord::Migration[6.0]
       t.timestamps
     end
     
-    rename_table :people_roles, :person_roles
     rename_column :person_roles, :level, :level_old
     add_column :person_roles, :person_role_level_id, :integer
 
@@ -23,8 +21,6 @@ class CreatePersonRoleLevel < ActiveRecord::Migration[6.0]
   end
 
   def down
-
-    rename_table :person_roles, :people_roles
 
     add_column :person_roles, :level_string, :string
 

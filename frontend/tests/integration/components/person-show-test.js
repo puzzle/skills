@@ -14,6 +14,10 @@ test("it renders person", function(assert) {
     name: "/sys"
   });
 
+  this.set("personRoleLevels", {
+    level: "S1"
+  });
+
   this.set("person", {
     name: "Harry Potter",
     email: "harry@hogwarts.com",
@@ -33,7 +37,7 @@ test("it renders person", function(assert) {
   this.set("person.personRoles", [
     {
       role: this.get("role"),
-      level: "S1",
+      person_role_level: this.get("personRoleLevels"),
       percent: 60
     }
   ]);
