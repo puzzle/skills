@@ -304,7 +304,7 @@ export default ApplicationComponent.extend(EKMixin, {
     },
 
     addRole(person) {
-      this.get("store").createRecord("people-role", { person });
+      this.get("store").createRecord("person-role", { person });
     }
   }
 });

@@ -151,7 +151,7 @@ export default ApplicationComponent.extend({
     },
 
     setRoleLevel(personRole, person_role_level) {
-      personRole.set("person_role_level", person_role_level);
+      personRole.set("person-role-level", person_role_level);
     },
 
     setRolePercent(personRole, event) {
@@ -174,7 +174,7 @@ export default ApplicationComponent.extend({
     },
 
     addRole(newPerson) {
-      this.get("store").createRecord("people-role", { person: newPerson });
+      this.get("store").createRecord("person-role", { person: newPerson });
     }
   }
 });

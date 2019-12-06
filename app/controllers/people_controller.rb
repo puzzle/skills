@@ -26,7 +26,7 @@ class PeopleController < CrudController
       return
     end
     @person = Person.includes(projects: :project_technologies,
-                              person_roles: :role).find(params.fetch(:id))
+                              person_roles: [:role, :person_role_level]).find(params.fetch(:id))
     super
   end
 
