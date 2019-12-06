@@ -85,7 +85,7 @@ describe PeopleController do
         json_object_includes_keys(bob_attrs, keys)
         expect(bob_attrs['picture_path']).to match("/api/people/#{bob.id}/picture\?")
 
-        nested_keys = %w(advanced_trainings activities projects educations company roles language_skills people_roles)
+        nested_keys = %w(advanced_trainings activities projects educations company roles language_skills person_roles)
         nested_attrs = json['data']['relationships']
 
         expect(nested_attrs.count).to eq(9)
@@ -159,7 +159,7 @@ describe PeopleController do
         expect(Project.exists?(person_id: bob.id)).to eq(false)
         expect(Education.exists?(person_id: bob.id)).to eq(false)
         expect(LanguageSkill.exists?(person_id: bob.id)).to eq(false)
-        expect(PeopleRole.exists?(person_id: bob.id)).to eq(false)
+        expect(PersonRole.exists?(person_id: bob.id)).to eq(false)
       end
     end
   end

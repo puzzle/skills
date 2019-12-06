@@ -40,7 +40,7 @@ class PersonSerializer < ApplicationSerializer
 
   has_many :advanced_trainings
   has_many :roles
-  has_many :people_roles
+  has_many :person_roles
   has_many :projects
 
   has_many :activities do |serializer|

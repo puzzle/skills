@@ -23,7 +23,7 @@ const Person = DS.Model.extend({
   projects: DS.hasMany("project"),
   expertiseTopicSkillValues: DS.hasMany("expertise-topic-skill-value"),
   languageSkills: DS.hasMany("language-skill"),
-  peopleRoles: DS.hasMany("people-role"),
+  personRoles: DS.hasMany("people-role"),
   peopleSkills: DS.hasMany("people-skill"),
 
   instanceToString: computed("name", function() {

@@ -30,7 +30,7 @@ test("it renders person", function(assert) {
     name: "König"
   });
 
-  this.set("person.peopleRoles", [
+  this.set("person.personRoles", [
     {
       role: this.get("role"),
       level: "S1",

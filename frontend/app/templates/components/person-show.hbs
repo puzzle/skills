@@ -53,14 +53,14 @@
             <tr class="description">
               <td>Funktion</td>
             </tr>
-            {{#if person.peopleRoles.length}}
-              {{#each person.peopleRoles as |peopleRole|}}
+            {{#if person.personRoles.length}}
+              {{#each person.personRoles as |personRole|}}
                 <tr>
                   <td id="data-test-person-role">
-                    {{peopleRole.role.name}}
-                    {{peopleRole.level}}
-                    {{#if peopleRole.percent}}
-                      {{peopleRole.percent}}%
+                    {{personRole.role.name}}
+                    {{personRole.person_role_level.level}}
+                    {{#if personRole.percent}}
+                      {{personRole.percent}}%
                     {{/if}}
                   </td>
                 </tr>

@@ -50,7 +50,7 @@ departments:
   -  /sys
   -  /bs
   -  Funktionsbereiche
-role_levels:
+person_role_levels:
   - 'Keine'
   - 'S1'
   - 'S2'

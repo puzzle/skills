@@ -24,16 +24,16 @@
               <tr>
                 <label>Funktionen</label>
               </tr>
-              {{#each newPerson.peopleRoles as |peopleRole|}}
+              {{#each newPerson.personRoles as |personRole|}}
                 <div class="border rounded mt-2 p-2">
                   <tr>
                     <td>
                       <label class="description role-description">Rolle</label>
                       <div class='role-dropdown'>
                         {{#power-select
-                        selected=peopleRole.role
+                        selected=personRole.role
                         options=sortedRoles
-                        onchange=(action "setRole" peopleRole)
+                        onchange=(action "setRole" personRole)
                         disabled=usedRoles
                         as |role|
                         }}
@@ -47,20 +47,20 @@
                       <label class="description role-description">Stufe</label>
                       <div class='level-dropdown'>
                         {{#power-select
-                        selected=peopleRole.level
-                        options=roleLevels
-                        onchange=(action "setRoleLevel" peopleRole)
+                        selected=personRole.person_role_level
+                        options=PersonRoleLevelsToSelect
+                        onchange=(action "setRoleLevel" personRole)
                         as |level|
                         }}
-                          {{level}}
+                          {{level.level}}
                         {{/power-select}}
                       </div>
                       <div class='percent-field'>
-                        <input placeholder='in %' type="number" value={{peopleRole.percent}} onchange={{action 'setRolePercent' peopleRole}} max='9999'>
+                        <input placeholder='in %' type="number" value={{personRole.percent}} onchange={{action 'setRolePercent' personRole}} max='9999'>
                       </div>
                       <div class='delete-role-icon'>
                         {{delete-with-confirmation
-                          entry=peopleRole
+                          entry=personRole
                           class='edit-buttons'
                         }}
                       </div>
