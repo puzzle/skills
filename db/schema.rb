@@ -168,21 +168,6 @@ ActiveRecord::Schema.define(version: 2019_12_05_142211) do
     t.index ["company_id"], name: "index_people_on_company_id"
   end
 
-  create_table "people_role_levels", force: :cascade do |t|
-    t.string "level"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "people_roles", force: :cascade do |t|
-    t.bigint "person_id"
-    t.bigint "role_id"
-    t.decimal "percent", precision: 5, scale: 2
-    t.integer "people_role_level_id"
-    t.index ["person_id"], name: "index_people_roles_on_person_id"
-    t.index ["role_id"], name: "index_people_roles_on_role_id"
-  end
-
   create_table "people_skills", force: :cascade do |t|
     t.bigint "person_id"
     t.bigint "skill_id"
@@ -192,6 +177,21 @@ ActiveRecord::Schema.define(version: 2019_12_05_142211) do
     t.boolean "core_competence", default: false
     t.index ["person_id"], name: "index_people_skills_on_person_id"
     t.index ["skill_id"], name: "index_people_skills_on_skill_id"
+  end
+
+  create_table "person_role_levels", force: :cascade do |t|
+    t.string "level"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "person_roles", force: :cascade do |t|
+    t.bigint "person_id"
+    t.bigint "role_id"
+    t.decimal "percent", precision: 5, scale: 2
+    t.integer "person_role_level_id"
+    t.index ["person_id"], name: "index_person_roles_on_person_id"
+    t.index ["role_id"], name: "index_person_roles_on_role_id"
   end
 
   create_table "project_technologies", force: :cascade do |t|

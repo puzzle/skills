@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: people_roles
+# Table name: person_roles
 #
 #  id        :bigint(8)        not null, primary key
 #  person_id :bigint(8)
@@ -10,13 +10,13 @@
 #
 
 bob_software_engineer:
-  level: S1
+  person_role_level: S1
   percent: 100
   role: software-engineer
   person: bob
 
 alive_system_engineer:
-  level: S2
+  person_role_level: S2
   percent: 80
   role: system-engineer
   person: alice

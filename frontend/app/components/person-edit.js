@@ -18,12 +18,11 @@ export default ApplicationComponent.extend(EKMixin, {
     this.initNationalities();
     this.initCheckbox();
     this.set("departments", Person.DEPARTMENTS);
-    this.set("roleLevels", Person.ROLE_LEVELS);
     this.callBackCompany = this.get("person.company");
     this.callBackRoleIds = {};
-    this.get("person.peopleRoles").forEach(
-      peopleRole =>
-        (this.callBackRoleIds[peopleRole.get("id")] = peopleRole.get("role.id"))
+    this.get("person.personRoles").forEach(
+      personRole =>
+        (this.callBackRoleIds[personRole.get("id")] = personRole.get("role.id"))
     );
   },
 
@@ -91,7 +90,7 @@ export default ApplicationComponent.extend(EKMixin, {
   sortedRoles: computed("sortedRoles", function() {
     const roles = this.get("store").findAll("role");
     roles.then(() => {
-      const usedRoleNames = this.get("person.peopleRoles").map(x =>
+      const usedRoleNames = this.get("person.personRoles").map(x =>
         x.get("role.name")
       );
 
@@ -109,8 +108,13 @@ export default ApplicationComponent.extend(EKMixin, {
   companiesToSelect: computed(function() {
     return this.get("store").findAll("company");
   }),
+
   departmentsToSelect: computed(function() {
     return this.get("store").findAll("department");
+  }),
+
+  personRoleLevelsToSelect: computed(function() {
+    return this.get("store").findAll("person_role_level");
   }),
 
   personPictureUploadPath: computed("person.id", function() {
@@ -139,12 +143,12 @@ export default ApplicationComponent.extend(EKMixin, {
                   : null
               ),
             ...changeset
-              .get("peopleRoles")
-              .map(peopleRole =>
-                peopleRole.get("hasDirtyAttributes") ||
-                peopleRole.get("role.id") !=
-                  this.callBackRoleIds[peopleRole.get("id")]
-                  ? peopleRole.save()
+              .get("personRoles")
+              .map(personRole =>
+                personRole.get("hasDirtyAttributes") ||
+                personRole.get("role.id") !=
+                  this.callBackRoleIds[personRole.get("id")]
+                  ? personRole.save()
                   : null
               )
           ])
@@ -162,14 +166,14 @@ export default ApplicationComponent.extend(EKMixin, {
             errors = errors.concat(skill.get("errors").slice());
           });
 
-          person.get("peopleRoles").forEach(peopleRole => {
-            let prErrors = peopleRole.get("errors").slice();
+          person.get("personRoles").forEach(personRole => {
+            let prErrors = personRole.get("errors").slice();
             const roleIdError = prErrors.findBy("attribute", "role_id");
             prErrors.removeObject(roleIdError);
             errors = errors.concat(prErrors);
           });
 
-          if (person.get("peopleRoles.length") === 0) {
+          if (person.get("personRoles.length") === 0) {
             errors = errors.concat([
               { attribute: "person", message: "muss eine Funktion haben" }
             ]);
@@ -206,19 +210,19 @@ export default ApplicationComponent.extend(EKMixin, {
         }
       });
 
-      this.get("person.peopleRoles").forEach(peopleRole => {
-        if (peopleRole.get("isNew")) {
-          peopleRole.destroyRecord();
+      this.get("person.personRoles").forEach(personRole => {
+        if (personRole.get("isNew")) {
+          personRole.destroyRecord();
         }
-        if (peopleRole.get("hasDirtyAttributes")) {
-          peopleRole.rollbackAttributes();
+        if (personRole.get("hasDirtyAttributes")) {
+          personRole.rollbackAttributes();
         }
       });
 
-      this.get("person.peopleRoles").forEach(peopleRole => {
-        let oldRoleId = this.get("callBackRoleIds." + peopleRole.get("id"));
+      this.get("person.personRoles").forEach(personRole => {
+        let oldRoleId = this.get("callBackRoleIds." + personRole.get("id"));
         let role = this.get("store").peekRecord("role", oldRoleId);
-        peopleRole.set("role", role);
+        personRole.set("role", role);
       });
 
       this.set("alreadyAborted", true);
@@ -266,28 +270,28 @@ export default ApplicationComponent.extend(EKMixin, {
       this.set("person.company", company);
     },
 
-    setRole(peopleRole, selectedRole) {
-      peopleRole.set("role", selectedRole);
+    setRole(personRole, selectedRole) {
+      personRole.set("role", selectedRole);
     },
 
-    setRoleWithTab(peopleRole, select, e) {
+    setRoleWithTab(personRole, select, e) {
       if (e.keyCode == 9 && select.isOpen) {
-        peopleRole.set("role", select.highlighted);
+        personRole.set("role", select.highlighted);
       }
     },
 
-    setRoleLevel(peopleRole, level) {
-      peopleRole.set("level", level);
+    setRoleLevel(personRole, person_role_level) {
+      personRole.set("person_role_level", person_role_level);
     },
 
-    setRoleLevelWithTab(peopleRole, select, e) {
+    setRoleLevelWithTab(personRole, select, e) {
       if (e.keyCode == 9 && select.isOpen) {
-        peopleRole.set("level", select.highlighted);
+        personRole.set("level", select.highlighted);
       }
     },
 
-    setRolePercent(peopleRole, event) {
-      peopleRole.set("percent", event.target.value);
+    setRolePercent(personRole, event) {
+      personRole.set("percent", event.target.value);
     },
 
     setMaritalStatus(selectedMaritalStatus) {

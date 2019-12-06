@@ -7,7 +7,7 @@ class PersonSeeder
     names.each do |name|
       person = seed_person(name).first
       break unless person
-      seed_people_roles(person)
+      seed_person_roles(person)
       seed_people_skills(person.id)
       seed_image(person)
       associations = [:activity, :advanced_training, :project, :education, :language_skill, :people_skills]
@@ -43,11 +43,11 @@ class PersonSeeder
     end
   end
 
-  def seed_people_roles(person)
-    PeopleRole.seed do |pr|
+  def seed_person_roles(person)
+    PersonRole.seed do |pr|
       pr.person_id = person.id
       pr.role_id = rand(1..10)
-      pr.level = 'S1'
+      pr.person_role_level_id = rand(1..7)
       pr.percent = rand(1..10) * 10
     end
   end

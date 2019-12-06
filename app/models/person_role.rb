@@ -2,19 +2,19 @@
 
 # == Schema Information
 #
-# Table name: people_roles
+# Table name: person_roles
 #
-#  id        :bigint(8)        not null, primary key
-#  person_id :bigint(8)
-#  role_id   :bigint(8)
-#  level     :string
-#  percent   :decimal(5, 2)
+#  id                       :bigint(8)        not null, primary key
+#  person_id                :bigint(8)
+#  role_id                  :bigint(8)
+#  person_role_level_id     :integer
+#  percent                  :decimal(5, 2)
 #
 
-class PeopleRole < ApplicationRecord
+class PersonRole < ApplicationRecord
   belongs_to :person
   belongs_to :role
-  belongs_to :people_role_level
+  belongs_to :person_role_level
 
   validates :person_id, :role_id, presence: true
 

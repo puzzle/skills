@@ -14,7 +14,6 @@ export default ApplicationComponent.extend({
     this._super(...arguments);
     this.initMaritalStatuses();
     this.initNationalities();
-    this.roleLevels = Person.ROLE_LEVELS;
   },
 
   initMaritalStatuses() {
@@ -37,6 +36,10 @@ export default ApplicationComponent.extend({
 
   departmentsToSelect: computed(function() {
     return this.get("store").findAll("department");
+  }),
+
+  PersonRoleLevelsToSelect: computed(function() {
+    return this.get("store").findAll("person_role_level");
   }),
 
   sortedRoles: computed(function() {
@@ -64,8 +67,8 @@ export default ApplicationComponent.extend({
             ...newPerson
               .get("languageSkills")
               .map(languageSkill => languageSkill.save()),
-            // Nicht so! peopleRoles an Person anhängen und speichern
-            ...newPerson.get("peopleRoles").map(peopleRole => peopleRole.save())
+            // Nicht so! personRoles an Person anhängen und speichern
+            ...newPerson.get("personRoles").map(personRole => personRole.save())
           ])
         )
         .then(() => this.sendAction("submit", newPerson))
@@ -80,8 +83,8 @@ export default ApplicationComponent.extend({
             errors = errors.concat(skill.get("errors").slice());
           });
 
-          newPerson.get("peopleRoles").forEach(peopleRole => {
-            let prErrors = peopleRole.get("errors").slice();
+          newPerson.get("personRoles").forEach(personRole => {
+            let prErrors = personRole.get("errors").slice();
             const roleIdError = prErrors.findBy("attribute", "role_id");
             prErrors.removeObject(roleIdError);
             errors = errors.concat(prErrors);
@@ -143,16 +146,16 @@ export default ApplicationComponent.extend({
       this.set("newPerson.company", company);
     },
 
-    setRole(peopleRole, selectedRole) {
-      peopleRole.set("role", selectedRole);
+    setRole(personRole, selectedRole) {
+      personRole.set("role", selectedRole);
     },
 
-    setRoleLevel(peopleRole, level) {
-      peopleRole.set("level", level);
+    setRoleLevel(personRole, person_role_level) {
+      personRole.set("person_role_level", person_role_level);
     },
 
-    setRolePercent(peopleRole, event) {
-      peopleRole.set("percent", event.target.value);
+    setRolePercent(personRole, event) {
+      personRole.set("percent", event.target.value);
     },
 
     setMaritalStatus(selectedMaritalStatus) {

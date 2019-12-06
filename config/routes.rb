@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
     resources :companies, controller: 'companies'
     resources :departments, controller: 'departments'
+    resources :person_role_levels, controller: 'person_role_level'
     resources :language_skills, controller: 'language_skills'
     resources :advanced_trainings, controller: 'advanced_trainings'
     resources :activities, controller: 'activities'
@@ -36,7 +37,7 @@ Rails.application.routes.draw do
     resources :educations, controller: 'educations'
     resources :competences, controller: 'competences'
     resources :project_technologies, controller: 'project_technologies'
-    resources :people_roles, controller: 'people_roles'
+    resources :person_roles, controller: 'person_roles'
 
     # FWS
     resources :expertise_categories

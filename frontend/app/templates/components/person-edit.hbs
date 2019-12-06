@@ -29,19 +29,19 @@
                 <tr>
                   <label>Funktionen</label>
                 </tr>
-                {{#each person.peopleRoles as |peopleRole|}}
+                {{#each person.personRoles as |personRole|}}
                   <div class="border rounded mt-2 p-2">
                     <tr>
                       <td>
                         <label class='description role-description'>Rolle</label>
                         <div class='role-dropdown'>
                           {{#power-select
-                          selected=peopleRole.role
+                          selected=personRole.role
                           options=sortedRoles
                           onfocus=(action "handleFocus")
                           onblur=(action "handleBlur")
-                          onchange=(action "setRole" peopleRole)
-                          onkeydown=(action "setRoleWithTab" peopleRole)
+                          onchange=(action "setRole" personRole)
+                          onkeydown=(action "setRoleWithTab" personRole)
                           disabled=usedRoles
                           as |role|
                           }}
@@ -55,23 +55,23 @@
                         <label class="description role-description">Stufe</label>
                         <div class='level-dropdown'>
                           {{#power-select
-                          selected=peopleRole.level
-                          options=roleLevels
+                          selected=personRole.person_role_level
+                          options=personRoleLevelsToSelect
                           onfocus=(action "handleFocus")
                           onblur=(action "handleBlur")
-                          onchange=(action "setRoleLevel" peopleRole)
-                          onkeydown=(action "setRoleLevelWithTab" peopleRole)
-                          as |level|
+                          onchange=(action "setRoleLevel" personRole)
+                          onkeydown=(action "setRoleLevelWithTab" personRole)
+                          as |person_role_level|
                           }}
-                            {{level}}
+                            {{person_role_level.level}}
                           {{/power-select}}
                         </div>
                         <div class='percent-field'>
-                          <input name='person[role-percent]' placeholder='in %' type="number" value={{peopleRole.percent}} onchange={{action 'setRolePercent' peopleRole}} max='9999'>
+                          <input name='person[role-percent]' placeholder='in %' type="number" value={{personRole.percent}} onchange={{action 'setRolePercent' personRole}} max='9999'>
                         </div>
                         <div class='delete-role-icon'>
                           {{delete-with-confirmation
-                            entry=peopleRole
+                            entry=personRole
                             class='edit-buttons'
                           }}
                         </div>
