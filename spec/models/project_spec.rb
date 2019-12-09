@@ -28,7 +28,7 @@ describe Project do
       project.valid?
 
       expect(project.errors[:year_from].first).to eq('muss ausgefüllt werden')
-      expect(project.errors[:person_id].first).to eq('muss ausgefüllt werden')
+      expect(project.errors[:person].first).to eq('muss ausgefüllt werden')
       expect(project.errors[:role].first).to eq('muss ausgefüllt werden')
       expect(project.errors[:title].first).to eq('muss ausgefüllt werden')
       expect(project.errors[:technology].first).to eq(nil)
