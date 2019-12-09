@@ -20,7 +20,7 @@
 #  nationality2            :string
 #  marital_status          :integer          default("single"), not null
 #  email                   :string
-#  department_id           :int
+#  department_id           :integer
 #
 
 class Person < ApplicationRecord
