@@ -1,7 +1,7 @@
 class CreateDepartment < ActiveRecord::Migration[6.0]
   def up
     create_table :departments do |t|
-      t.string :name
+      t.string :name, null: false
 
       t.timestamps
     end
@@ -9,28 +9,38 @@ class CreateDepartment < ActiveRecord::Migration[6.0]
     rename_column :people, :department, :department_old
     add_column :people, :department_id, :integer
 
-  Person.find_each do |person|
-    value = person.department_old
-    department = Department.find_or_create_by(name: value)
-    person.update!(department: department)
-  end
+    Person.reset_column_information
+
+    Person.find_each do |person|
+      unless person.department_old.nil?
+        value = person.department_old
+        department = Department.find_or_create_by(name: value)
+        person.update!(department: department)
+      end
+    end
 
     remove_column :people, :department_old, :string
-
+    Person.reset_column_information
   end
 
   def down
+
     add_column :people, :department_name, :string
 
+    Person.reset_column_information
+
     Person.find_each do |person|
-      name = person.department.name
-      person.update!(department_name: name)
+      unless person.department.nil?
+        name = person.department.name
+        person.update!(department_name: name)
+      end
     end
 
     remove_column :people, :department_id, :integer
-    
+
     rename_column :people, :department_name, :department
 
     drop_table :departments
+    Person.reset_column_information
   end
 end

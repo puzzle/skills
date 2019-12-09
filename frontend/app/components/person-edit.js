@@ -114,7 +114,7 @@ export default ApplicationComponent.extend(EKMixin, {
   }),
 
   personRoleLevelsToSelect: computed(function() {
-    return this.get("store").findAll("person_role_level");
+    return this.get("store").findAll("personRoleLevel");
   }),
 
   personPictureUploadPath: computed("person.id", function() {
@@ -274,14 +274,14 @@ export default ApplicationComponent.extend(EKMixin, {
       personRole.set("role", selectedRole);
     },
 
-    setRoleWithTab(personRole, select, e) {
+    setPersonRoleWithTab(personRole, select, e) {
       if (e.keyCode == 9 && select.isOpen) {
         personRole.set("role", select.highlighted);
       }
     },
 
-    setRoleLevel(personRole, person_role_level) {
-      personRole.set("person_role_level", person_role_level);
+    setPersonRoleLevel(personRole, personRoleLevel) {
+      personRole.set("personRoleLevel", personRoleLevel);
     },
 
     setRoleLevelWithTab(personRole, select, e) {

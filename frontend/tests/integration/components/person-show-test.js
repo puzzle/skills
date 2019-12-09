@@ -37,7 +37,7 @@ test("it renders person", function(assert) {
   this.set("person.personRoles", [
     {
       role: this.get("role"),
-      person_role_level: this.get("personRoleLevels"),
+      personRoleLevel: this.get("personRoleLevels"),
       percent: 60
     }
   ]);

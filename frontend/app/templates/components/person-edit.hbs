@@ -55,15 +55,15 @@
                         <label class="description role-description">Stufe</label>
                         <div class='level-dropdown'>
                           {{#power-select
-                          selected=personRole.person_role_level
+                          selected=personRole.personRoleLevel
                           options=personRoleLevelsToSelect
                           onfocus=(action "handleFocus")
                           onblur=(action "handleBlur")
-                          onchange=(action "setRoleLevel" personRole)
-                          onkeydown=(action "setRoleLevelWithTab" personRole)
-                          as |person_role_level|
+                          onchange=(action "setPersonRoleLevel" personRole)
+                          onkeydown=(action "setPersonRoleLevelWithTab" personRole)
+                          as |personRoleLevel|
                           }}
-                            {{person_role_level.level}}
+                            {{personRoleLevel.level}}
                           {{/power-select}}
                         </div>
                         <div class='percent-field'>

@@ -38,8 +38,8 @@ export default ApplicationComponent.extend({
     return this.get("store").findAll("department");
   }),
 
-  PersonRoleLevelsToSelect: computed(function() {
-    return this.get("store").findAll("person_role_level");
+  personRoleLevelsToSelect: computed(function() {
+    return this.get("store").findAll("personRoleLevel");
   }),
 
   sortedRoles: computed(function() {
@@ -150,8 +150,8 @@ export default ApplicationComponent.extend({
       personRole.set("role", selectedRole);
     },
 
-    setRoleLevel(personRole, person_role_level) {
-      personRole.set("person-role-level", person_role_level);
+    setPersonRoleLevel(personRole, personRoleLevel) {
+      personRole.set("personRoleLevel", personRoleLevel);
     },
 
     setRolePercent(personRole, event) {
