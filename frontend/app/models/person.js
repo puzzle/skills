@@ -37,9 +37,7 @@ Person.reopenClass({
     married: "verheiratet",
     registered_partnership: "eingetragene Partnerschaft",
     divorced: "geschieden"
-  },
-
-  ROLE_LEVELS: ["Keine", "S1", "S2", "S3", "S4", "S5", "S6"]
+  }
 });
 
 export default Person;
