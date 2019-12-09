@@ -21,7 +21,7 @@ class ExpertiseTopicSkillValue < ApplicationRecord
 
   enum skill_level: %i[trainee junior professional senior expert]
 
-  validates :skill_level, presence: true
+  validates :skill_level, presence: true, inclusion: { in: skill_levels.keys }
   validates :last_use, length: { is: 4 }, allow_nil: true
   validates :comment, length: { maximum: 500 }, allow_nil: true
   validates :number_of_projects, inclusion: { in: 0..255 }, allow_nil: true

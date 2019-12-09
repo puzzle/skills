@@ -40,6 +40,7 @@ group :development, :test do
   # to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'pry'
+  gem 'pry-byebug'
   gem 'rspec-rails', '~> 3.6'
 end
 

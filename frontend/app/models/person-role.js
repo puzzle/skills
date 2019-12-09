@@ -6,7 +6,7 @@ export default DS.Model.extend({
 
   person: DS.belongsTo("person"),
   role: DS.belongsTo("role"),
-  person_role_level: DS.belongsTo("person-role-level"),
+  personRoleLevel: DS.belongsTo("person-role-level"),
 
   instanceToString: computed("role", function() {
     return this.get("role.name");

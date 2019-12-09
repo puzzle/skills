@@ -15,7 +15,7 @@ bob_software_engineer:
   role: software-engineer
   person: bob
 
-alive_system_engineer:
+alice_system_engineer:
   person_role_level: S2
   percent: 80
   role: system-engineer
