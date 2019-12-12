@@ -47,7 +47,7 @@ class PersonSeeder
     PersonRole.seed do |pr|
       pr.person_id = person.id
       pr.role_id = rand(1..10)
-      pr.person_role_level_id = rand(1..7)
+      pr.person_role_level_id = PersonRoleLevel.all.pluck(:id).sample
       pr.percent = rand(1..10) * 10
     end
   end
@@ -101,7 +101,7 @@ class PersonSeeder
       rand(5..15).times{ competence_notes << "#{Faker::Superhero.power}\n" }
       p.competence_notes = competence_notes
       p.email = Faker::Internet.email
-      p.department_id = rand(1..10)
+      p.department_id = Department.all.pluck(:id).sample
     end
   end
 

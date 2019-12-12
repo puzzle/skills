@@ -26,6 +26,7 @@ categories:
     - Tools
     - Methoden
     - Ohne Kategorie
+
 radar:
   - adopt
   - trial
@@ -38,23 +39,3 @@ portfolio:
   - passiv
   - abbauen
   - nein
-
-departments:
-  -  /dev/one
-  -  /dev/two
-  -  /dev/tre
-  -  /dev/ruby
-  -  /mid
-  -  /ux
-  -  /zh
-  -  /sys
-  -  /bs
-  -  Funktionsbereiche
-person_role_levels:
-  - 'Keine'
-  - 'S1'
-  - 'S2'
-  - 'S3'
-  - 'S4'
-  - 'S5'
-  - 'S6'

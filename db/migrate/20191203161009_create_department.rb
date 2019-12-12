@@ -12,7 +12,7 @@ class CreateDepartment < ActiveRecord::Migration[6.0]
     Person.reset_column_information
 
     Person.find_each do |person|
-      unless person.department_old.nil?
+      if person.department_old.present?
         value = person.department_old
         department = Department.find_or_create_by(name: value)
         person.update!(department: department)
@@ -30,14 +30,13 @@ class CreateDepartment < ActiveRecord::Migration[6.0]
     Person.reset_column_information
 
     Person.find_each do |person|
-      unless person.department.nil?
+      if person.department.present?
         name = person.department.name
         person.update!(department_name: name)
       end
     end
 
     remove_column :people, :department_id, :integer
-
     rename_column :people, :department_name, :department
 
     drop_table :departments
