@@ -13,27 +13,6 @@ describe DepartmentsController do
     end
   end
 
-  describe 'GET show' do
-    it 'returns sys department' do
-       get :show, params:{ id: sys.id }
-
-      department = json['data']['attributes']
-
-      expect(department['name']).to eq('/sys')
-    end
-  end
-
-  describe 'POST create department' do
-    it 'creates department' do
-       department = {data:{type:"departments",attributes:{name:"/dev/test"}}}
-
-       process :create, method: :post, params: department
-
-       newDepartment = Department.find_by(name: '/dev/test')
-       expect(newDepartment.name).to eq('/dev/test')
-    end
-  end
-
   private
 
   def sys

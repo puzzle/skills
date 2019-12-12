@@ -13,7 +13,7 @@ class CreatePersonRoleLevel < ActiveRecord::Migration[6.0]
     add_column :person_roles, :person_role_level_id, :integer
 
     PersonRole.find_each do |person_role|
-      unless person_role.level_old.nil?
+      if person_role.level_old.present?
         value = person_role.level_old
         new_level = PersonRoleLevel.find_or_create_by(level: value)
         person_role.update!(person_role_level: new_level)
@@ -29,9 +29,9 @@ class CreatePersonRoleLevel < ActiveRecord::Migration[6.0]
     add_column :person_roles, :level_string, :string
 
     PersonRole.reset_column_information
-    
+
     PersonRole.find_each do |person_role|
-      unless person_role.person_role_level.nil?
+      if person_role.person_role_level.present?
         level = person_role.person_role_level.level
         person_role.update!(level_string: level)
       end
