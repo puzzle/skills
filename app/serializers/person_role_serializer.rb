@@ -12,9 +12,12 @@
 #
 
 class PersonRoleSerializer < ApplicationSerializer
-  attributes :id, :percent
+  attributes :id, :percent, :level
 
-  belongs_to :person_role_level
   belongs_to :person, serializer: PersonUpdatedAtSerializer
   belongs_to :role, serializer: RoleSerializer
+
+  def level
+    object.person_role_level.try(:level)
+  end
 end

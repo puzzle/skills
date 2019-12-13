@@ -151,6 +151,7 @@ export default ApplicationComponent.extend({
     },
 
     setPersonRoleLevel(personRole, personRoleLevel) {
+      personRole.set("level", personRoleLevel.get("level"));
       personRole.set("personRoleLevel", personRoleLevel);
     },
 
