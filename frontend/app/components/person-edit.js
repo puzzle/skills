@@ -281,12 +281,14 @@ export default ApplicationComponent.extend(EKMixin, {
     },
 
     setPersonRoleLevel(personRole, personRoleLevel) {
+      personRole.set("level", personRoleLevel.get("level"));
       personRole.set("personRoleLevel", personRoleLevel);
     },
 
     setPersonRoleLevelWithTab(personRole, select, e) {
       if (e.keyCode == 9 && select.isOpen) {
-        personRole.set("level", select.highlighted);
+        personRole.set("level", select.highlighted.get("level"));
+        personRole.set("personRoleLevel", select.highlighted);
       }
     },
 

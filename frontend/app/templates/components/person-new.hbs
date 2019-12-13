@@ -47,7 +47,7 @@
                       <label class="description role-description">Stufe</label>
                       <div class='level-dropdown'>
                         {{#power-select
-                        selected=personRole.personRoleLevel
+                        selected=(get-level personRole.level)
                         options=personRoleLevelsToSelect
                         onchange=(action "setPersonRoleLevel" personRole)
                         as |personRoleLevel|

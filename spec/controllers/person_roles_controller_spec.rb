@@ -4,15 +4,15 @@ describe PersonRolesController do
 
   describe 'GET index' do
     it 'returns all person_roles' do
-      keys = %w(percent)
-      relationships = %w(person role person_role_level)
+      keys = %w(percent level)
+      relationships = %w(person role)
 
       process :index, method: :get, params: { person_id: bob.id }
 
       person_roles = json['data']
 
       expect(person_roles.count).to eq(5)
-      expect(person_roles.first['attributes'].count).to eq(1)
+      expect(person_roles.first['attributes'].count).to eq(2)
       json_object_includes_keys(person_roles.first['attributes'], keys)
       json_object_includes_keys(person_roles.first['relationships'], relationships)
     end
@@ -28,7 +28,6 @@ describe PersonRolesController do
       person_role_relat = json['data']['relationships']
       
       expect(person_role_attrs['percent'].to_i).to eq(person_role.percent.to_i)
-      expect(person_role_relat['person_role_level']['data']['id'].to_i).to eq(person_role.person_role_level.id)
       expect(person_role_relat['person']['data']['id'].to_i).to eq(person_role.person.id)
       expect(person_role_relat['role']['data']['id'].to_i).to eq(person_role.role.id)
     end

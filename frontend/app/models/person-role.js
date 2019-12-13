@@ -3,6 +3,7 @@ import { computed } from "@ember/object";
 
 export default DS.Model.extend({
   percent: DS.attr("number"),
+  level: DS.attr("string"),
 
   person: DS.belongsTo("person"),
   role: DS.belongsTo("role"),

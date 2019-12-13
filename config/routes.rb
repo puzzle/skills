@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     resources :offers
     resources :people_skills
     resources :person_roles
-    resources :person_role_levels, only: [:index, :show]
+    resources :person_role_levels, only: :index
     resources :projects
     resources :project_technologies
     resources :roles, only: :index
