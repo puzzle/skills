@@ -1,16 +1,12 @@
-require Rails.root.join('db', 'seeds', 'support', 'department_seeder')
+department_names =  ["/dev/one",
+                      "/dev/two",
+                      "/dev/tre",
+                      "/dev/ruby",
+                      "/mid",
+                      "/ux",
+                      "/zh",
+                      "/sys",
+                      "/bs",
+                      "Funktionsbereiche"]
 
-seeder = DepartmentSeeder.new
-
-departments =  ["/dev/one",
-                "/dev/two",
-                "/dev/tre",
-                "/dev/ruby",
-                "/mid",
-                "/ux",
-                "/zh",
-                "/sys",
-                "/bs",
-                "Funktionsbereiche"]
-
-seeder.seed_departments(departments)
+department_names.each {|n| Department.seed(name: n) }

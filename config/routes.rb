@@ -22,7 +22,6 @@ Rails.application.routes.draw do
     resources :activities
     resources :categories, only: [:index, :show]
     resources :companies
-    resources :competences
     resources :departments, only: :index
     resources :educations
     resources :employee_quantities
