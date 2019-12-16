@@ -46,14 +46,16 @@
                     <td>
                       <label class="description role-description">Stufe</label>
                       <div class='level-dropdown'>
-                        {{#power-select
-                        selected=(get-level personRole.level)
-                        options=personRoleLevelsToSelect
-                        onchange=(action "setPersonRoleLevel" personRole)
-                        as |personRoleLevel|
-                        }}
-                          {{personRoleLevel.level}}
-                        {{/power-select}}
+                        {{#if personRoleLevelsToSelect}}
+                          {{#power-select
+                          selected=(selected-person-role-level personRoleLevelsToSelect level=personRole.level)
+                          options=personRoleLevelsToSelect
+                          onchange=(action "setPersonRoleLevel" personRole)
+                          as |personRoleLevel|
+                          }}
+                            {{personRoleLevel.level}}
+                          {{/power-select}}
+                        {{/if}}
                       </div>
                       <div class='percent-field'>
                         <input placeholder='in %' type="number" value={{personRole.percent}} onchange={{action 'setRolePercent' personRole}} max='9999'>

@@ -17,13 +17,15 @@ export default ApplicationComponent.extend(EKMixin, {
     this.initMaritalStatuses();
     this.initNationalities();
     this.initCheckbox();
-    this.set("departments", Person.DEPARTMENTS);
     this.callBackCompany = this.get("person.company");
     this.callBackRoleIds = {};
     this.get("person.personRoles").forEach(
       personRole =>
         (this.callBackRoleIds[personRole.get("id")] = personRole.get("role.id"))
     );
+    this.get("store")
+      .findAll("personRoleLevel")
+      .then(levels => this.set("personRoleLevelsToSelect", levels));
   },
 
   personChanged: observer("person", function() {
@@ -114,7 +116,7 @@ export default ApplicationComponent.extend(EKMixin, {
   }),
 
   personRoleLevelsToSelect: computed(function() {
-    return this.get("store").findAll("personRoleLevel");
+    return null;
   }),
 
   personPictureUploadPath: computed("person.id", function() {

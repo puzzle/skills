@@ -14,6 +14,9 @@ export default ApplicationComponent.extend({
     this._super(...arguments);
     this.initMaritalStatuses();
     this.initNationalities();
+    this.get("store")
+      .findAll("personRoleLevel")
+      .then(levels => this.set("personRoleLevelsToSelect", levels));
   },
 
   initMaritalStatuses() {
@@ -39,7 +42,7 @@ export default ApplicationComponent.extend({
   }),
 
   personRoleLevelsToSelect: computed(function() {
-    return this.get("store").findAll("personRoleLevel");
+    return null;
   }),
 
   sortedRoles: computed(function() {
