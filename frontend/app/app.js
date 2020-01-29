@@ -24,5 +24,4 @@ $.getJSON("/api/env_settings", function(envSettings) {
 });
 
 loadInitializers(App, config.modulePrefix);
-
 export default App;

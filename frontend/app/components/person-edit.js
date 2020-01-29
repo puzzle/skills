@@ -89,7 +89,7 @@ export default ApplicationComponent.extend(EKMixin, {
     });
   },
 
-  sortedRoles: computed("sortedRoles", function() {
+  sortedRoles: observer("sortedRoles", function() {
     const roles = this.get("store").findAll("role");
     roles.then(() => {
       const usedRoleNames = this.get("person.personRoles").map(x =>
