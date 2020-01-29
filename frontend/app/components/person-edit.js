@@ -156,7 +156,9 @@ export default ApplicationComponent.extend(EKMixin, {
           ])
         )
         .then(() => this.set("alreadyAborted", true))
-        .then(() => this.sendAction("submit"))
+        .then(() => {
+          this.sendAction("submit");
+        })
         .then(() =>
           this.get("notify").success("Personalien wurden aktualisiert!")
         )
