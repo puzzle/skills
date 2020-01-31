@@ -1,6 +1,6 @@
 <div id="profil">
-  {{#with (changeset person validations) as |changeset|}}
-    {{#form-for changeset submit=(action 'submit') as |f|}}
+  {{#with (changeset person validations) as |personChangeset|}}
+    {{#form-for personChangeset submit=(action 'submit') as |f|}}
       <div class="card-header bg-info">
         <div class="row">
           <div class="col-sm-6 header-text">
@@ -225,7 +225,7 @@
             </div>
           </div>
           <br>
-          <button {{action 'submit' changeset}} role='button' id='submit-button' class='btn btn-primary'>
+          <button {{action 'submit' personChangeset}} role='button' id='submit-button' class='btn btn-primary'>
             Speichern
           </button>
           <button {{action 'abortEdit'}} role='button' class='btn abort-button'>

@@ -1,4 +1,4 @@
-{{#with (changeset expertiseTopicSkillValue validations) as |changeset|}}
+{{#with (changeset expertiseTopicSkillValue validations) as |etsvChangeset|}}
   <td class="fws-topic-name">{{expertiseTopic.name}}</td>
   <td>
     <input form={{formId}}
@@ -7,7 +7,7 @@
         class="form-control"
         type="number"
         value={{expertiseTopicSkillValue.yearsOfExperience}}
-        oninput={{action (mut changeset.yearsOfExperience) value="target.value"}}>
+        oninput={{action (mut etsvChangeset.yearsOfExperience) value="target.value"}}>
   </td>
   <td>
     <input form={{formId}}
@@ -16,7 +16,7 @@
         class="form-control"
         type="number"
         value={{expertiseTopicSkillValue.numberOfProjects}}
-        oninput={{action (mut changeset.numberOfProjects) value="target.value"}}>
+        oninput={{action (mut etsvChangeset.numberOfProjects) value="target.value"}}>
   </td>
   <td>
     <input form={{formId}}
@@ -25,17 +25,17 @@
         class="form-control"
         type="number"
         value={{expertiseTopicSkillValue.lastUse}}
-        oninput={{action (mut changeset.lastUse) value="target.value"}}>
+        oninput={{action (mut etsvChangeset.lastUse) value="target.value"}}>
   </td>
 
   <td>
     <select form={{formId}}
         class=""
-        onchange={{action (mut changeset.skillLevel)
+        onchange={{action (mut etsvChangeset.skillLevel)
         value="target.value"}}
         required>
       {{#each skillLevelData as |sld|}}
-        <option value={{sld}} selected={{eq changeset.skillLevel sld}}>{{sld}}</option>
+        <option value={{sld}} selected={{eq etsvChangeset.skillLevel sld}}>{{sld}}</option>
       {{/each}}
     </select>
   </td>
@@ -43,12 +43,12 @@
   <td>
     <textarea class="form-control"
               rows="1"
-        oninput={{action (mut changeset.comment) value="target.value"}}>
+        oninput={{action (mut etsvChangeset.comment) value="target.value"}}>
       {{~expertiseTopicSkillValue.comment~}}
     </textarea>
   </td>
   <td>
-    <form id={{formId}} onsubmit={{action onsubmit changeset}}>
+    <form id={{formId}} onsubmit={{action onsubmit etsvChangeset}}>
       <a href="#collapseFWS{{expertiseCategory.name}}" onclick={{action onsubmit changeset}}>
         <i class="fa save"></i>
       </a>
