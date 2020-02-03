@@ -2,11 +2,11 @@
   <div class="card-header bg-info">
     <div class="row">
       <div class="col-sm-6 project-title-text">
-        {{if project.monthFrom (concat (moment-format project.monthFrom 'MM' 'MM') '.')}}{{project.yearFrom}}
+        {{if project.monthFrom (concat (moment-format project.monthFrom "MM" "MM") ".")}}{{project.yearFrom}}
         {{#if (eq project.yearTo null)}}
           - heute
         {{else if (or (not-eq project.yearFrom project.yearTo) (not-eq project.monthFrom project.monthTo))}}
-          - {{if project.monthTo (concat (moment-format project.monthTo 'MM' 'MM') '.')}}{{project.yearTo}}
+          - {{if project.monthTo (concat (moment-format project.monthTo "MM" "MM") ".")}}{{project.yearTo}}
         {{/if}}
         | {{project.title}}
       </div>
@@ -15,18 +15,20 @@
   <div class="border border-info rounded-bottom show">
     <div class="card-body d-flex flex-column">
       <table class="table table-borderless table-sm">
-        <tr>
-          <th scope="row" class="w-25"> Beschreibung </th>
-          <td class="text-table-left"> {{project.lineBreakDescription}}</td>
-        </tr>
-        <tr>
-          <th scope="row" class="w-25"> Rolle </th>
-          <td> {{project.lineBreakRole}}</td>
-        </tr>
-        <tr>
-          <th scope="row" class="w-25"> Technologie(n) </th>
-          <td> {{project.lineBreakTechnology}}</td>
-        </tr>
+        <tbody>
+          <tr>
+            <th scope="row" class="w-25"> Beschreibung </th>
+            <td class="text-table-left"> {{project.lineBreakDescription}}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="w-25"> Rolle </th>
+            <td> {{project.lineBreakRole}}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="w-25"> Technologie(n) </th>
+            <td> {{project.lineBreakTechnology}}</td>
+          </tr>
+        </tbody>
       </table>
       {{#if selectProject}}
         <div class="mt-auto">

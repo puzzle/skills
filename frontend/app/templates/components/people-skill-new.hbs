@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="people-skill-new-modal-label">Neuer Skill hinzufügen</h5>
-        <button type="button" class="close" onclick={{action 'abortNew'}} aria-label="Close">
+        <button type="button" class="close" onclick={{action "abortNew"}} aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -41,7 +41,7 @@
                 matcher=categorySearchMatcher
                 disabled=(eq newSkillSelected false)
                 selected=selectedCategory
-                onchange=(action 'setCategory')
+                onchange=(action "setCategory")
                 as |category|
               }}
                 {{category.parent.title}} - {{category.title}}
@@ -54,8 +54,8 @@
               <div class="slider-5-ticks">
                 {{ui-slider
                 value=newPeopleSkill.level
-                ticks='1,2,3,4,5'
-                tooltip='hide'
+                ticks="1,2,3,4,5"
+                tooltip="hide"
                 min=1
                 max=5
                 }}            
@@ -66,8 +66,8 @@
             <div class="col-md-3">Interesse</div>
             <div class="col-md-9 people-skill-new-dropdowns">
               {{icon-rating
-              size='lg'
-              fillColor='#238BCA'
+              size="lg"
+              fillColor="#238BCA"
               value=newPeopleSkill.interest
               onClick=(action (mut newPeopleSkill.interest))
               }}
@@ -76,8 +76,8 @@
           <div id="certificate-toggle" class="row my-3">
             <div class="col-md-3">Zertifikat vorhanden</div>
             {{x-toggle
-            theme='material'
-            size='medium'
+            theme="material"
+            size="medium"
             value=newPeopleSkill.certificate
             onToggle=(action (mut newPeopleSkill.certificate))
             }}
@@ -85,8 +85,8 @@
           <div id="coreCompetence-toggle" class="row my-3">
             <div class="col-md-3">Kernkompetenz</div>
             {{x-toggle
-            theme='material'
-            size='medium'
+            theme="material"
+            size="medium"
             value=newPeopleSkill.coreCompetence
             onToggle=(action (mut newPeopleSkill.coreCompetence))
             }}
@@ -94,8 +94,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" onclick={{action 'abortNew'}} class="btn btn-secondary">Abbrechen</button>
-        <button id="people-skill-new-submit-button" type="button" onclick={{action 'submit'}} class="btn btn-primary">Speichern</button>
+        <button type="button" onclick={{action "abortNew"}} class="btn btn-secondary">Abbrechen</button>
+        <button id="people-skill-new-submit-button" type="button" onclick={{action "submit"}} class="btn btn-primary">Speichern</button>
       </div>
     </div>
   </div>

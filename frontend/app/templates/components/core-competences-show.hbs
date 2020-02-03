@@ -30,10 +30,10 @@
         </div>
 
         <div class="col-md-9">
-          {{component (if competenceNotesEditing 'competence-notes-edit' 'competence-notes-show' )
+          {{component (if competenceNotesEditing "competence-notes-edit" "competence-notes-show" )
           person=person
-          submit=(action (toggle 'competenceNotesEditing' this))
-          competenceNotesEditing=(action (toggle 'competenceNotesEditing' this))
+          submit=(action (toggle "competenceNotesEditing" this))
+          competenceNotesEditing=(action (toggle "competenceNotesEditing" this))
           }}
         </div>
       </div>

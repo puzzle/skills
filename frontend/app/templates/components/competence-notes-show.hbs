@@ -1,13 +1,12 @@
 {{#if person.competenceNotes}}
   <div class="row w-100" id="competence-content-show">
-  
     <div class="col-sm-9">
       {{#each competenceNotesList as |competence|}}
-        <span href="#" class='competence-entity'>{{competence}}</span><br>
+        <span href="#" class="competence-entity">{{competence}}</span><br>
       {{/each}}
     </div>
   </div>
 {{/if}}
 <div class="mt-3">
-  <a onclick={{competenceNotesEditing}} data-test-company-edit-form-toggle class="edit-buttons"><i class="fa fa-edit"></i> Bearbeiten</a>
+  <a onclick={{competenceNotesEditing}} role="button" data-test-company-edit-form-toggle class="edit-buttons"><i class="fa fa-edit"></i> Bearbeiten</a>
 </div>

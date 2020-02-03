@@ -3,7 +3,7 @@
     <ul class="nav flex-column border">
       {{#each-in items as |key value|}}
         <li class="nav-item">
-          <a class="nav-link" href="{{value}}" onclick={{action 'scrollTo' value}}><p>{{key}}</p></a>
+          <a class="nav-link" href={{value}} onclick={{action "scrollTo" value}}><p>{{key}}</p></a>
         </li>
       {{/each-in}}
     </ul>

@@ -6,12 +6,12 @@
         <div class="mb-2 text-center">
           <i class="fa fa-edit"></i> Bearbeiten
         </div>
-        <button onclick={{action 'submit' person}} role="button" class="btn btn-primary" id="submit-education-button">Speichern</button>
-        <button onclick={{action 'abortEdit'}} role="button" class="btn abort-button w-100 mt-1">Abbrechen</button>
+        <button onclick={{action "submit" person}} role="button" class="btn btn-primary" id="submit-education-button">Speichern</button>
+        <button onclick={{action "abortEdit"}} role="button" class="btn abort-button w-100 mt-1">Abbrechen</button>
       </li>
     {{else}}
       <li class="d-flex flex-column nav-link">
-        <a role="button" class="edit-buttons" onclick={{action (toggle 'peopleSkillsEditing' this)}}>
+        <a role="button" class="edit-buttons" onclick={{action (toggle "peopleSkillsEditing" this)}}>
           <i class="fa fa-edit"></i> Skills bearbeiten
         </a>
       </li>
@@ -71,10 +71,10 @@
                             {{#if peopleSkillsEditing}}
                               {{people-skill-edit peopleSkill=skill}}
                             {{else}}
-                              {{#people-skill-show peopleSkill=skill toggleSkillShow=(action 'toggleSkillShow' skill.skill)}}
+                              {{#people-skill-show peopleSkill=skill toggleSkillShow=(action "toggleSkillShow" skill.skill)}}
                                 <div class="col-md-1 pt-3">
                                   {{#if skill.isRated}}
-                                    <a class="edit-buttons" role="button" onclick={{action 'resetPeopleSkill' skill}} data-toggle="tooltip" data-placement="top" title="Reset Skill">
+                                    <a class="edit-buttons" role="button" onclick={{action "resetPeopleSkill" skill}} data-toggle="tooltip" data-placement="top" title="Reset Skill">
                                       <i class="fa fa-redo"></i>
                                     </a>
                                   {{/if}}
@@ -92,7 +92,7 @@
           {{/each}}
           <script>
             $(document).ready(() => {
-              $('[data-toggle="tooltip"]').tooltip();
+              $("[data-toggle="tooltip"]").tooltip();
             })
           </script>
         {{/if}}

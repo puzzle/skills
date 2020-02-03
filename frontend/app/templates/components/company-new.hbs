@@ -1,14 +1,14 @@
 <section id="profil" class="section">
   <div id="accordion">
     <div class="card mb-3">
-      {{#form-for newCompany submit=(action 'submit' newCompany) as |f|}}
+      {{#form-for newCompany submit=(action "submit" newCompany) as |f|}}
         <div class="card-header bg-primary">
           <div class="row">
             <div class="col-sm-6">
               <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Firma Erfassen</a>
             </div>
             <div class="col-sm-6 text-right d-block">
-              <a {{action 'submit' newCompany}} role="button" id="submit-button" class="card-link text-white"><i class="fa save"></i></a>
+              <a {{action "submit" newCompany}} role="button" id="submit-button" class="card-link text-white"><i class="fa save"></i></a>
             </div>
           </div>
         </div>
@@ -17,81 +17,87 @@
             <div class="row">
               <div class="col-sm-4">
                 <table class="table-uebersicht">
-                  <tr>
-                    <td>{{f.text-field 'name' label="Name"}}</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <button data-test-add-location class="btn btn-success form-field--control" type="button" {{action 'addLocations' newCompany}}>Neue Adresse</button>
-                    </td>
-                  </tr>
-                  {{#each newCompany.locations as |location|}}
-                    {{#fields-for location as |l|}}
-                      <tr>
-                        <td class="nextToDelete" data-test-location>
-                          {{l.text-field 'location' label="Standort"}}
-                          {{delete-with-confirmation
+                  <tbody>
+                    <tr>
+                      <td>{{f.text-field "name" label="Name"}}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <button data-test-add-location class="btn btn-success form-field--control" type="button" {{action "addLocations" newCompany}}>Neue Adresse</button>
+                      </td>
+                    </tr>
+                    {{#each newCompany.locations as |location|}}
+                      {{#fields-for location as |l|}}
+                        <tr>
+                          <td class="nextToDelete" data-test-location>
+                            {{l.text-field "location" label="Standort"}}
+                            {{delete-with-confirmation
                             entry=location
-                          }}
-                        </td>
-                      </tr>
-                    {{/fields-for}}
-                  {{/each}}
-                  <tr>
-                    <td>{{f.text-field 'web' label="Web"}}</td>
-                  </tr>
-                  <tr>
-                    <td>{{f.text-field 'email' label="Email"}}</td>
-                  </tr>
-                  <tr>
-                    <td>{{f.text-field 'phone' label="Telefon"}}</td>
-                  </tr>
+                            }}
+                          </td>
+                        </tr>
+                      {{/fields-for}}
+                    {{/each}}
+                    <tr>
+                      <td>{{f.text-field "web" label="Web"}}</td>
+                    </tr>
+                    <tr>
+                      <td>{{f.text-field "email" label="Email"}}</td>
+                    </tr>
+                    <tr>
+                      <td>{{f.text-field "phone" label="Telefon"}}</td>
+                    </tr>
+                  </tbody>
                 </table>
               </div>
               <div class="col-sm-4">
                 <table class="table-uebersicht">
-                  <tr>
-                    <td>{{f.text-field 'partnermanager' label="PM"}}</td>
-                  </tr>
-                  <tr>
-                    <td>{{f.text-field 'contactPerson' label="Ansprechperson"}}</td>
-                  </tr>
-                  <tr>
-                    <td>{{f.text-field 'emailContactPerson' label="Email"}}</td>
-                  </tr>
-                  <tr>
-                    <td>{{f.text-field 'phoneContactPerson' label="Telefon"}}</td>
-                  </tr>
-                  <tr>
-                    <td>{{f.text-field 'crm' label="CRM"}}</td>
-                  </tr>
+                  <tbody>
+                    <tr>
+                      <td>{{f.text-field "partnermanager" label="PM"}}</td>
+                    </tr>
+                    <tr>
+                      <td>{{f.text-field "contactPerson" label="Ansprechperson"}}</td>
+                    </tr>
+                    <tr>
+                      <td>{{f.text-field "emailContactPerson" label="Email"}}</td>
+                    </tr>
+                    <tr>
+                      <td>{{f.text-field "phoneContactPerson" label="Telefon"}}</td>
+                    </tr>
+                    <tr>
+                      <td>{{f.text-field "crm" label="CRM"}}</td>
+                    </tr>
+                  </tbody>
                 </table>
               </div>
               <div class="col-sm-4">
                 <table class="table-uebersicht">
-                  <tr>
-                    <td>{{f.text-field 'level' label="Level"}}</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <button data-test-add-employee-quantity class="btn btn-success form-field--control" type="button" {{action 'addEmployeeQuantity' newCompany}}>Neue Mitarbeiter-Anzahl</button>
-                    </td>
-                  </tr>
-                  {{#each newCompany.employeeQuantities as |quantity|}}
-                    {{#fields-for quantity as |q|}}
-                      <tr>
-                        <td class="nextToDelete" data-test-employee-quantity-category>
-                          {{q.text-field 'category' label="Kategorie"}}
-                          {{delete-with-confirmation
+                  <tbody>
+                    <tr>
+                      <td>{{f.text-field "level" label="Level"}}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <button data-test-add-employee-quantity class="btn btn-success form-field--control" type="button" {{action "addEmployeeQuantity" newCompany}}>Neue Mitarbeiter-Anzahl</button>
+                      </td>
+                    </tr>
+                    {{#each newCompany.employeeQuantities as |quantity|}}
+                      {{#fields-for quantity as |q|}}
+                        <tr>
+                          <td class="nextToDelete" data-test-employee-quantity-category>
+                            {{q.text-field "category" label="Kategorie"}}
+                            {{delete-with-confirmation
                             entry=quantity
-                          }}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td data-test-employee-quantity-quantity>{{q.text-field 'quantity' label="Anzahl"}}</td>
-                      </tr>
-                    {{/fields-for}}
-                  {{/each}}
+                            }}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td data-test-employee-quantity-quantity>{{q.text-field "quantity" label="Anzahl"}}</td>
+                        </tr>
+                      {{/fields-for}}
+                    {{/each}}
+                  </tbody>
                 </table>
               </div>
             </div>

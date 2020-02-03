@@ -1,5 +1,5 @@
 <td>
-  {{input id=(concat elementId '-edit-title') value=changeset.title class="form-control" name="edit-skill-title" placeholder="Titel"}}
+  {{input id=(concat elementId "-edit-title") value=changeset.title class="form-control" name="edit-skill-title" placeholder="Titel"}}
 </td>
 <td>
   {{skill.people.length}}
@@ -12,7 +12,7 @@
   dropdownClass="w-100"
   options=parentCategories
   selected=selectedParent
-  onchange=(action 'setParentCategory')
+  onchange=(action "setParentCategory")
   searchField="title"
   onblur=(action "handleBlur")
   onfocus=(action "handleFocus")
@@ -29,7 +29,7 @@
   options=selectableChildCategories
   selected=changeset.category
   onchange=(action (mut changeset.category))
-  searchField='title'
+  searchField="title"
   onblur=(action "handleBlur")
   onfocus=(action "handleFocus")
   as |category|
@@ -76,10 +76,10 @@
 </td>
 <td>
   <div class="d-flex justify-content-around">
-    <a role="button" onclick={{action 'submit'}} class="skill-edit-save edit-buttons">
+    <a role="button" onclick={{action "submit"}} class="skill-edit-save edit-buttons">
       <i class="fa fa-save"></i>
     </a>
-    <a role="button" onclick={{action 'abort'}} class="edit-buttons">
+    <a role="button" onclick={{action "abort"}} class="edit-buttons">
       <i class="fa fa-times"></i>
     </a>
     {{#delete-with-confirmation entry=skill}}{{/delete-with-confirmation}}

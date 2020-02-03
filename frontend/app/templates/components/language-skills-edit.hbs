@@ -1,11 +1,11 @@
 <ul class="nav nav-tabs">
   {{#each sortedLanguageSkills as |skill|}}
     <li class="nav-item">
-      <a class= "nav-link {{if (eq skill.language selectedLanguage.iso1) "active"}}" onclick={{action 'setSkill' skill}} role="button">{{skill.language}}</a>
+      <a class= "nav-link {{if (eq skill.language selectedLanguage.iso1) "active"}}" onclick={{action "setSkill" skill}} role="button">{{skill.language}}</a>
     </li>
   {{/each}}
   <li class="nav-item">
-    <a class="nav-link language-button" onclick={{action 'createSkill'}} role="button" rel="noopener"><i class="fa fa-plus" aria-hidden="true"></i></a>
+    <a class="nav-link language-button" onclick={{action "createSkill"}} role="button" rel="noopener"><i class="fa fa-plus" aria-hidden="true"></i></a>
   </li>
 </ul>
 <div class="container">
@@ -19,7 +19,7 @@
       onfocus=(action "handleFocus")
       onblur=(action "handleBlur")
       onchange=(action "setLanguage")
-      onkeydown=(action "setWithTab" 'setLanguage')
+      onkeydown=(action "setWithTab" "setLanguage")
       disabled=isObligatoryLanguage
       searchField="name"
       as |language|
@@ -48,7 +48,7 @@ options=levels
 onfocus=(action "handleFocus")
 onblur=(action "handleBlur")
 onchange=(action (mut selectedSkill.level))
-onkeydown=(action "setWithTab" 'setLevel')
+onkeydown=(action "setWithTab" "setLevel")
 as |level|
 }}
   {{level}}

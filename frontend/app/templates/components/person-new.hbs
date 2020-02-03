@@ -1,5 +1,5 @@
 <section id="profil" class="section">
-  {{#form-for newPerson submit=(action 'submit') as |f|}}
+  {{#form-for newPerson submit=(action "submit") as |f|}}
     <div class="card-header bg-info">
       <div class="row">
         <div class="col-sm-6 header-text">
@@ -12,208 +12,214 @@
         <div class="row">
           <div class="col-sm-4">
             <table class="table-person mb-3">
-              <tr>
-                <td>{{f.text-field 'name' label="Name"}}</td>
-              </tr>
-              <tr>
-                <td>{{f.text-field 'email' label="Email"}}</td>
-              </tr>
-              <tr>
-                <td>{{f.text-field 'title' label="Abschluss"}}</td>
-              </tr>
-              <tr>
-                <label>Funktionen</label>
-              </tr>
-              {{#each newPerson.personRoles as |personRole|}}
-                <div class="border rounded mt-2 p-2">
-                  <tr>
-                    <td>
-                      <label class="description role-description">Rolle</label>
-                      <div class='role-dropdown'>
-                        {{#power-select
-                        selected=personRole.role
-                        options=sortedRoles
-                        onchange=(action "setRole" personRole)
-                        disabled=usedRoles
-                        as |role|
-                        }}
-                          {{role.name}}
-                        {{/power-select}}
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label class="description role-description">Stufe</label>
-                      <div class='level-dropdown'>
-                        {{#if personRoleLevelsToSelect}}
+              <tbody>
+                <tr>
+                  <td>{{f.text-field "name" label="Name"}}</td>
+                </tr>
+                <tr>
+                  <td>{{f.text-field "email" label="Email"}}</td>
+                </tr>
+                <tr>
+                  <td>{{f.text-field "title" label="Abschluss"}}</td>
+                </tr>
+                <tr>
+                  <label>Funktionen</label>
+                </tr>
+                {{#each newPerson.personRoles as |personRole|}}
+                  <div class="border rounded mt-2 p-2">
+                    <tr>
+                      <td>
+                        <label class="description role-description">Rolle</label>
+                        <div class="role-dropdown">
                           {{#power-select
-                          selected=(selected-person-role-level personRoleLevelsToSelect level=personRole.level)
-                          options=personRoleLevelsToSelect
-                          onchange=(action "setPersonRoleLevel" personRole)
-                          as |personRoleLevel|
+                          selected=personRole.role
+                          options=sortedRoles
+                          onchange=(action "setRole" personRole)
+                          disabled=usedRoles
+                          as |role|
                           }}
-                            {{personRoleLevel.level}}
+                            {{role.name}}
                           {{/power-select}}
-                        {{/if}}
-                      </div>
-                      <div class='percent-field'>
-                        <input placeholder='in %' type="number" value={{personRole.percent}} onchange={{action 'setRolePercent' personRole}} max='9999'>
-                      </div>
-                      <div class='delete-role-icon'>
-                        {{delete-with-confirmation
-                          entry=personRole
-                          class='edit-buttons'
-                        }}
-                      </div>
-                    </td>
-                  </tr>
-                </div>
-              {{/each}}
-              <tr>
-                <td>
-                  <a class="nav-link language-button" role="button" {{action 'addRole' newPerson}}>
-                    <i class="fa fa-plus" aria-hidden="true"></i>
-                    Neue Funktion
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label>Organisationseinheit</label>
-                  {{#power-select
-                    triggerId="department"
-                    selected=newPerson.department
-                    options=departmentsToSelect
-                    searchField="name"
-                    onfocus=(action "handleFocus")
-                    onblur=(action "handleBlur")
-                    onchange=(action (mut newPerson.department))
-                    onkeydown=(action "setWithTab" 'setDepartment')
-                    as |department|
-                    }}
-                    {{department.name}}
-                  {{/power-select}}
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label>Firma/Kategorie</label>
-                  {{#power-select
-                    triggerId="company"
-                    selected=newPerson.company
-                    options=companiesToSelect
-                    searchField="name"
-                    onfocus=(action "handleFocus")
-                    onblur=(action "handleBlur")
-                    onchange=(action (mut newPerson.company))
-                    onkeydown=(action "setWithTab" 'setCompany')
-                    as |company|
-                    }}
-                    {{company.name}}
-                  {{/power-select}}
-                </td>
-              </tr>
-              <tr>
-                <td>{{f.text-field 'location' label="Wohnort (Stadt)"}}</td>
-              </tr>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label class="description role-description">Stufe</label>
+                        <div class="level-dropdown">
+                          {{#if personRoleLevelsToSelect}}
+                            {{#power-select
+                            selected=(selected-person-role-level personRoleLevelsToSelect level=personRole.level)
+                            options=personRoleLevelsToSelect
+                            onchange=(action "setPersonRoleLevel" personRole)
+                            as |personRoleLevel|
+                            }}
+                              {{personRoleLevel.level}}
+                            {{/power-select}}
+                          {{/if}}
+                        </div>
+                        <div class="percent-field">
+                          <input placeholder="in %" type="number" value={{personRole.percent}} onchange={{action "setRolePercent" personRole}} max="9999">
+                        </div>
+                        <div class="delete-role-icon">
+                          {{delete-with-confirmation
+                            entry=personRole
+                            class="edit-buttons"
+                          }}
+                        </div>
+                      </td>
+                    </tr>
+                  </div>
+                {{/each}}
+                <tr>
+                  <td>
+                    <a class="nav-link language-button" role="button" {{action "addRole" newPerson}}>
+                      <i class="fa fa-plus" aria-hidden="true"></i>
+                      Neue Funktion
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label>Organisationseinheit</label>
+                    {{#power-select
+                      triggerId="department"
+                      selected=newPerson.department
+                      options=departmentsToSelect
+                      searchField="name"
+                      onfocus=(action "handleFocus")
+                      onblur=(action "handleBlur")
+                      onchange=(action (mut newPerson.department))
+                      onkeydown=(action "setWithTab" "setDepartment")
+                      as |department|
+                      }}
+                      {{department.name}}
+                    {{/power-select}}
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label>Firma/Kategorie</label>
+                    {{#power-select
+                      triggerId="company"
+                      selected=newPerson.company
+                      options=companiesToSelect
+                      searchField="name"
+                      onfocus=(action "handleFocus")
+                      onblur=(action "handleBlur")
+                      onchange=(action (mut newPerson.company))
+                      onkeydown=(action "setWithTab" "setCompany")
+                      as |company|
+                      }}
+                      {{company.name}}
+                    {{/power-select}}
+                  </td>
+                </tr>
+                <tr>
+                  <td>{{f.text-field "location" label="Wohnort (Stadt)"}}</td>
+                </tr>
+              </tbody>
             </table>
           </div>
           <div class="col-sm-4">
             <table class="table-person">
-              <tr>
-                <td>
-                  <div class="text-field form-group">
-                    <label class="label-date form-field--label" for='date_location'>Geburtsdatum</label>
-                    <div id="date_location" class="birthdate_pikaday">
-                      {{pikaday-input
-                        onSelection=(action "setBirthdate")
-                        value=newPerson.birthdate
-                        useUTC=true}}
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label>Doppelbürger</label>
-                  {{input type="checkbox" checked=secondNationality click=(action "switchNationality" value="target.checked")
-                    id="toggle-nationalities-id" class="checkbox"}}
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label>Erste Nationalität</label>
-                  {{#power-select
-                    triggerId="nationality"
-                    options=countries
-                    selected=selectedNationality
-                    onchange=(action "setNationality")
-                    onfocus=(action "handleFocus")
-                    onblur=(action "handleBlur")
-                    onkeydown=(action "setWithTab" 'setNationality')
-                    searchField="1"
-                    as |country|}}
-                    <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
-                  {{/power-select}}
-                </td>
-              </tr>
-              <tr>
-                {{#if secondNationality}}
+              <tbody>
+                <tr>
                   <td>
-                    <label>Zweite Nationalität</label>
+                    <div class="text-field form-group">
+                      <label class="label-date form-field--label" for="date_location">Geburtsdatum</label>
+                      <div id="date_location" class="birthdate_pikaday">
+                        {{pikaday-input
+                          onSelection=(action "setBirthdate")
+                          value=newPerson.birthdate
+                          useUTC=true}}
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label>Doppelbürger</label>
+                    {{input type="checkbox" checked=secondNationality click=(action "switchNationality" value="target.checked")
+                      id="toggle-nationalities-id" class="checkbox"}}
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label>Erste Nationalität</label>
                     {{#power-select
-                      triggerId="nationality2"
+                      triggerId="nationality"
                       options=countries
-                      selected=selectedNationality2
-                      onchange=(action "setNationality2")
+                      selected=selectedNationality
+                      onchange=(action "setNationality")
                       onfocus=(action "handleFocus")
                       onblur=(action "handleBlur")
-                      onkeydown=(action "setWithTab" 'setNationality2')
+                      onkeydown=(action "setWithTab" "setNationality")
                       searchField="1"
                       as |country|}}
                       <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
                     {{/power-select}}
                   </td>
-                {{/if}}
-              </tr>
-              <tr>
-                <td>
-                  <label> Zivilstand </label>
-                  {{#power-select
-                  triggerId="maritalStatus"
-                  selected=selectedMaritalStatus
-                  options=maritalStatuses
-                  searchEnabled=false
-                  onfocus=(action "handleFocus")
-                  onblur=(action "handleBlur")
-                  onchange=(action "setMaritalStatus")
-                  onkeydown=(action "setWithTab" 'setMaritalStatus')
-                  as |maritalStatus|
-                  }}
-                    {{maritalStatus}}
-                  {{/power-select}}
-                </td>
-              </tr>
+                </tr>
+                <tr>
+                  {{#if secondNationality}}
+                    <td>
+                      <label>Zweite Nationalität</label>
+                      {{#power-select
+                        triggerId="nationality2"
+                        options=countries
+                        selected=selectedNationality2
+                        onchange=(action "setNationality2")
+                        onfocus=(action "handleFocus")
+                        onblur=(action "handleBlur")
+                        onkeydown=(action "setWithTab" "setNationality2")
+                        searchField="1"
+                        as |country|}}
+                        <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
+                      {{/power-select}}
+                    </td>
+                  {{/if}}
+                </tr>
+                <tr>
+                  <td>
+                    <label> Zivilstand </label>
+                    {{#power-select
+                    triggerId="maritalStatus"
+                    selected=selectedMaritalStatus
+                    options=maritalStatuses
+                    searchEnabled=false
+                    onfocus=(action "handleFocus")
+                    onblur=(action "handleBlur")
+                    onchange=(action "setMaritalStatus")
+                    onkeydown=(action "setWithTab" "setMaritalStatus")
+                    as |maritalStatus|
+                    }}
+                      {{maritalStatus}}
+                    {{/power-select}}
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </div>
           <div class="col-sm-3">
             <table>
-              <tr>
-                <td>{{!Leere Zeile aus Layout-Gründen}}</td>
-              </tr>
-              <tr>
-                <td class="description">Sprachen<a href="http://www.europaeischer-referenzrahmen.de/" target="_blank" rel="noopener"><i class="ml-2 fa fa-question-circle" aria-hidden="true"></i></a></td>
-              </tr>
-              <tr>
-                <div class="border rounded mt-2 p-2">
-                  {{language-skills-edit person=newPerson}}
-                </div>
-              </tr>
+              <tbody>
+                <tr>
+                  <td>{{!Leere Zeile aus Layout-Gründen}}</td>
+                </tr>
+                <tr>
+                  <td class="description">Sprachen<a href="http://www.europaeischer-referenzrahmen.de/" target="_blank" rel="noopener"><i class="ml-2 fa fa-question-circle" aria-hidden="true"></i></a></td>
+                </tr>
+                <tr>
+                  <div class="border rounded mt-2 p-2">
+                    {{language-skills-edit person=newPerson}}
+                  </div>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
-        <button {{action 'submit' newPerson}} role="button" id="submit-button" class="btn btn-primary "> Speichern</button>
+        <button {{action "submit" newPerson}} role="button" id="submit-button" class="btn btn-primary "> Speichern</button>
         <button onclick={{action "abortCreate"}} role="button" class="btn abort-button"> Abbrechen</button>
       </div>
     </div>

@@ -19,7 +19,7 @@
         onfocus=(action "handleFocus")
         onblur=(action "handleBlur")
         onchange=(action "setMonth" "From")
-        onkeydown=(action "setWithTab" 'setMonth')
+        onkeydown=(action "setWithTab" "setMonth")
         as |month|
         }}
           {{month}}
@@ -27,7 +27,7 @@
       </td>
       <td>
         <input type="number" value={{entity.yearFrom}} onchange={{action "setYearFrom" value="target.value"}} max="9999"
-        class={{concat (if yearFromInvalid 'invalid') " year form-control" }} placeholder="von">
+        class={{concat (if yearFromInvalid "invalid") " year form-control" }} placeholder="von">
       </td>
     </tr>
     <tr>
@@ -42,16 +42,16 @@
         onfocus=(action "handleFocus")
         onblur=(action "handleBlur")
         onchange=(action "setMonth" "To")
-        onkeydown=(action "setWithTab" 'setMonth' "To")
+        onkeydown=(action "setWithTab" "setMonth" "To")
         as |month|
         }}
           {{month}}
         {{/power-select}}
       </td>
       <td>
-        {{#if (not-eq selectedMonthTo 'heute')}}
+        {{#if (not-eq selectedMonthTo "heute")}}
           <input type="number" value={{entity.yearTo}} max="9999" onchange={{action "setYearTo" value="target.value"}}
-            class={{concat (if yearFromInvalid 'invalid') " year form-control" }} placeholder="bis">
+            class={{concat (if yearFromInvalid "invalid") " year form-control" }} placeholder="bis">
         {{/if}}
       </td>
     </tr>

@@ -1,9 +1,9 @@
-<div class="span2 {{if response.isPending 'loading-mask'}}">
+<div class="span2 {{if response.isPending "loading-mask"}}">
   <input type="file" class="img-input" hidden>
   <div>
-    <img class="img-avatar-edit"
+    <img
       src={{picturePath}}
-      class="pic img-polaroid profil-img rounded-circle"
+      class="pic img-polaroid profil-img rounded-circle img-avatar-edit"
       role="button"
       onclick={{action "changePicture"}}
       alt="Bild ersetzen">

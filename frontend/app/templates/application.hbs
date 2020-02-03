@@ -2,7 +2,7 @@
   <div id="inner-main" class="container-fluid">
     <div class="row-fluid">
       {{! Navbar with logo }}
-      <div class='header top'>
+      <div class="header top">
         <nav class="navbar p-0 navbar-expand">
           <ul class="navbar-nav">
             {{#link-to "people"}}
@@ -15,18 +15,18 @@
           <ul class="navbar-nav ml-auto">
             {{#if session.authenticated}}
               <li class="nav-item border-black border-bottom-0 border-top-0 border-right-0">
-                <a id="logout-button" role="button" class="nav-link pull-right" {{action 'transitionToProfile'}}>
+                <a id="logout-button" role="button" class="nav-link pull-right" {{action "transitionToProfile"}}>
                   <i class="fa fa-user-circle" aria-hidden="true"></i> {{username}}
                 </a>
               </li>
             {{/if}}
             <li class="nav-item border-black border-bottom-0 border-top-0">
-              <a href="{{helplink}}" target="_blank" class="nav-link pull-right" rel="noopener" role="button">
+              <a href={{helplink}} target="_blank" class="nav-link pull-right" rel="noopener" role="button">
                 <i class="fa fa-life-ring" aria-hidden="true"></i>
               </a>
             </li>
             <li class="nav-item border-black border-bottom-0 border-top-0 border-left-0">
-              <a id="logout-button" role="button" class="nav-link pull-right" {{action 'logoutUser'}}>
+              <a id="logout-button" role="button" class="nav-link pull-right" {{action "logoutUser"}}>
                 Logout
               </a>
             </li>
@@ -65,5 +65,5 @@
     </div>
   </div>
 </main>
-{{ember-notify messageStyle='bootstrap'}}
+{{ember-notify messageStyle="bootstrap"}}
 {{footer-bar}}

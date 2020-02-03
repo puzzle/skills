@@ -9,7 +9,7 @@
       placeholder="Person suchen"
       onfocus=(action "handleFocus")
       onblur=(action "handleBlur")
-      onchange=(action 'changePerson')
+      onchange=(action "changePerson")
     as |person|
     }}
       {{person.name}} <small>({{person.company.name}})</small>
@@ -17,7 +17,7 @@
   </div>
   <div class="ml-3">
     {{#if selected}}
-      {{updated-at entry=selected class='updated-at-person'}}
+      {{updated-at entry=selected class="updated-at-person"}}
     {{/if}}
   </div>
 </div>

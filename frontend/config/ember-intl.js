@@ -58,7 +58,7 @@ module.exports = function(/* env */) {
      * @type {String}
      * @default "translations"
      */
-    inputPath: 'translations',
+    inputPath: "translations",
 
     /**
      * cause a build error if missing translations are detected.

@@ -6,8 +6,8 @@
     <label class="description member-skillset-level-title">{{levelName}}</label>
     {{ui-slider
     value=levelValue
-    ticks='1,2,3,4,5'
-    tooltip='hide'
+    ticks="1,2,3,4,5"
+    tooltip="hide"
     min=1
     max=5
     immediateResponse=true
@@ -16,7 +16,7 @@
   <div class="col people-skill-interest">
     <label class="description member-skillset-interest-title">Interesse</label>
     {{icon-rating
-    fillColor='#238BCA'
+    fillColor="#238BCA"
     value=peopleSkill.interest
     onClick=(action (mut peopleSkill.interest))
     }}
@@ -24,13 +24,13 @@
   <div class="col flex-column d-flex justify-content-center">
     <div class="row">
       {{input type="checkbox" id=(concat peopleSkill.skill.id "-certificate") checked=peopleSkill.certificate}}
-      <label class="description ml-2 mb-0" for="{{concat peopleSkill.skill.id "-certificate"}}">Zertifikat</label>
+      <label class="description ml-2 mb-0" for={{concat peopleSkill.skill.id "-certificate"}}>Zertifikat</label>
     </div>
   </div>
   <div class="col flex-column d-flex justify-content-center">
     <div class="row">
       {{input type="checkbox" id=(concat peopleSkill.skill.id "-coreCompetence") checked=peopleSkill.coreCompetence}}
-      <label class="description ml-2 mb-0" for="{{concat peopleSkill.skill.id "-coreCompetence"}}">Kernkompetenz</label>
+      <label class="description ml-2 mb-0" for={{concat peopleSkill.skill.id "-coreCompetence"}}>Kernkompetenz</label>
     </div>
   </div>
 </div>

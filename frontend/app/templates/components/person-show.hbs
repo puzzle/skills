@@ -12,142 +12,150 @@
       <div class="row" id="profile-content-show">
         <div class="col-sm-3">
           <table>
-            <tr>
-              <img id="img-avatar-read" src={{picturePath}} class="img-polaroid profil-img rounded-circle" alt="">
-            </tr>
-            <div class="mt-4">
-            </div>
-            <tr>
-              <a onclick={{personEditing}} class="edit-buttons" data-test-person-edit-form-toggle>
-                <td><i class="fa fa-edit" aria-hidden="true"></i> Bearbeiten</td>
-              </a>
-            </tr>
+            <tbody>
+              <tr>
+                <img id="img-avatar-read" src={{picturePath}} class="img-polaroid profil-img rounded-circle" alt="">
+              </tr>
+              <div class="mt-4">
+              </div>
+              <tr>
+                <a onclick={{personEditing}} class="edit-buttons" role="button" data-test-person-edit-form-toggle>
+                  <td><i class="fa fa-edit" aria-hidden="true"></i> Bearbeiten</td>
+                </a>
+              </tr>
+            </tbody>
           </table>
         </div>
         <div class="col-sm-3">
           <table class="table-person">
-            <tr class="description">
-              <td>Name</td>
-            </tr>
-            <tr>
-              <td id="data-test-person-name">{{person.name}}</td>
-            </tr>
-            <div class="mb-2">
-            </div>
-            <tr class="description">
-              <td>Email</td>
-            </tr>
-            <tr>
-              <td id="data-test-person-email">{{person.email}}</td>
-            </tr>
-            <div class="mb-2">
-            </div>
-            <tr class="description">
-              <td>Abschluss</td>
-            </tr>
-            <tr>
-              <td id="data-test-person-title">{{person.title}}</td>
-            </tr>
-            <div class="mb-2">
-            </div>
-            <tr class="description">
-              <td>Funktion</td>
-            </tr>
-            {{#if person.personRoles.length}}
-              {{#each person.personRoles as |personRole|}}
-                <tr>
-                  <td id="data-test-person-role">
-                    {{personRole.role.name}}
-                    {{personRole.level}}
-                    {{#if personRole.percent}}
-                      {{personRole.percent}}%
-                    {{/if}}
-                  </td>
-                </tr>
-              {{/each}}
-            {{/if}}
-            <div class="mb-2">
-            </div>
-            <tr class="description">
-              <td>Organisationseinheit</td>
-            </tr>
-            <tr>
-              <td id="data-test-person-department">{{person.department.name}}</td>
-            </tr>
-            <div class="mb-2">
-            </div>
-            <tr class="description">
-              <td>Firma/Kategorie</td>
-            </tr>
-            <tr>
-              <td id="data-test-person-company">{{person.company.name}}</td>
-            </tr>
-          </table>
-        </div>
-        <div class="col">
-          <table class="table-person">
-            <tr class="description">
-              <td>Geburtsdatum</td>
-            </tr>
-            <tr>
-              <td>
-                <time datetime={{moment-format person.birthdate}} id="data-test-person-birthdate">
-                  {{~moment-format person.birthdate 'L'~}}
-                </time>
-              </td>
-            </tr>
-            <div class="mb-2">
-            </div>
-            <tr class="description">
-              <td>Nationalität{{#if person.nationality2}}en{{/if}}</td>
-            </tr>
-            <tr>
-              <td id="data-test-person-nationalities">
-                {{format-country person.nationality}}{{#if person.nationality2}} , {{format-country person.nationality2}}{{/if}}
-              </td>
-            </tr>
-            <div class="mb-2">
-            </div>
-            <tr class="description">
-              <td>Wohnort (Stadt)</td>
-            </tr>
-            <tr>
-              <td id="data-test-person-location">{{person.location}}</td>
-            </tr>
-            <div class="mb-2">
-            </div>
-            <tr class="description">
-              <td>Zivilstand</td>
-            </tr>
-            <tr>
-              <td id="data-test-person-marital-status">{{maritalStatus}}</td>
-            </tr>
-          </table>
-        </div>
-        <div class="col">
-          <table class="table-person">
-            <tr class="description">
-              <td>Sprachen<a href="http://www.europaeischer-referenzrahmen.de/" target="_blank" rel="noopener"><i class="ml-2 fa fa-question-circle" aria-hidden="true"></i></a></td>
-            </tr>
-            <tr>
-              <div class="border rounded mt-2">
-                <table class="table table-borderless">
-                  <tbody>
-                    {{#each sortedLanguageSkills as |skill|}}
-                      <tr>
-                        <td data-test-person-language class="description">{{skill.language}}</td>
-                        <td class="language-level"><img alt="" src="/assets/language-levels/{{to-lowercase skill.level}}.svg"></td>
-                        <td class="language-certificate">
-                          {{#if skill.certificate}}
-                            <img alt="" src="/assets/icon_certificate.svg" data-toggle="tooltip" data-placement="right" title="{{skill.certificate}}">
-                          {{/if}}
-                        </td>
-                      </tr>
-                    {{/each}}
-                  </tbody>
-                </table>
+            <tbody>
+              <tr class="description">
+                <td>Name</td>
+              </tr>
+              <tr>
+                <td id="data-test-person-name">{{person.name}}</td>
+              </tr>
+              <div class="mb-2">
               </div>
-            </tr>
+              <tr class="description">
+                <td>Email</td>
+              </tr>
+              <tr>
+                <td id="data-test-person-email">{{person.email}}</td>
+              </tr>
+              <div class="mb-2">
+              </div>
+              <tr class="description">
+                <td>Abschluss</td>
+              </tr>
+              <tr>
+                <td id="data-test-person-title">{{person.title}}</td>
+              </tr>
+              <div class="mb-2">
+              </div>
+              <tr class="description">
+                <td>Funktion</td>
+              </tr>
+              {{#if person.personRoles.length}}
+                {{#each person.personRoles as |personRole|}}
+                  <tr>
+                    <td id="data-test-person-role">
+                      {{personRole.role.name}}
+                      {{personRole.level}}
+                      {{#if personRole.percent}}
+                        {{personRole.percent}}%
+                      {{/if}}
+                    </td>
+                  </tr>
+                {{/each}}
+              {{/if}}
+              <div class="mb-2">
+              </div>
+              <tr class="description">
+                <td>Organisationseinheit</td>
+              </tr>
+              <tr>
+                <td id="data-test-person-department">{{person.department.name}}</td>
+              </tr>
+              <div class="mb-2">
+              </div>
+              <tr class="description">
+                <td>Firma/Kategorie</td>
+              </tr>
+              <tr>
+                <td id="data-test-person-company">{{person.company.name}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col">
+          <table class="table-person">
+            <tbody>
+              <tr class="description">
+                <td>Geburtsdatum</td>
+              </tr>
+              <tr>
+                <td>
+                  <time datetime={{moment-format person.birthdate}} id="data-test-person-birthdate">
+                    {{~moment-format person.birthdate "L"~}}
+                  </time>
+                </td>
+              </tr>
+              <div class="mb-2">
+              </div>
+              <tr class="description">
+                <td>Nationalität{{#if person.nationality2}}en{{/if}}</td>
+              </tr>
+              <tr>
+                <td id="data-test-person-nationalities">
+                  {{format-country person.nationality}}{{#if person.nationality2}} , {{format-country person.nationality2}}{{/if}}
+                </td>
+              </tr>
+              <div class="mb-2">
+              </div>
+              <tr class="description">
+                <td>Wohnort (Stadt)</td>
+              </tr>
+              <tr>
+                <td id="data-test-person-location">{{person.location}}</td>
+              </tr>
+              <div class="mb-2">
+              </div>
+              <tr class="description">
+                <td>Zivilstand</td>
+              </tr>
+              <tr>
+                <td id="data-test-person-marital-status">{{maritalStatus}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col">
+          <table class="table-person">
+            <tbody>
+              <tr class="description">
+                <td>Sprachen<a href="http://www.europaeischer-referenzrahmen.de/" target="_blank" rel="noopener"><i class="ml-2 fa fa-question-circle" aria-hidden="true"></i></a></td>
+              </tr>
+              <tr>
+                <div class="border rounded mt-2">
+                  <table class="table table-borderless">
+                    <tbody>
+                      {{#each sortedLanguageSkills as |skill|}}
+                        <tr>
+                          <td data-test-person-language class="description">{{skill.language}}</td>
+                          <td class="language-level"><img alt="" src="/assets/language-levels/{{to-lowercase skill.level}}.svg"></td>
+                          <td class="language-certificate">
+                            {{#if skill.certificate}}
+                              <img alt="" src="/assets/icon_certificate.svg" data-toggle="tooltip" data-placement="right" title={{skill.certificate}}>
+                            {{/if}}
+                          </td>
+                        </tr>
+                      {{/each}}
+                    </tbody>
+                  </table>
+                </div>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>
@@ -156,6 +164,6 @@
 </div>
 <script>
   $(document).ready(() => {
-    $('[data-toggle="tooltip"]').tooltip();
+    $("[data-toggle="tooltip"]").tooltip();
   })
 </script>

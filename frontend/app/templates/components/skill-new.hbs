@@ -9,7 +9,7 @@
           <div class="row my-3">
             <div class="col-md-3">Titel</div>
             <div class="col-md-9">
-              {{input id=(concat elementId '-new-title') value=newSkill.title class="form-control" name="new-skill-title"}}
+              {{input id=(concat elementId "-new-title") value=newSkill.title class="form-control" name="new-skill-title"}}
             </div>
           </div>
           <div class="row my-3">
@@ -24,10 +24,10 @@
                 matcher=categorySearchMatcher
                 disabled=(eq newSkillSelected false)
                 selected=selectedCategory
-                onchange=(action 'setCategory')
+                onchange=(action "setCategory")
                 onblur=(action "handleBlur")
                 onfocus=(action "handleFocus")
-                onkeydown=(action "setWithKey" 'setCategory')
+                onkeydown=(action "setWithKey" "setCategory")
                 as |category|
               }}
                 {{category.parent.title}} - {{category.title}}
@@ -44,10 +44,10 @@
                 dropdownClass="w-100"
                 options=radarOptions
                 selected=newSkill.radar
-                onchange=(action 'setRadar')
+                onchange=(action "setRadar")
                 onblur=(action "handleBlur")
                 onfocus=(action "handleFocus")
-                onkeydown=(action "setWithKey" 'setRadar')
+                onkeydown=(action "setWithKey" "setRadar")
                 as |radar|
               }}
                 {{radar}}
@@ -64,9 +64,9 @@
                 dropdownClass="w-100"
                 options=portfolioOptions
                 selected=newSkill.portfolio
-                onchange=(action 'setPortfolio')
+                onchange=(action "setPortfolio")
                 onfocus=(action "handleFocus")
-                onkeydown=(action "setWithKey" 'setPortfolio')
+                onkeydown=(action "setWithKey" "setPortfolio")
                 as |portfolio|
               }}
                 {{portfolio}}
@@ -76,8 +76,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" onclick={{action 'abortNew'}} class="btn btn-secondary">Abbrechen</button>
-        <button id="skill-new-submit-button" type="button" onclick={{action 'submit'}} class="btn btn-primary">Speichern</button>
+        <button type="button" onclick={{action "abortNew"}} class="btn btn-secondary">Abbrechen</button>
+        <button id="skill-new-submit-button" type="button" onclick={{action "submit"}} class="btn btn-primary">Speichern</button>
       </div>
     </div>
   </div>

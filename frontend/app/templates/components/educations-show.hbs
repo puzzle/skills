@@ -8,25 +8,25 @@
 <div class="border border-info rounded-bottom">
   <div class="card-body d-flex flex-column">
     <div class="mb-2">
-      <a onclick={{action 'toggleEducationNew' true}} role="button" class="{{~unless educationNew 'edit-buttons'~}}"><i class="fa {{~unless educationNew ' add'~}}"></i> {{~unless educationNew ' Ausbildung hinzufügen'~}}</a>
+      <a onclick={{action "toggleEducationNew" true}} role="button" class={{~unless educationNew "edit-buttons"~}}><i class="fa {{~unless educationNew " add"~}}"></i> {{~unless educationNew " Ausbildung hinzufügen"~}}</a>
     </div>
     <div id="competence-content-show">
-      {{component (if educationNew 'education-new')
+      {{component (if educationNew "education-new")
                   personId=person.id
-                  done=(action 'toggleEducationNew')}}
+                  done=(action "toggleEducationNew")}}
       {{#each sortedEducations as |education|}}
         <div class="zeile">
           <div class="row">
             <div class="col-sm-3 text-center">
-              {{if education.monthFrom (concat (moment-format education.monthFrom 'MM' 'MM') '.')}}{{education.yearFrom}}
+              {{if education.monthFrom (concat (moment-format education.monthFrom "MM" "MM") ".")}}{{education.yearFrom}}
               {{#if (eq education.yearTo null)}}
                 - heute
               {{else if (or (not-eq education.yearFrom education.yearTo) (not-eq education.monthFrom education.monthTo))}}
-                - {{if education.monthTo (concat (moment-format education.monthTo 'MM' 'MM') '.')}}{{education.yearTo}}
+                - {{if education.monthTo (concat (moment-format education.monthTo "MM" "MM") ".")}}{{education.yearTo}}
               {{/if}}
             </div>
             <div class="col-sm-9">
-              <strong class='education-entity'>{{education.title}}</strong>
+              <strong class="education-entity">{{education.title}}</strong>
               <br>{{education.location}}
             </div>
           </div>
@@ -36,7 +36,7 @@
     {{#if sortedEducations}}
       {{#unless educationNew}}
         <div>
-          <a onclick={{educationsEditing}} role="button" class="edit-buttons" id='edit-education-button'>
+          <a onclick={{educationsEditing}} role="button" class="edit-buttons" id="edit-education-button">
             <i class="fa fa-edit"></i>
             Bearbeiten
           </a>

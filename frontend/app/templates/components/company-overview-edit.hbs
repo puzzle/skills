@@ -1,25 +1,25 @@
 <div id="profil-uebersicht">
   {{#with (changeset company validations) as |companyChangeset|}}
-    {{#form-for companyChangeset submit=(action 'submit') as |f|}}
+    {{#form-for companyChangeset submit=(action "submit") as |f|}}
       <div class="card-header bg-primary">
         <div class="row">
           <div class="col-sm-6">
             <a class="card-link text-white" href="#">Übersicht</a>
           </div>
           <div class="col-sm-6 text-right d-block text-white">
-            {{#if (not-eq company.companyType 'mine')}}
+            {{#if (not-eq company.companyType "mine")}}
               <div id="delete-company-icon">
                 {{delete-with-confirmation
                   entry=company
-                  transitionTo='companies'
-                  tagName='span'
+                  transitionTo="companies"
+                  tagName="span"
                 }}
               </div>
             {{/if}}
-            <a {{action 'submit' companyChangeset}} role="button" id="submit-button" class="card-link text-white">
+            <a {{action "submit" companyChangeset}} role="button" id="submit-button" class="card-link text-white">
               <i class="fa save"></i>
             </a>
-            <a onclick={{action 'abortEdit'}} role="button" class="card-link text-white">
+            <a onclick={{action "abortEdit"}} role="button" class="card-link text-white">
               <i class="fa abort"></i>
             </a>
             <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#">
@@ -33,83 +33,89 @@
           <div class="row">
             <div class="col-sm-4">
               <table class="table-company">
-                <tr>
-                  <td>{{f.text-field 'name' label="Name" required=true}}</td>
-                </tr>
-                <tr>
-                  <td>
-                    <button class="btn btn-success form-field--control" type="button" {{action 'addLocations' company}}>Neue Adresse</button>
-                  </td>
-                </tr>
-                {{#each company.locations as |location|}}
-                  {{#fields-for location as |l|}}
-                    <tr>
-                      <td class="nextToDelete">
-                        {{l.text-field 'location' label="Standort"}}
-                        {{delete-with-confirmation
+                <tbody>
+                  <tr>
+                    <td>{{f.text-field "name" label="Name" required=true}}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <button class="btn btn-success form-field--control" type="button" {{action "addLocations" company}}>Neue Adresse</button>
+                    </td>
+                  </tr>
+                  {{#each company.locations as |location|}}
+                    {{#fields-for location as |l|}}
+                      <tr>
+                        <td class="nextToDelete">
+                          {{l.text-field "location" label="Standort"}}
+                          {{delete-with-confirmation
                           entry=location
-                        }}
-                      </td>
-                    </tr>
-                  {{/fields-for}}
-                {{/each}}
-                <tr>
-                  <td>{{f.text-field 'web' label="Web"}}</td>
-                </tr>
-                <tr>
-                  <td>{{f.text-field 'email' label="Email"}}</td>
-                </tr>
-                <tr>
-                  <td>{{f.text-field 'phone' label="Telefon"}}</td>
-                </tr>
+                          }}
+                        </td>
+                      </tr>
+                    {{/fields-for}}
+                  {{/each}}
+                  <tr>
+                    <td>{{f.text-field "web" label="Web"}}</td>
+                  </tr>
+                  <tr>
+                    <td>{{f.text-field "email" label="Email"}}</td>
+                  </tr>
+                  <tr>
+                    <td>{{f.text-field "phone" label="Telefon"}}</td>
+                  </tr>
+                </tbody>
               </table>
             </div>
             <div class="col-sm-4">
               <table class="table-company">
-                <tr>
-                  <td>{{f.text-field 'partnermanager' label="PM"}}</td>
-                </tr>
-                <tr>
-                  <td>{{f.text-field 'contactPerson' label="Ansprechperson"}}</td>
-                </tr>
-                <tr>
-                  <td>{{f.text-field 'emailContactPerson' label="Email"}}</td>
-                </tr>
-                <tr>
-                  <td>{{f.text-field 'phoneContactPerson' label="Telefon"}}</td>
-                </tr>
-                <tr>
-                  <td>{{f.text-field 'crm' label="CRM"}}</td>
-                </tr>
+                <tbody>
+                  <tr>
+                    <td>{{f.text-field "partnermanager" label="PM"}}</td>
+                  </tr>
+                  <tr>
+                    <td>{{f.text-field "contactPerson" label="Ansprechperson"}}</td>
+                  </tr>
+                  <tr>
+                    <td>{{f.text-field "emailContactPerson" label="Email"}}</td>
+                  </tr>
+                  <tr>
+                    <td>{{f.text-field "phoneContactPerson" label="Telefon"}}</td>
+                  </tr>
+                  <tr>
+                    <td>{{f.text-field "crm" label="CRM"}}</td>
+                  </tr>
+                </tbody>
               </table>
             </div>
             <div class="col-sm-4">
               <table class="table-company">
-                <tr>
-                  <td>{{f.text-field 'level' label="Level"}}</td>
-                </tr>
-                <tr>
-                  <td>
-                    <button class ="btn btn-success form-field--control" type="button" {{action 'addEmployeeQuantity' company}}>Neue Mitarbeiter-Anzahl</button>
-                  </td>
-                </tr>
-                {{#each company.employeeQuantities as |quantity|}}
-                  {{#fields-for quantity as |q|}}
-                    <tr>
-                      <td class="nextToDelete">
-                        {{q.text-field 'category' label="Kategorie"}}
-                        {{delete-with-confirmation
+                <tbody>
+                  <tr>
+                    <td>{{f.text-field "level" label="Level"}}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <button class ="btn btn-success form-field--control" type="button" {{action "addEmployeeQuantity" company}}>Neue Mitarbeiter-Anzahl</button>
+                    </td>
+                  </tr>
+                  {{#each company.employeeQuantities as |quantity|}}
+                    {{#fields-for quantity as |q|}}
+                      <tr>
+                        <td class="nextToDelete">
+                          {{q.text-field "category" label="Kategorie"}}
+                          {{delete-with-confirmation
                           entry=quantity
-                        }}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        {{q.text-field 'quantity' label="Anzahl"}}
-                      </td>
-                    </tr>
-                  {{/fields-for}}
-                {{/each}}
+                          }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          {{q.text-field "quantity" label="Anzahl"}}
+                        </td>
+                      </tr>
+                    {{/fields-for}}
+                  {{/each}}
+                </tbody>
               </table>
             </div>
           </div>

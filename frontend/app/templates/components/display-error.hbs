@@ -1,5 +1,5 @@
 {{#if messageIsHTMLDocument}}
-  <iframe srcdoc={{error.message}} style="width:100%;min-height:640px"></iframe>
+  <iframe srcdoc={{error.message}}></iframe>
 {{else if error.isAdapterError}}
   <pre class="error">{{error.message}}</pre>
 {{else if error.errors}}
@@ -15,7 +15,7 @@
   <p>Something unexpected happened</p>
 {{/if}}
 {{#if error.stack}}
-  <button class="btn btn-primary" onclick={{toggle 'showStack' this}}>
+  <button class="btn btn-primary" onclick={{toggle "showStack" this}}>
     Show stack
   </button>
   {{#link-to "people" class="btn btn-primary"}}Bring me home{{/link-to}}

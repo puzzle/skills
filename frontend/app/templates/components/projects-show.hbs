@@ -8,13 +8,13 @@
   </div>
   <div class="border border-info rounded-bottom">
     <div class="card-body">
-      <a onclick={{action 'toggleProjectNew' true}} role="button" class={{~if (or projectEditing projectNew) '' 'edit-buttons'~}}><i class="fa {{~if (or projectEditing projectNew) '' ' add'~}}"></i>{{~if (or projectEditing projectNew) '' ' Projekt hinzufügen'~}}</a>
+      <a onclick={{action "toggleProjectNew" true}} role="button" class={{~if (or projectEditing projectNew) "" "edit-buttons"~}}><i class="fa {{~if (or projectEditing projectNew) "" " add"~}}"></i>{{~if (or projectEditing projectNew) "" " Projekt hinzufügen"~}}</a>
       <div id="competence-content-show">
         <div class="mt-2">
-          {{component (if projectNew 'project-new') personId=personId done=(action 'toggleProjectNew')}}
+          {{component (if projectNew "project-new") personId=personId done=(action "toggleProjectNew")}}
           {{#each sortedProjects as |project|}}
             {{#if (eq projectEditing project)}}
-              {{project-edit project=projectEditing done=(action 'toggleProjectEditing')}}
+              {{project-edit project=projectEditing done=(action "toggleProjectEditing")}}
             {{else}}
               {{project-show selectProject = (if (or projectEditing projectNew) null (action (mut projectEditing))) project=project}}
             {{/if}}

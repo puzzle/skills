@@ -11,7 +11,7 @@
         {{skillset-category-filter parentCategories=parentCategories}}
       </div>
       <div class="col-sm-1">
-        <a onclick={{pipe (action 'exportSkillsetOdt')}} class="edit-buttons" data-toggle="tooltip" data-placement="top" title="Exportiert das gesamte Skillset">
+        <a onclick={{pipe (action "exportSkillsetOdt")}} class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Exportiert das gesamte Skillset">
           <i class="fa fa-download" aria-hidden="true"></i>
           Export
         </a>
@@ -24,7 +24,7 @@
     </div>
   </div>
 <div class="mb-end">
-  {{skill-new refreshList=(action 'refreshList')}}
+  {{skill-new refreshList=(action "refreshList")}}
   <table id="skills-list-table" class="table">
     <thead class="position-sticky">
       <tr>
@@ -44,9 +44,9 @@
           {{skills-list-row-edit skill=skill
                                  parentCategories=parentCategories
                                  childCategories=childCategories
-                                 stopEditing=(action 'stopEditing' skill)}}
+                                 stopEditing=(action "stopEditing" skill)}}
         {{else}}
-          {{skills-list-row-show skill=skill toggleSkill=(action 'toggleSkill' skill) startEditing=(action 'startEditing' skill)}}
+          {{skills-list-row-show skill=skill toggleSkill=(action "toggleSkill" skill) startEditing=(action "startEditing" skill)}}
         {{/if}}
       {{/each}}
     </tbody>
@@ -54,6 +54,6 @@
 </div>
 <script>
   $(document).ready(() => {
-    $('[data-toggle="tooltip"]').tooltip();
+    $("[data-toggle="tooltip"]").tooltip();
   })
 </script>

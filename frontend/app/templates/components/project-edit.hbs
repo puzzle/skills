@@ -23,19 +23,19 @@
             </div>
           </div>
           <div class="col-sm-7">
-            <label for="{{concat elementId '-name'}}">Projekt</label>
-            {{input id=(concat elementId '-name') value=projectChangeset.title class="form-control mb-2"}}
-            <label for="{{concat elementId '-desc'}}">Beschreibung</label>
-            {{textarea id=(concat elementId '-desc') value=projectChangeset.description class="form-control"}}
-            <label for="{{concat elementId '-role'}}">Rolle und Aufgaben</label>
-            {{textarea id=(concat elementId '-role') value=projectChangeset.role class="form-control"}}
-            <label for="{{concat elementId '-tech'}}">Eingesetzte Technologien</label>
-            {{textarea id=(concat elementId '-tech') value=projectChangeset.technology class="form-control"}}
+            <label for={{concat elementId "-name"}}>Projekt</label>
+            {{input id=(concat elementId "-name") value=projectChangeset.title class="form-control mb-2"}}
+            <label for={{concat elementId "-desc"}}>Beschreibung</label>
+            {{textarea id=(concat elementId "-desc") value=projectChangeset.description class="form-control"}}
+            <label for={{concat elementId "-role"}}>Rolle und Aufgaben</label>
+            {{textarea id=(concat elementId "-role") value=projectChangeset.role class="form-control"}}
+            <label for={{concat elementId "-tech"}}>Eingesetzte Technologien</label>
+            {{textarea id=(concat elementId "-tech") value=projectChangeset.technology class="form-control"}}
           </div>
         </div>
         <div class="mt-auto">
-          <button onclick={{action 'submit' projectChangeset}} role="button" id="submit-button" class="btn btn-primary">Speichern</button>
-          <button onclick={{action 'abortEdit'}} role="button" class="btn abort-button">Abbrechen</button>
+          <button onclick={{action "submit" projectChangeset}} role="button" id="submit-button" class="btn btn-primary">Speichern</button>
+          <button onclick={{action "abortEdit"}} role="button" class="btn abort-button">Abbrechen</button>
         </div>
       </div>
     </div>
