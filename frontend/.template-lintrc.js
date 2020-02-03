@@ -2,9 +2,5 @@
 "use strict";
 
 module.exports = {
-  extends: "recommended",
-
-  rules: {
-    "no-bare-strings": false
-  }
+  extends: "octane"
 };

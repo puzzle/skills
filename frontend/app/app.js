@@ -7,11 +7,11 @@ import $ from "jquery";
 
 window.Promise = RSVP.Promise;
 
-const App = Application.extend({
-  modulePrefix: config.modulePrefix,
-  podModulePrefix: config.podModulePrefix,
-  Resolver
-});
+export default class App extends Application {
+  modulePrefix = config.modulePrefix;
+  podModulePrefix = config.podModulePrefix;
+  Resolver = Resolver;
+}
 
 $.getJSON("/api/env_settings", function(envSettings) {
   config.sentryDsn = envSettings.sentry;
@@ -24,4 +24,3 @@ $.getJSON("/api/env_settings", function(envSettings) {
 });
 
 loadInitializers(App, config.modulePrefix);
-export default App;
