@@ -112,8 +112,8 @@ See [frontend/README.md](https://github.com/puzzle/skills/blob/master/frontend/R
 ## Documentation
 Find further Documentation at the links below
 
-[Changelog](https://github.com/puzzle/skills/blob/master/doc/CHANGELOG.md)
-[Contributing](https://github.com/puzzle/skills/blob/master/doc/CONTRIBUTING.md)  
+[Changelog](https://github.com/puzzle/skills/blob/master/doc/CHANGELOG.md)  
 [Configuration](https://github.com/puzzle/skills/blob/master/doc/CONFIGURATION.md)  
+[Contributing](https://github.com/puzzle/skills/blob/master/doc/CONTRIBUTING.md)  
 [DockerImage](https://github.com/puzzle/skills/blob/master/doc/DOCKER.md)  
 
