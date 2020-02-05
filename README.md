@@ -94,6 +94,13 @@ rails s
 Congratulations you have the Ruby on Rails backend up and running.
 From here on continue with the [frontend setup](https://github.com/puzzle/skills/blob/master/frontend/README.md)
 
+## Front-End
+
+The Front-End is built with EmberJS.
+
+See [frontend/README.md](https://github.com/puzzle/skills/blob/master/frontend/README.md)
+
+
 ## Testing
 
 -   To run the backend tests run `rake spec`
@@ -105,12 +112,7 @@ From here on continue with the [frontend setup](https://github.com/puzzle/skills
 ## Documentation
 Find further Documentation at the links below
 
-[Contributing](https://github.com/puzzle/skills/blob/master/doc/CONTRIBUTING.md)
-[Configuration](https://github.com/puzzle/skills/blob/master/doc/CONFIGURATION.md)
-[DockerImage](https://github.com/puzzle/skills/blob/master/doc/DOCKER.md)
+[Contributing](https://github.com/puzzle/skills/blob/master/doc/CONTRIBUTING.md)  
+[Configuration](https://github.com/puzzle/skills/blob/master/doc/CONFIGURATION.md)  
+[DockerImage](https://github.com/puzzle/skills/blob/master/doc/DOCKER.md)  
 
-## Front-End
-
-The Front-End is built with EmberJS.
-
-See [frontend/README.md](https://github.com/puzzle/skills/blob/master/frontend/README.md)

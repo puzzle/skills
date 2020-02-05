@@ -5,6 +5,9 @@
 </p>
 
 ## Contributing
+Feel free to tackle one of the issues or start work on a completely new feature  
+All you need to do is adhere to the Definion of Done below
+
 #### Definition of Done
 
 -   Implementation (including frontend and backend tests)
@@ -16,7 +19,7 @@
 -   Remove obsolete code
 
 #### Entity Relationship Diagram
-To gain an overview of the project an ERD might help, run:
+To gain an overview of the project an ERD might help, generate one with:
 
 ```shell
 bundle exec erd
