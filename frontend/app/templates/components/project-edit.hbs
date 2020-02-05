@@ -24,9 +24,12 @@
             <label for={{concat this.elementId "-name"}}>Projekt</label>
             <Input @id={{concat this.elementId "-name"}} @value={{projectChangeset.title}} class="form-control mb-2" />
             <label for={{concat this.elementId "-desc"}}>Beschreibung</label>
-            <Textarea @id={{concat this.elementId "-desc"}} @value={{projectChangeset.description}} class="form-control" />            <label for={{concat this.elementId "-role"}}>Rolle und Aufgaben</label>
-            <Textarea @id={{concat this.elementId "-role"}} @value={{projectChangeset.role}} class="form-control" />            <label for={{concat this.elementId "-tech"}}>Eingesetzte Technologien</label>
-            <Textarea @id={{concat this.elementId "-tech"}} @value={{projectChangeset.technology}} class="form-control" />          </div>
+            <Textarea @id={{concat this.elementId "-desc"}} @value={{projectChangeset.description}} class="form-control" />
+            <label for={{concat this.elementId "-role"}}>Rolle und Aufgaben</label>
+            <Textarea @id={{concat this.elementId "-role"}} @value={{projectChangeset.role}} class="form-control" />            
+            <label for={{concat this.elementId "-tech"}}>Eingesetzte Technologien</label>
+            <Textarea @id={{concat this.elementId "-tech"}} @value={{projectChangeset.technology}} class="form-control" />          
+          </div>
         </div>
         <div class="mt-auto">
           <button onclick={{action "submit" projectChangeset}} role="button" id="submit-button" class="btn btn-primary">Speichern</button>

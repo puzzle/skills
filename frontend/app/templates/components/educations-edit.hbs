@@ -21,7 +21,8 @@
                 <label for={{concat this.elementId "-" education.id "-title"}}>Ausbildung</label>
                 <Input @id={{concat this.elementId "-" education.id "-title"}} @value={{education.title}} class="input-xxlarge form-control" />
                 <label class="mt-2" for={{concat this.elementId "-" education.id "-loc"}}>Ausbildungsort</label>
-                <Textarea @id={{concat this.elementId "-" education.id "-loc"}} @value={{education.location}} class="input-xxlarge form-control" />              </div>
+                <Textarea @id={{concat this.elementId "-" education.id "-loc"}} @value={{education.location}} class="input-xxlarge form-control" />
+              </div>
               <div id="delete-education-icon" onclick={{action "notify"}} role="button">
                 <DeleteWithConfirmation @entry={{education}}>
                   Löschen

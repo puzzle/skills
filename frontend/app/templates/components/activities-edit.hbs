@@ -21,7 +21,8 @@
                 <label for={{concat this.elementId "-" activity.id "-role"}}>Rolle</label>
                 <Input @id={{concat this.elementId "-" activity.id "-role"}} @value={{activity.role}} class="form-control" />
                 <label class="mt-2" for={{concat this.elementId "-" activity.id "-desc"}}>Firmenangaben und Beschreibung der Tätigkeit</label>
-                <Textarea @id={{concat this.elementId "-" activity.id "-desc"}} @value={{activity.description}} class="input-xxlarge form-control" />              </div>
+                <Textarea @id={{concat this.elementId "-" activity.id "-desc"}} @value={{activity.description}} class="input-xxlarge form-control" />
+              </div>
               <div onclick={{action "notify"}} role="button">
                 <DeleteWithConfirmation @entry={{activity}}>
                   Löschen

@@ -1,6 +1,9 @@
 /* eslint-env node */
 "use strict";
-
 module.exports = {
-  extends: "octane"
+  extends: "recommended",
+
+  rules: {
+    "no-bare-strings": false
+  }
 };

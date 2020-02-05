@@ -3,6 +3,7 @@ import RSVP from "rsvp";
 import Resolver from "./resolver";
 import loadInitializers from "ember-load-initializers";
 import config from "./config/environment";
+import $ from "jquery";
 
 window.Promise = RSVP.Promise;
 
