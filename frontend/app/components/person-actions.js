@@ -26,6 +26,7 @@ export default Component.extend({
         }
       })
       .then(response => {
+        debugger;
         this.set("unratedSkillsAmount", response.data.length);
       });
   },

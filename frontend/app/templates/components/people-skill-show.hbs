@@ -10,25 +10,11 @@
   </div>
   <div onclick={{this.toggleSkillShow}} data-toggle={{if this.toggleSkillShow "modal"}} role="button" data-target="#skill-show-modal" class="col justify-content-center people-skill-level">
     <p class="description skillset-level-title">{{this.levelName}}</p>
-    {{ui-slider
-    value=this.levelValue
-    ticks="1,2,3,4,5"
-    tooltip="hide"
-    disabled=true
-    min=1
-    max=5
-    immediateResponse=true
-    action=(action "hasChanged")
-    }}
+    <UiSlider @value={{this.levelValue}} @ticks="1,2,3,4,5" @tooltip="hide" @disabled={{true}} @min={{1}} @max={{5}} @immediateResponse={{true}} @action={{action "hasChanged"}} />
   </div>
   <div onclick={{this.toggleSkillShow}} data-toggle={{if this.toggleSkillShow "modal"}} role="button" data-target="#skill-show-modal" class="col people-skill-interest">
     <p class="description skillset-interest-title">Interesse</p>
-    {{icon-rating
-    fillColor="#238BCA"
-    readOnly=true
-    value=this.peopleSkill.interest
-    onClick=(action (mut this.newPeopleSkill.interest))
-    }}
+    <IconRating @fillColor="#238BCA" @readOnly={{true}} @value={{this.peopleSkill.interest}} @onClick={{action (mut this.newPeopleSkill.interest)}} />
   </div>
   <div onclick={{this.toggleSkillShow}} data-toggle={{if this.toggleSkillShow "modal"}} role="button" data-target="#skill-show-modal" class="col pt-3 people-skill-certificate">
     {{#if this.peopleSkill.certificate}}

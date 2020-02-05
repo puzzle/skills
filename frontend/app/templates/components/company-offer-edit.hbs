@@ -18,18 +18,9 @@
           <Input @value={{offer.category}} @type="text" class="form-control" placeholder="Neue Kategorie" />
         </div>
         <div class="col-sm-8">
-          {{#power-select-multiple-with-create
-            options=this.options
-            selected=offer.offer
-            placeholder="Angebotene Technologien"
-            onchange=(action (mut offer.offer))
-            onfocus=(action "handleFocus")
-            onblur=(action "handleBlur")
-            oncreate=(action "createOffer" offer.offer)
-            buildSuggestion=this.suggestion
-          as |offer|}}
+          <PowerSelectMultipleWithCreate @options={{this.options}} @selected={{offer.offer}} @placeholder="Angebotene Technologien" @onchange={{action (mut offer.offer)}} @onfocus={{action "handleFocus"}} @onblur={{action "handleBlur"}} @oncreate={{action "createOffer" offer.offer}} @buildSuggestion={{this.suggestion}} as |offer|>
             {{offer}}
-          {{/power-select-multiple-with-create}}
+          </PowerSelectMultipleWithCreate>
         </div>
         <DeleteWithConfirmation @entry={{offer}}>
           Löschen

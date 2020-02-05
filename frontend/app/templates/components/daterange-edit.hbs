@@ -12,18 +12,9 @@
         Von:
       </th>
       <td>
-        {{#power-select
-        selected=this.selectedMonthFrom
-        options=this.monthsFromSelect
-        searchEnabled=false
-        onfocus=(action "handleFocus")
-        onblur=(action "handleBlur")
-        onchange=(action "setMonth" "From")
-        onkeydown=(action "setWithTab" "setMonth")
-        as |month|
-        }}
+        <PowerSelect @selected={{this.selectedMonthFrom}} @options={{this.monthsFromSelect}} @searchEnabled={{false}} @onfocus={{action "handleFocus"}} @onblur={{action "handleBlur"}} @onchange={{action "setMonth" "From"}} @onkeydown={{action "setWithTab" "setMonth"}} as |month|>
           {{month}}
-        {{/power-select}}
+        </PowerSelect>
       </td>
       <td>
         <input type="number" value={{this.entity.yearFrom}} onchange={{action "setYearFrom" value="target.value"}} max="9999" class={{concat (if this.yearFromInvalid "invalid") " year form-control" }} placeholder="von">
@@ -34,18 +25,9 @@
         Bis:
       </th>
       <td>
-        {{#power-select
-        selected=this.selectedMonthTo
-        options=this.monthsToSelect
-        searchEnabled=false
-        onfocus=(action "handleFocus")
-        onblur=(action "handleBlur")
-        onchange=(action "setMonth" "To")
-        onkeydown=(action "setWithTab" "setMonth" "To")
-        as |month|
-        }}
+        <PowerSelect @selected={{this.selectedMonthTo}} @options={{this.monthsToSelect}} @searchEnabled={{false}} @onfocus={{action "handleFocus"}} @onblur={{action "handleBlur"}} @onchange={{action "setMonth" "To"}} @onkeydown={{action "setWithTab" "setMonth" "To"}} as |month|>
           {{month}}
-        {{/power-select}}
+        </PowerSelect>
       </td>
       <td>
         {{#if (not-eq this.selectedMonthTo "heute")}}

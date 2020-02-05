@@ -4,22 +4,11 @@
   </div>
   <div class="col mb-4 peopleSkillEditLevel">
     <label class="description member-skillset-level-title">{{this.levelName}}</label>
-    {{ui-slider
-    value=this.levelValue
-    ticks="1,2,3,4,5"
-    tooltip="hide"
-    min=1
-    max=5
-    immediateResponse=true
-    }}
+    <UiSlider @value={{this.levelValue}} @ticks="1,2,3,4,5" @tooltip="hide" @min={{1}} @max={{5}} @immediateResponse={{true}} />
   </div>
   <div class="col people-skill-interest">
     <label class="description member-skillset-interest-title">Interesse</label>
-    {{icon-rating
-    fillColor="#238BCA"
-    value=this.peopleSkill.interest
-    onClick=(action (mut this.peopleSkill.interest))
-    }}
+    <IconRating @fillColor="#238BCA" @value={{this.peopleSkill.interest}} @onClick={{action (mut this.peopleSkill.interest)}} />
   </div>
   <div class="col flex-column d-flex justify-content-center">
     <div class="row">

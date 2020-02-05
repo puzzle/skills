@@ -36,18 +36,9 @@
                         <td>
                           <label class="description role-description">Rolle</label>
                           <div class="role-dropdown">
-                            {{#power-select
-                            selected=personRole.role
-                            options=this.sortedRoles
-                            onfocus=(action "handleFocus")
-                            onblur=(action "handleBlur")
-                            onchange=(action "setRole" personRole)
-                            onkeydown=(action "setPersonRoleWithTab" personRole)
-                            disabled=this.usedRoles
-                            as |role|
-                            }}
+                            <PowerSelect @selected={{personRole.role}} @options={{this.sortedRoles}} @onfocus={{action "handleFocus"}} @onblur={{action "handleBlur"}} @onchange={{action "setRole" personRole}} @onkeydown={{action "setPersonRoleWithTab" personRole}} @disabled={{this.usedRoles}} as |role|>
                               {{role.name}}
-                            {{/power-select}}
+                            </PowerSelect>
                           </div>
                         </td>
                       </tr>
@@ -56,17 +47,9 @@
                           <label class="description role-description">Stufe</label>
                           <div class="level-dropdown">
                             {{#if this.personRoleLevelsToSelect}}
-                              {{#power-select
-                                selected=(selected-person-role-level this.personRoleLevelsToSelect level=personRole.level)
-                                options=this.personRoleLevelsToSelect
-                                onfocus=(action "handleFocus")
-                                onblur=(action "handleBlur")
-                                onchange=(action "setPersonRoleLevel" personRole)
-                                onkeydown=(action "setPersonRoleLevelWithTab" personRole)
-                                as |personRoleLevel|
-                                }}
+                              <PowerSelect @selected={{selected-person-role-level this.personRoleLevelsToSelect level=personRole.level}} @options={{this.personRoleLevelsToSelect}} @onfocus={{action "handleFocus"}} @onblur={{action "handleBlur"}} @onchange={{action "setPersonRoleLevel" personRole}} @onkeydown={{action "setPersonRoleLevelWithTab" personRole}} as |personRoleLevel|>
                                 {{personRoleLevel.level}}
-                              {{/power-select}}
+                              </PowerSelect>
                             {{/if}}
                           </div>
                           <div class="percent-field">
@@ -90,35 +73,17 @@
                   <tr>
                     <td>
                       <label>Organisationseinheit</label>
-                      {{#power-select
-                        triggerId="department"
-                        selected=this.person.department
-                        options=this.departmentsToSelect
-                        onfocus=(action "handleFocus")
-                        onblur=(action "handleBlur")
-                        onchange=(action (mut this.person.department))
-                        onkeydown=(action "setWithTab" "setDepartment")
-                      as |department|
-                      }}
+                      <PowerSelect @triggerId="department" @selected={{this.person.department}} @options={{this.departmentsToSelect}} @onfocus={{action "handleFocus"}} @onblur={{action "handleBlur"}} @onchange={{action (mut this.person.department)}} @onkeydown={{action "setWithTab" "setDepartment"}} as |department|>
                         {{department.name}}
-                      {{/power-select}}
+                      </PowerSelect>
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <label>Firma/Kategorie</label>
-                      {{#power-select
-                      triggerId="company"
-                      selected=this.person.company
-                      options=this.companiesToSelect
-                      onfocus=(action "handleFocus")
-                      onblur=(action "handleBlur")
-                      onchange=(action (mut this.person.company))
-                      onkeydown=(action "setWithTab" "setCompany")
-                      as |company|
-                      }}
+                      <PowerSelect @triggerId="company" @selected={{this.person.company}} @options={{this.companiesToSelect}} @onfocus={{action "handleFocus"}} @onblur={{action "handleBlur"}} @onchange={{action (mut this.person.company)}} @onkeydown={{action "setWithTab" "setCompany"}} as |company|>
                         {{company.name}}
-                      {{/power-select}}
+                      </PowerSelect>
                     </td>
                   </tr>
                 </tbody>
@@ -131,10 +96,7 @@
                     <td>
                       <label class="label-date form-field--label" for="date_location">Geburtsdatum</label>
                       <div id="date_location" class="birthdate_pikaday">
-                        {{pikaday-input
-                          onSelection=(action "setBirthdate")
-                          value=this.person.birthdate
-                          useUTC=true}}
+                        <PikadayInput @onSelection={{action "setBirthdate"}} @value={{this.person.birthdate}} @useUTC={{true}} />
                       </div>
                     </td>
                   </tr>
@@ -144,19 +106,9 @@
                   <tr>
                     <td>
                       <label>Zivilstand</label>
-                      {{#power-select
-                      triggerId="maritalStatus"
-                      selected=this.selectedMaritalStatus
-                      options=this.maritalStatuses
-                      searchEnabled=false
-                      onfocus=(action "handleFocus")
-                      onblur=(action "handleBlur")
-                      onchange=(action "setMaritalStatus")
-                      onkeydown=(action "setWithTab" "setMaritalStatus")
-                      as |maritalStatus|
-                      }}
+                      <PowerSelect @triggerId="maritalStatus" @selected={{this.selectedMaritalStatus}} @options={{this.maritalStatuses}} @searchEnabled={{false}} @onfocus={{action "handleFocus"}} @onblur={{action "handleBlur"}} @onchange={{action "setMaritalStatus"}} @onkeydown={{action "setWithTab" "setMaritalStatus"}} as |maritalStatus|>
                         {{maritalStatus}}
-                      {{/power-select}}
+                      </PowerSelect>
                     </td>
                   </tr>
                   <tr>
@@ -168,36 +120,18 @@
                   <tr>
                     <td>
                       <label>Erste Nationalität</label>
-                      {{#power-select
-                      triggerId="nationality"
-                      options=this.countries
-                      selected=this.selectedNationality
-                      onchange=(action "setNationality")
-                      onfocus=(action "handleFocus")
-                      onblur=(action "handleBlur")
-                      onkeydown=(action "setWithTab" "setNationality")
-                      searchField="1"
-                      as |country|}}
+                      <PowerSelect @triggerId="nationality" @options={{this.countries}} @selected={{this.selectedNationality}} @onchange={{action "setNationality"}} @onfocus={{action "handleFocus"}} @onblur={{action "handleBlur"}} @onkeydown={{action "setWithTab" "setNationality"}} @searchField="1" as |country|>
                         <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
-                      {{/power-select}}
+                      </PowerSelect>
                     </td>
                   </tr>
                   <tr>
                     {{#if this.secondNationality}}
                       <td>
                         <label>Zweite Nationalität</label>
-                        {{#power-select
-                        triggerId="nationality2"
-                        options=this.countries
-                        selected=this.selectedNationality2
-                        onchange=(action "setNationality2")
-                        onfocus=(action "handleFocus")
-                        onblur=(action "handleBlur")
-                        onkeydown=(action "setWithTab" "setNationality2")
-                        searchField="1"
-                        as |country|}}
+                        <PowerSelect @triggerId="nationality2" @options={{this.countries}} @selected={{this.selectedNationality2}} @onchange={{action "setNationality2"}} @onfocus={{action "handleFocus"}} @onblur={{action "handleBlur"}} @onkeydown={{action "setWithTab" "setNationality2"}} @searchField="1" as |country|>
                           <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
-                        {{/power-select}}
+                        </PowerSelect>
                       </td>
                     {{/if}}
                   </tr>

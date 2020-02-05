@@ -1,14 +1,7 @@
 <div id="skill-search-header" class="header pt-3">
-  {{#power-select
-  selected=this.selectedSkill
-  options=this.skills
-  onchange=(action "setSkill")
-  searchField="title"
-  triggerClass="w-75"
-  as |skill|
-  }}
+  <PowerSelect @selected={{this.selectedSkill}} @options={{this.skills}} @onchange={{action "setSkill"}} @searchField="title" @triggerClass="w-75" as |skill|>
     {{skill.title}}
-  {{/power-select}}
+  </PowerSelect>
 
   <div class="card mt-4">
     <div class="card-header bg-info">

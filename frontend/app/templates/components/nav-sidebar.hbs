@@ -1,4 +1,4 @@
-{{#sticky-container options=this.myStickyOptions}}
+<StickyContainer @options={{this.myStickyOptions}}>
   <nav id="person-sidebar">
     <ul class="nav flex-column border">
       {{#each-in this.items as |key value|}}
@@ -9,4 +9,4 @@
     </ul>
     {{yield}}
   </nav>
-{{/sticky-container}}
+</StickyContainer>

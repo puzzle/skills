@@ -22,6 +22,7 @@ export default Component.extend({
   },
 
   refreshNewPeopleSkills(skills) {
+    debugger;
     this.set("isLoading", true);
     let loadBegin = Date.now();
     this.get("ajax")

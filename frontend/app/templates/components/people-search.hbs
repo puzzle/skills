@@ -1,19 +1,8 @@
 <div class="mb-2 d-flex">
   <div class="people-search">
-    {{#power-select
-      triggerId="people-search"
-      selected=this.selected
-      options=this.peopleToSelect
-      searchEnabled=true
-      searchField="name"
-      placeholder="Person suchen"
-      onfocus=(action "handleFocus")
-      onblur=(action "handleBlur")
-      onchange=(action "changePerson")
-    as |person|
-    }}
+    <PowerSelect @triggerId="people-search" @selected={{this.selected}} @options={{this.peopleToSelect}} @searchEnabled={{true}} @searchField="name" @placeholder="Person suchen" @onfocus={{action "handleFocus"}} @onblur={{action "handleBlur"}} @onChange={{action "changePerson"}} as |person|>
       {{person.name}} <small>({{person.company.name}})</small>
-    {{/power-select}}
+    </PowerSelect>
   </div>
   <div class="ml-3">
     {{#if this.selected}}

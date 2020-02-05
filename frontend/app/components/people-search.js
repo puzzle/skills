@@ -2,20 +2,21 @@ import Component from "@ember/component";
 import { inject as service } from "@ember/service";
 import { computed } from "@ember/object";
 import { isBlank } from "@ember/utils";
-import { action } from "@ember/object";
 
-export default class PeopleSearchComponent extends Component {
-  @service store;
-  @service router;
+export default Component.extend({
+  store: service(),
+  router: service(),
 
-  get selected() {
-    const currentId = this.get(
-      "router.currentState.routerJsState.params.person.person_id"
-    );
+  init() {
+    this._super(...arguments);
+  },
+
+  selected: computed("router.currentRoute.parent.params.person_id", function() {
+    const currentId = this.get("router.currentRoute.parent.params.person_id");
     if (currentId) return this.get("store").find("person", currentId);
-  }
+  }),
 
-  get peopleToSelect() {
+  peopleToSelect: computed(function() {
     return this.get("store")
       .findAll("person", { reload: true })
       .then(people =>
@@ -25,7 +26,7 @@ export default class PeopleSearchComponent extends Component {
           return 0;
         })
       );
-  }
+  }),
 
   focusComesFromOutside(e) {
     let blurredEl = e.relatedTarget;
@@ -33,22 +34,21 @@ export default class PeopleSearchComponent extends Component {
       return false;
     }
     return !blurredEl.classList.contains("ember-power-select-search-input");
-  }
+  },
 
-  @action
-  changePerson(person) {
-    this.set("selected", person);
-    person.reload();
-    this.get("router").transitionTo("person", person);
-  }
+  actions: {
+    changePerson(person) {
+      this.set("selected", person);
+      person.reload();
+      this.get("router").transitionTo("person", person);
+    },
 
-  @action
-  handleFocus(select, e) {
-    if (this.focusComesFromOutside(e)) {
-      select.actions.open();
-    }
-  }
+    handleFocus(select, e) {
+      if (this.focusComesFromOutside(e)) {
+        select.actions.open();
+      }
+    },
 
-  @action
-  handleBlur() {}
-}
+    handleBlur() {}
+  }
+});
