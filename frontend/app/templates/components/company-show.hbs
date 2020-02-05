@@ -1,15 +1,15 @@
 <div class="d-flex justify-content-between">
   <div>
-    {{updated-at entry=company}}
+    <UpdatedAt @entry={{company}} />
   </div>
   <div>
-    {{#link-to "companies.new"}}
+    <LinkTo @route="companies.new">
       <a>
         <i class="fa fa-plus-square" aria-hidden="true">
         </i>
         Neue Firma
       </a>
-    {{/link-to}}
+    </LinkTo>
   </div>
 </div>
 <hr class="">
@@ -43,7 +43,7 @@
     </div>
     {{!Profile Tab}}
     <div class="card mb-end">
-      {{company-profiles company=company}}
+      <CompanyProfiles @company={{company}} />
     </div>
 
 

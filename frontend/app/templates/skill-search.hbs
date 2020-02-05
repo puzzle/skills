@@ -22,7 +22,7 @@
     {{#if model}}
       {{#each model as |peopleSkill|}}
         <div class="p-2">
-          {{people-skill-show peopleSkill=peopleSkill showPersonName=true}}
+          <PeopleSkillShow @peopleSkill={{peopleSkill}} @showPersonName={{true}} />
         </div>
       {{/each}}
     {{else}}

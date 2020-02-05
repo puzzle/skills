@@ -3,14 +3,14 @@
     <div class="row">
       <div class="col-sm-3">
         <div class="input-group centered-content-input">
-          {{daterange-edit entity=newEducation}}
+          <DaterangeEdit @entity={{newEducation}} />
         </div>
       </div>
       <div class="col-sm-6 content-input">
         <label for={{concat elementId "-new-title"}}>Ausbildung</label>
-        {{input id=(concat elementId "-new-title") value=newEducation.title class="input-xxlarge form-control"}}
+        <Input @id={{concat elementId "-new-title"}} @value={{newEducation.title}} class="input-xxlarge form-control" />
         <label class="mt-2" for={{concat elementId "-new-loc"}}>Ausbildungsort</label>
-        {{textarea id=(concat elementId "-new-loc") value=newEducation.location class="input-xxlarge form-control"}}
+        <Textarea @id={{concat elementId "-new-loc"}} @value={{newEducation.location}} class="input-xxlarge form-control" />
       </div>
       <div class="col-md-3 centered-content d-flex flex-column mt-4 px-5">
         <button onclick={{action "submit" newEducation false}} role="button" id="submit-button" class="btn btn-primary m-2">Speichern</button>

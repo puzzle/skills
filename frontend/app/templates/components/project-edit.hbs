@@ -6,11 +6,9 @@
           Projekt bearbeiten
         </div>
         <div class="col-sm-6 text-right d-block">
-          {{#delete-with-confirmation
-             entry=project
-          }}
+          <DeleteWithConfirmation @entry={{project}}>
             Löschen
-          {{/delete-with-confirmation}}
+          </DeleteWithConfirmation>
         </div>
       </div>
     </div>
@@ -19,18 +17,18 @@
         <div class="row mb-2">
           <div class="col-sm-3">
             <div class="input-group centered-content-input">
-              {{daterange-edit entity=project}}
+              <DaterangeEdit @entity={{project}} />
             </div>
           </div>
           <div class="col-sm-7">
             <label for={{concat elementId "-name"}}>Projekt</label>
-            {{input id=(concat elementId "-name") value=projectChangeset.title class="form-control mb-2"}}
+            <Input @id={{concat elementId "-name"}} @value={{projectChangeset.title}} class="form-control mb-2" />
             <label for={{concat elementId "-desc"}}>Beschreibung</label>
-            {{textarea id=(concat elementId "-desc") value=projectChangeset.description class="form-control"}}
+            <Textarea @id={{concat elementId "-desc"}} @value={{projectChangeset.description}} class="form-control" />
             <label for={{concat elementId "-role"}}>Rolle und Aufgaben</label>
-            {{textarea id=(concat elementId "-role") value=projectChangeset.role class="form-control"}}
+            <Textarea @id={{concat elementId "-role"}} @value={{projectChangeset.role}} class="form-control" />
             <label for={{concat elementId "-tech"}}>Eingesetzte Technologien</label>
-            {{textarea id=(concat elementId "-tech") value=projectChangeset.technology class="form-control"}}
+            <Textarea @id={{concat elementId "-tech"}} @value={{projectChangeset.technology}} class="form-control" />
           </div>
         </div>
         <div class="mt-auto">

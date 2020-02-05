@@ -31,9 +31,7 @@
                         <tr>
                           <td class="nextToDelete" data-test-location>
                             {{l.text-field "location" label="Standort"}}
-                            {{delete-with-confirmation
-                            entry=location
-                            }}
+                            <DeleteWithConfirmation @entry={{location}} />
                           </td>
                         </tr>
                       {{/fields-for}}
@@ -87,9 +85,7 @@
                         <tr>
                           <td class="nextToDelete" data-test-employee-quantity-category>
                             {{q.text-field "category" label="Kategorie"}}
-                            {{delete-with-confirmation
-                            entry=quantity
-                            }}
+                            <DeleteWithConfirmation @entry={{quantity}} />
                           </td>
                         </tr>
                         <tr>

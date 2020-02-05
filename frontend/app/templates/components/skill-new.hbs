@@ -9,7 +9,7 @@
           <div class="row my-3">
             <div class="col-md-3">Titel</div>
             <div class="col-md-9">
-              {{input id=(concat elementId "-new-title") value=newSkill.title class="form-control" name="new-skill-title"}}
+              <Input @id={{concat elementId "-new-title"}} @value={{newSkill.title}} class="form-control" @name="new-skill-title" />
             </div>
           </div>
           <div class="row my-3">

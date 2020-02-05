@@ -15,7 +15,7 @@
     {{#each company.offers as |offer|}}
       <div class="row mb-2">
         <div class="col-sm-3" >
-          {{input value=offer.category type="text" class="form-control" placeholder="Neue Kategorie"}}
+          <Input @value={{offer.category}} @type="text" class="form-control" placeholder="Neue Kategorie" />
         </div>
         <div class="col-sm-8">
           {{#power-select-multiple-with-create
@@ -31,11 +31,9 @@
             {{offer}}
           {{/power-select-multiple-with-create}}
         </div>
-        {{#delete-with-confirmation
-          entry=offer
-        }}
+        <DeleteWithConfirmation @entry={{offer}}>
           Löschen
-        {{/delete-with-confirmation}}
+        </DeleteWithConfirmation>
       </div>
     {{/each}}
     <a role="button" class="card-link text-dark" {{action "createNewOffer" company}}><i class="fa add"></i></a>
@@ -44,7 +42,7 @@
         <span class="p-2">Weiteres (Bemerkungen)</span>
       </div>
       <div class="col-sm-8">
-        {{input type="textarea" value=company.offerComment class="form-control"}}
+        <Input @type="textarea" @value={{company.offerComment}} class="form-control" />
       </div>
       <div class="col-sm-1">
       </div>

@@ -29,7 +29,7 @@
           </tr>
           {{#if isLoading.isFulfilled}}
             {{#each expertiseTopics as |et|}}
-              {{expertise-topic-skill-value expertiseTopic=et expertiseCategory=expertiseCategory person=person}}
+              <ExpertiseTopicSkillValue @expertiseTopic={{et}} @expertiseCategory={{expertiseCategory}} @person={{person}} />
             {{/each}}
           {{/if}}
         </tbody>

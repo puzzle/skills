@@ -2,40 +2,37 @@
   <ul class="navbar-nav">
     <li class="nav-item">
       <a class="nav-link">
-        {{#link-to "person.index"}}
+        <LinkTo @route="person.index">
           CV
-        {{/link-to}}
+        </LinkTo>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link">
-        {{#link-to "person.skills" (query-params personId=personId rated="true") id="peopleSkillsLink"}}
+        <LinkTo @route="person.skills" @query={{hash personId=personId rated="true"}} @id="peopleSkillsLink">
           Skills
           {{#if unratedSkillsAmount}}
             <span class="badge badge-pill badge-success">
               {{unratedSkillsAmount}}
             </span>
           {{/if}}
-        {{/link-to}}
+        </LinkTo>
       </a>
     </li>
   </ul>
   <ul class="navbar-nav ml-auto">
     <div class="p-2">
       {{#basic-dropdown as |dd|}}
-        {{#dd.trigger}}
+        <dd.trigger>
           <a class="edit-buttons">
             <td><i class="fa fa-cog" aria-hidden="true"></i> Mehr Optionen</td>
           </a>
-        {{/dd.trigger}}
-        {{#dd.content class="content-bootstrap-feel"}}
-          {{#delete-with-confirmation
-            entry=person
-            transitionTo="people"
-          }}
+        </dd.trigger>
+        <dd.content @class="content-bootstrap-feel">
+          <DeleteWithConfirmation @entry={{person}} @transitionTo="people">
             Profil Löschen
-          {{/delete-with-confirmation}}
-        {{/dd.content}}
+          </DeleteWithConfirmation>
+        </dd.content>
       {{/basic-dropdown}}
     </div>
     <div class="p-2">

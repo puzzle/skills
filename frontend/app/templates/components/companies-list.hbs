@@ -1,7 +1,7 @@
 <div class="list-group" id="companies-list">
   {{#each sortedCompanies as |company|}}
-    {{#link-to "companies.show" company.id class="list-group-item"}}
+    <LinkTo @route="companies.show" @model={{company.id}} class="list-group-item">
       {{~company.name~}}
-    {{/link-to}}
+    </LinkTo>
   {{/each}}
 </div>

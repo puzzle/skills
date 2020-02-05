@@ -14,9 +14,9 @@
       {{#each originalPeople as |person|}}
         <div class="row mb-1">
           <div class="col-sm-3">
-            {{#link-to "person" person.id}}
+            <LinkTo @route="person" @model={{person.id}}>
               <span class="badge badge-info profil-knopf" href="#">{{person.name}}</span>
-            {{/link-to}}
+            </LinkTo>
           </div>
           <div class="col-sm-3">
             <span class="badge border border-secondary profil-knopf" href="#">{{person.title}}</span>
@@ -28,9 +28,9 @@
       {{/each}}
       <div class="row mb-1">
         <div class="col-sm-3">
-          {{#link-to "people.new"}}
+          <LinkTo @route="people.new">
             <span class="badge badge-success profil-knopf" href="#">Neues Profil</span>
-          {{/link-to}}
+          </LinkTo>
         </div>
       </div>
     </div>

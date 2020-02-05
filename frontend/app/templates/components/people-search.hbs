@@ -17,7 +17,7 @@
   </div>
   <div class="ml-3">
     {{#if selected}}
-      {{updated-at entry=selected class="updated-at-person"}}
+      <UpdatedAt @entry={{selected}} @class="updated-at-person" />
     {{/if}}
   </div>
 </div>

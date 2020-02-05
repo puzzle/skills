@@ -3,12 +3,12 @@
     <div class="row">
       <div class="col-sm-3">
         <div class="input-group centered-content-input">
-          {{daterange-edit entity=newAdvancedTraining}}
+          <DaterangeEdit @entity={{newAdvancedTraining}} />
         </div>
       </div>
       <div class="col-sm-6 mt-2">
         <label for={{concat elementId "-new-desc"}}>Beschreibung</label>
-        {{textarea id=(concat elementId "-new-desc") value=newAdvancedTraining.description class="input-xxlarge form-control"}}
+        <Textarea @id={{concat elementId "-new-desc"}} @value={{newAdvancedTraining.description}} class="input-xxlarge form-control" />
       </div>
       <div class="col-md-3 centered-content d-flex flex-column mt-4 px-5">
         <button onclick={{action "submit" newAdvancedTraining false}} role="button" id="submit-button" class="btn btn-primary m-2">Speichern</button>

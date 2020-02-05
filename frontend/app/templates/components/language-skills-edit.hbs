@@ -30,10 +30,8 @@
     </div>
     <div class="col-md-2 pl-0 pt-2" onclick={{action "deleteSkill" selectedSkill}} role="button">
       {{#unless isObligatoryLanguage}} 
-        {{#delete-with-confirmation
-          entry=selectedSkill
-        }}
-        {{/delete-with-confirmation}}
+        <DeleteWithConfirmation @entry={{selectedSkill}}>
+        </DeleteWithConfirmation>
       {{/unless}}
     </div>
   </div>
@@ -54,4 +52,4 @@ as |level|
   {{level}}
 {{/power-select}}
 <label class="description mt-2">Zertifikat</label>
-{{input class="w-100 input-field" placeholder="Leer lassen, falls keines" id="certificateInput" value=selectedSkill.certificate}}
+<Input class="w-100 input-field" placeholder="Leer lassen, falls keines" @id="certificateInput" @value={{selectedSkill.certificate}} />

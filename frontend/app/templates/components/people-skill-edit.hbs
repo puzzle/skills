@@ -23,13 +23,13 @@
   </div>
   <div class="col flex-column d-flex justify-content-center">
     <div class="row">
-      {{input type="checkbox" id=(concat peopleSkill.skill.id "-certificate") checked=peopleSkill.certificate}}
+      <Input @type="checkbox" @id={{concat peopleSkill.skill.id "-certificate"}} @checked={{peopleSkill.certificate}} />
       <label class="description ml-2 mb-0" for={{concat peopleSkill.skill.id "-certificate"}}>Zertifikat</label>
     </div>
   </div>
   <div class="col flex-column d-flex justify-content-center">
     <div class="row">
-      {{input type="checkbox" id=(concat peopleSkill.skill.id "-coreCompetence") checked=peopleSkill.coreCompetence}}
+      <Input @type="checkbox" @id={{concat peopleSkill.skill.id "-coreCompetence"}} @checked={{peopleSkill.coreCompetence}} />
       <label class="description ml-2 mb-0" for={{concat peopleSkill.skill.id "-coreCompetence"}}>Kernkompetenz</label>
     </div>
   </div>

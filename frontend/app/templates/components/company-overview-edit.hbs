@@ -9,11 +9,7 @@
           <div class="col-sm-6 text-right d-block text-white">
             {{#if (not-eq company.companyType "mine")}}
               <div id="delete-company-icon">
-                {{delete-with-confirmation
-                  entry=company
-                  transitionTo="companies"
-                  tagName="span"
-                }}
+                <DeleteWithConfirmation @entry={{company}} @transitionTo="companies" @tagName="span" />
               </div>
             {{/if}}
             <a {{action "submit" companyChangeset}} role="button" id="submit-button" class="card-link text-white">
@@ -47,9 +43,7 @@
                       <tr>
                         <td class="nextToDelete">
                           {{l.text-field "location" label="Standort"}}
-                          {{delete-with-confirmation
-                          entry=location
-                          }}
+                          <DeleteWithConfirmation @entry={{location}} />
                         </td>
                       </tr>
                     {{/fields-for}}
@@ -103,9 +97,7 @@
                       <tr>
                         <td class="nextToDelete">
                           {{q.text-field "category" label="Kategorie"}}
-                          {{delete-with-confirmation
-                          entry=quantity
-                          }}
+                          <DeleteWithConfirmation @entry={{quantity}} />
                         </td>
                       </tr>
                       <tr>

@@ -3,7 +3,7 @@
 {{/each}}
 
 <div id="person-collapse-group" class="collapse-group">
-  {{#nav-sidebar items=sidebarItems}}
+  <NavSidebar @items={{sidebarItems}}>
     <ul class="nav flex-column mt-2">
       <li class="d-flex flex-column nav-link border">
         <a role="button" class="edit-buttons" onclick={{pipe (action "startExport" model.id)}}>
@@ -11,7 +11,7 @@
         </a>
       </li>
     </ul>
-  {{/nav-sidebar}}
+  </NavSidebar>
   <div class="col-sm-10 float-right position-relative">
     <div id="accordion">
       {{!Personalien Tab}}
@@ -56,9 +56,9 @@
       </div>
       {{!Projekte Tab}}
       <div class="card mb-end" id="projects">
-        {{projects-show projects=model.projects personId=model.id}}
+        <ProjectsShow @projects={{model.projects}} @personId={{model.id}} />
       </div>
-      {{scroll-to-top-button}}
+      <ScrollToTopButton />
     </div>
   </div>
 </div>

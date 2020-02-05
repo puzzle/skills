@@ -12,7 +12,7 @@
         <div class="card-body">
           <div class="row">
             <div class="p-4">
-              {{picture-edit picturePath=picturePath uploadPath=personPictureUploadPath}}
+              <PictureEdit @picturePath={{picturePath}} @uploadPath={{personPictureUploadPath}} />
             </div>
 
             <div class="col-sm">
@@ -73,10 +73,7 @@
                             <input name="person[role-percent]" placeholder="in %" type="number" value={{personRole.percent}} onchange={{action "setRolePercent" personRole}} max="9999">
                           </div>
                           <div class="delete-role-icon">
-                            {{delete-with-confirmation
-                              entry=personRole
-                              class="edit-buttons"
-                            }}
+                            <DeleteWithConfirmation @entry={{personRole}} @class="edit-buttons" />
                           </div>
                         </td>
                       </tr>
@@ -165,8 +162,7 @@
                   <tr>
                     <td>
                       <label>Doppelbürger</label>
-                      {{input type="checkbox" checked=secondNationality click=(action "switchNationality" value="target.checked")
-                      id="toggle-nationalities-id" class="checkbox"}}
+                      <Input @type="checkbox" @checked={{secondNationality}} @click={{action "switchNationality" value="target.checked"}} @id="toggle-nationalities-id" class="checkbox" />
                     </td>
                   </tr>
                   <tr>
@@ -222,7 +218,7 @@
                   </tr>
                   <tr>
                     <div class="border rounded mt-2 p-2">
-                      {{language-skills-edit person=person}}
+                      <LanguageSkillsEdit @person={{person}} />
                     </div>
                   </tr>
                 </tbody>

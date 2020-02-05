@@ -14,21 +14,19 @@
             <div class="row">
               <div class="col-sm-3">
                 <div class="input-group centered-content-input">
-                  {{daterange-edit entity=education}}
+                  <DaterangeEdit @entity={{education}} />
                 </div>
               </div>
               <div class="col-sm-7 content-input">
                 <label for={{concat elementId "-" education.id "-title"}}>Ausbildung</label>
-                {{input id=(concat elementId "-" education.id "-title") value=education.title class="input-xxlarge form-control"}}
+                <Input @id={{concat elementId "-" education.id "-title"}} @value={{education.title}} class="input-xxlarge form-control" />
                 <label class="mt-2" for={{concat elementId "-" education.id "-loc"}}>Ausbildungsort</label>
-                {{textarea id=(concat elementId "-" education.id "-loc") value=education.location class="input-xxlarge form-control"}}
+                <Textarea @id={{concat elementId "-" education.id "-loc"}} @value={{education.location}} class="input-xxlarge form-control" />
               </div>
               <div id="delete-education-icon" onclick={{action "notify"}} role="button">
-                {{#delete-with-confirmation
-                  entry=education
-                }}
+                <DeleteWithConfirmation @entry={{education}}>
                   Löschen
-                {{/delete-with-confirmation}}
+                </DeleteWithConfirmation>
               </div>
             </div>
           </div>

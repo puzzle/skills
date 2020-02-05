@@ -1,11 +1,5 @@
 <div class="input-group search-field">
-  {{input
-    elementId="skillsetSearchfield"
-    value=value
-    key-up=(action "filterByName")
-    class="light form-control search-field"
-    placeholder="Suchen"
-  }}
+  <Input @elementId="skillsetSearchfield" @value={{value}} @key-up={{action "filterByName"}} class="light form-control search-field" placeholder="Suchen" />
   <div class="input-group-text search-icon">
     <i class="fa fa-search"></i>
   </div>

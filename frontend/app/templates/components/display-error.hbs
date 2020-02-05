@@ -18,7 +18,7 @@
   <button class="btn btn-primary" onclick={{toggle "showStack" this}}>
     Show stack
   </button>
-  {{#link-to "people" class="btn btn-primary"}}Bring me home{{/link-to}}
+  <LinkTo @route="people" class="btn btn-primary">Bring me home</LinkTo>
   {{#if showStack}}
     <pre class="error-stack">{{error.stack}}</pre>
   {{/if}}

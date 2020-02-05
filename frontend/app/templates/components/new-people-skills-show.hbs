@@ -18,7 +18,7 @@
     {{#each newPeopleSkills as |peopleSkill|}}
       <div class="new-people-skill-show row py-2">
         <div class="col-md-10">
-          {{people-skill-edit peopleSkill=peopleSkill}}
+          <PeopleSkillEdit @peopleSkill={{peopleSkill}} />
         </div>
         <div class="col-md-2 col flex-column d-flex justify-content-center">
           <a class="edit-buttons" role="button" onclick={{action "saveWithDefault" peopleSkill}}>Nicht bewerten</a>

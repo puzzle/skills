@@ -1,5 +1,5 @@
 <td>
-  {{input id=(concat elementId "-edit-title") value=changeset.title class="form-control" name="edit-skill-title" placeholder="Titel"}}
+  <Input @id={{concat elementId "-edit-title"}} @value={{changeset.title}} class="form-control" @name="edit-skill-title" placeholder="Titel" />
 </td>
 <td>
   {{skill.people.length}}
@@ -39,7 +39,7 @@
 </td>
 <td>
   <div class="d-flex justify-content-center mt-2">
-    {{input type="checkbox" id=(concat elementId "-edit-defaultSet") checked=changeset.defaultSet}}
+    <Input @type="checkbox" @id={{concat elementId "-edit-defaultSet"}} @checked={{changeset.defaultSet}} />
   </div>
 </td>
 <td class="skill-edit-dropdown overflow-visible">
@@ -82,6 +82,6 @@
     <a role="button" onclick={{action "abort"}} class="edit-buttons">
       <i class="fa fa-times"></i>
     </a>
-    {{#delete-with-confirmation entry=skill}}{{/delete-with-confirmation}}
+    <DeleteWithConfirmation @entry={{skill}}></DeleteWithConfirmation>
   </div>
 </td>
