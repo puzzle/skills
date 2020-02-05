@@ -102,82 +102,12 @@ From here on continue with the [frontend setup](https://github.com/puzzle/skills
 -   To run a single test run the following command in the frontend folder `npm test --filter "some filter words"`
 -   There is also `rake ci` and `rake ci:nightly` which should be periodically exectued by a build job (e.g. on jenkins)
 
+## Documentation
+Find further Documentation at the links below
 
-## Contributing
-#### Definition of Done (DoD) for new Code / Features
-
--   Implementation (including frontend and backend tests)
--   `rake spec` passes
--   `rake spec:frontend` passes
--   `rubocop` passes
--   Manual testing (start server, frontend and click through the new feature)
--   Peer review (We will assign a reviewer)
--   Remove obsolete code
-
-#### Entity Relationship Diagram
-To gain an overview of the project an ERD might help, run:
-
-```shell
-bundle exec erd
-```
-
-## Configuration
-
-### LDAP config
-
-The following environment variables are required for using ldap:
-
-| Umgebungsvariable | Beschreibung                                       | Default |
-| ----------------- | -------------------------------------------------- | ------- |
-| LDAP_BASENAME     | LDAP Base name, e.g. ou=users,dc=yourdomain,dc=com | -       |
-| LDAP_HOSTNAME     | LDAP Server host name                              | -       |
-| LDAP_PORT         | LDAP Server Port                                   | 686     |
-
-### Enable Authentication in development
-
-Set the Environment variable ENABLE_AUTH to true in backend.
-
-### Managing Data
-
-Roles, departments and person-role-levels can't be updated, created or deleted through the UI. For this you must use the rails console.
-
--   Enter the root folder and type `rails c`
--   Establish the connection to the table: `Model.connection` e.g. `Role.connection`
--   Use `Model.create`, `Model.update` or `Model.delete` for your desired action.
-
-Model names: Role, PersonRoleLevel, Department
-
-Exact documentation for these methods can be found [here](https://guides.rubyonrails.org/active_record_basics.html#crud-reading-and-writing-data)
-
-### Managing Categories
-
-Categories can be added using the [skill_config.yml](https://github.com/puzzle/skills/blob/master/config/skill_config.yml) file.
-
-But they can't be removed or updated this way. They have to be updated/deleted manually like the roles above.
-
-## Docker
-
-there's an official build on dockerhub: <https://hub.docker.com/r/puzzle/skills/>
-
-| tag    | purpose       | description                                                                     |     |
-| ------ | ------------- | ------------------------------------------------------------------------------- | --- |
-| latest | testing / dev | built from master branch which includes most recent but maybe unstable features | -   |
-| stable | production    | built from stable branch with most recent tested/stable features                |     |
-
-### Run with PostgreSQL
-
-For ubuntu:
-
-  Prerequisites [docker](https://docs.docker.com/install/linux/docker-ce/ubuntu) && [docker-compose](https://docs.docker.com/compose/install)
-
-  1. `$ mkdir -p skills && cd skills`
-  1. `$ wget https://raw.githubusercontent.com/puzzle/skills/master/config/docker/postgresql/docker-compose.yml`
-  1. `$ wget https://raw.githubusercontent.com/puzzle/skills/master/config/docker/postgresql/psql-prod.env.tmpl -O psql-prod.env`
-  1. edit psql-prod.env
-  1. `$ docker-compose up -d`
-  1. `$ docker exec -it skills_web /bin/bash`
-  1. `$ bundle exec rake db:setup`
-  1. open http://localhost:8080 in the browser
+[Contributing](https://github.com/puzzle/skills/blob/master/doc/CONTRIBUTING.md)
+[Configuration](https://github.com/puzzle/skills/blob/master/doc/CONFIGURATION.md)
+[DockerImage](https://github.com/puzzle/skills/blob/master/doc/DOCKER.md)
 
 ## Front-End
 
