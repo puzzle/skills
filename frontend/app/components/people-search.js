@@ -21,7 +21,7 @@ export default Component.extend({
     }
   ),
 
-  peopleToSelect: computed(function() {
+  get peopleToSelect() {
     return this.get("store")
       .findAll("person", { reload: true })
       .then(people =>
@@ -31,7 +31,7 @@ export default Component.extend({
           return 0;
         })
       );
-  }),
+  },
 
   focusComesFromOutside(e) {
     let blurredEl = e.relatedTarget;
