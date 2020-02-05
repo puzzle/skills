@@ -1,55 +1,100 @@
-# PuzzleSkills
+<p align="center">
+  <a href="https://github.com/puzzle/skills">
+    <img src="https://skills.puzzle.ch/logo.svg"  width="400" height="82">
+  </a>
+</p>
 
 [![Build Status](https://travis-ci.org/puzzle/skills.svg?branch=master)](https://travis-ci.org/puzzle/skills)
 
-PuzzleSkills is a open source webapplication for skill management. Users can manage their profiles and CVs with PuzzleSkills. We are working on additional skill management features.
+PuzzleSkills is an open source webapplication to facilitate skill management.   
+With the help of PuzzleSkills Users can manage their profiles, CVs and Skills.   
 
 ## Back-End
 
-The Back-End is built with Ruby on Rails with an API interface.
+This is the Backend documentation for the PuzzleSkills Application .
+The Back-End is built with [Ruby on Rails](https://rubyonrails.org/) with an API interface.
 
-### Prerequisites
+## Prerequisites
 
-You will need the following things properly installed on your computer.
+You will need the following things properly installed on your computer:
 
--   [Git](http://git-scm.com/)
--   [RVM](http://rvm.io/)
--   PostgreSQL or Docker to install postgresql container
+-   [Git (Version Control System)](http://git-scm.com/)
+-   [RVM (Ruby Version Manager)](http://rvm.io/)
+  -   Either [PostgreSQL](https://www.postgresql.org/) or [Docker](https://www.docker.com/) for the Database (Docker is recommended)
 
-### Development
+## Quick Setup
 
--   `git clone https://github.com/puzzle/skills.git`
--   `cd skills`
--   `rvm install 2.5`
--   `rvm use 2.5`
--   `gem install bundler`
--   `sudo apt-get install libpq-dev`
--   `sudo apt-get install libmysqlclient-dev`
--   `bundle install`
+Clone the repository to your machine:
+```shell
+git clone https://github.com/puzzle/skills.git
+```  
+Enter the repository:
+```shell
+cd skills
+```
+Install Ruby with the help of RVM:
+```shell
+rvm install 2.5
+```
+Tell RVM to use the just install Ruby Version:
+```shell
+rvm use 2.5
+```
+Install the ruby package manager:
+```shell
+gem install bundler
+```
+And let the bundler install all the prerequisite gems:
+```shell
+bundle install
+```
 
-#### database setup
+#### Database setup
 
-##### Docker
+##### With Docker
 
--   Install docker and docker-compose <https://docs.docker.com/install/linux/docker-ce/ubuntu/>
--   `cd $project_git_dir` and `docker-compose up -d`
+  Install [docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/) and [docker-compose](https://docs.docker.com/compose/install/)
+```
+docker-compose up -d
+```
 
-##### Classic
+##### Just with Vanilla Postgresql
+Install Postgresql
 
--   `sudo apt-get install postgresql postgresql-contrib`
--   `sudo su - postgres`
--   `createuser puzzlecv -s -l -P` (with password puzzlecv)
--   type `exit`
+```shell
+sudo apt-get install postgresql postgresql-contrib
+```
+Start Postgresql as superuser
+```shell
+sudo su - postgres
+```
+Create the user skills
+```shell
+createuser skills -s -l -P
+```
+(with password 'skills')
+```shell
+exit
+```
 
-go back to skills repo
 
--   `rails db:setup`
+##### With the Server setup completed
+go back to the skills folder
 
-now run backend server
+And let rails setup the database  
+```shell
+rails db:setup
+```
 
--   `rails s`
+## Running / Development
+You can run the backend server with
+```shell
+rails s
+```
+Congratulations you have the Ruby on Rails backend up and running.
+From here on continue with the [frontend setup](https://github.com/puzzle/skills/blob/master/frontend/README.md)
 
-#### Testing
+## Testing
 
 -   To run the backend tests run `rake spec`
 -   Frontend tests can be executed with `rake spec:frontend`
@@ -57,19 +102,26 @@ now run backend server
 -   To run a single test run the following command in the frontend folder `npm test --filter "some filter words"`
 -   There is also `rake ci` and `rake ci:nightly` which should be periodically exectued by a build job (e.g. on jenkins)
 
+
+## Contributing
 #### Definition of Done (DoD) for new Code / Features
 
--   implementation (inclusive correspondent frontend and backend tests)
--   `rails spec` passes
--   `rails spec:frontend` passes
+-   Implementation (including frontend and backend tests)
+-   `rake spec` passes
+-   `rake spec:frontend` passes
 -   `rubocop` passes
--   manual testing (start server, frontend and click through the new feature)
--   peer review
--   remove obsolete code
+-   Manual testing (start server, frontend and click through the new feature)
+-   Peer review (We will assign a reviewer)
+-   Remove obsolete code
 
 #### Entity Relationship Diagram
+To gain an overview of the project an ERD might help, run:
 
--   run `bundle exec erd` to create the current ERD
+```shell
+bundle exec erd
+```
+
+## Configuration
 
 ### LDAP config
 

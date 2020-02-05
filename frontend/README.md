@@ -1,7 +1,13 @@
-# frontend
+<p align="center">
+  <a href="https://github.com/puzzle/skills">
+    <img src="https://skills.puzzle.ch/logo.svg"  width="400" height="82">
+  </a>
+</p>
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+# Frontend
+
+This is the Frontend part of the PuzzleSkills setup documentation  
+The Frontend is built with [Ember.js](https://emberjs.com/)
 
 ## Prerequisites
 
@@ -10,62 +16,72 @@ You will need the following things properly installed on your computer.
 * [Git](https://git-scm.com/)
 * [Node.js](https://nodejs.org/) (with NPM)
 * [Ember CLI](https://ember-cli.com/)
-* [Google Chrome](https://google.com/chrome/)
-* [NVM] (https://github.com/creationix/nvm) + Version 8 of Node.js
+* [NVM](https://github.com/creationix/nvm)
 
-## Installation
+## Installation Guide
 
-* `nvm install 8`
-* `npm install -g ember-cli`
-* `cd frontend`
-* `yarn install`
+Install node version 8 with the Node Version Manager
+```shell
+nvm install 8
+```
+Install Ember-Cli with NPM
+```shell
+npm install -g ember-cli
+```
+Go into the frontend folder of the project
+```shell
+cd frontend
+```
+There, run yarn install which will install all the packages
+```shell
+yarn install
+```
 
 ## Running / Development
-With Mirage Fixtures:
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+With the rails backend server running you can start the frontend, directing it at the rails server on port 3000
 
-With Running Backend:
+```shell
+ember server --proxy=http://localhost:3000
+```
+Congratulations the PuzzleSkills Application is now online, you can visit it at
 
-* `ember server --proxy=http://localhost:3000`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+##### <code> [http://localhost:4200](http://localhost:4200) </code>
 
+## Documentation
 
 ### Code Generators
 
-Make use of the many generators for code, try `ember help generate` for more details
+Make use of the Ember code generators, try `ember help generate` for more details
 
 ### Running Tests
 
-#### Test Server
+To run the frontend test use the following command:
+```shell
+rake spec:frontend
+```
 
-During development run ember test server `bin/frontend-tests.sh server` and access it by webbrowser: http://localhost:7357.
-For debuging add `this.pauseTest()` at the according line in the test file.
+To run a single frontend test use the following command
 
-#### Console
-
-* `rake spec:frontend:serve` (from skills)[See skills/README.md](https://github.com/puzzle/skills/blob/master/README.md)
-* `ember test` (from frontend, acceptance tests are failing)
-* `ember test --server`
-
-Run a single frontend test:
-
-* `ember test --filter="test's title"` or enter required filter in ember test server frontend
+```shell
+ember test --filter="test's title"
+```
+or select the test from the dropdown in the test browser.
 
 ### Building
 
-* `ember build` (development)
-* `ember build --environment production` (production)
-* [ember.js](https://emberjs.com/)
-### Deploying
+Building for development:
+```shell
+ember build
+```
+Building for production:
+```shell
+ember build --environment production
+```
 
-Specify what it takes to deploy your app.
 
-## Further Reading / Useful Links
+### Browser Extension
+Use the Ember Inspector for easier debugging of the Frontend Application
 
-* [ember.js](http://emberjs.com/)
-* [ember-cli](https://ember-cli.com/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+* [Ember inspector for Chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)  
+* [Ember inspector for Firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
