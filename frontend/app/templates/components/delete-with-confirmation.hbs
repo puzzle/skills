@@ -2,7 +2,7 @@
   <i class="fa fa-trash"></i> {{yield}}
 </a>
 
-{{#if showConfirmation}}
+{{#if this.showConfirmation}}
   <div id="delete-confirmation-modal" class="modal fade show text-left" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -10,11 +10,11 @@
           <h5 class="modal-title">Löschen bestätigen</h5>
         </div>
         <div class="modal-body">
-          {{t "delete-confirmation.message" name=entry.instanceToString}}
+          {{t "delete-confirmation.message" name=this.entry.instanceToString}}
         </div>
         <div class="modal-footer">
           <button id="cancel-button" class="btn btn-secondary" {{action "cancel"}}>Abbrechen</button>
-          <button id="delete-button" class="btn btn-primary" {{action "delete" entry transitionTo}}>Löschen</button>
+          <button id="delete-button" class="btn btn-primary" {{action "delete" this.entry this.transitionTo}}>Löschen</button>
         </div>
       </div>
     </div>

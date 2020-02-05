@@ -2,8 +2,8 @@
   <div class="people-search">
     {{#power-select
       triggerId="people-search"
-      selected=selected
-      options=peopleToSelect
+      selected=this.selected
+      options=this.peopleToSelect
       searchEnabled=true
       searchField="name"
       placeholder="Person suchen"
@@ -16,7 +16,7 @@
     {{/power-select}}
   </div>
   <div class="ml-3">
-    {{#if selected}}
+    {{#if this.selected}}
       <UpdatedAt @entry={{selected}} @class="updated-at-person" />
     {{/if}}
   </div>

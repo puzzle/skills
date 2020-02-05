@@ -14,15 +14,15 @@
               </LinkTo>
             </ul>
             <ul class="navbar-nav ml-auto">
-              {{#if session.authenticated}}
+              {{#if this.session.authenticated}}
                 <li class="nav-item border-black border-bottom-0 border-top-0 border-right-0">
                   <a id="logout-button" role="button" class="nav-link pull-right" {{action "transitionToProfile"}}>
-                    <i class="fa fa-user-circle" aria-hidden="true"></i> {{username}}
+                    <i class="fa fa-user-circle" aria-hidden="true"></i> {{this.username}}
                   </a>
                 </li>
               {{/if}}
               <li class="nav-item border-black border-bottom-0 border-top-0">
-                <a href={{helplink}} target="_blank" class="nav-link pull-right" rel="noopener" role="button">
+                <a href={{this.helplink}} target="_blank" class="nav-link pull-right" rel="noopener" role="button">
                   <i class="fa fa-life-ring" aria-hidden="true"></i>
                 </a>
               </li>
@@ -50,7 +50,7 @@
                   CV Suche
                 </LinkTo>
               </li>
-              {{#if isAdmin}}
+              {{#if this.isAdmin}}
                 <li class="nav-item hovering-nav-bar">
                   <LinkTo @route="skills" class="nav-link text-white rounded-0">
                     Skillset

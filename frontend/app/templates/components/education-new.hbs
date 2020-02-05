@@ -1,20 +1,19 @@
-<form onsubmit={{action "submit" newEducation}} id="form_newEducation">
+<form onsubmit={{action "submit" this.newEducation}} id="form_newEducation">
   <div id="newEducation-content-edit" class="zeile">
     <div class="row">
       <div class="col-sm-3">
         <div class="input-group centered-content-input">
-          <DaterangeEdit @entity={{newEducation}} />
+          <DaterangeEdit @entity={{this.newEducation}} />
         </div>
       </div>
       <div class="col-sm-6 content-input">
-        <label for={{concat elementId "-new-title"}}>Ausbildung</label>
-        <Input @id={{concat elementId "-new-title"}} @value={{newEducation.title}} class="input-xxlarge form-control" />
-        <label class="mt-2" for={{concat elementId "-new-loc"}}>Ausbildungsort</label>
-        <Textarea @id={{concat elementId "-new-loc"}} @value={{newEducation.location}} class="input-xxlarge form-control" />
-      </div>
+        <label for={{concat this.elementId "-new-title"}}>Ausbildung</label>
+        <Input @id={{concat this.elementId "-new-title"}} @value={{this.newEducation.title}} class="input-xxlarge form-control" />
+        <label class="mt-2" for={{concat this.elementId "-new-loc"}}>Ausbildungsort</label>
+        <Textarea @id={{concat this.elementId "-new-loc"}} @value={{this.newEducation.location}} class="input-xxlarge form-control" />      </div>
       <div class="col-md-3 centered-content d-flex flex-column mt-4 px-5">
-        <button onclick={{action "submit" newEducation false}} role="button" id="submit-button" class="btn btn-primary m-2">Speichern</button>
-        <button onclick={{action "submit" newEducation true}} role="button" class="btn btn-info border m-2">Speichern & Neu</button>
+        <button onclick={{action "submit" this.newEducation false}} role="button" id="submit-button" class="btn btn-primary m-2">Speichern</button>
+        <button onclick={{action "submit" this.newEducation true}} role="button" class="btn btn-info border m-2">Speichern & Neu</button>
         <a href="#" onclick={{action "abortNew"}} role="button" id="submit-button" class="abort-edit-buttons text-center mx-4">Abbrechen</a>
       </div>
     </div>

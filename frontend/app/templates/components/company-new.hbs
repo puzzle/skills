@@ -1,14 +1,14 @@
 <section id="profil" class="section">
   <div id="accordion">
     <div class="card mb-3">
-      {{#form-for newCompany submit=(action "submit" newCompany) as |f|}}
+      {{#form-for this.newCompany submit=(action "submit" this.newCompany) as |f|}}
         <div class="card-header bg-primary">
           <div class="row">
             <div class="col-sm-6">
               <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Firma Erfassen</a>
             </div>
             <div class="col-sm-6 text-right d-block">
-              <a {{action "submit" newCompany}} role="button" id="submit-button" class="card-link text-white"><i class="fa save"></i></a>
+              <a {{action "submit" this.newCompany}} role="button" id="submit-button" class="card-link text-white"><i class="fa save"></i></a>
             </div>
           </div>
         </div>
@@ -23,10 +23,10 @@
                     </tr>
                     <tr>
                       <td>
-                        <button data-test-add-location class="btn btn-success form-field--control" type="button" {{action "addLocations" newCompany}}>Neue Adresse</button>
+                        <button data-test-add-location class="btn btn-success form-field--control" type="button" {{action "addLocations" this.newCompany}}>Neue Adresse</button>
                       </td>
                     </tr>
-                    {{#each newCompany.locations as |location|}}
+                    {{#each this.newCompany.locations as |location|}}
                       {{#fields-for location as |l|}}
                         <tr>
                           <td class="nextToDelete" data-test-location>
@@ -77,10 +77,10 @@
                     </tr>
                     <tr>
                       <td>
-                        <button data-test-add-employee-quantity class="btn btn-success form-field--control" type="button" {{action "addEmployeeQuantity" newCompany}}>Neue Mitarbeiter-Anzahl</button>
+                        <button data-test-add-employee-quantity class="btn btn-success form-field--control" type="button" {{action "addEmployeeQuantity" this.newCompany}}>Neue Mitarbeiter-Anzahl</button>
                       </td>
                     </tr>
-                    {{#each newCompany.employeeQuantities as |quantity|}}
+                    {{#each this.newCompany.employeeQuantities as |quantity|}}
                       {{#fields-for quantity as |q|}}
                         <tr>
                           <td class="nextToDelete" data-test-employee-quantity-category>

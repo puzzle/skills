@@ -1,8 +1,8 @@
-<div class="span2 {{if response.isPending "loading-mask"}}">
+<div class="span2 {{if this.response.isPending "loading-mask"}}">
   <input type="file" class="img-input" hidden>
   <div>
     <img
-      src={{picturePath}}
+      src={{this.picturePath}}
       class="pic img-polaroid profil-img rounded-circle img-avatar-edit"
       role="button"
       onclick={{action "changePicture"}}

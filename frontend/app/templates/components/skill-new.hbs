@@ -9,7 +9,7 @@
           <div class="row my-3">
             <div class="col-md-3">Titel</div>
             <div class="col-md-9">
-              <Input @id={{concat elementId "-new-title"}} @value={{newSkill.title}} class="form-control" @name="new-skill-title" />
+              <Input @id={{concat this.elementId "-new-title"}} @value={{this.newSkill.title}} class="form-control" @name="new-skill-title" />
             </div>
           </div>
           <div class="row my-3">
@@ -20,10 +20,10 @@
                 renderInPlace=true
                 class="w-100"
                 dropdownClass="w-100"
-                options=childCategories
-                matcher=categorySearchMatcher
-                disabled=(eq newSkillSelected false)
-                selected=selectedCategory
+                options=this.childCategories
+                matcher=this.categorySearchMatcher
+                disabled=(eq this.newSkillSelected false)
+                selected=this.selectedCategory
                 onchange=(action "setCategory")
                 onblur=(action "handleBlur")
                 onfocus=(action "handleFocus")
@@ -42,8 +42,8 @@
                 renderInPlace=true
                 class="w-100"
                 dropdownClass="w-100"
-                options=radarOptions
-                selected=newSkill.radar
+                options=this.radarOptions
+                selected=this.newSkill.radar
                 onchange=(action "setRadar")
                 onblur=(action "handleBlur")
                 onfocus=(action "handleFocus")
@@ -62,8 +62,8 @@
                 renderInPlace=true
                 class="w-100"
                 dropdownClass="w-100"
-                options=portfolioOptions
-                selected=newSkill.portfolio
+                options=this.portfolioOptions
+                selected=this.newSkill.portfolio
                 onchange=(action "setPortfolio")
                 onfocus=(action "handleFocus")
                 onkeydown=(action "setWithKey" "setPortfolio")

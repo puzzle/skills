@@ -1,8 +1,8 @@
 <label id="category-filter-label" class="description">Kategorie</label>
 <div id="category-filter-dropdown">
   {{#power-select
-  selected=selectedCategory
-  options=categories
+  selected=this.selectedCategory
+  options=this.categories
   searchEnabled=false
   onfocus=(action "handleFocus")
   onblur=(action "handleBlur")

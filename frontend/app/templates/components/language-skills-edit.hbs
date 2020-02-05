@@ -1,7 +1,7 @@
 <ul class="nav nav-tabs">
-  {{#each sortedLanguageSkills as |skill|}}
+  {{#each this.sortedLanguageSkills as |skill|}}
     <li class="nav-item">
-      <a class= "nav-link {{if (eq skill.language selectedLanguage.iso1) "active"}}" onclick={{action "setSkill" skill}} role="button">{{skill.language}}</a>
+      <a class= "nav-link {{if (eq skill.language this.selectedLanguage.iso1) "active"}}" onclick={{action "setSkill" skill}} role="button">{{skill.language}}</a>
     </li>
   {{/each}}
   <li class="nav-item">
@@ -14,13 +14,13 @@
       {{#power-select
       triggerClass="mt-2"
       triggerId="language"
-      selected=selectedLanguage
-      options=languages
+      selected=this.selectedLanguage
+      options=this.languages
       onfocus=(action "handleFocus")
       onblur=(action "handleBlur")
       onchange=(action "setLanguage")
       onkeydown=(action "setWithTab" "setLanguage")
-      disabled=isObligatoryLanguage
+      disabled=this.isObligatoryLanguage
       searchField="name"
       as |language|
       }}
@@ -28,9 +28,9 @@
       {{/power-select}}
 
     </div>
-    <div class="col-md-2 pl-0 pt-2" onclick={{action "deleteSkill" selectedSkill}} role="button">
-      {{#unless isObligatoryLanguage}} 
-        <DeleteWithConfirmation @entry={{selectedSkill}}>
+    <div class="col-md-2 pl-0 pt-2" onclick={{action "deleteSkill" this.selectedSkill}} role="button">
+      {{#unless this.isObligatoryLanguage}} 
+        <DeleteWithConfirmation @entry={{this.selectedSkill}}>
         </DeleteWithConfirmation>
       {{/unless}}
     </div>
@@ -40,16 +40,16 @@
 {{#power-select
 triggerClass="w-70 d-block"
 triggerId="level"
-selected=selectedSkill.level
+selected=this.selectedSkill.level
 searchEnabled=false
-options=levels
+options=this.levels
 onfocus=(action "handleFocus")
 onblur=(action "handleBlur")
-onchange=(action (mut selectedSkill.level))
+onchange=(action (mut this.selectedSkill.level))
 onkeydown=(action "setWithTab" "setLevel")
 as |level|
 }}
   {{level}}
 {{/power-select}}
 <label class="description mt-2">Zertifikat</label>
-<Input class="w-100 input-field" placeholder="Leer lassen, falls keines" @id="certificateInput" @value={{selectedSkill.certificate}} />
+<Input class="w-100 input-field" placeholder="Leer lassen, falls keines" @id="certificateInput" @value={{this.selectedSkill.certificate}} />

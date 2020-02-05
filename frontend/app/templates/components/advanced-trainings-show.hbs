@@ -2,20 +2,20 @@
   <div class="card-header bg-info">
     <div class="row">
       <div class="col-sm-6 header-text">
-        Weiterbildung ({{amountOfAdvancedTrainings}})
+        Weiterbildung ({{this.amountOfAdvancedTrainings}})
       </div>
     </div>
   </div>
   <div class="border border-info rounded-bottom">
     <div class="card-body d-flex flex-column">
       <div class="mb-2">
-        <a onclick={{action "toggleAdvancedTrainingNew" true}} role="button" class={{~unless advanced-trainingNew "edit-buttons"~}}><i class="fa {{~unless advanced-trainingNew " add"~}}"></i> {{~unless advanced-trainingNew " Weiterbildung hinzufügen"~}}</a>
+        <a onclick={{action "toggleAdvancedTrainingNew" true}} role="button" class={{~unless this.advanced-trainingNew "edit-buttons"~}}><i class="fa {{~unless this.advanced-trainingNew " add"~}}"></i> {{~unless this.advanced-trainingNew " Weiterbildung hinzufügen"~}}</a>
       </div>
       <div id="advancedtraining-content-show" class="mb-2">
-        {{component (if advanced-trainingNew "advanced-training-new")
-            personId=person.id
+        {{component (if this.advanced-trainingNew "advanced-training-new")
+            personId=this.person.id
             done=(action "toggleAdvancedTrainingNew")}}
-        {{#each sortedAdvancedTrainings as |advanced-training|}}
+        {{#each this.sortedAdvancedTrainings as |advanced-training|}}
           <div class="zeile">
             <div class="row">
               <div class="col-sm-3 text-center">
@@ -33,10 +33,10 @@
           </div>
         {{/each}}
       </div>
-      {{#if sortedAdvancedTrainings}}
-        {{#unless advanced-trainingNew}}
+      {{#if this.sortedAdvancedTrainings}}
+        {{#unless this.advanced-trainingNew}}
           <div class="mt-auto">
-            <a onclick={{advancedTrainingsEditing}} role="button" class="edit-buttons"><i class="fa fa-edit"></i> Bearbeiten</a>
+            <a onclick={{this.advancedTrainingsEditing}} role="button" class="edit-buttons"><i class="fa fa-edit"></i> Bearbeiten</a>
           </div>
         {{/unless}}
       {{/if}}

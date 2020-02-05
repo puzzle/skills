@@ -1,4 +1,4 @@
-  <SkillShow @skill={{currentSkill}} />
+  <SkillShow @skill={{this.currentSkill}} />
   <div id="skillset-header" class="header pt-3">
     <div class="row mb-3">
       <div class="col-sm-12 search-skill-field">
@@ -8,7 +8,7 @@
         <SkillsetDefaultsetFilter />
       </div>
       <div class="col-sm-5">
-        <SkillsetCategoryFilter @parentCategories={{parentCategories}} />
+        <SkillsetCategoryFilter @parentCategories={{this.parentCategories}} />
       </div>
       <div class="col-sm-1">
         <a onclick={{pipe (action "exportSkillsetOdt")}} class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Exportiert das gesamte Skillset">
@@ -39,9 +39,9 @@
       </tr>
     </thead>
     <tbody class="mt-5">
-      {{#each sortedSkills as |skill|}}
-        {{#if (array-contains editSkills skill)}}
-          <SkillsListRowEdit @skill={{skill}} @parentCategories={{parentCategories}} @childCategories={{childCategories}} @stopEditing={{action "stopEditing" skill}} />
+      {{#each this.sortedSkills as |skill|}}
+        {{#if (array-contains this.editSkills skill)}}
+          <SkillsListRowEdit @skill={{skill}} @parentCategories={{this.parentCategories}} @childCategories={{this.childCategories}} @stopEditing={{action "stopEditing" skill}} />
         {{else}}
           <SkillsListRowShow @skill={{skill}} @toggleSkill={{action "toggleSkill" skill}} @startEditing={{action "startEditing" skill}} />
         {{/if}}

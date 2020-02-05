@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-between">
   <div>
-    <UpdatedAt @entry={{company}} />
+    <UpdatedAt @entry={{this.company}} />
   </div>
   <div>
     <LinkTo @route="companies.new">
@@ -25,8 +25,8 @@
   <div id="accordion">
     {{!Übersichts Tab}}
     <div class="card mb-3">
-      {{component (if companyEditing "company-overview-edit" "company-overview" )
-                  company=company
+      {{component (if this.companyEditing "company-overview-edit" "company-overview" )
+                  company=this.company
                   submit=(action (toggle "companyEditing" this))
                   model-header-title = "Firmen Übersicht"
                   companyEditing=(action (toggle "companyEditing" this))
@@ -34,8 +34,8 @@
     </div>
     {{!Angebot Tab}}
     <div class="card mb-3">
-      {{component (if companyOfferEditing "company-offer-edit" "company-offer" )
-                  company=company
+      {{component (if this.companyOfferEditing "company-offer-edit" "company-offer" )
+                  company=this.company
                   submit=(action (toggle "companyOfferEditing" this))
                   model-header-title = "Firmen Skills"
                   companyOfferEditing=(action (toggle "companyOfferEditing" this))
@@ -43,7 +43,7 @@
     </div>
     {{!Profile Tab}}
     <div class="card mb-end">
-      <CompanyProfiles @company={{company}} />
+      <CompanyProfiles @company={{this.company}} />
     </div>
 
 

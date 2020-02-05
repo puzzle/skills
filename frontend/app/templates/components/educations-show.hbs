@@ -1,20 +1,20 @@
 <div id="educationsHeader" class="card-header bg-info">
   <div class="row">
     <div class="col-sm-6 header-text" id="amount-of-educations">
-      Ausbildung ({{amountOfEducations}})
+      Ausbildung ({{this.amountOfEducations}})
     </div>
   </div>
 </div>
 <div class="border border-info rounded-bottom">
   <div class="card-body d-flex flex-column">
     <div class="mb-2">
-      <a onclick={{action "toggleEducationNew" true}} role="button" class={{~unless educationNew "edit-buttons"~}}><i class="fa {{~unless educationNew " add"~}}"></i> {{~unless educationNew " Ausbildung hinzufügen"~}}</a>
+      <a onclick={{action "toggleEducationNew" true}} role="button" class={{~unless this.educationNew "edit-buttons"~}}><i class="fa {{~unless this.educationNew " add"~}}"></i> {{~unless this.educationNew " Ausbildung hinzufügen"~}}</a>
     </div>
     <div id="competence-content-show">
-      {{component (if educationNew "education-new")
-                  personId=person.id
+      {{component (if this.educationNew "education-new")
+                  personId=this.person.id
                   done=(action "toggleEducationNew")}}
-      {{#each sortedEducations as |education|}}
+      {{#each this.sortedEducations as |education|}}
         <div class="zeile">
           <div class="row">
             <div class="col-sm-3 text-center">
@@ -33,10 +33,10 @@
         </div>
       {{/each}}
     </div>
-    {{#if sortedEducations}}
-      {{#unless educationNew}}
+    {{#if this.sortedEducations}}
+      {{#unless this.educationNew}}
         <div>
-          <a onclick={{educationsEditing}} role="button" class="edit-buttons" id="edit-education-button">
+          <a onclick={{this.educationsEditing}} role="button" class="edit-buttons" id="edit-education-button">
             <i class="fa fa-edit"></i>
             Bearbeiten
           </a>

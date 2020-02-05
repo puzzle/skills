@@ -6,8 +6,8 @@
 </div>
 <div class="card mt-12 mb-5">
   <div id="cv-search-results" class="border border-info rounded-bottom">
-    {{#if model}}
-      {{#each model as |person|}}
+    {{#if this.model}}
+      {{#each this.model as |person|}}
         <LinkTo @route="person" @model={{person}} class="cv-search-pills m-2">
           {{person.name}}
         </LinkTo>

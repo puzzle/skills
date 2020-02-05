@@ -1,15 +1,15 @@
 <div class="card">
-  <div class="card-header bg-info mt-2" data-toggle="collapse" data-parent="#accordion" href="#collapseFWS{{expertiseCategory.name}}">
+  <div class="card-header bg-info mt-2" data-toggle="collapse" data-parent="#accordion" href="#collapseFWS{{this.expertiseCategory.name}}">
     <div class="row">
       <div class="col-sm-6">
-        <a class="card-link text-dark header-text">{{expertiseCategory.name}}</a>
+        <a class="card-link text-dark header-text">{{this.expertiseCategory.name}}</a>
       </div>
       <div class="col-sm-6 text-right d-block">
-        <a class="card-link text-dark" data-toggle="collapse" data-parent="#accordion" href="#collapseFWS{{expertiseCategory.name}}"><i class="fa angle"></i></a>
+        <a class="card-link text-dark" data-toggle="collapse" data-parent="#accordion" href="#collapseFWS{{this.expertiseCategory.name}}"><i class="fa angle"></i></a>
       </div>
     </div>
   </div>
-  <div id="collapseFWS{{expertiseCategory.name}}" class="show collapse border border-info rounded-bottom">
+  <div id="collapseFWS{{this.expertiseCategory.name}}" class="show collapse border border-info rounded-bottom">
     <div class="card-body">
       <table class="table fws">
         <tbody>
@@ -20,16 +20,16 @@
             <th class="fws-last-use">Letztmals angewendet</th>
             <th>
               Erfahrungswert
-              <a onclick={{action (toggle "showInfoModal" this)}} type="button" href="#collapseFWS{{expertiseCategory.name}}">
+              <a onclick={{action (toggle "showInfoModal" this)}} type="button" href="#collapseFWS{{this.expertiseCategory.name}}">
                 <i class="fa info"></i>
               </a>
             </th>
             <th class="fws-comments-field">Bemerkung</th>
             <th></th>
           </tr>
-          {{#if isLoading.isFulfilled}}
-            {{#each expertiseTopics as |et|}}
-              <ExpertiseTopicSkillValue @expertiseTopic={{et}} @expertiseCategory={{expertiseCategory}} @person={{person}} />
+          {{#if this.isLoading.isFulfilled}}
+            {{#each this.expertiseTopics as |et|}}
+              <ExpertiseTopicSkillValue @expertiseTopic={{et}} @expertiseCategory={{this.expertiseCategory}} @person={{this.person}} />
             {{/each}}
           {{/if}}
         </tbody>
@@ -38,7 +38,7 @@
   </div>
 </div>
 
-{{#if showInfoModal}}
+{{#if this.showInfoModal}}
   {{#modal-dialog close="closeInfo"}}
     <table class="table">
       <tbody>

@@ -1,17 +1,17 @@
 <div class="row">
-  <div onclick={{toggleSkillShow}} data-toggle={{if toggleSkillShow "modal"}} data-target="#skill-show-modal" class="col pt-3 people-skill-skillname">
-    {{#if showPersonName}}
-      <a role="button" onclick={{action "changePerson" peopleSkill.person}} class="edit-buttons">
-        <span data-dismiss="modal">{{peopleSkill.person.name}}</span>
+  <div onclick={{this.toggleSkillShow}} data-toggle={{if this.toggleSkillShow "modal"}} data-target="#skill-show-modal" class="col pt-3 people-skill-skillname">
+    {{#if this.showPersonName}}
+      <a role="button" onclick={{action "changePerson" this.peopleSkill.person}} class="edit-buttons">
+        <span data-dismiss="modal">{{this.peopleSkill.person.name}}</span>
       </a>
     {{else}}
-      <div class="people-skill-title">{{peopleSkill.skill.title}}</div>
+      <div class="people-skill-title">{{this.peopleSkill.skill.title}}</div>
     {{/if}}
   </div>
-  <div onclick={{toggleSkillShow}} data-toggle={{if toggleSkillShow "modal"}} role="button" data-target="#skill-show-modal" class="col justify-content-center people-skill-level">
-    <p class="description skillset-level-title">{{levelName}}</p>
+  <div onclick={{this.toggleSkillShow}} data-toggle={{if this.toggleSkillShow "modal"}} role="button" data-target="#skill-show-modal" class="col justify-content-center people-skill-level">
+    <p class="description skillset-level-title">{{this.levelName}}</p>
     {{ui-slider
-    value=levelValue
+    value=this.levelValue
     ticks="1,2,3,4,5"
     tooltip="hide"
     disabled=true
@@ -21,25 +21,25 @@
     action=(action "hasChanged")
     }}
   </div>
-  <div onclick={{toggleSkillShow}} data-toggle={{if toggleSkillShow "modal"}} role="button" data-target="#skill-show-modal" class="col people-skill-interest">
+  <div onclick={{this.toggleSkillShow}} data-toggle={{if this.toggleSkillShow "modal"}} role="button" data-target="#skill-show-modal" class="col people-skill-interest">
     <p class="description skillset-interest-title">Interesse</p>
     {{icon-rating
     fillColor="#238BCA"
     readOnly=true
-    value=peopleSkill.interest
-    onClick=(action (mut newPeopleSkill.interest))
+    value=this.peopleSkill.interest
+    onClick=(action (mut this.newPeopleSkill.interest))
     }}
   </div>
-  <div onclick={{toggleSkillShow}} data-toggle={{if toggleSkillShow "modal"}} role="button" data-target="#skill-show-modal" class="col pt-3 people-skill-certificate">
-    {{#if peopleSkill.certificate}}
+  <div onclick={{this.toggleSkillShow}} data-toggle={{if this.toggleSkillShow "modal"}} role="button" data-target="#skill-show-modal" class="col pt-3 people-skill-certificate">
+    {{#if this.peopleSkill.certificate}}
       <i class="fa fa-check-square" aria-hidden="true"></i>
     {{else}}
       <i class="far fa-square" aria-hidden="true"></i>
     {{/if}}
     <span class="description ml-2">Zertifikat</span>
   </div>
-  <div onclick={{toggleSkillShow}} data-toggle={{if toggleSkillShow "modal"}} role="button" data-target="#skill-show-modal" class="col pt-3 people-skill-coreCompetence">
-    {{#if peopleSkill.coreCompetence}}
+  <div onclick={{this.toggleSkillShow}} data-toggle={{if this.toggleSkillShow "modal"}} role="button" data-target="#skill-show-modal" class="col pt-3 people-skill-coreCompetence">
+    {{#if this.peopleSkill.coreCompetence}}
       <i class="fa fa-check-square" aria-hidden="true"></i>
     {{else}}
       <i class="far fa-square" aria-hidden="true"></i>

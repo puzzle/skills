@@ -1,5 +1,5 @@
 <div id="profil-uebersicht">
-  {{#with (changeset company validations) as |companyChangeset|}}
+  {{#with (changeset this.company this.validations) as |companyChangeset|}}
     {{#form-for companyChangeset submit=(action "submit") as |f|}}
       <div class="card-header bg-primary">
         <div class="row">
@@ -7,9 +7,9 @@
             <a class="card-link text-white" href="#">Übersicht</a>
           </div>
           <div class="col-sm-6 text-right d-block text-white">
-            {{#if (not-eq company.companyType "mine")}}
+            {{#if (not-eq this.company.companyType "mine")}}
               <div id="delete-company-icon">
-                <DeleteWithConfirmation @entry={{company}} @transitionTo="companies" @tagName="span" />
+                <DeleteWithConfirmation @entry={{this.company}} @transitionTo="companies" @tagName="span" />
               </div>
             {{/if}}
             <a {{action "submit" companyChangeset}} role="button" id="submit-button" class="card-link text-white">
@@ -35,10 +35,10 @@
                   </tr>
                   <tr>
                     <td>
-                      <button class="btn btn-success form-field--control" type="button" {{action "addLocations" company}}>Neue Adresse</button>
+                      <button class="btn btn-success form-field--control" type="button" {{action "addLocations" this.company}}>Neue Adresse</button>
                     </td>
                   </tr>
-                  {{#each company.locations as |location|}}
+                  {{#each this.company.locations as |location|}}
                     {{#fields-for location as |l|}}
                       <tr>
                         <td class="nextToDelete">
@@ -89,10 +89,10 @@
                   </tr>
                   <tr>
                     <td>
-                      <button class ="btn btn-success form-field--control" type="button" {{action "addEmployeeQuantity" company}}>Neue Mitarbeiter-Anzahl</button>
+                      <button class ="btn btn-success form-field--control" type="button" {{action "addEmployeeQuantity" this.company}}>Neue Mitarbeiter-Anzahl</button>
                     </td>
                   </tr>
-                  {{#each company.employeeQuantities as |quantity|}}
+                  {{#each this.company.employeeQuantities as |quantity|}}
                     {{#fields-for quantity as |q|}}
                       <tr>
                         <td class="nextToDelete">

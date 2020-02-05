@@ -7,8 +7,8 @@
       </span>
     </div>
   </div>
-  {{#each expertiseCategories as |ec|}}
-    <ExpertiseTopicsShow @expertiseCategory={{ec}} @person={{person}} />
+  {{#each this.expertiseCategories as |ec|}}
+    <ExpertiseTopicsShow @expertiseCategory={{ec}} @person={{this.person}} />
   {{/each}}
 </div>
 <script>

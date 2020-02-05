@@ -1,40 +1,40 @@
-{{#with (changeset expertiseTopicSkillValue validations) as |etsvChangeset|}}
-  <td class="fws-topic-name">{{expertiseTopic.name}}</td>
+{{#with (changeset this.expertiseTopicSkillValue this.validations) as |etsvChangeset|}}
+  <td class="fws-topic-name">{{this.expertiseTopic.name}}</td>
   <td>
-    <input form={{formId}}
+    <input form={{this.formId}}
         max="80"
         min="0"
         class="form-control"
         type="number"
-        value={{expertiseTopicSkillValue.yearsOfExperience}}
+        value={{this.expertiseTopicSkillValue.yearsOfExperience}}
         oninput={{action (mut etsvChangeset.yearsOfExperience) value="target.value"}}>
   </td>
   <td>
-    <input form={{formId}}
+    <input form={{this.formId}}
         max="255"
         min="0"
         class="form-control"
         type="number"
-        value={{expertiseTopicSkillValue.numberOfProjects}}
+        value={{this.expertiseTopicSkillValue.numberOfProjects}}
         oninput={{action (mut etsvChangeset.numberOfProjects) value="target.value"}}>
   </td>
   <td>
-    <input form={{formId}}
+    <input form={{this.formId}}
         max="4095"
         min="1900"
         class="form-control"
         type="number"
-        value={{expertiseTopicSkillValue.lastUse}}
+        value={{this.expertiseTopicSkillValue.lastUse}}
         oninput={{action (mut etsvChangeset.lastUse) value="target.value"}}>
   </td>
 
   <td>
-    <select form={{formId}}
+    <select form={{this.formId}}
         class=""
         onchange={{action (mut etsvChangeset.skillLevel)
         value="target.value"}}
         required>
-      {{#each skillLevelData as |sld|}}
+      {{#each this.skillLevelData as |sld|}}
         <option value={{sld}} selected={{eq etsvChangeset.skillLevel sld}}>{{sld}}</option>
       {{/each}}
     </select>
@@ -43,18 +43,16 @@
   <td>
     <textarea class="form-control"
               rows="1"
-        oninput={{action (mut etsvChangeset.comment) value="target.value"}}>
-      {{~expertiseTopicSkillValue.comment~}}
-    </textarea>
+              oninput={{action (mut etsvChangeset.comment) value="target.value"}}>      {{~this.expertiseTopicSkillValue.comment~}}    </textarea>
   </td>
   <td>
-    <form id={{formId}} onsubmit={{action onsubmit etsvChangeset}}>
-      <a href="#collapseFWS{{expertiseCategory.name}}" onclick={{action onsubmit changeset}}>
+    <form id={{this.formId}} onsubmit={{action this.onsubmit etsvChangeset}}>
+      <a href="#collapseFWS{{this.expertiseCategory.name}}" onclick={{action this.onsubmit this.changeset}}>
         <i class="fa save"></i>
       </a>
     </form>
-    <form id={{formId}}>
-      <a href="#collapseFWS{{expertiseCategory.name}}" onclick={{action cancelEdit changeset}}>
+    <form id={{this.formId}}>
+      <a href="#collapseFWS{{this.expertiseCategory.name}}" onclick={{action this.cancelEdit this.changeset}}>
         <i class="fa abort"></i>
       </a>
     </form>

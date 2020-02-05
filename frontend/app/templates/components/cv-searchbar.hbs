@@ -1,6 +1,6 @@
 <div id="cv-searchbar" class="border rounded w-75 mt-2 p-2">
-  <Input @value={{value}} @key-up={{action "searchThroughCVs"}} placeholder="CVs Durchsuchen..." />
-  <button id="cv-search-clear-button" class={{if value "visible" "invisible"}} onclick={{action "clearValue"}}>
+  <Input @value={{this.value}} @key-up={{action "searchThroughCVs"}} placeholder="CVs Durchsuchen..." />
+  <button id="cv-search-clear-button" class={{if this.value "visible" "invisible"}} onclick={{action "clearValue"}}>
     <i class="fa fa-times description" aria-hidden="true"></i>
   </button>
 </div>

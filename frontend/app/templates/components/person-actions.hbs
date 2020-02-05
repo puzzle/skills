@@ -9,11 +9,11 @@
     </li>
     <li class="nav-item">
       <a class="nav-link">
-        <LinkTo @route="person.skills" @query={{hash personId=personId rated="true"}} @id="peopleSkillsLink">
+        <LinkTo @route="person.skills" @query={{hash personId=this.personId rated="true"}} @id="peopleSkillsLink">
           Skills
-          {{#if unratedSkillsAmount}}
+          {{#if this.unratedSkillsAmount}}
             <span class="badge badge-pill badge-success">
-              {{unratedSkillsAmount}}
+              {{this.unratedSkillsAmount}}
             </span>
           {{/if}}
         </LinkTo>
@@ -29,14 +29,14 @@
           </a>
         </dd.trigger>
         <dd.content @class="content-bootstrap-feel">
-          <DeleteWithConfirmation @entry={{person}} @transitionTo="people">
+          <DeleteWithConfirmation @entry={{this.person}} @transitionTo="people">
             Profil Löschen
           </DeleteWithConfirmation>
         </dd.content>
       {{/basic-dropdown}}
     </div>
     <div class="p-2">
-      <a onclick={{pipe (action "startExport" person.id)}} role="button" class="edit-buttons">
+      <a onclick={{pipe (action "startExport" this.person.id)}} role="button" class="edit-buttons">
         <td><i class="fa fa-download" aria-hidden="true"></i> Export</td>
       </a>
     </div>

@@ -8,7 +8,7 @@
 <div class="border border-info rounded-bottom">
   <div class="card-body">
     <div id="competence-content-show" class="mb-2">
-      {{#each sortedEducations as |education|}}
+      {{#each this.sortedEducations as |education|}}
         <div class="zeile">
           <div id="education-content-edit">
             <div class="row">
@@ -18,11 +18,10 @@
                 </div>
               </div>
               <div class="col-sm-7 content-input">
-                <label for={{concat elementId "-" education.id "-title"}}>Ausbildung</label>
-                <Input @id={{concat elementId "-" education.id "-title"}} @value={{education.title}} class="input-xxlarge form-control" />
-                <label class="mt-2" for={{concat elementId "-" education.id "-loc"}}>Ausbildungsort</label>
-                <Textarea @id={{concat elementId "-" education.id "-loc"}} @value={{education.location}} class="input-xxlarge form-control" />
-              </div>
+                <label for={{concat this.elementId "-" education.id "-title"}}>Ausbildung</label>
+                <Input @id={{concat this.elementId "-" education.id "-title"}} @value={{education.title}} class="input-xxlarge form-control" />
+                <label class="mt-2" for={{concat this.elementId "-" education.id "-loc"}}>Ausbildungsort</label>
+                <Textarea @id={{concat this.elementId "-" education.id "-loc"}} @value={{education.location}} class="input-xxlarge form-control" />              </div>
               <div id="delete-education-icon" onclick={{action "notify"}} role="button">
                 <DeleteWithConfirmation @entry={{education}}>
                   Löschen
@@ -34,7 +33,7 @@
       {{/each}}
     </div>
     <div class="mt-auto">
-      <button onclick={{action "submit" person}} role="button" class="btn btn-primary" id="submit-education-button">Speichern</button>
+      <button onclick={{action "submit" this.person}} role="button" class="btn btn-primary" id="submit-education-button">Speichern</button>
       <button onclick={{action "abortEdit"}} role="button" class="btn abort-button">Abbrechen</button>
     </div>
   </div>

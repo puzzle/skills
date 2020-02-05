@@ -1,7 +1,7 @@
 <div id="skill-search-header" class="header pt-3">
   {{#power-select
-  selected=selectedSkill
-  options=skills
+  selected=this.selectedSkill
+  options=this.skills
   onchange=(action "setSkill")
   searchField="title"
   triggerClass="w-75"
@@ -19,8 +19,8 @@
 </div>
 <div class="card mt-13 mb-5">
   <div id="skill-search-results" class="px-2 border border-info rounded-bottom">
-    {{#if model}}
-      {{#each model as |peopleSkill|}}
+    {{#if this.model}}
+      {{#each this.model as |peopleSkill|}}
         <div class="p-2">
           <PeopleSkillShow @peopleSkill={{peopleSkill}} @showPersonName={{true}} />
         </div>

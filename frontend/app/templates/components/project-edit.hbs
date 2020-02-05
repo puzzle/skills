@@ -1,4 +1,4 @@
-{{#with (changeset project validations) as |projectChangeset|}}
+{{#with (changeset this.project this.validations) as |projectChangeset|}}
   <div class="mb-2" id="project-content-edit">
     <div class="card-header bg-info">
       <div class="row">
@@ -6,7 +6,7 @@
           Projekt bearbeiten
         </div>
         <div class="col-sm-6 text-right d-block">
-          <DeleteWithConfirmation @entry={{project}}>
+          <DeleteWithConfirmation @entry={{this.project}}>
             Löschen
           </DeleteWithConfirmation>
         </div>
@@ -17,19 +17,16 @@
         <div class="row mb-2">
           <div class="col-sm-3">
             <div class="input-group centered-content-input">
-              <DaterangeEdit @entity={{project}} />
+              <DaterangeEdit @entity={{this.project}} />
             </div>
           </div>
           <div class="col-sm-7">
-            <label for={{concat elementId "-name"}}>Projekt</label>
-            <Input @id={{concat elementId "-name"}} @value={{projectChangeset.title}} class="form-control mb-2" />
-            <label for={{concat elementId "-desc"}}>Beschreibung</label>
-            <Textarea @id={{concat elementId "-desc"}} @value={{projectChangeset.description}} class="form-control" />
-            <label for={{concat elementId "-role"}}>Rolle und Aufgaben</label>
-            <Textarea @id={{concat elementId "-role"}} @value={{projectChangeset.role}} class="form-control" />
-            <label for={{concat elementId "-tech"}}>Eingesetzte Technologien</label>
-            <Textarea @id={{concat elementId "-tech"}} @value={{projectChangeset.technology}} class="form-control" />
-          </div>
+            <label for={{concat this.elementId "-name"}}>Projekt</label>
+            <Input @id={{concat this.elementId "-name"}} @value={{projectChangeset.title}} class="form-control mb-2" />
+            <label for={{concat this.elementId "-desc"}}>Beschreibung</label>
+            <Textarea @id={{concat this.elementId "-desc"}} @value={{projectChangeset.description}} class="form-control" />            <label for={{concat this.elementId "-role"}}>Rolle und Aufgaben</label>
+            <Textarea @id={{concat this.elementId "-role"}} @value={{projectChangeset.role}} class="form-control" />            <label for={{concat this.elementId "-tech"}}>Eingesetzte Technologien</label>
+            <Textarea @id={{concat this.elementId "-tech"}} @value={{projectChangeset.technology}} class="form-control" />          </div>
         </div>
         <div class="mt-auto">
           <button onclick={{action "submit" projectChangeset}} role="button" id="submit-button" class="btn btn-primary">Speichern</button>

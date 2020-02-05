@@ -14,12 +14,12 @@
           <table>
             <tbody>
               <tr>
-                <img id="img-avatar-read" src={{picturePath}} class="img-polaroid profil-img rounded-circle" alt="">
+                <img id="img-avatar-read" src={{this.picturePath}} class="img-polaroid profil-img rounded-circle" alt="">
               </tr>
               <div class="mt-4">
               </div>
               <tr>
-                <a onclick={{personEditing}} class="edit-buttons" role="button" data-test-person-edit-form-toggle>
+                <a onclick={{this.personEditing}} class="edit-buttons" role="button" data-test-person-edit-form-toggle>
                   <td><i class="fa fa-edit" aria-hidden="true"></i> Bearbeiten</td>
                 </a>
               </tr>
@@ -33,7 +33,7 @@
                 <td>Name</td>
               </tr>
               <tr>
-                <td id="data-test-person-name">{{person.name}}</td>
+                <td id="data-test-person-name">{{this.person.name}}</td>
               </tr>
               <div class="mb-2">
               </div>
@@ -41,7 +41,7 @@
                 <td>Email</td>
               </tr>
               <tr>
-                <td id="data-test-person-email">{{person.email}}</td>
+                <td id="data-test-person-email">{{this.person.email}}</td>
               </tr>
               <div class="mb-2">
               </div>
@@ -49,15 +49,15 @@
                 <td>Abschluss</td>
               </tr>
               <tr>
-                <td id="data-test-person-title">{{person.title}}</td>
+                <td id="data-test-person-title">{{this.person.title}}</td>
               </tr>
               <div class="mb-2">
               </div>
               <tr class="description">
                 <td>Funktion</td>
               </tr>
-              {{#if person.personRoles.length}}
-                {{#each person.personRoles as |personRole|}}
+              {{#if this.person.personRoles.length}}
+                {{#each this.person.personRoles as |personRole|}}
                   <tr>
                     <td id="data-test-person-role">
                       {{personRole.role.name}}
@@ -75,7 +75,7 @@
                 <td>Organisationseinheit</td>
               </tr>
               <tr>
-                <td id="data-test-person-department">{{person.department.name}}</td>
+                <td id="data-test-person-department">{{this.person.department.name}}</td>
               </tr>
               <div class="mb-2">
               </div>
@@ -83,7 +83,7 @@
                 <td>Firma/Kategorie</td>
               </tr>
               <tr>
-                <td id="data-test-person-company">{{person.company.name}}</td>
+                <td id="data-test-person-company">{{this.person.company.name}}</td>
               </tr>
             </tbody>
           </table>
@@ -96,19 +96,19 @@
               </tr>
               <tr>
                 <td>
-                  <time datetime={{moment-format person.birthdate}} id="data-test-person-birthdate">
-                    {{~moment-format person.birthdate "L"~}}
+                  <time datetime={{moment-format this.person.birthdate}} id="data-test-person-birthdate">
+                    {{~moment-format this.person.birthdate "L"~}}
                   </time>
                 </td>
               </tr>
               <div class="mb-2">
               </div>
               <tr class="description">
-                <td>Nationalität{{#if person.nationality2}}en{{/if}}</td>
+                <td>Nationalität{{#if this.person.nationality2}}en{{/if}}</td>
               </tr>
               <tr>
                 <td id="data-test-person-nationalities">
-                  {{format-country person.nationality}}{{#if person.nationality2}} , {{format-country person.nationality2}}{{/if}}
+                  {{format-country this.person.nationality}}{{#if this.person.nationality2}} , {{format-country this.person.nationality2}}{{/if}}
                 </td>
               </tr>
               <div class="mb-2">
@@ -117,7 +117,7 @@
                 <td>Wohnort (Stadt)</td>
               </tr>
               <tr>
-                <td id="data-test-person-location">{{person.location}}</td>
+                <td id="data-test-person-location">{{this.person.location}}</td>
               </tr>
               <div class="mb-2">
               </div>
@@ -125,7 +125,7 @@
                 <td>Zivilstand</td>
               </tr>
               <tr>
-                <td id="data-test-person-marital-status">{{maritalStatus}}</td>
+                <td id="data-test-person-marital-status">{{this.maritalStatus}}</td>
               </tr>
             </tbody>
           </table>
@@ -140,7 +140,7 @@
                 <div class="border rounded mt-2">
                   <table class="table table-borderless">
                     <tbody>
-                      {{#each sortedLanguageSkills as |skill|}}
+                      {{#each this.sortedLanguageSkills as |skill|}}
                         <tr>
                           <td data-test-person-language class="description">{{skill.language}}</td>
                           <td class="language-level"><img alt="" src="/assets/language-levels/{{to-lowercase skill.level}}.svg"></td>

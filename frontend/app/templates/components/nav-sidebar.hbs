@@ -1,7 +1,7 @@
-{{#sticky-container options=myStickyOptions}}
+{{#sticky-container options=this.myStickyOptions}}
   <nav id="person-sidebar">
     <ul class="nav flex-column border">
-      {{#each-in items as |key value|}}
+      {{#each-in this.items as |key value|}}
         <li class="nav-item">
           <a class="nav-link" href={{value}} onclick={{action "scrollTo" value}}><p>{{key}}</p></a>
         </li>

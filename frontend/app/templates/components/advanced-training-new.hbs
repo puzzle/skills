@@ -1,18 +1,17 @@
-<form onsubmit={{action "submit" newAdvancedTraining}} id="form_advancedTraining">
+<form onsubmit={{action "submit" this.newAdvancedTraining}} id="form_advancedTraining">
   <div id="advancedTraining-content-edit" class="zeile new">
     <div class="row">
       <div class="col-sm-3">
         <div class="input-group centered-content-input">
-          <DaterangeEdit @entity={{newAdvancedTraining}} />
+          <DaterangeEdit @entity={{this.newAdvancedTraining}} />
         </div>
       </div>
       <div class="col-sm-6 mt-2">
-        <label for={{concat elementId "-new-desc"}}>Beschreibung</label>
-        <Textarea @id={{concat elementId "-new-desc"}} @value={{newAdvancedTraining.description}} class="input-xxlarge form-control" />
-      </div>
+        <label for={{concat this.elementId "-new-desc"}}>Beschreibung</label>
+        <Textarea @id={{concat this.elementId "-new-desc"}} @value={{this.newAdvancedTraining.description}} class="input-xxlarge form-control" />      </div>
       <div class="col-md-3 centered-content d-flex flex-column mt-4 px-5">
-        <button onclick={{action "submit" newAdvancedTraining false}} role="button" id="submit-button" class="btn btn-primary m-2">Speichern</button>
-        <button onclick={{action "submit" newAdvancedTraining true}} role="button" class="btn btn-info border m-2">Speichern & Neu</button>
+        <button onclick={{action "submit" this.newAdvancedTraining false}} role="button" id="submit-button" class="btn btn-primary m-2">Speichern</button>
+        <button onclick={{action "submit" this.newAdvancedTraining true}} role="button" class="btn btn-info border m-2">Speichern & Neu</button>
         <a href="#" onclick={{action "abortNew"}} role="button" id="submit-button" class="abort-edit-buttons text-center mx-4">Abbrechen</a>
       </div>
     </div>

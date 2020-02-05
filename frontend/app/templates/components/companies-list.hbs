@@ -1,5 +1,5 @@
 <div class="list-group" id="companies-list">
-  {{#each sortedCompanies as |company|}}
+  {{#each this.sortedCompanies as |company|}}
     <LinkTo @route="companies.show" @model={{company.id}} class="list-group-item">
       {{~company.name~}}
     </LinkTo>
