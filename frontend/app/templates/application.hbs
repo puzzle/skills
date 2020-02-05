@@ -1,69 +1,71 @@
-<main id="main" class="container-fluid">
-  <div id="inner-main" class="container-fluid">
-    <div class="row-fluid">
-      {{! Navbar with logo }}
-      <div class="header top">
-        <nav class="navbar p-0 navbar-expand">
-          <ul class="navbar-nav">
-            {{#link-to "people"}}
-              <a class="navbar-brand p-0" href="#">
-                <img src="/logo.svg" alt="" width="180">
-                <small class="versionText align-bottom" color="black">{{app-version versionOnly=true}}</small>
-              </a>
-            {{/link-to}}
-          </ul>
-          <ul class="navbar-nav ml-auto">
-            {{#if session.authenticated}}
-              <li class="nav-item border-black border-bottom-0 border-top-0 border-right-0">
-                <a id="logout-button" role="button" class="nav-link pull-right" {{action "transitionToProfile"}}>
-                  <i class="fa fa-user-circle" aria-hidden="true"></i> {{username}}
+<div class="ember-view">
+  <main id="main" class="container-fluid">
+    <div id="inner-main" class="container-fluid">
+      <div class="row-fluid">
+        {{! Navbar with logo }}
+        <div class="header top">
+          <nav class="navbar p-0 navbar-expand">
+            <ul class="navbar-nav">
+              {{#link-to "people"}}
+                <a class="navbar-brand p-0" href="#">
+                  <img src="/logo.svg" alt="" width="180">
+                  <small class="versionText align-bottom" color="black">{{app-version versionOnly=true}}</small>
+                </a>
+              {{/link-to}}
+            </ul>
+            <ul class="navbar-nav ml-auto">
+              {{#if session.authenticated}}
+                <li class="nav-item border-black border-bottom-0 border-top-0 border-right-0">
+                  <a id="logout-button" role="button" class="nav-link pull-right" {{action "transitionToProfile"}}>
+                    <i class="fa fa-user-circle" aria-hidden="true"></i> {{username}}
+                  </a>
+                </li>
+              {{/if}}
+              <li class="nav-item border-black border-bottom-0 border-top-0">
+                <a href={{helplink}} target="_blank" class="nav-link pull-right" rel="noopener" role="button">
+                  <i class="fa fa-life-ring" aria-hidden="true"></i>
                 </a>
               </li>
-            {{/if}}
-            <li class="nav-item border-black border-bottom-0 border-top-0">
-              <a href={{helplink}} target="_blank" class="nav-link pull-right" rel="noopener" role="button">
-                <i class="fa fa-life-ring" aria-hidden="true"></i>
-              </a>
-            </li>
-            <li class="nav-item border-black border-bottom-0 border-top-0 border-left-0">
-              <a id="logout-button" role="button" class="nav-link pull-right" {{action "logoutUser"}}>
-                Logout
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <nav class="navbar custom-nav-bar p-0 navbar-expand bg-primary">
-          <ul class="navbar-nav mr-auto nav-pills">
-            <li class="nav-item hovering-nav-bar">
-              {{#link-to "people" class="nav-link text-white rounded-0"}}
-                Profil
-              {{/link-to}}
-            </li>
-            <li class="nav-item hovering-nav-bar">
-              {{#link-to "skill_search" class="nav-link text-white rounded-0"}}
-                Skill Suche
-              {{/link-to}}
-            </li>
-            <li class="nav-item hovering-nav-bar">
-              {{#link-to "cv_search" class="nav-link text-white rounded-0"}}
-                CV Suche
-              {{/link-to}}
-            </li>
-            {{#if isAdmin}}
+              <li class="nav-item border-black border-bottom-0 border-top-0 border-left-0">
+                <a id="logout-button" role="button" class="nav-link pull-right" {{action "logoutUser"}}>
+                  Logout
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <nav class="navbar custom-nav-bar p-0 navbar-expand bg-primary">
+            <ul class="navbar-nav mr-auto nav-pills">
               <li class="nav-item hovering-nav-bar">
-                {{#link-to "skills" class="nav-link text-white rounded-0"}}
-                  Skillset
+                {{#link-to "people" class="nav-link text-white rounded-0"}}
+                  Profil
                 {{/link-to}}
               </li>
-            {{/if}}
-          </ul>
-        </nav>
-      </div>
-      <div class="outlet">
-        {{outlet}}
+              <li class="nav-item hovering-nav-bar">
+                {{#link-to "skill_search" class="nav-link text-white rounded-0"}}
+                  Skill Suche
+                {{/link-to}}
+              </li>
+              <li class="nav-item hovering-nav-bar">
+                {{#link-to "cv_search" class="nav-link text-white rounded-0"}}
+                  CV Suche
+                {{/link-to}}
+              </li>
+              {{#if isAdmin}}
+                <li class="nav-item hovering-nav-bar">
+                  {{#link-to "skills" class="nav-link text-white rounded-0"}}
+                    Skillset
+                  {{/link-to}}
+                </li>
+              {{/if}}
+            </ul>
+          </nav>
+        </div>
+        <div class="outlet">
+          {{outlet}}
+        </div>
       </div>
     </div>
-  </div>
-</main>
-{{ember-notify messageStyle="bootstrap"}}
-{{footer-bar}}
+  </main>
+  {{ember-notify messageStyle="bootstrap"}}
+  {{footer-bar}}
+</div>

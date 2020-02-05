@@ -2,24 +2,18 @@ import Component from "@ember/component";
 import { inject as service } from "@ember/service";
 import { computed } from "@ember/object";
 import { isBlank } from "@ember/utils";
+import { action } from "@ember/object";
 
-export default Component.extend({
-  store: service(),
-  router: service(),
+export default class PeopleSearchComponent extends Component {
+  @service store;
+  @service router;
 
-  init() {
-    this._super(...arguments);
-  },
-
-  selected: computed(
-    "router.currentState.routerJsState.params.person.person_id",
-    function() {
-      const currentId = this.get(
-        "router.currentState.routerJsState.params.person.person_id"
-      );
-      if (currentId) return this.get("store").find("person", currentId);
-    }
-  ),
+  get selected() {
+    const currentId = this.get(
+      "router.currentState.routerJsState.params.person.person_id"
+    );
+    if (currentId) return this.get("store").find("person", currentId);
+  }
 
   get peopleToSelect() {
     return this.get("store")
@@ -31,7 +25,7 @@ export default Component.extend({
           return 0;
         })
       );
-  },
+  }
 
   focusComesFromOutside(e) {
     let blurredEl = e.relatedTarget;
@@ -39,21 +33,22 @@ export default Component.extend({
       return false;
     }
     return !blurredEl.classList.contains("ember-power-select-search-input");
-  },
-
-  actions: {
-    changePerson(person) {
-      this.set("selected", person);
-      person.reload();
-      this.get("router").transitionTo("person", person);
-    },
-
-    handleFocus(select, e) {
-      if (this.focusComesFromOutside(e)) {
-        select.actions.open();
-      }
-    },
-
-    handleBlur() {}
   }
-});
+
+  @action
+  changePerson(person) {
+    this.set("selected", person);
+    person.reload();
+    this.get("router").transitionTo("person", person);
+  }
+
+  @action
+  handleFocus(select, e) {
+    if (this.focusComesFromOutside(e)) {
+      select.actions.open();
+    }
+  }
+
+  @action
+  handleBlur() {}
+}
