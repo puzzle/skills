@@ -1115,14 +1115,14 @@
   resolved "https://registry.yarnpkg.com/@ember/edition-utils/-/edition-utils-1.2.0.tgz#a039f542dc14c8e8299c81cd5abba95e2459cfa6"
   integrity sha512-VmVq/8saCaPdesQmftPqbFtxJWrzxNGSQ+e8x8LLe3Hjm36pJ04Q8LeORGZkAeOhldoUX9seLGmSaHeXkIqoog==
 
-"@ember/jquery@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@ember/jquery/-/jquery-1.1.0.tgz#33d062610a5ceaa5c5c8a3187f870d47d6595940"
-  integrity sha512-zePT3LiK4/2bS4xafrbOlwoLJrDFseOZ95OOuVDyswv8RjFL+9lar+uxX6+jxRb0w900BcQSWP/4nuFSK6HXXw==
+"@ember/jquery@^0.6.0":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@ember/jquery/-/jquery-0.6.1.tgz#eef89ebc8d7b49bddc176f2a646746c8f5d93978"
+  integrity sha512-XMgfUYag97YOYLsC0Ys4/H6mHO2U2wra/92eVIug+5eYBloYSDhv2MY/iq/ocwXVSB2dQaphJx5pFXqdrjEzWQ==
   dependencies:
     broccoli-funnel "^2.0.2"
     broccoli-merge-trees "^3.0.2"
-    ember-cli-babel "^7.11.1"
+    ember-cli-babel "^7.7.3"
     ember-cli-version-checker "^3.1.3"
     jquery "^3.4.1"
     resolve "^1.11.1"
@@ -6654,7 +6654,7 @@ ember-cli-htmlbars@^3.0.0, ember-cli-htmlbars@^3.0.1, ember-cli-htmlbars@^3.1.0:
     json-stable-stringify "^1.0.1"
     strip-bom "^3.0.0"
 
-ember-cli-htmlbars@^4.0.0, ember-cli-htmlbars@^4.0.5, ember-cli-htmlbars@^4.0.8, ember-cli-htmlbars@^4.2.2:
+ember-cli-htmlbars@^4.0.5, ember-cli-htmlbars@^4.0.8, ember-cli-htmlbars@^4.2.2:
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-4.2.2.tgz#3db341a0c866b6e16919db071be9592b9702f014"
   integrity sha512-xhVYhdbS2H+XNHzSYfOZKRFIpZ8zOrNGMuAc7vJd6oUE8Aad2r5xjncIVQDioPp8sQfUpXt0uvkUZaOll/thXw==
@@ -6791,14 +6791,14 @@ ember-cli-sass@^7.0.0, ember-cli-sass@^7.1.7:
     broccoli-sass-source-maps "^2.1.0"
     ember-cli-version-checker "^2.1.0"
 
-ember-cli-sticky@^0.6.4:
-  version "0.6.6"
-  resolved "https://registry.yarnpkg.com/ember-cli-sticky/-/ember-cli-sticky-0.6.6.tgz#7a004087fe7af9c058da5fb589838136ac0eed19"
-  integrity sha512-5Vfqf/dfAfzMppEMWsfSj61xTSkSs7PgoXwU0g0ZTNwAemPlKuu5MwkQzcoq7vT4lfDgp3mT1m5wsVh/S9T/yA==
+ember-cli-sticky@0.6.5:
+  version "0.6.5"
+  resolved "https://registry.yarnpkg.com/ember-cli-sticky/-/ember-cli-sticky-0.6.5.tgz#93f8b9ea96411533514b303b828c0863ee61093c"
+  integrity sha512-nfgO2Wjp1oKXKspJW6pSjEpFenHxoIOrD5G7M2PjXN0yhlvKzzABE3hiqIQ7F1Cc/CGYoGxXyv/gn+w080VQbQ==
   dependencies:
-    "@ember/jquery" "^1.1.0"
-    ember-cli-babel "^7.11.1"
-    ember-cli-htmlbars "^4.0.0"
+    "@ember/jquery" "^0.6.0"
+    ember-cli-babel "^7.1.2"
+    ember-cli-htmlbars "^3.0.0"
     ember-cli-node-assets "^0.2.2"
     fastboot-transform "^0.1.2"
     jquery-sticky "^1.0.3"
@@ -10865,17 +10865,22 @@ jquery-deferred@^0.3.0:
   resolved "https://registry.yarnpkg.com/jquery-deferred/-/jquery-deferred-0.3.1.tgz#596eca1caaff54f61b110962b23cafea74c35355"
   integrity sha1-WW7KHKr/VPYbEQlisjyv6nTDU1U=
 
-jquery-sticky@^1.0.3:
+jquery-sticky@^1.0.3, jquery-sticky@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/jquery-sticky/-/jquery-sticky-1.0.4.tgz#2fe8d03dc904685340daa12cbdd1ca0c921b09ac"
   integrity sha1-L+jQPckEaFNA2qEsvdHKDJIbCaw=
   dependencies:
     jquery "*"
 
-jquery@*, "jquery@>=1.7.1 <4.0.0", jquery@^3.2.1, jquery@^3.3.1, jquery@^3.4.1:
+jquery@*, "jquery@>=1.7.1 <4.0.0", jquery@^3.2.1, jquery@^3.4.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
   integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
+
+jquery@~3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
+  integrity sha512-Ubldcmxp5np52/ENotGxlLe6aGMvmF4R8S6tZjsP6Knsaxd/xp3Zrh50cG93lR6nPXyUFwzN3ZSOQI0wRJNdGg==
 
 js-base64@^2.1.8:
   version "2.5.1"
@@ -14271,7 +14276,7 @@ pn@^1.1.0:
   resolved "https://registry.yarnpkg.com/pn/-/pn-1.1.0.tgz#e2f4cef0e219f463c179ab37463e4e1ecdccbafb"
   integrity sha512-2qHaIQr2VLRFoxe2nASzsV6ef4yOOH+Fi9FBOVH6cqeSgUnoyySPZkxzLuzd+RYOQTRpROA0ztTMqxROKSb/nA==
 
-popper.js@^1.14.1, popper.js@^1.16.0:
+popper.js@^1.14.1, popper.js@^1.14.3:
   version "1.16.1"
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.1.tgz#2a223cb3dc7b6213d740e40372be40de43e65b1b"
   integrity sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ==
