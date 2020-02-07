@@ -17,6 +17,7 @@ export default class PeopleSkillEdit extends Component {
       $(".slider-handle").ready(() => {
         /* eslint-enable no-global-jquery, no-undef, jquery-ember-run  */
         this.sliderHandle = this.$(".slider-handle:first");
+        if (!this.sliderHandle) return;
         this.sliderHandle.removeClass("slider-handle");
         this.$(".in-selection").removeClass("in-selection");
 

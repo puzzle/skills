@@ -113,7 +113,7 @@
     "loader.js": "^4.7.0",
     "prettier": "1.17.1",
     "qunit-dom": "^0.9.2",
-    "ui-ember-slider": "github:ifad/ui-slider",
+    "ui-ember-slider": "github:TheWalkingLeek/ui-slider",
     "watchman": "^1.0.0"
   },
   "engines": {

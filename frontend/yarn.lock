@@ -17300,9 +17300,9 @@ uglify-to-browserify@~1.0.0:
   resolved "https://registry.yarnpkg.com/uglify-to-browserify/-/uglify-to-browserify-1.0.2.tgz#6e0924d6bda6b5afe349e39a6d632850a0f882b7"
   integrity sha1-bgkk1r2mta/jSeOabWMoUKD4grc=
 
-"ui-ember-slider@github:ifad/ui-slider":
+"ui-ember-slider@github:TheWalkingLeek/ui-slider":
   version "0.5.0"
-  resolved "https://codeload.github.com/ifad/ui-slider/tar.gz/de8d1e18b1b24a7f133293c9b13237c1572ee7a0"
+  resolved "https://codeload.github.com/TheWalkingLeek/ui-slider/tar.gz/fb409aa10ab92664117cdd022d8bc93e0a4dcdd0"
   dependencies:
     bootstrap-slider "^9.8.0"
     ember-cli-babel "^6.4.2"
