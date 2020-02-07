@@ -7446,7 +7446,16 @@ ember-popper@^0.10.3:
     fastboot-transform "^0.1.0"
     popper.js "^1.14.1"
 
-ember-power-select@~3.0.6:
+ember-power-select-with-create@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/ember-power-select-with-create/-/ember-power-select-with-create-0.7.0.tgz#58ba3817e4d5f9842e449c00ebedf2d85b3cb5ea"
+  integrity sha512-Vt6pTHcOAtXnLJa5PjLNI4ENpIGuIeRAEpXYEldxBrazEUVQtC5v1Oq6ZOeJ6x45BBc8q8eq2bDgGyblqCw+rg==
+  dependencies:
+    ember-cli-babel "^7.7.3"
+    ember-cli-htmlbars "^3.0.1"
+    ember-power-select "^3.0.4"
+
+ember-power-select@^3.0.4:
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/ember-power-select/-/ember-power-select-3.0.6.tgz#97dcbaf04e6afd9bd4c75cbb150c3a8d5fe50fec"
   integrity sha512-osS+fbwfaxPo5RCCKDOWzJfaNc+toMmg3MMGmLz3h73Uqd3burRSUBo3DAkEHyYVHCy+oMas4+eZtRcjUrLWjg==
@@ -10863,7 +10872,7 @@ jquery-sticky@^1.0.3:
   dependencies:
     jquery "*"
 
-jquery@*, "jquery@>=1.7.1 <4.0.0", jquery@^3.2.1, jquery@^3.4.1:
+jquery@*, "jquery@>=1.7.1 <4.0.0", jquery@^3.2.1, jquery@^3.3.1, jquery@^3.4.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
   integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
