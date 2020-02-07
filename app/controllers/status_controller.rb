@@ -30,7 +30,7 @@ class StatusController < ApplicationController
     if e.message.match?(/^PG::ConnectionBad/)
       return false
     end
-    e.raise
+    raise.e
   end
 
 end
