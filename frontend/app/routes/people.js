@@ -22,9 +22,7 @@ export default class PeopleRoute extends Route.extend(
   };
 
   model({ q }) {
-    return this.get("ajax")
-      .request("/people", { data: { q } })
-      .then(response => response.data);
+    return this.store.query("person", { q });
   }
 
   redirect(model, transition) {

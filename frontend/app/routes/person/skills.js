@@ -27,7 +27,7 @@ export default class SkillsRoute extends Route.extend(
   }
 
   model(params) {
-    const person_id = this.get("router.currentRoute.parent.params.person_id");
+    const { person_id } = this.paramsFor("person");
     const rated = params.rated;
     return RSVP.hash({
       person: this.store.find("person", person_id),
@@ -37,14 +37,8 @@ export default class SkillsRoute extends Route.extend(
 
   @action
   didTransition() {
-    this.set(
-      "selectedPerson.personId",
-      this.get("router.currentRoute.parent.params.person_id")
-    );
+    this.set("selectedPerson.personId", this.get("currentModel.person.id"));
     this.set("selectedPerson.selectedSubRoute", this.get("routeName"));
-    this.set(
-      "selectedPerson.queryParams",
-      this.get("router.currentRoute.parent.params.person_id")
-    );
+    this.set("selectedPerson.queryParams", this.get("currentModel.person.id"));
   }
 }

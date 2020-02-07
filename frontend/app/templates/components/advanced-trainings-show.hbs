@@ -19,15 +19,15 @@
           <div class="zeile">
             <div class="row">
               <div class="col-sm-3 text-center">
-                {{if advanced-training.monthFrom (concat (moment-format advanced-training.monthFrom "MM" "MM") ".")}}<advanced-training.yearFrom />
+                {{if advanced-training.monthFrom (concat (moment-format advanced-training.monthFrom "MM" "MM") ".")}}{{advanced-training.yearFrom}}
                 {{#if (eq advanced-training.yearTo null)}}
                   - heute
                 {{else if (or (not-eq advanced-training.yearFrom advanced-training.yearTo) (not-eq advanced-training.monthFrom advanced-training.monthTo))}}
-                  - {{if advanced-training.monthTo (concat (moment-format advanced-training.monthTo "MM" "MM") ".")}}<advanced-training.yearTo />
+                - {{if advanced-training.monthTo (concat (moment-format advanced-training.monthTo "MM" "MM") ".")}}{{advanced-training.yearTo }}
                 {{/if}}
               </div>
               <div class="col-sm-9">
-                <advanced-training.lineBreakDescription />
+                {{advanced-training.lineBreakDescription}}
               </div>
             </div>
           </div>
