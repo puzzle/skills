@@ -22,7 +22,7 @@ export default class PeopleRoute extends Route.extend(
   };
 
   model({ q }) {
-    return this.store.query("person", { q });
+    return this.store.findAll("person", { q });
   }
 
   redirect(model, transition) {
