@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StatusController < ApplicationController
 
   # Web Server Okay?
@@ -10,7 +12,7 @@ class StatusController < ApplicationController
     ready, status, message = assess_readiness
     http_code = ready ? :ok : :internal_server_error
 
-    render json: { status: status, message: message}, status: http_code
+    render json: { status: status, message: message }, status: http_code
   end
 
   private
@@ -25,7 +27,7 @@ class StatusController < ApplicationController
     ActiveRecord::Base.connection.execute('SELECT 1')
     true
   rescue ActiveRecord::StatementInvalid => e
-    if e.message =~ /^PG::ConnectionBad/
+    if e.message.match?(/^PG::ConnectionBad/)
       return false
     end
     raise
