@@ -2,6 +2,12 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+
+  scope 'status' do
+    get 'health', to: 'status#health'
+    get 'readiness', to: 'status#readiness'
+  end
+
   scope '/api' do
 
 
