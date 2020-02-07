@@ -24,8 +24,11 @@ class StatusController < ApplicationController
   def can_query_database?
     ActiveRecord::Base.connection.execute('SELECT 1')
     true
-  rescue Mysql2::Error
-    false
+  rescue ActiveRecord::StatementInvalid => e
+    if e.message =~ /^PG::ConnectionBad/
+      return false
+    end
+    raise
   end
 
 end
