@@ -10,7 +10,7 @@ Keycloak.configure do |config|
   config.realm_id   = ENV['RAILS_KEYCLOAK_REALM_ID']
   config.logger     = Rails.logger
   config.skip_paths = {
-    get: [/^\/assets\/.+/, /^\/styles\/.+/, /^\/healthz/, /^\/api\/env_settings/]
+    get: [/^\/assets\/.+/, /^\/styles\/.+/, /^\/healthz/, /^\/api\/env_settings/, /^\/status\/(.*)/]
   }
   if frontend_tests? || Rails.env.development? || Rails.application.keycloak_disabled?
     test_skips = {
