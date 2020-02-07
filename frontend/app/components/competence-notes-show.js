@@ -1,12 +1,15 @@
+import classic from "ember-classic-decorator";
 import { computed } from "@ember/object";
 import Component from "@ember/component";
 
-export default Component.extend({
-  competenceNotesList: computed("person.competenceNotes", function() {
+@classic
+export default class CompetenceNotesShow extends Component {
+  @computed("person.competenceNotes")
+  get competenceNotesList() {
     let competences = this.get("person.competenceNotes");
     if (competences == null) return "";
     return competences.split("\n");
-  }),
+  }
 
   removeEmptyStrings(array) {
     for (let i = array.length; i--; ) {
@@ -14,4 +17,4 @@ export default Component.extend({
     }
     return array;
   }
-});
+}

@@ -1,18 +1,22 @@
+import classic from "ember-classic-decorator";
+import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@ember/component";
 
-export default Component.extend({
-  download: service(),
+@classic
+export default class ExportDocuments extends Component {
+  @service
+  download;
 
-  actions: {
-    exportEmptyDevFws() {
-      let url = `/api/documents/templates/fws.odt?empty=true&discipline=development`;
-      this.get("download").file(url);
-    },
-
-    exportEmptySysFws() {
-      let url = `/api/documents/templates/fws.odt?empty=true&discipline=system_engineering`;
-      this.get("download").file(url);
-    }
+  @action
+  exportEmptyDevFws() {
+    let url = `/api/documents/templates/fws.odt?empty=true&discipline=development`;
+    this.get("download").file(url);
   }
-});
+
+  @action
+  exportEmptySysFws() {
+    let url = `/api/documents/templates/fws.odt?empty=true&discipline=system_engineering`;
+    this.get("download").file(url);
+  }
+}

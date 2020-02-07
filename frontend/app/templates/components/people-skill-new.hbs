@@ -12,7 +12,7 @@
           <div class="row my-3">
             <div class="col-md-3">Skill</div>
             <div class="col-md-9 people-skill-new-dropdowns">
-              <PowerSelectWithCreate @triggerId="people-skill-new-skill" @renderInPlace={{true}} @class="w-100" @dropdownClass="w-100" @options={{this.dropdownSkills}} @selected={{this.newPeopleSkill.skill}} @searchField="title" @onchange={{action (mut this.newPeopleSkill.skill)}} @oncreate={{action "setupNewSkill"}} @buildSuggestion={{action "customSuggestion"}} as |skill|>
+              <PowerSelectWithCreate @triggerId="people-skill-new-skill" @renderInPlace={{true}} @class="w-100" @dropdownClass="w-100" @options={{this.dropdownSkills}} @selected={{this.newPeopleSkill.skill}} @searchField="title" @onChange={{action (mut this.newPeopleSkill.skill)}} @onCreate={{action "setupNewSkill"}} @buildSuggestion={{action "customSuggestion"}} as |skill|>
                 {{skill.title}}
               </PowerSelectWithCreate>
             </div>
@@ -20,7 +20,7 @@
           <div class="row my-3">
             <div class="col-md-3">Kategorie</div>
             <div class="col-md-9 people-skill-new-dropdowns">
-              <PowerSelect @triggerId="people-skill-new-category" @renderInPlace={{true}} @class="w-100" @dropdownClass="w-100" @options={{this.childCategories}} @matcher={{this.categorySearchMatcher}} @disabled={{eq this.newSkillSelected false}} @selected={{this.selectedCategory}} @onchange={{action "setCategory"}} as |category|>
+              <PowerSelect @triggerId="people-skill-new-category" @renderInPlace={{true}} @class="w-100" @dropdownClass="w-100" @options={{this.childCategories}} @matcher={{this.categorySearchMatcher}} @disabled={{eq this.newSkillSelected false}} @selected={{this.selectedCategory}} @onChange={{action "setCategory"}} as |category|>
                 {{category.parent.title}} - {{category.title}}
               </PowerSelect>
             </div>

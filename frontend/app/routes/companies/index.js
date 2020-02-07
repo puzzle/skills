@@ -1,14 +1,16 @@
+import classic from "ember-classic-decorator";
 import Route from "@ember/routing/route";
 
-export default Route.extend({
-  queryParams: {
+@classic
+export default class IndexRoute extends Route {
+  queryParams = {
     q: {
       refreshModel: true,
       replace: true
     }
-  },
+  };
 
   model({ q }) {
     return this.store.query("company", { q });
   }
-});
+}

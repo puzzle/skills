@@ -12,7 +12,7 @@
         Von:
       </th>
       <td>
-        <PowerSelect @selected={{this.selectedMonthFrom}} @options={{this.monthsFromSelect}} @searchEnabled={{false}} @onfocus={{action "handleFocus"}} @onblur={{action "handleBlur"}} @onchange={{action "setMonth" "From"}} @onkeydown={{action "setWithTab" "setMonth"}} as |month|>
+        <PowerSelect @selected={{this.selectedMonthFrom}} @options={{this.monthsFromSelect}} @searchEnabled={{false}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onChange={{action "setMonth" "From"}} @onKeydown={{action "setWithTab" "setMonth"}} as |month|>
           {{month}}
         </PowerSelect>
       </td>
@@ -25,7 +25,7 @@
         Bis:
       </th>
       <td>
-        <PowerSelect @selected={{this.selectedMonthTo}} @options={{this.monthsToSelect}} @searchEnabled={{false}} @onfocus={{action "handleFocus"}} @onblur={{action "handleBlur"}} @onchange={{action "setMonth" "To"}} @onkeydown={{action "setWithTab" "setMonth" "To"}} as |month|>
+        <PowerSelect @selected={{this.selectedMonthTo}} @options={{this.monthsToSelect}} @searchEnabled={{false}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onChange={{action "setMonth" "To"}} @onKeydown={{action "setWithTab" "setMonth" "To"}} as |month|>
           {{month}}
         </PowerSelect>
       </td>

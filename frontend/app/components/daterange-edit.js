@@ -1,12 +1,15 @@
+import classic from "ember-classic-decorator";
+import { action } from "@ember/object";
 import ApplicationComponent from "./application-component";
 import { isBlank } from "@ember/utils";
 
-export default ApplicationComponent.extend({
-  yearFromInvalid: false,
-  yearToInvalid: false,
+@classic
+export default class DaterangeEdit extends ApplicationComponent {
+  yearFromInvalid = false;
+  yearToInvalid = false;
 
   init() {
-    this._super(...arguments);
+    super.init(...arguments);
     this.monthsToSelect = ["heute", "-"].concat(
       Array(12)
         .fill()
@@ -30,7 +33,7 @@ export default ApplicationComponent.extend({
         this.set("selectedMonth" + attr, selectedValue);
       });
     }
-  },
+  }
 
   validateYear(year, attr) {
     const invalid = attr + "Invalid";
@@ -43,7 +46,7 @@ export default ApplicationComponent.extend({
       this.set(invalid, false);
     }
     return year;
-  },
+  }
 
   focusComesFromOutside(e) {
     let blurredEl = e.relatedTarget;
@@ -51,34 +54,37 @@ export default ApplicationComponent.extend({
       return false;
     }
     return !blurredEl.classList.contains("ember-power-select-search-input");
-  },
+  }
 
   setYear(year, attr) {
     let validatedYear = this.validateYear(year, "year" + attr);
     this.set("entity.year" + attr, validatedYear);
-  },
-
-  actions: {
-    setMonth(attr, month) {
-      this.set("entity.month" + attr, isNaN(month) ? null : month);
-      if (month == "heute") this.set("entity.yearTo", null);
-      this.set("selectedMonth" + attr, month);
-    },
-
-    setYearFrom(year) {
-      this.setYear(year, "From");
-    },
-
-    setYearTo(year) {
-      this.setYear(year, "To");
-    },
-
-    handleFocus(select, e) {
-      if (this.focusComesFromOutside(e)) {
-        select.actions.open();
-      }
-    },
-
-    handleBlur() {}
   }
-});
+
+  @action
+  setMonth(attr, month) {
+    this.set("entity.month" + attr, isNaN(month) ? null : month);
+    if (month == "heute") this.set("entity.yearTo", null);
+    this.set("selectedMonth" + attr, month);
+  }
+
+  @action
+  setYearFrom(year) {
+    this.setYear(year, "From");
+  }
+
+  @action
+  setYearTo(year) {
+    this.setYear(year, "To");
+  }
+
+  @action
+  handleFocus(select, e) {
+    if (this.focusComesFromOutside(e)) {
+      select.actions.open();
+    }
+  }
+
+  @action
+  handleBlur() {}
+}

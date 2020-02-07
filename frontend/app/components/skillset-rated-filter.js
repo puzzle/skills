@@ -1,9 +1,12 @@
-import Component from "@ember/component";
+import classic from "ember-classic-decorator";
 import { inject as service } from "@ember/service";
+import Component from "@ember/component";
 import $ from "jquery";
 
-export default Component.extend({
-  router: service(),
+@classic
+export default class SkillsetRatedFilter extends Component {
+  @service
+  router;
 
   didRender() {
     const rated = this.get(
@@ -15,4 +18,4 @@ export default Component.extend({
       $("#memberSkillsetRated").removeClass("active");
     }
   }
-});
+}

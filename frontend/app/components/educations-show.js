@@ -1,24 +1,27 @@
+import classic from "ember-classic-decorator";
+import { action, computed } from "@ember/object";
 import Component from "@ember/component";
 import sortByYear from "../utils/sort-by-year";
-import { computed } from "@ember/object";
 
-export default Component.extend({
-  amountOfEducations: computed("sortedEducations", function() {
+@classic
+export default class EducationsShow extends Component {
+  @computed("sortedEducations")
+  get amountOfEducations() {
     return this.get("sortedEducations.length");
-  }),
-
-  sortedEducations: sortByYear("educations"),
-
-  actions: {
-    toggleEducationNew(triggerNew) {
-      this.set("educationNew", triggerNew);
-      this.set(
-        "sortedEducations",
-        triggerNew
-          ? sortByYear("educations").volatile()
-          : sortByYear("educations")
-      );
-      this.notifyPropertyChange("amountOfEducations");
-    }
   }
-});
+
+  @sortByYear("educations")
+  sortedEducations;
+
+  @action
+  toggleEducationNew(triggerNew) {
+    this.set("educationNew", triggerNew);
+    this.set(
+      "sortedEducations",
+      triggerNew
+        ? sortByYear("educations").volatile()
+        : sortByYear("educations")
+    );
+    this.notifyPropertyChange("amountOfEducations");
+  }
+}

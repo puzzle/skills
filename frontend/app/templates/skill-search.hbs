@@ -1,5 +1,5 @@
 <div id="skill-search-header" class="header pt-3">
-  <PowerSelect @selected={{this.selectedSkill}} @options={{this.skills}} @onchange={{action "setSkill"}} @searchField="title" @triggerClass="w-75" as |skill|>
+  <PowerSelect @selected={{this.selectedSkill}} @options={{this.skills}} @onChange={{action "setSkill"}} @searchField="title" @triggerClass="w-75" as |skill|>
     {{skill.title}}
   </PowerSelect>
 

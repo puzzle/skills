@@ -1,30 +1,35 @@
-import Controller from "@ember/controller";
+import classic from "ember-classic-decorator";
+import { action, computed } from "@ember/object";
 import { inject as service } from "@ember/service";
-import { computed } from "@ember/object";
+import Controller from "@ember/controller";
 
-export default Controller.extend({
-  store: service(),
-  router: service(),
+@classic
+export default class SkillSearchController extends Controller {
+  @service
+  store;
+
+  @service
+  router;
 
   init() {
-    this._super(...arguments);
+    super.init(...arguments);
     this.set("skills", this.get("store").findAll("skill")).then(() =>
       this.notifyPropertyChange("selectedSkill")
     );
-  },
+  }
 
-  selectedSkill: computed("model", function() {
+  @computed("model")
+  get selectedSkill() {
     let skillId = this.get(
       "router.currentState.routerJsState.queryParams.skill_id"
     );
     return skillId ? this.get("store").peekRecord("skill", skillId) : null;
-  }),
-
-  actions: {
-    setSkill(skill) {
-      this.get("router").transitionTo({
-        queryParams: { skill_id: skill.get("id") }
-      });
-    }
   }
-});
+
+  @action
+  setSkill(skill) {
+    this.get("router").transitionTo({
+      queryParams: { skill_id: skill.get("id") }
+    });
+  }
+}

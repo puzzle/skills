@@ -1,7 +1,9 @@
+import classic from "ember-classic-decorator";
 import Controller from "@ember/controller";
 
-export default Controller.extend({
+@classic
+export default class SkillsController extends Controller {
   // ember needs this to set the active
   // class on the current filter button
-  queryParams: ["personId", "rated"]
-});
+  queryParams = ["personId", "rated"];
+}

@@ -5,12 +5,12 @@
   {{this.skill.people.length}}
 </td>
 <td class="skill-edit-dropdown overflow-visible">
-  <PowerSelect @renderInPlace={{true}} @triggerClass="skill-edit-parent-category" @class="w-100" @dropdownClass="w-100" @options={{this.parentCategories}} @selected={{this.selectedParent}} @onchange={{action "setParentCategory"}} @searchField="title" @onblur={{action "handleBlur"}} @onfocus={{action "handleFocus"}} as |category|>
+  <PowerSelect @renderInPlace={{true}} @triggerClass="skill-edit-parent-category" @class="w-100" @dropdownClass="w-100" @options={{this.parentCategories}} @selected={{this.selectedParent}} @onChange={{action "setParentCategory"}} @searchField="title" @onBlur={{action "handleBlur"}} @onFocus={{action "handleFocus"}} as |category|>
     {{category.title}}
   </PowerSelect>
 </td>
 <td class="skill-edit-dropdown overflow-visible">
-  <PowerSelect @renderInPlace={{true}} @triggerClass="skill-edit-child-category" @class="w-100" @options={{this.selectableChildCategories}} @selected={{this.changeset.category}} @onchange={{action (mut this.changeset.category)}} @searchField="title" @onblur={{action "handleBlur"}} @onfocus={{action "handleFocus"}} as |category|>
+  <PowerSelect @renderInPlace={{true}} @triggerClass="skill-edit-child-category" @class="w-100" @options={{this.selectableChildCategories}} @selected={{this.changeset.category}} @onChange={{action (mut this.changeset.category)}} @searchField="title" @onBlur={{action "handleBlur"}} @onFocus={{action "handleFocus"}} as |category|>
     {{category.title}}
   </PowerSelect>
 </td>
@@ -20,12 +20,12 @@
   </div>
 </td>
 <td class="skill-edit-dropdown overflow-visible">
-  <PowerSelect @searchEnabled={{false}} @renderInPlace={{true}} @triggerClass="skill-edit-radar" @class="w-100" @options={{this.radarOptions}} @selected={{this.changeset.radar}} @onchange={{action (mut this.changeset.radar)}} @onblur={{action "handleBlur"}} @onfocus={{action "handleFocus"}} as |radar|>
+  <PowerSelect @searchEnabled={{false}} @renderInPlace={{true}} @triggerClass="skill-edit-radar" @class="w-100" @options={{this.radarOptions}} @selected={{this.changeset.radar}} @onChange={{action (mut this.changeset.radar)}} @onBlur={{action "handleBlur"}} @onFocus={{action "handleFocus"}} as |radar|>
     {{radar}}
   </PowerSelect>
 </td>
 <td class="skill-edit-dropdown overflow-visible">
-  <PowerSelect @searchEnabled={{false}} @renderInPlace={{true}} @triggerClass="skill-edit-portfolio" @class="w-100" @options={{this.portfolioOptions}} @selected={{this.changeset.portfolio}} @onchange={{action (mut this.changeset.portfolio)}} @onblur={{action "handleBlur"}} @onfocus={{action "handleFocus"}} as |portfolio|>
+  <PowerSelect @searchEnabled={{false}} @renderInPlace={{true}} @triggerClass="skill-edit-portfolio" @class="w-100" @options={{this.portfolioOptions}} @selected={{this.changeset.portfolio}} @onChange={{action (mut this.changeset.portfolio)}} @onBlur={{action "handleBlur"}} @onFocus={{action "handleFocus"}} as |portfolio|>
     {{portfolio}}
   </PowerSelect>
 </td>

@@ -1,10 +1,13 @@
+import classic from "ember-classic-decorator";
+import { observes } from "@ember-decorators/object";
+import { action, computed } from "@ember/object";
 import Component from "@ember/component";
 import { isBlank } from "@ember/utils";
-import { computed, observer } from "@ember/object";
 
-export default Component.extend({
+@classic
+export default class PeopleSkillEdit extends Component {
   init() {
-    this._super(...arguments);
+    super.init(...arguments);
     this.set("interestLevelOptions", [0, 1, 2, 3, 4, 5]);
     this.set("levelValue", this.get("peopleSkill.level"));
 
@@ -23,9 +26,10 @@ export default Component.extend({
         });
       });
     }
-  },
+  }
 
-  levelName: computed("peopleSkill.level", function() {
+  @computed("peopleSkill.level")
+  get levelName() {
     const levelNames = [
       "Nicht bewertet",
       "Trainee",
@@ -35,15 +39,17 @@ export default Component.extend({
       "Expert"
     ];
     return levelNames[this.get("peopleSkill.level") || 0];
-  }),
+  }
 
-  levelValueChanged: observer("levelValue", function() {
+  @observes("levelValue")
+  levelValueChanged() {
     this.set("peopleSkill.level", this.get("levelValue"));
-  }),
+  }
 
-  sliderClass: computed("peopleSkill.level", function() {
+  @computed("peopleSkill.level")
+  get sliderClass() {
     return this.get("peopleSkill.level") ? "" : "disabled-slider";
-  }),
+  }
 
   focusComesFromOutside(e) {
     let blurredEl = e.relatedTarget;
@@ -51,15 +57,15 @@ export default Component.extend({
       return false;
     }
     return !blurredEl.classList.contains("ember-power-select-search-input");
-  },
-
-  actions: {
-    handleFocus(select, e) {
-      if (this.focusComesFromOutside(e)) {
-        select.actions.open();
-      }
-    },
-
-    handleBlur() {}
   }
-});
+
+  @action
+  handleFocus(select, e) {
+    if (this.focusComesFromOutside(e)) {
+      select.actions.open();
+    }
+  }
+
+  @action
+  handleBlur() {}
+}

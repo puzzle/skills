@@ -1,8 +1,10 @@
-import Component from "@ember/component";
+import classic from "ember-classic-decorator";
 import { sort } from "@ember/object/computed";
+import Component from "@ember/component";
 
-export default Component.extend({
-  sortedCompanies: sort("companies", function(a, b) {
+@classic
+export default class CompaniesList extends Component {
+  @sort("companies", function(a, b) {
     const typeIndexes = {
       mine: 0,
       candidate: 1,
@@ -20,9 +22,10 @@ export default Component.extend({
       return a.get("level") - b.get("level");
 
     return a.get("name") - b.get("name");
-  }),
+  })
+  sortedCompanies;
 
   init() {
-    this._super(...arguments);
+    super.init(...arguments);
   }
-});
+}

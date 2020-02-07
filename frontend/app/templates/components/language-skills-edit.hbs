@@ -11,7 +11,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 pl-0">
-      <PowerSelect @triggerClass="mt-2" @triggerId="language" @selected={{this.selectedLanguage}} @options={{this.languages}} @onfocus={{action "handleFocus"}} @onblur={{action "handleBlur"}} @onchange={{action "setLanguage"}} @onkeydown={{action "setWithTab" "setLanguage"}} @disabled={{this.isObligatoryLanguage}} @searchField="name" as |language|>
+      <PowerSelect @triggerClass="mt-2" @triggerId="language" @selected={{this.selectedLanguage}} @options={{this.languages}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onChange={{action "setLanguage"}} @onKeydown={{action "setWithTab" "setLanguage"}} @disabled={{this.isObligatoryLanguage}} @searchField="name" as |language|>
         {{#if (not-eq language.iso1 "-")}}{{language.name}} ({{language.iso1}}){{/if}}
       </PowerSelect>
 
@@ -25,7 +25,7 @@
   </div>
 </div>
 <label class="description mt-2">Level</label>
-<PowerSelect @triggerClass="w-70 d-block" @triggerId="level" @selected={{this.selectedSkill.level}} @searchEnabled={{false}} @options={{this.levels}} @onfocus={{action "handleFocus"}} @onblur={{action "handleBlur"}} @onchange={{action (mut this.selectedSkill.level)}} @onkeydown={{action "setWithTab" "setLevel"}} as |level|>
+<PowerSelect @triggerClass="w-70 d-block" @triggerId="level" @selected={{this.selectedSkill.level}} @searchEnabled={{false}} @options={{this.levels}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onChange={{action (mut this.selectedSkill.level)}} @onKeydown={{action "setWithTab" "setLevel"}} as |level|>
   {{level}}
 </PowerSelect>
 <label class="description mt-2">Zertifikat</label>

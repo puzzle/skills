@@ -1,22 +1,30 @@
-import Component from "@ember/component";
+import classic from "ember-classic-decorator";
+import { action, computed } from "@ember/object";
 import { inject as service } from "@ember/service";
-import { computed } from "@ember/object";
+import Component from "@ember/component";
 import { isBlank } from "@ember/utils";
 
-export default Component.extend({
-  store: service(),
-  router: service(),
+@classic
+export default class PeopleSearch extends Component {
+  @service
+  store;
+
+  @service
+  router;
 
   init() {
-    this._super(...arguments);
-  },
+    super.init(...arguments);
+  }
 
-  selected: computed("router.currentRoute.parent.params.person_id", function() {
+  @computed("router.currentRoute.parent.params.person_id")
+  get selected() {
     const currentId = this.get("router.currentRoute.parent.params.person_id");
+    debugger;
     if (currentId) return this.get("store").find("person", currentId);
-  }),
+  }
 
-  peopleToSelect: computed(function() {
+  @computed
+  get peopleToSelect() {
     return this.get("store")
       .findAll("person", { reload: true })
       .then(people =>
@@ -26,7 +34,7 @@ export default Component.extend({
           return 0;
         })
       );
-  }),
+  }
 
   focusComesFromOutside(e) {
     let blurredEl = e.relatedTarget;
@@ -34,21 +42,22 @@ export default Component.extend({
       return false;
     }
     return !blurredEl.classList.contains("ember-power-select-search-input");
-  },
-
-  actions: {
-    changePerson(person) {
-      this.set("selected", person);
-      person.reload();
-      this.get("router").transitionTo("person", person);
-    },
-
-    handleFocus(select, e) {
-      if (this.focusComesFromOutside(e)) {
-        select.actions.open();
-      }
-    },
-
-    handleBlur() {}
   }
-});
+
+  @action
+  changePerson(person) {
+    this.set("selected", person);
+    person.reload();
+    this.get("router").transitionTo("person", person);
+  }
+
+  @action
+  handleFocus(select, e) {
+    if (this.focusComesFromOutside(e)) {
+      select.actions.open();
+    }
+  }
+
+  @action
+  handleBlur() {}
+}

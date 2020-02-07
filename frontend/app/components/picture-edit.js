@@ -1,12 +1,17 @@
+import classic from "ember-classic-decorator";
+import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import PromiseProxyMixin from "@ember/object/promise-proxy-mixin";
 import ObjectProxy from "@ember/object/proxy";
 import Component from "@ember/component";
 
-const ObjectPromiseProxy = ObjectProxy.extend(PromiseProxyMixin);
+@classic
+class ObjectPromiseProxy extends ObjectProxy.extend(PromiseProxyMixin) {}
 
-export default Component.extend({
-  ajax: service(),
+@classic
+export default class PictureEdit extends Component {
+  @service
+  ajax;
 
   uploadImage(file) {
     let formData = new FormData();
@@ -45,7 +50,8 @@ export default Component.extend({
       });
 
     this.set("response", ObjectPromiseProxy.create({ promise: res }));
-  },
+  }
+
   didInsertElement() {
     this.$(".img-input").on("change", e => {
       if (e.target.files.length) {
@@ -53,10 +59,10 @@ export default Component.extend({
         e.target.value = null;
       }
     });
-  },
-  actions: {
-    changePicture() {
-      this.$(".img-input").click();
-    }
   }
-});
+
+  @action
+  changePicture() {
+    this.$(".img-input").click();
+  }
+}

@@ -15,7 +15,7 @@
           <div class="row my-3">
             <div class="col-md-3">Kategorie</div>
             <div class="col-md-9 people-skill-new-dropdowns">
-              <PowerSelect @triggerId="skill-new-category" @renderInPlace={{true}} @class="w-100" @dropdownClass="w-100" @options={{this.childCategories}} @matcher={{this.categorySearchMatcher}} @disabled={{eq this.newSkillSelected false}} @selected={{this.selectedCategory}} @onchange={{action "setCategory"}} @onblur={{action "handleBlur"}} @onfocus={{action "handleFocus"}} @onkeydown={{action "setWithKey" "setCategory"}} as |category|>
+              <PowerSelect @triggerId="skill-new-category" @renderInPlace={{true}} @class="w-100" @dropdownClass="w-100" @options={{this.childCategories}} @matcher={{this.categorySearchMatcher}} @disabled={{eq this.newSkillSelected false}} @selected={{this.selectedCategory}} @onChange={{action "setCategory"}} @onBlur={{action "handleBlur"}} @onFocus={{action "handleFocus"}} @onKeydown={{action "setWithKey" "setCategory"}} as |category|>
                 {{category.parent.title}} - {{category.title}}
               </PowerSelect>
             </div>
@@ -23,7 +23,7 @@
           <div class="row my-3">
             <div class="col-md-3">Radar</div>
             <div class="col-md-9 people-skill-new-dropdowns">
-              <PowerSelect @triggerId="skill-new-radar" @renderInPlace={{true}} @class="w-100" @dropdownClass="w-100" @options={{this.radarOptions}} @selected={{this.newSkill.radar}} @onchange={{action "setRadar"}} @onblur={{action "handleBlur"}} @onfocus={{action "handleFocus"}} @onkeydown={{action "setWithKey" "setRadar"}} as |radar|>
+              <PowerSelect @triggerId="skill-new-radar" @renderInPlace={{true}} @class="w-100" @dropdownClass="w-100" @options={{this.radarOptions}} @selected={{this.newSkill.radar}} @onChange={{action "setRadar"}} @onBlur={{action "handleBlur"}} @onFocus={{action "handleFocus"}} @onKeydown={{action "setWithKey" "setRadar"}} as |radar|>
                 {{radar}}
               </PowerSelect>
             </div>
@@ -31,7 +31,7 @@
           <div class="row my-3">
             <div class="col-md-3">Portfolio</div>
             <div class="col-md-9 people-skill-new-dropdowns">
-              <PowerSelect @triggerId="skill-new-portfolio" @renderInPlace={{true}} @class="w-100" @dropdownClass="w-100" @options={{this.portfolioOptions}} @selected={{this.newSkill.portfolio}} @onchange={{action "setPortfolio"}} @onfocus={{action "handleFocus"}} @onkeydown={{action "setWithKey" "setPortfolio"}} as |portfolio|>
+              <PowerSelect @triggerId="skill-new-portfolio" @renderInPlace={{true}} @class="w-100" @dropdownClass="w-100" @options={{this.portfolioOptions}} @selected={{this.newSkill.portfolio}} @onChange={{action "setPortfolio"}} @onFocus={{action "handleFocus"}} @onKeydown={{action "setWithKey" "setPortfolio"}} as |portfolio|>
                 {{portfolio}}
               </PowerSelect>
             </div>

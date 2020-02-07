@@ -36,7 +36,7 @@
                         <td>
                           <label class="description role-description">Rolle</label>
                           <div class="role-dropdown">
-                            <PowerSelect @selected={{personRole.role}} @options={{this.sortedRoles}} @onfocus={{action "handleFocus"}} @onblur={{action "handleBlur"}} @onchange={{action "setRole" personRole}} @onkeydown={{action "setPersonRoleWithTab" personRole}} @disabled={{this.usedRoles}} as |role|>
+                            <PowerSelect @selected={{personRole.role}} @options={{this.sortedRoles}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onChange={{action "setRole" personRole}} @onKeydown={{action "setPersonRoleWithTab" personRole}} @disabled={{this.usedRoles}} as |role|>
                               {{role.name}}
                             </PowerSelect>
                           </div>
@@ -47,7 +47,7 @@
                           <label class="description role-description">Stufe</label>
                           <div class="level-dropdown">
                             {{#if this.personRoleLevelsToSelect}}
-                              <PowerSelect @selected={{selected-person-role-level this.personRoleLevelsToSelect level=personRole.level}} @options={{this.personRoleLevelsToSelect}} @onfocus={{action "handleFocus"}} @onblur={{action "handleBlur"}} @onchange={{action "setPersonRoleLevel" personRole}} @onkeydown={{action "setPersonRoleLevelWithTab" personRole}} as |personRoleLevel|>
+                              <PowerSelect @selected={{selected-person-role-level this.personRoleLevelsToSelect level=personRole.level}} @options={{this.personRoleLevelsToSelect}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onChange={{action "setPersonRoleLevel" personRole}} @onKeydown={{action "setPersonRoleLevelWithTab" personRole}} as |personRoleLevel|>
                                 {{personRoleLevel.level}}
                               </PowerSelect>
                             {{/if}}
@@ -73,7 +73,7 @@
                   <tr>
                     <td>
                       <label>Organisationseinheit</label>
-                      <PowerSelect @triggerId="department" @selected={{this.person.department}} @options={{this.departmentsToSelect}} @onfocus={{action "handleFocus"}} @onblur={{action "handleBlur"}} @onchange={{action (mut this.person.department)}} @onkeydown={{action "setWithTab" "setDepartment"}} as |department|>
+                      <PowerSelect @triggerId="department" @selected={{this.person.department}} @options={{this.departmentsToSelect}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onChange={{action (mut this.person.department)}} @onKeydown={{action "setWithTab" "setDepartment"}} as |department|>
                         {{department.name}}
                       </PowerSelect>
                     </td>
@@ -81,7 +81,7 @@
                   <tr>
                     <td>
                       <label>Firma/Kategorie</label>
-                      <PowerSelect @triggerId="company" @selected={{this.person.company}} @options={{this.companiesToSelect}} @onfocus={{action "handleFocus"}} @onblur={{action "handleBlur"}} @onchange={{action (mut this.person.company)}} @onkeydown={{action "setWithTab" "setCompany"}} as |company|>
+                      <PowerSelect @triggerId="company" @selected={{this.person.company}} @options={{this.companiesToSelect}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onChange={{action (mut this.person.company)}} @onKeydown={{action "setWithTab" "setCompany"}} as |company|>
                         {{company.name}}
                       </PowerSelect>
                     </td>
@@ -106,7 +106,7 @@
                   <tr>
                     <td>
                       <label>Zivilstand</label>
-                      <PowerSelect @triggerId="maritalStatus" @selected={{this.selectedMaritalStatus}} @options={{this.maritalStatuses}} @searchEnabled={{false}} @onfocus={{action "handleFocus"}} @onblur={{action "handleBlur"}} @onchange={{action "setMaritalStatus"}} @onkeydown={{action "setWithTab" "setMaritalStatus"}} as |maritalStatus|>
+                      <PowerSelect @triggerId="maritalStatus" @selected={{this.selectedMaritalStatus}} @options={{this.maritalStatuses}} @searchEnabled={{false}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onChange={{action "setMaritalStatus"}} @onKeydown={{action "setWithTab" "setMaritalStatus"}} as |maritalStatus|>
                         {{maritalStatus}}
                       </PowerSelect>
                     </td>
@@ -120,7 +120,7 @@
                   <tr>
                     <td>
                       <label>Erste Nationalität</label>
-                      <PowerSelect @triggerId="nationality" @options={{this.countries}} @selected={{this.selectedNationality}} @onchange={{action "setNationality"}} @onfocus={{action "handleFocus"}} @onblur={{action "handleBlur"}} @onkeydown={{action "setWithTab" "setNationality"}} @searchField="1" as |country|>
+                      <PowerSelect @triggerId="nationality" @options={{this.countries}} @selected={{this.selectedNationality}} @onChange={{action "setNationality"}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onKeydown={{action "setWithTab" "setNationality"}} @searchField="1" as |country|>
                         <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
                       </PowerSelect>
                     </td>
@@ -129,7 +129,7 @@
                     {{#if this.secondNationality}}
                       <td>
                         <label>Zweite Nationalität</label>
-                        <PowerSelect @triggerId="nationality2" @options={{this.countries}} @selected={{this.selectedNationality2}} @onchange={{action "setNationality2"}} @onfocus={{action "handleFocus"}} @onblur={{action "handleBlur"}} @onkeydown={{action "setWithTab" "setNationality2"}} @searchField="1" as |country|>
+                        <PowerSelect @triggerId="nationality2" @options={{this.countries}} @selected={{this.selectedNationality2}} @onChange={{action "setNationality2"}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onKeydown={{action "setWithTab" "setNationality2"}} @searchField="1" as |country|>
                           <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
                         </PowerSelect>
                       </td>

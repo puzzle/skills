@@ -1,5 +1,7 @@
+import classic from "ember-classic-decorator";
 import Controller from "@ember/controller";
 
-export default Controller.extend({
-  discipline: "development"
-});
+@classic
+export default class FwsController extends Controller {
+  discipline = "development";
+}

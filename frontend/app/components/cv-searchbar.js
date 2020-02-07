@@ -1,27 +1,31 @@
-import Component from "@ember/component";
+import classic from "ember-classic-decorator";
+import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
+import Component from "@ember/component";
 
-export default Component.extend({
-  router: service(),
+@classic
+export default class CvSearchbar extends Component {
+  @service
+  router;
 
   didReceiveAttrs() {
     this.set("value", this.get("router._routerMicrolib.state.queryParams.q"));
-  },
+  }
 
-  actions: {
-    searchThroughCVs() {
-      const param = this.get("value");
+  @action
+  searchThroughCVs() {
+    const param = this.get("value");
 
-      if (param == "") {
-        this.get("router").transitionTo({ queryParams: { q: null } });
-      } else {
-        this.get("router").transitionTo({ queryParams: { q: param } });
-      }
-    },
-
-    clearValue() {
-      this.set("value", "");
-      this.send("searchThroughCVs");
+    if (param == "") {
+      this.get("router").transitionTo({ queryParams: { q: null } });
+    } else {
+      this.get("router").transitionTo({ queryParams: { q: param } });
     }
   }
-});
+
+  @action
+  clearValue() {
+    this.set("value", "");
+    this.send("searchThroughCVs");
+  }
+}

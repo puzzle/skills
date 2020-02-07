@@ -1,40 +1,46 @@
+import classic from "ember-classic-decorator";
+import { tagName } from "@ember-decorators/component";
+import { computed } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@ember/component";
-import { computed } from "@ember/object";
 import ExpertiseTopicSkillValueModel from "../models/expertise-topic-skill-value";
 
 const DEFAULT_SKILL_LEVEL = "trainee";
 
-export default Component.extend({
-  skillLevelData: ExpertiseTopicSkillValueModel.SKILL_LEVELS,
-  store: service(),
-  tagName: "",
+@classic
+@tagName("")
+export default class ExpertiseTopicSkillValueEdit extends Component {
+  skillLevelData = ExpertiseTopicSkillValueModel.SKILL_LEVELS;
 
-  formId: computed("expertiseTopic", function() {
+  @service
+  store;
+
+  @computed("expertiseTopic")
+  get formId() {
     return `expertise-topic-${this.get("expertiseTopic.id")}-form`;
-  }),
+  }
 
-  _expertiseTopicSkillValue: null,
+  _expertiseTopicSkillValue = null;
 
-  expertiseTopicSkillValue: computed({
-    set(_key, value) {
-      if (
-        this._expertiseTopicSkillValue &&
-        this._expertiseTopicSkillValue.get("isNew") &&
-        !this._expertiseTopicSkillValue.get("isSaving")
-      ) {
-        this._expertiseTopicSkillValue.destroyRecord();
-      }
-      this._expertiseTopicSkillValue =
-        value ||
-        this.get("store").createRecord("expertise-topic-skill-value", {
-          skillLevel: DEFAULT_SKILL_LEVEL
-        });
-
-      return this._expertiseTopicSkillValue;
-    },
-    get() {
-      return this._expertiseTopicSkillValue;
+  @computed
+  set expertiseTopicSkillValue(value) {
+    if (
+      this._expertiseTopicSkillValue &&
+      this._expertiseTopicSkillValue.get("isNew") &&
+      !this._expertiseTopicSkillValue.get("isSaving")
+    ) {
+      this._expertiseTopicSkillValue.destroyRecord();
     }
-  })
-});
+    this._expertiseTopicSkillValue =
+      value ||
+      this.get("store").createRecord("expertise-topic-skill-value", {
+        skillLevel: DEFAULT_SKILL_LEVEL
+      });
+
+    return this._expertiseTopicSkillValue;
+  }
+
+  get expertiseTopicSkillValue() {
+    return this._expertiseTopicSkillValue;
+  }
+}
