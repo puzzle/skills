@@ -1,6 +1,8 @@
 import EmberRouter from "@ember/routing/router";
 import config from "./config/environment";
+import classic from "ember-classic-decorator";
 
+@classic
 export default class Router extends EmberRouter {
   location = config.locationType;
   rootURL = config.rootURL;
