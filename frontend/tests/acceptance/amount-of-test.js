@@ -1,10 +1,11 @@
-import { test } from "qunit";
+import { module, test } from "qunit";
 import moduleForAcceptance from "frontend/tests/helpers/module-for-acceptance";
+import keycloakStub from "../helpers/keycloak-stub";
 import applicationPage from "frontend/tests/pages/application";
 import page from "frontend/tests/pages/person-edit";
+import { selectChoose } from "ember-power-select/test-support";
 
 moduleForAcceptance("Acceptance | amount of", {});
-
 test("amount of educations", async function(assert) {
   assert.expect(4);
 

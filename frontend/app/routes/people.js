@@ -37,9 +37,11 @@ export default class PeopleRoute extends Route.extend(
   }
 
   isTransitioningToSpecificPerson(transition) {
-    const transitionPersonId = transition.intent.contexts
-      ? transition.intent.contexts.get("firstObject")
-      : null;
+    const personRouteInfos = transition.routeInfos.find(
+      route => route.name === "person"
+    );
+    if (personRouteInfos === undefined) return true;
+    const transitionPersonId = personRouteInfos.params.person_id;
     return (
       transitionPersonId != null &&
       transitionPersonId != this.get("selectedPerson.personId")
