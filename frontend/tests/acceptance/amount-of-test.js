@@ -1,28 +1,31 @@
 import { module, test } from "qunit";
-import moduleForAcceptance from "frontend/tests/helpers/module-for-acceptance";
+import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
 import keycloakStub from "../helpers/keycloak-stub";
 import applicationPage from "frontend/tests/pages/application";
 import page from "frontend/tests/pages/person-edit";
 import { selectChoose } from "ember-power-select/test-support";
 
-moduleForAcceptance("Acceptance | amount of", {});
-test("amount of educations", async function(assert) {
-  assert.expect(4);
+module("Acceptance | amount of", function(hooks) {
+  setupApplicationTest(hooks);
 
-  await applicationPage.visitHome("/");
-  /* eslint "no-undef": "off" */
-  await selectChoose("#people-search", ".ember-power-select-option", 0);
+  test("amount of educations", async function(assert) {
+    assert.expect(4);
 
-  // 1 education
-  assert.equal(page.educations.list().count, 1);
-  assert.equal(page.educations.amountOf, "Ausbildung (1)");
+    await applicationPage.visitHome("/");
+    /* eslint "no-undef": "off" */
+    await selectChoose("#people-search", ".ember-power-select-option", 0);
 
-  // 0 education
-  await page.educations.toggleForm();
-  await page.educations.delete();
-  await page.educations.confirm();
-  await page.educations.submit();
+    // 1 education
+    assert.equal(page.educations.list().count, 1);
+    assert.equal(page.educations.amountOf, "Ausbildung (1)");
 
-  assert.equal(page.educations.list().count, 0);
-  assert.equal(page.educations.amountOf, "Ausbildung (0)");
+    // 0 education
+    await page.educations.toggleForm();
+    await page.educations.delete();
+    await page.educations.confirm();
+    await page.educations.submit();
+
+    assert.equal(page.educations.list().count, 0);
+    assert.equal(page.educations.amountOf, "Ausbildung (0)");
+  });
 });
