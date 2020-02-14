@@ -14,7 +14,7 @@ export default class PersonRoute extends Route {
 
   @action
   didTransition() {
-    this.set("selectedPerson.personId", this.get("currentModel.id"));
-    this.set("selectedPerson.selectedSubRoute", this.get("routeName"));
+    this.selectedPerson.personId = this.currentModel.id;
+    this.selectedPerson.selectedSubRoute = this.routeName;
   }
 }

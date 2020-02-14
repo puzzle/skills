@@ -40,7 +40,7 @@ export default class PeopleRoute extends Route.extend(
     const personRouteInfos = transition.routeInfos.find(
       route => route.name === "person"
     );
-    if (personRouteInfos === undefined) return true;
+    if (personRouteInfos === undefined) return false;
     const transitionPersonId = personRouteInfos.params.person_id;
     return (
       transitionPersonId != null &&

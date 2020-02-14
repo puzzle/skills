@@ -14,7 +14,6 @@ export default class SelectedPersonService extends Service {
     );
   }
 
-  @computed("personId", "selectedSubRoute")
   get isPresent() {
     return !!(this.get("personId") && this.get("selectedSubRoute"));
   }
