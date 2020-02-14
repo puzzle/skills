@@ -15,6 +15,7 @@ module("Acceptance | amount of", function(hooks) {
     /* eslint "no-undef": "off" */
     await selectChoose("#people-search", ".ember-power-select-option", 0);
 
+    debugger;
     // 1 education
     assert.equal(page.educations.list().count, 1);
     assert.equal(page.educations.amountOf, "Ausbildung (1)");
@@ -25,6 +26,7 @@ module("Acceptance | amount of", function(hooks) {
     await page.educations.confirm();
     await page.educations.submit();
 
+    debugger;
     assert.equal(page.educations.list().count, 0);
     assert.equal(page.educations.amountOf, "Ausbildung (0)");
   });

@@ -32,3 +32,7 @@
 2020-02-05T10:02:55.670Z [warn] WARNING: {{f.text-field}} was not converted as it has positional parameters which can't be automatically converted. Source: ./frontend/app/templates/components/person-new.hbs
 2020-02-05T10:02:55.670Z [warn] WARNING: {{f.text-field}} was not converted as it has positional parameters which can't be automatically converted. Source: ./frontend/app/templates/components/person-new.hbs
 2020-02-05T10:02:55.676Z [warn] WARNING: {{f.text-field}} was not converted as it has positional parameters which can't be automatically converted. Source: ./frontend/app/templates/components/person-new.hbs
+2020-02-14T09:56:43.392Z [warn] [frontend/app/components/educations-edit.js]: FAILURE 
+Validation errors: 
+	[submit]: Transform not supported - action name matches one of the lifecycle hooks. Rename and try again. See https://github.com/scalvert/ember-native-class-codemod/issues/34 for more details
+	[submit]: Transform not supported - calling the passed action would cause an infinite loop. See https://github.com/scalvert/eslint-plugin-ember-es6-class/pull/2 for more details
