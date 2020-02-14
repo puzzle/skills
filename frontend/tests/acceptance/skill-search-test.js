@@ -1,8 +1,10 @@
 import { module, test } from "qunit";
 import page from "frontend/tests/pages/skill-search";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
+import { currentURL } from "@ember/test-helpers";
+import { selectChoose } from "ember-power-select/test-support";
 
-module("Acceptance | create people-skill", function(hooks) {
+module("Acceptance | skill search", function(hooks) {
   setupApplicationTest(hooks);
 
   test("search peopleSkills of Rails", async function(assert) {

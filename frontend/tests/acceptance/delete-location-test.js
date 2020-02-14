@@ -1,12 +1,13 @@
-import { module, test } from "qunit";
+import { module, test, skip } from "qunit";
 import applicationPage from "frontend/tests/pages/application";
 import page from "frontend/tests/pages/location-delete";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
+import { currentURL } from "@ember/test-helpers";
 
 module("Acceptance | delete location", function(hooks) {
   setupApplicationTest(hooks);
 
-  test("submit delete location", async function(assert) {
+  skip("submit delete location", async function(assert) {
     assert.expect(11);
 
     await applicationPage.visitCompanies("/companies");
@@ -31,7 +32,7 @@ module("Acceptance | delete location", function(hooks) {
     assert.equal(page.profileData.locations, "");
   });
 
-  test("cancel delete location", async function(assert) {
+  skip("cancel delete location", async function(assert) {
     assert.expect(11);
 
     await applicationPage.visitCompanies("/companies");

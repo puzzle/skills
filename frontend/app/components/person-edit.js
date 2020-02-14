@@ -26,6 +26,7 @@ export default ApplicationComponent.extend(EKMixin, {
     this.get("store")
       .findAll("personRoleLevel")
       .then(levels => this.set("personRoleLevelsToSelect", levels));
+    this.allRoles = this.store.findAll("role");
   },
 
   personChanged: observer("person", function() {
@@ -89,22 +90,19 @@ export default ApplicationComponent.extend(EKMixin, {
     });
   },
 
-  sortedRoles: observer("sortedRoles", function() {
-    const roles = this.get("store").findAll("role");
-    roles.then(() => {
-      const usedRoleNames = this.get("person.personRoles").map(x =>
-        x.get("role.name")
-      );
+  sortedRoles: computed("allRoles", function() {
+    const usedRoleNames = this.get("person.personRoles").map(x =>
+      x.get("role.name")
+    );
 
-      roles.forEach(role => {
-        if (usedRoleNames.includes(role.get("name"))) {
-          role.set("disabled", true);
-        } else {
-          role.set("disabled", undefined);
-        }
-      }, this);
-      this.set("sortedRoles", roles);
+    this.allRoles.forEach(role => {
+      if (usedRoleNames.includes(role.get("name"))) {
+        role.set("disabled", true);
+      } else {
+        role.set("disabled", undefined);
+      }
     });
+    return this.allRoles;
   }),
 
   companiesToSelect: computed(function() {

@@ -4,6 +4,8 @@ import page from "frontend/tests/pages/person-skills";
 import skillSearchPage from "frontend/tests/pages/skill-search";
 import personPage from "frontend/tests/pages/person-edit";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
+import { currentURL } from "@ember/test-helpers";
+import { selectChoose } from "ember-power-select/test-support";
 
 module("Acceptance | redirect to last profile", function(hooks) {
   setupApplicationTest(hooks);

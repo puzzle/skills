@@ -3,6 +3,7 @@ import applicationPage from "frontend/tests/pages/application";
 import page from "frontend/tests/pages/person-skills";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
 import { selectChoose } from "ember-power-select/test-support";
+import { currentURL } from "@ember/test-helpers";
 
 module("Acceptance | create people-skill", function(hooks) {
   setupApplicationTest(hooks);

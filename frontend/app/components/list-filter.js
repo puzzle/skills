@@ -10,7 +10,6 @@ export default class ListFilter extends Component {
 
   init() {
     super.init(...arguments);
-    this.filterAction = this.get("filter");
     this.set(
       "value",
       this.get("router.currentState.routerJsState.queryParams.title")

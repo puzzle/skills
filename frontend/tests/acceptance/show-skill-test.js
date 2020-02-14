@@ -1,6 +1,7 @@
 import { module, test } from "qunit";
 import page from "frontend/tests/pages/skills-index";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
+import { currentURL } from "@ember/test-helpers";
 
 module("Acceptance | show skill", function(hooks) {
   setupApplicationTest(hooks);

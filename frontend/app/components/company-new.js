@@ -5,6 +5,11 @@ import { Promise } from "rsvp";
 export default Component.extend({
   store: service(),
 
+  init() {
+    this._super(...arguments);
+    this.newCompany = this.store.createRecord("company");
+  },
+
   actions: {
     submit(newCompany) {
       return newCompany

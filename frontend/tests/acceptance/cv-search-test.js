@@ -1,6 +1,7 @@
 import { module, test } from "qunit";
 import page from "frontend/tests/pages/cv-search";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
+import { currentURL, triggerEvent } from "@ember/test-helpers";
 
 module("Acceptance | cv search", function(hooks) {
   setupApplicationTest(hooks);

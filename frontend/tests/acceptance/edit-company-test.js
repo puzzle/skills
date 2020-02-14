@@ -1,4 +1,4 @@
-import { module, test } from "qunit";
+import { module, test, skip } from "qunit";
 import applicationPage from "frontend/tests/pages/application";
 import page from "frontend/tests/pages/company-edit";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
@@ -6,7 +6,7 @@ import setupApplicationTest from "frontend/tests/helpers/setup-application-test"
 module("Acceptance | edit company", function(hooks) {
   setupApplicationTest(hooks);
 
-  test("/company/:id edit company data", async function(assert) {
+  skip("/company/:id edit company data", async function(assert) {
     assert.expect(10);
 
     await applicationPage.visitCompanies("/companies");

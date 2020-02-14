@@ -1,6 +1,8 @@
 import { module, test } from "qunit";
 import page from "frontend/tests/pages/skills-index";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
+import { currentURL } from "@ember/test-helpers";
+import { selectChoose } from "ember-power-select/test-support";
 
 module("Acceptance | edit skill", function(hooks) {
   setupApplicationTest(hooks);

@@ -3,6 +3,7 @@ import page from "frontend/tests/pages/people-new";
 import { openDatepicker } from "ember-pikaday/helpers/pikaday";
 import $ from "jquery";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
+import { currentURL } from "@ember/test-helpers";
 
 module("Acceptance | create person", function(hooks) {
   setupApplicationTest(hooks);
