@@ -12,6 +12,7 @@ export default ApplicationComponent.extend({
 
   init() {
     this._super(...arguments);
+    this.newPerson = this.store.createRecord("person");
     this.initMaritalStatuses();
     this.initNationalities();
     this.get("store")

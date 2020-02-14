@@ -11,15 +11,16 @@ export default class CoreCompetencesShow extends Component {
 
   init() {
     super.init(...arguments);
-    this.parentCategories = this.get("store").query("category", {
+    this.parentCategories = this.store.query("category", {
       scope: "parents"
     });
+    if (!this.person.peopleSkills.length)
+      this.store.query("people-skill", { person_id: this.person.id });
     this.refreshCoreCompetencesObj();
   }
 
   @observes("person.peopleSkills")
   personChanged() {
-    super.personChanged;
     this.refreshCoreCompetencesObj();
   }
 

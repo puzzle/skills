@@ -3,6 +3,7 @@ import { setupRenderingTest } from "ember-qunit";
 import { render } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import Service from "@ember/service";
+import keycloakStub from "../../helpers/keycloak-stub";
 
 const storeStub = Service.extend({
   query(type, options) {
@@ -45,6 +46,9 @@ module("Integration | Component | core-competences-show", function(hooks) {
   setupRenderingTest(hooks);
 
   test("it renders", async function(assert) {
+    this.owner.register("service:keycloak-session", keycloakStub);
+    this.owner.unregister("service:store");
+    this.owner.register("service:store", storeStub);
     this.set("person", {
       peopleSkills: [
         {
@@ -80,9 +84,7 @@ module("Integration | Component | core-competences-show", function(hooks) {
       ]
     });
 
-    this.owner.register("service:store", storeStub);
-
-    await render(hbs`{{core-competences-show person=person}}`);
+    await render(hbs`<CoreCompetencesShow @person={{this.person}}/>`);
 
     let text = this.$().text();
 

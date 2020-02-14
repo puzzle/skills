@@ -1,5 +1,4 @@
 import { module, test } from "qunit";
-import moduleForAcceptance from "frontend/tests/helpers/module-for-acceptance";
 import applicationPage from "frontend/tests/pages/application";
 import page from "frontend/tests/pages/location-delete";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
