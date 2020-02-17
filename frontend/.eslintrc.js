@@ -18,7 +18,8 @@ module.exports = {
     "plugin:prettier/recommended"
   ],
   env: {
-    browser: true
+    browser: true,
+    node: true
   },
   rules: {
     "ember/no-on-calls-in-components": 0,
