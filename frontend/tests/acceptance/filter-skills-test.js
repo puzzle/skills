@@ -19,7 +19,7 @@ module("Acceptance | filter skills", function(hooks) {
       .map(name => name.text);
     assert.ok(names.includes("JUnit"));
     assert.ok(names.includes("• Bash"));
-    assert.ok(names.includes("Rails"));
+    assert.ok(names.includes("Rails") || names.includes("Travis CI"));
   });
 
   test("filters only defaultSet by default", async function(assert) {
