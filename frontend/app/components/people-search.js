@@ -19,7 +19,7 @@ export default class PeopleSearch extends Component {
   @computed("router.currentRoute.parent.params.person_id")
   get selected() {
     const currentId = this.get("router.currentRoute.parent.params.person_id");
-    if (currentId) return this.get("store").find("person", currentId);
+    return currentId ? this.get("store").find("person", currentId) : undefined;
   }
 
   @computed

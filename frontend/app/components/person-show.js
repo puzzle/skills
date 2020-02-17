@@ -28,6 +28,7 @@ export default class PersonShow extends Component {
         this.get("session.token");
       return path;
     }
+    return "";
   }
 
   @sortByLanguage("person.languageSkills")

@@ -1,5 +1,5 @@
 <div class="row">
-  <div onclick={{this.toggleSkillShow}} data-toggle={{if this.toggleSkillShow "modal"}} data-target="#skill-show-modal" class="col pt-3 people-skill-skillname">
+  <div role="button" onclick={{toggleSkillShow}} data-toggle={{if this.toggleSkillShow "modal"}} data-target="#skill-show-modal" class="col pt-3 people-skill-skillname">
     {{#if this.showPersonName}}
       <a role="button" onclick={{action "changePerson" this.peopleSkill.person}} class="edit-buttons">
         <span data-dismiss="modal">{{this.peopleSkill.person.name}}</span>

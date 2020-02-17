@@ -6,7 +6,7 @@ import { openDatepicker } from "ember-pikaday/helpers/pikaday";
 import $ from "jquery";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
 import { selectChoose } from "ember-power-select/test-support";
-import { currentURL, fillIn } from "@ember/test-helpers";
+import { fillIn } from "@ember/test-helpers";
 
 module("Acceptance | edit person", function(hooks) {
   setupApplicationTest(hooks);

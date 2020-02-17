@@ -22,6 +22,7 @@ module.exports = {
   },
   rules: {
     "ember/no-on-calls-in-components": 0,
+    "ember/no-observers": 0, // Remove this rule and take care of it asap
     "ember/alias-model-in-controller": 0,
     "ember/use-ember-get-and-set": 0,
     "ember/named-functions-in-promises": 0,

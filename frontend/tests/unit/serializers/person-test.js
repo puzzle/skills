@@ -1,29 +1,19 @@
-import { moduleForModel, test } from "ember-qunit";
+import { module, test } from "qunit";
+import { setupTest } from "ember-qunit";
 
-moduleForModel("person", "Unit | Serializer | person", {
-  needs: [
-    "model:education",
-    "model:advanced-training",
-    "model:activity",
-    "model:project",
-    "model:expertise-topic-skill-value",
-    "model:company",
-    "model:role",
-    "model:skill",
-    "model:language-skill",
-    "serializer:person"
-  ]
-});
+module("person", "Unit | Serializer | person", function(hooks) {
+  setupTest(hooks);
 
-test("it does not serialize unpermitted attrs", function(assert) {
-  let record = this.subject();
+  test("it does not serialize unpermitted attrs", function(assert) {
+    let record = this.owner.lookup("service:store").createRecord("person");
 
-  let {
-    data: { attributes: attrs }
-  } = record.serialize();
+    let {
+      data: { attributes: attrs }
+    } = record.serialize();
 
-  assert.notOk("picture_path" in attrs);
-  assert.notOk("updated_at" in attrs);
-  assert.notOk("origin_person_id" in attrs);
-  assert.ok("name" in attrs);
+    assert.notOk("picture_path" in attrs);
+    assert.notOk("updated_at" in attrs);
+    assert.notOk("origin_person_id" in attrs);
+    assert.ok("name" in attrs);
+  });
 });

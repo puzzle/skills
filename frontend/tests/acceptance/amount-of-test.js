@@ -1,6 +1,5 @@
 import { module, test } from "qunit";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
-import keycloakStub from "../helpers/keycloak-stub";
 import applicationPage from "frontend/tests/pages/application";
 import page from "frontend/tests/pages/person-edit";
 import { selectChoose } from "ember-power-select/test-support";

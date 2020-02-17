@@ -1,8 +1,7 @@
-import { module, test, skip } from "qunit";
+import { module, skip } from "qunit";
 import applicationPage from "frontend/tests/pages/application";
 import page from "frontend/tests/pages/location-delete";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
-import { currentURL } from "@ember/test-helpers";
 
 module("Acceptance | delete location", function(hooks) {
   setupApplicationTest(hooks);

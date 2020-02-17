@@ -1,4 +1,4 @@
-import { module, test, skip } from "qunit";
+import { module, skip } from "qunit";
 import applicationPage from "frontend/tests/pages/application";
 import page from "frontend/tests/pages/company-edit";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";

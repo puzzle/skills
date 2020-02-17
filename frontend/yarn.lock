@@ -7096,10 +7096,10 @@ ember-compatibility-helpers@^1.0.2, ember-compatibility-helpers@^1.1.1, ember-co
     ember-cli-version-checker "^2.1.1"
     semver "^5.4.1"
 
-ember-composable-helpers@^2.0.1:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/ember-composable-helpers/-/ember-composable-helpers-2.4.0.tgz#024bd6a8c338cc9cdf10f1141b119b8f72de205f"
-  integrity sha512-91ZqFnNG1EDL3WzxXWTgAy6EonPS7htWHletI5SOw5ezEzKbt6EGNBwT6QPhwariugtR8LEfYNQ9lXEiCZrX1w==
+ember-composable-helpers@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/ember-composable-helpers/-/ember-composable-helpers-3.1.1.tgz#9d663f4359fd54fd369ea60aa1915bf59113bcec"
+  integrity sha512-lPmPhk4wIg1JDnuOfzcDzrCZoaDoTvZrYVaBi4Eia2SdEEfcDNipQTXTk0yHFCvKfSjXjuNlTtNP9UANH58TzQ==
   dependencies:
     "@babel/core" "^7.0.0"
     broccoli-funnel "2.0.1"
@@ -7222,7 +7222,7 @@ ember-factory-for-polyfill@^1.3.1:
     node-fetch "^2.6.0"
     whatwg-fetch "^3.0.0"
 
-ember-fetch@^7.0.0:
+ember-fetch@^7.0.1:
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/ember-fetch/-/ember-fetch-7.0.1.tgz#062b87bdc440135c8cd87ce4678cfc8da25d5116"
   integrity sha512-EnnLGwRq+8Df4p++ymGJwGwS5jMMhr2CmFgJ+aJnPLDUaacSNCXp0PxxdMc8qsUB4VCLx7frvzQh5ALzRvdNCQ==

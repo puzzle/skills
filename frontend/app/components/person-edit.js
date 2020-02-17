@@ -42,6 +42,7 @@ export default ApplicationComponent.extend(EKMixin, {
         this.get("session.token");
       return path;
     }
+    return "";
   }),
 
   willDestroyElement() {

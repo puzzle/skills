@@ -16,5 +16,6 @@ export default class SkillShow extends Component {
         rated: "true"
       });
     }
+    return null;
   }
 }

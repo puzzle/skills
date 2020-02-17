@@ -1,5 +1,4 @@
 import classic from "ember-classic-decorator";
-import { computed } from "@ember/object";
 import Service from "@ember/service";
 
 @classic
