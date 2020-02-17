@@ -22,11 +22,6 @@ export default class AdvancedTrainingsShow extends Component {
   @action
   toggleAdvancedTrainingNew(triggerNew) {
     this.set("advanced-trainingNew", triggerNew);
-    const sortedTrainings = sortByYear("advanced-trainings");
-    this.set(
-      "sortedAdvancedTrainings",
-      triggerNew ? sortedTrainings.volatile() : sortedTrainings
-    );
     this.notifyPropertyChange("amountOfAdvancedTrainings");
   }
 }

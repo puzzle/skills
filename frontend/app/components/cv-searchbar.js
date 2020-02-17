@@ -9,7 +9,7 @@ export default class CvSearchbar extends Component {
   router;
 
   didReceiveAttrs() {
-    this.set("value", this.get("router._routerMicrolib.state.queryParams.q"));
+    this.value = this.router.currentRoute.queryParams.q;
   }
 
   @action

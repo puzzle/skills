@@ -25,10 +25,6 @@ export default class ProjectsShow extends Component {
   @action
   toggleProjectNew(triggerNew) {
     this.set("projectNew", triggerNew);
-    this.set(
-      "sortedProjects",
-      triggerNew ? sortByYear("projects").volatile() : sortByYear("projects")
-    );
     this.notifyPropertyChange("amountOfProjects");
   }
 

@@ -11,18 +11,14 @@ export default class SkillSearchController extends Controller {
   @service
   router;
 
-  init() {
-    super.init(...arguments);
-    this.set("skills", this.get("store").findAll("skill")).then(() =>
-      this.notifyPropertyChange("selectedSkill")
-    );
+  @computed
+  get skills() {
+    return this.store.findAll("skill", { reload: true });
   }
 
   @computed("model")
   get selectedSkill() {
-    let skillId = this.get(
-      "router.currentState.routerJsState.queryParams.skill_id"
-    );
+    const skillId = this.router.currentRoute.queryParams.skill_id;
     return skillId ? this.get("store").peekRecord("skill", skillId) : null;
   }
 

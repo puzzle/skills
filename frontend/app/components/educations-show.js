@@ -16,12 +16,6 @@ export default class EducationsShow extends Component {
   @action
   toggleEducationNew(triggerNew) {
     this.set("educationNew", triggerNew);
-    this.set(
-      "sortedEducations",
-      triggerNew
-        ? sortByYear("educations").volatile()
-        : sortByYear("educations")
-    );
     this.notifyPropertyChange("amountOfEducations");
   }
 }

@@ -8,7 +8,7 @@
   <div id="cv-search-results" class="border border-info rounded-bottom">
     {{#if this.model}}
       {{#each this.model as |person|}}
-        <LinkTo @route="person" @model={{person}} class="cv-search-pills m-2">
+        <LinkTo @route="person" @model={{person.id}} class="cv-search-pills m-2">
           {{person.name}}
         </LinkTo>
       {{/each}}

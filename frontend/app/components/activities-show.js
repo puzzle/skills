@@ -22,12 +22,6 @@ export default class ActivitiesShow extends Component {
   @action
   toggleActivityNew(triggerNew) {
     this.set("activityNew", triggerNew);
-    this.set(
-      "sortedActivities",
-      triggerNew
-        ? sortByYear("activities").volatile()
-        : sortByYear("activities")
-    );
     this.notifyPropertyChange("amountOfActivities");
   }
 }
