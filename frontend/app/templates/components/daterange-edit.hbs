@@ -12,22 +12,12 @@
         Von:
       </th>
       <td>
-        {{#power-select
-        selected=selectedMonthFrom
-        options=monthsFromSelect
-        searchEnabled=false
-        onfocus=(action "handleFocus")
-        onblur=(action "handleBlur")
-        onchange=(action "setMonth" "From")
-        onkeydown=(action "setWithTab" 'setMonth')
-        as |month|
-        }}
+        <PowerSelect @selected={{this.selectedMonthFrom}} @options={{this.monthsFromSelect}} @searchEnabled={{false}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onChange={{action "setMonth" "From"}} @onKeydown={{action "setWithTab" "setMonth"}} as |month|>
           {{month}}
-        {{/power-select}}
+        </PowerSelect>
       </td>
       <td>
-        <input type="number" value={{entity.yearFrom}} onchange={{action "setYearFrom" value="target.value"}} max="9999"
-        class={{concat (if yearFromInvalid 'invalid') " year form-control" }} placeholder="von">
+        <input type="number" value={{this.entity.yearFrom}} onchange={{action "setYearFrom" value="target.value"}} max="9999" class={{concat (if this.yearFromInvalid "invalid") " year form-control" }} placeholder="von">
       </td>
     </tr>
     <tr>
@@ -35,23 +25,13 @@
         Bis:
       </th>
       <td>
-        {{#power-select
-        selected=selectedMonthTo
-        options=monthsToSelect
-        searchEnabled=false
-        onfocus=(action "handleFocus")
-        onblur=(action "handleBlur")
-        onchange=(action "setMonth" "To")
-        onkeydown=(action "setWithTab" 'setMonth' "To")
-        as |month|
-        }}
+        <PowerSelect @selected={{this.selectedMonthTo}} @options={{this.monthsToSelect}} @searchEnabled={{false}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onChange={{action "setMonth" "To"}} @onKeydown={{action "setWithTab" "setMonth" "To"}} as |month|>
           {{month}}
-        {{/power-select}}
+        </PowerSelect>
       </td>
       <td>
-        {{#if (not-eq selectedMonthTo 'heute')}}
-          <input type="number" value={{entity.yearTo}} max="9999" onchange={{action "setYearTo" value="target.value"}}
-            class={{concat (if yearFromInvalid 'invalid') " year form-control" }} placeholder="bis">
+        {{#if (not-eq this.selectedMonthTo "heute")}}
+          <input type="number" value={{this.entity.yearTo}} max="9999" onchange={{action "setYearTo" value="target.value"}} class={{concat (if this.yearFromInvalid "invalid") " year form-control" }} placeholder="bis">
         {{/if}}
       </td>
     </tr>

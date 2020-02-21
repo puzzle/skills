@@ -1,24 +1,24 @@
-{{#if isLoading}} 
+{{#if this.isLoading}} 
   <div class="text-center mt-4">
     <img alt="loading-spinner" class="img-fluid" src="/assets/images/loading.gif">
   </div>
 {{/if}}
-{{#if (not-eq isLoading (not-eq (eq isClosed newPeopleSkills) (eq isLoading isClosed)))}}
+{{#if (not-eq this.isLoading (not-eq (eq this.isClosed this.newPeopleSkills) (eq this.isLoading this.isClosed)))}}
   <div id="new-people-skills-show" class="mt-3">
     <div class="row mb-3">
       <div class="col-md-11">
-        <h5><b>Neue Skills zur Bewertung ({{newPeopleSkillsAmount}})</b></h5>
+        <h5><b>Neue Skills zur Bewertung ({{this.newPeopleSkillsAmount}})</b></h5>
       </div>
       <div class="col-md-1">
-        <button type="button" class="close" onclick={{action 'close'}} aria-label="Close">
+        <button type="button" class="close" onclick={{action "close"}} aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
     </div>
-    {{#each newPeopleSkills as |peopleSkill|}}
+    {{#each this.newPeopleSkills as |peopleSkill|}}
       <div class="new-people-skill-show row py-2">
         <div class="col-md-10">
-          {{people-skill-edit peopleSkill=peopleSkill}}
+          <PeopleSkillEdit @peopleSkill={{peopleSkill}} />
         </div>
         <div class="col-md-2 col flex-column d-flex justify-content-center">
           <a class="edit-buttons" role="button" onclick={{action "saveWithDefault" peopleSkill}}>Nicht bewerten</a>
@@ -26,8 +26,8 @@
       </div>
     {{/each}}
     <div class="mt-3">
-      <button onclick={{action 'submit' person}} role="button" class="btn btn-primary" id="submit-education-button">Übernehmen</button>
-      <button onclick={{action 'close'}} role="button" class="btn abort-button">Nicht jetzt</button>
+      <button onclick={{action "submit" this.person}} role="button" class="btn btn-primary" id="submit-education-button">Übernehmen</button>
+      <button onclick={{action "close"}} role="button" class="btn abort-button">Nicht jetzt</button>
     </div>
   </div>
 {{/if}}

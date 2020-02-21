@@ -1,17 +1,17 @@
-{{skill-show skill=currentSkill}}
-{{#nav-sidebar items=sidebarItems}}
+<SkillShow @skill={{this.currentSkill}} />
+<NavSidebar @items={{this.sidebarItems}}>
   <ul class="nav flex-column mt-2 border">
-    {{#if peopleSkillsEditing}}
+    {{#if this.peopleSkillsEditing}}
       <li class="d-flex flex-column nav-link">
         <div class="mb-2 text-center">
           <i class="fa fa-edit"></i> Bearbeiten
         </div>
-        <button onclick={{action 'submit' person}} role="button" class="btn btn-primary" id="submit-education-button">Speichern</button>
-        <button onclick={{action 'abortEdit'}} role="button" class="btn abort-button w-100 mt-1">Abbrechen</button>
+        <button onclick={{action "submit" this.person}} role="button" class="btn btn-primary" id="submit-education-button">Speichern</button>
+        <button onclick={{action "abortEdit"}} role="button" class="btn abort-button w-100 mt-1">Abbrechen</button>
       </li>
     {{else}}
       <li class="d-flex flex-column nav-link">
-        <a role="button" class="edit-buttons" onclick={{action (toggle 'peopleSkillsEditing' this)}}>
+        <a role="button" class="edit-buttons" onclick={{action (toggle "peopleSkillsEditing" this)}}>
           <i class="fa fa-edit"></i> Skills bearbeiten
         </a>
       </li>
@@ -24,17 +24,15 @@
       </a>
     </li>
   </ul>
-{{/nav-sidebar}}
+</NavSidebar>
 <div class="col-sm-10 float-right position-relative">
-  {{new-people-skills-show person=person skills=skills}}
-  {{people-skill-new peopleSkills=peopleSkills
-                     childCategories=childCategories
-                     person=person}}
+  <NewPeopleSkillsShow @person={{this.person}} @skills={{this.skills}} />
+  <PeopleSkillNew @peopleSkills={{this.peopleSkills}} @childCategories={{this.childCategories}} @person={{this.person}} />
   <div id="peopleSkillsHeader" class="pt-3 pb-5">
     <div class="card-header bg-info people-skills-header">
       <div class="row">
         <div class="col-sm-6 header-text">
-          Skills ({{peopleSkills.length}})
+          Skills ({{this.peopleSkills.length}})
         </div>
       </div>
     </div>
@@ -42,11 +40,11 @@
       <div class="card-body d-flex flex-column">
         <div class="row mb-3">
           <div class="col-sm-10">
-            {{skillset-rated-filter personId=person.id}}
+            <SkillsetRatedFilter @personId={{this.person.id}} />
           </div>
         </div>
-        {{#if skillset}}
-          {{#each skillset as |parentCategory|}}
+        {{#if this.skillset}}
+          {{#each this.skillset as |parentCategory|}}
             <div id="parentCategory-{{parentCategory.id}}" class="row pb-2">
               <div class="col">
                 <div class="card-header bg-info people-skills-header">
@@ -68,18 +66,18 @@
                       {{#each child.skills as |skill|}}
                         <div class="show border border-info rounded-bottom people-skill-link">
                           <div class="card-body d-flex flex-column people-skillset-skill fs-15">
-                            {{#if peopleSkillsEditing}}
-                              {{people-skill-edit peopleSkill=skill}}
+                            {{#if this.peopleSkillsEditing}}
+                              <PeopleSkillEdit @peopleSkill={{skill}} />
                             {{else}}
-                              {{#people-skill-show peopleSkill=skill toggleSkillShow=(action 'toggleSkillShow' skill.skill)}}
+                              <PeopleSkillShow @peopleSkill={{skill}} @toggleSkillShow={{action "toggleSkillShow" skill.skill}}>
                                 <div class="col-md-1 pt-3">
                                   {{#if skill.isRated}}
-                                    <a class="edit-buttons" role="button" onclick={{action 'resetPeopleSkill' skill}} data-toggle="tooltip" data-placement="top" title="Reset Skill">
+                                    <a class="edit-buttons" role="button" onclick={{action "resetPeopleSkill" skill}} data-toggle="tooltip" data-placement="top" title="Reset Skill">
                                       <i class="fa fa-redo"></i>
                                     </a>
                                   {{/if}}
                                 </div>
-                              {{/people-skill-show}}
+                              </PeopleSkillShow>
                             {{/if}}
                           </div>
                         </div>

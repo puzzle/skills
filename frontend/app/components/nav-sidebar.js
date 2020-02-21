@@ -1,17 +1,19 @@
+import classic from "ember-classic-decorator";
+import { action } from "@ember/object";
 import Component from "@ember/component";
 import $ from "jquery";
 
-export default Component.extend({
+@classic
+export default class NavSidebar extends Component {
   init() {
-    this._super(...arguments);
+    super.init(...arguments);
     this.set("myStickyOptions", { topSpacing: 160 });
-  },
-
-  actions: {
-    scrollTo(target) {
-      const topOfElement = $(target)[0].offsetTop - 15;
-      window.scroll({ top: topOfElement, behavior: "smooth" });
-      return false;
-    }
   }
-});
+
+  @action
+  scrollTo(target) {
+    const topOfElement = $(target)[0].offsetTop - 15;
+    window.scroll({ top: topOfElement, behavior: "smooth" });
+    return false;
+  }
+}

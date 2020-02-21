@@ -56,8 +56,10 @@ export default Component.extend({
   ),
 
   abort() {
-    this.get("newSkill").deleteRecord();
-    this.get("newPeopleSkill").deleteRecord();
+    if (!this.newPeopleSkill.person) {
+      this.get("newSkill").deleteRecord();
+      this.get("newPeopleSkill").deleteRecord();
+    }
     this.set("newSkill", this.get("store").createRecord("skill"));
     this.set("newPeopleSkill", this.get("store").createRecord("peopleSkill"));
     this.notifyPropertyChange("dropdownSkills");

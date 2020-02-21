@@ -1,27 +1,27 @@
+import classic from "ember-classic-decorator";
+import { observes } from "@ember-decorators/object";
+import { action, computed } from "@ember/object";
 import Component from "@ember/component";
 import sortByYear from "../utils/sort-by-year";
-import { computed, observer } from "@ember/object";
 
-export default Component.extend({
-  amountOfAdvancedTrainings: computed("sortedAdvancedTrainings", function() {
+@classic
+export default class AdvancedTrainingsShow extends Component {
+  @computed("sortedAdvancedTrainings")
+  get amountOfAdvancedTrainings() {
     return this.get("sortedAdvancedTrainings.length");
-  }),
-
-  personChanged: observer("person", function() {
-    this.send("toggleAdvancedTrainingNew", false);
-  }),
-
-  sortedAdvancedTrainings: sortByYear("advanced-trainings"),
-
-  actions: {
-    toggleAdvancedTrainingNew(triggerNew) {
-      this.set("advanced-trainingNew", triggerNew);
-      const sortedTrainings = sortByYear("advanced-trainings");
-      this.set(
-        "sortedAdvancedTrainings",
-        triggerNew ? sortedTrainings.volatile() : sortedTrainings
-      );
-      this.notifyPropertyChange("amountOfAdvancedTrainings");
-    }
   }
-});
+
+  @observes("person")
+  personChanged() {
+    this.send("toggleAdvancedTrainingNew", false);
+  }
+
+  @sortByYear("advanced-trainings")
+  sortedAdvancedTrainings;
+
+  @action
+  toggleAdvancedTrainingNew(triggerNew) {
+    this.set("advanced-trainingNew", triggerNew);
+    this.notifyPropertyChange("amountOfAdvancedTrainings");
+  }
+}

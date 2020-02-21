@@ -9,34 +9,32 @@
   <div class="border border-info rounded-bottom">
     <div class="card-body d-flex flex-column">
       <div id="competence-content-show" class="mb-2">
-        {{#each sortedActivities as |activity|}}
+        {{#each this.sortedActivities as |activity|}}
           <div class="zeile">
             <div class="row">
               <div class="col-sm-3">
                 <div class="input-group centered-content-input">
-                  {{daterange-edit entity=activity}}
+                  <DaterangeEdit @entity={{activity}} />
                 </div>
               </div>
               <div class="col-sm-7">
-                <label for="{{concat elementId '-' activity.id '-role'}}">Rolle</label>
-                {{input id=(concat elementId '-' activity.id '-role') value=activity.role class="form-control"}}
-                <label class="mt-2" for="{{concat elementId '-' activity.id '-desc'}}">Firmenangaben und Beschreibung der Tätigkeit</label>
-                {{textarea id=(concat elementId '-' activity.id '-desc') value=activity.description class="input-xxlarge form-control"}}
+                <label for={{concat this.elementId "-" activity.id "-role"}}>Rolle</label>
+                <Input @id={{concat this.elementId "-" activity.id "-role"}} @value={{activity.role}} class="form-control" />
+                <label class="mt-2" for={{concat this.elementId "-" activity.id "-desc"}}>Firmenangaben und Beschreibung der Tätigkeit</label>
+                <Textarea @id={{concat this.elementId "-" activity.id "-desc"}} @value={{activity.description}} class="input-xxlarge form-control" />
               </div>
-              <div onclick={{action 'notify'}} role="button">
-                {{#delete-with-confirmation
-                  entry=activity
-                }}
+              <div onclick={{action "notify"}} role="button">
+                <DeleteWithConfirmation @entry={{activity}}>
                   Löschen
-                {{/delete-with-confirmation}}
+                </DeleteWithConfirmation>
               </div>
             </div>
           </div>
         {{/each}}
       </div>
       <div class="mt-auto">
-        <button onclick={{action 'submit' person}} role="button" class="btn btn-primary">Speichern</button>
-        <button onclick={{action 'abortEdit'}} role="button" class="btn abort-button">Abbrechen</button>
+        <button onclick={{action "submit" this.person}} role="button" class="btn btn-primary">Speichern</button>
+        <button onclick={{action "abortEdit"}} role="button" class="btn abort-button">Abbrechen</button>
       </div>
     </div>
   </div>

@@ -4,14 +4,14 @@
       <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Angebot</a>
     </div>
     <div class="col-sm-6 text-right d-block">
-      <a onclick={{companyOfferEditing}} data-test-company-edit-form-toggle class="card-link text-white"><i class="fa edit"></i></a>
+      <button onclick={{this.companyOfferEditing}} data-test-company-edit-form-toggle class="card-link text-white"><i class="fa edit"></i></button>
       <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><i class="fa angle"></i></a>
     </div>
   </div>
 </div>
 <div id="collapseTwo" class="collapse show border border-primary rounded-bottom">
   <div class="card-body">
-    {{#each company.offers as |offer|}}
+    {{#each this.company.offers as |offer|}}
       <div class="row">
         <div class="col-sm-3">
           <span class="p-2">{{offer.category}}</span>
@@ -29,7 +29,7 @@
         <span class="p-2">Weiteres (Bemerkungen)</span>
       </div>
       <div class="col-sm-9">
-        <textarea readonly="readonly" style="background-color: white" class="form-control" rows="1">{{company.offerComment}}</textarea>
+        <textarea readonly="readonly" class="form-control" rows="1">{{this.company.offerComment}}</textarea>
       </div>
     </div>
   </div>

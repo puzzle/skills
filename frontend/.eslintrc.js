@@ -3,9 +3,13 @@ module.exports = {
     server: true
   },
   root: true,
+  parser: "babel-eslint",
   parserOptions: {
-    ecmaVersion: 2017,
-    sourceType: "module"
+    ecmaVersion: 2018,
+    sourceType: "module",
+    ecmaFeatures: {
+      legacyDecorators: true
+    }
   },
   plugins: ["prettier"],
   extends: [
@@ -14,10 +18,12 @@ module.exports = {
     "plugin:prettier/recommended"
   ],
   env: {
-    browser: true
+    browser: true,
+    node: true
   },
   rules: {
     "ember/no-on-calls-in-components": 0,
+    "ember/no-observers": 0, // Remove this rule and take care of it asap
     "ember/alias-model-in-controller": 0,
     "ember/use-ember-get-and-set": 0,
     "ember/named-functions-in-promises": 0,

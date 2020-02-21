@@ -1,7 +1,10 @@
+import classic from "ember-classic-decorator";
 import Service, { inject as service } from "@ember/service";
 
-export default Service.extend({
-  session: service("keycloak-session"),
+@classic
+export default class DownloadService extends Service {
+  @service("keycloak-session")
+  session;
 
   file(url) {
     let xhr = new XMLHttpRequest();
@@ -26,4 +29,4 @@ export default Service.extend({
     );
     xhr.send();
   }
-});
+}

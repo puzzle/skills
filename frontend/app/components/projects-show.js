@@ -1,34 +1,36 @@
+import classic from "ember-classic-decorator";
+import { observes } from "@ember-decorators/object";
+import { action, computed } from "@ember/object";
 import Component from "@ember/component";
 import sortByYear from "../utils/sort-by-year";
-import { computed, observer } from "@ember/object";
 
-export default Component.extend({
-  sortedProjects: sortByYear("projects").volatile(),
+@classic
+export default class ProjectsShow extends Component {
+  @(sortByYear("projects").volatile())
+  sortedProjects;
 
-  amountOfProjects: computed("sortedProjects", function() {
+  @computed("sortedProjects")
+  get amountOfProjects() {
     return this.get("sortedProjects.length");
-  }),
+  }
 
-  projectsChanged: observer("projects.@each", function() {
+  @observes("projects.@each")
+  projectsChanged() {
     if (this.get("projectEditing.isDeleted")) this.set("projectEditing", null);
     this.send("toggleProjectNew", false);
     this.send("toggleProjectEditing");
     this.notifyPropertyChange("sortedProjects");
-  }),
-
-  actions: {
-    toggleProjectNew(triggerNew) {
-      this.set("projectNew", triggerNew);
-      this.set(
-        "sortedProjects",
-        triggerNew ? sortByYear("projects").volatile() : sortByYear("projects")
-      );
-      this.notifyPropertyChange("amountOfProjects");
-    },
-
-    toggleProjectEditing() {
-      this.notifyPropertyChange("sortedProjects");
-      this.set("projectEditing", null);
-    }
   }
-});
+
+  @action
+  toggleProjectNew(triggerNew) {
+    this.set("projectNew", triggerNew);
+    this.notifyPropertyChange("amountOfProjects");
+  }
+
+  @action
+  toggleProjectEditing() {
+    this.notifyPropertyChange("sortedProjects");
+    this.set("projectEditing", null);
+  }
+}

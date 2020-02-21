@@ -1,14 +1,16 @@
+import classic from "ember-classic-decorator";
+import { action } from "@ember/object";
 import Route from "@ember/routing/route";
 
-export default Route.extend({
+@classic
+export default class NewRoute extends Route {
   model() {
     return this.store.createRecord("person");
-  },
-
-  actions: {
-    createPerson(person) {
-      this.send("reloadPeopleList");
-      this.transitionTo("person", person);
-    }
   }
-});
+
+  @action
+  createPerson(person) {
+    this.send("reloadPeopleList");
+    this.transitionTo("person", person);
+  }
+}

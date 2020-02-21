@@ -1,12 +1,15 @@
+import classic from "ember-classic-decorator";
+import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@ember/component";
 import { isBlank } from "@ember/utils";
 
-export default Component.extend({
-  router: service(),
+@classic
+export default class SkillsetCategoryFilter extends Component {
+  @service router;
 
   init() {
-    this._super(...arguments);
+    super.init(...arguments);
 
     this.get("parentCategories").then(categories => {
       this.set(
@@ -22,7 +25,7 @@ export default Component.extend({
         )
       );
     });
-  },
+  }
 
   focusComesFromOutside(e) {
     let blurredEl = e.relatedTarget;
@@ -30,22 +33,23 @@ export default Component.extend({
       return false;
     }
     return !blurredEl.classList.contains("ember-power-select-search-input");
-  },
+  }
 
-  actions: {
-    handleFocus(select, e) {
-      if (this.focusComesFromOutside(e)) {
-        select.actions.open();
-      }
-    },
-
-    handleBlur() {},
-
-    setCategoryFilter(category) {
-      this.set("selectedCategory", category);
-      this.get("router").transitionTo({
-        queryParams: { category: category.id }
-      });
+  @action
+  handleFocus(select, e) {
+    if (this.focusComesFromOutside(e)) {
+      select.actions.open();
     }
   }
-});
+
+  @action
+  handleBlur() {}
+
+  @action
+  setCategoryFilter(category) {
+    this.set("selectedCategory", category);
+    this.get("router").transitionTo({
+      queryParams: { category: category.id }
+    });
+  }
+}

@@ -1,12 +1,14 @@
+import classic from "ember-classic-decorator";
 import Route from "@ember/routing/route";
 
-export default Route.extend({
-  queryParams: {
+@classic
+export default class SkillSearchRoute extends Route {
+  queryParams = {
     skill_id: {
       refreshModel: true,
       replace: true
     }
-  },
+  };
 
   model({ skill_id }) {
     if (skill_id) {
@@ -16,4 +18,4 @@ export default Route.extend({
       });
     }
   }
-});
+}

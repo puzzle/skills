@@ -2,35 +2,37 @@
   <div class="card-header bg-info">
     <div class="row">
       <div class="col-sm-6 project-title-text">
-        {{if project.monthFrom (concat (moment-format project.monthFrom 'MM' 'MM') '.')}}{{project.yearFrom}}
-        {{#if (eq project.yearTo null)}}
+        {{if this.project.monthFrom (concat (moment-format this.project.monthFrom "MM" "MM") ".")}}{{this.project.yearFrom}}
+        {{#if (eq this.project.yearTo null)}}
           - heute
-        {{else if (or (not-eq project.yearFrom project.yearTo) (not-eq project.monthFrom project.monthTo))}}
-          - {{if project.monthTo (concat (moment-format project.monthTo 'MM' 'MM') '.')}}{{project.yearTo}}
+        {{else if (or (not-eq this.project.yearFrom this.project.yearTo) (not-eq this.project.monthFrom this.project.monthTo))}}
+          - {{if this.project.monthTo (concat (moment-format this.project.monthTo "MM" "MM") ".")}}{{this.project.yearTo}}
         {{/if}}
-        | {{project.title}}
+        | {{this.project.title}}
       </div>
     </div>
   </div>
   <div class="border border-info rounded-bottom show">
     <div class="card-body d-flex flex-column">
       <table class="table table-borderless table-sm">
-        <tr>
-          <th scope="row" class="w-25"> Beschreibung </th>
-          <td class="text-table-left"> {{project.lineBreakDescription}}</td>
-        </tr>
-        <tr>
-          <th scope="row" class="w-25"> Rolle </th>
-          <td> {{project.lineBreakRole}}</td>
-        </tr>
-        <tr>
-          <th scope="row" class="w-25"> Technologie(n) </th>
-          <td> {{project.lineBreakTechnology}}</td>
-        </tr>
+        <tbody>
+          <tr>
+            <th scope="row" class="w-25"> Beschreibung </th>
+            <td class="text-table-left"> {{this.project.lineBreakDescription}}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="w-25"> Rolle </th>
+            <td> {{this.project.lineBreakRole}}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="w-25"> Technologie(n) </th>
+            <td> {{this.project.lineBreakTechnology}}</td>
+          </tr>
+        </tbody>
       </table>
-      {{#if selectProject}}
+      {{#if this.selectProject}}
         <div class="mt-auto">
-          <a onclick={{action selectProject project}} role="button" class="edit-buttons"><i class="fa fa-edit"></i> Bearbeiten</a>
+          <a onclick={{action this.selectProject this.project}} role="button" class="edit-buttons"><i class="fa fa-edit"></i> Bearbeiten</a>
         </div>
       {{/if}}
     </div>

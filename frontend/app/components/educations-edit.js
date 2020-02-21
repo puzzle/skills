@@ -10,8 +10,9 @@ export default Component.extend(EKMixin, {
 
   init() {
     this._super(...arguments);
-    this.sortedEducations = sortByYear("educations").volatile();
   },
+
+  sortedEducations: sortByYear("educations").volatile(),
 
   willDestroyElement() {
     this._super(...arguments);

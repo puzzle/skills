@@ -2,21 +2,21 @@
   <div class="card-header bg-info">
     <div class="row">
       <div class="col-sm-6 header-text">
-        Projekte ({{amountOfProjects}})
+        Projekte ({{this.amountOfProjects}})
       </div>
     </div>
   </div>
   <div class="border border-info rounded-bottom">
     <div class="card-body">
-      <a onclick={{action 'toggleProjectNew' true}} role="button" class={{~if (or projectEditing projectNew) '' 'edit-buttons'~}}><i class="fa {{~if (or projectEditing projectNew) '' ' add'~}}"></i>{{~if (or projectEditing projectNew) '' ' Projekt hinzufügen'~}}</a>
+      <a onclick={{action "toggleProjectNew" true}} role="button" class={{~if (or this.projectEditing this.projectNew) "" "edit-buttons"~}}><i class="fa {{~if (or this.projectEditing this.projectNew) "" " add"~}}"></i>{{~if (or this.projectEditing this.projectNew) "" " Projekt hinzufügen"~}}</a>
       <div id="competence-content-show">
         <div class="mt-2">
-          {{component (if projectNew 'project-new') personId=personId done=(action 'toggleProjectNew')}}
-          {{#each sortedProjects as |project|}}
-            {{#if (eq projectEditing project)}}
-              {{project-edit project=projectEditing done=(action 'toggleProjectEditing')}}
+          {{component (if this.projectNew "project-new") personId=this.personId done=(action "toggleProjectNew")}}
+          {{#each this.sortedProjects as |project|}}
+            {{#if (eq this.projectEditing project)}}
+              <ProjectEdit @project={{this.projectEditing}} @done={{action "toggleProjectEditing"}} />
             {{else}}
-              {{project-show selectProject = (if (or projectEditing projectNew) null (action (mut projectEditing))) project=project}}
+              <ProjectShow @selectProject={{if (or this.projectEditing this.projectNew) null (action (mut this.projectEditing))}} @project={{project}} />
             {{/if}}
           {{/each}}
         </div>

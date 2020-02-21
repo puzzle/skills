@@ -6,6 +6,8 @@ import { EKMixin, keyUp } from "ember-keyboard";
 import { observer } from "@ember/object";
 
 export default Component.extend(EKMixin, {
+  intl: service(),
+
   willDestroyElement() {
     this._super(...arguments);
     if (!this.get("alreadyAborted")) this.send("abortEdit");
@@ -15,8 +17,6 @@ export default Component.extend(EKMixin, {
     this.send("abort");
     this.set("alreadyAborted", true);
   }),
-
-  intl: service(),
 
   activateKeyboard: on("init", function() {
     this.set("keyboardActivated", true);

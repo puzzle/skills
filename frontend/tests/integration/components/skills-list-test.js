@@ -3,6 +3,7 @@ import { setupRenderingTest } from "ember-qunit";
 import { render } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import Service from "@ember/service";
+import keycloakStub from "../../helpers/keycloak-stub";
 
 const storeStub = Service.extend({
   createRecord(model) {
@@ -53,6 +54,7 @@ module("Integration | Component | skills-list", function(hooks) {
 
   hooks.beforeEach(function(assert) {
     this.owner.register("service:store", storeStub);
+    this.owner.register("service:keycloak-session", keycloakStub);
   });
 
   test("it renders without data", async function(assert) {

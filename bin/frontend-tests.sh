@@ -16,9 +16,9 @@ rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 
 cd frontend
 if [[ $SERVER == true ]]; then
-  COVERAGE=true ember test --server
+  ember test --server
 else
-  COVERAGE=true yarn test
+  yarn test
 fi
 rc=$?
 cd ..

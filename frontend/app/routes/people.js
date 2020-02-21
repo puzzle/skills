@@ -1,23 +1,29 @@
+import classic from "ember-classic-decorator";
+import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Route from "@ember/routing/route";
 import KeycloakAuthenticatedRouteMixin from "ember-keycloak-auth/mixins/keycloak-authenticated-route";
 
-export default Route.extend(KeycloakAuthenticatedRouteMixin, {
-  ajax: service(),
-  selectedPerson: service(),
+@classic
+export default class PeopleRoute extends Route.extend(
+  KeycloakAuthenticatedRouteMixin
+) {
+  @service
+  ajax;
 
-  queryParams: {
+  @service
+  selectedPerson;
+
+  queryParams = {
     q: {
       refreshModel: true,
       replace: true
     }
-  },
+  };
 
   model({ q }) {
-    return this.get("ajax")
-      .request("/people", { data: { q } })
-      .then(response => response.data);
-  },
+    return this.store.findAll("person", { q });
+  }
 
   redirect(model, transition) {
     if (this.isTransitioningToSpecificPerson(transition)) return;
@@ -28,26 +34,28 @@ export default Route.extend(KeycloakAuthenticatedRouteMixin, {
         { queryParams: this.get("selectedPerson.queryParams") || {} }
       );
     }
-  },
+  }
 
   isTransitioningToSpecificPerson(transition) {
-    const transitionPersonId = transition.intent.contexts
-      ? transition.intent.contexts.get("firstObject")
-      : null;
+    const personRouteInfos = transition.routeInfos.find(
+      route => route.name === "person"
+    );
+    if (personRouteInfos === undefined) return false;
+    const transitionPersonId = personRouteInfos.params.person_id;
     return (
       transitionPersonId != null &&
       transitionPersonId != this.get("selectedPerson.personId")
     );
-  },
-
-  actions: {
-    reloadPeopleList() {
-      this.refresh();
-    },
-
-    willTransition(transition) {
-      if (transition.targetName === "people.index")
-        this.get("selectedPerson").clear();
-    }
   }
-});
+
+  @action
+  reloadPeopleList() {
+    this.refresh();
+  }
+
+  @action
+  willTransition(transition) {
+    if (transition.targetName === "people.index")
+      this.get("selectedPerson").clear();
+  }
+}

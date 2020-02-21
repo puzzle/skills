@@ -1,16 +1,19 @@
-import Component from "@ember/component";
+import classic from "ember-classic-decorator";
 import { inject as service } from "@ember/service";
+import Component from "@ember/component";
 
-export default Component.extend({
-  store: service(),
-  router: service(),
+@classic
+export default class UpdatedAtPerson extends Component {
+  @service store;
+
+  @service router;
 
   init() {
-    this._super(...arguments);
+    super.init(...arguments);
     const currentId = this.get(
       "router.currentState.routerJsState.params.person.person_id"
     );
     if (currentId)
       this.set("person", this.get("store").find("person", currentId));
   }
-});
+}

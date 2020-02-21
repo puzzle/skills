@@ -1,6 +1,8 @@
+import classic from "ember-classic-decorator";
 import Controller from "@ember/controller";
 
-export default Controller.extend({
-  queryParams: ["q"],
-  q: null
-});
+@classic
+export default class PeopleController extends Controller {
+  queryParams = ["q"];
+  q = null;
+}

@@ -1,14 +1,14 @@
 <div class="row mb-2">
   <div class="col-sm-6">
-    {{companies-list companies=model}}
+    <CompaniesList @companies={{this.model}} />
   </div>
   <div class="col-sm-6">
-    {{#link-to "companies.new"}}
+    <LinkTo @route="companies.new">
       <a class="float-right mr-2">
         <i class="fa fa-plus-square" aria-hidden="true">
         </i>
         Neue Firma
       </a>
-    {{/link-to}}
+    </LinkTo>
   </div>
 </div>

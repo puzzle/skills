@@ -1,19 +1,28 @@
+import classic from "ember-classic-decorator";
+import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Route from "@ember/routing/route";
 import DS from "ember-data";
 import { UnauthorizedError, ForbiddenError } from "ember-ajax/errors";
 import config from "../config/environment";
 
-export default Route.extend({
-  session: service("keycloak-session"),
-  moment: service(),
-  intl: service(),
-  config,
+@classic
+export default class ApplicationRoute extends Route {
+  @service("keycloak-session")
+  session;
+
+  @service
+  moment;
+
+  @service
+  intl;
+
+  config = config;
 
   beforeModel() {
     this.get("moment").setLocale("de");
     this.get("intl").setLocale(["de"]);
-    this._super(...arguments);
+    super.beforeModel(...arguments);
 
     let session = this.get("session");
 
@@ -34,7 +43,7 @@ export default Route.extend({
     session.set("responseMode", "fragment");
     // finally init the service and return promise to pause router.
     return session.initKeycloak();
-  },
+  }
 
   isAuthError(error) {
     return (
@@ -43,16 +52,17 @@ export default Route.extend({
       error instanceof DS.UnauthorizedError ||
       error instanceof DS.ForbiddenError
     );
-  },
+  }
 
-  actions: {
-    error(error, transition) {
-      if (this.isAuthError(error)) {
-        this.get("session").invalidate();
-      }
-    },
-    invalidateSession() {
+  @action
+  error(error, transition) {
+    if (this.isAuthError(error)) {
       this.get("session").invalidate();
     }
   }
-});
+
+  @action
+  invalidateSession() {
+    this.get("session").invalidate();
+  }
+}

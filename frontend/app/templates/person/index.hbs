@@ -1,64 +1,64 @@
-{{#each model.errors as |error|}}
+{{#each this.model.errors as |error|}}
   {{error.detail}}
 {{/each}}
 
 <div id="person-collapse-group" class="collapse-group">
-  {{#nav-sidebar items=sidebarItems}}
+  <NavSidebar @items={{this.sidebarItems}}>
     <ul class="nav flex-column mt-2">
       <li class="d-flex flex-column nav-link border">
-        <a role="button" class="edit-buttons" onclick={{pipe (action 'startExport' model.id)}}>
+        <a role="button" class="edit-buttons" onclick={{pipe (action "startExport" this.model.id)}}>
           <i class="fa fa-download" aria-hidden="true"></i> Export
         </a>
       </li>
     </ul>
-  {{/nav-sidebar}}
+  </NavSidebar>
   <div class="col-sm-10 float-right position-relative">
     <div id="accordion">
       {{!Personalien Tab}}
       <div class="card mb-3" id="particulars">
-        {{component (if personEditing 'person-edit' 'person-show' )
-                    person=model
-                    submit=(action (toggle 'personEditing' this))
-                    personEditing=(action (toggle 'personEditing' this))
+        {{component (if this.personEditing "person-edit" "person-show" )
+                    person=this.model
+                    submit=(action (toggle "personEditing" this))
+                    personEditing=(action (toggle "personEditing" this))
         }}
       </div>
       <div class="card mb-3" id="competences">
-        {{component 'core-competences-show'
-                    person=model
+        {{component "core-competences-show"
+                    person=this.model
         }}
       </div>
       {{!Ausbildungen Tab}}
       <div class="card mb-3" id="educations">
-        {{component (if educationsEditing 'educations-edit' 'educations-show' )
-                    educations=model.educations
-                    person=model
-                    submit=(action (toggle 'educationsEditing' this))
-                    educationsEditing=(action (toggle 'educationsEditing' this))
+        {{component (if this.educationsEditing "educations-edit" "educations-show" )
+                    educations=this.model.educations
+                    person=this.model
+                    submit=(action (toggle "educationsEditing" this))
+                    educationsEditing=(action (toggle "educationsEditing" this))
         }}
       </div>
       {{!Weiterbildungen Tab}}
       <div class="card mb-3" id="advancedTrainings">
-        {{component (if advancedTrainingsEditing 'advanced-trainings-edit' 'advanced-trainings-show' )
-                    advanced-trainings=model.advancedTrainings
-                    person=model
-                    submit=(action (toggle 'advancedTrainingsEditing' this))
-                    advancedTrainingsEditing=(action (toggle 'advancedTrainingsEditing' this))
+        {{component (if this.advancedTrainingsEditing "advanced-trainings-edit" "advanced-trainings-show" )
+                    advanced-trainings=this.model.advancedTrainings
+                    person=this.model
+                    submit=(action (toggle "advancedTrainingsEditing" this))
+                    advancedTrainingsEditing=(action (toggle "advancedTrainingsEditing" this))
         }}
       </div>
       {{!Aktivitäten Tab}}
       <div class="card mb-3" id="activities">
-        {{component (if activitiesEditing 'activities-edit' 'activities-show' )
-                    activities=model.activities
-                    person=model
-                    submit=(action (toggle 'activitiesEditing' this))
-                    activitiesEditing=(action (toggle 'activitiesEditing' this))
+        {{component (if this.activitiesEditing "activities-edit" "activities-show" )
+                    activities=this.model.activities
+                    person=this.model
+                    submit=(action (toggle "activitiesEditing" this))
+                    activitiesEditing=(action (toggle "activitiesEditing" this))
         }}
       </div>
       {{!Projekte Tab}}
       <div class="card mb-end" id="projects">
-        {{projects-show projects=model.projects personId=model.id}}
+        <ProjectsShow @projects={{this.model.projects}} @personId={{this.model.id}} />
       </div>
-      {{scroll-to-top-button}}
+      <ScrollToTopButton />
     </div>
   </div>
 </div>

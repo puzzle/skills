@@ -1,16 +1,21 @@
-import Component from "@ember/component";
+import classic from "ember-classic-decorator";
 import { computed } from "@ember/object";
 import { inject } from "@ember/service";
+import Component from "@ember/component";
 
-export default Component.extend({
-  store: inject(),
+@classic
+export default class SkillShow extends Component {
+  @inject()
+  store;
 
-  peopleSkills: computed("skill", function() {
+  @computed("skill")
+  get peopleSkills() {
     if (this.get("skill.id") != null) {
       return this.get("store").query("peopleSkill", {
         skill_id: this.get("skill.id"),
         rated: "true"
       });
     }
-  })
-});
+    return null;
+  }
+}

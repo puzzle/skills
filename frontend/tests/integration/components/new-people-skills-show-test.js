@@ -40,6 +40,8 @@ module("Integration | Component | new-people-skills-show", function(hooks) {
   setupRenderingTest(hooks);
 
   test("it renders", async function(assert) {
+    this.owner.unregister("service:store");
+    this.owner.unregister("service:ajax");
     this.owner.register("service:store", storeStub);
     this.owner.register("service:ajax", ajaxStub);
 

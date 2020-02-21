@@ -1,10 +1,13 @@
-import Component from "@ember/component";
+import classic from "ember-classic-decorator";
 import { computed } from "@ember/object";
+import Component from "@ember/component";
 
-export default Component.extend({
-  error: null,
+@classic
+export default class DisplayError extends Component {
+  error = null;
 
-  messageIsHTMLDocument: computed("error.message", function() {
+  @computed("error.message")
+  get messageIsHTMLDocument() {
     return /<!doctype/i.test(String(this.get("error.message")));
-  })
-});
+  }
+}

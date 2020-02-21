@@ -1,4 +1,4 @@
-{{#with (changeset project validations) as |changeset|}}
+{{#with (changeset this.project this.validations) as |projectChangeset|}}
   <div class="mb-2" id="project-content-edit">
     <div class="card-header bg-info">
       <div class="row">
@@ -6,11 +6,9 @@
           Projekt bearbeiten
         </div>
         <div class="col-sm-6 text-right d-block">
-          {{#delete-with-confirmation
-             entry=project
-          }}
+          <DeleteWithConfirmation @entry={{this.project}}>
             Löschen
-          {{/delete-with-confirmation}}
+          </DeleteWithConfirmation>
         </div>
       </div>
     </div>
@@ -19,23 +17,23 @@
         <div class="row mb-2">
           <div class="col-sm-3">
             <div class="input-group centered-content-input">
-              {{daterange-edit entity=project}}
+              <DaterangeEdit @entity={{this.project}} />
             </div>
           </div>
           <div class="col-sm-7">
-            <label for="{{concat elementId '-name'}}">Projekt</label>
-            {{input id=(concat elementId '-name') value=changeset.title class="form-control mb-2"}}
-            <label for="{{concat elementId '-desc'}}">Beschreibung</label>
-            {{textarea id=(concat elementId '-desc') value=changeset.description class="form-control"}}
-            <label for="{{concat elementId '-role'}}">Rolle und Aufgaben</label>
-            {{textarea id=(concat elementId '-role') value=changeset.role class="form-control"}}
-            <label for="{{concat elementId '-tech'}}">Eingesetzte Technologien</label>
-            {{textarea id=(concat elementId '-tech') value=changeset.technology class="form-control"}}
+            <label for={{concat this.elementId "-name"}}>Projekt</label>
+            <Input @id={{concat this.elementId "-name"}} @value={{projectChangeset.title}} class="form-control mb-2" />
+            <label for={{concat this.elementId "-desc"}}>Beschreibung</label>
+            <Textarea @id={{concat this.elementId "-desc"}} @value={{projectChangeset.description}} class="form-control" />
+            <label for={{concat this.elementId "-role"}}>Rolle und Aufgaben</label>
+            <Textarea @id={{concat this.elementId "-role"}} @value={{projectChangeset.role}} class="form-control" />            
+            <label for={{concat this.elementId "-tech"}}>Eingesetzte Technologien</label>
+            <Textarea @id={{concat this.elementId "-tech"}} @value={{projectChangeset.technology}} class="form-control" />          
           </div>
         </div>
         <div class="mt-auto">
-          <button onclick={{action 'submit' changeset}} role="button" id="submit-button" class="btn btn-primary">Speichern</button>
-          <button onclick={{action 'abortEdit'}} role="button" class="btn abort-button">Abbrechen</button>
+          <button onclick={{action "submit" projectChangeset}} role="button" id="submit-button" class="btn btn-primary">Speichern</button>
+          <button onclick={{action "abortEdit"}} role="button" class="btn abort-button">Abbrechen</button>
         </div>
       </div>
     </div>

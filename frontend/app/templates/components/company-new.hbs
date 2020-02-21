@@ -1,103 +1,102 @@
 <section id="profil" class="section">
   <div id="accordion">
     <div class="card mb-3">
-      {{#form-for newCompany submit=(action 'submit' newCompany) as |f|}}
-        <div class="card-header bg-primary">
+      <div class="card-header bg-primary">
+        <div class="row">
+          <div class="col-sm-6">
+            <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Firma Erfassen</a>
+          </div>
+          <div class="col-sm-6 text-right d-block">
+            <a {{action "submit" this.newCompany}} role="button" id="submit-button" class="card-link text-white"><i class="fa save"></i></a>
+          </div>
+        </div>
+      </div>
+      <div id="collapseOne" class="collapse show border border-primary rounded-bottom">
+        <div class="card-body">
           <div class="row">
-            <div class="col-sm-6">
-              <a class="card-link text-white" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Firma Erfassen</a>
-            </div>
-            <div class="col-sm-6 text-right d-block">
-              <a {{action 'submit' newCompany}} role="button" id="submit-button" class="card-link text-white"><i class="fa save"></i></a>
-            </div>
-          </div>
-        </div>
-        <div id="collapseOne" class="collapse show border border-primary rounded-bottom">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-sm-4">
-                <table class="table-uebersicht">
+            <div class="col-sm-4">
+              <table class="table-uebersicht">
+                <tbody>
                   <tr>
-                    <td>{{f.text-field 'name' label="Name"}}</td>
+                    <td><label for="name">Name</label><Input @id="name" @value={{this.newCompany.name}} @type="text"/></td>
                   </tr>
                   <tr>
                     <td>
-                      <button data-test-add-location class="btn btn-success form-field--control" type="button" {{action 'addLocations' newCompany}}>Neue Adresse</button>
+                      <button data-test-add-location class="btn btn-success form-field--control" type="button" {{action "addLocations" this.newCompany}}>Neue Adresse</button>
                     </td>
                   </tr>
-                  {{#each newCompany.locations as |location|}}
-                    {{#fields-for location as |l|}}
-                      <tr>
-                        <td class="nextToDelete" data-test-location>
-                          {{l.text-field 'location' label="Standort"}}
-                          {{delete-with-confirmation
-                            entry=location
-                          }}
-                        </td>
-                      </tr>
-                    {{/fields-for}}
+                  {{#each this.newCompany.locations as |location|}}
+                    <tr>
+                      <td class="nextToDelete" data-test-location>
+                        <label for="location">Standort</label><Input @id="location" @value={{location.location}} @type="text"/>
+                        <DeleteWithConfirmation @entry={{location}} />
+                      </td>
+                    </tr>
                   {{/each}}
                   <tr>
-                    <td>{{f.text-field 'web' label="Web"}}</td>
+                    <td><label for="web">Web</label><Input @id="web" @value={{this.newCompany.web}} @type="text"/></td>
                   </tr>
                   <tr>
-                    <td>{{f.text-field 'email' label="Email"}}</td>
+                    <td><label for="email">Email</label><Input @id="email" @value={{this.newCompany.email}} @type="text"/></td>
                   </tr>
                   <tr>
-                    <td>{{f.text-field 'phone' label="Telefon"}}</td>
+                    <td><label for="phone">Telefon</label><Input @id="phone" @value={{this.newCompany.phone}} @type="text"/></td>
                   </tr>
-                </table>
-              </div>
-              <div class="col-sm-4">
-                <table class="table-uebersicht">
+                </tbody>
+              </table>
+            </div>
+            <div class="col-sm-4">
+              <table class="table-uebersicht">
+                <tbody>
                   <tr>
-                    <td>{{f.text-field 'partnermanager' label="PM"}}</td>
-                  </tr>
-                  <tr>
-                    <td>{{f.text-field 'contactPerson' label="Ansprechperson"}}</td>
-                  </tr>
-                  <tr>
-                    <td>{{f.text-field 'emailContactPerson' label="Email"}}</td>
+                    <td><label for="partnermanager">Name</label><Input @id="partnermanager" @value={{this.newCompany.partnermanager}} @type="text"/></td>
                   </tr>
                   <tr>
-                    <td>{{f.text-field 'phoneContactPerson' label="Telefon"}}</td>
+                    <td><label for="contactPerson">Ansprechperson</label><Input @id="contactPerson" @value={{this.newCompany.contactPerson}} @type="text"/></td>
                   </tr>
                   <tr>
-                    <td>{{f.text-field 'crm' label="CRM"}}</td>
+                    <td><label for="emailContactPerson">Email</label><Input @id="emailContactPerson" @value={{this.newCompany.emailContactPerson}} @type="text"/></td>
                   </tr>
-                </table>
-              </div>
-              <div class="col-sm-4">
-                <table class="table-uebersicht">
                   <tr>
-                    <td>{{f.text-field 'level' label="Level"}}</td>
+                    <td><label for="phoneContactPerson">Telefon</label><Input @id="phoneContactPerson" @value={{this.newCompany.phoneContactPerson}} @type="text"/></td>
+                  </tr>
+                  <tr>
+                    <td>{{f.text-field "crm" label="CRM"}}</td>
+                    <td><label for="crm">CRM</label><Input @id="crm" @value={{this.newCompany.crm}} @type="text"/></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-sm-4">
+              <table class="table-uebersicht">
+                <tbody>
+                  <tr>
+                    <td><label for="level">Level</label><Input @id="level" @value={{this.newCompany.level}} @type="text"/></td>
                   </tr>
                   <tr>
                     <td>
-                      <button data-test-add-employee-quantity class="btn btn-success form-field--control" type="button" {{action 'addEmployeeQuantity' newCompany}}>Neue Mitarbeiter-Anzahl</button>
+                      <button data-test-add-employee-quantity class="btn btn-success form-field--control" type="button" {{action "addEmployeeQuantity" this.newCompany}}>Neue Mitarbeiter-Anzahl</button>
                     </td>
                   </tr>
-                  {{#each newCompany.employeeQuantities as |quantity|}}
-                    {{#fields-for quantity as |q|}}
-                      <tr>
-                        <td class="nextToDelete" data-test-employee-quantity-category>
-                          {{q.text-field 'category' label="Kategorie"}}
-                          {{delete-with-confirmation
-                            entry=quantity
-                          }}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td data-test-employee-quantity-quantity>{{q.text-field 'quantity' label="Anzahl"}}</td>
-                      </tr>
-                    {{/fields-for}}
+                  {{#each this.newCompany.employeeQuantities as |quantity|}}
+                    <tr>
+                      <td class="nextToDelete" data-test-employee-quantity-category>
+                        <label for="category">Kategorie</label><Input @id="category" @value={{quantity.category}} @type="text"/>
+                        <DeleteWithConfirmation @entry={{quantity}} />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td data-test-employee-quantity-quantity>
+                        <label for="quantity">Anzahl</label><Input @id="quantity" @value={{quantity.quantity}} @type="text"/>
+                      </td>
+                    </tr>
                   {{/each}}
-                </table>
-              </div>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
-      {{/form-for}}
+      </div>
     </div>
   </div>
 </section>

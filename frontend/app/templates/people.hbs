@@ -1,16 +1,16 @@
 <div id="people-search-header" class="row position-fixed w-100">
   <div class="col-9">
-    {{people-search people=model}}
+    <PeopleSearch @people={{this.model}} />
   </div>
   <div class="col-3">
     <div class="new-profile-button">
-      {{#link-to "people.new"}}
+      <LinkTo @route="people.new">
         <a>
           <i class="fa fa-plus-square" aria-hidden="true">
           </i>
           Neues Profil
         </a>
-      {{/link-to}}
+      </LinkTo>
     </div>
   </div>
 </div>

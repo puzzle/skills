@@ -1,22 +1,27 @@
-import Component from "@ember/component";
-import { computed, observer } from "@ember/object";
+import classic from "ember-classic-decorator";
+import { observes } from "@ember-decorators/object";
+import { computed } from "@ember/object";
 import { inject as service } from "@ember/service";
+import Component from "@ember/component";
 
-export default Component.extend({
-  store: service(),
+@classic
+export default class CoreCompetencesShow extends Component {
+  @service store;
 
   init() {
-    this._super(...arguments);
-    this.parentCategories = this.get("store").query("category", {
+    super.init(...arguments);
+    this.parentCategories = this.store.query("category", {
       scope: "parents"
     });
+    if (!this.person.peopleSkills.length)
+      this.store.query("people-skill", { person_id: this.person.id });
     this.refreshCoreCompetencesObj();
-  },
+  }
 
-  personChanged: observer("person.peopleSkills", function() {
-    this._super(...arguments);
+  @observes("person.peopleSkills")
+  personChanged() {
     this.refreshCoreCompetencesObj();
-  }),
+  }
 
   refreshCoreCompetencesObj() {
     let hash = {};
@@ -37,17 +42,19 @@ export default Component.extend({
       });
       this.set("coreCompetencesObj", hash);
     });
-  },
+  }
 
-  coreCompetenceSkills: computed("person.peopleSkills", function() {
+  @computed("person.peopleSkills")
+  get coreCompetenceSkills() {
     return this.get("person.peopleSkills")
       .map(ps => {
         if (ps.get("coreCompetence")) return ps.get("skill");
       })
       .filter(s => s !== undefined);
-  }),
+  }
 
-  coreCompetenceSkillsAmount: computed("coreCompetenceSkills", function() {
+  @computed("coreCompetenceSkills")
+  get coreCompetenceSkillsAmount() {
     return this.get("coreCompetenceSkills.length");
-  })
-});
+  }
+}

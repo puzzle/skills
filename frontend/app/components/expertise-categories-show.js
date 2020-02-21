@@ -1,12 +1,15 @@
+import classic from "ember-classic-decorator";
+import { computed } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@ember/component";
-import { computed } from "@ember/object";
 
-export default Component.extend({
-  store: service(),
+@classic
+export default class ExpertiseCategoriesShow extends Component {
+  @service store;
 
-  expertiseCategories: computed("discipline", function() {
+  @computed("discipline")
+  get expertiseCategories() {
     let params = { discipline: this.get("discipline") };
     return this.get("store").query("expertise-category", params);
-  })
-});
+  }
+}

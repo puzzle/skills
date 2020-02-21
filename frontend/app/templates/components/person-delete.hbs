@@ -1,3 +1,3 @@
-<button onclick={{action 'deletePerson' personToDelete}} class="btn btn-link">
-  {{if text text 'Delete'}}
+<button onclick={{action "deletePerson" this.personToDelete}} class="btn btn-link">
+  {{if this.text this.text "Delete"}}
 </button>

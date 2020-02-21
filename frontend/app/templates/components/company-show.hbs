@@ -1,15 +1,15 @@
 <div class="d-flex justify-content-between">
   <div>
-    {{updated-at entry=company}}
+    <UpdatedAt @entry={{this.company}} />
   </div>
   <div>
-    {{#link-to "companies.new"}}
+    <LinkTo @route="companies.new">
       <a>
         <i class="fa fa-plus-square" aria-hidden="true">
         </i>
         Neue Firma
       </a>
-    {{/link-to}}
+    </LinkTo>
   </div>
 </div>
 <hr class="">
@@ -17,7 +17,7 @@
   <div class="row mb-3">
     <div class="col-sm-12">
       <span class="text-right d-block controls">
-        <a href="#" class="mr-2 open-button" hidden=true>+ Details einblenden</a>
+        <a href="#" class="mr-2 open-button" hidden="true">+ Details einblenden</a>
         <a href="#" class="close-button">- Details ausblenden</a>
       </span>
     </div>
@@ -25,25 +25,25 @@
   <div id="accordion">
     {{!Übersichts Tab}}
     <div class="card mb-3">
-      {{component (if companyEditing 'company-overview-edit' 'company-overview' )
-                  company=company
-                  submit=(action (toggle 'companyEditing' this))
-                  model-header-title = 'Firmen Übersicht'
-                  companyEditing=(action (toggle 'companyEditing' this))
+      {{component (if this.companyEditing "company-overview-edit" "company-overview" )
+                  company=this.company
+                  submit=(action (toggle "companyEditing" this))
+                  model-header-title = "Firmen Übersicht"
+                  companyEditing=(action (toggle "companyEditing" this))
       }}
     </div>
     {{!Angebot Tab}}
     <div class="card mb-3">
-      {{component (if companyOfferEditing 'company-offer-edit' 'company-offer' )
-                  company=company
-                  submit=(action (toggle 'companyOfferEditing' this))
-                  model-header-title = 'Firmen Skills'
-                  companyOfferEditing=(action (toggle 'companyOfferEditing' this))
+      {{component (if this.companyOfferEditing "company-offer-edit" "company-offer" )
+                  company=this.company
+                  submit=(action (toggle "companyOfferEditing" this))
+                  model-header-title = "Firmen Skills"
+                  companyOfferEditing=(action (toggle "companyOfferEditing" this))
       }}
     </div>
     {{!Profile Tab}}
     <div class="card mb-end">
-      {{company-profiles company=company}}
+      <CompanyProfiles @company={{this.company}} />
     </div>
 
 
@@ -51,14 +51,14 @@
 </div>
 <script>
   $(".open-button").on("click", function() {
-    $(this).closest('.collapse-group').find('.collapse').collapse('show');
-    $('.open-button').attr('hidden', true);
-    $('.close-button').attr('hidden', false);
+    $(this).closest(".collapse-group").find(".collapse").collapse("show");
+    $(".open-button").attr("hidden", true);
+    $(".close-button").attr("hidden", false);
   });
 
   $(".close-button").on("click", function() {
-    $(this).closest('.collapse-group').find('.collapse').collapse('hide');
-    $('.close-button').attr('hidden', true);
-    $('.open-button').attr('hidden', false);
+    $(this).closest(".collapse-group").find(".collapse").collapse("hide");
+    $(".close-button").attr("hidden", true);
+    $(".open-button").attr("hidden", false);
   });
 </script>

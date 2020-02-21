@@ -1,16 +1,23 @@
-import Component from "@ember/component";
+import classic from "ember-classic-decorator";
+import { action, computed } from "@ember/object";
 import { inject as service } from "@ember/service";
-import { computed } from "@ember/object";
+import Component from "@ember/component";
 import sortByLanguage from "../utils/sort-by-language";
 import Person from "../models/person";
 
-export default Component.extend({
-  ajax: service(),
-  router: service(),
-  download: service(),
-  session: service("keycloak-session"),
+@classic
+export default class PersonShow extends Component {
+  @service ajax;
 
-  picturePath: computed("person.picturePath", function() {
+  @service router;
+
+  @service download;
+
+  @service("keycloak-session")
+  session;
+
+  @computed("person.picturePath")
+  get picturePath() {
     if (this.get("person.picturePath")) {
       let path =
         this.get("person.picturePath") +
@@ -18,21 +25,23 @@ export default Component.extend({
         this.get("session.token");
       return path;
     }
-  }),
+    return "";
+  }
 
-  sortedLanguageSkills: sortByLanguage("person.languageSkills"),
+  @sortByLanguage("person.languageSkills")
+  sortedLanguageSkills;
 
-  maritalStatus: computed("person.maritalStatus", function() {
+  @computed("person.maritalStatus")
+  get maritalStatus() {
     const maritalStatuses = Person.MARITAL_STATUSES;
     const key = this.get("person.maritalStatus");
     return maritalStatuses[key];
-  }),
-
-  actions: {
-    exportCvOdt(personId, e) {
-      e.preventDefault();
-      let url = `/api/people/${personId}.odt`;
-      this.get("download").file(url);
-    }
   }
-});
+
+  @action
+  exportCvOdt(personId, e) {
+    e.preventDefault();
+    let url = `/api/people/${personId}.odt`;
+    this.get("download").file(url);
+  }
+}

@@ -1,25 +1,25 @@
-{{#if messageIsHTMLDocument}}
-  <iframe srcdoc={{error.message}} style="width:100%;min-height:640px"></iframe>
-{{else if error.isAdapterError}}
-  <pre class="error">{{error.message}}</pre>
-{{else if error.errors}}
-  {{#if error.message}}<pre class="error">{{error.message}}</pre>{{/if}}
+{{#if this.messageIsHTMLDocument}}
+  <iframe srcdoc={{this.error.message}}></iframe>
+{{else if this.error.isAdapterError}}
+  <pre class="error">{{this.error.message}}</pre>
+{{else if this.error.errors}}
+  {{#if this.error.message}}<pre class="error">{{this.error.message}}</pre>{{/if}}
   <ul>
-    {{#each error.errors as |error|}}
+    {{#each this.error.errors as |error|}}
       <li>{{error.code}} &ndash; {{error.title}}</li>
     {{/each}}
   </ul>
-{{else if error.message}}
-  <p>{{error.message}}</p>
+{{else if this.error.message}}
+  <p>{{this.error.message}}</p>
 {{else}}
   <p>Something unexpected happened</p>
 {{/if}}
-{{#if error.stack}}
-  <button class="btn btn-primary" onclick={{toggle 'showStack' this}}>
+{{#if this.error.stack}}
+  <button class="btn btn-primary" onclick={{toggle "showStack" this}}>
     Show stack
   </button>
-  {{#link-to "people" class="btn btn-primary"}}Bring me home{{/link-to}}
-  {{#if showStack}}
-    <pre class="error-stack">{{error.stack}}</pre>
+  <LinkTo @route="people" class="btn btn-primary">Bring me home</LinkTo>
+  {{#if this.showStack}}
+    <pre class="error-stack">{{this.error.stack}}</pre>
   {{/if}}
 {{/if}}
