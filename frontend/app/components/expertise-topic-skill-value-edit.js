@@ -12,8 +12,7 @@ const DEFAULT_SKILL_LEVEL = "trainee";
 export default class ExpertiseTopicSkillValueEdit extends Component {
   skillLevelData = ExpertiseTopicSkillValueModel.SKILL_LEVELS;
 
-  @service
-  store;
+  @service store;
 
   @computed("expertiseTopic")
   get formId() {

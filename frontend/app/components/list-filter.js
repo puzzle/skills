@@ -5,8 +5,7 @@ import Component from "@ember/component";
 
 @classic
 export default class ListFilter extends Component {
-  @service
-  router;
+  @service router;
 
   init() {
     super.init(...arguments);

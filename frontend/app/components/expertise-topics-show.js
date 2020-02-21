@@ -9,8 +9,7 @@ const { Promise } = RSVP;
 
 @classic
 export default class ExpertiseTopicsShow extends Component {
-  @service
-  store;
+  @service store;
 
   @computed("expertiseCategory.id", "person.id")
   get queryParams() {

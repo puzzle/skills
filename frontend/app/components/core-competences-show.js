@@ -6,8 +6,7 @@ import Component from "@ember/component";
 
 @classic
 export default class CoreCompetencesShow extends Component {
-  @service
-  store;
+  @service store;
 
   init() {
     super.init(...arguments);

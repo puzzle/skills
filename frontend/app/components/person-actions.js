@@ -7,17 +7,13 @@ import $ from "jquery";
 
 @classic
 export default class PersonActions extends Component {
-  @service
-  ajax;
+  @service ajax;
 
-  @service
-  router;
+  @service router;
 
-  @service
-  download;
+  @service download;
 
-  @service
-  store;
+  @service store;
 
   init() {
     super.init(...arguments);

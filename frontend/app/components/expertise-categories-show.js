@@ -5,8 +5,7 @@ import Component from "@ember/component";
 
 @classic
 export default class ExpertiseCategoriesShow extends Component {
-  @service
-  store;
+  @service store;
 
   @computed("discipline")
   get expertiseCategories() {

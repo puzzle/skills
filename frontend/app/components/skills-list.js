@@ -6,11 +6,9 @@ import Component from "@ember/component";
 
 @classic
 export default class SkillsList extends Component {
-  @service
-  store;
+  @service store;
 
-  @service
-  download;
+  @service download;
 
   @sort("skills", (a, b) => {
     // this is needed because otherwise the skills would get reordered

@@ -5,8 +5,7 @@ import $ from "jquery";
 
 @classic
 export default class SkillsetRatedFilter extends Component {
-  @service
-  router;
+  @service router;
 
   didRender() {
     const rated = this.get(

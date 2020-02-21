@@ -7,14 +7,11 @@ import Person from "../models/person";
 
 @classic
 export default class PersonShow extends Component {
-  @service
-  ajax;
+  @service ajax;
 
-  @service
-  router;
+  @service router;
 
-  @service
-  download;
+  @service download;
 
   @service("keycloak-session")
   session;

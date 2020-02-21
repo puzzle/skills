@@ -5,8 +5,7 @@ import Component from "@ember/component";
 
 @classic
 export default class PersonDelete extends Component {
-  @service
-  router;
+  @service router;
 
   @action
   deletePerson(personToDelete) {

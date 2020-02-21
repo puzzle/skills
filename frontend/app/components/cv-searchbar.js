@@ -5,8 +5,7 @@ import Component from "@ember/component";
 
 @classic
 export default class CvSearchbar extends Component {
-  @service
-  router;
+  @service router;
 
   didReceiveAttrs() {
     this.value = this.router.currentRoute.queryParams.q;

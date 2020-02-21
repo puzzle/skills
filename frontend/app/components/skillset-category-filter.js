@@ -6,8 +6,7 @@ import { isBlank } from "@ember/utils";
 
 @classic
 export default class SkillsetCategoryFilter extends Component {
-  @service
-  router;
+  @service router;
 
   init() {
     super.init(...arguments);

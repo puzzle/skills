@@ -8,11 +8,9 @@ import { isPresent } from "@ember/utils";
 @classic
 @tagName("span")
 export default class DeleteWithConfirmation extends Component {
-  @service
-  router;
+  @service router;
 
-  @service
-  intl;
+  @service intl;
 
   @action
   openConfirmation() {

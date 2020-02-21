@@ -4,11 +4,9 @@ import Component from "@ember/component";
 
 @classic
 export default class UpdatedAtPerson extends Component {
-  @service
-  store;
+  @service store;
 
-  @service
-  router;
+  @service router;
 
   init() {
     super.init(...arguments);

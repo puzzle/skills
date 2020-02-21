@@ -6,11 +6,9 @@ import { isBlank } from "@ember/utils";
 
 @classic
 export default class PeopleSearch extends Component {
-  @service
-  store;
+  @service store;
 
-  @service
-  router;
+  @service router;
 
   init() {
     super.init(...arguments);

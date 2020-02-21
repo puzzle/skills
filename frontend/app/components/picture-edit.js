@@ -10,8 +10,7 @@ class ObjectPromiseProxy extends ObjectProxy.extend(PromiseProxyMixin) {}
 
 @classic
 export default class PictureEdit extends Component {
-  @service
-  ajax;
+  @service ajax;
 
   uploadImage(file) {
     let formData = new FormData();
