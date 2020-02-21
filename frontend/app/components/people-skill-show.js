@@ -59,7 +59,7 @@ export default class PeopleSkillShow extends Component {
   }
 
   @action
-  hasChanged() {
+  adjustSliderStylingOnReset() {
     if (!this.get("peopleSkill.level")) {
       this.sliderHandle = this.$(".slider-handle:first");
       this.sliderHandle.removeClass("slider-handle");
