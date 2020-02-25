@@ -188,7 +188,7 @@ GEM
     net-ldap (0.16.2)
     netrc (0.11.0)
     nio4r (2.5.2)
-    nokogiri (1.10.5)
+    nokogiri (1.10.8)
       mini_portile2 (~> 2.4.0)
     odf-report (0.6.1)
       nokogiri (>= 1.5.0)
@@ -347,7 +347,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   mini_magick
   net-ldap (~> 0.16.0)
-  nokogiri (~> 1.10.4)
+  nokogiri (~> 1.10.8)
   odf-report
   pg
   pg_search
