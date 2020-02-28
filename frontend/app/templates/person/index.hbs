@@ -29,12 +29,7 @@
       </div>
       {{!Ausbildungen Tab}}
       <div class="card mb-3" id="educations">
-        {{component (if this.educationsEditing "educations-edit" "educations-show" )
-                    educations=this.model.educations
-                    person=this.model
-                    submit=(action (toggle "educationsEditing" this))
-                    educationsEditing=(action (toggle "educationsEditing" this))
-        }}
+        <EducationsShow @educations={{this.model.educations}} @person={{this.model}} @submit={{this.submit}}/>
       </div>
       {{!Weiterbildungen Tab}}
       <div class="card mb-3" id="advancedTrainings">

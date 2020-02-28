@@ -8,40 +8,36 @@
 <div class="border border-info rounded-bottom">
   <div class="card-body d-flex flex-column">
     <div class="mb-2">
-      <a onclick={{action "toggleEducationNew" true}} role="button" class={{~unless this.educationNew "edit-buttons"~}}><i class="fa {{~unless this.educationNew " add"~}}"></i> {{~unless this.educationNew " Ausbildung hinzufügen"~}}</a>
+      <a {{on "click" this.toggleEducationNew}} role="button" class={{~unless this.educationNew "edit-buttons"~}}><i class="fa {{~unless this.educationNew " add"~}}"></i> {{~unless this.educationNew " Ausbildung hinzufügen"~}}</a>
     </div>
     <div id="competence-content-show">
-      {{component (if this.educationNew "education-new")
-                  personId=this.person.id
-                  done=(action "toggleEducationNew")}}
+      {{#if this.educationNew}}
+        <EducationNew @person={{@person}} @done={{toggleEducationNew}}/>
+      {{/if}}
       {{#each this.sortedEducations as |education|}}
-        <div class="zeile">
-          <div class="row">
-            <div class="col-sm-3 text-center">
-              {{if education.monthFrom (concat (moment-format education.monthFrom "MM" "MM") ".")}}{{education.yearFrom}}
-              {{#if (eq education.yearTo null)}}
-                - heute
-              {{else if (or (not-eq education.yearFrom education.yearTo) (not-eq education.monthFrom education.monthTo))}}
-                - {{if education.monthTo (concat (moment-format education.monthTo "MM" "MM") ".")}}{{education.yearTo}}
-              {{/if}}
-            </div>
-            <div class="col-sm-9">
-              <strong class="education-entity">{{education.title}}</strong>
-              <br>{{education.location}}
-            </div>
-          </div>
-        </div>
+        {{#if this.educationsEditing}}
+          <EducationEdit @person={{@person}} @education={{education}} @done={{toggleEducationsEditing}}/>
+        {{else}}
+          <EducationShow @education={{education}}/>
+        {{/if}}
       {{/each}}
     </div>
-    {{#if this.sortedEducations}}
-      {{#unless this.educationNew}}
-        <div>
-          <a onclick={{this.educationsEditing}} role="button" class="edit-buttons" id="edit-education-button">
-            <i class="fa fa-edit"></i>
-            Bearbeiten
-          </a>
+    {{#if (or (not this.educationNew) (not this.educationsEditing))}}
+      {{#if this.educationsEditing}}
+        <div class="mt-auto">
+          <button {{on "click" this.submitPerson}} role="button" class="btn btn-primary" id="submit-education-button">Speichern</button>
+          <button {{on "click" this.toggleEducationsEditing}} role="button" class="btn abort-button">Abbrechen</button>
         </div>
-      {{/unless}}
+      {{else}}
+        {{#if @educations}}
+          <div>
+            <a {{on "click" this.toggleEducationsEditing}} role="button" class="edit-buttons" id="edit-education-button">
+              <i class="fa fa-edit"></i>
+              Bearbeiten
+            </a>
+          </div>
+        {{/if}}
+      {{/if}}
     {{/if}}
   </div>
 </div>

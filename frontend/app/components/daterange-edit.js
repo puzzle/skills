@@ -2,6 +2,7 @@ import classic from "ember-classic-decorator";
 import { action } from "@ember/object";
 import ApplicationComponent from "./application-component";
 import { isBlank } from "@ember/utils";
+import { computed } from "@ember/object";
 
 @classic
 export default class DaterangeEdit extends ApplicationComponent {
@@ -20,19 +21,30 @@ export default class DaterangeEdit extends ApplicationComponent {
         .fill()
         .map((x, i) => i + 1 + "")
     );
-    this.selectedMonthTo = "-";
-    this.selectedMonthFrom = "-";
-    if (!this.get("entity.isNew")) {
-      ["To", "From"].forEach(attr => {
-        let selectedValue = this.get("entity.month" + attr);
-        if (!this.get("entity.year" + attr)) {
-          selectedValue = "heute";
-        } else if (!this.get("entity.month" + attr)) {
-          selectedValue = "-";
-        }
-        this.set("selectedMonth" + attr, selectedValue);
-      });
+  }
+
+  @computed("entity.monthFrom")
+  get selectedMonthFrom() {
+    let selectedValue = this.entity.monthFrom;
+    if (!this.entity.monthFrom) {
+      selectedValue = "-";
     }
+    return selectedValue;
+  }
+
+  @computed("entity.{monthTo,yearTo}")
+  get selectedMonthTo() {
+    let selectedValue = this.entity.monthTo;
+    if (selectedValue) return selectedValue;
+    if (this.entity.monthTo === null && this.entity.yearTo === null) {
+      selectedValue = "heute";
+    } else if (
+      this.entity.monthTo === null ||
+      this.entity.monthTo === undefined
+    ) {
+      selectedValue = "-";
+    }
+    return selectedValue;
   }
 
   validateYear(year, attr) {
@@ -64,8 +76,7 @@ export default class DaterangeEdit extends ApplicationComponent {
   @action
   setMonth(attr, month) {
     this.set("entity.month" + attr, isNaN(month) ? null : month);
-    if (month == "heute") this.set("entity.yearTo", null);
-    this.set("selectedMonth" + attr, month);
+    if (month === "heute") this.entity.yearTo = null;
   }
 
   @action

@@ -63,7 +63,7 @@
     "ember-auto-import": "^1.5.3",
     "ember-bootstrap": "^3.1.1",
     "ember-bootstrap-datepicker": "^2.0.1",
-    "ember-changeset": "^2.2.4",
+    "ember-changeset": "2.2.4",
     "ember-changeset-validations": "^2.2.1",
     "ember-classic-decorator": "^1.0.6",
     "ember-cli": "~3.15.2",

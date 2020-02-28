@@ -1,0 +1,11 @@
+<div class="col-sm-3">
+  <div class="input-group centered-content-input">
+    <DaterangeEdit @entity={{@education}} />
+  </div>
+</div>
+<div class="col-sm-6 content-input">
+  <label for={{concat this.elementId "-" @education.id "-title"}}>Ausbildung</label>
+  <Input @id={{concat this.elementId "-" @education.id "-title"}} @value={{@education.title}} class="input-xxlarge form-control" />
+  <label class="mt-2" for={{concat this.elementId "-" @education.id "-loc"}}>Ausbildungsort</label>
+  <Textarea @id={{concat this.elementId "-" @education.id "-loc"}} @value={{@education.location}} class="input-xxlarge form-control" />
+</div>
