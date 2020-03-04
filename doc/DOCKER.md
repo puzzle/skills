@@ -28,3 +28,25 @@ For ubuntu:
   1. `docker exec -it skills_web /bin/bash`
   1. `bundle exec rake db:setup`
   1. open http://localhost:8080 in the browser
+
+### Run with PostgreSQL and Keycloak
+
+This setup is a work in progress. Right now the setup doesn't work with Keycloak in confidential setting.
+
+For ubuntu:
+
+  Prerequisites are [docker](https://docs.docker.com/install/linux/docker-ce/ubuntu) and [docker-compose](https://docs.docker.com/compose/install)
+
+  1. `mkdir -p skills && cd skills`
+  1. `get https://raw.githubusercontent.com/puzzle/skills/master/config/docker/keycloak/docker-compose.yml`
+  1. `wget https://raw.githubusercontent.com/puzzle/skills/master/config/docker/keycloak/psql-prod.env.tmpl -O skills.env`
+  1. `wget https://raw.githubusercontent.com/puzzle/skills/master/config/docker/keycloak/psql-prod.env.tmpl -O keycloak.env`
+  1. `wget https://raw.githubusercontent.com/puzzle/skills/master/config/docker/keycloak/realm-export.json`
+  1. edit skills.env
+  1. add `127.0.0.1	keycloak` to /etc/hosts
+  1. `docker-compose up -d`
+  1. `docker exec -it skills_web /bin/bash`
+  1. `bundle exec rake db:setup`
+  1. open http://keycloak:8180 in the browser and login with the admin credentials from keycloak.env
+  1. create new user in Keycloak
+  1. open http://localhost:8080 in the browser login with the new User
