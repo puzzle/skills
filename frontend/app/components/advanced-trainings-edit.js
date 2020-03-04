@@ -1,6 +1,6 @@
 import { inject as service } from "@ember/service";
 import Component from "@ember/component";
-import sortByYear from "../utils/sort-by-year-old";
+import sortByYear from "../utils/deprecated-sort-by-year";
 import { on } from "@ember/object/evented";
 import { EKMixin, keyUp } from "ember-keyboard";
 import { observer } from "@ember/object";
