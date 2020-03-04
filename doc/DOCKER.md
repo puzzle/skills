@@ -21,7 +21,7 @@ For ubuntu:
   Prerequisites are [docker](https://docs.docker.com/install/linux/docker-ce/ubuntu) and [docker-compose](https://docs.docker.com/compose/install)
 
   1. `mkdir -p skills && cd skills`
-  1. `get https://raw.githubusercontent.com/puzzle/skills/master/config/docker/postgresql/docker-compose.yml`
+  1. `wget https://raw.githubusercontent.com/puzzle/skills/master/config/docker/postgresql/docker-compose.yml`
   1. `wget https://raw.githubusercontent.com/puzzle/skills/master/config/docker/postgresql/psql-prod.env.tmpl -O psql-prod.env`
   1. edit psql-prod.env
   1. `docker-compose up -d`
@@ -38,11 +38,10 @@ For ubuntu:
   Prerequisites are [docker](https://docs.docker.com/install/linux/docker-ce/ubuntu) and [docker-compose](https://docs.docker.com/compose/install)
 
   1. `mkdir -p skills && cd skills`
-  1. `get https://raw.githubusercontent.com/puzzle/skills/master/config/docker/keycloak/docker-compose.yml`
-  1. `wget https://raw.githubusercontent.com/puzzle/skills/master/config/docker/keycloak/psql-prod.env.tmpl -O skills.env`
-  1. `wget https://raw.githubusercontent.com/puzzle/skills/master/config/docker/keycloak/psql-prod.env.tmpl -O keycloak.env`
+  1. `wget https://raw.githubusercontent.com/puzzle/skills/feature-53173-keyclaok-docker-compose/config/docker/keycloak/docker-compose.yml`
+  1. `wget https://raw.githubusercontent.com/puzzle/skills/feature-53173-keyclaok-docker-compose/config/docker/keycloak/skills.env.tmp -O skills.env`
+  1. `wget https://raw.githubusercontent.com/puzzle/skills/feature-53173-keyclaok-docker-compose/config/docker/keycloak/keycloak.env.tmp -O keycloak.env`
   1. `wget https://raw.githubusercontent.com/puzzle/skills/master/config/docker/keycloak/realm-export.json`
-  1. edit skills.env
   1. add `127.0.0.1	keycloak` to /etc/hosts
   1. `docker-compose up -d`
   1. `docker exec -it skills_web /bin/bash`
