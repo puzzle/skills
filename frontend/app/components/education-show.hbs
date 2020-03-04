@@ -1,0 +1,16 @@
+<div class="zeile">
+  <div class="row">
+    <div class="col-sm-3 text-center">
+      {{if @education.monthFrom (concat (moment-format @education.monthFrom "MM" "MM") ".")}}{{@education.yearFrom}}
+      {{#if (eq @education.yearTo null)}}
+      - heute
+      {{else if (or (not-eq @education.yearFrom @education.yearTo) (not-eq @education.monthFrom @education.monthTo))}}
+      - {{if @education.monthTo (concat (moment-format @education.monthTo "MM" "MM") ".")}}{{@education.yearTo}}
+      {{/if}}
+    </div>
+    <div class="col-sm-9">
+      <strong class="education-entity">{{@education.title}}</strong>
+      <br>{{@education.location}}
+    </div>
+  </div>
+</div>

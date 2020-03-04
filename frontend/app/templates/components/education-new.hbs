@@ -1,22 +1,12 @@
-<form onsubmit={{action "submit" this.newEducation}} id="form_newEducation">
-  <div id="newEducation-content-edit" class="zeile">
+<div class="zeile">
+  <div id="education-content-edit">
     <div class="row">
-      <div class="col-sm-3">
-        <div class="input-group centered-content-input">
-          <DaterangeEdit @entity={{this.newEducation}} />
-        </div>
-      </div>
-      <div class="col-sm-6 content-input">
-        <label for={{concat this.elementId "-new-title"}}>Ausbildung</label>
-        <Input @id={{concat this.elementId "-new-title"}} @value={{this.newEducation.title}} class="input-xxlarge form-control" />
-        <label class="mt-2" for={{concat this.elementId "-new-loc"}}>Ausbildungsort</label>
-        <Textarea @id={{concat this.elementId "-new-loc"}} @value={{this.newEducation.location}} class="input-xxlarge form-control" />
-      </div>
+      <EducationForm @person={{this.person}} @education={{this.newEducation}}/>
       <div class="col-md-3 centered-content d-flex flex-column mt-4 px-5">
-        <button onclick={{action "submit" this.newEducation false}} role="button" id="submit-button" class="btn btn-primary m-2">Speichern</button>
-        <button onclick={{action "submit" this.newEducation true}} role="button" class="btn btn-info border m-2">Speichern & Neu</button>
-        <a href="#" onclick={{action "abortNew"}} role="button" id="submit-button" class="abort-edit-buttons text-center mx-4">Abbrechen</a>
+        <button {{on "click" (fn this.submitNewEducation false)}} role="button" id="submit-button" class="btn btn-primary m-2">Speichern</button>
+        <button {{on "click" (fn this.submitNewEducation true)}} role="button" class="btn btn-info border m-2">Speichern & Neu</button>
+        <a href="#" {{on "click" this.abortNew}} role="button" id="submit-button" class="abort-edit-buttons text-center mx-4">Abbrechen</a>
       </div>
     </div>
   </div>
-</form>
+</div>
