@@ -12,7 +12,7 @@ module("Acceptance | edit person", function(hooks) {
   setupApplicationTest(hooks);
 
   test("/people/:id edit person data", async function(assert) {
-    assert.expect(15);
+    assert.expect(14);
 
     // Go to the start page and select a user from the dropdown
     await applicationPage.visitHome("/");
@@ -28,7 +28,6 @@ module("Acceptance | edit person", function(hooks) {
     await page.editForm.rolePercent("20");
 
     await selectChoose("#department", "/dev/one");
-    await selectChoose("#company", "Firma");
     await selectChoose("#nationality", "Samoa");
     await selectChoose("#maritalStatus", "verheiratet");
 
@@ -58,7 +57,6 @@ module("Acceptance | edit person", function(hooks) {
     assert.equal(page.profileData.title, "Dr.");
     assert.equal(page.profileData.role, "System-Engineer S3 20%");
     assert.equal(page.profileData.department, "/dev/one");
-    assert.equal(page.profileData.company, "Firma");
     assert.equal(page.profileData.birthdate, "19.02.2019");
     assert.equal(page.profileData.nationalities, "Samoa");
     assert.equal(page.profileData.location, "Chehrplatz Schwandi");

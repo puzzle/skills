@@ -12,7 +12,6 @@
 #  updated_at              :datetime         not null
 #  picture                 :string
 #  competence_notes        :string
-#  company_id              :bigint(8)
 #  associations_updatet_at :datetime
 #  nationality             :string
 #  nationality2            :string
@@ -33,7 +32,6 @@ bob:
   roles: [software-engineer]
   title: BSc in Cleaning
   competence_notes: Java\n Ruby
-  company: firma
   email: bob@example.com
   department: sys
 
@@ -46,7 +44,6 @@ alice:
   roles: [system-engineer]
   title: MSc in writing
   competence_notes: LaTex\n Puppet\n Bash
-  company: partner
   email: alice@example.com
   department: sys
 
@@ -59,6 +56,5 @@ ken:
   roles: [system-engineer]
   title: MA in sending silly memes
   competence_notes: LaTex\n Puppet\n Bash
-  company: partner
   email: kenthemaster@testi.com
   department: ux

@@ -85,17 +85,16 @@ describe PeopleController do
         json_object_includes_keys(bob_attrs, keys)
         expect(bob_attrs['picture_path']).to match("/api/people/#{bob.id}/picture\?")
 
-        nested_keys = %w(advanced_trainings activities projects educations company roles language_skills person_roles)
+        nested_keys = %w(advanced_trainings activities projects educations roles language_skills person_roles)
         nested_attrs = json['data']['relationships']
 
-        expect(nested_attrs.count).to eq(9)
+        expect(nested_attrs.count).to eq(8)
         json_object_includes_keys(nested_attrs, nested_keys)
       end
     end
 
     describe 'POST create' do
       it 'creates new person' do
-        company = companies(:partner)
         department = departments(:sys)
 
         person = { birthdate: Time.current,
@@ -109,7 +108,6 @@ describe PeopleController do
                    }
 
         relationships = {
-          company: { data: { id: company.id, type: 'companies' }},
           department: {data: {id: department.id, name: department.name}}
         }
 
@@ -134,17 +132,13 @@ describe PeopleController do
     describe 'PUT update' do
       it 'updates existing person' do
         bob = people(:bob)
-        company = companies(:partner)
 
         process :update, method: :put, params: {
-          id: bob.id, data: { attributes: { location: 'test_location' },
-                              relationships: { company: { data: { id: company.id, type: 'company' }}}
-                            }
+          id: bob.id, data: { attributes: { location: 'test_location' } }
         }
 
         bob.reload
         expect(bob.location).to eq('test_location')
-        expect(bob.company).to eq(company)
       end
     end
 

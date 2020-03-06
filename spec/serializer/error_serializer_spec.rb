@@ -9,14 +9,12 @@ describe ErrorSerializer do
       json = ErrorSerializer.serialize(p.errors)
 
       expect(json).to include(:errors)
-      expect(json[:errors].first).to include(:id)
-      expect(json[:errors].first).to include(:title)
-      expect(json[:errors].first[:id]).to eq(:company)
-      expect(json[:errors].first[:title]).to eq('Company muss ausgefüllt werden')
-      expect(json[:errors].second[:id]).to eq(:department)
-      expect(json[:errors].second[:title]).to eq('Department muss ausgefüllt werden')
-      expect(json[:errors].third[:id]).to eq(:birthdate)
-      expect(json[:errors].third[:title]).to eq('Birthdate muss ausgefüllt werden')
+      expect(json).to include(:id)
+      expect(json).to include(:title)
+      expect(json[:errors].first[:id]).to eq(:department)
+      expect(json[:errors].first[:title]).to eq('Department muss ausgefüllt werden')
+      expect(json[:errors].second[:id]).to eq(:birthdate)
+      expect(json[:errors].second[:title]).to eq('Birthdate muss ausgefüllt werden')
     end
   end
 end

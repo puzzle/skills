@@ -15,7 +15,6 @@ const Person = DS.Model.extend({
   updatedAt: DS.attr("date"),
 
   department: DS.belongsTo("department"),
-  company: DS.belongsTo("company"),
 
   educations: DS.hasMany("education"),
   advancedTrainings: DS.hasMany("advanced-training"),

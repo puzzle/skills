@@ -39,7 +39,6 @@ export default create({
     title: text("#data-test-person-title"),
     role: text("#data-test-person-role"),
     department: text("#data-test-person-department"),
-    company: text("#data-test-person-company"),
     birthdate: text("#data-test-person-birthdate"),
     nationalities: text("#data-test-person-nationalities"),
     location: text("#data-test-person-location"),
@@ -48,7 +47,7 @@ export default create({
   },
 
   competences: {
-    toggleForm: clickable("[data-test-company-edit-form-toggle]"),
+    toggleForm: clickable("[data-test-competences-edit-form-toggle]"),
     submit: clickable("#submit-button"),
 
     list: collection({
