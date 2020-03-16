@@ -14,7 +14,6 @@
 #  updated_at              :datetime         not null
 #  picture                 :string
 #  competence_notes        :string
-#  company_id              :bigint(8)
 #  associations_updatet_at :datetime
 #  nationality             :string
 #  nationality2            :string
@@ -26,7 +25,6 @@
 class Person < ApplicationRecord
   include PgSearch::Model
 
-  belongs_to :company
   belongs_to :department
 
   mount_uploader :picture, PictureUploader

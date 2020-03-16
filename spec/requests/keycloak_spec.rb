@@ -5,7 +5,7 @@ describe 'Keycloak' do
   include_context 'Keycloak'
 
   it 'fails without header' do
-    get '/api/companies'
+    get '/api/skills'
     expect(response.status).to eq(401)
   end
 
@@ -14,7 +14,7 @@ describe 'Keycloak' do
       'ACCEPT' => 'application/json',
       'Authorization' => "Bearer 1234"
      }
-    get '/api/companies', :params => '', :headers => headers
+    get '/api/skills', :params => '', :headers => headers
     expect(response.status).to eq(401)
   end
 
@@ -23,7 +23,7 @@ describe 'Keycloak' do
       'ACCEPT' => 'application/json',
       'Authorization' => "Bearer #{jwt}"
      }
-    get '/api/companies', :params => '', :headers => headers
+    get '/api/skills', :params => '', :headers => headers
     expect(response.status).to eq(200)
   end
 

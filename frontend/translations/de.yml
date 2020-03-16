@@ -42,7 +42,6 @@ person:
     projects: Projekte
     personCompetences: Kompetenzen
     level: Sprachniveau
-    company: Firma
     roles: Rollen
 peopleSkill:
     skill: Skill
@@ -57,25 +56,6 @@ expertise-topic-skill-value:
     lastUse: 'Letztmals angewendet'
     skillLevel: Erfahrungswert
     comment: Bemerkung
-company:
-    name: Name
-    web: Web
-    email: eMail
-    phone: Telefon
-    partnermanager: Partnermanager
-    contactPerson: Ansprechperson
-    level: Level
-    location: Standort
-    category: Kategorie
-    quantity: Anzahl
-location:
-    location: Standort
-employee-Quantity:
-    category: Kategorie
-    quantity: Anzahl
-offer:
-    category: Kategorie
-    offer: Angebot
 delete-confirmation:
     message: '{name} wirklich löschen?'
     success: '{name} wurde entfernt'

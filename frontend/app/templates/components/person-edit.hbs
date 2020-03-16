@@ -77,14 +77,6 @@
                     </PowerSelect>
                   </td>
                 </tr>
-                <tr>
-                  <td>
-                    <label>Firma/Kategorie</label>
-                    <PowerSelect @triggerId="company" @selected={{this.person.company}} @options={{this.companiesToSelect}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onChange={{action (mut this.person.company)}} @onKeydown={{action "setWithTab" "setCompany"}} as |company|>
-                      {{company.name}}
-                    </PowerSelect>
-                  </td>
-                </tr>
               </tbody>
             </table>
           </div>

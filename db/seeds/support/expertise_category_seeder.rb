@@ -8,10 +8,6 @@ class ExpertiseCategorySeeder
   def seed_system_category(category, topics=[])
     seed_category('system_engineering', category, topics)
   end
-  
-  def seed_offer_category(category, topics=[])
-    seed_category('offer', category, topics)
-  end
 
   private
 

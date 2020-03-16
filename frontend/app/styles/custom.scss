@@ -931,63 +931,6 @@ form textarea {
   width: 160px;
 }
 
-.table-company td {
-  padding-bottom: 5px;
-  vertical-align: top;
-  font-size: 90%;
-}
-
-.table-company {
-  width: 100%;
-}
-
-.table-company td:first-child,
-.table-company label {
-  width: 45%;
-}
-
-.table-company label {
-  float: left;
-}
-
-.table-company td:last-child {
-  width: 50%;
-}
-
-.table-company input,
-.table-company button,
-.table-company .ember-power-select-trigger {
-  width: 50%;
-  float: right;
-}
-
-.table-company .nextToDelete {
-  position: relative;
-}
-
-.table-company .nextToDelete input {
-  width: 45%;
-  margin-right: 5%;
-}
-
-.table-company .deleteField {
-  position: absolute;
-  top: 5px;
-  right: 12px;
-}
-
-.table-company tr td:first-child {
-  text-align: right;
-  font-weight: bold;
-  padding-right: 10px;
-  height: 35px;
-  min-height: 35px;
-}
-
-.table-company tr:first-child {
-  font-size: 140%;
-}
-
 /* Person Übersicht*/
 .table-person input,
 .table-person,
@@ -1135,11 +1078,6 @@ form textarea {
 
 .no-hover:hover i {
   color: white !important;
-}
-
-#delete-company-icon {
-  position: absolute;
-  left: 490px;
 }
 
 #delete-education-icon {

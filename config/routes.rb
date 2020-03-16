@@ -27,17 +27,13 @@ Rails.application.routes.draw do
     resources :advanced_trainings
     resources :activities
     resources :categories, only: [:index, :show]
-    resources :companies
     resources :departments, only: :index
     resources :educations
-    resources :employee_quantities
     resources :expertise_categories
     resources :expertise_topics
     resources :expertise_topic_skill_values
     resources :languages, only: :index
     resources :language_skills
-    resources :locations
-    resources :offers
     resources :people_skills
     resources :person_roles
     resources :person_role_levels, only: :index

@@ -1,7 +1,7 @@
 <div class="mb-2 d-flex">
   <div class="people-search">
     <PowerSelect @triggerId="people-search" @selected={{this.selected}} @options={{this.peopleToSelect}} @searchEnabled={{true}} @searchField="name" @placeholder="Person suchen" @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onChange={{action "changePerson"}} as |person|>
-      {{person.name}} <small>({{person.company.name}})</small>
+      {{person.name}}
     </PowerSelect>
   </div>
   <div class="ml-3">

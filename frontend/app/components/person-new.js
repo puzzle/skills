@@ -50,10 +50,6 @@ export default ApplicationComponent.extend({
     return this.get("store").findAll("role");
   }),
 
-  companiesToSelect: computed(function() {
-    return this.get("store").findAll("company");
-  }),
-
   focusComesFromOutside(e) {
     let blurredEl = e.relatedTarget;
     if (isBlank(blurredEl)) {
@@ -144,10 +140,6 @@ export default ApplicationComponent.extend({
 
     setDepartment(department) {
       this.set("newPerson.department", department);
-    },
-
-    setCompany(company) {
-      this.set("newPerson.company", company);
     },
 
     setRole(personRole, selectedRole) {

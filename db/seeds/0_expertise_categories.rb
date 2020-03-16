@@ -95,12 +95,3 @@ seeder.seed_system_category('Programmier- und Script-Sprachen',
                              'PHP', 'C', 'C++', 'Java'])
 
 seeder.seed_system_category('Version Control', ['Git', 'SVN'])
-
-# seed system engineer categories
-seeder.seed_offer_category('Software Design & Methoden')
-
-seeder.seed_offer_category('Technologien')
-
-seeder.seed_offer_category('Datenbanken')
-
-seeder.seed_offer_category('Werkzeuge')

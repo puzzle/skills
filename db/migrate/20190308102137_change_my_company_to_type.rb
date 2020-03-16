@@ -1,4 +1,8 @@
 class ChangeMyCompanyToType < ActiveRecord::Migration[5.2]
+  # Stub the model as it has been removed from the codebase
+  class Company < ActiveRecord::Base
+  end
+
   def up
     add_column :companies, :company_type, :integer, default: 3, null: false
 

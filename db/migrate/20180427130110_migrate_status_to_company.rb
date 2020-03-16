@@ -1,5 +1,9 @@
 class MigrateStatusToCompany < ActiveRecord::Migration[5.1]
 
+  # Stub the model as it has been removed from the codebase
+  class Company < ActiveRecord::Base
+  end
+
 def up
     #STATUSES = { 1 => 'Mitarbeiter',
     #             2 => 'Ex Mitarbeiter',
