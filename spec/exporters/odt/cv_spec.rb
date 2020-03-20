@@ -27,5 +27,10 @@ describe Odt::Cv do
       expect(nationalities).to eq('Australien')
     end
 
+    it 'formats competence notes' do
+      notes = Odt::Cv.new(people(:bob)).send(:competence_notes_list)[:competence]
+      expect(notes).to eq('Java\n Ruby')
+    end
+	
   end
 end
