@@ -74,7 +74,7 @@ module Odt
       if person.competence_notes.present?
         {
           category: 'Notizen',
-          competence: person.competence_notes.split("\n").join(', ')
+          competence: person.competence_notes.strip
         }
       end
     end
