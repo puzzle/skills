@@ -20,9 +20,11 @@ All you need to do is adhere to the Definion of Done below
 -   Make sure your code follows the Guidelines linked below 
 
 #### Code Guidelines
-[Ruby Style Guide](https://github.com/rubocop-hq/ruby-style-guide)  
-[Rails Style Guide](https://github.com/rubocop-hq/rails-style-guide)  
-[Ember Style Guide](https://github.com/emberjs/ember.js/blob/master/STYLEGUIDE.md) (Guide is a bit old and we use double quotes in this project)
+- [Ruby Style Guide](https://github.com/rubocop-hq/ruby-style-guide)  
+- [Rails Style Guide](https://github.com/rubocop-hq/rails-style-guide)  
+- [Ember Style Guide](https://github.com/emberjs/ember.js/blob/master/STYLEGUIDE.md) (Guide is a bit old and we use double quotes in this project)
+
+- Use spaces instead of tabs
 
 #### Entity Relationship Diagram
 To gain an overview of the project an ERD might help, generate one with:
