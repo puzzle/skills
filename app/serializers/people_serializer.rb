@@ -2,6 +2,11 @@
 
 class PeopleSerializer < ApplicationSerializer
   attributes :id, :name, :found_in
+
+  def attributes(*args)
+    super.compact
+  end
+
   def found_in
     if @instance_options[:param].present?
       search_term = @instance_options[:param]
