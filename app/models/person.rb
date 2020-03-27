@@ -78,11 +78,56 @@ class Person < ApplicationRecord
                     }
                   }
 
+  SEARCHABLE_FIELDS = %w{name title competence_notes description
+                         role technology location}.freeze
+
+  def found_in(search_term)
+    res = in_attributes?(search_term, attributes)
+    return res unless res.nil?
+
+    association_symbols.each do |sym|
+      return sym if in_association?(search_term, sym)
+    end
+  end
+
   private
+
+  def association_symbols
+    keys = []
+    Person.reflections.keys.each do |key|
+      keys.push key.to_sym
+    end
+    keys
+  end
+
+  def in_association?(search_term, sym)
+    target = association(sym).target
+    if target.is_a?(Array)
+      target.each do |t|
+        return true if in_attributes?(search_term, t.attributes)
+      end
+    elsif in_attributes?(search_term, target.attributes)
+      return true
+    end
+    false
+  end
+
+  def in_attributes?(search_term, attrs)
+    searchable_fields(attrs).each_pair do |key, value|
+      return key if value.include?(search_term)
+    end
+    nil
+  end
+
+  def searchable_fields(fields)
+    fields.keys.each do |key|
+      fields.delete(key) unless SEARCHABLE_FIELDS.include?(key)
+    end
+    fields
+  end
 
   def picture_size
     return if picture.nil? || picture.size < 10.megabytes
     errors.add(:picture, 'grösse kann maximal 10MB sein')
   end
-
 end

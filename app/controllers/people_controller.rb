@@ -15,9 +15,14 @@ class PeopleController < CrudController
 
   def index
     people = fetch_entries
-    people = people.search(params[:q]) if params[:q].present?
 
-    render json: people, each_serializer: PeopleSerializer
+    if params[:q].present?
+      people = people.search(params[:q])
+      people = pre_load(people)
+      render json: people, each_serializer: PeopleSerializer, param: params[:q]
+    else
+      render json: people, each_serializer: PeopleSerializer
+    end
   end
 
   def show
@@ -34,6 +39,20 @@ class PeopleController < CrudController
 
   def fetch_entries
     Person.list
+  end
+
+  # Load the attributes of the given people into cache
+  # Without this, reflective methods accessing attributes over associations
+  # would come up empty
+  def pre_load(people)
+    person_keys = []
+    people.each do |p|
+      person_keys.push p.id
+    end
+
+    Person.includes(:department, :roles, :projects, :activities,
+                    :educations, :advanced_trainings, :expertise_topics)
+          .find(person_keys)
   end
 
   def person
