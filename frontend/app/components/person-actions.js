@@ -52,7 +52,7 @@ export default class PersonActions extends Component {
     const currentURL = this.get("router.currentURL");
     url = currentURL.includes("skills")
       ? "people_skills.csv?person_id=" + this.get("person.id")
-      : "people/" + this.get("person.id") + ".odt";
+      : "people/" + this.get("person.id") + ".odt?anon=false";
 
     let url = `/api/${url}`;
     this.get("download").file(url);

@@ -8,10 +8,11 @@ module Odt
       @person = person
     end
 
-    def export
-      ODFReport::Report.new('lib/templates/cv_template.odt') do |r|
-        insert_general_sections(r)
-        insert_personalien(r)
+    # rubocop:disable Metrics/LineLength
+    def export(anon = true)
+      ODFReport::Report.new(anon ? 'lib/templates/cv_template_anon.odt' : 'lib/templates/cv_template.odt') do |r|
+        insert_general_sections(r, anon)
+        insert_personalien(r, anon)
         insert_competences(r)
         insert_advanced_trainings(r)
         insert_languages(r)
@@ -20,16 +21,17 @@ module Odt
         insert_projects(r)
       end
     end
+    # rubocop:enable Metrics/LineLength
 
     private
 
-    attr_accessor :person
     # rubocop:disable Metrics/AbcSize
-    def insert_general_sections(report)
+    attr_accessor :person
+    def insert_general_sections(report, anon)
       report.add_field(:client, 'mg')
       report.add_field(:project, 'pcv')
       report.add_field(:section, 'dev1')
-      report.add_field(:name, person.name)
+      report.add_field(:name, person.name) unless anon
       # For the moment we only take the first role, will change when there are many per person
       report.add_field(:title_function, person.roles[0].try(:name))
 
@@ -39,16 +41,21 @@ module Odt
       report.add_field(:version, '1.0')
       report.add_field(:comment, 'Aktuelle Ausgabe')
     end
-    # rubocop:enable Metrics/AbcSize
 
+    # rubocop:enable Metrics/AbcSize
     # rubocop:disable Metrics/AbcSize
-    def insert_personalien(report)
+    # rubocop:disable Metrics/LineLength
+    def insert_personalien(report, anon)
       report.add_field(:title, person.title)
-      report.add_field(:birthdate, Date.parse(person.birthdate.to_s).strftime('%d.%m.%Y'))
-      report.add_field(:nationalities, nationalities)
-      report.add_field(:email, person.email)
-      report.add_image(:profile_picture, person.picture.path) if person.picture.file.present?
+      unless anon
+        report.add_field(:birthdate, Date.parse(person.birthdate.to_s)
+                                         .strftime('%d.%m.%Y'))
+      end
+      report.add_field(:nationalities, nationalities) unless anon
+      report.add_field(:email, person.email) unless anon
+      report.add_image(:profile_picture, person.picture.path) unless anon || person.picture.file.blank?
     end
+    # rubocop:enable Metrics/LineLength
     # rubocop:enable Metrics/AbcSize
 
     def insert_competences(report)
