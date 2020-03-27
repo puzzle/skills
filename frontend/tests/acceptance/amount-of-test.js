@@ -22,7 +22,6 @@ module("Acceptance | amount of", function(hooks) {
     await page.educations.toggleForm();
     await page.educations.delete();
     await page.educations.confirm();
-    await page.educations.submit();
 
     assert.equal(page.educations.list().count, 0);
     assert.equal(page.educations.amountOf, "Ausbildung (0)");

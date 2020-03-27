@@ -18,9 +18,10 @@ export default Component.extend(EKMixin, {
 
   intl: service(),
 
+  sortedActivities: sortByYear("activities"),
+
   activateKeyboard: on("init", function() {
     this.set("keyboardActivated", true);
-    this.sortedActivities = sortByYear("activities").volatile();
   }),
 
   abortActivities: on(keyUp("Escape"), function() {

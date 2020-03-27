@@ -1,11 +1,30 @@
-<div class="col-sm-3">
-  <div class="input-group centered-content-input">
-    <DaterangeEdit @entity={{@education}} />
+<div class="zeile">
+  <div id="education-content-edit">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="input-group centered-content-input">
+          <DaterangeEdit @entity={{this.record}} />
+        </div>
+      </div>
+      <div class="col-sm-6 content-input">
+        <label for={{concat this.elementId "-" this.record.id "-title"}}>Ausbildung</label>
+        <Input @id={{concat this.elementId "-" this.record.id "-title"}} @value={{this.record.title}} class="input-xxlarge form-control" />
+        <label class="mt-2" for={{concat this.elementId "-" this.record.id "-loc"}}>Ausbildungsort</label>
+        <Textarea @id={{concat this.elementId "-" this.record.id "-loc"}} @value={{this.record.location}} class="input-xxlarge form-control" />
+      </div>
+      <div class="col-md-3 centered-content d-flex flex-column mt-4 px-5">
+        <button {{on "click" (fn this.submit record)}} role="button" id="submit-education-button" class="btn btn-primary m-2">Speichern</button>
+        {{#if (not this.record.id)}}
+          <button {{on "click" (fn this.submitAndNew record)}} role="button" class="btn btn-info border m-2">Speichern & Neu</button>
+        {{else}}
+          <button id="delete-education-icon" class="btn btn-info border m-2">
+            <DeleteWithConfirmation @entry={{this.record}} @didDelete={{this.abort}}>
+              Löschen
+            </DeleteWithConfirmation>
+          </button>
+        {{/if}}
+        <a href="#" {{on "click" this.abort}} role="button" id="submit-button" class="abort-edit-buttons text-center mx-4">Abbrechen</a>
+      </div>
+    </div>
   </div>
-</div>
-<div class="col-sm-6 content-input">
-  <label for={{concat this.elementId "-" @education.id "-title"}}>Ausbildung</label>
-  <Input @id={{concat this.elementId "-" @education.id "-title"}} @value={{@education.title}} class="input-xxlarge form-control" />
-  <label class="mt-2" for={{concat this.elementId "-" @education.id "-loc"}}>Ausbildungsort</label>
-  <Textarea @id={{concat this.elementId "-" @education.id "-loc"}} @value={{@education.location}} class="input-xxlarge form-control" />
 </div>
