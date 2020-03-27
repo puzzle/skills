@@ -82,12 +82,17 @@ class Person < ApplicationRecord
                          role technology location}.freeze
 
   def found_in(search_term)
-    res = in_attributes?(search_term, attributes)
+    res = in_attribute(search_term, attributes)
     return res unless res.nil?
 
     association_symbols.each do |sym|
-      return sym if in_association?(search_term, sym)
+      a = in_association(search_term, sym)
+      if a
+        return format('%<association>s#%<attribute_name>s',
+                      association: sym.to_s, attribute_name: a)
+      end
     end
+    nil
   end
 
   private
@@ -100,19 +105,24 @@ class Person < ApplicationRecord
     keys
   end
 
-  def in_association?(search_term, sym)
+  def in_association(search_term, sym)
     target = association(sym).target
     if target.is_a?(Array)
-      target.each do |t|
-        return true if in_attributes?(search_term, t.attributes)
-      end
-    elsif in_attributes?(search_term, target.attributes)
-      return true
+      return attribute_in_array(search_term, target)
+    else
+      return in_attribute(search_term, target.attributes)
     end
-    false
   end
 
-  def in_attributes?(search_term, attrs)
+  def attribute_in_array(search_term, array)
+    array.each do |t|
+      attribute = in_attribute(search_term, t.attributes)
+      return attribute unless attribute.nil?
+    end
+    nil
+  end
+
+  def in_attribute(search_term, attrs)
     searchable_fields(attrs).each_pair do |key, value|
       return key if value.include?(search_term)
     end
