@@ -44,8 +44,7 @@ export default class PeopleSearch extends Component {
   @action
   changePerson(person) {
     this.set("selected", person);
-    person.reload();
-    this.get("router").transitionTo("person", person.id);
+    this.router.transitionTo("person", person.id);
   }
 
   @action

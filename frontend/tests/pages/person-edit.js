@@ -60,7 +60,7 @@ export default create({
 
   educations: {
     amountOf: text("#amount-of-educations"),
-    toggleForm: clickable("#edit-education-button"),
+    toggleForm: clickable("#educations-content-show .zeile"),
 
     list: collection({
       itemScope: ".education-entity",

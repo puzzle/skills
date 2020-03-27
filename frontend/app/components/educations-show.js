@@ -1,35 +1,40 @@
+import Component from "@glimmer/component";
 import { inject as service } from "@ember/service";
 import classic from "ember-classic-decorator";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
-import SubmitBaseComponent from "./submit-base-component";
 import sortByYear from "../utils/sort-by-year";
 import $ from "jquery";
 
 @classic
-export default class EducationsShow extends SubmitBaseComponent {
+export default class EducationsShow extends Component {
   @service notify;
 
   @tracked
-  educationsEditing = false;
+  isNewRecord = false;
 
   @tracked
-  educationNew = false;
+  editingEducation;
+
+  frozenSortedEducation;
 
   constructor() {
     super(...arguments);
+    // addObserver(this, "person", this.personChanged);
     // this is a hack because ember keyboard is not ported to octane yet.
     // normal jquery events using the {{on}} template helper doesn't work for escape key
     $(document).on("keyup", event => {
       if (event.keyCode == 27) {
-        this.educationsEditing = false;
-        this.educationNew = false;
+        this.editingEducation = null;
+        this.isNewRecord = false;
       }
     });
   }
 
   get sortedEducations() {
-    return sortByYear(this.args.educations);
+    return !this.editingEducation
+      ? sortByYear(this.args.person.educations)
+      : this.frozenSortedEducation;
   }
 
   get amountOfEducations() {
@@ -38,22 +43,17 @@ export default class EducationsShow extends SubmitBaseComponent {
 
   @action
   toggleEducationNew() {
-    this.educationNew = !this.educationNew;
+    this.isNewRecord = !this.isNewRecord;
   }
 
   @action
-  toggleEducationsEditing() {
-    this.educationsEditing = !this.educationsEditing;
+  setEditingEducation(education) {
+    this.frozenSortedEducation = this.sortedEducations;
+    this.editingEducation = this.editingEducation || education;
   }
 
   @action
-  submitPerson() {
-    this.submit([this.args.person, this.args.educations.toArray()].flat()).then(
-      () => {
-        this.notify.success("Successfully saved!");
-        $("#educationsHeader")[0].scrollIntoView({ behavior: "smooth" });
-        this.toggleEducationsEditing();
-      }
-    );
+  abortEducationEdit() {
+    this.editingEducation = null;
   }
 }

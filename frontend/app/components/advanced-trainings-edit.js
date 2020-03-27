@@ -20,12 +20,13 @@ export default Component.extend(EKMixin, {
 
   activateKeyboard: on("init", function() {
     this.set("keyboardActivated", true);
-    this.sortedAdvancedTrainings = sortByYear("advanced-trainings").volatile();
   }),
 
   abortAdvancedTrainings: on(keyUp("Escape"), function() {
     this.send("abortEdit");
   }),
+
+  sortedAdvancedTrainings: sortByYear("advanced-trainings"),
 
   actions: {
     notify() {

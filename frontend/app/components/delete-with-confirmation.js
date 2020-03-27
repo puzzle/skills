@@ -34,6 +34,7 @@ export default class DeleteWithConfirmation extends Component {
         this.get("router").transitionTo(transitionTo);
       }
       this.get("notify").success(message);
+      if (this.didDelete) this.didDelete();
     });
   }
 }

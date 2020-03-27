@@ -1,26 +1,21 @@
 education:
     title: Titel
     location: Ausbildungsort
-    start_at: 'Datum von'
-    finish_at: 'Datum bis'
+    yearFrom: 'Jahr von'
 activity:
     description: Beschreibung
     role: Rolle
-    start_at: 'Datum von'
-    finish_at: 'Datum bis'
+    yearFrom: 'Jahr von'
 advancedTraining:
     name: Weiterbildung
     description: Beschreibung
-    start_at: 'Datum von'
-    finish_at: 'Datum bis'
+    yearFrom: 'Jahr von'
 project:
     title: Titel
     description: Beschreibung
     role: Rolle
     technology: Technologie
-    start_at: 'Datum von'
-    finish_at: 'Datum bis'
-    yearFrom: 'Datum von'
+    yearFrom: 'Jahr von'
 competence:
     description: Beschreibung
 personCompetence:
