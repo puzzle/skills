@@ -96,6 +96,12 @@ describe PeopleController do
           .and_call_original
 
         get :index, params: { q: 'London' }
+
+        alice_attrs = json['data'].first['attributes']
+
+        expect(alice_attrs.count).to eq(2)
+        expect(alice_attrs['name']).to eq('Alice Mante')
+        expect(alice_attrs['found_in']).to eq('location')
       end
     end
 

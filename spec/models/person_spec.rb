@@ -28,7 +28,7 @@ describe Person do
   let(:bob) { people(:bob) }
 
   context 'search' do
-    it 'finds search term in associated education' do
+    it 'finds search term in associated project' do
       people = Person.search('duckduck')
       expect(people.count).to eq(1)
       expect(people.first.name).to eq('Bob Anderson')
@@ -38,6 +38,38 @@ describe Person do
       people = Person.search('Alice')
       expect(people.count).to eq(1)
       expect(people.first.name).to eq('Alice Mante')
+    end
+
+    context 'found in' do
+      it 'finds in which association the search term has been found' do
+        search_term = 'duckduck'
+        people = Person.search(search_term)
+        person = people[0]
+        person = Person.includes(:department, :roles, :projects, :activities,
+                                 :educations, :advanced_trainings, :expertise_topics)
+                       .find(person.id)
+        expect(person.found_in(search_term)).to eq('projects#title')
+      end
+
+      it 'finds in which person attribute the search term has been found' do
+        search_term = 'Alice'
+        people = Person.search(search_term)
+        person = people[0]
+        person = Person.includes(:department, :roles, :projects, :activities,
+                                 :educations, :advanced_trainings, :expertise_topics)
+                       .find(person.id)
+        expect(person.found_in(search_term)).to eq('name')
+      end
+
+      it 'returns nil for nonsense search term on found in' do
+        search_term = 'Alice'
+        people = Person.search(search_term)
+        person = people[0]
+        person = Person.includes(:department, :roles, :projects, :activities,
+                                 :educations, :advanced_trainings, :expertise_topics)
+                       .find(person.id)
+        expect(person.found_in('ahdkifekjsdfsakdh34ukjnfv')).to eq(nil)
+      end
     end
   end
 
