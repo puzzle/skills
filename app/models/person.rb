@@ -81,10 +81,18 @@ class Person < ApplicationRecord
   SEARCHABLE_FIELDS = %w{name title competence_notes description
                          role technology location}.freeze
 
+  # Returns either the attribute which contains the search term or nil
+  #
+  # It is neccessary to preload the person and its associations
   def found_in(search_term)
-    res = in_attribute(search_term, attributes)
-    return res unless res.nil?
+    res = in_attributes(search_term, attributes)
+    res = in_associations(search_term) if res.nil?
+    res
+  end
 
+  private
+
+  def in_associations(search_term)
     association_symbols.each do |sym|
       a = in_association(search_term, sym)
       if a
@@ -95,7 +103,6 @@ class Person < ApplicationRecord
     nil
   end
 
-  private
 
   def association_symbols
     keys = []
@@ -110,19 +117,19 @@ class Person < ApplicationRecord
     if target.is_a?(Array)
       return attribute_in_array(search_term, target)
     else
-      return in_attribute(search_term, target.attributes)
+      return in_attributes(search_term, target.attributes)
     end
   end
 
   def attribute_in_array(search_term, array)
     array.each do |t|
-      attribute = in_attribute(search_term, t.attributes)
+      attribute = in_attributes(search_term, t.attributes)
       return attribute unless attribute.nil?
     end
     nil
   end
 
-  def in_attribute(search_term, attrs)
+  def in_attributes(search_term, attrs)
     searchable_fields(attrs).each_pair do |key, value|
       return key if value.include?(search_term)
     end
