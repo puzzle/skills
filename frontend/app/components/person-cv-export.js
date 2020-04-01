@@ -5,6 +5,10 @@ export default Component.extend({
   store: inject(),
   intl: inject(),
 
+  init() {
+    this._super(...arguments);
+  },
+
   didInsertElement() {
     //We need global jquery here because Bootstrap renders the modal outside of the component
     /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
