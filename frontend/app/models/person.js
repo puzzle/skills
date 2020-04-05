@@ -3,6 +3,7 @@ import { computed } from "@ember/object";
 
 const Person = DS.Model.extend({
   name: DS.attr("string"),
+  foundIn: DS.attr("string"),
   birthdate: DS.attr("date"),
   picturePath: DS.attr("string"),
   location: DS.attr("string"),
