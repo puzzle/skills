@@ -5,7 +5,7 @@ describe Csv::Skillset do
     it 'exports' do
       csv = Csv::Skillset.new(Skill.all).export
       csv = csv.split("\n")
-      expect(csv.length).to eq(4)
+      expect(csv.length).to eq(5)
       expect(csv.first.split(",").length).to eq(7)
       rails = csv.select { |s| s.include?('Rails') && s.include?('2') }.first
       expect(rails).not_to eq (nil)

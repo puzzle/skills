@@ -59,7 +59,7 @@ module("Acceptance | create people-skill", function(hooks) {
       .map(title => title.text);
 
     assert.equal(titles[0], "Bash");
-    assert.equal(titles[1], "c");
+    assert.equal(titles[1], "cunit");
     assert.equal(titles[2], "JUnit");
   });
 });
