@@ -34,14 +34,31 @@ export default Component.extend(EKMixin, {
     context.sendAction("done", true);
   },
 
+  addMissingMonthWarning(newActivity) {
+    if (
+      !newActivity.monthFrom ||
+      (!newActivity.monthTo && newActivity.yearTo)
+    ) {
+      document.getElementById("missing-month-warning").style.display = "block";
+      return true;
+    } else if (
+      document.getElementById("missing-month-warning").style.display == "block"
+    ) {
+      document.getElementById("missing-month-warning").style.display = "none";
+      return false;
+    }
+    return false;
+  },
+
   actions: {
     abortNew(event) {
       event.preventDefault();
       this.sendAction("done", false);
     },
 
-    submit(newActivity, initNew, event) {
+    submit(newActivity, initNew, monthNeeded, event) {
       event.preventDefault();
+      if (monthNeeded && this.addMissingMonthWarning(newActivity)) return;
       let person = this.get("store").peekRecord("person", this.get("personId"));
       newActivity.set("person", person);
       return newActivity

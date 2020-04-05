@@ -613,6 +613,17 @@ div.row-fluid.person-list > div.span10 > div.container-fluid.round-border {
   border: 0 !important;
 }
 
+#missing-month-warning {
+  display: none;
+  width: 70%;
+  text-align: center;
+  background-color: #f2f279;
+  margin: auto auto 10px;
+  padding: 10px 20px;
+  border: 1px solid #d6b656;
+  border-radius: 25px;
+}
+
 #option-pill > a {
   border: 0px;
   border-radius: 6px;

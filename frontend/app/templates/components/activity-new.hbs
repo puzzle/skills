@@ -1,5 +1,11 @@
 <form onsubmit={{action "submit" this.newActivity}} id="form_newActivity">
   <div id="newEducation-content-edit" class="zeile">
+    <div id="missing-month-warning">
+      Du hast versucht eine Station ohne Monatsangabe zu speichern. <br>
+      Für eine genaue Berechnung der Punkte im Lohnmodell werden genaue Monatsangaben benötigt. <br>
+      Bitte ergänze deine Angaben und speichere noch einmal. <br><br>
+      Wenn du trotzdem ohne Monatsangabe speichern möchtest, drücke <a href="#" class="text-primary" onclick={{action "submit" this.newActivity false false}}>hier</a>.
+    </div>
     <div class="row">
       <div class="col-sm-3">
         <div class="input-group centered-content-input">
@@ -13,8 +19,8 @@
         <Textarea @value={{this.newActivity.description}} class="input-xxlarge form-control" />
       </div>
       <div class="col-md-3 centered-content d-flex flex-column mt-4 px-5">
-        <button onclick={{action "submit" this.newActivity false}} role="button" id="submit-button" class="btn btn-primary m-2">Speichern</button>
-        <button onclick={{action "submit" this.newActivity true}} role="button" class="btn btn-info border m-2">Speichern & Neu</button>
+        <button onclick={{action "submit" this.newActivity false true}} role="button" id="submit-button" class="btn btn-primary m-2">Speichern</button>
+        <button onclick={{action "submit" this.newActivity true true}} role="button" class="btn btn-info border m-2">Speichern & Neu</button>
         <a href="#" onclick={{action "abortNew"}} role="button" id="submit-button" class="abort-edit-buttons text-center mx-4">Abbrechen</a>
       </div>
     </div>
