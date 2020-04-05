@@ -91,7 +91,7 @@ class Person < ApplicationRecord
     search_term = search_term.downcase
     res = in_attributes(search_term, attributes)
     res = in_associations(search_term) if res.nil?
-    res
+    res.nil? ? res : res.camelize(:lower)
   end
 
   private

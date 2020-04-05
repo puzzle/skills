@@ -31,9 +31,9 @@ person:
     role: Rolle
     title: Titel
     competences: Kompetenzen
-    competence_notes: Kompetenzen
+    competenceNotes: Kompetenzen
     educations: Ausbildungen
-    advanced_trainings: Weiterbildungen
+    advancedTrainings: Weiterbildungen
     activities: Stationen
     projects: Projekte
     personCompetences: Kompetenzen
