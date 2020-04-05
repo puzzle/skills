@@ -8,9 +8,17 @@
   <div id="cv-search-results" class="border border-info rounded-bottom">
     {{#if this.model}}
       {{#each this.model as |person|}}
-        <LinkTo @route="person" @model={{person.id}} class="cv-search-pills m-2">
-          {{person.name}}
-        </LinkTo>
+        <div>
+          <LinkTo @route="person" @model={{person.id}} class="cv-search-pills m-2">
+            {{person.name}}
+          </LinkTo>
+          <div class="cv-search-found-in">
+            gefunden in:
+              <LinkTo @route="person" @model={{person.id}} class="cv-search-found-in-link">
+                {{t (found-in person.foundIn) }}
+              </LinkTo>
+          </div>
+        </div>
       {{/each}}
     {{else}}
       <p class="m-2">Keine Resultate</p>
