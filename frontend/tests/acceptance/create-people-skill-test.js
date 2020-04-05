@@ -37,4 +37,29 @@ module("Acceptance | create people-skill", function(hooks) {
     let levels = page.peopleSkillsTable.levels.toArray().map(name => name.text);
     assert.ok(levels.includes("Trainee 1"));
   });
+
+  test("checks if the skill titles are listed alphabetically and case-insensitive", async function(assert) {
+    assert.expect(3);
+
+    // Go to the start page and select a user from the dropdown
+    await applicationPage.visitHome("/");
+    await selectChoose("#people-search", ".ember-power-select-option", 1);
+
+    // Visits person/:id/skills
+    await page.visit({ person_id: /\d+$/.exec(currentURL()) });
+
+    // Open the modal and subsequently open the skill dropdown
+    /* eslint "no-undef": "off" */
+    await page.newPeopleSkillModal.openModalButton();
+    await page.newPeopleSkillModal.openSkillTitleDropdown();
+
+    // Map all the available skills in the dropdown to an array
+    let titles = page.newPeopleSkillModal.skillTitleDropdownOptions
+      .toArray()
+      .map(title => title.text);
+
+    assert.equal(titles[0], "Bash");
+    assert.equal(titles[1], "c");
+    assert.equal(titles[2], "JUnit");
+  });
 });

@@ -34,9 +34,22 @@ export default Component.extend({
       skills = skills.filter(
         skill => !peopleSkillsIds.includes(skill.get("id"))
       );
-      return skills.sort((a, b) => (a.get("title") < b.get("title") ? -1 : 1));
+      return skills.sort((a, b) => this.orderByTitleCaseInsensitive(a, b));
     });
   }),
+
+  orderByTitleCaseInsensitive(firstSkill, secondSkill) {
+    let firstTitle =
+      firstSkill.get("title") == undefined
+        ? undefined
+        : firstSkill.get("title").toLowerCase();
+    let secondTitle =
+      secondSkill.get("title") == undefined
+        ? undefined
+        : secondSkill.get("title").toLowerCase();
+
+    return firstTitle < secondTitle ? -1 : 1;
+  },
 
   newSkillSelected: computed("newPeopleSkill.skill", function() {
     if (this.get("newPeopleSkill.skill.content") == null) return false;
