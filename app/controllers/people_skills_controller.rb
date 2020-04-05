@@ -9,7 +9,6 @@ class PeopleSkillsController < CrudController
 
   def index
     return export if format_csv?
-
     if params.keys.select { |k| %w[person_id skill_id].include?(k) }.length != 1
       return head 400
     end
@@ -28,7 +27,10 @@ class PeopleSkillsController < CrudController
     if params.key?(:person_id)
       people_skills.where(person_id: params[:person_id])
     elsif params.key?(:skill_id)
-      people_skills.where(skill_id: params[:skill_id])
+      people_skills = people_skills.where(skill_id: params[:skill_id])
+      if params.key?(:level)
+        people_skills.where("level >= ?", params[:level])
+      end
     end
   end
 
