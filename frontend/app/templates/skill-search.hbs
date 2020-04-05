@@ -1,7 +1,27 @@
 <div id="skill-search-header" class="header pt-3">
-  <PowerSelect @selected={{this.selectedSkill}} @options={{this.skills}} @onChange={{action "setSkill"}} @searchField="title" @triggerClass="w-75" as |skill|>
-    {{skill.title}}
-  </PowerSelect>
+  <div class="row">
+    <div class="col-6">
+      <PowerSelect @selected={{this.selectedSkill}} @options={{this.skills}} @onChange={{action "setSkill"}} @searchField="title" @triggerClass="w-75" as |skill|>
+        {{skill.title}}
+      </PowerSelect>
+    </div>
+
+    <div class="col">
+      <div class="col justify-content-center people-skill-level">
+        <p class="description skillset-level-title">{{this.levelName}}</p>
+        <UiSlider @defaultvalue="0" @value={{this.levelValue}} @ticks="1,2,3,4,5" @tooltip="hide" @min={{1}} @max={{5}} @immediateResponse={{true}} @action={{action "updateSelection"}} />
+      </div>
+    </div>
+    <div class="col pt-3">
+      <div >
+        <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "resetFilter"}} >
+          <i class="fa fa-redo"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
 
   <div class="card mt-4">
     <div class="card-header bg-info">

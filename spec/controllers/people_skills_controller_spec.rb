@@ -6,6 +6,8 @@ describe PeopleSkillsController do
 
     let(:bob) { people(:bob) }
     let(:rails) { skills(:rails) }
+    let(:4) { level(:4)}
+    let(:5) { levelValue(:5)}
 
     describe 'GET index' do
       it 'returns bobs people_skills' do
@@ -35,6 +37,16 @@ describe PeopleSkillsController do
         expect(skill_attrs['skill_id']).to eq (rails.id)
         json_object_includes_keys(skill_attrs, keys)
       end
+
+      it 'doesnt return bobs people_skills' do
+        keys = %w[person_id skill_id level interest certificate core_competence]
+        process :index, method: :get, params: { type: 'Skill', skill_id: rails.id -}
+        skills = json['data']
+        expect(skills.count).to eq(2)
+        skill_attrs = skills.first['attributes']
+        expect(skill_attrs.count).to eq (6)
+        expect(skill_attrs['skill_id']).to eq (rails.id)
+        json_object_includes_keys(skill_attrs, keys)
     end
   end
 end
