@@ -84,7 +84,11 @@ class Person < ApplicationRecord
   # Returns either the attribute which contains the search term or nil
   #
   # It is neccessary to preload the person and its associations
+  #
+  # Because pg_search is case insensitive, we must search our attributes case-insensitive as well.
+  # Therefore, the search_term gets downcased
   def found_in(search_term)
+    search_term = search_term.downcase
     res = in_attributes(search_term, attributes)
     res = in_associations(search_term) if res.nil?
     res
@@ -102,7 +106,6 @@ class Person < ApplicationRecord
     end
     nil
   end
-
 
   def association_symbols
     keys = []
@@ -131,7 +134,7 @@ class Person < ApplicationRecord
 
   def in_attributes(search_term, attrs)
     searchable_fields(attrs).each_pair do |key, value|
-      return key if value.include?(search_term)
+      return key if value.downcase.include?(search_term)
     end
     nil
   end
