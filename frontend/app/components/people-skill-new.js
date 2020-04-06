@@ -39,16 +39,16 @@ export default Component.extend({
   }),
 
   orderByTitleCaseInsensitive(firstSkill, secondSkill) {
-    let firstTitle =
-      firstSkill.get("title") == undefined
-        ? undefined
-        : firstSkill.get("title").toLowerCase();
-    let secondTitle =
-      secondSkill.get("title") == undefined
-        ? undefined
-        : secondSkill.get("title").toLowerCase();
+    let firstTitle = firstSkill.title && firstSkill.title.toLowerCase();
+    let secondTitle = secondSkill.title && secondSkill.title.toLowerCase();
 
-    return firstTitle < secondTitle ? -1 : 1;
+    if (firstTitle < secondTitle) {
+      return -1;
+    }
+    if (secondTitle > firstTitle) {
+      return 1;
+    }
+    return 0;
   },
 
   newSkillSelected: computed("newPeopleSkill.skill", function() {
