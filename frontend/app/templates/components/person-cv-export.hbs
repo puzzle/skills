@@ -10,10 +10,10 @@
       <div class="modal-body">
         <div class="container-fluid">
           <div class="row my-3">
-            <button type="button" onclick={{pipe (action "startExport" this.model.id)}} class="btn btn-primary btn-lg btn-block">Normales CV</button>
+            <button type="button" {{on "click" this.startExport}} class="btn btn-primary btn-lg btn-block">Normales CV</button>
           </div>
           <div class="row my-3">
-            <button type="button" onclick={{pipe (action "startAnonymizedExport" this.model.id)}} class="btn btn-primary btn-lg btn-block">Anonymisiertes CV</button>
+            <button type="button" {{on "click" this.startAnonymizedExport}} class="btn btn-primary btn-lg btn-block">Anonymisiertes CV</button>
           </div>
         </div>
       </div>

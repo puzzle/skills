@@ -1,26 +1,27 @@
-import Component from "@ember/component";
-import { inject } from "@ember/service";
+import Component from "@glimmer/component";
+import { action } from "@ember/object";
+import { inject as service } from "@ember/service";
 
-export default Component.extend({
-  download: inject(),
-  router: inject(),
+export default class PersonCvExport extends Component {
+  @service download;
+  @service router;
 
   init() {
-    this._super(...arguments);
-  },
-
-  actions: {
-    startExport(personId, e) {
-      e.preventDefault();
-      console.log(personId);
-      let url = `/api/people/` + personId + `.odt?anon=false`;
-      this.get("download").file(url);
-    },
-
-    startAnonymizedExport(personId, e) {
-      e.preventDefault();
-      let url = `/api/people/` + personId + `.odt?anon=true`;
-      this.get("download").file(url);
-    }
+    super.init(...arguments);
   }
-});
+
+  @action
+  startExport(e) {
+    e.preventDefault();
+
+    let url = `/api/people/` + this.args.person.id + ".odt?anon=false";
+    this.download.file(url);
+  }
+
+  @action
+  startAnonymizedExport(e) {
+    e.preventDefault();
+    let url = `/api/people/` + this.args.person.id + `.odt?anon=true`;
+    this.download.file(url);
+  }
+}
