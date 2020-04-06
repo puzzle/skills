@@ -11,8 +11,7 @@ export default DS.Model.extend({
     return false;
   },
 
-  missesMonth() {
-    if (!this.monthFrom || (!this.monthTo && this.yearTo)) return true;
-    return false;
+  missesMonths() {
+    return !this.monthFrom || (!this.monthTo && this.yearTo);
   }
 });

@@ -46,7 +46,7 @@ export default Component.extend(EKMixin, {
 
     submit(newActivity, initNew, monthNeeded, event) {
       event.preventDefault();
-      if (monthNeeded && newActivity.missesMonth()) {
+      if (monthNeeded && newActivity.missesMonths()) {
         this.showMissingMonthWarning();
         return;
       }

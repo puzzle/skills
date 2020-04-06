@@ -8,7 +8,7 @@ module("Integration | Component | activity-new", function(hooks) {
 
   test("it renders activity-new with no data submitted", async function(assert) {
     this.set("newActivity", {
-      missesMonth() {
+      missesMonths() {
         if (!this.monthFrom || (!this.monthTo && this.yearTo)) return true;
         return false;
       }
@@ -23,7 +23,7 @@ module("Integration | Component | activity-new", function(hooks) {
       yearFrom: 1999,
       monthTo: 5,
       yearTo: 2000,
-      missesMonth() {
+      missesMonths() {
         if (!this.monthFrom || (!this.monthTo && this.yearTo)) return true;
         return false;
       }
@@ -43,7 +43,7 @@ module("Integration | Component | activity-new", function(hooks) {
       yearFrom: 1999,
       monthTo: 5,
       yearTo: 2000,
-      missesMonth() {
+      missesMonths() {
         if (!this.monthFrom || (!this.monthTo && this.yearTo)) return true;
         return false;
       },
