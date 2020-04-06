@@ -7,7 +7,13 @@ module("Integration | Component | activity-new", function(hooks) {
   setupRenderingTest(hooks);
 
   test("it renders activity-new with no data submitted", async function(assert) {
-    await render(hbs`{{activity-new}}`);
+    this.set("newActivity", {
+      missesMonth() {
+        if (!this.monthFrom || (!this.monthTo && this.yearTo)) return true;
+        return false;
+      }
+    });
+    await render(hbs`{{activity-new newActivity=newActivity}}`);
     this.$("button")[0].click();
     assert.equal(this.$("#missing-month-warning").css("display"), "block");
   });
@@ -16,7 +22,11 @@ module("Integration | Component | activity-new", function(hooks) {
     this.set("newActivity", {
       yearFrom: 1999,
       monthTo: 5,
-      yearTo: 2000
+      yearTo: 2000,
+      missesMonth() {
+        if (!this.monthFrom || (!this.monthTo && this.yearTo)) return true;
+        return false;
+      }
     });
     await render(
       hbs`{{activity-new newActivity=newActivity personId=personId}}`
@@ -33,6 +43,10 @@ module("Integration | Component | activity-new", function(hooks) {
       yearFrom: 1999,
       monthTo: 5,
       yearTo: 2000,
+      missesMonth() {
+        if (!this.monthFrom || (!this.monthTo && this.yearTo)) return true;
+        return false;
+      },
       set(type, person) {},
       save() {
         return new Promise((resolve, reject) => {
