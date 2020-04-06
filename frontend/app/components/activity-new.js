@@ -34,14 +34,22 @@ export default Component.extend(EKMixin, {
     context.sendAction("done", true);
   },
 
+  showMissingMonthWarning() {
+    this.$("#missing-month-warning").css("display", "block");
+  },
+
   actions: {
     abortNew(event) {
       event.preventDefault();
       this.sendAction("done", false);
     },
 
-    submit(newActivity, initNew, event) {
+    submit(newActivity, initNew, monthNeeded, event) {
       event.preventDefault();
+      if (monthNeeded && newActivity.missesMonths()) {
+        this.showMissingMonthWarning();
+        return;
+      }
       let person = this.get("store").peekRecord("person", this.get("personId"));
       newActivity.set("person", person);
       return newActivity

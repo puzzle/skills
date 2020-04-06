@@ -9,5 +9,9 @@ export default DS.Model.extend({
   isYearValid(year) {
     if (year.length == 4 && year > 0) return true;
     return false;
+  },
+
+  missesMonths() {
+    return !this.monthFrom || (!this.monthTo && this.yearTo);
   }
 });
