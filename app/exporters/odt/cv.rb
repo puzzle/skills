@@ -4,15 +4,17 @@ require 'i18n_data'
 module Odt
   class Cv
 
-    def initialize(person)
+    def initialize(person, anon)
       @person = person
+      @anon = (anon != 'false')
     end
 
-    # rubocop:disable Metrics/LineLength
-    def export(anon = true)
-      ODFReport::Report.new(anon ? 'lib/templates/cv_template_anon.odt' : 'lib/templates/cv_template.odt') do |r|
-        insert_general_sections(r, anon)
-        insert_personalien(r, anon)
+    # rubocop:disable Metrics/MethodLength
+    def export
+      template_name = @anon ? 'cv_template_anon.odt' : 'cv_template.odt'
+      ODFReport::Report.new('lib/templates/' + template_name) do |r|
+        insert_general_sections(r)
+        insert_personalien(r)
         insert_competences(r)
         insert_advanced_trainings(r)
         insert_languages(r)
@@ -21,17 +23,17 @@ module Odt
         insert_projects(r)
       end
     end
-    # rubocop:enable Metrics/LineLength
+    # rubocop:enable Metrics/MethodLength
 
     private
 
     # rubocop:disable Metrics/AbcSize
     attr_accessor :person
-    def insert_general_sections(report, anon)
+    def insert_general_sections(report)
       report.add_field(:client, 'mg')
       report.add_field(:project, 'pcv')
       report.add_field(:section, 'dev1')
-      report.add_field(:name, person.name) unless anon
+      report.add_field(:name, person.name) unless @anon
       # For the moment we only take the first role, will change when there are many per person
       report.add_field(:title_function, person.roles[0].try(:name))
 
@@ -45,15 +47,15 @@ module Odt
     # rubocop:enable Metrics/AbcSize
     # rubocop:disable Metrics/AbcSize
     # rubocop:disable Metrics/LineLength
-    def insert_personalien(report, anon)
+    def insert_personalien(report)
       report.add_field(:title, person.title)
-      unless anon
+      unless @anon
         report.add_field(:birthdate, Date.parse(person.birthdate.to_s)
                                          .strftime('%d.%m.%Y'))
+        report.add_field(:nationalities, nationalities)
+        report.add_field(:email, person.email)
       end
-      report.add_field(:nationalities, nationalities) unless anon
-      report.add_field(:email, person.email) unless anon
-      report.add_image(:profile_picture, person.picture.path) unless anon || person.picture.file.blank?
+      report.add_image(:profile_picture, person.picture.path) unless @anon || person.picture.file.blank?
     end
     # rubocop:enable Metrics/LineLength
     # rubocop:enable Metrics/AbcSize

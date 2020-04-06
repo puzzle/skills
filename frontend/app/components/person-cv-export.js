@@ -12,20 +12,14 @@ export default Component.extend({
   actions: {
     startExport(personId, e) {
       e.preventDefault();
-
-      let url =
-        `/api/people/` +
-        this.get("router.currentURL").split("/")[2] +
-        `.odt?anon=false`; //TODO: This is ugly
+      console.log(personId);
+      let url = `/api/people/` + personId + `.odt?anon=false`;
       this.get("download").file(url);
     },
 
     startAnonymizedExport(personId, e) {
       e.preventDefault();
-      let url =
-        `/api/people/` +
-        this.get("router.currentURL").split("/")[2] +
-        `.odt?anon=true`; //TODO: This is ugly
+      let url = `/api/people/` + personId + `.odt?anon=true`;
       this.get("download").file(url);
     }
   }

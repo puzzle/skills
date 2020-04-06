@@ -40,13 +40,12 @@ class PeopleController < CrudController
     @person ||= Person.find(params[:person_id])
   end
 
-  # rubocop:disable Metrics/LineLength
-  def export(anon = params[:anon].presence || 'false')
-    odt_file = Odt::Cv.new(entry).export(anon != 'false')
+  def export
+    anon = params[:anon].presence || 'false'
+    odt_file = Odt::Cv.new(entry, anon).export
+    filename = anon != 'false' ? 'anonymized_cv.odt' : filename(entry.name, 'cv')
     send_data odt_file.generate,
               type: 'application/vnd.oasis.opendocument.text',
-              disposition: content_disposition('attachment',
-                                               anon != 'false' ? 'cv.odt' : filename(entry.name, 'cv'))
+              disposition: content_disposition('attachment', filename)
   end
-  # rubocop:enable Metrics/LineLength
 end

@@ -65,7 +65,7 @@ describe PeopleController do
       it 'checks anonymized filename' do
         process :show, method: :get, format: 'odt', params: { id: people(:bob).id, anon: 'true' }
         expect(@response['Content-Disposition']).to match(
-          /filename="cv.odt"/
+          /filename="anonymized_cv.odt"/
         )
       end
     end
