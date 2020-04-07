@@ -4,14 +4,18 @@ require 'i18n_data'
 module Odt
   class Cv
 
-    def initialize(person, anon)
+    def initialize(person, params)
       @person = person
-      @anon = (anon != 'false')
+      @params = params
+    end
+
+    def anon?
+      @params[:anon].present? && @params[:anon] == 'true'
     end
 
     # rubocop:disable Metrics/MethodLength
     def export
-      template_name = @anon ? 'cv_template_anon.odt' : 'cv_template.odt'
+      template_name = anon? ? 'cv_template_anon.odt' : 'cv_template.odt'
       ODFReport::Report.new('lib/templates/' + template_name) do |r|
         insert_general_sections(r)
         insert_personalien(r)
@@ -33,7 +37,7 @@ module Odt
       report.add_field(:client, 'mg')
       report.add_field(:project, 'pcv')
       report.add_field(:section, 'dev1')
-      report.add_field(:name, person.name) unless @anon
+      report.add_field(:name, person.name) unless anon?
       # For the moment we only take the first role, will change when there are many per person
       report.add_field(:title_function, person.roles[0].try(:name))
 
@@ -44,20 +48,17 @@ module Odt
       report.add_field(:comment, 'Aktuelle Ausgabe')
     end
 
-    # rubocop:enable Metrics/AbcSize
-    # rubocop:disable Metrics/AbcSize
-    # rubocop:disable Metrics/LineLength
     def insert_personalien(report)
       report.add_field(:title, person.title)
-      unless @anon
+      unless anon?
         report.add_field(:birthdate, Date.parse(person.birthdate.to_s)
                                          .strftime('%d.%m.%Y'))
         report.add_field(:nationalities, nationalities)
         report.add_field(:email, person.email)
+        report.add_image(:profile_picture, person.picture.path) if person.picture.file.present?
       end
-      report.add_image(:profile_picture, person.picture.path) unless @anon || person.picture.file.blank?
     end
-    # rubocop:enable Metrics/LineLength
+
     # rubocop:enable Metrics/AbcSize
 
     def insert_competences(report)
@@ -124,11 +125,7 @@ module Odt
         t.add_column(:education, :title)
       end
     end
-    # rubocop:enable Metrics/AbcSize
-    # rubocop:enable Metrics/MethodLength
 
-    # rubocop:disable Metrics/AbcSize
-    # rubocop:disable Metrics/MethodLength
     def insert_advanced_trainings(report)
       advanced_trainings_list = person.advanced_trainings.list.collect do |at|
         { year_from: formatted_year(at.year_from),
@@ -146,11 +143,7 @@ module Odt
         t.add_column(:advanced_training, :description)
       end
     end
-    # rubocop:enable Metrics/AbcSize
-    # rubocop:enable Metrics/MethodLength
 
-    # rubocop:disable Metrics/AbcSize
-    # rubocop:disable Metrics/MethodLength
     def insert_activities(report)
       activities_list = person.activities.list.collect do |a|
         { year_from: formatted_year(a.year_from),
@@ -168,11 +161,7 @@ module Odt
         t.add_column(:activity, :description)
       end
     end
-    # rubocop:enable Metrics/AbcSize
-    # rubocop:enable Metrics/MethodLength
 
-    # rubocop:disable Metrics/AbcSize
-    # rubocop:disable Metrics/MethodLength
     def insert_projects(report)
       projects_list = person.projects.list.collect do |p|
         { year_from: formatted_year(p.year_from),
