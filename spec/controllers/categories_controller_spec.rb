@@ -11,7 +11,7 @@ describe CategoriesController do
 
         categories = json['data']
 
-        expect(categories.count).to eq(5)
+        expect(categories.count).to eq(6)
         java_attrs = categories.third['attributes']
         expect(java_attrs.count).to eq (3)
         expect(java_attrs['title']).to eq ('Java')

@@ -17,7 +17,7 @@ describe SkillsController do
 
         skills = json['data']
 
-        expect(skills.count).to eq(3)
+        expect(skills.count).to eq(4)
         bash_attrs = skills.first['attributes']
         expect(bash_attrs.count).to eq (5)
         expect(bash_attrs['title']).to eq ('Bash')
@@ -58,9 +58,13 @@ describe SkillsController do
         get :index, params: { category: parent_category.id }
 
         skills = json['data']
-        expect(skills.count).to eq(2)
-        junit_attrs = skills.first['attributes']
+        expect(skills.count).to eq(3)
+        cunit_attrs = skills.first['attributes']
+        junit_attrs = skills.second['attributes']
+        rails_attrs = skills.third['attributes']
+        expect(cunit_attrs['title']).to eq ('cunit')
         expect(junit_attrs['title']).to eq ('JUnit')
+        expect(rails_attrs['title']).to eq ('Rails')
       end
 
       it 'returns skills with parent category software-engineering and defaultSet true' do
@@ -97,7 +101,7 @@ describe SkillsController do
 
         skills = json['data']
 
-        expect(skills.count).to eq(3)
+        expect(skills.count).to eq(4)
       end
     end
   end

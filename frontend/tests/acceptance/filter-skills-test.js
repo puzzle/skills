@@ -8,7 +8,7 @@ module("Acceptance | filter skills", function(hooks) {
   setupApplicationTest(hooks);
 
   test("filters nothing and shows every skill", async function(assert) {
-    assert.expect(4);
+    assert.expect(5);
 
     await page.indexPage.visit();
 
@@ -20,10 +20,11 @@ module("Acceptance | filter skills", function(hooks) {
     assert.ok(names.includes("JUnit"));
     assert.ok(names.includes("• Bash"));
     assert.ok(names.includes("Rails") || names.includes("Travis CI"));
+    assert.ok(names.includes("cunit"));
   });
 
   test("filters only defaultSet by default", async function(assert) {
-    assert.expect(5);
+    assert.expect(6);
 
     await page.indexPage.visit();
 
@@ -37,6 +38,7 @@ module("Acceptance | filter skills", function(hooks) {
       .map(name => name.text);
     assert.notOk(names.includes("JUnit"));
     assert.notOk(names.includes("Bash"));
+    assert.notOk(names.includes("cunit"));
     assert.ok(names.includes("Rails"));
   });
 

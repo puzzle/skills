@@ -31,3 +31,10 @@ bash:
   radar: 1
   portfolio: 2
   category: linux-engineering
+
+cunit:
+  title: cunit
+  radar: 1
+  portfolio: 2
+  default_set: false
+  category: c

@@ -21,3 +21,8 @@ java:
   position: 102
   title: Java
   parent: software-engineering
+
+c:
+  position: 103
+  title: c
+  parent: software-engineering

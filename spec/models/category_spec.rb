@@ -51,12 +51,13 @@ describe Category do
       categories = Category.all_children
       expect(categories.first).to eq(categories(:ruby))
       expect(categories.second).to eq(categories(:java))
-      expect(categories.third).to eq(categories(:'linux-engineering'))
+      expect(categories.third).to eq(categories(:'c'))
+      expect(categories.fourth).to eq(categories(:'linux-engineering'))
     end
 
     it 'orders all skills correctly' do
       categories = Category.list.pluck(:title)
-      expect(categories).to eq(['Software-Engineering', 'Ruby', 'Java', 'System-Engineering', 'Linux-Engineering'])
+      expect(categories).to eq(["Software-Engineering", "Ruby", "Java", "c", "System-Engineering", "Linux-Engineering"])
     end
   end
 end

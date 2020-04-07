@@ -23,6 +23,8 @@ export default create({
     openModalButton: clickable(
       'a.edit-buttons[data-target="#people-skill-new-modal"]'
     ),
+    openSkillTitleDropdown: clickable("#people-skill-new-skill"),
+    skillTitleDropdownOptions: collection(".ember-power-select-option"),
     levelButtons: collection(".people-skill-new-dropdowns .slider-tick"),
     interestButtons: collection(
       ".people-skill-new-dropdowns .icon-rating-icon"
