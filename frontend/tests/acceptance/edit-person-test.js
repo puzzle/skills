@@ -75,7 +75,7 @@ module("Acceptance | edit person", function(hooks) {
     await page.editForm.submit();
 
     // Assert that it is there
-    assert.equal(page.profileData.nationalities, "Samoa , Schweiz");
+    assert.equal(page.profileData.nationalities, "Samoa, Schweiz");
 
     // go into edit again
     await page.toggleEditForm();
