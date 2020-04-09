@@ -9,10 +9,6 @@ module Odt
       @params = params
     end
 
-    def anon?
-      @params[:anon].present? && @params[:anon] == 'true'
-    end
-
     # rubocop:disable Metrics/MethodLength
     def export
       template_name = anon? ? 'cv_template_anon.odt' : 'cv_template.odt'
@@ -30,6 +26,10 @@ module Odt
     # rubocop:enable Metrics/MethodLength
 
     private
+
+    def anon?
+      @params[:anon].presence == 'true'
+    end
 
     # rubocop:disable Metrics/AbcSize
     attr_accessor :person
