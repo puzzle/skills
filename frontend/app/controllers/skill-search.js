@@ -15,6 +15,7 @@ export default class SkillSearchController extends Controller {
 
   init() {
     super.init(...arguments);
+    this.set("levelValue", 1);
   }
 
   @computed
@@ -60,7 +61,7 @@ export default class SkillSearchController extends Controller {
 
   @action
   resetFilter() {
-    this.levelValue = 1;
+    this.set("levelValue", 1);
     this.updateSelection();
   }
 }
