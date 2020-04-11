@@ -22,7 +22,10 @@ module("Acceptance | skill search", function(hooks) {
     await rails;
     /* eslint "no-undef": "off" */
     await selectChoose(".ember-power-select-trigger", rails.get("title"));
-    assert.equal(currentURL(), "/skill_search?skill_id=" + rails.get("id"));
+    assert.equal(
+      currentURL(),
+      "/skill_search?level=5&skill_id=" + rails.get("id")
+    );
     const names = page.indexPage.peopleSkills.peopleNames
       .toArray()
       .map(name => name.text);
@@ -46,7 +49,10 @@ module("Acceptance | skill search", function(hooks) {
     await junit;
     /* eslint "no-undef": "off" */
     await selectChoose(".ember-power-select-trigger", junit.get("title"));
-    assert.equal(currentURL(), "/skill_search?skill_id=" + junit.get("id"));
+    assert.equal(
+      currentURL(),
+      "/skill_search?level=5&skill_id=" + junit.get("id")
+    );
     const names = page.indexPage.peopleSkills.peopleNames
       .toArray()
       .map(name => name.text);
