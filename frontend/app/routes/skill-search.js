@@ -7,14 +7,19 @@ export default class SkillSearchRoute extends Route {
     skill_id: {
       refreshModel: true,
       replace: true
+    },
+    level: {
+      refreshModel: true,
+      replace: true
     }
   };
 
-  model({ skill_id }) {
+  model({ skill_id, level }) {
     if (skill_id) {
       return this.store.query("peopleSkill", {
         skill_id,
-        rated: "true"
+        rated: "true",
+        level
       });
     }
   }
