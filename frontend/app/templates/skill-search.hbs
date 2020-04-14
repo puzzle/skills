@@ -1,15 +1,15 @@
 <div id="skill-search-header" class="header pt-3">
   <div class="row">
     <div class="col-6">
-      <PowerSelect @selected={{this.selectedSkill}} @options={{this.skills}} @onChange={{action "setSkill"}} @searchField="title" @triggerClass="w-75" as |skill|>
+      <PowerSelect @selected={{selectedSkill this.currentSkillId.[0]}} @options={{this.skills}} @onChange={{action "setSkill" 1}} @searchField="title" @triggerClass="w-75" as |skill|>
         {{skill.title}}
       </PowerSelect>
     </div>
-
+    {{currentSkillId}}
     <div class="col">
       <div class="col justify-content-center people-skill-level">
-        <p class="description skillset-level-title">{{this.levelName}}</p>
-        <UiSlider @value={{this.levelValue}} @ticks="1,2,3,4,5" @tooltip="hide" @min={{1}} @max={{5}} @immediateResponse={{true}} @action={{action "updateSelection"}} />
+        <p class="description skillset-level-title">{{levelName this.levelValue1}}</p>
+        <UiSlider @value={{this.levelValue1}} @ticks="1,2,3,4,5" @tooltip="hide" @min={{1}} @max={{5}} @immediateResponse={{true}} @action={{action "updateSelection"}} />
       </div>
     </div>
     <div class="col pt-3">
@@ -21,15 +21,101 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-6">
+      <PowerSelect @selected={{selectedSkill this.currentSkillId.[1]}} @options={{this.skills}} @onChange={{action "setSkill" 2}} @searchField="title" @triggerClass="w-75" as |skill|>
+        {{skill.title}}
+      </PowerSelect>
+    </div>
 
-
-  <div class="card mt-4">
-    <div class="card-header bg-info">
-      <p class="text-dark header-text mb-0">Suchresultate</p>
+    <div class="col">
+      <div class="col justify-content-center people-skill-level">
+        <p class="description skillset-level-title">{{levelName this.levelValue2}}</p>
+        <UiSlider @value={{this.levelValue2}} @ticks="1,2,3,4,5" @tooltip="hide" @min={{1}} @max={{5}} @immediateResponse={{true}} @action={{action "updateSelection"}} />
+      </div>
+    </div>
+    <div class="col pt-3">
+      <div >
+        <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "resetFilter"}} >
+          <i class="fa fa-redo"></i>
+        </a>
+      </div>
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-6">
+      <PowerSelect @selected={{selectedSkill this.currentSkillId.[2]}} @options={{this.skills}} @onChange={{action "setSkill" 3}} @searchField="title" @triggerClass="w-75" as |skill|>
+        {{skill.title}}
+      </PowerSelect>
+    </div>
+
+    <div class="col">
+      <div class="col justify-content-center people-skill-level">
+        <p class="description skillset-level-title">{{levelName this.levelValue3}}</p>
+        <UiSlider @value={{this.levelValue3}} @ticks="1,2,3,4,5" @tooltip="hide" @min={{1}} @max={{5}} @immediateResponse={{true}} @action={{action "updateSelection"}} />
+      </div>
+    </div>
+    <div class="col pt-3">
+      <div >
+        <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "resetFilter"}} >
+          <i class="fa fa-redo"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <PowerSelect @selected={{selectedSkill this.currentSkillId.[3]}} @options={{this.skills}} @onChange={{action "setSkill" 4}} @searchField="title" @triggerClass="w-75" as |skill|>
+        {{skill.title}}
+      </PowerSelect>
+    </div>
+
+    <div class="col">
+      <div class="col justify-content-center people-skill-level">
+        <p class="description skillset-level-title">{{levelName this.levelValue4}}</p>
+        <UiSlider @value={{this.levelValue4}} @ticks="1,2,3,4,5" @tooltip="hide" @min={{1}} @max={{5}} @immediateResponse={{true}} @action={{action "updateSelection"}} />
+      </div>
+    </div>
+    <div class="col pt-3">
+      <div >
+        <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "resetFilter"}} >
+          <i class="fa fa-redo"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <PowerSelect @selected={{selectedSkill this.currentSkillId.[4]}} @options={{this.skills}} @onChange={{action "setSkill" 5}} @searchField="title" @triggerClass="w-75" as |skill|>
+        {{skill.title}}
+      </PowerSelect>
+    </div>
+
+    <div class="col">
+      <div class="col justify-content-center people-skill-level">
+        <p class="description skillset-level-title">{{levelName this.levelValue5}}</p>
+        <UiSlider @value={{this.levelValue5}} @ticks="1,2,3,4,5" @tooltip="hide" @min={{1}} @max={{5}} @immediateResponse={{true}} @action={{action "updateSelection"}} />
+      </div>
+    </div>
+    <div class="col pt-3">
+      <div >
+        <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "resetFilter"}} >
+          <i class="fa fa-redo"></i>
+        </a>
+      </div>
+    </div>
+  </div>
 </div>
+
+<div class="card mt-4">
+    <div class="card-header bg-info">
+      <p class="text-dark header-text mb-0">Suchresultate</p>
+    </div>
+</div>
+
 <div class="card mt-13 mb-5">
   <div id="skill-search-results" class="px-2 border border-info rounded-bottom">
     {{#if this.model}}
