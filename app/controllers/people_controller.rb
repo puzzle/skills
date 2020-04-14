@@ -41,9 +41,11 @@ class PeopleController < CrudController
   end
 
   def export
-    odt_file = Odt::Cv.new(entry).export
+    anon = params[:anon].presence || 'false'
+    odt_file = Odt::Cv.new(entry, params).export
+    filename = anon == 'true' ? 'anonymized_cv.odt' : filename(entry.name, 'cv')
     send_data odt_file.generate,
               type: 'application/vnd.oasis.opendocument.text',
-              disposition: content_disposition('attachment', filename(entry.name, 'cv'))
+              disposition: content_disposition('attachment', filename)
   end
 end

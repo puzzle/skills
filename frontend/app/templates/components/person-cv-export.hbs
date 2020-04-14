@@ -1,0 +1,25 @@
+<div class="modal fade" id="person-cv-export" tabindex="-1" role="dialog" aria-labelledby="person-cv-export-label" aria-hidden="true" data-backdrop="false">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="person-cv-export-label">CV-Export</h5>
+        <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row my-3">
+            <button type="button" {{on "click" this.startExport}} class="btn btn-primary btn-lg btn-block">Normales CV</button>
+          </div>
+          <div class="row my-3">
+            <button type="button" {{on "click" this.startAnonymizedExport}} class="btn btn-primary btn-lg btn-block">Anonymisiertes CV</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
+      </div>
+    </div>
+  </div>
+</div>

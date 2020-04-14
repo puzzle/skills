@@ -16,30 +16,28 @@ ActiveRecord::Schema.define(version: 2020_03_01_142938) do
   enable_extension "plpgsql"
 
   create_table "activities", id: :serial, force: :cascade do |t|
-    t.text "description"
-    t.string "updated_by"
-    t.text "role"
-    t.datetime "created_at", null: false
+    t.string "description", limit: 5000
     t.datetime "updated_at", null: false
-    t.integer "person_id"
+    t.string "updated_by", limit: 255
+    t.string "role", limit: 500
+    t.integer "person_id", null: false
+    t.datetime "created_at"
     t.integer "year_from", null: false
     t.integer "year_to"
     t.integer "month_from"
     t.integer "month_to"
-    t.index ["person_id"], name: "index_activities_on_person_id"
   end
 
   create_table "advanced_trainings", id: :serial, force: :cascade do |t|
-    t.text "description"
-    t.string "updated_by"
-    t.integer "person_id"
-    t.datetime "created_at", null: false
+    t.string "description", limit: 5000
     t.datetime "updated_at", null: false
+    t.string "updated_by", limit: 255
+    t.integer "person_id", null: false
+    t.datetime "created_at"
     t.integer "year_from", null: false
     t.integer "year_to"
     t.integer "month_from"
     t.integer "month_to"
-    t.index ["person_id"], name: "index_advanced_trainings_on_person_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -58,16 +56,16 @@ ActiveRecord::Schema.define(version: 2020_03_01_142938) do
   end
 
   create_table "educations", id: :serial, force: :cascade do |t|
-    t.text "location"
-    t.text "title"
-    t.datetime "updated_at"
-    t.string "updated_by"
-    t.integer "person_id"
+    t.string "location", limit: 500
+    t.string "title", limit: 500
+    t.datetime "updated_at", null: false
+    t.string "updated_by", limit: 255
+    t.integer "person_id", null: false
+    t.datetime "created_at"
     t.integer "year_from", null: false
     t.integer "year_to"
     t.integer "month_from"
     t.integer "month_to"
-    t.index ["person_id"], name: "index_educations_on_person_id"
   end
 
   create_table "expertise_categories", force: :cascade do |t|
@@ -106,14 +104,15 @@ ActiveRecord::Schema.define(version: 2020_03_01_142938) do
 
   create_table "people", id: :serial, force: :cascade do |t|
     t.datetime "birthdate"
-    t.string "location"
-    t.string "updated_by"
-    t.string "name"
-    t.string "title"
-    t.datetime "created_at", null: false
+    t.string "location", limit: 100
     t.datetime "updated_at", null: false
+    t.string "updated_by", limit: 255
+    t.string "name", limit: 100
+    t.string "title", limit: 100
+    t.datetime "created_at"
     t.string "picture"
     t.string "competence_notes"
+    t.string "company"
     t.datetime "associations_updatet_at"
     t.string "nationality"
     t.string "nationality2"
@@ -157,19 +156,18 @@ ActiveRecord::Schema.define(version: 2020_03_01_142938) do
   end
 
   create_table "projects", id: :serial, force: :cascade do |t|
-    t.string "updated_by"
-    t.text "description"
-    t.text "title"
-    t.text "role"
-    t.text "technology"
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "person_id"
+    t.string "updated_by", limit: 255
+    t.string "description", limit: 5000
+    t.string "title", limit: 500
+    t.string "role", limit: 5000
+    t.string "technology", limit: 5000
+    t.integer "person_id", default: 1, null: false
+    t.datetime "created_at"
     t.integer "year_from", null: false
     t.integer "year_to"
     t.integer "month_from"
     t.integer "month_to"
-    t.index ["person_id"], name: "index_projects_on_person_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -189,7 +187,11 @@ ActiveRecord::Schema.define(version: 2020_03_01_142938) do
     t.index ["category_id"], name: "index_skills_on_category_id"
   end
 
+  add_foreign_key "activities", "people", name: "fk_h60x6cdgg0viu1yqxmksjqhrd"
+  add_foreign_key "advanced_trainings", "people", name: "fk_9d1no9ju30dtstakwm89jwtev"
   add_foreign_key "categories", "categories", column: "parent_id"
+  add_foreign_key "educations", "people", name: "fk_qr8q3lcwnth3jlf68cr8unohs"
   add_foreign_key "language_skills", "people"
   add_foreign_key "project_technologies", "projects"
+  add_foreign_key "projects", "people", name: "fk_person_project"
 end

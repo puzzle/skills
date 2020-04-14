@@ -28,13 +28,44 @@ describe PeopleController do
           .exactly(6).times
           .and_call_original
 
-        process :show, method: :get, format: 'odt', params: { id: bob.id }
+        process :show, method: :get, format: 'odt', params: { id: bob.id, anon: 'false' }
       end
 
-      it 'check filename' do
-        process :show, method: :get, format: 'odt', params: { id: people(:bob).id }
+      it 'returns anonymized' do
+        bob = people(:bob)
+
+        expect_any_instance_of(Odt::Cv)
+          .to receive(:export)
+          .exactly(1).times
+          .and_call_original
+
+        expect_any_instance_of(ODFReport::Report)
+          .to receive(:add_field)
+          .exactly(9).times
+          .and_call_original
+
+        expect_any_instance_of(ODFReport::Report)
+          .not_to receive(:add_image)
+
+        expect_any_instance_of(ODFReport::Report)
+          .to receive(:add_table)
+          .exactly(6).times
+          .and_call_original
+
+        process :show, method: :get, format: 'odt', params: { id: bob.id, anon: 'true' }
+      end
+
+      it 'checks filename' do
+        process :show, method: :get, format: 'odt', params: { id: people(:bob).id, anon: 'false' }
         expect(@response['Content-Disposition']).to match(
           /filename="bob_anderson_cv.odt"/
+        )
+      end
+
+      it 'checks anonymized filename' do
+        process :show, method: :get, format: 'odt', params: { id: people(:bob).id, anon: 'true' }
+        expect(@response['Content-Disposition']).to match(
+          /filename="anonymized_cv.odt"/
         )
       end
     end

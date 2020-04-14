@@ -50,12 +50,15 @@ export default class PersonActions extends Component {
   startExport(personId, e) {
     e.preventDefault();
     const currentURL = this.get("router.currentURL");
-    url = currentURL.includes("skills")
-      ? "people_skills.csv?person_id=" + this.get("person.id")
-      : "people/" + this.get("person.id") + ".odt";
 
-    let url = `/api/${url}`;
-    this.get("download").file(url);
+    if (currentURL.includes("skills")) {
+      let url = "/api/people_skills.csv?person_id=" + this.get("person.id");
+      this.get("download").file(url);
+    } else {
+      /* eslint-disable no-undef  */
+      $("#person-cv-export").modal();
+      /* eslint-enable no-undef  */
+    }
   }
 
   @action
