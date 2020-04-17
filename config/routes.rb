@@ -12,6 +12,10 @@ Rails.application.routes.draw do
 
 
     resources :people do
+      collection do
+        get 'search', to: 'people/search#index'
+      end
+
       member do
         put 'picture', to: 'people/picture#update'
         get 'picture', to: 'people/picture#show'

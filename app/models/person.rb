@@ -78,73 +78,7 @@ class Person < ApplicationRecord
                     }
                   }
 
-  SEARCHABLE_FIELDS = %w{name title competence_notes description
-                         role technology location}.freeze
-
-  # Returns either the attribute which contains the search term or nil
-  #
-  # It is neccessary to preload the person and its associations
-  #
-  # Because pg_search is case insensitive, we must search our attributes case-insensitive as well.
-  # Therefore, the search_term gets downcased
-  def found_in(search_term)
-    search_term = search_term.downcase
-    res = in_attributes(search_term, attributes)
-    res = in_associations(search_term) if res.nil?
-    res.nil? ? res : res.camelize(:lower)
-  end
-
   private
-
-  def in_associations(search_term)
-    association_symbols.each do |sym|
-      a = in_association(search_term, sym)
-      if a
-        return format('%<association>s#%<attribute_name>s',
-                      association: sym.to_s, attribute_name: a)
-      end
-    end
-    nil
-  end
-
-  def association_symbols
-    keys = []
-    Person.reflections.keys.each do |key|
-      keys.push key.to_sym
-    end
-    keys
-  end
-
-  def in_association(search_term, sym)
-    target = association(sym).target
-    if target.is_a?(Array)
-      return attribute_in_array(search_term, target)
-    else
-      return in_attributes(search_term, target.attributes)
-    end
-  end
-
-  def attribute_in_array(search_term, array)
-    array.each do |t|
-      attribute = in_attributes(search_term, t.attributes)
-      return attribute unless attribute.nil?
-    end
-    nil
-  end
-
-  def in_attributes(search_term, attrs)
-    searchable_fields(attrs).each_pair do |key, value|
-      return key if value.downcase.include?(search_term)
-    end
-    nil
-  end
-
-  def searchable_fields(fields)
-    fields.keys.each do |key|
-      fields.delete(key) unless SEARCHABLE_FIELDS.include?(key)
-    end
-    fields
-  end
 
   def picture_size
     return if picture.nil? || picture.size < 10.megabytes
