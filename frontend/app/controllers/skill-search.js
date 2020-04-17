@@ -1,5 +1,6 @@
 import classic from "ember-classic-decorator";
 import { action, computed } from "@ember/object";
+import { observes } from "@ember-decorators/object";
 import { inject as service } from "@ember/service";
 import Controller from "@ember/controller";
 
@@ -25,19 +26,27 @@ export default class SkillSearchController extends Controller {
 
   @computed("model")
   get selectedSkill() {
-    const skillId = this.router.currentRoute.queryParams.skill_id;
-    this.currentSkillId = skillId;
+    const skillId = this.get("currentSkillId");
     return skillId ? this.get("store").peekRecord("skill", skillId) : null;
   }
 
-  @action
   updateSelection() {
     this.get("router").transitionTo({
       queryParams: {
-        skill_id: this.currentSkillId,
+        skill_id: this.get("currentSkillId"),
         level: this.get("levelValue")
       }
     });
+  }
+
+  @observes("levelValue")
+  levelValueChanged() {
+    this.updateSelection();
+  }
+
+  @observes("currentSkillId")
+  skillValueChanged() {
+    this.updateSelection();
   }
 
   get levelName() {
@@ -54,9 +63,7 @@ export default class SkillSearchController extends Controller {
 
   @action
   setSkill(skill) {
-    this.get("router").transitionTo({
-      queryParams: { skill_id: skill.get("id"), level: this.get("levelValue") }
-    });
+    this.set("currentSkillId", skill.get("id"));
   }
 
   @action

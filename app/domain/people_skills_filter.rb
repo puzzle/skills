@@ -3,13 +3,18 @@
 class PeopleSkillsFilter
   attr_reader :entries, :rated
 
-  def initialize(entries, rated)
+  def initialize(entries, rated, level = 0)
     @entries = entries
     @rated = rated
+    @level = level
   end
 
   def scope
     filter_by_rated
+  end
+
+  def scopelevel
+    filter_by_level
   end
 
   private
@@ -22,5 +27,9 @@ class PeopleSkillsFilter
       return entries.where(interest: 0, level: 0)
     end
     entries
+  end
+
+  def filter_by_level
+    entries.where('level >= ?', @level)
   end
 end

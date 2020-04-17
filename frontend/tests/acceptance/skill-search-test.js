@@ -59,5 +59,15 @@ module("Acceptance | skill search", function(hooks) {
     assert.notOk(names.includes("ken"));
     assert.ok(names.includes("Alice Mante"));
     assert.notOk(names.includes("Bob Anderson"));
+    $(".people-skill-level .slider-tick:eq(5)").mousedown();
+    await page.skillSearchLevelSlider.levelButtons.objectAt(5).clickOn();
+    assert.equal(
+      currentURL(),
+      "/skill_search?level=5&skill_id=" + junit.get("id")
+    );
+    const newnames = page.indexPage.peopleSkills.peopleNames
+      .toArray()
+      .map(newnames => newnames.text);
+    assert.notOk(newnames.includes("Alice Mante"));
   });
 });

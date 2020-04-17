@@ -42,6 +42,9 @@ describe PeopleSkillsController do
 
         skills = json['data']
         expect(skills.count).to eq(1)
+        skill_attrs = skills.first['attributes']
+        expect(skill_attrs['skill_id']).to eq (rails.id)
+        expect(skill_attrs['level']).to eq (3)
       end
 
       it 'returns level itself' do
@@ -51,6 +54,9 @@ describe PeopleSkillsController do
 
         skills = json['data']
         expect(skills.count).to eq(1)
+        skill_attrs = skills.first['attributes']
+        expect(skill_attrs['skill_id']).to eq (rails.id)
+        expect(skill_attrs['level']).to eq (3)
       end
     end
   end
