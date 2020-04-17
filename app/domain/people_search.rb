@@ -6,7 +6,7 @@ class PeopleSearch
   attr_reader :search_term, :entries
 
   def initialize(search_term)
-    @search_term = search_term.downcase # PG Search is not case sensitive
+    @search_term = search_term
     @entries = search_result
   end
 
@@ -18,7 +18,10 @@ class PeopleSearch
     result = []
 
     people.each do |p|
-      result.push(person: { name: p.name }, found_in: found_in(p))
+      result.push(
+        person: { id: p.id, name: p.name },
+        found_in: found_in(p)
+      )
     end
     result
   end
@@ -81,7 +84,7 @@ class PeopleSearch
 
   def in_attributes(attrs)
     searchable_fields(attrs).each_pair do |key, value|
-      return key if value.downcase.include?(search_term)
+      return key if value.downcase.include?(search_term.downcase) # PG Search is not case sensitive
     end
     nil
   end
