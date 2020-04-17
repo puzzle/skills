@@ -5,7 +5,6 @@
         {{skill.title}}
       </PowerSelect>
     </div>
-    {{currentSkillId}}
     <div class="col">
       <div class="col justify-content-center people-skill-level">
         <p class="description skillset-level-title">{{levelName this.levelValue1}}</p>
@@ -14,13 +13,14 @@
     </div>
     <div class="col pt-3">
       <div >
-        <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "resetFilter"}} >
+        <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "resetFilter" 1}} >
           <i class="fa fa-redo"></i>
         </a>
       </div>
     </div>
   </div>
 
+  {{#if (gt this.count 1)}}
   <div class="row">
     <div class="col-6">
       <PowerSelect @selected={{selectedSkill this.currentSkillId.[1]}} @options={{this.skills}} @onChange={{action "setSkill" 2}} @searchField="title" @triggerClass="w-75" as |skill|>
@@ -36,13 +36,15 @@
     </div>
     <div class="col pt-3">
       <div >
-        <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "resetFilter"}} >
+        <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "resetFilter" 2}} >
           <i class="fa fa-redo"></i>
         </a>
       </div>
     </div>
   </div>
+  {{/if}}
 
+  {{#if (gt this.count 2)}}
   <div class="row">
     <div class="col-6">
       <PowerSelect @selected={{selectedSkill this.currentSkillId.[2]}} @options={{this.skills}} @onChange={{action "setSkill" 3}} @searchField="title" @triggerClass="w-75" as |skill|>
@@ -58,13 +60,15 @@
     </div>
     <div class="col pt-3">
       <div >
-        <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "resetFilter"}} >
+        <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "resetFilter" 3}} >
           <i class="fa fa-redo"></i>
         </a>
       </div>
     </div>
   </div>
+  {{/if}}
 
+  {{#if (gt this.count 3)}}
   <div class="row">
     <div class="col-6">
       <PowerSelect @selected={{selectedSkill this.currentSkillId.[3]}} @options={{this.skills}} @onChange={{action "setSkill" 4}} @searchField="title" @triggerClass="w-75" as |skill|>
@@ -80,13 +84,15 @@
     </div>
     <div class="col pt-3">
       <div >
-        <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "resetFilter"}} >
+        <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "resetFilter" 4}} >
           <i class="fa fa-redo"></i>
         </a>
       </div>
     </div>
   </div>
+  {{/if}}
 
+  {{#if (gt this.count 4)}}
   <div class="row">
     <div class="col-6">
       <PowerSelect @selected={{selectedSkill this.currentSkillId.[4]}} @options={{this.skills}} @onChange={{action "setSkill" 5}} @searchField="title" @triggerClass="w-75" as |skill|>
@@ -102,13 +108,20 @@
     </div>
     <div class="col pt-3">
       <div >
-        <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "resetFilter"}} >
+        <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "resetFilter" 5}} >
           <i class="fa fa-redo"></i>
         </a>
       </div>
     </div>
   </div>
+  {{/if}}
+  {{#if (lt this.count 5)}}
+  <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "addFilter"}} >
+    Weiterer Filter
+  </a>
+  {{/if}}
 </div>
+
 
 <div class="card mt-4">
     <div class="card-header bg-info">

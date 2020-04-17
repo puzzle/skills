@@ -12,6 +12,7 @@ export default class SkillSearchController extends Controller {
   router;
 
   currentSkillId = [0, 0, 0, 0, 0];
+  count = 1;
 
   init() {
     super.init(...arguments);
@@ -20,6 +21,7 @@ export default class SkillSearchController extends Controller {
     this.set("levelValue3", 1);
     this.set("levelValue4", 1);
     this.set("levelValue5", 1);
+    this.set("count", 1);
   }
 
   @computed
@@ -48,8 +50,21 @@ export default class SkillSearchController extends Controller {
   }
 
   @action
-  resetFilter() {
-    this.set("levelValue1", 1);
+  resetFilter(num) {
+    for (let i = this.count; i > num; i--) {
+      //this.currentSkillId[i-1] = this.currentSkillId[i];
+      this.set("levelValue" + (i - 1), this.get("levelValue" + i));
+    }
+    if (this.count > 1) {
+      this.set("count", this.count - 1);
+    }
+    this.set("levelValue" + (this.count + 1), 1);
+    //this.currentSkillId[this.count + 1] = 0;
     this.updateSelection();
+  }
+
+  @action
+  addFilter() {
+    this.set("count", this.count + 1);
   }
 }
