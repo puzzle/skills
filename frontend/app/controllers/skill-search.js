@@ -32,10 +32,22 @@ export default class SkillSearchController extends Controller {
 
   @action
   updateSelection() {
+    let skill_ids = "",
+      levels = "";
+    for (let i = 0; i < this.count; i++) {
+      if (this.currentSkillId[i] != 0) {
+        skill_ids = skill_ids + "," + this.currentSkillId[i];
+        levels = levels + "," + this.get("levelValue" + (i + 1));
+      }
+    }
+    if (skill_ids.length > 0) {
+      skill_ids = skill_ids.substring(1);
+      levels = levels.substring(1);
+    }
     this.get("router").transitionTo({
       queryParams: {
-        skill_id: this.currentSkillId[0],
-        level: this.get("levelValue1")
+        skill_id: skill_ids,
+        level: levels
       }
     });
   }
@@ -46,9 +58,7 @@ export default class SkillSearchController extends Controller {
     this.duplicate[num - 1] = parseInt(skill.get("id"));
     this.set("currentSkillId", this.duplicate);
     console.log(this.currentSkillId);
-    this.get("router").transitionTo({
-      queryParams: { skill_id: skill.get("id"), level: this.get("levelValue1") }
-    });
+    this.updateSelection();
   }
 
   @action
@@ -73,7 +83,7 @@ export default class SkillSearchController extends Controller {
 
   @action
   resetFilter(num) {
-    this.set("levelValue" + num, 0);
+    this.set("levelValue" + num, 1);
     this.resetDuplicate();
     this.duplicate[num - 1] = 0;
     this.set("currentSkillId", this.duplicate);
