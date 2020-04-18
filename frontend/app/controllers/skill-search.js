@@ -1,5 +1,5 @@
 import classic from "ember-classic-decorator";
-import { action, computed, set } from "@ember/object";
+import { action, computed } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Controller from "@ember/controller";
 
@@ -13,6 +13,7 @@ export default class SkillSearchController extends Controller {
 
   currentSkillId = [0, 0, 0, 0, 0];
   count = 1;
+  t = [0, 0, 0, 0, 0];
 
   init() {
     super.init(...arguments);
@@ -41,8 +42,15 @@ export default class SkillSearchController extends Controller {
 
   @action
   setSkill(num, skill) {
-    //this.currentSkillId[num-1] = skill.get("id");
-    set(this.currentSkillId, (num - 1).toString(), skill.get("id"));
+    this.t = [
+      this.currentSkillId[0],
+      this.currentSkillId[1],
+      this.currentSkillId[2],
+      this.currentSkillId[3],
+      this.currentSkillId[4]
+    ];
+    this.t[num - 1] = parseInt(skill.get("id"));
+    this.set("currentSkillId", this.t);
     console.log(this.currentSkillId);
     this.get("router").transitionTo({
       queryParams: { skill_id: skill.get("id"), level: this.get("levelValue1") }
@@ -51,16 +59,34 @@ export default class SkillSearchController extends Controller {
 
   @action
   resetFilter(num) {
-    for (let i = this.count; i > num; i--) {
-      //this.currentSkillId[i-1] = this.currentSkillId[i];
-      this.set("levelValue" + (i - 1), this.get("levelValue" + i));
+    for (let i = num; i < this.count; i++) {
+      this.t = [
+        this.currentSkillId[0],
+        this.currentSkillId[1],
+        this.currentSkillId[2],
+        this.currentSkillId[3],
+        this.currentSkillId[4]
+      ];
+      this.t[i - 1] = this.t[i];
+      this.set("currentSkillId", this.t);
+      this.set("levelValue" + i, this.get("levelValue" + (i + 1)));
+      console.log(this.currentSkillId);
     }
     if (this.count > 1) {
       this.set("count", this.count - 1);
     }
     this.set("levelValue" + (this.count + 1), 1);
-    //this.currentSkillId[this.count + 1] = 0;
+    this.t = [
+      this.currentSkillId[0],
+      this.currentSkillId[1],
+      this.currentSkillId[2],
+      this.currentSkillId[3],
+      this.currentSkillId[4]
+    ];
+    this.t[this.count] = 0;
+    this.set("currentSkillId", this.t);
     this.updateSelection();
+    console.log(this.currentSkillId);
   }
 
   @action
