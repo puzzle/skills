@@ -33,8 +33,6 @@ class PeopleSkillsController < CrudController
 
   def filter_entries(people_skills)
     all = people_skills
-    puts params[:skill_id]
-    puts params[:level]
     skills = params[:skill_id].split(",")
     people_skills = people_skills.where(skill_id: skills[0])
     if params.key?(:level)

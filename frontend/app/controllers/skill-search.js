@@ -11,9 +11,8 @@ export default class SkillSearchController extends Controller {
   @service
   router;
 
-  currentSkillId = [0, 0, 0, 0, 0];
+  currentSkillId = [null, null, null, null, null];
   count = 1;
-  duplicate = [0, 0, 0, 0, 0]; //Not really elegant, but could not figure out a different way to change currentSkillId
 
   init() {
     super.init(...arguments);
@@ -35,7 +34,7 @@ export default class SkillSearchController extends Controller {
     let skill_ids = "",
       levels = "";
     for (let i = 0; i < this.count; i++) {
-      if (this.currentSkillId[i] != 0) {
+      if (this.currentSkillId[i] !== null) {
         skill_ids = skill_ids + "," + this.currentSkillId[i];
         levels = levels + "," + this.get("levelValue" + (i + 1));
       }
@@ -54,9 +53,9 @@ export default class SkillSearchController extends Controller {
 
   @action
   setSkill(num, skill) {
-    this.resetDuplicate();
-    this.duplicate[num - 1] = parseInt(skill.get("id"));
-    this.set("currentSkillId", this.duplicate);
+    let duplicate = this.getDuplicate();
+    duplicate[num - 1] = parseInt(skill.get("id"));
+    this.set("currentSkillId", duplicate);
     console.log(this.currentSkillId);
     this.updateSelection();
   }
@@ -64,9 +63,9 @@ export default class SkillSearchController extends Controller {
   @action
   removeFilter(num) {
     for (let i = num; i < this.count; i++) {
-      this.resetDuplicate();
-      this.duplicate[i - 1] = this.duplicate[i];
-      this.set("currentSkillId", this.duplicate);
+      let duplicate = this.getDuplicate();
+      duplicate[i - 1] = duplicate[i];
+      this.set("currentSkillId", duplicate);
       this.set("levelValue" + i, this.get("levelValue" + (i + 1)));
       console.log(this.currentSkillId);
     }
@@ -74,9 +73,9 @@ export default class SkillSearchController extends Controller {
       this.set("count", this.count - 1);
     }
     this.set("levelValue" + (this.count + 1), 1);
-    this.resetDuplicate();
-    this.duplicate[this.count] = 0;
-    this.set("currentSkillId", this.duplicate);
+    let duplicate = this.getDuplicate();
+    duplicate[this.count] = null;
+    this.set("currentSkillId", duplicate);
     this.updateSelection();
     console.log(this.currentSkillId);
   }
@@ -84,9 +83,9 @@ export default class SkillSearchController extends Controller {
   @action
   resetFilter(num) {
     this.set("levelValue" + num, 1);
-    this.resetDuplicate();
-    this.duplicate[num - 1] = 0;
-    this.set("currentSkillId", this.duplicate);
+    let duplicate = this.getDuplicate();
+    duplicate[num - 1] = null;
+    this.set("currentSkillId", duplicate);
   }
 
   @action
@@ -94,8 +93,8 @@ export default class SkillSearchController extends Controller {
     this.set("count", this.count + 1);
   }
 
-  resetDuplicate() {
-    this.duplicate = [
+  getDuplicate() {
+    return [
       this.currentSkillId[0],
       this.currentSkillId[1],
       this.currentSkillId[2],
