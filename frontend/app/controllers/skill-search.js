@@ -13,7 +13,7 @@ export default class SkillSearchController extends Controller {
 
   currentSkillId = [0, 0, 0, 0, 0];
   count = 1;
-  t = [0, 0, 0, 0, 0];
+  duplicate = [0, 0, 0, 0, 0]; //Not really elegant, but could not figure out a different way to change currentSkillId
 
   init() {
     super.init(...arguments);
@@ -42,15 +42,9 @@ export default class SkillSearchController extends Controller {
 
   @action
   setSkill(num, skill) {
-    this.t = [
-      this.currentSkillId[0],
-      this.currentSkillId[1],
-      this.currentSkillId[2],
-      this.currentSkillId[3],
-      this.currentSkillId[4]
-    ];
-    this.t[num - 1] = parseInt(skill.get("id"));
-    this.set("currentSkillId", this.t);
+    this.resetDuplicate();
+    this.duplicate[num - 1] = parseInt(skill.get("id"));
+    this.set("currentSkillId", this.duplicate);
     console.log(this.currentSkillId);
     this.get("router").transitionTo({
       queryParams: { skill_id: skill.get("id"), level: this.get("levelValue1") }
@@ -58,17 +52,11 @@ export default class SkillSearchController extends Controller {
   }
 
   @action
-  resetFilter(num) {
+  removeFilter(num) {
     for (let i = num; i < this.count; i++) {
-      this.t = [
-        this.currentSkillId[0],
-        this.currentSkillId[1],
-        this.currentSkillId[2],
-        this.currentSkillId[3],
-        this.currentSkillId[4]
-      ];
-      this.t[i - 1] = this.t[i];
-      this.set("currentSkillId", this.t);
+      this.resetDuplicate();
+      this.duplicate[i - 1] = this.duplicate[i];
+      this.set("currentSkillId", this.duplicate);
       this.set("levelValue" + i, this.get("levelValue" + (i + 1)));
       console.log(this.currentSkillId);
     }
@@ -76,21 +64,33 @@ export default class SkillSearchController extends Controller {
       this.set("count", this.count - 1);
     }
     this.set("levelValue" + (this.count + 1), 1);
-    this.t = [
+    this.resetDuplicate();
+    this.duplicate[this.count] = 0;
+    this.set("currentSkillId", this.duplicate);
+    this.updateSelection();
+    console.log(this.currentSkillId);
+  }
+
+  @action
+  resetFilter(num) {
+    this.set("levelValue" + num, 0);
+    this.resetDuplicate();
+    this.duplicate[num - 1] = 0;
+    this.set("currentSkillId", this.duplicate);
+  }
+
+  @action
+  addFilter() {
+    this.set("count", this.count + 1);
+  }
+
+  resetDuplicate() {
+    this.duplicate = [
       this.currentSkillId[0],
       this.currentSkillId[1],
       this.currentSkillId[2],
       this.currentSkillId[3],
       this.currentSkillId[4]
     ];
-    this.t[this.count] = 0;
-    this.set("currentSkillId", this.t);
-    this.updateSelection();
-    console.log(this.currentSkillId);
-  }
-
-  @action
-  addFilter() {
-    this.set("count", this.count + 1);
   }
 }

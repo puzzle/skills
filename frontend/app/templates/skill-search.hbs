@@ -16,6 +16,11 @@
         <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "resetFilter" 1}} >
           <i class="fa fa-redo"></i>
         </a>
+        {{#if (gt this.count 1)}}
+        <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "removeFilter" 1}} >
+          <i class="fa fa-window-close"></i>
+        </a>
+        {{/if}}
       </div>
     </div>
   </div>
@@ -38,6 +43,9 @@
       <div >
         <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "resetFilter" 2}} >
           <i class="fa fa-redo"></i>
+        </a>
+        <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "removeFilter" 2}} >
+          <i class="fa fa-window-close"></i>
         </a>
       </div>
     </div>
@@ -63,6 +71,9 @@
         <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "resetFilter" 3}} >
           <i class="fa fa-redo"></i>
         </a>
+        <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "removeFilter" 3}} >
+          <i class="fa fa-window-close"></i>
+        </a>
       </div>
     </div>
   </div>
@@ -87,6 +98,9 @@
         <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "resetFilter" 4}} >
           <i class="fa fa-redo"></i>
         </a>
+        <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "removeFilter" 4}} >
+          <i class="fa fa-window-close"></i>
+        </a>
       </div>
     </div>
   </div>
@@ -110,6 +124,9 @@
       <div >
         <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "resetFilter" 5}} >
           <i class="fa fa-redo"></i>
+        </a>
+        <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "removeFilter" 5}} >
+          <i class="fa fa-window-close"></i>
         </a>
       </div>
     </div>
