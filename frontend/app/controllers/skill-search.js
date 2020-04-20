@@ -3,6 +3,7 @@ import { action, computed } from "@ember/object";
 import { observes } from "@ember-decorators/object";
 import { inject as service } from "@ember/service";
 import Controller from "@ember/controller";
+import PeopleSkill from "../models/people-skill";
 
 @classic
 export default class SkillSearchController extends Controller {
@@ -50,15 +51,9 @@ export default class SkillSearchController extends Controller {
   }
 
   get levelName() {
-    const levelNames = [
-      "Nicht bewertet",
-      "Trainee",
-      "Junior",
-      "Professional",
-      "Senior",
-      "Expert"
-    ];
-    return levelNames[this.get("levelValue")];
+    const levelNames = PeopleSkill.LEVEL_NAMES;
+    const key = this.get("levelValue");
+    return levelNames[key];
   }
 
   @action

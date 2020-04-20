@@ -35,7 +35,7 @@ module("Acceptance | skill search", function(hooks) {
   });
 
   test("search peopleSkills of JUnit", async function(assert) {
-    assert.expect(5);
+    assert.expect(7);
 
     await page.indexPage.visit();
 
@@ -59,7 +59,9 @@ module("Acceptance | skill search", function(hooks) {
     assert.notOk(names.includes("ken"));
     assert.ok(names.includes("Alice Mante"));
     assert.notOk(names.includes("Bob Anderson"));
-    $(".people-skill-level .slider-tick:eq(5)").mousedown();
+    $(
+      ".people-skill-level #skillsearch-selection-slider .slider-tick:eq(5)"
+    ).mousedown();
     await page.skillSearchLevelSlider.levelButtons.objectAt(5).clickOn();
     assert.equal(
       currentURL(),
