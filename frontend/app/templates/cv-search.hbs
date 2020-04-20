@@ -7,15 +7,15 @@
 <div class="card mt-12 mb-5">
   <div id="cv-search-results" class="border border-info rounded-bottom">
     {{#if this.model}}
-      {{#each this.model as |person|}}
+      {{#each this.model as |data|}}
         <div>
-          <LinkTo @route="person" @model={{person.id}} class="cv-search-pills m-2">
-            {{person.name}}
+          <LinkTo @route="person" @model={{data.person.id}} class="cv-search-pills m-2">
+            {{data.person.name}}
           </LinkTo>
           <div class="cv-search-found-in">
             gefunden in:
-            <LinkTo @route="person" @model={{person.id}} class="cv-search-found-in-link">
-              {{t (found-in person.foundIn) }}
+            <LinkTo @route="person" @model={{data.person.id}} class="cv-search-found-in-link">
+              {{t (found-in data.found_in) }}
             </LinkTo>
           </div>
         </div>
