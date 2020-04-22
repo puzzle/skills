@@ -15,31 +15,23 @@ class PeopleSearch
   def search_result
     people = Person.all.search(search_term)
     people = pre_load(people)
-    result = []
 
-    people.each do |p|
-      result.push(
-        person: { id: p.id, name: p.name },
-        found_in: found_in(p)
-      )
+    people.map do |p|
+      { person: { id: p.id, name: p.name }, found_in: found_in(p) }
     end
-    result
   end
 
   def found_in(person)
     res = in_attributes(person.attributes)
-    res = in_associations(person) if res.nil?
-    res.nil? ? res : res.camelize(:lower)
+    res ||= in_associations(person)
+    res.try(:camelize, :lower)
   end
 
   # Load the attributes of the given people into cache
   # Without this, reflective methods accessing attributes over associations
   # would come up empty
   def pre_load(people)
-    person_keys = []
-    people.each do |p|
-      person_keys.push p.id
-    end
+    person_keys = people.map { |person| person.id }
 
     Person.includes(:department, :roles, :projects, :activities,
                     :educations, :advanced_trainings, :expertise_topics)
@@ -48,21 +40,19 @@ class PeopleSearch
 
   def in_associations(person)
     association_symbols.each do |sym|
-      a = in_association(person, sym)
-      if a
+      attribute_name = in_association(person, sym)
+      if attribute_name
         return format('%<association>s#%<attribute_name>s',
-                      association: sym.to_s, attribute_name: a)
+                      association: sym.to_s, attribute_name: attribute_name)
       end
     end
     nil
   end
 
   def association_symbols
-    keys = []
-    Person.reflections.keys.each do |key|
-      keys.push key.to_sym
+    Person.reflections.keys.map do |key|
+      key.to_sym
     end
-    keys
   end
 
   def in_association(person, sym)
@@ -83,17 +73,14 @@ class PeopleSearch
   end
 
   def in_attributes(attrs)
-    searchable_fields(attrs).each_pair do |key, value|
-      return key if value.downcase.include?(search_term.downcase) # PG Search is not case sensitive
+    attribute = searchable_fields(attrs).find do |_key, value|
+      value.downcase.include?(search_term.downcase) # PG Search is not case sensitive
     end
-    nil
+    attribute.try(:first)
   end
 
   def searchable_fields(fields)
-    fields.keys.each do |key|
-      fields.delete(key) unless SEARCHABLE_FIELDS.include?(key)
-    end
-    fields
+    keys = fields.keys & SEARCHABLE_FIELDS
+    fields.slice(*keys)
   end
-
 end
