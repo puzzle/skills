@@ -87,16 +87,6 @@ describe PeopleController do
         json_object_includes_keys(alice_attrs, keys)
         expect(people).not_to include('relationships')
       end
-
-      it 'filters persons for term if given' do
-        expect(Person)
-          .to receive(:search)
-          .with('London')
-          .exactly(1).times
-          .and_call_original
-
-        get :index, params: { q: 'London' }
-      end
     end
 
     describe 'GET show' do

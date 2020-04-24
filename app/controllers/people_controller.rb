@@ -15,8 +15,6 @@ class PeopleController < CrudController
 
   def index
     people = fetch_entries
-    people = people.search(params[:q]) if params[:q].present?
-
     render json: people, each_serializer: PeopleSerializer
   end
 
