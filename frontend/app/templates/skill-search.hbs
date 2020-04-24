@@ -9,7 +9,7 @@
     <div class="col">
       <div class="col justify-content-center people-skill-level">
         <p class="description skillset-level-title">{{this.levelName}}</p>
-        <UiSlider @value={{this.levelValue}} @ticks="1,2,3,4,5" @tooltip="hide" @min={{1}} @max={{5}} @immediateResponse={{true}} />
+        <UiSlider id="skillsearch-selection-slider" @value={{this.levelValue}} @ticks="1,2,3,4,5" @tooltip="hide" @min={{1}} @max={{5}} @immediateResponse={{true}} />
       </div>
     </div>
     <div class="col pt-3">
