@@ -31,7 +31,7 @@ class PeopleSearch
   # Without this, reflective methods accessing attributes over associations
   # would come up empty
   def pre_load(people)
-    person_keys = people.map { |person| person.id }
+    person_keys = people.map(&:id)
 
     Person.includes(:department, :roles, :projects, :activities,
                     :educations, :advanced_trainings, :expertise_topics)
@@ -50,9 +50,7 @@ class PeopleSearch
   end
 
   def association_symbols
-    Person.reflections.keys.map do |key|
-      key.to_sym
-    end
+    Person.reflections.keys.map(&:to_sym)
   end
 
   def in_association(person, sym)
