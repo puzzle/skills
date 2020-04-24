@@ -58,3 +58,15 @@ ken:
   competence_notes: LaTex\n Puppet\n Bash
   email: kenthemaster@testi.com
   department: ux
+
+lain:
+  birthdate: 1998-07-06 01:15:00
+  location: Tokyo
+  marital_status: <%= Person.marital_statuses[:single] %>
+  name: Lain Iwakura
+  nationality: JP
+  roles: [system-engineer]
+  title: God
+  competence_notes: C\n Bash
+  email: lain@mebious.co.uk
+  department: sys

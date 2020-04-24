@@ -34,3 +34,19 @@ alice_rails:
   interest: 0
   certificate: false
   core_competence: false
+
+lain_rails:
+  skill: rails
+  person: lain
+  level: 1
+  interest: 2
+  certificate: false
+  core_competence: false
+
+lain_cunit:
+  skill: cunit
+  person: lain
+  level: 5
+  interest: 4
+  certificate: true
+  core_competence: true

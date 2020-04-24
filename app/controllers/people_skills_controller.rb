@@ -36,10 +36,7 @@ class PeopleSkillsController < CrudController
   end
 
   def fetch_skill_entries(base)
-    people_skills = PeopleSkillsFilter.new(base, params[:rated], params[:level]).scopelevel
-    skill_ids = params[:skill_id].split(",")[0]
-    people_skills.where(skill_id: skill_ids)
-
+    people_skills = PeopleSkillsFilter.new(base, params[:rated], params[:level]).scopelevel(params[:skill_id])
   end
 
   def export

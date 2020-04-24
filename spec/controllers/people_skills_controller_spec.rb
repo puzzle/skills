@@ -5,7 +5,9 @@ describe PeopleSkillsController do
     before { load_pictures }
 
     let(:bob) { people(:bob) }
+    let(:lain) { people(:lain) }
     let(:rails) { skills(:rails) }
+    let(:cunit) { skills(:cunit) }
 
     describe 'GET index' do
       it 'returns bobs people_skills' do
@@ -28,7 +30,7 @@ describe PeopleSkillsController do
         process :index, method: :get, params: { type: 'Skill', skill_id: rails.id, level: '0'}
 
         skills = json['data']
-        expect(skills.count).to eq(2)
+        expect(skills.count).to eq(3)
         skill_attrs = skills.first['attributes']
         expect(skill_attrs.count).to eq (6)
         expect(skill_attrs['skill_id']).to eq (rails.id)
@@ -57,6 +59,24 @@ describe PeopleSkillsController do
         skill_attrs = skills.first['attributes']
         expect(skill_attrs['skill_id']).to eq (rails.id)
         expect(skill_attrs['level']).to eq (3)
+      end
+
+      it 'returns AND search' do
+        keys = %w[person_id skill_id level interest certificate core_competence]
+      
+        process :index, method: :get, params: { type: 'Skill', skill_id: rails.id.to_s + "," + cunit.id.to_s, level: '1,4'}
+
+        skills = json['data']
+        expect(skills.count).to eq(1)
+      end
+
+      it 'does not return if one level is too high' do
+        keys = %w[person_id skill_id level interest certificate core_competence]
+      
+        process :index, method: :get, params: { type: 'Skill', skill_id: rails.id.to_s + "," + cunit.id.to_s, level: '4,4'}
+
+        skills = json['data']
+        expect(skills.count).to eq(0)
       end
     end
   end
