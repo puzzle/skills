@@ -35,7 +35,7 @@ module("Acceptance | skill search", function(hooks) {
   });
 
   test("search peopleSkills of JUnit", async function(assert) {
-    assert.expect(5);
+    assert.expect(7);
 
     await page.indexPage.visit();
 
@@ -59,5 +59,16 @@ module("Acceptance | skill search", function(hooks) {
     assert.notOk(names.includes("ken"));
     assert.ok(names.includes("Alice Mante"));
     assert.notOk(names.includes("Bob Anderson"));
+    // Due to some issues with the testing framework, this selects level 2
+    // despite objectAt(2) implying level 3; test would still pass if fixed
+    await page.skillSearchLevelSlider.levelButtons.objectAt(2).click();
+    assert.equal(
+      currentURL(),
+      "/skill_search?level=2&skill_id=" + junit.get("id")
+    );
+    const newnames = page.indexPage.peopleSkills.peopleNames
+      .toArray()
+      .map(newnames => newnames.text);
+    assert.notOk(newnames.includes("Alice Mante"));
   });
 });

@@ -1,5 +1,6 @@
 import classic from "ember-classic-decorator";
 import { action, computed } from "@ember/object";
+import { observes } from "@ember-decorators/object";
 import { inject as service } from "@ember/service";
 import Controller from "@ember/controller";
 
@@ -29,7 +30,13 @@ export default class SkillSearchController extends Controller {
     return this.store.findAll("skill", { reload: true });
   }
 
-  @action
+  /*
+  @computed("model")
+  get selectedSkill() {
+    const skillId = this.get("currentSkillId");
+    return skillId ? this.get("store").peekRecord("skill", skillId) : null;
+  } */
+
   updateSelection() {
     let skill_ids = "",
       levels = "";
@@ -56,8 +63,6 @@ export default class SkillSearchController extends Controller {
     let duplicate = this.getDuplicate();
     duplicate[num - 1] = parseInt(skill.get("id"));
     this.set("currentSkillId", duplicate);
-    console.log(this.currentSkillId);
-    this.updateSelection();
   }
 
   @action
@@ -67,7 +72,6 @@ export default class SkillSearchController extends Controller {
       duplicate[i - 1] = duplicate[i];
       this.set("currentSkillId", duplicate);
       this.set("levelValue" + i, this.get("levelValue" + (i + 1)));
-      console.log(this.currentSkillId);
     }
     if (this.count > 1) {
       this.set("count", this.count - 1);
@@ -76,8 +80,32 @@ export default class SkillSearchController extends Controller {
     let duplicate = this.getDuplicate();
     duplicate[this.count] = null;
     this.set("currentSkillId", duplicate);
+  }
+
+  @observes("levelValue1")
+  levelValueChanged() {
     this.updateSelection();
-    console.log(this.currentSkillId);
+  }
+  @observes("levelValue2")
+  levelValueChanged() {
+    this.updateSelection();
+  }
+  @observes("levelValue3")
+  levelValueChanged() {
+    this.updateSelection();
+  }
+  @observes("levelValue4")
+  levelValueChanged() {
+    this.updateSelection();
+  }
+  @observes("levelValue5")
+  levelValueChanged() {
+    this.updateSelection();
+  }
+
+  @observes("currentSkillId")
+  skillValueChanged() {
+    this.updateSelection();
   }
 
   @action

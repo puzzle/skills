@@ -10,7 +10,7 @@ describe PeopleSkillsFilter do
       interests = filteredPeopleSkills.pluck(:interest)
 
       expect(filteredPeopleSkills.count).to eq(3)
-      expect(levels).to eq([3, 4, 0])
+      expect(levels).to eq([3, 1, 0])
       expect(interests).to eq([5, 1, 0])
     end
 
@@ -21,7 +21,7 @@ describe PeopleSkillsFilter do
       interests = filteredPeopleSkills.pluck(:interest)
 
       expect(filteredPeopleSkills.count).to eq(2)
-      expect(levels).to eq([3, 4])
+      expect(levels).to eq([3, 1])
       expect(interests).to eq([5, 1])
     end
 

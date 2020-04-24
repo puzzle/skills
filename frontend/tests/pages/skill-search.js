@@ -6,5 +6,11 @@ export default create({
     peopleSkills: {
       peopleNames: collection(".people-skill-skillname span")
     }
+  },
+
+  skillSearchLevelSlider: {
+    levelButtons: collection(
+      ".people-skill-level #skillsearch-selection-slider .slider-tick"
+    )
   }
 });

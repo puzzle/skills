@@ -23,28 +23,23 @@ class PeopleSkillsController < CrudController
                                   :category,
                                   :people, people_skills: :person
                                 ])
-    people_skills = PeopleSkillsFilter.new(base, params[:rated]).scope
     if params.key?(:person_id)
-      people_skills.where(person_id: params[:person_id])
+      fetch_person_entries(base)
     elsif params.key?(:skill_id)
-      filter_entries(people_skills)
+      fetch_skill_entries(base)
     end
   end
 
-  def filter_entries(people_skills)
-    all = people_skills
-    skills = params[:skill_id].split(",")
-    people_skills = people_skills.where(skill_id: skills[0])
-    if params.key?(:level)
-      levels = params[:skill_id].split(",")      
-      people_skills = people_skills.where('level >= ?', levels[0])
-    end
-    for i in 1..skills.size-1 
-      temp = all.where(skill_is: skills[i])
-      temp = temp.where('level >= ?', levels[i])
-      people_skills = people_skills.join("INNER JOIN temp ON people_skills.person_id = temp.person_id")
-    end
-    return people_skills
+  def fetch_person_entries(base)
+    people_skills = PeopleSkillsFilter.new(base, params[:rated]).scope
+    people_skills.where(person_id: params[:person_id])
+  end
+
+  def fetch_skill_entries(base)
+    people_skills = PeopleSkillsFilter.new(base, params[:rated], params[:level]).scopelevel
+    skill_ids = params[:skill_id].split(",")[0]
+    people_skills.where(skill_id: skill_ids)
+
   end
 
   def export
