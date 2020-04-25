@@ -30,12 +30,35 @@ export default class SkillSearchController extends Controller {
     return this.store.findAll("skill", { reload: true });
   }
 
-  /*
   @computed("model")
-  get selectedSkill() {
-    const skillId = this.get("currentSkillId");
+  get selectedSkill1() {
+    const skillId = this.currentSkillId[0];
     return skillId ? this.get("store").peekRecord("skill", skillId) : null;
-  } */
+  }
+
+  @computed("model")
+  get selectedSkill2() {
+    const skillId = this.currentSkillId[1];
+    return skillId ? this.get("store").peekRecord("skill", skillId) : null;
+  }
+
+  @computed("model")
+  get selectedSkill3() {
+    const skillId = this.currentSkillId[2];
+    return skillId ? this.get("store").peekRecord("skill", skillId) : null;
+  }
+
+  @computed("model")
+  get selectedSkill4() {
+    const skillId = this.currentSkillId[3];
+    return skillId ? this.get("store").peekRecord("skill", skillId) : null;
+  }
+
+  @computed("model")
+  get selectedSkill5() {
+    const skillId = this.currentSkillId[4];
+    return skillId ? this.get("store").peekRecord("skill", skillId) : null;
+  }
 
   updateSelection() {
     let skill_ids = "",

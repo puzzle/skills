@@ -1,7 +1,7 @@
 <div id="skill-search-header" class="header pt-3">
   <div class="row">
     <div class="col-6">
-      <PowerSelect @selected={{selectedSkill this.currentSkillId.[0]}} @options={{this.skills}} @onChange={{action "setSkill" 1}} @searchField="title" @triggerClass="w-75" as |skill|>
+      <PowerSelect @selected={{this.selectedSkill1}} @options={{this.skills}} @onChange={{action "setSkill" 1}} @searchField="title" @triggerClass="w-75" as |skill|>
         {{skill.title}}
       </PowerSelect>
     </div>
@@ -28,7 +28,7 @@
   {{#if (gt this.count 1)}}
   <div class="row">
     <div class="col-6">
-      <PowerSelect @selected={{selectedSkill this.currentSkillId.[1]}} @options={{this.skills}} @onChange={{action "setSkill" 2}} @searchField="title" @triggerClass="w-75" as |skill|>
+      <PowerSelect @selected={{this.selectedSkill2}} @options={{this.skills}} @onChange={{action "setSkill" 2}} @searchField="title" @triggerClass="w-75" as |skill|>
         {{skill.title}}
       </PowerSelect>
     </div>
@@ -55,7 +55,7 @@
   {{#if (gt this.count 2)}}
   <div class="row">
     <div class="col-6">
-      <PowerSelect @selected={{selectedSkill this.currentSkillId.[2]}} @options={{this.skills}} @onChange={{action "setSkill" 3}} @searchField="title" @triggerClass="w-75" as |skill|>
+      <PowerSelect @selected={{this.selectedSkill3}} @options={{this.skills}} @onChange={{action "setSkill" 3}} @searchField="title" @triggerClass="w-75" as |skill|>
         {{skill.title}}
       </PowerSelect>
     </div>
@@ -82,7 +82,7 @@
   {{#if (gt this.count 3)}}
   <div class="row">
     <div class="col-6">
-      <PowerSelect @selected={{selectedSkill this.currentSkillId.[3]}} @options={{this.skills}} @onChange={{action "setSkill" 4}} @searchField="title" @triggerClass="w-75" as |skill|>
+      <PowerSelect @selected={{this.selectedSkill4}} @options={{this.skills}} @onChange={{action "setSkill" 4}} @searchField="title" @triggerClass="w-75" as |skill|>
         {{skill.title}}
       </PowerSelect>
     </div>
@@ -109,7 +109,7 @@
   {{#if (gt this.count 4)}}
   <div class="row">
     <div class="col-6">
-      <PowerSelect @selected={{selectedSkill this.currentSkillId.[4]}} @options={{this.skills}} @onChange={{action "setSkill" 5}} @searchField="title" @triggerClass="w-75" as |skill|>
+      <PowerSelect @selected={{this.selectedSkill5}} @options={{this.skills}} @onChange={{action "setSkill" 5}} @searchField="title" @triggerClass="w-75" as |skill|>
         {{skill.title}}
       </PowerSelect>
     </div>
