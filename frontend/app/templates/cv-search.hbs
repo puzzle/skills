@@ -14,7 +14,10 @@
           </LinkTo>
           <div class="cv-search-found-in">
             gefunden in:
-            <LinkTo @route="person" @model={{data.person.id}} class="cv-search-found-in-link">
+            <LinkTo class="cv-search-found-in-link"
+                    @route="person"
+                    @query={{hash query=this.q}}
+                    @model={{data.person.id}}>
               {{t (found-in data.found_in) }}
             </LinkTo>
           </div>
