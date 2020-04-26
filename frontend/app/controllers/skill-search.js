@@ -106,23 +106,23 @@ export default class SkillSearchController extends Controller {
   }
 
   @observes("levelValue1")
-  levelValueChanged() {
+  levelValue1Changed() {
     this.updateSelection();
   }
   @observes("levelValue2")
-  levelValueChanged() {
+  levelValue2Changed() {
     this.updateSelection();
   }
   @observes("levelValue3")
-  levelValueChanged() {
+  levelValue3Changed() {
     this.updateSelection();
   }
   @observes("levelValue4")
-  levelValueChanged() {
+  levelValue4Changed() {
     this.updateSelection();
   }
   @observes("levelValue5")
-  levelValueChanged() {
+  levelValue5Changed() {
     this.updateSelection();
   }
 
