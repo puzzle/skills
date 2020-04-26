@@ -1,9 +1,9 @@
 import { helper } from "@ember/component/helper";
 import $ from "jquery";
-import Ember from "ember";
+import { later } from "@ember/runloop";
 
 export function personJumpTo([query, foundIn]) {
-  Ember.run.later(() => markAndJump(query), 550);
+  later(() => markAndJump(query), 550);
 }
 
 function markAndJump(query) {
