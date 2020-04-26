@@ -14,4 +14,6 @@ export default class IndexController extends Controller {
       Projekte: "#projects"
     });
   }
+
+  queryParams = ["query"];
 }
