@@ -3,11 +3,9 @@
   "version": "4.3.0",
   "private": true,
   "description": "Small description for frontend goes here",
-  "repository": "",
   "license": "MIT",
   "author": "",
   "directories": {
-    "doc": "doc",
     "test": "tests"
   },
   "scripts": {
@@ -40,6 +38,7 @@
     "bootstrap-slider": "^10.6.1",
     "ember-cli-update": "^0.27.1",
     "ember-intl": "^4.2.3",
+    "ember-validated-form": "^2.0.0",
     "global": "^4.4.0",
     "jquery": "~3.4.0",
     "jquery-sticky": "^1.0.4",
@@ -121,5 +120,7 @@
   },
   "ember": {
     "edition": "octane"
-  }
+  },
+  "main": ".eslintrc.js",
+  "keywords": []
 }

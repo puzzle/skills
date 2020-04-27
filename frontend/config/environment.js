@@ -31,6 +31,9 @@ module.exports = function(environment) {
       documentExportHost: ""
     },
 
+    "ember-validated-form": {
+      theme: "bootstrap"
+    },
     "ember-form-for": {
       errorsPath: "error.PROPERTY_NAME.validation"
     },
