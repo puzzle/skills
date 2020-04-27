@@ -30,6 +30,7 @@ person:
     origin: Nationalität
     role: Rolle
     title: Titel
+    department: Organisationseinheit
     competences: Kompetenzen
     competenceNotes: Kompetenzen
     educations: Ausbildungen
