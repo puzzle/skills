@@ -36,7 +36,26 @@ class PeopleSkillsController < CrudController
   end
 
   def fetch_skill_entries(base)
-    people_skills = PeopleSkillsFilter.new(base, params[:rated], params[:level]).scopelevel(params[:skill_id])
+    levels = params[:level].to_s.split(",")
+    skill_ids = params[:skill_id].to_s.split(",")
+
+    first_skill = PeopleSkillsFilter.new(base, params[:rated], levels[0])
+                                    .scope_level
+                                    .where(skill_id: skill_ids[0])
+    second_skill = PeopleSkillsFilter.new(base, params[:rated], levels[1])
+                                     .scope_level
+                                     .where(skill_id: skill_ids[1])
+    third_skill = PeopleSkillsFilter.new(base, params[:rated], levels[2])
+                                    .scope_level
+                                    .where(skill_id: skill_ids[2])
+    fourth_skill = PeopleSkillsFilter.new(base, params[:rated], levels[3])
+                                     .scope_level
+                                     .where(skill_id: skill_ids[3])
+    fifth_skill = PeopleSkillsFilter.new(base, params[:rated], levels[4])
+                                    .scope_level
+                                    .where(skill_id: skill_ids[4])
+
+    first_skill.or(second_skill.or(third_skill.or(fourth_skill.or(fifth_skill))))
   end
 
   def export
