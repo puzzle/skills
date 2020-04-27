@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
 class PeopleSkillsFilter
-  attr_reader :entries, :rated
+  attr_reader :entries, :rated, :level
 
-  def initialize(entries, rated, level = 0)
+  def initialize(entries, rated, level = nil)
     @entries = entries
     @rated = rated
     @level = level
   end
 
   def scope
-    filter_by_rated
-  end
-
-  def scopelevel
-    filter_by_level
+    if level.nil?
+      filter_by_rated
+    else
+      filter_by_level
+    end
   end
 
   private
@@ -30,6 +30,6 @@ class PeopleSkillsFilter
   end
 
   def filter_by_level
-    entries.where('level >= ?', @level)
+    entries.where('level >= ?', level)
   end
 end

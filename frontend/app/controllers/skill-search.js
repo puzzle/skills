@@ -40,20 +40,13 @@ export default class SkillSearchController extends Controller {
     });
   }
 
-  @observes("levelValue")
-  levelValueChanged() {
-    this.updateSelection();
-  }
-
-  @observes("currentSkillId")
-  skillValueChanged() {
+  @observes("levelValue", "currentSkillId")
+  valueChanged() {
     this.updateSelection();
   }
 
   get levelName() {
-    const levelNames = PeopleSkill.LEVEL_NAMES;
-    const key = this.get("levelValue");
-    return levelNames[key];
+    return PeopleSkill.LEVEL_NAMES[this.levelValue];
   }
 
   @action
@@ -64,6 +57,6 @@ export default class SkillSearchController extends Controller {
   @action
   resetFilter() {
     this.set("levelValue", 1);
-    this.updateSelection();
+    this.set("currentSkillId", 0);
   }
 }
