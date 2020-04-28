@@ -67,7 +67,7 @@ describe PeopleSkillsController do
         process :index, method: :get, params: { type: 'Skill', skill_id: rails.id.to_s + "," + cunit.id.to_s, level: '1,4'}
 
         skills = json['data']
-        expect(skills.count).to eq(1)
+        expect(skills.count).to eq(2)
       end
 
       it 'does not return if one level is too high' do
