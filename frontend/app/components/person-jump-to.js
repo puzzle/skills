@@ -13,13 +13,14 @@ export default class PersonJumpTo extends Component {
 function personJumpTo(context) {
   later(() => {
     // Invoke DOM manipulation after render phase (later schedules for action phase)
-    scheduleOnce("afterRender", context, () => {
-      // Keep trying until the query string has been located in the page
-      if (!couldJumpTo(context.query)) {
-        personJumpTo(context);
-      }
-    });
+    scheduleOnce("afterRender", context, jumpOrRetry(context));
   }, 100);
+}
+
+function jumpOrRetry(context) {
+  if (!couldJumpTo(context.query)) {
+    personJumpTo(context);
+  }
 }
 
 function couldJumpTo(query) {
