@@ -10,11 +10,7 @@ class PeopleSkillsFilter
   end
 
   def scope
-    if level.nil?
-      filter_by_rated
-    else
-      filter_by_level
-    end
+    filter_by_level(filter_by_rated)
   end
 
   private
@@ -29,7 +25,7 @@ class PeopleSkillsFilter
     entries
   end
 
-  def filter_by_level
-    entries.where('level >= ?', level)
+  def filter_by_level(entries)
+    level.nil? ? entries : entries.where('level >= ?', level)
   end
 end
