@@ -21,7 +21,6 @@ module("Integration | Component | people-skill-show", function(hooks) {
 
     let text = this.$().text();
 
-    assert.ok(text.includes("Rails"));
     assert.ok(text.includes("Junior"));
     assert.equal(
       this.$(".icon-rating-icon")[0].getAttribute("style"),

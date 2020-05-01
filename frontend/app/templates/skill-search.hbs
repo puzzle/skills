@@ -148,8 +148,8 @@
   </div>
   <div class="card mt-3 mb-5">
     <div id="skill-search-results" class="px-2 border border-info rounded-bottom">
-      {{#if this.peopleSkills}}
-        {{#each this.peopleSkills as |peopleSkill|}}
+      {{#if this.model}}
+        {{#each this.model as |peopleSkill|}}
           <div class="p-2">
             <PeopleSkillShow @peopleSkill={{peopleSkill}} @showPersonName={{true}} @showSkillTitle={{true}} />
           </div>
