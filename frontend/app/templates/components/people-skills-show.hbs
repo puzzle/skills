@@ -69,7 +69,7 @@
                             {{#if this.peopleSkillsEditing}}
                               <PeopleSkillEdit @peopleSkill={{skill}} />
                             {{else}}
-                              <PeopleSkillShow @peopleSkill={{skill}} @toggleSkillShow={{action "toggleSkillShow" skill.skill}}>
+                              <PeopleSkillShow @peopleSkill={{skill}} @toggleSkillShow={{action "toggleSkillShow" skill.skill}} @showSkillTitle={{true}}>
                                 <div class="col-md-1 pt-3">
                                   {{#if skill.isRated}}
                                     <a class="edit-buttons" role="button" onclick={{action "resetPeopleSkill" skill}} data-toggle="tooltip" data-placement="top" title="Reset Skill">
