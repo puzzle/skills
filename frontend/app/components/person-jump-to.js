@@ -1,30 +1,43 @@
 import classic from "ember-classic-decorator";
 import Component from "@ember/component";
 import $ from "jquery";
-import { later } from "@ember/runloop";
+import { later, scheduleOnce } from "@ember/runloop";
 
 @classic
 export default class PersonJumpTo extends Component {
   didRender() {
-    later(() => personJumpTo(this.query), 550);
+    personJumpTo(this);
   }
 }
 
-function personJumpTo(query) {
+function personJumpTo(context) {
+  later(() => {
+    // Invoke DOM manipulation after render phase (later schedules for action phase)
+    scheduleOnce("afterRender", context, () => {
+      // Keep trying until the query string has been located in the page
+      if (!couldJumpTo(context.query)) {
+        personJumpTo(context);
+      }
+    });
+  }, 100);
+}
+
+function couldJumpTo(query) {
   const elements = $(".cv-search-searchable");
   const regex = new RegExp(query, "ig");
 
-  searchElements(elements, regex);
+  return matchFound(elements, regex);
 }
 
-function searchElements(elements, regex) {
+function matchFound(elements, regex) {
   for (const element of elements) {
     if (element.textContent.search(regex) !== -1) {
       mark(element, regex);
       jumpToMarked();
-      return;
+      return true;
     }
   }
+  return false;
 }
 
 function mark(element, regex) {
