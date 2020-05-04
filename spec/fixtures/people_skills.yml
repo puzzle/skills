@@ -22,7 +22,7 @@ bob_rails:
 alice_junit:
   skill: junit
   person: alice
-  level: 4
+  level: 1
   interest: 1
   certificate: true
   core_competence: false

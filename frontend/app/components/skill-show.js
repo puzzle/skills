@@ -13,7 +13,8 @@ export default class SkillShow extends Component {
     if (this.get("skill.id") != null) {
       return this.get("store").query("peopleSkill", {
         skill_id: this.get("skill.id"),
-        rated: "true"
+        rated: "true",
+        level: "0"
       });
     }
     return null;

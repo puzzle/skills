@@ -9,7 +9,6 @@ class PeopleSkillsController < CrudController
 
   def index
     return export if format_csv?
-
     if params.keys.select { |k| %w[person_id skill_id].include?(k) }.length != 1
       return head 400
     end
@@ -24,7 +23,11 @@ class PeopleSkillsController < CrudController
                                   :category,
                                   :people, people_skills: :person
                                 ])
-    people_skills = PeopleSkillsFilter.new(base, params[:rated]).scope
+    people_skills = PeopleSkillsFilter.new(base, params[:rated], params[:level]).scope
+    filter_entries(people_skills)
+  end
+
+  def filter_entries(people_skills)
     if params.key?(:person_id)
       people_skills.where(person_id: params[:person_id])
     elsif params.key?(:skill_id)
