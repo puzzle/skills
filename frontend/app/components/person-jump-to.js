@@ -10,11 +10,19 @@ export default class PersonJumpTo extends Component {
   }
 }
 
+const MAX_TIMEOUT = 2000;
+const TIME_STEPS = 100;
+let timeout = 0;
+
 function personJumpTo(context) {
   later(() => {
-    // Invoke DOM manipulation after render phase (later schedules for action phase)
-    scheduleOnce("afterRender", context, jumpOrRetry(context));
-  }, 100);
+    timeout += TIME_STEPS;
+
+    if (timeout < MAX_TIMEOUT) {
+      //Invoke DOM manipulation after render phase (later schedules for action phase)
+      scheduleOnce("afterRender", context, jumpOrRetry(context));
+    }
+  }, TIME_STEPS);
 }
 
 function jumpOrRetry(context) {
