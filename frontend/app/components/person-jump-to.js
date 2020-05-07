@@ -15,14 +15,16 @@ const TIME_STEPS = 100;
 let timeout = 0;
 
 function personJumpTo(context) {
-  later(() => {
-    timeout += TIME_STEPS;
+  if (context.query) {
+    later(() => {
+      timeout += TIME_STEPS;
 
-    if (timeout < MAX_TIMEOUT) {
-      //Invoke DOM manipulation after render phase (later schedules for action phase)
-      scheduleOnce("afterRender", context, jumpOrRetry(context));
-    }
-  }, TIME_STEPS);
+      if (timeout < MAX_TIMEOUT) {
+        //Invoke DOM manipulation after render phase (later schedules for action phase)
+        scheduleOnce("afterRender", context, jumpOrRetry(context));
+      }
+    }, TIME_STEPS);
+  }
 }
 
 function jumpOrRetry(context) {
