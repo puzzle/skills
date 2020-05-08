@@ -137,7 +137,7 @@
     </div>
   {{/if}}
   {{#if (lt this.count 5)}}
-    <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Skill hinzufügen" onclick={{action "addFilter"}} >
+    <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Skill hinzufügen" id="addSkillsButton" onclick={{action "addFilter"}} >
       <small>+ Skill hinzufügen (max. 5)</small> 
     </a>
   {{/if}}
@@ -149,7 +149,7 @@
   <div class="card mt-3 mb-5">
     <div id="skill-search-results" class="px-2 border border-info rounded-bottom">
       {{#if this.model}}
-        {{#each this.model as |peopleSkill|}}
+        {{#each this.sortSelection as |peopleSkill|}}
           <div class="p-2">
             <PeopleSkillShow @peopleSkill={{peopleSkill}} @showPersonName={{true}} @showSkillTitle={{true}} />
           </div>

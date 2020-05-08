@@ -2,7 +2,6 @@ import classic from "ember-classic-decorator";
 import { action, computed } from "@ember/object";
 import { observes } from "@ember-decorators/object";
 import { inject as service } from "@ember/service";
-//import { sort } from '@ember/object/computed';
 import Controller from "@ember/controller";
 
 @classic
@@ -15,9 +14,6 @@ export default class SkillSearchController extends Controller {
 
   currentSkillId = [null, null, null, null, null];
   count = 1;
-
-  //sortedSkills = sort("model", "sortDefinition");
-  //sortDefinition = ["person.name:asc", "skill.title:asc"];
 
   init() {
     super.init(...arguments);
@@ -83,8 +79,17 @@ export default class SkillSearchController extends Controller {
         level: levels
       }
     });
-    //this.set("sortedSkills", sort("model", "sortDefinition"));
-    //console.log(this.sortedSkills);
+  }
+
+  @computed("model")
+  get sortSelection() {
+    let sortedSkills = this.model.toArray().sort(function(a, b) {
+      let x = a.person.get("name").localeCompare(b.person.get("name"));
+      return x == 0
+        ? a.skill.get("title").localeCompare(b.skill.get("title"))
+        : x;
+    });
+    return sortedSkills;
   }
 
   @action

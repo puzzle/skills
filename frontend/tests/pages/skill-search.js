@@ -1,4 +1,9 @@
-import { create, visitable, collection } from "ember-cli-page-object";
+import {
+  create,
+  visitable,
+  collection,
+  clickable
+} from "ember-cli-page-object";
 
 export default create({
   indexPage: {
@@ -12,5 +17,7 @@ export default create({
     levelButtons: collection(
       ".people-skill-level #skillsearch-selection-slider .slider-tick"
     )
-  }
+  },
+
+  addSkills: clickable("#addSkillsButton")
 });

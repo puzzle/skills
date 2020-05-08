@@ -82,7 +82,7 @@ module("Acceptance | skill search", function(hooks) {
       .get("firstObject");
     await rails;
     /* eslint "no-undef": "off" */
-    await selectChoose("#PowerSelect1", ".ember-power-select-option", 4);
+    await selectChoose(".ember-power-select-trigger", rails.get("title"));
     assert.equal(
       currentURL(),
       "/skill_search?level=1&skill_id=" + rails.get("id")
@@ -94,14 +94,14 @@ module("Acceptance | skill search", function(hooks) {
     assert.notOk(names.includes("Alice Mante"));
     assert.ok(names.includes("Bob Anderson"));
     assert.ok(names.includes("Lain Iwakura"));
+    await page.addSkills();
     let cunit = store
       .peekAll("skill")
       .filter(skill => skill.get("title") == "cunit")
       .get("firstObject");
     await cunit;
     /* eslint "no-undef": "off" */
-    await selectChoose("#PowerSelect2", ".ember-power-select-option", 3);
-    debugger;
+    await selectChoose("#PowerSelect2", ".ember-power-select-option", 1);
     assert.equal(
       currentURL(),
       "/skill_search?level=1%2C1&skill_id=" +
