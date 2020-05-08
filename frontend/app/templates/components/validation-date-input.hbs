@@ -1,0 +1,6 @@
+{{component labelComponent}}
+<div id="date_location" class="birthdate_pikaday">
+  <PikadayInput @class="form-control {{if isValid "is-valid"}} {{if isInvalid "is-invalid"}}" @value={{input}} @onSelection={{action "setBirthdate"}} @useUTC={{true}} />
+</div>
+{{component hintComponent}}
+{{component errorComponent}}
