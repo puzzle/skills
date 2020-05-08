@@ -12,6 +12,7 @@
 #  updated_at              :datetime         not null
 #  picture                 :string
 #  competence_notes        :string
+#  company_id              :bigint(8)
 #  associations_updatet_at :datetime
 #  nationality             :string
 #  nationality2            :string

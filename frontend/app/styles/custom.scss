@@ -954,12 +954,6 @@ form textarea {
   margin-top: 1px;
 }
 
-/* Companies Page
------------------------------------------------------ */
-.btn-w-1 {
-  width: 160px;
-}
-
 /* Person Übersicht*/
 .table-person input,
 .table-person,
@@ -1107,6 +1101,11 @@ form textarea {
 
 .no-hover:hover i {
   color: white !important;
+}
+
+#delete-company-icon {
+  position: absolute;
+  left: 490px;
 }
 
 #delete-education-icon {

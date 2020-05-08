@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     resources :advanced_trainings
     resources :activities
     resources :categories, only: [:index, :show]
+    resources :companies
     resources :departments, only: :index
     resources :educations
     resources :expertise_categories

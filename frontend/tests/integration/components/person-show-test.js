@@ -6,6 +6,10 @@ moduleForComponent("person-show", "Integration | Component | person show", {
 });
 
 test("it renders person", function(assert) {
+  this.set("company", {
+    name: "Bewerber"
+  });
+
   this.set("department", {
     name: "/sys"
   });
@@ -20,6 +24,7 @@ test("it renders person", function(assert) {
     email: "harry@hogwarts.com",
     title: "Zauberer",
     department: this.get("department"),
+    company: this.get("company"),
     birthdate: new Date("2000-01-01"),
     nationality: "FR",
     location: "Hogwarts",
@@ -83,6 +88,11 @@ test("it renders person", function(assert) {
     this.$()
       .text()
       .includes("/sys")
+  );
+  assert.ok(
+    this.$()
+      .text()
+      .includes("Bewerber")
   );
   assert.ok(
     this.$()

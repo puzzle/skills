@@ -73,6 +73,14 @@
                 </td>
               </tr>
               <tr>
+                <td>
+                  <label>Firma</label>
+                  <PowerSelect @triggerId="company" @selected={{this.newPerson.company}} @options={{this.companiesToSelect}} @searchField="name" @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onChange={{action (mut this.newPerson.company)}} @onKeydown={{action "setWithTab" "setCompany"}} as |company|>
+                    {{company.name}}
+                  </PowerSelect>
+                </td>
+              </tr>
+              <tr>
                 <td><label for="location">Wohnort (Stadt)</label><Input @id="location" @value={{this.newPerson.location}} @type="text"/></td>
               </tr>
             </tbody>
