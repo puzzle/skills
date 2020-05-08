@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "ember-validated-form": "^2.0.0"
+  }
+}
