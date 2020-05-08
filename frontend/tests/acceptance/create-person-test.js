@@ -22,6 +22,7 @@ module("Acceptance | create person", function(hooks) {
     /* eslint "no-undef": "off" */
     await selectChoose("#role", ".ember-power-select-option", 0);
     await selectChoose("#department", "/dev/ruby");
+    await selectChoose("#company", "Firma");
     await selectChoose("#nationality", ".ember-power-select-option", 0);
     await selectChoose("#maritalStatus", "verheiratet");
 
@@ -54,6 +55,7 @@ module("Acceptance | create person", function(hooks) {
     assert.equal(page.profileData.title, "Dr.");
     assert.equal(page.profileData.role, "Software-Engineer");
     assert.equal(page.profileData.department, "/dev/ruby");
+    assert.equal(page.profileData.company, "Firma");
     assert.equal(page.profileData.birthdate, "19.02.2019");
     assert.equal(page.profileData.nationalities, "Afghanistan");
     assert.equal(page.profileData.location, "Westworld");
