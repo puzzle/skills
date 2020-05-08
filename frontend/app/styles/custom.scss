@@ -644,10 +644,6 @@ div.row-fluid.person-list > div.span10 > div.container-fluid.round-border {
   border-top-left-radius: 0px;
 }
 
-#cv-search-results div:nth-of-type(even) a {
-  background: #61b44b;
-}
-
 #cv-search-results {
   min-height: 80px;
 }
@@ -673,7 +669,7 @@ div.row-fluid.person-list > div.span10 > div.container-fluid.round-border {
 }
 
 .cv-search-pills {
-  display: block;
+  display: inline-block;
   background: #69b978;
   border: 1px solid #ffffff;
   color: #ffffff;
@@ -686,6 +682,28 @@ div.row-fluid.person-list > div.span10 > div.container-fluid.round-border {
   color: #ffffff;
   text-decoration: none;
   background: #4e903c !important;
+}
+
+.cv-search-found-in {
+  margin-left: 4em;
+  display: inline;
+}
+
+.cv-search-found-in-link {
+  text-align: center;
+  display: inline-block;
+  background: #238bca;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  border-radius: 5px;
+  padding: 0.5em 0.25em;
+  width: 10%;
+}
+
+.cv-search-found-in-link:hover {
+  color: #ffffff;
+  text-decoration: none;
+  background: #4e903c;
 }
 
 [class^="icon-"],

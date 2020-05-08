@@ -14,6 +14,10 @@ export default class CvSearchRoute extends Route.extend(
   };
 
   model({ q }) {
-    return q ? this.store.query("person", { q }) : q;
+    if (q) {
+      const url = "/api/people/search?q=" + q;
+      return fetch(url).then(res => res.json());
+    }
+    return q;
   }
 }

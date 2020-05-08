@@ -1,20 +1,17 @@
 # frozen_string_literal: true
 
 class PeopleSkillsFilter
-  attr_reader :entries, :rated
+  attr_reader :entries, :rated, :level, :skill_id
 
-  def initialize(entries, rated, level = 0)
+  def initialize(entries, rated, level = nil, skill_id = nil)
     @entries = entries
     @rated = rated
     @level = level.to_s.split(',')
+    @skill_ids = skill_id.to_s.split(',')
   end
 
   def scope
-    filter_by_rated
-  end
-
-  def scopelevel(skills)
-    filter_by_level(skills)
+    filter_by_level(filter_by_rated)
   end
 
   private
@@ -29,23 +26,23 @@ class PeopleSkillsFilter
     entries
   end
 
-  def filter_by_level(skills)
-    skill_ids = skills.to_s.split(',')
-    if skill_ids.length == @level.length
+  def filter_by_level(entries)
+    return entries if level.nil?
+    if @skill_ids.length == @level.length
       person_ids = []
-      entries.where(buildstring(skill_ids)).group(:person_id).count.each_entry do |key, value|
-        person_ids.push(key) if value == skill_ids.length
+      entries.where(buildstring).group(:person_id).count.each_entry do |key, value|
+        person_ids.push(key) if value == @skill_ids.length
       end
-      return entries.where(person_id: person_ids, skill_id: skill_ids)
+      return entries.where(person_id: person_ids, skill_id: @skill_ids)
     else
       raise ArgumentError, 'Amount of Skill_ids and levels provided do not match'
     end
   end
 
-  def buildstring(skill_ids)
+  def buildstring
     result = +''
-    for i in 0..skill_ids.length - 1 do
-      result.concat('(skill_id=').concat(skill_ids[i].to_s).concat(' and level >=').concat(@level[i].to_s).concat(')').concat(' or ')
+    for i in 0..@skill_ids.length - 1 do
+      result.concat('(skill_id=').concat(@skill_ids[i].to_s).concat(' and level >=').concat(@level[i].to_s).concat(')').concat(' or ')
     end
     result.delete_suffix(' or ')
   end

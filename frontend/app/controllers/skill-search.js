@@ -116,29 +116,15 @@ export default class SkillSearchController extends Controller {
     this.set("currentSkillId", duplicate);
   }
 
-  @observes("levelValue1")
-  levelValue1Changed() {
-    this.updateSelection();
-  }
-  @observes("levelValue2")
-  levelValue2Changed() {
-    this.updateSelection();
-  }
-  @observes("levelValue3")
-  levelValue3Changed() {
-    this.updateSelection();
-  }
-  @observes("levelValue4")
-  levelValue4Changed() {
-    this.updateSelection();
-  }
-  @observes("levelValue5")
-  levelValue5Changed() {
-    this.updateSelection();
-  }
-
-  @observes("currentSkillId")
-  skillValueChanged() {
+  @observes(
+    "levelValue1",
+    "levelValue2",
+    "levelValue3",
+    "levelValue4",
+    "levelValue5",
+    "currentSkillId"
+  )
+  valueChanged() {
     this.updateSelection();
   }
 

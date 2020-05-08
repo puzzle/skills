@@ -5,7 +5,8 @@ export default create({
     visit: visitable("/cv_search"),
     searchInput: fillable("#cv-searchbar input"),
     people: {
-      peopleNames: collection(".cv-search-pills")
+      peopleNames: collection(".cv-search-pills"),
+      peopleFoundInLink: collection(".cv-search-found-in-link")
     }
   }
 });
