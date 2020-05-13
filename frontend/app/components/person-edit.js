@@ -17,7 +17,13 @@ export default ApplicationComponent.extend(EKMixin, {
     this.initMaritalStatuses();
     this.initNationalities();
     this.initCheckbox();
-    this.callBackCompany = this.get("person.company");
+    this.get("person.company").then(company =>
+      this.set("callBackCompany", company)
+    );
+    this.get("person.department").then(department =>
+      this.set("callBackDepartment", department)
+    );
+
     this.callBackRoleIds = {};
     this.get("person.personRoles").forEach(
       personRole =>
@@ -202,6 +208,7 @@ export default ApplicationComponent.extend(EKMixin, {
       }
 
       this.set("person.company", this.get("callBackCompany"));
+      this.set("person.department", this.get("callBackDepartment"));
 
       let languageSkills = this.get("person.languageSkills").toArray();
       languageSkills.forEach(skill => {
