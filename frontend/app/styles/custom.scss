@@ -327,7 +327,6 @@ div.row-fluid.person-list > div.span10 > div.container-fluid.round-border {
 }
 
 #skills-list-table thead {
-  top: 203px;
   z-index: 999 !important;
 }
 
@@ -339,6 +338,8 @@ div.row-fluid.person-list > div.span10 > div.container-fluid.round-border {
 
 #skills-list-table th {
   font-weight: normal;
+  position: sticky;
+  top: 203px;
 }
 
 #skills-list-table .skillname span {
