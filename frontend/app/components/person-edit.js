@@ -23,7 +23,6 @@ export default ApplicationComponent.extend(EKMixin, {
     this.get("person.department").then(department =>
       this.set("callBackDepartment", department)
     );
-
     this.callBackRoleIds = {};
     this.get("person.personRoles").forEach(
       personRole =>
