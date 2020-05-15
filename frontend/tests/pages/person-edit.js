@@ -25,11 +25,11 @@ export default create({
 
   editForm: {
     scope: "#profil",
-    submit: clickable("#submit-button"),
-    name: fillable("#name"),
-    email: fillable("#email"),
-    title: fillable("#title"),
-    location: fillable("#location"),
+    submit: clickable('[type="submit"]'),
+    name: fillable('[name="name"]'),
+    email: fillable('[name="email"]'),
+    title: fillable('[name="title"]'),
+    location: fillable('[name="location"]'),
     rolePercent: fillable('[name="person[role-percent]"]')
   },
 
@@ -39,6 +39,7 @@ export default create({
     title: text("#data-test-person-title"),
     role: text("#data-test-person-role"),
     department: text("#data-test-person-department"),
+    company: text("#data-test-person-company"),
     birthdate: text("#data-test-person-birthdate"),
     nationalities: text("#data-test-person-nationalities"),
     location: text("#data-test-person-location"),

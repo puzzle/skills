@@ -327,7 +327,6 @@ div.row-fluid.person-list > div.span10 > div.container-fluid.round-border {
 }
 
 #skills-list-table thead {
-  top: 203px;
   z-index: 999 !important;
 }
 
@@ -339,6 +338,8 @@ div.row-fluid.person-list > div.span10 > div.container-fluid.round-border {
 
 #skills-list-table th {
   font-weight: normal;
+  position: sticky;
+  top: 203px;
 }
 
 #skills-list-table .skillname span {
@@ -954,12 +955,6 @@ form textarea {
   margin-top: 1px;
 }
 
-/* Companies Page
------------------------------------------------------ */
-.btn-w-1 {
-  width: 160px;
-}
-
 /* Person Übersicht*/
 .table-person input,
 .table-person,
@@ -1107,6 +1102,11 @@ form textarea {
 
 .no-hover:hover i {
   color: white !important;
+}
+
+#delete-company-icon {
+  position: absolute;
+  left: 490px;
 }
 
 #delete-education-icon {
@@ -1362,6 +1362,12 @@ div.content-input {
 .abort-edit-buttons:hover,
 .abort-edit-buttons i:hover {
   color: red !important;
+}
+
+/* Ember validated form */
+#validation-error {
+  color: red;
+  font-size: small;
 }
 
 /* These two are for the CV and Fachwissensskala options under person-actions */

@@ -1,5 +1,5 @@
 <div id="profil">
-  {{#with (changeset this.person this.validations) as |personChangeset|}}
+  {{#validated-form model=(changeset this.person PersonEditValidations) on-submit=(action "submit") as |personChangeset|}}
     <div class="card-header bg-info">
       <div class="row">
         <div class="col-sm-6 header-text">
@@ -18,13 +18,13 @@
             <table class="table-person">
               <tbody>
                 <tr>
-                  <td><label for="name">Name</label><Input @id="name" @value={{personChangeset.name}} @type="text"/></td>
+                  <td>{{personChangeset.input label="Name" name="name" errorComponent=(component "validation-error-component")}}</td>
                 </tr>
                 <tr>
-                  <td><label for="email">Email</label><Input @id="email" @value={{personChangeset.email}} @type="text"/></td>
+                  <td>{{personChangeset.input label="Email" name="email" errorComponent=(component "validation-error-component")}}</td>
                 </tr>
                 <tr>
-                  <td><label for="title">Abschluss</label><Input @id="title" @value={{personChangeset.title}} @type="text"/></td>
+                  <td>{{personChangeset.input label="Abschluss" name="title" errorComponent=(component "validation-error-component")}}</td>
                 </tr>
                 <tr>
                   <label>Funktionen</label>
@@ -77,6 +77,14 @@
                     </PowerSelect>
                   </td>
                 </tr>
+                <tr>
+                  <td>
+                    <label>Firma</label>
+                    <PowerSelect @triggerId="company" @selected={{this.person.company}} @options={{this.companiesToSelect}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onChange={{action (mut this.person.company)}} @onKeydown={{action "setWithTab" "setCompany"}} as |company|>
+                      {{company.name}}
+                    </PowerSelect>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -84,15 +92,10 @@
             <table class="table-person">
               <tbody>
                 <tr>
-                  <td>
-                    <label class="label-date form-field--label" for="date_location">Geburtsdatum</label>
-                    <div id="date_location" class="birthdate_pikaday">
-                      <PikadayInput @onSelection={{action "setBirthdate"}} @value={{this.person.birthdate}} @useUTC={{true}} />
-                    </div>
-                  </td>
+                  <td>{{personChangeset.input label="Geburtsdatum" name="birthdate" renderComponent=(component "validation-date-input" input=this.person.birthdate) errorComponent=(component "validation-error-component")}}</td>
                 </tr>
                 <tr>
-                  <td><label for="location">Wohnort (Stadt)</label><Input @id="location" @value={{personChangeset.location}} @type="text"/></td>
+                  <td>{{personChangeset.input label="Wohnort (Stadt)" name="location" errorComponent=(component "validation-error-component")}}</td>
                 </tr>
                 <tr>
                   <td>
@@ -151,13 +154,11 @@
           </div>
         </div>
         <br>
-        <button {{action "submit" personChangeset}} role="button" id="submit-button" class="btn btn-primary">
-          Speichern
-        </button>
+        {{personChangeset.submit label="Speichern" id="submit-button"}}
         <button {{action "abortEdit"}} role="button" class="btn abort-button">
           Abbrechen
         </button>
       </div>
     </div>
-  {{/with}}
+  {{/validated-form}}
 </div>
