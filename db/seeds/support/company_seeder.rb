@@ -3,7 +3,7 @@
 class CompanySeeder
   def seed_companies(companies)
     companies.each do |name|
-      Company.seed do |co|
+      Company.seed_once(:name) do |co|
         co.name = name
       end
     end
