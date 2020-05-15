@@ -80,7 +80,7 @@ describe PeopleController do
 
         people = json['data']
 
-        expect(people.count).to eq(4)
+        expect(people.count).to eq(6)
         alice_attrs = people.first['attributes']
         expect(alice_attrs.count).to eq(1)
         expect(alice_attrs.first[1]).to eq('Alice Mante')

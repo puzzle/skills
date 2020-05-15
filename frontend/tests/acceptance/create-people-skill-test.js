@@ -39,7 +39,7 @@ module("Acceptance | create people-skill", function(hooks) {
   });
 
   test("checks if the skill titles are listed alphabetically and case-insensitive", async function(assert) {
-    assert.expect(4);
+    assert.expect(5);
 
     // Go to the start page and select a user from the dropdown
     await applicationPage.visitHome("/");
@@ -61,6 +61,7 @@ module("Acceptance | create people-skill", function(hooks) {
     assert.equal(titles[0], "");
     assert.equal(titles[1], "Bash");
     assert.equal(titles[2], "cunit");
-    assert.equal(titles[3], "JUnit");
+    assert.equal(titles[3], "ember");
+    assert.equal(titles[4], "JUnit");
   });
 });

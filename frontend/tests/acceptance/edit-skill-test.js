@@ -14,8 +14,8 @@ module("Acceptance | edit skill", function(hooks) {
 
     assert.equal(currentURL(), "/skills");
 
-    assert.equal(page.indexPage.skills.skillNames.toArray()[3].text, "Rails");
-    await page.indexPage.skills.skillEditButtons.toArray()[3].clickOn();
+    assert.equal(page.indexPage.skills.skillNames.toArray()[4].text, "Rails");
+    await page.indexPage.skills.skillEditButtons.toArray()[4].clickOn();
 
     await page.indexPage.skillEdit.skillName("Travis CI");
     await page.indexPage.skillEdit.skillDefaultSet();
@@ -26,7 +26,7 @@ module("Acceptance | edit skill", function(hooks) {
     await selectChoose(".skill-edit-portfolio", "aktiv");
     await page.indexPage.skillEdit.save();
 
-    let rows = page.indexPage.skills.skillRow.toArray()[4].text;
+    let rows = page.indexPage.skills.skillRow.toArray()[5].text;
     assert.ok(rows.includes("Travis CI"));
     assert.ok(rows.includes("System-Engineering"));
     assert.ok(rows.includes("Linux-Engineering"));
