@@ -1,11 +1,13 @@
 import Component from "@ember/component";
+import { action } from "@ember/object";
+import classic from "ember-classic-decorator";
 
-export default Component.extend({
-  actions: {
-    setBirthdate(value) {
-      this.get("setDirty")();
-      this.get("update")(value);
-      this.set("input", value);
-    }
+@classic
+export default class ValidationDateInput extends Component {
+  @action
+  setBirthdate(value) {
+    this.setDirty();
+    this.update(value);
+    this.set("input", value);
   }
-});
+}
