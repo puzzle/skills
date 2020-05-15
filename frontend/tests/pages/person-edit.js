@@ -39,6 +39,7 @@ export default create({
     title: text("#data-test-person-title"),
     role: text("#data-test-person-role"),
     department: text("#data-test-person-department"),
+    company: text("#data-test-person-company"),
     birthdate: text("#data-test-person-birthdate"),
     nationalities: text("#data-test-person-nationalities"),
     location: text("#data-test-person-location"),

@@ -7,7 +7,7 @@ module ControllerHelpers
   end
 
   def load_pictures
-    Person.all.each do |person|
+    Person.includes(:company).all.each do |person|
       File.open('spec/fixtures/files/picture.png') do |picture|
         person.picture = picture
         person.save

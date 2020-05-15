@@ -17,6 +17,12 @@ export default ApplicationComponent.extend(EKMixin, {
     this.initMaritalStatuses();
     this.initNationalities();
     this.initCheckbox();
+    this.get("person.company").then(company =>
+      this.set("callBackCompany", company)
+    );
+    this.get("person.department").then(department =>
+      this.set("callBackDepartment", department)
+    );
     this.callBackRoleIds = {};
     this.get("person.personRoles").forEach(
       personRole =>
@@ -103,6 +109,10 @@ export default ApplicationComponent.extend(EKMixin, {
       }
     });
     return this.allRoles;
+  }),
+
+  companiesToSelect: computed(function() {
+    return this.get("store").findAll("company");
   }),
 
   departmentsToSelect: computed(function() {
@@ -196,6 +206,9 @@ export default ApplicationComponent.extend(EKMixin, {
         person.rollbackAttributes();
       }
 
+      this.set("person.company", this.get("callBackCompany"));
+      this.set("person.department", this.get("callBackDepartment"));
+
       let languageSkills = this.get("person.languageSkills").toArray();
       languageSkills.forEach(skill => {
         if (skill.get("isNew")) {
@@ -260,6 +273,10 @@ export default ApplicationComponent.extend(EKMixin, {
 
     setDepartment(department) {
       this.set("person.department", department);
+    },
+
+    setCompany(company) {
+      this.set("person.company", company);
     },
 
     setRole(personRole, selectedRole) {
