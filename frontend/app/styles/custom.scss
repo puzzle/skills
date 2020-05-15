@@ -1364,6 +1364,12 @@ div.content-input {
   color: red !important;
 }
 
+/* Ember validated form */
+#validation-error {
+  color: red;
+  font-size: small;
+}
+
 /* These two are for the CV and Fachwissensskala options under person-actions */
 .navbar .navbar-nav .nav-item .nav-link .active {
   color: #1e5a96;
