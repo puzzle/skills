@@ -68,7 +68,7 @@ charlie:
   location: London
   marital_status: <%= Person.marital_statuses[:single] %>
   name: Charlie Ford
-  nationality: UK
+  nationality: GB
   roles: [system-engineer]
   company: partner
   title: MSc in Networking

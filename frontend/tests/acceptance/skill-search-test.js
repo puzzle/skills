@@ -93,7 +93,7 @@ module("Acceptance | skill search", function(hooks) {
     assert.notOk(names.includes("ken"));
     assert.notOk(names.includes("Alice Mante"));
     assert.ok(names.includes("Bob Anderson"));
-    assert.ok(names.includes("Lain Iwakura"));
+    assert.ok(names.includes("Charlie Ford"));
     await page.addSkills();
     let cunit = store
       .peekAll("skill")
@@ -115,6 +115,6 @@ module("Acceptance | skill search", function(hooks) {
     assert.notOk(names2.includes("ken"));
     assert.notOk(names2.includes("Alice Mante"));
     assert.notOk(names2.includes("Bob Anderson"));
-    assert.ok(names2.includes("Lain Iwakura"));
+    assert.ok(names2.includes("Charlie Ford"));
   });
 });
