@@ -6,12 +6,12 @@ class PeopleSkillsFilter
   def initialize(entries, rated, level = nil, skill_id = nil)
     @entries = entries
     @rated = rated
-    @level = level.nil? ? nil : level.to_s.split(',')
-    @skill_id = skill_id
+    @levels = level.nil? ? nil : level.to_s.split(',')
+    @skill_ids = skill_id.nil? ? nil : skill_id.to_s.split(',')
   end
 
   def scope
-    filter_by_level(filter_by_rated, skill_id)
+    filter_by_level(filter_by_rated)
   end
 
   private
@@ -26,31 +26,30 @@ class PeopleSkillsFilter
     entries
   end
 
-  def filter_by_level(entries, skills)
-    return entries if level.nil?
-    skill_ids = skills.to_s.split(',')
-    if skill_ids.length == @level.length
-      return get_filter_results(entries, skill_ids)
+  def filter_by_level(entries)
+    return entries if @levels.nil?
+    if @skill_ids.length == @levels.length
+      return level_filter_results(entries)
     else
       raise ArgumentError, 'Amount of Skill_ids and levels provided do not match'
     end
   end
 
-  def get_filter_results(entries, skill_ids)
+  def level_filter_results(entries)
     person_ids = []
-    entries.where(buildstring(skill_ids)).group(:person_id).count.each_entry do |key, value|
-      person_ids.push(key) if value == skill_ids.length
+    entries.where(buildstring).group(:person_id).count.each_entry do |key, value|
+      person_ids.push(key) if value == @skill_ids.length
     end
-    entries.where(person_id: person_ids, skill_id: skill_ids)
+    entries.where(person_id: person_ids, skill_id: @skill_ids)
   end
 
-  def buildstring(skill_ids)
+  def buildstring
     result = +''
-    skill_ids.each_with_index do |skill, index|
+    @skill_ids.each_with_index do |skill, index|
       result.concat('(skill_id=')
             .concat(skill.to_s)
             .concat(' and level >=')
-            .concat(@level[index].to_s)
+            .concat(@levels[index].to_s)
             .concat(') or ')
     end
     result.delete_suffix(' or ')
