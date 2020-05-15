@@ -35,17 +35,17 @@ alice_rails:
   certificate: false
   core_competence: false
 
-lain_rails:
+charlie_rails:
   skill: rails
-  person: lain
+  person: charlie
   level: 1
   interest: 2
   certificate: false
   core_competence: false
 
-lain_cunit:
+charlie_cunit:
   skill: cunit
-  person: lain
+  person: charlie
   level: 5
   interest: 4
   certificate: true

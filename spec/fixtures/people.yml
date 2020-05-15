@@ -63,15 +63,15 @@ ken:
   email: kenthemaster@testi.com
   department: ux
 
-lain:
+charlie:
   birthdate: 1998-07-06 01:15:00
-  location: Tokyo
+  location: London
   marital_status: <%= Person.marital_statuses[:single] %>
-  name: Lain Iwakura
-  nationality: JP
+  name: Charlie Ford
+  nationality: UK
   roles: [system-engineer]
   company: partner
-  title: Goddess of Networking
+  title: MSc in Networking
   competence_notes: C\n Bash
-  email: lain@mebious.co.uk
+  email: charlie@example.com
   department: sys

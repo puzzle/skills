@@ -5,7 +5,6 @@ describe PeopleSkillsController do
     before { load_pictures }
 
     let(:bob) { people(:bob) }
-    let(:lain) { people(:lain) }
     let(:rails) { skills(:rails) }
     let(:cunit) { skills(:cunit) }
 
