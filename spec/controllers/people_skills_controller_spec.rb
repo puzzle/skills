@@ -78,6 +78,11 @@ describe PeopleSkillsController do
         process :index, method: :get, params: { type: 'Skill', skill_id: rails.id.to_s + "," + junit.id.to_s + "," + ember.id.to_s + "," + cunit.id.to_s, level: '1,1,1,1'}
 
         skills = json['data']
+        skill_levels = skills.map { |s| s["attributes"]["level"] }
+        skill_ids = skills.map { |s| s["attributes"]["skill_id"] }
+
+        expect(skill_levels).not_to include(0)
+        expect(skill_ids).to include(rails.id, junit.id, ember.id, cunit.id)
         expect(skills.count).to eq(8)
       end
 
@@ -96,6 +101,11 @@ describe PeopleSkillsController do
         process :index, method: :get, params: { type: 'Skill', skill_id: rails.id.to_s + "," + junit.id.to_s + "," + bash.id.to_s + "," + ember.id.to_s + "," + cunit.id.to_s, level: '1,1,1,1,1'}
 
         skills = json['data']
+        skill_levels = skills.map { |s| s["attributes"]["level"] }
+        skill_ids = skills.map { |s| s["attributes"]["skill_id"] }
+
+        expect(skill_levels).not_to include(0)
+        expect(skill_ids).to include(rails.id, junit.id, bash.id, ember.id, cunit.id)
         expect(skills.count).to eq(5)
       end
     end
