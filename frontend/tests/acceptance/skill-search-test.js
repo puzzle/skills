@@ -101,7 +101,7 @@ module("Acceptance | skill search", function(hooks) {
       .get("firstObject");
     await cunit;
     /* eslint "no-undef": "off" */
-    await selectChoose("#PowerSelect2", ".ember-power-select-option", 1);
+    await selectChoose(".power-select-1", ".ember-power-select-option", 1);
     assert.equal(
       currentURL(),
       "/skill_search?level=1%2C1&skill_id=" +

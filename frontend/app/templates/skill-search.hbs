@@ -4,8 +4,8 @@
       <p>Und</p>
     {{/if}}
     <div class="row">
-      <div class="col-6">
-        <PowerSelect @selected={{filter.selectedSkill}} @options={{this.skills}} @onChange={{action "setSkill" index}} @searchField="title" @triggerClass="w-75" as |skill|>
+      <div class="col-6 skills-power-select">
+        <PowerSelect @selected={{filter.selectedSkill}} @options={{this.skills}} @onChange={{action "setSkill" index}} @searchField="title" @triggerClass="w-75 power-select-{{index}}" as |skill|>
           {{skill.title}}
         </PowerSelect>
       </div>
