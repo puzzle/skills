@@ -1,12 +1,12 @@
 import classic from "ember-classic-decorator";
 import Component from "@ember/component";
 import $ from "jquery";
-import { later, scheduleOnce } from "@ember/runloop";
+import { later, schedule } from "@ember/runloop";
 
 @classic
 export default class PersonJumpTo extends Component {
   didRender() {
-    personJumpTo(this);
+    personJumpTo(this.query);
   }
 }
 
@@ -14,22 +14,22 @@ const MAX_TIMEOUT = 2000;
 const TIME_STEPS = 100;
 let timeout = 0;
 
-function personJumpTo(context) {
-  if (context.query) {
+function personJumpTo(query) {
+  if (query) {
     later(() => {
       timeout += TIME_STEPS;
 
       if (timeout < MAX_TIMEOUT) {
         //Invoke DOM manipulation after render phase (later schedules for action phase)
-        scheduleOnce("afterRender", context, jumpOrRetry(context));
+        schedule("afterRender", () => jumpOrRetry(query));
       }
     }, TIME_STEPS);
   }
 }
 
-function jumpOrRetry(context) {
-  if (!couldJumpTo(context.query)) {
-    personJumpTo(context);
+function jumpOrRetry(query) {
+  if (!couldJumpTo(query)) {
+    personJumpTo(query);
   }
 }
 
