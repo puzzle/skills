@@ -37,22 +37,22 @@
     </a>
   {{/if}}
 </div>
-  <div class="card mt-4">
-    <div class="card-header bg-info" id="skill-search-results-header">
-      <p class="text-dark header-text mb-0">Suchresultate</p>
-    </div>
+<div class="card mt-4">
+  <div class="card-header bg-info" id="skill-search-results-header">
+    <p class="text-dark header-text mb-0">Suchresultate</p>
   </div>
-  <div class="card mt-3 mb-5">
-    <div id="skill-search-results" class="px-2 border border-info rounded-bottom">
-      {{#if this.model}}
-        {{#each this.sortSelection as |peopleSkill|}}
-          <div class="p-2">
-            <PeopleSkillShow @peopleSkill={{peopleSkill}} @showPersonName={{true}} @showSkillTitle={{true}} />
-          </div>
-        {{/each}}
-      {{else}}
-        <p class="m-2">Keine Resultate</p>
-      {{/if}}
-    </div>
+</div>
+<div class="card mt-3 mb-5">
+  <div id="skill-search-results" class="px-2 border border-info rounded-bottom">
+    {{#if this.model}}
+      {{#each this.sortSelection as |peopleSkill|}}
+        <div class="p-2">
+          <PeopleSkillShow @peopleSkill={{peopleSkill}} @showPersonName={{true}} @showSkillTitle={{true}} />
+        </div>
+      {{/each}}
+    {{else}}
+      <p class="m-2">Keine Resultate</p>
+    {{/if}}
   </div>
+</div>
 
