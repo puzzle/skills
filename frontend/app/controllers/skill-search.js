@@ -12,17 +12,29 @@ export default class SkillSearchController extends Controller {
   @service
   router;
 
-  currentSkillId = [null, null, null, null, null];
-  count = 1;
-
   init() {
     super.init(...arguments);
-    this.set("levelValue1", 1);
-    this.set("levelValue2", 1);
-    this.set("levelValue3", 1);
-    this.set("levelValue4", 1);
-    this.set("levelValue5", 1);
-    this.set("count", 1);
+    let filters;
+    let skill_id = new URLSearchParams(window.location.search).get("skill_id");
+    let level = new URLSearchParams(window.location.search).get("level");
+    if (skill_id != null && skill_id != "") {
+      filters = this.initFilters(skill_id.split(","), level.split(","));
+    } else {
+      filters = [{ selectedSkill: null, currentSkillId: null, levelValue: 1 }];
+    }
+    this.set("filters", filters);
+  }
+
+  initFilters(skill_id, level) {
+    let filters = [];
+    for (let i = 0; i < skill_id.length; i++) {
+      filters.push({
+        selectedSkill: this.store.peekRecord("skill", skill_id[i]),
+        currentSkillId: skill_id[i],
+        levelValue: level[i]
+      });
+    }
+    return filters;
   }
 
   @computed
@@ -30,43 +42,14 @@ export default class SkillSearchController extends Controller {
     return this.store.findAll("skill", { reload: true });
   }
 
-  @computed("model")
-  get selectedSkill1() {
-    const skillId = this.currentSkillId[0];
-    return skillId ? this.get("store").peekRecord("skill", skillId) : null;
-  }
-
-  @computed("model")
-  get selectedSkill2() {
-    const skillId = this.currentSkillId[1];
-    return skillId ? this.get("store").peekRecord("skill", skillId) : null;
-  }
-
-  @computed("model")
-  get selectedSkill3() {
-    const skillId = this.currentSkillId[2];
-    return skillId ? this.get("store").peekRecord("skill", skillId) : null;
-  }
-
-  @computed("model")
-  get selectedSkill4() {
-    const skillId = this.currentSkillId[3];
-    return skillId ? this.get("store").peekRecord("skill", skillId) : null;
-  }
-
-  @computed("model")
-  get selectedSkill5() {
-    const skillId = this.currentSkillId[4];
-    return skillId ? this.get("store").peekRecord("skill", skillId) : null;
-  }
-
   updateSelection() {
     let skill_ids = "",
       levels = "";
-    for (let i = 0; i < this.count; i++) {
-      if (this.currentSkillId[i] !== null) {
-        skill_ids = skill_ids + "," + this.currentSkillId[i];
-        levels = levels + "," + this.get("levelValue" + (i + 1));
+    for (let i = 0; i < this.get("filters").length; i++) {
+      if (this.get("filters." + i + ".currentSkillId") !== null) {
+        skill_ids =
+          skill_ids + "," + this.get("filters." + i + ".currentSkillId");
+        levels = levels + "," + this.get("filters." + i + ".levelValue");
       }
     }
     if (skill_ids.length > 0) {
@@ -93,61 +76,38 @@ export default class SkillSearchController extends Controller {
   }
 
   @action
-  setSkill(num, skill) {
-    let duplicate = this.getDuplicate();
-    duplicate[num - 1] = parseInt(skill.get("id"));
-    this.set("currentSkillId", duplicate);
+  setSkill(index, skill) {
+    this.set("filters." + index + ".currentSkillId", parseInt(skill.get("id")));
+    this.set("filters." + index + ".selectedSkill", skill);
   }
 
   @action
-  removeFilter(num) {
-    for (let i = num; i < this.count; i++) {
-      let duplicate = this.getDuplicate();
-      duplicate[i - 1] = duplicate[i];
-      this.set("currentSkillId", duplicate);
-      this.set("levelValue" + i, this.get("levelValue" + (i + 1)));
-    }
-    if (this.count > 1) {
-      this.set("count", this.count - 1);
-    }
-    this.set("levelValue" + (this.count + 1), 1);
-    let duplicate = this.getDuplicate();
-    duplicate[this.count] = null;
-    this.set("currentSkillId", duplicate);
+  removeFilter(index) {
+    this.get("filters").removeAt(index);
   }
 
   @observes(
-    "levelValue1",
-    "levelValue2",
-    "levelValue3",
-    "levelValue4",
-    "levelValue5",
-    "currentSkillId"
+    "filters.@each.currentSkillId",
+    "filters.@each.levelValue",
+    "filters.@each.skill"
   )
   valueChanged() {
     this.updateSelection();
   }
 
   @action
-  resetFilter(num) {
-    this.set("levelValue" + num, 1);
-    let duplicate = this.getDuplicate();
-    duplicate[num - 1] = null;
-    this.set("currentSkillId", duplicate);
+  resetFilter(index) {
+    this.set("filters." + index + ".selectedSkill", null);
+    this.set("filters." + index + ".currentSkillId", null);
+    this.set("filters." + index + ".levelValue", 1);
   }
 
   @action
   addFilter() {
-    this.set("count", this.count + 1);
-  }
-
-  getDuplicate() {
-    return [
-      this.currentSkillId[0],
-      this.currentSkillId[1],
-      this.currentSkillId[2],
-      this.currentSkillId[3],
-      this.currentSkillId[4]
-    ];
+    this.get("filters").pushObject({
+      selectedSkill: null,
+      currentSkillId: null,
+      levelValue: 1
+    });
   }
 }
