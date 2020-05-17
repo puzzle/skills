@@ -9,7 +9,7 @@ describe PeopleSkillsController do
     let(:cunit) { skills(:cunit) }
     let(:ember) { skills(:ember) }
     let(:bash) { skills(:bash) }
-    let(:junit) { skills(:cunit) }
+    let(:junit) { skills(:junit) }
 
     describe 'GET index' do
       it 'returns bobs people_skills' do

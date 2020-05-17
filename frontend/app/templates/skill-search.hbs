@@ -13,7 +13,7 @@
       <div class="col">
         <div class="col justify-content-center people-skill-level">
           <p class="description skillset-level-title">{{levelName filter.levelValue}}</p>
-          <UiSlider @value={{filter.levelValue}} @ticks="1,2,3,4,5" @tooltip="hide" @min={{1}} @max={{5}} @immediateResponse={{true}} />
+          <UiSlider class="skillsearch-selection-slider" @value={{filter.levelValue}} @ticks="1,2,3,4,5" @tooltip="hide" @min={{1}} @max={{5}} @immediateResponse={{true}} />
         </div>
       </div>
       <div class="col pt-3">
@@ -22,9 +22,9 @@
             <i class="fa fa-redo"></i>
           </a>
           {{#if (gt this.filters.length 1)}}
-          <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "removeFilter" index}} >
-            <i class="fa fa-window-close"></i>
-          </a>
+            <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" onclick={{action "removeFilter" index}} >
+              <i class="fa fa-window-close"></i>
+            </a>
           {{/if}}
         </div>
       </div>
