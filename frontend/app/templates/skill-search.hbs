@@ -1,4 +1,4 @@
-<div id="skill-search-header" class="header pt-3">
+<div {{did-insert this.initFilters}} id="skill-search-header" class="header pt-3">
   {{#each this.filters as |filter index|}}
     {{#if (gt index 0)}}
       <p>Und</p>
@@ -42,7 +42,7 @@
     </div>
   </div>
 </div>
-<div id="skill-search-results-card" class="card mt-3 mb-5">
+<div {{did-insert this.calculateOffset}} id="skill-search-results-card" class="card mt-3 mb-5">
   <div id="skill-search-results" class="px-2 border border-info rounded-bottom">
     {{#if this.model}}
       {{#each this.sortSelection as |peopleSkill|}}

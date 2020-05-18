@@ -13,29 +13,25 @@ export default class SkillSearchController extends Controller {
   @service
   router;
 
-  init() {
-    super.init(...arguments);
-    let filters;
+  @action
+  initFilters() {
+    let filters = [];
     let skill_id = new URLSearchParams(window.location.search).get("skill_id");
     let level = new URLSearchParams(window.location.search).get("level");
-    if (skill_id != null && skill_id != "") {
-      filters = this.initFilters(skill_id.split(","), level.split(","));
+    if (skill_id && level) {
+      let skill_ids = skill_id.split(",");
+      let levels = level.split(",");
+      for (let i = 0; i < skill_ids.length; i++) {
+        filters.pushObject({
+          selectedSkill: this.store.findRecord("skill", parseInt(skill_ids[i])),
+          currentSkillId: skill_ids[i],
+          levelValue: levels[i]
+        });
+      }
     } else {
       filters = [{ selectedSkill: null, currentSkillId: null, levelValue: 1 }];
     }
     this.set("filters", filters);
-  }
-
-  initFilters(skill_id, level) {
-    let filters = [];
-    for (let i = 0; i < skill_id.length; i++) {
-      filters.push({
-        selectedSkill: this.store.peekRecord("skill", skill_id[i]),
-        currentSkillId: skill_id[i],
-        levelValue: level[i]
-      });
-    }
-    return filters;
   }
 
   @computed
@@ -114,6 +110,7 @@ export default class SkillSearchController extends Controller {
     this.calculateOffset();
   }
 
+  @action
   calculateOffset() {
     switch (this.filters.length) {
       case 1:
