@@ -3,6 +3,7 @@ import { action, computed } from "@ember/object";
 import { observes } from "@ember-decorators/object";
 import { inject as service } from "@ember/service";
 import Controller from "@ember/controller";
+import $ from "jquery";
 
 @classic
 export default class SkillSearchController extends Controller {
@@ -116,29 +117,19 @@ export default class SkillSearchController extends Controller {
   calculateOffset() {
     switch (this.filters.length) {
       case 1:
-        document.getElementById(
-          "skill-search-results-header"
-        ).style.paddingTop = "82px";
+        $("#skill-search-results-card").css("padding-top", "147px");
         break;
       case 2:
-        document.getElementById(
-          "skill-search-results-header"
-        ).style.paddingTop = "164px";
+        $("#skill-search-results-card").css("padding-top", "229px");
         break;
       case 3:
-        document.getElementById(
-          "skill-search-results-header"
-        ).style.paddingTop = "246px";
+        $("#skill-search-results-card").css("padding-top", "311px");
         break;
       case 4:
-        document.getElementById(
-          "skill-search-results-header"
-        ).style.paddingTop = "328px";
+        $("#skill-search-results-card").css("padding-top", "393px");
         break;
       case 5:
-        document.getElementById(
-          "skill-search-results-header"
-        ).style.paddingTop = "386px";
+        $("#skill-search-results-card").css("padding-top", "451px");
     }
   }
 }
