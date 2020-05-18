@@ -84,6 +84,7 @@ export default class SkillSearchController extends Controller {
   @action
   removeFilter(index) {
     this.get("filters").removeAt(index);
+    this.calculateOffset();
   }
 
   @observes(
@@ -109,5 +110,35 @@ export default class SkillSearchController extends Controller {
       currentSkillId: null,
       levelValue: 1
     });
+    this.calculateOffset();
+  }
+
+  calculateOffset() {
+    switch (this.filters.length) {
+      case 1:
+        document.getElementById(
+          "skill-search-results-header"
+        ).style.paddingTop = "82px";
+        break;
+      case 2:
+        document.getElementById(
+          "skill-search-results-header"
+        ).style.paddingTop = "164px";
+        break;
+      case 3:
+        document.getElementById(
+          "skill-search-results-header"
+        ).style.paddingTop = "246px";
+        break;
+      case 4:
+        document.getElementById(
+          "skill-search-results-header"
+        ).style.paddingTop = "328px";
+        break;
+      case 5:
+        document.getElementById(
+          "skill-search-results-header"
+        ).style.paddingTop = "386px";
+    }
   }
 }
