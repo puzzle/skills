@@ -7,7 +7,7 @@ describe SkillsFilter do
       filter = SkillsFilter.new(Skill.all, nil, nil, nil)
       filteredSkills = filter.scope
 
-      expect(filteredSkills.count).to eq(4)
+      expect(filteredSkills.count).to eq(5)
       expect(filteredSkills[0].title).to eq('Rails')
       expect(filteredSkills[1].title).to eq('JUnit')
       expect(filteredSkills[2].title).to eq('Bash')

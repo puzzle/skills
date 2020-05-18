@@ -38,3 +38,12 @@ cunit:
   portfolio: 2
   default_set: false
   category: c
+
+ember:
+  title: ember
+  radar: 1
+  portfolio: 2
+  default_set: false
+  category: software-engineering
+
+

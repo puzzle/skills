@@ -23,16 +23,12 @@ class PeopleSkillsController < CrudController
                                   :category,
                                   :people, people_skills: :person
                                 ])
-    people_skills = PeopleSkillsFilter.new(base, params[:rated], params[:level]).scope
-    filter_entries(people_skills)
-  end
-
-  def filter_entries(people_skills)
+    people_skills = PeopleSkillsFilter.new(base, params[:rated], params[:level], params[:skill_id])
+                                      .scope
     if params.key?(:person_id)
-      people_skills.where(person_id: params[:person_id])
-    elsif params.key?(:skill_id)
-      people_skills.where(skill_id: params[:skill_id])
+      return people_skills.where(person_id: params[:person_id])
     end
+    people_skills
   end
 
   def export

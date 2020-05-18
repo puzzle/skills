@@ -12,7 +12,7 @@ module("Acceptance | skill search", function(hooks) {
 
     await page.indexPage.visit();
 
-    assert.equal(currentURL(), "/skill_search");
+    assert.equal(currentURL(), "/skill_search?level=&skill_id=");
 
     let store = this.owner.__container__.lookup("service:store");
     let rails = store
@@ -39,7 +39,7 @@ module("Acceptance | skill search", function(hooks) {
 
     await page.indexPage.visit();
 
-    assert.equal(currentURL(), "/skill_search");
+    assert.equal(currentURL(), "/skill_search?level=&skill_id=");
 
     let store = this.owner.__container__.lookup("service:store");
     let junit = store
@@ -70,5 +70,51 @@ module("Acceptance | skill search", function(hooks) {
       .toArray()
       .map(newnames => newnames.text);
     assert.notOk(newnames.includes("Alice Mante"));
+  });
+
+  test("search multiple skills", async function(assert) {
+    assert.expect(10);
+    await page.indexPage.visit();
+    let store = this.owner.__container__.lookup("service:store");
+    let rails = store
+      .peekAll("skill")
+      .filter(skill => skill.get("title") == "Rails")
+      .get("firstObject");
+    await rails;
+    /* eslint "no-undef": "off" */
+    await selectChoose(".ember-power-select-trigger", rails.get("title"));
+    assert.equal(
+      currentURL(),
+      "/skill_search?level=1&skill_id=" + rails.get("id")
+    );
+    const names = page.indexPage.peopleSkills.peopleNames
+      .toArray()
+      .map(name => name.text);
+    assert.notOk(names.includes("ken"));
+    assert.notOk(names.includes("Alice Mante"));
+    assert.ok(names.includes("Bob Anderson"));
+    assert.ok(names.includes("Charlie Ford"));
+    await page.addSkills();
+    let cunit = store
+      .peekAll("skill")
+      .filter(skill => skill.get("title") == "cunit")
+      .get("firstObject");
+    await cunit;
+    /* eslint "no-undef": "off" */
+    await selectChoose(".power-select-1", ".ember-power-select-option", 1);
+    assert.equal(
+      currentURL(),
+      "/skill_search?level=1%2C1&skill_id=" +
+        rails.get("id") +
+        "%2C" +
+        cunit.get("id")
+    );
+    const names2 = page.indexPage.peopleSkills.peopleNames
+      .toArray()
+      .map(name => name.text);
+    assert.notOk(names2.includes("ken"));
+    assert.notOk(names2.includes("Alice Mante"));
+    assert.notOk(names2.includes("Bob Anderson"));
+    assert.ok(names2.includes("Charlie Ford"));
   });
 });

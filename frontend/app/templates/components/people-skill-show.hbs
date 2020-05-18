@@ -1,13 +1,16 @@
 <div class="row">
-  <div role="button" onclick={{toggleSkillShow}} data-toggle={{if this.toggleSkillShow "modal"}} data-target="#skill-show-modal" class="col pt-3 people-skill-skillname">
-    {{#if this.showPersonName}}
+  {{#if this.showPersonName}}
+    <div role="button" onclick={{toggleSkillShow}} data-toggle={{if this.toggleSkillShow "modal"}} data-target="#skill-show-modal" class="col pt-3 people-skill-skillname">
       <a role="button" onclick={{action "changePerson" this.peopleSkill.person}} class="edit-buttons">
         <span data-dismiss="modal">{{this.peopleSkill.person.name}}</span>
       </a>
-    {{else}}
+    </div>
+  {{/if}}
+  {{#if this.showSkillTitle}}
+    <div role="button" onclick={{toggleSkillShow}} data-toggle={{if this.toggleSkillShow "modal"}} data-target="#skill-show-modal" class="col pt-3 people-skill-skillname">
       <div class="people-skill-title">{{this.peopleSkill.skill.title}}</div>
-    {{/if}}
-  </div>
+    </div>
+  {{/if}}
   <div onclick={{this.toggleSkillShow}} data-toggle={{if this.toggleSkillShow "modal"}} role="button" data-target="#skill-show-modal" class="col justify-content-center people-skill-level">
     <p class="description skillset-level-title">{{this.levelName}}</p>
     <UiSlider @value={{this.levelValue}} @ticks="1,2,3,4,5" @tooltip="hide" @disabled={{true}} @min={{1}} @max={{5}} @immediateResponse={{true}} @action={{action "adjustSliderStylingOnReset"}} />

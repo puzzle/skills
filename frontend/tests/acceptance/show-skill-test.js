@@ -13,7 +13,7 @@ module("Acceptance | show skill", function(hooks) {
 
     assert.equal(currentURL(), "/skills");
 
-    await page.indexPage.skills.skillNames.toArray()[3].clickOn();
+    await page.indexPage.skills.skillNames.toArray()[4].clickOn();
 
     let names = page.indexPage.skillModal.personNames
       .toArray()
@@ -30,7 +30,7 @@ module("Acceptance | show skill", function(hooks) {
 
     assert.equal(currentURL(), "/skills");
 
-    await page.indexPage.skills.skillNames.toArray()[2].clickOn();
+    await page.indexPage.skills.skillNames.toArray()[3].clickOn();
 
     let names = page.indexPage.skillModal.personNames
       .toArray()
