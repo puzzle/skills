@@ -24,7 +24,7 @@ module("Acceptance | redirect to last profile", function(hooks) {
 
     await skillSearchPage.indexPage.visit();
 
-    assert.equal(currentURL(), "/skill_search");
+    assert.equal(currentURL(), "/skill_search?level=&skill_id=");
 
     await applicationPage.profileMenuItem();
 
@@ -46,7 +46,7 @@ module("Acceptance | redirect to last profile", function(hooks) {
 
     await skillSearchPage.indexPage.visit();
 
-    assert.equal(currentURL(), "/skill_search");
+    assert.equal(currentURL(), "/skill_search?level=&skill_id=");
 
     await applicationPage.profileMenuItem();
 
@@ -73,7 +73,7 @@ module("Acceptance | redirect to last profile", function(hooks) {
 
     await skillSearchPage.indexPage.visit();
 
-    assert.equal(currentURL(), "/skill_search");
+    assert.equal(currentURL(), "/skill_search?level=&skill_id=");
 
     await applicationPage.profileMenuItem();
 
@@ -101,7 +101,7 @@ module("Acceptance | redirect to last profile", function(hooks) {
 
     await skillSearchPage.indexPage.visit();
 
-    assert.equal(currentURL(), "/skill_search");
+    assert.equal(currentURL(), "/skill_search?level=&skill_id=");
 
     await applicationPage.profileMenuItem();
 
@@ -130,7 +130,7 @@ module("Acceptance | redirect to last profile", function(hooks) {
 
     await skillSearchPage.indexPage.visit();
 
-    assert.equal(currentURL(), "/skill_search");
+    assert.equal(currentURL(), "/skill_search?level=&skill_id=");
 
     await applicationPage.profileMenuItem();
 

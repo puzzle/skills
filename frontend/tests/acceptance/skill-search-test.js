@@ -12,7 +12,7 @@ module("Acceptance | skill search", function(hooks) {
 
     await page.indexPage.visit();
 
-    assert.equal(currentURL(), "/skill_search");
+    assert.equal(currentURL(), "/skill_search?level=&skill_id=");
 
     let store = this.owner.__container__.lookup("service:store");
     let rails = store
@@ -39,7 +39,7 @@ module("Acceptance | skill search", function(hooks) {
 
     await page.indexPage.visit();
 
-    assert.equal(currentURL(), "/skill_search");
+    assert.equal(currentURL(), "/skill_search?level=&skill_id=");
 
     let store = this.owner.__container__.lookup("service:store");
     let junit = store
