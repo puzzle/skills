@@ -1,7 +1,7 @@
 <div class="mb-2">
   <div class="card-header bg-info">
     <div class="row">
-      <div class="col-sm-6 project-title-text">
+      <div class="col-sm-6 project-title-text cv-search-searchable">
         {{if this.project.monthFrom (concat (moment-format this.project.monthFrom "MM" "MM") ".")}}{{this.project.yearFrom}}
         {{#if (eq this.project.yearTo null)}}
           - heute
@@ -18,15 +18,15 @@
         <tbody>
           <tr>
             <th scope="row" class="w-25"> Beschreibung </th>
-            <td class="text-table-left"> {{this.project.lineBreakDescription}}</td>
+            <td class="text-table-left cv-search-searchable"> {{this.project.lineBreakDescription}}</td>
           </tr>
           <tr>
             <th scope="row" class="w-25"> Rolle </th>
-            <td> {{this.project.lineBreakRole}}</td>
+            <td class="cv-search-searchable"> {{this.project.lineBreakRole}}</td>
           </tr>
           <tr>
             <th scope="row" class="w-25"> Technologie(n) </th>
-            <td> {{this.project.lineBreakTechnology}}</td>
+            <td class="cv-search-searchable"> {{this.project.lineBreakTechnology}}</td>
           </tr>
         </tbody>
       </table>
