@@ -36,7 +36,7 @@ describe 'Keycloak' do
     expect(response.status).to eq(200)
   end
   
-  it 'fails to create skills without the admin role' do
+  it 'fails to create skills without the admin role', :skip => "Users must be able to create skills" do
     headers = {
       'ACCEPT' => 'application/json',
       'Authorization' => "Bearer #{jwt}"
