@@ -38,6 +38,7 @@
     "@babel/runtime": "7.8.4",
     "bootstrap": "^4.3.1",
     "bootstrap-slider": "^10.6.1",
+    "ember-cli-moment-shim": "3.8.0",
     "ember-cli-update": "^0.27.1",
     "ember-intl": "^4.2.3",
     "ember-validated-form": "^2.0.0",
