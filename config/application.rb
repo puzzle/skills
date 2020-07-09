@@ -39,7 +39,6 @@ module Skills
       EMBER_KEYCLOAK_SERVER_URL
       EMBER_KEYCLOAK_REALM_NAME
       EMBER_KEYCLOAK_CLIENT_ID
-      EMBER_KEYCLOAK_SECRET
     ].freeze
 
     def keycloak_disabled?
