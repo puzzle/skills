@@ -19,6 +19,10 @@ class SkillsController < CrudController
     render json: fetch_entries, each_serializer: SkillSerializer, include: '*'
   end
 
+  def create
+    super
+  end
+
   def unrated_by_person
     if params[:person_id].present?
       entries = Skill.default_set.where
