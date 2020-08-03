@@ -1,6 +1,5 @@
 import { inject as service } from "@ember/service";
 import Component from "@ember/component";
-import { computed } from "@ember/object";
 import { isBlank } from "@ember/utils";
 import { on } from "@ember/object/evented";
 import { EKMixin, keyUp } from "ember-keyboard";
@@ -9,19 +8,9 @@ export default Component.extend(EKMixin, {
   store: service(),
   intl: service(),
 
-  newProject: computed("personId", function() {
-    let project = this.get("store").createRecord("project");
-    let technology = this.get("store").createRecord("project-technology", {
-      project
-    });
-    technology.set("offer", []);
-    return project;
-  }),
-
-  willDestroyElement() {
-    if (this.get("newProject.isNew")) {
-      this.get("newProject").destroyRecord();
-    }
+  init() {
+    this._super(...arguments);
+    this.set("newProject", this.get("store").createRecord("project"));
   },
 
   activateKeyboard: on("init", function() {
@@ -55,6 +44,7 @@ export default Component.extend(EKMixin, {
   actions: {
     abortNew(event) {
       event.preventDefault();
+      this.get("newProject").destroyRecord();
       this.sendAction("done", false);
     },
 
@@ -64,21 +54,14 @@ export default Component.extend(EKMixin, {
       newProject.set("person", person);
       return newProject
         .save()
-        .then(() =>
-          Promise.all([
-            ...newProject
-              .get("projectTechnologies")
-              .map(projectTechnology => projectTechnology.save())
-          ])
-        )
-        .then(project => {
+        .then(() => {
+          this.get("notify").success("Projekt wurde hinzugefügt!");
           this.sendAction("done", false);
           if (initNew) this.sendAction("setInitialState", this);
         })
-        .then(() => this.get("notify").success("Projekt wurde hinzugefügt!"))
         .catch(() => {
-          this.set("newProject.person", null);
-          this.get("newProject.errors").forEach(({ attribute, message }) => {
+          newProject.set("person", null);
+          newProject.get("errors").forEach(({ attribute, message }) => {
             let translated_attribute = this.get("intl").t(
               `project.${attribute}`
             );

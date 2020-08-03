@@ -4,6 +4,7 @@ import { observes } from "@ember-decorators/object";
 import { inject as service } from "@ember/service";
 import Controller from "@ember/controller";
 import PeopleSkill from "../models/people-skill";
+import { tracked } from "@glimmer/tracking";
 
 @classic
 export default class SkillSearchController extends Controller {
@@ -13,29 +14,25 @@ export default class SkillSearchController extends Controller {
   @service
   router;
 
-  currentSkillId = 0;
+  @tracked
+  levelValue = this.level || 1;
 
-  init() {
-    super.init(...arguments);
-    this.set("levelValue", 1);
-  }
+  currentSkillId = this.skill_id;
 
-  @computed
-  get skills() {
-    return this.store.findAll("skill", { reload: true });
-  }
+  @tracked
+  skills = this.store.findAll("skill", { reload: true });
 
-  @computed("model")
+  @computed("model", "skills")
   get selectedSkill() {
-    const skillId = this.get("currentSkillId");
-    return skillId ? this.get("store").peekRecord("skill", skillId) : null;
+    const skillId = this.skill_id;
+    return skillId ? this.store.peekRecord("skill", skillId) : null;
   }
 
   updateSelection() {
     this.get("router").transitionTo({
       queryParams: {
-        skill_id: this.get("currentSkillId"),
-        level: this.get("levelValue")
+        skill_id: this.currentSkillId,
+        level: this.levelValue
       }
     });
   }

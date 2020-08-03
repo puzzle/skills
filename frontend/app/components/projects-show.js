@@ -17,7 +17,6 @@ export default class ProjectsShow extends Component {
   @observes("projects.@each")
   projectsChanged() {
     if (this.get("projectEditing.isDeleted")) this.set("projectEditing", null);
-    this.send("toggleProjectNew", false);
     this.send("toggleProjectEditing");
     this.notifyPropertyChange("sortedProjects");
   }
