@@ -72,7 +72,7 @@ class PeopleSearch
 
   def in_attributes(attrs)
     attribute = searchable_fields(attrs).find do |_key, value|
-      return if value.nil?
+      next if value.nil?
       value.downcase.include?(search_term.downcase) # PG Search is not case sensitive
     end
     attribute.try(:first)
