@@ -55,6 +55,7 @@ class PeopleSearch
 
   def in_association(person, sym)
     target = person.association(sym).target
+    return if target.nil?
     if target.is_a?(Array)
       return attribute_in_array(target)
     else
