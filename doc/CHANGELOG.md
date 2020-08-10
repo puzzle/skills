@@ -4,6 +4,10 @@
 
 - **Sentry:** Skills ist nun Sentry-kompatibel!
 - **Env Variabeln per Endpoint:** Benötigte Environment Variabeln für das Frontend können per Endpoint abgefragt werden.
+- **Cv Suche mit Gefunden in:** Cv Suche zeigt nun an, wo der gesuchte Begriff gefunden wurde, zudem kann man direkt dorthin springen.
+- **Skill Suche mindest Erfahrung:** Skill Suche erlaubt es nun, die mindest Erfahrung festzulegen.
+- **Anonymisiertes CV:** CVs können ohne die persönlichen Daten exportiert werden.
+
 
 ### Improvements
 
@@ -12,6 +16,7 @@
 - **README:** Readme deutlich verbessert in Struktur und Inhalt
 - **Docker Image:** Ein Skills Docker Image wurde auf Dockerhub veröffentlicht
 - **Department und PersonRole Level:** Die Departments und PersonRole levels wurden aus dem settings.yml in die Datenbank verschoben
+- **Bugfix:** [Skill erstellen Bugfix](https://github.com/puzzle/skills/issues/308)
 
 # 4.2.0
 
