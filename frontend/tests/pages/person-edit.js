@@ -71,7 +71,7 @@ export default create({
     }),
 
     submit: clickable("#submit-education-button"),
-    delete: clickable("#deleteButton"),
+    delete: clickable("#delete-education-icon #deleteButton"),
     confirm: clickable("#delete-button")
   }
 });

@@ -1,7 +1,7 @@
 import classic from "ember-classic-decorator";
 import { action, computed } from "@ember/object";
 import { inject as service } from "@ember/service";
-import Component from "@ember/component";
+import Component from "@glimmer/component";
 import { isBlank } from "@ember/utils";
 
 @classic
@@ -10,27 +10,19 @@ export default class PeopleSearch extends Component {
 
   @service router;
 
-  init() {
-    super.init(...arguments);
-  }
-
   @computed("router.currentRoute.parent.params.person_id")
   get selected() {
-    const currentId = this.get("router.currentRoute.parent.params.person_id");
-    return currentId ? this.get("store").find("person", currentId) : undefined;
+    const currentId = this.router.currentRoute.parent.params.person_id;
+    return currentId ? this.store.peekRecord("person", currentId) : undefined;
   }
 
-  @computed
+  @computed("this.args.people")
   get peopleToSelect() {
-    return this.get("store")
-      .findAll("person", { reload: true })
-      .then(people =>
-        people.toArray().sort((a, b) => {
-          if (a.get("name") < b.get("name")) return -1;
-          if (a.get("name") > b.get("name")) return 1;
-          return 0;
-        })
-      );
+    return this.args.people.toArray().sort((a, b) => {
+      if (a.get("name") < b.get("name")) return -1;
+      if (a.get("name") > b.get("name")) return 1;
+      return 0;
+    });
   }
 
   focusComesFromOutside(e) {
@@ -43,7 +35,6 @@ export default class PeopleSearch extends Component {
 
   @action
   changePerson(person) {
-    this.set("selected", person);
     this.router.transitionTo("person", person.id);
   }
 

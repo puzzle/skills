@@ -24,9 +24,9 @@ export default class DeleteWithConfirmation extends Component {
 
   @action
   delete(entry, transitionTo) {
-    const message = this.get("intl").t("delete-confirmation.success", {
-      name: entry.get("instanceToString")
-    })["string"];
+    const message = this.intl.t("delete-confirmation.success", {
+      name: entry.instanceToString
+    });
 
     entry.destroyRecord().then(() => {
       this.set("showConfirmation", false);
