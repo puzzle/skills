@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'rails', '6.0.1'
+gem 'rails', '6.0.3.2'
 
 gem 'active_model_serializers'
 gem 'activerecord-postgresql-adapter'
