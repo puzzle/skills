@@ -12,6 +12,9 @@ export default class ApplicationRoute extends Route {
   session;
 
   @service
+  envSettings;
+
+  @service
   moment;
 
   @service
@@ -19,7 +22,7 @@ export default class ApplicationRoute extends Route {
 
   config = config;
 
-  beforeModel() {
+  async beforeModel() {
     this.get("moment").setLocale("de");
     this.get("intl").setLocale(["de"]);
     super.beforeModel(...arguments);
@@ -27,6 +30,9 @@ export default class ApplicationRoute extends Route {
     let session = this.get("session");
 
     // Keycloak constructor arguments as described in the keycloak documentation.
+
+    await this.envSettings.fetchEnv();
+
     let options = {
       url: this.config.keycloak.url, //add your url here
       realm: this.config.keycloak.realm, // add your realm here
