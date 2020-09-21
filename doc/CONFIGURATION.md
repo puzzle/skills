@@ -35,7 +35,7 @@ Exact documentation for these CRUD methods can be found [here](https://guides.ru
 
 ### Managing Categories
 
-Categories can be added using the [skill_config.yml](https://github.com/puzzle/skills/blob/master/config/skill_config.yml) file.
+Categories can be added using the [skill_config.yml](https://github.com/puzzle/skills/blob/master/config/settings.yml) file.
 
 But they can't be removed or updated this way. They have to be updated/deleted manually like the roles above.
 
