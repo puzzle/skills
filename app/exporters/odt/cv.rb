@@ -86,6 +86,8 @@ module Odt
           category: 'Notizen',
           competence: person.competence_notes.strip
         }
+      else
+        []
       end
     end
 
