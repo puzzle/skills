@@ -7,6 +7,7 @@ department_names =  ["/dev/one",
                       "/zh",
                       "/sys",
                       "/bs",
+                      "/racoon",
                       "Funktionsbereiche"]
 
 department_names.each {|n| Department.seed(name: n) }

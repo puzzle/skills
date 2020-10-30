@@ -27,7 +27,7 @@ class Person < ApplicationRecord
   include PgSearch::Model
 
   belongs_to :company
-  belongs_to :department
+  belongs_to :department, optional: true
 
   mount_uploader :picture, PictureUploader
   has_many :projects, dependent: :destroy
