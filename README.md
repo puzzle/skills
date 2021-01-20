@@ -26,7 +26,7 @@ The Back-End is built with [Ruby on Rails](https://rubyonrails.org/) with an API
 You will need the following things properly installed on your computer:
 
 -   [Git (Version Control System)](http://git-scm.com/)
--   [RVM (Ruby Version Manager)](http://rvm.io/)
+-   [RVM (Ruby Version Manager)](https://rvm.io/)
   -   Either [PostgreSQL](https://www.postgresql.org/) or [Docker](https://www.docker.com/) for the Database (Docker is recommended)
 
 ## Quick Setup
@@ -51,10 +51,18 @@ Install the ruby package manager:
 ```shell
 gem install bundler
 ```
+Note that the PostgreSQL gem `pg` requires header files for the Postgres library `libqp` to be available.  Therefore,
+make sure `libpq-dev` is installed:
+```shell
+sudo apt install libpq-dev
+```
+
 And let the bundler install all the prerequisite gems:
 ```shell
 bundle install
 ```
+
+
 
 #### Database setup
 
