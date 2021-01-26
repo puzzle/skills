@@ -12,7 +12,6 @@
 ![GitHub stars](https://img.shields.io/github/stars/puzzle/skills)
 
 
-
 PuzzleSkills is an open source webapplication to facilitate skill management.   
 With the help of PuzzleSkills Users can manage their profiles, CVs and Skills.   
 
@@ -26,8 +25,8 @@ The Back-End is built with [Ruby on Rails](https://rubyonrails.org/) with an API
 You will need the following things properly installed on your computer:
 
 -   [Git (Version Control System)](http://git-scm.com/)
--   [RVM (Ruby Version Manager)](http://rvm.io/)
-  -   Either [PostgreSQL](https://www.postgresql.org/) or [Docker](https://www.docker.com/) for the Database (Docker is recommended)
+-   [RVM (Ruby Version Manager)](https://rvm.io/) ([installation](https://rvm.io/rvm/install) requires `curl` and `gpg`)
+-   Either [PostgreSQL](https://www.postgresql.org/) or [Docker](https://www.docker.com/) for the Database (Docker is recommended)
 
 ## Quick Setup
 
@@ -50,6 +49,11 @@ rvm use 2.5
 Install the ruby package manager:
 ```shell
 gem install bundler
+```
+Note that the PostgreSQL gem `pg` requires header files for the Postgres library `libqp` to be available.  Therefore,
+make sure `libpq-dev` is installed:
+```shell
+sudo apt install libpq-dev
 ```
 And let the bundler install all the prerequisite gems:
 ```shell

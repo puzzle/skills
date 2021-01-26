@@ -6,7 +6,7 @@ module ExportController
   private
 
   def filename(name, document_type = nil, file_type = 'odt')
-    return "#{name.downcase.tr(' ', '_')}_#{document_type}.#{file_type}" if document_type
+    return "#{document_type}_#{name.downcase.tr(' ', '_')}.#{file_type}" if document_type
     "#{name.downcase.tr(' ', '_')}.#{file_type}"
   end
 
