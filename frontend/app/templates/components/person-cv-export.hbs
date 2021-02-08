@@ -7,6 +7,15 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+        <div class="modal-body">
+          Niederlassung:
+          <div class="container-fluid">
+            <PowerSelect @selected={{this.location}} @options={{this.locations}} @onFocus={{action "handleFocus" }}
+                            @onBlur={{action "handleBlur" }} @onChange={{action "setLocation"}} as |location|>
+                            {{location}}
+            </PowerSelect>
+          </div>
+        </div>
       <div class="modal-body">
         <div class="container-fluid">
           <div class="row my-3">
