@@ -8,11 +8,11 @@
         </button>
       </div>
         <div class="modal-body">
-          Niederlassung:
+          Niederlassung (für Footer):
           <div class="container-fluid">
-            <PowerSelect @selected={{this.location}} @options={{this.locations}} @onFocus={{action "handleFocus" }}
+            <PowerSelect @selected={{this.selectedLocation}} @options={{this.locations}} @onFocus={{action "handleFocus" }}
                             @onBlur={{action "handleBlur" }} @onChange={{action "setLocation"}} as |location|>
-                            {{location}}
+                            {{location.short_name}}
             </PowerSelect>
           </div>
         </div>

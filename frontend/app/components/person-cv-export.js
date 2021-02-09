@@ -6,13 +6,13 @@ import { isBlank } from "@ember/utils";
 export default class PersonCvExport extends Component {
   @service download;
   @service router;
+  @service store;
 
-  locations = ["Zürich", "Basel", "Tübingen"];
+  locations = this.store.findAll("branch_adress");
+  selectedLocation = this.locations.get("firstObject");
 
-  location = "";
-
-  init() {
-    super.init(...arguments);
+  constructor() {
+    super(...arguments);
   }
 
   @action
@@ -36,7 +36,7 @@ export default class PersonCvExport extends Component {
 
   @action
   setLocation(location) {
-    Ember.set(this, "location", location);
+    Ember.set(this, "selectedLocation", location);
   }
 
   @action
@@ -47,7 +47,7 @@ export default class PersonCvExport extends Component {
       `/api/people/` +
       this.args.person.id +
       ".odt?anon=false&location=" +
-      this.location;
+      this.selectedLocation.id;
     this.download.file(url);
   }
 
@@ -59,7 +59,7 @@ export default class PersonCvExport extends Component {
       "/api/people/" +
       this.args.person.id +
       ".odt?anon=true&location=" +
-      this.location;
+      this.selectedLocation.id;
     this.download.file(url);
   }
 }
