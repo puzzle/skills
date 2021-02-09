@@ -35,4 +35,11 @@ jobs:
         cp config/database.ci.yml config/database.yml
         bundle exec rake db:create db:migrate
 
-    - run: bundle exec rake
+    - name: Run Tests
+        env:
+          PGHOST: localhost
+          POSTGRES_DB: rails_github_actions_test
+          POSTGRES_USER: rails_github_actions
+          POSTGRES_PASSWORD: postgres
+          PGPORT: ${{ job.services.postgres.ports[5432] }}
+      run: bundle exec rake
