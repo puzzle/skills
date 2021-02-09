@@ -1,7 +1,7 @@
 name: Rails
 on: [push, pull_request]
 jobs:
-  Rails Tests:
+  Rails-Tests:
     runs-on: ubuntu-latest
 
     services:
