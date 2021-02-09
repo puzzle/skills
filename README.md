@@ -5,7 +5,7 @@
 </p>
 
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
-[![Build Status](https://travis-ci.org/puzzle/skills.svg?branch=master)](https://travis-ci.org/puzzle/skills)
+![Build Status](https://github.com/puzzle/skills/workflows/Rails/badge.svg)
 ![GitHub contributors](https://img.shields.io/github/contributors/puzzle/skills)
 ![GitHub last commit](https://img.shields.io/github/last-commit/puzzle/skills)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
