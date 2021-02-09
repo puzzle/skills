@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_01_142938) do
+ActiveRecord::Schema.define(version: 2021_02_09_074707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,14 @@ ActiveRecord::Schema.define(version: 2020_03_01_142938) do
     t.integer "month_from"
     t.integer "month_to"
     t.index ["person_id"], name: "index_advanced_trainings_on_person_id"
+  end
+
+  create_table "branch_adresses", force: :cascade do |t|
+    t.string "short_name"
+    t.string "adress_information"
+    t.string "country"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "categories", force: :cascade do |t|
