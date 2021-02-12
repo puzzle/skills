@@ -6,10 +6,10 @@ jobs:
 
     services:
       postgres:
-        image: postgres:11
+        image: postgres:9.5
         env:
-          POSTGRES_USER: rails_github_actions
-          POSTGRES_DB: rails_github_actions_test
+          POSTGRES_USER: skills_test_user
+          POSTGRES_DB: skills_test
           POSTGRES_PASSWORD: postgres
         ports: ["5432:5432"]
         options: >-
@@ -28,8 +28,8 @@ jobs:
       env:
         RAILS_ENV: test
         PGHOST: localhost
-        POSTGRES_DB: rails_github_actions_test
-        POSTGRES_USER: rails_github_actions
+        POSTGRES_DB: skills_test
+        POSTGRES_USER: skills_test_user
         POSTGRES_PASSWORD: postgres
       run: |
         cp config/database.ci.yml config/database.yml
@@ -38,8 +38,8 @@ jobs:
     - name: Run Tests
       env:
         PGHOST: localhost
-        POSTGRES_DB: rails_github_actions_test
-        POSTGRES_USER: rails_github_actions
+        POSTGRES_DB: skills_test
+        POSTGRES_USER: skills_test_user
         POSTGRES_PASSWORD: postgres
         PGPORT: ${{ job.services.postgres.ports[5432] }}
       run: bundle exec rake
