@@ -11,7 +11,7 @@ module Odt
 
     # rubocop:disable Metrics/MethodLength
     def export
-      template_name = "cv_template#{"_de" if location.country == "DE"}#{"_anon" if anon?}.odt"
+      template_name = "cv_template#{'_de' if location.country == 'DE'}#{'_anon' if anon?}.odt"
       ODFReport::Report.new('lib/templates/' + template_name) do |r|
         insert_general_sections(r)
         insert_locations(r)
