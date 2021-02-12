@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2021_02_09_074707) do
     t.string "short_name"
     t.string "adress_information"
     t.string "country"
+    t.boolean "default_branch_adress"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

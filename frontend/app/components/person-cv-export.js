@@ -2,17 +2,28 @@ import Component from "@glimmer/component";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import { isBlank } from "@ember/utils";
+import { tracked } from "@glimmer/tracking";
 
 export default class PersonCvExport extends Component {
   @service download;
   @service router;
   @service store;
 
-  locations = this.store.findAll("branch-adress");
-  selectedLocation = this.locations.get("firstObject");
+  @tracked
+  selectedLocation = "";
+
+  @tracked
+  availableLocations = "";
 
   constructor() {
     super(...arguments);
+
+    this.store.findAll("branch-adress").then(result => {
+      this.availableLocations = result;
+      this.selectedLocation = result.filter(
+        location => location.defaultBranchAdress
+      ).firstObject;
+    });
   }
 
   @action
@@ -36,7 +47,7 @@ export default class PersonCvExport extends Component {
 
   @action
   setLocation(location) {
-    Ember.set(this, "selectedLocation", location);
+    this.selectedLocation = location;
   }
 
   @action
