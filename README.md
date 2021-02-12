@@ -4,7 +4,7 @@
   </a>
 </p>
 
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/puzzle/skills/issues)
 ![Build Status](https://github.com/puzzle/skills/workflows/Rails/badge.svg)
 ![Stable Build Status](https://github.com/puzzle/skills/workflows/Rails/badge.svg?branch=stable)
 ![GitHub contributors](https://img.shields.io/github/contributors/puzzle/skills)
