@@ -1,4 +1,5 @@
-Bern:
+bern:
   short_name: Bern
   adress_information: Belpstrasse 32
   country: CH
+  default_branch_adress: true
