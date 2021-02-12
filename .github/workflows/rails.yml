@@ -8,9 +8,9 @@ jobs:
       postgres:
         image: postgres:9.5
         env:
-          POSTGRES_USER: skills_test_user
           POSTGRES_DB: skills_test
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: skills
+          POSTGRES_PASSWORD: skills
         ports: ["5432:5432"]
         options: >-
           --health-cmd pg_isready
@@ -29,8 +29,8 @@ jobs:
         RAILS_ENV: test
         PGHOST: localhost
         POSTGRES_DB: skills_test
-        POSTGRES_USER: skills_test_user
-        POSTGRES_PASSWORD: postgres
+        POSTGRES_USER: skills
+        POSTGRES_PASSWORD: skills
       run: |
         cp config/database.ci.yml config/database.yml
         bundle exec rake db:create db:migrate
@@ -39,7 +39,7 @@ jobs:
       env:
         PGHOST: localhost
         POSTGRES_DB: skills_test
-        POSTGRES_USER: skills_test_user
-        POSTGRES_PASSWORD: postgres
+        POSTGRES_USER: skills
+        POSTGRES_PASSWORD: skills
         PGPORT: ${{ job.services.postgres.ports[5432] }}
       run: bundle exec rake
