@@ -8,7 +8,7 @@ export default class PersonCvExport extends Component {
   @service router;
   @service store;
 
-  locations = this.store.findAll("branch_adress");
+  locations = this.store.findAll("branch-adress");
   selectedLocation = this.locations.get("firstObject");
 
   constructor() {

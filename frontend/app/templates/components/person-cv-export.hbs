@@ -10,9 +10,9 @@
         <div class="modal-body">
           Niederlassung (für Footer):
           <div class="container-fluid">
-            <PowerSelect @selected={{this.selectedLocation}} @options={{this.locations}} @onFocus={{action "handleFocus" }}
-                            @onBlur={{action "handleBlur" }} @onChange={{action "setLocation"}} as |location|>
-                            {{location.short_name}}
+            <PowerSelect @selected={{this.selectedLocation}} @options={{this.locations}} @onFocus={{this.handleFocus}}
+                            @onBlur={{this.handleBlur}} @onChange={{action "setLocation"}} as |location|>
+                            {{location.shortName}}
             </PowerSelect>
           </div>
         </div>
