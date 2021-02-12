@@ -1,0 +1,44 @@
+name: Rails
+on: [push, pull_request]
+jobs:
+  Rails-Tests:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:9.5
+        env:
+          POSTGRES_DB: skills_test
+          POSTGRES_USER: skills
+          POSTGRES_PASSWORD: skills
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+
+    - name: Setup test database
+      env:
+        RAILS_ENV: test
+        PGHOST: localhost
+        POSTGRES_DB: skills_test
+        POSTGRES_USER: skills
+        POSTGRES_PASSWORD: skills
+      run: |
+        bundle exec rake db:create db:migrate
+
+    - name: Run Tests
+      env:
+        PGHOST: localhost
+        POSTGRES_DB: skills_test
+        POSTGRES_USER: skills
+        POSTGRES_PASSWORD: skills
+        PGPORT: ${{ job.services.postgres.ports[5432] }}
+      run: bundle exec rake
