@@ -32,7 +32,6 @@ jobs:
         POSTGRES_USER: skills
         POSTGRES_PASSWORD: skills
       run: |
-        cp config/database.ci.yml config/database.yml
         bundle exec rake db:create db:migrate
 
     - name: Run Tests
