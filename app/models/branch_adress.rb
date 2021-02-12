@@ -13,4 +13,5 @@
 #
 
 class BranchAdress < ApplicationRecord
+    scope :list, -> { order(:id) }
 end
