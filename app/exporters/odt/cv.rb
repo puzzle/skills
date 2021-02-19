@@ -11,9 +11,12 @@ module Odt
 
     # rubocop:disable Metrics/MethodLength
     def export
-      template_name = anon? ? 'cv_template_anon.odt' : 'cv_template.odt'
+      country_suffix = location.country == 'DE' ? '_de' : ''
+      anonymous_suffix = anon? ? '_anon' : ''
+      template_name = "cv_template#{country_suffix}#{anonymous_suffix}.odt"
       ODFReport::Report.new('lib/templates/' + template_name) do |r|
         insert_general_sections(r)
+        insert_locations(r)
         insert_personalien(r)
         insert_competences(r)
         insert_advanced_trainings(r)
@@ -31,6 +34,10 @@ module Odt
       @params[:anon].presence == 'true'
     end
 
+    def location
+      BranchAdress.find(@params[:location])
+    end
+
     # rubocop:disable Metrics/AbcSize
     attr_accessor :person
     def insert_general_sections(report)
@@ -46,6 +53,10 @@ module Odt
       report.add_field(:date, Time.zone.today.strftime('%d.%m.%Y'))
       report.add_field(:version, '1.0')
       report.add_field(:comment, 'Aktuelle Ausgabe')
+    end
+
+    def insert_locations(report)
+      report.add_field(:niederlassung, location.adress_information)
     end
 
     def insert_personalien(report)

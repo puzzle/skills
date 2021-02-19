@@ -8,6 +8,15 @@
         </button>
       </div>
       <div class="modal-body">
+        Niederlassung (für Footer):
+        <div class="container-fluid">
+          <PowerSelect @selected={{this.selectedLocation}} @options={{this.availableLocations}} @onFocus={{this.handleFocus}}
+                          @onBlur={{this.handleBlur}} @onChange={{action "setLocation"}} as |location|>
+            {{location.shortName}}
+          </PowerSelect>
+        </div>
+      </div>
+      <div class="modal-body">
         <div class="container-fluid">
           <div class="row my-3">
             <button type="button" {{on "click" this.startExport}} class="btn btn-primary btn-lg btn-block">Normales CV</button>

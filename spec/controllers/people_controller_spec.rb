@@ -2,7 +2,11 @@ require 'rails_helper'
 
 describe PeopleController do
   describe 'PeopleController' do
-    before { load_pictures }
+    before do
+      load_pictures
+      allow_any_instance_of(Odt::Cv).to receive(:location).and_return(branch_adresses(:bern))
+    end 
+
 
     describe 'Export person as odt' do
       it 'returns bob' do
@@ -15,7 +19,7 @@ describe PeopleController do
 
         expect_any_instance_of(ODFReport::Report)
           .to receive(:add_field)
-          .exactly(13).times
+          .exactly(14).times
           .and_call_original
 
         expect_any_instance_of(ODFReport::Report)
@@ -41,7 +45,7 @@ describe PeopleController do
 
         expect_any_instance_of(ODFReport::Report)
           .to receive(:add_field)
-          .exactly(9).times
+          .exactly(10).times
           .and_call_original
 
         expect_any_instance_of(ODFReport::Report)

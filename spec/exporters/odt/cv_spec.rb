@@ -3,6 +3,8 @@ require 'rails_helper'
 describe Odt::Cv do
   fixtures :people
 
+  before { allow_any_instance_of(Odt::Cv).to receive(:location).and_return(branch_adresses(:bern)) }
+
   context 'export' do
     it 'can export without an image' do
       person = people(:bob)

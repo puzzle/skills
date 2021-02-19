@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
     resources :advanced_trainings
     resources :activities
+    resources :branch_adresses
     resources :categories, only: [:index, :show]
     resources :companies
     resources :departments, only: :index
