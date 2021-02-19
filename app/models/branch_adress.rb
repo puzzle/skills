@@ -13,7 +13,7 @@
 #
 
 class BranchAdress < ApplicationRecord
-  validates :short_name, :country, :default_branch_adress, :adress_information, presence: true
+  validates :short_name, :country, :adress_information, presence: true
   validates :adress_information, length: { maximum: 200 }
 
   scope :list, -> { order(:id) }
