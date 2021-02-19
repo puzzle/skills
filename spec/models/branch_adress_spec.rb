@@ -9,7 +9,6 @@ RSpec.describe BranchAdress, type: :model do
 
       expect(branch.errors[:short_name].first).to eq('muss ausgefüllt werden')
       expect(branch.errors[:country].first).to eq('muss ausgefüllt werden')
-      expect(branch.errors[:default_branch_adress].first).to eq('muss ausgefüllt werden')
       expect(branch.errors[:adress_information].first).to eq('muss ausgefüllt werden')
     end
 
