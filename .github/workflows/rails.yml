@@ -74,5 +74,5 @@ jobs:
         PGPORT: ${{ job.services.postgres.ports[5432] }}
       run: bundle exec rake
 
-    - name: Run Yarn Tests
-      run: yarn test
+    - name: Run Frontend Tests
+      run: bundle exec rake spec:frontend
