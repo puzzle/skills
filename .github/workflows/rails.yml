@@ -51,6 +51,7 @@ jobs:
 
     - name: Install Ember-Cli with NPM
       run: npm install -g ember-cli
+      working-directory: frontend
 
     - name: Install dependencies
       run: yarn install --frozen-lockfile
