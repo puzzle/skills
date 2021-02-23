@@ -50,7 +50,7 @@ jobs:
           ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-
 
     - name: Install Ember-Cli with NPM
-      run: npm install -g ember-cli
+      run: npm install -g ember-cli@3.15.2
       working-directory: frontend
 
     - name: Install dependencies
