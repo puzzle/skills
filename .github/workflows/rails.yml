@@ -49,6 +49,9 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-
 
+    - name: Install Ember-Cli with NPM
+      run: npm install -g ember-cli
+
     - name: Install dependencies
       run: yarn install --frozen-lockfile
       if: |
