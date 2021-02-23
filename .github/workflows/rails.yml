@@ -23,6 +23,37 @@ jobs:
     - uses: ruby/setup-ruby@v1
       with:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '8'
+
+    - name: Get Yarn cache path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+    - name: Cache Yarn cache
+        id: cache-yarn-cache
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-${{ matrix.node-version }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.node-version }}-yarn-
+
+    - name: Cache node_modules
+        id: cache-node-modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ matrix.node-version }}-nodemodules-
+
+    - name: Install dependencies
+        run: yarn install --frozen-lockfile
+        if: |
+          steps.cache-yarn-cache.outputs.cache-hit != 'true' ||
+          steps.cache-node-modules.outputs.cache-hit != 'true'
 
     - name: Setup test database
       env:
@@ -43,5 +74,5 @@ jobs:
         PGPORT: ${{ job.services.postgres.ports[5432] }}
       run: bundle exec rake
 
-    - name: Run Frontend Tests
-      run: bundle exec rake spec:frontend
+    - name: Run Yarn Tests
+      run: yarn test
