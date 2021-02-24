@@ -40,7 +40,6 @@ jobs:
         key: ${{ runner.os }}-${{ matrix.node-version }}-yarn-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           ${{ runner.os }}-${{ matrix.node-version }}-yarn-
-      working-directory: frontend
 
     - name: Install Ember-Cli with NPM
       run: npm install -g ember-cli@3.15.2
