@@ -27,12 +27,30 @@ jobs:
       with:
         node-version: '8'
 
+    - name: Get Yarn cache path
+      id: yarn-cache-dir-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+      working-directory: frontend
+
+    - name: Cache Yarn cache
+      id: cache-yarn-cache
+      uses: actions/cache@v1
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-${{ matrix.node-version }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-${{ matrix.node-version }}-yarn-
+      working-directory: frontend
+
     - name: Install Ember-Cli with NPM
       run: npm install -g ember-cli@3.15.2
       working-directory: frontend
 
-    - name: Install dependencies
+    - name: Install dependencies Yarn
       run: yarn install --frozen-lockfile
+      if: |
+        steps.cache-yarn-cache.outputs.cache-hit != 'true' ||
+        steps.cache-node-modules.outputs.cache-hit != 'true'
       working-directory: frontend
 
     - name: Setup test database
