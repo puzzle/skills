@@ -33,6 +33,8 @@ jobs:
 
     - name: Yarn & Node install cache
       uses: EgorDm/gha-yarn-node-cache@v1
+      with:
+        working-directory: frontend
 
     - name: Install dependencies Yarn
       run: yarn install --frozen-lockfile
