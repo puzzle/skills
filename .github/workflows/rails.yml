@@ -54,5 +54,8 @@ jobs:
         PGPORT: ${{ job.services.postgres.ports[5432] }}
       run: bundle exec rake
 
+    - name: Run RuboCop
+      run: bundle exec rubocop --parallel
+
     - name: Run Frontend Tests
       run: bundle exec rake spec:frontend
