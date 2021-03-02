@@ -23,6 +23,17 @@ jobs:
     - uses: ruby/setup-ruby@v1
       with:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '8' # TODO version should not be specified
+
+    - name: Install Ember-Cli with NPM
+      run: npm install -g ember-cli@3.15.2  # TODO version should not be specified
+      working-directory: frontend
+
+    - name: Install dependencies Yarn
+      run: yarn install --frozen-lockfile
+      working-directory: frontend
 
     - name: Setup test database
       env:
@@ -45,3 +56,6 @@ jobs:
 
     - name: Run RuboCop
       run: bundle exec rubocop --parallel
+
+    - name: Run Frontend Tests
+      run: bundle exec rake spec:frontend
