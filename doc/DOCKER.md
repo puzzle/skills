@@ -47,5 +47,24 @@ For ubuntu:
   1. `docker exec -it skills_web /bin/bash`
   1. `bundle exec rake db:setup`
   1. open http://keycloak:8180 in the browser and login with the admin credentials from keycloak.env
-  1. create new user in Keycloak
-  1. open http://localhost:8080 in the browser login with the new User
+  1. create new user in Keycloak with a temporary password
+  1. open http://localhost:8080 in the browser login with the new User (if you login for the first time, update the password when asked) 
+
+#### Add companies, roles, departments and person-role-levels
+
+It is not possible to create a new profile without some predefined data. This data can be added with the following commands.
+
+1. `docker exec -it skills_web /bin/bash`
+1. `rails c`
+1.
+    ```shell
+   Company.connection
+   Company.create(name:"Firma")
+   Company.create(name:"Partner")
+   ```
+1.
+   ```shell
+   Department.connection
+   Department.create(name:"Funktionsbereiche")
+   Department.create(name:"/dev/ruby")
+   ```
