@@ -82,7 +82,7 @@ describe PeopleSync::SyncPeopleRolesTask do
   end
 
   context 'sync people roles' do
-    it 'creates new people roles' do
+    xit 'creates new people roles' do
       bob = Person.find_by(remote_key: 42)  
       expect(bob.people_roles.count).to eq(1)
       role_ids = bob.people_roles.pluck(:role_id)
@@ -96,7 +96,7 @@ describe PeopleSync::SyncPeopleRolesTask do
       expect(Role.where(id: role_ids).pluck(:name)).to eq(['Software-Engineer', 'Scrummaster'])
     end
     
-    it 'does not create already existing people role' do
+    xit 'does not create already existing people role' do
       bob = Person.find_by(remote_key: 42)  
       expect(bob.people_roles.count).to eq(1)
       role_ids = bob.people_roles.pluck(:role_id)
@@ -110,7 +110,7 @@ describe PeopleSync::SyncPeopleRolesTask do
       expect(Role.where(id: role_ids).pluck(:name)).to eq(['Software-Engineer'])
     end
   
-    it 'deletes removed people roles' do
+    xit 'deletes removed people roles' do
       bob = Person.find_by(remote_key: 42)  
       expect(bob.people_roles.count).to eq(1)
       role_ids = bob.people_roles.pluck(:role_id)
@@ -124,7 +124,7 @@ describe PeopleSync::SyncPeopleRolesTask do
       expect(Role.where(id: role_ids).pluck(:name)).to eq([])
     end
   
-    it 'deletes and creates people roles' do
+    xit 'deletes and creates people roles' do
       bob = Person.find_by(remote_key: 42)  
       expect(bob.people_roles.count).to eq(1)
       role_ids = bob.people_roles.pluck(:role_id)

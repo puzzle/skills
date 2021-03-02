@@ -44,8 +44,7 @@ class PeopleSync::CreatePeopleTask
         'nationality2' => new_person['nationalities'].second,
         'email' => new_person['email'],
         'title' => new_person['graduation'],
-        'marital_status' => new_person['marital_status'],
-        'department' => new_person['department_shortname']
+        'marital_status' => new_person['marital_status']
       }
     end
     
@@ -58,18 +57,17 @@ class PeopleSync::CreatePeopleTask
     # mandatory attributes that api does not include
     def not_included_attributes
       {
-        'company_id' => my_company_id,
+        'company' =>  {name: 'firma123'},
+        'company_id' => 1,
         'birthdate' => example_birthdate,
-        'location' => 'Bern'
+        'location' => 'Bern',
+        'department_id' => 1
       }
-    end
-    
-    def my_company_id
-      Company.mine.first.id
     end
 
     def example_birthdate
       @birthdate ||= DateTime.new(2000,1,1)
     end
+
   end
 end

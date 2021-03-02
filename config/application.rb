@@ -48,11 +48,9 @@ module Skills
     unless Rails.env.test?
       # Schedule all cron jobs
       config.to_prepare do
-        if Delayed::Job.table_exists?
-          pattern = Rails.root.join('app', 'jobs', '**', '*_job.rb')
-          Dir.glob(pattern).each { |file| require file }
-          CronJob.subclasses.each { |job| job.schedule }
-        end
+        pattern = Rails.root.join('app', 'jobs', '**', '*_job.rb')
+        Dir.glob(pattern).each { |file| require file }
+        CronJob.subclasses.each { |job| job.schedule }
       end
     end
   end

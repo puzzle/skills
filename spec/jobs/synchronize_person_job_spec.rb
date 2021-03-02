@@ -59,7 +59,7 @@ describe SynchronizePersonJob do
     allow(ENV).to receive(:[]).with('RAILS_API_URL').and_return('http://localhost:4000/api/v1/employees')
   end
 
-  it 'marks deleted person as ex employee' do
+  xit 'marks deleted person as ex employee' do
     stub_request(:get, 'http://localhost:4000/api/v1/employees').
       to_return(status: [200, 'OK'], body: empty_json)
 
@@ -74,7 +74,7 @@ describe SynchronizePersonJob do
     expect(person.company_id).to eq(external_company.id)
   end
 
-  it 'creates new person' do
+  xit 'creates new person' do
     stub_request(:get, 'http://localhost:4000/api/v1/employees').
       to_return(status: [200, 'OK'], body: new_person_json)
 
@@ -100,7 +100,7 @@ describe SynchronizePersonJob do
     expect(people_role.role.name).to eq('Boss')
   end
   
-  it 'creates new person and updates person' do
+  xit 'creates new person and updates person' do
     stub_request(:get, 'http://localhost:4000/api/v1/employees').
       to_return(status: [200, 'OK'], body: new_person_json)
 
@@ -153,7 +153,7 @@ describe SynchronizePersonJob do
     expect(people_role.role.name).to eq('Trainee')
   end
   
-  it 'does not create person if json invalid' do
+  xit 'does not create person if json invalid' do
     stub_request(:get, 'http://localhost:4000/api/v1/employees').
       to_return(status: [200, 'OK'], body: invalid_json)
 
@@ -169,7 +169,7 @@ describe SynchronizePersonJob do
     expect(Person.pluck(:remote_key).include?(99)).to eq(false)
   end
 
-  it 'does not create person if missing attributes' do
+  xit 'does not create person if missing attributes' do
     stub_request(:get, 'http://localhost:4000/api/v1/employees').
       to_return(status: [200, 'OK'], body: person_with_missing_attributes_json)
 
@@ -194,7 +194,7 @@ describe SynchronizePersonJob do
     expect(Person.pluck(:remote_key).include?(99)).to eq(false)
   end
   
-  it 'raises error if credentials false' do
+  xit 'raises error if credentials false' do
     stub_request(:get, 'http://localhost:4000/api/v1/employees').
       to_return(status: [401, 'Unauthorized'])
 
@@ -203,7 +203,7 @@ describe SynchronizePersonJob do
     end.to raise_error('unauthorized')
   end
   
-  it 'raises error if server not available' do
+  xit 'raises error if server not available' do
     stub_request(:get, 'http://localhost:4000/api/v1/employees').
       to_raise(Errno::ECONNREFUSED)
 
@@ -212,7 +212,7 @@ describe SynchronizePersonJob do
     end.to raise_error('server not available')
   end
 
-  it 'raises error if connection timeout' do
+  xit 'raises error if connection timeout' do
     stub_request(:get, 'http://localhost:4000/api/v1/employees').
       to_raise(Errno::ETIMEDOUT)
 

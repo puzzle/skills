@@ -10,29 +10,6 @@
 
 firma:
   name: Firma
-  web: www.example.com
-  email: info@example.com
-  phone: +41 00 000 00 00
-  partnermanager: Urs Müller
-  contact_person: Philip Müller
-  email_contact_person: pmueller@example.com
-  crm: crm
-  level: A
-  offer_comment: Bemerkung Angebot
-  company_type: 0
-  
-ex_mitarbeiter:
-  name: Ex-Mitarbeiter
-  web: www.example.org
-  email: info@example.org
-  phone: +41 11 111 11 11
-  partnermanager: Urs Fehlmann
-  contact_person: Philip Fehlmann
-  email_contact_person: pfehlmann@example.org
-  crm: crm
-  level: B
-  offer_comment: Bemerkung Angebot
-  company_type: 2
 
 partner:
   name: Partner

@@ -167,7 +167,7 @@ describe PeopleSync::PuzzleTime do
         .and_return('http://localhost:4000/api/v1/employees')
     end
 
-    it 'parses and returns people' do
+    xit 'parses and returns people' do
       stub_request(:get, 'http://localhost:4000/api/v1/employees').
         to_return(status: [200, 'OK'], body: people_json)
 
@@ -189,14 +189,14 @@ describe PeopleSync::PuzzleTime do
         .and_return('http://localhost:4000/api/v1/employees')
     end
 
-    it 'parses and returns people people because last runned job is missing' do
+    xit 'parses and returns people people because last runned job is missing' do
       stub_request(:get, 'http://localhost:4000/api/v1/employees').
         to_return(status: [200, 'OK'], body: people_json)
 
       expect(puzzle_time.updated_people).to eq(people_hash)
     end
     
-    it 'parses and returns updated people' do
+    xit 'parses and returns updated people' do
       url = 'http://localhost:4000/api/v1/employees?'
       query_param = 'update_since=2001-01-01%2000:00:00%20UTC'
 
