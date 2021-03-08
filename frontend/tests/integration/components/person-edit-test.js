@@ -21,6 +21,7 @@ module("Integration | Component | person-edit", function(hooks) {
     person.title = "Construction Consultant";
     person.location = "Bern";
     person.birthdate = new Date(2019, 1, 19);
+    person.shortname = "HR";
     this.set("person", person);
 
     await render(hbs`{{person-edit person=person}}`);
@@ -41,6 +42,7 @@ module("Integration | Component | person-edit", function(hooks) {
     person.email = "hansrudolf@gmail.com";
     person.location = "Bern";
     person.birthdate = new Date(2019, 1, 19);
+    person.shortname = "HR";
     this.set("person", person);
 
     await render(hbs`{{person-edit person=person}}`);
@@ -61,6 +63,7 @@ module("Integration | Component | person-edit", function(hooks) {
     person.email = "hansrudolf@gmail.com";
     person.title = "Construction Consultant";
     person.location = "Bern";
+    person.shortname = "HR";
     this.set("person", person);
 
     await render(hbs`{{person-edit person=person}}`);

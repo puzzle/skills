@@ -12,6 +12,7 @@ const Person = DS.Model.extend({
   title: DS.attr("string"),
   competenceNotes: DS.attr("string"),
   email: DS.attr("string"),
+  shortname: DS.attr("string"),
   updatedAt: DS.attr("date"),
 
   department: DS.belongsTo("department"),

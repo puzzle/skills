@@ -46,6 +46,7 @@ module("Acceptance | edit person", function(hooks) {
     // Fill out the persons text fields
     await page.editForm.name("Hansjoggeli");
     await page.editForm.email("hansjoggeli@example.com");
+    await page.editForm.shortname("hj");
     await page.editForm.title("Dr.");
     await page.editForm.location("Chehrplatz Schwandi");
 
@@ -55,6 +56,7 @@ module("Acceptance | edit person", function(hooks) {
     // Assert that all we changed is present
     assert.equal(page.profileData.name, "Hansjoggeli");
     assert.equal(page.profileData.email, "hansjoggeli@example.com");
+    assert.equal(page.profileData.shortname, "hj");
     assert.equal(page.profileData.title, "Dr.");
     assert.equal(page.profileData.role, "System-Engineer S3 20%");
     assert.equal(page.profileData.department, "/dev/one");
