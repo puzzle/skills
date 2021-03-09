@@ -27,9 +27,6 @@
                   <td>{{personChangeset.input label="Abschluss" name="title" errorComponent=(component "validation-error-component")}}</td>
                 </tr>
                 <tr>
-                  <td>{{personChangeset.input label="Kürzel" name="shortname" errorComponent=(component "validation-error-component")}}</td>
-                </tr>
-                <tr>
                   <label>Funktionen</label>
                 </tr>
                 {{#each this.person.personRoles as |personRole|}}
@@ -131,6 +128,9 @@
                       </PowerSelect>
                     </td>
                   {{/if}}
+                </tr>
+                <tr>
+                  <td>{{personChangeset.input label="Kürzel" name="shortname" errorComponent=(component "validation-error-component")}}</td>
                 </tr>
               </tbody>
             </table>

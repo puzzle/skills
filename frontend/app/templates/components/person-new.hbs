@@ -22,9 +22,6 @@
                 <td><label for="title">Abschluss</label><Input @id="title" @value={{this.newPerson.title}} @type="text"/></td>
               </tr>
               <tr>
-                <td><label for="shortname">Kürzel</label><Input @id="shortname" @value={{this.newPerson.shortname}} @type="text"/></td>
-              </tr>
-              <tr>
                 <label>Funktionen</label>
               </tr>
               {{#each this.newPerson.personRoles as |personRole|}}
@@ -133,6 +130,9 @@
                     {{maritalStatus}}
                   </PowerSelect>
                 </td>
+              </tr>
+              <tr>
+                <td><label for="shortname">Kürzel</label><Input @id="shortname" @value={{this.newPerson.shortname}} @type="text"/></td>
               </tr>
             </tbody>
           </table>
