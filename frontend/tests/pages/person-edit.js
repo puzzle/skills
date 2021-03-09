@@ -28,6 +28,7 @@ export default create({
     submit: clickable('[type="submit"]'),
     name: fillable('[name="name"]'),
     email: fillable('[name="email"]'),
+    shortname: fillable('[name="shortname"]'),
     title: fillable('[name="title"]'),
     location: fillable('[name="location"]'),
     rolePercent: fillable('[name="person[role-percent]"]')
@@ -44,7 +45,8 @@ export default create({
     nationalities: text("#data-test-person-nationalities"),
     location: text("#data-test-person-location"),
     language: text("[data-test-person-language]", { multiple: true }),
-    maritalStatus: text("#data-test-person-marital-status")
+    maritalStatus: text("#data-test-person-marital-status"),
+    shortname: text("#data-test-person-shortname")
   },
 
   competences: {

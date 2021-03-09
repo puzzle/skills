@@ -22,6 +22,7 @@ test("it renders person", function(assert) {
   this.set("person", {
     name: "Harry Potter",
     email: "harry@hogwarts.com",
+    shortname: "HP",
     title: "Zauberer",
     department: this.get("department"),
     company: this.get("company"),
@@ -63,6 +64,11 @@ test("it renders person", function(assert) {
     this.$()
       .text()
       .includes("harry@hogwarts.com")
+  );
+  assert.ok(
+    this.$()
+      .text()
+      .includes("HP")
   );
   assert.ok(
     this.$()

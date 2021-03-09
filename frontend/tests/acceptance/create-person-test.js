@@ -42,6 +42,7 @@ module("Acceptance | create person", function(hooks) {
     await page.newPersonPage.email("dolores@example.com");
     await page.newPersonPage.title("Dr.");
     await page.newPersonPage.location("Westworld");
+    await page.newPersonPage.shortname("DD");
 
     // Actually creating the person with the above entered
     await page.newPersonPage.createPerson({});
@@ -52,6 +53,7 @@ module("Acceptance | create person", function(hooks) {
     // Assert that all we entered above actually made it into the profile correctly
     assert.equal(page.profileData.name, "Dolores");
     assert.equal(page.profileData.email, "dolores@example.com");
+    assert.equal(page.profileData.shortname, "DD");
     assert.equal(page.profileData.title, "Dr.");
     assert.equal(page.profileData.role, "Software-Engineer");
     assert.equal(page.profileData.department, "/dev/ruby");

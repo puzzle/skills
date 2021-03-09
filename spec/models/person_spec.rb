@@ -19,6 +19,7 @@
 #  marital_status          :integer          default("single"), not null
 #  email                   :string
 #  department_id           :integer
+#  shortname               :string
 #
 
 require 'rails_helper'
@@ -77,11 +78,15 @@ describe Person do
       person.location = SecureRandom.hex(100)
       person.name = SecureRandom.hex(100)
       person.title = SecureRandom.hex(100)
+      person.email = SecureRandom.hex(100)
+      person.shortname = SecureRandom.hex(100)
       person.valid?
 
       expect(person.errors[:location].first).to eq('ist zu lang (mehr als 100 Zeichen)')
       expect(person.errors[:name].first).to eq('ist zu lang (mehr als 100 Zeichen)')
       expect(person.errors[:title].first).to eq('ist zu lang (mehr als 100 Zeichen)')
+      expect(person.errors[:email].first).to eq('ist zu lang (mehr als 100 Zeichen)')
+      expect(person.errors[:shortname].first).to eq('ist zu lang (mehr als 100 Zeichen)')
     end
   end
 end

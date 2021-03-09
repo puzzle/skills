@@ -104,7 +104,7 @@ describe PeopleController do
 
         bob_attrs = json['data']['attributes']
 
-        expect(bob_attrs.count).to eq(12)
+        expect(bob_attrs.count).to eq(13)
         expect(bob_attrs['nationality']).to eq('CH')
         expect(bob_attrs['nationality2']).to eq('SE')
         json_object_includes_keys(bob_attrs, keys)
@@ -131,6 +131,7 @@ describe PeopleController do
                    nationality2: 'FR',
                    title: 'Bsc in tester',
                    email: 'test@example.com',
+                   shortname: 'Tet',
                    }
 
         relationships = {
@@ -153,6 +154,9 @@ describe PeopleController do
         expect(new_person.location).to eq('Bern')
         expect(new_person.nationality).to eq('CH')
         expect(new_person.nationality2).to eq('FR')
+        expect(new_person.title).to eq('Bsc in tester')
+        expect(new_person.email).to eq('test@example.com')
+        expect(new_person.shortname).to eq('Tet')
       end
     end
 
