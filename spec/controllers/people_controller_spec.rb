@@ -104,7 +104,7 @@ describe PeopleController do
 
         bob_attrs = json['data']['attributes']
 
-        expect(bob_attrs.count).to eq(12)
+        expect(bob_attrs.count).to eq(13)
         expect(bob_attrs['nationality']).to eq('CH')
         expect(bob_attrs['nationality2']).to eq('SE')
         json_object_includes_keys(bob_attrs, keys)
