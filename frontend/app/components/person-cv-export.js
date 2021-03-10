@@ -18,6 +18,8 @@ export default class PersonCvExport extends Component {
   constructor() {
     super(...arguments);
 
+    this.includeCompetencesAndSkills = true;
+
     this.store.findAll("branch-adress").then(result => {
       this.availableLocations = result;
       this.selectedLocation = result.filter(
@@ -55,10 +57,12 @@ export default class PersonCvExport extends Component {
     e.preventDefault();
 
     let url =
-      `/api/people/` +
+      "/api/people/" +
       this.args.person.id +
       ".odt?anon=false&location=" +
-      this.selectedLocation.id;
+      this.selectedLocation.id +
+      "&includeCS=" +
+      this.includeCompetencesAndSkills;
     this.download.file(url);
   }
 
@@ -70,7 +74,9 @@ export default class PersonCvExport extends Component {
       "/api/people/" +
       this.args.person.id +
       ".odt?anon=true&location=" +
-      this.selectedLocation.id;
+      this.selectedLocation.id +
+      "&includeCS=" +
+      this.includeCompetencesAndSkills;
     this.download.file(url);
   }
 }
