@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'rails', '6.0.3.2'
+gem 'rails', '6.1.3'
 
 gem 'active_model_serializers'
 gem 'activerecord-postgresql-adapter'
@@ -41,7 +41,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'pry'
   gem 'pry-byebug'
-  gem 'rspec-rails', '~> 3.6'
+  gem 'rspec-rails', '~> 4.0.2'
 end
 
 group :development do
