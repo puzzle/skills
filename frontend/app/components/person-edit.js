@@ -30,7 +30,7 @@ export default ApplicationComponent.extend(EKMixin, {
       personRole =>
         (this.callBackRoleIds[personRole.get("id")] = personRole.get("role.id"))
     );
-    this.get("store")
+    this.store
       .findAll("personRoleLevel")
       .then(levels => this.set("personRoleLevelsToSelect", levels));
     this.allRoles = this.store.findAll("role");
@@ -54,7 +54,7 @@ export default ApplicationComponent.extend(EKMixin, {
 
   willDestroyElement() {
     this._super(...arguments);
-    if (!this.get("alreadyAborted")) this.send("abortEdit");
+    if (!this.alreadyAborted) this.send("abortEdit");
   },
 
   activateKeyboard: on("init", function() {
@@ -114,11 +114,11 @@ export default ApplicationComponent.extend(EKMixin, {
   }),
 
   companiesToSelect: computed(function() {
-    return this.get("store").findAll("company");
+    return this.store.findAll("company");
   }),
 
   departmentsToSelect: computed(function() {
-    return this.get("store").findAll("department");
+    return this.store.findAll("department");
   }),
 
   personRoleLevelsToSelect: computed(function() {
@@ -165,11 +165,9 @@ export default ApplicationComponent.extend(EKMixin, {
         .then(() => {
           this.sendAction("submit");
         })
-        .then(() =>
-          this.get("notify").success("Personalien wurden aktualisiert!")
-        )
+        .then(() => this.notify.success("Personalien wurden aktualisiert!"))
         .catch(() => {
-          let person = this.get("person");
+          let person = this.person;
           let errors = person.get("errors").slice(); // clone array as rollbackAttributes mutates
 
           person.get("languageSkills").forEach(skill => {
@@ -191,11 +189,9 @@ export default ApplicationComponent.extend(EKMixin, {
 
           person.rollbackAttributes();
           errors.forEach(({ attribute, message }) => {
-            let translated_attribute = this.get("intl").t(
-              `person.${attribute}`
-            );
+            let translated_attribute = this.intl.t(`person.${attribute}`);
             changeset.pushErrors(attribute, message);
-            this.get("notify").alert(`${translated_attribute} ${message}`, {
+            this.notify.alert(`${translated_attribute} ${message}`, {
               closeAfter: 8000
             });
           });
@@ -203,13 +199,13 @@ export default ApplicationComponent.extend(EKMixin, {
     },
 
     abortEdit() {
-      const person = this.get("person");
+      const person = this.person;
       if (person.get("hasDirtyAttributes")) {
         person.rollbackAttributes();
       }
 
-      this.set("person.company", this.get("callBackCompany"));
-      this.set("person.department", this.get("callBackDepartment"));
+      this.set("person.company", this.callBackCompany);
+      this.set("person.department", this.callBackDepartment);
 
       let languageSkills = this.get("person.languageSkills").toArray();
       languageSkills.forEach(skill => {
@@ -232,7 +228,7 @@ export default ApplicationComponent.extend(EKMixin, {
 
       this.get("person.personRoles").forEach(personRole => {
         let oldRoleId = this.get("callBackRoleIds." + personRole.get("id"));
-        let role = this.get("store").peekRecord("role", oldRoleId);
+        let role = this.store.peekRecord("role", oldRoleId);
         personRole.set("role", role);
       });
 
@@ -317,7 +313,7 @@ export default ApplicationComponent.extend(EKMixin, {
     },
 
     addRole(person) {
-      this.get("store").createRecord("person-role", { person });
+      this.store.createRecord("person-role", { person });
     }
   }
 });

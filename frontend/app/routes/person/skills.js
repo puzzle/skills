@@ -38,6 +38,6 @@ export default class SkillsRoute extends Route.extend(
   @action
   didTransition() {
     this.set("selectedPerson.personId", this.get("currentModel.person.id"));
-    this.set("selectedPerson.selectedSubRoute", this.get("routeName"));
+    this.set("selectedPerson.selectedSubRoute", this.routeName);
   }
 }

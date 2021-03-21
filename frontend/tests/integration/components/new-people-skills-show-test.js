@@ -64,7 +64,7 @@ module("Integration | Component | new-people-skills-show", function(hooks) {
     );
     await render(hbs`{{new-people-skills-show skills=skills}}`);
 
-    let text = this.$().text();
+    let text = this.element.textContent;
 
     assert.ok(text.includes("Neue Skills"));
     assert.ok(text.includes("Rails"));

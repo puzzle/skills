@@ -26,7 +26,7 @@ export default class PersonActions extends Component {
   }
 
   refreshUnratedSkillsAmount() {
-    this.get("ajax")
+    this.ajax
       .request("/skills/unrated_by_person", {
         data: {
           person_id: this.get("person.id")
@@ -53,7 +53,7 @@ export default class PersonActions extends Component {
 
     if (currentURL.includes("skills")) {
       let url = "/api/people_skills.csv?person_id=" + this.get("person.id");
-      this.get("download").file(url);
+      this.download.file(url);
     } else {
       /* eslint-disable no-undef  */
       $("#person-cv-export").modal();
@@ -65,13 +65,13 @@ export default class PersonActions extends Component {
   exportDevFws(personId, e) {
     e.preventDefault();
     let url = `/api/people/${personId}/fws.odt?discipline=development`;
-    this.get("download").file(url);
+    this.download.file(url);
   }
 
   @action
   exportSysFws(personId, e) {
     e.preventDefault();
     let url = `/api/people/${personId}/fws.odt?discipline=system_engineering`;
-    this.get("download").file(url);
+    this.download.file(url);
   }
 }

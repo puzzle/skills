@@ -1,5 +1,5 @@
 <div id="profil">
-  {{#validated-form model=(changeset this.person PersonEditValidations) on-submit=(action "submit") as |personChangeset|}}
+  <ValidatedForm @model={{changeset this.person PersonEditValidations}} @on-submit={{action "submit"}} as |personChangeset|>
     <div class="card-header bg-info">
       <div class="row">
         <div class="col-sm-6 header-text">
@@ -18,13 +18,13 @@
             <table class="table-person">
               <tbody>
                 <tr>
-                  <td>{{personChangeset.input label="Name" name="name" errorComponent=(component "validation-error-component")}}</td>
+                  <td><personChangeset.input @label="Name" @name="name" @errorComponent={{component "validation-error-component"}} /></td>
                 </tr>
                 <tr>
-                  <td>{{personChangeset.input label="Email" name="email" errorComponent=(component "validation-error-component")}}</td>
+                  <td><personChangeset.input @label="Email" @name="email" @errorComponent={{component "validation-error-component"}} /></td>
                 </tr>
                 <tr>
-                  <td>{{personChangeset.input label="Abschluss" name="title" errorComponent=(component "validation-error-component")}}</td>
+                  <td><personChangeset.input @label="Abschluss" @name="title" @errorComponent={{component "validation-error-component"}} /></td>
                 </tr>
                 <tr>
                   <label>Funktionen</label>
@@ -63,7 +63,7 @@
                 {{/each}}
                 <tr>
                   <td>
-                    <a class="nav-link language-button" role="button" {{action "addRole" this.person}}>
+                    <a href="#" class="nav-link language-button" role="button" {{action "addRole" this.person}}>
                       <i class="fa fa-plus" aria-hidden="true"></i>
                       Neue Funktion
                     </a>
@@ -92,10 +92,10 @@
             <table class="table-person">
               <tbody>
                 <tr>
-                  <td>{{personChangeset.input label="Geburtsdatum" name="birthdate" renderComponent=(component "validation-date-input" input=this.person.birthdate) errorComponent=(component "validation-error-component")}}</td>
+                  <td><personChangeset.input @label="Geburtsdatum" @name="birthdate" @renderComponent={{component "validation-date-input" input=this.person.birthdate}} @errorComponent={{component "validation-error-component"}} /></td>
                 </tr>
                 <tr>
-                  <td>{{personChangeset.input label="Wohnort (Stadt)" name="location" errorComponent=(component "validation-error-component")}}</td>
+                  <td><personChangeset.input @label="Wohnort (Stadt)" @name="location" @errorComponent={{component "validation-error-component"}} /></td>
                 </tr>
                 <tr>
                   <td>
@@ -130,7 +130,7 @@
                   {{/if}}
                 </tr>
                 <tr>
-                  <td>{{personChangeset.input label="Kürzel" name="shortname" errorComponent=(component "validation-error-component")}}</td>
+                  <td><personChangeset.input @label="Kürzel" @name="shortname" @errorComponent={{component "validation-error-component"}} /></td>
                 </tr>
               </tbody>
             </table>
@@ -142,7 +142,7 @@
                 <tr>
                   <td>
                     Sprachen
-                    <a href="http://www.europaeischer-referenzrahmen.de/" target="_blank" rel="noopener">
+                    <a href="http://www.europaeischer-referenzrahmen.de/" target="_blank" rel="noopener noreferrer">
                       <i class="ml-2 fa fa-question-circle" aria-hidden="true"></i>
                     </a>
                   </td>
@@ -157,11 +157,11 @@
           </div>
         </div>
         <br>
-        {{personChangeset.submit label="Speichern" id="submit-button"}}
-        <button {{action "abortEdit"}} role="button" class="btn abort-button">
+        <personChangeset.submit @label="Speichern" @id="submit-button" />
+        <button type="button" {{action "abortEdit"}} role="button" class="btn abort-button">
           Abbrechen
         </button>
       </div>
     </div>
-  {{/validated-form}}
+  </ValidatedForm>
 </div>

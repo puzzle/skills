@@ -6,6 +6,6 @@ import Component from "@ember/component";
 @tagName("tr")
 export default class SkillsListRowShow extends Component {
   click() {
-    this.sendAction("toggleSkill", this.get("skill"));
+    this.sendAction("toggleSkill", this.skill);
   }
 }

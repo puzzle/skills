@@ -9,7 +9,7 @@ export default Component.extend(EKMixin, {
   intl: service(),
 
   newAdvancedTraining: computed("personId", function() {
-    return this.get("store").createRecord("advancedTraining");
+    return this.store.createRecord("advancedTraining");
   }),
 
   activateKeyboard: on("init", function() {
@@ -18,14 +18,14 @@ export default Component.extend(EKMixin, {
 
   abortAdvancedTrainingNew: on(keyUp("Escape"), function() {
     if (this.get("newAdvancedTraining.isNew")) {
-      this.get("newAdvancedTraining").destroyRecord();
+      this.newAdvancedTraining.destroyRecord();
     }
     this.done(false);
   }),
 
   willDestroyElement() {
     if (this.get("newAdvancedTraining.isNew")) {
-      this.get("newAdvancedTraining").destroyRecord();
+      this.newAdvancedTraining.destroyRecord();
     }
   },
   setInitialState(context) {
@@ -44,7 +44,7 @@ export default Component.extend(EKMixin, {
 
     submit(newAdvancedTraining, initNew, event) {
       event.preventDefault();
-      let person = this.get("store").peekRecord("person", this.get("personId"));
+      let person = this.store.peekRecord("person", this.personId);
       newAdvancedTraining.set("person", person);
       return newAdvancedTraining
         .save()
@@ -52,17 +52,15 @@ export default Component.extend(EKMixin, {
           this.sendAction("done");
           if (initNew) this.sendAction("setInitialState", this);
         })
-        .then(() =>
-          this.get("notify").success("Weiterbildung wurde hinzugefügt!")
-        )
+        .then(() => this.notify.success("Weiterbildung wurde hinzugefügt!"))
         .catch(() => {
           this.set("newAdvancedTraining.person", null);
           this.get("newAdvancedTraining.errors").forEach(
             ({ attribute, message }) => {
-              let translated_attribute = this.get("intl").t(
+              let translated_attribute = this.intl.t(
                 `advancedTraining.${attribute}`
               );
-              this.get("notify").alert(`${translated_attribute} ${message}`, {
+              this.notify.alert(`${translated_attribute} ${message}`, {
                 closeAfter: 10000
               });
             }

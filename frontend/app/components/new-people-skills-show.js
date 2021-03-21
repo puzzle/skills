@@ -16,7 +16,7 @@ export default Component.extend({
   didReceiveAttrs() {
     this._super(...arguments);
 
-    this.get("skills").then(skills => {
+    this.skills.then(skills => {
       this.refreshNewPeopleSkills(skills);
     });
   },
@@ -24,7 +24,7 @@ export default Component.extend({
   refreshNewPeopleSkills(skills) {
     this.set("isLoading", true);
     let loadBegin = Date.now();
-    this.get("ajax")
+    this.ajax
       .request("/skills/unrated_by_person", {
         data: {
           person_id: this.get("person.id")
@@ -34,20 +34,20 @@ export default Component.extend({
         let loadEnd = Date.now();
         // have to disable the minimumLoadTime in tests
         if (
-          loadEnd - loadBegin > this.get("minimumLoadTime") ||
+          loadEnd - loadBegin > this.minimumLoadTime ||
           ENV.environment == "test"
         ) {
           this.set("isLoading", false);
         } else {
           setTimeout(() => {
             this.set("isLoading", false);
-          }, this.get("minimumLoadTime") - (loadEnd - loadBegin));
+          }, this.minimumLoadTime - (loadEnd - loadBegin));
         }
         let responseIds = response.data.map(skill => skill.id);
         let peopleSkills = skills
           .map(skill => {
             if (responseIds.includes(skill.get("id"))) {
-              let ps = this.get("store").createRecord("peopleSkill");
+              let ps = this.store.createRecord("peopleSkill");
               ps.set("skill", skill);
               return ps;
             }
@@ -66,15 +66,12 @@ export default Component.extend({
     const personSkillsIds = this.get("person.peopleSkills").map(ps =>
       ps.get("skill.id")
     );
-    const peopleSkill = this.get("newPeopleSkills")
+    const peopleSkill = this.newPeopleSkills
       .filter(
         ps => personSkillsIds.includes(ps.get("skill.id")) && !ps.get("errors")
       )
       .get("firstObject");
-    this.set(
-      "newPeopleSkills",
-      this.get("newPeopleSkills").removeObject(peopleSkill)
-    );
+    this.set("newPeopleSkills", this.newPeopleSkills.removeObject(peopleSkill));
   }),
 
   newPeopleSkillsAmount: computed("newPeopleSkills", function() {
@@ -90,10 +87,10 @@ export default Component.extend({
       ["interest", "level", "certificate", "coreCompetence"].forEach(attr => {
         peopleSkill.set(attr, 0);
       });
-      peopleSkill.set("person", this.get("person"));
+      peopleSkill.set("person", this.person);
       this.set(
         "newPeopleSkills",
-        this.get("newPeopleSkills").removeObject(peopleSkill)
+        this.newPeopleSkills.removeObject(peopleSkill)
       );
       peopleSkill.save().then(() => {
         this.notifyPropertyChange("newPeopleSkills");
@@ -106,26 +103,24 @@ export default Component.extend({
 
     async submit(person) {
       let changedPeopleSkills = [];
-      this.get("newPeopleSkills")
-        .toArray()
-        .forEach(ps => {
-          if (ps.get("isRated")) {
-            ps.set("person", this.get("person"));
-            changedPeopleSkills.push(ps);
-          }
-        });
+      this.newPeopleSkills.toArray().forEach(ps => {
+        if (ps.get("isRated")) {
+          ps.set("person", this.person);
+          changedPeopleSkills.push(ps);
+        }
+      });
 
       changedPeopleSkills.forEach(peopleSkill => {
         Promise.all([peopleSkill.save()])
           .then(() => {
             this.set(
               "newPeopleSkills",
-              this.get("newPeopleSkills").removeObject(peopleSkill)
+              this.newPeopleSkills.removeObject(peopleSkill)
             );
             this.notifyPropertyChange("newPeopleSkills");
           })
           .then(() => window.scroll({ top: 0, behavior: "smooth" }))
-          .then(() => this.get("notify").success("Successfully saved!"))
+          .then(() => this.notify.success("Successfully saved!"))
           .then(() => {
             // reload model hook with data for member skillset
             getOwner(this)
@@ -136,7 +131,7 @@ export default Component.extend({
             let errors = peopleSkill.get("errors").slice();
             peopleSkill.set("person", null);
             errors.forEach(({ attribute, message }) => {
-              let translated_attribute = this.get("intl").t(
+              let translated_attribute = this.intl.t(
                 `peopleSkill.${attribute}`
               );
               let msg =
@@ -145,7 +140,7 @@ export default Component.extend({
                 peopleSkill.get("skill.title") +
                 " " +
                 message;
-              this.get("notify").alert(msg, { closeAfter: 10000 });
+              this.notify.alert(msg, { closeAfter: 10000 });
             });
           });
         return peopleSkill.get("id");

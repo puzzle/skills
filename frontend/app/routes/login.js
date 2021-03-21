@@ -16,22 +16,20 @@ export default class LoginRoute extends Route.extend(
     let password = this.controller.get("password");
     let identification = this.controller.get("identification");
 
-    this.get("session")
+    this.session
       .authenticate("authenticator:auth", password, identification)
       .then(() => {
         let full_username = this.get("session.data.authenticated.full_name");
         this.send("findAndTransitionToUser", full_username);
       })
       .catch(reason => {
-        this.get("notify").alert(
-          (reason && reason.error) || "Unbekannter Fehler"
-        );
+        this.notify.alert((reason && reason.error) || "Unbekannter Fehler");
       });
   }
 
   @action
   findAndTransitionToUser(userName) {
-    let people = this.get("store").findAll("person");
+    let people = this.store.findAll("person");
     people.then(() => {
       let person = people.filterBy("name", userName)[0];
       if (person == undefined) {

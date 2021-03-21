@@ -1,12 +1,12 @@
-import DS from "ember-data";
+import Model, { attr, hasMany } from "@ember-data/model";
 import { computed } from "@ember/object";
 
-export default DS.Model.extend({
-  name: DS.attr("string"),
+export default Model.extend({
+  name: attr("string"),
 
-  personRoles: DS.hasMany("person-role"),
+  personRoles: hasMany("person-role"),
 
   instanceToString: computed("name", function() {
-    return this.get("name");
+    return this.name;
   })
 });

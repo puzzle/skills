@@ -14,6 +14,6 @@ export default class SelectedPersonService extends Service {
   }
 
   get isPresent() {
-    return !!(this.get("personId") && this.get("selectedSubRoute"));
+    return !!(this.personId && this.selectedSubRoute);
   }
 }

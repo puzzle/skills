@@ -1,8 +1,8 @@
-import DS from "ember-data";
+import Model, { attr, belongsTo, hasMany } from "@ember-data/model";
 
-export default DS.Model.extend({
-  name: DS.attr("string"),
-  userTopic: DS.attr("boolean"),
-  expertiseCategory: DS.belongsTo("expertise-category"),
-  expertiseTopicSkillValues: DS.hasMany("expertise-topic-skill-value")
+export default Model.extend({
+  name: attr("string"),
+  userTopic: attr("boolean"),
+  expertiseCategory: belongsTo("expertise-category"),
+  expertiseTopicSkillValues: hasMany("expertise-topic-skill-value")
 });

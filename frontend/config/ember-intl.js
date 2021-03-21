@@ -63,7 +63,8 @@ module.exports = function(/* env */) {
     /**
      * cause a build error if missing translations are detected.
      *
-     * See https://github.com/jasonmit/ember-intl/blob/master/docs/missing-translations.md#throwing-a-build-error-on-missing-required-translation
+     * See https://github.com/jasonmit/ember-intl/blob/master/docs/\
+     * missing-translations.md#throwing-a-build-error-on-missing-required-translation
      *
      * @property throwMissingTranslations
      * @type {Boolean}

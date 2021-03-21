@@ -6,7 +6,7 @@
   <NavSidebar @items={{this.sidebarItems}}>
     <ul class="nav flex-column mt-2">
       <li class="d-flex flex-column nav-link border">
-        <a role="button" class="edit-buttons" data-toggle="modal" data-target="#person-cv-export">
+        <a href="#" role="button" class="edit-buttons" data-toggle="modal" data-target="#person-cv-export">
           <i class="fa fa-download" aria-hidden="true"></i> Export
         </a>
       </li>
@@ -23,7 +23,7 @@
         }}
       </div>
       <div class="card mb-3" id="competences">
-        {{component "core-competences-show"
+        {{core-competences-show
                     person=this.model
         }}
       </div>
@@ -57,5 +57,5 @@
     </div>
   </div>
 </div>
-{{person-cv-export}}
+<PersonCvExport />
 {{if query (component "person-jump-to" query=this.query)}}

@@ -1,25 +1,23 @@
-import { moduleForComponent, test } from "ember-qunit";
+import { module, test } from "qunit";
+import { setupRenderingTest } from "ember-qunit";
+import { render } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 
-moduleForComponent(
-  "competence-notes-show",
-  "Integration | Component | competenceNotes show",
-  {
-    integration: true
-  }
-);
+module("Integration | Component | competenceNotes show", function(hooks) {
+  setupRenderingTest(hooks);
 
-test("it renders competences from person", function(assert) {
-  this.set("person", {
-    competenceNotes: "Ruby\nJava\nJavascript"
+  test("it renders competences from person", async function(assert) {
+    this.set("person", {
+      competenceNotes: "Ruby\nJava\nJavascript"
+    });
+
+    await render(hbs`{{competence-notes-show person=person}}`);
+
+    let text = this.element.textContent;
+
+    // doesn't show full person
+    assert.ok(text.includes("Ruby"));
+    assert.ok(text.includes("Java"));
+    assert.ok(text.includes("Javascript"));
   });
-
-  this.render(hbs`{{competence-notes-show person=person}}`);
-
-  let text = this.$().text();
-
-  // doesn't show full person
-  assert.ok(text.includes("Ruby"));
-  assert.ok(text.includes("Java"));
-  assert.ok(text.includes("Javascript"));
 });

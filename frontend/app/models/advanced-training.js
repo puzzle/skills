@@ -1,4 +1,4 @@
-import DS from "ember-data";
+import { attr, belongsTo } from "@ember-data/model";
 import DaterangeModel from "./daterange-model";
 import { computed } from "@ember/object";
 import { htmlSafe } from "@ember/template";
@@ -7,17 +7,15 @@ import { inject as service } from "@ember/service";
 export default DaterangeModel.extend({
   intl: service(),
 
-  description: DS.attr("string"),
-  person: DS.belongsTo("person"),
+  description: attr("string"),
+  person: belongsTo("person"),
 
   instanceToString: computed("description", function() {
-    return this.get("intl")
-      .t("advancedTraining.name")
-      .toString();
+    return this.intl.t("advancedTraining.name").toString();
   }),
 
   lineBreakDescription: computed("description", function() {
-    let description = this.get("description");
+    let description = this.description;
     if (description == null) {
       return "";
     }

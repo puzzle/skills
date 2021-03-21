@@ -1,6 +1,6 @@
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
-import { render } from "@ember/test-helpers";
+import { render, find } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import keycloakStub from "../../helpers/keycloak-stub";
 import { run } from "@ember/runloop";
@@ -28,9 +28,7 @@ module("Integration | Component | person-edit", function(hooks) {
     this.$("button")[0].click();
     await settled();
     assert.ok(
-      this.$("#validation-error")
-        .text()
-        .includes("Name can't be blank")
+      find("#validation-error").textContent.includes("Name can't be blank")
     );
   });
 
@@ -49,9 +47,7 @@ module("Integration | Component | person-edit", function(hooks) {
     this.$("button")[0].click();
     await settled();
     assert.ok(
-      this.$("#validation-error")
-        .text()
-        .includes("Title can't be blank")
+      find("#validation-error").textContent.includes("Title can't be blank")
     );
   });
 
@@ -70,9 +66,7 @@ module("Integration | Component | person-edit", function(hooks) {
     this.$("button")[0].click();
     await settled();
     assert.ok(
-      this.$("#validation-error")
-        .text()
-        .includes("Birthdate can't be blank")
+      find("#validation-error").textContent.includes("Birthdate can't be blank")
     );
   });
 });

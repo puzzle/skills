@@ -1,8 +1,8 @@
-import DS from "ember-data";
+import Model, { attr } from "@ember-data/model";
 
-export default DS.Model.extend({
-  shortName: DS.attr("string"),
-  adressInformation: DS.attr("string"),
-  country: DS.attr("string"),
-  defaultBranchAdress: DS.attr("boolean")
+export default Model.extend({
+  shortName: attr("string"),
+  adressInformation: attr("string"),
+  country: attr("string"),
+  defaultBranchAdress: attr("boolean")
 });

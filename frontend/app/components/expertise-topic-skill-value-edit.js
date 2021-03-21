@@ -32,7 +32,7 @@ export default class ExpertiseTopicSkillValueEdit extends Component {
     }
     this._expertiseTopicSkillValue =
       value ||
-      this.get("store").createRecord("expertise-topic-skill-value", {
+      this.store.createRecord("expertise-topic-skill-value", {
         skillLevel: DEFAULT_SKILL_LEVEL
       });
 

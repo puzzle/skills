@@ -11,6 +11,6 @@ module("Integration | Helper | format-country", function(hooks) {
 
     await render(hbs`{{format-country countryCode}}`);
 
-    assert.equal(this.element.textContent.trim(), "Schweiz");
+    assert.dom(this.element).hasText("Schweiz");
   });
 });

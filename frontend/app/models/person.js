@@ -1,34 +1,34 @@
-import DS from "ember-data";
+import Model, { attr, belongsTo, hasMany } from "@ember-data/model";
 import { computed } from "@ember/object";
 
-const Person = DS.Model.extend({
-  name: DS.attr("string"),
-  birthdate: DS.attr("date"),
-  picturePath: DS.attr("string"),
-  location: DS.attr("string"),
-  maritalStatus: DS.attr("string"),
-  nationality: DS.attr("string", { defaultValue: "CH" }),
-  nationality2: DS.attr("string"),
-  title: DS.attr("string"),
-  competenceNotes: DS.attr("string"),
-  email: DS.attr("string"),
-  shortname: DS.attr("string"),
-  updatedAt: DS.attr("date"),
+const Person = Model.extend({
+  name: attr("string"),
+  birthdate: attr("date"),
+  picturePath: attr("string"),
+  location: attr("string"),
+  maritalStatus: attr("string"),
+  nationality: attr("string", { defaultValue: "CH" }),
+  nationality2: attr("string"),
+  title: attr("string"),
+  competenceNotes: attr("string"),
+  email: attr("string"),
+  shortname: attr("string"),
+  updatedAt: attr("date"),
 
-  department: DS.belongsTo("department"),
-  company: DS.belongsTo("company"),
+  department: belongsTo("department"),
+  company: belongsTo("company"),
 
-  educations: DS.hasMany("education"),
-  advancedTrainings: DS.hasMany("advanced-training"),
-  activities: DS.hasMany("activity"),
-  projects: DS.hasMany("project"),
-  expertiseTopicSkillValues: DS.hasMany("expertise-topic-skill-value"),
-  languageSkills: DS.hasMany("language-skill"),
-  personRoles: DS.hasMany("person-role"),
-  peopleSkills: DS.hasMany("people-skill"),
+  educations: hasMany("education"),
+  advancedTrainings: hasMany("advanced-training"),
+  activities: hasMany("activity"),
+  projects: hasMany("project"),
+  expertiseTopicSkillValues: hasMany("expertise-topic-skill-value"),
+  languageSkills: hasMany("language-skill"),
+  personRoles: hasMany("person-role"),
+  peopleSkills: hasMany("people-skill"),
 
   instanceToString: computed("name", function() {
-    return this.get("name");
+    return this.name;
   })
 });
 

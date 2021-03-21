@@ -8,7 +8,7 @@
   </div>
   <div class="border border-info rounded-bottom">
     <div class="card-body">
-      <a onclick={{action "toggleProjectNew" true}} role="button" class={{~if (or this.projectEditing this.projectNew) "" "edit-buttons"~}}><i class="fa {{~if (or this.projectEditing this.projectNew) "" " add"~}}"></i>{{~if (or this.projectEditing this.projectNew) "" " Projekt hinzufügen"~}}</a>
+      <a href="#" onclick={{action "toggleProjectNew" true}} role="button" class={{~if (or this.projectEditing this.projectNew) "" "edit-buttons"~}}><i class="fa {{~if (or this.projectEditing this.projectNew) "" " add"~}}"></i>{{~if (or this.projectEditing this.projectNew) "" " Projekt hinzufügen"~}}</a>
       <div id="competence-content-show">
         <div class="mt-2">
           {{component (if this.projectNew "project-new") personId=this.personId done=(action "toggleProjectNew")}}

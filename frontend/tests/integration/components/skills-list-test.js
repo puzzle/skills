@@ -60,7 +60,7 @@ module("Integration | Component | skills-list", function(hooks) {
   test("it renders without data", async function(assert) {
     await render(hbs`{{skills-list}}`);
 
-    let text = this.$().text();
+    let text = this.element.textContent;
 
     assert.ok(text.includes("Export"));
     assert.ok(text.includes("Neuer Skill erstellen"));
@@ -99,7 +99,7 @@ module("Integration | Component | skills-list", function(hooks) {
 
     await render(hbs`{{skills-list skills=skills}}`);
 
-    let text = this.$().text();
+    let text = this.element.textContent;
 
     assert.ok(text.includes("Ruby"));
     assert.ok(text.includes("aktiv"));
