@@ -35,7 +35,7 @@ export default class LanguageSkillsEdit extends ApplicationComponent {
   sortedLanguageSkills;
 
   getLanguagesList() {
-    let languages = this.get("store").findAll("language");
+    let languages = this.store.findAll("language");
     languages.then(() => {
       this.set("languages", languages);
       this.set(
@@ -50,7 +50,7 @@ export default class LanguageSkillsEdit extends ApplicationComponent {
         let languageIsos = personLanguages.map(x =>
           x.get("language").toLowerCase()
         );
-        this.get("languages").forEach(function(language) {
+        this.languages.forEach(function(language) {
           language.set(
             "disabled",
             languageIsos.includes(language.get("iso1").toLowerCase())
@@ -68,15 +68,15 @@ export default class LanguageSkillsEdit extends ApplicationComponent {
         certificate: "",
         level: "Keine",
         language,
-        person: this.get("person")
+        person: this.person
       };
-      let skill = this.get("store").createRecord("languageSkill", skillDummy);
+      let skill = this.store.createRecord("languageSkill", skillDummy);
       skills.pushObject(skill);
     });
   }
 
   getSelectedLanguage(language) {
-    let languages = this.get("languages");
+    let languages = this.languages;
     let selected = languages
       .map(x => {
         if (x.get("iso1").toLowerCase() == language.toLowerCase()) {
@@ -126,9 +126,9 @@ export default class LanguageSkillsEdit extends ApplicationComponent {
         .map(x => x.get("language"))
         .includes("-")
     ) {
-      let newSkill = this.get("store").createRecord("languageSkill");
+      let newSkill = this.store.createRecord("languageSkill");
       newSkill.set("language", "-");
-      newSkill.set("person", this.get("person"));
+      newSkill.set("person", this.person);
       this.send("setSkill", newSkill);
       this.notifyPropertyChange("sortedLanguageSkills");
     }

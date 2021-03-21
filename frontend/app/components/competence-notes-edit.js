@@ -21,7 +21,7 @@ export default Component.extend(EKMixin, {
   }),
 
   abortCompetences: on(keyUp("Escape"), function() {
-    let person = this.get("person");
+    let person = this.person;
     if (person.get("hasDirtyAttributes")) {
       person.rollbackAttributes();
     }
@@ -33,7 +33,7 @@ export default Component.extend(EKMixin, {
       person
         .save()
         .then(() => this.sendAction("submit"))
-        .then(() => this.get("notify").success("Successfully saved!"))
+        .then(() => this.notify.success("Successfully saved!"))
         .catch(() => {
           let competences = this.get("person.personCompetences");
           competences.forEach(competence => {
@@ -44,10 +44,8 @@ export default Component.extend(EKMixin, {
             }
 
             errors.forEach(({ attribute, message }) => {
-              let translated_attribute = this.get("intl").t(
-                `offer.${attribute}`
-              );
-              this.get("notify").alert(`${translated_attribute} ${message}`, {
+              let translated_attribute = this.intl.t(`offer.${attribute}`);
+              this.notify.alert(`${translated_attribute} ${message}`, {
                 closeAfter: 10000
               });
             });
@@ -57,7 +55,7 @@ export default Component.extend(EKMixin, {
 
     abortEdit() {
       if (this.get("person.hasDirtyAttributes")) {
-        this.get("person").rollbackAttributes();
+        this.person.rollbackAttributes();
       }
       this.sendAction("competenceNotesEditing");
     },

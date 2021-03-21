@@ -55,7 +55,6 @@ export default class PeopleRoute extends Route.extend(
 
   @action
   willTransition(transition) {
-    if (transition.targetName === "people.index")
-      this.get("selectedPerson").clear();
+    if (transition.targetName === "people.index") this.selectedPerson.clear();
   }
 }

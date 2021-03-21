@@ -8,7 +8,7 @@
             <ul class="navbar-nav">
               <LinkTo @route="people">
                 <a class="navbar-brand p-0" href="#">
-                  <img src="/logo.svg" alt="" width="180">
+                  <img src="/logo.svg" alt="" role="presentation" width="180">
                   <small class="versionText align-bottom" color="black">{{app-version versionOnly=true}}</small>
                 </a>
               </LinkTo>
@@ -16,7 +16,7 @@
             <ul class="navbar-nav ml-auto">
               {{#if this.session.authenticated}}
                 <li class="nav-item border-black border-bottom-0 border-top-0 border-right-0">
-                  <a id="logout-button" role="button" class="nav-link pull-right" {{action "transitionToProfile"}}>
+                  <a href="#" id="logout-button" role="button" class="nav-link pull-right" {{action "transitionToProfile"}}>
                     <i class="fa fa-user-circle" aria-hidden="true"></i> {{this.username}}
                   </a>
                 </li>
@@ -27,7 +27,7 @@
                 </a>
               </li>
               <li class="nav-item border-black border-bottom-0 border-top-0 border-left-0">
-                <a id="logout-button" role="button" class="nav-link pull-right" {{action "logoutUser"}}>
+                <a href="#" id="logout-button" role="button" class="nav-link pull-right" {{action "logoutUser"}}>
                   Logout
                 </a>
               </li>

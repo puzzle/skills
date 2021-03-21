@@ -1,14 +1,14 @@
-import DS from "ember-data";
+import Model, { attr, belongsTo } from "@ember-data/model";
 import { computed } from "@ember/object";
 
-const PeopleSkill = DS.Model.extend({
-  level: DS.attr("number"),
-  interest: DS.attr("number"),
-  certificate: DS.attr("boolean"),
-  coreCompetence: DS.attr("boolean"),
+const PeopleSkill = Model.extend({
+  level: attr("number"),
+  interest: attr("number"),
+  certificate: attr("boolean"),
+  coreCompetence: attr("boolean"),
 
-  person: DS.belongsTo("person"),
-  skill: DS.belongsTo("skill"),
+  person: belongsTo("person"),
+  skill: belongsTo("skill"),
 
   isRated: computed(
     "level",

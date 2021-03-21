@@ -1,9 +1,9 @@
 // app/transforms/array.js
-import DS from "ember-data";
-import { A } from "@ember/array";
-import { isArray } from "@ember/array";
+import Transform from "@ember-data/serializer/transform";
 
-export default DS.Transform.extend({
+import { A, isArray } from "@ember/array";
+
+export default Transform.extend({
   deserialize(serialized) {
     if (isArray(serialized)) {
       return A(serialized);

@@ -19,7 +19,7 @@ module("Integration | Component | people-skill-show", function(hooks) {
 
     await render(hbs`{{people-skill-show peopleSkill=peopleSkill}}`);
 
-    let text = this.$().text();
+    let text = this.element.textContent;
 
     assert.ok(text.includes("Rails"));
     assert.ok(text.includes("Junior"));

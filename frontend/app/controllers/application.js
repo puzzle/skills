@@ -16,7 +16,7 @@ export default class ApplicationController extends Controller {
 
   init() {
     super.init(...arguments);
-    let session = this.get("session");
+    let session = this.session;
     let sessionInfo = session.get("tokenParsed");
     this.set(
       "username",
@@ -27,20 +27,20 @@ export default class ApplicationController extends Controller {
 
   @action
   transitionToProfile() {
-    let people = this.get("store").findAll("person");
+    let people = this.store.findAll("person");
     people.then(() => {
-      let person = people.filterBy("name", this.get("username"))[0];
+      let person = people.filterBy("name", this.username)[0];
       if (person == undefined) {
-        this.get("router").transitionTo("people");
+        this.router.transitionTo("people");
       } else {
-        this.get("router").transitionTo("person", person.id);
+        this.router.transitionTo("person", person.id);
       }
     });
   }
 
   @action
   logoutUser() {
-    let session = this.get("session");
+    let session = this.session;
     session.logout();
   }
 }

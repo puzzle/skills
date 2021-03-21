@@ -44,7 +44,7 @@ export default class PeopleSkillEdit extends Component {
 
   @observes("levelValue")
   levelValueChanged() {
-    this.set("peopleSkill.level", this.get("levelValue"));
+    this.set("peopleSkill.level", this.levelValue);
   }
 
   @computed("peopleSkill.level")

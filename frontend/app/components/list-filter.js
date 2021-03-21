@@ -17,12 +17,12 @@ export default class ListFilter extends Component {
 
   @action
   filterByName() {
-    const param = this.get("value");
+    const param = this.value;
 
     if (param == "") {
-      this.get("router").transitionTo({ queryParams: { title: null } });
+      this.router.transitionTo({ queryParams: { title: null } });
     } else {
-      this.get("router").transitionTo({ queryParams: { title: param } });
+      this.router.transitionTo({ queryParams: { title: param } });
     }
   }
 }

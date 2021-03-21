@@ -1,8 +1,7 @@
 import classic from "ember-classic-decorator";
-import { action } from "@ember/object";
+import { action, computed } from "@ember/object";
 import ApplicationComponent from "./application-component";
 import { isBlank } from "@ember/utils";
-import { computed } from "@ember/object";
 
 @classic
 export default class DaterangeEdit extends ApplicationComponent {
@@ -49,7 +48,7 @@ export default class DaterangeEdit extends ApplicationComponent {
 
   validateYear(year, attr) {
     const invalid = attr + "Invalid";
-    if (!this.get("entity").isYearValid(year)) {
+    if (!this.entity.isYearValid(year)) {
       this.set(invalid, true);
       year = Math.abs(year)
         .toString()

@@ -16,7 +16,7 @@ export default Component.extend({
     this.radarOptions = Object.values(Skill.RADAR_OPTIONS);
     this.portfolioOptions = Object.values(Skill.PORTFOLIO_OPTIONS);
 
-    this.set("changeset", new Changeset(this.get("skill")));
+    this.set("changeset", new Changeset(this.skill));
     this.set("selectedParent", this.get("skill.category.parent"));
     this.set("fallbackCategory", this.get("skill.category"));
   },
@@ -25,7 +25,7 @@ export default Component.extend({
     "childCategories",
     "selectedParent",
     function() {
-      return this.get("childCategories").then(categories =>
+      return this.childCategories.then(categories =>
         categories.filter(
           c => c.get("parent.id") == this.get("selectedParent.id")
         )
@@ -44,26 +44,26 @@ export default Component.extend({
 
   actions: {
     abort() {
-      this.get("skill").rollbackAttributes();
-      this.set("skill.category", this.get("fallbackCategory"));
+      this.skill.rollbackAttributes();
+      this.set("skill.category", this.fallbackCategory);
       this.sendAction("stopEditing");
     },
 
     submit() {
       if (this.get("changeset.isPristine")) return;
       const fallbackTitle = this.get("skill.title");
-      this.get("changeset")
+      this.changeset
         .save()
         .then(() => this.sendAction("stopEditing"))
-        .then(() => this.get("notify").success("Successfully saved!"))
+        .then(() => this.notify.success("Successfully saved!"))
         .catch(() => {
           let errors = this.get("skill.errors").slice(); // clone array as rollbackAttributes mutates
           // we set this to the original title because otherwise you would get an empty delete
           // prompt when trying to save an empty skill and then trying to delete it
           this.set("skill.title", fallbackTitle);
           errors.forEach(({ attribute, message }) => {
-            let translated_attribute = this.get("intl").t(`skill.${attribute}`);
-            this.get("notify").alert(`${translated_attribute} ${message}`, {
+            let translated_attribute = this.intl.t(`skill.${attribute}`);
+            this.notify.alert(`${translated_attribute} ${message}`, {
               closeAfter: 10000
             });
           });

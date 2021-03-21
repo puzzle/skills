@@ -1,22 +1,22 @@
-import DS from "ember-data";
+import Model, { attr, hasMany, belongsTo } from "@ember-data/model";
 import { computed } from "@ember/object";
 
-const Skill = DS.Model.extend({
-  title: DS.attr("string"),
-  radar: DS.attr("string"),
-  portfolio: DS.attr("string"),
-  defaultSet: DS.attr("boolean", { allowNull: true }),
+const Skill = Model.extend({
+  title: attr("string"),
+  radar: attr("string"),
+  portfolio: attr("string"),
+  defaultSet: attr("boolean", { allowNull: true }),
 
-  people: DS.hasMany("person"),
-  peopleSkills: DS.hasMany("people-skill"),
-  category: DS.belongsTo("category", { inverse: "skills" }),
-  parentCategory: DS.belongsTo("category", {
+  people: hasMany("person"),
+  peopleSkills: hasMany("people-skill"),
+  category: belongsTo("category", { inverse: "skills" }),
+  parentCategory: belongsTo("category", {
     inverse: "childrenSkills",
     readOnly: true
   }),
 
   instanceToString: computed("title", function() {
-    return this.get("title");
+    return this.title;
   })
 });
 

@@ -15,7 +15,7 @@ export default ApplicationComponent.extend({
     this.newPerson = this.store.createRecord("person");
     this.initMaritalStatuses();
     this.initNationalities();
-    this.get("store")
+    this.store
       .findAll("personRoleLevel")
       .then(levels => this.set("personRoleLevelsToSelect", levels));
   },
@@ -39,7 +39,7 @@ export default ApplicationComponent.extend({
   },
 
   departmentsToSelect: computed(function() {
-    return this.get("store").findAll("department");
+    return this.store.findAll("department");
   }),
 
   personRoleLevelsToSelect: computed(function() {
@@ -47,11 +47,11 @@ export default ApplicationComponent.extend({
   }),
 
   sortedRoles: computed(function() {
-    return this.get("store").findAll("role");
+    return this.store.findAll("role");
   }),
 
   companiesToSelect: computed(function() {
-    return this.get("store").findAll("company");
+    return this.store.findAll("company");
   }),
 
   focusComesFromOutside(e) {
@@ -76,10 +76,8 @@ export default ApplicationComponent.extend({
           ])
         )
         .then(() => this.sendAction("submit", newPerson))
-        .then(() => this.get("notify").success("Person wurde erstellt!"))
-        .then(() =>
-          this.get("notify").success("Füge nun ein Profilbild hinzu!")
-        )
+        .then(() => this.notify.success("Person wurde erstellt!"))
+        .then(() => this.notify.success("Füge nun ein Profilbild hinzu!"))
         .catch(() => {
           let errors = newPerson.get("errors").slice();
 
@@ -95,10 +93,8 @@ export default ApplicationComponent.extend({
           });
 
           errors.forEach(({ attribute, message }) => {
-            let translated_attribute = this.get("intl").t(
-              `person.${attribute}`
-            );
-            this.get("notify").alert(`${translated_attribute} ${message}`, {
+            let translated_attribute = this.intl.t(`person.${attribute}`);
+            this.notify.alert(`${translated_attribute} ${message}`, {
               closeAfter: 8000
             });
           });
@@ -106,8 +102,8 @@ export default ApplicationComponent.extend({
     },
 
     abortCreate() {
-      this.get("newPerson").destroyRecord();
-      this.get("router").transitionTo("people");
+      this.newPerson.destroyRecord();
+      this.router.transitionTo("people");
     },
 
     handleFocus(select, e) {
@@ -179,7 +175,7 @@ export default ApplicationComponent.extend({
     },
 
     addRole(newPerson) {
-      this.get("store").createRecord("person-role", { person: newPerson });
+      this.store.createRecord("person-role", { person: newPerson });
     }
   }
 });

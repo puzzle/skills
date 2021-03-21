@@ -22,7 +22,7 @@ module("Integration | Component | skillset-category-filter", function(hooks) {
       hbs`{{skillset-category-filter parentCategories=parentCategories}}`
     );
 
-    let text = this.$().text();
+    let text = this.element.textContent;
 
     assert.ok(text.includes("Kategorie"));
   });
