@@ -57,13 +57,18 @@ It is not possible to create a new profile without some predefined data. This da
 1. `rails c`
 1.
     ```shell
-   Company.connection
    Company.create(name:"Firma")
    Company.create(name:"Partner")
    ```
 1.
    ```shell
-   Department.connection
    Department.create(name:"Funktionsbereiche")
    Department.create(name:"/dev/ruby")
+   ```
+
+If CV export is also needed, the following command must be executed:
+
+1.
+   ```shell     
+   BranchAdress.create(short_name: "Bern", adress_information: "Belpstrasse 32", country: "CH", default_branch_adress: true)  
    ```
