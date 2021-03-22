@@ -21,6 +21,7 @@
 #  marital_status          :integer          default("single"), not null
 #  email                   :string
 #  department_id           :integer
+#  shortname               :string
 #
 
 class PersonSerializer < ApplicationSerializer
@@ -32,7 +33,7 @@ class PersonSerializer < ApplicationSerializer
   attributes :id, :birthdate, :picture_path, :location,
              :marital_status, :updated_by, :name, :nationality,
              :nationality2, :title, :competence_notes, :email,
-             :updated_at
+             :shortname, :updated_at
 
   def picture_path
     "/api/people/#{object.id}/picture?#{Time.zone.now}"

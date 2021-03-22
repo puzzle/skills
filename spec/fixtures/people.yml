@@ -19,6 +19,7 @@
 #  marital_status          :integer          default("single"), not null
 #  email                   :string
 #  department_id           :integer
+#  shortname               :string
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
@@ -36,6 +37,7 @@ bob:
   company: firma
   email: bob@example.com
   department: sys
+  shortname: BA
 
 alice:
   birthdate: 2016-10-20 13:15:11
@@ -49,6 +51,7 @@ alice:
   company: partner
   email: alice@example.com
   department: sys
+  shortname: AM
 
 ken:
   birthdate: 1995-08-26 03:15:11

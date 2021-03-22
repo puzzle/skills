@@ -34,6 +34,10 @@ module Odt
       @params[:anon].presence == 'true'
     end
 
+    def include_core_competences_and_skills?
+      @params[:includeCS].presence == 'true'
+    end
+
     def location
       BranchAdress.find(@params[:location])
     end
@@ -73,7 +77,11 @@ module Odt
     # rubocop:enable Metrics/AbcSize
 
     def insert_competences(report)
-      competences_list = [core_competences_list, competence_notes_list].flatten
+      competences_list = if include_core_competences_and_skills?
+                           [core_competences_list, competence_notes_list].flatten
+                         else
+                           [competence_notes_list].flatten
+                         end
       report.add_table('COMPETENCES', competences_list, header: true) do |t|
         t.add_column(:category, :category)
         t.add_column(:competence, :competence)

@@ -13,7 +13,6 @@ esac
 
 rails server -e test -d -p $RAILS_PORT -P $PID_FILE
 rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
-
 cd frontend
 if [[ $SERVER == true ]]; then
   ember test --server
@@ -22,7 +21,6 @@ else
 fi
 rc=$?
 cd ..
-
 kill -INT $(cat $PID_FILE)
 
 exit $rc

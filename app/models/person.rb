@@ -21,6 +21,7 @@
 #  marital_status          :integer          default("single"), not null
 #  email                   :string
 #  department_id           :integer
+#  shortname               :string
 #
 
 class Person < ApplicationRecord
@@ -45,7 +46,7 @@ class Person < ApplicationRecord
   validates :birthdate, :location, :name, :nationality,
             :title, :marital_status, presence: true
   validates :location, :name, :title,
-            :email, length: { maximum: 100 }
+            :email, :shortname, length: { maximum: 100 }
 
   validates :nationality,
             inclusion: { in: ISO3166::Country.all.collect(&:alpha2) }
