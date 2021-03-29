@@ -33,7 +33,7 @@ gem 'sentry-raven'
 
 group :metrics do
   gem 'brakeman'
-  gem 'rubocop', '>= 0.54.0'
+  gem 'rubocop'
 end
 
 group :development, :test do
