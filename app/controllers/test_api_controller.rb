@@ -29,7 +29,7 @@ class TestApiController < ActionController::API
   end
 
   def fixtures_dir
-    Rails.root.join('spec', 'fixtures')
+    Rails.root.join('spec/fixtures')
   end
 
   def fixtures_files

@@ -109,6 +109,10 @@ Rails/Delegate:
 # We think that's the developers choice
 Rails/SkipsModelValidations:
   Enabled: false
+ 
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
 
 # We thinks that's fine
 Style/EmptyMethod:

@@ -320,7 +320,7 @@ GEM
     seed-fu (2.3.9)
       activerecord (>= 3.1)
       activesupport (>= 3.1)
-    sentry-raven (3.1.1)
+    sentry-raven (3.1.2)
       faraday (>= 1.0)
     simplecov (0.21.2)
       docile (~> 1.1)
@@ -403,4 +403,4 @@ DEPENDENCIES
   tzinfo-data
 
 BUNDLED WITH
-   2.1.4
+   2.2.15
