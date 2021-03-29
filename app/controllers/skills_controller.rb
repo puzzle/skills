@@ -16,11 +16,8 @@ class SkillsController < CrudController
 
   def index
     return export if params[:format]
-    render json: fetch_entries, each_serializer: SkillSerializer, include: '*'
-  end
 
-  def create
-    super
+    render json: fetch_entries, each_serializer: SkillSerializer, include: '*'
   end
 
   def unrated_by_person

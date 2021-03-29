@@ -14,7 +14,7 @@ module Odt
       country_suffix = location.country == 'DE' ? '_de' : ''
       anonymous_suffix = anon? ? '_anon' : ''
       template_name = "cv_template#{country_suffix}#{anonymous_suffix}.odt"
-      ODFReport::Report.new('lib/templates/' + template_name) do |r|
+      ODFReport::Report.new("lib/templates/#{template_name}") do |r|
         insert_general_sections(r)
         insert_locations(r)
         insert_personalien(r)
@@ -44,6 +44,7 @@ module Odt
 
     # rubocop:disable Metrics/AbcSize
     attr_accessor :person
+
     def insert_general_sections(report)
       report.add_field(:client, 'mg')
       report.add_field(:project, 'pcv')
@@ -95,6 +96,7 @@ module Odt
                       .where(categories: { parent_id: parent_c.id }, id: core_competence_skill_ids)
                       .pluck(:title)
         next if skills.blank?
+
         { category: parent_c.title, competence: skills.join(', ') }
       end.compact
     end
@@ -124,7 +126,7 @@ module Odt
 
     def language_skill_level(language_skill)
       language_skill.level +
-        (language_skill.certificate.blank? ? '' : ' / Zertifikat: ' + language_skill.certificate)
+        (language_skill.certificate.blank? ? '' : " / Zertifikat: #{language_skill.certificate}")
     end
 
     # rubocop:disable Metrics/AbcSize
@@ -214,7 +216,7 @@ module Odt
     end
 
     def formatted_year(year)
-      year ? year : 'heute'
+      year || 'heute'
     end
 
     def nationalities
@@ -227,6 +229,7 @@ module Odt
 
     def format_nationality(country_code)
       return '' if country_code.blank?
+
       country = ISO3166::Country[country_code]
       country.translations[I18n.locale.to_s]
     end

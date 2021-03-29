@@ -14,7 +14,6 @@
 class Category < ApplicationRecord
   has_many :skills, dependent: :destroy
   belongs_to :parent, optional: true,
-                      foreign_key: :parent_id,
                       class_name: :Category,
                       inverse_of: :children
 

@@ -306,6 +306,10 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.4.1)
       parser (>= 2.7.1.5)
+    rubocop-rails (2.9.1)
+      activesupport (>= 4.2.0)
+      rack (>= 1.1)
+      rubocop (>= 0.90.0, < 2.0)
     ruby-graphviz (1.2.5)
       rexml
     ruby-progressbar (1.11.0)
@@ -390,6 +394,7 @@ DEPENDENCIES
   rest-client
   rspec-rails (~> 4.0.2)
   rubocop
+  rubocop-rails
   seed-fu
   sentry-raven
   simplecov

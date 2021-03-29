@@ -34,6 +34,7 @@ gem 'sentry-raven'
 group :metrics do
   gem 'brakeman'
   gem 'rubocop'
+  gem 'rubocop-rails', require: false
 end
 
 group :development, :test do

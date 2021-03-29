@@ -21,7 +21,7 @@ class PeopleSkillsController < CrudController
   def fetch_entries
     base = PeopleSkill.includes(:person, skill: [
                                   :category,
-                                  :people, people_skills: :person
+                                  :people, { people_skills: :person }
                                 ])
     people_skills = PeopleSkillsFilter.new(base, params[:rated], params[:level]).scope
     filter_entries(people_skills)

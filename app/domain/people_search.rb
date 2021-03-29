@@ -56,10 +56,11 @@ class PeopleSearch
   def in_association(person, sym)
     target = person.association(sym).target
     return if target.nil?
+
     if target.is_a?(Array)
-      return attribute_in_array(target)
+      attribute_in_array(target)
     else
-      return in_attributes(target.attributes)
+      in_attributes(target.attributes)
     end
   end
 
@@ -74,6 +75,7 @@ class PeopleSearch
   def in_attributes(attrs)
     attribute = searchable_fields(attrs).find do |_key, value|
       next if value.nil?
+
       value.downcase.include?(search_term.downcase) # PG Search is not case sensitive
     end
     attribute.try(:first)

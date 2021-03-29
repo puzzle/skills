@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class StaticAssetsController < ActionController::Base
+class StaticAssetsController < ApplicationController
 
   protect_from_forgery with: :exception
 

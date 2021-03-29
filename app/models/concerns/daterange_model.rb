@@ -24,6 +24,7 @@ module DaterangeModel
 
   def start_at_before_finish_at
     return if year_from.nil? || year_to.nil?
+
     formatted_month_from = month_from || 1
     formatted_month_to = month_to || 12
     start_at = Date.new(year_from, formatted_month_from)
