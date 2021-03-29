@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'rails', '6.1.3'
+gem 'rails', '6.1.3.1'
 
 gem 'active_model_serializers'
 gem 'activerecord-postgresql-adapter'
@@ -17,6 +17,7 @@ gem 'faker'
 gem 'i18n_data'
 gem 'keycloak-api-rails'
 gem 'language_list'
+gem "mimemagic", "~> 0.3.6"
 gem 'mini_magick'
 gem 'net-ldap', '~> 0.16.0'
 gem 'nokogiri', '~> 1.11.0'
