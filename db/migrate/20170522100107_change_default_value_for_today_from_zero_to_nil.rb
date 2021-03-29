@@ -22,7 +22,7 @@ class ChangeDefaultValueForTodayFromZeroToNil < ActiveRecord::Migration[5.0]
 
   def change_format(class_name, new, old)
     class_name.to_s.constantize.where(year_to: old).find_each do |e|
-      e.update_attributes(year_to: new)
+      e.update(year_to: new)
     end
   end
 end

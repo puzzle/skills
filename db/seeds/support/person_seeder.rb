@@ -31,7 +31,7 @@ class PersonSeeder
 
   def seed_image(person)
     File.open('spec/fixtures/files/picture.png') do |f|
-      person.update_attributes(picture: f)
+      person.update(picture: f)
     end
   end
 
