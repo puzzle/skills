@@ -25,7 +25,7 @@ Metrics/CyclomaticComplexity:
   Max: 6
   Severity: error
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 100
   Severity: error
 
@@ -45,28 +45,28 @@ Rails:
   Enabled: true
 
 # Keep for now, easier with superclass definitions
-ClassAndModuleChildren:
+Style/ClassAndModuleChildren:
   Enabled: false
 
 # The ones we use must exist for the entire class hierarchy.
-ClassVars:
+Style/ClassVars:
   Enabled: false
 
 # map instead of collect, reduce instead of inject.
 # Probably later
-CollectionMethods:
+Style/CollectionMethods:
   Enabled: false
 
 # Well, well, well
-Documentation:
+Style/Documentation:
   Enabled: false
 
 # Probably later
-DotPosition:
+Layout/DotPosition:
   Enabled: false
 
 # Missing UTF-8 encoding statements should always be created.
-Encoding:
+Style/Encoding:
   Severity: error
 
 # That's no huge stopper
@@ -94,7 +94,7 @@ Lint/AmbiguousBlockAssociation:
   Enabled: false
 
 # Keep single line bodys for if and unless
-IfUnlessModifier:
+Style/IfUnlessModifier:
   Enabled: false
 
 # We thinks that's fine
