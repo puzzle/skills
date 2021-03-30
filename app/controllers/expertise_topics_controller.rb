@@ -7,6 +7,7 @@ class ExpertiseTopicsController < CrudController
 
   def fetch_entries
     raise unless params[:category_id]
+
     ExpertiseTopic.list(params[:category_id])
   end
 end

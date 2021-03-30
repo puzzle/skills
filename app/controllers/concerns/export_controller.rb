@@ -7,6 +7,7 @@ module ExportController
 
   def filename(name, document_type = nil, file_type = 'odt')
     return "#{document_type}_#{name.downcase.tr(' ', '_')}.#{file_type}" if document_type
+
     "#{name.downcase.tr(' ', '_')}.#{file_type}"
   end
 
@@ -26,19 +27,17 @@ module ExportController
   end
 
   def content_disposition_filename_ascii(filename)
-    'filename="' +
-      percent_escape(
-        I18n.transliterate(filename),
-        /[^ A-Za-z0-9!#{$+}.^_`|~-]/
-      ) + '"'
+    "filename=\"#{percent_escape(
+      I18n.transliterate(filename),
+      /[^ A-Za-z0-9!#{Regexp.last_match(-1)}.^_`|~-]/
+    )}\""
   end
 
   def content_disposition_filename_utf8(filename)
-    "filename*=UTF-8''" +
-      percent_escape(
-        filename,
-        /[^A-Za-z0-9!#{$&}+.^_`|~-]/
-      )
+    "filename*=UTF-8''#{percent_escape(
+      filename,
+      /[^A-Za-z0-9!#{Regexp.last_match(0)}+.^_`|~-]/
+    )}"
   end
 
   def percent_escape(string, pattern)

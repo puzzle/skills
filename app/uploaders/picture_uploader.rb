@@ -30,7 +30,7 @@ class PictureUploader < CarrierWave::Uploader::Base
   end
 
   def png_name
-    ['profil', version_name].compact.join('_') + '.png'
+    "#{['profil', version_name].compact.join('_')}.png"
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

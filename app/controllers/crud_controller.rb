@@ -99,6 +99,7 @@ class CrudController < ListController
   def relationship_ids(model_data, name)
     return unless model_data[:data]
     return model_data[:data][:id] unless model_data[:data].is_a?(Array)
+
     if permitted_relationship?(name)
       model_data[:data].collect do |e|
         e[:id]

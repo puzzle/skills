@@ -12,7 +12,7 @@ describe People::PictureController do
   end
 
   it 'should update picture' do
-    process :update, method: :put, params: { id: bob.id, picture: fixture_file_upload('files/picture.png', 'image/png') }
+    process :update, method: :put, params: { id: bob.id, picture: fixture_file_upload('picture.png', 'image/png') }
 
     path = json['data']['picture_path']
 

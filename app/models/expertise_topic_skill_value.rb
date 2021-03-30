@@ -19,7 +19,7 @@ class ExpertiseTopicSkillValue < ApplicationRecord
   belongs_to :expertise_topic
   belongs_to :person, touch: true
 
-  enum skill_level: %i[trainee junior professional senior expert]
+  enum skill_level: { trainee: 0, junior: 1, professional: 2, senior: 3, expert: 4 }
 
   validates :skill_level, presence: true, inclusion: { in: skill_levels.keys }
   validates :last_use, length: { is: 4 }, allow_nil: true

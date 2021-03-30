@@ -32,6 +32,7 @@ class AttributeDeserializer
     model.each do |key, value|
       model_attrs = attrs.delete(key.to_s)
       next if model_attrs.blank?
+
       attrs["#{key}_attributes"] = model_attrs
       if model_attrs.is_a?(Array)
         model_attrs.each { |ma| process_nested_models(ma, Array.wrap(value)) }
