@@ -9,7 +9,7 @@
   <div class="border border-info rounded-bottom">
     <div class="card-body d-flex flex-column">
       <div class="mb-2">
-        <a onclick={{action "toggleAdvancedTrainingNew" true}} role="button" class={{~unless this.advanced-trainingNew "edit-buttons"~}}><i class="fa {{~unless this.advanced-trainingNew " add"~}}"></i> {{~unless this.advanced-trainingNew " Weiterbildung hinzufügen"~}}</a>
+        <a href="#" onclick={{action "toggleAdvancedTrainingNew" true}} role="button" class={{~unless this.advanced-trainingNew "edit-buttons"~}}><i class="fa {{~unless this.advanced-trainingNew " add"~}}"></i> {{~unless this.advanced-trainingNew " Weiterbildung hinzufügen"~}}</a>
       </div>
       <div id="advancedtraining-content-show" class="mb-2">
         {{component (if this.advanced-trainingNew "advanced-training-new")
@@ -36,7 +36,7 @@
       {{#if this.sortedAdvancedTrainings}}
         {{#unless this.advanced-trainingNew}}
           <div class="mt-auto">
-            <a onclick={{this.advancedTrainingsEditing}} role="button" class="edit-buttons"><i class="fa fa-edit"></i> Bearbeiten</a>
+            <a href="#" onclick={{this.advancedTrainingsEditing}} role="button" class="edit-buttons"><i class="fa fa-edit"></i> Bearbeiten</a>
           </div>
         {{/unless}}
       {{/if}}

@@ -63,7 +63,7 @@
                 {{/each}}
                 <tr>
                   <td>
-                    <a class="nav-link language-button" role="button" {{action "addRole" this.person}}>
+                    <a href="#" class="nav-link language-button" role="button" {{action "addRole" this.person}}>
                       <i class="fa fa-plus" aria-hidden="true"></i>
                       Neue Funktion
                     </a>
@@ -142,7 +142,7 @@
                 <tr>
                   <td>
                     Sprachen
-                    <a href="http://www.europaeischer-referenzrahmen.de/" target="_blank" rel="noopener">
+                    <a href="http://www.europaeischer-referenzrahmen.de/" target="_blank" rel="noopener noreferrer">
                       <i class="ml-2 fa fa-question-circle" aria-hidden="true"></i>
                     </a>
                   </td>
@@ -158,7 +158,7 @@
         </div>
         <br>
         {{personChangeset.submit label="Speichern" id="submit-button"}}
-        <button {{action "abortEdit"}} role="button" class="btn abort-button">
+        <button type="button" {{action "abortEdit"}} role="button" class="btn abort-button">
           Abbrechen
         </button>
       </div>

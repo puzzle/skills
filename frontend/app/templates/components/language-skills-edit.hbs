@@ -1,11 +1,11 @@
 <ul class="nav nav-tabs">
   {{#each this.sortedLanguageSkills as |skill|}}
     <li class="nav-item">
-      <a class= "nav-link {{if (eq skill.language this.selectedLanguage.iso1) "active"}}" onclick={{action "setSkill" skill}} role="button">{{skill.language}}</a>
+      <a href="#" class= "nav-link {{if (eq skill.language this.selectedLanguage.iso1) "active"}}" onclick={{action "setSkill" skill}} role="button">{{skill.language}}</a>
     </li>
   {{/each}}
   <li class="nav-item">
-    <a class="nav-link language-button" onclick={{action "createSkill"}} role="button" rel="noopener"><i class="fa fa-plus" aria-hidden="true"></i></a>
+    <a href="#" class="nav-link language-button" onclick={{action "createSkill"}} role="button" rel="noopener"><i class="fa fa-plus" aria-hidden="true"></i></a>
   </li>
 </ul>
 <div class="container">
