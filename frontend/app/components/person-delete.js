@@ -10,6 +10,6 @@ export default class PersonDelete extends Component {
   @action
   deletePerson(personToDelete) {
     personToDelete.destroyRecord();
-    this.router.transitionTo("people");
+    this.get("router").transitionTo("people");
   }
 }

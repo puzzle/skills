@@ -1,6 +1,6 @@
-import Model, { attr } from "@ember-data/model";
+import DS from "ember-data";
 
-export default Model.extend({
-  name: attr("string"),
-  iso1: attr("string")
+export default DS.Model.extend({
+  name: DS.attr("string"),
+  iso1: DS.attr("string")
 });

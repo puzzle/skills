@@ -19,7 +19,7 @@ module("Integration | Component | people-skill-edit", function(hooks) {
 
     await render(hbs`{{people-skill-edit peopleSkill=peopleSkill}}`);
 
-    let text = this.element.textContent;
+    let text = this.$().text();
     let checkboxes = this.$('[type="checkbox"]');
 
     assert.ok(text.includes("Rails"));

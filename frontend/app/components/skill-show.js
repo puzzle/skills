@@ -11,7 +11,7 @@ export default class SkillShow extends Component {
   @computed("skill")
   get peopleSkills() {
     if (this.get("skill.id") != null) {
-      return this.store.query("peopleSkill", {
+      return this.get("store").query("peopleSkill", {
         skill_id: this.get("skill.id"),
         rated: "true",
         level: "0"

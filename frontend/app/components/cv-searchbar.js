@@ -13,12 +13,12 @@ export default class CvSearchbar extends Component {
 
   @action
   searchThroughCVs() {
-    const param = this.value;
+    const param = this.get("value");
 
     if (param == "") {
-      this.router.transitionTo({ queryParams: { q: null } });
+      this.get("router").transitionTo({ queryParams: { q: null } });
     } else {
-      this.router.transitionTo({ queryParams: { q: param } });
+      this.get("router").transitionTo({ queryParams: { q: param } });
     }
   }
 

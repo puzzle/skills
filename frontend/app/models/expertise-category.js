@@ -1,7 +1,7 @@
-import Model, { attr, hasMany } from "@ember-data/model";
+import DS from "ember-data";
 
-export default Model.extend({
-  name: attr("string"),
-  discipline: attr("string"),
-  expertiseTopics: hasMany("expertise-topic")
+export default DS.Model.extend({
+  name: DS.attr("string"),
+  discipline: DS.attr("string"),
+  expertiseTopics: DS.hasMany("expertise-topic")
 });

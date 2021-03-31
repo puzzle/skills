@@ -1,6 +1,6 @@
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
-import { render, fillIn } from "@ember/test-helpers";
+import { render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 
 module("Integration | Component | activity-new", function(hooks) {
@@ -31,8 +31,8 @@ module("Integration | Component | activity-new", function(hooks) {
     await render(
       hbs`{{activity-new newActivity=newActivity personId=personId}}`
     );
-    await fillIn(".ember-text-field", "Schlachter");
-    await fillIn(".ember-text-area", "Schlachten");
+    this.$(".ember-text-field").val("Schlachter");
+    this.$(".ember-text-area").val("Schlachten");
     this.$("button")[0].click();
     assert.equal(this.$("#missing-month-warning").css("display"), "block");
   });
@@ -58,8 +58,8 @@ module("Integration | Component | activity-new", function(hooks) {
     await render(
       hbs`{{activity-new newActivity=newActivity personId=personId}}`
     );
-    await fillIn(".ember-text-field", "Aushilfe");
-    await fillIn(".ember-text-area", "Aushelfen");
+    this.$(".ember-text-field").val("Aushilfe");
+    this.$(".ember-text-area").val("Aushelfen");
     this.$("button")[0].click();
     assert.equal(this.$("#missing-month-warning").css("display"), "none");
   });

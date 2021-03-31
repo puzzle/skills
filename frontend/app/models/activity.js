@@ -1,19 +1,19 @@
-import { attr, belongsTo } from "@ember-data/model";
+import DS from "ember-data";
 import DaterangeModel from "./daterange-model";
 import { computed } from "@ember/object";
 import { htmlSafe } from "@ember/template";
 
 export default DaterangeModel.extend({
-  description: attr("string"),
-  role: attr("string"),
-  person: belongsTo("person"),
+  description: DS.attr("string"),
+  role: DS.attr("string"),
+  person: DS.belongsTo("person"),
 
   instanceToString: computed("role", function() {
-    return this.role;
+    return this.get("role");
   }),
 
   lineBreakDescription: computed("description", function() {
-    let description = this.description;
+    let description = this.get("description");
     if (description == null) {
       return "";
     }

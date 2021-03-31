@@ -58,7 +58,7 @@
               {{/each}}
               <tr>
                 <td>
-                  <a href="#" class="nav-link language-button" role="button" {{action "addRole" this.newPerson}}>
+                  <a class="nav-link language-button" role="button" {{action "addRole" this.newPerson}}>
                     <i class="fa fa-plus" aria-hidden="true"></i>
                     Neue Funktion
                   </a>
@@ -144,7 +144,7 @@
                 <td>{{!Leere Zeile aus Layout-Gründen}}</td>
               </tr>
               <tr>
-                <td class="description">Sprachen<a href="http://www.europaeischer-referenzrahmen.de/" target="_blank" rel="noopener noreferrer"><i class="ml-2 fa fa-question-circle" aria-hidden="true"></i></a></td>
+                <td class="description">Sprachen<a href="http://www.europaeischer-referenzrahmen.de/" target="_blank" rel="noopener"><i class="ml-2 fa fa-question-circle" aria-hidden="true"></i></a></td>
               </tr>
               <tr>
                 <div class="border rounded mt-2 p-2">
@@ -155,8 +155,8 @@
           </table>
         </div>
       </div>
-      <button type="button" {{action "submit" this.newPerson}} role="button" id="submit-button" class="btn btn-primary "> Speichern</button>
-      <button type="button" onclick={{action "abortCreate"}} role="button" class="btn abort-button"> Abbrechen</button>
+      <button {{action "submit" this.newPerson}} role="button" id="submit-button" class="btn btn-primary "> Speichern</button>
+      <button onclick={{action "abortCreate"}} role="button" class="btn abort-button"> Abbrechen</button>
     </div>
   </div>
 </section>

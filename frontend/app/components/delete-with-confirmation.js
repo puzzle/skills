@@ -31,9 +31,9 @@ export default class DeleteWithConfirmation extends Component {
     entry.destroyRecord().then(() => {
       this.set("showConfirmation", false);
       if (isPresent(transitionTo)) {
-        this.router.transitionTo(transitionTo);
+        this.get("router").transitionTo(transitionTo);
       }
-      this.notify.success(message);
+      this.get("notify").success(message);
       if (this.didDelete) this.didDelete();
     });
   }

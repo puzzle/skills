@@ -29,7 +29,7 @@ export default class SkillSearchController extends Controller {
   }
 
   updateSelection() {
-    this.router.transitionTo({
+    this.get("router").transitionTo({
       queryParams: {
         skill_id: this.currentSkillId,
         level: this.levelValue

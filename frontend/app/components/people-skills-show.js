@@ -11,7 +11,7 @@ export default Component.extend({
     this.set("peopleSkillsEditing", false);
     // we cant use findAll here because that method preloads
     // previously loaded records which screws with our ordering
-    const categories = this.store.query("category", {});
+    const categories = this.get("store").query("category", {});
     categories.then(() => {
       this.set("categories", categories);
       this.set(
@@ -25,8 +25,8 @@ export default Component.extend({
   sidebarItems: computed("parentCategories", function() {
     let hash = {};
 
-    if (!this.parentCategories) return;
-    this.parentCategories.forEach(category => {
+    if (!this.get("parentCategories")) return;
+    this.get("parentCategories").forEach(category => {
       hash[category.get("title")] = "#parentCategory-" + category.id;
     });
     return hash;
@@ -45,7 +45,7 @@ export default Component.extend({
   ),
 
   skills: computed(function() {
-    return this.store.findAll("skill", { reload: true });
+    return this.get("store").findAll("skill", { reload: true });
   }),
 
   amountOfPeopleSkills: computed("person.peopleSkills", function() {
@@ -53,13 +53,13 @@ export default Component.extend({
   }),
 
   memberSkillset: computed("skillset", function() {
-    return this.skillset;
+    return this.get("skillset");
   }),
 
   setMemberSkillset() {
     this.set(
       "parentCategories",
-      this.categories.filter(c => c.get("parent.content") == null)
+      this.get("categories").filter(c => c.get("parent.content") == null)
     );
     let memberSkillset = this.refreshMemberSkillset();
     this.set("skillset", memberSkillset);
@@ -69,8 +69,8 @@ export default Component.extend({
     let hash = [];
     // We require this hash because we want to order these entries and because the length
     // of the categories would not be possible to get by iterating over the models directly
-    let peopleSkills = this.peopleSkills;
-    this.parentCategories.forEach(parentCategory => {
+    let peopleSkills = this.get("peopleSkills");
+    this.get("parentCategories").forEach(parentCategory => {
       let childCategoriesWithSkills = parentCategory
         .get("children")
         .map(childCategory => {
@@ -116,7 +116,7 @@ export default Component.extend({
           ])
         )
         .then(() => this.set("peopleSkillsEditing", false))
-        .then(() => this.notify.success("Successfully saved!"))
+        .then(() => this.get("notify").success("Successfully saved!"))
         .then(() =>
           this.$("#peopleSkillsHeader")[0].scrollIntoView({
             behavior: "smooth"
@@ -132,10 +132,10 @@ export default Component.extend({
             //TODO: rollback does not rollback all records in the forEach, some kind of bug
 
             errors.forEach(({ attribute, message }) => {
-              let translated_attribute = this.intl.t(
+              let translated_attribute = this.get("intl").t(
                 `peopleSkill.${attribute}`
               );
-              this.notify.alert(`${translated_attribute} ${message}`, {
+              this.get("notify").alert(`${translated_attribute} ${message}`, {
                 closeAfter: 10000
               });
             });
@@ -151,7 +151,7 @@ export default Component.extend({
     },
 
     abortEdit() {
-      let peopleSkills = this.peopleSkills.toArray();
+      let peopleSkills = this.get("peopleSkills").toArray();
       peopleSkills.forEach(peopleSkill => {
         if (peopleSkill.get("hasDirtyAttributes")) {
           peopleSkill.rollbackAttributes();

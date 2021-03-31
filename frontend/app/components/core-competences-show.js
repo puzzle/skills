@@ -25,13 +25,13 @@ export default class CoreCompetencesShow extends Component {
 
   refreshCoreCompetencesObj() {
     let hash = {};
-    this.parentCategories.then(parentCategories => {
+    this.get("parentCategories").then(parentCategories => {
       parentCategories.toArray().forEach(category => {
         let skills = category
           .get("childrenSkills")
           .map(skill => {
             if (
-              this.coreCompetenceSkills
+              this.get("coreCompetenceSkills")
                 .map(s => s.get("id"))
                 .includes(skill.get("id"))
             )

@@ -21,19 +21,22 @@ export default class SkillsList extends Component {
   init() {
     super.init(...arguments);
     this.set("editSkills", []);
-    this.set("categories", this.store.findAll("category", { reload: true }));
+    this.set(
+      "categories",
+      this.get("store").findAll("category", { reload: true })
+    );
   }
 
   @computed("categories")
   get parentCategories() {
-    return this.categories.then(categories =>
+    return this.get("categories").then(categories =>
       categories.toArray().filter(c => !c.get("parent.content"))
     );
   }
 
   @computed("categories")
   get childCategories() {
-    return this.categories.then(categories =>
+    return this.get("categories").then(categories =>
       categories.toArray().filter(c => Boolean(c.get("parent.content")))
     );
   }
@@ -42,7 +45,7 @@ export default class SkillsList extends Component {
   exportSkillsetOdt(e) {
     e.preventDefault();
     let url = "/api/skills?format=odt";
-    this.download.file(url);
+    this.get("download").file(url);
   }
 
   @action
@@ -62,6 +65,11 @@ export default class SkillsList extends Component {
 
   @action
   refreshList(skill) {
-    this.set("skills", this.skills.toArray().addObject(skill));
+    this.set(
+      "skills",
+      this.get("skills")
+        .toArray()
+        .addObject(skill)
+    );
   }
 }

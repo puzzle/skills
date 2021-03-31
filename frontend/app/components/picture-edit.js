@@ -16,35 +16,35 @@ export default class PictureEdit extends Component {
     let formData = new FormData();
 
     if (!/\.(?:jpe?g|png|gif|svg|bmp)$/i.test(file.name)) {
-      this.notify.alert("Invalider Datentyp");
+      this.get("notify").alert("Invalider Datentyp");
       return;
     }
 
     if (file.size > 10000000) {
       //10MB
-      this.notify.alert("Datei ist zu gross, max 10MB");
+      this.get("notify").alert("Datei ist zu gross, max 10MB");
       return;
     }
 
     formData.append("picture", file);
 
-    let res = this.ajax.put(this.uploadPath, {
+    let res = this.get("ajax").put(this.get("uploadPath"), {
       contentType: false,
       processData: false,
       timeout: 5000,
       data: formData
     });
 
-    let oldPicture = this.picturePath;
+    let oldPicture = this.get("picturePath");
     this.set("picturePath", URL.createObjectURL(file));
 
     res
       .then(res =>
         this.set("picturePath", `${res.data.picture_path}?${Date.now()}`)
       )
-      .then(() => this.notify.success("Profilbild wurde aktualisiert!"))
+      .then(() => this.get("notify").success("Profilbild wurde aktualisiert!"))
       .catch(err => {
-        this.notify.error(err.message);
+        this.get("notify").error(err.message);
         this.set("picturePath", oldPicture);
       });
 

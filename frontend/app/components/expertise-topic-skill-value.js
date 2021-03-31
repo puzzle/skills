@@ -31,28 +31,28 @@ export default Component.extend({
     submit(changeset, event) {
       event.preventDefault();
 
-      changeset.set("expertiseTopic", this.expertiseTopic);
-      changeset.set("person", this.person);
+      changeset.set("expertiseTopic", this.get("expertiseTopic"));
+      changeset.set("person", this.get("person"));
 
       return changeset
         .save()
         .then(record => {
-          this.notify.success("Fachwissen wurde aktualisiert");
+          this.get("notify").success("Fachwissen wurde aktualisiert");
           this.set("editing", false);
           this.set("expertiseTopicSkillValue", record);
 
           return record;
         })
         .catch(err => {
-          let expertiseTopicSkillValue = this.expertiseTopicSkillValue;
+          let expertiseTopicSkillValue = this.get("expertiseTopicSkillValue");
           let errors = expertiseTopicSkillValue.get("errors").slice();
           expertiseTopicSkillValue.rollbackAttributes();
           errors.forEach(({ attribute, message }) => {
-            let translated_attribute = this.intl.t(
+            let translated_attribute = this.get("intl").t(
               `expertise-topic-skill-value.${attribute}`
             );
             changeset.pushErrors(attribute, message);
-            this.notify.alert(`${translated_attribute} ${message}`, {
+            this.get("notify").alert(`${translated_attribute} ${message}`, {
               closeAfter: 10000
             });
           });

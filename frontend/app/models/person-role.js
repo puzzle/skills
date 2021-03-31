@@ -1,13 +1,13 @@
-import Model, { attr, belongsTo } from "@ember-data/model";
+import DS from "ember-data";
 import { computed } from "@ember/object";
 
-export default Model.extend({
-  percent: attr("number"),
-  level: attr("string"),
+export default DS.Model.extend({
+  percent: DS.attr("number"),
+  level: DS.attr("string"),
 
-  person: belongsTo("person"),
-  role: belongsTo("role"),
-  personRoleLevel: belongsTo("person-role-level"),
+  person: DS.belongsTo("person"),
+  role: DS.belongsTo("role"),
+  personRoleLevel: DS.belongsTo("person-role-level"),
 
   instanceToString: computed("role", function() {
     return this.get("role.name");

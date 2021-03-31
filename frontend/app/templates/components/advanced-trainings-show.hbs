@@ -9,7 +9,7 @@
   <div class="border border-info rounded-bottom">
     <div class="card-body d-flex flex-column">
       <div class="mb-2">
-        <a href="#" onclick={{action "toggleAdvancedTrainingNew" true}} role="button" class={{~unless this.advanced-trainingNew "edit-buttons"~}}><i class="fa {{~unless this.advanced-trainingNew " add"~}}"></i> {{~unless this.advanced-trainingNew " Weiterbildung hinzufügen"~}}</a>
+        <a onclick={{action "toggleAdvancedTrainingNew" true}} role="button" class={{~unless this.advanced-trainingNew "edit-buttons"~}}><i class="fa {{~unless this.advanced-trainingNew " add"~}}"></i> {{~unless this.advanced-trainingNew " Weiterbildung hinzufügen"~}}</a>
       </div>
       <div id="advancedtraining-content-show" class="mb-2">
         {{component (if this.advanced-trainingNew "advanced-training-new")
@@ -19,15 +19,15 @@
           <div class="zeile">
             <div class="row">
               <div class="col-sm-3 text-center">
-                {{if advanced-training.monthFrom (concat (moment-format advanced-training.monthFrom "MM" "MM") ".")}}<advanced-training.yearFrom />
+                {{if advanced-training.monthFrom (concat (moment-format advanced-training.monthFrom "MM" "MM") ".")}}{{advanced-training.yearFrom}}
                 {{#if (eq advanced-training.yearTo null)}}
                   - heute
                 {{else if (or (not-eq advanced-training.yearFrom advanced-training.yearTo) (not-eq advanced-training.monthFrom advanced-training.monthTo))}}
-                  - {{if advanced-training.monthTo (concat (moment-format advanced-training.monthTo "MM" "MM") ".")}}<advanced-training.yearTo />
+                  - {{if advanced-training.monthTo (concat (moment-format advanced-training.monthTo "MM" "MM") ".")}}{{advanced-training.yearTo }}
                 {{/if}}
               </div>
               <div class="col-sm-9 cv-search-searchable">
-                <advanced-training.lineBreakDescription />
+                {{advanced-training.lineBreakDescription}}
               </div>
             </div>
           </div>
@@ -36,7 +36,7 @@
       {{#if this.sortedAdvancedTrainings}}
         {{#unless this.advanced-trainingNew}}
           <div class="mt-auto">
-            <a href="#" onclick={{this.advancedTrainingsEditing}} role="button" class="edit-buttons"><i class="fa fa-edit"></i> Bearbeiten</a>
+            <a onclick={{this.advancedTrainingsEditing}} role="button" class="edit-buttons"><i class="fa fa-edit"></i> Bearbeiten</a>
           </div>
         {{/unless}}
       {{/if}}

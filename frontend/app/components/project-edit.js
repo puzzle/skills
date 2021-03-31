@@ -1,6 +1,7 @@
 import { inject as service } from "@ember/service";
 import Component from "@ember/component";
-import { isBlank, isEmpty } from "@ember/utils";
+import { isBlank } from "@ember/utils";
+import { isEmpty } from "@ember/utils";
 import { on } from "@ember/object/evented";
 import { EKMixin, keyUp } from "ember-keyboard";
 
@@ -10,9 +11,9 @@ export default Component.extend(EKMixin, {
 
   init() {
     this._super(...arguments);
-    let project = this.project;
+    let project = this.get("project");
     if (isEmpty(project.get("projectTechnologies"))) {
-      let technology = this.store.createRecord("project-technology", {
+      let technology = this.get("store").createRecord("project-technology", {
         project
       });
       technology.set("offer", []);
@@ -36,7 +37,7 @@ export default Component.extend(EKMixin, {
   }),
 
   abortProject: on(keyUp("Escape"), function() {
-    let project = this.project;
+    let project = this.get("project");
     if (project.get("hasDirtyAttributes")) {
       project.rollbackAttributes();
     }
@@ -54,22 +55,24 @@ export default Component.extend(EKMixin, {
         ])
           // Commented this because projectTechnologies seem useless for the moment
           /*.then(() =>
-        Promise.all([
-          ...changeset
-            .get('projectTechnologies')
-            .map(projectTechnology => projectTechnology.save())
-        ])
-      )*/
+          Promise.all([
+            ...changeset
+              .get('projectTechnologies')
+              .map(projectTechnology => projectTechnology.save())
+          ])
+        )*/
           .then(project => this.sendAction("done"))
-          .then(() => this.notify.success("Projekt wurde aktualisiert!"))
+          .then(() => this.get("notify").success("Projekt wurde aktualisiert!"))
           .catch(() => {
-            let project = this.project;
+            let project = this.get("project");
             let errors = project.get("errors").slice(); // clone array as rollbackAttributes mutates
 
             project.rollbackAttributes();
             errors.forEach(({ attribute, message }) => {
-              let translated_attribute = this.intl.t(`project.${attribute}`);
-              this.notify.alert(`${translated_attribute} ${message}`, {
+              let translated_attribute = this.get("intl").t(
+                `project.${attribute}`
+              );
+              this.get("notify").alert(`${translated_attribute} ${message}`, {
                 closeAfter: 10000
               });
             });
@@ -78,7 +81,7 @@ export default Component.extend(EKMixin, {
     },
 
     abortEdit() {
-      let project = this.project;
+      let project = this.get("project");
       if (project.get("hasDirtyAttributes")) {
         project.rollbackAttributes();
       }

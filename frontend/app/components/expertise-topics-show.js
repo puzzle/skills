@@ -21,20 +21,23 @@ export default class ExpertiseTopicsShow extends Component {
 
   @computed("queryParams")
   get expertiseTopics() {
-    return this.store.query("expertise-topic", this.queryParams);
+    return this.get("store").query("expertise-topic", this.get("queryParams"));
   }
 
   @computed("queryParams")
   get expertiseTopicSkillValues() {
-    return this.store.query("expertise-topic-skill-value", this.queryParams);
+    return this.get("store").query(
+      "expertise-topic-skill-value",
+      this.get("queryParams")
+    );
   }
 
   @computed("expertiseTopics", "expertiseTopicSkillValues")
   get isLoading() {
     return DS.PromiseObject.create({
       promise: Promise.all([
-        this.expertiseTopics,
-        this.expertiseTopicSkillValues
+        this.get("expertiseTopics"),
+        this.get("expertiseTopicSkillValues")
       ])
     });
   }

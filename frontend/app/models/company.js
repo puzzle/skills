@@ -1,12 +1,12 @@
-import Model, { attr } from "@ember-data/model";
+import DS from "ember-data";
 import { computed } from "@ember/object";
 
-export default Model.extend({
-  name: attr("string"),
-  createdAt: attr("date"),
-  updatedAt: attr("date"),
+export default DS.Model.extend({
+  name: DS.attr("string"),
+  createdAt: DS.attr("date"),
+  updatedAt: DS.attr("date"),
 
   instanceToString: computed("name", function() {
-    return this.name;
+    return this.get("name");
   })
 });

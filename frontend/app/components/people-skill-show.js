@@ -52,7 +52,7 @@ export default class PeopleSkillShow extends Component {
   changePerson(person) {
     person.then(person => {
       person.reload().then(person => {
-        this.router.transitionTo("person.skills", person.id);
+        this.get("router").transitionTo("person.skills", person.id);
       });
     });
   }

@@ -86,7 +86,7 @@ module("Integration | Component | core-competences-show", function(hooks) {
 
     await render(hbs`<CoreCompetencesShow @person={{this.person}}/>`);
 
-    let text = this.element.textContent;
+    let text = this.$().text();
 
     assert.ok(text.includes("Software Engineering"));
     assert.ok(text.includes("Ruby"));

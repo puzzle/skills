@@ -9,7 +9,7 @@ export default class ExpertiseCategoriesShow extends Component {
 
   @computed("discipline")
   get expertiseCategories() {
-    let params = { discipline: this.discipline };
-    return this.store.query("expertise-category", params);
+    let params = { discipline: this.get("discipline") };
+    return this.get("store").query("expertise-category", params);
   }
 }

@@ -14,7 +14,7 @@ export default class SkillsRoute extends Route.extend(
   router;
 
   beforeModel() {
-    if (!this.session.hasResourceRole("ADMIN"))
-      this.router.transitionTo("people");
+    if (!this.get("session").hasResourceRole("ADMIN"))
+      this.get("router").transitionTo("people");
   }
 }

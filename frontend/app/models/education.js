@@ -1,13 +1,13 @@
-import { attr, belongsTo } from "@ember-data/model";
+import DS from "ember-data";
 import DaterangeModel from "./daterange-model";
 import { computed } from "@ember/object";
 
 export default DaterangeModel.extend({
-  title: attr("string"),
-  location: attr("string"),
-  person: belongsTo("person"),
+  title: DS.attr("string"),
+  location: DS.attr("string"),
+  person: DS.belongsTo("person"),
 
   instanceToString: computed("title", function() {
-    return this.title;
+    return this.get("title");
   })
 });

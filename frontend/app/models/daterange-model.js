@@ -1,10 +1,10 @@
-import Model, { attr } from "@ember-data/model";
+import DS from "ember-data";
 
-export default Model.extend({
-  monthFrom: attr("number"),
-  yearFrom: attr("number"),
-  monthTo: attr("number"),
-  yearTo: attr("number"),
+export default DS.Model.extend({
+  monthFrom: DS.attr("number"),
+  yearFrom: DS.attr("number"),
+  monthTo: DS.attr("number"),
+  yearTo: DS.attr("number"),
 
   isYearValid(year) {
     if (year.length == 4 && year > 0) return true;

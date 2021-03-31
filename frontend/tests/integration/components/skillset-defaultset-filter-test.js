@@ -8,7 +8,7 @@ module("Integration | Component | skillset-defaultset-filter", function(hooks) {
 
   test("it renders", async function(assert) {
     await render(hbs`{{skillset-defaultset-filter}}`);
-    let text = this.element.textContent;
+    let text = this.$().text();
 
     assert.ok(text.includes("Alle"));
     assert.ok(text.includes("Neue"));

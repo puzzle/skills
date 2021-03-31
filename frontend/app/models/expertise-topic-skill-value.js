@@ -1,13 +1,13 @@
-import Model, { attr, belongsTo } from "@ember-data/model";
+import DS from "ember-data";
 
-const ExpertiseTopicSkillValue = Model.extend({
-  yearsOfExperience: attr("string"),
-  numberOfProjects: attr("string"),
-  lastUse: attr("string"),
-  skillLevel: attr("string"),
-  comment: attr("string"),
-  person: belongsTo("person"),
-  expertiseTopic: belongsTo("expertise-topic")
+const ExpertiseTopicSkillValue = DS.Model.extend({
+  yearsOfExperience: DS.attr("string"),
+  numberOfProjects: DS.attr("string"),
+  lastUse: DS.attr("string"),
+  skillLevel: DS.attr("string"),
+  comment: DS.attr("string"),
+  person: DS.belongsTo("person"),
+  expertiseTopic: DS.belongsTo("expertise-topic")
 });
 
 ExpertiseTopicSkillValue.reopenClass({

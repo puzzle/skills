@@ -9,8 +9,8 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-    this.set("newSkill", this.store.createRecord("skill"));
-    this.set("newPeopleSkill", this.store.createRecord("peopleSkill"));
+    this.set("newSkill", this.get("store").createRecord("skill"));
+    this.set("newPeopleSkill", this.get("store").createRecord("peopleSkill"));
     ["level", "interest"].forEach(attr => {
       this.set("newPeopleSkill." + attr, 1);
     });
@@ -29,7 +29,7 @@ export default Component.extend({
     const peopleSkillsIds = this.get("person.peopleSkills").map(peopleSkill =>
       peopleSkill.get("skill.id")
     );
-    let skills = this.store.findAll("skill", { reload: true });
+    let skills = this.get("store").findAll("skill", { reload: true });
     return skills.then(() => {
       skills = skills.filter(
         skill => !peopleSkillsIds.includes(skill.get("id"))
@@ -62,7 +62,7 @@ export default Component.extend({
     function() {
       if (this.get("newPeopleSkill.skill.content") == null) return null;
       return this.get(
-        (this.newSkillSelected ? "newSkill" : "newPeopleSkill.skill") +
+        (this.get("newSkillSelected") ? "newSkill" : "newPeopleSkill.skill") +
           ".category"
       );
     }
@@ -70,11 +70,11 @@ export default Component.extend({
 
   abort() {
     if (!this.newPeopleSkill.person) {
-      this.newSkill.deleteRecord();
-      this.newPeopleSkill.deleteRecord();
+      this.get("newSkill").deleteRecord();
+      this.get("newPeopleSkill").deleteRecord();
     }
-    this.set("newSkill", this.store.createRecord("skill"));
-    this.set("newPeopleSkill", this.store.createRecord("peopleSkill"));
+    this.set("newSkill", this.get("store").createRecord("skill"));
+    this.set("newPeopleSkill", this.get("store").createRecord("peopleSkill"));
     this.notifyPropertyChange("dropdownSkills");
     ["level", "interest"].forEach(attr => {
       this.set("newPeopleSkill." + attr, 1);
@@ -94,7 +94,7 @@ export default Component.extend({
 
     setCategory(category) {
       this.set(
-        (this.newSkillSelected ? "newSkill" : "newPeopleSkill.skill") +
+        (this.get("newSkillSelected") ? "newSkill" : "newPeopleSkill.skill") +
           ".category",
         category
       );
@@ -102,7 +102,7 @@ export default Component.extend({
 
     setupNewSkill(skillTitle) {
       this.set("newSkill.title", skillTitle);
-      this.set("newPeopleSkill.skill", this.newSkill);
+      this.set("newPeopleSkill.skill", this.get("newSkill"));
     },
 
     abortNew() {
@@ -119,26 +119,32 @@ export default Component.extend({
     },
 
     async submit(event) {
-      if (this.newSkillSelected) {
+      if (this.get("newSkillSelected")) {
         if (this.get("selectedCategory.content") != null)
-          this.set("newSkill.category", this.selectedCategory);
-        let skill = this.newSkill.save().catch(() => {
-          this.get("newSkill.errors").forEach(({ attribute, message }) => {
-            let translated_attribute = this.intl.t(`skill.${attribute}`);
-            this.notify.alert(`${translated_attribute} ${message}`, {
-              closeAfter: 10000
+          this.set("newSkill.category", this.get("selectedCategory"));
+        let skill = this.get("newSkill")
+          .save()
+          .catch(() => {
+            this.get("newSkill.errors").forEach(({ attribute, message }) => {
+              let translated_attribute = this.get("intl").t(
+                `skill.${attribute}`
+              );
+              this.get("notify").alert(`${translated_attribute} ${message}`, {
+                closeAfter: 10000
+              });
             });
           });
-        });
         await skill;
         if (this.get("newSkill.errors.length")) return;
-        this.set("newPeopleSkill.skill", this.newSkill);
+        this.set("newPeopleSkill.skill", this.get("newSkill"));
       }
 
-      this.set("newPeopleSkill.person", this.person);
-      return this.newPeopleSkill
+      this.set("newPeopleSkill.person", this.get("person"));
+      return this.get("newPeopleSkill")
         .save()
-        .then(() => this.notify.success("Member-Skill wurde hinzugefügt!"))
+        .then(() =>
+          this.get("notify").success("Member-Skill wurde hinzugefügt!")
+        )
         .then(() => this.send("abortNew"))
         .then(() => {
           // reload model hook with data for member skillset
@@ -150,10 +156,10 @@ export default Component.extend({
           this.set("newPeopleSkill.person", null);
           this.get("newPeopleSkill.errors").forEach(
             ({ attribute, message }) => {
-              let translated_attribute = this.intl.t(
+              let translated_attribute = this.get("intl").t(
                 `peopleSkill.${attribute}`
               );
-              this.notify.alert(`${translated_attribute} ${message}`, {
+              this.get("notify").alert(`${translated_attribute} ${message}`, {
                 closeAfter: 10000
               });
             }

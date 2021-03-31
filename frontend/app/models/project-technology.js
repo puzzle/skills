@@ -1,6 +1,6 @@
-import Model, { attr, belongsTo } from "@ember-data/model";
+import DS from "ember-data";
 
-export default Model.extend({
-  offer: attr("array"),
-  project: belongsTo("project")
+export default DS.Model.extend({
+  offer: DS.attr("array"),
+  project: DS.belongsTo("project")
 });

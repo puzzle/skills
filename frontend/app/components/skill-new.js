@@ -10,12 +10,12 @@ export default ApplicationComponent.extend({
 
   init() {
     this._super(...arguments);
-    this.set("newSkill", this.store.createRecord("skill"));
+    this.set("newSkill", this.get("store").createRecord("skill"));
     this.radarOptions = Object.values(Skill.RADAR_OPTIONS);
     this.portfolioOptions = Object.values(Skill.PORTFOLIO_OPTIONS);
     this.set(
       "childCategories",
-      this.store.query("category", { scope: "children" })
+      this.get("store").query("category", { scope: "children" })
     );
   },
 
@@ -34,9 +34,9 @@ export default ApplicationComponent.extend({
 
   abort() {
     if (!this.get("newSkill.id")) {
-      this.newSkill.deleteRecord();
+      this.get("newSkill").deleteRecord();
     }
-    this.set("newSkill", this.store.createRecord("skill"));
+    this.set("newSkill", this.get("store").createRecord("skill"));
   },
 
   categorySearchMatcher(category, term) {
@@ -111,17 +111,17 @@ export default ApplicationComponent.extend({
     handleBlur() {},
 
     async submit(event) {
-      return this.newSkill
+      return this.get("newSkill")
         .save()
         .then(skill => this.refreshList(skill))
-        .then(() => this.notify.success("Skill wurde erstellt!"))
+        .then(() => this.get("notify").success("Skill wurde erstellt!"))
         .then(() => this.send("abortNew"))
         .catch(() => {
           this.get("newSkill.errors").forEach(({ attribute, message }) => {
-            let translated_attribute = this.intl.t(`skill.${attribute}`);
+            let translated_attribute = this.get("intl").t(`skill.${attribute}`);
             if (message == "Dieser Skill existiert bereits")
               translated_attribute = "";
-            this.notify.alert(`${translated_attribute} ${message}`, {
+            this.get("notify").alert(`${translated_attribute} ${message}`, {
               closeAfter: 10000
             });
           });

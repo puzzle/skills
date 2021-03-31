@@ -13,6 +13,7 @@ export default class UpdatedAtPerson extends Component {
     const currentId = this.get(
       "router.currentState.routerJsState.params.person.person_id"
     );
-    if (currentId) this.set("person", this.store.find("person", currentId));
+    if (currentId)
+      this.set("person", this.get("store").find("person", currentId));
   }
 }

@@ -19,8 +19,8 @@
         <Textarea @value={{this.newActivity.description}} class="input-xxlarge form-control" />
       </div>
       <div class="col-md-3 centered-content d-flex flex-column mt-4 px-5">
-        <button type="button" onclick={{action "submit" this.newActivity false true}} role="button" id="submit-button" class="btn btn-primary m-2">Speichern</button>
-        <button type="button" onclick={{action "submit" this.newActivity true true}} role="button" class="btn btn-info border m-2">Speichern & Neu</button>
+        <button onclick={{action "submit" this.newActivity false true}} role="button" id="submit-button" class="btn btn-primary m-2">Speichern</button>
+        <button onclick={{action "submit" this.newActivity true true}} role="button" class="btn btn-info border m-2">Speichern & Neu</button>
         <a href="#" onclick={{action "abortNew"}} role="button" id="submit-button" class="abort-edit-buttons text-center mx-4">Abbrechen</a>
       </div>
     </div>

@@ -8,7 +8,7 @@ import { observer } from "@ember/object";
 export default Component.extend(EKMixin, {
   willDestroyElement() {
     this._super(...arguments);
-    if (!this.alreadyAborted) this.send("abortEdit");
+    if (!this.get("alreadyAborted")) this.send("abortEdit");
   },
 
   personChanged: observer("person", function() {
@@ -30,9 +30,9 @@ export default Component.extend(EKMixin, {
 
   actions: {
     notify() {
-      let length = this.sortedActivities.length;
+      let length = this.get("sortedActivities").length;
       setTimeout(() => {
-        if (length > this.sortedActivities.length) {
+        if (length > this.get("sortedActivities").length) {
           return this.notifyPropertyChange("sortedActivities");
         }
       }, 500);
@@ -51,21 +51,23 @@ export default Component.extend(EKMixin, {
         )
         .then(() => this.set("alreadyAborted", true))
         .then(() => this.sendAction("submit"))
-        .then(() => this.notify.success("Successfully saved!"))
+        .then(() => this.get("notify").success("Successfully saved!"))
         .then(() =>
           this.$("#activity")[0].scrollIntoView({ behavior: "smooth" })
         )
 
         .catch(() => {
-          let activities = this.activities;
+          let activities = this.get("activities");
           activities.forEach(activity => {
             let errors = activity.get("errors").slice(); // clone array as rollbackAttributes mutates
 
             activity.rollbackAttributes();
 
             errors.forEach(({ attribute, message }) => {
-              let translated_attribute = this.intl.t(`activity.${attribute}`);
-              this.notify.alert(`${translated_attribute} ${message}`, {
+              let translated_attribute = this.get("intl").t(
+                `activity.${attribute}`
+              );
+              this.get("notify").alert(`${translated_attribute} ${message}`, {
                 closeAfter: 10000
               });
             });

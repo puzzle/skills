@@ -42,6 +42,6 @@ export default class PersonShow extends Component {
   exportCvOdt(personId, e) {
     e.preventDefault();
     let url = `/api/people/${personId}.odt`;
-    this.download.file(url);
+    this.get("download").file(url);
   }
 }

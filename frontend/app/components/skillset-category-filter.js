@@ -11,14 +11,14 @@ export default class SkillsetCategoryFilter extends Component {
   init() {
     super.init(...arguments);
 
-    this.parentCategories.then(categories => {
+    this.get("parentCategories").then(categories => {
       this.set(
         "categories",
         [{ id: "", title: "Alle" }].concat(categories.toArray())
       );
       this.set(
         "selectedCategory",
-        this.categories.find(
+        this.get("categories").find(
           category =>
             category.id ==
             this.get("router.currentState.routerJsState.queryParams.category")
@@ -48,7 +48,7 @@ export default class SkillsetCategoryFilter extends Component {
   @action
   setCategoryFilter(category) {
     this.set("selectedCategory", category);
-    this.router.transitionTo({
+    this.get("router").transitionTo({
       queryParams: { category: category.id }
     });
   }

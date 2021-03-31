@@ -1,23 +1,23 @@
-import { attr, belongsTo, hasMany } from "@ember-data/model";
+import DS from "ember-data";
 import DaterangeModel from "./daterange-model";
 import { computed } from "@ember/object";
 import { htmlSafe } from "@ember/template";
 
 export default DaterangeModel.extend({
-  title: attr("string"),
-  description: attr("string"),
-  role: attr("string"),
-  technology: attr("string"),
-  person: belongsTo("person"),
+  title: DS.attr("string"),
+  description: DS.attr("string"),
+  role: DS.attr("string"),
+  technology: DS.attr("string"),
+  person: DS.belongsTo("person"),
 
-  projectTechnologies: hasMany("project-technology"),
+  projectTechnologies: DS.hasMany("project-technology"),
 
   instanceToString: computed("title", function() {
-    return this.title;
+    return this.get("title");
   }),
 
   lineBreakDescription: computed("description", function() {
-    let description = this.description;
+    let description = this.get("description");
     if (description == null) {
       return "";
     }
@@ -25,7 +25,7 @@ export default DaterangeModel.extend({
   }),
 
   lineBreakRole: computed("role", function() {
-    let role = this.role;
+    let role = this.get("role");
     if (role == null) {
       return "";
     }
@@ -33,7 +33,7 @@ export default DaterangeModel.extend({
   }),
 
   lineBreakTechnology: computed("technology", function() {
-    let technology = this.technology;
+    let technology = this.get("technology");
     if (technology == null) {
       return "";
     }

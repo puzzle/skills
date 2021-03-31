@@ -1,22 +1,35 @@
-import { module, test } from "qunit";
-import { setupRenderingTest } from "ember-qunit";
-import { render } from "@ember/test-helpers";
+import { moduleForComponent, test } from "ember-qunit";
 import hbs from "htmlbars-inline-precompile";
 
-module("helper:or", function(hooks) {
-  setupRenderingTest(hooks);
+moduleForComponent("or", "helper:or", {
+  integration: true
+});
 
-  test("it works", async function(assert) {
-    await render(hbs`{{or 0 1}}`);
+test("it works", function(assert) {
+  this.render(hbs`{{or 0 1}}`);
 
-    assert.dom(this.element).hasText("1");
+  assert.equal(
+    this.$()
+      .text()
+      .trim(),
+    "1"
+  );
 
-    await render(hbs`{{or 1 0}}`);
+  this.render(hbs`{{or 1 0}}`);
 
-    assert.dom(this.element).hasText("1");
+  assert.equal(
+    this.$()
+      .text()
+      .trim(),
+    "1"
+  );
 
-    await render(hbs`{{or 0 false 'hallo'}}`);
+  this.render(hbs`{{or 0 false 'hallo'}}`);
 
-    assert.dom(this.element).hasText("hallo");
-  });
+  assert.equal(
+    this.$()
+      .text()
+      .trim(),
+    "hallo"
+  );
 });

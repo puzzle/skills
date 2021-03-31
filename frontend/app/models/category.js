@@ -1,11 +1,11 @@
-import Model, { attr, hasMany, belongsTo } from "@ember-data/model";
+import DS from "ember-data";
 
-export default Model.extend({
-  title: attr("string"),
-  position: attr("number"),
+export default DS.Model.extend({
+  title: DS.attr("string"),
+  position: DS.attr("number"),
 
-  skills: hasMany("skill", { inverse: "category" }),
-  childrenSkills: hasMany("skill", { inverse: "parentCategory" }),
-  children: hasMany("category", { inverse: "parent" }),
-  parent: belongsTo("category", { inverse: "children" })
+  skills: DS.hasMany("skill", { inverse: "category" }),
+  childrenSkills: DS.hasMany("skill", { inverse: "parentCategory" }),
+  children: DS.hasMany("category", { inverse: "parent" }),
+  parent: DS.belongsTo("category", { inverse: "children" })
 });

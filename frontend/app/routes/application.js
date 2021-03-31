@@ -1,8 +1,9 @@
-import { UnauthorizedError, ForbiddenError } from "@ember-data/adapter/error";
 import classic from "ember-classic-decorator";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Route from "@ember/routing/route";
+import DS from "ember-data";
+import { UnauthorizedError, ForbiddenError } from "ember-ajax/errors";
 import config from "../config/environment";
 
 @classic
@@ -22,11 +23,11 @@ export default class ApplicationRoute extends Route {
   config = config;
 
   async beforeModel() {
-    this.moment.setLocale("de");
-    this.intl.setLocale(["de"]);
+    this.get("moment").setLocale("de");
+    this.get("intl").setLocale(["de"]);
     super.beforeModel(...arguments);
 
-    let session = this.session;
+    let session = this.get("session");
 
     // Keycloak constructor arguments as described in the keycloak documentation.
 
@@ -54,20 +55,20 @@ export default class ApplicationRoute extends Route {
     return (
       error instanceof UnauthorizedError ||
       error instanceof ForbiddenError ||
-      error instanceof UnauthorizedError ||
-      error instanceof ForbiddenError
+      error instanceof DS.UnauthorizedError ||
+      error instanceof DS.ForbiddenError
     );
   }
 
   @action
   error(error, transition) {
     if (this.isAuthError(error)) {
-      this.session.invalidate();
+      this.get("session").invalidate();
     }
   }
 
   @action
   invalidateSession() {
-    this.session.invalidate();
+    this.get("session").invalidate();
   }
 }

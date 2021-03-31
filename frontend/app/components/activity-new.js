@@ -9,7 +9,7 @@ export default Component.extend(EKMixin, {
   intl: service(),
 
   newActivity: computed("personId", function() {
-    return this.store.createRecord("activity");
+    return this.get("store").createRecord("activity");
   }),
 
   activateKeyboard: on("init", function() {
@@ -18,14 +18,14 @@ export default Component.extend(EKMixin, {
 
   abortActivityNew: on(keyUp("Escape"), function() {
     if (this.get("newActivity.isNew")) {
-      this.newActivity.destroyRecord();
+      this.get("newActivity").destroyRecord();
     }
     this.done(false);
   }),
 
   willDestroyElement() {
     if (this.get("newActivity.isNew")) {
-      this.newActivity.destroyRecord();
+      this.get("newActivity").destroyRecord();
     }
   },
 
@@ -50,7 +50,7 @@ export default Component.extend(EKMixin, {
         this.showMissingMonthWarning();
         return;
       }
-      let person = this.store.peekRecord("person", this.personId);
+      let person = this.get("store").peekRecord("person", this.get("personId"));
       newActivity.set("person", person);
       return newActivity
         .save()
@@ -58,12 +58,14 @@ export default Component.extend(EKMixin, {
           this.sendAction("done", false);
           if (initNew) this.sendAction("setInitialState", this);
         })
-        .then(() => this.notify.success("Aktivität wurde hinzugefügt!"))
+        .then(() => this.get("notify").success("Aktivität wurde hinzugefügt!"))
         .catch(() => {
           this.set("newActivity.person", null);
           this.get("newActivity.errors").forEach(({ attribute, message }) => {
-            let translated_attribute = this.intl.t(`activity.${attribute}`);
-            this.notify.alert(`${translated_attribute} ${message}`, {
+            let translated_attribute = this.get("intl").t(
+              `activity.${attribute}`
+            );
+            this.get("notify").alert(`${translated_attribute} ${message}`, {
               closeAfter: 10000
             });
           });

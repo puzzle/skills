@@ -10,7 +10,7 @@ export default Component.extend(EKMixin, {
 
   willDestroyElement() {
     this._super(...arguments);
-    if (!this.alreadyAborted) this.send("abortEdit");
+    if (!this.get("alreadyAborted")) this.send("abortEdit");
   },
 
   personChanged: observer("person", function() {
@@ -30,9 +30,9 @@ export default Component.extend(EKMixin, {
 
   actions: {
     notify() {
-      let length = this.sortedAdvancedTrainings.length;
+      let length = this.get("sortedAdvancedTrainings").length;
       setTimeout(() => {
-        if (length > this.sortedAdvancedTrainings.length) {
+        if (length > this.get("sortedAdvancedTrainings").length) {
           return this.notifyPropertyChange("sortedAdvancedTrainings");
         }
       }, 500);
@@ -53,24 +53,24 @@ export default Component.extend(EKMixin, {
         )
         .then(() => this.set("alreadyAborted", true))
         .then(() => this.sendAction("submit"))
-        .then(() => this.notify.success("Successfully saved!"))
+        .then(() => this.get("notify").success("Successfully saved!"))
         .then(() =>
           this.$("#advancedTrainingsHeader")[0].scrollIntoView({
             behavior: "smooth"
           })
         )
         .catch(() => {
-          let advancedTrainings = this["advanced-trainings"];
+          let advancedTrainings = this.get("advanced-trainings");
           advancedTrainings.forEach(advancedTraining => {
             let errors = advancedTraining.get("errors").slice();
 
             advancedTraining.rollbackAttributes();
 
             errors.forEach(({ attribute, message }) => {
-              let translated_attribute = this.intl.t(
+              let translated_attribute = this.get("intl").t(
                 `advancedTraining.${attribute}`
               );
-              this.notify.alert(`${translated_attribute} ${message}`, {
+              this.get("notify").alert(`${translated_attribute} ${message}`, {
                 closeAfter: 10000
               });
             });
