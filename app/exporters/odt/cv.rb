@@ -218,13 +218,13 @@ module Odt
     end
 
     def languages
-      languages = ""
+      languages = []
       person.language_skills.list.collect do |l|
         language = I18nData.languages('DE')[l.language]
         level = l.level
-        languages += "#{language} (#{level}), "
+        languages << "#{language} (#{level})"
       end
-      return languages
+      languages.join("\n")
     end
 
   end
