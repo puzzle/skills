@@ -20,7 +20,6 @@ module Odt
         insert_personalien(r)
         insert_competences(r)
         insert_advanced_trainings(r)
-        insert_languages(r)
         insert_educations(r)
         insert_activities(r)
         insert_projects(r)
@@ -73,6 +72,7 @@ module Odt
         report.add_field(:email, person.email)
         report.add_image(:profile_picture, person.picture.path) if person.picture.file.present?
       end
+      report.add_field(:languages, languages)
     end
 
     # rubocop:enable Metrics/AbcSize
@@ -110,23 +110,6 @@ module Odt
       else
         []
       end
-    end
-
-    def insert_languages(report)
-      languages_list = person.language_skills.list.collect do |l|
-        language = I18nData.languages('DE')[l.language]
-        { language: language, level: language_skill_level(l) }
-      end
-
-      report.add_table('LANGUAGES', languages_list, header: true) do |t|
-        t.add_column(:language, :language)
-        t.add_column(:level, :level)
-      end
-    end
-
-    def language_skill_level(language_skill)
-      language_skill.level +
-        (language_skill.certificate.blank? ? '' : " / Zertifikat: #{language_skill.certificate}")
     end
 
     # rubocop:disable Metrics/AbcSize
@@ -232,6 +215,16 @@ module Odt
 
       country = ISO3166::Country[country_code]
       country.translations[I18n.locale.to_s]
+    end
+
+    def languages
+      languages = ""
+      person.language_skills.list.collect do |l|
+        language = I18nData.languages('DE')[l.language]
+        level = l.level
+        languages += "#{language} (#{level}), "
+      end
+      return languages
     end
 
   end
