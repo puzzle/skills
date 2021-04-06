@@ -11,7 +11,7 @@
       </li>
     {{else}}
       <li class="d-flex flex-column nav-link">
-        <a href="#" role="button" class="edit-buttons" onclick={{action (toggle "peopleSkillsEditing" this)}}>
+        <a role="button" class="edit-buttons" onclick={{action (toggle "peopleSkillsEditing" this)}}>
           <i class="fa fa-edit"></i> Skills bearbeiten
         </a>
       </li>
@@ -19,7 +19,7 @@
   </ul>
   <ul class="nav flex-column mt-2">
     <li class="d-flex flex-column nav-link border">
-      <a href="#" role="button" class="edit-buttons" data-toggle="modal" data-target="#people-skill-new-modal">
+      <a role="button" class="edit-buttons" data-toggle="modal" data-target="#people-skill-new-modal">
         <i class="fa fa-plus" aria-hidden="true"></i> Skill hinzufügen
       </a>
     </li>
@@ -72,7 +72,7 @@
                               <PeopleSkillShow @peopleSkill={{skill}} @toggleSkillShow={{action "toggleSkillShow" skill.skill}}>
                                 <div class="col-md-1 pt-3">
                                   {{#if skill.isRated}}
-                                    <a href="#" class="edit-buttons" role="button" onclick={{action "resetPeopleSkill" skill}} data-toggle="tooltip" data-placement="top" title="Reset Skill">
+                                    <a class="edit-buttons" role="button" onclick={{action "resetPeopleSkill" skill}} data-toggle="tooltip" data-placement="top" title="Reset Skill">
                                       <i class="fa fa-redo"></i>
                                     </a>
                                   {{/if}}

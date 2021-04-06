@@ -1,14 +1,14 @@
 <nav class="navbar navbar-expand-sm border-black border-left-0 border-right-0 p-0">
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a href="#" class="nav-link">
+      <a class="nav-link">
         <LinkTo @route="person.index">
           CV
         </LinkTo>
       </a>
     </li>
     <li class="nav-item">
-      <a href="#" class="nav-link">
+      <a class="nav-link">
         <LinkTo @route="person.skills" @query={{hash personId=this.personId rated="true"}} @id="peopleSkillsLink">
           Skills
           {{#if this.unratedSkillsAmount}}
@@ -23,11 +23,11 @@
   <ul class="navbar-nav ml-auto">
     <div class="p-2">
       <div class="dropdown">
-        <a href="#" class="edit-buttons" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="edit-buttons" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <td><i class="fa fa-cog" aria-hidden="true"></i> Mehr Optionen</td>
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a href="#" type="button" class="dropdown-item">
+          <a type="button" class="dropdown-item">
             <DeleteWithConfirmation @entry={{this.person}} @transitionTo="people">
               Profil Löschen
             </DeleteWithConfirmation>
@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="p-2">
-      <a href="#" onclick={{pipe (action "startExport" this.person.id)}} role="button" class="edit-buttons">
+      <a onclick={{pipe (action "startExport" this.person.id)}} role="button" class="edit-buttons">
         <td><i class="fa fa-download" aria-hidden="true"></i> Export</td>
       </a>
     </div>

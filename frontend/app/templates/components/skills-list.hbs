@@ -11,13 +11,13 @@
         <SkillsetCategoryFilter @parentCategories={{this.parentCategories}} />
       </div>
       <div class="col-sm-1">
-        <a href="#" onclick={{pipe (action "exportSkillsetOdt")}} class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Exportiert das gesamte Skillset">
+        <a onclick={{pipe (action "exportSkillsetOdt")}} class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Exportiert das gesamte Skillset">
           <i class="fa fa-download" aria-hidden="true"></i>
           Export
         </a>
       </div>
       <div class="col-sm-2">
-        <a href="#" id="new-skill-link" class="edit-buttons" role="button" data-toggle="modal" data-target="#skill-new-modal">
+        <a id="new-skill-link" class="edit-buttons" role="button" data-toggle="modal" data-target="#skill-new-modal">
           <i class="fa fa-plus" aria-hidden="true"></i> Neuer Skill
         </a>
       </div>

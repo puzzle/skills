@@ -8,7 +8,7 @@
 <div class="border border-info rounded-bottom">
   <div class="card-body d-flex flex-column">
     <div class="mb-2">
-      <a href="#" {{on "click" this.toggleEducationNew}} role="button" class={{~unless this.isNewRecord "edit-buttons"~}}><i class="fa {{~unless this.isNewRecord " add"~}}"></i> {{~unless this.isNewRecord " Ausbildung hinzufügen"~}}</a>
+      <a {{on "click" this.toggleEducationNew}} role="button" class={{~unless this.isNewRecord "edit-buttons"~}}><i class="fa {{~unless this.isNewRecord " add"~}}"></i> {{~unless this.isNewRecord " Ausbildung hinzufügen"~}}</a>
     </div>
     <div id="educations-content-show">
       {{#if this.isNewRecord}}

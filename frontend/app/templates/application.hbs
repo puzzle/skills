@@ -16,7 +16,7 @@
             <ul class="navbar-nav ml-auto">
               {{#if this.session.authenticated}}
                 <li class="nav-item border-black border-bottom-0 border-top-0 border-right-0">
-                  <a href="#" id="logout-button" role="button" class="nav-link pull-right" {{action "transitionToProfile"}}>
+                  <a id="logout-button" role="button" class="nav-link pull-right" {{action "transitionToProfile"}}>
                     <i class="fa fa-user-circle" aria-hidden="true"></i> {{this.username}}
                   </a>
                 </li>
@@ -27,7 +27,7 @@
                 </a>
               </li>
               <li class="nav-item border-black border-bottom-0 border-top-0 border-left-0">
-                <a href="#" id="logout-button" role="button" class="nav-link pull-right" {{action "logoutUser"}}>
+                <a id="logout-button" role="button" class="nav-link pull-right" {{action "logoutUser"}}>
                   Logout
                 </a>
               </li>
