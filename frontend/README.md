@@ -20,9 +20,9 @@ You will need the following things properly installed on your computer.
 
 ## Installation Guide
 
-Install node version 14 with the Node Version Manager
+Install node version 12 with the Node Version Manager
 ```shell
-nvm install 14
+nvm install 12
 ```
 Install Ember-Cli with NPM
 ```shell
