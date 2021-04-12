@@ -19,7 +19,7 @@ describe PeopleController do
 
         expect_any_instance_of(ODFReport::Report)
           .to receive(:add_field)
-          .exactly(14).times
+          .exactly(15).times
           .and_call_original
 
         expect_any_instance_of(ODFReport::Report)
@@ -29,7 +29,7 @@ describe PeopleController do
 
         expect_any_instance_of(ODFReport::Report)
           .to receive(:add_table)
-          .exactly(6).times
+          .exactly(5).times
           .and_call_original
 
         process :show, method: :get, format: 'odt', params: { id: bob.id, anon: 'false' }
@@ -45,7 +45,7 @@ describe PeopleController do
 
         expect_any_instance_of(ODFReport::Report)
           .to receive(:add_field)
-          .exactly(10).times
+          .exactly(11).times
           .and_call_original
 
         expect_any_instance_of(ODFReport::Report)
@@ -53,7 +53,7 @@ describe PeopleController do
 
         expect_any_instance_of(ODFReport::Report)
           .to receive(:add_table)
-          .exactly(6).times
+          .exactly(5).times
           .and_call_original
 
         process :show, method: :get, format: 'odt', params: { id: bob.id, anon: 'true' }
