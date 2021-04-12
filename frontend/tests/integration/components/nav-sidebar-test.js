@@ -32,7 +32,7 @@ module("Integration | Component | nav-sidebar", function(hooks) {
     await render(hbs`
       {{#nav-sidebar items=sidebarItems}}
         <ul>
-          <li>Weiterausbildung</li>
+          <li>Weiterbildung</li>
           <li>Projekte</li>
         </ul>
       {{/nav-sidebar}}
@@ -43,7 +43,7 @@ module("Integration | Component | nav-sidebar", function(hooks) {
     assert.equal(listEntries[0].innerText, "Personalien");
     assert.equal(listEntries[1].innerText, "Kernkompetenzen");
     assert.equal(listEntries[2].innerText, "Ausbildung");
-    assert.equal(listEntries[3].innerText, "Weiterausbildung");
+    assert.equal(listEntries[3].innerText, "Weiterbildung");
     assert.equal(listEntries[4].innerText, "Projekte");
   });
 });
