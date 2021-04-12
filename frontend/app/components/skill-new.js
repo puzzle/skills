@@ -50,6 +50,8 @@ export default ApplicationComponent.extend({
   },
 
   focusComesFromOutside(e) {
+    if (!this.get("session").hasResourceRole("ADMIN")) return;
+
     const isChrome =
       !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
     if (isChrome) return true;
@@ -111,6 +113,7 @@ export default ApplicationComponent.extend({
     handleBlur() {},
 
     async submit(event) {
+      if (!this.get("session").hasResourceRole("ADMIN")) return;
       return this.get("newSkill")
         .save()
         .then(skill => this.refreshList(skill))

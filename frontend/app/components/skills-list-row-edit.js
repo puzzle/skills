@@ -35,6 +35,8 @@ export default Component.extend({
 
   // checks if the focus of the event e comes from outside the current powerselect or the inside
   focusComesFromOutside(e) {
+    if (!this.get("session").hasResourceRole("ADMIN")) return;
+
     let blurredEl = e.relatedTarget;
     if (isBlank(blurredEl)) {
       return false;
@@ -44,12 +46,14 @@ export default Component.extend({
 
   actions: {
     abort() {
+      if (!this.get("session").hasResourceRole("ADMIN")) return;
       this.get("skill").rollbackAttributes();
       this.set("skill.category", this.get("fallbackCategory"));
       this.sendAction("stopEditing");
     },
 
     submit() {
+      if (!this.get("session").hasResourceRole("ADMIN")) return;
       if (this.get("changeset.isPristine")) return;
       const fallbackTitle = this.get("skill.title");
       this.get("changeset")

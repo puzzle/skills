@@ -72,4 +72,8 @@ export default class SkillsList extends Component {
         .addObject(skill)
     );
   }
+
+  isAdmin() {
+    if (this.get("session").hasResourceRole("ADMIN")) return true;
+  }
 }
