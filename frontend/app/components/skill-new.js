@@ -29,7 +29,7 @@ export default ApplicationComponent.extend({
     $("#skill-new-modal").on("hide.bs.modal", () => {
       this.abort();
     });
-    /* eslint-enable no-global-jquery, no-undef, jquery-ember-run  */
+    /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
   },
 
   abort() {
@@ -66,13 +66,13 @@ export default ApplicationComponent.extend({
       /*this try catch is necessary because bootstrap modal does not work in acceptance tests,
       meaning, this would throw an error no matter if the actual feature works and the test
       would fail.*/
-      /* eslint-disable no-undef  */
+      /* eslint-disable no-undef, ember/no-global-jquery  */
       try {
         $("#skill-new-modal").modal("hide");
       } catch (error) {
         Ember.Logger.warn(error.stack);
       }
-      /* eslint-enable no-undef  */
+      /* eslint-enable no-undef, ember/no-global-jquery  */
     },
 
     setupNewSkill(skillTitle) {

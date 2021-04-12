@@ -2,6 +2,6 @@
   <Textarea @value={{this.person.competenceNotes}} class="competences-edit-input w-100" />
 </div>
 <div class="mt-2">
-  <button {{action "submit" this.person}} role="button" id="submit-button" class="btn btn-primary">Speichern</button>
-  <button onclick={{action "abortEdit"}} role="button" class="btn abort-button">Abbrechen</button>
+  <button type="button" {{action "submit" this.person}} role="button" id="submit-button" class="btn btn-primary">Speichern</button>
+  <button type="button" onclick={{action "abortEdit"}} role="button" class="btn abort-button">Abbrechen</button>
 </div>
