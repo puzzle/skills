@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  keycloak:
+    container_name: keycloak
+    image: quay.io/keycloak/keycloak:8.0.1
+    env_file: keycloak.env
+    command: "-Djboss.socket.binding.port-offset=100 -Dkeycloak.import=/realm-export.json -Dkeycloak.migration.strategy=IGNORE_EXISTING"
+    ports:
+      - 8180:8180
+    volumes:
+      - ${PWD}/realm-export.json:/realm-export.json
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file: keycloak.env
+  web:
+    image: puzzle/skills:latest
+    container_name: skills_web
+    ports:
+      - '8080:3000'
+    depends_on:
+      - db
+    env_file:
+      - skills.env
+    volumes:
+      - skills-store:/opt/app-root/src/uploads/
+  db:
+    image: postgres:9.5.7
+    container_name: skills_db
+    ports:
+      - '5432:5432'
+    restart: always
+    env_file:
+      - skills.env
+    volumes:
+      - skills-postgresql:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+  skills-postgresql:
+  skills-store:
