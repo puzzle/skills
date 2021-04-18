@@ -5,6 +5,7 @@ module.exports = {
 
   rules: {
     "no-bare-strings": false,
-    "no-nested-interactive": false
+    "no-nested-interactive": false,
+    "link-href-attributes": false
   }
 };

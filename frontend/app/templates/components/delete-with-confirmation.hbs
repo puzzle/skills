@@ -13,8 +13,8 @@
           {{t "delete-confirmation.message" name=this.entry.instanceToString}}
         </div>
         <div class="modal-footer">
-          <button id="cancel-button" class="btn btn-secondary" {{on "click" this.cancel}}>Abbrechen</button>
-          <button id="delete-button" class="btn btn-primary" {{on "click" (fn this.delete @entry @transitionTo)}}>Löschen</button>
+          <button type="button" id="cancel-button" class="btn btn-secondary" {{on "click" this.cancel}}>Abbrechen</button>
+          <button type="button" id="delete-button" class="btn btn-primary" {{on "click" (fn this.delete @entry @transitionTo)}}>Löschen</button>
         </div>
       </div>
     </div>

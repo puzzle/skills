@@ -9,7 +9,7 @@ export default class IndexController extends Controller {
       Personalien: "#particulars",
       Kernkompetenzen: "#competences",
       Ausbildung: "#educations",
-      Weiterausbildung: "#advancedTrainings",
+      Weiterbildung: "#advancedTrainings",
       Stationen: "#activities",
       Projekte: "#projects"
     });

@@ -14,7 +14,7 @@
           <table>
             <tbody>
               <tr>
-                <img id="img-avatar-read" src={{this.picturePath}} class="img-polaroid profil-img rounded-circle" alt="">
+                <img id="img-avatar-read" src={{this.picturePath}} class="img-polaroid profil-img rounded-circle" alt="" role="presentation">
               </tr>
               <div class="mt-4">
               </div>
@@ -140,7 +140,7 @@
           <table class="table-person">
             <tbody>
               <tr class="description">
-                <td>Sprachen<a href="http://www.europaeischer-referenzrahmen.de/" target="_blank" rel="noopener"><i class="ml-2 fa fa-question-circle" aria-hidden="true"></i></a></td>
+                <td>Sprachen<a href="http://www.europaeischer-referenzrahmen.de/" target="_blank" rel="noopener noreferrer"><i class="ml-2 fa fa-question-circle" aria-hidden="true"></i></a></td>
               </tr>
               <tr>
                 <div class="border rounded mt-2">
@@ -149,10 +149,10 @@
                       {{#each this.sortedLanguageSkills as |skill|}}
                         <tr>
                           <td data-test-person-language class="description">{{skill.language}}</td>
-                          <td class="language-level"><img alt="" src="/assets/language-levels/{{to-lowercase skill.level}}.svg"></td>
+                          <td class="language-level"><img alt="" role="presentation" src="/assets/language-levels/{{to-lowercase skill.level}}.svg"></td>
                           <td class="language-certificate">
                             {{#if skill.certificate}}
-                              <img alt="" src="/assets/icon_certificate.svg" data-toggle="tooltip" data-placement="right" title={{skill.certificate}}>
+                              <img alt="" role="presentation" src="/assets/icon_certificate.svg" data-toggle="tooltip" data-placement="right" title={{skill.certificate}}>
                             {{/if}}
                           </td>
                         </tr>

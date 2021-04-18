@@ -18,7 +18,7 @@
         {{#if (eq this.editingEducation education)}}
           <EducationForm @person={{@person}} @education={{education}} @done={{this.abortEducationEdit}}/>
         {{else}}
-          <div class="zeile {{if (not this.editingEducation) "people-skill-link"}}" {{on "click" (fn this.setEditingEducation education)}} role="button">
+          <div class="zeile {{unless this.editingEducation "people-skill-link"}}" {{on "click" (fn this.setEditingEducation education)}} role="button">
             <EducationShow @education={{education}}/>
           </div>
         {{/if}}

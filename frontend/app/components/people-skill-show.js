@@ -15,11 +15,11 @@ export default class PeopleSkillShow extends Component {
       this.set("levelValue", 1);
       /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
       $(".slider-handle").ready(() => {
-        /* eslint-enable no-global-jquery, no-undef, jquery-ember-run  */
         this.sliderHandle = this.$(".slider-handle:first");
         if (!this.sliderHandle) return;
         this.sliderHandle.removeClass("slider-handle");
         this.$(".in-selection").removeClass("in-selection");
+        /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
       });
     }
   }
