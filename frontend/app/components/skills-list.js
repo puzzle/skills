@@ -47,10 +47,21 @@ export default class SkillsList extends Component {
     let url = "/api/skills?format=odt";
     this.get("download").file(url);
   }
-
+  @action
+  cannotEdit() {
+    this.get("notify").alert("You are not allowed to create new skill", {
+      closeAfter: 10000
+    });
+  }
   @action
   startEditing(skill) {
-    this.editSkills.addObject(skill);
+    if (!this.get("isAdmin")) {
+      this.get("notify").alert("You are not allowed to edit", {
+        closeAfter: 10000
+      });
+    } else {
+      this.editSkills.addObject(skill);
+    }
   }
 
   @action
@@ -71,9 +82,5 @@ export default class SkillsList extends Component {
         .toArray()
         .addObject(skill)
     );
-  }
-
-  isAdmin() {
-    if (this.get("session").hasResourceRole("ADMIN")) return true;
   }
 }

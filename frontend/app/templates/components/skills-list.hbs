@@ -1,4 +1,4 @@
-  <SkillShow @skill={{this.currentSkill}} />
+ <SkillShow @skill={{this.currentSkill}} />
   <div id="skillset-header" class="header pt-3">
     <div class="row mb-3">
       <div class="col-sm-12 search-skill-field">
@@ -17,12 +17,18 @@
         </a>
       </div>
       <div class="col-sm-2">
+        {{#if isAdmin}}
         <a id="new-skill-link" class="edit-buttons" role="button" data-toggle="modal" data-target="#skill-new-modal">
-          <i class="fa fa-plus" aria-hidden="true"></i> Neuer Skill
+          <i class="fa fa-plus" aria-hidden="true" ></i> Neuer Skill
         </a>
+        {{else}}
+        <a id="new-skill-link" class="edit-buttons" role="button" onclick={{pipe (action "cannotEdit")}} data-target="#skill-new-modal">
+          <i class="fa fa-plus" aria-hidden="true" ></i> Neuer Skill
+        </a>
+        {{/if}}
       </div>
     </div>
-  </div>
+   </div>
 <div class="mb-end">
   <SkillNew @refreshList={{action "refreshList"}} />
   <table id="skills-list-table" class="table">
