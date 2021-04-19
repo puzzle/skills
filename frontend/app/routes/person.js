@@ -17,4 +17,8 @@ export default class PersonRoute extends Route {
     this.selectedPerson.personId = this.currentModel.id;
     this.selectedPerson.selectedSubRoute = this.routeName;
   }
+
+  afterModel() {
+    this.transitionTo({ queryParams: { query: null } });
+  }
 }
