@@ -19,6 +19,6 @@ export default class PersonRoute extends Route {
   }
 
   afterModel() {
-    this.transitionTo({ queryParams: { query: null } });
+    this.transitionTo({ queryParams: { query: undefined } });
   }
 }
