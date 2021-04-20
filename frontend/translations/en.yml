@@ -1,0 +1,61 @@
+education:
+    title: Titel
+    location: Ausbildungsort
+    yearFrom: 'Jahr von'
+activity:
+    description: Beschreibung
+    role: Rolle
+    yearFrom: 'Jahr von'
+advancedTraining:
+    name: further training
+    description: Description
+    yearFrom: 'Year from'
+project:
+    title: Title
+    description: Description
+    role: Role
+    technology: Technology
+    yearFrom: 'Year from'
+competence:
+    description: Description
+personCompetence:
+    category: Category
+    offer: Offer
+person:
+    birthdate: Date of Birth
+    language: Language
+    location: Place of Residence
+    maritalStatus: Marital Status
+    name: Name
+    origin: Nationality
+    role: Role
+    title: Title
+    department: Department
+    competences: Competences
+    competenceNotes: Competences
+    educations: Trainings
+    advancedTrainings: Further Trainings
+    activities: Working Experiences
+    projects: Projects
+    personCompetences: Competences
+    level: Language Level
+    roles: Roles
+peopleSkill:
+    skill: Skill
+    interest: Interest
+    level: Level
+skill:
+    title: Skill
+    category: Category
+expertise-topic-skill-value:
+    yearsOfExperience: Years
+    numberOfProjects: Projects
+    lastUse: 'Last used'
+    skillLevel: Skill Level
+    comment: Comment
+delete-confirmation:
+    cancel: 'Cancel'
+    delete: 'Delete'
+    message: 'Delete {name}?'
+    success: '{name} was deleted'
+

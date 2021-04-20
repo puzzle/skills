@@ -54,5 +54,8 @@ expertise-topic-skill-value:
     skillLevel: Erfahrungswert
     comment: Bemerkung
 delete-confirmation:
+    cancel: 'Abbrechen'
+    delete: 'Löschen'
     message: '{name} wirklich löschen?'
     success: '{name} wurde entfernt'
+
