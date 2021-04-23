@@ -110,8 +110,11 @@ Rails/Delegate:
 Rails/SkipsModelValidations:
   Enabled: false
  
-
 Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+
+# with the use of controller-abstraction via dry_crud, this is intended
+Rails/LexicallyScopedActionFilter:
   Enabled: false
 
 # We thinks that's fine

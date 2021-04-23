@@ -20,12 +20,6 @@ class SkillsController < CrudController
     render json: fetch_entries, each_serializer: SkillSerializer, include: '*'
   end
 
-  # rubocop:disable Lint/UselessMethodDefinition
-  def create
-    super
-  end
-  # rubocop:enable Lint/UselessMethodDefinition
-
   def unrated_by_person
     if params[:person_id].present?
       entries = Skill.default_set.where
