@@ -11,14 +11,14 @@
         <SkillsetCategoryFilter @parentCategories={{this.parentCategories}} />
       </div>
       <div class="col-sm-1">
-        <a onclick={{pipe (action "exportSkillsetOdt")}} class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Exportiert das gesamte Skillset">
+        <a onclick={{pipe (action "exportSkillsetOdt")}} class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="{{t "skills-list.exportMessage"}}">
           <i class="fa fa-download" aria-hidden="true"></i>
           Export
         </a>
       </div>
       <div class="col-sm-2">
         <a id="new-skill-link" class="edit-buttons" role="button" data-toggle="modal" data-target="#skill-new-modal">
-          <i class="fa fa-plus" aria-hidden="true"></i> Neuer Skill
+          <i class="fa fa-plus" aria-hidden="true"></i> {{t "skills-list.newSkill"}}
         </a>
       </div>
     </div>
@@ -29,13 +29,13 @@
     <thead>
       <tr>
         <th scope="col" class="bg-info header-text text-secondary">Skill</th>
-        <th scope="col" class="w-9 text-secondary">Members</th>
-        <th scope="col" class="bg-info text-secondary">Kategorie</th>
-        <th scope="col" class="text-secondary">Subkategorie</th>
+        <th scope="col" class="w-9 text-secondary">{{t "skills-list.members"}}</th>
+        <th scope="col" class="bg-info text-secondary">{{t "skills-list.category"}}</th>
+        <th scope="col" class="text-secondary">{{t "skills-list.subCategory"}}</th>
         <th scope="col" class="w-9 bg-info text-secondary">Default-Set</th>
         <th scope="col" class="w-9 text-secondary">Radar</th>
         <th scope="col" class="w-9 bg-info text-secondary">Portfolio</th>
-        <th scope="col" class="w-9 text-secondary">Bearbeiten</th>
+        <th scope="col" class="w-9 text-secondary">{{t "skills-list.edit"}}</th>
       </tr>
     </thead>
     <tbody class="mt-5">

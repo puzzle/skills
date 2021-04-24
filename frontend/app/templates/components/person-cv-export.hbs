@@ -9,25 +9,25 @@
       </div>
       <div class="modal-body">
         <div class="container-fluid">
-          <div>Niederlassung (für Footer):</div>
+          <div>{{t "person-cv-export.locationForFooter"}}</div>
           <PowerSelect @selected={{this.selectedLocation}} @options={{this.availableLocations}} @onFocus={{this.handleFocus}}
                           @onBlur={{this.handleBlur}} @onChange={{action "setLocation"}} as |location|>
             {{location.shortName}}
           </PowerSelect>
           <div id="includeCompetencesAndSkills-toggle" class="row my-3">
-            <div class="col-md-6">Kernkompetenzen - Skills</div>
+            <div class="col-md-6">{{t "person-cv-export.coreCompetenciesSkills"}}</div>
             <XToggle @theme="material" @size="small" @value={{this.includeCompetencesAndSkills}} @onToggle={{fn (mut this.includeCompetencesAndSkills)}} />
           </div>
           <div class="row my-3">
-            <button type="button" {{on "click" this.startExport}} class="btn btn-primary btn-lg btn-block">Normales CV</button>
+            <button type="button" {{on "click" this.startExport}} class="btn btn-primary btn-lg btn-block">{{t "person-cv-export.normalCV"}}</button>
           </div>
           <div class="row my-3">
-            <button type="button" {{on "click" this.startAnonymizedExport}} class="btn btn-primary btn-lg btn-block">Anonymisiertes CV</button>
+            <button type="button" {{on "click" this.startAnonymizedExport}} class="btn btn-primary btn-lg btn-block">{{t "person-cv-export.anonymisedCV"}}</button>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{t "person-cv-export.cancel"}}</button>
       </div>
     </div>
   </div>

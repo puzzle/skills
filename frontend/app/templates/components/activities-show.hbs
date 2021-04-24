@@ -2,7 +2,7 @@
   <div class="card-header bg-info">
     <div class="row">
       <div class="col-sm-6 header-text">
-        Stationen ({{this.amountOfActivities}})
+        {{t "activities-show.activities"}} ({{this.amountOfActivities}})
       </div>
     </div>
   </div>
@@ -37,7 +37,7 @@
       {{#if this.sortedActivities}}
         {{#unless this.activityNew}}
           <div class="mt-auto">
-            <a onclick={{this.activitiesEditing}} role="button" class="edit-buttons"><i class="fa fa-edit"></i> Bearbeiten</a>
+            <a onclick={{this.activitiesEditing}} role="button" class="edit-buttons"><i class="fa fa-edit"></i> {{t "activities-show.edit"}}</a>
           </div>
         {{/unless}}
       {{/if}}

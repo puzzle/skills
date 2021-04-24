@@ -24,12 +24,12 @@
     <div class="p-2">
       <div class="dropdown">
         <a class="edit-buttons" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <td><i class="fa fa-cog" aria-hidden="true"></i> Mehr Optionen</td>
+          <td><i class="fa fa-cog" aria-hidden="true"></i> {{t "person-actions.moreOptions"}}</td>
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <a type="button" class="dropdown-item">
             <DeleteWithConfirmation @entry={{this.person}} @transitionTo="people">
-              Profil Löschen
+              {{t "person-actions.deletePerson"}}
             </DeleteWithConfirmation>
           </a>
         </div>

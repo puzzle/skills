@@ -13,7 +13,7 @@
     <UiSlider @value={{this.levelValue}} @ticks="1,2,3,4,5" @tooltip="hide" @disabled={{true}} @min={{1}} @max={{5}} @immediateResponse={{true}} @action={{action "adjustSliderStylingOnReset"}} />
   </div>
   <div onclick={{this.toggleSkillShow}} data-toggle={{if this.toggleSkillShow "modal"}} role="button" data-target="#skill-show-modal" class="col people-skill-interest">
-    <p class="description skillset-interest-title">Interesse</p>
+    <p class="description skillset-interest-title">{{t "people-skill-show.interest"}}</p>
     <IconRating @fillColor="#238BCA" @readOnly={{true}} @value={{this.peopleSkill.interest}} @onClick={{action (mut this.newPeopleSkill.interest)}} />
   </div>
   <div onclick={{this.toggleSkillShow}} data-toggle={{if this.toggleSkillShow "modal"}} role="button" data-target="#skill-show-modal" class="col pt-3 people-skill-certificate">
@@ -22,7 +22,7 @@
     {{else}}
       <i class="far fa-square" aria-hidden="true"></i>
     {{/if}}
-    <span class="description ml-2">Zertifikat</span>
+    <span class="description ml-2">{{t "people-skill-show.certificate"}}</span>
   </div>
   <div onclick={{this.toggleSkillShow}} data-toggle={{if this.toggleSkillShow "modal"}} role="button" data-target="#skill-show-modal" class="col pt-3 people-skill-coreCompetence">
     {{#if this.peopleSkill.coreCompetence}}
@@ -30,7 +30,7 @@
     {{else}}
       <i class="far fa-square" aria-hidden="true"></i>
     {{/if}}
-    <span class="description ml-2">Kernkompetenz</span>
+    <span class="description ml-2">{{t "people-skill-show.coreCompetence"}}</span>
   </div>
   {{yield}}
 </div>

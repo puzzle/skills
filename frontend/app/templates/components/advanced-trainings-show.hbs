@@ -2,7 +2,7 @@
   <div class="card-header bg-info">
     <div class="row">
       <div class="col-sm-6 header-text">
-        Weiterbildung ({{this.amountOfAdvancedTrainings}})
+        {{t "advanced-trainings-show.advancedTraining"}} ({{this.amountOfAdvancedTrainings}})
       </div>
     </div>
   </div>
@@ -36,7 +36,7 @@
       {{#if this.sortedAdvancedTrainings}}
         {{#unless this.advanced-trainingNew}}
           <div class="mt-auto">
-            <a onclick={{this.advancedTrainingsEditing}} role="button" class="edit-buttons"><i class="fa fa-edit"></i> Bearbeiten</a>
+            <a onclick={{this.advancedTrainingsEditing}} role="button" class="edit-buttons"><i class="fa fa-edit"></i> {{t "advanced-trainings-show.edit"}}</a>
           </div>
         {{/unless}}
       {{/if}}

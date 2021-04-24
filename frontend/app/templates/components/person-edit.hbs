@@ -3,7 +3,7 @@
     <div class="card-header bg-info">
       <div class="row">
         <div class="col-sm-6 header-text">
-          Personalien
+          {{t "person-edit.particulars"}}
         </div>
       </div>
     </div>
@@ -23,17 +23,18 @@
                 <tr>
                   <td>{{personChangeset.input label="Email" name="email" errorComponent=(component "validation-error-component")}}</td>
                 </tr>
+                <tr>{{t "person-edit.degree"}}</tr>
                 <tr>
-                  <td>{{personChangeset.input label="Abschluss" name="title" errorComponent=(component "validation-error-component")}}</td>
+                  <td>{{personChangeset.input name="title" errorComponent=(component "validation-error-component")}}</td>
                 </tr>
                 <tr>
-                  <label>Funktionen</label>
+                  <label>{{t "person-edit.functions"}}</label>
                 </tr>
                 {{#each this.person.personRoles as |personRole|}}
                   <div class="border rounded mt-2 p-2">
                     <tr>
                       <td>
-                        <label class="description role-description">Rolle</label>
+                        <label class="description role-description">{{t "person-edit.role"}}</label>
                         <div class="role-dropdown">
                           <PowerSelect @selected={{personRole.role}} @options={{this.sortedRoles}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onChange={{action "setRole" personRole}} @onKeydown={{action "setPersonRoleWithTab" personRole}} @disabled={{this.usedRoles}} as |role|>
                             {{role.name}}
@@ -43,7 +44,7 @@
                     </tr>
                     <tr>
                       <td>
-                        <label class="description role-description">Stufe</label>
+                        <label class="description role-description">{{t "person-edit.level"}}</label>
                         <div class="level-dropdown">
                           {{#if this.personRoleLevelsToSelect}}
                             <PowerSelect @selected={{selected-person-role-level this.personRoleLevelsToSelect level=personRole.level}} @options={{this.personRoleLevelsToSelect}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onChange={{action "setPersonRoleLevel" personRole}} @onKeydown={{action "setPersonRoleLevelWithTab" personRole}} as |personRoleLevel|>
@@ -65,13 +66,13 @@
                   <td>
                     <a class="nav-link language-button" role="button" {{action "addRole" this.person}}>
                       <i class="fa fa-plus" aria-hidden="true"></i>
-                      Neue Funktion
+                      {{t "person-edit.newFunction"}}
                     </a>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <label>Organisationseinheit</label>
+                    <label>{{t "person-edit.department"}}</label>
                     <PowerSelect @triggerId="department" @selected={{this.person.department}} @options={{this.departmentsToSelect}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onChange={{action (mut this.person.department)}} @onKeydown={{action "setWithTab" "setDepartment"}} as |department|>
                       {{department.name}}
                     </PowerSelect>
@@ -79,7 +80,7 @@
                 </tr>
                 <tr>
                   <td>
-                    <label>Firma</label>
+                    <label>{{t "person-edit.company"}}</label>
                     <PowerSelect @triggerId="company" @selected={{this.person.company}} @options={{this.companiesToSelect}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onChange={{action (mut this.person.company)}} @onKeydown={{action "setWithTab" "setCompany"}} as |company|>
                       {{company.name}}
                     </PowerSelect>
@@ -91,15 +92,17 @@
           <div class="col-sm">
             <table class="table-person">
               <tbody>
+                <tr>{{t "person-edit.birthdate"}}</tr>
                 <tr>
-                  <td>{{personChangeset.input label="Geburtsdatum" name="birthdate" renderComponent=(component "validation-date-input" input=this.person.birthdate) errorComponent=(component "validation-error-component")}}</td>
+                  <td>{{personChangeset.input name="birthdate" renderComponent=(component "validation-date-input" input=this.person.birthdate) errorComponent=(component "validation-error-component")}}</td>
                 </tr>
+                <tr>{{t "person-edit.placeOfResidence"}}</tr>
                 <tr>
-                  <td>{{personChangeset.input label="Wohnort (Stadt)" name="location" errorComponent=(component "validation-error-component")}}</td>
+                  <td>{{personChangeset.input name="location" errorComponent=(component "validation-error-component")}}</td>
                 </tr>
                 <tr>
                   <td>
-                    <label>Zivilstand</label>
+                    <label>{{t "person-edit.maritalStatus"}}</label>
                     <PowerSelect @triggerId="maritalStatus" @selected={{this.selectedMaritalStatus}} @options={{this.maritalStatuses}} @searchEnabled={{false}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onChange={{action "setMaritalStatus"}} @onKeydown={{action "setWithTab" "setMaritalStatus"}} as |maritalStatus|>
                       {{maritalStatus}}
                     </PowerSelect>
@@ -107,13 +110,13 @@
                 </tr>
                 <tr>
                   <td>
-                    <label>Doppelbürger</label>
+                    <label>{{t "person-edit.dualNational"}}</label>
                     <Input @type="checkbox" @checked={{this.secondNationality}} @click={{action "switchNationality" value="target.checked"}} @id="toggle-nationalities-id" class="checkbox" />
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <label>Erste Nationalität</label>
+                    <label>{{t "person-edit.firstNationality"}}</label>
                     <PowerSelect @triggerId="nationality" @options={{this.countries}} @selected={{this.selectedNationality}} @onChange={{action "setNationality"}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onKeydown={{action "setWithTab" "setNationality"}} @searchField="1" as |country|>
                       <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
                     </PowerSelect>
@@ -122,15 +125,16 @@
                 <tr>
                   {{#if this.secondNationality}}
                     <td>
-                      <label>Zweite Nationalität</label>
+                      <label>{{t "person-edit.secondNationality"}}</label>
                       <PowerSelect @triggerId="nationality2" @options={{this.countries}} @selected={{this.selectedNationality2}} @onChange={{action "setNationality2"}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onKeydown={{action "setWithTab" "setNationality2"}} @searchField="1" as |country|>
                         <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
                       </PowerSelect>
                     </td>
                   {{/if}}
                 </tr>
+                <tr>{{t "person-edit.shortname"}}</tr>
                 <tr>
-                  <td>{{personChangeset.input label="Kürzel" name="shortname" errorComponent=(component "validation-error-component")}}</td>
+                  <td>{{personChangeset.input name="shortname" errorComponent=(component "validation-error-component")}}</td>
                 </tr>
               </tbody>
             </table>
@@ -141,7 +145,7 @@
               <tbody>
                 <tr>
                   <td>
-                    Sprachen
+                    {{t "person-edit.languages"}}
                     <a href="http://www.europaeischer-referenzrahmen.de/" target="_blank" rel="noopener noreferrer">
                       <i class="ml-2 fa fa-question-circle" aria-hidden="true"></i>
                     </a>
@@ -159,7 +163,7 @@
         <br>
         {{personChangeset.submit label="Speichern" id="submit-button"}}
         <button type="button" {{action "abortEdit"}} role="button" class="btn abort-button">
-          Abbrechen
+          {{t "person-edit.cancel"}}
         </button>
       </div>
     </div>

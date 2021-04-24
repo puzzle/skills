@@ -2,7 +2,7 @@
   <div class="card-header bg-info">
     <div class="row">
       <div class="col-sm-6 header-text">
-        Stationen
+        {{t "activities-edit.activities"}}
       </div>
     </div>
   </div>
@@ -18,14 +18,14 @@
                 </div>
               </div>
               <div class="col-sm-7">
-                <label for={{concat this.elementId "-" activity.id "-role"}}>Rolle</label>
+                <label for={{concat this.elementId "-" activity.id "-role"}}>{{t "activities-edit.role"}}</label>
                 <Input @id={{concat this.elementId "-" activity.id "-role"}} @value={{activity.role}} class="form-control" />
-                <label class="mt-2" for={{concat this.elementId "-" activity.id "-desc"}}>Firmenangaben und Beschreibung der Tätigkeit</label>
+                <label class="mt-2" for={{concat this.elementId "-" activity.id "-desc"}}>{{t "activities-edit.description"}}</label>
                 <Textarea @id={{concat this.elementId "-" activity.id "-desc"}} @value={{activity.description}} class="input-xxlarge form-control" />
               </div>
               <div onclick={{action "notify"}} role="button">
                 <DeleteWithConfirmation @entry={{activity}}>
-                  Löschen
+                  {{t "activities-edit.delete"}}
                 </DeleteWithConfirmation>
               </div>
             </div>
@@ -33,8 +33,8 @@
         {{/each}}
       </div>
       <div class="mt-auto">
-        <button type="button" onclick={{action "submit" this.person}} role="button" class="btn btn-primary">Speichern</button>
-        <button type="button" onclick={{action "abortEdit"}} role="button" class="btn abort-button">Abbrechen</button>
+        <button type="button" onclick={{action "submit" this.person}} role="button" class="btn btn-primary">{{t "activities-edit.save"}}</button>
+        <button type="button" onclick={{action "abortEdit"}} role="button" class="btn abort-button">{{t "activities-edit.cancel"}}</button>
       </div>
     </div>
   </div>

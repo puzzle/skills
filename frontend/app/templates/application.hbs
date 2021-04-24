@@ -37,17 +37,17 @@
             <ul class="navbar-nav mr-auto nav-pills">
               <li class="nav-item hovering-nav-bar">
                 <LinkTo @route="people" class="nav-link text-white rounded-0">
-                  Profil
+                  {{t "application.profile"}}
                 </LinkTo>
               </li>
               <li class="nav-item hovering-nav-bar">
                 <LinkTo @route="skill_search" class="nav-link text-white rounded-0">
-                  Skill Suche
+                  {{t "application.skillSearch"}}
                 </LinkTo>
               </li>
               <li class="nav-item hovering-nav-bar">
                 <LinkTo @route="cv_search" class="nav-link text-white rounded-0">
-                  CV Suche
+                  {{t "application.cvSearch"}}
                 </LinkTo>
               </li>
               {{#if this.isAdmin}}

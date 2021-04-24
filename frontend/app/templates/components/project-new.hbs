@@ -3,7 +3,7 @@
     <div class="card-header bg-info">
       <div class="row">
         <div class="col-sm-12">
-          Neues Projekt erfassen
+          {{t "project-new.addProject"}}
         </div>
       </div>
     </div>
@@ -16,19 +16,19 @@
             </div>
           </div>
           <div class="col-sm-6">
-            <label for={{concat this.elementId "-name"}}>Projekt</label>
+            <label for={{concat this.elementId "-name"}}>{{t "project-new.project"}}</label>
             <Input @id={{concat this.elementId "-name"}} @value={{this.newProject.title}} class="form-control mb-2" />
-            <label for={{concat this.elementId "-desc"}}>Beschreibung</label>
+            <label for={{concat this.elementId "-desc"}}>{{t "project-new.description"}}</label>
             <Textarea @id={{concat this.elementId "-desc"}} @value={{this.newProject.description}} class="form-control" />            
-            <label for={{concat this.elementId "-role"}}>Rolle und Aufgaben</label>
+            <label for={{concat this.elementId "-role"}}>{{t "project-new.roleAndTasks"}}</label>
             <Textarea @id={{concat this.elementId "-role"}} @value={{this.newProject.role}} class="form-control" />            
-            <label for={{concat this.elementId "-tech"}}>Eingesetzte Technologien</label>
+            <label for={{concat this.elementId "-tech"}}>{{t "project-new.involvedTechnologies"}}</label>
             <Textarea @id={{concat this.elementId "-tech"}} @value={{this.newProject.technology}} class="form-control" />          
           </div>
           <div class="col-md-3 centered-content d-flex flex-column mt-4 px-5">
-            <button type="button" onclick={{action "submit" this.newProject false}} role="button" id="submit-button" class="btn btn-primary m-2">Speichern</button>
-            <button type="button" onclick={{action "submit" this.newProject true}} role="button" class="btn btn-info border m-2">Speichern & Neu</button>
-            <a href="#" onclick={{action "abortNew"}} role="button" id="submit-button" class="abort-edit-buttons text-center mx-4">Abbrechen</a>
+            <button type="button" onclick={{action "submit" this.newProject false}} role="button" id="submit-button" class="btn btn-primary m-2">{{t "project-new.save"}}</button>
+            <button type="button" onclick={{action "submit" this.newProject true}} role="button" class="btn btn-info border m-2">{{t "project-new.saveAndNew"}}</button>
+            <a href="#" onclick={{action "abortNew"}} role="button" id="submit-button" class="abort-edit-buttons text-center mx-4">{{t "project-new.cancel"}}</a>
           </div>
         </div>
       </div>

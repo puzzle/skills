@@ -28,5 +28,5 @@
 <PowerSelect @triggerClass="w-70 d-block" @triggerId="level" @selected={{this.selectedSkill.level}} @searchEnabled={{false}} @options={{this.levels}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onChange={{action (mut this.selectedSkill.level)}} @onKeydown={{action "setWithTab" "setLevel"}} as |level|>
   {{level}}
 </PowerSelect>
-<label class="description mt-2">Zertifikat</label>
-<Input class="w-100 input-field" placeholder="Leer lassen, falls keines" @id="certificateInput" @value={{this.selectedSkill.certificate}} />
+<label class="description mt-2">{{t "language-skills-edit.certificate"}}</label>
+<Input class="w-100 input-field" placeholder="{{t "language-skills-edit.keepEmpty"}}" @id="certificateInput" @value={{this.selectedSkill.certificate}} />

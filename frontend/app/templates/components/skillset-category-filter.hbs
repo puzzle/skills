@@ -1,4 +1,4 @@
-<label id="category-filter-label" class="description">Kategorie</label>
+<label id="category-filter-label" class="description">{{t "skillset-category-filter.category"}}</label>
 <div id="category-filter-dropdown">
   <PowerSelect @selected={{this.selectedCategory}} @options={{this.categories}} @searchEnabled={{false}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onChange={{action "setCategoryFilter"}} as |category|>
     {{category.title}}
