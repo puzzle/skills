@@ -6,6 +6,9 @@ import Component from "@ember/component";
 
 @classic
 export default class SkillsList extends Component {
+  @service("keycloak-session")
+  session;
+
   @service store;
 
   @service download;
@@ -25,6 +28,8 @@ export default class SkillsList extends Component {
       "categories",
       this.get("store").findAll("category", { reload: true })
     );
+    let session = this.get("session");
+    this.set("isAdmin", session.hasResourceRole("ADMIN"));
   }
 
   @computed("categories")
