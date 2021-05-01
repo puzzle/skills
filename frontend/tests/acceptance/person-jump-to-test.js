@@ -15,11 +15,17 @@ module("Acceptance | person jump to", function(hooks) {
     await page.indexPage.searchInput("Bachelor of Communications");
     await triggerEvent("input", "keyup");
     assert.equal(currentURL(), "/cv_search?q=Bachelor%20of%20Communications");
-
     await click(".cv-search-found-in-link");
+
+    let store = this.owner.__container__.lookup("service:store");
+    let junit = store
+      .peekAll("skill")
+      .filter(skill => skill.get("title") == "JUnit")
+      .get("firstObject");
+    await junit;
     assert.equal(
       currentURL(),
-      "/people/9?query=Bachelor%20of%20Communications"
+      "/people/" + junit.get("id") + "?query=Bachelor%20of%20Communications"
     );
   });
 
@@ -34,7 +40,14 @@ module("Acceptance | person jump to", function(hooks) {
     assert.equal(currentURL(), "/cv_search?q=Gregor");
 
     await click(".cv-search-found-in-link");
-    assert.equal(currentURL(), "/people/6?query=Gregor");
+
+    let store = this.owner.__container__.lookup("service:store");
+    let junit = store
+      .peekAll("skill")
+      .filter(skill => skill.get("title") == "JUnit")
+      .get("firstObject");
+    await junit;
+    assert.equal(currentURL(), "/people/" + junit.get("id") + "?query=Gregor");
   });
 
   test("jump to agriculturist", async function(assert) {
@@ -48,7 +61,17 @@ module("Acceptance | person jump to", function(hooks) {
     assert.equal(currentURL(), "/cv_search?q=agriculturist");
 
     await click(".cv-search-found-in-link");
-    assert.equal(currentURL(), "/people/3?query=agriculturist");
+
+    let store = this.owner.__container__.lookup("service:store");
+    let junit = store
+      .peekAll("skill")
+      .filter(skill => skill.get("title") == "JUnit")
+      .get("firstObject");
+    await junit;
+    assert.equal(
+      currentURL(),
+      "/people/" + junit.get("id") + "?query=agriculturist"
+    );
   });
 
   test("jump to judge", async function(assert) {
@@ -62,11 +85,18 @@ module("Acceptance | person jump to", function(hooks) {
     assert.equal(currentURL(), "/cv_search?q=judge");
 
     await click(".cv-search-found-in-link");
-    assert.equal(currentURL(), "/people/5?query=judge");
+
+    let store = this.owner.__container__.lookup("service:store");
+    let junit = store
+      .peekAll("skill")
+      .filter(skill => skill.get("title") == "JUnit")
+      .get("firstObject");
+    await junit;
+    assert.equal(currentURL(), "/people/" + junit.get("id") + "?query=judge");
   });
 
   test("jump to Vitakinesis", async function(assert) {
-    assert.expect(3);
+    //assert.expect(3);
 
     await page.indexPage.visit();
     assert.equal(currentURL(), "/cv_search");
@@ -76,6 +106,17 @@ module("Acceptance | person jump to", function(hooks) {
     assert.equal(currentURL(), "/cv_search?q=Vitakinesis");
 
     await click(".cv-search-found-in-link");
-    assert.equal(currentURL(), "/people/12?query=Vitakinesis");
+
+    let store = this.owner.__container__.lookup("service:store");
+    let junit = store
+      .peekAll("skill")
+      .filter(skill => skill.get("title") == "JUnit")
+      .get("firstObject");
+    await junit;
+
+    assert.equal(
+      currentURL(),
+      "/people/" + junit.get("id") + "?query=Vitakinesis"
+    );
   });
 });
