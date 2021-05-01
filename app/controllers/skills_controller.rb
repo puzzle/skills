@@ -6,7 +6,7 @@ class SkillsController < CrudController
   include ExportController
   include KeycloakTools
 
-  before_action :authorize_admin, except: %i[index unrated_by_person]
+  before_action :authorize_admin, except: %i[index create unrated_by_person]
 
   self.permitted_attrs = %i[title radar portfolio default_set category_id]
 
