@@ -46,14 +46,12 @@ export default Component.extend({
 
   actions: {
     abort() {
-      if (!this.get("isAdmin")) return;
       this.get("skill").rollbackAttributes();
       this.set("skill.category", this.get("fallbackCategory"));
       this.sendAction("stopEditing");
     },
 
     submit() {
-      if (!this.get("isAdmin")) return;
       if (this.get("changeset.isPristine")) return;
       const fallbackTitle = this.get("skill.title");
       this.get("changeset")

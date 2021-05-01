@@ -50,8 +50,6 @@ export default ApplicationComponent.extend({
   },
 
   focusComesFromOutside(e) {
-    if (!this.get("isAdmin")) return;
-
     const isChrome =
       !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
     if (isChrome) return true;
@@ -113,7 +111,6 @@ export default ApplicationComponent.extend({
     handleBlur() {},
 
     async submit(event) {
-      if (!this.get("isAdmin")) return;
       return this.get("newSkill")
         .save()
         .then(skill => this.refreshList(skill))
