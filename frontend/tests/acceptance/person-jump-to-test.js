@@ -40,4 +40,68 @@ module("Acceptance | person jump to", function(hooks) {
       "/people/" + bob.get("id") + "?query=BSc%20in%20Cleaning"
     );
   });
+
+  test("jump to London", async function(assert) {
+    assert.expect(5);
+
+    await page.indexPage.visit();
+    assert.equal(currentURL(), "/cv_search");
+
+    await page.indexPage.searchInput("London");
+    await triggerEvent("input", "keyup");
+    assert.equal(currentURL(), "/cv_search?q=London");
+
+    const names = page.indexPage.people.peopleNames
+      .toArray()
+      .map(name => name.text);
+    const foundIns = page.indexPage.people.peopleFoundInLink
+      .toArray()
+      .map(foundIn => foundIn.text);
+    assert.ok(names.includes("Alice Mante"));
+    assert.ok(foundIns.includes("Wohnort"));
+
+    const button = document.querySelector(".cv-search-found-in-link");
+    await click(button);
+
+    let store = this.owner.__container__.lookup("service:store");
+    let alice = store
+      .peekAll("person")
+      .filter(person => person.get("name") == "Alice Mante")
+      .get("firstObject");
+    await alice;
+
+    assert.equal(currentURL(), "/people/" + alice.get("id") + "?query=London");
+  });
+
+  test("jump to ken", async function(assert) {
+    assert.expect(5);
+
+    await page.indexPage.visit();
+    assert.equal(currentURL(), "/cv_search");
+
+    await page.indexPage.searchInput("ken");
+    await triggerEvent("input", "keyup");
+    assert.equal(currentURL(), "/cv_search?q=ken");
+
+    const names = page.indexPage.people.peopleNames
+      .toArray()
+      .map(name => name.text);
+    const foundIns = page.indexPage.people.peopleFoundInLink
+      .toArray()
+      .map(foundIn => foundIn.text);
+    assert.ok(names.includes("ken"));
+    assert.ok(foundIns.includes("Name"));
+
+    const button = document.querySelector(".cv-search-found-in-link");
+    await click(button);
+
+    let store = this.owner.__container__.lookup("service:store");
+    let ken = store
+      .peekAll("person")
+      .filter(person => person.get("name") == "ken")
+      .get("firstObject");
+    await ken;
+
+    assert.equal(currentURL(), "/people/" + ken.get("id") + "?query=ken");
+  });
 });
