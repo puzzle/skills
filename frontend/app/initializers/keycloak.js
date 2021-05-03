@@ -8,6 +8,7 @@ export function initialize(application) {
     application.inject("route", "session", "service:keycloakStub");
     application.inject("controller", "session", "service:keycloakStub");
     application.inject("adapter", "session", "service:keycloakStub");
+    application.inject("component", "session", "service:keycloakStub");
   }
 }
 

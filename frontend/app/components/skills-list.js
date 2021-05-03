@@ -6,6 +6,9 @@ import Component from "@ember/component";
 
 @classic
 export default class SkillsList extends Component {
+  @service("keycloak-session")
+  session;
+
   @service store;
 
   @service download;
@@ -25,6 +28,8 @@ export default class SkillsList extends Component {
       "categories",
       this.get("store").findAll("category", { reload: true })
     );
+    let session = this.get("session");
+    this.set("isAdmin", session.hasResourceRole("ADMIN"));
   }
 
   @computed("categories")
@@ -47,10 +52,21 @@ export default class SkillsList extends Component {
     let url = "/api/skills?format=odt";
     this.get("download").file(url);
   }
-
+  @action
+  cannotEdit() {
+    this.get("notify").alert("You are not allowed to create new skill", {
+      closeAfter: 10000
+    });
+  }
   @action
   startEditing(skill) {
-    this.editSkills.addObject(skill);
+    if (!this.get("isAdmin")) {
+      this.get("notify").alert("You are not allowed to edit", {
+        closeAfter: 10000
+      });
+    } else {
+      this.editSkills.addObject(skill);
+    }
   }
 
   @action
