@@ -2,9 +2,11 @@ import { module, test } from "qunit";
 import page from "frontend/tests/pages/cv-search";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
 import { currentURL, triggerEvent } from "@ember/test-helpers";
+import { setupIntl, t } from "ember-intl/test-support";
 
 module("Acceptance | cv search", function(hooks) {
   setupApplicationTest(hooks);
+  setupIntl(hooks);
 
   test("search person by title MA in sending silly memes", async function(assert) {
     assert.expect(6);
@@ -26,7 +28,7 @@ module("Acceptance | cv search", function(hooks) {
       .toArray()
       .map(foundIn => foundIn.text);
     assert.ok(names.includes("ken"));
-    assert.ok(foundIns.includes("Titel"));
+    assert.ok(foundIns.includes(t("person.title")));
     assert.notOk(names.includes("Alice Mante"));
     assert.notOk(names.includes("Bob Anderson"));
   });
@@ -50,8 +52,8 @@ module("Acceptance | cv search", function(hooks) {
       .map(foundIn => foundIn.text);
     assert.ok(names.includes("Bob Anderson"));
     assert.ok(names.includes("Alice Mante"));
-    assert.ok(foundIn.includes("Projekte"));
-    assert.ok(foundIn.includes("Kompetenzen"));
+    assert.ok(foundIn.includes(t("person.projects")));
+    assert.ok(foundIn.includes(t("person.personCompetences")));
     assert.notOk(names.includes("ken"));
   });
 
@@ -73,7 +75,7 @@ module("Acceptance | cv search", function(hooks) {
       .toArray()
       .map(foundIn => foundIn.text);
     assert.ok(names.includes("Alice Mante"));
-    assert.ok(foundIn.includes("Stationen"));
+    assert.ok(foundIn.includes(t("person.activities")));
     assert.notOk(names.includes("Bob Anderson"));
     assert.notOk(names.includes("ken"));
   });
@@ -96,7 +98,7 @@ module("Acceptance | cv search", function(hooks) {
       .toArray()
       .map(foundIn => foundIn.text);
     assert.ok(names.includes("Bob Anderson"));
-    assert.ok(foundIn.includes("Ausbildungen"));
+    assert.ok(foundIn.includes(t("person.educations")));
     assert.notOk(names.includes("Alice Mante"));
     assert.notOk(names.includes("ken"));
   });
@@ -119,7 +121,7 @@ module("Acceptance | cv search", function(hooks) {
       .toArray()
       .map(foundIn => foundIn.text);
     assert.ok(names.includes("Alice Mante"));
-    assert.ok(foundIn.includes("Weiterbildungen"));
+    assert.ok(foundIn.includes(t("person.advancedTrainings")));
     assert.notOk(names.includes("Bob Anderson"));
     assert.notOk(names.includes("ken"));
   });

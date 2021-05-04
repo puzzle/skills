@@ -176,6 +176,7 @@ person-new:
     functions: Functions
     languages: Languages
     level: Level
+    maritalStatus: Marital Status
     newFunction: New Function
     placeOfResidence: Place of Residence
     role: Role

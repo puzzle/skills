@@ -4,6 +4,7 @@ import { render } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import Service from "@ember/service";
 import keycloakStub from "../../helpers/keycloak-stub";
+import { setupIntl } from "ember-intl/test-support";
 
 const storeStub = Service.extend({
   createRecord(model) {
@@ -51,6 +52,7 @@ const storeStub = Service.extend({
 
 module("Integration | Component | skills-list", function(hooks) {
   setupRenderingTest(hooks);
+  setupIntl(hooks);
 
   hooks.beforeEach(function(assert) {
     this.owner.register("service:store", storeStub);
@@ -63,7 +65,7 @@ module("Integration | Component | skills-list", function(hooks) {
     let text = this.$().text();
 
     assert.ok(text.includes("Export"));
-    assert.ok(text.includes("Neuer Skill erstellen"));
+    assert.dom().includesText("t:skill-new.createSkill");
     assert.ok(text.includes("Skill"));
     assert.ok(text.includes("Radar"));
     assert.ok(text.includes("Members"));
