@@ -3,11 +3,11 @@
     <div class="card-header bg-info">
       <div class="row">
         <div class="col-sm-6">
-          Projekt bearbeiten
+          {{t "project-edit.editProject"}}
         </div>
         <div class="col-sm-6 text-right d-block">
           <DeleteWithConfirmation @entry={{this.project}}>
-            Löschen
+            {{t "project-edit.delete"}}
           </DeleteWithConfirmation>
         </div>
       </div>
@@ -21,19 +21,19 @@
             </div>
           </div>
           <div class="col-sm-7">
-            <label for={{concat this.elementId "-name"}}>Projekt</label>
+            <label for={{concat this.elementId "-name"}}>{{t "project-edit.project"}}</label>
             <Input @id={{concat this.elementId "-name"}} @value={{projectChangeset.title}} class="form-control mb-2" />
-            <label for={{concat this.elementId "-desc"}}>Beschreibung</label>
+            <label for={{concat this.elementId "-desc"}}>{{t "project-edit.description"}}</label>
             <Textarea @id={{concat this.elementId "-desc"}} @value={{projectChangeset.description}} class="form-control" />
-            <label for={{concat this.elementId "-role"}}>Rolle und Aufgaben</label>
+            <label for={{concat this.elementId "-role"}}>{{t "project-edit.roleAndTasks"}}</label>
             <Textarea @id={{concat this.elementId "-role"}} @value={{projectChangeset.role}} class="form-control" />            
-            <label for={{concat this.elementId "-tech"}}>Eingesetzte Technologien</label>
+            <label for={{concat this.elementId "-tech"}}>{{t "project-edit.involvedTechnologies"}}</label>
             <Textarea @id={{concat this.elementId "-tech"}} @value={{projectChangeset.technology}} class="form-control" />          
           </div>
         </div>
         <div class="mt-auto">
-          <button type="button" onclick={{action "submit" projectChangeset}} role="button" id="submit-button" class="btn btn-primary">Speichern</button>
-          <button type="button" onclick={{action "abortEdit"}} role="button" class="btn abort-button">Abbrechen</button>
+          <button type="button" onclick={{action "submit" projectChangeset}} role="button" id="submit-button" class="btn btn-primary">{{t "project-edit.save"}}</button>
+          <button type="button" onclick={{action "abortEdit"}} role="button" class="btn abort-button">{{t "project-edit.cancel"}}</button>
         </div>
       </div>
     </div>

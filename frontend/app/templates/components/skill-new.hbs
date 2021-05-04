@@ -2,18 +2,18 @@
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="skill-new-modal-label">Neuer Skill erstellen</h5>
+        <h5 class="modal-title" id="skill-new-modal-label">{{t "skill-new.createSkill"}}</h5>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
           <div class="row my-3">
-            <div class="col-md-3">Titel</div>
+            <div class="col-md-3">{{t "skill-new.title"}}</div>
             <div class="col-md-9">
               <Input @id={{concat this.elementId "-new-title"}} @value={{this.newSkill.title}} class="form-control" @name="new-skill-title" />
             </div>
           </div>
           <div class="row my-3">
-            <div class="col-md-3">Kategorie</div>
+            <div class="col-md-3">{{t "skill-new.category"}}</div>
             <div class="col-md-9 people-skill-new-dropdowns">
               <PowerSelect @triggerId="skill-new-category" @renderInPlace={{true}} @class="w-100" @dropdownClass="w-100" @options={{this.childCategories}} @matcher={{this.categorySearchMatcher}} @disabled={{eq this.newSkillSelected false}} @selected={{this.selectedCategory}} @onChange={{action "setCategory"}} @onBlur={{action "handleBlur"}} @onFocus={{action "handleFocus"}} @onKeydown={{action "setWithKey" "setCategory"}} as |category|>
                 {{category.parent.title}} - {{category.title}}
@@ -39,8 +39,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" onclick={{action "abortNew"}} class="btn btn-secondary">Abbrechen</button>
-        <button id="skill-new-submit-button" type="button" onclick={{action "submit"}} class="btn btn-primary">Speichern</button>
+        <button type="button" onclick={{action "abortNew"}} class="btn btn-secondary">{{t "skill-new.cancel"}}</button>
+        <button id="skill-new-submit-button" type="button" onclick={{action "submit"}} class="btn btn-primary">{{t "skill-new.save"}}</button>
       </div>
     </div>
   </div>

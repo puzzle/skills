@@ -1,7 +1,7 @@
 <div id="cv-searchbar-header" class="header">
   <CvSearchbar />
   <div class="card-header bg-info mt-3">
-    <p class="text-dark header-text mb-0">Suchresultate</p>
+    <p class="text-dark header-text mb-0">{{t "cv-search.searchResults"}}</p>
   </div>
 </div>
 <div class="card mt-12 mb-5">
@@ -13,7 +13,7 @@
             {{data.person.name}}
           </LinkTo>
           <div class="cv-search-found-in">
-            gefunden in:
+            {{t "cv-search.foundIn"}}
             <LinkTo class="cv-search-found-in-link"
                     @route="person"
                     @query={{hash query=this.q}}
@@ -24,7 +24,7 @@
         </div>
       {{/each}}
     {{else}}
-      <p class="m-2">Keine Resultate</p>
+      <p class="m-2">{{t "cv-search.noResults"}}</p>
     {{/if}}
   </div>
 </div>

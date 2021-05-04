@@ -3,7 +3,7 @@
   <div class="card-header bg-info">
     <div class="row">
       <div class="col-sm-6 header-text">
-        Personalien
+        {{t "person-show.particulars"}}
       </div>
     </div>
   </div>
@@ -20,7 +20,7 @@
               </div>
               <tr>
                 <a onclick={{this.personEditing}} class="edit-buttons" role="button" data-test-person-edit-form-toggle>
-                  <td><i class="fa fa-edit" aria-hidden="true"></i> Bearbeiten</td>
+                  <td><i class="fa fa-edit" aria-hidden="true"></i> {{t "person-show.edit"}}</td>
                 </a>
               </tr>
             </tbody>
@@ -30,7 +30,7 @@
           <table class="table-person">
             <tbody>
               <tr class="description">
-                <td>Name</td>
+                <td>{{t "person-show.name"}}</td>
               </tr>
               <tr>
                 <td id="data-test-person-name" class="cv-search-searchable">{{this.person.name}}</td>
@@ -46,7 +46,7 @@
               <div class="mb-2">
               </div>
               <tr class="description">
-                <td>Abschluss</td>
+                <td>{{t "person-show.degree"}}</td>
               </tr>
               <tr>
                 <td id="data-test-person-title" class="cv-search-searchable">{{this.person.title}}</td>
@@ -54,7 +54,7 @@
               <div class="mb-2">
               </div>
               <tr class="description">
-                <td>Funktion</td>
+                <td>{{t "person-show.function"}}</td>
               </tr>
               {{#if this.person.personRoles.length}}
                 {{#each this.person.personRoles as |personRole|}}
@@ -72,7 +72,7 @@
               <div class="mb-2">
               </div>
               <tr class="description">
-                <td>Organisationseinheit</td>
+                <td>{{t "person-show.department"}}</td>
               </tr>
               <tr>
                 <td id="data-test-person-department">{{this.person.department.name}}</td>
@@ -80,7 +80,7 @@
               <div class="mb-2">
               </div>
               <tr class="description">
-                <td>Firma</td>
+                <td>{{t "person-show.company"}}</td>
               </tr>
               <tr>
                 <td id="data-test-person-company">{{this.person.company.name}}</td>
@@ -92,7 +92,7 @@
           <table class="table-person">
             <tbody>
               <tr class="description">
-                <td>Geburtsdatum</td>
+                <td>{{t "person-show.birthdate"}}</td>
               </tr>
               <tr>
                 <td>
@@ -104,7 +104,7 @@
               <div class="mb-2">
               </div>
               <tr class="description">
-                <td>Nationalität{{#if this.person.nationality2}}en{{/if}}</td>
+                <td>{{t "person-show.nationality"}}{{#if this.person.nationality2}}en{{/if}}</td>
               </tr>
               <tr>
                 <td id="data-test-person-nationalities">
@@ -114,7 +114,7 @@
               <div class="mb-2">
               </div>
               <tr class="description">
-                <td>Wohnort (Stadt)</td>
+                <td>{{t "person-show.placeOfResidence"}}</td>
               </tr>
               <tr>
                 <td id="data-test-person-location">{{this.person.location}}</td>
@@ -122,13 +122,13 @@
               <div class="mb-2">
               </div>
               <tr class="description">
-                <td>Zivilstand</td>
+                <td>{{t "person-show.maritalStatus"}}</td>
               </tr>
               <tr>
                 <td id="data-test-person-marital-status">{{this.maritalStatus}}</td>
               </tr>
               <tr class="description">
-                <td>Kürzel</td>
+                <td>{{t "person-show.shortname"}}</td>
               </tr>
               <tr>
                 <td id="data-test-person-shortname">{{this.person.shortname}}</td>
@@ -140,7 +140,7 @@
           <table class="table-person">
             <tbody>
               <tr class="description">
-                <td>Sprachen<a href="http://www.europaeischer-referenzrahmen.de/" target="_blank" rel="noopener noreferrer"><i class="ml-2 fa fa-question-circle" aria-hidden="true"></i></a></td>
+                <td>{{t "person-show.languages"}}<a href="http://www.europaeischer-referenzrahmen.de/" target="_blank" rel="noopener noreferrer"><i class="ml-2 fa fa-question-circle" aria-hidden="true"></i></a></td>
               </tr>
               <tr>
                 <div class="border rounded mt-2">

@@ -14,7 +14,7 @@
     </div>
     <div class="col pt-3">
       <div >
-        <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Filter zurücksetzen" {{on "click" this.resetFilter}} >
+        <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="{{t "skill-search.resetFilter"}}" {{on "click" this.resetFilter}} >
           <i class="fa fa-redo"></i>
         </a>
       </div>
@@ -25,7 +25,7 @@
 
   <div class="card mt-4">
     <div class="card-header bg-info">
-      <p class="text-dark header-text mb-0">Suchresultate</p>
+      <p class="text-dark header-text mb-0">{{t "skill-search.searchResults"}}</p>
     </div>
   </div>
 
@@ -39,7 +39,7 @@
         </div>
       {{/each}}
     {{else}}
-      <p class="m-2">Keine Resultate</p>
+      <p class="m-2">{{t "skill-search.noResults"}}</p>
     {{/if}}
   </div>
 </div>

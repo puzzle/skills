@@ -1,10 +1,10 @@
 <form onsubmit={{action "submit" this.newActivity}} id="form_newActivity">
   <div id="newEducation-content-edit" class="zeile">
     <div id="missing-month-warning">
-      Du hast versucht eine Station ohne Monatsangabe zu speichern. <br>
-      Für eine genaue Berechnung der Punkte im Lohnmodell werden genaue Monatsangaben benötigt. <br>
-      Bitte ergänze deine Angaben und speichere noch einmal. <br><br>
-      Wenn du trotzdem ohne Monatsangabe speichern möchtest, drücke <a href="#" class="text-primary" onclick={{action "submit" this.newActivity false false}}>hier</a>.
+      {{t "activity-new.warning1"}}<br>
+      {{t "activity-new.warning2"}}<br>
+      {{t "activity-new.warning3"}}<br><br>
+      {{t "activity-new.warning4"}} <a href="#" class="text-primary" onclick={{action "submit" this.newActivity false false}}>{{t "activity-new.warning5"}}</a>.
     </div>
     <div class="row">
       <div class="col-sm-3">
@@ -13,15 +13,15 @@
         </div>
       </div>
       <div class="col-sm-6 content-input">
-        <label for={{concat this.elementId "-new-role"}}>Rolle</label>
+        <label for={{concat this.elementId "-new-role"}}>{{t "activity-new.role"}}</label>
         <Input @value={{this.newActivity.role}} class="centered-content-input form-control" />
-        <label class="mt-2" for={{concat this.elementId "-new-desc"}}>Firmenangaben und Beschreibung der Tätigkeit</label>
+        <label class="mt-2" for={{concat this.elementId "-new-desc"}}>{{t "activity-new.description"}}</label>
         <Textarea @value={{this.newActivity.description}} class="input-xxlarge form-control" />
       </div>
       <div class="col-md-3 centered-content d-flex flex-column mt-4 px-5">
-        <button type="button" onclick={{action "submit" this.newActivity false true}} role="button" id="submit-button" class="btn btn-primary m-2">Speichern</button>
-        <button type="button" onclick={{action "submit" this.newActivity true true}} role="button" class="btn btn-info border m-2">Speichern & Neu</button>
-        <a href="#" onclick={{action "abortNew"}} role="button" id="submit-button" class="abort-edit-buttons text-center mx-4">Abbrechen</a>
+        <button type="button" onclick={{action "submit" this.newActivity false true}} role="button" id="submit-button" class="btn btn-primary m-2">{{t "activity-new.save"}}</button>
+        <button type="button" onclick={{action "submit" this.newActivity true true}} role="button" class="btn btn-info border m-2">{{t "activity-new.saveAndNew"}}</button>
+        <a href="#" onclick={{action "abortNew"}} role="button" id="submit-button" class="abort-edit-buttons text-center mx-4">{{t "activity-new.cancel"}}</a>
       </div>
     </div>
   </div>

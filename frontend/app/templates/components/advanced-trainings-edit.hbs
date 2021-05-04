@@ -18,12 +18,12 @@
                 </div>
               </div>
               <div class="col-sm-7 content-input">
-                <label for={{concat this.elementId "-" advanced-training.id "-desc"}}>Beschreibung</label>
+                <label for={{concat this.elementId "-" advanced-training.id "-desc"}}>{{t "advanced-trainings-edit.description"}}</label>
                 <Textarea @id={{concat this.elementId "-" advanced-training.id "-desc"}} @value={{advanced-training.description}} class="input-xxlarge form-control" />
               </div>
               <div onclick={{action "notify"}} role="button">
                 <DeleteWithConfirmation @entry={{advanced-training}}>
-                  Löschen
+                  {{t "advanced-trainings-edit.delete"}}
                 </DeleteWithConfirmation>
               </div>
             </div>
@@ -31,8 +31,8 @@
         {{/each}}
       </div>
       <div class="mt-auto">
-        <button type="button" onclick={{action "submit" this.person}} role="button" class="btn btn-primary">Speichern</button>
-        <button type="button" onclick={{action "abortEdit"}} role="button" class="btn abort-button">Abbrechen</button>
+        <button type="button" onclick={{action "submit" this.person}} role="button" class="btn btn-primary">{{t "advanced-trainings-edit.save"}}</button>
+        <button type="button" onclick={{action "abortEdit"}} role="button" class="btn abort-button">{{t "advanced-trainings-edit.cancel"}}</button>
       </div>
     </div>
   </div>

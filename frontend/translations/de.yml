@@ -1,58 +1,257 @@
-education:
-    title: Titel
-    location: Ausbildungsort
-    yearFrom: 'Jahr von'
+activities-edit:
+    activities: Stationen
+    cancel: Abbrechen
+    delete: Löschen
+    description: Firmenangaben und Beschreibung der Tätigkeit
+    role: Rolle
+    save: Speichern
+activities-show:
+    activities: Stationen
+    edit: Bearbeiten
 activity:
     description: Beschreibung
     role: Rolle
     yearFrom: 'Jahr von'
-advancedTraining:
-    name: Weiterbildung
-    description: Beschreibung
-    yearFrom: 'Jahr von'
-project:
-    title: Titel
-    description: Beschreibung
+activity-new:
+    cancel: Abbrechen
+    description: Firmenangaben und Beschreibung der Tätigkeit
     role: Rolle
-    technology: Technologie
+    save: Speichern
+    saveAndNew: Speichern & Neu
+    warning1: Du hast versucht eine Station ohne Monatsangabe zu speichern.
+    warning2: Für eine genaue Berechnung der Punkte im Lohnmodell werden genaue Monatsangaben benötigt.
+    warning3: Bitte ergänze deine Angaben und speichere noch einmal.
+    warning4: Wenn du trotzdem ohne Monatsangabe speichern möchtest, drücke
+    warning5: hier
+advancedTraining:
+    description: Beschreibung
+    name: Weiterbildung
     yearFrom: 'Jahr von'
+advanced-training-new:
+    cancel: Abbrechen
+    description: Beschreibung
+    save: Speichern
+    saveAndNew: Speichern & Neu
+advanced-trainings-edit:
+    cancel: Abbrechen
+    delete: Löschen
+    description: Beschreibung
+    save: Speichern
+advanced-trainings-show:
+    advancedTraining: Weiterbildung
+    edit: Bearbeiten
+application:
+    cvSearch: CV Suche
+    profile: Profil
+    skillSearch: Skill Suche
 competence:
     description: Beschreibung
-personCompetence:
-    category: Kategorie
-    offer: Angebot
+competence-notes-show:
+    edit: Bearbeiten
+core-competences-show:
+    coreCompetencies: Kernkompetenzen
+    notes: Notizen Member
+cv-search:
+    foundIn: 'gefunden in:'
+    noResults: Keine Resultate
+    searchResults: Suchresultate
+cv-searchbar:
+    searchCVs: CVs durchsuchen...
+daterange-edit:
+    from: 'Von:'
+    month: Monat
+    to: 'Bis:'
+    year: Jahr
+delete-confirmation:
+    cancel: Abbrechen
+    confirmDelete: Löschen bestätigen
+    delete: Löschen
+    message: '{name} wirklich löschen?'
+    success: '{name} wurde entfernt'
+education:
+    location: Ausbildungsort
+    title: Titel
+    yearFrom: 'Jahr von'
+education-form:
+    cancel: Abbrechen
+    delete: Löschen
+    education: Ausbildung
+    location: Ausbildungsort
+    save: Speichern
+    saveAndNew: Speichern & Neu
+educations-show:
+    education: Ausbildung
+expertise-topic-skill-value:
+    comment: Bemerkung
+    lastUse: 'Letztmals angewendet'
+    numberOfProjects: Projekte
+    skillLevel: Erfahrungswert
+    yearsOfExperience: Jahre
+index:
+    message: Wähle eine Person aus oder erfasse ein neues Profil.
+    welcome: Willkommen bei
+language-skills-edit:
+    certificate: Zertifikat
+    keepEmpty: Leer lassen falls keines
+list-filter:
+    search: Suchen
+new-people-skills-show:
+    dontRate: Nicht bewerten
+    newSkills: Neue Skills zur Bewertung
+    notNow: Nicht jetzt
+    save: Übernehmen
+people:
+    newProfile: Neues Profil
+people-search:
+    searchPerson: Person suchen
+peopleSkill:
+    interest: Interesse
+    level: Level
+    skill: Skill
+people-skills-show:
+    addSkill: Skill hinzufügen
+    edit: Bearbeiten
+    editSkills: Skills bearbeiten
+people-skill-show:
+    certificate: Zertifikat
+    coreCompetence: Kernkompetenz
+    interest: Interesse
 person:
+    activities: Stationen
+    advancedTrainings: Weiterbildungen
     birthdate: Geburtsdatum
+    competenceNotes: Kompetenzen
+    competences: Kompetenzen
+    department: Organisationseinheit
+    educations: Ausbildungen
     language: Sprache
+    level: Sprachniveau
     location: Wohnort
     maritalStatus: Zivilstand
     name: Name
     origin: Nationalität
     role: Rolle
+    roles: Rollen
     title: Titel
-    department: Organisationseinheit
-    competences: Kompetenzen
-    competenceNotes: Kompetenzen
-    educations: Ausbildungen
-    advancedTrainings: Weiterbildungen
-    activities: Stationen
     projects: Projekte
     personCompetences: Kompetenzen
-    level: Sprachniveau
-    roles: Rollen
-peopleSkill:
-    skill: Skill
-    interest: Interesse
-    level: Level
-skill:
-    title: Skill
+personCompetence:
     category: Kategorie
-expertise-topic-skill-value:
-    yearsOfExperience: Jahre
-    numberOfProjects: Projekte
-    lastUse: 'Letztmals angewendet'
-    skillLevel: Erfahrungswert
-    comment: Bemerkung
-delete-confirmation:
-    message: '{name} wirklich löschen?'
-    success: '{name} wurde entfernt'
+    offer: Angebot
+person-actions:
+    deletePerson: Person löschen
+    moreOptions: Mehr Optionen
+person-cv-export:
+    anonymisedCV: Anonymisiertes CV
+    cancel: Abbrechen
+    coreCompetenciesSkills: Kernkompetenzen - Skills
+    locationForFooter: 'Niederlassung (für Footer):'
+    normalCV: Normales CV
+person-edit:
+    birthdate: Geburtsdatum
+    cancel: Abbrechen
+    company: Firma
+    degree: Abschluss
+    department: Organisationseinheit
+    dualNational: Doppelbürger
+    firstNationality: Erste Nationalität
+    functions: Funktionen
+    languages: Sprachen
+    level: Stufe
+    maritalStatus: Zivilstand
+    newFunction: Neue Funktion
+    particulars: Personalien
+    placeOfResidence: Wohnort (Stadt)
+    role: Rolle
+    secondNationality: Zweite Nationalität
+    shortname: Kürzel
+person-new:
+    birthdate: Geburtsdatum
+    cancel: Abbrechen
+    createPerson: Person erfassen
+    degree: Abschluss
+    department: Organisationseinheit
+    dualNational: Doppelbürger
+    firstNationality: Erste Nationalität
+    functions: Funktionen
+    languages: Sprachen
+    level: Stufe
+    maritalStatus: Zivilstand
+    newFunction: Neue Funktion
+    placeOfResidence: Wohnort (Stadt)
+    role: Rolle
+    save: Speichern
+    secondNationality: Zweite Nationalität
+    shortname: Kürzel
+person-show:
+    birthdate: Geburtsdatum
+    company: Firma
+    degree: Abschluss
+    department: Organisationseinheit
+    edit: Bearbeiten
+    function: Funktion
+    languages: Sprachen
+    maritalStatus: Zivilstand
+    name: Name
+    nationality: Nationalität
+    particulars: Personalien
+    placeOfResidence: Wohnort (Stadt)
+    shortname: Kürzel
+project:
+    description: Beschreibung
+    role: Rolle
+    technology: Technologie
+    title: Titel
+    yearFrom: 'Jahr von'
+projects-show:
+    projects: Projekte
+project-edit:
+    cancel: Abbrechen
+    delete: Löschen
+    description: Beschreibung
+    editProject: Projekt bearbeiten
+    involvedTechnologies: Eingesetzte Technologien
+    project: Projekt
+    roleAndTasks: Rolle und Aufagaben
+    save: Speichern
+project-new:
+    addProject: Neues Projekt erfassen
+    cancel: Abbrechen
+    description: Beschreibung
+    project: Projekt
+    involvedTechnologies: Eingesetzte Technologien
+    roleAndTasks: Rolle und Aufgaben
+    save: Speichern
+    saveAndNew: Speichern & Neu
+project-show:
+    description: Beschreibung
+    edit: Bearbeiten
+    role: Rolle
+    technologies: Technologien
+skill:
+    category: Kategorie
+    title: Skill
+skillset-category-filter:
+    category: Kategorie
+skillset-defaultset-filter:
+    all: Alle
+    new: Neue
+skills-list:
+    category: Kategorie
+    edit: Bearbeiten
+    exportMessage: Exportiert das gesamte Skillset
+    members: Mitglieder
+    newSkill: Neuer Skill
+    subCategory: Subkategorie
+skill-new:
+    cancel: Abbrechen
+    category: Kategorie
+    createSkill: Neuer Skill erstellen
+    save: Speichern
+    title: Titel
+skill-search:
+    noResults: Keine Resultate
+    resetFilter: Filter zurücksetzen
+    searchResults: Suchresultate
+updated-at:
+    message: 'Zuletzt bearbeitet:'

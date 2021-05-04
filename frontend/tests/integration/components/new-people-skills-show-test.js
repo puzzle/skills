@@ -3,6 +3,7 @@ import { setupRenderingTest } from "ember-qunit";
 import { render } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import Service from "@ember/service";
+import { setupIntl } from "ember-intl/test-support";
 
 const storeStub = Service.extend({
   createRecord(type, options) {
@@ -38,6 +39,7 @@ const ajaxStub = Service.extend({
 
 module("Integration | Component | new-people-skills-show", function(hooks) {
   setupRenderingTest(hooks);
+  setupIntl(hooks);
 
   test("it renders", async function(assert) {
     this.owner.unregister("service:store");
@@ -66,12 +68,12 @@ module("Integration | Component | new-people-skills-show", function(hooks) {
 
     let text = this.$().text();
 
-    assert.ok(text.includes("Neue Skills"));
+    assert.dom().includesText("t:new-people-skills-show.newSkills");
     assert.ok(text.includes("Rails"));
     assert.ok(text.includes("Nicht bewertet"));
     assert.ok(text.includes("Interesse"));
     assert.ok(text.includes("Zertifikat"));
     assert.ok(text.includes("Kernkompetenz"));
-    assert.ok(text.includes("Nicht bewerten"));
+    assert.dom().includesText("t:new-people-skills-show.dontRate");
   });
 });

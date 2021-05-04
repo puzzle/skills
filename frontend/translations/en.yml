@@ -1,0 +1,257 @@
+activities-edit:
+    activities: Activities
+    cancel: Cancel
+    delete: Delete
+    description: Company details and description of activity
+    role: Role
+    save: Save
+activities-show:
+    activities: Activities
+    edit: Edit
+activity:
+    description: Beschreibung
+    role: Rolle
+    yearFrom: 'Jahr von'
+activity-new:
+    cancel: Cancel
+    description: Company details and description of activity
+    role: Role
+    save: Save
+    saveAndNew: Save & New
+    warning1: You tried to save a station without specifying the month.
+    warning2: Precise monthly information is required for an exact calculation of the points in the wage model.
+    warning3: Please complete your details and save again.
+    warning4: If you still want to save without specifying the month, press
+    warning5: here
+advancedTraining:
+    description: Description
+    name: Advanced Training
+    yearFrom: 'Year from'
+advanced-training-new:
+    cancel: Cancel
+    description: Description
+    save: Save
+    saveAndNew: Save & New
+advanced-trainings-edit:
+    cancel: Cancel
+    delete: Delete
+    description: Description
+    save: Save
+advanced-trainings-show:
+    advancedTraining: Advanced Training
+    edit: Edit
+application:
+    cvSearch: CV Search
+    profile: Profile
+    skillSearch: Skill Search
+competence:
+    description: Description
+competence-notes-show:
+    edit: Edit
+core-competences-show:
+    coreCompetencies: Core Competencies
+    notes: Notes Member
+cv-search:
+    foundIn: 'found in:'
+    noResults: No Results
+    searchResults: Search Results
+cv-searchbar:
+    searchCVs: Search CVs...
+daterange-edit:
+    from: 'From:'
+    month: Month
+    to: 'To:'
+    year: Year
+delete-confirmation:
+    cancel: Cancel
+    confirmDelete: Confirm delete
+    delete: Delete
+    message: 'Delete {name}?'
+    success: '{name} was deleted'
+education:
+    location: Location
+    title: Title
+    yearFrom: 'Jahr von'
+education-form:
+    cancel: Cancel
+    delete: Delete
+    education: Education
+    location: Location
+    save: Save
+    saveAndNew: Save & New
+educations-show:
+    education: Education
+expertise-topic-skill-value:
+    comment: Comment
+    lastUse: 'Last used'
+    numberOfProjects: Projects
+    skillLevel: Skill Level
+    yearsOfExperience: Years
+index:
+    message: Select a person or create a new profile.
+    welcome: Welcome to
+language-skills-edit:
+    certificate: Certificate
+    keepEmpty: Keep empty if missing
+list-filter:
+    search: Search
+new-people-skills-show:
+    dontRate: Don't rate
+    newSkills: New Skills to Rate
+    notNow: Not now
+    save: Save
+people:
+    newProfile: New Profile
+people-search:
+    searchPerson: Search Person
+peopleSkill:
+    interest: Interest
+    level: Level
+    skill: Skill
+people-skills-show:
+    addSkill: Add Skill
+    edit: Edit
+    editSkills: Edit Skills
+people-skill-show:
+    certificate: Certificate
+    coreCompetence: Core Competence
+    interest: Interest
+person:
+    activities: Working Experiences
+    advancedTrainings: Further Trainings
+    birthdate: Date of Birth
+    competenceNotes: Competences
+    competences: Competences
+    department: Department
+    educations: Trainings
+    language: Language
+    level: Language Level
+    location: Place of Residence
+    maritalStatus: Marital Status
+    name: Name
+    origin: Nationality
+    personCompetences: Competences
+    projects: Projects
+    role: Role
+    roles: Roles
+    title: Title
+personCompetence:
+    category: Category
+    offer: Offer
+person-actions:
+    deletePerson: Delete Person
+    moreOptions: More Options
+person-cv-export:
+    anonymisedCV: Anonymised CV
+    cancel: Cancel
+    coreCompetenciesSkills: Core Competencies - Skills
+    locationForFooter: 'Location (for footer):'
+    normalCV: Normal CV
+person-edit:
+    birthdate: Date of Birth
+    cancel: Cancel
+    company: Company
+    degree: Degree
+    department: Department
+    dualNational: Dual National
+    firstNationality: First Nationality
+    functions: Functions
+    languages: Languages
+    level: Level
+    maritalStatus: Marital Status
+    newFunction: New Function
+    particulars: Particulars
+    placeOfResidence: Place of Residence
+    role: Role
+    secondNationality: Second Nationality
+    shortname: Short Name
+person-new:
+    birthdate: Date of Birth
+    cancel: Cancel
+    createPerson: Create Person
+    degree: Degree
+    department: Department
+    dualNational: Dual National
+    firstNationality: First Nationality
+    functions: Functions
+    languages: Languages
+    level: Level
+    maritalStatus: Marital Status
+    newFunction: New Function
+    placeOfResidence: Place of Residence
+    role: Role
+    save: Save
+    secondNationality: Second Nationality
+    shortname: Short Name
+person-show:
+    birthdate: Date of Birth
+    company: Company
+    degree: Degree
+    department: Department
+    edit: Edit
+    function: Function
+    languages: Languages
+    maritalStatus: Marital Status
+    name: Name
+    nationality: Nationality
+    particulars: Particulars
+    placeOfResidence: Place of Residence
+    shortname: Short Name
+project:
+    description: Description
+    role: Role
+    technology: Technology
+    title: Title
+    yearFrom: 'Year from'
+projects-show:
+    projects: Projects
+project-edit:
+    cancel: Cancel
+    delete: Delete
+    description: Description
+    editProject: Edit project
+    involvedTechnologies: Involved Technologies
+    project: Project
+    roleAndTasks: Role and Tasks
+    save: Save
+project-new:
+    addProject: Add Project
+    cancel: Cancel
+    description: Description
+    involvedTechnologies: Involved Technologies
+    project: Project
+    roleAndTasks: Role and Tasks
+    save: Save
+    saveAndNew: Save & New
+project-show:
+    description: Description
+    edit: Edit
+    role: Role
+    technologies: Technologies
+skill:
+    category: Category
+    title: Skill
+skillset-category-filter:
+    category: Category
+skillset-defaultset-filter:
+    all: All
+    new: New
+skills-list:
+    category: Category
+    edit: Edit
+    exportMessage: Exports the entire skillset
+    members: Members
+    newSkill: New Skill
+    subCategory: Subcategory
+skill-new:
+    cancel: Cancel
+    category: Category
+    createSkill: Create New Skill
+    save: Save
+    title: Title
+skill-search:
+    noResults: No Results
+    resetFilter: Reset filter
+    searchResults: Search Results
+updated-at:
+    message: 'Last edited:'

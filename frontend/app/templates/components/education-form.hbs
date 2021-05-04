@@ -7,24 +7,24 @@
         </div>
       </div>
       <div class="col-sm-6 content-input">
-        <label for={{concat this.elementId "-" this.record.id "-title"}}>Ausbildung</label>
+        <label for={{concat this.elementId "-" this.record.id "-title"}}>{{t "education-form.education"}}</label>
         <Input @id={{concat this.elementId "-" this.record.id "-title"}} @value={{this.record.title}} class="input-xxlarge form-control" />
-        <label class="mt-2" for={{concat this.elementId "-" this.record.id "-loc"}}>Ausbildungsort</label>
+        <label class="mt-2" for={{concat this.elementId "-" this.record.id "-loc"}}>{{t "education-form.location"}}</label>
         <Textarea @id={{concat this.elementId "-" this.record.id "-loc"}} @value={{this.record.location}} class="input-xxlarge form-control" />
       </div>
       <div class="col-md-3 centered-content d-flex flex-column mt-4 px-5">
-        <button type="button" {{on "click" (fn this.submit record)}} role="button" id="submit-education-button" class="btn btn-primary m-2">Speichern</button>
+        <button type="button" {{on "click" (fn this.submit record)}} role="button" id="submit-education-button" class="btn btn-primary m-2">{{t "education-form.save"}}</button>
         {{#if this.record.id}}
           <button type="button" id="delete-education-icon" class="btn btn-info border m-2">
             <DeleteWithConfirmation @entry={{this.record}} @didDelete={{this.abort}}>
-              Löschen
+              {{t "education-form.delete"}}
             </DeleteWithConfirmation>
           </button>
-          <button type="button" {{on "click" (fn this.submitAndNew record)}} role="button" class="btn btn-info border m-2">Speichern & Neu</button>
+          <button type="button" {{on "click" (fn this.submitAndNew record)}} role="button" class="btn btn-info border m-2">{{t "education-form.saveAndNew"}}</button>
         {{else}}
-          <button type="button" {{on "click" (fn this.submitAndNew record)}} role="button" class="btn btn-info border m-2">Speichern & Neu</button>
+          <button type="button" {{on "click" (fn this.submitAndNew record)}} role="button" class="btn btn-info border m-2">{{t "education-form.saveAndNew"}}</button>
         {{/if}}
-        <a href="#" {{on "click" this.abort}} role="button" id="submit-button" class="abort-edit-buttons text-center mx-4">Abbrechen</a>
+        <a href="#" {{on "click" this.abort}} role="button" id="submit-button" class="abort-edit-buttons text-center mx-4">{{t "education-form.cancel"}}</a>
       </div>
     </div>
   </div>
