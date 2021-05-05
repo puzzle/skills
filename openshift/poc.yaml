@@ -28,24 +28,6 @@ spec:
 ...
 ---
 apiVersion: v1
-kind: ImageStream
-metadata:
-  name: elixir-upstream
-  annotations:
-    puzzle.ch/purpose: Upstream image change trigger
-spec:
-  dockerImageRepository: docker.io/hexpm/elixir
-  tags:
-    - from:
-        kind: DockerImage
-        name: docker.io/hexpm/elixir:1.11.1-erlang-22.3.4.12-alpine-3.12.0
-      importPolicy:
-        scheduled: true
-      name: latest
-  lookupPolicy:
-    local: true
----
-apiVersion: v1
 kind: BuildConfig
 metadata:
   labels:
