@@ -1,39 +1,79 @@
-FROM centos/ruby-25-centos7
+# __________      .__.__       .___   _________ __
+# \______   \__ __|__|  |    __| _/  /   _____//  |______     ____   ____
+#  |    |  _/  |  \  |  |   / __ |   \_____  \\   __\__  \   / ___\_/ __ \
+#  |    |   \  |  /  |  |__/ /_/ |   /        \|  |  / __ \_/ /_/  >  ___/
+#  |______  /____/|__|____/\____ |  /_______  /|__| (____  /\___  / \___  >
+#         \/                    \/          \/           \//_____/      \/
 
-ENV RAILS_ENV=production
-ENV RACK_ENV=production
-ENV SECRET_KEY_BASE=cannot-be-blank-for-production-env-when-building
+FROM ruby:2.7 AS build
 
+# Set environment
+ENV RAILS_ENV=production RACK_ENV=production SECRET_KEY_BASE=cannot-be-blank-for-production-env-when-building
+
+# Use root user
 USER root
 
-# for minimagick gem
-RUN yum install -y ImageMagick
+# Install dependencies, remove apt!
+# ${ADDITIONAL_BUILD_PACKAGES}?
+RUN apt-get update && apt-get upgrade -y && apt-get install -y \
+    libpq-dev \
+    nodejs npm
 
-# Install yarn
-RUN wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo && \
-    rpm -Uvh --nodeps $(repoquery --location yarn)
+# Install specific yarn version, env forces cache miss?
+ENV YARN_VERSION=1.22.10
+RUN npm install yarn -g && yarn set version ${YARN_VERSION}
 
-# reduce image size
-RUN yum clean all -y && rm -rf /var/cache/yum
+# Install specific bundler version
+ENV BUNDLER_VERSION=2.2.16
+RUN gem install bundler:${BUNDLER_VERSION} --no-document
 
-# copy files needed for assembly into container
-ADD ./config/docker/s2i/root /
+# Load artifacts
 
-RUN \
-  # Call restore-artifacts sscript when assembling
-  sed '/Installing application source/i $STI_SCRIPTS_PATH/restore-artifacts' \
-    -i $STI_SCRIPTS_PATH/assemble && \
-  # Call post-assemble script when assembling
-  echo -e "\n\$STI_SCRIPTS_PATH/post-assemble" >> $STI_SCRIPTS_PATH/assemble
+# set up app-src directory
+COPY . /app-src
+WORKDIR /app-src
 
-COPY . /tmp/src
+# Run deployment
+RUN yarn install && \
+    bundle config set --local deployment 'true' && \
+    bundle package && \
+    bundle install
 
-RUN $STI_SCRIPTS_PATH/assemble
+# Save artifacts
 
-USER 1001
+# __________                 _________ __
+# \______   \__ __  ____    /   _____//  |______     ____   ____
+#  |       _/  |  \/    \   \_____  \\   __\__  \   / ___\_/ __ \
+#  |    |   \  |  /   |  \  /        \|  |  / __ \_/ /_/  >  ___/
+#  |____|_  /____/|___|  / /_______  /|__| (____  /\___  / \___  >
+#         \/           \/          \/           \//_____/      \/
+
+# Dieses image wird von Openshift ersetzt
+FROM ruby:2.7-slim AS app
+
+# Add user
+RUN adduser --disabled-password app
+
+# Install dependencies, remove apt!
+RUN apt-get update && apt-get upgrade -y && apt-get install -y \
+    vim-tiny curl git \
+    imagemagick \
+    && rm -rf /var/lib/{apt,dpkg,cache,log}/
+
+# Copy deployment ready source code
+# Copy codebase from build
+COPY --from=build /app-src /app-src
+WORKDIR /app-src
+
+RUN chgrp -R 0 /app-src && \
+    chmod -R g=u /app-src
+
+ENV HOME=/app-src
 
 # make sure unique secret key is set by operator
 ENV SECRET_KEY_BASE=
 ENV RAILS_LOG_TO_STDOUT=1
 
-CMD bundle exec puma -t 8
+USER app
+
+ENTRYPOINT ["bundle", "exec", "puma", "-t", "8"]
