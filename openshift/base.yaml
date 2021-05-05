@@ -1,0 +1,952 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: image-reader
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: jenkins
+secrets:
+- name: jenkins-token
+---
+apiVersion: v1
+data:
+  nginx.conf: |
+    worker_processes auto;
+    error_log /dev/stdout info;
+    pid /var/opt/rh/rh-nginx112/run/nginx/nginx.pid;
+
+    # Load dynamic modules. See /opt/rh/rh-nginx112/root/usr/share/doc/README.dynamic.
+    include /opt/rh/rh-nginx112/root/usr/share/nginx/modules/*.conf;
+
+    events {
+        worker_connections  1024;
+    }
+
+    http {
+        log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                          '$status $body_bytes_sent "$http_referer" '
+                          '"$http_user_agent" "$http_x_forwarded_for"';
+
+        access_log /dev/stdout main;
+
+        sendfile        on;
+        tcp_nopush      on;
+        tcp_nodelay     on;
+        keepalive_timeout  65;
+        types_hash_max_size 2048;
+
+        include       /etc/opt/rh/rh-nginx112/nginx/mime.types;
+        default_type  application/octet-stream;
+
+        # Load modular configuration files from the /etc/nginx/conf.d directory.
+        # See http://nginx.org/en/docs/ngx_core_module.html#include
+        # for more information.
+        include /opt/app-root/etc/nginx.d/*.conf;
+
+        server {
+            listen       8443 default_server;
+            listen       [::]:8443 default_server;
+            server_name  _;
+            root         /opt/app-root/src/public;
+
+            ssl on;
+            ssl_certificate /opt/certificates/app/tls.crt;
+            ssl_certificate_key /opt/certificates/app/tls.key;
+
+            # Load configuration files for the default server block.
+            include      /opt/app-root/etc/nginx.default.d/*.conf;
+
+            client_max_body_size 4G;
+            keepalive_timeout 5;
+
+            gzip on;
+            gzip_static on;
+            gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+            gzip_proxied  any;
+            gzip_vary on;
+            gzip_comp_level 6;
+            gzip_buffers 16 8k;
+            gzip_http_version 1.1;
+
+            proxy_read_timeout 600s;
+
+            location ~ ^/(healthz|status/health|status/readiness) {
+                # localhost:3000 is where the puma container listens
+                proxy_pass http://localhost:3000;
+                break;
+            }
+
+            location / {
+                rewrite ^/$ /index.html;
+
+                if ($http_accept ~* "html") {
+                  rewrite ^.*$ /index.html;
+                }
+
+                proxy_set_header  X-Real-IP  $remote_addr;
+                proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header  Host $http_host;
+                proxy_set_header  X-Forwarded-Proto https;
+                proxy_redirect    off;
+
+                location ~ index.html$ {
+                    add_header Cache-Control "no-cache, no-store, must-revalidate, max-age=0";
+                }
+
+                location ~ (\.js|\.gz)$ {
+                    add_header Cache-Control "immutable";
+                }
+
+
+                # If you don't find the filename in the static files
+                # Then request it from the unicorn server
+                if (!-f $request_filename) {
+                  # localhost:3000 is where the puma container listens
+                  proxy_pass http://localhost:3000;
+                  break;
+                }
+            }
+
+            error_page 404 /404.html;
+            location = /40x.html {
+            }
+
+            error_page 500 502 503 504  /50x.html;
+            location = /50x.html {
+            }
+        }
+    }
+kind: ConfigMap
+metadata:
+  name: nginx-config
+---
+apiVersion: v1
+data:
+  pg_hba.conf: |-
+    # TYPE  DATABASE        USER            ADDRESS                 METHOD
+    #
+    # "local" is for Unix domain socket connections only
+    local   all             all                                     trust
+    # IPv4 local connections:
+    host    all             all             127.0.0.1/32            trust
+    # IPv6 local connections:
+    host    all             all             ::1/128                 trust
+    # Allow only SSL connections from all hosts.
+    hostssl all             all             all                     md5
+kind: ConfigMap
+metadata:
+  name: postgresql-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: postgresql-persistent
+  name: postgresql
+spec:
+  ports:
+  - name: postgresql
+    port: 5432
+    protocol: TCP
+    targetPort: 5432
+  selector:
+    name: postgresql
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: rails
+  name: rails
+spec:
+  ports:
+  - name: 8443-tcp
+    port: 8443
+    protocol: TCP
+    targetPort: 8443
+  selector:
+    app: rails
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    image.openshift.io/triggers: |-
+      [
+        {
+          "from": { "kind":"ImageStreamTag", "name": "postgresql-95-rhel7:release" },
+          "fieldPath": "spec.template.spec.containers[?(@.name==\"postgresql\")].image"
+        },
+        {
+          "from": { "kind":"ImageStreamTag", "name": "postgresql-95-rhel7:release" },
+          "fieldPath": "spec.template.spec.initContainers[?(@.name==\"harden-config\")].image"
+        }
+      ]
+  labels:
+    app: postgresql
+  name: postgresql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: postgresql
+    name: postgresql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: postgresql-persistent
+        name: postgresql
+    spec:
+      containers:
+      - command:
+        - sh
+        - -c
+        - |-
+          cp -pr /opt/certificates/ /tmp &&
+          find /tmp/certificates -type f | xargs chmod 400 &&
+          run-postgresql -c log_line_prefix='%t '
+        env:
+        - name: POSTGRESQL_USER
+          valueFrom:
+            secretKeyRef:
+              key: user
+              name: database-credentials
+        - name: POSTGRESQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: database-credentials
+        - name: POSTGRESQL_DATABASE
+          value: database
+        - name: PGCTLTIMEOUT
+          value: "300"
+        image: image-registry.openshift-image-registry.svc:5000/pitc-skills-int/postgresql-95-rhel7
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 12
+          initialDelaySeconds: 10
+          periodSeconds: 20
+          tcpSocket:
+            port: 5432
+          timeoutSeconds: 1
+        name: postgresql
+        ports:
+        - containerPort: 5432
+          protocol: TCP
+        readinessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -i
+            - -c
+            - psql -h 127.0.0.1 -U ${POSTGRESQL_USER} -q -d ${POSTGRESQL_DATABASE}
+              -c 'SELECT 1'
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        resources:
+          limits:
+            cpu: "1"
+            memory: 2Gi
+          requests:
+            cpu: 10m
+            memory: 256Mi
+        securityContext:
+          capabilities: {}
+          privileged: false
+        volumeMounts:
+        - mountPath: /var/lib/pgsql/data
+          name: postgresql-data
+        - mountPath: /opt/certificates/db/
+          name: db-certificate
+      dnsPolicy: ClusterFirst
+      initContainers:
+      - args:
+        - -c
+        - |-
+          set -e pipefail
+
+          # Userdata will be initialized on first pod boot.
+          if [ ! -e /var/lib/pgsql/data/userdata ] ; then exit 0; fi
+
+          mkdir -p /var/lib/pgsql/data/userdata
+          cd /var/lib/pgsql/data/userdata
+          cp /opt/hardened-postgres-config/pg_hba.conf .
+          cp postgresql.conf{,.new}
+          sed -ri "s:^#?ssl_cert_file.*:ssl_cert_file = '/tmp/certificates/db/tls.crt':" postgresql.conf.new
+          sed -ri "s:^#?ssl_key_file.*:ssl_key_file = '/tmp/certificates/db/tls.key':" postgresql.conf.new
+          sed -ri "s/^#?ssl = .*/ssl = on/" postgresql.conf.new
+          mv postgresql.conf{.new,}
+        command:
+        - /bin/sh
+        image: image-registry.openshift-image-registry.svc:5000/pitc-skills-int/postgresql-95-rhel7
+        name: harden-config
+        resources:
+          limits:
+            cpu: "1"
+            memory: 2Gi
+          requests:
+            cpu: 250m
+            memory: 256Mi
+        volumeMounts:
+        - mountPath: /var/lib/pgsql/data
+          name: postgresql-data
+        - mountPath: /opt/hardened-postgres-config
+          name: postgresql-config
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: postgresql-data
+        persistentVolumeClaim:
+          claimName: postgresql-database
+      - name: db-certificate
+        secret:
+          secretName: certificate-postgresql
+      - configMap:
+          name: postgresql-config
+        name: postgresql-config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    image.openshift.io/triggers: |-
+      [
+        {
+          "from": { "kind":"ImageStreamTag", "name": "rails:release" },
+          "fieldPath": "spec.template.spec.containers[?(@.name==\"rails\")].image"
+        },
+        {
+          "from": { "kind":"ImageStreamTag", "name": "rails:release" },
+          "fieldPath": "spec.template.spec.initContainers[?(@.name==\"prepare-assets\")].image"
+        },
+        {
+          "from": { "kind":"ImageStreamTag", "name": "rails:release" },
+          "fieldPath": "spec.template.spec.initContainers[?(@.name==\"wait-for-database\")].image"
+        },
+        {
+          "from": { "kind":"ImageStreamTag", "name": "rails:release" },
+          "fieldPath": "spec.template.spec.initContainers[?(@.name==\"migrate-database\")].image"
+        },
+        {
+          "from": { "kind":"ImageStreamTag", "name": "rails-nginx:release" },
+          "fieldPath": "spec.template.spec.containers[?(@.name==\"nginx\")].image"
+        }
+      ]
+  labels:
+    app: rails
+  name: rails
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: rails
+    name: rails
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: rails
+        name: rails
+    spec:
+      containers:
+      - command:
+        - bash
+        - -c
+        - bundle exec puma -t 8
+        env:
+        - name: RAILS_HOST_NAME
+          value: skills-int.ocp.aws.puzzle.ch
+        - name: RAILS_KEYCLOAK_SERVER_URL
+          value: https://sso-test.puzzle.ch/auth
+        - name: EMBER_KEYCLOAK_SERVER_URL
+          value: https://sso-test.puzzle.ch/auth
+        - name: SECRET_KEY_BASE
+          valueFrom:
+            secretKeyRef:
+              key: key
+              name: rails-secret-key-base
+        - name: TZ
+          value: Europe/Berlin
+        - name: RAILS_ENV
+          value: production
+        - name: RAILS_DB_NAME
+          value: database
+        - name: RAILS_DB_HOST
+          value: postgresql
+        - name: RAILS_DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: user
+              name: database-credentials
+        - name: RAILS_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: database-credentials
+        - name: RAILS_DB_ADAPTER
+          value: postgresql
+        - name: RAILS_DB_SSLMODE
+          value: verify-full
+        - name: RAILS_DB_SSLROOTCERT
+          value: /opt/certificates/ca/tls.crt
+        - name: RAILS_KEYCLOAK_REALM_ID
+          value: pitc
+        - name: SENTRY_DSN
+          valueFrom:
+            secretKeyRef:
+              key: dsn
+              name: sentry-dsn
+        - name: RAILS_LOG_TO_STDOUT
+          value: "1"
+        image: image-registry.openshift-image-registry.svc:5000/pitc-skills-int/rails:latest
+        livenessProbe:
+          failureThreshold: 10
+          httpGet:
+            path: /healthz
+            port: 3000
+          initialDelaySeconds: 20
+          periodSeconds: 30
+          timeoutSeconds: 30
+        name: rails
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 3000
+          initialDelaySeconds: 15
+          timeoutSeconds: 1
+        resources:
+          limits:
+            cpu: "1"
+            memory: 2Gi
+          requests:
+            cpu: 10m
+            memory: 512Mi
+        volumeMounts:
+        - mountPath: /opt/certificates/ca/
+          name: ca-certificate
+        - mountPath: /opt/app-root/src/uploads/
+          name: useruploads
+      - command:
+        - /usr/libexec/s2i/run
+        image: rails-nginx:release
+        name: nginx
+        ports:
+        - containerPort: 8443
+        resources:
+          limits:
+            cpu: "1"
+            memory: 1Gi
+          requests:
+            cpu: 10m
+            memory: 512Mi
+        volumeMounts:
+        - mountPath: /opt/app-root/src/public
+          name: httpd-public
+        - mountPath: /etc/opt/rh/rh-nginx112/nginx/nginx.conf
+          name: nginx-conf
+          subPath: nginx.conf
+        - mountPath: /opt/certificates/app/
+          name: app-certificate
+        - mountPath: /opt/certificates/ca/
+          name: ca-certificate
+      initContainers:
+      - command:
+        - bash
+        - -c
+        - |-
+          # Copy assets so httpd can serve them
+          cp -pr public/* /mnt/httpd-public/
+        image: rails:release
+        name: prepare-assets
+        resources:
+          limits:
+            cpu: "1"
+            memory: 1Gi
+          requests:
+            cpu: 10m
+            memory: 512Mi
+        volumeMounts:
+        - mountPath: /mnt/httpd-public
+          name: httpd-public
+      - command:
+        - /usr/bin/bash
+        - -c
+        - bundle exec rake bleib:wait_for_database
+        env:
+        - name: RAILS_HOST_NAME
+          value: skills-int.ocp.aws.puzzle.ch
+        - name: RAILS_KEYCLOAK_SERVER_URL
+          value: https://sso-test.puzzle.ch/auth
+        - name: EMBER_KEYCLOAK_SERVER_URL
+          value: https://sso-test.puzzle.ch/auth
+        - name: SECRET_KEY_BASE
+          valueFrom:
+            secretKeyRef:
+              key: key
+              name: rails-secret-key-base
+        - name: TZ
+          value: Europe/Berlin
+        - name: RAILS_ENV
+          value: production
+        - name: RAILS_DB_NAME
+          value: database
+        - name: RAILS_DB_HOST
+          value: postgresql
+        - name: RAILS_DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: user
+              name: database-credentials
+        - name: RAILS_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: database-credentials
+        - name: RAILS_DB_ADAPTER
+          value: postgresql
+        - name: RAILS_DB_SSLMODE
+          value: verify-full
+        - name: RAILS_DB_SSLROOTCERT
+          value: /opt/certificates/ca/tls.crt
+        - name: RAILS_KEYCLOAK_REALM_ID
+          value: pitc
+        - name: SENTRY_DSN
+          valueFrom:
+            secretKeyRef:
+              key: dsn
+              name: sentry-dsn
+        - name: RAILS_LOG_TO_STDOUT
+          value: "1"
+        image: image-registry.openshift-image-registry.svc:5000/pitc-skills-int/rails:latest
+        name: wait-for-database
+        resources:
+          limits:
+            cpu: "1"
+            memory: 2Gi
+          requests:
+            cpu: 10m
+            memory: 512Mi
+        volumeMounts:
+        - mountPath: /opt/certificates/app/
+          name: app-certificate
+        - mountPath: /opt/certificates/ca/
+          name: ca-certificate
+      - command:
+        - bash
+        - -c
+        - rails db:migrate
+        env:
+        - name: RAILS_HOST_NAME
+          value: skills-int.ocp.aws.puzzle.ch
+        - name: RAILS_KEYCLOAK_SERVER_URL
+          value: https://sso-test.puzzle.ch/auth
+        - name: EMBER_KEYCLOAK_SERVER_URL
+          value: https://sso-test.puzzle.ch/auth
+        - name: SECRET_KEY_BASE
+          valueFrom:
+            secretKeyRef:
+              key: key
+              name: rails-secret-key-base
+        - name: TZ
+          value: Europe/Berlin
+        - name: RAILS_ENV
+          value: production
+        - name: RAILS_DB_NAME
+          value: database
+        - name: RAILS_DB_HOST
+          value: postgresql
+        - name: RAILS_DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: user
+              name: database-credentials
+        - name: RAILS_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: database-credentials
+        - name: RAILS_DB_ADAPTER
+          value: postgresql
+        - name: RAILS_DB_SSLMODE
+          value: verify-full
+        - name: RAILS_DB_SSLROOTCERT
+          value: /opt/certificates/ca/tls.crt
+        - name: RAILS_KEYCLOAK_REALM_ID
+          value: pitc
+        - name: SENTRY_DSN
+          valueFrom:
+            secretKeyRef:
+              key: dsn
+              name: sentry-dsn
+        - name: RAILS_LOG_TO_STDOUT
+          value: "1"
+        image: image-registry.openshift-image-registry.svc:5000/pitc-skills-int/rails:latest
+        name: migrate-database
+        resources:
+          limits:
+            cpu: "1"
+            memory: 2Gi
+          requests:
+            cpu: 10m
+            memory: 512Mi
+        volumeMounts:
+        - mountPath: /opt/certificates/app/
+          name: app-certificate
+        - mountPath: /opt/certificates/ca/
+          name: ca-certificate
+      restartPolicy: Always
+      volumes:
+      - name: useruploads
+        persistentVolumeClaim:
+          claimName: useruploads
+      - name: app-certificate
+        secret:
+          secretName: certificate-rails
+      - name: ca-certificate
+        secret:
+          items:
+          - key: tls.crt
+            path: tls.crt
+          secretName: certificate-ca
+      - emptyDir: {}
+        name: httpd-public
+      - configMap:
+          items:
+          - key: nginx.conf
+            path: nginx.conf
+          name: nginx-config
+        name: nginx-conf
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: postgres-backup
+spec:
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - command:
+            - bash
+            - -eo
+            - pipefail
+            - -c
+            - "trap \"echo Backup failed; exit 0\" ERR; \nFILENAME=dump-`date +%Y-%m-%d_%H%M%S`.sql.gz;\ntime
+              (\n  find /database-backup -type f -name \"dump-*\"  -exec ls -1tr \"{}\"
+              + | head -n -${DATABASE_BACKUP_KEEP} | xargs rm -fr; \n  PGPASSWORD=\"$DATABASE_PASSWORD\"
+              pg_dump --username=$DATABASE_USER --host=$DATABASE_HOST --port=$DATABASE_PORT
+              --column-inserts --clean --create ${DATABASE_NAME} | \\\n    gzip >
+              /database-backup/$FILENAME\n);\n\ncurl -v -X POST \\\n    $HEARTBEAT_URL/signal
+              \\\n    -d application=$HEARTBEAT_APPLICATION \\\n    -d token=$HEARTBEAT_TOKEN
+              \\\n    -d status=ok\n\necho \"\";\necho \"Backup successful\"; du -h
+              /database-backup/$FILENAME; \necho \"To restore the backup to the serviced
+              host use: $ psql --username=$DATABASE_USER --password --host=$DATABASE_HOST
+              --port=$DATABASE_PORT postgres < /database-backup/<backupfile> (unpacked)\""
+            env:
+            - name: DATABASE_BACKUP_KEEP
+              value: "5"
+            - name: DATABASE_USER
+              valueFrom:
+                secretKeyRef:
+                  key: user
+                  name: database-credentials
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: database-credentials
+            - name: DATABASE_HOST
+              value: postgresql
+            - name: DATABASE_PORT
+              value: "5432"
+            - name: DATABASE_NAME
+              value: database
+            - name: TZ
+              value: Europe/Zurich
+            - name: HEARTBEAT_URL
+              value: https://statuscope.puzzle.ch
+            - name: HEARTBEAT_APPLICATION
+              value: pitc-backup-skills-int
+            - name: HEARTBEAT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key: token
+                  name: backup-heartbeat-token
+            image: image-registry.openshift-image-registry.svc:5000/pitc-skills-int/postgresql-95-rhel7
+            name: database-backup
+            resources:
+              limits:
+                cpu: 1
+                memory: 512Mi
+              requests:
+                cpu: 500m
+                memory: 256Mi
+            volumeMounts:
+            - mountPath: /database-backup
+              name: database-backup
+          restartPolicy: Never
+          volumes:
+          - name: database-backup
+            persistentVolumeClaim:
+              claimName: postgresql-backup
+  schedule: 10 11,19 * * *
+---
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  labels:
+    app: rails-sti-base
+  name: rails-sti-base
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: rails-sti-base:latest
+  resources:
+    limits:
+      cpu: 1
+      memory: 2Gi
+    requests:
+      cpu: 100m
+      memory: 100m
+  source:
+    contextDir: .
+    git:
+      ref: master
+      uri: https://github.com/puzzle/skills.git
+    type: Git
+  strategy:
+    dockerStrategy:
+      from:
+        kind: ImageStreamTag
+        name: rails-sti-base-upstream:latest
+  triggers:
+  - imageChange:
+      from:
+        kind: ImageStreamTag
+        name: rails-sti-base-upstream:latest
+    type: ImageChange
+---
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  labels:
+    app: rails
+  name: rails
+spec:
+  failedBuildsHistoryLimit: 3
+  output:
+    to:
+      kind: ImageStreamTag
+      name: rails:latest
+  resources:
+    limits:
+      cpu: 1
+      memory: 6Gi
+    requests:
+      cpu: 100m
+      memory: 1Gi
+  source:
+    git:
+      ref: master
+      uri: https://github.com/puzzle/skills.git
+    type: Git
+  strategy:
+    sourceStrategy:
+      env:
+      - name: RAILS_HOST_NAME
+        value: build.example.com
+      - name: DISABLE_AUTH
+        value: "1"
+      - name: RAILS_SECRET_TOKEN
+        valueFrom:
+          secretKeyRef:
+            key: key
+            name: rails-secret-key-base
+      - name: EMBER_SENTRY_DSN
+        valueFrom:
+          secretKeyRef:
+            key: dsn
+            name: sentry-dsn-frontend
+      - name: EMBER_KEYCLOAK_REALM_NAME
+        value: pitc
+      - name: EMBER_KEYCLOAK_CLIENT_ID
+        value: pitc-skills-frontend
+      - name: EMBER_KEYCLOAK_SECRET
+        valueFrom:
+          secretKeyRef:
+            key: token
+            name: ember-keycloak
+      forcePull: true
+      from:
+        kind: ImageStreamTag
+        name: rails-sti-base:latest
+      incremental: false
+    type: Source
+  successfulBuildsHistoryLimit: 3
+  triggers:
+  - imageChange:
+      from:
+        kind: ImageStreamTag
+        name: rails-sti-base:latest
+    type: ImageChange
+---
+apiVersion: v1
+kind: ImageStream
+metadata:
+  labels:
+    purpose: base-is-change
+  name: postgresql-95-rhel7
+spec:
+  dockerImageRepository: registry.access.redhat.com/rhscl/postgresql-95-rhel7
+  lookupPolicy:
+    local: true
+  tags:
+  - from:
+      kind: DockerImage
+      name: registry.access.redhat.com/rhscl/postgresql-95-rhel7
+    importPolicy:
+      scheduled: true
+    name: latest
+---
+apiVersion: v1
+kind: ImageStream
+metadata:
+  labels:
+    used-in-deployment: "true"
+  name: rails-nginx
+spec:
+  dockerImageRepository: docker.io/centos/nginx-112-centos7
+  lookupPolicy:
+    local: true
+  tags:
+  - from:
+      kind: DockerImage
+      name: docker.io/centos/nginx-112-centos7
+    importPolicy:
+      scheduled: true
+    name: latest
+---
+apiVersion: v1
+kind: ImageStream
+metadata:
+  labels:
+    purpose: Upstream-change-trigger
+  name: rails-sti-base-upstream
+spec:
+  dockerImageRepository: docker.io/centos/ruby-25-centos7
+  lookupPolicy:
+    local: true
+  tags:
+  - from:
+      kind: DockerImage
+      name: docker.io/centos/ruby-25-centos7
+    importPolicy:
+      scheduled: true
+    name: latest
+---
+apiVersion: v1
+kind: ImageStream
+metadata:
+  name: rails-sti-base
+spec:
+  lookupPolicy:
+    local: true
+---
+apiVersion: v1
+kind: ImageStream
+metadata:
+  labels:
+    app: rails
+    used-in-deployment: "true"
+  name: rails
+spec:
+  lookupPolicy:
+    local: true
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgresql-backup
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgresql-database
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: gp2
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: useruploads
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: rails
+  name: rails
+spec:
+  host: skills-int.ocp.aws.puzzle.ch
+  port:
+    targetPort: 8443-tcp
+  tls:
+    destinationCACertificate: |-
+      -----BEGIN CERTIFICATE-----
+      MIIDlzCCAn+gAwIBAgIJAOR9dKfV2z6qMA0GCSqGSIb3DQEBCwUAMGExCzAJBgNV
+      BAYTAlhYMRMwEQYDVQQIDApEb2NrZXJsYW5kMRowGAYDVQQKDBFJbnRlcm5hbCBT
+      ZWN1cml0eTELMAkGA1UECwwCQ0ExFDASBgNVBAMMC2ludGVybmFsLWNhMCAXDTE5
+      MDkxNzA2NDExNloYDzIwNjkwOTA0MDY0MTE2WjBhMQswCQYDVQQGEwJYWDETMBEG
+      A1UECAwKRG9ja2VybGFuZDEaMBgGA1UECgwRSW50ZXJuYWwgU2VjdXJpdHkxCzAJ
+      BgNVBAsMAkNBMRQwEgYDVQQDDAtpbnRlcm5hbC1jYTCCASIwDQYJKoZIhvcNAQEB
+      BQADggEPADCCAQoCggEBAJtI7YVnW87/5sDGMS8MOXGfCB2nbhk0W9rT0G6gOhcb
+      UWhfrEOgvE8J85VXU96S7+w2iu1ZmfQItHSUdA/Z1vNn+D0IW3EQjDOxnvAdK4r6
+      5+JWo7tsazH7ItNpB1CCqXxHKE/G0Zi0La7Ue4bvo7pG+WHKlntA8uYaE99eOIYg
+      oyX5lVkxBF1Wr9rk1Vb1gDzvV0xk5llW4LQUVQajE5E5DYO/o+JxG8yUfF1E4AwT
+      ulowa5NRT/DzjkNSUes2+M9xV4buYTgz6jyaHJKe1YrIgmbL5EGQppqdRqxgkb7J
+      /3TSNrvPMeXMf+RrJQQ/qDwb0iVVBqdxNZIjdOEnSHECAwEAAaNQME4wHQYDVR0O
+      BBYEFLY6sTOj5YikckfgP6Bupmz/OMkSMB8GA1UdIwQYMBaAFLY6sTOj5Yikckfg
+      P6Bupmz/OMkSMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQELBQADggEBAJbhQpbl
+      vH9Bfsrmz757+7dF0ywex0rRy+BkptkrGysg0Vh75TUgZDgCL/soQIaGi5ySYAkv
+      oA/UC75ePuNdaE32ZW5YKSS9UP/wbcRw4/wyamtgNdWI/pWHa9Yv+9/JXxtujwjo
+      sRFhjpojbJJvvgt94ur8puFbrUu1plG9wukKbL1+30kuQE4dr21srpNxJ2VhEMmQ
+      rtL9n/UodMidV8lsmrn8mOJ1MQcgmaQ0Eqxkpp0knEVIDfPey6E8862jAQmMPYnT
+      ycpTxFKLTbAJ7gt+7Jdu3VMmpO47fsyYYOz6J/KNJ8hxnWcUf6u8xpCKENYv7g8Y
+      6T7hYa4pIhWTVdU=
+      -----END CERTIFICATE-----
+    insecureEdgeTerminationPolicy: Redirect
+    termination: reencrypt
+  to:
+    kind: Service
+    name: rails

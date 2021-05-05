@@ -1,0 +1,6 @@
+---
+resources:
+  - base.yaml
+patches:
+  - poc.yaml
+...
