@@ -7,8 +7,8 @@
 
 FROM ruby:2.7 AS build
 
-# Set environment
-ENV RAILS_ENV=production RACK_ENV=production SECRET_KEY_BASE=cannot-be-blank-for-production-env-when-building
+# Set environment (better in the openshift configmanagement?)
+# ENV RAILS_ENV=production RACK_ENV=production SECRET_KEY_BASE=cannot-be-blank-for-production-env-when-building
 
 # Use root user
 USER root
@@ -17,7 +17,8 @@ USER root
 # ${ADDITIONAL_BUILD_PACKAGES}?
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     libpq-dev \
-    nodejs npm
+    nodejs npm \
+    && npm install -g npm
 
 # Install specific yarn version, env forces cache miss?
 ENV YARN_VERSION=1.22.10
@@ -52,12 +53,12 @@ RUN yarn install && \
 FROM ruby:2.7-slim AS app
 
 # Add user
-RUN adduser --disabled-password app
+RUN adduser --disabled-password --uid 1001 --gid 0 app
 
 # Install dependencies, remove apt!
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
+    imagemagick libpq5 \
     vim-tiny curl git \
-    imagemagick \
     && rm -rf /var/lib/{apt,dpkg,cache,log}/
 
 # Copy deployment ready source code
@@ -66,14 +67,19 @@ COPY --from=build /app-src /app-src
 WORKDIR /app-src
 
 RUN chgrp -R 0 /app-src && \
-    chmod -R g=u /app-src
+    chmod -R u+w,g=u /app-src
 
 ENV HOME=/app-src
 
-# make sure unique secret key is set by operator
-ENV SECRET_KEY_BASE=
-ENV RAILS_LOG_TO_STDOUT=1
+# Use cached gems
+RUN bundle config set --local deployment 'true' && bundle
 
-USER app
+# Maybe delete vendor/cache? 20M
+
+# make sure unique secret key is set by operator (better in configmanagement?)
+# ENV SECRET_KEY_BASE=
+# ENV RAILS_LOG_TO_STDOUT=1
+
+USER 1001
 
 ENTRYPOINT ["bundle", "exec", "puma", "-t", "8"]
