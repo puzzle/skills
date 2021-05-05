@@ -53,7 +53,7 @@ RUN yarn install && \
 FROM ruby:2.7-slim AS app
 
 # Add user
-RUN adduser --disabled-password --uid 1001 --gid 0 app
+RUN adduser --disabled-password --uid 1001 --gid 0 --gecos "" app
 
 # Install dependencies, remove apt!
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
