@@ -65,6 +65,16 @@ spec:
           value: production
         - name: RAKE_ENV
           value: production
+        - name: YARN_VERSION
+          value: 1.22.10
+        - name: BUNDLER_VERSION
+          value: 2.2.16
+        - name: BUNDLER_WITHOUT
+          value: development test
+        - name: BUILD_PACKAGES
+          value: figlet cowsay
+        - name: RUN_PACKAGES
+          value: figlet cowsay
         - name: SECRET_KEY_BASE
           valueFrom:
             secretKeyRef:
