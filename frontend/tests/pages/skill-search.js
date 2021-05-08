@@ -11,6 +11,7 @@ export default create({
   skillSearchLevelSlider: {
     levelButtons: collection(
       ".people-skill-level #skillsearch-selection-slider .slider-tick"
-    )
+    ),
+    interestButtons: collection(".people-skill-interest .icon-rating-icon")
   }
 });

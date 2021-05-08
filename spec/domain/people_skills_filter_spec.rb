@@ -11,7 +11,7 @@ describe PeopleSkillsFilter do
 
       expect(filteredPeopleSkills.count).to eq(3)
       expect(levels).to eq([3, 1, 0])
-      expect(interests).to eq([5, 1, 0])
+      expect(interests).to eq([5, 4, 0])
     end
 
     it 'filters rated people skills' do
@@ -22,7 +22,7 @@ describe PeopleSkillsFilter do
 
       expect(filteredPeopleSkills.count).to eq(2)
       expect(levels).to eq([3, 1])
-      expect(interests).to eq([5, 1])
+      expect(interests).to eq([5, 4])
     end
 
     it 'it filters unrated people skills' do
