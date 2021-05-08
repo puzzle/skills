@@ -23,7 +23,7 @@ class PeopleSkillsController < CrudController
                                   :category,
                                   :people, { people_skills: :person }
                                 ])
-    people_skills = PeopleSkillsFilter.new(base, params[:rated], params[:level]).scope
+    people_skills = PeopleSkillsFilter.new(base, params[:rated], params[:level], params[:interest]).scope
     filter_entries(people_skills)
   end
 
