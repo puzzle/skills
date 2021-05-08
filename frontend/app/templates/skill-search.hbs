@@ -15,11 +15,11 @@
 
     <div class="col">
       <div class="col people-skill-interest">
-        <p class="description skillset-interest-title">{{t "people-skill-show.interest"}}</p>
+        <p class="description skillset-interest-title">{{t "skill-search.interest"}}</p>
         <IconRating @fillColor="#238BCA" @value={{this.interestValue}} @onClick={{action (mut this.interestValue)}}/>
       </div>
     </div>
-    
+
     <div class="col pt-3">
       <div >
         <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="{{t "skill-search.resetFilter"}}" {{on "click" this.resetFilter}} >

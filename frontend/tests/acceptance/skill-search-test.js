@@ -24,7 +24,7 @@ module("Acceptance | skill search", function(hooks) {
     await selectChoose(".ember-power-select-trigger", rails.get("title"));
     assert.equal(
       currentURL(),
-      "/skill_search?level=1&skill_id=" + rails.get("id")
+      "/skill_search?interest=1&level=1&skill_id=" + rails.get("id")
     );
     const names = page.indexPage.peopleSkills.peopleNames
       .toArray()
@@ -51,7 +51,7 @@ module("Acceptance | skill search", function(hooks) {
     await selectChoose(".ember-power-select-trigger", junit.get("title"));
     assert.equal(
       currentURL(),
-      "/skill_search?level=1&skill_id=" + junit.get("id")
+      "/skill_search?interest=1&level=1&skill_id=" + junit.get("id")
     );
     const names = page.indexPage.peopleSkills.peopleNames
       .toArray()
@@ -64,7 +64,7 @@ module("Acceptance | skill search", function(hooks) {
     await page.skillSearchLevelSlider.levelButtons.objectAt(2).click();
     assert.equal(
       currentURL(),
-      "/skill_search?level=2&skill_id=" + junit.get("id")
+      "/skill_search?interest=1&level=2&skill_id=" + junit.get("id")
     );
     const newnames = page.indexPage.peopleSkills.peopleNames
       .toArray()

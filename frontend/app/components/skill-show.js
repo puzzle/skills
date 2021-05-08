@@ -14,7 +14,8 @@ export default class SkillShow extends Component {
       return this.get("store").query("peopleSkill", {
         skill_id: this.get("skill.id"),
         rated: "true",
-        level: "0"
+        level: 0,
+        interest: 1
       });
     }
     return null;
