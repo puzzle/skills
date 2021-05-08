@@ -41,15 +41,15 @@ module("Acceptance | person jump to", function(hooks) {
     );
   });
 
-  test("jump to London", async function(assert) {
-    assert.expect(5);
+  test("jump to LaTex", async function(assert) {
+    assert.expect(6);
 
     await page.indexPage.visit();
     assert.equal(currentURL(), "/cv_search");
 
-    await page.indexPage.searchInput("London");
+    await page.indexPage.searchInput("LaTex");
     await triggerEvent("input", "keyup");
-    assert.equal(currentURL(), "/cv_search?q=London");
+    assert.equal(currentURL(), "/cv_search?q=LaTex");
 
     const names = page.indexPage.people.peopleNames
       .toArray()
@@ -58,9 +58,10 @@ module("Acceptance | person jump to", function(hooks) {
       .toArray()
       .map(foundIn => foundIn.text);
     assert.ok(names.includes("Alice Mante"));
-    assert.ok(foundIns.includes("Wohnort"));
+    assert.ok(names.includes("ken"));
+    assert.ok(foundIns.includes("Kompetenzen"));
 
-    const button = document.querySelector(".cv-search-found-in-link");
+    const button = document.querySelectorAll(".cv-search-found-in-link")[1];
     await click(button);
 
     let store = this.owner.__container__.lookup("service:store");
@@ -70,7 +71,7 @@ module("Acceptance | person jump to", function(hooks) {
       .get("firstObject");
     await alice;
 
-    assert.equal(currentURL(), "/people/" + alice.get("id") + "?query=London");
+    assert.equal(currentURL(), "/people/" + alice.get("id") + "?query=LaTex");
   });
 
   test("jump to ken", async function(assert) {
