@@ -31,9 +31,9 @@ class PeopleSkillsFilter
     if level.nil? && interest.nil?
       entries
     elsif level.nil?
-      entries.where('level >= ?', level)
-    elsif interest.nil?
       entries.where('interest >= ?', interest)
+    elsif interest.nil?
+      entries.where('level >= ?', level)
     else
       entries.where('level >= ? AND interest >= ?', level, interest)
     end
