@@ -7,10 +7,6 @@ import Component from "@ember/component";
 export default class CvSearchbar extends Component {
   @service router;
 
-  didReceiveAttrs() {
-    this.value = this.router.currentRoute.queryParams.q;
-  }
-
   @action
   searchThroughCVs() {
     const param = this.get("value");
