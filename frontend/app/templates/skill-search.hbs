@@ -12,6 +12,14 @@
         <UiSlider id="skillsearch-selection-slider" @value={{this.levelValue}} @ticks="1,2,3,4,5" @tooltip="hide" @min={{1}} @max={{5}} @immediateResponse={{true}} />
       </div>
     </div>
+
+    <div class="col">
+      <div class="col justify-content-center people-skill-interest">
+        <p class="description skillsearch-interest-title">{{t "skill-search.interest"}}</p>
+        <IconRating @fillColor="#238BCA" @value={{this.interestValue}} @onClick={{action (mut this.interestValue)}}/>
+      </div>
+    </div>
+
     <div class="col pt-3">
       <div >
         <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="{{t "skill-search.resetFilter"}}" {{on "click" this.resetFilter}} >

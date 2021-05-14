@@ -23,7 +23,7 @@ alice_junit:
   skill: junit
   person: alice
   level: 1
-  interest: 1
+  interest: 4
   certificate: true
   core_competence: false
 

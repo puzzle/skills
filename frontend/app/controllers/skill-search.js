@@ -17,6 +17,9 @@ export default class SkillSearchController extends Controller {
   @tracked
   levelValue = this.level || 1;
 
+  @tracked
+  interestValue = this.interest || 1;
+
   currentSkillId = this.skill_id;
 
   @tracked
@@ -32,12 +35,13 @@ export default class SkillSearchController extends Controller {
     this.get("router").transitionTo({
       queryParams: {
         skill_id: this.currentSkillId,
-        level: this.levelValue
+        level: this.levelValue,
+        interest: this.interestValue
       }
     });
   }
 
-  @observes("levelValue", "currentSkillId")
+  @observes("levelValue", "currentSkillId", "interestValue")
   valueChanged() {
     this.updateSelection();
   }
@@ -55,5 +59,6 @@ export default class SkillSearchController extends Controller {
   resetFilter() {
     this.set("levelValue", 1);
     this.set("currentSkillId", 0);
+    this.set("interestValue", 1);
   }
 }

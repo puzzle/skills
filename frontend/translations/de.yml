@@ -250,6 +250,7 @@ skill-new:
     save: Speichern
     title: Titel
 skill-search:
+    interest: Interesse
     noResults: Keine Resultate
     resetFilter: Filter zurücksetzen
     searchResults: Suchresultate

@@ -25,7 +25,7 @@ describe PeopleSkillsController do
       it 'returns Rails skills' do
         keys = %w[person_id skill_id level interest certificate core_competence]
       
-        process :index, method: :get, params: { type: 'Skill', skill_id: rails.id, level: '0'}
+        process :index, method: :get, params: { type: 'Skill', skill_id: rails.id, level: '0', interest: '0'}
 
         skills = json['data']
         expect(skills.count).to eq(2)
@@ -38,25 +38,62 @@ describe PeopleSkillsController do
       it 'only returns above a level' do
         keys = %w[person_id skill_id level interest certificate core_competence]
       
-        process :index, method: :get, params: { type: 'Skill', skill_id: rails.id, level: '2'}
+        process :index, method: :get, params: { type: 'Skill', skill_id: rails.id, level: '2', interest: '1'}
 
         skills = json['data']
         expect(skills.count).to eq(1)
         skill_attrs = skills.first['attributes']
         expect(skill_attrs['skill_id']).to eq (rails.id)
         expect(skill_attrs['level']).to eq (3)
+        expect(skill_attrs['interest']).to eq (5)
       end
 
       it 'returns level itself' do
         keys = %w[person_id skill_id level interest certificate core_competence]
       
-        process :index, method: :get, params: { type: 'Skill', skill_id: rails.id, level: '3'}
+        process :index, method: :get, params: { type: 'Skill', skill_id: rails.id, level: '3', interest: '1'}
 
         skills = json['data']
         expect(skills.count).to eq(1)
         skill_attrs = skills.first['attributes']
         expect(skill_attrs['skill_id']).to eq (rails.id)
         expect(skill_attrs['level']).to eq (3)
+        expect(skill_attrs['interest']).to eq (5)
+      end
+
+      it 'only returns above an interest' do
+        keys = %w[person_id skill_id level interest certificate core_competence]
+      
+        process :index, method: :get, params: { type: 'Skill', skill_id: rails.id, level: '1', interest: '4'}
+
+        skills = json['data']
+        expect(skills.count).to eq(1)
+        skill_attrs = skills.first['attributes']
+        expect(skill_attrs['skill_id']).to eq (rails.id)
+        expect(skill_attrs['level']).to eq (3)
+        expect(skill_attrs['interest']).to eq (5)
+      end
+
+      it 'returns interest itself' do
+        keys = %w[person_id skill_id level interest certificate core_competence]
+      
+        process :index, method: :get, params: { type: 'Skill', skill_id: rails.id, level: '1', interest: '5'}
+
+        skills = json['data']
+        expect(skills.count).to eq(1)
+        skill_attrs = skills.first['attributes']
+        expect(skill_attrs['skill_id']).to eq (rails.id)
+        expect(skill_attrs['level']).to eq (3)
+        expect(skill_attrs['interest']).to eq (5)
+      end
+
+      it 'returns no skills' do
+        keys = %w[person_id skill_id level interest certificate core_competence]
+      
+        process :index, method: :get, params: { type: 'Skill', skill_id: rails.id, level: '4', interest: '5'}
+
+        skills = json['data']
+        expect(skills.count).to eq(0)
       end
     end
   end

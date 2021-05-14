@@ -250,6 +250,7 @@ skill-new:
     save: Save
     title: Title
 skill-search:
+    interest: Interest
     noResults: No Results
     resetFilter: Reset filter
     searchResults: Search Results

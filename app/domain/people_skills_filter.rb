@@ -1,16 +1,17 @@
 # frozen_string_literal: true
 
 class PeopleSkillsFilter
-  attr_reader :entries, :rated, :level
+  attr_reader :entries, :rated, :level, :interest
 
-  def initialize(entries, rated, level = nil)
+  def initialize(entries, rated, level = nil, interest = nil)
     @entries = entries
     @rated = rated
     @level = level
+    @interest = interest
   end
 
   def scope
-    filter_by_level(filter_by_rated)
+    filter_by_level_and_interest(filter_by_rated)
   end
 
   private
@@ -26,7 +27,15 @@ class PeopleSkillsFilter
     entries
   end
 
-  def filter_by_level(entries)
-    level.nil? ? entries : entries.where('level >= ?', level)
+  def filter_by_level_and_interest(entries)
+    if level.nil? && interest.nil?
+      entries
+    elsif level.nil?
+      entries.where('interest >= ?', interest)
+    elsif interest.nil?
+      entries.where('level >= ?', level)
+    else
+      entries.where('level >= ? AND interest >= ?', level, interest)
+    end
   end
 end
