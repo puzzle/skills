@@ -2,7 +2,7 @@ import classic from "ember-classic-decorator";
 import { observes } from "@ember-decorators/object";
 import { action, computed } from "@ember/object";
 import Component from "@ember/component";
-import sortByYear from "../utils/deprecated-sort-by-year";
+import sortByYear from "../utils/sort-by-year";
 
 @classic
 export default class ProjectsShow extends Component {
