@@ -56,3 +56,7 @@ expertise-topic-skill-value:
 delete-confirmation:
     message: '{name} wirklich löschen?'
     success: '{name} wurde entfernt'
+error-message:
+    unauthorized: Unerlaubt
+    cannotEditMessage: 'Sie sind nicht berechtigt Skills zu bearbeiten!'
+    cannotCreateMessage: 'Sie sind nicht berechtigt Skills zu erstellen!'

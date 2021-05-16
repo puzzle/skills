@@ -8,7 +8,7 @@ import Component from "@ember/component";
 export default class SkillsList extends Component {
   @service("keycloak-session")
   session;
-
+  @service intl;
   @service store;
 
   @service download;
@@ -54,14 +54,18 @@ export default class SkillsList extends Component {
   }
   @action
   cannotEdit() {
-    this.get("notify").alert("You are not allowed to create new skill", {
+    let title = this.get("intl").t(`error-message.unauthorized`);
+    let message = this.get("intl").t(`error-message.cannotCreateMessage`);
+    this.get("notify").alert(title + ":" + "\n" + message, {
       closeAfter: 10000
     });
   }
   @action
   startEditing(skill) {
     if (!this.get("isAdmin")) {
-      this.get("notify").alert("You are not allowed to edit", {
+      let title = this.get("intl").t(`error-message.unauthorized`);
+      let message = this.get("intl").t(`error-message.cannotEditMessage`);
+      this.get("notify").alert(title + ":" + "\n" + message, {
         closeAfter: 10000
       });
     } else {
