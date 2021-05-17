@@ -59,12 +59,12 @@ describe SkillsController do
 
         skills = json['data']
         expect(skills.count).to eq(3)
-        junit_attrs = skills.first['attributes']
-        rails_attrs = skills.second['attributes']
-        cunit_attrs = skills.third['attributes']
+        cunit_attrs = skills.first['attributes']
+        junit_attrs = skills.second['attributes']
+        rails_attrs = skills.third['attributes']
+        expect(cunit_attrs['title']).to eq ('cunit')
         expect(junit_attrs['title']).to eq ('JUnit')
         expect(rails_attrs['title']).to eq ('Rails')
-        expect(cunit_attrs['title']).to eq ('cunit')
       end
 
       it 'returns skills with parent category software-engineering and defaultSet true' do
