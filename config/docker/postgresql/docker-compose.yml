@@ -30,7 +30,6 @@ services:
       #SENTRY_DSN_FRONTEND: '123456'
       HELPLINK: 'https://help.my-skills.test'
       # EMBER_KEYCLOAK_SERVER_URL: 'keycloak.my-skills.test'
-      # EMBER_KEYCLOAK_SECRET: '1234'
       # EMBER_KEYCLOAK_CLIENT_ID: 'test-client-id'
       # EMBER_KEYCLOAK_REALM_NAME: 'realm'
       KEYCLOAK_DISABLED: 1

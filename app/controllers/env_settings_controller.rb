@@ -21,8 +21,7 @@ class EnvSettingsController < ApplicationController
       disable: Rails.application.keycloak_disabled? ? 'true' : nil,
       url: ENV['EMBER_KEYCLOAK_SERVER_URL'],
       realm: ENV['EMBER_KEYCLOAK_REALM_NAME'],
-      clientId: ENV['EMBER_KEYCLOAK_CLIENT_ID'],
-      secret: ENV['EMBER_KEYCLOAK_SECRET']
+      clientId: ENV['EMBER_KEYCLOAK_CLIENT_ID']
     }
   end
 
