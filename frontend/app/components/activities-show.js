@@ -1,27 +1,59 @@
 import classic from "ember-classic-decorator";
-import { observes } from "@ember-decorators/object";
-import { action, computed } from "@ember/object";
-import Component from "@ember/component";
+import { inject as service } from "@ember/service";
+import { action } from "@ember/object";
+import Component from "@glimmer/component";
 import sortByYear from "../utils/sort-by-year";
+import { tracked } from "@glimmer/tracking";
+import $ from "jquery";
 
 @classic
 export default class ActivitiesShow extends Component {
-  @observes("person")
-  personChanged() {
-    this.send("toggleActivityNew", false);
+  @service notify;
+
+  @tracked
+  isNewRecord = false;
+
+  @tracked
+  editingActivity;
+
+  frozenSortedActivity;
+
+  constructor() {
+    super(...arguments);
+    // addObserver(this, "person", this.personChanged);
+    // this is a hack because ember keyboard is not ported to octane yet.
+    // normal jquery events using the {{on}} template helper doesn't work for escape key
+    $(document).on("keyup", event => {
+      if (event.keyCode == 27) {
+        this.editingActivity = null;
+        this.isNewRecord = false;
+      }
+    });
   }
 
-  @computed("sortedActivities")
+  get sortedActivities() {
+    return !this.editingActivity
+      ? sortByYear(this.args.person.activities)
+      : this.frozenSortedActivity;
+  }
+
   get amountOfActivities() {
-    return this.get("sortedActivities.length");
+    return this.sortedActivities.length;
   }
-
-  @sortByYear("activities")
-  sortedActivities;
 
   @action
-  toggleActivityNew(triggerNew) {
-    this.set("activityNew", triggerNew);
-    this.notifyPropertyChange("amountOfActivities");
+  toggleActivityNew() {
+    this.isNewRecord = !this.isNewRecord;
+  }
+
+  @action
+  setEditingActivity(activity) {
+    this.frozenSortedActivity = this.sortedActivities;
+    this.editingActivity = this.editingActivity || activity;
+  }
+
+  @action
+  abortActivityEdit() {
+    this.editingActivity = null;
   }
 }
