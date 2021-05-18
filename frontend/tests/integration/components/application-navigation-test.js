@@ -1,38 +1,29 @@
-import { moduleForComponent, test } from "ember-qunit";
+import { module, test } from "qunit";
+import { setupRenderingTest } from "ember-qunit";
+import { render } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 
-moduleForComponent(
+module(
   "application-navigation",
   "Integration | Component | application navigation",
-  {
-    integration: true
-  }
-);
+  function(hooks) {
+    setupRenderingTest(hooks);
 
-test("it renders", function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+    test("it renders", async function(assert) {
+      // Set any properties with this.set('myProperty', 'value');
+      // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.render(hbs`{{application-navigation}}`);
+      await render(hbs`{{application-navigation}}`);
 
-  assert.equal(
-    this.$()
-      .text()
-      .trim(),
-    ""
-  );
-
-  // Template block usage:
-  this.render(hbs`
+      assert.equal(this.element.textContent.trim(), "");
+      // Template block usage:
+      await render(hbs`
     {{#application-navigation}}
       template block text
     {{/application-navigation}}
   `);
 
-  assert.equal(
-    this.$()
-      .text()
-      .trim(),
-    "template block text"
-  );
-});
+      assert.equal(this.element.textContent.trim(), "template block text");
+    });
+  }
+);

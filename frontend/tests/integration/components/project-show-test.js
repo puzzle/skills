@@ -1,85 +1,64 @@
-import { moduleForComponent, test, skip } from "ember-qunit";
+import { module, test, skip } from "qunit";
+import { setupRenderingTest } from "ember-qunit";
+import { render } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 
-moduleForComponent("project-show", "Integration | Component | project show", {
-  integration: true
-});
+module("project-show", "Integration | Component | project show", function(
+  hooks
+) {
+  setupRenderingTest(hooks);
 
-test("it renders project", function(assert) {
-  this.set("project", {
-    title: "Dreaming Project",
-    lineBreakDescription: "Schlafen",
-    lineBreakRole: "Träumer",
-    yearFrom: 1990,
-    monthFrom: 2,
-    yearTo: 1991,
-    monthTo: 2,
-    lineBreakTechnology: "Java"
-  });
+  test("it renders project", async function(assert) {
+    this.set("project", {
+      title: "Dreaming Project",
+      lineBreakDescription: "Schlafen",
+      lineBreakRole: "Träumer",
+      yearFrom: 1990,
+      monthFrom: 2,
+      yearTo: 1991,
+      monthTo: 2,
+      lineBreakTechnology: "Java"
+    });
 
-  this.render(hbs`{{project-show
+    await render(hbs`{{project-show
     project=project
     selectProject=(action (mut projectEditing))
   }}`);
 
-  assert.ok(
-    this.$()
-      .text()
-      .includes("Dreaming Project")
-  );
-  assert.ok(
-    this.$()
-      .text()
-      .includes("Schlafen")
-  );
-  assert.ok(
-    this.$()
-      .text()
-      .includes("Träumer")
-  );
-  assert.ok(
-    this.$()
-      .text()
-      .includes("1990")
-  );
-  assert.ok(
-    this.$()
-      .text()
-      .includes("1991")
-  );
-  assert.ok(
-    this.$()
-      .text()
-      .includes("Java")
-  );
-});
+    assert.ok(this.element.textContent.trim().includes("Dreaming Project"));
+    assert.ok(this.element.textContent.trim().includes("Schlafen"));
+    assert.ok(this.element.textContent.trim().includes("Träumer"));
+    assert.ok(this.element.textContent.trim().includes("1990"));
+    assert.ok(this.element.textContent.trim().includes("1991"));
+    assert.ok(this.element.textContent.trim().includes("Java"));
 
-skip("project description, role and technology preserves whitespace", function(assert) {
-  this.set("activity", {
-    description: "Preserves\nwhitespaces",
-    role: "Träumer",
-    year_from: "1990",
-    year_to: "1991"
-  });
+    skip("project description, role and technology preserves whitespace", function(assert) {
+      this.set("activity", {
+        description: "Preserves\nwhitespaces",
+        role: "Träumer",
+        year_from: "1990",
+        year_to: "1991"
+      });
 
-  this.set("project", {
-    title: "Dreaming Project",
-    description: "Schlafen",
-    role: "Träumer",
-    technology: "Ruby",
-    year_from: "1990",
-    year_to: "1991"
-  });
-
-  this.render(hbs`{{project-show
+      this.set("project", {
+        title: "Dreaming Project",
+        description: "Schlafen",
+        role: "Träumer",
+        technology: "Ruby",
+        year_from: "1990",
+        year_to: "1991"
+      });
+      this.render(hbs`{{project-show
     project=project
     selectProject=(action (mut projectEditing))
   }}`);
 
-  let $elements = this.$(
-    '[href="#collapseProjectDreaming Project"].project-title-text,' +
-      '[id="collapseProjectDreaming Project"] div.col-sm-10'
-  );
+      let $elements = this.$(
+        '[href="#collapseProjectDreaming Project"].project-title-text,' +
+          '[id="collapseProjectDreaming Project"] div.col-sm-10'
+      );
 
-  assert.equal($elements.length, 2);
+      assert.equal($elements.length, 2);
+    });
+  });
 });
