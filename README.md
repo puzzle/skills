@@ -41,11 +41,11 @@ cd skills
 ```
 Install Ruby with the help of RVM:
 ```shell
-rvm install 2.5
+rvm install 2.7
 ```
 Tell RVM to use the just install Ruby Version:
 ```shell
-rvm use 2.5
+rvm use 2.7
 ```
 Install the ruby package manager:
 ```shell
