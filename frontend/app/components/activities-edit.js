@@ -18,7 +18,7 @@ export default Component.extend(EKMixin, {
 
   intl: service(),
 
-  sortedActivities: sortByYear("activities"),
+  sortedActivities: sortByYear(this.args.person.activities),
 
   activateKeyboard: on("init", function() {
     this.set("keyboardActivated", true);

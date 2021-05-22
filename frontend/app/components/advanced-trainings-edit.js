@@ -26,7 +26,7 @@ export default Component.extend(EKMixin, {
     this.send("abortEdit");
   }),
 
-  sortedAdvancedTrainings: sortByYear("advanced-trainings"),
+  sortedAdvancedTrainings: sortByYear(this.args.person.advancedTrainings),
 
   actions: {
     notify() {
