@@ -58,5 +58,5 @@ delete-confirmation:
     success: '{name} wurde entfernt'
 error-message:
     unauthorized: Unerlaubt
-    cannotEditMessage: 'Sie sind nicht berechtigt Skills zu bearbeiten!'
-    cannotCreateMessage: 'Sie sind nicht berechtigt Skills zu erstellen!'
+    cannotEditSkill: 'Sie sind nicht berechtigt Skills zu bearbeiten!'
+    cannotCreateSkill: 'Sie sind nicht berechtigt Skills zu erstellen!'

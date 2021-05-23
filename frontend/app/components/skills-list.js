@@ -53,9 +53,9 @@ export default class SkillsList extends Component {
     this.get("download").file(url);
   }
   @action
-  cannotEdit() {
+  displayCreateSkillError() {
     let title = this.get("intl").t(`error-message.unauthorized`);
-    let message = this.get("intl").t(`error-message.cannotCreateMessage`);
+    let message = this.get("intl").t(`error-message.cannotCreateSkill`);
     this.get("notify").alert(title + ":" + "\n" + message, {
       closeAfter: 10000
     });
@@ -64,7 +64,7 @@ export default class SkillsList extends Component {
   startEditing(skill) {
     if (!this.get("isAdmin")) {
       let title = this.get("intl").t(`error-message.unauthorized`);
-      let message = this.get("intl").t(`error-message.cannotEditMessage`);
+      let message = this.get("intl").t(`error-message.cannotEditSkill`);
       this.get("notify").alert(title + ":" + "\n" + message, {
         closeAfter: 10000
       });
