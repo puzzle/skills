@@ -1,22 +1,31 @@
 import classic from "ember-classic-decorator";
 import { observes } from "@ember-decorators/object";
-import { action } from "@ember/object";
-import Component from "@glimmer/component";
+import { action, computed, get } from "@ember/object";
+import Component from "@ember/component";
 import sortByYear from "../utils/sort-by-year";
 
 @classic
 export default class ActivitiesShow extends Component {
+  property: "activities";
+
   @observes("person")
   personChanged() {
     this.send("toggleActivityNew", false);
   }
 
-  get sortedActivities() {
-    return sortByYear(this.args.person.activities);
+  @computed("sortedActivities")
+  get amountOfActivities() {
+    return this.get("sortedActivities.length");
   }
 
-  get amountOfActivities() {
-    return this.sortedActivities.length;
+  @action
+  sortedActivities() {
+    return computed(`${this.property}.@each.{yearTo,yearFrom}`, function() {
+      let collection = get(this, this.property);
+
+      if (!collection) return [];
+      return sortByYear(this.property);
+    });
   }
 
   @action
