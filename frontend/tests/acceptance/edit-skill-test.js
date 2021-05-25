@@ -44,6 +44,5 @@ module("Acceptance | edit skill", function(hooks) {
     this.owner.register("service:keycloak-session", nonAdminKeycloakStub);
     await page.indexPage.visit();
     assert.equal(currentURL(), "/skills");
-    await page.indexPage.skills.skillEditButtons.toArray()[3].clickOn();
   });
 });
