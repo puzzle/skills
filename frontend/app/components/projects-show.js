@@ -1,35 +1,51 @@
 import classic from "ember-classic-decorator";
-import { observes } from "@ember-decorators/object";
-import { action, computed } from "@ember/object";
-import Component from "@ember/component";
-import sortByYear from "../utils/deprecated-sort-by-year";
+import { action } from "@ember/object";
+import Component from "@glimmer/component";
+import sortByYear from "../utils/sort-by-year";
+import { tracked } from "@glimmer/tracking";
+import { inject as service } from "@ember/service";
 
 @classic
 export default class ProjectsShow extends Component {
-  @(sortByYear("projects").volatile())
-  sortedProjects;
+  @service notify;
 
-  @computed("sortedProjects")
-  get amountOfProjects() {
-    return this.get("sortedProjects.length");
+  @tracked
+  projectNew;
+
+  @tracked
+  person;
+
+  @tracked
+  projectEditing;
+
+  constructor() {
+    super(...arguments);
   }
 
-  @observes("projects.@each")
+  get sortedProjects() {
+    return sortByYear(this.args.person.projects);
+  }
+
+  get amountOfProjects() {
+    return this.sortedProjects.length;
+  }
+
+  //@observes("projects.@each")
   projectsChanged() {
-    if (this.get("projectEditing.isDeleted")) this.set("projectEditing", null);
-    this.send("toggleProjectEditing");
-    this.notifyPropertyChange("sortedProjects");
+    //if (this.projectEditing.isDeleted){this.projectEditing = null;}
+    this.toggleProjectEditing();
+    //this.notifyPropertyChange("sortedProjects");
   }
 
   @action
   toggleProjectNew(triggerNew) {
-    this.set("projectNew", triggerNew);
-    this.notifyPropertyChange("amountOfProjects");
+    this.projectNew = triggerNew;
+    //this.notifyPropertyChange("amountOfProjects");
   }
 
   @action
   toggleProjectEditing() {
-    this.notifyPropertyChange("sortedProjects");
-    this.set("projectEditing", null);
+    //this.notifyPropertyChange("sortedProjects");
+    this.projectEditing = null;
   }
 }

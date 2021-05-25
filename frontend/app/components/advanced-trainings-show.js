@@ -1,27 +1,39 @@
 import classic from "ember-classic-decorator";
-import { observes } from "@ember-decorators/object";
-import { action, computed } from "@ember/object";
-import Component from "@ember/component";
-import sortByYear from "../utils/deprecated-sort-by-year";
+import { action } from "@ember/object";
+import Component from "@glimmer/component";
+import sortByYear from "../utils/sort-by-year";
+import { tracked } from "@glimmer/tracking";
+import { inject as service } from "@ember/service";
 
 @classic
 export default class AdvancedTrainingsShow extends Component {
-  @computed("sortedAdvancedTrainings")
+  @service notify;
+
+  @tracked
+  advancedTrainingNew;
+
+  @tracked
+  person;
+
+  constructor() {
+    super(...arguments);
+  }
+
+  get sortedAdvancedTrainings() {
+    return sortByYear(this.args.person.advancedTrainings);
+  }
+
   get amountOfAdvancedTrainings() {
-    return this.get("sortedAdvancedTrainings.length");
+    return this.sortedAdvancedTrainings.length;
   }
 
-  @observes("person")
   personChanged() {
-    this.send("toggleAdvancedTrainingNew", false);
+    this.toggleAdvancedTrainingNew(false);
   }
-
-  @sortByYear("advanced-trainings")
-  sortedAdvancedTrainings;
 
   @action
   toggleAdvancedTrainingNew(triggerNew) {
-    this.set("advanced-trainingNew", triggerNew);
-    this.notifyPropertyChange("amountOfAdvancedTrainings");
+    this.advancedTrainingNew = triggerNew;
+    //this.notifyPropertyChange("amountOfAdvancedTrainings");
   }
 }
