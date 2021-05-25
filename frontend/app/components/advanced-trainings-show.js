@@ -34,6 +34,6 @@ export default class AdvancedTrainingsShow extends Component {
   @action
   toggleAdvancedTrainingNew(triggerNew) {
     this.advancedTrainingNew = triggerNew;
-    //this.notifyPropertyChange("amountOfAdvancedTrainings");
+    this.notifyPropertyChange(this.amountOfAdvancedTrainings);
   }
 }

@@ -1,39 +1,43 @@
-import Component from "@ember/component";
-import sortByYear from "../utils/deprecated-sort-by-year";
+import Component from "@glimmer/component";
+import sortByYear from "../utils/sort-by-year";
 import { inject as service } from "@ember/service";
 import { on } from "@ember/object/evented";
 import { EKMixin, keyUp } from "ember-keyboard";
 import { observer } from "@ember/object";
 
 export default Component.extend(EKMixin, {
+  alreadyAborted: false,
+
   willDestroyElement() {
     this._super(...arguments);
-    if (!this.get("alreadyAborted")) this.send("abortEdit");
+    if (!this.alreadyAborted) {
+      this.abortEdit();
+    }
   },
 
   personChanged: observer("person", function() {
-    this.send("abort");
-    this.set("alreadyAborted", true);
+    this.abort();
+    this.alreadyAborted = true;
   }),
 
   intl: service(),
 
-  sortedActivities: sortByYear("activities"),
+  sortedActivities: sortByYear(this.args.person.activities),
 
   activateKeyboard: on("init", function() {
-    this.set("keyboardActivated", true);
+    this.keyboardActivated = true;
   }),
 
   abortActivities: on(keyUp("Escape"), function() {
-    this.send("abortEdit");
+    this.abortEdit();
   }),
 
   actions: {
     notify() {
-      let length = this.get("sortedActivities").length;
+      let length = this.sortedActivities.length;
       setTimeout(() => {
-        if (length > this.get("sortedActivities").length) {
-          return this.notifyPropertyChange("sortedActivities");
+        if (length > this.sortedActivities.length) {
+          return this.notifyPropertyChange(this.sortedActivities);
         }
       }, 500);
     },
@@ -42,32 +46,28 @@ export default Component.extend(EKMixin, {
         .save()
         .then(() =>
           Promise.all([
-            ...person
-              .get("activities")
-              .map(activity =>
-                activity.get("hasDirtyAttributes") ? activity.save() : null
-              )
+            ...person.activities.map(activity =>
+              activity.get("hasDirtyAttributes") ? activity.save() : null
+            )
           ])
         )
-        .then(() => this.set("alreadyAborted", true))
+        .then(() => (this.alreadyAborted = true))
         .then(() => this.sendAction("submit"))
-        .then(() => this.get("notify").success("Successfully saved!"))
+        .then(() => this.notify.success("Successfully saved!"))
         .then(() =>
           this.$("#activity")[0].scrollIntoView({ behavior: "smooth" })
         )
 
         .catch(() => {
-          let activities = this.get("activities");
+          let activities = this.activities;
           activities.forEach(activity => {
-            let errors = activity.get("errors").slice(); // clone array as rollbackAttributes mutates
+            let errors = activity.errors.slice(); // clone array as rollbackAttributes mutates
 
             activity.rollbackAttributes();
 
             errors.forEach(({ attribute, message }) => {
-              let translated_attribute = this.get("intl").t(
-                `activity.${attribute}`
-              );
-              this.get("notify").alert(`${translated_attribute} ${message}`, {
+              let translated_attribute = this.intl.t(`activity.${attribute}`);
+              this.notify.alert(`${translated_attribute} ${message}`, {
                 closeAfter: 10000
               });
             });
@@ -75,7 +75,7 @@ export default Component.extend(EKMixin, {
         });
     },
     abort() {
-      let activities = this.get("person.activities").toArray();
+      let activities = this.person.activities.toArray();
       activities.forEach(activity => {
         if (activity.get("hasDirtyAttributes")) {
           activity.rollbackAttributes();
@@ -85,8 +85,8 @@ export default Component.extend(EKMixin, {
     },
 
     abortEdit() {
-      this.send("abort");
-      this.set("alreadyAborted", true);
+      this.abort();
+      this.alreadyAborted = true;
       this.$("#activity")[0].scrollIntoView({ behavior: "smooth" });
     }
   }

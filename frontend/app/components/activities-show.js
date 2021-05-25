@@ -34,6 +34,6 @@ export default class ActivitiesShow extends Component {
   @action
   toggleActivityNew(triggerNew) {
     this.activityNew = triggerNew;
-    //this.notifyPropertyChange("amountOfActivities");
+    this.notifyPropertyChange(this.amountOfActivities);
   }
 }

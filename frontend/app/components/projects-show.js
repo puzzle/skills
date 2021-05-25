@@ -34,18 +34,18 @@ export default class ProjectsShow extends Component {
   projectsChanged() {
     //if (this.projectEditing.isDeleted){this.projectEditing = null;}
     this.toggleProjectEditing();
-    //this.notifyPropertyChange("sortedProjects");
+    this.notifyPropertyChange(this.sortedProjects);
   }
 
   @action
   toggleProjectNew(triggerNew) {
     this.projectNew = triggerNew;
-    //this.notifyPropertyChange("amountOfProjects");
+    this.notifyPropertyChange(this.amountOfProjects);
   }
 
   @action
   toggleProjectEditing() {
-    //this.notifyPropertyChange("sortedProjects");
+    this.notifyPropertyChange(this.sortedProjects);
     this.projectEditing = null;
   }
 }

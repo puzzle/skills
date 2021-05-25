@@ -1,6 +1,6 @@
 import { inject as service } from "@ember/service";
-import Component from "@ember/component";
-import sortByYear from "../utils/deprecated-sort-by-year";
+import Component from "@glimmer/component";
+import sortByYear from "../utils/sort-by-year";
 import { on } from "@ember/object/evented";
 import { EKMixin, keyUp } from "ember-keyboard";
 import { observer } from "@ember/object";
@@ -10,12 +10,14 @@ export default Component.extend(EKMixin, {
 
   willDestroyElement() {
     this._super(...arguments);
-    if (!this.get("alreadyAborted")) this.send("abortEdit");
+    if (!this.alreadyAborted) {
+      this.abortEdit();
+    }
   },
 
   personChanged: observer("person", function() {
-    this.send("abort");
-    this.set("alreadyAborted", true);
+    this.abort();
+    this.alreadyAborted = true;
   }),
 
   activateKeyboard: on("init", function() {
@@ -26,14 +28,14 @@ export default Component.extend(EKMixin, {
     this.send("abortEdit");
   }),
 
-  sortedAdvancedTrainings: sortByYear("advanced-trainings"),
+  sortedAdvancedTrainings: sortByYear(this.args.person.activities),
 
   actions: {
     notify() {
-      let length = this.get("sortedAdvancedTrainings").length;
+      let length = this.sortedAdvancedTrainings.length;
       setTimeout(() => {
-        if (length > this.get("sortedAdvancedTrainings").length) {
-          return this.notifyPropertyChange("sortedAdvancedTrainings");
+        if (length > this.sortedAdvancedTrainings.length) {
+          return this.notifyPropertyChange(this.sortedAdvancedTrainings);
         }
       }, 500);
     },
@@ -42,18 +44,16 @@ export default Component.extend(EKMixin, {
         .save()
         .then(() =>
           Promise.all([
-            ...person
-              .get("advancedTrainings")
-              .map(advancedTraining =>
-                advancedTraining.get("hasDirtyAttributes")
-                  ? advancedTraining.save()
-                  : null
-              )
+            ...person.advancedTrainings.map(advancedTraining =>
+              advancedTraining.get("hasDirtyAttributes")
+                ? advancedTraining.save()
+                : null
+            )
           ])
         )
-        .then(() => this.set("alreadyAborted", true))
+        .then(() => (this.alreadyAborted = true))
         .then(() => this.sendAction("submit"))
-        .then(() => this.get("notify").success("Successfully saved!"))
+        .then(() => this.notify.success("Successfully saved!"))
         .then(() =>
           this.$("#advancedTrainingsHeader")[0].scrollIntoView({
             behavior: "smooth"
@@ -70,7 +70,7 @@ export default Component.extend(EKMixin, {
               let translated_attribute = this.get("intl").t(
                 `advancedTraining.${attribute}`
               );
-              this.get("notify").alert(`${translated_attribute} ${message}`, {
+              this.notify.alert(`${translated_attribute} ${message}`, {
                 closeAfter: 10000
               });
             });
@@ -79,7 +79,7 @@ export default Component.extend(EKMixin, {
     },
 
     abort() {
-      let advancedTrainings = this.get("person.advancedTrainings").toArray();
+      let advancedTrainings = this.person.advancedTrainings.toArray();
       advancedTrainings.forEach(advancedTraining => {
         if (advancedTraining.get("hasDirtyAttributes")) {
           advancedTraining.rollbackAttributes();
@@ -89,8 +89,8 @@ export default Component.extend(EKMixin, {
     },
 
     abortEdit() {
-      this.send("abort");
-      this.set("alreadyAborted", true);
+      this.abort();
+      this.alreadyAborted = true;
       this.$("#advancedTrainingsHeader")[0].scrollIntoView({
         behavior: "smooth"
       });
