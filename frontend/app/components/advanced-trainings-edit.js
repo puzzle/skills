@@ -3,10 +3,14 @@ import Component from "@glimmer/component";
 import sortByYear from "../utils/sort-by-year";
 import { on } from "@ember/object/evented";
 import { EKMixin, keyUp } from "ember-keyboard";
-import { observer } from "@ember/object";
+import intl from "../initializers/intl";
 
 export default Component.extend(EKMixin, {
-  intl: service(),
+  @service intl,
+
+  constructor() {
+    this.activateKeyboard();
+  },
 
   willDestroyElement() {
     this._super(...arguments);
@@ -15,20 +19,25 @@ export default Component.extend(EKMixin, {
     }
   },
 
-  personChanged: observer("person", function() {
+  personChanged() {
+    //observer("person", function() {
     this.abort();
     this.alreadyAborted = true;
-  }),
+  },
 
-  activateKeyboard: on("init", function() {
-    this.set("keyboardActivated", true);
-  }),
+  activateKeyboard() {
+    //on("init", function() {
+    this.keyboardActivated = true;
+  },
 
-  abortAdvancedTrainings: on(keyUp("Escape"), function() {
+  abortAdvancedTrainings() {
+    //on(keyUp("Escape"), function() {
     this.send("abortEdit");
-  }),
+  },
 
-  sortedAdvancedTrainings: sortByYear(this.args.person.activities),
+  get sortedAdvancedTrainings() {
+    return sortByYear(this.args.person.activities);
+  },
 
   actions: {
     notify() {

@@ -4,9 +4,14 @@ import { inject as service } from "@ember/service";
 import { on } from "@ember/object/evented";
 import { EKMixin, keyUp } from "ember-keyboard";
 import { observer } from "@ember/object";
+import intl from "../initializers/intl";
 
 export default Component.extend(EKMixin, {
-  alreadyAborted: false,
+  @service intl,
+
+  constructor() {
+    this.activateKeyboard();
+  },
 
   willDestroyElement() {
     this._super(...arguments);
@@ -15,22 +20,23 @@ export default Component.extend(EKMixin, {
     }
   },
 
-  personChanged: observer("person", function() {
+  personChanged() {
     this.abort();
     this.alreadyAborted = true;
-  }),
+  },
 
-  intl: service(),
+  get sortedActivities() {
+    return sortByYear(this.args.person.activities);
+  },
 
-  sortedActivities: sortByYear(this.args.person.activities),
-
-  activateKeyboard: on("init", function() {
+  activateKeyboard() {
     this.keyboardActivated = true;
-  }),
+  },
 
-  abortActivities: on(keyUp("Escape"), function() {
+  abortActivities() {
+    //on(keyUp("Escape"), function() {
     this.abortEdit();
-  }),
+  },
 
   actions: {
     notify() {
