@@ -1,5 +1,5 @@
 import EmberObject, { set } from "@ember/object";
-import sortByYear from "frontend/utils/deprecated-sort-by-year";
+import sortByYear from "frontend/utils/sort-by-year";
 import { module, test } from "qunit";
 
 module("Unit | Utility | sort by year");
