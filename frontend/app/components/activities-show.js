@@ -6,7 +6,7 @@ import sortByYear from "../utils/sort-by-year";
 
 @classic
 export default class ActivitiesShow extends Component {
-  property: "activities";
+  property = "activities";
 
   @observes("person")
   personChanged() {

@@ -1,5 +1,5 @@
 import Component from "@ember/component";
-import sortByYear from "../utils/sort-by-year";
+import sortByYear from "../utils/deprecated-sort-by-year";
 import { inject as service } from "@ember/service";
 import { on } from "@ember/object/evented";
 import { EKMixin, keyUp } from "ember-keyboard";
@@ -18,7 +18,7 @@ export default Component.extend(EKMixin, {
 
   intl: service(),
 
-  sortedActivities: sortByYear(this.args.person.activities),
+  sortedActivities: sortByYear("activities"),
 
   activateKeyboard: on("init", function() {
     this.set("keyboardActivated", true);
