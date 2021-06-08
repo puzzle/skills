@@ -21,7 +21,7 @@ RUN    apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y ${BUILD_PACKAGES}
 
-RUN [[ ${BUILD_SCRIPT} ]] && ${BUILD_SCRIPT}
+RUN [[ ${BUILD_SCRIPT} ]] && bash -c "${BUILD_SCRIPT}"
 
 # Install specific versions of dependencies
 RUN gem install bundler:${BUNDLER_VERSION} --no-document
@@ -39,7 +39,7 @@ RUN    bundle config set --local deployment 'true' \
     && bundle install \
     && bundle clean
 
-RUN [[ ${POST_BUILD_SCRIPT} ]] && ${POST_BUILD_SCRIPT}
+RUN [[ ${POST_BUILD_SCRIPT} ]] && bash -c "${POST_BUILD_SCRIPT}"
 
 # TODO: Save artifacts
 
