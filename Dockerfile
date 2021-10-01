@@ -10,7 +10,8 @@ USER root
 RUN yum install -y ImageMagick
 
 # Install yarn
-RUN wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo && \
+RUN yum -y install ca-certificates && \
+    wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo && \
     rpm -Uvh --nodeps $(repoquery --location yarn)
 
 # reduce image size

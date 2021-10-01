@@ -9,6 +9,7 @@ Keycloak.configure do |config|
   config.server_url = ENV['RAILS_KEYCLOAK_SERVER_URL']
   config.realm_id   = ENV['RAILS_KEYCLOAK_REALM_ID']
   config.logger     = Rails.logger
+  config.ca_certificate_file = "/etc/ssl/certs/ca-certificates.crt"
   config.skip_paths = {
     get: [/^\/assets\/.+/, /^\/styles\/.+/, /^\/healthz/, /^\/api\/env_settings/, /^\/status\/(.*)/]
   }
