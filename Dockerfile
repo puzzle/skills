@@ -65,6 +65,7 @@ ARG RUN_PACKAGES
 RUN    apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y ${RUN_PACKAGES} \
+    && apt-get install ca-certificates \
        vim-tiny curl
 
 # Copy deployment ready source code from build
