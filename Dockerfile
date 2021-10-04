@@ -1,39 +1,87 @@
-FROM centos/ruby-25-centos7
+#################################
+#          Build Stage          #
+#################################
 
-ENV RAILS_ENV=production
-ENV RACK_ENV=production
-ENV SECRET_KEY_BASE=cannot-be-blank-for-production-env-when-building
+FROM ruby:2.7 AS build
 
+# Set build shell
+SHELL ["/bin/bash", "-c"]
+
+# Use root user
 USER root
 
-# for minimagick gem
-RUN yum install -y ImageMagick
+ARG BUILD_PACKAGES
+ARG BUILD_SCRIPT
+ARG BUNDLE_WITHOUT='development:metrics:test'
+ARG BUNDLER_VERSION=2.2.16
+ARG POST_BUILD_SCRIPT
 
-# Install yarn
-RUN wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo && \
-    rpm -Uvh --nodeps $(repoquery --location yarn)
+# Install dependencies
+RUN    apt-get update \
+    && apt-get upgrade -y \
+    && apt-get install -y ${BUILD_PACKAGES}
 
-# reduce image size
-RUN yum clean all -y && rm -rf /var/cache/yum
+RUN [[ ${BUILD_SCRIPT} ]] && bash -c "${BUILD_SCRIPT}"
 
-# copy files needed for assembly into container
-ADD ./config/docker/s2i/root /
+# Install specific versions of dependencies
+RUN gem install bundler:${BUNDLER_VERSION} --no-document
 
-RUN \
-  # Call restore-artifacts sscript when assembling
-  sed '/Installing application source/i $STI_SCRIPTS_PATH/restore-artifacts' \
-    -i $STI_SCRIPTS_PATH/assemble && \
-  # Call post-assemble script when assembling
-  echo -e "\n\$STI_SCRIPTS_PATH/post-assemble" >> $STI_SCRIPTS_PATH/assemble
+# TODO: Load artifacts
 
-COPY . /tmp/src
+# set up app-src directory
+COPY . /app-src
+WORKDIR /app-src
 
-RUN $STI_SCRIPTS_PATH/assemble
+# Run deployment
+RUN    bundle config set --local deployment 'true' \
+    && bundle config set --local without ${BUNDLE_WITHOUT} \
+    && bundle package \
+    && bundle install \
+    && bundle clean
+
+RUN [[ ${POST_BUILD_SCRIPT} ]] && bash -c "${POST_BUILD_SCRIPT}"
+
+# TODO: Save artifacts
+
+RUN rm -rf vendor/cache/ .git
+
+#################################
+#           Run Stage           #
+#################################
+
+# This image will be replaced by Openshift
+FROM ruby:2.7-slim AS app
+
+# Set runtime shell
+SHELL ["/bin/bash", "-c"]
+
+# Add user
+RUN adduser --disabled-password --uid 1001 --gid 0 --gecos "" app
+
+ARG BUNDLE_WITHOUT='development:metrics:test'
+ARG RUN_PACKAGES
+
+# Install dependencies, remove apt!
+RUN    apt-get update \
+    && apt-get upgrade -y \
+    && apt-get install -y ${RUN_PACKAGES} \
+    && apt-get install ca-certificates
+
+# Copy deployment ready source code from build
+COPY --from=build /app-src /app-src
+WORKDIR /app-src
+
+# Set group permissions to app folder
+RUN    chgrp -R 0 /app-src \
+    && chmod -R u+w,g=u /app-src
+
+ENV HOME=/app-src
+
+# Use cached gems
+RUN    bundle config set --local deployment 'true' \
+    && bundle config set --local without ${BUNDLE_WITHOUT} \
+    && bundle
 
 USER 1001
 
-# make sure unique secret key is set by operator
-ENV SECRET_KEY_BASE=
-ENV RAILS_LOG_TO_STDOUT=1
-
-CMD bundle exec puma -t 8
+CMD ["bundle", "exec", "puma", "-t", "8"]
