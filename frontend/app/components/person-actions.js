@@ -3,7 +3,6 @@ import { observes } from "@ember-decorators/object";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@ember/component";
-import $ from "jquery";
 
 @classic
 export default class PersonActions extends Component {
@@ -55,9 +54,7 @@ export default class PersonActions extends Component {
       let url = "/api/people_skills.csv?person_id=" + this.get("person.id");
       this.get("download").file(url);
     } else {
-      /* eslint-disable no-undef  */
-      $("#person-cv-export").modal();
-      /* eslint-enable no-undef  */
+      $("#person-cv-export").modal("toggle");
     }
   }
 
