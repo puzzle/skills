@@ -166,6 +166,8 @@ person-edit:
     secondNationality: Zweite Nationalität
     shortname: Kürzel
 person-new:
+    name: Name
+    company: Firma
     birthdate: Geburtsdatum
     cancel: Abbrechen
     createPerson: Person erfassen
