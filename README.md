@@ -14,7 +14,12 @@
 
 
 PuzzleSkills is an open source webapplication to facilitate skill management.   
-With the help of PuzzleSkills Users can manage their profiles, CVs and Skills.   
+With the help of PuzzleSkills Users can manage their profiles, CVs and Skills.
+Managing employees and getting an overview of each of their skills has never been easier.
+
+![Skills Workflow](skills.gif)
+
+
 
 ## Back-End
 
