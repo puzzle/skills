@@ -213,7 +213,7 @@ GEM
       net-protocol
     netrc (0.11.0)
     nio4r (2.5.8)
-    nokogiri (1.13.3-x86_64-linux)
+    nokogiri (1.14.1-x86_64-linux)
       racc (~> 1.4)
     odf-report (0.7.3)
       mime-types
@@ -236,7 +236,7 @@ GEM
     public_suffix (4.0.6)
     puma (5.6.2)
       nio4r (~> 2.0)
-    racc (1.6.0)
+    racc (1.6.2)
     rack (2.2.3)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -392,7 +392,7 @@ DEPENDENCIES
   net-ldap (~> 0.16.0)
   net-pop
   net-smtp
-  nokogiri (~> 1.13.2)
+  nokogiri (~> 1.14)
   odf-report
   pg
   pg_search

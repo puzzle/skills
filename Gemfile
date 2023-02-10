@@ -23,7 +23,7 @@ gem 'net-smtp', require: false
 gem 'net-imap', require: false
 gem 'net-pop', require: false
 gem 'net-ldap', '~> 0.16.0'
-gem 'nokogiri', '~> 1.13.2'
+gem 'nokogiri', '~> 1.14'
 gem 'odf-report'
 gem 'pg'
 gem 'pg_search'
