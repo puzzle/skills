@@ -145,6 +145,10 @@ Style/SymbolProc:
 Style/GuardClause:
   Enabled: false
 
-# We thinks that's fine
+# We think that's fine
 Style/SingleLineBlockParams:
+  Enabled: false
+
+# We think that's fine
+Style/HashSyntax:
   Enabled: false
