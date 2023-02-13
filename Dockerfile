@@ -61,6 +61,10 @@ RUN adduser --disabled-password --uid 1001 --gid 0 --gecos "" app
 
 ARG BUNDLE_WITHOUT='development:metrics:test'
 ARG RUN_PACKAGES
+ARG BUNDLER_VERSION=2.4.6
+
+# Install specific versions of dependencies
+RUN gem install bundler:${BUNDLER_VERSION} --no-document
 
 # Install dependencies, remove apt!
 RUN    apt-get update \
