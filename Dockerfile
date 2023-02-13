@@ -2,7 +2,7 @@
 #          Build Stage          #
 #################################
 
-FROM ruby:2.7 AS build
+FROM ruby:3.2 AS build
 
 # Set build shell
 SHELL ["/bin/bash", "-c"]
@@ -13,7 +13,7 @@ USER root
 ARG BUILD_PACKAGES
 ARG BUILD_SCRIPT
 ARG BUNDLE_WITHOUT='development:metrics:test'
-ARG BUNDLER_VERSION=2.2.16
+ARG BUNDLER_VERSION=2.4.6
 ARG POST_BUILD_SCRIPT
 
 # Install dependencies
@@ -21,7 +21,7 @@ RUN    apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y ${BUILD_PACKAGES}
 
-RUN [[ ${BUILD_SCRIPT} ]] && bash -c "${BUILD_SCRIPT}"
+RUN bash -vxc "${BUILD_SCRIPT:-"echo 'no BUILD_SCRIPT provided'"}"
 
 # Install specific versions of dependencies
 RUN gem install bundler:${BUNDLER_VERSION} --no-document
@@ -39,7 +39,7 @@ RUN    bundle config set --local deployment 'true' \
     && bundle install \
     && bundle clean
 
-RUN [[ ${POST_BUILD_SCRIPT} ]] && bash -c "${POST_BUILD_SCRIPT}"
+RUN bash -vxc "${POST_BUILD_SCRIPT:-"echo 'no POST_BUILD_SCRIPT provided'"}"
 
 # TODO: Save artifacts
 
@@ -50,7 +50,7 @@ RUN rm -rf vendor/cache/ .git
 #################################
 
 # This image will be replaced by Openshift
-FROM ruby:2.7-slim AS app
+FROM ruby:3.2-slim AS app
 
 # Set runtime shell
 SHELL ["/bin/bash", "-c"]
