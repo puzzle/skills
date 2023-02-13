@@ -165,7 +165,6 @@ GEM
     http-accept (1.7.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    httpclient (2.8.3)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     i18n_data (0.11.0)
@@ -173,11 +172,10 @@ GEM
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
     json (2.6.3)
-    json-jwt (1.15.3)
+    json-jwt (1.13.0)
       activesupport (>= 4.2)
       aes_key_wrap
       bindata
-      httpclient
     jsonapi-renderer (0.2.2)
     keycloak-api-rails (0.11.1)
       json-jwt (>= 1.11.0)
@@ -387,6 +385,7 @@ DEPENDENCIES
   database_cleaner
   faker
   i18n_data
+  json-jwt (= 1.13.0)
   keycloak-api-rails
   language_list
   listen (~> 3.0.5)
