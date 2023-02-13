@@ -74,10 +74,10 @@ GEM
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 14.0)
     ast (2.4.2)
-    bindata (2.4.10)
+    bindata (2.4.15)
     bleib (0.0.8)
-    bootsnap (1.7.3)
-      msgpack (~> 1.0)
+    bootsnap (1.16.0)
+      msgpack (~> 1.2)
     brakeman (5.0.0)
     builder (3.2.4)
     bullet (6.1.4)
@@ -96,7 +96,7 @@ GEM
       activesupport
     choice (0.2.0)
     coderay (1.1.3)
-    concurrent-ruby (1.1.8)
+    concurrent-ruby (1.2.0)
     config (3.0.0)
       deep_merge (~> 1.2, >= 1.2.1)
       dry-validation (~> 1.0, >= 1.0.0)
@@ -111,6 +111,7 @@ GEM
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
+    date (3.3.3)
     deep_merge (1.2.1)
     diff-lcs (1.4.4)
     docile (1.3.5)
@@ -159,21 +160,24 @@ GEM
       ruby2_keywords
     faraday-net_http (1.0.1)
     ffi (1.15.0)
-    globalid (0.4.2)
-      activesupport (>= 4.2.0)
+    globalid (1.1.0)
+      activesupport (>= 5.0)
     http-accept (1.7.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    i18n (1.8.9)
+    httpclient (2.8.3)
+    i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     i18n_data (0.11.0)
     image_processing (1.12.1)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
-    json-jwt (1.13.0)
+    json (2.6.3)
+    json-jwt (1.15.3)
       activesupport (>= 4.2)
       aes_key_wrap
       bindata
+      httpclient
     jsonapi-renderer (0.2.2)
     keycloak-api-rails (0.11.1)
       json-jwt (>= 1.11.0)
@@ -197,37 +201,45 @@ GEM
       rake
     mini_magick (4.11.0)
     mini_mime (1.0.3)
-    mini_portile2 (2.8.0)
-    minitest (5.14.4)
-    msgpack (1.4.2)
+    minitest (5.17.0)
+    msgpack (1.6.0)
     multipart-post (2.1.1)
+    net-imap (0.3.4)
+      date
+      net-protocol
     net-ldap (0.16.3)
+    net-pop (0.1.2)
+      net-protocol
+    net-protocol (0.2.1)
+      timeout
+    net-smtp (0.3.3)
+      net-protocol
     netrc (0.11.0)
     nio4r (2.5.8)
-    nokogiri (1.13.3)
-      mini_portile2 (~> 2.8.0)
+    nokogiri (1.14.1-x86_64-linux)
       racc (~> 1.4)
     odf-report (0.7.3)
       mime-types
       nokogiri (>= 1.10.0)
       rubyzip (>= 1.3.0)
-    parallel (1.20.1)
-    parser (3.0.0.0)
+    parallel (1.22.1)
+    parser (3.2.1.0)
       ast (~> 2.4.1)
-    pg (1.2.3)
+    pg (1.4.5)
     pg_search (2.3.5)
       activerecord (>= 5.2)
       activesupport (>= 5.2)
-    pry (0.13.1)
+    pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
-    pry-byebug (3.9.0)
+    pry-byebug (3.8.0)
       byebug (~> 11.0)
-      pry (~> 0.13.0)
+      pry (~> 0.10)
+    psych (3.3.4)
     public_suffix (4.0.6)
     puma (5.6.2)
       nio4r (~> 2.0)
-    racc (1.6.0)
+    racc (1.6.2)
     rack (2.2.3)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -265,13 +277,13 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (~> 1.0)
-    rainbow (3.0.0)
+    rainbow (3.1.1)
     rake (13.0.3)
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     rb-readline (0.5.5)
-    regexp_parser (2.1.1)
+    regexp_parser (2.7.0)
     rest-client (2.1.0)
       http-accept (>= 1.7.0, < 2.0)
       http-cookie (>= 1.0.2, < 2.0)
@@ -295,17 +307,18 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
-    rubocop (1.12.0)
+    rubocop (1.45.1)
+      json (~> 2.3)
       parallel (~> 1.10)
-      parser (>= 3.0.0.0)
+      parser (>= 3.2.0.0)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
-      rexml
-      rubocop-ast (>= 1.2.0, < 2.0)
+      rexml (>= 3.2.5, < 4.0)
+      rubocop-ast (>= 1.24.1, < 2.0)
       ruby-progressbar (~> 1.7)
-      unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.4.1)
-      parser (>= 2.7.1.5)
+      unicode-display_width (>= 2.4.0, < 3.0)
+    rubocop-ast (1.24.1)
+      parser (>= 3.1.1.0)
     rubocop-rails (2.9.1)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
@@ -342,21 +355,22 @@ GEM
       sprockets (>= 3.0.0)
     ssrf_filter (1.0.7)
     thor (1.1.0)
-    tzinfo (2.0.4)
+    timeout (0.3.1)
+    tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.7)
-    unicode-display_width (2.0.0)
+    unicode-display_width (2.4.2)
     unicode_utils (1.4.0)
     uniform_notifier (1.14.2)
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    zeitwerk (2.4.2)
+    zeitwerk (2.6.7)
 
 PLATFORMS
-  ruby
+  x86_64-linux
 
 DEPENDENCIES
   active_model_serializers
@@ -378,13 +392,17 @@ DEPENDENCIES
   listen (~> 3.0.5)
   mimemagic (~> 0.3.6)
   mini_magick
+  net-imap
   net-ldap (~> 0.16.0)
-  nokogiri (~> 1.13.2)
+  net-pop
+  net-smtp
+  nokogiri (~> 1.14)
   odf-report
   pg
   pg_search
   pry
   pry-byebug
+  psych (~> 3.3, >= 3.3.4)
   puma
   rack
   rails (= 6.1.3.1)
@@ -403,4 +421,4 @@ DEPENDENCIES
   tzinfo-data
 
 BUNDLED WITH
-   2.2.16
+   2.4.6

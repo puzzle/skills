@@ -19,11 +19,15 @@ gem 'keycloak-api-rails'
 gem 'language_list'
 gem 'mimemagic', '~> 0.3.6'
 gem 'mini_magick'
+gem 'net-imap', require: false
 gem 'net-ldap', '~> 0.16.0'
-gem 'nokogiri', '~> 1.13.2'
+gem 'net-pop', require: false
+gem 'net-smtp', require: false
+gem 'nokogiri', '~> 1.14'
 gem 'odf-report'
 gem 'pg'
 gem 'pg_search'
+gem 'psych', '~> 3.3', '>= 3.3.4'
 gem 'puma'
 gem 'rack'
 gem 'rails-i18n'
