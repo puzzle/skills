@@ -35,6 +35,7 @@ WORKDIR /app-src
 # Run deployment
 RUN    bundle config set --local deployment 'true' \
     && bundle config set --local without ${BUNDLE_WITHOUT} \
+    && bundle config set --local path vendor/bundle \
     && bundle package \
     && bundle install \
     && bundle clean
@@ -59,7 +60,7 @@ SHELL ["/bin/bash", "-c"]
 RUN adduser --disabled-password --uid 1001 --gid 0 --gecos "" app
 
 ARG BUNDLE_WITHOUT='development:metrics:test'
-ARG RUN_PACKAGES='ruby-full build-essential'
+ARG RUN_PACKAGES
 
 # Install dependencies, remove apt!
 RUN    apt-get update \
