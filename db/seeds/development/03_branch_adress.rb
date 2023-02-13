@@ -4,21 +4,21 @@ require Rails.root.join('db', 'seeds', 'support', 'branch_adress_seeder')
 
 seeder = BranchAdressSeeder.new
 
-branch_adress_short_names =  ["Bitsch",
-                     "Spreitenbach",
-                     "Brügg",
-                     "Müllheim",
-                     "Rotzloch",
-                     "Lustdorf",
+branch_adress_short_names =  ["Bern",
+                     "Basel",
+                     "Zürich",
+                     "Genf",
+                     "Chur",
+                     "Thun",
                      ]
 
 branch_adress_information = [
-  "Bielstrasse 1, CH-3982 Bitsch / Tel. +41 11 111 11 11",
-  "Chilegass 1, CH-8957 Spreitenbach / Tel. +41 22 222 22 22",
-  "Tulpenweg 1, CH-2555 Brügg / Tel. +41 33 333 33 33",
-  "Gartenweg 1, CH-8555 Müllheim / Tel. +41 44 444 44 44",
-  "Bettistrasse 1, CH-6362 Rotzloch / Tel. +41 55 555 55 55",
-  "Mittelgasse 1, CH-8512 Lustdorf / Tel. +41 66 666 66 66",
+  "Bielstrasse 1, CH-3006 Bern / Tel. +41 11 111 11 11",
+  "Chilegass 1, CH-4001 Basel / Tel. +41 22 222 22 22",
+  "Tulpenweg 1, CH-8001 Zürich / Tel. +41 33 333 33 33",
+  "Gartenweg 1, CH-1201 Genf / Tel. +41 44 444 44 44",
+  "Bettistrasse 1, CH-7000 Chur / Tel. +41 55 555 55 55",
+  "Mittelgasse 1, CH-3600 Thun / Tel. +41 66 666 66 66",
 ]
 
 seeder.seed_branch_adresses(branch_adress_short_names, branch_adress_information)
