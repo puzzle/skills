@@ -81,6 +81,7 @@ ENV HOME=/app-src
 # Use cached gems
 RUN    bundle config set --local deployment 'true' \
     && bundle config set --local without ${BUNDLE_WITHOUT} \
+    && bundle config set --local path vendor/bundle \
     && bundle
 
 USER 1001
