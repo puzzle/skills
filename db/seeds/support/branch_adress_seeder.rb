@@ -9,10 +9,10 @@ class BranchAdressSeeder
   private
 
   def seed_branch_adress(branch_short_name, adress_information)
-    BranchAdress.seed_once(:adress_information) do |p|
-      p.short_name = branch_short_name.to_s
-      p.adress_information = adress_information.to_s
-      p.country = 'CH'
+    BranchAdress.seed_once(:adress_information) do |b|
+      b.short_name = branch_short_name.to_s
+      b.adress_information = adress_information.to_s
+      b.country = 'CH'
     end
   end
 end
