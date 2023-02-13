@@ -4,13 +4,7 @@ require Rails.root.join('db', 'seeds', 'support', 'branch_adress_seeder')
 
 seeder = BranchAdressSeeder.new
 
-branch_adress_short_names =  ["Bern",
-                     "Basel",
-                     "Zürich",
-                     "Genf",
-                     "Chur",
-                     "Thun",
-                     ]
+branch_adress_short_names = ["Bern", "Basel", "Zürich", "Genf", "Chur", "Thun"]
 
 branch_adress_information = [
   "Bielstrasse 1, CH-3006 Bern / Tel. +41 11 111 11 11",
