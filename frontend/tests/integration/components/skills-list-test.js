@@ -86,6 +86,16 @@ module("Integration | Component | skills-list", function(hooks) {
     assert.ok(text.includes("Skill"));
   });
 
+  test("it displays grayed out create skill text", async function(assert) {
+    this.owner.register("service:keycloak-session", nonAdminKeycloakStub);
+    await render(hbs`{{skills-list}}`);
+
+    assert.equal(
+      this.element.querySelector("#new-skill-link").getAttribute("style"),
+      "-webkit-filter: grayscale(100%);"
+    );
+  });
+
   test("it renders with data", async function(assert) {
     this.set("skills", [
       {
