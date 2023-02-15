@@ -17,9 +17,15 @@
         </a>
       </div>
       <div class="col-sm-2">
-        <a id="new-skill-link" class="edit-buttons" role="button" data-toggle="modal" data-target="#skill-new-modal">
-          <i class="fa fa-plus" aria-hidden="true"></i> {{t "skills-list.newSkill"}}
-        </a>
+        {{#if this.isAdmin}}
+          <a id="new-skill-link" class="edit-buttons" role="button" data-toggle="modal" data-target="#skill-new-modal">
+            <i class="fa fa-plus" aria-hidden="true" ></i> Neuer Skill
+          </a>
+        {{else}}
+          <a id="new-skill-link" class="edit-buttons" role="button" onclick={{pipe (action "displayCreateSkillError")}} data-target="#skill-new-modal">
+            <i class="fa fa-plus" aria-hidden="true" ></i> Neuer Skill
+          </a>
+        {{/if}}
       </div>
     </div>
   </div>

@@ -35,6 +35,8 @@ export default Component.extend({
 
   // checks if the focus of the event e comes from outside the current powerselect or the inside
   focusComesFromOutside(e) {
+    if (!this.get("isAdmin")) return;
+
     let blurredEl = e.relatedTarget;
     if (isBlank(blurredEl)) {
       return false;
