@@ -22,7 +22,7 @@
             <i class="fa fa-plus" aria-hidden="true" ></i> Neuer Skill
           </a>
         {{else}}
-          <a id="new-skill-link" class="edit-buttons" role="button" onclick={{pipe (action "displayCreateSkillError")}} data-target="#skill-new-modal">
+          <a id="new-skill-link" class="edit-buttons" style="-webkit-filter: grayscale(100%);" role="button" onclick={{pipe (action "displayCreateSkillError")}} data-target="#skill-new-modal">
             <i class="fa fa-plus" aria-hidden="true" ></i> Neuer Skill
           </a>
         {{/if}}
