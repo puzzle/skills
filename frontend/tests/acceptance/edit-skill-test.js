@@ -3,6 +3,13 @@ import page from "frontend/tests/pages/skills-index";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
 import { currentURL } from "@ember/test-helpers";
 import { selectChoose } from "ember-power-select/test-support";
+import keycloakStub from "../helpers/keycloak-stub";
+
+const nonAdminKeycloakStub = keycloakStub.extend({
+  hasResourceRole(resource, role) {
+    return false;
+  }
+});
 
 module("Acceptance | edit skill", function(hooks) {
   setupApplicationTest(hooks);
@@ -32,5 +39,11 @@ module("Acceptance | edit skill", function(hooks) {
     assert.ok(rows.includes("Linux-Engineering"));
     assert.ok(rows.includes("assess"));
     assert.ok(rows.includes("aktiv"));
+  });
+  test("can non admin user visit skills", async function(assert) {
+    assert.expect(1);
+    this.owner.register("service:keycloak-session", nonAdminKeycloakStub);
+    await page.indexPage.visit();
+    assert.equal(currentURL(), "/skills");
   });
 });
