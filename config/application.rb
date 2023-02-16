@@ -28,7 +28,7 @@ module Skills
     config.autoload_paths += %W( #{config.root}/app/uploaders) #
     config.i18n.default_locale = :de
 
-    # Bullet tries to add finish_at to statement, which does not exist anymore
+    # Bullet tries to add finish_at to insert statement, which does not exist anymore
     config.active_record.partial_inserts = true
 
     config.filter_parameters += [:authorizationToken]
