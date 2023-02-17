@@ -29,7 +29,7 @@
   {{if this.skill.portfolio this.skill.portfolio "-"}}
 </td>
 <td>
-  <a role="button" onclick={{this.startEditing}} class="edit-buttons skill-edit-button" style='{{unless this.isAdmin "-webkit-filter: grayscale(100%);"}}'>
+  <a role="button" onclick={{this.startEditing}} class="edit-buttons skill-edit-button {{unless this.isAdmin "grayed-out"}}">
     <i class="fa fa-edit"></i>
   </a>
 </td>

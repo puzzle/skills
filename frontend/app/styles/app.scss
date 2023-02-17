@@ -382,3 +382,7 @@ $theme-colors: (
 input.invalid {
   box-shadow: 0 0 3px #cc0000;
 }
+
+.grayed-out {
+  -webkit-filter: grayscale(100%);
+}
