@@ -50,6 +50,12 @@ const storeStub = Service.extend({
   }
 });
 
+const nonAdminKeycloakStub = keycloakStub.extend({
+  hasResourceRole(resource, role) {
+    return false;
+  }
+});
+
 module("Integration | Component | skills-list", function(hooks) {
   setupRenderingTest(hooks);
   setupIntl(hooks);
@@ -69,6 +75,25 @@ module("Integration | Component | skills-list", function(hooks) {
     assert.ok(text.includes("Skill"));
     assert.ok(text.includes("Radar"));
     assert.ok(text.includes("Members"));
+  });
+
+  test("it renders for non admin user", async function(assert) {
+    this.owner.register("service:keycloak-session", nonAdminKeycloakStub);
+    await render(hbs`{{skills-list}}`);
+    let text = this.$().text();
+
+    assert.ok(text.includes("Export"));
+    assert.ok(text.includes("Skill"));
+  });
+
+  test("it displays grayed out create skill text", async function(assert) {
+    this.owner.register("service:keycloak-session", nonAdminKeycloakStub);
+    await render(hbs`{{skills-list}}`);
+
+    assert.equal(
+      this.element.querySelector("#new-skill-link").getAttribute("class"),
+      "edit-buttons grayed-out"
+    );
   });
 
   test("it renders with data", async function(assert) {

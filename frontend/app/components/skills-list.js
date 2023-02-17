@@ -6,6 +6,9 @@ import Component from "@ember/component";
 
 @classic
 export default class SkillsList extends Component {
+  @service("keycloak-session")
+  session;
+  @service intl;
   @service store;
 
   @service download;
@@ -25,6 +28,8 @@ export default class SkillsList extends Component {
       "categories",
       this.get("store").findAll("category", { reload: true })
     );
+    let session = this.get("session");
+    this.set("isAdmin", session.hasResourceRole("ADMIN"));
   }
 
   @computed("categories")
@@ -49,8 +54,25 @@ export default class SkillsList extends Component {
   }
 
   @action
+  displayCreateSkillError() {
+    let title = this.get("intl").t(`error-message.unauthorized`);
+    let message = this.get("intl").t(`error-message.cannotCreateSkill`);
+    this.get("notify").alert(title + ":" + "\n" + message, {
+      closeAfter: 10000
+    });
+  }
+
+  @action
   startEditing(skill) {
-    this.editSkills.addObject(skill);
+    if (!this.get("isAdmin")) {
+      let title = this.get("intl").t(`error-message.unauthorized`);
+      let message = this.get("intl").t(`error-message.cannotEditSkill`);
+      this.get("notify").alert(title + ":" + "\n" + message, {
+        closeAfter: 10000
+      });
+    } else {
+      this.editSkills.addObject(skill);
+    }
   }
 
   @action

@@ -68,6 +68,10 @@ delete-confirmation:
     delete: Löschen
     message: '{name} wirklich löschen?'
     success: '{name} wurde entfernt'
+error-message:
+  unauthorized: Unerlaubt
+  cannotEditSkill: 'Sie sind nicht berechtigt Skills zu bearbeiten!'
+  cannotCreateSkill: 'Sie sind nicht berechtigt Skills zu erstellen!'
 education:
     location: Ausbildungsort
     title: Titel
