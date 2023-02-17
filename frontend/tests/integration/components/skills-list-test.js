@@ -91,8 +91,8 @@ module("Integration | Component | skills-list", function(hooks) {
     await render(hbs`{{skills-list}}`);
 
     assert.equal(
-      this.element.querySelector("#new-skill-link").getAttribute("style"),
-      "-webkit-filter: grayscale(100%);"
+      this.element.querySelector("#new-skill-link").getAttribute("class"),
+      "edit-buttons grayed-out"
     );
   });
 

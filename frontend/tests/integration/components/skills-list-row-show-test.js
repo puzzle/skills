@@ -14,6 +14,8 @@ module("Integration | Component | skills-list-row-show", function(hooks) {
   });
 
   test("it renders", async function(assert) {
+    this.owner.register("service:keycloak-session", nonAdminKeycloakStub);
+
     this.set("skill", {
       title: "Ruby",
       portfolio: "aktiv",
@@ -37,8 +39,8 @@ module("Integration | Component | skills-list-row-show", function(hooks) {
     await render(hbs`{{skills-list-row-show}}`);
 
     assert.equal(
-      this.element.querySelector("a").getAttribute("style"),
-      "-webkit-filter: grayscale(100%);"
+      this.element.querySelector("a").getAttribute("class"),
+      "edit-buttons skill-edit-button grayed-out"
     );
   });
 });
