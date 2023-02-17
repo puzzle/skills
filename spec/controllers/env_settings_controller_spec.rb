@@ -17,7 +17,6 @@ describe EnvSettingsController do
 
       settings_keycloak = settings['keycloak']
       expect(settings_keycloak['url']).to eq('keycloak.skills.test')
-      expect(settings_keycloak['secret']).to eq('1234')
       expect(settings_keycloak['clientId']).to eq('test-client-id')
       expect(settings_keycloak['realm']).to eq('realm')
       expect(settings_keycloak['disabled']).to be_nil
@@ -37,7 +36,6 @@ describe EnvSettingsController do
 
       settings_keycloak = settings['keycloak']
       expect(settings_keycloak['url']).to be_nil
-      expect(settings_keycloak['secret']).to be_nil
       expect(settings_keycloak['clientId']).to be_nil
       expect(settings_keycloak['realm']).to be_nil
       expect(settings_keycloak['disable']).to eq('true')
@@ -52,7 +50,6 @@ def keycloak_env_vars
   ENV['HELPLINK'] = 'https://help.skills.test'
 
   ENV['EMBER_KEYCLOAK_SERVER_URL'] = 'keycloak.skills.test'
-  ENV['EMBER_KEYCLOAK_SECRET'] = '1234'
   ENV['EMBER_KEYCLOAK_CLIENT_ID'] = 'test-client-id'
   ENV['EMBER_KEYCLOAK_REALM_NAME'] = 'realm'
 
@@ -64,7 +61,6 @@ def keycloak_disabled_env_vars
   ENV['HELPLINK'] = 'https://help.skills.test'
 
   ENV['EMBER_KEYCLOAK_SERVER_URL'] = nil
-  ENV['EMBER_KEYCLOAK_SECRET'] = nil
   ENV['EMBER_KEYCLOAK_CLIENT_ID'] = nil
   ENV['EMBER_KEYCLOAK_REALM_NAME'] = nil
 
