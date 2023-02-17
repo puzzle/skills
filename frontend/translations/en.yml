@@ -68,6 +68,10 @@ delete-confirmation:
     delete: Delete
     message: 'Delete {name}?'
     success: '{name} was deleted'
+error-message:
+  unauthorized: Unauthorised
+  cannotEditSkill: 'You are not authorised to edit skills!'
+  cannotCreateSkill: 'You are not authorised to create skills!'
 education:
     location: Location
     title: Title
