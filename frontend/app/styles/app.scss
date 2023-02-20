@@ -386,3 +386,7 @@ input.invalid {
 .grayed-out {
   -webkit-filter: grayscale(100%);
 }
+
+.hidden {
+  display: none;
+}

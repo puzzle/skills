@@ -18,6 +18,14 @@
             <div class="col-md-6">{{t "person-cv-export.coreCompetenciesSkills"}}</div>
             <XToggle @theme="material" @size="small" @value={{this.includeCompetencesAndSkills}} @onToggle={{fn (mut this.includeCompetencesAndSkills)}} />
           </div>
+          <div id="includeInterestCompetence-toggle" class="row my-3">
+            <div class="col-md-6">{{t "person-cv-export.interestCompetencies"}}</div>
+            <XToggle @theme="material" @size="small" @value={{this.includeOnlyCompetencesByInterests}} @onToggle={{fn (mut this.includeOnlyCompetencesByInterests)}} />
+          </div>
+          <div class="row my-3 {{unless this.includeOnlyCompetencesByInterests "hidden"}}">
+            <div class="col-md-6">{{t "skill-search.interest"}}</div>
+              <IconRating @fillColor="#238BCA" @value={{this.interestValue}} @onClick={{action (mut this.interestValue)}} disabled={{this.invalidKuchen}}/>
+          </div>
           <div class="row my-3">
             <button type="button" {{on "click" this.startExport}} class="btn btn-primary btn-lg btn-block">{{t "person-cv-export.normalCV"}}</button>
           </div>

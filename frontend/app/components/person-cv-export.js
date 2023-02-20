@@ -12,6 +12,8 @@ export default class PersonCvExport extends Component {
   @tracked
   selectedLocation = "";
 
+  interestValue = 1;
+
   @tracked
   availableLocations = "";
 
@@ -19,6 +21,7 @@ export default class PersonCvExport extends Component {
     super(...arguments);
 
     this.includeCompetencesAndSkills = true;
+    this.includeOnlyCompetencesByInterests = false;
 
     this.store.findAll("branch-adress").then(result => {
       this.availableLocations = result;
@@ -62,8 +65,16 @@ export default class PersonCvExport extends Component {
       ".odt?anon=false&location=" +
       this.selectedLocation.id +
       "&includeCS=" +
-      this.includeCompetencesAndSkills;
+      this.includeCompetencesAndSkills +
+      "&competencesByInterests=" +
+      this.includeInterestValue();
+
     this.download.file(url);
+  }
+  includeInterestValue() {
+    return this.includeOnlyCompetencesByInterests
+      ? "true&interestValue=" + this.interestValue
+      : "false";
   }
 
   @action

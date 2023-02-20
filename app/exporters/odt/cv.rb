@@ -37,6 +37,14 @@ module Odt
       @params[:includeCS].presence == 'true'
     end
 
+    def include_competences_by_interests?
+      @params[:competencesByInterests].presence == 'true'
+    end
+
+    def skill_interest_value
+      @params[:interestValue]
+    end
+
     def location
       BranchAdress.find(@params[:location])
     end
@@ -78,8 +86,39 @@ module Odt
     # rubocop:enable Metrics/AbcSize
 
     def insert_competences(report)
+      interest_competences(report) if include_competences_by_interests?
+      core_competences(report)
+    end
+
+    def interest_competences(report)
+      interest_value = skill_interest_value
+      interest_competences_list = competences_by_interest_value(interest_value)
+      report.add_table('COMPETENCES', interest_competences_list, header: true) do |t|
+        t.add_column(:category, :category)
+        t.add_column(:competence, :competence)
+      end
+    end
+
+    def competences_by_interest_value(interest_value)
+      interest_competences_ids = competences_by_interest(interest_value).pluck(:skill_id)
+      competences_list(interest_competences_ids)
+    end
+
+    def competences_list(competences_ids)
+      Category.all_parents.map do |parent_c|
+        skills = Skill.joins(:category)
+                      .where(categories: { parent_id: parent_c.id }, id: competences_ids)
+                      .pluck(:title)
+        next if skills.blank?
+
+        { category: parent_c.title, competence: skills.join(', ') }
+      end.compact
+    end
+
+    def core_competences(report)
+      core_competence_skill_ids = person.people_skills.where(core_competence: true).pluck(:skill_id)
       competences_list = if include_core_competences_and_skills?
-                           [core_competences_list, competence_notes_list].flatten
+                           [competences_list(core_competence_skill_ids), competence_notes_list].flatten
                          else
                            [competence_notes_list].flatten
                          end
@@ -89,16 +128,8 @@ module Odt
       end
     end
 
-    def core_competences_list
-      core_competence_skill_ids = person.people_skills.where(core_competence: true).pluck(:skill_id)
-      Category.all_parents.map do |parent_c|
-        skills = Skill.joins(:category)
-                      .where(categories: { parent_id: parent_c.id }, id: core_competence_skill_ids)
-                      .pluck(:title)
-        next if skills.blank?
-
-        { category: parent_c.title, competence: skills.join(', ') }
-      end.compact
+    def competences_by_interest(interest_value)
+      person.people_skills.where("interest >= ?", interest_value)
     end
 
     def competence_notes_list
