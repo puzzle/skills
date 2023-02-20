@@ -21,7 +21,7 @@ export default class PersonCvExport extends Component {
     super(...arguments);
 
     this.includeCompetencesAndSkills = true;
-    this.includeOnlyCompetencesByInterests = false;
+    this.includeSkillsByInterests = false;
 
     this.store.findAll("branch-adress").then(result => {
       this.availableLocations = result;
@@ -66,13 +66,13 @@ export default class PersonCvExport extends Component {
       this.selectedLocation.id +
       "&includeCS=" +
       this.includeCompetencesAndSkills +
-      "&competencesByInterests=" +
+      "&skillsByInterests=" +
       this.includeInterestValue();
 
     this.download.file(url);
   }
   includeInterestValue() {
-    return this.includeOnlyCompetencesByInterests
+    return this.includeSkillsByInterests
       ? "true&interestValue=" + this.interestValue
       : "false";
   }
