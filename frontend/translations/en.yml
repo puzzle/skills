@@ -62,7 +62,11 @@ education:
     title: Title
     yearFrom: 'Jahr von'
 education-form:
-    cancel: Cancel
+    close:
+      text: Cancel
+      cancelConfirmText: Do you want to close this form?
+      confirm: Confirm
+      cancel: Cancel
     delete: Delete
     education: Education
     location: Location

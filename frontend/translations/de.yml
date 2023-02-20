@@ -62,7 +62,11 @@ education:
     title: Titel
     yearFrom: 'Jahr von'
 education-form:
-    cancel: Abbrechen
+    close:
+      buttonText: Abbrechen
+      confirmText: Willst du das Formular wirklich schliessen?
+      confirm: Bestätigen
+      cancel: Abbrechen
     delete: Löschen
     education: Ausbildung
     location: Ausbildungsort

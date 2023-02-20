@@ -3,16 +3,24 @@ import { addObserver } from "@ember/object/observers";
 import BaseFormComponent from "./base-form-component";
 import { action } from "@ember/object";
 import $ from "jquery";
+import { tracked } from "@glimmer/tracking";
 
 export default class EducationForm extends BaseFormComponent {
   @service intl;
   @service store;
+
+  @tracked displayModal = false;
 
   constructor() {
     super(...arguments);
     this.person = this.args.person;
     addObserver(this, "args.person", this.personChanged);
     this.record = this.args.education || this.store.createRecord("education");
+    $(document).on("keyup", event => {
+      if (event.keyCode == 27) {
+        this.openModal();
+      }
+    });
   }
 
   setInitialState() {
@@ -56,5 +64,10 @@ export default class EducationForm extends BaseFormComponent {
   submitAndNew(recordsToSave) {
     this.newAfterSubmit = true;
     super.submit(recordsToSave);
+  }
+
+  @action
+  openModal() {
+    this.displayModal = true;
   }
 }
