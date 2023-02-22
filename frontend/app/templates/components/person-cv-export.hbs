@@ -20,7 +20,7 @@
           </div>
           <div id="includeLevelSkills-toggle" class="row my-3">
             <div class="col-md-6">{{t "person-cv-export.levelSkills"}}</div>
-            <XToggle @theme="material" @size="small" @value={{this.includeSkillsByLevel}} @onToggle={{fn (mut this.includeSkillsByLevel)}} />
+            <XToggle id="levelSkillsToggle" @theme="material" @size="small" @value={{this.includeSkillsByLevel}} @onToggle={{fn (mut this.includeSkillsByLevel)}} />
           </div>
           <div class="row my-3 {{unless this.includeSkillsByLevel "hidden"}}">
             <div class="col-md-6">{{this.levelName}}</div>
