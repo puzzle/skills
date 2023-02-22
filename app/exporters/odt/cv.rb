@@ -37,7 +37,7 @@ module Odt
       @params[:includeCS].presence == 'true'
     end
 
-    def include_skills_by_interests?
+    def include_skills_by_level?
       @params[:skillsByInterests].presence == 'true'
     end
 
@@ -86,21 +86,21 @@ module Odt
     # rubocop:enable Metrics/AbcSize
 
     def insert_competences(report)
-      interest_skills(report) if include_skills_by_interests?
+      insert_level_skills(report) if include_skills_by_level?
       insert_core_competences(report)
     end
 
-    def interest_skills(report)
-      interest_skills_list = skills_by_interest_value(skill_interest_value)
-      report.add_table('COMPETENCES', interest_skills_list, header: true) do |t|
+    def insert_level_skills(report)
+      level_skills_list = skills_by_level_value(skill_interest_value)
+      report.add_table('LEVEL_COMPETENCES', level_skills_list, header: true) do |t|
         t.add_column(:category, :category)
         t.add_column(:competence, :competence)
       end
     end
 
-    def skills_by_interest_value(interest_value)
-      interest_skills_ids = skills_by_interest(interest_value).pluck(:skill_id)
-      competences_list(interest_skills_ids)
+    def skills_by_level_value(level_value)
+      level_skills_ids = skills_by_level(level_value).pluck(:skill_id)
+      competences_list(level_skills_ids)
     end
 
     def competences_list(competences_ids)
@@ -127,8 +127,8 @@ module Odt
       end
     end
 
-    def skills_by_interest(interest_value)
-      person.people_skills.where("interest >= ?", interest_value)
+    def skills_by_level(level_value)
+      person.people_skills.where("level >= ?", level_value)
     end
 
     def competence_notes_list
