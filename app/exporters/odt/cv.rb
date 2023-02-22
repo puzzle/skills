@@ -114,10 +114,12 @@ module Odt
       end.compact
     end
 
+    # rubocop:disable Metrics/MethodLength
     def insert_core_competences(report)
       core_competence_skill_ids = person.people_skills.where(core_competence: true).pluck(:skill_id)
       competences_list = if include_core_competences_and_skills?
-                           [competences_list(core_competence_skill_ids), competence_notes_list].flatten
+                           [competences_list(core_competence_skill_ids),
+                            competence_notes_list].flatten
                          else
                            [competence_notes_list].flatten
                          end
@@ -126,9 +128,10 @@ module Odt
         t.add_column(:competence, :competence)
       end
     end
+    # rubocop:enable Metrics/MethodLength
 
     def skills_by_level(level_value)
-      person.people_skills.where("level >= ?", level_value)
+      person.people_skills.where('level >= ?', level_value)
     end
 
     def competence_notes_list

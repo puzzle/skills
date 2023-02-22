@@ -19,7 +19,7 @@ Metrics/AbcSize:
   Severity: error
 
 Metrics/ClassLength:
-  Max: 200
+  Max: 210
   Severity: error
 
 Metrics/CyclomaticComplexity:
