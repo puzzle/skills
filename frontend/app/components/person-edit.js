@@ -6,10 +6,10 @@ import { getNames as countryNames } from "ember-i18n-iso-countries";
 import { on } from "@ember/object/evented";
 import { EKMixin, keyUp } from "ember-keyboard";
 import Person from "../models/person";
-import PersonEditValidations from "../validations/person-edit";
+import PersonFormValidations from "../validations/person-form";
 
 export default ApplicationComponent.extend(EKMixin, {
-  PersonEditValidations,
+  PersonFormValidations,
   store: service(),
   intl: service(),
   session: service("keycloak-session"),
