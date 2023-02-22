@@ -87,12 +87,11 @@ module Odt
 
     def insert_competences(report)
       interest_skills(report) if include_skills_by_interests?
-      core_competences(report)
+      insert_core_competences(report)
     end
 
     def interest_skills(report)
-      interest_value = skill_interest_value
-      interest_skills_list = skills_by_interest_value(interest_value)
+      interest_skills_list = skills_by_interest_value(skill_interest_value)
       report.add_table('COMPETENCES', interest_skills_list, header: true) do |t|
         t.add_column(:category, :category)
         t.add_column(:competence, :competence)
@@ -115,7 +114,7 @@ module Odt
       end.compact
     end
 
-    def core_competences(report)
+    def insert_core_competences(report)
       core_competence_skill_ids = person.people_skills.where(core_competence: true).pluck(:skill_id)
       competences_list = if include_core_competences_and_skills?
                            [competences_list(core_competence_skill_ids), competence_notes_list].flatten
