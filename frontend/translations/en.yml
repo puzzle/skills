@@ -135,7 +135,7 @@ person-cv-export:
     anonymisedCV: Anonymised CV
     cancel: Cancel
     coreCompetenciesSkills: Core Competencies - Skills
-    interestSkills: Skills by interests
+    levelSkills: Skills by level
     locationForFooter: 'Location (for footer):'
     normalCV: Normal CV
 person-edit:

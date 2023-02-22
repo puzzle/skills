@@ -41,8 +41,8 @@ module Odt
       @params[:skillsByInterests].presence == 'true'
     end
 
-    def skill_interest_value
-      @params[:interestValue]
+    def skill_level_value
+      @params[:levelValue]
     end
 
     def location
@@ -91,7 +91,7 @@ module Odt
     end
 
     def insert_level_skills(report)
-      level_skills_list = skills_by_level_value(skill_interest_value)
+      level_skills_list = skills_by_level_value(skill_level_value)
       report.add_table('LEVEL_COMPETENCES', level_skills_list, header: true) do |t|
         t.add_column(:category, :category)
         t.add_column(:competence, :competence)
