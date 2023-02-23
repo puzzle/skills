@@ -27,6 +27,12 @@ advancedTraining:
     description: Description
     name: Advanced Training
     yearFrom: 'Year from'
+advanced-training-form:
+    cancel: Cancel
+    delete: Delete
+    description: Description
+    save: Save
+    saveAndNew: Save & New
 advanced-training-new:
     cancel: Cancel
     description: Description

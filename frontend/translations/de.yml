@@ -27,6 +27,12 @@ advancedTraining:
     description: Beschreibung
     name: Weiterbildung
     yearFrom: 'Jahr von'
+advanced-training-form:
+    cancel: Abbrechen
+    delete: Löschen
+    description: Beschreibung
+    save: Speichern
+    saveAndNew: Speichern & Neu
 advanced-training-new:
     cancel: Abbrechen
     description: Beschreibung
