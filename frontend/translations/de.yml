@@ -1,17 +1,28 @@
-activity-form:
+activities-edit:
+    activities: Stationen
     cancel: Abbrechen
     delete: Löschen
-    role: Rolle
     description: Firmenangaben und Beschreibung der Tätigkeit
+    role: Rolle
     save: Speichern
-    saveAndNew: Speichern & Neu
 activities-show:
-    add: Station hinzufügen
     activities: Stationen
+    edit: Bearbeiten
 activity:
     description: Beschreibung
     role: Rolle
     yearFrom: 'Jahr von'
+activity-new:
+    cancel: Abbrechen
+    description: Firmenangaben und Beschreibung der Tätigkeit
+    role: Rolle
+    save: Speichern
+    saveAndNew: Speichern & Neu
+    warning1: Du hast versucht eine Station ohne Monatsangabe zu speichern.
+    warning2: Für eine genaue Berechnung der Punkte im Lohnmodell werden genaue Monatsangaben benötigt.
+    warning3: Bitte ergänze deine Angaben und speichere noch einmal.
+    warning4: Wenn du trotzdem ohne Monatsangabe speichern möchtest, drücke
+    warning5: hier
 advancedTraining:
     description: Beschreibung
     name: Weiterbildung
@@ -22,9 +33,19 @@ advanced-training-form:
     description: Beschreibung
     save: Speichern
     saveAndNew: Speichern & Neu
+advanced-training-new:
+    cancel: Abbrechen
+    description: Beschreibung
+    save: Speichern
+    saveAndNew: Speichern & Neu
+advanced-trainings-edit:
+    cancel: Abbrechen
+    delete: Löschen
+    description: Beschreibung
+    save: Speichern
 advanced-trainings-show:
-    add: Weiterbildung hinzufügen
     advancedTraining: Weiterbildung
+    edit: Bearbeiten
 application:
     cvSearch: CV Suche
     profile: Profil
@@ -69,7 +90,6 @@ education-form:
     save: Speichern
     saveAndNew: Speichern & Neu
 educations-show:
-    add: Ausbildung hinzufügen
     education: Ausbildung
 expertise-topic-skill-value:
     comment: Bemerkung
@@ -125,7 +145,6 @@ person:
     title: Titel
     projects: Projekte
     personCompetences: Kompetenzen
-    email: Email
 personCompetence:
     category: Kategorie
     offer: Angebot
@@ -136,7 +155,6 @@ person-cv-export:
     anonymisedCV: Anonymisiertes CV
     cancel: Abbrechen
     coreCompetenciesSkills: Kernkompetenzen - Skills
-    levelSkills: Skills nach Level
     locationForFooter: 'Niederlassung (für Footer):'
     normalCV: Normales CV
 person-edit:
@@ -198,16 +216,23 @@ project:
     title: Titel
     yearFrom: 'Jahr von'
 projects-show:
-    add: Projekt hinzufügen
     projects: Projekte
-project-form:
+project-edit:
+    cancel: Abbrechen
     delete: Löschen
     description: Beschreibung
     editProject: Projekt bearbeiten
-    technology: Eingesetzte Technologien
+    involvedTechnologies: Eingesetzte Technologien
     project: Projekt
-    role: Rolle und Aufagaben
+    roleAndTasks: Rolle und Aufagaben
+    save: Speichern
+project-new:
+    addProject: Neues Projekt erfassen
     cancel: Abbrechen
+    description: Beschreibung
+    project: Projekt
+    involvedTechnologies: Eingesetzte Technologien
+    roleAndTasks: Rolle und Aufgaben
     save: Speichern
     saveAndNew: Speichern & Neu
 project-show:

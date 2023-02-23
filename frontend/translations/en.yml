@@ -1,17 +1,28 @@
-activity-form:
+activities-edit:
+    activities: Activities
     cancel: Cancel
     delete: Delete
-    role: Role
     description: Company details and description of activity
+    role: Role
     save: Save
-    saveAndNew: Save & New
 activities-show:
     activities: Activities
-    add: Add activity
+    edit: Edit
 activity:
     description: Beschreibung
     role: Rolle
     yearFrom: 'Jahr von'
+activity-new:
+    cancel: Cancel
+    description: Company details and description of activity
+    role: Role
+    save: Save
+    saveAndNew: Save & New
+    warning1: You tried to save a station without specifying the month.
+    warning2: Precise monthly information is required for an exact calculation of the points in the wage model.
+    warning3: Please complete your details and save again.
+    warning4: If you still want to save without specifying the month, press
+    warning5: here
 advancedTraining:
     description: Description
     name: Advanced Training
@@ -22,9 +33,19 @@ advanced-training-form:
     description: Description
     save: Save
     saveAndNew: Save & New
+advanced-training-new:
+    cancel: Cancel
+    description: Description
+    save: Save
+    saveAndNew: Save & New
+advanced-trainings-edit:
+    cancel: Cancel
+    delete: Delete
+    description: Description
+    save: Save
 advanced-trainings-show:
-    add: Add advanced training
     advancedTraining: Advanced Training
+    edit: Edit
 application:
     cvSearch: CV Search
     profile: Profile
@@ -69,7 +90,6 @@ education-form:
     save: Save
     saveAndNew: Save & New
 educations-show:
-    add: Add education
     education: Education
 expertise-topic-skill-value:
     comment: Comment
@@ -135,7 +155,6 @@ person-cv-export:
     anonymisedCV: Anonymised CV
     cancel: Cancel
     coreCompetenciesSkills: Core Competencies - Skills
-    levelSkills: Skills by level
     locationForFooter: 'Location (for footer):'
     normalCV: Normal CV
 person-edit:
@@ -195,18 +214,25 @@ project:
     title: Title
     yearFrom: 'Year from'
 projects-show:
-    add: Add project
     projects: Projects
-project-form:
-  delete: Delete
-  description: Description
-  editProject: Edit project
-  technology: Deployed technologies
-  project: Project
-  role: Role and Tasks
-  cancel: Cancel
-  save: Save
-  saveAndNew: Save & New
+project-edit:
+    cancel: Cancel
+    delete: Delete
+    description: Description
+    editProject: Edit project
+    involvedTechnologies: Involved Technologies
+    project: Project
+    roleAndTasks: Role and Tasks
+    save: Save
+project-new:
+    addProject: Add Project
+    cancel: Cancel
+    description: Description
+    involvedTechnologies: Involved Technologies
+    project: Project
+    roleAndTasks: Role and Tasks
+    save: Save
+    saveAndNew: Save & New
 project-show:
     description: Description
     edit: Edit
