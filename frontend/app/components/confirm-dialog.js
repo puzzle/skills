@@ -13,7 +13,7 @@ export default class ConfirmDialog extends Component {
 
   @action
   cancel() {
-    this.set("display", false);
+    this.set("showModal", false);
   }
 
   @action
