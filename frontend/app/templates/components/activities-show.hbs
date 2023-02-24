@@ -1,5 +1,4 @@
-<div id="activity">
-  <div class="card-header bg-info">
+<div id="activitiesHeader" class="card-header bg-info">
     <div class="row">
       <div class="col-sm-6 header-text">
         {{t "activities-show.activities"}} ({{this.amountOfActivities}})
@@ -9,38 +8,21 @@
   <div class="border border-info rounded-bottom">
     <div class="card-body d-flex flex-column">
       <div class="mb-2">
-        <a onclick={{action "toggleActivityNew" true}} role="button" class={{~unless this.activityNew "edit-buttons"~}}><i class="fa {{~unless this.activityNew " add"~}}"></i>{{~unless this.activityNew " Station hinzufügen"~}}</a>
-      </div>
-      <div id="competence-content-show" class="mb-2">
-        {{component (if this.activityNew "activity-new")
-            personId=this.person.id
-            done=(action "toggleActivityNew")}}
-        {{#each this.sortedActivities as |activity|}}
-          <div class="zeile">
-            <div class="row">
-              <div class="col-sm-3 text-center">
-                {{if activity.monthFrom (concat (moment-format activity.monthFrom "MM" "MM") ".")}}{{activity.yearFrom}}
-                {{#if (eq activity.yearTo null)}}
-                  - heute
-                {{else if (or (not-eq activity.yearFrom activity.yearTo) (not-eq activity.monthFrom activity.monthTo))}}
-                  - {{if activity.monthTo (concat (moment-format activity.monthTo "MM" "MM") ".")}}{{activity.yearTo}}
-                {{/if}}
-              </div>
-              <div class="col-sm-9 cv-search-searchable">
-                <strong>{{activity.role}}</strong>
-                <br>{{activity.lineBreakDescription}}
-              </div>
-            </div>
+            <a {{on "click" this.toggleActivityNew}} role="button" class={{~unless this.isNewRecord "edit-buttons"~}}><i class="fa {{~unless this.isNewRecord " add"~}}"></i> {{~unless this.isNewRecord " Station hinzufügen"~}}</a>
           </div>
+      <div id="competence-content-show" class="mb-2">
+        {{#if this.isNewRecord}}
+           <ActivityForm @person={{@person}} @done={{toggleActivityNew}}/>
+        {{/if}}
+        {{#each this.sortedActivities as |activity|}}
+          {{#if (eq this.editingActivity activity)}}
+                    <ActivityForm @person={{@person}} @activity={{activity}} @done={{this.abortActivityEdit}}/>
+                  {{else}}
+                    <div class="zeile {{unless this.editingActivity "people-skill-link"}}" {{on "click" (fn this.setEditingActivity activity)}} role="button">
+                      <ActivityShow @activity={{activity}}/>
+                    </div>
+                  {{/if}}
         {{/each}}
       </div>
-      {{#if this.sortedActivities}}
-        {{#unless this.activityNew}}
-          <div class="mt-auto">
-            <a onclick={{this.activitiesEditing}} role="button" class="edit-buttons"><i class="fa fa-edit"></i> {{t "activities-show.edit"}}</a>
-          </div>
-        {{/unless}}
-      {{/if}}
     </div>
-  </div>
 </div>

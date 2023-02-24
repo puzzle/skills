@@ -1,0 +1,31 @@
+<div class="zeile">
+  <div id="activity-content-edit">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="input-group centered-content-input">
+          <DaterangeEdit @entity={{this.record}} />
+        </div>
+      </div>
+      <div class="col-sm-6 content-input">
+        <label for={{concat this.elementId "-" this.record.id "-role"}}>{{t "activity-form.role"}}</label>
+        <Input @id={{concat this.elementId "-" this.record.id "-role"}} @value={{this.record.role}} class="input-xxlarge form-control" />
+        <label class="mt-2" for={{concat this.elementId "-" this.record.id "-loc"}}>{{t "activity-form.description"}}</label>
+        <Textarea @id={{concat this.elementId "-" this.record.id "-loc"}} @value={{this.record.description}} class="input-xxlarge form-control" />
+      </div>
+      <div class="col-md-3 centered-content d-flex flex-column mt-4 px-5">
+        <button type="button" {{on "click" (fn this.submit record)}} role="button" id="submit-activity-button" class="btn btn-primary m-2">{{t "activity-form.save"}}</button>
+        {{#if this.record.id}}
+          <button type="button" id="delete-activity-icon" class="btn btn-info border m-2">
+            <DeleteWithConfirmation @entry={{this.record}} @didDelete={{this.abort}}>
+              {{t "activity-form.delete"}}
+            </DeleteWithConfirmation>
+          </button>
+          <button type="button" {{on "click" (fn this.submitAndNew record)}} role="button" class="btn btn-info border m-2">{{t "activity-form.saveAndNew"}}</button>
+        {{else}}
+          <button type="button" {{on "click" (fn this.submitAndNew record)}} role="button" class="btn btn-info border m-2">{{t "activity-form.saveAndNew"}}</button>
+        {{/if}}
+        <a href="#" {{on "click" this.abort}} role="button" id="submit-button" class="abort-edit-buttons text-center mx-4">{{t "activity-form.cancel"}}</a>
+      </div>
+    </div>
+  </div>
+</div>

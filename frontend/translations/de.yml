@@ -5,6 +5,13 @@ activities-edit:
     description: Firmenangaben und Beschreibung der Tätigkeit
     role: Rolle
     save: Speichern
+activity-form:
+    cancel: Abbrechen
+    delete: Löschen
+    role: Rolle
+    description: Beschreibung
+    save: Speichern
+    saveAndNew: Speichern & Neu
 activities-show:
     activities: Stationen
     edit: Bearbeiten
@@ -33,16 +40,6 @@ advanced-training-form:
     description: Beschreibung
     save: Speichern
     saveAndNew: Speichern & Neu
-advanced-training-new:
-    cancel: Abbrechen
-    description: Beschreibung
-    save: Speichern
-    saveAndNew: Speichern & Neu
-advanced-trainings-edit:
-    cancel: Abbrechen
-    delete: Löschen
-    description: Beschreibung
-    save: Speichern
 advanced-trainings-show:
     advancedTraining: Weiterbildung
     edit: Bearbeiten

@@ -36,13 +36,8 @@
          <AdvancedTrainingsShow @advancedTrainings={{@model.advancedTrainings}} @person={{@model}} @submit={{this.submit}}/>
       </div>
       {{!Aktivitäten Tab}}
-      <div class="card mb-3" id="activities">
-        {{component (if this.activitiesEditing "activities-edit" "activities-show" )
-                    activities=this.model.activities
-                    person=this.model
-                    submit=(action (toggle "activitiesEditing" this))
-                    activitiesEditing=(action (toggle "activitiesEditing" this))
-        }}
+      <div class="card mb-3" id="advancedTrainings">
+         <ActivitiesShow @activities={{@model.activities}} @person={{@model}} @submit={{this.submit}}/>
       </div>
       {{!Projekte Tab}}
       <div class="card mb-end" id="projects">
