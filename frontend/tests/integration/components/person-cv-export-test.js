@@ -5,6 +5,8 @@ import hbs from "htmlbars-inline-precompile";
 import keycloakStub from "../../helpers/keycloak-stub";
 import Service from "@ember/service";
 import page from "frontend/tests/pages/person-cv-export";
+import downloadService from "../../../app/services/download";
+import { jest } from "@jest/globals";
 
 const nonAdminKeycloakStub = keycloakStub.extend({
   hasResourceRole(resource, role) {
@@ -61,28 +63,30 @@ module("Integration | Component | person-cv-export", function(hooks) {
     assert.equal(this.$("button").length, 4);
   });
 
-  test("it sets skill level", async function(assert) {
+  test("it sets skill level with ui slider", async function(assert) {
     this.owner.register("service:keycloak-session", nonAdminKeycloakStub);
 
     await render(hbs`{{person-cv-export}}`);
 
     let toggle = this.element.querySelector("#levelSkillsToggle");
-    let slider = this.element.querySelector("#person-level-slider");
-
     toggle.click();
-    await page.personSkillSlider.levelButtons.objectAt(2).click();
-    assert.equal(this.levelValue, 1);
+
+    await page.personSkillSlider.levelButtons.objectAt(3).click();
+    assert.equal(this.levelValue, 2);
   });
 
   test("it generates right url", async function(assert) {
     this.owner.register("service:keycloak-session", nonAdminKeycloakStub);
-    setup();
+
     await render(hbs`{{person-cv-export}}`);
+
+    let downloadServiceSpy = jest.spyOn(
+      downloadService.file,
+      "downloadService"
+    );
 
     this.levelValue = 2;
     this.$("button")[2].click();
-
-    // Should call startExport function
-    // Should call service mock with right url
+    assert.equal(downloadServiceSpy.toHaveBeenCalled(), true);
   });
 });
