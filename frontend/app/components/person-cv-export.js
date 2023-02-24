@@ -72,7 +72,7 @@ export default class PersonCvExport extends Component {
       this.selectedLocation.id +
       "&includeCS=" +
       this.includeCompetencesAndSkills +
-      "&skillsByInterests=" +
+      "&skillsByLevel=" +
       this.includeInterestValue();
 
     this.download.file(url);

@@ -38,7 +38,7 @@ module Odt
     end
 
     def include_skills_by_level?
-      @params[:skillsByInterests].presence == 'true'
+      @params[:skillsByLevel].presence == 'true'
     end
 
     def skill_level_value
