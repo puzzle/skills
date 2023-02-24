@@ -16,7 +16,6 @@
                 <AdvancedTrainingForm @person={{@person}} @done={{toggleAdvancedTrainingNew}}/>
               {{/if}}
         {{#each this.sortedAdvancedTrainings as |advanced-training|}}
-
         {{#if (eq this.editingAdvancedTraining advanced-training)}}
           <AdvancedTrainingForm @person={{@person}} @advancedTraining={{advanced-training}} @done={{this.abortAdvancedTrainingEdit}}/>
         {{else}}
