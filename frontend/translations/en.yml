@@ -5,6 +5,13 @@ activities-edit:
     description: Company details and description of activity
     role: Role
     save: Save
+activity-form:
+    cancel: Cancel
+    delete: Delete
+    role: Role
+    description: Description
+    save: Save
+    saveAndNew: Save & New
 activities-show:
     activities: Activities
     edit: Edit
