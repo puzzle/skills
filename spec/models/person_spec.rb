@@ -73,6 +73,30 @@ describe Person do
       end
     end
 
+    context 'email' do
+
+      it 'should be invalid when email is nil' do
+        person = people(:bob)
+        person.email = nil
+        expect(person).not_to be_valid
+        expect(person.errors.messages[:email].first).to eq('muss ausgefüllt werden')
+      end
+
+      it 'should be invalid when email format is invalid' do
+        person = people(:bob)
+        person.email = "email"
+        expect(person).not_to be_valid
+        expect(person.errors.messages[:email].first).to eq('Format nicht gültig')
+      end
+
+      it 'should be valid when email format is correct' do
+        person = people(:bob)
+        person.email = "bob@puzzle.ch"
+        expect(person).to be_valid
+      end
+
+    end
+
     it 'should not be more than 100 characters' do
       person = people(:bob)
       person.location = SecureRandom.hex(100)
