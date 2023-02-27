@@ -11,10 +11,13 @@ module Odt
     end
 
     # rubocop:disable Metrics/MethodLength
+    # rubocop:disable Metrics/AbcSize
     def export
       country_suffix = location.country == 'DE' ? '_de' : ''
       anonymous_suffix = anon? ? '_anon' : ''
-      template_name = "cv_template#{country_suffix}#{anonymous_suffix}.odt"
+      @skills_by_level_list = skills_by_level_value(skill_level_value)
+      include_level = include_skills_by_level? ? '_with_level' : ''
+      template_name = "cv_template#{country_suffix}#{anonymous_suffix}#{include_level}.odt"
       ODFReport::Report.new("lib/templates/#{template_name}") do |r|
         insert_general_sections(r)
         insert_locations(r)
@@ -27,6 +30,7 @@ module Odt
       end
     end
     # rubocop:enable Metrics/MethodLength
+    # rubocop:enable Metrics/AbcSize
 
     private
 
@@ -92,8 +96,14 @@ module Odt
     end
 
     def insert_level_skills(report)
-      level_skills_list = skills_by_level_value(skill_level_value)
-      report.add_table('LEVEL_COMPETENCES', level_skills_list, header: true) do |t|
+      if @skills_by_level_list.empty?
+        # rubocop:disable Layout/LineLength
+        report.add_field(:skills_present,
+                         "Der Entwickler hat keine Skills mit Level #{skill_level_value} oder höher")
+      else
+        report.add_field(:skills_present, 'Der Entwickler hat sich selbst eingeschätzt.')
+      end
+      report.add_table('LEVEL_COMPETENCES', @skills_by_level_list, header: true) do |t|
         t.add_column(:category, :category)
         t.add_column(:competence, :competence)
       end
