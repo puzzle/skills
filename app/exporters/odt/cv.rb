@@ -11,7 +11,6 @@ module Odt
     end
 
     # rubocop:disable Metrics/MethodLength
-    # rubocop:disable Metrics/AbcSize
     def export
       country_suffix = location.country == 'DE' ? '_de' : ''
       anonymous_suffix = anon? ? '_anon' : ''
@@ -30,7 +29,6 @@ module Odt
       end
     end
     # rubocop:enable Metrics/MethodLength
-    # rubocop:enable Metrics/AbcSize
 
     private
 
@@ -100,6 +98,7 @@ module Odt
         # rubocop:disable Layout/LineLength
         report.add_field(:skills_present,
                          "Der Entwickler hat keine Skills mit Level #{skill_level_value} oder höher")
+        # rubocop:enable Layout/LineLength
       else
         report.add_field(:skills_present, 'Der Entwickler hat sich selbst eingeschätzt.')
       end
