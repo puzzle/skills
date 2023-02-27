@@ -222,24 +222,16 @@ project:
     yearFrom: 'Year from'
 projects-show:
     projects: Projects
-project-edit:
-    cancel: Cancel
-    delete: Delete
-    description: Description
-    editProject: Edit project
-    involvedTechnologies: Involved Technologies
-    project: Project
-    roleAndTasks: Role and Tasks
-    save: Save
-project-new:
-    addProject: Add Project
-    cancel: Cancel
-    description: Description
-    involvedTechnologies: Involved Technologies
-    project: Project
-    roleAndTasks: Role and Tasks
-    save: Save
-    saveAndNew: Save & New
+project-form:
+  delete: Delete
+  description: Description
+  editProject: Edit project
+  technology: Deployed technologies
+  project: Projekt
+  role: Role and Tasks
+  cancel: Cancel
+  save: Save
+  saveAndNew: Save & New
 project-show:
     description: Description
     edit: Edit
