@@ -3,31 +3,13 @@ import { setupRenderingTest } from "ember-qunit";
 import { render } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import keycloakStub from "../../helpers/keycloak-stub";
-import Service from "@ember/service";
 import page from "frontend/tests/pages/person-cv-export";
-import downloadService from "../../../app/services/download";
-import { jest } from "@jest/globals";
 
 const nonAdminKeycloakStub = keycloakStub.extend({
   hasResourceRole(resource, role) {
     return false;
   }
 });
-
-let mockDownloadSerice = Service.extend({
-  file(url) {
-    return url;
-  }
-});
-export let downloads;
-export function setup(context) {
-  context.application.register("service:mockDownloads", mockDownloadSerice);
-  context.application.inject("component", "downloads", "service:mockDownloads");
-  downloads = {
-    file:
-      "/api/people/16.odt?anon=false&location=1&includeCS=true&skillsByInterests=true&levelValue=2"
-  };
-}
 
 module("Integration | Component | person-cv-export", function(hooks) {
   setupRenderingTest(hooks);
@@ -71,19 +53,15 @@ module("Integration | Component | person-cv-export", function(hooks) {
     let toggle = this.element.querySelector("#levelSkillsToggle");
     toggle.click();
 
+    assert.ok(this.element.textContent.trim().includes("Trainee"));
     await page.personSkillSlider.levelButtons.objectAt(3).click();
-    assert.equal(this.levelValue, 2);
+    assert.ok(this.element.textContent.trim().includes("Expert"));
   });
 
   test("it generates right url", async function(assert) {
     this.owner.register("service:keycloak-session", nonAdminKeycloakStub);
 
     await render(hbs`{{person-cv-export}}`);
-
-    let downloadServiceSpy = jest.spyOn(
-      downloadService.file,
-      "downloadService"
-    );
 
     this.levelValue = 2;
     this.$("button")[2].click();
