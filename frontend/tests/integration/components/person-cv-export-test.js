@@ -4,12 +4,20 @@ import { render } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import keycloakStub from "../../helpers/keycloak-stub";
 import page from "frontend/tests/pages/person-cv-export";
+import $ from "jquery";
+import Service from "@ember/service";
 
 const nonAdminKeycloakStub = keycloakStub.extend({
   hasResourceRole(resource, role) {
     return false;
   }
 });
+
+class DownloadService extends Service {
+  file(url) {
+    return url;
+  }
+}
 
 module("Integration | Component | person-cv-export", function(hooks) {
   setupRenderingTest(hooks);
@@ -50,6 +58,12 @@ module("Integration | Component | person-cv-export", function(hooks) {
 
     await render(hbs`{{person-cv-export}}`);
 
+    assert.ok(
+      $(".person-skill-level")
+        .attr("class")
+        .includes("hidden")
+    );
+
     let toggle = this.element.querySelector("#levelSkillsToggle");
     toggle.click();
 
@@ -60,11 +74,15 @@ module("Integration | Component | person-cv-export", function(hooks) {
 
   test("it generates right url", async function(assert) {
     this.owner.register("service:keycloak-session", nonAdminKeycloakStub);
+    this.owner.register("service:download-service", DownloadService);
 
     await render(hbs`{{person-cv-export}}`);
 
-    this.levelValue = 2;
+    let toggle = this.element.querySelector("#levelSkillsToggle");
+    toggle.click();
+    await page.personSkillSlider.levelButtons.objectAt(3).click();
+
     this.$("button")[2].click();
-    assert.equal(downloadServiceSpy.toHaveBeenCalled(), true);
+    assert.equal(DownloadService.file().toHaveBeenCalled(), true);
   });
 });
