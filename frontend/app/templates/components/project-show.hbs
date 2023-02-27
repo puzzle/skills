@@ -18,23 +18,21 @@
         <tbody>
           <tr>
             <th scope="row" class="w-25"> {{t "project-show.description"}} </th>
-            <td class="text-table-left cv-search-searchable"> {{this.project.lineBreakDescription}}</td>
+            <td class="text-table-left cv-search-searchable"> {{this.project.description}}</td>
           </tr>
           <tr>
             <th scope="row" class="w-25"> {{t "project-show.role"}} </th>
-            <td class="cv-search-searchable"> {{this.project.lineBreakRole}}</td>
+            <td class="cv-search-searchable"> {{this.project.role}}</td>
           </tr>
           <tr>
             <th scope="row" class="w-25"> {{t "project-show.technologies"}} </th>
-            <td class="cv-search-searchable"> {{this.project.lineBreakTechnology}}</td>
+            <td class="cv-search-searchable"> {{this.project.technology}}</td>
           </tr>
         </tbody>
       </table>
-      {{#if this.selectProject}}
-        <div class="mt-auto">
-          <a onclick={{action this.selectProject this.project}} role="button" class="edit-buttons"><i class="fa fa-edit"></i> {{t "project-show.edit"}}</a>
-        </div>
-      {{/if}}
+      <div class="mt-auto">
+        <a onclick={{action this.toggleEditProject}} role="button" class="edit-buttons"><i class="fa fa-edit"></i> {{t "project-show.edit"}}</a>
+      </div>
     </div>
   </div>
 </div>

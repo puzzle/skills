@@ -1,7 +1,11 @@
 import classic from "ember-classic-decorator";
-import { tagName } from "@ember-decorators/component";
 import Component from "@ember/component";
+import { action } from "@ember/object";
 
 @classic
-@tagName("")
-export default class ProjectShow extends Component {}
+export default class ProjectShow extends Component {
+  @action
+  toggleEditProject() {
+    this.editProject();
+  }
+}

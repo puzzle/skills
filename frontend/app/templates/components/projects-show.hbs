@@ -1,4 +1,4 @@
-<div id="projects">
+<div id="projectsHeader">
   <div class="card-header bg-info">
     <div class="row">
       <div class="col-sm-6 header-text">
@@ -11,12 +11,14 @@
       <a onclick={{action "toggleProjectNew" true}} role="button" class={{~if (or this.projectEditing this.projectNew) "" "edit-buttons"~}}><i class="fa {{~if (or this.projectEditing this.projectNew) "" " add"~}}"></i>{{~if (or this.projectEditing this.projectNew) "" " Projekt hinzufügen"~}}</a>
       <div id="competence-content-show">
         <div class="mt-2">
-          {{component (if this.projectNew "project-new") personId=this.personId done=(action "toggleProjectNew")}}
+          {{#if this.isNewRecord}}
+             <ProjectForm @person={{@person}} @done={{toggleProjectNew}}/>
+          {{/if}}
           {{#each this.sortedProjects as |project|}}
-            {{#if (eq this.projectEditing project)}}
-              <ProjectEdit @project={{this.projectEditing}} @done={{action "toggleProjectEditing"}} />
+            {{#if (eq this.editingProject project)}}
+              <ProjectForm @person={{@person}} @project={{project}} @done={{this.abortProjectEdit}}/>
             {{else}}
-              <ProjectShow @selectProject={{if (or this.projectEditing this.projectNew) null (action (mut this.projectEditing))}} @project={{project}} />
+              <ProjectShow @project={{project}} @editProject={{action "setEditingProject" project}} />
             {{/if}}
           {{/each}}
         </div>
