@@ -2,6 +2,7 @@
 
 require 'i18n_data'
 module Odt
+  # rubocop:disable Metrics/ClassLength
   class Cv
 
     def initialize(person, params)
@@ -261,4 +262,5 @@ module Odt
     end
 
   end
+  # rubocop:enable Metrics/ClassLength
 end
