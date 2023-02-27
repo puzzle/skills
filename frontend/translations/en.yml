@@ -1,15 +1,8 @@
-activities-edit:
-    activities: Activities
-    cancel: Cancel
-    delete: Delete
-    description: Company details and description of activity
-    role: Role
-    save: Save
 activity-form:
     cancel: Cancel
     delete: Delete
     role: Role
-    description: Description
+    description: Company details and description of activity
     save: Save
     saveAndNew: Save & New
 activities-show:
@@ -19,17 +12,6 @@ activity:
     description: Beschreibung
     role: Rolle
     yearFrom: 'Jahr von'
-activity-new:
-    cancel: Cancel
-    description: Company details and description of activity
-    role: Role
-    save: Save
-    saveAndNew: Save & New
-    warning1: You tried to save a station without specifying the month.
-    warning2: Precise monthly information is required for an exact calculation of the points in the wage model.
-    warning3: Please complete your details and save again.
-    warning4: If you still want to save without specifying the month, press
-    warning5: here
 advancedTraining:
     description: Description
     name: Advanced Training
@@ -40,16 +22,6 @@ advanced-training-form:
     description: Description
     save: Save
     saveAndNew: Save & New
-advanced-training-new:
-    cancel: Cancel
-    description: Description
-    save: Save
-    saveAndNew: Save & New
-advanced-trainings-edit:
-    cancel: Cancel
-    delete: Delete
-    description: Description
-    save: Save
 advanced-trainings-show:
     advancedTraining: Advanced Training
     edit: Edit
