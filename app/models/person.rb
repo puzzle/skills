@@ -48,7 +48,9 @@ class Person < ApplicationRecord
   validates :location, :name, :title,
             :email, :shortname, length: { maximum: 100 }
 
-  validates :email, format: { with: /\A[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\z/, message: "Format nicht gültig" }
+  validates :email,
+            format: { with: /\A[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\z/,
+                      message: 'Format nicht gültig' }
 
   validates :nationality,
             inclusion: { in: ISO3166::Country.all.collect(&:alpha2) }
