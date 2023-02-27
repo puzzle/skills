@@ -1,15 +1,8 @@
-activities-edit:
-    activities: Stationen
-    cancel: Abbrechen
-    delete: Löschen
-    description: Firmenangaben und Beschreibung der Tätigkeit
-    role: Rolle
-    save: Speichern
 activity-form:
     cancel: Abbrechen
     delete: Löschen
     role: Rolle
-    description: Beschreibung
+    description: Firmenangaben und Beschreibung der Tätigkeit
     save: Speichern
     saveAndNew: Speichern & Neu
 activities-show:
@@ -19,17 +12,6 @@ activity:
     description: Beschreibung
     role: Rolle
     yearFrom: 'Jahr von'
-activity-new:
-    cancel: Abbrechen
-    description: Firmenangaben und Beschreibung der Tätigkeit
-    role: Rolle
-    save: Speichern
-    saveAndNew: Speichern & Neu
-    warning1: Du hast versucht eine Station ohne Monatsangabe zu speichern.
-    warning2: Für eine genaue Berechnung der Punkte im Lohnmodell werden genaue Monatsangaben benötigt.
-    warning3: Bitte ergänze deine Angaben und speichere noch einmal.
-    warning4: Wenn du trotzdem ohne Monatsangabe speichern möchtest, drücke
-    warning5: hier
 advancedTraining:
     description: Beschreibung
     name: Weiterbildung

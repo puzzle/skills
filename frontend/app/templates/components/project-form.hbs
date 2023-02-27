@@ -7,8 +7,8 @@
         </div>
       </div>
       <div class="col-sm-6 content-input">
-        <label for={{concat this.elementId "-" this.record.id "-title"}}>{{t "project-form.title"}}</label>
-        <Input @id={{concat this.elementId "-" this.record.id "-title"}} @value={{this.record.title}} class="input-xxlarge form-control" />
+        <label for={{concat this.elementId "-" this.record.id "-project"}}>{{t "project-form.project"}}</label>
+        <Input @id={{concat this.elementId "-" this.record.id "-project"}} @value={{this.record.title}} class="input-xxlarge form-control" />
         <label for={{concat this.elementId "-" this.record.id "-description"}}>{{t "project-form.description"}}</label>
         <Textarea @id={{concat this.elementId "-" this.record.id "-description"}} @value={{this.record.description}} class="input-xxlarge form-control" />
         <label class="mt-2" for={{concat this.elementId "-" this.record.id "-role"}}>{{t "project-form.role"}}</label>
