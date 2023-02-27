@@ -5,7 +5,7 @@ import {
 export default {
   name: [validatePresence(true)],
   email: [
-    validatePresence(true),
+    validatePresence({ presence: true, message: "Email kann nicht leer sein" }),
     validateFormat({
       type: "email",
       message: "Gib eine gültige Email Adresse ein"
