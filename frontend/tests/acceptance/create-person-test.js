@@ -2,6 +2,7 @@ import { module, test, skip } from "qunit";
 import page from "frontend/tests/pages/people-new";
 import { openDatepicker } from "ember-pikaday/helpers/pikaday";
 import $ from "jquery";
+import { click } from "@ember/test-helpers";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
 import { currentURL } from "@ember/test-helpers";
 import { selectChoose } from "ember-power-select/test-support";
@@ -98,9 +99,8 @@ module("Acceptance | create person", function(hooks) {
     await selectChoose("#company", "Bewerber");
     await selectChoose("#maritalStatus", ".ember-power-select-option", 0);
 
-    const button = document.querySelector("#submit-button");
-    button.click();
+    await click("button#submit-button");
 
-    await assert.dom().includesText("Format nicht gültig");
+    assert.dom().includesText("Format nicht gültig");
   });
 });
