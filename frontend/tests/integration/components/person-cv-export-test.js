@@ -13,14 +13,18 @@ const nonAdminKeycloakStub = keycloakStub.extend({
   }
 });
 
-class DownloadService extends Service {
+class MockDownloadService extends Service {
   file(url) {
-    return url;
+    return "api/person";
   }
 }
 
 module("Integration | Component | person-cv-export", function(hooks) {
   setupRenderingTest(hooks);
+
+  hooks.beforeEach(function() {
+    this.owner.register("service:download", MockDownloadService);
+  });
 
   test("it renders export pop up", async function(assert) {
     this.owner.register("service:keycloak-session", nonAdminKeycloakStub);
@@ -74,7 +78,6 @@ module("Integration | Component | person-cv-export", function(hooks) {
 
   test("it generates right url", async function(assert) {
     this.owner.register("service:keycloak-session", nonAdminKeycloakStub);
-    this.owner.register("service:download-service", DownloadService);
 
     await render(hbs`{{person-cv-export}}`);
 
@@ -82,7 +85,8 @@ module("Integration | Component | person-cv-export", function(hooks) {
     toggle.click();
     await page.personSkillSlider.levelButtons.objectAt(3).click();
 
-    this.$("button")[2].click();
-    assert.equal(DownloadService.file().toHaveBeenCalled(), true);
+    this.$("button")[1].click();
+
+    assert.equal(MockDownloadService.toHaveBeenCalled(), true);
   });
 });
