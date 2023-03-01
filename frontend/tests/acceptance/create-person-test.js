@@ -4,6 +4,7 @@ import { openDatepicker } from "ember-pikaday/helpers/pikaday";
 import $ from "jquery";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
 import { currentURL } from "@ember/test-helpers";
+import { selectChoose } from "ember-power-select/test-support";
 
 module("Acceptance | create person", function(hooks) {
   setupApplicationTest(hooks);
@@ -76,5 +77,30 @@ module("Acceptance | create person", function(hooks) {
 
     assert.equal(currentURL(), "/people/new");
     // TODO expect errors!
+  });
+
+  test("should display error when email is invalid", async function(assert) {
+    await page.newPersonPage.visit();
+    assert.equal(currentURL(), "/people/new");
+
+    page.newPersonPage.toggleNewForm();
+
+    await page.newForm.name("Findus");
+    await page.newForm.title("Sofware Developer");
+    await page.newForm.shortname("FI");
+    await page.newForm.location("Bern");
+
+    let interactor = openDatepicker($(".birthdate_pikaday > input"));
+
+    interactor.selectDate(new Date(2019, 1, 19));
+
+    await selectChoose("#department", "/dev/ruby");
+    await selectChoose("#company", "Bewerber");
+    await selectChoose("#maritalStatus", ".ember-power-select-option", 0);
+
+    const button = document.querySelector("#submit-button");
+    button.click();
+
+    await assert.dom().includesText("Format nicht gültig");
   });
 });

@@ -13,13 +13,13 @@
           <table class="table-person mb-3">
             <tbody>
               <tr>
-                <td><label for="name">{{t "person-new.name"}}</label><Input @id="name" @value={{this.newPerson.name}} @type="text"/></td>
+                <td><label for="name">{{t "person-new.name"}}</label><Input name="name" @id="name" @value={{this.newPerson.name}} @type="text"/></td>
               </tr>
               <tr>
-                <td><label for="email">Email</label><Input @id="email" @value={{this.newPerson.email}} @type="text"/></td>
+                <td><label for="email">Email</label><Input name="email" @id="email" @value={{this.newPerson.email}} @type="text"/></td>
               </tr>
               <tr>
-                <td><label for="title">{{t "person-new.degree"}}</label><Input @id="title" @value={{this.newPerson.title}} @type="text"/></td>
+                <td><label for="title">{{t "person-new.degree"}}</label><Input name="title" @id="title" @value={{this.newPerson.title}} @type="text"/></td>
               </tr>
               <tr>
                 <label>{{t "person-new.functions"}}</label>
@@ -47,7 +47,7 @@
                         {{/if}}
                       </div>
                       <div class="percent-field">
-                        <input placeholder="in %" type="number" value={{personRole.percent}} onchange={{action "setRolePercent" personRole}} max="9999">
+                        <input name="rolePercent" placeholder="in %" type="number" value={{personRole.percent}} onchange={{action "setRolePercent" personRole}} max="9999">
                       </div>
                       <div class="delete-role-icon">
                         <DeleteWithConfirmation @entry={{personRole}} @class="edit-buttons" />
@@ -81,7 +81,7 @@
                 </td>
               </tr>
               <tr>
-                <td><label for="location">{{t "person-new.placeOfResidence"}}</label><Input @id="location" @value={{this.newPerson.location}} @type="text"/></td>
+                <td><label for="location">{{t "person-new.placeOfResidence"}}</label><Input name="location" @id="location" @value={{this.newPerson.location}} @type="text"/></td>
               </tr>
             </tbody>
           </table>
@@ -132,7 +132,7 @@
                 </td>
               </tr>
               <tr>
-                <td><label for="shortname">{{t "person-new.shortname"}}</label><Input @id="shortname" @value={{this.newPerson.shortname}} @type="text"/></td>
+                <td><label for="shortname">{{t "person-new.shortname"}}</label><Input name="shortname" @id="shortname" @value={{this.newPerson.shortname}} @type="text"/></td>
               </tr>
             </tbody>
           </table>
