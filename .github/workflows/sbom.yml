@@ -1,0 +1,47 @@
+name: SBOM Generator
+
+on:
+  push:
+    branches:
+      - 'master'
+
+  workflow_dispatch:
+
+permissions: read-all
+
+jobs:
+  generate-and-push-sbom:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install cdxgen
+        run: |
+          npm install -g @cyclonedx/cdxgen
+
+      - name: 'Generate SBOM for ruby dependencies'
+        run: |
+          cdxgen -o ./sbom-ruby.xml -t ruby .
+
+      - name: 'Generate SBOM for npm dependencies'
+        working-directory: frontend
+        run: |
+          cdxgen -o ../sbom-npm.xml -t npm .
+
+      - name: 'Merge frontend and backend SBOMs'
+        run: |
+          docker run --rm -v $(pwd):/data cyclonedx/cyclonedx-cli merge --input-files data/sbom-ruby.xml data/sbom-npm.xml --output-file data/sbom.xml
+
+      - name: 'Push merged SBOM to dependency track'
+        env:
+          PROJECT_NAME: skills
+        run: |
+          curl --verbose -s --location --request POST ${{ secrets.DEPENDENCY_TRACK_URL }} \
+          --header "X-Api-Key: ${{ secrets.DEPENDENCY_TRACK_API_KEY }}" \
+          --header "Content-Type: multipart/form-data" \
+          --form "autoCreate=true" \
+          --form "projectName=${PROJECT_NAME:-$GITHUB_REPOSITORY}" \
+          --form "projectVersion=latest" \
+          --form "bom=@sbom.xml"
