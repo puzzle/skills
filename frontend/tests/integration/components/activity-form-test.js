@@ -39,11 +39,15 @@ module("Integration | Component | activity-form", function(hooks) {
   });
 
   test("should render all english translations correctly", async function(assert) {
-    assert.expect(5);
+    assert.expect(6);
+
+    this.set("mockActivity", {
+      id: 1
+    });
 
     setLocale("en");
 
-    await render(hbs`<ActivityForm @activity={{null}} />`);
+    await render(hbs`<ActivityForm @activity={{mockActivity}} />`);
 
     assert.equal(this.element.querySelector("#role-label").innerHTML, "Role");
     assert.equal(
@@ -53,6 +57,10 @@ module("Integration | Component | activity-form", function(hooks) {
     assert.equal(
       this.element.querySelector("#submit-activity-button").innerHTML,
       "Save"
+    );
+    assert.equal(
+      this.element.querySelector("#delete-with-confirmation").innerText,
+      " Delete"
     );
     assert.equal(
       this.element.querySelector("#save-and-new-button").innerHTML,
@@ -66,11 +74,15 @@ module("Integration | Component | activity-form", function(hooks) {
   });
 
   test("should render all german translations correctly", async function(assert) {
-    assert.expect(5);
+    assert.expect(6);
+
+    this.set("mockActivity", {
+      id: 1
+    });
 
     setLocale("de");
 
-    await render(hbs`<ActivityForm @activity={{null}} />`);
+    await render(hbs`<ActivityForm @activity={{mockActivity}} />`);
 
     assert.equal(this.element.querySelector("#role-label").innerHTML, "Rolle");
     assert.equal(
@@ -80,6 +92,10 @@ module("Integration | Component | activity-form", function(hooks) {
     assert.equal(
       this.element.querySelector("#submit-activity-button").innerHTML,
       "Speichern"
+    );
+    assert.equal(
+      this.element.querySelector("#delete-with-confirmation").innerText,
+      " Löschen"
     );
     assert.equal(
       this.element.querySelector("#save-and-new-button").innerHTML,

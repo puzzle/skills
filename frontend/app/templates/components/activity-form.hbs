@@ -16,7 +16,7 @@
         <button type="button" {{on "click" (fn this.submit record)}} role="button" id="submit-activity-button" class="btn btn-primary m-2">{{t "activity-form.save"}}</button>
         {{#if this.record.id}}
           <button type="button" id="delete-activity-icon" class="btn btn-info border m-2">
-            <DeleteWithConfirmation @entry={{this.record}} @didDelete={{this.abort}}>
+            <DeleteWithConfirmation id="delete-with-confirmation" @entry={{this.record}} @didDelete={{this.abort}}>
               {{t "activity-form.delete"}}
             </DeleteWithConfirmation>
           </button>

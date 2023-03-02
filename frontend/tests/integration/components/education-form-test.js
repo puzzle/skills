@@ -1,6 +1,6 @@
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
-import { render, click } from "@ember/test-helpers";
+import { render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setLocale } from "ember-intl/test-support";
 
@@ -26,11 +26,15 @@ module("Integration | Component | education-form", function(hooks) {
   });
 
   test("should render all english translations correctly", async function(assert) {
-    assert.expect(5);
+    assert.expect(6);
+
+    this.set("mockEducation", {
+      id: 1
+    });
 
     setLocale("en");
 
-    await render(hbs`<EducationForm @education={{null}} />`);
+    await render(hbs`<EducationForm @education={{mockEducation}} />`);
 
     assert.equal(
       this.element.querySelector("#title-label").innerHTML,
@@ -45,6 +49,10 @@ module("Integration | Component | education-form", function(hooks) {
       "Save"
     );
     assert.equal(
+      this.element.querySelector("#delete-with-confirmation").innerText,
+      " Delete"
+    );
+    assert.equal(
       this.element.querySelector("#save-and-new-button").innerHTML,
       //HTML doesn't recognize '&' but it will recognize &amp; because it is equal to & in HTML
       "Save &amp; New"
@@ -56,11 +64,15 @@ module("Integration | Component | education-form", function(hooks) {
   });
 
   test("should render all german translations correctly", async function(assert) {
-    assert.expect(5);
+    assert.expect(6);
+
+    this.set("mockEducation", {
+      id: 1
+    });
 
     setLocale("de");
 
-    await render(hbs`<EducationForm @education={{null}} />`);
+    await render(hbs`<EducationForm @education={{mockEducation}} />`);
 
     assert.equal(
       this.element.querySelector("#title-label").innerHTML,
@@ -73,6 +85,10 @@ module("Integration | Component | education-form", function(hooks) {
     assert.equal(
       this.element.querySelector("#submit-education-button").innerHTML,
       "Speichern"
+    );
+    assert.equal(
+      this.element.querySelector("#delete-with-confirmation").innerText,
+      " Löschen"
     );
     assert.equal(
       this.element.querySelector("#save-and-new-button").innerHTML,
@@ -93,4 +109,12 @@ module("Integration | Component | education-form", function(hooks) {
     assert.equal(this.element.querySelector("#title-input").value, "");
     assert.equal(this.element.querySelector("#location-input").value, "");
   });
+
+  // test("should save and new when pressing save and new button", async function(assert) {
+  //   assert.expect(1);
+  //
+  //   await render(hbs`<EducationForm @education={{null}} />`);
+  //
+  //   await click("#cancel-button");
+  // });
 });

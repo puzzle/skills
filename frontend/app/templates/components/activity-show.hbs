@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-3 text-center">
+  <div id="date" class="col-sm-3 text-center">
     {{if @activity.monthFrom (concat (moment-format @activity.monthFrom "MM" "MM") ".")}}{{@activity.yearFrom}}
     {{#if (eq @activity.yearTo null)}}
     - heute
@@ -8,7 +8,8 @@
     {{/if}}
   </div>
   <div class="col-sm-9 cv-search-searchable">
-    <strong class="activity-entity">{{@activity.role}}</strong>
-    <br>{{@activity.description}}
+    <strong id="role" class="activity-entity">{{@activity.role}}</strong>
+    <br>
+    <p id="description">{{@activity.description}}</p>
   </div>
 </div>

@@ -1,64 +1,66 @@
-import { module, test, skip } from "qunit";
+import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 import { render } from "@ember/test-helpers";
-import hbs from "htmlbars-inline-precompile";
+import { hbs } from "ember-cli-htmlbars";
+import { setLocale } from "ember-intl/test-support";
 
-module("project-show", "Integration | Component | project show", function(
-  hooks
-) {
+module("Integration | Component | project-show", function(hooks) {
   setupRenderingTest(hooks);
 
-  test("it renders project", async function(assert) {
-    this.set("project", {
-      title: "Dreaming Project",
-      lineBreakDescription: "Schlafen",
-      lineBreakRole: "Träumer",
-      yearFrom: 1990,
-      monthFrom: 2,
-      yearTo: 1991,
-      monthTo: 2,
-      lineBreakTechnology: "Java"
+  test("should render component with correct values", async function(assert) {
+    assert.expect(4);
+
+    this.set("mockProject", {
+      title: "Designing designs",
+      description:
+        "In this project we Designers design designs to improve UX design",
+      role: "Designer",
+      technology: "Design Pro+ HD XD Premium Gold",
+      monthFrom: 7,
+      monthTo: 8,
+      yearFrom: 1969,
+      yearTo: 1970
     });
 
-    await render(hbs`{{project-show
-    project=project
-    selectProject=(action (mut projectEditing))
-  }}`);
+    await render(hbs`<ProjectShow @project={{mockProject}} />`);
+    assert.equal(
+      this.element.querySelector("#date-title").innerText,
+      "07.1969 - 08.1970 | Designing designs"
+    );
+    assert.equal(
+      this.element.querySelector("#description").innerHTML,
+      "In this project we Designers design designs to improve UX design"
+    );
+    assert.equal(this.element.querySelector("#role").innerHTML, "Designer");
+    assert.equal(
+      this.element.querySelector("#technology").innerHTML,
+      "Design Pro+ HD XD Premium Gold"
+    );
+  });
 
-    assert.ok(this.element.textContent.trim().includes("Dreaming Project"));
-    assert.ok(this.element.textContent.trim().includes("Schlafen"));
-    assert.ok(this.element.textContent.trim().includes("Träumer"));
-    assert.ok(this.element.textContent.trim().includes("1990"));
-    assert.ok(this.element.textContent.trim().includes("1991"));
-    assert.ok(this.element.textContent.trim().includes("Java"));
+  test("should render all german translations correctly", async function(assert) {
+    assert.expect(1);
 
-    skip("project description, role and technology preserves whitespace", function(assert) {
-      this.set("activity", {
-        description: "Preserves\nwhitespaces",
-        role: "Träumer",
-        year_from: "1990",
-        year_to: "1991"
-      });
+    setLocale("de");
 
-      this.set("project", {
-        title: "Dreaming Project",
-        description: "Schlafen",
-        role: "Träumer",
-        technology: "Ruby",
-        year_from: "1990",
-        year_to: "1991"
-      });
-      this.render(hbs`{{project-show
-    project=project
-    selectProject=(action (mut projectEditing))
-  }}`);
+    await render(hbs`<ProjectShow @project={{null}} />`);
 
-      let $elements = this.$(
-        '[href="#collapseProjectDreaming Project"].project-title-text,' +
-          '[id="collapseProjectDreaming Project"] div.col-sm-10'
-      );
+    assert.equal(
+      this.element.querySelector("#project-edit-button").innerText,
+      "Bearbeiten"
+    );
+  });
 
-      assert.equal($elements.length, 2);
-    });
+  test("should render all english translations correctly", async function(assert) {
+    assert.expect(1);
+
+    setLocale("en");
+
+    await render(hbs`<ProjectShow @project={{null}} />`);
+
+    assert.equal(
+      this.element.querySelector("#project-edit-button").innerText,
+      "Edit"
+    );
   });
 });

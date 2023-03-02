@@ -35,11 +35,17 @@ module("Integration | Component | advanced-training-form", function(hooks) {
   });
 
   test("should render all english translations correctly", async function(assert) {
-    assert.expect(4);
+    assert.expect(5);
+
+    this.set("mockAdvancedTraining", {
+      id: 1
+    });
 
     setLocale("en");
 
-    await render(hbs`<AdvancedTrainingForm @advancedTraining={{null}} />`);
+    await render(
+      hbs`<AdvancedTrainingForm @advancedTraining={{mockAdvancedTraining}} />`
+    );
 
     assert.equal(
       this.element.querySelector("#description-label").innerHTML,
@@ -48,6 +54,10 @@ module("Integration | Component | advanced-training-form", function(hooks) {
     assert.equal(
       this.element.querySelector("#submit-advanced-training-button").innerHTML,
       "Save"
+    );
+    assert.equal(
+      this.element.querySelector("#delete-with-confirmation").innerText,
+      " Delete"
     );
     assert.equal(
       this.element.querySelector("#save-and-new-button").innerHTML,
@@ -61,11 +71,17 @@ module("Integration | Component | advanced-training-form", function(hooks) {
   });
 
   test("should render all german translations correctly", async function(assert) {
-    assert.expect(4);
+    assert.expect(5);
+
+    this.set("mockAdvancedTraining", {
+      id: 1
+    });
 
     setLocale("de");
 
-    await render(hbs`<AdvancedTrainingForm @advancedTraining={{null}} />`);
+    await render(
+      hbs`<AdvancedTrainingForm @advancedTraining={{mockAdvancedTraining}} />`
+    );
 
     assert.equal(
       this.element.querySelector("#description-label").innerHTML,
@@ -74,6 +90,10 @@ module("Integration | Component | advanced-training-form", function(hooks) {
     assert.equal(
       this.element.querySelector("#submit-advanced-training-button").innerHTML,
       "Speichern"
+    );
+    assert.equal(
+      this.element.querySelector("#delete-with-confirmation").innerText,
+      " Löschen"
     );
     assert.equal(
       this.element.querySelector("#save-and-new-button").innerHTML,
