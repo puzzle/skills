@@ -40,6 +40,8 @@ jobs:
         working-directory: frontend
         run: |
           cdxgen -o ./sbom-npm.xml -t npm .
+          ls
+          pwd
 
       - name: 'Merge frontend and backend SBOMs'
         run: |
