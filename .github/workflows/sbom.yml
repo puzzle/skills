@@ -26,6 +26,7 @@ jobs:
           cdxgen -o ./sbom-ruby.xml -t ruby .
 
       - name: 'Generate SBOM for npm dependencies'
+        working-directory: frontend
         run: |
           cdxgen -o ./sbom-npm.xml -t npm .
 
