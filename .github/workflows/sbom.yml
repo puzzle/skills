@@ -3,7 +3,7 @@ name: SBOM Generator
 on:
   push:
     branches:
-      - '**'
+      - 'master'
 
   workflow_dispatch:
 
@@ -17,26 +17,15 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: 'Set up Node'
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-
       - name: Install cdxgen
-        env:
-          SCAN_DEBUG_MODE: debug
         run: |
           npm install -g @cyclonedx/cdxgen
 
       - name: 'Generate SBOM for ruby dependencies'
-        env:
-          SCAN_DEBUG_MODE: debug
         run: |
           cdxgen -o ./sbom-ruby.xml -t ruby .
 
       - name: 'Generate SBOM for npm dependencies'
-        env:
-          SCAN_DEBUG_MODE: debug
         working-directory: frontend
         run: |
           cdxgen -o ../sbom-npm.xml -t npm .
@@ -55,5 +44,5 @@ jobs:
           --header "Content-Type: multipart/form-data" \
           --form "autoCreate=true" \
           --form "projectName=${PROJECT_NAME:-$GITHUB_REPOSITORY}" \
-          --form "projectVersion=${PROJECT_VERSION:-$GITHUB_REF}" \
+          --form "projectVersion=latest" \
           --form "bom=@sbom.xml"
