@@ -37,7 +37,6 @@ jobs:
       - name: 'Push merged SBOM to dependency track'
         env:
           PROJECT_NAME: skills
-          PROJECT_VERSION: ${{ github.ref_name }}
         run: |
           curl --verbose -s --location --request POST ${{ secrets.DEPENDENCY_TRACK_URL }} \
           --header "X-Api-Key: ${{ secrets.DEPENDENCY_TRACK_API_KEY }}" \
