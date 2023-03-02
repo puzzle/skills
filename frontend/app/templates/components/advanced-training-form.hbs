@@ -7,8 +7,8 @@
         </div>
       </div>
       <div class="col-sm-6 content-input">
-        <label class="mt-2" for={{concat this.elementId "-" this.record.id "-loc"}}>{{t "advanced-training-form.description"}}</label>
-        <Textarea @id={{concat this.elementId "-" this.record.id "-loc"}} @value={{this.record.description}} class="input-xxlarge form-control" />
+        <label id="description-label" class="mt-2" for={{concat this.elementId "-" this.record.id "-loc"}}>{{t "advanced-training-form.description"}}</label>
+        <Textarea id="description-input" @id={{concat this.elementId "-" this.record.id "-loc"}} @value={{this.record.description}} class="input-xxlarge form-control" />
       </div>
       <div class="col-md-3 centered-content d-flex flex-column mt-4 px-5">
         <button type="button" {{on "click" (fn this.submit record)}} role="button" id="submit-advanced-training-button" class="btn btn-primary m-2">{{t "advanced-training-form.save"}}</button>
@@ -18,11 +18,9 @@
               {{t "advanced-training-form.delete"}}
             </DeleteWithConfirmation>
           </button>
-          <button type="button" {{on "click" (fn this.submitAndNew record)}} role="button" class="btn btn-info border m-2">{{t "advanced-training-form.saveAndNew"}}</button>
-        {{else}}
-          <button type="button" {{on "click" (fn this.submitAndNew record)}} role="button" class="btn btn-info border m-2">{{t "advanced-training-form.saveAndNew"}}</button>
         {{/if}}
-        <a href="#" {{on "click" this.abort}} role="button" id="submit-button" class="abort-edit-buttons text-center mx-4">{{t "advanced-training-form.cancel"}}</a>
+        <button id="save-and-new-button" type="button" {{on "click" (fn this.submitAndNew record)}} role="button" class="btn btn-info border m-2">{{t "advanced-training-form.saveAndNew"}}</button>
+        <a href="#" {{on "click" this.abort}} role="button" id="cancel-button" class="abort-edit-buttons text-center mx-4">{{t "advanced-training-form.cancel"}}</a>
       </div>
     </div>
   </div>

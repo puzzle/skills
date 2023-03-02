@@ -199,7 +199,7 @@ project-form:
   description: Description
   editProject: Edit project
   technology: Deployed technologies
-  project: Projekt
+  project: Project
   role: Role and Tasks
   cancel: Cancel
   save: Save

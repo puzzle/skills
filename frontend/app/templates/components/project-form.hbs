@@ -7,28 +7,26 @@
         </div>
       </div>
       <div class="col-sm-6 content-input">
-        <label for={{concat this.elementId "-" this.record.id "-project"}}>{{t "project-form.project"}}</label>
-        <Input @id={{concat this.elementId "-" this.record.id "-project"}} @value={{this.record.title}} class="input-xxlarge form-control" />
-        <label for={{concat this.elementId "-" this.record.id "-description"}}>{{t "project-form.description"}}</label>
-        <Textarea @id={{concat this.elementId "-" this.record.id "-description"}} @value={{this.record.description}} class="input-xxlarge form-control" />
-        <label class="mt-2" for={{concat this.elementId "-" this.record.id "-role"}}>{{t "project-form.role"}}</label>
-        <Textarea @id={{concat this.elementId "-" this.record.id "-role"}} @value={{this.record.role}} class="input-xxlarge form-control" />
-        <label class="mt-2" for={{concat this.elementId "-" this.record.id "-technology"}}>{{t "project-form.technology"}}</label>
-        <Textarea @id={{concat this.elementId "-" this.record.id "-technology"}} @value={{this.record.technology}} class="input-xxlarge form-control" />
+        <label id="title-label" for={{concat this.elementId "-" this.record.id "-project"}}>{{t "project-form.project"}}</label>
+        <Input id="title-input" @id={{concat this.elementId "-" this.record.id "-project"}} @value={{this.record.title}} class="input-xxlarge form-control" />
+        <label id="description-label" for={{concat this.elementId "-" this.record.id "-description"}}>{{t "project-form.description"}}</label>
+        <Textarea id="description-input" @id={{concat this.elementId "-" this.record.id "-description"}} @value={{this.record.description}} class="input-xxlarge form-control" />
+        <label id="role-label" class="mt-2" for={{concat this.elementId "-" this.record.id "-role"}}>{{t "project-form.role"}}</label>
+        <Textarea id="role-input" @id={{concat this.elementId "-" this.record.id "-role"}} @value={{this.record.role}} class="input-xxlarge form-control" />
+        <label id="technology-label" class="mt-2" for={{concat this.elementId "-" this.record.id "-technology"}}>{{t "project-form.technology"}}</label>
+        <Textarea id="technology-input" @id={{concat this.elementId "-" this.record.id "-technology"}} @value={{this.record.technology}} class="input-xxlarge form-control" />
       </div>
       <div class="col-md-3 centered-content d-flex flex-column mt-4 px-5">
         <button type="button" {{on "click" (fn this.submit record)}} role="button" id="submit-project-button" class="btn btn-primary m-2">{{t "project-form.save"}}</button>
         {{#if this.record.id}}
           <button type="button" id="delete-project-icon" class="btn btn-info border m-2">
-            <DeleteWithConfirmation @entry={{this.record}} @didDelete={{this.abort}}>
+            <DeleteWithConfirmation id="delete-button" @entry={{this.record}} @didDelete={{this.abort}}>
               {{t "project-form.delete"}}
             </DeleteWithConfirmation>
           </button>
-          <button type="button" {{on "click" (fn this.submitAndNew record)}} role="button" class="btn btn-info border m-2">{{t "project-form.saveAndNew"}}</button>
-        {{else}}
-          <button type="button" {{on "click" (fn this.submitAndNew record)}} role="button" class="btn btn-info border m-2">{{t "project-form.saveAndNew"}}</button>
         {{/if}}
-        <a href="#" {{on "click" this.abort}} role="button" id="submit-button" class="abort-edit-buttons text-center mx-4">{{t "project-form.cancel"}}</a>
+        <button id="save-and-new-button" type="button" {{on "click" (fn this.submitAndNew record)}} role="button" class="btn btn-info border m-2">{{t "project-form.saveAndNew"}}</button>
+        <a href="#" {{on "click" this.abort}} role="button" id="cancel-button" class="abort-edit-buttons text-center mx-4">{{t "project-form.cancel"}}</a>
       </div>
     </div>
   </div>
