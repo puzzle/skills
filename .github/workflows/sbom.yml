@@ -18,22 +18,18 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install cdxgen
-        working-directory: skills
         run: |
           npm install -g @appthreat/cdxgen
 
       - name: 'Generate SBOM for ruby dependencies'
-        working-directory: skills
         run: |
           cdxgen -o ./sbom-ruby.xml -t ruby .
 
       - name: 'Generate SBOM for npm dependencies'
-        working-directory: skills
         run: |
           cdxgen -o ./sbom-npm.xml -t npm .
 
       - name: 'Merge frontend and backend SBOMs'
-        working-directory: skills
         run: |
           docker run --rm -v $(pwd):/data cyclonedx/cyclonedx-cli merge --input-files data/sbom-ruby.xml data/sbom-npm.xml --output-file data/sbom.xml
 
@@ -41,7 +37,6 @@ jobs:
         env:
           PROJECT_NAME: skills
           PROJECT_VERSION: ${{ github.ref_name }}
-        working-directory: skills
         run: |
           curl --verbose -s --location --request POST ${{ secrets.DEPENDENCY_TRACK_URL }} \
           --header "X-Api-Key: ${{ secrets.DEPENDENCY_TRACK_API_KEY }}" \
