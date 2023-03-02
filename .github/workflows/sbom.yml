@@ -26,7 +26,7 @@ jobs:
         env:
           SCAN_DEBUG_MODE: debug
         run: |
-          npm install -g @appthreat/cdxgen
+          npm install -g @cyclonedx/cdxgen
 
       - name: 'Generate SBOM for ruby dependencies'
         env:
