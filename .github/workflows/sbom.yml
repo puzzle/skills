@@ -23,14 +23,20 @@ jobs:
           node-version: '14'
 
       - name: Install cdxgen
+        env:
+          SCAN_DEBUG_MODE: debug
         run: |
           npm install -g @appthreat/cdxgen
 
       - name: 'Generate SBOM for ruby dependencies'
+        env:
+          SCAN_DEBUG_MODE: debug
         run: |
           cdxgen -o ./sbom-ruby.xml -t ruby .
 
       - name: 'Generate SBOM for npm dependencies'
+        env:
+          SCAN_DEBUG_MODE: debug
         working-directory: frontend
         run: |
           cdxgen -o ./sbom-npm.xml -t npm .
