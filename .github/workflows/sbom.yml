@@ -33,6 +33,8 @@ jobs:
           SCAN_DEBUG_MODE: debug
         run: |
           cdxgen -o ./sbom-ruby.xml -t ruby .
+          ls
+          pwd
 
       - name: 'Generate SBOM for npm dependencies'
         env:
@@ -45,7 +47,7 @@ jobs:
 
       - name: 'Merge frontend and backend SBOMs'
         run: |
-          docker run --rm -v $(pwd):/data cyclonedx/cyclonedx-cli merge --input-files data/sbom-ruby.xml frontend/data/sbom-npm.xml --output-file data/sbom.xml
+          docker run --rm -v $(pwd):/data cyclonedx/cyclonedx-cli merge --input-files sbom-ruby.xml frontend/sbom-npm.xml --output-file data/sbom.xml
 
       - name: 'Push merged SBOM to dependency track'
         env:
