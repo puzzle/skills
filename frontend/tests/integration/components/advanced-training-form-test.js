@@ -43,9 +43,7 @@ module("Integration | Component | advanced-training-form", function(hooks) {
 
     setLocale("en");
 
-    await render(
-      hbs`<AdvancedTrainingForm @advancedTraining={{mockAdvancedTraining}} />`
-    );
+    await render(hbs`<AdvancedTrainingForm @advancedTraining={{null}} />`);
 
     assert.equal(
       this.element.querySelector("#description-label").innerHTML,
