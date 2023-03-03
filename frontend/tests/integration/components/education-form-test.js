@@ -109,12 +109,4 @@ module("Integration | Component | education-form", function(hooks) {
     assert.equal(this.element.querySelector("#title-input").value, "");
     assert.equal(this.element.querySelector("#location-input").value, "");
   });
-
-  // test("should save and new when pressing save and new button", async function(assert) {
-  //   assert.expect(1);
-  //
-  //   await render(hbs`<EducationForm @education={{null}} />`);
-  //
-  //   await click("#cancel-button");
-  // });
 });
