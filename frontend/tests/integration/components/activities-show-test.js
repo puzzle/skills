@@ -75,7 +75,7 @@ module("Integration | Component | activities-show", function(hooks) {
   });
 
   test("should render component with 1 activity in german", async function(assert) {
-    assert.expect(4);
+    assert.expect(3);
 
     setLocale("de");
 

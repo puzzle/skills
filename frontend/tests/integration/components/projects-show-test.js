@@ -78,7 +78,7 @@ module("Integration | Component | projects-show", function(hooks) {
   });
 
   test("should render component with 1 project in german", async function(assert) {
-    assert.expect(4);
+    assert.expect(3);
 
     setLocale("de");
 
