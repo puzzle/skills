@@ -80,7 +80,7 @@ module("Acceptance | create person", function(hooks) {
     // TODO expect errors!
   });
 
-  test("should display two error when email is empty", async function(assert) {
+  test("should display two errors when email is empty", async function(assert) {
     await page.newPersonPage.visit();
     assert.equal(currentURL(), "/people/new");
 
