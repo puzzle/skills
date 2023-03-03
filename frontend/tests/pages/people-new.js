@@ -1,11 +1,10 @@
 import RSVP from "rsvp";
 import {
-  create,
-  visitable,
-  fillable,
   clickable,
+  create,
+  fillable,
   text,
-  collection
+  visitable
 } from "ember-cli-page-object";
 
 const { resolve } = RSVP;
@@ -55,33 +54,5 @@ export default create({
     language: text("[data-test-person-language]", { multiple: true }),
     maritalStatus: text("#data-test-person-marital-status"),
     shortname: text("#data-test-person-shortname")
-  },
-
-  competences: {
-    toggleForm: clickable("[data-test-competences-edit-form-toggle]"),
-    submit: clickable("#submit-button"),
-
-    list: collection({
-      itemScope: ".competence-entity",
-      item: {
-        text: text()
-      }
-    })
-  },
-
-  educations: {
-    amountOf: text("#amount-of-educations"),
-    toggleForm: clickable("#educations-content-show .zeile"),
-
-    list: collection({
-      itemScope: ".education-entity",
-      item: {
-        text: text()
-      }
-    }),
-
-    submit: clickable("#submit-education-button"),
-    delete: clickable("#delete-education-icon #deleteButton"),
-    confirm: clickable("#delete-button")
   }
 });
