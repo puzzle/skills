@@ -21,7 +21,7 @@
         {{#if (eq this.editingAdvancedTraining advanced-training)}}
           <AdvancedTrainingForm @person={{@person}} @advancedTraining={{advanced-training}} @done={{this.abortAdvancedTrainingEdit}}/>
         {{else}}
-          <div class="zeile advanced-training-row {{unless this.editingAdvancedTraining "people-skill-link"}}" {{on "click" (fn this.setEditingAdvancedTraining advanced-training)}} role="button">
+          <div class="line advanced-training-row {{unless this.editingAdvancedTraining "people-skill-link"}}" {{on "click" (fn this.setEditingAdvancedTraining advanced-training)}} role="button">
             <AdvancedTrainingShow @advancedTraining={{advanced-training}}/>
           </div>
         {{/if}}

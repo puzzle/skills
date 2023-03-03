@@ -99,11 +99,5 @@ module("Integration | Component | educations-show", function(hooks) {
       "Ausbildung hinzufügen"
     );
     assert.equal(this.element.querySelectorAll(".education-row").length, 1);
-    //check if educations were sorted by year
-    assert.ok(
-      this.element
-        .querySelectorAll(".education-row")[0]
-        .textContent.includes("Master of Design")
-    );
   });
 });

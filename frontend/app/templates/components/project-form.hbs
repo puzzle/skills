@@ -1,4 +1,4 @@
-<div class="zeile">
+<div class="line">
   <div id="project-content-edit">
     <div class="row">
       <div class="col-sm-3">
@@ -24,8 +24,9 @@
               {{t "project-form.delete"}}
             </DeleteWithConfirmation>
           </button>
+        {{else}}
+          <button id="save-and-new-button" type="button" {{on "click" (fn this.submitAndNew record)}} role="button" class="btn btn-info border m-2">{{t "project-form.saveAndNew"}}</button>
         {{/if}}
-        <button id="save-and-new-button" type="button" {{on "click" (fn this.submitAndNew record)}} role="button" class="btn btn-info border m-2">{{t "project-form.saveAndNew"}}</button>
         <a href="#" {{on "click" this.abort}} role="button" id="cancel-button" class="abort-edit-buttons text-center mx-4">{{t "project-form.cancel"}}</a>
       </div>
     </div>

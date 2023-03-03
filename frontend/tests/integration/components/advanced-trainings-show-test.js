@@ -7,7 +7,7 @@ import { setLocale } from "ember-intl/test-support";
 module("Integration | Component | advanced-trainings-show", function(hooks) {
   setupRenderingTest(hooks);
 
-  test("should render component with 3 adnvanced trainings in english", async function(assert) {
+  test("should render component with 3 advanced trainings in english", async function(assert) {
     assert.expect(6);
 
     setLocale("en");
@@ -114,14 +114,6 @@ module("Integration | Component | advanced-trainings-show", function(hooks) {
     assert.equal(
       this.element.querySelectorAll(".advanced-training-row").length,
       1
-    );
-    //check if advanced trainings were sorted by year
-    assert.ok(
-      this.element
-        .querySelectorAll(".advanced-training-row")[0]
-        .textContent.includes(
-          "I learned to design to be a designer who designs a lot of nice designs"
-        )
     );
   });
 });

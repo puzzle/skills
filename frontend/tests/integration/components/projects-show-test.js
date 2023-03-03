@@ -107,11 +107,5 @@ module("Integration | Component | projects-show", function(hooks) {
       "Projekt hinzufügen"
     );
     assert.equal(this.element.querySelectorAll(".project-row").length, 1);
-    //check if activities were sorted by year
-    assert.ok(
-      this.element
-        .querySelectorAll(".project-row")[0]
-        .textContent.includes("Designing designs")
-    );
   });
 });

@@ -25,8 +25,8 @@ module("Integration | Component | education-form", function(hooks) {
     assert.equal(this.element.querySelector("#location-input").value, "Gibb");
   });
 
-  test("should render all english translations correctly", async function(assert) {
-    assert.expect(6);
+  test("should render all english translations in edit form correctly", async function(assert) {
+    assert.expect(5);
 
     this.set("mockEducation", {
       id: 1
@@ -53,18 +53,13 @@ module("Integration | Component | education-form", function(hooks) {
       " Delete"
     );
     assert.equal(
-      this.element.querySelector("#save-and-new-button").innerHTML,
-      //HTML doesn't recognize '&' but it will recognize &amp; because it is equal to & in HTML
-      "Save &amp; New"
-    );
-    assert.equal(
       this.element.querySelector("#cancel-button").innerHTML,
       "Cancel"
     );
   });
 
-  test("should render all german translations correctly", async function(assert) {
-    assert.expect(6);
+  test("should render all german translations in edit form correctly", async function(assert) {
+    assert.expect(5);
 
     this.set("mockEducation", {
       id: 1
@@ -91,11 +86,6 @@ module("Integration | Component | education-form", function(hooks) {
       " Löschen"
     );
     assert.equal(
-      this.element.querySelector("#save-and-new-button").innerHTML,
-      //HTML doesn't recognize '&' but it will recognize &amp; because it is equal to & in HTML
-      "Speichern &amp; Neu"
-    );
-    assert.equal(
       this.element.querySelector("#cancel-button").innerHTML,
       "Abbrechen"
     );
@@ -108,5 +98,35 @@ module("Integration | Component | education-form", function(hooks) {
 
     assert.equal(this.element.querySelector("#title-input").value, "");
     assert.equal(this.element.querySelector("#location-input").value, "");
+  });
+
+  test("should render all english translations in create form correctly", async function(assert) {
+    assert.expect(1);
+
+    setLocale("en");
+
+    await render(hbs`<EducationForm @education={{null}} />`);
+
+    //Only this translation check needed, all other translations are tested in the edit state translation test
+    assert.equal(
+      this.element.querySelector("#save-and-new-button").innerHTML,
+      //HTML doesn't recognize '&' but it will recognize &amp; because it is equal to & in HTML
+      "Save &amp; New"
+    );
+  });
+
+  test("should render all german translations in create form correctly", async function(assert) {
+    assert.expect(1);
+
+    setLocale("de");
+
+    await render(hbs`<EducationForm @education={{null}} />`);
+
+    //Only this translation check needed, all other translations are tested in the edit state translation test
+    assert.equal(
+      this.element.querySelector("#save-and-new-button").innerHTML,
+      //HTML doesn't recognize '&' but it will recognize &amp; because it is equal to & in HTML
+      "Speichern &amp; Neu"
+    );
   });
 });

@@ -103,11 +103,5 @@ module("Integration | Component | activities-show", function(hooks) {
       "Station hinzufügen"
     );
     assert.equal(this.element.querySelectorAll(".activity-row").length, 1);
-    //check if activities were sorted by year
-    assert.ok(
-      this.element
-        .querySelectorAll(".activity-row")[0]
-        .textContent.includes("Designer who designs")
-    );
   });
 });

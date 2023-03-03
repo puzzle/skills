@@ -1,4 +1,4 @@
-<div class="zeile">
+<div class="line">
   <div id="advanced-training-content-edit">
     <div class="row">
       <div class="col-sm-3">
@@ -18,8 +18,9 @@
               {{t "advanced-training-form.delete"}}
             </DeleteWithConfirmation>
           </button>
+        {{else}}
+          <button id="save-and-new-button" type="button" {{on "click" (fn this.submitAndNew record)}} role="button" class="btn btn-info border m-2">{{t "advanced-training-form.saveAndNew"}}</button>
         {{/if}}
-        <button id="save-and-new-button" type="button" {{on "click" (fn this.submitAndNew record)}} role="button" class="btn btn-info border m-2">{{t "advanced-training-form.saveAndNew"}}</button>
         <a href="#" {{on "click" this.abort}} role="button" id="cancel-button" class="abort-edit-buttons text-center mx-4">{{t "advanced-training-form.cancel"}}</a>
       </div>
     </div>

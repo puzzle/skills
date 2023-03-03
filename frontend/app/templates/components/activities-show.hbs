@@ -20,7 +20,7 @@
           {{#if (eq this.editingActivity activity)}}
                     <ActivityForm @person={{@person}} @activity={{activity}} @done={{this.abortActivityEdit}}/>
                   {{else}}
-                    <div class="zeile activity-row {{unless this.editingActivity "people-skill-link"}}" {{on "click" (fn this.setEditingActivity activity)}} role="button">
+                    <div class="line activity-row {{unless this.editingActivity "people-skill-link"}}" {{on "click" (fn this.setEditingActivity activity)}} role="button">
                       <ActivityShow @activity={{activity}}/>
                     </div>
                   {{/if}}
