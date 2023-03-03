@@ -33,7 +33,7 @@ export default class ProjectsShow extends Component {
 
   get sortedProjects() {
     return !this.editingProject
-      ? sortByYear(this.args.person.projects)
+      ? sortByYear(this.args.projects)
       : this.frozenSortedProject;
   }
 

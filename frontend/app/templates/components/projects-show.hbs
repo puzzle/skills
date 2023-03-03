@@ -1,14 +1,16 @@
 <div id="projectsHeader">
   <div class="card-header bg-info">
     <div class="row">
-      <div class="col-sm-6 header-text">
+      <div class="col-sm-6 header-text" id="amount-of-projects">
         {{t "projects-show.projects"}} ({{this.amountOfProjects}})
       </div>
     </div>
   </div>
   <div class="border border-info rounded-bottom">
     <div class="card-body">
-      <a onclick={{action "toggleProjectNew" true}} role="button" class={{~if (or this.projectEditing this.projectNew) "" "edit-buttons"~}}><i class="fa {{~if (or this.projectEditing this.projectNew) "" " add"~}}"></i>{{~if (or this.projectEditing this.projectNew) "" " Projekt hinzufügen"~}}</a>
+      {{#unless this.isNewRecord}}
+        <a id="add-projects-button" onclick={{action "toggleProjectNew" true}} role="button" class="edit-buttons"><i class="fa add"></i>{{t "projects-show.add"}}</a>
+      {{/unless}}
       <div id="competence-content-show">
         <div class="mt-2">
           {{#if this.isNewRecord}}
@@ -18,7 +20,7 @@
             {{#if (eq this.editingProject project)}}
               <ProjectForm @person={{@person}} @project={{project}} @done={{this.abortProjectEdit}}/>
             {{else}}
-              <ProjectShow @project={{project}} @editProject={{action "setEditingProject" project}} />
+              <ProjectShow class="project-row" @project={{project}} @editProject={{action "setEditingProject" project}} />
             {{/if}}
           {{/each}}
         </div>

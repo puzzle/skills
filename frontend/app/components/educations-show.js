@@ -33,7 +33,7 @@ export default class EducationsShow extends Component {
 
   get sortedEducations() {
     return !this.editingEducation
-      ? sortByYear(this.args.person.educations)
+      ? sortByYear(this.args.educations)
       : this.frozenSortedEducation;
   }
 

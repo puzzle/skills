@@ -33,7 +33,7 @@ export default class AdvancedTrainingsShow extends Component {
 
   get sortedAdvancedTrainings() {
     return !this.editingAdvancedTraining
-      ? sortByYear(this.args.person.advancedTrainings)
+      ? sortByYear(this.args.advancedTrainings)
       : this.frozenSortedAdvancedTraining;
   }
 

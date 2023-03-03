@@ -33,7 +33,7 @@ export default class ActivitiesShow extends Component {
 
   get sortedActivities() {
     return !this.editingActivity
-      ? sortByYear(this.args.person.activities)
+      ? sortByYear(this.args.activities)
       : this.frozenSortedActivity;
   }
 

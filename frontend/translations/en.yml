@@ -7,7 +7,7 @@ activity-form:
     saveAndNew: Save & New
 activities-show:
     activities: Activities
-    edit: Edit
+    add: Add activity
 activity:
     description: Beschreibung
     role: Rolle
@@ -23,8 +23,8 @@ advanced-training-form:
     save: Save
     saveAndNew: Save & New
 advanced-trainings-show:
+    add: Add advanced training
     advancedTraining: Advanced Training
-    edit: Edit
 application:
     cvSearch: CV Search
     profile: Profile
@@ -69,6 +69,7 @@ education-form:
     save: Save
     saveAndNew: Save & New
 educations-show:
+    add: Add education
     education: Education
 expertise-topic-skill-value:
     comment: Comment
@@ -193,6 +194,7 @@ project:
     title: Title
     yearFrom: 'Year from'
 projects-show:
+    add: Add project
     projects: Projects
 project-form:
   delete: Delete

@@ -7,9 +7,11 @@
 </div>
 <div class="border border-info rounded-bottom">
   <div class="card-body d-flex flex-column">
-    <div class="mb-2">
-      <a {{on "click" this.toggleEducationNew}} role="button" class={{~unless this.isNewRecord "edit-buttons"~}}><i class="fa {{~unless this.isNewRecord " add"~}}"></i> {{~unless this.isNewRecord " Ausbildung hinzufügen"~}}</a>
-    </div>
+    {{#unless this.isNewRecord}}
+      <div class="mb-2">
+        <a id="add-education-button" {{on "click" this.toggleEducationNew}} role="button" class="edit-buttons"><i class="fa add"></i>{{t "educations-show.add"}}</a>
+      </div>
+    {{/unless}}
     <div id="educations-content-show">
       {{#if this.isNewRecord}}
         <EducationForm @person={{@person}} @done={{toggleEducationNew}}/>
@@ -18,7 +20,7 @@
         {{#if (eq this.editingEducation education)}}
           <EducationForm @person={{@person}} @education={{education}} @done={{this.abortEducationEdit}}/>
         {{else}}
-          <div class="zeile {{unless this.editingEducation "people-skill-link"}}" {{on "click" (fn this.setEditingEducation education)}} role="button">
+          <div class="zeile education-row {{unless this.editingEducation "people-skill-link"}}" {{on "click" (fn this.setEditingEducation education)}} role="button">
             <EducationShow @education={{education}}/>
           </div>
         {{/if}}
