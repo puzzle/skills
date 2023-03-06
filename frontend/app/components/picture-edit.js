@@ -1,71 +1,29 @@
 import classic from "ember-classic-decorator";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
-import PromiseProxyMixin from "@ember/object/promise-proxy-mixin";
-import ObjectProxy from "@ember/object/proxy";
-import Component from "@ember/component";
-
-@classic
-class ObjectPromiseProxy extends ObjectProxy.extend(PromiseProxyMixin) {}
+import Component from "@glimmer/component";
 
 @classic
 export default class PictureEdit extends Component {
-  @service ajax;
-
-  uploadImage(file) {
-    let formData = new FormData();
-
+  @service notify;
+  @action
+  uploadImage(e) {
+    let file = e.target.files[0];
     if (!/\.(?:jpe?g|png|gif|svg|bmp)$/i.test(file.name)) {
-      this.get("notify").alert("Invalider Datentyp");
+      this.notify.alert("Invalider Datentyp");
       return;
     }
 
     if (file.size > 10000000) {
       //10MB
-      this.get("notify").alert("Datei ist zu gross, max 10MB");
+      this.notify.alert("Datei ist zu gross, max 10MB");
       return;
     }
-
-    formData.append("picture", file);
-
-    let res = this.get("ajax").put(this.get("uploadPath"), {
-      contentType: false,
-      processData: false,
-      timeout: 5000,
-      data: formData
-    });
-
-    let oldPicture = this.get("picturePath");
-    this.set("picturePath", URL.createObjectURL(file));
-
-    res
-      .then(res =>
-        this.set("picturePath", `${res.data.picture_path}?${Date.now()}`)
-      )
-      .then(() => this.get("notify").success("Profilbild wurde aktualisiert!"))
-      .catch(err => {
-        this.get("notify").error(err.message);
-        this.set("picturePath", oldPicture);
-      });
-
-    this.set("response", ObjectPromiseProxy.create({ promise: res }));
-  }
-
-  /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
-
-  didInsertElement() {
-    $(".img-input").on("change", e => {
-      if (e.target.files.length) {
-        this.uploadImage(e.target.files[0]);
-        e.target.value = null;
-      }
-    });
+    this.args.person.picturePath = URL.createObjectURL(file);
   }
 
   @action
   changePicture() {
-    $(".img-input").click();
+    document.getElementById("img-input").click();
   }
-
-  /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
 }

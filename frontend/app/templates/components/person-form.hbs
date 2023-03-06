@@ -1,0 +1,249 @@
+<section id="profil" class="section">
+  <div class="card-header bg-info">
+    <div class="row">
+      <div class="col-sm-6 header-text">
+        {{t "person-form.particulars"}}
+      </div>
+    </div>
+  </div>
+  <div class="border border-info rounded-bottom">
+    <div class="card-body">
+      <div class="row mb-3">
+        <div class="p-4">
+            <PictureEdit @person={{this.record}} />
+        </div>
+        <div class="col-sm">
+          <table class="table-person">
+            <tbody>
+            <tr>
+              <td>
+                <label for="name">
+                  {{t "person-form.name"}}
+                </label>
+                <Input @id="name" @value={{this.record.name}} @type="text"/>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="email">
+                  Email
+                </label>
+                <Input @id="email" @value={{this.record.email}} @type="text"/>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="degree">
+                  {{t "person-form.degree"}}
+                </label>
+                <Input @id="degree" @value={{this.record.title}} @type="text"/>
+              </td>
+            </tr>
+            <tr>
+              <label>{{t "person-form.functions"}}</label>
+            </tr>
+            {{#each this.record.personRoles as |personRole|}}
+              <div class="border rounded mt-2 p-1">
+                <tr>
+                  <td>
+                    <label class="description role-description">{{t "person-form.role"}}</label>
+                    <div class="role-dropdown">
+                      <PowerSelect @selected={{personRole.role}}
+                                   @options={{this.roles}}
+                                   @onChange={{action (mut personRole.role)}}
+                                   @onFocus={{action "handleFocus"}}
+                                   @animationEnabled={{false}} as |role|>
+                        {{role.name}}
+                      </PowerSelect>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label class="description role-description">{{t "person-form.level"}}</label>
+                    <div class="level-dropdown">
+                      {{#if this.personRoleLevels}}
+                        <PowerSelect
+                          @selected={{
+                            selected-person-role-level
+                            this.personRoleLevels
+                            level=personRole.level
+                          }}
+                          @onFocus={{action "handleFocus"}}
+                          @options={{this.personRoleLevels}}
+                          @animationEnabled={{false}}
+                          @onKeydown={{action "setWithTab" setPersonRoleLevel personRole}}
+                          @onChange={{action "setPersonRoleLevel" personRole}} as |personRoleLevel|
+                        >
+                          {{personRoleLevel.level}}
+                        </PowerSelect>
+                      {{/if}}
+                    </div>
+                    <div class="percent-field">
+                      <label>
+                        <Input placeholder="in %" type="number" @value={{personRole.percent}} @onchange={{action
+                          (mut personRole.percent)}} max="9999"/>
+                      </label>
+                    </div>
+                    <div class="delete-role-icon">
+                      <DeleteWithConfirmation @entry={{personRole}} @class="edit-buttons"/>
+                    </div>
+                  </td>
+                </tr>
+              </div>
+            {{/each}}
+            <tr>
+              <td>
+                <a class="nav-link language-button" role="button" {{action "addRole" this.record}}>
+                  <i class="fa fa-plus" aria-hidden="true"></i>
+                  {{t "person-form.newFunction"}}
+                </a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label>{{t "person-form.department"}}</label>
+                <PowerSelect @triggerId="department"
+                             @selected={{this.record.department}}
+                             @animationEnabled={{false}}
+                             @options={{this.departments}}
+                             @searchField="name" @onFocus={{action "handleFocus"}}
+                             @onChange={{action (mut this.record.department)}} as |department|>
+                  {{department.name}}
+                </PowerSelect>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label>{{t "person-form.company"}}</label>
+                <PowerSelect @triggerId="company"
+                             @selected={{this.record.company}}
+                             @options={{this.companies}}
+                             @searchField="name"
+                             @onFocus={{action "handleFocus"}}
+                             @onChange={{action (mut this.record.company)}}
+                             @animationEnabled={{false}}
+                             as |company|>
+                  {{company.name}}
+                </PowerSelect>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="location">
+                  {{t "person-form.placeOfResidence"}}
+                </label>
+                <Input @id="location"
+                       @value={{this.record.location}}
+                       @type="text"/>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-sm-4">
+          <table class="table-person">
+            <tbody>
+            <tr>
+              <td>
+                <div class="text-field form-group">
+                  <label class="label-date form-field--label" for="date_location">{{t "person-form.birthdate"}}</label>
+                  <div id="date_location" class="birthdate_pikaday">
+                    <PikadayInput @onSelection={{action (mut this.record.birthdate)}}
+                                  @value={{this.record.birthdate}}
+                                  @useUTC={{true}} />
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="dualNational">
+                  {{t "person-form.dualNational"}}
+                </label>
+                <Input @id="dualNational" @type="checkbox" @checked={{this.secondNationality}} class="checkbox" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label>{{t "person-form.firstNationality"}}</label>
+                <PowerSelect @triggerId="nationality" @options={{this.countries}}
+                             @animationEnabled={{false}}
+                             @selected={{countryFromCode this.record.nationality}}
+                             @onChange={{action setNationality}}
+                             @onFocus={{action "handleFocus"}}
+                             @onKeydown={{action "setWithTab" setNationality}}
+                             @searchField="1" as |country|>
+                  <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
+                </PowerSelect>
+              </td>
+            </tr>
+            <tr>
+              {{#if this.secondNationality}}
+                <td>
+                  <label>{{t "person-form.secondNationality"}}</label>
+                  <PowerSelect @triggerId="nationality2" @options={{this.countries}}
+                               @animationEnabled={{false}}
+                               @selected={{countryFromCode this.record.nationality2 }}
+                               @onChange={{action setNationality2}}
+                               @onFocus={{action "handleFocus"}}
+                               @onKeydown={{action "setWithTab" setNationality2}}
+                               @searchField="1" as |country|
+                  >
+                    <span class="flag-icon flag-icon-{{to-lowercase country.[0]}}"></span>{{country.[1]}}
+                  </PowerSelect>
+                </td>
+              {{/if}}
+            </tr>
+            <tr>
+              <td>
+                <label> {{t "person-form.maritalStatus"}} </label>
+                <PowerSelect @triggerId="maritalStatus"
+                             @selected={{this.record.maritalStatusView}}
+                             @options={{this.maritalStatuses}}
+                             @searchEnabled={{false}}
+                             @onFocus={{action "handleFocus"}}
+                             @onChange={{action (mut this.record.maritalStatusView)}}
+                             @animationEnabled={{false}} as |maritalStatus|
+                >
+                  {{maritalStatus}}
+                </PowerSelect>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="shortname">
+                  {{t "person-form.shortname"}}
+                </label>
+                <Input @id="shortname" @value={{this.record.shortname}}
+                       @type="text"/>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-sm-3">
+          <table>
+            <tbody>
+            <tr>
+              <td class="description">
+                {{t "person-form.languages"}}
+                <a href="http://www.europaeischer-referenzrahmen.de/" target="_blank" rel="noopener noreferrer">
+                <i class="ml-2 fa fa-question-circle" aria-hidden="true"></i></a></td>
+            </tr>
+            <tr>
+              <div class="border rounded mt-2 p-2">
+                <LanguageSkillsEdit @person={{this.record}} />
+              </div>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <button type="button" {{action "submit" this.record}} role="button" id="submit-button"
+              class="btn btn-primary "> {{t "person-form.save"}}</button>
+      <button type="button" onclick={{action "abort"}} role="button" class="btn abort-button"> {{t
+        "person-form.cancel"}}</button>
+    </div>
+  </div>
+</section>

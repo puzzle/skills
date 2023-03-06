@@ -1,11 +1,18 @@
-<div class="span2 {{if this.response.isPending "loading-mask"}}">
-  <input type="file" class="img-input" hidden>
-  <div>
+<div class="pointer-all-sub d-flex flex-column align-items-center">
+  <Input type="file" id="img-input" hidden  {{on "change" this.uploadImage}}/>
+  {{#if @person.picturePath}}
     <img
-      src={{this.picturePath}}
-      class="pic img-polaroid profil-img rounded-circle img-avatar-edit"
+      src={{@person.picturePath}}
+      class="pic img-polaroid profil-img rounded-circle img-avatar-edit wh-15"
       role="button"
-      onclick={{action "changePicture"}}
-      alt="Bild ersetzen">
-  </div>
+      {{on "click" this.changePicture}}
+      alt="">
+    <label  {{on "click" this.changePicture}}> {{t "image.update"}}</label>
+  {{else}}
+    <label {{on "click" this.changePicture}}> {{t "image.upload"}}</label>
+  {{/if}}
 </div>
+
+
+
+

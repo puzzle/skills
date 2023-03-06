@@ -32,6 +32,7 @@ export default class BaseFormComponent extends Component {
       .then(savedRecords => {
         this.handleSubmitSuccessful(savedRecords);
         this.afterSubmit();
+        return true;
       })
       .catch(() => {
         this.handleSubmitError();
@@ -51,6 +52,7 @@ export default class BaseFormComponent extends Component {
           });
         });
         this.afterSubmit();
+        return false;
       });
   }
 }

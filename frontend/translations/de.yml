@@ -135,12 +135,16 @@ person:
     projects: Projekte
     personCompetences: Kompetenzen
     email: Email
+    company: Firma
 personCompetence:
     category: Kategorie
     offer: Angebot
 person-actions:
     deletePerson: Person löschen
     moreOptions: Mehr Optionen
+person-role:
+  percent: Pensum
+  role: Funktionsrolle darf nicht leer sein
 person-cv-export:
     anonymisedCV: Anonymisiertes CV
     cancel: Abbrechen
@@ -148,7 +152,7 @@ person-cv-export:
     levelSkills: Skills nach Level
     locationForFooter: 'Niederlassung (für Footer):'
     normalCV: Normales CV
-person-edit:
+person-form:
     birthdate: Geburtsdatum
     cancel: Abbrechen
     company: Firma
@@ -166,26 +170,11 @@ person-edit:
     role: Rolle
     secondNationality: Zweite Nationalität
     shortname: Kürzel
-person-new:
     name: Name
-    company: Firma
-    birthdate: Geburtsdatum
-    cancel: Abbrechen
     createPerson: Person erfassen
-    degree: Abschluss
-    department: Organisationseinheit
-    dualNational: Doppelbürger
-    firstNationality: Erste Nationalität
-    functions: Funktionen
-    languages: Sprachen
-    level: Stufe
-    maritalStatus: Zivilstand
-    newFunction: Neue Funktion
-    placeOfResidence: Wohnort (Stadt)
-    role: Rolle
     save: Speichern
-    secondNationality: Zweite Nationalität
-    shortname: Kürzel
+    update-success: Personalien wurden aktualisiert!
+    create-success: Person wurde erfolgreich erstellt!
 person-show:
     birthdate: Geburtsdatum
     company: Firma
@@ -253,3 +242,7 @@ skill-search:
     searchResults: Suchresultate
 updated-at:
     message: 'Zuletzt bearbeitet:'
+image:
+  upload: Bild hochladen
+  update: Bild ändern
+  upload-success: Bild wurde erfolgreich aktualisiert

@@ -140,6 +140,9 @@ personCompetence:
 person-actions:
     deletePerson: Delete Person
     moreOptions: More Options
+person-role:
+  percent: workload
+  role: Role cannot be empty
 person-cv-export:
     anonymisedCV: Anonymised CV
     cancel: Cancel
@@ -147,7 +150,8 @@ person-cv-export:
     levelSkills: Skills by level
     locationForFooter: 'Location (for footer):'
     normalCV: Normal CV
-person-edit:
+person-form:
+    name: Name
     birthdate: Date of Birth
     cancel: Cancel
     company: Company
@@ -165,24 +169,10 @@ person-edit:
     role: Role
     secondNationality: Second Nationality
     shortname: Short Name
-person-new:
-    birthdate: Date of Birth
-    cancel: Cancel
     createPerson: Create Person
-    degree: Degree
-    department: Department
-    dualNational: Dual National
-    firstNationality: First Nationality
-    functions: Functions
-    languages: Languages
-    level: Level
-    maritalStatus: Marital Status
-    newFunction: New Function
-    placeOfResidence: Place of Residence
-    role: Role
     save: Save
-    secondNationality: Second Nationality
-    shortname: Short Name
+    update-success: Personal data have been updated!
+    create-success: Person was created successfully!
 person-show:
     birthdate: Date of Birth
     company: Company
@@ -250,3 +240,8 @@ skill-search:
     searchResults: Search Results
 updated-at:
     message: 'Last edited:'
+
+image:
+  upload: Upload image
+  Change: Change image
+  upload-success: Image got updated successfully
