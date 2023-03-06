@@ -1,0 +1,11 @@
+<div class="row">
+  <div id="date" class="col-sm-3 text-center">
+    {{if @advancedTraining.monthFrom (concat (moment-format @advancedTraining.monthFrom "MM" "MM") ".")}}{{@advancedTraining.yearFrom}}
+    {{#if (eq @advancedTraining.yearTo null)}}
+    - heute
+    {{else if (or (not-eq @advancedTraining.yearFrom @advancedTraining.yearTo) (not-eq @advancedTraining.monthFrom @advancedTraining.monthTo))}}
+    - {{if @advancedTraining.monthTo (concat (moment-format @advancedTraining.monthTo "MM" "MM") ".")}}{{@advancedTraining.yearTo}}
+    {{/if}}
+  </div>
+  <div id="description" class="col-sm-9 cv-search-searchable">{{@advancedTraining.description}}</div>
+</div>

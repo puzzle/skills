@@ -33,25 +33,15 @@
       </div>
       {{!Weiterbildungen Tab}}
       <div class="card mb-3" id="advancedTrainings">
-        {{component (if this.advancedTrainingsEditing "advanced-trainings-edit" "advanced-trainings-show" )
-                    advanced-trainings=this.model.advancedTrainings
-                    person=this.model
-                    submit=(action (toggle "advancedTrainingsEditing" this))
-                    advancedTrainingsEditing=(action (toggle "advancedTrainingsEditing" this))
-        }}
+         <AdvancedTrainingsShow @advancedTrainings={{@model.advancedTrainings}} @person={{@model}} @submit={{this.submit}}/>
       </div>
       {{!Aktivitäten Tab}}
       <div class="card mb-3" id="activities">
-        {{component (if this.activitiesEditing "activities-edit" "activities-show" )
-                    activities=this.model.activities
-                    person=this.model
-                    submit=(action (toggle "activitiesEditing" this))
-                    activitiesEditing=(action (toggle "activitiesEditing" this))
-        }}
+         <ActivitiesShow @activities={{@model.activities}} @person={{@model}} @submit={{this.submit}}/>
       </div>
       {{!Projekte Tab}}
       <div class="card mb-end" id="projects">
-        <ProjectsShow @projects={{this.model.projects}} @personId={{this.model.id}} />
+        <ProjectsShow @projects={{@model.projects}} @person={{@model}} @submit={{this.submit}} />
       </div>
       <ScrollToTopButton />
     </div>

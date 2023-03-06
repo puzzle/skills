@@ -1,0 +1,28 @@
+<div class="line">
+  <div id="advanced-training-content-edit">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="input-group centered-content-input">
+          <DaterangeEdit @entity={{this.record}} />
+        </div>
+      </div>
+      <div class="col-sm-6 content-input">
+        <label id="description-label" class="mt-2" for={{concat this.elementId "-" this.record.id "-loc"}}>{{t "advanced-training-form.description"}}</label>
+        <Textarea id="description-input" @id={{concat this.elementId "-" this.record.id "-loc"}} @value={{this.record.description}} class="input-xxlarge form-control" />
+      </div>
+      <div class="col-md-3 centered-content d-flex flex-column mt-4 px-5">
+        <button type="button" {{on "click" (fn this.submit record)}} role="button" id="submit-advanced-training-button" class="btn btn-primary m-2">{{t "advanced-training-form.save"}}</button>
+        {{#if this.record.id}}
+          <button type="button" id="delete-advanced-training-icon" class="btn btn-info border m-2">
+            <DeleteWithConfirmation id="delete-with-confirmation" @entry={{this.record}} @didDelete={{this.abort}}>
+              {{t "advanced-training-form.delete"}}
+            </DeleteWithConfirmation>
+          </button>
+        {{else}}
+          <button id="save-and-new-button" type="button" {{on "click" (fn this.submitAndNew record)}} role="button" class="btn btn-info border m-2">{{t "advanced-training-form.saveAndNew"}}</button>
+        {{/if}}
+        <a href="#" {{on "click" this.abort}} role="button" id="cancel-button" class="abort-edit-buttons text-center mx-4">{{t "advanced-training-form.cancel"}}</a>
+      </div>
+    </div>
+  </div>
+</div>

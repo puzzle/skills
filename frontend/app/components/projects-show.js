@@ -1,35 +1,59 @@
+import Component from "@glimmer/component";
+import { inject as service } from "@ember/service";
 import classic from "ember-classic-decorator";
-import { observes } from "@ember-decorators/object";
-import { action, computed } from "@ember/object";
-import Component from "@ember/component";
-import sortByYear from "../utils/deprecated-sort-by-year";
+import { tracked } from "@glimmer/tracking";
+import { action } from "@ember/object";
+import sortByYear from "../utils/sort-by-year";
+import $ from "jquery";
 
 @classic
 export default class ProjectsShow extends Component {
-  @(sortByYear("projects").volatile())
-  sortedProjects;
+  @service notify;
 
-  @computed("sortedProjects")
+  @tracked
+  isNewRecord = false;
+
+  @tracked
+  editingProject;
+
+  frozenSortedProject;
+
+  constructor() {
+    super(...arguments);
+    // addObserver(this, "person", this.personChanged);
+    // this is a hack because ember keyboard is not ported to octane yet.
+    // normal jquery events using the {{on}} template helper doesn't work for escape key
+    $(document).on("keyup", event => {
+      if (event.keyCode == 27) {
+        this.editingProject = null;
+        this.isNewRecord = false;
+      }
+    });
+  }
+
+  get sortedProjects() {
+    return !this.editingProject
+      ? sortByYear(this.args.projects)
+      : this.frozenSortedProject;
+  }
+
   get amountOfProjects() {
-    return this.get("sortedProjects.length");
-  }
-
-  @observes("projects.@each")
-  projectsChanged() {
-    if (this.get("projectEditing.isDeleted")) this.set("projectEditing", null);
-    this.send("toggleProjectEditing");
-    this.notifyPropertyChange("sortedProjects");
+    return this.sortedProjects.length;
   }
 
   @action
-  toggleProjectNew(triggerNew) {
-    this.set("projectNew", triggerNew);
-    this.notifyPropertyChange("amountOfProjects");
+  toggleProjectNew() {
+    this.isNewRecord = !this.isNewRecord;
   }
 
   @action
-  toggleProjectEditing() {
-    this.notifyPropertyChange("sortedProjects");
-    this.set("projectEditing", null);
+  setEditingProject(project) {
+    this.frozenSortedProject = this.sortedProjects;
+    this.editingProject = this.editingProject || project;
+  }
+
+  @action
+  abortProjectEdit() {
+    this.editingProject = null;
   }
 }

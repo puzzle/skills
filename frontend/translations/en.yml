@@ -1,45 +1,30 @@
-activities-edit:
-    activities: Activities
+activity-form:
     cancel: Cancel
     delete: Delete
-    description: Company details and description of activity
     role: Role
+    description: Company details and description of activity
     save: Save
+    saveAndNew: Save & New
 activities-show:
     activities: Activities
-    edit: Edit
+    add: Add activity
 activity:
     description: Beschreibung
     role: Rolle
     yearFrom: 'Jahr von'
-activity-new:
-    cancel: Cancel
-    description: Company details and description of activity
-    role: Role
-    save: Save
-    saveAndNew: Save & New
-    warning1: You tried to save a station without specifying the month.
-    warning2: Precise monthly information is required for an exact calculation of the points in the wage model.
-    warning3: Please complete your details and save again.
-    warning4: If you still want to save without specifying the month, press
-    warning5: here
 advancedTraining:
     description: Description
     name: Advanced Training
     yearFrom: 'Year from'
-advanced-training-new:
-    cancel: Cancel
-    description: Description
-    save: Save
-    saveAndNew: Save & New
-advanced-trainings-edit:
+advanced-training-form:
     cancel: Cancel
     delete: Delete
     description: Description
     save: Save
+    saveAndNew: Save & New
 advanced-trainings-show:
+    add: Add advanced training
     advancedTraining: Advanced Training
-    edit: Edit
 application:
     cvSearch: CV Search
     profile: Profile
@@ -84,6 +69,7 @@ education-form:
     save: Save
     saveAndNew: Save & New
 educations-show:
+    add: Add education
     education: Education
 expertise-topic-skill-value:
     comment: Comment
@@ -208,25 +194,18 @@ project:
     title: Title
     yearFrom: 'Year from'
 projects-show:
+    add: Add project
     projects: Projects
-project-edit:
-    cancel: Cancel
-    delete: Delete
-    description: Description
-    editProject: Edit project
-    involvedTechnologies: Involved Technologies
-    project: Project
-    roleAndTasks: Role and Tasks
-    save: Save
-project-new:
-    addProject: Add Project
-    cancel: Cancel
-    description: Description
-    involvedTechnologies: Involved Technologies
-    project: Project
-    roleAndTasks: Role and Tasks
-    save: Save
-    saveAndNew: Save & New
+project-form:
+  delete: Delete
+  description: Description
+  editProject: Edit project
+  technology: Deployed technologies
+  project: Project
+  role: Role and Tasks
+  cancel: Cancel
+  save: Save
+  saveAndNew: Save & New
 project-show:
     description: Description
     edit: Edit

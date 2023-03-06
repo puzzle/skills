@@ -1236,7 +1236,7 @@ button::-moz-focus-inner {
   margin: 0px 0px 0px 8px;
 }
 
-.zeile {
+.line {
   min-height: 80px;
   padding: 10px;
   border-width: 1px 1px 0px 1px;
@@ -1245,25 +1245,25 @@ button::-moz-focus-inner {
   vertical-align: middle;
 }
 
-.zeile:first-child {
+.line:first-child {
   border-radius: 10px 10px 0px 0px !important;
 }
 
-.zeile:last-child {
+.line:last-child {
   border-width: 1px;
   border-radius: 0px 0px 10px 10px;
 }
 
-.zeile .centered-content {
+.line .centered-content {
   line-height: 60px;
   vertical-align: middle;
 }
 
-.zeile .centered-content-input {
+.line .centered-content-input {
   min-height: 60px;
 }
 
-.zeile .centered-content-input textarea {
+.line .centered-content-input textarea {
   height: 100%;
 }
 
