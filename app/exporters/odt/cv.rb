@@ -49,7 +49,7 @@ module Odt
     end
 
     def stage_by_level
-      stage_levels = ["Trainee", "Junior", "Professional", "Senior", "Expert"]
+      stage_levels = %w(Trainee Junior Professional Senior Expert)
       stage_levels[skill_level_value.to_i - 1]
     end
 
