@@ -19,11 +19,11 @@ export default class PersonShow extends Component {
   @computed("person.picturePath")
   get picturePath() {
     if (this.get("person.picturePath")) {
-      let path =
+      return (
         this.get("person.picturePath") +
         "&authorizationToken=" +
-        this.get("session.token");
-      return path;
+        this.get("session.token")
+      );
     }
     return "";
   }
