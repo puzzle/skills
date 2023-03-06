@@ -2,6 +2,7 @@
 
 require 'i18n_data'
 module Odt
+  # rubocop:disable Metrics/ClassLength
   class Cv
 
     def initialize(person, params)
@@ -13,7 +14,9 @@ module Odt
     def export
       country_suffix = location.country == 'DE' ? '_de' : ''
       anonymous_suffix = anon? ? '_anon' : ''
-      template_name = "cv_template#{country_suffix}#{anonymous_suffix}.odt"
+      @skills_by_level_list = skills_by_level_value(skill_level_value)
+      include_level = include_skills_by_level? ? '_with_level' : ''
+      template_name = "cv_template#{country_suffix}#{anonymous_suffix}#{include_level}.odt"
       ODFReport::Report.new("lib/templates/#{template_name}") do |r|
         insert_general_sections(r)
         insert_locations(r)
@@ -35,6 +38,18 @@ module Odt
 
     def include_core_competences_and_skills?
       @params[:includeCS].presence == 'true'
+    end
+
+    def include_skills_by_level?
+      @params[:skillsByLevel].presence == 'true'
+    end
+
+    def skill_level_value
+      @params[:levelValue]
+    end
+
+    def stage_by_level
+      %w(Trainee Junior Professional Senior Expert)[skill_level_value.to_i - 1]
     end
 
     def location
@@ -78,8 +93,50 @@ module Odt
     # rubocop:enable Metrics/AbcSize
 
     def insert_competences(report)
+      insert_level_skills(report) if include_skills_by_level?
+      insert_core_competences(report)
+    end
+
+    # rubocop:disable Metrics/MethodLength
+    def insert_level_skills(report)
+      if @skills_by_level_list.empty?
+        # rubocop:disable Layout/LineLength
+        report.add_field(:skills_present,
+                         "Der Entwickler hat keine Skills mit Level #{skill_level_value} oder höher.")
+        # rubocop:enable Layout/LineLength
+      else
+        report.add_field(:skills_present,
+                         "Der Entwickler hat sich selbst als #{stage_by_level} eingeschätzt.")
+      end
+      report.add_table('LEVEL_COMPETENCES', @skills_by_level_list, header: true) do |t|
+        t.add_column(:category, :category)
+        t.add_column(:competence, :competence)
+      end
+    end
+    # rubocop:enable Metrics/MethodLength
+
+    def skills_by_level_value(level_value)
+      level_skills_ids = skills_by_level(level_value).pluck(:skill_id)
+      competences_list(level_skills_ids)
+    end
+
+    def competences_list(competences_ids)
+      Category.all_parents.map do |parent_c|
+        skills = Skill.joins(:category)
+                      .where(categories: { parent_id: parent_c.id }, id: competences_ids)
+                      .pluck(:title)
+        next if skills.blank?
+
+        { category: parent_c.title, competence: skills.join(', ') }
+      end.compact
+    end
+
+    # rubocop:disable Metrics/MethodLength
+    def insert_core_competences(report)
+      core_competence_skill_ids = person.people_skills.where(core_competence: true).pluck(:skill_id)
       competences_list = if include_core_competences_and_skills?
-                           [core_competences_list, competence_notes_list].flatten
+                           [competences_list(core_competence_skill_ids),
+                            competence_notes_list].flatten
                          else
                            [competence_notes_list].flatten
                          end
@@ -88,17 +145,10 @@ module Odt
         t.add_column(:competence, :competence)
       end
     end
+    # rubocop:enable Metrics/MethodLength
 
-    def core_competences_list
-      core_competence_skill_ids = person.people_skills.where(core_competence: true).pluck(:skill_id)
-      Category.all_parents.map do |parent_c|
-        skills = Skill.joins(:category)
-                      .where(categories: { parent_id: parent_c.id }, id: core_competence_skill_ids)
-                      .pluck(:title)
-        next if skills.blank?
-
-        { category: parent_c.title, competence: skills.join(', ') }
-      end.compact
+    def skills_by_level(level_value)
+      person.people_skills.where('level >= ?', level_value)
     end
 
     def competence_notes_list
@@ -228,4 +278,5 @@ module Odt
     end
 
   end
+  # rubocop:enable Metrics/ClassLength
 end

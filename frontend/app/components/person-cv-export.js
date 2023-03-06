@@ -3,6 +3,7 @@ import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import { isBlank } from "@ember/utils";
 import { tracked } from "@glimmer/tracking";
+import PeopleSkill from "../models/people-skill";
 
 export default class PersonCvExport extends Component {
   @service download;
@@ -13,12 +14,16 @@ export default class PersonCvExport extends Component {
   selectedLocation = "";
 
   @tracked
+  levelValue = this.level || 1;
+
+  @tracked
   availableLocations = "";
 
   constructor() {
     super(...arguments);
 
     this.includeCompetencesAndSkills = true;
+    this.includeSkillsByLevel = false;
 
     this.store.findAll("branch-adress").then(result => {
       this.availableLocations = result;
@@ -52,6 +57,10 @@ export default class PersonCvExport extends Component {
     this.selectedLocation = location;
   }
 
+  get levelName() {
+    return PeopleSkill.LEVEL_NAMES[this.levelValue];
+  }
+
   @action
   startExport(e) {
     e.preventDefault();
@@ -62,8 +71,16 @@ export default class PersonCvExport extends Component {
       ".odt?anon=false&location=" +
       this.selectedLocation.id +
       "&includeCS=" +
-      this.includeCompetencesAndSkills;
+      this.includeCompetencesAndSkills +
+      "&skillsByLevel=" +
+      this.includeInterestValue();
+
     this.download.file(url);
+  }
+  includeInterestValue() {
+    return this.includeSkillsByLevel
+      ? "true&levelValue=" + this.levelValue
+      : "false";
   }
 
   @action

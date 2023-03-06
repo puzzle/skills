@@ -135,6 +135,7 @@ person-cv-export:
     anonymisedCV: Anonymisiertes CV
     cancel: Abbrechen
     coreCompetenciesSkills: Kernkompetenzen - Skills
+    levelSkills: Skills nach Level
     locationForFooter: 'Niederlassung (für Footer):'
     normalCV: Normales CV
 person-edit:

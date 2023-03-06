@@ -18,6 +18,14 @@
             <div class="col-md-6">{{t "person-cv-export.coreCompetenciesSkills"}}</div>
             <XToggle @theme="material" @size="small" @value={{this.includeCompetencesAndSkills}} @onToggle={{fn (mut this.includeCompetencesAndSkills)}} />
           </div>
+          <div id="includeLevelSkills-toggle" class="row my-3">
+            <div class="col-md-6">{{t "person-cv-export.levelSkills"}}</div>
+            <XToggle id="levelSkillsToggle" @theme="material" @size="small" @value={{this.includeSkillsByLevel}} @onToggle={{fn (mut this.includeSkillsByLevel)}} />
+          </div>
+          <div class="row my-3 person-skill-level {{unless this.includeSkillsByLevel "hidden"}}">
+            <div class="col-md-6">{{this.levelName}}</div>
+              <UiSlider id="person-level-slider" @value={{this.levelValue}} @ticks="1,2,3,4,5" @tooltip="hide" @min={{1}} @max={{5}} @immediateResponse={{true}} />
+          </div>
           <div class="row my-3">
             <button type="button" {{on "click" this.startExport}} class="btn btn-primary btn-lg btn-block">{{t "person-cv-export.normalCV"}}</button>
           </div>
