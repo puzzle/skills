@@ -48,6 +48,11 @@ module Odt
       @params[:levelValue]
     end
 
+    def stage_by_level
+      stage_levels = ["Trainee", "Junior", "Professional", "Senior", "Expert"]
+      stage_levels[skill_level_value.to_i - 1]
+    end
+
     def location
       BranchAdress.find(@params[:location])
     end
@@ -93,20 +98,23 @@ module Odt
       insert_core_competences(report)
     end
 
+    # rubocop:disable Metrics/MethodLength
     def insert_level_skills(report)
       if @skills_by_level_list.empty?
         # rubocop:disable Layout/LineLength
         report.add_field(:skills_present,
-                         "Der Entwickler hat keine Skills mit Level #{skill_level_value} oder höher")
+                         "Der Entwickler hat keine Skills mit Level #{skill_level_value} oder höher.")
         # rubocop:enable Layout/LineLength
       else
-        report.add_field(:skills_present, 'Der Entwickler hat sich selbst eingeschätzt.')
+        report.add_field(:skills_present,
+                         "Der Entwickler hat sich selbst als #{stage_by_level} eingeschätzt.")
       end
       report.add_table('LEVEL_COMPETENCES', @skills_by_level_list, header: true) do |t|
         t.add_column(:category, :category)
         t.add_column(:competence, :competence)
       end
     end
+    # rubocop:enable Metrics/MethodLength
 
     def skills_by_level_value(level_value)
       level_skills_ids = skills_by_level(level_value).pluck(:skill_id)
