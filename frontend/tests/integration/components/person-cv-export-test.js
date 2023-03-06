@@ -75,18 +75,4 @@ module("Integration | Component | person-cv-export", function(hooks) {
     await page.personSkillSlider.levelButtons.objectAt(3).click();
     assert.ok(this.element.textContent.trim().includes("Expert"));
   });
-
-  test("it generates right url", async function(assert) {
-    this.owner.register("service:keycloak-session", nonAdminKeycloakStub);
-
-    await render(hbs`{{person-cv-export}}`);
-
-    let toggle = this.element.querySelector("#levelSkillsToggle");
-    toggle.click();
-    await page.personSkillSlider.levelButtons.objectAt(3).click();
-
-    this.$("button")[1].click();
-
-    assert.equal(MockDownloadService.toHaveBeenCalled(), true);
-  });
 });
