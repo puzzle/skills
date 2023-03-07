@@ -11,7 +11,7 @@ Keycloak.configure do |config|
   config.logger     = Rails.logger
   config.ca_certificate_file = "/etc/ssl/certs/ca-certificates.crt"
   config.skip_paths = {
-    get: [/^\/assets\/.+/, /^\/styles\/.+/, /^\/healthz/, /^\/api\/env_settings/, /^\/status\/(.*)/]
+    get: [/^\/assets\/.+/, /^\/styles\/.+/, /^\/healthz/, /^\/api\/env_settings/, /^\/status\/(.*)/, /^\/img\/.+/]
   }
   if frontend_tests? || Rails.env.development? || Rails.application.keycloak_disabled?
     test_skips = {
