@@ -4,6 +4,7 @@ import { computed } from "@ember/object";
 import { isBlank } from "@ember/utils";
 import { getNames as countryNames } from "ember-i18n-iso-countries";
 import Person from "../models/person";
+import config from "../config/environment";
 
 export default ApplicationComponent.extend({
   intl: service(),
@@ -99,7 +100,7 @@ export default ApplicationComponent.extend({
               `person.${attribute}`
             );
             this.get("notify").alert(`${translated_attribute} ${message}`, {
-              closeAfter: 8000
+              closeAfter: config.environment === "test" ? null : 8000
             });
           });
         });

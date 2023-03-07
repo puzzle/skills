@@ -1,10 +1,10 @@
 import RSVP from "rsvp";
 import {
-  create,
-  visitable,
-  fillable,
   clickable,
-  text
+  create,
+  fillable,
+  text,
+  visitable
 } from "ember-cli-page-object";
 
 const { resolve } = RSVP;
@@ -13,10 +13,12 @@ export default create({
   newPersonPage: {
     visit: visitable("/people/new"),
     submit: clickable("#submit-button"),
+    toggleNewFormButton: clickable("[data-test-person-new-form-toggle]"),
+    toggleNationalitiesCheckbox: clickable("#toggle-nationalities-id"),
 
-    name: fillable('[name="person[name]"]'),
-    title: fillable('[name="person[title]"]'),
-    location: fillable('[name="person[location]"]'),
+    toggleNewForm() {
+      return this.newForm;
+    },
 
     async createPerson(person) {
       await Object.keys(person).reduce(
@@ -28,14 +30,29 @@ export default create({
     }
   },
 
+  newForm: {
+    scope: "#profil",
+    submit: clickable('[type="submit"]'),
+    name: fillable('[name="name"]'),
+    email: fillable('[name="email"]'),
+    shortname: fillable('[name="shortname"]'),
+    title: fillable('[name="title"]'),
+    location: fillable('[name="location"]'),
+    rolePercent: fillable('[name="rolePercent"]')
+  },
+
   profileData: {
     name: text("#data-test-person-name"),
+    email: text("#data-test-person-email"),
     title: text("#data-test-person-title"),
     role: text("#data-test-person-role"),
+    department: text("#data-test-person-department"),
+    company: text("#data-test-person-company"),
     birthdate: text("#data-test-person-birthdate"),
     nationalities: text("#data-test-person-nationalities"),
     location: text("#data-test-person-location"),
     language: text("[data-test-person-language]", { multiple: true }),
-    maritalStatus: text("#data-test-person-marital-status")
+    maritalStatus: text("#data-test-person-marital-status"),
+    shortname: text("#data-test-person-shortname")
   }
 });

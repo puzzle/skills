@@ -2,8 +2,10 @@ import { module, test, skip } from "qunit";
 import page from "frontend/tests/pages/people-new";
 import { openDatepicker } from "ember-pikaday/helpers/pikaday";
 import $ from "jquery";
+import { click } from "@ember/test-helpers";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
 import { currentURL } from "@ember/test-helpers";
+import { selectChoose } from "ember-power-select/test-support";
 
 module("Acceptance | create person", function(hooks) {
   setupApplicationTest(hooks);
@@ -76,5 +78,67 @@ module("Acceptance | create person", function(hooks) {
 
     assert.equal(currentURL(), "/people/new");
     // TODO expect errors!
+  });
+
+  test("should display two errors when email is empty", async function(assert) {
+    await page.newPersonPage.visit();
+    assert.equal(currentURL(), "/people/new");
+
+    page.newPersonPage.toggleNewForm();
+
+    await page.newForm.name("Findus");
+    await page.newForm.title("Sofware Developer");
+    await page.newForm.shortname("FI");
+    await page.newForm.location("Bern");
+
+    let interactor = openDatepicker($(".birthdate_pikaday > input"));
+
+    interactor.selectDate(new Date(2019, 1, 19));
+
+    await selectChoose("#department", "/dev/one");
+    await selectChoose("#company", "Firma");
+    await selectChoose("#maritalStatus", ".ember-power-select-option", 0);
+
+    await click("button#submit-button");
+
+    assert.equal(
+      document.querySelectorAll(".ember-notify")[0].querySelector(".message")
+        .innerText,
+      "Email muss ausgefüllt werden"
+    );
+    assert.equal(
+      document.querySelectorAll(".ember-notify")[1].querySelector(".message")
+        .innerText,
+      "Email Format nicht gültig"
+    );
+  });
+
+  test("should display one error when email format is invalid", async function(assert) {
+    await page.newPersonPage.visit();
+    assert.equal(currentURL(), "/people/new");
+
+    page.newPersonPage.toggleNewForm();
+
+    await page.newForm.name("Findus");
+    await page.newForm.email("findus.puzzle");
+    await page.newForm.title("Sofware Developer");
+    await page.newForm.shortname("FI");
+    await page.newForm.location("Bern");
+
+    let interactor = openDatepicker($(".birthdate_pikaday > input"));
+
+    interactor.selectDate(new Date(2019, 1, 19));
+
+    await selectChoose("#department", "/dev/one");
+    await selectChoose("#company", "Firma");
+    await selectChoose("#maritalStatus", ".ember-power-select-option", 0);
+
+    await click("button#submit-button");
+
+    assert.equal(
+      document.querySelectorAll(".ember-notify")[0].querySelector(".message")
+        .innerText,
+      "Email Format nicht gültig"
+    );
   });
 });
