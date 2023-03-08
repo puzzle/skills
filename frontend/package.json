@@ -85,7 +85,7 @@
     "ember-cli-page-object": "^1.11.0",
     "ember-cli-sass": "^7.0.0",
     "ember-cli-sticky": "0.6.5",
-    "ember-cli-string-helpers": "^2.0.0",
+    "ember-cli-string-helpers": "^6.1.0",
     "ember-cli-uglify": "^3.0.0",
     "ember-collapsible-panel": "^3.2.1",
     "ember-composable-helpers": "^3.1.1",
