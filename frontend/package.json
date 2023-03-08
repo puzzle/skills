@@ -72,7 +72,7 @@
     "ember-changeset": "2.2.4",
     "ember-changeset-validations": "^2.2.1",
     "ember-classic-decorator": "^1.0.6",
-    "ember-cli": "~3.20.0",
+    "ember-cli": "~3.21.0",
     "ember-cli-active-link-wrapper": "^0.5.0",
     "ember-cli-app-version": "^3.2.0",
     "ember-cli-babel": "^7.18.0",
