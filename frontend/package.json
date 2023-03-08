@@ -57,7 +57,7 @@
     "@babel/plugin-transform-block-scoping": "^7.8.3",
     "@ember/jquery": "^0.6.1",
     "@ember/optional-features": "^1.3.0",
-    "@ember/test-helpers": "^1.7.1",
+    "@ember/test-helpers": "^2.9.3",
     "@glimmer/component": "^1.0.1",
     "@glimmer/tracking": "^1.0.0",
     "@sentry/browser": "^5.6.3",
@@ -125,7 +125,7 @@
     "watchman": "^1.0.0"
   },
   "engines": {
-    "node": ">= 12.*"
+    "node": ">= 14.*"
   },
   "ember": {
     "edition": "octane"
