@@ -13,13 +13,13 @@ export default class ConfirmDialog extends Component {
 
   @action
   cancel() {
-    this.set("showModal", false);
+    //trigger method defined in parent
+    this.onCancel();
   }
 
   @action
   confirm() {
     //trigger method defined in parent
-    this.get("onConfirm")();
-    this.set("showConfirmation", false);
+    this.onConfirm();
   }
 }

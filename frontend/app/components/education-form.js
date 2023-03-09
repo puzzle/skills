@@ -18,7 +18,23 @@ export default class EducationForm extends BaseFormComponent {
     this.record = this.args.education || this.store.createRecord("education");
     $(document).on("keyup", event => {
       if (event.keyCode == 27) {
-        this.openModal();
+        /*
+         In this if statement we check if any selected element in the dom is a form field,
+         if that's the case ESC removes the focus
+         if the user isn't in a field we open the modal to ask if he wants to close the form
+        */
+        if (
+          ($(document.activeElement).is("input") ||
+            $(document.activeElement).is("textarea") ||
+            document.activeElement.classList.contains(
+              "ember-basic-dropdown-trigger"
+            )) &&
+          this.displayModal === false
+        ) {
+          $(document.activeElement).blur();
+        } else {
+          this.openModal();
+        }
       }
     });
   }
@@ -69,5 +85,10 @@ export default class EducationForm extends BaseFormComponent {
   @action
   openModal() {
     this.displayModal = true;
+  }
+
+  @action
+  closeModal() {
+    this.displayModal = false;
   }
 }

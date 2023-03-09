@@ -26,7 +26,7 @@
         <a {{on "click" this.openModal}} id="cancel-button" class="abort-edit-buttons text-center mx-4" role="button">
             {{t "education-form.cancel" }}
         </a>
-        <ConfirmDialog @showModal={{this.displayModal}} @onConfirm={{this.abort}} @confirmText="{{t "education-form.close.confirmText" }}">
+        <ConfirmDialog @showModal={{this.displayModal}} @onConfirm={{this.abort}} @onCancel={{this.closeModal}} @confirmText="{{t "education-form.closeDialogText" }}">
         </ConfirmDialog>
       </div>
     </div>

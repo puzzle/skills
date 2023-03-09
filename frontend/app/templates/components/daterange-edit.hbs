@@ -24,7 +24,7 @@
       <th class="align-middle" scope="row">
         {{t "daterange-edit.to"}}
       </th>
-      <td>
+      <td id="test">
         <PowerSelect @selected={{this.selectedMonthTo}} @options={{this.monthsToSelect}} @searchEnabled={{false}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}} @onChange={{action "setMonth" "To"}} @onKeydown={{action "setWithTab" "setMonth" "To"}} as |month|>
           {{month}}
         </PowerSelect>
