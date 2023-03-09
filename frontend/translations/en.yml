@@ -32,8 +32,8 @@ application:
     profile: Profile
     skillSearch: Skill Search
 confirm-dialog:
-  confirm: Bestätigen
-  cancel: Abbrechen
+  confirm: Confirm
+  cancel: Cancel
 competence:
     description: Description
 competence-notes-show:

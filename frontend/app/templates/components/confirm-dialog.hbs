@@ -2,12 +2,12 @@
   <div id="confirmation-modal" class="modal fade show text-left" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-body">
+        <div id="confirm-text" class="modal-body">
           {{this.confirmText}}
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary border m-2" {{on "click" this.cancel}}>{{t "confirm-dialog.cancel"}}</button>
-          <button type="button" class="btn btn-primary border m-2" {{on "click" this.confirm}}>{{t "confirm-dialog.confirm"}}</button>
+          <button id="cancel-button" type="button" class="btn btn-secondary border m-2" {{on "click" this.triggerCancel}}>{{t "confirm-dialog.cancel"}}</button>
+          <button id="confirm-button" type="button" class="btn btn-primary border m-2" {{on "click" this.triggerConfirm}}>{{t "confirm-dialog.confirm"}}</button>
         </div>
       </div>
     </div>

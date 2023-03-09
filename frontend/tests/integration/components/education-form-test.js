@@ -53,7 +53,7 @@ module("Integration | Component | education-form", function(hooks) {
       " Delete"
     );
     assert.equal(
-      this.element.querySelector("#cancel-button").innerHTML,
+      this.element.querySelector("#cancel-button").innerText,
       "Cancel"
     );
   });
@@ -86,7 +86,7 @@ module("Integration | Component | education-form", function(hooks) {
       " Löschen"
     );
     assert.equal(
-      this.element.querySelector("#cancel-button").innerHTML,
+      this.element.querySelector("#cancel-button").innerText,
       "Abbrechen"
     );
   });
