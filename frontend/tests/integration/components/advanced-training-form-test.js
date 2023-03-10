@@ -155,14 +155,14 @@ module("Integration | Component | advanced-training-form", function(hooks) {
   });
 
   // eslint-disable-next-line max-len
-  test("should select input and unfocus currently selected element on esc keyup event without opening modal", async function(assert) {
+  test("should select textarea and unfocus currently selected element on esc keyup event without opening modal", async function(assert) {
     assert.expect(3);
 
     await render(hbs`<AdvancedTrainingForm @advancedTraining={{null}} />`);
 
-    await click("#role-input");
+    await click("#description-input");
 
-    assert.equal(document.activeElement.tagName, "INPUT");
+    assert.equal(document.activeElement.tagName, "TEXTAREA");
 
     await triggerEvent(document, "keyup", { keyCode: 27 });
 

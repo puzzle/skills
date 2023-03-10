@@ -27,7 +27,7 @@ export default class AdvancedTrainingForm extends BaseFormComponent {
         if (
           ($(document.activeElement).is("input") ||
             $(document.activeElement).is("textarea") ||
-            $(document.activeElement.classList).contains(
+            document.activeElement.classList.contains(
               "ember-basic-dropdown-trigger"
             )) &&
           this.displayModal === false

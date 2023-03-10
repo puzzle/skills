@@ -164,7 +164,7 @@ module("Integration | Component | education-form", function(hooks) {
 
     await render(hbs`<EducationForm @education={{null}} />`);
 
-    await click("#role-input");
+    await click("#title-input");
 
     assert.equal(document.activeElement.tagName, "INPUT");
 

@@ -196,7 +196,7 @@ module("Integration | Component | project-form", function(hooks) {
 
     await render(hbs`<ProjectForm @project={{null}} />`);
 
-    await click("#role-input");
+    await click("#title-input");
 
     assert.equal(document.activeElement.tagName, "INPUT");
 
