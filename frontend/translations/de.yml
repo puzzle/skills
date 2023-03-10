@@ -131,6 +131,7 @@ person:
     title: Titel
     projects: Projekte
     personCompetences: Kompetenzen
+    email: Email
 personCompetence:
     category: Kategorie
     offer: Angebot
