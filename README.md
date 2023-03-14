@@ -34,7 +34,69 @@ You will need the following things properly installed on your computer:
 -   [RVM (Ruby Version Manager)](https://rvm.io/) ([installation](https://rvm.io/rvm/install) requires `curl` and `gpg`)
 -   Either [PostgreSQL](https://www.postgresql.org/) or [Docker](https://www.docker.com/) for the Database (Docker is recommended)
 
-## Quick Setup
+## Setup dockerized Application👩🏽‍💻
+We're glad you want to setup your machine for PuzzleSkills development 💃
+
+## System Requirements
+
+You need to have [Docker][docker] and _[docker-compose][doco]_ installed on your computer.
+The free _Docker Community Edition (CE)_ works perfectly fine. Make sure your user is part of the docker group:
+```bash
+usermod -a -G docker $USER
+```
+
+[docker]: https://docs.docker.com/install/
+[doco]: https://docs.docker.com/compose/install/
+
+Additionally you need **git** to be installed and configured.
+
+🐧 This manual focuses on Linux/Ubuntu. PuzzleSkills development also runs on other plattforms with some adjustments.
+
+### Windows users
+If you're on Windows you should be able to Download Ubuntu from Microsoft Store. Note that you need to enable Subsystem for Linux and virtual machine platform in your Windows features.  
+Then you can open Ubuntu and follow the manual using the Ubuntu console.  
+When you finished use your Windows IDE and open the skills folder that's located in your Linux subsystem -> Ubuntu and start developing.  
+If this doesn't work you can always use a VM.
+
+First you need to clone this repository:
+
+```bash
+mkdir -p ~/git/ && cd ~/git/
+git clone https://github.com/puzzle/skills.git && cd ~/git/skills
+```
+
+⚡ If your user id is not 1000 (run id -u to check), you need to export this as env variable: **export UID=$UID** before running any of the further commands. Maybe you want to add this to your bashrc.
+
+## Start Development Containers
+To start the PuzzleSkills application, run the following commands in your shell:
+
+```bash
+docker compose build
+docker compose up -d
+```
+
+⚡ This will also install all required gems and seed the database, which takes some time to complete if it's executed the first time. You can follow the progress using `docker-compose logs --follow rails` (exit with Ctrl+C).
+
+After the startup has completed (once you see `Listening on tcp://0.0.0.0:3000` in the logs), make sure all services are up and running:
+
+```bash
+docker-compose ps
+```
+
+This should look something like this:
+
+```
+Name                           Command                State   Ports                                                            
+-------------------------------------------------------------------------------------------------------
+skills-ember-1                 skills-postgres-1      Up      0.0.0.0:4200->4200/tcp, :::4200->4200/tcp
+skills-postgres-1              docker-entrypoint.s…   Up      0.0.0.0:5432->5432/tcp, :::5432->5432/tcp
+skills-rails-1                 rails-entrypoint ra…   Up      0.0.0.0:3000->3000/tcp, :::3000->3000/tcp
+```
+
+Access the web application by browser: http://localhost:4200 and enjoy the ride!
+<img src="https://developers.redhat.com/sites/default/files/styles/article_feature/public/blog/2014/05/homepage-docker-logo.png?itok=zx0e-vcP" alt="docker whale">
+
+## Setup undockerized Application 👩🏽‍💻
 
 Clone the repository to your machine:
 ```shell
@@ -125,6 +187,7 @@ See [frontend/README.md](https://github.com/puzzle/skills/blob/master/frontend/R
 -   Frontend tests with livereload `rake spec:frontend:serve`
 -   To run a single test run the following command in the frontend folder `npm test --filter "some filter words"`
 -   There is also `rake ci` and `rake ci:nightly` which should be periodically exectued by a build job (e.g. on jenkins)
+
 
 ## Documentation
 Find further Documentation at the links below
