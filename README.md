@@ -37,21 +37,6 @@ You will need the following things properly installed on your computer:
 ## Setup dockerized Application👩🏽‍💻
 We're glad you want to setup your machine for PuzzleSkills development 💃
 
-## System Requirements
-
-You need to have [Docker][docker] and _[docker-compose][doco]_ installed on your computer.
-The free _Docker Community Edition (CE)_ works perfectly fine. Make sure your user is part of the docker group:
-```bash
-usermod -a -G docker $USER
-```
-
-[docker]: https://docs.docker.com/install/
-[doco]: https://docs.docker.com/compose/install/
-
-Additionally you need **git** to be installed and configured.
-
-🐧 This manual focuses on Linux/Ubuntu. PuzzleSkills development also runs on other plattforms with some adjustments.
-
 ### Windows users
 If you're on Windows you should be able to Download Ubuntu from Microsoft Store. Note that you need to enable Subsystem for Linux and virtual machine platform in your Windows features.  
 Then you can open Ubuntu and follow the manual using the Ubuntu console.  
@@ -77,7 +62,7 @@ docker compose up -d
 
 ⚡ This will also install all required gems and seed the database, which takes some time to complete if it's executed the first time. You can follow the progress using `docker-compose logs --follow rails` (exit with Ctrl+C).
 
-After the startup has completed (once you see `Listening on tcp://0.0.0.0:3000` in the logs), make sure all services are up and running:
+After the startup has completed (once you see `Listening on tcp://0.0.0.0:4200` in the logs), make sure all services are up and running:
 
 ```bash
 docker-compose ps
