@@ -82,7 +82,7 @@
     "ember-cli-code-coverage": "^0.4.1",
     "ember-cli-dependency-checker": "^3.2.0",
     "ember-cli-dependency-lint": "^1.0.2",
-    "ember-cli-htmlbars": "^4.2.3",
+    "ember-cli-htmlbars": "^5.7.2",
     "ember-cli-icon-rating": "github:lkleisa/ember-cli-icon-rating",
     "ember-cli-inject-live-reload": "^2.0.2",
     "ember-cli-page-object": "^1.11.0",
