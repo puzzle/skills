@@ -62,7 +62,7 @@
   "devDependencies": {
     "@babel/plugin-transform-block-scoping": "^7.8.3",
     "@ember/jquery": "^0.6.1",
-    "@ember/optional-features": "^1.3.0",
+    "@ember/optional-features": "^2.0.0",
     "@ember/string": "^3.0.1",
     "@ember/test-helpers": "^2.9.3",
     "@glimmer/component": "^1.0.1",
