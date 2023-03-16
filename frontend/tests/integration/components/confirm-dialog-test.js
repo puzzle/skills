@@ -1,6 +1,6 @@
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
-import { render, click } from "@ember/test-helpers";
+import { render, click, triggerEvent } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setLocale } from "ember-intl/test-support";
 import sinon from "sinon";
@@ -90,6 +90,36 @@ module("Integration | Component | confirm-dialog", function(hooks) {
     );
 
     await click("#cancel-button");
+
+    assert.ok(parentSpy.calledOnce);
+  });
+
+  test("should call parent onCancel function on esc", async function(assert) {
+    assert.expect(1);
+
+    const parentSpy = sinon.spy();
+    this.set("onCancel", parentSpy);
+
+    await render(
+      hbs`<ConfirmDialog @showModal={{true}} @onCancel={{this.onCancel}} />`
+    );
+
+    await triggerEvent(document, "keyup", { keyCode: 27 });
+
+    assert.ok(parentSpy.calledOnce);
+  });
+
+  test("should call parent onCancel function on esc", async function(assert) {
+    assert.expect(1);
+
+    const parentSpy = sinon.spy();
+    this.set("onConfirm", parentSpy);
+
+    await render(
+      hbs`<ConfirmDialog @showModal={{true}} @onConfirm={{this.onConfirm}} />`
+    );
+
+    await triggerEvent(document, "keyup", { keyCode: 13 });
 
     assert.ok(parentSpy.calledOnce);
   });
