@@ -14,6 +14,8 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
+/tmp/seed/done
+!/tmp/seed/
 !/log/.keep
 !/tmp/.keep
 .DS_STORE
@@ -91,3 +93,9 @@ package-lock.json
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
+config/docker/development/home/rails/.bundle
+config/docker/development/home/rails/.cache
+config/docker/development/home/rails/.local
+config/docker/development/home/rails/.yarnrc
+config/docker/development/home/rails/.irb_history
+config/docker/development/home/rails/.bash_history
