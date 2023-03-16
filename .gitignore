@@ -14,7 +14,8 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
-!/tmp/seed
+/tmp/seed/done
+!/tmp/seed/
 !/log/.keep
 !/tmp/.keep
 .DS_STORE
