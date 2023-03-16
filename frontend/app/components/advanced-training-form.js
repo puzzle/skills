@@ -18,19 +18,19 @@ export default class AdvancedTrainingForm extends BaseFormComponent {
     this.record =
       this.args.advancedTraining || this.store.createRecord("advancedTraining");
     $(document).on("keyup", event => {
-      if (event.keyCode == 27) {
+      //only listen to form keyup event when modal isn't visible
+      if (event.keyCode === 27 && !this.displayModal) {
         /*
          In this if statement we check if any selected element in the dom is a form field,
          if that's the case ESC removes the focus
          if the user isn't in a field we open the modal to ask if he wants to close the form
         */
         if (
-          ($(document.activeElement).is("input") ||
-            $(document.activeElement).is("textarea") ||
-            document.activeElement.classList.contains(
-              "ember-basic-dropdown-trigger"
-            )) &&
-          this.displayModal === false
+          $(document.activeElement).is("input") ||
+          $(document.activeElement).is("textarea") ||
+          document.activeElement.classList.contains(
+            "ember-basic-dropdown-trigger"
+          )
         ) {
           $(document.activeElement).blur();
         } else {
@@ -91,5 +91,11 @@ export default class AdvancedTrainingForm extends BaseFormComponent {
   @action
   closeModal() {
     this.displayModal = false;
+  }
+
+  willDestroy() {
+    //remove keyup event listener on close
+    $(document).off("keyup", this.onKeyUp);
+    super.willDestroy();
   }
 }
