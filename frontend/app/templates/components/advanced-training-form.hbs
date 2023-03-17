@@ -21,7 +21,9 @@
         {{else}}
           <button id="save-and-new-button" type="button" {{on "click" (fn this.submitAndNew record)}} role="button" class="btn btn-info border m-2">{{t "advanced-training-form.saveAndNew"}}</button>
         {{/if}}
-        <a href="#" {{on "click" this.abort}} role="button" id="cancel-button" class="abort-edit-buttons text-center mx-4">{{t "advanced-training-form.cancel"}}</a>
+        <a {{on "click" this.openModal}} role="button" id="cancel-button" class="abort-edit-buttons text-center mx-4">{{t "advanced-training-form.cancel"}}</a>
+        <ConfirmDialog @showModal={{this.displayModal}} @onConfirm={{this.abort}} @onCancel={{this.closeModal}} @confirmText="{{t "advanced-training-form.closeDialogText" }}">
+        </ConfirmDialog>
       </div>
     </div>
   </div>

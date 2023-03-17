@@ -4,7 +4,6 @@ import classic from "ember-classic-decorator";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 import sortByYear from "../utils/sort-by-year";
-import $ from "jquery";
 
 @classic
 export default class EducationsShow extends Component {
@@ -23,12 +22,6 @@ export default class EducationsShow extends Component {
     // addObserver(this, "person", this.personChanged);
     // this is a hack because ember keyboard is not ported to octane yet.
     // normal jquery events using the {{on}} template helper doesn't work for escape key
-    $(document).on("keyup", event => {
-      if (event.keyCode == 27) {
-        this.editingEducation = null;
-        this.isNewRecord = false;
-      }
-    });
   }
 
   get sortedEducations() {

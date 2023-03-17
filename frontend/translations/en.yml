@@ -1,4 +1,5 @@
 activity-form:
+    closeDialogText: Do you really want to close this form?
     cancel: Cancel
     delete: Delete
     role: Role
@@ -17,6 +18,7 @@ advancedTraining:
     name: Advanced Training
     yearFrom: 'Year from'
 advanced-training-form:
+    closeDialogText: Do you really want to close this form?
     cancel: Cancel
     delete: Delete
     description: Description
@@ -29,6 +31,9 @@ application:
     cvSearch: CV Search
     profile: Profile
     skillSearch: Skill Search
+confirm-dialog:
+  confirm: Confirm
+  cancel: Cancel
 competence:
     description: Description
 competence-notes-show:
@@ -62,6 +67,7 @@ education:
     title: Title
     yearFrom: 'Jahr von'
 education-form:
+    closeDialogText: Do you really want to close this form?
     cancel: Cancel
     delete: Delete
     education: Education
@@ -198,6 +204,7 @@ projects-show:
     add: Add project
     projects: Projects
 project-form:
+  closeDialogText: Do you really want to close this form?
   delete: Delete
   description: Description
   editProject: Edit project

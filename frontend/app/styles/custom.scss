@@ -1619,3 +1619,21 @@ div.content-input {
   padding: 0 !important;
   background-color: rgba(70, 188, 192, 0.59);
 }
+
+#confirmation-modal {
+  padding-top: 15%;
+  padding-right: 9px;
+  display: block;
+  color: black;
+  font-weight: normal;
+}
+
+.close-buttons {
+  margin: 8px;
+  padding: 12px;
+  color: #1e5a96 !important;
+}
+
+.close-buttons:active {
+  outline: none !important;
+}

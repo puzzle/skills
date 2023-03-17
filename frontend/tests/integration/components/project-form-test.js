@@ -1,6 +1,6 @@
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
-import { render } from "@ember/test-helpers";
+import { click, render, triggerEvent } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setLocale } from "ember-intl/test-support";
 
@@ -160,5 +160,52 @@ module("Integration | Component | project-form", function(hooks) {
       //HTML doesn't recognize '&' but it will recognize &amp; because it is equal to & in HTML
       "Speichern &amp; Neu"
     );
+  });
+
+  test("should turn on modal when cancel button is clicked", async function(assert) {
+    assert.expect(2);
+
+    await render(hbs`<ProjectForm @project={{null}} />`);
+
+    assert
+      .dom(this.element.querySelector("#confirmation-modal"))
+      .doesNotExist();
+
+    await click("#cancel-button");
+
+    assert.dom(this.element.querySelector("#confirmation-modal")).exists();
+  });
+
+  test("should turn on modal when esc keyup event is triggered", async function(assert) {
+    assert.expect(2);
+
+    await render(hbs`<ProjectForm @project={{null}} />`);
+
+    assert
+      .dom(this.element.querySelector("#confirmation-modal"))
+      .doesNotExist();
+
+    await triggerEvent(document, "keyup", { keyCode: 27 });
+
+    assert.dom(this.element.querySelector("#confirmation-modal")).exists();
+  });
+
+  // eslint-disable-next-line max-len
+  test("should select input and unfocus currently selected element on esc keyup event without opening modal", async function(assert) {
+    assert.expect(3);
+
+    await render(hbs`<ProjectForm @project={{null}} />`);
+
+    await click("#title-input");
+
+    assert.equal(document.activeElement.tagName, "INPUT");
+
+    await triggerEvent(document, "keyup", { keyCode: 27 });
+
+    assert.equal(document.activeElement.tagName, "BODY");
+
+    assert
+      .dom(this.element.querySelector("#confirmation-modal"))
+      .doesNotExist();
   });
 });

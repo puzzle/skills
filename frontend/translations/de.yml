@@ -1,4 +1,5 @@
 activity-form:
+    closeDialogText: Möchtest du dieses Forumular wirklich schliessen?
     cancel: Abbrechen
     delete: Löschen
     role: Rolle
@@ -17,6 +18,7 @@ advancedTraining:
     name: Weiterbildung
     yearFrom: 'Jahr von'
 advanced-training-form:
+    closeDialogText: Möchtest du dieses Forumular wirklich schliessen?
     cancel: Abbrechen
     delete: Löschen
     description: Beschreibung
@@ -29,6 +31,9 @@ application:
     cvSearch: CV Suche
     profile: Profil
     skillSearch: Skill Suche
+confirm-dialog:
+    confirm: Bestätigen
+    cancel: Abbrechen
 competence:
     description: Beschreibung
 competence-notes-show:
@@ -62,6 +67,7 @@ education:
     title: Titel
     yearFrom: 'Jahr von'
 education-form:
+    closeDialogText: Möchtest du dieses Forumular wirklich schliessen?
     cancel: Abbrechen
     delete: Löschen
     education: Ausbildung
@@ -201,6 +207,7 @@ projects-show:
     add: Projekt hinzufügen
     projects: Projekte
 project-form:
+    closeDialogText: Möchtest du dieses Forumular wirklich schliessen?
     delete: Löschen
     description: Beschreibung
     editProject: Projekt bearbeiten
