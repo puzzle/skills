@@ -65,11 +65,23 @@ class PeopleSkillsFilter
     entries.where(person_id: person_ids, skill_id: skill_ids)
   end
 
-  def filter_for_skills_and_levels(entries)
+  def filter_for_skills_and_levels_and_interests(entries)
     result = PeopleSkill.none
     levels_for_skills.each do |ls|
-      result = result.or(filter_for_level_and_skill(entries, ls[:skill], ls[:level]))
+      result = result.or(filter_for_level_and_skill_and_interest(entries, ls[:skill], ls[:level], interests_for_skills.find { |h| h[:skill] == ls[:skill]}[:interest]))
     end
     result
+  end
+
+  def filter_for_level_and_skill_and_interest(entries, skill, level, interest)
+    entries.where('skill_id = ? and level >= ? and interest >= ?', skill, level, interest)
+  end
+
+  def persons_with_required_skill(skills_per_person)
+    skills_per_person.map { |id, count| id if count == skill_ids.length }
+  end
+
+  def skill_ids
+    levels_for_skills.map { |ls| ls[:skill] }
   end
 end
