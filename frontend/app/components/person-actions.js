@@ -3,10 +3,6 @@ import { observes } from "@ember-decorators/object";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@ember/component";
-/* eslint-disable ember/new-module-imports  */
-import Ember from "ember";
-const { $ } = Ember;
-/* eslint-enable ember/new-module-imports  */
 
 @classic
 export default class PersonActions extends Component {
@@ -43,9 +39,11 @@ export default class PersonActions extends Component {
   didRender() {
     const currentURL = this.get("router.currentURL");
     if (currentURL.includes("skills")) {
+      /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
       $("#peopleSkillsLink").addClass("active");
     } else {
       $("#peopleSkillsLink").removeClass("active");
+      /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
     }
   }
 
