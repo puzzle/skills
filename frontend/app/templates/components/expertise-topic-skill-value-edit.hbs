@@ -1,4 +1,4 @@
-{{#with (changeset this.expertiseTopicSkillValue this.validations) as |etsvChangeset|}}
+{{#let (changeset this.expertiseTopicSkillValue this.validations) as |etsvChangeset|}}
   <td class="fws-topic-name">{{this.expertiseTopic.name}}</td>
   <td>
     <input form={{this.formId}}
@@ -57,4 +57,4 @@
       </a>
     </form>
   </td>
-{{/with}}
+{{/let}}
