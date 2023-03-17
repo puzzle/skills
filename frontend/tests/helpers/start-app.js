@@ -3,7 +3,7 @@ import { merge } from "@ember/polyfills";
 import Application from "../../app";
 import config from "../../config/environment";
 import registerPowerSelectHelpers from "ember-power-select/test-support/helpers";
-import { setContext } from "ember-test-helpers";
+import { setContext } from "@ember/test-helpers";
 
 registerPowerSelectHelpers();
 
