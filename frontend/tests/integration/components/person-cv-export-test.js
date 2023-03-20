@@ -27,6 +27,8 @@ module("Integration | Component | person-cv-export", function(hooks) {
   });
 
   test("it renders export pop up", async function(assert) {
+    /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
+
     this.owner.register("service:keycloak-session", nonAdminKeycloakStub);
 
     await render(hbs`{{person-cv-export}}`);
@@ -54,7 +56,9 @@ module("Integration | Component | person-cv-export", function(hooks) {
     assert.ok(
       this.element.textContent.trim().includes("person-cv-export.cancel")
     );
-    assert.equal(this.$("button").length, 4);
+    assert.equal($("button").length, 4);
+
+    /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
   });
 
   test("it sets skill level with ui slider", async function(assert) {

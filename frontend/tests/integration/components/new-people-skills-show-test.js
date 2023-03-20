@@ -66,7 +66,9 @@ module("Integration | Component | new-people-skills-show", function(hooks) {
     );
     await render(hbs`{{new-people-skills-show skills=skills}}`);
 
-    let text = this.$().text();
+    /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
+    let text = $().text();
+    /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
 
     assert.dom().includesText("t:new-people-skills-show.newSkills");
     assert.ok(text.includes("Rails"));

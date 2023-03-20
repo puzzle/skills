@@ -6,6 +6,8 @@ import Component from "@ember/component";
 
 @classic
 export default class PeopleSkillShow extends Component {
+  /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
+
   @service router;
 
   init() {
@@ -13,13 +15,11 @@ export default class PeopleSkillShow extends Component {
     this.set("levelValue", this.get("peopleSkill.level"));
     if (!this.get("peopleSkill.level")) {
       this.set("levelValue", 1);
-      /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
       $(".slider-handle").ready(() => {
-        this.sliderHandle = this.$(".slider-handle:first");
+        this.sliderHandle = $(".slider-handle:first");
         if (!this.sliderHandle) return;
         this.sliderHandle.removeClass("slider-handle");
-        this.$(".in-selection").removeClass("in-selection");
-        /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
+        $(".in-selection").removeClass("in-selection");
       });
     }
   }
@@ -60,9 +60,11 @@ export default class PeopleSkillShow extends Component {
   @action
   adjustSliderStylingOnReset() {
     if (!this.get("peopleSkill.level")) {
-      this.sliderHandle = this.$(".slider-handle:first");
+      this.sliderHandle = $(".slider-handle:first");
       this.sliderHandle.removeClass("slider-handle");
-      this.$(".in-selection").removeClass("in-selection");
+      $(".in-selection").removeClass("in-selection");
     }
   }
+
+  /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
 }

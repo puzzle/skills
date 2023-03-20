@@ -86,7 +86,9 @@ module("Integration | Component | core-competences-show", function(hooks) {
 
     await render(hbs`<CoreCompetencesShow @person={{this.person}}/>`);
 
-    let text = this.$().text();
+    /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
+    let text = $().text();
+    /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
 
     assert.ok(text.includes("Software Engineering"));
     assert.ok(text.includes("Ruby"));

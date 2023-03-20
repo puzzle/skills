@@ -19,29 +19,33 @@ module("Integration | Component | people-skill-show", function(hooks) {
 
     await render(hbs`{{people-skill-show peopleSkill=peopleSkill}}`);
 
-    let text = this.$().text();
+    /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
+
+    let text = $().text();
 
     assert.ok(text.includes("Rails"));
     assert.ok(text.includes("Junior"));
     assert.equal(
-      this.$(".icon-rating-icon")[0].getAttribute("style"),
+      $(".icon-rating-icon")[0].getAttribute("style"),
       "color: #238BCA"
     );
     assert.equal(
-      this.$(".icon-rating-icon")[1].getAttribute("style"),
+      $(".icon-rating-icon")[1].getAttribute("style"),
       "color: #238BCA"
     );
     assert.equal(
-      this.$(".icon-rating-icon")[2].getAttribute("style"),
+      $(".icon-rating-icon")[2].getAttribute("style"),
       "color: #238BCA"
     );
     assert.equal(
-      this.$(".icon-rating-icon")[3].getAttribute("style"),
+      $(".icon-rating-icon")[3].getAttribute("style"),
       "color: #BDBDBD"
     );
     assert.equal(
-      this.$(".icon-rating-icon")[4].getAttribute("style"),
+      $(".icon-rating-icon")[4].getAttribute("style"),
       "color: #BDBDBD"
     );
+
+    /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
   });
 });

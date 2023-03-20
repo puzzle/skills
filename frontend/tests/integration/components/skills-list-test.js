@@ -57,6 +57,8 @@ const nonAdminKeycloakStub = keycloakStub.extend({
 });
 
 module("Integration | Component | skills-list", function(hooks) {
+  /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
+
   setupRenderingTest(hooks);
   setupIntl(hooks);
 
@@ -68,7 +70,7 @@ module("Integration | Component | skills-list", function(hooks) {
   test("it renders without data", async function(assert) {
     await render(hbs`{{skills-list}}`);
 
-    let text = this.$().text();
+    let text = $().text();
 
     assert.ok(text.includes("Export"));
     assert.dom().includesText("t:skill-new.createSkill");
@@ -80,7 +82,7 @@ module("Integration | Component | skills-list", function(hooks) {
   test("it renders for non admin user", async function(assert) {
     this.owner.register("service:keycloak-session", nonAdminKeycloakStub);
     await render(hbs`{{skills-list}}`);
-    let text = this.$().text();
+    let text = $().text();
 
     assert.ok(text.includes("Export"));
     assert.ok(text.includes("Skill"));
@@ -126,7 +128,7 @@ module("Integration | Component | skills-list", function(hooks) {
 
     await render(hbs`{{skills-list skills=skills}}`);
 
-    let text = this.$().text();
+    let text = $().text();
 
     assert.ok(text.includes("Ruby"));
     assert.ok(text.includes("aktiv"));
@@ -139,4 +141,6 @@ module("Integration | Component | skills-list", function(hooks) {
     assert.ok(text.includes("CI/CD"));
     assert.ok(text.includes("1"));
   });
+
+  /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
 });

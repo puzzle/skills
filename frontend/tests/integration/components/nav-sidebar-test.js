@@ -4,6 +4,8 @@ import { render } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 
 module("Integration | Component | nav-sidebar", function(hooks) {
+  /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
+
   setupRenderingTest(hooks);
 
   test("it renders nav-sidebar without additional content", async function(assert) {
@@ -15,7 +17,7 @@ module("Integration | Component | nav-sidebar", function(hooks) {
 
     await render(hbs`{{nav-sidebar items=sidebarItems}}`);
 
-    let listEntries = this.$("li");
+    let listEntries = $("li");
 
     assert.equal(listEntries[0].innerText, "Personalien");
     assert.equal(listEntries[1].innerText, "Kernkompetenzen");
@@ -38,7 +40,7 @@ module("Integration | Component | nav-sidebar", function(hooks) {
       {{/nav-sidebar}}
     `);
 
-    let listEntries = this.$("li");
+    let listEntries = $("li");
 
     assert.equal(listEntries[0].innerText, "Personalien");
     assert.equal(listEntries[1].innerText, "Kernkompetenzen");
@@ -46,4 +48,6 @@ module("Integration | Component | nav-sidebar", function(hooks) {
     assert.equal(listEntries[3].innerText, "Weiterbildung");
     assert.equal(listEntries[4].innerText, "Projekte");
   });
+
+  /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
 });

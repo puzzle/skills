@@ -20,7 +20,9 @@ module("Integration | Component | updated-at", function(hooks) {
     });
     await render(hbs`{{updated-at entry=person}}`);
 
-    let text = this.$().text();
+    /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
+    let text = $().text();
+    /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
 
     assert.dom().includesText("t:updated-at.message");
     assert.ok(text.includes("09.02.2008"));

@@ -12,7 +12,9 @@ module(
 
       this.render(hbs`{{competence-notes-show person=person}}`);
 
-      let text = this.$().text();
+      /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
+      let text = $().text();
+      /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
 
       // doesn't show full person
       assert.ok(text.includes("Ruby"));

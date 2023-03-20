@@ -7,6 +7,8 @@ import { run } from "@ember/runloop";
 import { settled } from "@ember/test-helpers";
 
 module("Integration | Component | person-edit", function(hooks) {
+  /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
+
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function(assert) {
@@ -25,10 +27,10 @@ module("Integration | Component | person-edit", function(hooks) {
     this.set("person", person);
 
     await render(hbs`{{person-edit person=person}}`);
-    this.$("button")[0].click();
+    $("button")[0].click();
     await settled();
     assert.ok(
-      this.$("#validation-error")
+      $("#validation-error")
         .text()
         .includes("Name can't be blank")
     );
@@ -46,10 +48,10 @@ module("Integration | Component | person-edit", function(hooks) {
     this.set("person", person);
 
     await render(hbs`{{person-edit person=person}}`);
-    this.$("button")[0].click();
+    $("button")[0].click();
     await settled();
     assert.ok(
-      this.$("#validation-error")
+      $("#validation-error")
         .text()
         .includes("Title can't be blank")
     );
@@ -67,10 +69,10 @@ module("Integration | Component | person-edit", function(hooks) {
     this.set("person", person);
 
     await render(hbs`{{person-edit person=person}}`);
-    this.$("button")[0].click();
+    $("button")[0].click();
     await settled();
     assert.ok(
-      this.$("#validation-error")
+      $("#validation-error")
         .text()
         .includes("Birthdate can't be blank")
     );
@@ -88,10 +90,10 @@ module("Integration | Component | person-edit", function(hooks) {
     this.set("person", person);
 
     await render(hbs`{{person-edit person=person}}`);
-    this.$("button")[0].click();
+    $("button")[0].click();
     await settled();
     assert.ok(
-      this.$("#validation-error")
+      $("#validation-error")
         .text()
         .includes("Email kann nicht leer sein")
     );
@@ -110,12 +112,14 @@ module("Integration | Component | person-edit", function(hooks) {
     this.set("person", person);
 
     await render(hbs`{{person-edit person=person}}`);
-    this.$("button")[0].click();
+    $("button")[0].click();
     await settled();
     assert.ok(
-      this.$("#validation-error")
+      $("#validation-error")
         .text()
         .includes("Gib eine gültige Email Adresse ein")
     );
   });
+
+  /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
 });
