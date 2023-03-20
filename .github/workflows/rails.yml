@@ -28,7 +28,7 @@ jobs:
         node-version: '14' # TODO version should not be specified
 
     - name: Install Ember-Cli with NPM
-      run: npm install -g ember-cli@3.17  # TODO version should not be specified
+      run: npm install -g ember-cli@3.28.6  # TODO version should not be specified
       working-directory: frontend
 
     - name: Install dependencies Yarn
