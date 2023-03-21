@@ -112,7 +112,7 @@ module("Integration | Component | project-form", function(hooks) {
     );
     assert.equal(
       this.element.querySelector("#role-label").innerHTML,
-      "Rolle und Aufagaben"
+      "Rolle und Aufgaben"
     );
     assert.equal(
       this.element.querySelector("#technology-label").innerHTML,
