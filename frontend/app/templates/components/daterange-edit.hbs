@@ -47,12 +47,12 @@
   {{/unless}}
   </tbody>
 </table>
-<hr>
-<button style="width:100%" class="btn btn-primary" {{on "click" this.toggleHideTo }}>
-  {{#if this.hideTo}}
-    Mit Bis
-  {{else}}
-    Ohne Bis
-  {{/if}}
-</button>
-
+<div class="buttonDisableToDiv">
+  <button class="btn btn-primary buttonDisableTo" {{on "click" this.toggleHideTo }}>
+    {{#if this.hideTo}}
+      Mit Bis
+    {{else}}
+      Ohne Bis
+    {{/if}}
+  </button>
+</div>
