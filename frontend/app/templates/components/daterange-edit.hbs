@@ -24,29 +24,35 @@
              class={{concat (if this.yearFromInvalid "invalid") " year form-control" }} placeholder="von">
     </td>
   </tr>
-  <tr>
-    <th class="align-middle" scope="row">
-      {{t "daterange-edit.to"}}
-      {{#if this.hideTo}}
-        <i {{on "click" this.toggleHideTo }} role="button" class="edit-buttons far fa-calendar-check"></i>
-      {{else}}
-        <i {{on "click" this.toggleHideTo }} role="button" class="edit-buttons far fa-calendar-times"></i>
-      {{/if}}
-    </th>
-    <td>
-      <PowerSelect @disabled= {{this.hideTo}} @selected={{this.selectedMonthTo}} @options={{this.monthsToSelect}}
-        @searchEnabled={{false}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}}
-        @onChange={{action "setMonth" "To"}} @onKeydown={{action "setWithTab" "setMonth" "To"}} as |month|>
-        {{month}}
-      </PowerSelect>
-    </td>
-    <td>
-      {{#if (not-eq this.selectedMonthTo "heute")}}
-        <Input type="number" @value={{@entity.yearTo}} @disabled={{this.hideTo}} max="9999"
-               onchange={{action "setYearTo" value="target.value"}}
-               class={{concat (if this.yearFromInvalid "invalid") " year form-control" }} placeholder="bis"/>
-      {{/if}}
-    </td>
-  </tr>
+  {{#unless this.hideTo}}
+    <tr>
+      <th class="align-middle" scope="row">
+        {{t "daterange-edit.to"}}
+      </th>
+      <td>
+        <PowerSelect @disabled= {{this.hideTo}} @selected={{this.selectedMonthTo}} @options={{this.monthsToSelect}}
+                     @searchEnabled={{false}} @onFocus={{action "handleFocus"}} @onBlur={{action "handleBlur"}}
+                     @onChange={{action "setMonth" "To"}} @onKeydown={{action "setWithTab" "setMonth" "To"}} as |month|>
+          {{month}}
+        </PowerSelect>
+      </td>
+      <td>
+        {{#if (not-eq this.selectedMonthTo "heute")}}
+          <Input type="number" @value={{@entity.yearTo}} @disabled={{this.hideTo}} max="9999"
+                 onchange={{action "setYearTo" value="target.value"}}
+                 class={{concat (if this.yearFromInvalid "invalid") " year form-control" }} placeholder="bis"/>
+        {{/if}}
+      </td>
+    </tr>
+  {{/unless}}
   </tbody>
 </table>
+<hr>
+<button style="width:100%" class="btn btn-primary" {{on "click" this.toggleHideTo }}>
+  {{#if this.hideTo}}
+    Mit Bis
+  {{else}}
+    Ohne Bis
+  {{/if}}
+</button>
+
