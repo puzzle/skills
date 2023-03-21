@@ -52,6 +52,8 @@ daterange-edit:
     month: Monat
     to: 'Bis:'
     year: Jahr
+    without ending: 'Ohne Ende'
+    with ending: 'Mit Ende'
 delete-confirmation:
     cancel: Abbrechen
     confirmDelete: Löschen bestätigen
