@@ -19,13 +19,6 @@ Managing employees and getting an overview of each of their skills has never bee
 
 ![Skills Workflow](skills.gif)
 
-
-
-## Back-End
-
-This is the Backend documentation for the PuzzleSkills Application .
-The Back-End is built with [Ruby on Rails](https://rubyonrails.org/) with an API interface.
-
 ## Prerequisites
 
 You will need the following things properly installed on your computer:
@@ -79,91 +72,7 @@ skills-rails-1                 rails-entrypoint ra…   Up      0.0.0.0:3000->30
 ```
 
 Access the web application by browser: http://localhost:4200 and enjoy the ride!
-<img src="https://developers.redhat.com/sites/default/files/styles/article_feature/public/blog/2014/05/homepage-docker-logo.png?itok=zx0e-vcP" alt="docker whale">
-
-## Setup undockerized Application 👩🏽‍💻
-
-Clone the repository to your machine:
-```shell
-git clone https://github.com/puzzle/skills.git
-```  
-Enter the repository:
-```shell
-cd skills
-```
-Install Ruby with the help of RVM:
-```shell
-rvm install 2.7
-```
-Tell RVM to use the just install Ruby Version:
-```shell
-rvm use 2.7
-```
-Install the ruby package manager:
-```shell
-gem install bundler
-```
-Note that the PostgreSQL gem `pg` requires header files for the Postgres library `libqp` to be available.  Therefore,
-make sure `libpq-dev` is installed:
-```shell
-sudo apt install libpq-dev
-```
-And let the bundler install all the prerequisite gems:
-```shell
-bundle install
-```
-
-#### Database setup
-
-##### With Docker
-
-  Install [docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/) and [docker-compose](https://docs.docker.com/compose/install/)
-```
-docker-compose up -d
-```
-
-##### Just with Vanilla Postgresql
-Install Postgresql
-
-```shell
-sudo apt-get install postgresql postgresql-contrib
-```
-Start Postgresql as superuser
-```shell
-sudo su - postgres
-```
-Create the user skills
-```shell
-createuser skills -s -l -P
-```
-(with password 'skills')
-```shell
-exit
-```
-
-
-##### With the Server setup completed
-go back to the skills folder
-
-And let rails setup the database  
-```shell
-rails db:setup
-```
-
-## Running / Development
-You can run the backend server with
-```shell
-rails s
-```
-Congratulations you have the Ruby on Rails backend up and running.
-From here on continue with the [frontend setup](https://github.com/puzzle/skills/blob/master/frontend/README.md)
-
-## Front-End
-
-The Front-End is built with EmberJS.
-
-See [frontend/README.md](https://github.com/puzzle/skills/blob/master/frontend/README.md)
-
+<img src="https://developers.redhat.com/sites/default/files/styles/article_feature/public/blog/2014/05/homepage-docker-logo.png?itok=zx0e-vcP" alt="docker whale" width="350">
 
 ## Testing
 
