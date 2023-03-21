@@ -1,22 +1,23 @@
 import classic from "ember-classic-decorator";
-import { action } from "@ember/object";
+import {action, computed} from "@ember/object";
 import ApplicationComponent from "./application-component";
-import { isBlank } from "@ember/utils";
-import { computed } from "@ember/object";
+import {isBlank} from "@ember/utils";
+import {tracked} from '@glimmer/tracking';
 
 @classic
 export default class DaterangeEdit extends ApplicationComponent {
+  @tracked hideTo = false;
   yearFromInvalid = false;
   yearToInvalid = false;
 
   init() {
     super.init(...arguments);
-    this.monthsToSelect = ["heute", "-"].concat(
+    this.monthsFromSelect = ["-"].concat(
       Array(12)
         .fill()
         .map((x, i) => i + 1 + "")
     );
-    this.monthsFromSelect = ["-"].concat(
+    this.monthsToSelect = ["heute", "-"].concat(
       Array(12)
         .fill()
         .map((x, i) => i + 1 + "")
@@ -26,6 +27,7 @@ export default class DaterangeEdit extends ApplicationComponent {
   @computed("entity.monthFrom")
   get selectedMonthFrom() {
     let selectedValue = this.entity.monthFrom;
+    this.setToAttribut("entity.monthTo", selectedValue);
     if (!this.entity.monthFrom) {
       selectedValue = "-";
     }
@@ -70,7 +72,14 @@ export default class DaterangeEdit extends ApplicationComponent {
 
   setYear(year, attr) {
     let validatedYear = this.validateYear(year, "year" + attr);
+    this.setToAttribut("entity.yearTo", year)
     this.set("entity.year" + attr, validatedYear);
+  }
+
+  setToAttribut(attrName, value) {
+    if (this.hideTo) {
+      this.set(attrName, value);
+    }
   }
 
   @action
@@ -97,5 +106,13 @@ export default class DaterangeEdit extends ApplicationComponent {
   }
 
   @action
-  handleBlur() {}
+  handleBlur() {
+  }
+
+  @action
+  toggleHideTo() {
+    this.hideTo = !this.hideTo;
+    this.entity.yearTo = this.entity.yearFrom;
+    this.entity.monthTo = this.entity.monthFrom;
+  }
 }
