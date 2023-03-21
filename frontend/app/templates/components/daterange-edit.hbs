@@ -27,6 +27,11 @@
   <tr>
     <th class="align-middle" scope="row">
       {{t "daterange-edit.to"}}
+      {{#if this.hideTo}}
+        <i {{on "click" this.toggleHideTo }} role="button" class="edit-buttons far fa-calendar-check"></i>
+      {{else}}
+        <i {{on "click" this.toggleHideTo }} role="button" class="edit-buttons far fa-calendar-times"></i>
+      {{/if}}
     </th>
     <td>
       <PowerSelect @disabled= {{this.hideTo}} @selected={{this.selectedMonthTo}} @options={{this.monthsToSelect}}
@@ -40,13 +45,6 @@
         <Input type="number" @value={{@entity.yearTo}} @disabled={{this.hideTo}} max="9999"
                onchange={{action "setYearTo" value="target.value"}}
                class={{concat (if this.yearFromInvalid "invalid") " year form-control" }} placeholder="bis"/>
-      {{/if}}
-    </td>
-    <td class="align-middle">
-      {{#if this.hideTo}}
-        <i {{on "click" this.toggleHideTo }} role="button" class="edit-buttons far fa-calendar-times"></i>
-      {{else}}
-        <i {{on "click" this.toggleHideTo }} role="button" class="edit-buttons far fa-calendar-check"></i>
       {{/if}}
     </td>
   </tr>
