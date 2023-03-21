@@ -1,8 +1,8 @@
 import classic from "ember-classic-decorator";
-import {action, computed} from "@ember/object";
+import { action, computed } from "@ember/object";
 import ApplicationComponent from "./application-component";
-import {isBlank} from "@ember/utils";
-import {tracked} from '@glimmer/tracking';
+import { isBlank } from "@ember/utils";
+import { tracked } from "@glimmer/tracking";
 
 @classic
 export default class DaterangeEdit extends ApplicationComponent {
@@ -72,7 +72,7 @@ export default class DaterangeEdit extends ApplicationComponent {
 
   setYear(year, attr) {
     let validatedYear = this.validateYear(year, "year" + attr);
-    this.setToAttribut("entity.yearTo", year)
+    this.setToAttribut("entity.yearTo", year);
     this.set("entity.year" + attr, validatedYear);
   }
 
@@ -106,8 +106,7 @@ export default class DaterangeEdit extends ApplicationComponent {
   }
 
   @action
-  handleBlur() {
-  }
+  handleBlur() {}
 
   @action
   toggleHideTo() {
