@@ -71,7 +71,7 @@ module("Integration | Component | daterange-edit", function(hooks) {
 
     await render(hbs`{{daterange-edit entity=project}}`);
 
-    let calendarIcon = this.$(".fa-calendar-times");
+    let calendarIcon = this.$(".btn-primary");
     calendarIcon.click();
 
     assert.equal(this.project.monthTo, 10);
@@ -88,7 +88,7 @@ module("Integration | Component | daterange-edit", function(hooks) {
 
     await render(hbs`{{daterange-edit entity=project}}`);
 
-    let calendarIcon = this.$(".fa-calendar-times");
+    let calendarIcon = this.$(".btn-primary");
     calendarIcon.click();
     this.project.yearTo = 1980;
 
