@@ -108,11 +108,9 @@ module("Integration | Component | person-edit", function(hooks) {
     await render(hbs`{{person-edit person=person}}`);
     $("button")[0].click();
     await settled();
-    assert.true(
-      document
-        .querySelector("#validation-error")
-        .textContent.includes("Gib eine gültige Email Adresse ein")
-    );
+    assert
+      .dom("#validation-error", document)
+      .includesText("Gib eine gültige Email Adresse ein");
   });
 
   /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
