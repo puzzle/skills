@@ -39,7 +39,7 @@ module("Integration | Component | skills-list-row-show", function(hooks) {
     await render(hbs`{{skills-list-row-show}}`);
 
     assert.equal(
-      this.element.querySelector("a").getAttribute("class"),
+      document.querySelector("a").className,
       "edit-buttons skill-edit-button grayed-out"
     );
   });
