@@ -3,7 +3,6 @@ import applicationPage from "frontend/tests/pages/application";
 import page from "frontend/tests/pages/person-edit";
 import { triggerKeyUp } from "ember-keyboard";
 import { openDatepicker } from "ember-pikaday/helpers/pikaday";
-import $ from "jquery";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
 import { selectChoose } from "ember-power-select/test-support";
 import { fillIn } from "@ember/test-helpers";

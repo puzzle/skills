@@ -4,7 +4,6 @@ import { render } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import keycloakStub from "../../helpers/keycloak-stub";
 import page from "frontend/tests/pages/person-cv-export";
-import $ from "jquery";
 import Service from "@ember/service";
 
 const nonAdminKeycloakStub = keycloakStub.extend({
