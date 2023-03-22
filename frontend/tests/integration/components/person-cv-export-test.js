@@ -55,7 +55,7 @@ module("Integration | Component | person-cv-export", function(hooks) {
     assert.ok(
       this.element.textContent.trim().includes("person-cv-export.cancel")
     );
-    assert.equal(document.querySelectorAll("button").length, 4);
+    assert.equal(this.element.querySelectorAll("button").length, 4);
 
     /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
   });
