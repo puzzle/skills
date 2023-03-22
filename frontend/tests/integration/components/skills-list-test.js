@@ -62,9 +62,9 @@ module("Integration | Component | skills-list", function(hooks) {
   setupRenderingTest(hooks);
   setupIntl(hooks);
 
-  setLocale("de");
-
   hooks.beforeEach(function(assert) {
+    setLocale("de");
+
     this.owner.register("service:store", storeStub);
     this.owner.register("service:keycloak-session", keycloakStub);
   });

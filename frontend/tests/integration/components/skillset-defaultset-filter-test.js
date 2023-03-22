@@ -8,9 +8,9 @@ module("Integration | Component | skillset-defaultset-filter", function(hooks) {
   setupRenderingTest(hooks);
   setupIntl(hooks);
 
-  setLocale("de");
-
   test("it renders", async function(assert) {
+    setLocale("de");
+
     await render(hbs`{{skillset-defaultset-filter}}`);
 
     assert.dom("#defaultFilterAll", document).includesText("Alle");

@@ -8,9 +8,9 @@ module("Integration | Component | skillset-category-filter", function(hooks) {
   setupRenderingTest(hooks);
   setupIntl(hooks);
 
-  setLocale("de");
-
   test("it renders", async function(assert) {
+    setLocale("de");
+
     this.set("parentCategories", {
       then(func) {
         return [
