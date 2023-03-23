@@ -1,6 +1,6 @@
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
-import { click, render, triggerEvent } from "@ember/test-helpers";
+import { blur, click, fillIn, render, triggerEvent } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setLocale } from "ember-intl/test-support";
 
@@ -135,6 +135,8 @@ module("Integration | Component | advanced-training-form", function(hooks) {
       .dom(this.element.querySelector("#confirmation-modal"))
       .doesNotExist();
 
+    await fillIn("#description-input", "New value");
+
     await click("#cancel-button");
 
     assert.dom(this.element.querySelector("#confirmation-modal")).exists();
@@ -148,6 +150,10 @@ module("Integration | Component | advanced-training-form", function(hooks) {
     assert
       .dom(this.element.querySelector("#confirmation-modal"))
       .doesNotExist();
+
+    await fillIn("#description-input", "New value");
+
+    await blur("#description-input");
 
     await triggerEvent(document, "keyup", { keyCode: 27 });
 

@@ -34,7 +34,7 @@ export default class AdvancedTrainingForm extends BaseFormComponent {
         ) {
           $(document.activeElement).blur();
         } else {
-          this.openModal();
+          this.triggerAbortForm();
         }
       }
     });
@@ -84,8 +84,13 @@ export default class AdvancedTrainingForm extends BaseFormComponent {
   }
 
   @action
-  openModal() {
-    this.displayModal = true;
+  triggerAbortForm() {
+    //check if form is dirty
+    if ($.isEmptyObject(this.record.changedAttributes())) {
+      this.abort();
+    } else {
+      this.displayModal = true;
+    }
   }
 
   @action
