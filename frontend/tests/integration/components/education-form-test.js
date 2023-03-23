@@ -139,7 +139,7 @@ module("Integration | Component | education-form", function(hooks) {
       .dom(this.element.querySelector("#confirmation-modal"))
       .doesNotExist();
 
-    await fillIn("#description-input", "New value");
+    await fillIn("#title-input", "New value");
 
     await click("#cancel-button");
 
@@ -155,9 +155,9 @@ module("Integration | Component | education-form", function(hooks) {
       .dom(this.element.querySelector("#confirmation-modal"))
       .doesNotExist();
 
-    await fillIn("#description-input", "New value");
+    await fillIn("#title-input", "New value");
 
-    await blur("#description-input");
+    await blur("#title-input");
 
     await triggerEvent(document, "keyup", { keyCode: 27 });
 
