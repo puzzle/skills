@@ -21,10 +21,8 @@ module("Integration | Component | people-skill-show", function(hooks) {
 
     /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
 
-    let text = $().text();
-
-    assert.ok(text.includes("Rails"));
-    assert.ok(text.includes("Junior"));
+    assert.dom(".people-skill-title", document).includesText("Rails");
+    assert.dom(".skillset-level-title", document).includesText("Junior");
     assert.equal(
       $(".icon-rating-icon")[0].getAttribute("style"),
       "color: #238BCA"

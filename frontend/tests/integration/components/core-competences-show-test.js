@@ -86,12 +86,8 @@ module("Integration | Component | core-competences-show", function(hooks) {
 
     await render(hbs`<CoreCompetencesShow @person={{this.person}}/>`);
 
-    /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
-    let text = $().text();
-    /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
-
-    assert.ok(text.includes("Software Engineering"));
-    assert.ok(text.includes("Ruby"));
-    assert.notOk(text.includes("Java"));
+    assert.dom(".description", document).includesText("Software Engineering");
+    assert.dom(".align-items-center", document).includesText("Ruby");
+    assert.notOk(document.body.textContent.includes("Java"));
   });
 });

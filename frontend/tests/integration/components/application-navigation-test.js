@@ -15,7 +15,11 @@ module(
 
       await render(hbs`{{application-navigation}}`);
 
-      assert.equal(this.element.textContent.trim(), "");
+      assert.equal(
+        document.querySelector(".ember-view").textContent.trim(),
+        ""
+      );
+
       // Template block usage:
       await render(hbs`
     {{#application-navigation}}
@@ -23,7 +27,10 @@ module(
     {{/application-navigation}}
   `);
 
-      assert.equal(this.element.textContent.trim(), "template block text");
+      assert.equal(
+        document.querySelector(".ember-view").textContent.trim(),
+        "template block text"
+      );
     });
   }
 );

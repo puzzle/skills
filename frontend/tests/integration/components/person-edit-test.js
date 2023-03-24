@@ -14,7 +14,7 @@ module("Integration | Component | person-edit", function(hooks) {
 
   hooks.beforeEach(function(assert) {
     this.owner.register("service:keycloak-session", keycloakStub);
-    setLocale("en");
+    setLocale("de");
   });
 
   test("it renders person-edit with validation error at name", async function(assert) {
@@ -90,7 +90,7 @@ module("Integration | Component | person-edit", function(hooks) {
     await settled();
     assert
       .dom("#validation-error", document)
-      .includesText("Email can't be blank");
+      .includesText("Email kann nicht leer sein");
   });
 
   test("it renders person-edit with validation error at invalid email", async function(assert) {

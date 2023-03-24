@@ -126,7 +126,7 @@ module("Integration | Component | skills-list", function(hooks) {
 
     await render(hbs`{{skills-list skills=skills}}`);
 
-    let text = $().text();
+    let text = document.querySelector(".mt-5").textContent;
 
     assert.ok(text.includes("Ruby"));
     assert.ok(text.includes("aktiv"));
