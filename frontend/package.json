@@ -101,6 +101,7 @@
     "ember-countries": "github:danielspaniel/ember-countries",
     "ember-data": "^3.28.13",
     "ember-decorators": "^6.1.1",
+    "ember-fetch": "^8.0.2",
     "ember-i18n-iso-countries": "^1.5.0",
     "ember-keyboard": "^6.0.4",
     "ember-keycloak-auth": "~0.3.0",
