@@ -13,7 +13,7 @@ class PeopleSkillsController < CrudController
       return head 400
     end
 
-    render json: fetch_entries, each_serializer: PeopleSkillSerializer, include: '*'
+    render json: fetch_entries
   end
 
   private

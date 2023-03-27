@@ -2,6 +2,7 @@
   {{#if this.showPersonName}}
     <div role="button" onclick={{toggleSkillShow}} data-toggle={{if this.toggleSkillShow "modal"}} data-target="#skill-show-modal" class="col pt-3 people-skill-skillname">
       <a role="button" onclick={{action "changePerson" this.peopleSkill.person}} class="edit-buttons">
+        <p>{{peopleSkill.person}}</p>
         <span data-dismiss="modal">{{this.peopleSkill.person.name}}</span>
       </a>
     </div>
