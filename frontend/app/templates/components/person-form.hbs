@@ -40,7 +40,9 @@
               </td>
             </tr>
             <tr>
-              <label>{{t "person-form.functions"}}</label>
+                <td>
+                    <label>{{t "person-form.functions"}}</label>
+                </td>
             </tr>
             {{#each this.record.personRoles as |personRole|}}
               <div class="border rounded mt-2 p-1">
@@ -48,11 +50,13 @@
                   <td>
                     <label class="description role-description">{{t "person-form.role"}}</label>
                     <div class="role-dropdown">
-                      <PowerSelect @selected={{personRole.role}}
-                                   @options={{this.roles}}
-                                   @onChange={{action (mut personRole.role)}}
-                                   @onFocus={{action "handleFocus"}}
-                                   @animationEnabled={{false}} as |role|>
+                      <PowerSelect
+                             @triggerId="personRole-role"
+                            @selected={{personRole.role}}
+                           @options={{this.roles}}
+                           @onChange={{action (mut personRole.role)}}
+                           @onFocus={{action "handleFocus"}}
+                           @animationEnabled={{false}} as |role|>
                         {{role.name}}
                       </PowerSelect>
                     </div>
@@ -60,10 +64,11 @@
                 </tr>
                 <tr>
                   <td>
-                    <label class="description role-description">{{t "person-form.level"}}</label>
+                    <label  class="description role-description">{{t "person-form.level"}}</label>
                     <div class="level-dropdown">
                       {{#if this.personRoleLevels}}
                         <PowerSelect
+                            @triggerId="personRole-level"
                           @selected={{
                             selected-person-role-level
                             this.personRoleLevels
@@ -94,7 +99,7 @@
             {{/each}}
             <tr>
               <td>
-                <a class="nav-link language-button" role="button" {{action "addRole" this.record}}>
+                <a class="nav-link language-button" data-test-new-function role="button" {{action "addRole" this.record}}>
                   <i class="fa fa-plus" aria-hidden="true"></i>
                   {{t "person-form.newFunction"}}
                 </a>
@@ -147,8 +152,8 @@
             <tr>
               <td>
                 <div class="text-field form-group">
-                  <label class="label-date form-field--label" for="date_location">{{t "person-form.birthdate"}}</label>
-                  <div id="date_location" class="birthdate_pikaday">
+                  <label class="label-date form-field--label" for="birth_date">{{t "person-form.birthdate"}}</label>
+                  <div id="birth_date" class="birthdate_pikaday">
                     <PikadayInput @onSelection={{action (mut this.record.birthdate)}}
                                   @value={{this.record.birthdate}}
                                   @useUTC={{true}} />
