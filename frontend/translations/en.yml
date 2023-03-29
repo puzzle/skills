@@ -134,6 +134,8 @@ person:
     role: Role
     roles: Roles
     title: Title
+    email: Email
+    company: Firma
 personCompetence:
     category: Category
     offer: Offer
@@ -243,5 +245,5 @@ updated-at:
 
 image:
   upload: Upload image
-  Change: Change image
+  update: Change image
   upload-success: Image got updated successfully
