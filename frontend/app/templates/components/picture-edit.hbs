@@ -6,13 +6,9 @@
       class="pic img-polaroid profil-img rounded-circle img-avatar-edit wh-15"
       role="button"
       {{on "click" this.changePicture}}
-      alt="">
+      alt="profile picture">
     <label  {{on "click" this.changePicture}}> {{t "image.update"}}</label>
   {{else}}
     <label {{on "click" this.changePicture}}> {{t "image.upload"}}</label>
   {{/if}}
 </div>
-
-
-
-
