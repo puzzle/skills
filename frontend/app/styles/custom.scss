@@ -1660,3 +1660,14 @@ button[type="submit"] {
 .z-index-one {
   z-index: 1 !important;
 }
+
+.skill-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  align-self: end;
+  padding-bottom: 40px;
+}
+
+.skills-list-container {
+  padding-left: 30%;
+}

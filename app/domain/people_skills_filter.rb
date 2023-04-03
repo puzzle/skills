@@ -48,98 +48,19 @@ class PeopleSkillsFilter
     skills_per_person = filtered_entries.group(:person_id).count
     person_ids = persons_with_required_skill(skills_per_person)
 
-    data = entries.where(person_id: person_ids, skill_id: skill_ids).group_by(&:person_id).map do |person_id, skills|
+    # include skill and person to access name and title in query
+    data = entries.includes(:skill, :person).where(person_id: person_ids, skill_id: skill_ids)
+                  .group_by(&:person_id).map do |person_id, skills|
       skills_array = skills.map do |skill|
-        { skill_id: skill.skill_id, title: Skill.find(skill.skill_id).title, level: skill.level, interest: skill.interest, certificate: skill.certificate, core_competence: skill.core_competence }
+        { people_skill_id: skill.id, skill_id: skill.skill_id, title: skill.skill.title, level: skill.level, interest: skill.interest, certificate: skill.certificate, core_competence: skill.core_competence }
       end
-      person = Person.find(person_id)
+      person = skills.first.person
 
       { person_id: person_id, name: person[:name], skills: skills_array }
     end
 
-    json_api_data = {
-      data: data.map do |entry|
-        {
-          type: 'people_skills',
-          id: entry[:person_id],
-          attributes: {
-            person_id: entry[:person_id],
-            skills: entry[:skills].map do |skill|
-              {
-                skill_id: skill[:skill_id],
-                level: skill[:level],
-                interest: skill[:interest],
-                certificate: skill[:certificate],
-                core_competence: skill[:core_competence]
-              }
-            end
-          },
-          relationships: {
-            person: {
-              data: {
-                id: entry[:person_id],
-                type: "people",
-              }
-            },
-            skills: {
-              data: entry[:skills].map do |skill|
-                {
-                  id: skill[:skill_id],
-                  type: "skills"
-                }
-              end
-            }
-          }
-        }
-      end,
-      included: data.flat_map do |entry|
-        skills = entry[:skills].map do |skill|
-          {
-            id: skill[:skill_id],
-            type: "skills",
-            attributes: {
-              title: skill[:title],
-              default_set: skill[:default_set],
-              category_id: skill[:category_id]
-            },
-            relationships: {
-              people: {
-                data: [
-                  {
-                    id: entry[:person_id],
-                    type: "people"
-                  }
-                ]
-              },
-              category: {
-                data: {
-                  id: skill[:category_id],
-                  type: "categories"
-                }
-              },
-              parent_category: {
-                data: {
-                  id: skill[:parent_category],
-                  type: "categories"
-                }
-              }
-            }
-          }
-        end
-        [
-          {
-            id: entry[:person_id],
-            type: "people",
-            attributes: {
-              name: entry[:name],
-              title: entry[:title]
-            }
-          },
-        ] + skills
-      end
-    }
-
-    JSON.generate(json_api_data)
+    # Serialize Data and convert to json before returning
+    JSON.generate(PeopleSearchSkillSerializer.serialize(data))
   end
 
   def filter_for_skills_and_levels_and_interests(entries)
