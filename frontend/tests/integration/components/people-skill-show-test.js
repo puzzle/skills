@@ -24,23 +24,23 @@ module("Integration | Component | people-skill-show", function(hooks) {
     assert.dom(".people-skill-title", document).includesText("Rails");
     assert.dom(".skillset-level-title", document).includesText("Junior");
     assert.equal(
-      $(".icon-rating-icon")[0].getAttribute("style"),
+      document.querySelectorAll(".icon-rating-icon")[0].getAttribute("style"),
       "color: #238BCA"
     );
     assert.equal(
-      $(".icon-rating-icon")[1].getAttribute("style"),
+      document.querySelectorAll(".icon-rating-icon")[1].getAttribute("style"),
       "color: #238BCA"
     );
     assert.equal(
-      $(".icon-rating-icon")[2].getAttribute("style"),
+      document.querySelectorAll(".icon-rating-icon")[2].getAttribute("style"),
       "color: #238BCA"
     );
     assert.equal(
-      $(".icon-rating-icon")[3].getAttribute("style"),
+      document.querySelectorAll(".icon-rating-icon")[3].getAttribute("style"),
       "color: #BDBDBD"
     );
     assert.equal(
-      $(".icon-rating-icon")[4].getAttribute("style"),
+      document.querySelectorAll(".icon-rating-icon")[4].getAttribute("style"),
       "color: #BDBDBD"
     );
 

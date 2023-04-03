@@ -29,7 +29,7 @@ module("Integration | Component | person-edit", function(hooks) {
     this.set("person", person);
 
     await render(hbs`{{person-edit person=person}}`);
-    $("button")[0].click();
+    document.querySelectorAll("button")[0].click();
     await settled();
     assert
       .dom("#validation-error", document)
@@ -48,7 +48,7 @@ module("Integration | Component | person-edit", function(hooks) {
     this.set("person", person);
 
     await render(hbs`{{person-edit person=person}}`);
-    $("button")[0].click();
+    document.querySelectorAll("button")[0].click();
     await settled();
     assert
       .dom("#validation-error", document)
@@ -67,7 +67,7 @@ module("Integration | Component | person-edit", function(hooks) {
     this.set("person", person);
 
     await render(hbs`{{person-edit person=person}}`);
-    $("button")[0].click();
+    document.querySelectorAll("button")[0].click();
     await settled();
     assert
       .dom("#validation-error", document)
@@ -86,7 +86,7 @@ module("Integration | Component | person-edit", function(hooks) {
     this.set("person", person);
 
     await render(hbs`{{person-edit person=person}}`);
-    $("button")[0].click();
+    document.querySelectorAll("button")[0].click();
     await settled();
     assert
       .dom("#validation-error", document)
@@ -106,7 +106,7 @@ module("Integration | Component | person-edit", function(hooks) {
     this.set("person", person);
 
     await render(hbs`{{person-edit person=person}}`);
-    $("button")[0].click();
+    document.querySelectorAll("button")[0].click();
     await settled();
     assert
       .dom("#validation-error", document)
