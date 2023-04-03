@@ -6,9 +6,13 @@
       </a>
     </div>
   {{/if}}
-  {{#each this.peopleSkill.skills as |skill|}}
-    <PeopleSkillListShow @skill={{skill}} @showSkillTitle={{true}} class="skills-list-container"/>
-  {{/each}}
+  {{#if this.skillList}}
+    {{#each this.peopleSkill.skills as |skill|}}
+      <PeopleSkillListShow @title={{skill.title}} @level={{skill.level}} @interest={{skill.interest}} @certificate={{skill.certificate}} @coreCompetence={{skill.coreCompetence}} @showSkillTitle={{true}} class="skills-list-container"/>
+    {{/each}}
+  {{else}}
+      <PeopleSkillListShow @title={{this.peopleSkill.skill.title}} @level={{this.peopleSkill.level}} @interest={{this.peopleSkill.interest}} @certificate={{this.peopleSkill.certificate}} @coreCompetence={{this.peopleSkill.coreCompetence}} @showSkillTitle={{true}}/>
+  {{/if}}
   {{yield}}
 </div>
 <br>

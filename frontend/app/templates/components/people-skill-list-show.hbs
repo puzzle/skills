@@ -1,7 +1,7 @@
 <div class="skill-list">
   {{#if this.showSkillTitle}}
     <div role="button" onclick={{toggleSkillShow}} data-toggle={{if this.toggleSkillShow "modal"}} data-target="#skill-show-modal" class="col pt-3">
-      <div class="people-skill-title">{{skill.title}}</div>
+      <div class="people-skill-title">{{this.title}}</div>
     </div>
   {{/if}}
   <div onclick={{this.toggleSkillShow}} data-toggle={{if this.toggleSkillShow "modal"}} role="button" data-target="#skill-show-modal" class="col justify-content-center people-skill-level">
@@ -10,10 +10,10 @@
   </div>
   <div onclick={{this.toggleSkillShow}} data-toggle={{if this.toggleSkillShow "modal"}} role="button" data-target="#skill-show-modal" class="col people-skill-interest">
     <p class="description skillset-interest-title">Interesse</p>
-    <IconRating @fillColor="#238BCA" @readOnly={{true}} @value={{skill.interest}} @onClick={{action (mut skill.interest)}} />
+    <IconRating @fillColor="#238BCA" @readOnly={{true}} @value={{this.interest}} @onClick={{action (mut this.interest)}} />
   </div>
   <div onclick={{this.toggleSkillShow}} data-toggle={{if this.toggleSkillShow "modal"}} role="button" data-target="#skill-show-modal" class="col pt-3 people-skill-certificate">
-    {{#if skill.certificate}}
+    {{#if this.certificate}}
       <i class="fa fa-check-square" aria-hidden="true"></i>
     {{else}}
       <i class="far fa-square" aria-hidden="true"></i>
@@ -21,7 +21,7 @@
     <span class="description ml-2">Zertifikat</span>
   </div>
   <div onclick={{this.toggleSkillShow}} data-toggle={{if this.toggleSkillShow "modal"}} role="button" data-target="#skill-show-modal" class="col pt-3 people-skill-coreCompetence">
-    {{#if skill.coreCompetence}}
+    {{#if this.coreCompetence}}
       <i class="fa fa-check-square" aria-hidden="true"></i>
     {{else}}
       <i class="far fa-square" aria-hidden="true"></i>
