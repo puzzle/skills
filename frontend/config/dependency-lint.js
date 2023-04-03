@@ -10,7 +10,7 @@ module.exports = {
     "ember-modifier": "3.2.7 || 4.1.0",
     "ember-style-modifier": "1.0.0 || 0.8.0 || 3.0.1",
     "ember-changeset": "2.2.4 || 4.1.2",
-    "ember-basic-dropdown": "6.0.2 || 7.0.1",
+    "ember-basic-dropdown": "6.0.2 || 7.0.1 || 7.0.2",
     "@glimmer/component": "1.1.2 || 1.0.0-beta.1",
     "@embroider/util": "1.10.0 || 0.47.2",
     "@embroider/macros": "1.10.0 || 0.47.2",
