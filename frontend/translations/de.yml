@@ -52,6 +52,9 @@ daterange-edit:
     month: Monat
     to: 'Bis:'
     year: Jahr
+    withoutEnding: 'Ohne Ende'
+    withEnding: 'Mit Ende'
+    on: 'Am:'
 delete-confirmation:
     cancel: Abbrechen
     confirmDelete: Löschen bestätigen
@@ -213,7 +216,7 @@ project-form:
     editProject: Projekt bearbeiten
     technology: Eingesetzte Technologien
     project: Projekt
-    role: Rolle und Aufagaben
+    role: Rolle und Aufgaben
     cancel: Abbrechen
     save: Speichern
     saveAndNew: Speichern & Neu

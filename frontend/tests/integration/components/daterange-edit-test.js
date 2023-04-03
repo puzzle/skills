@@ -2,6 +2,7 @@ import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 import { render } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
+import { tracked } from "@glimmer/tracking";
 
 module("Integration | Component | daterange-edit", function(hooks) {
   setupRenderingTest(hooks);
@@ -58,5 +59,40 @@ module("Integration | Component | daterange-edit", function(hooks) {
     assert.equal(months[1].innerText, "-");
     assert.equal(years[0].value, "");
     assert.equal(years[1].value, "");
+  });
+
+  test("it takes over values of from fields when calendar icon clicked", async function(assert) {
+    this.set("project", {
+      yearFrom: 2000,
+      monthFrom: 10,
+      @tracked yearTo: 2005,
+      @tracked monthTo: 9
+    });
+
+    await render(hbs`{{daterange-edit entity=project}}`);
+
+    let calendarIcon = this.$(".btn-primary");
+    calendarIcon.click();
+
+    assert.equal(this.project.monthTo, 10);
+    assert.equal(this.project.yearTo, 2000);
+  });
+
+  test("it takes over values of from fields when from fields are edited", async function(assert) {
+    this.set("project", {
+      yearFrom: 1960,
+      monthFrom: 1,
+      @tracked yearTo: 2000,
+      @tracked monthTo: 10
+    });
+
+    await render(hbs`{{daterange-edit entity=project}}`);
+
+    let calendarIcon = this.$(".btn-primary");
+    calendarIcon.click();
+    this.project.yearTo = 1980;
+
+    assert.equal(this.project.monthTo, 1);
+    assert.equal(this.project.yearTo, 1980);
   });
 });
