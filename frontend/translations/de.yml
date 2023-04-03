@@ -54,6 +54,7 @@ daterange-edit:
     year: Jahr
     withoutEnding: 'Ohne Ende'
     withEnding: 'Mit Ende'
+    on: 'Am:'
 delete-confirmation:
     cancel: Abbrechen
     confirmDelete: Löschen bestätigen

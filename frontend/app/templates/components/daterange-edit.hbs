@@ -9,7 +9,11 @@
   <tbody>
   <tr>
     <th class="align-middle" scope="row">
-      {{t "daterange-edit.from"}}
+      {{#if this.hideTo}}
+        {{t "daterange-edit.on"}}
+      {{else}}
+        {{t "daterange-edit.from"}}
+      {{/if}}
     </th>
     <td>
       <PowerSelect @selected={{this.selectedMonthFrom}} @options={{this.monthsFromSelect}} @searchEnabled={{false}}

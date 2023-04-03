@@ -27,7 +27,7 @@ export default class DaterangeEdit extends ApplicationComponent {
   @computed("entity.monthFrom")
   get selectedMonthFrom() {
     let selectedValue = this.entity.monthFrom;
-    this.setToAttribut("entity.monthTo", selectedValue);
+    this.setToAttribute("entity.monthTo", selectedValue);
     if (!this.entity.monthFrom) {
       selectedValue = "-";
     }
@@ -72,11 +72,11 @@ export default class DaterangeEdit extends ApplicationComponent {
 
   setYear(year, attr) {
     let validatedYear = this.validateYear(year, "year" + attr);
-    this.setToAttribut("entity.yearTo", year);
+    this.setToAttribute("entity.yearTo", year);
     this.set("entity.year" + attr, validatedYear);
   }
 
-  setToAttribut(attrName, value) {
+  setToAttribute(attrName, value) {
     if (this.hideTo) {
       this.set(attrName, value);
     }

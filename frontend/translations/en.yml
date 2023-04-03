@@ -52,6 +52,9 @@ daterange-edit:
     month: Month
     to: 'To:'
     year: Year
+    withoutEnding: 'Without ending'
+    withEnding: 'With ending'
+    on: 'On:'
 delete-confirmation:
     cancel: Cancel
     confirmDelete: Confirm delete
