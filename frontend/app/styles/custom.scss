@@ -862,10 +862,6 @@ a.disabled-link:hover {
   height: 22px;
 }
 
-.ember-basic-dropdown-content-wormhole-origin {
-  position: absolute;
-}
-
 .nav-pills li div {
   background: none;
   color: #0088cc;
@@ -1508,7 +1504,7 @@ div.content-input {
   top: 80px;
   max-width: 1290px;
   background-color: white;
-  z-index: 999 !important;
+  z-index: 1000 !important;
 }
 
 #person-actions {
