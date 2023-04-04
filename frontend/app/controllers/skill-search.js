@@ -13,12 +13,17 @@ export default class SkillSearchController extends Controller {
   @service
   router;
 
+  queryParams = ["skill_id", "level", "interest"];
+  skill_id = null;
+  level = null;
+  interest = null;
+
   @action
   initFilters() {
     let filters = [];
-    let skill_id = new URLSearchParams(window.location.search).get("skill_id");
-    let level = new URLSearchParams(window.location.search).get("level");
-    let interest = new URLSearchParams(window.location.search).get("interest");
+    let skill_id = this.skill_id;
+    let level = this.level;
+    let interest = this.interest;
     if (skill_id && level && interest) {
       let skill_ids = skill_id.split(",");
       let levels = level.split(",");
