@@ -21,6 +21,7 @@ export default class PersonActions extends Component {
 
   @observes("person.peopleSkills.@each.id")
   peopleSkillsChanged() {
+    if (!this.get("person.id")) return;
     this.refreshUnratedSkillsAmount();
   }
 
