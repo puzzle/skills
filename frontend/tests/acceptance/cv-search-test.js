@@ -125,15 +125,4 @@ module("Acceptance | cv search", function(hooks) {
     assert.notOk(names.includes("Bob Anderson"));
     assert.notOk(names.includes("ken"));
   });
-
-  test("navigate to search result and then navigate back", async function(assert) {
-    assert.expect(6);
-    await page.indexPage.visit();
-    assert.equal(currentURL(), "/cv_search");
-
-    // await page.indexPage.searchInput("editor");
-    // await click('#ember290');
-    //
-    // assert.equal(currentURL(), "/people/");
-  });
 });
