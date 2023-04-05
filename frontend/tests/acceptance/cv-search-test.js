@@ -29,7 +29,6 @@ module("Acceptance | cv search", function(hooks) {
     assert.ok(foundIns.includes(t("person.title")));
     assert.notOk(names.includes("Alice Mante"));
     assert.notOk(names.includes("Bob Anderson"));
-    deleteAllCookies();
   });
 
   test("search person by competence and project technology Java", async function(assert) {
@@ -54,7 +53,6 @@ module("Acceptance | cv search", function(hooks) {
     assert.ok(foundIn.includes(t("person.projects")));
     assert.ok(foundIn.includes(t("person.personCompetences")));
     assert.notOk(names.includes("ken"));
-    deleteAllCookies();
   });
 
   test("search person by activity description Ascom", async function(assert) {
@@ -78,7 +76,6 @@ module("Acceptance | cv search", function(hooks) {
     assert.ok(foundIn.includes(t("person.activities")));
     assert.notOk(names.includes("Bob Anderson"));
     assert.notOk(names.includes("ken"));
-    deleteAllCookies();
   });
 
   test("search person by education location Uni Bern", async function(assert) {
@@ -101,7 +98,6 @@ module("Acceptance | cv search", function(hooks) {
     assert.ok(foundIn.includes(t("person.educations")));
     assert.notOk(names.includes("Alice Mante"));
     assert.notOk(names.includes("ken"));
-    deleteAllCookies();
   });
 
   test("search person by advanced_training description was nice", async function(assert) {
@@ -124,7 +120,6 @@ module("Acceptance | cv search", function(hooks) {
     assert.ok(foundIn.includes(t("person.advancedTrainings")));
     assert.notOk(names.includes("Bob Anderson"));
     assert.notOk(names.includes("ken"));
-    deleteAllCookies();
   });
 
   test("save cookie after input in search field was given", async function(assert) {
@@ -139,7 +134,6 @@ module("Acceptance | cv search", function(hooks) {
     await page.indexPage.visitPeople();
     await page.indexPage.visit();
     assert.equal(this.element.querySelector("input").value, "java");
-    deleteAllCookies();
   });
 
   test("cookie still works if another cookie is created", async function(assert) {
@@ -155,16 +149,5 @@ module("Acceptance | cv search", function(hooks) {
     await page.indexPage.visitPeople();
     await page.indexPage.visit();
     assert.equal(this.element.querySelector("input").value, "ruby");
-    deleteAllCookies();
   });
-
-  function deleteAllCookies() {
-    const cookies = document.cookie.split(";");
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i];
-      const eqPos = cookie.indexOf("=");
-      const name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
-      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-    }
-  }
 });
