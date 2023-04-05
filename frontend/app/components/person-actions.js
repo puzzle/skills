@@ -37,16 +37,13 @@ export default class PersonActions extends Component {
       });
   }
 
+  /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
   didRender() {
     const currentURL = this.get("router.currentURL");
     if (currentURL.includes("skills")) {
-      /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
       $("#peopleSkillsLink").addClass("active");
-      /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
     } else {
-      /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
       $("#peopleSkillsLink").removeClass("active");
-      /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
     }
   }
 
@@ -59,11 +56,10 @@ export default class PersonActions extends Component {
       let url = "/api/people_skills.csv?person_id=" + this.get("person.id");
       this.get("download").file(url);
     } else {
-      /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
       $("#person-cv-export").modal("toggle");
-      /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
     }
   }
+  /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
 
   @action
   exportDevFws(personId, e) {
