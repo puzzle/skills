@@ -125,4 +125,35 @@ module("Acceptance | cv search", function(hooks) {
     assert.notOk(names.includes("Bob Anderson"));
     assert.notOk(names.includes("ken"));
   });
+
+  test("save cookie after input in search field was given", async function(assert) {
+    assert.expect(1);
+
+    //Reset Cookie and type value into search field
+    await page.indexPage.visit();
+    document.cookie = undefined;
+    await page.indexPage.searchInput("java");
+    await triggerEvent("input", "keyup");
+
+    //Go back to Dashboard and check whether query is still in search field after navigating back
+    await page.indexPage.visitPeople();
+    await page.indexPage.visit();
+    assert.equal(this.element.querySelector("input").value, "java");
+  });
+
+  test("cookie still works if another cookie is created", async function(assert) {
+    assert.expect(1);
+
+    //Reset Cookies and add two new ones: One manually and one which is created by search field
+    await page.indexPage.visit();
+    document.cookie = undefined;
+    document.cookie = "skills=nice";
+    await page.indexPage.searchInput("ruby");
+    await triggerEvent("input", "keyup");
+
+    //Go back to Dashboard and check whether query is still in search field after navigating back
+    await page.indexPage.visitPeople();
+    await page.indexPage.visit();
+    assert.equal(this.element.querySelector("input").value, "ruby");
+  });
 });

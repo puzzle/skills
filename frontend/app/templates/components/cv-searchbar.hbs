@@ -1,5 +1,5 @@
 <div id="cv-searchbar" class="border rounded w-75 mt-2 p-2">
-  <Input {{did-insert this.setInputValueToCookieValue}} @value={{this.value}} @key-up={{action "searchThroughCVs"}} placeholder={{t "cv-searchbar.searchCVs"}}/>
+  <Input @value={{this.value}} @key-up={{action "searchThroughCVs"}} placeholder={{t "cv-searchbar.searchCVs"}}/>
   <button type="button" id="cv-search-clear-button" class={{if this.value "visible" "invisible"}} onclick={{action "clearValue"}}>
     <i class="fa fa-times description" aria-hidden="true"></i>
   </button>

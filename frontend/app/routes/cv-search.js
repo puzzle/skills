@@ -1,6 +1,7 @@
 import classic from "ember-classic-decorator";
 import Route from "@ember/routing/route";
 import KeycloakAuthenticatedRouteMixin from "ember-keycloak-auth/mixins/keycloak-authenticated-route";
+import { getCookie } from "../helpers/get-cookie";
 
 @classic
 export default class CvSearchRoute extends Route.extend(
@@ -14,7 +15,7 @@ export default class CvSearchRoute extends Route.extend(
   };
 
   beforeModel() {
-    let cookieValue = document.cookie.valueOf().split("=")[1];
+    let cookieValue = getCookie();
     if (cookieValue !== "undefined") {
       this.transitionTo({ queryParams: { q: cookieValue } });
     }

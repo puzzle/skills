@@ -2,13 +2,14 @@ import classic from "ember-classic-decorator";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@ember/component";
+import { getCookie } from "../helpers/get-cookie";
 
 @classic
 export default class CvSearchbar extends Component {
   @service router;
 
   didReceiveAttrs() {
-    let cookieValue = document.cookie.valueOf().split("=")[1];
+    let cookieValue = getCookie();
     if (cookieValue !== "undefined" && cookieValue !== undefined) {
       this.value = cookieValue;
     }
