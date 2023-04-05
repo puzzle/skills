@@ -37,7 +37,7 @@ module("Acceptance | skill search", function(hooks) {
     await page.skillSearchLevelSlider.levelButtons.objectAt(2).click();
     assert.equal(
       currentURL(),
-      "/skill_search?interest=1&level=2&skill_id=" + rails.get("id")
+      "/skill_search?interest=1&level=3&skill_id=" + rails.get("id")
     );
     const names2 = page.indexPage.peopleSkills.peopleNames
       .toArray()
@@ -84,7 +84,7 @@ module("Acceptance | skill search", function(hooks) {
     await page.skillSearchLevelSlider.levelButtons.objectAt(2).click();
     assert.equal(
       currentURL(),
-      "/skill_search?interest=1&level=2&skill_id=" + junit.get("id")
+      "/skill_search?interest=1&level=3&skill_id=" + junit.get("id")
     );
     const names2 = page.indexPage.peopleSkills.peopleNames
       .toArray()
@@ -94,7 +94,7 @@ module("Acceptance | skill search", function(hooks) {
     await page.skillSearchLevelSlider.interestButtons.objectAt(3).clickOn();
     assert.equal(
       currentURL(),
-      "/skill_search?interest=4&level=1&skill_id=" + junit.get("id")
+      "/skill_search?interest=4&level=2&skill_id=" + junit.get("id")
     );
     const names3 = page.indexPage.peopleSkills.peopleNames
       .toArray()
