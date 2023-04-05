@@ -8,8 +8,6 @@ import { settled } from "@ember/test-helpers";
 import { setLocale } from "ember-intl/test-support";
 
 module("Integration | Component | person-edit", function(hooks) {
-  /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
-
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function(assert) {
@@ -112,6 +110,4 @@ module("Integration | Component | person-edit", function(hooks) {
       .dom("#validation-error", document)
       .includesText("Gib eine gültige Email Adresse ein");
   });
-
-  /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
 });

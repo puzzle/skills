@@ -57,8 +57,6 @@ const nonAdminKeycloakStub = keycloakStub.extend({
 });
 
 module("Integration | Component | skills-list", function(hooks) {
-  /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
-
   setupRenderingTest(hooks);
   setupIntl(hooks);
 
@@ -139,6 +137,4 @@ module("Integration | Component | skills-list", function(hooks) {
     assert.ok(text.includes("CI/CD"));
     assert.ok(text.includes("1"));
   });
-
-  /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
 });
