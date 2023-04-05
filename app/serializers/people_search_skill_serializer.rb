@@ -1,6 +1,11 @@
+# frozen_string_literal: true
+
 class PeopleSearchSkillSerializer
   # write custom serializer to serialize object that doesn't exist as a model
   # serialize data into JSON API format
+  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/BlockLength
   def self.serialize(data)
     {
       data: data.map do |entry|
@@ -12,7 +17,7 @@ class PeopleSearchSkillSerializer
             person: {
               data: {
                 id: entry[:person_id].to_s,
-                type: "people",
+                type: 'people'
               }
             },
             skills: {
@@ -20,7 +25,7 @@ class PeopleSearchSkillSerializer
                 {
                   id: skill[:people_skill_id].to_s,
                   # set custom type to map to correct model in frontend
-                  type: "rated_skills",
+                  type: 'rated_skills'
                 }
               end
             }
@@ -32,7 +37,7 @@ class PeopleSearchSkillSerializer
           {
             id: skill[:people_skill_id].to_s,
             # set custom type to map to correct model in frontend
-            type: "rated_skills",
+            type: 'rated_skills',
             attributes: {
               title: skill[:title],
               level: skill[:level],
@@ -45,23 +50,26 @@ class PeopleSearchSkillSerializer
                 data: [
                   {
                     id: entry[:person_id].to_s,
-                    type: "people"
+                    type: 'people'
                   }
                 ]
-              },
+              }
             }
           }
         end
         [
           {
             id: entry[:person_id].to_s,
-            type: "people",
+            type: 'people',
             attributes: {
               name: entry[:name]
             }
-          },
+          }
         ] + skills
       end
     }
   end
+  # rubocop:enable Metrics/BlockLength
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/MethodLength
 end

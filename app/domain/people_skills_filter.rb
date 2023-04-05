@@ -3,12 +3,14 @@
 class PeopleSkillsFilter
   attr_reader :entries, :rated, :levels_and_interests_for_skills
 
+  # rubocop:disable Metrics/ParameterLists
   def initialize(entries, rated, levels = [], interests = [], skill_ids = [])
     @entries = entries
     @rated = rated
     @levels_and_interests_for_skills = []
     set_levels_and_interests_for_skills(levels, interests, skill_ids)
   end
+  # rubocop:enable Metrics/ParameterLists
 
   def scope
     filter_by_level_and_interest(filter_by_rated)
@@ -25,7 +27,10 @@ class PeopleSkillsFilter
 
     check_query_param_length(levels, interests, skill_ids)
 
-    @levels_and_interests_for_skills = skill_ids.zip(levels, interests).map { |ls| { skill: ls[0], level: ls[1], interest: ls[2] } }
+    # rubocop:disable Layout/LineLength
+    @levels_and_interests_for_skills = skill_ids.zip(levels, interests)
+                                                .map { |search_param| { skill: search_param[0], level: search_param[1], interest: search_param[2] } }
+    # rubocop:enable Layout/LineLength
   end
 
   def check_query_param_length(levels, interests, skill_ids)
@@ -61,21 +66,42 @@ class PeopleSkillsFilter
   end
 
   def find_person_skills(entries, person_ids)
-    entries.includes(:skill, :person).where(person_id: person_ids, skill_id: skill_ids)
-           .group_by(&:person_id).map do |person_id, skills|
-      skills_array = skills.map do |skill|
-        { people_skill_id: skill.id, skill_id: skill.skill_id, title: skill.skill.title, level: skill.level, interest: skill.interest, certificate: skill.certificate, core_competence: skill.core_competence }
-      end
-      person = skills.first.person
-
-      { person_id: person_id, name: person[:name], skills: skills_array }
+    skills_by_person(entries, person_ids).map do |person_id, skills|
+      { person_id: person_id, name: skills.first.person.name, skills: map_skills(skills) }
     end
   end
+
+  def skills_by_person(entries, person_ids)
+    entries.includes(:skill, :person)
+           .where(person_id: person_ids, skill_id: skill_ids)
+           .group_by(&:person_id)
+  end
+
+  # rubocop:disable Metrics/MethodLength
+  def map_skills(skills)
+    skills.map do |skill|
+      {
+        people_skill_id: skill.id,
+        skill_id: skill.skill_id,
+        title: skill.skill.title,
+        level: skill.level,
+        interest: skill.interest,
+        certificate: skill.certificate,
+        core_competence: skill.core_competence
+      }
+    end
+  end
+  # rubocop:enable Metrics/MethodLength
+
 
   def filter_for_skills_and_levels_and_interests(entries)
     result = PeopleSkill.none
     levels_and_interests_for_skills.each do |search_param|
-      result = result.or(filter_for_level_and_skill_and_interest(entries, search_param[:skill], search_param[:level], search_param[:interest]))
+      result = result.or(
+        filter_for_level_and_skill_and_interest(
+          entries, search_param[:skill], search_param[:level], search_param[:interest]
+        )
+      )
     end
     result
   end

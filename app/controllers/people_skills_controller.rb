@@ -18,6 +18,7 @@ class PeopleSkillsController < CrudController
 
   private
 
+  # rubocop:disable Metrics/MethodLength
   def fetch_entries
     base = PeopleSkill.includes(:person, skill: [
                                   :category,
@@ -29,8 +30,10 @@ class PeopleSkillsController < CrudController
     if params.key?(:person_id)
       return people_skills.where(person_id: params[:person_id])
     end
+
     people_skills
   end
+  # rubocop:enable Metrics/MethodLength
 
   def export
     entries = PeopleSkill.where(person_id: params[:person_id])
