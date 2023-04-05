@@ -14,32 +14,38 @@ export default class DeleteWithConfirmation extends Component {
 
   @action
   openConfirmation() {
-    document
-      .getElementById("people-search-header")
-      .setAttribute("style", "z-index: 1 !important");
+    if (!this.get("router.currentURL").includes("skills")) {
+      document
+        .getElementById("people-search-header")
+        .setAttribute("style", "z-index: 1 !important");
+    }
     this.set("showConfirmation", true);
   }
 
   @action
   cancel() {
-    document
-      .getElementById("people-search-header")
-      .setAttribute("style", "z-index: 1000 !important");
+    if (!this.get("router.currentURL").includes("skills")) {
+      document
+        .getElementById("people-search-header")
+        .setAttribute("style", "z-index: 1000 !important");
+    }
     this.set("showConfirmation", false);
   }
 
   @action
   delete(entry, transitionTo) {
-    document
-      .getElementById("people-search-header")
-      .setAttribute("style", "z-index: 1000 !important");
+    if (!this.get("router.currentURL").includes("skills")) {
+      document
+        .getElementById("people-search-header")
+        .setAttribute("style", "z-index: 1000 !important");
+    }
 
     const message = this.intl.t("delete-confirmation.success", {
       name: entry.instanceToString
     });
 
+    this.set("showConfirmation", false);
     entry.destroyRecord().then(() => {
-      this.set("showConfirmation", false);
       if (isPresent(transitionTo)) {
         this.get("router").transitionTo(transitionTo);
       }
