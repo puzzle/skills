@@ -133,7 +133,7 @@ module("Acceptance | cv search", function(hooks) {
     //Go back to Dashboard and check whether query is still in search field after navigating back
     await page.indexPage.visitPeople();
     await page.indexPage.visit();
-    assert.equal(this.element.querySelector("input").value, "java");
+    assert.equal(document.querySelector("input").value, "java");
   });
 
   test("cookie still works if another cookie is created", async function(assert) {
@@ -148,6 +148,6 @@ module("Acceptance | cv search", function(hooks) {
     //Go back to Dashboard and check whether query is still in search field after navigating back
     await page.indexPage.visitPeople();
     await page.indexPage.visit();
-    assert.equal(this.element.querySelector("input").value, "ruby");
+    assert.equal(document.querySelector("input").value, "ruby");
   });
 });
