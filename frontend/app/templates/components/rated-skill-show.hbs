@@ -18,7 +18,7 @@
     {{else}}
       <i id="checkbox-certificate-disabled" class="far fa-square" aria-hidden="true"></i>
     {{/if}}
-    <span id="certificate-label" class="description ml-2">{{t ratedSkill.certificate}}</span>
+    <span id="certificate-label" class="description ml-2">{{t "ratedSkill.certificate"}}</span>
   </div>
   <div onclick={{this.toggleSkillShow}} data-toggle={{if this.toggleSkillShow "modal"}} role="button" data-target="#skill-show-modal" class="col pt-3 people-skill-coreCompetence">
     {{#if this.coreCompetence}}
@@ -26,6 +26,6 @@
     {{else}}
       <i id="checkbox-core-competence-disabled" class="far fa-square" aria-hidden="true"></i>
     {{/if}}
-    <span id="core-competence-label" class="description ml-2">{{t ratedSkill.coreCompetence}}</span>
+    <span id="core-competence-label" class="description ml-2">{{t "ratedSkill.coreCompetence"}}</span>
   </div>
 </div>
