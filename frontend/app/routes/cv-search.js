@@ -13,6 +13,13 @@ export default class CvSearchRoute extends Route.extend(
     }
   };
 
+  beforeModel() {
+    let cookieValue = document.cookie.valueOf().split("=")[1];
+    if (cookieValue !== "undefined") {
+      this.transitionTo({ queryParams: { q: cookieValue } });
+    }
+  }
+
   model({ q }) {
     if (q) {
       const url = "/api/people/search?q=" + q;
