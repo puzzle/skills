@@ -24,9 +24,9 @@ Install node version 14 with the Node Version Manager
 ```shell
 nvm install 14
 ```
-Install Ember-Cli with NPM
+Install Ember-Cli version 3.28.6 with NPM
 ```shell
-npm install -g ember-cli
+npm install -g ember-cli@3.28.6
 ```
 Go into the frontend folder of the project
 ```shell
