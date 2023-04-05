@@ -46,7 +46,7 @@ module("Acceptance | skill search", function(hooks) {
     await page.skillSearchLevelSlider.interestButtons.objectAt(4).clickOn();
     assert.equal(
       currentURL(),
-      "/skill_search?interest=5&level=2&skill_id=" + rails.get("id")
+      "/skill_search?interest=5&level=3&skill_id=" + rails.get("id")
     );
     const names3 = page.indexPage.peopleSkills.peopleNames
       .toArray()
