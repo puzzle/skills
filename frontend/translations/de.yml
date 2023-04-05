@@ -225,6 +225,9 @@ project-show:
     edit: Bearbeiten
     role: Rolle
     technologies: Technologien
+ratedSkill:
+    certificate: Zertifikat
+    coreCompetence: Kernkompetenz
 skill:
     category: Kategorie
     title: Skill
