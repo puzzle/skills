@@ -8,7 +8,6 @@ import { isBlank } from "@ember/utils";
 export default class PeopleSkillEdit extends Component {
   init() {
     super.init(...arguments);
-    this.set("interestLevelOptions", [0, 1, 2, 3, 4, 5]);
     this.set("levelValue", this.get("peopleSkill.level"));
 
     if (!this.get("peopleSkill.level")) {
@@ -20,9 +19,8 @@ export default class PeopleSkillEdit extends Component {
         this.sliderHandle.removeClass("slider-handle");
         $(".in-selection").removeClass("in-selection");
 
-        $(".slider").on("mouseup", () => {
+        $(this, ".slider").on("mouseup", () => {
           this.sliderHandle.addClass("slider-handle");
-          this.notifyPropertyChange("levelValue");
         });
       });
       /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
