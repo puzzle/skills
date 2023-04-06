@@ -15,6 +15,7 @@ module("Acceptance | skill search", function(hooks) {
     assert.equal(currentURL(), "/skill_search?interest=&level=&skill_id=");
 
     let store = this.owner.__container__.lookup("service:store");
+    await store;
     let rails = store
       .peekAll("skill")
       .filter(skill => skill.get("title") == "Rails")
@@ -61,6 +62,7 @@ module("Acceptance | skill search", function(hooks) {
     assert.equal(currentURL(), "/skill_search?interest=&level=&skill_id=");
 
     let store = this.owner.__container__.lookup("service:store");
+    await store;
     let junit = store
       .peekAll("skill")
       .filter(skill => skill.get("title") == "JUnit")
