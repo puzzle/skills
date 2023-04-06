@@ -59,7 +59,7 @@ module.exports = function(environment) {
     ENV.APP.LOG_ACTIVE_GENERATION = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
-    // ENV.APP.rootElement = "#ember-testing";
+    ENV.APP.rootElement = "#ember-testing";
     ENV.APP.documentExportHost =
       "http://localhost:" + (process.env.RAILS_PORT || "3000");
   }
