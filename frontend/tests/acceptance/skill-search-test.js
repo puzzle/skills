@@ -3,6 +3,7 @@ import page from "frontend/tests/pages/skill-search";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
 import { currentURL } from "@ember/test-helpers";
 import { selectChoose } from "ember-power-select/test-support";
+import { waitUntil } from "@ember/test-helpers";
 
 module("Acceptance | skill search", function(hooks) {
   setupApplicationTest(hooks);
@@ -15,12 +16,14 @@ module("Acceptance | skill search", function(hooks) {
     assert.equal(currentURL(), "/skill_search?interest=&level=&skill_id=");
 
     let store = this.owner.__container__.lookup("service:store");
-    await store;
     let rails = store
       .peekAll("skill")
       .filter(skill => skill.get("title") == "Rails")
       .get("firstObject");
-    await rails;
+
+    // Wait until the `rails` object is loaded
+    await waitUntil(() => !!rails);
+
     /* eslint "no-undef": "off" */
     await selectChoose(".ember-power-select-trigger", rails.get("title"));
     assert.equal(
@@ -33,6 +36,9 @@ module("Acceptance | skill search", function(hooks) {
     assert.notOk(names.includes("ken"));
     assert.notOk(names.includes("Alice Mante"));
     assert.ok(names.includes("Bob Anderson"));
+
+    // Wait until the level slider is loaded
+    await waitUntil(() => page.skillSearchLevelSlider.levelButtons.length > 0);
 
     await page.skillSearchLevelSlider.levelButtons.objectAt(2).click();
     assert.equal(
@@ -62,13 +68,11 @@ module("Acceptance | skill search", function(hooks) {
     assert.equal(currentURL(), "/skill_search?interest=&level=&skill_id=");
 
     let store = this.owner.__container__.lookup("service:store");
-    await store;
     let junit = store
       .peekAll("skill")
       .filter(skill => skill.get("title") == "JUnit")
       .get("firstObject");
-    await junit;
-    /* eslint "no-undef": "off" */
+    await waitUntil(() => !!junit);
     await selectChoose(".ember-power-select-trigger", junit.get("title"));
     assert.equal(
       currentURL(),
@@ -80,6 +84,8 @@ module("Acceptance | skill search", function(hooks) {
     assert.notOk(names.includes("ken"));
     assert.ok(names.includes("Alice Mante"));
     assert.notOk(names.includes("Bob Anderson"));
+
+    await waitUntil(() => page.skillSearchLevelSlider.levelButtons.length > 2);
 
     await page.skillSearchLevelSlider.levelButtons.objectAt(2).click();
     assert.equal(
