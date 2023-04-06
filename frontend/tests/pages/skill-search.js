@@ -8,8 +8,8 @@ import {
 export default create({
   indexPage: {
     visit: visitable("/skill_search"),
-    peopleSkills: {
-      peopleNames: collection(".people-skill-skillname span")
+    peopleSearchSkills: {
+      peopleNames: collection(".people-skill-person-name span")
     }
   },
 
