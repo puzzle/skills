@@ -70,9 +70,7 @@ module("Acceptance | filter skills", function(hooks) {
     let store = this.owner.__container__.lookup("service:store");
     let allCategories = store.peekAll("category");
     await allCategories;
-    setTimeout(function() {
-      //do what you need here
-    }, 2000);
+
     let filterCategory = allCategories.filterBy(
       "title",
       "System-Engineering"
