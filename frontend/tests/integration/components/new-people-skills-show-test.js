@@ -3,7 +3,7 @@ import { setupRenderingTest } from "ember-qunit";
 import { render } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import Service from "@ember/service";
-import { setLocale, setupIntl } from "ember-intl/test-support";
+import { setupIntl } from "ember-intl/test-support";
 
 const storeStub = Service.extend({
   createRecord(type, options) {
@@ -42,8 +42,6 @@ module("Integration | Component | new-people-skills-show", function(hooks) {
   setupIntl(hooks);
 
   test("it renders", async function(assert) {
-    setLocale("de");
-
     this.owner.unregister("service:store");
     this.owner.unregister("service:ajax");
     this.owner.register("service:store", storeStub);
@@ -70,7 +68,7 @@ module("Integration | Component | new-people-skills-show", function(hooks) {
 
     assert
       .dom(".col-md-11", document)
-      .includesText("Neue Skills zur Bewertung");
+      .includesText("t:new-people-skills-show.newSkills:()");
     assert.dom(".people-skill-skillname", document).includesText("Rails");
     assert
       .dom(".member-skillset-level-title", document)
@@ -86,6 +84,8 @@ module("Integration | Component | new-people-skills-show", function(hooks) {
       document.querySelectorAll(".description.ml-2.mb-0")[1].innerHTML,
       "Kernkompetenz"
     );
-    assert.dom(".edit-buttons", document).includesText("Nicht bewerten");
+    assert
+      .dom(".edit-buttons", document)
+      .includesText("t:new-people-skills-show.dontRate:()");
   });
 });

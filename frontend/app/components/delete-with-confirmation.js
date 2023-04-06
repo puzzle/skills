@@ -17,7 +17,10 @@ export default class DeleteWithConfirmation extends Component {
     if (!this.get("router.currentURL").includes("skills")) {
       document
         .getElementById("people-search-header")
-        .setAttribute("style", "z-index: 1 !important");
+        .classList.remove("zIndexThousand");
+      document
+        .getElementById("people-search-header")
+        .classList.add("zIndexOne");
     }
     this.set("showConfirmation", true);
   }
@@ -27,7 +30,10 @@ export default class DeleteWithConfirmation extends Component {
     if (!this.get("router.currentURL").includes("skills")) {
       document
         .getElementById("people-search-header")
-        .setAttribute("style", "z-index: 1000 !important");
+        .classList.remove("zIndexThousand");
+      document
+        .getElementById("people-search-header")
+        .classList.add("zIndexOne");
     }
     this.set("showConfirmation", false);
   }
@@ -37,7 +43,10 @@ export default class DeleteWithConfirmation extends Component {
     if (!this.get("router.currentURL").includes("skills")) {
       document
         .getElementById("people-search-header")
-        .setAttribute("style", "z-index: 1000 !important");
+        .classList.remove("zIndexOne");
+      document
+        .getElementById("people-search-header")
+        .classList.add("zIndexThousand");
     }
 
     const message = this.intl.t("delete-confirmation.success", {

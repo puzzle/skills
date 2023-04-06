@@ -1504,7 +1504,6 @@ div.content-input {
   top: 80px;
   max-width: 1290px;
   background-color: white;
-  z-index: 1000 !important;
 }
 
 #person-actions {
@@ -1652,4 +1651,12 @@ div.content-input {
 button[type="submit"] {
   background-color: #3268a1;
   color: white;
+}
+
+.zIndexThousand {
+  z-index: 1000 !important;
+}
+
+.zIndexOne {
+  z-index: 1 !important;
 }
