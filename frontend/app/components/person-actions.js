@@ -33,7 +33,9 @@ export default class PersonActions extends Component {
         }
       })
       .then(response => {
-        this.set("unratedSkillsAmount", response.data.length);
+        if (!this.get("isDestroyed")) {
+          this.set("unratedSkillsAmount", response.data.length);
+        }
       });
   }
 

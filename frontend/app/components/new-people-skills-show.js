@@ -22,7 +22,9 @@ export default Component.extend({
   },
 
   refreshNewPeopleSkills(skills) {
-    this.set("isLoading", true);
+    if (!this.get("isDestroyed")) {
+      this.set("isLoading", false);
+    }
     let loadBegin = Date.now();
     this.get("ajax")
       .request("/skills/unrated_by_person", {
@@ -37,7 +39,9 @@ export default Component.extend({
           loadEnd - loadBegin > this.get("minimumLoadTime") ||
           ENV.environment == "test"
         ) {
-          this.set("isLoading", false);
+          if (!this.get("isDestroyed")) {
+            this.set("isLoading", false);
+          }
         } else {
           setTimeout(() => {
             this.set("isLoading", false);
