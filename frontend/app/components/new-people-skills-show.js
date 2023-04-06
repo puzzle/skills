@@ -62,7 +62,9 @@ export default Component.extend({
           if (a.get("skill.title") < b.get("skill.title")) return -1;
           return 0;
         });
-        this.set("newPeopleSkills", peopleSkills);
+        if (!this.get("isDestroyed")) {
+          this.set("newPeopleSkills", peopleSkills);
+        }
       });
   },
 
