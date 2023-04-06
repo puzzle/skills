@@ -54,13 +54,13 @@ module("Integration | Component | rated-skill-show", function(hooks) {
     );
     assert.equal(
       this.element.querySelector("#level-name-label").innerText,
-      "Professional"
+      "Trainee"
     );
     assert
       .dom(this.element.querySelector("#checkbox-certificate-enabled"))
       .doesNotExist();
     assert
-      .dom(this.element.querySelector("#checkbox-certificate-disabled"))
+      .dom(this.element.querySelector("#checkbox-certficate-disabled"))
       .exists();
     assert
       .dom(this.element.querySelector("#checkbox-core-competence-enabled"))
