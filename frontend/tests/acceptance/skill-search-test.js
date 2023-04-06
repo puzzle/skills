@@ -32,12 +32,11 @@ module("Acceptance | skill search", function(hooks) {
     assert.notOk(names.includes("ken"));
     assert.notOk(names.includes("Alice Mante"));
     assert.ok(names.includes("Bob Anderson"));
-    // Due to some issues with the testing framework, this selects level 2
-    // despite objectAt(2) implying level 3; test would still pass if fixed
+
     await page.skillSearchLevelSlider.levelButtons.objectAt(2).click();
     assert.equal(
       currentURL(),
-      "/skill_search?interest=1&level=2&skill_id=" + rails.get("id")
+      "/skill_search?interest=1&level=3&skill_id=" + rails.get("id")
     );
     const names2 = page.indexPage.peopleSkills.peopleNames
       .toArray()
@@ -46,7 +45,7 @@ module("Acceptance | skill search", function(hooks) {
     await page.skillSearchLevelSlider.interestButtons.objectAt(4).clickOn();
     assert.equal(
       currentURL(),
-      "/skill_search?interest=5&level=2&skill_id=" + rails.get("id")
+      "/skill_search?interest=5&level=3&skill_id=" + rails.get("id")
     );
     const names3 = page.indexPage.peopleSkills.peopleNames
       .toArray()
@@ -79,19 +78,18 @@ module("Acceptance | skill search", function(hooks) {
     assert.notOk(names.includes("ken"));
     assert.ok(names.includes("Alice Mante"));
     assert.notOk(names.includes("Bob Anderson"));
-    // Due to some issues with the testing framework, this selects level 2
-    // despite objectAt(2) implying level 3; test would still pass if fixed
+
     await page.skillSearchLevelSlider.levelButtons.objectAt(2).click();
     assert.equal(
       currentURL(),
-      "/skill_search?interest=1&level=2&skill_id=" + junit.get("id")
+      "/skill_search?interest=1&level=3&skill_id=" + junit.get("id")
     );
     const names2 = page.indexPage.peopleSkills.peopleNames
       .toArray()
       .map(names2 => names2.text);
     assert.notOk(names2.includes("Alice Mante"));
-    await page.skillSearchLevelSlider.levelButtons.objectAt(1).click();
-    await page.skillSearchLevelSlider.interestButtons.objectAt(3).clickOn();
+    await page.skillSearchLevelSlider.levelButtons.objectAt(0).click();
+    await page.skillSearchLevelSlider.interestButtons.objectAt(3).click();
     assert.equal(
       currentURL(),
       "/skill_search?interest=4&level=1&skill_id=" + junit.get("id")
@@ -104,7 +102,7 @@ module("Acceptance | skill search", function(hooks) {
     await page.skillSearchLevelSlider.interestButtons.objectAt(4).clickOn();
     assert.equal(
       currentURL(),
-      "/skill_search?interest=5&level=2&skill_id=" + junit.get("id")
+      "/skill_search?interest=5&level=3&skill_id=" + junit.get("id")
     );
     const names4 = page.indexPage.peopleSkills.peopleNames
       .toArray()
