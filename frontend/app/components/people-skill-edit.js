@@ -12,19 +12,28 @@ export default class PeopleSkillEdit extends Component {
 
     if (!this.get("peopleSkill.level")) {
       this.set("levelValue", 1);
-      /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
-      $(".slider-handle").ready(() => {
-        this.sliderHandle = $(".slider-handle:first");
-        if (!this.sliderHandle) return;
-        this.sliderHandle.removeClass("slider-handle");
-        $(".in-selection").removeClass("in-selection");
-
-        $(this, ".slider").on("mouseup", () => {
-          this.sliderHandle.addClass("slider-handle");
-        });
-      });
-      /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
     }
+  }
+
+  @action
+  sliderLoading(element) {
+    // Sorry for doing this like that, but we couldn't make it work with element.querySelector().ready().
+    /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
+    $(".slider-handle").ready(() => {
+      this.sliderTickContainer = element.querySelector(
+        ".slider-tick-container"
+      ).children[0];
+      this.sliderTickContainer.classList.remove("in-selection");
+
+      this.sliderHandle = element.querySelector(".slider-handle");
+      this.sliderHandle.classList.remove("slider-handle");
+
+      element.addEventListener("mouseup", () => {
+        this.sliderHandle.classList.add("slider-handle");
+        this.notifyPropertyChange("levelValue");
+      });
+    });
+    /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
   }
 
   @computed("peopleSkill.level")
