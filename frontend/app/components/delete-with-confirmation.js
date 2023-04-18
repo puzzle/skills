@@ -15,12 +15,8 @@ export default class DeleteWithConfirmation extends Component {
   @action
   openConfirmation() {
     if (!this.get("router.currentURL").includes("skills")) {
-      document
-        .getElementById("people-search-header")
-        .classList.remove("zIndexThousand");
-      document
-        .getElementById("people-search-header")
-        .classList.add("zIndexOne");
+      this.removeZIndex("z-index-thousand");
+      this.addZIndex("z-index-one");
     }
     this.set("showConfirmation", true);
   }
@@ -28,12 +24,8 @@ export default class DeleteWithConfirmation extends Component {
   @action
   cancel() {
     if (!this.get("router.currentURL").includes("skills")) {
-      document
-        .getElementById("people-search-header")
-        .classList.remove("zIndexThousand");
-      document
-        .getElementById("people-search-header")
-        .classList.add("zIndexOne");
+      this.removeZIndex("z-index-thousand");
+      this.addZIndex("z-index-one");
     }
     this.set("showConfirmation", false);
   }
@@ -41,12 +33,8 @@ export default class DeleteWithConfirmation extends Component {
   @action
   delete(entry, transitionTo) {
     if (!this.get("router.currentURL").includes("skills")) {
-      document
-        .getElementById("people-search-header")
-        .classList.remove("zIndexOne");
-      document
-        .getElementById("people-search-header")
-        .classList.add("zIndexThousand");
+      this.removeZIndex("z-index-one");
+      this.addZIndex("z-index-thousand");
     }
 
     const message = this.intl.t("delete-confirmation.success", {
@@ -61,5 +49,13 @@ export default class DeleteWithConfirmation extends Component {
       this.get("notify").success(message);
       if (this.didDelete) this.didDelete();
     });
+  }
+
+  removeZIndex(index) {
+    document.getElementById("people-search-header").classList.remove(index);
+  }
+
+  addZIndex(index) {
+    document.getElementById("people-search-header").classList.add(index);
   }
 }
