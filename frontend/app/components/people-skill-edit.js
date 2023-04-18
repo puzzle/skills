@@ -3,6 +3,7 @@ import { observes } from "@ember-decorators/object";
 import { action, computed } from "@ember/object";
 import Component from "@ember/component";
 import { isBlank } from "@ember/utils";
+import config from "../config/environment";
 
 @classic
 export default class PeopleSkillEdit extends Component {
@@ -19,7 +20,10 @@ export default class PeopleSkillEdit extends Component {
   sliderLoading(element) {
     // Sorry for doing this like that, but we couldn't make it work with element.querySelector().ready().
     /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
-    if (document.querySelector("#new-people-skills-show").contains(element)) {
+    if (
+      config.environment !== "test" &&
+      document.querySelector("#new-people-skills-show").contains(element)
+    ) {
       $(".slider-handle").ready(() => {
         this.sliderTickContainer = element.querySelector(
           ".slider-tick-container"

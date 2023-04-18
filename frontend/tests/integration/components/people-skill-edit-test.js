@@ -19,9 +19,7 @@ module("Integration | Component | people-skill-edit", function(hooks) {
 
     await render(hbs`{{people-skill-edit peopleSkill=peopleSkill}}`);
 
-    /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
-    let checkboxes = $('[type="checkbox"]');
-    /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
+    let checkboxes = document.querySelectorAll("input[type=checkbox]");
 
     assert.dom(".people-skill-title", document).includesText("Rails");
     assert.dom(".member-skillset-level-title", document).includesText("Junior");
