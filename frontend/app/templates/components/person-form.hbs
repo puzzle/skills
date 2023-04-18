@@ -166,7 +166,7 @@
                 <label for="dualNational">
                   {{t "person-form.dualNational"}}
                 </label>
-                <Input @id="dualNational" @type="checkbox" @checked={{this.secondNationality}} class="checkbox" />
+                <Input @id="dualNational" @type="checkbox" @checked={{this.record.nationality2}} class="checkbox" />
               </td>
             </tr>
             <tr>
@@ -184,7 +184,7 @@
               </td>
             </tr>
             <tr>
-              {{#if this.secondNationality}}
+              {{#if this.record.nationality2}}
                 <td>
                   <label>{{t "person-form.secondNationality"}}</label>
                   <PowerSelect @triggerId="nationality2" @options={{this.countries}}
