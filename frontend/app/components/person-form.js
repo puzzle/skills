@@ -4,6 +4,7 @@ import { action, computed } from "@ember/object";
 import { isBlank } from "@ember/utils";
 import { getNames as countryNames } from "ember-i18n-iso-countries";
 import Person from "../models/person";
+import { addObserver } from "@ember/object/observers";
 
 export default class PersonFormComponent extends BaseFormComponent {
   @service store;
@@ -13,57 +14,7 @@ export default class PersonFormComponent extends BaseFormComponent {
   constructor() {
     super(...arguments);
     this.record = this.args.person || this.store.createRecord("person");
-  }
-
-  @computed
-  get departments() {
-    return this.store.findAll("department");
-  }
-
-  afterSuccess(existing) {
-    this.args.submit(this.record);
-    if (existing) {
-      this.notify.success(this.intl.t("person-form.update-success"));
-    } else {
-      this.notify.success(this.intl.t("person-form.create-success"));
-    }
-  }
-
-  @computed
-  get personRoleLevels() {
-    return this.store.findAll("personRoleLevel");
-  }
-
-  @computed
-  get roles() {
-    return this.store.findAll("role");
-  }
-
-  @computed
-  get companies() {
-    return this.store.findAll("company");
-  }
-
-  @computed()
-  get countries() {
-    return Object.entries(countryNames("de"));
-  }
-
-  @computed()
-  get maritalStatuses() {
-    return Object.values(Person.MARITAL_STATUSES);
-  }
-
-  @computed
-  get picturePath() {
-    return this.record.picturePath
-      ? `${this.record.picturePath}&authorizationToken=${this.session.token}`
-      : "";
-  }
-
-  @computed
-  get personPictureUploadPath() {
-    return `/people/${this.record.id}/picture`;
+    addObserver(this, "args.person", this.personChanged);
   }
 
   @action
@@ -83,7 +34,6 @@ export default class PersonFormComponent extends BaseFormComponent {
           .then(r => r && this.afterSuccess(create))
     );
   }
-
   savePicture(picturePath) {
     if (!picturePath) {
       return true;
@@ -110,11 +60,26 @@ export default class PersonFormComponent extends BaseFormComponent {
         return false;
       });
   }
+
   @action
   abort(event) {
     if (event) event.preventDefault();
     this.record.rollbackAttributes();
     this.args.abort();
+  }
+
+  afterSuccess(existing) {
+    this.args.submit(this.record);
+    if (existing) {
+      this.notify.success(this.intl.t("person-form.update-success"));
+    } else {
+      this.notify.success(this.intl.t("person-form.create-success"));
+    }
+  }
+
+  @action
+  personChanged() {
+    this.abort();
   }
 
   @action
@@ -161,8 +126,50 @@ export default class PersonFormComponent extends BaseFormComponent {
     console.log("second");
     this.record.nationality2 = country[0];
   }
+
   @action
   emptyFunction() {
     console.log("empty");
+  }
+  @computed
+  get departments() {
+    return this.store.findAll("department");
+  }
+
+  @computed
+  get personRoleLevels() {
+    return this.store.findAll("personRoleLevel");
+  }
+
+  @computed
+  get roles() {
+    return this.store.findAll("role");
+  }
+
+  @computed
+  get companies() {
+    return this.store.findAll("company");
+  }
+
+  @computed()
+  get countries() {
+    return Object.entries(countryNames("de"));
+  }
+
+  @computed()
+  get maritalStatuses() {
+    return Object.values(Person.MARITAL_STATUSES);
+  }
+
+  @computed
+  get picturePath() {
+    if (!this.record.picturePath) return "";
+    return `${this.record.picturePath}
+    &authorizationToken=${this.session.token}
+    &random=${Date.now()}`;
+  }
+  @computed
+  get personPictureUploadPath() {
+    return `/people/${this.record.id}/picture`;
   }
 }
