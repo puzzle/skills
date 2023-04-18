@@ -19,20 +19,22 @@ export default class PeopleSkillEdit extends Component {
   sliderLoading(element) {
     // Sorry for doing this like that, but we couldn't make it work with element.querySelector().ready().
     /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
-    $(".slider-handle").ready(() => {
-      this.sliderTickContainer = element.querySelector(
-        ".slider-tick-container"
-      ).children[0];
-      this.sliderTickContainer.classList.remove("in-selection");
+    if (document.querySelector("#new-people-skills-show").contains(element)) {
+      $(".slider-handle").ready(() => {
+        this.sliderTickContainer = element.querySelector(
+          ".slider-tick-container"
+        ).children[0];
+        this.sliderTickContainer.classList.remove("in-selection");
 
-      this.sliderHandle = element.querySelector(".slider-handle");
-      this.sliderHandle.classList.remove("slider-handle");
+        this.sliderHandle = element.querySelector(".slider-handle");
+        this.sliderHandle.classList.remove("slider-handle");
 
-      element.addEventListener("mouseup", () => {
-        this.sliderHandle.classList.add("slider-handle");
-        this.notifyPropertyChange("levelValue");
+        element.addEventListener("mouseup", () => {
+          this.sliderHandle.classList.add("slider-handle");
+          this.notifyPropertyChange("levelValue");
+        });
       });
-    });
+    }
     /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
   }
 
