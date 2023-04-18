@@ -1,8 +1,8 @@
 <div class="pointer-all-sub d-flex flex-column align-items-center">
   <Input type="file" id="img-input" hidden  {{on "change" this.uploadImage}}/>
-  {{#if @person.picturePath}}
+  {{#if this.picturePath}}
     <img
-      src={{@person.picturePath}}
+      src={{this.picturePath}}
       class="pic img-polaroid profil-img rounded-circle img-avatar-edit wh-15"
       role="button"
       {{on "click" this.changePicture}}
