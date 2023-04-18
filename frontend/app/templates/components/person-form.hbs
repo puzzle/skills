@@ -28,7 +28,7 @@
                 <label for="email">
                   Email
                 </label>
-                <Input @id="email" @value={{this.record.email}} @type="text"/>
+                <Input @id="email" data-test-person-email @value={{this.record.email}} @type="text"/>
               </td>
             </tr>
             <tr>
@@ -86,7 +86,7 @@
                     </div>
                     <div class="percent-field">
                       <label>
-                        <Input placeholder="in %" type="number" @value={{personRole.percent}} @onchange={{action
+                        <Input @id="rolePercent" placeholder="in %" type="number" @value={{personRole.percent}} @onchange={{action
                           (mut personRole.percent)}} max="9999"/>
                       </label>
                     </div>

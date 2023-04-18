@@ -1,7 +1,7 @@
 import { module, test } from "qunit";
 import { helper } from "@ember/component/helper";
 import { setupRenderingTest } from "ember-qunit";
-import { click, render, pauseTest } from "@ember/test-helpers";
+import { click, render } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import keycloakStub from "../../helpers/keycloak-stub";
 import { setLocale } from "ember-intl/test-support";
