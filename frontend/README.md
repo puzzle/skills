@@ -44,7 +44,7 @@ With the rails backend server running you can start the frontend, directing it a
 ```shell
 ember server --proxy=http://localhost:3000
 ```
-Congratulations the PuzzleSkills Application is now online, you can visit it at
+Congratulations the PuzzleSkills Application is now running, you can visit it at
 
 ##### <code> [http://localhost:4200](http://localhost:4200) </code>
 
