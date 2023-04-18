@@ -33,9 +33,7 @@ module("Acceptance | cv search", function(hooks) {
 
   test("search person by competence and project technology Java", async function(assert) {
     assert.expect(7);
-
     await page.indexPage.visit();
-
     assert.equal(currentURL(), "/cv_search");
 
     await page.indexPage.searchInput("Java");
