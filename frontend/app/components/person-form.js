@@ -35,9 +35,9 @@ export default class PersonFormComponent extends BaseFormComponent {
     );
   }
   savePicture(picturePath) {
-    if (!picturePath) {
-      return true;
-    }
+    if (!picturePath) return true;
+    if (picturePath.startsWith("/api/people")) return true;
+
     return fetch(picturePath)
       .then(r => r.blob())
       .then(r => {
