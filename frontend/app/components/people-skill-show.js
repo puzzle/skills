@@ -19,19 +19,17 @@ export default class PeopleSkillShow extends Component {
   @action
   sliderLoading(element) {
     /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
-    setTimeout(() => {
-      $(".slider-handle").ready(() => {
-        if (this.get("peopleSkill.level") === 0) {
-          this.sliderTickContainer = element.querySelector(
-            ".slider-tick-container"
-          ).children[0];
-          this.sliderTickContainer.classList.remove("in-selection");
+    $(".slider-handle").ready(() => {
+      if (this.get("peopleSkill.level") === 0) {
+        this.sliderTickContainer = element.querySelector(
+          ".slider-tick-container"
+        ).children[0];
+        this.sliderTickContainer.classList.remove("in-selection");
 
-          this.sliderHandle = element.querySelector(".slider-handle");
-          this.sliderHandle.classList.remove("slider-handle");
-        }
-      });
-    }, "10");
+        this.sliderHandle = element.querySelector(".slider-handle");
+        this.sliderHandle.classList.remove("slider-handle");
+      }
+    });
     /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
   }
 

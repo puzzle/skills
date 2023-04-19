@@ -3,10 +3,13 @@ import { observes } from "@ember-decorators/object";
 import { action, computed } from "@ember/object";
 import Component from "@ember/component";
 import { isBlank } from "@ember/utils";
+import { inject as service } from "@ember/service";
 import config from "../config/environment";
 
 @classic
 export default class PeopleSkillEdit extends Component {
+  @service router;
+
   init() {
     super.init(...arguments);
     this.set("levelValue", this.get("peopleSkill.level"));
@@ -22,8 +25,15 @@ export default class PeopleSkillEdit extends Component {
     /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
     if (
       config.environment !== "test" &&
-      document.querySelector("#new-people-skills-show").contains(element)
+      (document.querySelector("#peopleSkillsHeader").contains(element) ||
+        document.querySelector("#new-people-skills-show").contains(element))
     ) {
+      if (
+        document.querySelector("#peopleSkillsHeader").contains(element) &&
+        this.get("peopleSkill.level") !== 0
+      )
+        return;
+
       $(".slider-handle").ready(() => {
         this.sliderTickContainer = element.querySelector(
           ".slider-tick-container"
