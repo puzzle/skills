@@ -246,3 +246,5 @@ image:
   upload: Bild hochladen
   update: Bild ändern
   upload-success: Bild wurde erfolgreich aktualisiert
+  invalid-datatype: Invalider Datentyp
+  file-too-large: Datei ist zu gross, max 10MB

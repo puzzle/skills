@@ -13,7 +13,9 @@ const storeStub = Service.extend({
     if (type === "role") {
       return [{ id: 1, name: "New Role" }];
     } else if (type === "language") {
-      return [EmberObject.create({ id: 1, name: "Afrikaans", iso1: "AF" })];
+      return Promise.of([
+        EmberObject.create({ id: 1, name: "Afrikaans", iso1: "AF" })
+      ]);
     } else if (type === "personRoleLevel") {
       return [EmberObject.create({ id: 1, level: "S1" })];
     } else if (type === "department") {

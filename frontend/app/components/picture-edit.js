@@ -7,6 +7,7 @@ import { tracked } from "@glimmer/tracking";
 @classic
 export default class PictureEdit extends Component {
   @service notify;
+  @service intl;
   @tracked picturePath = "";
   constructor() {
     super(...arguments);
@@ -16,13 +17,13 @@ export default class PictureEdit extends Component {
   uploadImage(e) {
     let file = e.target.files[0];
     if (!/\.(?:jpe?g|png|gif|svg|bmp)$/i.test(file.name)) {
-      this.notify.alert("Invalider Datentyp");
+      this.notify.alert(this.intl.t("image.invalid-datatype"));
       return;
     }
 
     if (file.size > 10000000) {
       //10MB
-      this.notify.alert("Datei ist zu gross, max 10MB");
+      this.notify.alert(this.intl.t("image.file-too-large"));
       return;
     }
     this.picturePath = URL.createObjectURL(file);
