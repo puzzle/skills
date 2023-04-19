@@ -252,3 +252,5 @@ image:
   upload: Upload image
   update: Change image
   upload-success: Image got updated successfully
+  invalid-datatype: Invalid datatype
+  file-too-large: File is too large, max 10MB

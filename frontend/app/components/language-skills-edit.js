@@ -36,7 +36,7 @@ export default class LanguageSkillsEdit extends ApplicationComponent {
 
   getLanguagesList() {
     let languages = this.get("store").findAll("language");
-    languages.forEach(() => {
+    languages.then(() => {
       this.set("languages", languages);
       this.set(
         "selectedLanguage",
@@ -44,7 +44,6 @@ export default class LanguageSkillsEdit extends ApplicationComponent {
           this.get("person.languageSkills.firstObject.language")
         )
       );
-
       let personLanguages = this.get("person.languageSkills");
       personLanguages.forEach(() => {
         let languageIsos = personLanguages.map(x => {
