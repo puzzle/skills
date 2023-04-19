@@ -1,12 +1,28 @@
 import { module, test } from "qunit";
 import { helper } from "@ember/component/helper";
 import { setupRenderingTest } from "ember-qunit";
-import { click, render } from "@ember/test-helpers";
+import { click, render, pauseTest } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import keycloakStub from "../../helpers/keycloak-stub";
 import { setLocale } from "ember-intl/test-support";
 import EmberObject from "@ember/object";
 import Service from "@ember/service";
+
+const storeStub = Service.extend({
+  findAll(type) {
+    if (type === "role") {
+      return [{ id: 1, name: "New Role" }];
+    } else if (type === "language") {
+      return [EmberObject.create({ id: 1, name: "Afrikaans", iso1: "AF" })];
+    } else if (type === "personRoleLevel") {
+      return [EmberObject.create({ id: 1, level: "S1" })];
+    } else if (type === "department") {
+      return [EmberObject.create({ id: 1, name: "/bbt" })];
+    } else if (type === "company") {
+      return [EmberObject.create({ id: 1, name: "Bewerber" })];
+    }
+  }
+});
 
 module("Integration | Component | person-form-new", function(hooks) {
   setupRenderingTest(hooks);
@@ -149,21 +165,6 @@ module("Integration | Component | person-form-new", function(hooks) {
 
 module("Integration | Component | person-form-edit", function(hooks) {
   setupRenderingTest(hooks);
-  const storeStub = Service.extend({
-    findAll(type) {
-      if (type === "role") {
-        return [{ id: 1, name: "New Role" }];
-      } else if (type === "language") {
-        return [EmberObject.create({ id: 1, name: "Afrikaans", iso1: "AF" })];
-      } else if (type === "personRoleLevel") {
-        return [EmberObject.create({ id: 1, level: "S1" })];
-      } else if (type === "department") {
-        return [EmberObject.create({ id: 1, name: "/bbt" })];
-      } else if (type === "company") {
-        return [EmberObject.create({ id: 1, name: "Bewerber" })];
-      }
-    }
-  });
 
   hooks.beforeEach(function() {
     setLocale("en");

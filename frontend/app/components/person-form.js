@@ -117,7 +117,6 @@ export default class PersonFormComponent extends BaseFormComponent {
 
   @action
   setNationality(country) {
-    console.log(country);
     this.record.nationality = country[0];
   }
 
@@ -125,11 +124,6 @@ export default class PersonFormComponent extends BaseFormComponent {
   setNationality2(country) {
     console.log("second");
     this.record.nationality2 = country[0];
-  }
-
-  @action
-  emptyFunction() {
-    console.log("empty");
   }
   @computed
   get departments() {

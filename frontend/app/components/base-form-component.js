@@ -48,7 +48,7 @@ export default class BaseFormComponent extends Component {
           recordErrors.forEach(({ attribute, message }) => {
             let translated_attribute = this.intl.t(`${model}.${attribute}`);
             this.notify.alert(`${translated_attribute} ${message}`, {
-              closeAfter: ENV.environment === "test" ? null : 8000
+              closeAfter: 8000
             });
           });
         });
