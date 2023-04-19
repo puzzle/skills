@@ -121,6 +121,8 @@ module("Acceptance | create person", function(hooks) {
   });
 
   test("should display one error when email format is invalid", async function(assert) {
+    this.owner.unregister("service:notify");
+    this.owner.register("service:notify", notifyStub);
     await page.newPersonPage.visit();
     assert.equal(currentURL(), "/people/new");
 
