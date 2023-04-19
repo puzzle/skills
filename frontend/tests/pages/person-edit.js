@@ -29,7 +29,7 @@ export default create({
     email: fillable('[id="email"]'),
     title: fillable('[id="degree"]'),
     location: fillable('[id="location"]'),
-    rolePercent: fillable('[id="rolePercent"]'),
+    rolePercent: fillable(".percent-field > label > input"),
     shortname: fillable('[id="shortname"]'),
     submit: clickable('[id="submit-button"]')
   },
