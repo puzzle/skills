@@ -16,14 +16,10 @@ export default class PeopleSkillShow extends Component {
     }
   }
 
-  sleep(time) {
-    return new Promise(resolve => setTimeout(resolve, time));
-  }
-
   @action
   sliderLoading(element) {
     /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
-    this.sleep(10).then(() => {
+    setTimeout(() => {
       $(".slider-handle").ready(() => {
         if (this.get("peopleSkill.level") === 0) {
           this.sliderTickContainer = element.querySelector(
@@ -35,7 +31,7 @@ export default class PeopleSkillShow extends Component {
           this.sliderHandle.classList.remove("slider-handle");
         }
       });
-    });
+    }, "10");
     /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
   }
 
