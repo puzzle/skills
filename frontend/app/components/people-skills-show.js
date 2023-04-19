@@ -100,8 +100,6 @@ export default Component.extend({
     return hash;
   },
 
-  /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
-
   actions: {
     submit(person) {
       person
@@ -120,7 +118,7 @@ export default Component.extend({
         .then(() => this.set("peopleSkillsEditing", false))
         .then(() => this.get("notify").success("Successfully saved!"))
         .then(() =>
-          $("#peopleSkillsHeader")[0].scrollIntoView({
+          document.querySelectorAll("#peopleSkillsHeader")[0].scrollIntoView({
             behavior: "smooth"
           })
         )
@@ -160,13 +158,13 @@ export default Component.extend({
         }
       });
       this.set("peopleSkillsEditing", false);
-      $("#peopleSkillsHeader")[0].scrollIntoView({ behavior: "smooth" });
+      document
+        .querySelectorAll("#peopleSkillsHeader")[0]
+        .scrollIntoView({ behavior: "smooth" });
     },
 
     toggleSkillShow(skill) {
       this.set("currentSkill", skill);
     }
   }
-
-  /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
 });
