@@ -5,10 +5,17 @@ import $ from "jquery";
 import { click, currentURL } from "@ember/test-helpers";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
 import { selectChoose } from "ember-power-select/test-support";
+import Notify from "ember-notify";
 
 module("Acceptance | create person", function(hooks) {
   setupApplicationTest(hooks);
 
+  const notifyStub = Notify.extend({
+    alert(message, options) {
+      options.closeAfter = null;
+      return this.show("alert", message, options);
+    }
+  });
   /* Currently we are skipping this test since it works locally but fails on
    our Travis Server (Seemingly due to some failing page loads). Optimally you
    would run this test locally but put it back on skip when pushing to Github */
@@ -80,6 +87,8 @@ module("Acceptance | create person", function(hooks) {
   });
 
   test("should display two errors when email is empty", async function(assert) {
+    this.owner.unregister("service:notify");
+    this.owner.register("service:notify", notifyStub);
     await page.newPersonPage.visit();
     assert.equal(currentURL(), "/people/new");
 
