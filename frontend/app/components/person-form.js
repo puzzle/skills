@@ -26,8 +26,8 @@ export default class PersonFormComponent extends BaseFormComponent {
     let picturePath = person.picturePath;
     let create = this.record.id;
     super.submit(person).then(
-      res =>
-        res &&
+      r =>
+        r &&
         super
           .submit(attributes)
           .then(r => r && this.savePicture(picturePath))
@@ -37,6 +37,7 @@ export default class PersonFormComponent extends BaseFormComponent {
   savePicture(picturePath) {
     if (!picturePath) return true;
     if (picturePath.startsWith("/api/people")) return true;
+    let uploadPath = `/people/${this.record.id}/picture`;
 
     return fetch(picturePath)
       .then(r => r.blob())
@@ -46,7 +47,7 @@ export default class PersonFormComponent extends BaseFormComponent {
         return fd;
       })
       .then(r =>
-        this.ajax.put(this.personPictureUploadPath, {
+        this.ajax.put(uploadPath, {
           contentType: false,
           processData: false,
           timeout: 5000,
@@ -56,7 +57,7 @@ export default class PersonFormComponent extends BaseFormComponent {
       .then(() => this.notify.success(this.intl.t("image.upload-success")))
       .then(() => true)
       .catch(err => {
-        this.notify.error(err.message);
+        this.notify.alert(err.message);
         return false;
       });
   }
@@ -112,6 +113,7 @@ export default class PersonFormComponent extends BaseFormComponent {
   @action
   setPersonRoleLevel(personRole, personRoleLevel) {
     personRole.level = personRoleLevel.level;
+    personRole.level = personRoleLevel.level;
     personRole.personRoleLevel = personRoleLevel;
   }
 
@@ -122,7 +124,6 @@ export default class PersonFormComponent extends BaseFormComponent {
 
   @action
   setNationality2(country) {
-    console.log("second");
     this.record.nationality2 = country[0];
   }
   @computed
@@ -159,11 +160,6 @@ export default class PersonFormComponent extends BaseFormComponent {
   get picturePath() {
     if (!this.record.picturePath) return "";
     return `${this.record.picturePath}
-    &authorizationToken=${this.session.token}
-    &random=${Date.now()}`;
-  }
-  @computed
-  get personPictureUploadPath() {
-    return `/people/${this.record.id}/picture`;
+    &authorizationToken=${this.session.token}`;
   }
 }

@@ -2,7 +2,6 @@ import { action } from "@ember/object";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { inject as service } from "@ember/service";
-import ENV from "frontend/config/environment";
 
 export default class BaseFormComponent extends Component {
   @service intl;
@@ -48,7 +47,7 @@ export default class BaseFormComponent extends Component {
           recordErrors.forEach(({ attribute, message }) => {
             let translated_attribute = this.intl.t(`${model}.${attribute}`);
             this.notify.alert(`${translated_attribute} ${message}`, {
-              closeAfter: 8000
+              closeAfter: 10000
             });
           });
         });
