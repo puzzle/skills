@@ -66,14 +66,26 @@ module("Integration | Component | new-people-skills-show", function(hooks) {
     );
     await render(hbs`{{new-people-skills-show skills=skills}}`);
 
-    let text = this.$().text();
-
-    assert.dom().includesText("t:new-people-skills-show.newSkills");
-    assert.ok(text.includes("Rails"));
-    assert.ok(text.includes("Nicht bewertet"));
-    assert.ok(text.includes("Interesse"));
-    assert.ok(text.includes("Zertifikat"));
-    assert.ok(text.includes("Kernkompetenz"));
-    assert.dom().includesText("t:new-people-skills-show.dontRate");
+    assert
+      .dom(".col-md-11", document)
+      .includesText("t:new-people-skills-show.newSkills:()");
+    assert.dom(".people-skill-skillname", document).includesText("Rails");
+    assert
+      .dom(".member-skillset-level-title", document)
+      .includesText("Nicht bewertet");
+    assert
+      .dom(".member-skillset-interest-title", document)
+      .includesText("Interesse");
+    assert.equal(
+      document.querySelectorAll(".description.ml-2.mb-0")[0].innerHTML,
+      "Zertifikat"
+    );
+    assert.equal(
+      document.querySelectorAll(".description.ml-2.mb-0")[1].innerHTML,
+      "Kernkompetenz"
+    );
+    assert
+      .dom(".edit-buttons", document)
+      .includesText("t:new-people-skills-show.dontRate:()");
   });
 });

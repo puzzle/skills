@@ -15,7 +15,7 @@
           <div class="row my-3">
             <div class="col-md-3">{{t "skill-new.category"}}</div>
             <div class="col-md-9 people-skill-new-dropdowns">
-              <PowerSelect @triggerId="skill-new-category" @renderInPlace={{true}} @class="w-100" @dropdownClass="w-100" @options={{this.childCategories}} @matcher={{this.categorySearchMatcher}} @disabled={{eq this.newSkillSelected false}} @selected={{this.selectedCategory}} @onChange={{action "setCategory"}} @onBlur={{action "handleBlur"}} @onFocus={{action "handleFocus"}} @onKeydown={{action "setWithKey" "setCategory"}} as |category|>
+              <PowerSelect @triggerId="skill-new-category" @searchEnabled={{true}} @initiallyOpened={{false}} @renderInPlace={{true}} @class="w-100" @dropdownClass="w-100" @options={{this.childCategories}} @selected={{this.selectedCategory}} @onChange={{action "setCategory"}} as |category|>
                 {{category.parent.title}} - {{category.title}}
               </PowerSelect>
             </div>

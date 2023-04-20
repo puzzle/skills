@@ -28,6 +28,8 @@ module Skills
     config.autoload_paths += %W( #{config.root}/app/uploaders) #
     config.i18n.default_locale = :de
 
+    config.active_record.verify_foreign_keys_for_fixtures = false
+
     # Bullet tries to add finish_at to insert statement, which does not exist anymore
     config.active_record.partial_inserts = true
 

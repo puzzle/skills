@@ -5,6 +5,8 @@ import hbs from "htmlbars-inline-precompile";
 import { tracked } from "@glimmer/tracking";
 
 module("Integration | Component | daterange-edit", function(hooks) {
+  /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
+
   setupRenderingTest(hooks);
 
   test("it renders daterange-edit with data and month", async function(assert) {
@@ -17,8 +19,8 @@ module("Integration | Component | daterange-edit", function(hooks) {
 
     await render(hbs`{{daterange-edit entity=project}}`);
 
-    let months = this.$(".ember-power-select-selected-item");
-    let years = this.$("input[type=number]");
+    let months = $(".ember-power-select-selected-item");
+    let years = $("input[type=number]");
 
     assert.equal(months[0].innerText, "10");
     assert.equal(months[1].innerText, "3");
@@ -36,8 +38,8 @@ module("Integration | Component | daterange-edit", function(hooks) {
 
     await render(hbs`{{daterange-edit entity=project}}`);
 
-    let months = this.$(".ember-power-select-selected-item");
-    let years = this.$("input[type=number]");
+    let months = $(".ember-power-select-selected-item");
+    let years = $("input[type=number]");
 
     assert.equal(months[0].innerText, "-");
     assert.equal(months[1].innerText, "-");
@@ -52,8 +54,8 @@ module("Integration | Component | daterange-edit", function(hooks) {
 
     await render(hbs`{{daterange-edit entity=project}}`);
 
-    let months = this.$(".ember-power-select-selected-item");
-    let years = this.$("input[type=number]");
+    let months = $(".ember-power-select-selected-item");
+    let years = $("input[type=number]");
 
     assert.equal(months[0].innerText, "-");
     assert.equal(months[1].innerText, "-");
@@ -71,7 +73,7 @@ module("Integration | Component | daterange-edit", function(hooks) {
 
     await render(hbs`{{daterange-edit entity=project}}`);
 
-    let calendarIcon = this.$(".btn-primary");
+    let calendarIcon = document.querySelector(".btn-primary");
     calendarIcon.click();
 
     assert.equal(this.project.monthTo, 10);
@@ -88,11 +90,13 @@ module("Integration | Component | daterange-edit", function(hooks) {
 
     await render(hbs`{{daterange-edit entity=project}}`);
 
-    let calendarIcon = this.$(".btn-primary");
+    let calendarIcon = document.querySelector(".btn-primary");
     calendarIcon.click();
     this.project.yearTo = 1980;
 
     assert.equal(this.project.monthTo, 1);
     assert.equal(this.project.yearTo, 1980);
   });
+
+  /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
 });

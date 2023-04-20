@@ -1,5 +1,5 @@
 import { run } from "@ember/runloop";
-import { unsetContext } from "ember-test-helpers";
+import { unsetContext } from "@ember/test-helpers";
 
 export default function destroyApp(application) {
   unsetContext();

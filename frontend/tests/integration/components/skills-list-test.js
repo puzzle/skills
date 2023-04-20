@@ -4,7 +4,7 @@ import { render } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import Service from "@ember/service";
 import keycloakStub from "../../helpers/keycloak-stub";
-import { setupIntl } from "ember-intl/test-support";
+import { setLocale, setupIntl } from "ember-intl/test-support";
 
 const storeStub = Service.extend({
   createRecord(model) {
@@ -61,6 +61,8 @@ module("Integration | Component | skills-list", function(hooks) {
   setupIntl(hooks);
 
   hooks.beforeEach(function(assert) {
+    setLocale("de");
+
     this.owner.register("service:store", storeStub);
     this.owner.register("service:keycloak-session", keycloakStub);
   });
@@ -68,22 +70,18 @@ module("Integration | Component | skills-list", function(hooks) {
   test("it renders without data", async function(assert) {
     await render(hbs`{{skills-list}}`);
 
-    let text = this.$().text();
-
-    assert.ok(text.includes("Export"));
-    assert.dom().includesText("t:skill-new.createSkill");
-    assert.ok(text.includes("Skill"));
-    assert.ok(text.includes("Radar"));
-    assert.ok(text.includes("Members"));
+    assert.dom(".edit-buttons", document).includesText("Export");
+    assert.dom("#new-skill-link", document).includesText("Neuer Skill");
+    assert.dom("#defaultFilterAll", document).includesText("Alle");
+    assert.dom("#defaultFilterNew", document).includesText("Neue");
   });
 
   test("it renders for non admin user", async function(assert) {
     this.owner.register("service:keycloak-session", nonAdminKeycloakStub);
     await render(hbs`{{skills-list}}`);
-    let text = this.$().text();
 
-    assert.ok(text.includes("Export"));
-    assert.ok(text.includes("Skill"));
+    assert.dom(".edit-buttons", document).includesText("Export");
+    assert.dom("#new-skill-link", document).includesText("Neuer Skill");
   });
 
   test("it displays grayed out create skill text", async function(assert) {
@@ -91,7 +89,7 @@ module("Integration | Component | skills-list", function(hooks) {
     await render(hbs`{{skills-list}}`);
 
     assert.equal(
-      this.element.querySelector("#new-skill-link").getAttribute("class"),
+      document.querySelector("#new-skill-link").className,
       "edit-buttons grayed-out"
     );
   });
@@ -126,7 +124,7 @@ module("Integration | Component | skills-list", function(hooks) {
 
     await render(hbs`{{skills-list skills=skills}}`);
 
-    let text = this.$().text();
+    let text = document.querySelector(".mt-5").textContent;
 
     assert.ok(text.includes("Ruby"));
     assert.ok(text.includes("aktiv"));

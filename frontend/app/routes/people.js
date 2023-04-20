@@ -12,6 +12,9 @@ export default class PeopleRoute extends Route.extend(
   ajax;
 
   @service
+  store;
+
+  @service
   selectedPerson;
 
   queryParams = {

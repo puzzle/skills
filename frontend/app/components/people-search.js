@@ -16,7 +16,6 @@ export default class PeopleSearch extends Component {
     return currentId ? this.store.peekRecord("person", currentId) : undefined;
   }
 
-  @computed("this.args.people")
   get peopleToSelect() {
     return this.args.people.toArray().sort((a, b) => {
       if (a.get("name") < b.get("name")) return -1;

@@ -10,10 +10,13 @@ module("Integration | Component | skillset-defaultset-filter", function(hooks) {
 
   test("it renders", async function(assert) {
     await render(hbs`{{skillset-defaultset-filter}}`);
-    let text = this.$().text();
 
-    assert.dom().includesText("t:skillset-defaultset-filter.all");
-    assert.dom().includesText("t:skillset-defaultset-filter.new");
-    assert.ok(text.includes("Default"));
+    assert
+      .dom("#defaultFilterAll", document)
+      .includesText("t:skillset-defaultset-filter.all:()");
+    assert
+      .dom("#defaultFilterNew", document)
+      .includesText("t:skillset-defaultset-filter.new:()");
+    assert.dom("#defaultFilterDefault", document).includesText("Default");
   });
 });

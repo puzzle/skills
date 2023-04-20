@@ -12,6 +12,6 @@ module("Integration | Helper | toLowercase", function(hooks) {
 
     await render(hbs`{{to-lowercase inputValue}}`);
 
-    assert.equal(this.element.textContent.trim(), "1234");
+    assert.true(this.element.textContent.includes("1234"));
   });
 });

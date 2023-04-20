@@ -51,8 +51,10 @@ export default class PictureEdit extends Component {
     this.set("response", ObjectPromiseProxy.create({ promise: res }));
   }
 
+  /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
+
   didInsertElement() {
-    this.$(".img-input").on("change", e => {
+    $(".img-input").on("change", e => {
       if (e.target.files.length) {
         this.uploadImage(e.target.files[0]);
         e.target.value = null;
@@ -62,6 +64,8 @@ export default class PictureEdit extends Component {
 
   @action
   changePicture() {
-    this.$(".img-input").click();
+    $(".img-input").click();
   }
+
+  /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
 }

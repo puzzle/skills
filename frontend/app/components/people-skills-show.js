@@ -118,7 +118,7 @@ export default Component.extend({
         .then(() => this.set("peopleSkillsEditing", false))
         .then(() => this.get("notify").success("Successfully saved!"))
         .then(() =>
-          this.$("#peopleSkillsHeader")[0].scrollIntoView({
+          document.querySelectorAll("#peopleSkillsHeader")[0].scrollIntoView({
             behavior: "smooth"
           })
         )
@@ -158,7 +158,9 @@ export default Component.extend({
         }
       });
       this.set("peopleSkillsEditing", false);
-      this.$("#peopleSkillsHeader")[0].scrollIntoView({ behavior: "smooth" });
+      document
+        .querySelectorAll("#peopleSkillsHeader")[0]
+        .scrollIntoView({ behavior: "smooth" });
     },
 
     toggleSkillShow(skill) {

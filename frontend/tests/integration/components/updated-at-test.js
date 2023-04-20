@@ -20,9 +20,7 @@ module("Integration | Component | updated-at", function(hooks) {
     });
     await render(hbs`{{updated-at entry=person}}`);
 
-    let text = this.$().text();
-
-    assert.dom().includesText("t:updated-at.message");
-    assert.ok(text.includes("09.02.2008"));
+    assert.dom(".updated-at", document).includesText("t:updated-at.message:()");
+    assert.dom(".updated-at", document).includesText("09.02.2008");
   });
 });

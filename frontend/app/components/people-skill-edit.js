@@ -3,30 +3,53 @@ import { observes } from "@ember-decorators/object";
 import { action, computed } from "@ember/object";
 import Component from "@ember/component";
 import { isBlank } from "@ember/utils";
+import { inject as service } from "@ember/service";
+import config from "../config/environment";
 
 @classic
 export default class PeopleSkillEdit extends Component {
+  @service router;
+
   init() {
     super.init(...arguments);
-    this.set("interestLevelOptions", [0, 1, 2, 3, 4, 5]);
     this.set("levelValue", this.get("peopleSkill.level"));
 
     if (!this.get("peopleSkill.level")) {
       this.set("levelValue", 1);
-      /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
-      $(".slider-handle").ready(() => {
-        this.sliderHandle = this.$(".slider-handle:first");
-        if (!this.sliderHandle) return;
-        this.sliderHandle.removeClass("slider-handle");
-        this.$(".in-selection").removeClass("in-selection");
+    }
+  }
 
-        this.$(".slider").on("mouseup", () => {
-          this.sliderHandle.addClass("slider-handle");
+  @action
+  sliderLoading(element) {
+    // Sorry for doing this like that, but we couldn't make it work with element.querySelector().ready().
+    /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
+    if (
+      config.environment !== "test" &&
+      (document.querySelector("#peopleSkillsHeader").contains(element) ||
+        document.querySelector("#new-people-skills-show").contains(element))
+    ) {
+      if (
+        document.querySelector("#peopleSkillsHeader").contains(element) &&
+        this.get("peopleSkill.level") !== 0
+      )
+        return;
+
+      $(".slider-handle").ready(() => {
+        this.sliderTickContainer = element.querySelector(
+          ".slider-tick-container"
+        ).children[0];
+        this.sliderTickContainer.classList.remove("in-selection");
+
+        this.sliderHandle = element.querySelector(".slider-handle");
+        this.sliderHandle.classList.remove("slider-handle");
+
+        element.addEventListener("mouseup", () => {
+          this.sliderHandle.classList.add("slider-handle");
           this.notifyPropertyChange("levelValue");
         });
-        /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
       });
     }
+    /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
   }
 
   @computed("peopleSkill.level")

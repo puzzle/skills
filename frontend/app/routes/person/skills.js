@@ -15,6 +15,9 @@ export default class SkillsRoute extends Route.extend(
   @service
   router;
 
+  @service
+  store;
+
   queryParams = {
     rated: {
       refreshModel: true,

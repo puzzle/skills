@@ -4,7 +4,7 @@
   </div>
   <div class="col mb-4 peopleSkillEditLevel">
     <label class="description member-skillset-level-title">{{this.levelName}}</label>
-    <UiSlider @value={{this.levelValue}} @ticks="1,2,3,4,5" @tooltip="hide" @min={{1}} @max={{5}} @immediateResponse={{true}} />
+    <UiSlider {{did-insert this.sliderLoading}} @value={{this.levelValue}} @ticks="1,2,3,4,5" @tooltip="hide" @min={{1}} @max={{5}} @immediateResponse={{true}} />
   </div>
   <div class="col people-skill-interest">
     <label class="description member-skillset-interest-title">Interesse</label>

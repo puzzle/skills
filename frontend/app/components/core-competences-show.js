@@ -40,7 +40,9 @@ export default class CoreCompetencesShow extends Component {
           .filter(s => s !== undefined);
         if (skills.length) hash[category.get("title")] = skills;
       });
-      this.set("coreCompetencesObj", hash);
+      if (!this.get("isDestroyed")) {
+        this.set("coreCompetencesObj", hash);
+      }
     });
   }
 

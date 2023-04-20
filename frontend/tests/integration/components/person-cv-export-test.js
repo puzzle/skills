@@ -4,7 +4,6 @@ import { render } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import keycloakStub from "../../helpers/keycloak-stub";
 import page from "frontend/tests/pages/person-cv-export";
-import $ from "jquery";
 import Service from "@ember/service";
 
 const nonAdminKeycloakStub = keycloakStub.extend({
@@ -54,7 +53,7 @@ module("Integration | Component | person-cv-export", function(hooks) {
     assert.ok(
       this.element.textContent.trim().includes("person-cv-export.cancel")
     );
-    assert.equal(this.$("button").length, 4);
+    assert.equal(this.element.querySelectorAll("button").length, 4);
   });
 
   test("it sets skill level with ui slider", async function(assert) {
@@ -63,9 +62,7 @@ module("Integration | Component | person-cv-export", function(hooks) {
     await render(hbs`{{person-cv-export}}`);
 
     assert.ok(
-      $(".person-skill-level")
-        .attr("class")
-        .includes("hidden")
+      document.querySelector(".person-skill-level").className.includes("hidden")
     );
 
     let toggle = this.element.querySelector("#levelSkillsToggle");

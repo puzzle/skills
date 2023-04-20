@@ -8,6 +8,9 @@ export default class PersonRoute extends Route {
   @service
   selectedPerson;
 
+  @service
+  store;
+
   model(params) {
     return this.store.findRecord("person", params.person_id);
   }

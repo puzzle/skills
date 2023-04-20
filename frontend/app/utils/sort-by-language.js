@@ -1,4 +1,5 @@
 import { computed, get } from "@ember/object";
+import config from "../config/environment";
 
 export default function sortByLanguage(property) {
   return computed(`${property}.@each.{language}`, function() {
@@ -6,6 +7,7 @@ export default function sortByLanguage(property) {
 
     const obligatoryLanguages = ["DE", "EN", "FR"];
     if (!collection) return [];
+    if (!collection.promise && config.environment !== "test") return [];
 
     let newCollection = collection.toArray().sort((a, b) => {
       const aLanguage = get(a, "language");

@@ -3,10 +3,6 @@ import { observes } from "@ember-decorators/object";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@ember/component";
-/* eslint-disable ember/new-module-imports  */
-import Ember from "ember";
-const { $ } = Ember;
-/* eslint-enable ember/new-module-imports  */
 
 @classic
 export default class PersonActions extends Component {
@@ -25,6 +21,7 @@ export default class PersonActions extends Component {
 
   @observes("person.peopleSkills.@each.id")
   peopleSkillsChanged() {
+    if (!this.get("person.id")) return;
     this.refreshUnratedSkillsAmount();
   }
 
@@ -36,10 +33,13 @@ export default class PersonActions extends Component {
         }
       })
       .then(response => {
-        this.set("unratedSkillsAmount", response.data.length);
+        if (!this.get("isDestroyed")) {
+          this.set("unratedSkillsAmount", response.data.length);
+        }
       });
   }
 
+  /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
   didRender() {
     const currentURL = this.get("router.currentURL");
     if (currentURL.includes("skills")) {
@@ -61,6 +61,7 @@ export default class PersonActions extends Component {
       $("#person-cv-export").modal("toggle");
     }
   }
+  /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
 
   @action
   exportDevFws(personId, e) {

@@ -862,10 +862,6 @@ a.disabled-link:hover {
   height: 22px;
 }
 
-.ember-basic-dropdown-content-wormhole-origin {
-  position: absolute;
-}
-
 .nav-pills li div {
   background: none;
   color: #0088cc;
@@ -1508,7 +1504,6 @@ div.content-input {
   top: 80px;
   max-width: 1290px;
   background-color: white;
-  z-index: 999 !important;
 }
 
 #person-actions {
@@ -1651,4 +1646,17 @@ div.content-input {
   margin-left: 22%;
   width: 78%;
   font-size: 15px;
+}
+
+button[type="submit"] {
+  background-color: #3268a1;
+  color: white;
+}
+
+.z-index-thousand {
+  z-index: 1000 !important;
+}
+
+.z-index-one {
+  z-index: 1 !important;
 }

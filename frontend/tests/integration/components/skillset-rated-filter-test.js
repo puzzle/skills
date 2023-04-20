@@ -8,10 +8,9 @@ module("Integration | Component | skillset-rated-filter", function(hooks) {
 
   test("it renders", async function(assert) {
     await render(hbs`{{skillset-rated-filter}}`);
-    let text = this.$().text();
 
-    assert.ok(text.includes("Alle"));
-    assert.ok(text.includes("Bewertet"));
-    assert.ok(text.includes("Unbewertet"));
+    assert.dom("#memberSkillsetAll", document).includesText("Alle");
+    assert.dom("#memberSkillsetRated", document).includesText("Bewertet");
+    assert.dom("#memberSkillsetUnrated", document).includesText("Unbewertet");
   });
 });

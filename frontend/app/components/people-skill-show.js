@@ -13,15 +13,24 @@ export default class PeopleSkillShow extends Component {
     this.set("levelValue", this.get("peopleSkill.level"));
     if (!this.get("peopleSkill.level")) {
       this.set("levelValue", 1);
-      /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
-      $(".slider-handle").ready(() => {
-        this.sliderHandle = this.$(".slider-handle:first");
-        if (!this.sliderHandle) return;
-        this.sliderHandle.removeClass("slider-handle");
-        this.$(".in-selection").removeClass("in-selection");
-        /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
-      });
     }
+  }
+
+  @action
+  sliderLoading(element) {
+    /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
+    $(".slider-handle").ready(() => {
+      if (this.get("peopleSkill.level") === 0) {
+        this.sliderTickContainer = element.querySelector(
+          ".slider-tick-container"
+        ).children[0];
+        this.sliderTickContainer.classList.remove("in-selection");
+
+        this.sliderHandle = element.querySelector(".slider-handle");
+        this.sliderHandle.classList.remove("slider-handle");
+      }
+    });
+    /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
   }
 
   didRender() {
@@ -60,9 +69,13 @@ export default class PeopleSkillShow extends Component {
   @action
   adjustSliderStylingOnReset() {
     if (!this.get("peopleSkill.level")) {
-      this.sliderHandle = this.$(".slider-handle:first");
-      this.sliderHandle.removeClass("slider-handle");
-      this.$(".in-selection").removeClass("in-selection");
+      this.sliderHandleFirstChild = this.element.querySelector(
+        ".slider-tick-container"
+      ).children[0];
+      this.sliderHandleFirstChild.classList.remove("in-selection");
+      this.element
+        .querySelector(".slider-handle")
+        .classList.remove("slider-handle");
     }
   }
 }

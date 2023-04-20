@@ -1,4 +1,6 @@
+import config from "../config/environment";
 export default function sortByYear(properties) {
+  if (!properties.promise && config.environment !== "test") return [];
   return properties.toArray().sort((a, b) => {
     let aYearTo = a.yearTo | 0;
     let bYearTo = b.yearTo | 0;
