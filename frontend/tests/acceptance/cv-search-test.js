@@ -43,7 +43,7 @@ module("Acceptance | cv search", function(hooks) {
     await page.indexPage.searchInput("Java");
     await triggerEvent("input", "keyup");
 
-    assert.equal(currentURL(), "/cv_search?q=Java");
+    assert.equal("/cv_search?q=Java", currentURL());
     const names = page.indexPage.people.peopleNames
       .toArray()
       .map(name => name.text);
@@ -124,5 +124,34 @@ module("Acceptance | cv search", function(hooks) {
     assert.ok(foundIn.includes(t("person.advancedTrainings")));
     assert.notOk(names.includes("Bob Anderson"));
     assert.notOk(names.includes("ken"));
+  });
+
+  test("save cookie after input in search field was given", async function(assert) {
+    assert.expect(1);
+
+    //Reset Cookie and type value into search field
+    await page.indexPage.visit();
+    await page.indexPage.searchInput("java");
+    await triggerEvent("input", "keyup");
+
+    //Go back to Dashboard and check whether query is still in search field after navigating back
+    await page.indexPage.visitPeople();
+    await page.indexPage.visit();
+    assert.equal(document.querySelector("input").value, "java");
+  });
+
+  test("cookie still works if another cookie is created", async function(assert) {
+    assert.expect(1);
+
+    //Reset Cookies and add two new ones: One manually and one which is created by search field
+    await page.indexPage.visit();
+    document.cookie = "skills=nice";
+    await page.indexPage.searchInput("ruby");
+    await triggerEvent("input", "keyup");
+
+    //Go back to Dashboard and check whether query is still in search field after navigating back
+    await page.indexPage.visitPeople();
+    await page.indexPage.visit();
+    assert.equal(document.querySelector("input").value, "ruby");
   });
 });
