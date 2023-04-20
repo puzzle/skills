@@ -16,6 +16,9 @@ ARG BUNDLE_WITHOUT='development:metrics:test'
 ARG BUNDLER_VERSION=2.4.6
 ARG POST_BUILD_SCRIPT
 
+# Get proper node version via nodesource
+RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
+
 # Install dependencies
 RUN    apt-get update \
     && apt-get upgrade -y \
