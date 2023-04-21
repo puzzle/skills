@@ -14,14 +14,19 @@ export default class CvSearchRoute extends Route.extend(
     }
   };
 
+  cookieValue = null;
+
   beforeModel() {
     let cookieValue = getCookie();
     if (cookieValue !== "undefined") {
-      this.transitionTo({ queryParams: { q: cookieValue } });
+      this.cookieValue = cookieValue;
     }
   }
 
   model({ q }) {
+    if (q === undefined) {
+      q = this.cookieValue;
+    }
     if (q) {
       const url = "/api/people/search?q=" + q;
       return fetch(url, {
