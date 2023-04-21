@@ -247,6 +247,7 @@ skill-new:
     save: Save
     title: Title
 skill-search:
+    addFilter: + Add Skill (max. 5)
     interest: Interest
     noResults: No Results
     resetFilter: Reset filter

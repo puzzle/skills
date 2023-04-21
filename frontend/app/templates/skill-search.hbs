@@ -39,7 +39,7 @@
 
   {{#if (lt this.filters.length 5)}}
     <a class="edit-buttons" role="button" data-toggle="tooltip" data-placement="top" title="Skill hinzufügen" id="addSkillsButton" onclick={{action "addFilter"}} >
-      <small>+ Skill hinzufügen (max. 5)</small>
+      <small>{{t "skill-search.addFilter"}}</small>
     </a>
   {{/if}}
   <div class="card mt-4">
