@@ -222,6 +222,9 @@ project-show:
     edit: Edit
     role: Role
     technologies: Technologies
+ratedSkill:
+  certificate: Certificate
+  coreCompetence: Core competence
 skill:
     category: Category
     title: Skill
@@ -244,6 +247,8 @@ skill-new:
     save: Save
     title: Title
 skill-search:
+    addFilter: + Add Skill (max. 5)
+    and: and
     interest: Interest
     noResults: No Results
     resetFilter: Reset filter

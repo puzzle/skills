@@ -34,3 +34,91 @@ alice_rails:
   interest: 0
   certificate: false
   core_competence: false
+
+charlie_rails:
+  skill: rails
+  person: charlie
+  level: 1
+  interest: 2
+  certificate: false
+  core_competence: false
+
+charlie_cunit:
+  skill: cunit
+  person: charlie
+  level: 5
+  interest: 4
+  certificate: true
+  core_competence: true
+
+wally_rails:
+  skill: rails
+  person: wally
+  level: 4
+  interest: 5
+  certificate: true
+  core_competence: true
+
+wally_junit:
+  skill: junit
+  person: wally
+  level: 5
+  interest: 3
+  certificate: true
+  core_competence: false
+
+wally_bash:
+  skill: bash
+  person: wally
+  level: 5
+  interest: 2
+  certificate: true
+  core_competence: false
+
+wally_cunit:
+  skill: cunit
+  person: wally
+  level: 5
+  interest: 2
+  certificate: true
+  core_competence: false
+
+wally_ember:
+  skill: ember
+  person: wally
+  level: 5
+  interest: 4
+  certificate: true
+  core_competence: true
+
+hope_rails:
+  skill: rails
+  person: hope
+  level: 1
+  interest: 5
+  certificate: false
+  core_competence: false
+
+hope_junit:
+  skill: junit
+  person: hope
+  level: 1
+  interest: 3
+  certificate: false
+  core_competence: false
+
+hope_cunit:
+  skill: cunit
+  person: hope
+  level: 1
+  interest: 2
+  certificate: false
+  core_competence: false
+
+hope_ember:
+  skill: ember
+  person: hope
+  level: 1
+  interest: 4
+  certificate: false
+  core_competence: false

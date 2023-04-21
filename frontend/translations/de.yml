@@ -225,6 +225,9 @@ project-show:
     edit: Bearbeiten
     role: Rolle
     technologies: Technologien
+ratedSkill:
+    certificate: Zertifikat
+    coreCompetence: Kernkompetenz
 skill:
     category: Kategorie
     title: Skill
@@ -247,6 +250,8 @@ skill-new:
     save: Speichern
     title: Titel
 skill-search:
+    addFilter: + Skill hinzufügen (max. 5)
+    and: Und
     interest: Interesse
     noResults: Keine Resultate
     resetFilter: Filter zurücksetzen

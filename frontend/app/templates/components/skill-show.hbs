@@ -11,7 +11,7 @@
         <div class="container-fluid">
           {{#each this.peopleSkills as |peopleSkill|}}
             <div class="py-2">
-              <PeopleSkillShow @peopleSkill={{peopleSkill}} @showPersonName={{true}} />
+              <PeopleSkillShow @peopleSkill={{peopleSkill}} @showPersonName={{true}} @skillList={{false}} />
             </div>
           {{/each}}
         </div>

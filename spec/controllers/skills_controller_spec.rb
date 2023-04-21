@@ -16,8 +16,7 @@ describe SkillsController do
         get :index
 
         skills = json['data']
-
-        expect(skills.count).to eq(4)
+        expect(skills.count).to eq(5)
         bash_attrs = skills.first['attributes']
         expect(bash_attrs.count).to eq (5)
         expect(bash_attrs['title']).to eq ('Bash')
@@ -101,7 +100,7 @@ describe SkillsController do
 
         skills = json['data']
 
-        expect(skills.count).to eq(4)
+        expect(skills.count).to eq(5)
       end
     end
   end
@@ -120,8 +119,7 @@ describe SkillsController do
         get :index
 
         skills = json['data']
-
-        expect(skills.count).to eq(4)
+        expect(skills.count).to eq(5)
         bash_attrs = skills.first['attributes']
         expect(bash_attrs.count).to eq (5)
         expect(bash_attrs['title']).to eq ('Bash')

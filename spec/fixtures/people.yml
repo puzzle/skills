@@ -65,3 +65,39 @@ ken:
   company: partner
   email: kenthemaster@testi.com
   department: ux
+charlie:
+  birthdate: 1998-07-06 01:15:00
+  location: London
+  marital_status: <%= Person.marital_statuses[:single] %>
+  name: Charlie Ford
+  nationality: GB
+  roles: [system-engineer]
+  company: partner
+  title: MSc in Networking
+  competence_notes: C\n Bash
+  email: charlie@example.com
+  department: sys
+wally:
+  birthdate: 1987-06-05 04:23:01
+  location: New York
+  marital_status: <%= Person.marital_statuses[:single] %>
+  name: Wally Allround
+  nationality: US
+  roles: [software-engineer]
+  company: partner
+  title: Full-Stack Developer
+  competence_notes: C\n Bash\n Java\n Ruby\n LaTex\n Puppet
+  email: wally@example.com
+  department: sys
+hope:
+  birthdate: 2001-01-01 01:01:01
+  location: Harare
+  marital_status: <%= Person.marital_statuses[:single] %>
+  name: Hope Sunday
+  nationality: ZW
+  roles: [software-engineer]
+  company: firma
+  title: BSc in Archeology
+  competence_notes: Ruby
+  email: hope@example.com
+  department: ux

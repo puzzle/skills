@@ -25,7 +25,7 @@ export default create({
 
     skillModal: {
       closeButton: clickable(".close"),
-      personNames: collection("#skill-show-modal .people-skill-skillname")
+      personNames: collection("#skill-show-modal .people-skill-person-name")
     },
 
     skillEdit: {
