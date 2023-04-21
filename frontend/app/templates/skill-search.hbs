@@ -1,7 +1,7 @@
 <div {{did-insert this.initFilters}} id="skill-search-header" class="header pt-3">
   {{#each this.filters as |filter index|}}
     {{#if (gt index 0)}}
-      <p>Und</p>
+      <p>{{t "skill-search.and"}}</p>
     {{/if}}
     <div class="row">
       <div class="col-6 skills-power-select">
@@ -44,7 +44,7 @@
   {{/if}}
   <div class="card mt-4">
     <div class="card-header bg-info">
-      <p class="text-dark header-text mb-0">Suchresultate</p>
+      <p class="text-dark header-text mb-0">{{t "skill-search.searchResults"}}</p>
     </div>
   </div>
 </div>

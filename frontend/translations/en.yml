@@ -248,6 +248,7 @@ skill-new:
     title: Title
 skill-search:
     addFilter: + Add Skill (max. 5)
+    and: and
     interest: Interest
     noResults: No Results
     resetFilter: Reset filter
