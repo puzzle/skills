@@ -18,7 +18,7 @@ export default class CvSearchRoute extends Route.extend(
 
   beforeModel() {
     let cookieValue = getCookie();
-    if (cookieValue !== "undefined") {
+    if (cookieValue !== undefined) {
       this.cookieValue = cookieValue;
     }
   }
