@@ -58,7 +58,7 @@ export default class SkillSearchController extends Controller {
       levels = "",
       interests = "";
     for (let i = 0; i < this.get("filters").length; i++) {
-      if (this.get("filters." + i + ".currentSkillId") !== null) {
+      if (this.get("filters." + i + ".currentSkillId")) {
         skill_ids =
           skill_ids + "," + this.get("filters." + i + ".currentSkillId");
         levels = levels + "," + this.get("filters." + i + ".levelValue");
@@ -100,7 +100,6 @@ export default class SkillSearchController extends Controller {
   @action
   removeFilter(index) {
     this.get("filters").removeAt(index);
-    this.calculateOffset();
   }
 
   @observes(
@@ -129,36 +128,5 @@ export default class SkillSearchController extends Controller {
       levelValue: 1,
       interestValue: 1
     });
-    this.calculateOffset();
-  }
-
-  @action
-  calculateOffset() {
-    switch (this.filters.length) {
-      case 1:
-        document
-          .querySelector("#skill-search-results-card")
-          .css("padding-top", "147px");
-        break;
-      case 2:
-        document
-          .querySelector("#skill-search-results-card")
-          .css("padding-top", "229px");
-        break;
-      case 3:
-        document
-          .querySelector("#skill-search-results-card")
-          .css("padding-top", "311px");
-        break;
-      case 4:
-        document
-          .querySelector("#skill-search-results-card")
-          .css("padding-top", "393px");
-        break;
-      case 5:
-        document
-          .querySelector("#skill-search-results-card")
-          .css("padding-top", "451px");
-    }
   }
 }

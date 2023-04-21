@@ -424,7 +424,11 @@ div.row-fluid.person-list > div.span10 > div.container-fluid.round-border {
   -------------------------------------------------- */
 
 #skill-search-header {
-  top: 80px;
+  background-color: white;
+  width: 100%;
+  max-width: 1290px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 #skill-search-results {
@@ -1663,11 +1667,15 @@ button[type="submit"] {
 
 .skill-list {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 5fr 4fr 4fr 4fr 6fr;
   align-self: end;
   padding-bottom: 40px;
 }
 
+.people-skill-title {
+  width: 12vw;
+}
+
 .skills-list-container {
-  padding-left: 30%;
+  padding-left: 20%;
 }

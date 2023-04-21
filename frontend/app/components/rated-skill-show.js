@@ -13,11 +13,7 @@ export default class RatedSkillShow extends Component {
 
   @computed("level")
   get levelValue() {
-    if (!this.get("level")) {
-      return 1;
-    } else {
-      return this.get("level");
-    }
+    return this.get("level") || 1;
   }
 
   @computed("level")

@@ -21,23 +21,14 @@ class PeopleSkillsFilter
   def set_levels_and_interests_for_skills(levels, interests, skill_ids)
     return if levels.blank? || skill_ids.blank? || interests.blank?
 
-    levels = levels.to_s.split(',')
-    interests = interests.to_s.split(',')
-    skill_ids = skill_ids.to_s.split(',')
-
-    check_query_param_length(levels, interests, skill_ids)
+    levels = levels.split(',')
+    interests = interests.split(',')
+    skill_ids = skill_ids.split(',')
 
     # rubocop:disable Layout/LineLength
     @levels_and_interests_for_skills = skill_ids.zip(levels, interests)
                                                 .map { |search_param| { skill: search_param[0], level: search_param[1], interest: search_param[2] } }
     # rubocop:enable Layout/LineLength
-  end
-
-  def check_query_param_length(levels, interests, skill_ids)
-    # & is the save navigation operator and checks for nil
-    if levels&.length != skill_ids&.length || interests&.length != skill_ids&.length
-      raise ArgumentError, 'For each Skill there must be a level and interest present'
-    end
   end
 
   def filter_by_rated
