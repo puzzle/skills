@@ -9,9 +9,14 @@ export default class RatedSkillShow extends Component {
 
   init() {
     super.init(...arguments);
-    this.set("levelValue", this.get("level"));
+  }
+
+  @computed("level")
+  get levelValue() {
     if (!this.get("level")) {
-      this.set("levelValue", 1);
+      return 1;
+    } else {
+      return this.get("level");
     }
   }
 
@@ -31,9 +36,29 @@ export default class RatedSkillShow extends Component {
   @action
   adjustSliderStylingOnReset() {
     if (!this.get("level")) {
-      this.sliderHandle = this.$(".slider-handle:first");
-      this.sliderHandle.removeClass("slider-handle");
-      this.$(".in-selection").removeClass("in-selection");
+      this.sliderHandleFirstChild = this.element.querySelector(
+        ".slider-tick-container"
+      ).children[0];
+      this.sliderHandleFirstChild.classList.remove("in-selection");
+      this.element
+        .querySelector(".slider-handle")
+        .classList.remove("slider-handle");
     }
+  }
+  @action
+  sliderLoading(element) {
+    /* eslint-disable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
+    $(".slider-handle").ready(() => {
+      if (this.get("peopleSkill.level") === 0) {
+        this.sliderTickContainer = element.querySelector(
+          ".slider-tick-container"
+        ).children[0];
+        this.sliderTickContainer.classList.remove("in-selection");
+
+        this.sliderHandle = element.querySelector(".slider-handle");
+        this.sliderHandle.classList.remove("slider-handle");
+      }
+    });
+    /* eslint-enable ember/no-global-jquery, no-undef, ember/jquery-ember-run  */
   }
 }
