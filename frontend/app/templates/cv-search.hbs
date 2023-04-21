@@ -14,10 +14,7 @@
           </LinkTo>
           <div class="cv-search-found-in">
             {{t "cv-search.foundIn"}}
-            <LinkTo class="cv-search-found-in-link"
-                    @route="person"
-                    @query={{hash query=this.q}}
-                    @model={{data.person.id}}>
+            <LinkTo {{on "click" (fn this.navigateToProfile)}} @route="person" @model={{data.person.id}} class="cv-search-found-in-link" @query={{hash query=this.q}}>
               {{t (found-in data.found_in) }}
             </LinkTo>
           </div>

@@ -23,7 +23,7 @@ export default Component.extend({
 
   refreshNewPeopleSkills(skills) {
     if (!this.get("isDestroyed")) {
-      this.set("isLoading", false);
+      this.set("isLoading", true);
     }
     let loadBegin = Date.now();
     this.get("ajax")
