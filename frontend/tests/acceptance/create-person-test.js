@@ -1,12 +1,10 @@
 import { module, test, skip } from "qunit";
 import page from "frontend/tests/pages/people-new";
-import { openDatepicker } from "ember-pikaday/helpers/pikaday";
-import $ from "jquery";
+import { Interactor as Pikaday } from "ember-pikaday/test-support";
 import { click, currentURL } from "@ember/test-helpers";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
 import { selectChoose } from "ember-power-select/test-support";
 import Notify from "ember-notify";
-
 module("Acceptance | create person", function(hooks) {
   setupApplicationTest(hooks);
 
@@ -34,11 +32,9 @@ module("Acceptance | create person", function(hooks) {
     await selectChoose("#nationality", ".ember-power-select-option", 0);
     await selectChoose("#maritalStatus", "verheiratet");
 
-    // interactor is the interactable object for the pikaday-datepicker
-    let interactor = openDatepicker($(".birthdate_pikaday > input"));
-
+    await click(".birthdate_pikaday > input");
     // Cant be more/less than +/- 10 Years from today
-    interactor.selectDate(new Date(2019, 1, 19));
+    await Pikaday.selectDate(new Date(2019, 1, 19));
 
     // Testing if pikaday got the right dates
     assert.equal(interactor.selectedDay(), 19);
@@ -101,9 +97,9 @@ module("Acceptance | create person", function(hooks) {
     await page.newForm.shortname("FI");
     await page.newForm.location("Bern");
 
-    let interactor = openDatepicker($(".birthdate_pikaday > input"));
-
-    interactor.selectDate(new Date(2019, 1, 19));
+    await click(".birthdate_pikaday > input");
+    // Cant be more/less than +/- 10 Years from today
+    await Pikaday.selectDate(new Date(2019, 1, 19));
 
     await selectChoose("#department", "/dev/one");
     await selectChoose("#company", "Firma");
@@ -136,9 +132,9 @@ module("Acceptance | create person", function(hooks) {
     await page.newForm.shortname("FI");
     await page.newForm.location("Bern");
 
-    let interactor = openDatepicker($(".birthdate_pikaday > input"));
-
-    interactor.selectDate(new Date(2019, 1, 19));
+    await click(".birthdate_pikaday > input");
+    // Cant be more/less than +/- 10 Years from today
+    await Pikaday.selectDate(new Date(2019, 1, 19));
 
     await selectChoose("#department", "/dev/one");
     await selectChoose("#company", "Firma");

@@ -10,6 +10,9 @@
     "doc": "doc",
     "test": "tests"
   },
+  "browser": {
+    "[ember-pikaday]": false
+  },
   "scripts": {
     "build": "ember build",
     "build-prod": "ember build --prod",

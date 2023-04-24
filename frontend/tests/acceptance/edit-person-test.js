@@ -2,15 +2,16 @@ import { module, test, skip } from "qunit";
 import applicationPage from "frontend/tests/pages/application";
 import page from "frontend/tests/pages/person-edit";
 import { triggerKeyUp } from "ember-keyboard";
-import { openDatepicker } from "ember-pikaday/helpers/pikaday";
-import $ from "jquery";
+import { Interactor as Pikaday } from "ember-pikaday/test-support";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
 import { selectChoose } from "ember-power-select/test-support";
-import { fillIn } from "@ember/test-helpers";
+import { click, fillIn } from "@ember/test-helpers";
 
 module("Acceptance | edit person", function(hooks) {
   setupApplicationTest(hooks);
 
+  //Skip this test since there is a bug, most likely from the pikaday addon,
+  // which prevent the test from working as expected
   skip("/people/:id edit person data", async function(assert) {
     assert.expect(16);
 
@@ -32,11 +33,9 @@ module("Acceptance | edit person", function(hooks) {
     await selectChoose("#nationality", "Samoa");
     await selectChoose("#maritalStatus", "verheiratet");
 
-    // interactor is the interactable object for the pikaday-datepicker
-    let interactor = openDatepicker($(".birthdate_pikaday > input"));
-
+    await click(".birthdate_pikaday > input");
     // Cant be more/less than +/- 10 Years from today
-    interactor.selectDate(new Date(2019, 1, 19));
+    await Pikaday.selectDate(new Date(2019, 1, 19));
 
     // Testing if pikaday got the right dates
     assert.equal(interactor.selectedDay(), 19);
