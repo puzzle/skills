@@ -28,8 +28,7 @@ module.exports = function(environment) {
     },
 
     APP: {
-      documentExportHost: "",
-      autoboot: false
+      documentExportHost: ""
     },
 
     "ember-validated-form": {
@@ -55,7 +54,7 @@ module.exports = function(environment) {
   if (environment === "test") {
     // Testem prefers this...
     ENV.locationType = "none";
-
+    ENV.APP.autoboot = false;
     // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;

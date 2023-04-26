@@ -1,10 +1,11 @@
 import { module, test, skip } from "qunit";
 import page from "frontend/tests/pages/people-new";
 import { Interactor as Pikaday } from "ember-pikaday/test-support";
-import { click, currentURL } from "@ember/test-helpers";
+import { click, currentURL, pauseTest } from "@ember/test-helpers";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
 import { selectChoose } from "ember-power-select/test-support";
 import Notify from "ember-notify";
+
 module("Acceptance | create person", function(hooks) {
   setupApplicationTest(hooks);
 
@@ -41,6 +42,7 @@ module("Acceptance | create person", function(hooks) {
     assert.equal(interactor.selectedMonth(), 1);
     assert.equal(interactor.selectedYear(), 2019);
 
+    // await pauseTest();
     // Filling out the text fields
     await page.newPersonPage.name("Dolores");
     await page.newPersonPage.email("dolores@example.com");
@@ -133,6 +135,8 @@ module("Acceptance | create person", function(hooks) {
     await page.newForm.location("Bern");
 
     await click(".birthdate_pikaday > input");
+
+    // await pauseTest();
     // Cant be more/less than +/- 10 Years from today
     await Pikaday.selectDate(new Date(2019, 1, 19));
 
