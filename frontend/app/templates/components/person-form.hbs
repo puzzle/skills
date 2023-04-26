@@ -112,6 +112,7 @@
                 <PowerSelect @triggerId="department"
                              @selected={{this.record.department}}
                              @animationEnabled={{false}}
+                             @initiallyOpened={{false}} @renderInPlace={{true}}
                              @options={{this.departments}}
                              @searchField="name" @onFocus={{action "handleFocus"}}
                              @onChange={{action (mut this.record.department)}} as |department|>
@@ -124,6 +125,7 @@
                 <label>{{t "person-form.company"}}</label>
                 <PowerSelect @triggerId="company"
                              @selected={{this.record.company}}
+                             @initiallyOpened={{false}} @renderInPlace={{true}}
                              @options={{this.companies}}
                              @searchField="name"
                              @onFocus={{action "handleFocus"}}
@@ -175,6 +177,7 @@
                 <label>{{t "person-form.firstNationality"}}</label>
                 <PowerSelect @triggerId="nationality" @options={{this.countries}}
                              @animationEnabled={{false}}
+                             @initiallyOpened={{false}} @renderInPlace={{true}}
                              @selected={{format-country this.record.nationality}}
                              @onChange={{action setNationality}}
                              @onFocus={{action "handleFocus"}}
@@ -206,6 +209,7 @@
                 <label> {{t "person-form.maritalStatus"}} </label>
                 <PowerSelect @triggerId="maritalStatus"
                              @selected={{this.record.maritalStatusView}}
+                             @initiallyOpened={{false}} @renderInPlace={{true}}
                              @options={{this.maritalStatuses}}
                              @searchEnabled={{false}}
                              @onFocus={{action "handleFocus"}}
