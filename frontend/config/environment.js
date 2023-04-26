@@ -28,7 +28,8 @@ module.exports = function(environment) {
     },
 
     APP: {
-      documentExportHost: ""
+      documentExportHost: "",
+      autoboot: false
     },
 
     "ember-validated-form": {
