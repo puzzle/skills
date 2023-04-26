@@ -137,8 +137,9 @@ module("Acceptance | create person", function(hooks) {
 
     // Cant be more/less than +/- 10 Years from today
     await Pikaday.selectDate(new Date(2019, 1, 19));
-    await selectChoose("#department", "/dev/one");
-    await selectChoose("#company", "Firma");
+
+    await selectChoose("#department", ".ember-power-select-option", 0);
+    await selectChoose("#company", ".ember-power-select-option", 0);
     await selectChoose("#maritalStatus", ".ember-power-select-option", 0);
 
     await click("button#submit-button");
