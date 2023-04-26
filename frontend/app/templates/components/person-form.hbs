@@ -52,6 +52,7 @@
                     <div class="role-dropdown">
                       <PowerSelect
                         @triggerId="personRole-role"
+                        @initiallyOpened={{false}} @renderInPlace={{true}}
                         @selected={{personRole.role}}
                         @options={{this.roles}}
                         @onChange={{action (mut personRole.role)}}
@@ -70,6 +71,7 @@
                       {{#if this.personRoleLevels}}
                         <PowerSelect
                           @triggerId="personRole-level"
+                          @initiallyOpened={{false}} @renderInPlace={{true}}
                           @selected={{
                             selected-person-role-level
                             this.personRoleLevels
@@ -193,6 +195,7 @@
                   <label>{{t "person-form.secondNationality"}}</label>
                   <PowerSelect @triggerId="nationality2" @options={{this.countries}}
                                @animationEnabled={{false}}
+                               @initiallyOpened={{false}} @renderInPlace={{true}}
                                @selected={{format-country this.record.nationality2 }}
                                @onChange={{action setNationality2}}
                                @onFocus={{action "handleFocus"}}

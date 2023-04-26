@@ -6,6 +6,7 @@ import { Interactor as Pikaday } from "ember-pikaday/test-support";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
 import { selectChoose } from "ember-power-select/test-support";
 import { click, fillIn } from "@ember/test-helpers";
+import { setLocale } from "ember-intl/test-support";
 
 module("Acceptance | edit person", function(hooks) {
   setupApplicationTest(hooks);
@@ -14,12 +15,13 @@ module("Acceptance | edit person", function(hooks) {
   // which prevent the test from working as expected
   test("/people/:id edit person data", async function(assert) {
     assert.expect(16);
+    setLocale("en");
 
     // Go to the start page and select a user from the dropdown
     await applicationPage.visitHome("/");
-    await selectChoose("#people-search", ".ember-power-select-option", 0);
 
     // Go into person-edit
+    await page.visit({ person_id: 1 });
     await page.toggleEditForm();
 
     // Selection for all the power selects
@@ -27,21 +29,22 @@ module("Acceptance | edit person", function(hooks) {
     await selectChoose(".role-dropdown", "Captain");
     await selectChoose(".level-dropdown", "S3");
     await page.editForm.rolePercent("20");
-
     await selectChoose("#department", "/dev/one");
+
     await selectChoose("#company", "Firma");
     await selectChoose("#nationality", "Samoa");
     await selectChoose("#maritalStatus", "verheiratet");
 
     await click(".birthdate_pikaday > input");
+
     // Cant be more/less than +/- 10 Years from today
-    await Pikaday.selectDate(new Date(2019, 1, 19));
+    await Pikaday.selectDate(new Date(1976, 1, 19));
 
     // Testing if pikaday got the right dates
-    assert.equal(interactor.selectedDay(), 19);
-    assert.equal(interactor.selectedMonth(), 1);
-    assert.equal(interactor.selectedYear(), 2019);
 
+    assert.equal(Pikaday.selectedDay(), 19);
+    assert.equal(Pikaday.selectedMonth(), 1);
+    assert.equal(Pikaday.selectedYear(), 1976);
     // Fill out the persons text fields
     await page.editForm.name("Hansjoggeli");
     await page.editForm.email("hansjoggeli@example.com");
@@ -51,7 +54,6 @@ module("Acceptance | edit person", function(hooks) {
 
     // Submit the edited content
     await page.editForm.submit();
-
     // Assert that all we changed is present
     assert.equal(page.profileData.name, "Hansjoggeli");
     assert.equal(page.profileData.email, "hansjoggeli@example.com");
@@ -64,22 +66,19 @@ module("Acceptance | edit person", function(hooks) {
     assert.equal(page.profileData.nationalities, "Samoa");
     assert.equal(page.profileData.location, "Chehrplatz Schwandi");
     assert.equal(page.profileData.maritalStatus, "verheiratet");
-
     // Toggle Edit again
+
     await page.toggleEditForm();
-
     // Enable two Nationalities
-    await page.toggleNationalities();
 
+    await page.toggleNationalities();
     // Select the second nationality
     await selectChoose("#nationality2", "Schweiz");
-
     // Submit it
     await page.editForm.submit();
 
     // Assert that it is there
     assert.equal(page.profileData.nationalities, "Samoa, Schweiz");
-
     // go into edit again
     await page.toggleEditForm();
 
@@ -121,7 +120,6 @@ module("Acceptance | edit person", function(hooks) {
       "Competence 1\n" + "\n" + "Competence 2\n" + "Competence 3\n"
     );
     await page.competences.submit();
-
     assert.equal(page.competences.list().count, 5);
     assert.equal(page.competences.list(0).text, "Competence 1");
     assert.equal(page.competences.list(1).text, "");
