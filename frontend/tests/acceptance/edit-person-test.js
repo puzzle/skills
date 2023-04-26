@@ -1,4 +1,4 @@
-import { module, test, skip } from "qunit";
+import { module, test } from "qunit";
 import applicationPage from "frontend/tests/pages/application";
 import page from "frontend/tests/pages/person-edit";
 import { triggerKeyUp } from "ember-keyboard";
@@ -12,7 +12,7 @@ module("Acceptance | edit person", function(hooks) {
 
   //Skip this test since there is a bug, most likely from the pikaday addon,
   // which prevent the test from working as expected
-  skip("/people/:id edit person data", async function(assert) {
+  test("/people/:id edit person data", async function(assert) {
     assert.expect(16);
 
     // Go to the start page and select a user from the dropdown
