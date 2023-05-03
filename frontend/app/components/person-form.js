@@ -17,6 +17,43 @@ export default class PersonFormComponent extends BaseFormComponent {
     addObserver(this, "args.person", this.personChanged);
   }
 
+  @computed
+  get departments() {
+    return this.store.findAll("department");
+  }
+
+  @computed
+  get personRoleLevels() {
+    return this.store.findAll("personRoleLevel");
+  }
+
+  @computed
+  get roles() {
+    return this.store.findAll("role");
+  }
+
+  @computed
+  get companies() {
+    return this.store.findAll("company");
+  }
+
+  @computed()
+  get countries() {
+    return Object.entries(countryNames("de"));
+  }
+
+  @computed()
+  get maritalStatuses() {
+    return Object.values(Person.MARITAL_STATUSES);
+  }
+
+  @computed
+  get picturePath() {
+    if (!this.record.picturePath) return "";
+    return `${this.record.picturePath}
+    &authorizationToken=${this.session.token}`;
+  }
+
   @action
   submit(person) {
     let attributes = [
@@ -34,6 +71,7 @@ export default class PersonFormComponent extends BaseFormComponent {
           .then(r => r && this.afterSuccess(create))
     );
   }
+
   savePicture(picturePath) {
     if (!picturePath) return true;
     if (picturePath.startsWith("/api/people")) return true;
@@ -123,43 +161,14 @@ export default class PersonFormComponent extends BaseFormComponent {
   }
 
   @action
+  switchNationality(value) {
+    this.record.nationality2 = value.target.checked
+      ? this.record.nationality
+      : null;
+  }
+
+  @action
   setNationality2(country) {
     this.record.nationality2 = country[0];
-  }
-  @computed
-  get departments() {
-    return this.store.findAll("department");
-  }
-
-  @computed
-  get personRoleLevels() {
-    return this.store.findAll("personRoleLevel");
-  }
-
-  @computed
-  get roles() {
-    return this.store.findAll("role");
-  }
-
-  @computed
-  get companies() {
-    return this.store.findAll("company");
-  }
-
-  @computed()
-  get countries() {
-    return Object.entries(countryNames("de"));
-  }
-
-  @computed()
-  get maritalStatuses() {
-    return Object.values(Person.MARITAL_STATUSES);
-  }
-
-  @computed
-  get picturePath() {
-    if (!this.record.picturePath) return "";
-    return `${this.record.picturePath}
-    &authorizationToken=${this.session.token}`;
   }
 }

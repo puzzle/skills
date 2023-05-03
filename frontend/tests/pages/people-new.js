@@ -12,9 +12,10 @@ const { resolve } = RSVP;
 export default create({
   newPersonPage: {
     visit: visitable("/people/new"),
-    submit: clickable("#submit-button"),
+    submit: clickable("[data-test-peron-form-submit]"),
     toggleNewFormButton: clickable("[data-test-person-new-form-toggle]"),
     toggleNationalitiesCheckbox: clickable("#toggle-nationalities-id"),
+    newRoleButton: clickable("[data-test-new-function]"),
 
     toggleNewForm() {
       return this.newForm;

@@ -5,6 +5,7 @@ import { click, currentURL } from "@ember/test-helpers";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
 import { selectChoose } from "ember-power-select/test-support";
 import Notify from "ember-notify";
+import { setLocale } from "ember-intl/test-support";
 
 module("Acceptance | create person", function(hooks) {
   setupApplicationTest(hooks);
@@ -18,16 +19,19 @@ module("Acceptance | create person", function(hooks) {
   /* Currently we are skipping this test since it works locally but fails on
    our Travis Server (Seemingly due to some failing page loads). Optimally you
    would run this test locally but put it back on skip when pushing to Github */
-  skip("creating a new person", async function(assert) {
+  test("creating a new person", async function(assert) {
     assert.expect(13);
-
+    setLocale("en");
     // Visits person/new
     await page.newPersonPage.visit();
     assert.equal(currentURL(), "/people/new");
 
     // Selection for all the power selects
     /* eslint "no-undef": "off" */
-    await selectChoose("#role", ".ember-power-select-option", 0);
+    await page.newPersonPage.newRoleButton();
+    await selectChoose(".role-dropdown", ".ember-power-select-option", 0);
+    await selectChoose(".level-dropdown", "S3");
+
     await selectChoose("#department", "/dev/ruby");
     await selectChoose("#company", "Firma");
     await selectChoose("#nationality", ".ember-power-select-option", 0);
@@ -38,19 +42,19 @@ module("Acceptance | create person", function(hooks) {
     await Pikaday.selectDate(new Date(2019, 1, 19));
 
     // Testing if pikaday got the right dates
-    assert.equal(interactor.selectedDay(), 19);
-    assert.equal(interactor.selectedMonth(), 1);
-    assert.equal(interactor.selectedYear(), 2019);
+    assert.equal(Pikaday.selectedDay(), 19);
+    assert.equal(Pikaday.selectedMonth(), 1);
+    assert.equal(Pikaday.selectedYear(), 2019);
 
     // Filling out the text fields
-    await page.newPersonPage.name("Dolores");
-    await page.newPersonPage.email("dolores@example.com");
-    await page.newPersonPage.title("Dr.");
-    await page.newPersonPage.location("Westworld");
-    await page.newPersonPage.shortname("DD");
+    await page.newForm.name("Dolores");
+    await page.newForm.email("dolores@example.com");
+    await page.newForm.title("Dr.");
+    await page.newForm.rolePercent("20");
+    await page.newForm.location("Westworld");
+    await page.newForm.shortname("DD");
 
-    // Actually creating the person with the above entered
-    await page.newPersonPage.createPerson({});
+    await page.newPersonPage.submit();
 
     // Current Url now should be "people/d+" where d+ = any amount of numbers (like an id)
     assert.ok(/^\/people\/\d+$/.test(currentURL()));
@@ -85,13 +89,11 @@ module("Acceptance | create person", function(hooks) {
 
   //Skip this test since there is a bug, most likely from the pikaday addon,
   // which prevent the test from working as expected
-  skip("should display two errors when email is empty", async function(assert) {
+  test("should display two errors when email is empty", async function(assert) {
     this.owner.unregister("service:notify");
     this.owner.register("service:notify", notifyStub);
     await page.newPersonPage.visit();
     assert.equal(currentURL(), "/people/new");
-
-    page.newPersonPage.toggleNewForm();
 
     await page.newForm.name("Findus");
     await page.newForm.title("Sofware Developer");
@@ -100,7 +102,7 @@ module("Acceptance | create person", function(hooks) {
 
     await click(".birthdate_pikaday > input");
     // Cant be more/less than +/- 10 Years from today
-    await Pikaday.selectDate(new Date(2019, 1, 19));
+    await Pikaday.selectDate(new Date(1970, 1, 19));
 
     await selectChoose("#department", "/dev/one");
     await selectChoose("#company", "Firma");
@@ -142,11 +144,9 @@ module("Acceptance | create person", function(hooks) {
     await selectChoose("#company", ".ember-power-select-option", 0);
     await selectChoose("#maritalStatus", ".ember-power-select-option", 0);
 
-    await click("button#submit-button");
-
+    await page.newPersonPage.submit();
     assert.equal(
-      document.querySelectorAll(".ember-notify")[0].querySelector(".message")
-        .innerText,
+      document.querySelector(".ember-notify .message").innerText,
       "Email Format nicht gültig"
     );
   });

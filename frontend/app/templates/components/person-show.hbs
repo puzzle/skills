@@ -108,7 +108,7 @@
               </tr>
               <tr>
                 <td id="data-test-person-nationalities">
-                  {{format-country @person.nationality}}{{#if @person.nationality2}}, {{format-country @person.nationality2}}{{/if}}
+                  {{get (format-country @person.nationality) 1}}{{#if @person.nationality2}}, {{get (format-country @person.nationality2) 1}}{{/if}}
                 </td>
               </tr>
               <div class="mb-2">

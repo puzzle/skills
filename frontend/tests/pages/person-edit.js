@@ -10,7 +10,7 @@ import {
 export default create({
   visit: visitable("/people/:person_id"),
   toggleEditFormButton: clickable("[data-test-person-edit-form-toggle]"),
-  toggleNationalitiesCheckbox: clickable("#dualNational"),
+  toggleNationalitiesCheckbox: clickable("[data-test-nationalities-toggle]"),
 
   toggleEditForm() {
     this.toggleEditFormButton();
@@ -20,7 +20,6 @@ export default create({
 
   toggleNationalities() {
     this.toggleNationalitiesCheckbox();
-    return this.editForm;
   },
 
   editForm: {
