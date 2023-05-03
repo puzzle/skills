@@ -39,7 +39,7 @@ export default create({
     location: fillable('[id="location"]'),
     rolePercent: fillable(".percent-field > label > input"),
     shortname: fillable('[id="shortname"]'),
-    submit: clickable('[type="submit"]')
+    submit: clickable('[id="submit-button"]')
   },
 
   profileData: {

@@ -1,4 +1,4 @@
-import { module, test, skip } from "qunit";
+import { module, test } from "qunit";
 import page from "frontend/tests/pages/people-new";
 import { Interactor as Pikaday } from "ember-pikaday/test-support";
 import { click, currentURL } from "@ember/test-helpers";
@@ -20,7 +20,7 @@ module("Acceptance | create person", function(hooks) {
    our Travis Server (Seemingly due to some failing page loads). Optimally you
    would run this test locally but put it back on skip when pushing to Github */
   test("creating a new person", async function(assert) {
-    assert.expect(13);
+    assert.expect(17);
     setLocale("en");
     // Visits person/new
     await page.newPersonPage.visit();
@@ -29,8 +29,9 @@ module("Acceptance | create person", function(hooks) {
     // Selection for all the power selects
     /* eslint "no-undef": "off" */
     await page.newPersonPage.newRoleButton();
-    await selectChoose(".role-dropdown", ".ember-power-select-option", 0);
-    await selectChoose(".level-dropdown", "S3");
+    await selectChoose("#personRole-role", "First Lieutenant");
+    await selectChoose("#personRole-level", "S1");
+    await page.newForm.rolePercent("20");
 
     await selectChoose("#department", "/dev/ruby");
     await selectChoose("#company", "Firma");
@@ -64,7 +65,7 @@ module("Acceptance | create person", function(hooks) {
     assert.equal(page.profileData.email, "dolores@example.com");
     assert.equal(page.profileData.shortname, "DD");
     assert.equal(page.profileData.title, "Dr.");
-    assert.equal(page.profileData.role, "Software-Engineer");
+    assert.equal(page.profileData.role, "First Lieutenant S1 20%");
     assert.equal(page.profileData.department, "/dev/ruby");
     assert.equal(page.profileData.company, "Firma");
     assert.equal(page.profileData.birthdate, "19.02.2019");
@@ -101,14 +102,13 @@ module("Acceptance | create person", function(hooks) {
     await page.newForm.location("Bern");
 
     await click(".birthdate_pikaday > input");
-    // Cant be more/less than +/- 10 Years from today
-    await Pikaday.selectDate(new Date(1970, 1, 19));
+
+    await Pikaday.selectDate(new Date(2023, 1, 19));
 
     await selectChoose("#department", "/dev/one");
     await selectChoose("#company", "Firma");
     await selectChoose("#maritalStatus", ".ember-power-select-option", 0);
-
-    await click("button#submit-button");
+    await page.newForm.submit();
     assert.equal(
       document.querySelectorAll(".ember-notify")[0].querySelector(".message")
         .innerText,

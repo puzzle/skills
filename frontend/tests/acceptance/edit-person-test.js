@@ -5,7 +5,7 @@ import { triggerKeyUp } from "ember-keyboard";
 import { Interactor as Pikaday } from "ember-pikaday/test-support";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
 import { selectChoose } from "ember-power-select/test-support";
-import { click, fillIn, pauseTest } from "@ember/test-helpers";
+import { click, fillIn } from "@ember/test-helpers";
 import { setLocale } from "ember-intl/test-support";
 
 module("Acceptance | edit person", function(hooks) {
