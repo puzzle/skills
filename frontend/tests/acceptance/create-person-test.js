@@ -16,8 +16,9 @@ module("Acceptance | create person", function(hooks) {
       return this.show("alert", message, options);
     }
   });
-  // Skip this test since there is a bug wtih the @renderInPlace attribute  of the powerselect
+  /// Skip this test since there is a bug wtih the @renderInPlace attribute  of the powerselect
   // But if you remove the attribute the selects don't work properly while in test mode
+  // The reason why it doesn't work as intended is highly likely due to the async behavior
   skip("creating a new person", async function(assert) {
     assert.expect(17);
     setLocale("en");
@@ -89,6 +90,7 @@ module("Acceptance | create person", function(hooks) {
 
   // Skip this test since there is a bug wtih the @renderInPlace attribute  of the powerselect
   // But if you remove the attribute the selects don't work properly while in test mode
+  // The reason why it doesn't work as intended is highly likely due to the async behavior
   skip("should display two errors when email is empty", async function(assert) {
     this.owner.unregister("service:notify");
     this.owner.register("service:notify", notifyStub);
@@ -122,6 +124,7 @@ module("Acceptance | create person", function(hooks) {
 
   // Skip this test since there is a bug wtih the @renderInPlace attribute  of the powerselect
   // But if you remove the attribute the selects don't work properly while in test mode
+  // The reason why it doesn't work as intended is highly likely due to the async behavior
   skip("should display one error when email format is invalid", async function(assert) {
     this.owner.unregister("service:notify");
     this.owner.register("service:notify", notifyStub);

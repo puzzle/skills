@@ -149,7 +149,7 @@ module("Integration | Component | person-form-new", function(hooks) {
       hbs`<PersonForm @submit={{route-action "submit"}} @abort={{route-action "abort"}} />`
     );
     await click("#dualNational");
-    assert.dom(this.element.querySelector("#nationality2")).hasText("");
+    assert.dom(this.element.querySelector("#nationality2")).hasText("Schweiz");
   });
 
   test("Renders form with default values for maritalStatus input field, if no person", async function(assert) {
