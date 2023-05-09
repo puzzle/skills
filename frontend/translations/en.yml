@@ -145,6 +145,8 @@ person-actions:
 person-role:
   percent: workload
   role: Role cannot be empty
+  role_id: Role cannot be empty
+  personRoleLevel: Role level cannot be empty
 person-cv-export:
     anonymisedCV: Anonymised CV
     cancel: Cancel

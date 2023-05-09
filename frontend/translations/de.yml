@@ -144,7 +144,9 @@ person-actions:
     moreOptions: Mehr Optionen
 person-role:
   percent: Pensum
-  role: Funktionsrolle darf nicht leer sein
+  role: Funktionsrolle
+  role_id: Rolle
+  personRoleLevel: Rollenstufe
 person-cv-export:
     anonymisedCV: Anonymisiertes CV
     cancel: Abbrechen
@@ -253,3 +255,6 @@ image:
   upload-success: Bild wurde erfolgreich aktualisiert
   invalid-datatype: Invalider Datentyp
   file-too-large: Datei ist zu gross, max 10MB
+language-skill:
+  level: Sprachnivaeu
+  language: Sprache
