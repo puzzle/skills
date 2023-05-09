@@ -46,13 +46,13 @@ export default class LanguageSkillsEdit extends ApplicationComponent {
       );
       let personLanguages = this.get("person.languageSkills");
       personLanguages.forEach(() => {
-        let languageIsos = personLanguages.map(x => {
-          x.get("language").toLowerCase();
+        let languageISOs = personLanguages.map(language => {
+          language.get("language").toLowerCase();
         });
         this.get("languages").forEach(function(language) {
           language.set(
             "disabled",
-            languageIsos.includes(language.get("iso1").toLowerCase())
+            languageISOs.includes(language.get("iso1").toLowerCase())
           );
         }, this);
         return languages;

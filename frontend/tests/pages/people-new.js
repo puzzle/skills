@@ -22,7 +22,7 @@ export default create({
     },
 
     async createPerson(person) {
-      Object.keys(person).reduce(
+      await Object.keys(person).reduce(
         (p, key) => p.then(() => this[key](person[key])),
         resolve()
       );

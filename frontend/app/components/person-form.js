@@ -39,7 +39,8 @@ export default class PersonFormComponent extends BaseFormComponent {
 
   @computed()
   get countries() {
-    return Object.entries(countryNames("de"));
+    let lang = navigator.language.split("-")[0];
+    return Object.entries(countryNames(lang));
   }
 
   @computed()
@@ -50,8 +51,9 @@ export default class PersonFormComponent extends BaseFormComponent {
   @computed
   get picturePath() {
     if (!this.record.picturePath) return "";
-    return `${this.record.picturePath}
-    &authorizationToken=${this.session.token}`;
+    return `${this.record.picturePath}&authorizationToken=${
+      this.session.token
+    }`;
   }
 
   @action
@@ -59,16 +61,16 @@ export default class PersonFormComponent extends BaseFormComponent {
     let attributes = [
       person.languageSkills.toArray(),
       person.personRoles.toArray()
-    ].flat(1);
+    ].flat();
     let picturePath = person.picturePath;
     let create = this.record.id;
     super.submit(person).then(
-      r =>
-        r &&
+      res =>
+        res &&
         super
           .submit(attributes)
-          .then(r => r && this.savePicture(picturePath))
-          .then(r => r && this.afterSuccess(create))
+          .then(res => res && this.savePicture(picturePath))
+          .then(res => res && this.afterSuccess(create))
     );
   }
 
@@ -78,18 +80,18 @@ export default class PersonFormComponent extends BaseFormComponent {
     let uploadPath = `/people/${this.record.id}/picture`;
 
     return fetch(picturePath)
-      .then(r => r.blob())
-      .then(r => {
+      .then(res => res.blob())
+      .then(res => {
         let fd = new FormData();
-        fd.append("picture", r);
+        fd.append("picture", res);
         return fd;
       })
-      .then(r =>
+      .then(res =>
         this.ajax.put(uploadPath, {
           contentType: false,
           processData: false,
           timeout: 5000,
-          data: r
+          data: res
         })
       )
       .then(() => this.notify.success(this.intl.t("image.upload-success")))
