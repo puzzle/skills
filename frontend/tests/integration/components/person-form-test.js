@@ -53,7 +53,8 @@ module("Integration | Component | person-form-new", function(hooks) {
     Object.defineProperty(navigator, "language", {
       get() {
         return "de-ch";
-      }
+      },
+      configurable: true
     });
   });
 
