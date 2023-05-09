@@ -50,6 +50,11 @@ module("Integration | Component | person-form-new", function(hooks) {
         return Promise.resolve({ arg });
       }
     };
+    Object.defineProperty(navigator, "language", {
+      get() {
+        return "de-ch";
+      }
+    });
   });
 
   test("Renders form with default values for name input field, if no person", async function(assert) {
