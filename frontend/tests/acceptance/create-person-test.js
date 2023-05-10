@@ -1,13 +1,16 @@
 import { module, skip, test } from "qunit";
-import page from "frontend/tests/pages/people-new";
+import createPage from "frontend/tests/pages/people-new";
+import editPage from "frontend/tests/pages/person-edit";
 import { Interactor as Pikaday } from "ember-pikaday/test-support";
-import { click, currentURL } from "@ember/test-helpers";
+import { click, currentURL, fillIn } from "@ember/test-helpers";
 import setupApplicationTest from "frontend/tests/helpers/setup-application-test";
 import { selectChoose } from "ember-power-select/test-support";
 import Notify from "ember-notify";
 import { setLocale } from "ember-intl/test-support";
+import applicationPage from "./../pages/application";
+import { triggerKeyUp } from "ember-keyboard";
 
-module("Acceptance | test person-form", function(hooks) {
+module("Acceptance | Test person-form", function(hooks) {
   setupApplicationTest(hooks);
 
   const notifyStub = Notify.extend({
@@ -23,15 +26,15 @@ module("Acceptance | test person-form", function(hooks) {
     assert.expect(17);
     setLocale("en");
     // Visits person/new
-    await page.newPersonPage.visit();
+    await createPage.newPersonPage.visit();
     assert.equal(currentURL(), "/people/new");
 
     // Selection for all the power selects
     /* eslint "no-undef": "off" */
-    await page.newPersonPage.newRoleButton();
+    await createPage.newPersonPage.newRoleButton();
     await selectChoose("#personRole-role", "First Lieutenant");
     await selectChoose("#personRole-level", "S1");
-    await page.newForm.rolePercent("20");
+    await createPage.newForm.rolePercent("20");
 
     await selectChoose("#department", "/dev/ruby");
     await selectChoose("#company", "Firma");
@@ -48,41 +51,41 @@ module("Acceptance | test person-form", function(hooks) {
     assert.equal(Pikaday.selectedYear(), 2019);
 
     // Filling out the text fields
-    await page.newForm.name("Dolores");
-    await page.newForm.email("dolores@example.com");
-    await page.newForm.title("Dr.");
-    await page.newForm.rolePercent("20");
-    await page.newForm.location("Westworld");
-    await page.newForm.shortname("DD");
+    await createPage.newForm.name("Dolores");
+    await createPage.newForm.email("dolores@example.com");
+    await createPage.newForm.title("Dr.");
+    await createPage.newForm.rolePercent("20");
+    await createPage.newForm.location("Westworld");
+    await createPage.newForm.shortname("DD");
 
-    await page.newPersonPage.submit();
+    await createPage.newPersonPage.submit();
 
     // Current Url now should be "people/d+" where d+ = any amount of numbers (like an id)
     assert.ok(/^\/people\/\d+$/.test(currentURL()));
 
     // Assert that all we entered above actually made it into the profile correctly
-    assert.equal(page.profileData.name, "Dolores");
-    assert.equal(page.profileData.email, "dolores@example.com");
-    assert.equal(page.profileData.shortname, "DD");
-    assert.equal(page.profileData.title, "Dr.");
-    assert.equal(page.profileData.role, "First Lieutenant S1 20%");
-    assert.equal(page.profileData.department, "/dev/ruby");
-    assert.equal(page.profileData.company, "Firma");
-    assert.equal(page.profileData.birthdate, "19.02.2019");
-    assert.equal(page.profileData.nationalities, "Afghanistan");
-    assert.equal(page.profileData.location, "Westworld");
-    assert.equal(page.profileData.maritalStatus, "verheiratet");
-    assert.ok(["DE", "EN", "FR"].includes(page.profileData.language[0]));
+    assert.equal(createPage.profileData.name, "Dolores");
+    assert.equal(createPage.profileData.email, "dolores@example.com");
+    assert.equal(createPage.profileData.shortname, "DD");
+    assert.equal(createPage.profileData.title, "Dr.");
+    assert.equal(createPage.profileData.role, "First Lieutenant S1 20%");
+    assert.equal(createPage.profileData.department, "/dev/ruby");
+    assert.equal(createPage.profileData.company, "Firma");
+    assert.equal(createPage.profileData.birthdate, "19.02.2019");
+    assert.equal(createPage.profileData.nationalities, "Afghanistan");
+    assert.equal(createPage.profileData.location, "Westworld");
+    assert.equal(createPage.profileData.maritalStatus, "verheiratet");
+    assert.ok(["DE", "EN", "FR"].includes(createPage.profileData.language[0]));
   });
 
   test("creating an empty new person", async function(assert) {
     assert.expect(2);
 
-    await page.newPersonPage.visit();
+    await createPage.newPersonPage.visit();
 
     assert.equal(currentURL(), "/people/new");
 
-    await page.newPersonPage.createPerson({});
+    await createPage.newPersonPage.createPerson({});
 
     assert.equal(currentURL(), "/people/new");
     // TODO expect errors!
@@ -94,13 +97,13 @@ module("Acceptance | test person-form", function(hooks) {
   skip("should display two errors when email is empty", async function(assert) {
     this.owner.unregister("service:notify");
     this.owner.register("service:notify", notifyStub);
-    await page.newPersonPage.visit();
+    await createPage.newPersonPage.visit();
     assert.equal(currentURL(), "/people/new");
 
-    await page.newForm.name("Findus");
-    await page.newForm.title("Sofware Developer");
-    await page.newForm.shortname("FI");
-    await page.newForm.location("Bern");
+    await createPage.newForm.name("Findus");
+    await createPage.newForm.title("Sofware Developer");
+    await createPage.newForm.shortname("FI");
+    await createPage.newForm.location("Bern");
 
     await click(".birthdate_pikaday > input");
 
@@ -109,7 +112,7 @@ module("Acceptance | test person-form", function(hooks) {
     await selectChoose("#department", "/dev/one");
     await selectChoose("#company", "Firma");
     await selectChoose("#maritalStatus", ".ember-power-select-option", 0);
-    await page.newForm.submit();
+    await createPage.newForm.submit();
     assert.equal(
       document.querySelectorAll(".ember-notify")[0].querySelector(".message")
         .innerText,
@@ -128,16 +131,16 @@ module("Acceptance | test person-form", function(hooks) {
   skip("should display one error when email format is invalid", async function(assert) {
     this.owner.unregister("service:notify");
     this.owner.register("service:notify", notifyStub);
-    await page.newPersonPage.visit();
+    await createPage.newPersonPage.visit();
     assert.equal(currentURL(), "/people/new");
 
-    page.newPersonPage.toggleNewForm();
+    createPage.newPersonPage.toggleNewForm();
 
-    await page.newForm.name("Findus");
-    await page.newForm.email("findus.puzzle");
-    await page.newForm.title("Sofware Developer");
-    await page.newForm.shortname("FI");
-    await page.newForm.location("Bern");
+    await createPage.newForm.name("Findus");
+    await createPage.newForm.email("findus.puzzle");
+    await createPage.newForm.title("Sofware Developer");
+    await createPage.newForm.shortname("FI");
+    await createPage.newForm.location("Bern");
 
     await click(".birthdate_pikaday > input");
 
@@ -148,7 +151,7 @@ module("Acceptance | test person-form", function(hooks) {
     await selectChoose("#company", ".ember-power-select-option", 0);
     await selectChoose("#maritalStatus", ".ember-power-select-option", 0);
 
-    await page.newPersonPage.submit();
+    await createPage.newPersonPage.submit();
     assert.equal(
       document.querySelector(".ember-notify .message").innerText,
       "Email Format nicht gültig"
@@ -162,18 +165,18 @@ module("Acceptance | test person-form", function(hooks) {
     assert.expect(16);
     setLocale("en");
 
-    // Go to the start page and select a user from the dropdown
+    // Go to the start createPage and select a user from the dropdown
     await applicationPage.visitHome("/");
 
     // Go into person-edit
-    await page.visit({ person_id: 1 });
-    await page.toggleEditForm();
+    await createPage.visit({ person_id: 1 });
+    await createPage.toggleEditForm();
 
     // Selection for all the power selects
     /* eslint "no-undef": "off" */
     await selectChoose("#personRole-role", "First Lieutenant");
     await selectChoose("#personRole-level", "S1");
-    await page.editForm.rolePercent("20");
+    await createPage.editForm.rolePercent("20");
     await selectChoose("#department", "/bbt");
 
     await selectChoose("#company", "Firma");
@@ -190,57 +193,56 @@ module("Acceptance | test person-form", function(hooks) {
     assert.equal(Pikaday.selectedMonth(), 1);
     assert.equal(Pikaday.selectedYear(), 1970);
     // Fill out the persons text fields
-    await page.editForm.name("Hansjoggeli");
-    await page.editForm.email("hansjoggeli@example.com");
-    await page.editForm.shortname("hj");
-    await page.editForm.title("Dr.");
-    await page.editForm.location("Chehrplatz Schwandi");
+    await createPage.editForm.name("Hansjoggeli");
+    await createPage.editForm.email("hansjoggeli@example.com");
+    await createPage.editForm.shortname("hj");
+    await createPage.editForm.title("Dr.");
+    await createPage.editForm.location("Chehrplatz Schwandi");
 
     // Submit the edited content
-    await page.editForm.submit();
+    await createPage.editForm.submit();
     // Assert that all we changed is present
 
-    assert.equal(page.profileData.name, "Hansjoggeli");
-    assert.equal(page.profileData.email, "hansjoggeli@example.com");
-    assert.equal(page.profileData.shortname, "hj");
-    assert.equal(page.profileData.title, "Dr.");
-    assert.equal(page.profileData.role, "First Lieutenant S1 20%");
-    assert.equal(page.profileData.department, "/bbt");
-    assert.equal(page.profileData.company, "Firma");
-    assert.equal(page.profileData.birthdate, "19.02.1970");
-    assert.equal(page.profileData.nationalities, "Samoa");
-    assert.equal(page.profileData.location, "Chehrplatz Schwandi");
-    assert.equal(page.profileData.maritalStatus, "verheiratet");
+    assert.equal(createPage.profileData.name, "Hansjoggeli");
+    assert.equal(createPage.profileData.email, "hansjoggeli@example.com");
+    assert.equal(createPage.profileData.shortname, "hj");
+    assert.equal(createPage.profileData.title, "Dr.");
+    assert.equal(createPage.profileData.role, "First Lieutenant S1 20%");
+    assert.equal(createPage.profileData.department, "/bbt");
+    assert.equal(createPage.profileData.company, "Firma");
+    assert.equal(createPage.profileData.birthdate, "19.02.1970");
+    assert.equal(createPage.profileData.nationalities, "Samoa");
+    assert.equal(createPage.profileData.location, "Chehrplatz Schwandi");
+    assert.equal(createPage.profileData.maritalStatus, "verheiratet");
     // Toggle Edit again
-    await page.toggleEditForm();
+    await createPage.toggleEditForm();
     // Enable two Nationalities
 
-    await page.toggleNationalitiesCheckbox();
+    await createPage.toggleNationalitiesCheckbox();
     // Select the second nationality
     await selectChoose("#nationality2", ".ember-power-select-option", 2);
     // Submit it
-    await page.editForm.submit();
+    await createPage.editForm.submit();
 
     // Assert that it is there
-    assert.equal(page.profileData.nationalities, "Samoa, Åland");
+    assert.equal(createPage.profileData.nationalities, "Samoa, Åland");
     // go into edit again
-    await page.toggleEditForm();
+    await createPage.toggleEditForm();
 
     // Toggle the second nationality option off
-    await page.toggleNationalitiesCheckbox();
+    await createPage.toggleNationalitiesCheckbox();
 
     // Submit it
-    await page.editForm.submit();
+    await createPage.editForm.submit();
     // Check that the second nationality is gone
-    assert.equal(page.profileData.nationalities, "Samoa");
+    assert.equal(createPage.profileData.nationalities, "Samoa");
   });
 
   test("/people/:id abort with escape", async function(assert) {
     assert.expect(1);
     await applicationPage.visitHome("/");
     await selectChoose("#people-search", ".ember-power-select-option", 0);
-
-    await page.toggleEditForm();
+    await editPage.toggleEditForm();
 
     await triggerKeyUp("Escape");
 
@@ -260,17 +262,17 @@ module("Acceptance | test person-form", function(hooks) {
     await applicationPage.visitHome("/");
     await selectChoose("#people-search", "Arya Stark");
 
-    await page.competences.toggleForm();
+    await createPage.competences.toggleForm();
     await fillIn(
       "textarea",
       "Competence 1\n" + "\n" + "Competence 2\n" + "Competence 3\n"
     );
-    await page.competences.submit();
-    assert.equal(page.competences.list().count, 5);
-    assert.equal(page.competences.list(0).text, "Competence 1");
-    assert.equal(page.competences.list(1).text, "");
-    assert.equal(page.competences.list(2).text, "Competence 2");
-    assert.equal(page.competences.list(3).text, "Competence 3");
-    assert.equal(page.competences.list(4).text, "");
+    await createPage.competences.submit();
+    assert.equal(createPage.competences.list().count, 5);
+    assert.equal(createPage.competences.list(0).text, "Competence 1");
+    assert.equal(createPage.competences.list(1).text, "");
+    assert.equal(createPage.competences.list(2).text, "Competence 2");
+    assert.equal(createPage.competences.list(3).text, "Competence 3");
+    assert.equal(createPage.competences.list(4).text, "");
   });
 });
