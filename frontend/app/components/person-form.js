@@ -63,15 +63,19 @@ export default class PersonFormComponent extends BaseFormComponent {
       person.personRoles.toArray()
     ].flat();
     let picturePath = person.picturePath;
-    let create = this.record.id;
     super.submit(person).then(
       res =>
         res &&
         super
           .submit(attributes)
-          .then(res => res && this.savePicture(picturePath))
-          .then(res => res && this.afterSuccess(create))
+          .then(res =>
+            res
+              ? this.savePicture(picturePath)
+              : person.set("picturePath", picturePath)
+          )
+          .then(res => res === true && this.afterSuccess(create))
     );
+    let create = this.record.id;
   }
 
   savePicture(picturePath) {
