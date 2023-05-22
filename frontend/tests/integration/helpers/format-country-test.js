@@ -9,7 +9,7 @@ module("Integration | Helper | format-country", function(hooks) {
   test("it renders country name in German", async function(assert) {
     this.set("countryCode", "CH");
 
-    await render(hbs`{{format-country countryCode}}`);
+    await render(hbs`{{get (format-country countryCode) 1}}`);
 
     assert.true(this.element.textContent.includes("Schweiz"));
   });

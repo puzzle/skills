@@ -6,7 +6,7 @@ const Person = DS.Model.extend({
   birthdate: DS.attr("date"),
   picturePath: DS.attr("string"),
   location: DS.attr("string"),
-  maritalStatus: DS.attr("string"),
+  maritalStatus: DS.attr("string", { defaultValue: "single" }),
   nationality: DS.attr("string", { defaultValue: "CH" }),
   nationality2: DS.attr("string"),
   title: DS.attr("string"),
@@ -27,9 +27,21 @@ const Person = DS.Model.extend({
   personRoles: DS.hasMany("person-role"),
   peopleSkills: DS.hasMany("people-skill"),
 
-  instanceToString: computed("name", function() {
-    return this.get("name");
-  })
+  @computed("name")
+  get instanceToString() {
+    return this.name;
+  },
+
+  @computed("maritalStatus")
+  get maritalStatusView() {
+    return Person.MARITAL_STATUSES[this.maritalStatus];
+  },
+
+  set maritalStatusView(maritalStatus) {
+    this.maritalStatus = Object.keys(Person.MARITAL_STATUSES).find(
+      key => Person.MARITAL_STATUSES[key] === maritalStatus
+    );
+  }
 });
 
 Person.reopenClass({

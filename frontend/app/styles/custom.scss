@@ -31,6 +31,15 @@ hr {
   cursor: pointer;
 }
 
+.wh-15 {
+  height: 15vh;
+}
+
+.pointer-all-sub,
+.pointer-all-sub * {
+  cursor: pointer;
+}
+
 .mb-end,
 #collapseFWS .card:last-child {
   margin-bottom: 50px;

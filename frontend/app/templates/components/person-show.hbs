@@ -14,7 +14,7 @@
           <table>
             <tbody>
               <tr>
-                <img id="img-avatar-read" src={{this.picturePath}} class="img-polaroid profil-img rounded-circle" alt="" role="presentation">
+                <img id="img-avatar-read" src={{this.picturePath}} class="wh-15 img-polaroid profil-img rounded-circle" alt="" role="presentation">
               </tr>
               <div class="mt-4">
               </div>
@@ -41,7 +41,7 @@
                 <td>Email</td>
               </tr>
               <tr>
-                <td id="data-test-person-email">{{this.person.email}}</td>
+                <td id="data-test-person-email">{{@person.email}}</td>
               </tr>
               <div class="mb-2">
               </div>
@@ -49,7 +49,7 @@
                 <td>{{t "person-show.degree"}}</td>
               </tr>
               <tr>
-                <td id="data-test-person-title" class="cv-search-searchable">{{this.person.title}}</td>
+                <td id="data-test-person-title" class="cv-search-searchable">{{@person.title}}</td>
               </tr>
               <div class="mb-2">
               </div>
@@ -57,7 +57,7 @@
                 <td>{{t "person-show.function"}}</td>
               </tr>
               {{#if this.person.personRoles.length}}
-                {{#each this.person.personRoles as |personRole|}}
+                {{#each @person.personRoles as |personRole|}}
                   <tr>
                     <td id="data-test-person-role">
                       {{personRole.role.name}}
@@ -75,7 +75,7 @@
                 <td>{{t "person-show.department"}}</td>
               </tr>
               <tr>
-                <td id="data-test-person-department">{{this.person.department.name}}</td>
+                <td id="data-test-person-department">{{@person.department.name}}</td>
               </tr>
               <div class="mb-2">
               </div>
@@ -83,7 +83,7 @@
                 <td>{{t "person-show.company"}}</td>
               </tr>
               <tr>
-                <td id="data-test-person-company">{{this.person.company.name}}</td>
+                <td id="data-test-person-company">{{@person.company.name}}</td>
               </tr>
             </tbody>
           </table>
@@ -96,19 +96,19 @@
               </tr>
               <tr>
                 <td>
-                  <time datetime={{moment-format this.person.birthdate}} id="data-test-person-birthdate">
-                    {{~moment-format this.person.birthdate "L"~}}
+                  <time datetime={{moment-format @person.birthdate}} id="data-test-person-birthdate">
+                    {{~moment-format @person.birthdate "L"~}}
                   </time>
                 </td>
               </tr>
               <div class="mb-2">
               </div>
               <tr class="description">
-                <td>{{t "person-show.nationality"}}{{#if this.person.nationality2}}en{{/if}}</td>
+                <td>{{t "person-show.nationality"}}{{#if @person.nationality2}}en{{/if}}</td>
               </tr>
               <tr>
                 <td id="data-test-person-nationalities">
-                  {{format-country this.person.nationality}}{{#if this.person.nationality2}}, {{format-country this.person.nationality2}}{{/if}}
+                  {{get (format-country @person.nationality) 1}}{{#if @person.nationality2}}, {{get (format-country @person.nationality2) 1}}{{/if}}
                 </td>
               </tr>
               <div class="mb-2">
@@ -117,7 +117,7 @@
                 <td>{{t "person-show.placeOfResidence"}}</td>
               </tr>
               <tr>
-                <td id="data-test-person-location">{{this.person.location}}</td>
+                <td id="data-test-person-location">{{@person.location}}</td>
               </tr>
               <div class="mb-2">
               </div>
@@ -131,7 +131,7 @@
                 <td>{{t "person-show.shortname"}}</td>
               </tr>
               <tr>
-                <td id="data-test-person-shortname">{{this.person.shortname}}</td>
+                <td id="data-test-person-shortname">{{@person.shortname}}</td>
               </tr>
             </tbody>
           </table>

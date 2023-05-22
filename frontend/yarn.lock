@@ -7661,7 +7661,7 @@ ember-cli-babel@^6.16.0, ember-cli-babel@^6.4.2, ember-cli-babel@^6.6.0, ember-c
     ember-cli-version-checker "^2.1.2"
     semver "^5.5.0"
 
-ember-cli-babel@^7.0.0, ember-cli-babel@^7.1.0, ember-cli-babel@^7.1.2, ember-cli-babel@^7.1.3, ember-cli-babel@^7.10.0, ember-cli-babel@^7.11.1, ember-cli-babel@^7.13.0, ember-cli-babel@^7.13.2, ember-cli-babel@^7.19.0, ember-cli-babel@^7.20.5, ember-cli-babel@^7.21.0, ember-cli-babel@^7.22.1, ember-cli-babel@^7.23.0, ember-cli-babel@^7.23.1, ember-cli-babel@^7.26.0, ember-cli-babel@^7.26.1, ember-cli-babel@^7.26.11, ember-cli-babel@^7.26.5, ember-cli-babel@^7.26.6, ember-cli-babel@^7.5.0, ember-cli-babel@^7.7.3:
+ember-cli-babel@^7.0.0, ember-cli-babel@^7.1.0, ember-cli-babel@^7.1.2, ember-cli-babel@^7.1.3, ember-cli-babel@^7.10.0, ember-cli-babel@^7.11.1, ember-cli-babel@^7.13.0, ember-cli-babel@^7.13.2, ember-cli-babel@^7.17.2, ember-cli-babel@^7.19.0, ember-cli-babel@^7.20.5, ember-cli-babel@^7.21.0, ember-cli-babel@^7.22.1, ember-cli-babel@^7.23.0, ember-cli-babel@^7.23.1, ember-cli-babel@^7.26.0, ember-cli-babel@^7.26.1, ember-cli-babel@^7.26.11, ember-cli-babel@^7.26.5, ember-cli-babel@^7.26.6, ember-cli-babel@^7.5.0, ember-cli-babel@^7.7.3:
   version "7.26.11"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-7.26.11.tgz#50da0fe4dcd99aada499843940fec75076249a9f"
   integrity sha512-JJYeYjiz/JTn34q7F5DSOjkkZqy8qwFOOxXfE6pe9yEJqWGu4qErKxlz8I22JoVEQ/aBUO+OcKTpmctvykM9YA==
@@ -7793,7 +7793,7 @@ ember-cli-htmlbars@^3.0.0, ember-cli-htmlbars@^3.0.1:
     json-stable-stringify "^1.0.1"
     strip-bom "^3.0.0"
 
-ember-cli-htmlbars@^4.3.1:
+ember-cli-htmlbars@^4.2.2, ember-cli-htmlbars@^4.3.1:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-4.5.0.tgz#d299e4f7eba6f30dc723ee086906cc550beb252e"
   integrity sha512-bYJpK1pqFu9AadDAGTw05g2LMNzY8xTCIqQm7dMJmKEoUpLRFbPf4SfHXrktzDh7Q5iggl6Skzf1M0bPlIxARw==
@@ -7889,7 +7889,7 @@ ember-cli-lodash-subset@^2.0.1:
   resolved "https://registry.yarnpkg.com/ember-cli-lodash-subset/-/ember-cli-lodash-subset-2.0.1.tgz#20cb68a790fe0fde2488ddfd8efbb7df6fe766f2"
   integrity sha512-QkLGcYv1WRK35g4MWu/uIeJ5Suk2eJXKtZ+8s+qE7C9INmpCPyPxzaqZABquYzcWNzIdw6kYwz3NWAFdKYFxwg==
 
-ember-cli-moment-shim@3.8.0, ember-cli-moment-shim@^3.6.0:
+ember-cli-moment-shim@3.8.0, ember-cli-moment-shim@^3.7.1:
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/ember-cli-moment-shim/-/ember-cli-moment-shim-3.8.0.tgz#dc61bbac9dce4963394e60dd42726d4ba38e2bc1"
   integrity sha512-dN5ImjrjZevEqB7xhwFXaPWwxdKGSFiR1kqy9gDVB+A5EGnhCL1uveKugcyJE/MICVhXUAHBUu6G2LFWEPF2YA==
@@ -8570,17 +8570,15 @@ ember-on-helper@^0.1.0:
   dependencies:
     ember-cli-babel "^7.7.3"
 
-ember-pikaday@2.4.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/ember-pikaday/-/ember-pikaday-2.4.1.tgz#26bfe008c1a758570a8e7e57c4e9c5c2765e11a6"
-  integrity sha512-y9wCIXNkVpDL0yrchtu6YMTd4YXML/K3okVyMlMZn4jGLdKEUZ7gMoMY0Sejlx2Iaj7EqPke+CSbJoEt/w1tYw==
+ember-pikaday@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/ember-pikaday/-/ember-pikaday-3.0.0.tgz#c80c215174cc103fd9324188e00e21f4fc00c9e0"
+  integrity sha512-qn8qOadxA/afFraiEKjrRnkzNDWcbs+vBzcEhBs+Jr8KHd7Bjv4BFzgEe9r1euDXZsurYUN2z1gbyQ++rB4rCQ==
   dependencies:
-    ember-cli-babel "^6.16.0"
-    ember-cli-htmlbars "^3.0.0"
-    ember-cli-moment-shim "^3.6.0"
-    ember-cli-node-assets "^0.2.2"
-    fastboot-transform "^0.1.1"
-    pikaday "^1.5.1"
+    ember-cli-babel "^7.17.2"
+    ember-cli-htmlbars "^4.2.2"
+    ember-cli-moment-shim "^3.7.1"
+    pikaday "^1.8.0"
 
 ember-popper-modifier@^2.0.0:
   version "2.0.1"
@@ -9779,7 +9777,7 @@ fast-sourcemap-concat@^2.1.0:
     source-map-url "^0.3.0"
     sourcemap-validator "^1.1.0"
 
-fastboot-transform@^0.1.1, fastboot-transform@^0.1.2:
+fastboot-transform@^0.1.2:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/fastboot-transform/-/fastboot-transform-0.1.3.tgz#7dea0b117594afd8772baa6c9b0919644e7f7dcd"
   integrity sha512-6otygPIJw1ARp1jJb+6KVO56iKBjhO+5x59RSC9qiZTbZRrv+HZAuP00KD3s+nWMvcFDemtdkugki9DNFTTwCQ==
@@ -16519,7 +16517,7 @@ pify@^4.0.1:
   resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
 
-pikaday@^1.5.1:
+pikaday@^1.8.0:
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/pikaday/-/pikaday-1.8.2.tgz#72cc73fab7ccc068cbdf7dcaa1ce400fcfd894e3"
   integrity sha512-TNtsE+34BIax3WtkB/qqu5uepV1McKYEgvL3kWzU7aqPCpMEN6rBF3AOwu4WCwAealWlBGobXny/9kJb49C1ew==

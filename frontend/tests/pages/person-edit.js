@@ -10,7 +10,7 @@ import {
 export default create({
   visit: visitable("/people/:person_id"),
   toggleEditFormButton: clickable("[data-test-person-edit-form-toggle]"),
-  toggleNationalitiesCheckbox: clickable("#toggle-nationalities-id"),
+  toggleNationalitiesCheckbox: clickable("[data-test-nationalities-toggle]"),
 
   toggleEditForm() {
     this.toggleEditFormButton();
@@ -20,18 +20,17 @@ export default create({
 
   toggleNationalities() {
     this.toggleNationalitiesCheckbox();
-    return this.editForm;
   },
 
   editForm: {
     scope: "#profil",
-    submit: clickable('[type="submit"]'),
-    name: fillable('[name="name"]'),
-    email: fillable('[name="email"]'),
-    shortname: fillable('[name="shortname"]'),
-    title: fillable('[name="title"]'),
-    location: fillable('[name="location"]'),
-    rolePercent: fillable('[name="person[role-percent]"]')
+    name: fillable('[id="name"]'),
+    email: fillable('[id="email"]'),
+    title: fillable('[id="degree"]'),
+    location: fillable('[id="location"]'),
+    rolePercent: fillable(".percent-field > label > input"),
+    shortname: fillable('[id="shortname"]'),
+    submit: clickable('[id="submit-button"]')
   },
 
   profileData: {

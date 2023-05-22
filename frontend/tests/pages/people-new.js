@@ -12,9 +12,10 @@ const { resolve } = RSVP;
 export default create({
   newPersonPage: {
     visit: visitable("/people/new"),
-    submit: clickable("#submit-button"),
+    submit: clickable("[data-test-peron-form-submit]"),
     toggleNewFormButton: clickable("[data-test-person-new-form-toggle]"),
     toggleNationalitiesCheckbox: clickable("#toggle-nationalities-id"),
+    newRoleButton: clickable("[data-test-new-function]"),
 
     toggleNewForm() {
       return this.newForm;
@@ -32,13 +33,13 @@ export default create({
 
   newForm: {
     scope: "#profil",
-    submit: clickable('[type="submit"]'),
-    name: fillable('[name="name"]'),
-    email: fillable('[name="email"]'),
-    shortname: fillable('[name="shortname"]'),
-    title: fillable('[name="title"]'),
-    location: fillable('[name="location"]'),
-    rolePercent: fillable('[name="rolePercent"]')
+    name: fillable('[id="name"]'),
+    email: fillable('[id="email"]'),
+    title: fillable('[id="degree"]'),
+    location: fillable('[id="location"]'),
+    rolePercent: fillable(".percent-field > label > input"),
+    shortname: fillable('[id="shortname"]'),
+    submit: clickable('[id="submit-button"]')
   },
 
   profileData: {

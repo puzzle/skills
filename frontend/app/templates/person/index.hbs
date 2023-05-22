@@ -16,11 +16,12 @@
     <div id="accordion">
       {{!Personalien Tab}}
       <div class="card mb-3" id="particulars">
-        {{component (if this.personEditing "person-edit" "person-show" )
-                    person=this.model
-                    submit=(action (toggle "personEditing" this))
-                    personEditing=(action (toggle "personEditing" this))
-        }}
+        {{#if this.personEditing}}
+          <PersonForm @person={{this.model}} @submit={{action (toggle "personEditing" this)}} @abort={{action (toggle "personEditing" this) }}></PersonForm>
+        {{else}}
+          <PersonShow @person={{this.model}}  @personEditing={{action (toggle "personEditing" this)}}></PersonShow>
+        {{/if}}
+
       </div>
       <div class="card mb-3" id="competences">
         {{core-competences-show
