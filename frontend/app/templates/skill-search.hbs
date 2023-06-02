@@ -5,7 +5,7 @@
     {{/if}}
     <div class="row">
       <div class="col-6 skills-power-select">
-        <PowerSelect @selected={{filter.selectedSkill}} @options={{this.skills}} @onChange={{action "setSkill" index}} @initiallyOpened={{false}} @renderInPlace={{true}} @searchField="title" @triggerClass="w-75 power-select-{{index}}" as |skill|>
+        <PowerSelect @searchEnabled={{true}} @selected={{filter.selectedSkill}} @options={{this.skills}} @onChange={{action "setSkill" index}} @initiallyOpened={{false}} @renderInPlace={{true}} @searchField="title" @triggerClass="w-75 power-select-{{index}}" as |skill|>
           {{skill.title}}
         </PowerSelect>
       </div>
