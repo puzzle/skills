@@ -6,7 +6,7 @@
 - **Kein End-Datumszwang** Es können nun Profileinträge ohne End-Datum eingetragen werden (https://github.com/puzzle/skills/issues/450).
 - **CV-Search "go-back" verhalten"** Die CV-Suche speichert nun den letzten Sucheintrag und geht generell intelligenter mit der Browser History um.
 - **CV-Export Skill-Level Filter** Es können nun nur Skills die ein Mindest-Level erfüllen im Export inkludiert werden.
-- **ESC Verhalten in den Forms** Die Forms werden nun nicht automatisch mit ESC geschlossen sondern ändern in einem ersten Schritt nur den Fokus aufs aktuelle Feld und lösen dann noch einen Dialog aus bevor der Input gelöscht wird.
+- **ESC Verhalten in den Forms** Die Forms werden nun nicht automatisch mit ESC geschlossen sondern ändern in einem ersten Schritt nur den Fokus aufs aktuelle Feld und lösen dann noch einen Dialog aus bevor der Input gelöscht wird. (https://github.com/puzzle/skills/issues/392)
 - **Frontend Cleanup** Im Frontend wurde einiges aufgeräumt und homogenisiert.
 
 # 4.3.0
