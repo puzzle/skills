@@ -24,6 +24,8 @@ RUN    apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y ${BUILD_PACKAGES}
 
+RUN apt-get install -y npm
+
 RUN bash -vxc "${BUILD_SCRIPT:-"echo 'no BUILD_SCRIPT provided'"}"
 
 # Install specific versions of dependencies
