@@ -19,7 +19,7 @@ jobs:
 
       - name: Install cdxgen
         run: |
-          npm install -g @cyclonedx/cdxgen
+          npm install -g @cyclonedx/cdxgen@8.6.0
 
       - name: 'Generate SBOM for ruby dependencies'
         run: |
