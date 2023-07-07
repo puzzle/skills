@@ -56,7 +56,7 @@ RUN rm -rf vendor/cache/ .git
 #################################
 
 # This image will be replaced by Openshift
-FROM ruby:3.2-slim AS app
+FROM ruby:3.2 AS app
 
 # Set runtime shell
 SHELL ["/bin/bash", "-c"]
