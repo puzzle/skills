@@ -4,3 +4,9 @@ uploads/person/picture/
 spec/coverage
 tmp
 log
+vendor/bundle
+vendor/cache
+.yarn/cache
+node_modules
+dist
+spec/reports

@@ -99,3 +99,5 @@ config/docker/development/home/rails/.local
 config/docker/development/home/rails/.yarnrc
 config/docker/development/home/rails/.irb_history
 config/docker/development/home/rails/.bash_history
+
+vendor/bundle
