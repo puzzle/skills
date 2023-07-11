@@ -18,7 +18,10 @@ ARG PRE_INSTALL_SCRIPT=" \
   && bash /tmp/nodesource_setup.sh \
 "
 ARG INSTALL_SCRIPT="node -v && npm -v && npm install -g yarn && yarn set version ${YARN_VERSION}"
-ARG PRE_BUILD_SCRIPT
+ARG PRE_BUILD_SCRIPT=" \
+  # The newer ruby images are delivered with Python 3 which breaks the node-sass build
+  # to counteract this, we build Python 2 ourselves
+"
 ARG BUILD_SCRIPT="yarn install"
 ARG POST_BUILD_SCRIPT=" \
      cd frontend \
@@ -106,6 +109,22 @@ WORKDIR ${HOME}
 COPY Gemfile Gemfile.lock ./
 
 RUN bash -vxc "${PRE_BUILD_SCRIPT:-"echo 'no PRE_BUILD_SCRIPT provided'"}"
+
+# TODO: Move to PRE_BUILD_SCRIPT
+RUN apt-get install -y --no-install-recommends \
+            checkinstall libreadline-dev libncursesw5-dev libssl-dev \
+            libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
+RUN curl https://www.python.org/ftp/python/2.7.18/Python-2.7.18.tgz -o /tmp/python.tgz
+RUN mkdir /tmp/python2
+RUN tar xzf /tmp/python.tgz -C /tmp/python2
+RUN apt-get remove -y python python3
+RUN cd /tmp/python2 && mv **/* . && ls -hals 
+RUN cd /tmp/python2 && ./configure --prefix=/usr/bin
+RUN cd /tmp/python2 && make -j8
+
+# Cached ^-----^
+RUN apt-get install -y npm
+RUN echo $PATH && cd /tmp/python2 && make install -j8
 
 # install gems and build the app
 RUN    bundle config set --local deployment 'true' \
