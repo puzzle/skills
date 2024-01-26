@@ -1,0 +1,8 @@
+%div
+  %h1
+    = @person.name
+    's Profile
+  %div
+    %h5
+      That person is from #{@person.location}
+= link_to "Person bearbeiten",  edit_person_path

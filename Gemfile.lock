@@ -168,6 +168,15 @@ GEM
     ffi (1.16.3)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    haml (6.3.0)
+      temple (>= 0.8.2)
+      thor
+      tilt
+    haml-rails (2.1.0)
+      actionpack (>= 5.1)
+      activesupport (>= 5.1)
+      haml (>= 4.0.6)
+      railties (>= 5.1)
     http-accept (1.7.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
@@ -356,7 +365,9 @@ GEM
       listen (>= 2.7, < 4.0)
       spring (>= 1.2, < 3.0)
     ssrf_filter (1.1.2)
+    temple (0.10.3)
     thor (1.1.0)
+    tilt (2.3.0)
     timeout (0.3.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
@@ -388,6 +399,7 @@ DEPENDENCIES
   countries
   database_cleaner
   faker
+  haml-rails
   i18n_data
   keycloak-api-rails
   language_list
