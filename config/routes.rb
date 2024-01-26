@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     get 'readiness', to: 'status#readiness'
   end
 
+  resources :people
+
   scope '/api' do
 
 
