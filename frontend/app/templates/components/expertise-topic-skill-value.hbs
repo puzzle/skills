@@ -1,9 +1,0 @@
-{{component
-  (if this.editing "expertise-topic-skill-value-edit" "expertise-topic-skill-value-show")
-  editing = this.editing
-  ontoggleedit=(action (mut this.editing))
-  cancelEdit=(action "cancelEdit")
-  expertiseTopic=this.expertiseTopic
-  expertiseTopicSkillValue=this.expertiseTopicSkillValue
-  expertiseCategory=this.expertiseCategory
-  onsubmit=(action "submit")}}
