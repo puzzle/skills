@@ -9,22 +9,30 @@ SHELL ["/bin/bash", "-c"]
 
 # Use root user
 USER root
-
+ENV NODE_VERSION=14.21.3
 ARG BUILD_PACKAGES
 ARG BUILD_SCRIPT
 ARG BUNDLE_WITHOUT='development:metrics:test'
 ARG BUNDLER_VERSION=2.4.6
 ARG POST_BUILD_SCRIPT
 
-# Get proper node version via nodesource
-RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
+
+RUN apt install -y curl
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+ENV NVM_DIR=/root/.nvm
+RUN . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
+RUN . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
+RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
+ENV PATH="$NVM_DIR/versions/node/v${NODE_VERSION}/bin/:${PATH}"
+RUN node --version
+RUN npm --version
+RUN bash -vxc "node -v"
 
 # Install dependencies
 RUN    apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y ${BUILD_PACKAGES}
 
-RUN apt-get install -y npm
 
 RUN bash -vxc "${BUILD_SCRIPT:-"echo 'no BUILD_SCRIPT provided'"}"
 
@@ -45,7 +53,7 @@ RUN    bundle config set --local deployment 'true' \
     && bundle install \
     && bundle clean
 
-RUN bash -vxc "${POST_BUILD_SCRIPT:-"echo 'no POST_BUILD_SCRIPT provided'"}"
+RUN bash -vc "${POST_BUILD_SCRIPT:-"echo 'no POST_BUILD_SCRIPT provided'"}"
 
 # TODO: Save artifacts
 
