@@ -111,6 +111,8 @@ GEM
       sixarm_ruby_unaccent (~> 1.1)
       unicode_utils (~> 1.4)
     crass (1.0.6)
+    cssbundling-rails (1.4.0)
+      railties (>= 6.0.0)
     database_cleaner (2.0.1)
       database_cleaner-active_record (~> 2.0.0)
     database_cleaner-active_record (2.0.0)
@@ -210,6 +212,7 @@ GEM
       rake
     mini_magick (4.11.0)
     mini_mime (1.1.5)
+    mini_portile2 (2.8.5)
     minitest (5.20.0)
     msgpack (1.6.0)
     multipart-post (2.1.1)
@@ -225,6 +228,9 @@ GEM
       net-protocol
     netrc (0.11.0)
     nio4r (2.7.0)
+    nokogiri (1.14.3)
+      mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
     nokogiri (1.14.3-x86_64-linux)
       racc (~> 1.4)
     odf-report (0.7.3)
@@ -372,6 +378,7 @@ GEM
     zeitwerk (2.6.7)
 
 PLATFORMS
+  ruby
   x86_64-linux
 
 DEPENDENCIES
@@ -386,6 +393,7 @@ DEPENDENCIES
   carrierwave
   config
   countries
+  cssbundling-rails (~> 1.4)
   database_cleaner
   faker
   i18n_data
