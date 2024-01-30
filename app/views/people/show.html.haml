@@ -1,6 +1,6 @@
 %div
   %h1
-    = @person.name
+    = @title ||= ti(:title, entry: full_entry_label).html_safe
     's Profile
   %div
     %h5

@@ -5,8 +5,8 @@ class CrudController < ListController
   class_attribute :permitted_attrs, :nested_models, :permitted_relationships
 
   # GET /users/1
-  def show(options = {})
-    render_entry({ include: '*' }.merge(options[:render_options] || {}))
+  def show(options = {});
+    @entry = fetch_entry
   end
 
   # POST /users

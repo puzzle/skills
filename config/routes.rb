@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :people
+  resources :skills
 
   scope '/api' do
 
