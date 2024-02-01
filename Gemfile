@@ -34,6 +34,7 @@ gem 'rails-i18n'
 gem 'rest-client'
 gem 'seed-fu'
 gem 'sentry-raven'
+gem "cssbundling-rails", "~> 1.4"
 
 group :metrics do
   gem 'brakeman'
@@ -69,4 +70,3 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 
 
-gem "cssbundling-rails", "~> 1.4"
