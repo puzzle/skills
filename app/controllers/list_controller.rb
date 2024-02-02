@@ -10,7 +10,15 @@ class ListController < ApplicationController
 
   # GET /users
   def index(options = {})
-    @entries = fetch_entries
+    if lookup_context.find_all("#{model_root_key.pluralize}/index").any?
+      @entries = fetch_entries
+    else
+      render({ json: fetch_entries,
+               each_serializer: list_serializer,
+               root: model_root_key.pluralize }
+               .merge(render_options)
+               .merge(options.fetch(:render_options, {})))
+    end
   end
 
   protected

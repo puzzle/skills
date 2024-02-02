@@ -6,7 +6,11 @@ class CrudController < ListController
 
   # GET /users/1
   def show(options = {});
-    @entry = fetch_entry
+    if lookup_context.find_all("#{model_root_key.pluralize}/show").any?
+      @entry = fetch_entry
+    else
+      render_entry({ include: '*' }.merge(options[:render_options] || {}))
+    end
   end
 
   # POST /users
@@ -117,5 +121,14 @@ class CrudController < ListController
 
   def ivar_name
     model_class.model_name.param_key
+  end
+
+  def get_asset_path(filename)
+    manifest_file = Rails.application.assets_manifest.assets[filename]
+    if manifest_file
+      File.join(Rails.application.assets_manifest.directory, manifest_file)
+    else
+      Rails.application.assets&.[](filename)&.filename
+    end
   end
 end
