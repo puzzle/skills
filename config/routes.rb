@@ -11,8 +11,7 @@ Rails.application.routes.draw do
   resources :people
   resources :skills
 
-  scope '/api' do
-
+  namespace :api do
 
     resources :people do
       collection do

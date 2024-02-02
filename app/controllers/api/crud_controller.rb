@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 # A generic controller to display, create, update and destroy entries of a certain model class.
-class CrudController < ListController
+class Api::CrudController < Api::ListController
   class_attribute :permitted_attrs, :nested_models, :permitted_relationships
 
   # GET /users/1
   def show(options = {});
-      @entry = fetch_entry
+    render_entry({ include: '*' }.merge(options[:render_options] || {}))
   end
 
   # POST /users

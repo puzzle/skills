@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # A generic controller to display entries of a certain model class.
-class ListController < ApplicationController
+class Api::ListController < Api::ApplicationController
   delegate :model_class, :model_identifier, :model_serializer, :list_serializer,
            to: 'self.class'
 
@@ -10,7 +10,11 @@ class ListController < ApplicationController
 
   # GET /users
   def index(options = {})
-    @entries = fetch_entries
+    render({ json: fetch_entries,
+             each_serializer: list_serializer,
+             root: model_root_key.pluralize }
+             .merge(render_options)
+             .merge(options.fetch(:render_options, {})))
   end
 
   protected
@@ -32,8 +36,8 @@ class ListController < ApplicationController
   class << self
     # The ActiveRecord class of the model.
     def model_class
-      model_name = controller_path.classify.remove('::')
-      @model_class ||= model_name.constantize
+      model_name = controller_path.classify.remove("Api::")
+      @model_class ||= model_name.safe_constantize
     end
 
     # The identifier of the model used for form parameters.
