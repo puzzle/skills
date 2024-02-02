@@ -22,7 +22,7 @@ module People
     end
 
     def default_avatar_path
-      "#{Rails.public_path}/default_avatar.png"
+      get_asset_path 'default_avatar.png'
     end
   end
 end
