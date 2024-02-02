@@ -8,8 +8,9 @@
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
+    = favicon_link_tag "favicon.png"
   %body
     %pzsh-container
       %pzsh-topbar
-        %img{:src=> "./logo.svg",:height=>"32"}
+        %img{:src=> "./assets/logo.svg",:height=>"32"}
       = yield
