@@ -465,6 +465,7 @@ DEPENDENCIES
   rubocop
   rubocop-rails
   seed-fu
+  selenium-webdriver
   sentry-raven
   simplecov
   spring

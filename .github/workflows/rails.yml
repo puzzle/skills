@@ -48,7 +48,7 @@ jobs:
         POSTGRES_USER: skills
         POSTGRES_PASSWORD: skills
         PGPORT: ${{ job.services.postgres.ports[5432] }}
-        CAPYBARA_HEADLESS: true
+        RAILS_ENV: test
       run: bundle exec rake
 
     - name: Run RuboCop
