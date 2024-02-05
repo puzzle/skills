@@ -4,14 +4,20 @@ jobs:
   tests:
     runs-on: ubuntu-latest
 
+    env:
+      PGHOST: localhost
+      POSTGRES_DB: skills_test
+      POSTGRES_USER: skills
+      POSTGRES_PASSWORD: skills
+
     services:
       postgres:
         image: postgres:16
-        env:
-          POSTGRES_DB: skills_test
-          POSTGRES_USER: skills
-          POSTGRES_PASSWORD: skills
         ports: ["5432:5432"]
+        env:
+          POSTGRES_DB: ${{ env.POSTGRES_DB }}
+          POSTGRES_USER: ${{ env.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -33,20 +39,19 @@ jobs:
       - name: 'Run database migrations'
         env:
           RAILS_ENV: test
-          PGHOST: localhost
-          POSTGRES_DB: skills_test
-          POSTGRES_USER: skills
-          POSTGRES_PASSWORD: skills
+          PGHOST: ${{ env.PGHOST }}
+          POSTGRES_DB: ${{ env.POSTGRES_DB }}
+          POSTGRES_USER: ${{ env.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
         run: |
           bundle exec rake db:create db:migrate
 
       - name: 'Run tests'
         env:
-          PGHOST: localhost
-          POSTGRES_DB: skills_test
-          POSTGRES_USER: skills
-          POSTGRES_PASSWORD: skills
-          PGPORT: ${{ job.services.postgres.ports[5432] }}
+          PGHOST: ${{ env.PGHOST }}
+          POSTGRES_DB: ${{ env.POSTGRES_DB }}
+          POSTGRES_USER: ${{ env.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
           IS_CI: true
         run: bundle exec rake
 
