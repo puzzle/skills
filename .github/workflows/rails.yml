@@ -25,15 +25,7 @@ jobs:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - uses: actions/setup-node@v2
       with:
-        node-version: '14'
-
-    - name: Install Ember-Cli with NPM
-      run: npm install -g ember-cli@3.28.6
-      working-directory: frontend
-
-    - name: Install dependencies Yarn
-      run: yarn install --frozen-lockfile
-      working-directory: frontend
+        node-version: '18'
 
     - name: Setup test database
       env:
@@ -56,6 +48,3 @@ jobs:
 
     - name: Run RuboCop
       run: bundle exec rubocop --parallel
-
-    - name: Run Frontend Tests
-      run: bundle exec rake spec:frontend

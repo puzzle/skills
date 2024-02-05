@@ -13,11 +13,6 @@ class PeopleController < CrudController
 
   self.permitted_relationships = %i[person_roles people_skills]
 
-  def index
-    people = fetch_entries
-    render json: people, each_serializer: PeopleSerializer
-  end
-
   def show
     if format_odt?
       export

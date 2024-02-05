@@ -8,8 +8,10 @@ Rails.application.routes.draw do
     get 'readiness', to: 'status#readiness'
   end
 
-  scope '/api' do
+  resources :people
+  resources :skills
 
+  namespace :api do
 
     resources :people do
       collection do
@@ -53,7 +55,4 @@ Rails.application.routes.draw do
 
     get 'env_settings', to: 'env_settings#index'
   end
-
-  get '*path', to: 'static_assets#index'
-
 end

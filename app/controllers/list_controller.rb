@@ -9,12 +9,8 @@ class ListController < ApplicationController
   self.render_options = {}
 
   # GET /users
-  def index(options = {})
-    render({ json: fetch_entries,
-             each_serializer: list_serializer,
-             root: model_root_key.pluralize }
-           .merge(render_options)
-           .merge(options.fetch(:render_options, {})))
+  def index(_options = {})
+    @entries = fetch_entries
   end
 
   protected

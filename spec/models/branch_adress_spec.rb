@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe BranchAdress, type: :model do
+RSpec.describe BranchAdress, type: :entry do
   context 'validations' do
 
     it 'check whether required attributes are present' do
