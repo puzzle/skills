@@ -27,6 +27,10 @@ jobs:
       with:
         node-version: '18'
 
+    - uses: browser-actions/setup-chrome@v1
+      with:
+        chrome-version: 120
+
     - name: Setup test database
       env:
         RAILS_ENV: test
@@ -44,6 +48,7 @@ jobs:
         POSTGRES_USER: skills
         POSTGRES_PASSWORD: skills
         PGPORT: ${{ job.services.postgres.ports[5432] }}
+        CAPYBARA_HEADLESS: true
       run: bundle exec rake
 
     - name: Run RuboCop
