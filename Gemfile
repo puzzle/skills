@@ -51,7 +51,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'pry'
   gem 'pry-byebug'
-  gem 'rspec-rails', '~> 4.0.2'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -66,7 +66,10 @@ group :development do
 end
 
 group :test do
+  gem 'capybara'
+  gem 'selenium-webdriver'
   gem 'simplecov'
+  gem 'webdrivers'
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
