@@ -30,7 +30,6 @@ spec/coverage/.last_run.json
 /public/uploads
 
 /node_modules
-/yarn.lock
 
 
 # Created by https://www.gitignore.io/api/intellij
@@ -87,8 +86,6 @@ fabric.properties
 
 # End of https://www.gitignore.io/api/intellij
 .project
-
-package-lock.json
 
 config/settings.local.yml
 config/settings/*.local.yml

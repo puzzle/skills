@@ -1,17 +1,23 @@
 name: Rails
 on: [push, pull_request]
 jobs:
-  Rails-Tests:
+  tests:
     runs-on: ubuntu-latest
+
+    env:
+      PGHOST: localhost
+      POSTGRES_DB: skills_test
+      POSTGRES_USER: skills
+      POSTGRES_PASSWORD: skills
 
     services:
       postgres:
-        image: postgres:9.5
-        env:
-          POSTGRES_DB: skills_test
-          POSTGRES_USER: skills
-          POSTGRES_PASSWORD: skills
+        image: postgres:16
         ports: ["5432:5432"]
+        env:
+          POSTGRES_DB: ${{ env.POSTGRES_DB }}
+          POSTGRES_USER: ${{ env.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -19,33 +25,35 @@ jobs:
           --health-retries 5
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: ruby/setup-ruby@v1
-      with:
-        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-    - uses: actions/setup-node@v2
-      with:
-        node-version: '18'
+      - name: 'Checkout'
+        uses: actions/checkout@v4
 
-    - name: Setup test database
-      env:
-        RAILS_ENV: test
-        PGHOST: localhost
-        POSTGRES_DB: skills_test
-        POSTGRES_USER: skills
-        POSTGRES_PASSWORD: skills
-      run: |
-        bundle exec rake db:create db:migrate
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
 
-    - name: Run Tests
-      env:
-        PGHOST: localhost
-        POSTGRES_DB: skills_test
-        POSTGRES_USER: skills
-        POSTGRES_PASSWORD: skills
-        PGPORT: ${{ job.services.postgres.ports[5432] }}
-        IS_CI: true
-      run: bundle exec rake
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-    - name: Run RuboCop
-      run: bundle exec rubocop --parallel
+      - name: 'Run database migrations'
+        env:
+          RAILS_ENV: test
+          PGHOST: ${{ env.PGHOST }}
+          POSTGRES_DB: ${{ env.POSTGRES_DB }}
+          POSTGRES_USER: ${{ env.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
+        run: |
+          bundle exec rake db:create db:migrate
+
+      - name: 'Run tests'
+        env:
+          PGHOST: ${{ env.PGHOST }}
+          POSTGRES_DB: ${{ env.POSTGRES_DB }}
+          POSTGRES_USER: ${{ env.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
+          IS_CI: true
+        run: bundle exec rake
+
+      - name: 'Run RuboCop'
+        run: bundle exec rubocop --parallel
