@@ -28,8 +28,6 @@ jobs:
         node-version: '18'
 
     - uses: browser-actions/setup-chrome@v1
-      with:
-        chrome-version: 120
 
     - name: Setup test database
       env:
