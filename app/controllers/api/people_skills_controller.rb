@@ -10,7 +10,7 @@ class Api::PeopleSkillsController < Api::CrudController
   def index
     return export if format_csv?
     if params.keys.select { |k| %w[person_id skill_id].include?(k) }.length != 1
-      return head 400
+      return head :bad_request
     end
 
     render json: fetch_entries

@@ -9,7 +9,7 @@ class ListController < ApplicationController
   self.render_options = {}
 
   # GET /users
-  def index(options = {})
+  def index(_options = {})
     @entries = fetch_entries
   end
 

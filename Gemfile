@@ -12,10 +12,12 @@ gem 'bootsnap'
 gem 'carrierwave'
 gem 'config'
 gem 'countries'
+gem 'cssbundling-rails'
 gem 'database_cleaner'
 gem 'faker'
 gem 'haml-rails'
 gem 'i18n_data'
+gem 'jsbundling-rails'
 gem 'keycloak-api-rails'
 gem 'language_list'
 gem 'mimemagic', '~> 0.3.6'
@@ -35,9 +37,7 @@ gem 'rails-i18n'
 gem 'rest-client'
 gem 'seed-fu'
 gem 'sentry-raven'
-gem "sprockets-rails"
-gem 'cssbundling-rails'
-gem 'jsbundling-rails'
+gem 'sprockets-rails'
 
 group :metrics do
   gem 'brakeman'
@@ -70,5 +70,3 @@ group :test do
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
-

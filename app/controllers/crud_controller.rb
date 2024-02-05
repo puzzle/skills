@@ -5,8 +5,8 @@ class CrudController < ListController
   class_attribute :permitted_attrs, :nested_models, :permitted_relationships
 
   # GET /users/1
-  def show(options = {});
-      @entry = fetch_entry
+  def show(_options = {})
+    @entry = fetch_entry
   end
 
   # POST /users
@@ -34,7 +34,7 @@ class CrudController < ListController
   # DELETE /users/1
   def destroy(_options = {})
     if entry.destroy
-      head 204
+      head :no_content
     else
       render_errors
     end

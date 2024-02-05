@@ -5,7 +5,7 @@ class Api::CrudController < Api::ListController
   class_attribute :permitted_attrs, :nested_models, :permitted_relationships
 
   # GET /users/1
-  def show(options = {});
+  def show(options = {})
     render_entry({ include: '*' }.merge(options[:render_options] || {}))
   end
 
@@ -34,7 +34,7 @@ class Api::CrudController < Api::ListController
   # DELETE /users/1
   def destroy(_options = {})
     if entry.destroy
-      head 204
+      head :no_content
     else
       render_errors
     end

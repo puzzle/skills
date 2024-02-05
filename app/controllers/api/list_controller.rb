@@ -36,7 +36,7 @@ class Api::ListController < Api::ApplicationController
   class << self
     # The ActiveRecord class of the model.
     def model_class
-      model_name = controller_path.classify.remove("Api::")
+      model_name = controller_path.classify.remove('Api::')
       @model_class ||= model_name.safe_constantize
     end
 

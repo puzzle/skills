@@ -29,6 +29,7 @@ class Api::PeopleController < Api::CrudController
   end
 
   private
+
   def fetch_entries
     Person.includes(:company).list
   end
