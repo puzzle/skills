@@ -28,7 +28,10 @@ jobs:
         node-version: '18'
 
     - uses: browser-actions/setup-chrome@v1
+      id: setup-chrome
 
+    - run: |
+        ${{ steps.setup-chrome.outputs.chrome-path }} --version
     - name: Setup test database
       env:
         RAILS_ENV: test
