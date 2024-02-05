@@ -7,8 +7,6 @@ on:
 
   workflow_dispatch:
 
-permissions: read-all
-
 jobs:
   generate-and-push-sbom:
     runs-on: ubuntu-latest
