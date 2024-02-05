@@ -34,7 +34,7 @@ jobs:
         env:
           PROJECT_NAME: skills
         run: |
-          curl --verbose -s --location --request POST ${{ secrets.DEPENDENCY_TRACK_URL }} \
+          curl -s --location --request POST ${{ secrets.DEPENDENCY_TRACK_URL }} \
           --header "X-Api-Key: ${{ secrets.DEPENDENCY_TRACK_API_KEY }}" \
           --header "Content-Type: multipart/form-data" \
           --form "autoCreate=true" \
