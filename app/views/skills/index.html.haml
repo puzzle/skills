@@ -1,1 +1,10 @@
-= component 'skill.with_collection', @entries
+= render Skill::Component.new do |c|
+  - c.header do
+    %th{scope: "col"} #
+    %th{scope: "col"} Skill
+    %th{scope: "col"} Mitglieder
+    %th{scope: "col"} Kategorie
+    %th{scope: "col"} Subkategorie
+    %th{scope: "col"} Default-Set
+    %th{scope: "col"} Radar
+    %th{scope: "col"} Ändern
