@@ -1,5 +1,1 @@
-- @entries.each do |skill|
-  %h1.display-3
-    = skill.title
-= component 'skill'
-
+= component 'skill.with_collection', @entries
