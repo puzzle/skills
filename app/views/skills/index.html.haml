@@ -1,4 +1,4 @@
-%table.table.w-50
+%table.table.mx-3
   %thead
     %tr
       %th{scope: "col"} #
@@ -17,5 +17,5 @@
         %td= skill.people.count
         %td= skill.category.title
         %td= skill.category.parent.title
-        %td= skill.default_set
+        %td= skill.default_set.nil? ? "Neu" : (skill.default_set? ? "Ja" : "Nein")
         %td= skill.radar
