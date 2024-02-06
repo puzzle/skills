@@ -1,3 +1,21 @@
-- @entries.each do |skill|
-  %h1.display-3
-    = skill.title
+%table.table.w-50
+  %thead
+    %tr
+      %th{scope: "col"} #
+      %th{scope: "col"} Skill
+      %th{scope: "col"} Mitglieder
+      %th{scope: "col"} Kategorie
+      %th{scope: "col"} Subkategorie
+      %th{scope: "col"} Default-Set
+      %th{scope: "col"} Radar
+      %th{scope: "col"} Ändern
+  %tbody
+    - @entries.each_with_index do |skill, i|
+      %tr
+        %th{scope: "row"}= i+1
+        %td= skill.title
+        %td= skill.people.count
+        %td= skill.category.title
+        %td= skill.category.parent.title
+        %td= skill.default_set
+        %td= skill.radar
