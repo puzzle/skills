@@ -2,13 +2,13 @@
   %thead
     %tr
       %th{scope: "col"} #
-      %th{scope: "col"} Skill
-      %th{scope: "col"} Mitglieder
-      %th{scope: "col"} Kategorie
-      %th{scope: "col"} Subkategorie
-      %th{scope: "col"} Default-Set
-      %th{scope: "col"} Radar
-      %th{scope: "col"} Ändern
+      %th{scope: "col"}= t "skills.table.skill"
+      %th{scope: "col"}= t "skills.table.members"
+      %th{scope: "col"}= t "skills.table.category"
+      %th{scope: "col"}= t "skills.table.subcategory"
+      %th{scope: "col"}= t "skills.table.default_set"
+      %th{scope: "col"}= t "skills.table.radar"
+      %th{scope: "col"}= t "skills.table.modify"
   %tbody
     - @entries.each_with_index do |skill, i|
       %tr
