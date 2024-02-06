@@ -1,2 +1,5 @@
-%h1.display-3
-  = @skill.title
+
+%ul.list-group.list-group-horizontal.flex-fill
+  %li.list-group-item= @skill.title
+  %li.list-group-item= @skill.people.count
+
