@@ -1,4 +1,5 @@
 - @entries.each do |skill|
   %h1.display-3
     = skill.title
-= render Skill::Component.new
+= component 'skill'
+
