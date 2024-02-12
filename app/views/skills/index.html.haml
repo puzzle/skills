@@ -1,21 +1,19 @@
-%table.table.mx-3
-  %thead
+%table.table.table-hover
+  %thead.table-light
     %tr
-      %th{scope: "col"} #
       %th{scope: "col"}= t "skills.table.skill"
-      %th{scope: "col"}= t "skills.table.members"
+      %th.table-secondary{scope: "col"}= t "skills.table.members"
       %th{scope: "col"}= t "skills.table.category"
-      %th{scope: "col"}= t "skills.table.subcategory"
+      %th.table-secondary{scope: "col"}= t "skills.table.subcategory"
       %th{scope: "col"}= t "skills.table.default_set"
-      %th{scope: "col"}= t "skills.table.radar"
+      %th.table-secondary{scope: "col"}= t "skills.table.radar"
       %th{scope: "col"}= t "skills.table.modify"
   %tbody
-    - @entries.each_with_index do |skill, i|
+    - @entries.each_with_index do |skill|
       %tr
-        %th{scope: "row"}= i+1
         %td= skill.title
-        %td= skill.people.count
+        %td.table-light= skill.people.count
         %td= skill.category.title
-        %td= skill.category.parent.title
+        %td.table-light= skill.category.parent.title
         %td= skill.default_set.nil? ? "Neu" : (skill.default_set? ? "Ja" : "Nein")
-        %td= skill.radar
+        %td.table-light= skill.radar
