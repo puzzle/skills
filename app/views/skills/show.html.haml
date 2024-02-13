@@ -1,7 +1,7 @@
 %div
   %h1
-    = @entry.title
-    's Profile
+    = @skill.title
   %div
     %h5
-= link_to "Person bearbeiten",  edit_person_path
+= link_to "Skill bearbeiten",  edit_skill_path(@skill)
+= link_to "Alle Skills ansehen",  skills_path
