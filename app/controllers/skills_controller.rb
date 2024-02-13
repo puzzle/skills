@@ -13,8 +13,8 @@ class SkillsController < CrudController
           status: :unprocessable_entity)
   end
 
-  def new
-    @skill = Skill.new
+  def edit
+    @skill = Skill.find(params[:id])
   end
 
   def unrated_by_person
