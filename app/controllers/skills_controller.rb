@@ -10,6 +10,10 @@ class SkillsController < CrudController
 
   self.permitted_attrs = %i[title radar portfolio default_set category_id]
 
+  def create
+    super(:location => skills_path)
+  end
+
   def unrated_by_person
     if params[:person_id].present?
       entries = Skill.default_set.where
