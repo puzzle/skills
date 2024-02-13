@@ -13,11 +13,8 @@ class SkillsController < CrudController
           status: :unprocessable_entity)
   end
 
-  def edit
-    respond_to do |format|
-      format.html
-      format.js
-    end
+  def new
+    @skill = Skill.new
   end
 
   def unrated_by_person
