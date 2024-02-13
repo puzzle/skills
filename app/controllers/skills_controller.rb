@@ -13,6 +13,13 @@ class SkillsController < CrudController
           status: :unprocessable_entity)
   end
 
+  def edit
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   def unrated_by_person
     if params[:person_id].present?
       entries = Skill.default_set.where

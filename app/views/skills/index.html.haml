@@ -21,4 +21,9 @@
         %td= skill.default_set.nil? ? "Neu" : (skill.default_set? ? "Ja" : "Nein")
         %td.table-light= skill.radar
         %td
-          %img{:src=> "/assets/pencil-square.svg",:height=>"16"}
+          -# %img{:src=> "/assets/pencil-square.svg",:height=>"16", :onclick=>open_modal}
+          = link_to 'Add user', edit_skill_path(skill),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'btn btn-primary btn-lg'}
+          #modal-window.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog"}
+            .modal-dialog{:role => "document"}
+              .modal-content
+
