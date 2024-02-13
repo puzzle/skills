@@ -19,8 +19,8 @@ class SkillsController < CrudController
     super
   end
 
-  def new
-    @skill = Skill.new
+  def edit
+    @skill = Skill.find(params[:id])
   end
 
   def unrated_by_person
