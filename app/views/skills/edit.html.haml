@@ -1,7 +1,2 @@
-.modal-header
-  %button.close{"data-dismiss" => "modal", :type => "button"} x
-  %h4#myModalLabel.modal-title Modal title
-.modal-body
-  *Modal content comes here*
-.modal-footer
-  %button.btn.btn-primary Save
+= render "remote_modal", title: "Edit Skill" do
+  = render "form", skill: @skill

@@ -2,11 +2,9 @@
   .mb-3
     = f.label :name, class: "form-label"
     = f.text_field :name, class: "form-control"
-    -# = errors_for product, :name
   .mb-3
     = f.label :description, class: "form-label"
     = f.text_area :description, class: "form-control"
-    -# = errors_for product, :description
   .mb-3
     = f.button class: "btn btn-primary"
     = link_to "Cancel", skills_path, class: "btn btn-outline-secondary"

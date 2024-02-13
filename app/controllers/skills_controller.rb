@@ -16,7 +16,6 @@ class SkillsController < CrudController
 
   def index
     return export if params[:format]
-
     super
   end
 

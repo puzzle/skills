@@ -18,6 +18,4 @@
         %td= skill.default_set.nil? ? "Neu" : (skill.default_set? ? "Ja" : "Nein")
         %td.table-light= skill.radar
         %td
-          -# %button.btn.btn-info.btn-lg{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"} Open Modal
-          %div= link_to "New product", new_skill_path, class: "btn btn-primary", data: { turbo_frame: "remote_modal" }
-
+          %div= link_to "New product", edit_skill_path(skill), class: "btn btn-primary", data: { turbo_frame: "remote_modal" }
