@@ -20,11 +20,8 @@ class SkillsController < CrudController
     super
   end
 
-  def edit
-    respond_to do |format|
-      format.html
-      format.js
-    end
+  def new
+    @skill = Skill.new
   end
 
   def unrated_by_person
