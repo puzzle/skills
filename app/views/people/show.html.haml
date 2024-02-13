@@ -4,8 +4,47 @@
   %h1
     = @person.name
     's Profile
+
+%div.d-flex
+  %div.me-5
+    %table
+      %tbody
+        %th Name:
+        %tr
+          %td= @entry.name
+        %th Email:
+        %tr
+          %td= @entry.email
+        %th Abschluss:
+        %tr
+          %td= @entry.title
+        %th Funktion:
+        %tr
+          %td= @entry.roles.map { |role| role.name }
+        %th Organisationseinheit:
+        %tr
+          %td= @entry.department.name
+        %th Firma:
+        %tr
+          %td= @entry.company.name
   %div
-    %h5
-      This Person is from #{ @person.nationality }
+    %table
+      %tbody
+        %th Geburtsdatum:
+        %tr
+          %td= @entry.birthdate.to_date.strftime('%d.%m.%Y')
+        %th Nationalität:
+        %tr
+          %td= @entry.nationality
+        %th Wohnort (Stadt):
+        %tr
+          %td= @entry.location
+        %th Zivilstand:
+        %tr
+          %td= @entry.marital_status
+        %th Kürzel:
+        %tr
+          %td= @entry.shortname ? @entry.shortname : "-"
+
 = link_to "Person bearbeiten",  edit_person_path
 = link_to "Show all",  people_path
