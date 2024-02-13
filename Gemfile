@@ -38,6 +38,8 @@ gem 'rest-client'
 gem 'seed-fu'
 gem 'sentry-raven'
 gem 'sprockets-rails'
+gem 'stimulus-rails'
+gem 'turbo-rails'
 
 group :metrics do
   gem 'brakeman'

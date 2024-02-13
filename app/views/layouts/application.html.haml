@@ -17,3 +17,5 @@
         %div.row.d-flex.justify-content-center
           %div.col-8
             = yield
+            = turbo_frame_tag "remote_modal", target: "_top"
+
