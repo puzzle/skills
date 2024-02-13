@@ -1,53 +1,52 @@
-# frozen_string_literal: true
-
-# A generic controller to display entries of a certain model class.
+# Abstract controller providing a basic list action.
+# The loaded model entries are available in the view as an instance variable
+# named after the +model_class+ or by the helper method +entries+.
+#
+# The +index+ action lists all entries of a certain model and provides
+# functionality to search and sort this list.
+# Furthermore, it remembers the last search and sort parameters after the
+# user returns from a displayed or edited entry.
 class ListController < ApplicationController
-  delegate :model_class, :model_identifier, :model_serializer, :list_serializer,
-           to: 'self.class'
 
-  class_attribute :render_options
-  self.render_options = {}
+  include DryCrud::GenericModel
+  prepend DryCrud::Nestable
+  include DryCrud::RenderCallbacks
+  include DryCrud::Rememberable
 
-  # GET /users
-  def index(_options = {})
-    @entries = fetch_entries
-  end
+  define_render_callbacks :index
 
-  protected
+  helper_method :entries
 
-  def fetch_entries
-    model_scope.list
+  ##############  ACTIONS  ############################################
+
+  #   GET /entries
+  #   GET /entries.json
+  #
+  # List all entries of this model.
+  def index
+    entries
   end
 
   private
 
-  def model_scope
-    model_class
+  # Helper method to access the entries to be displayed in the current index
+  # page in an uniform way.
+  def entries
+    model_ivar_get(plural: true) || model_ivar_set(list_entries)
   end
 
-  def model_root_key
-    model_class.name.underscore
+  # The base relation used to filter the entries.
+  # Calls the #list scope if it is defined on the model class.
+  #
+  # This method may be adapted as long it returns an
+  # <tt>ActiveRecord::Relation</tt>.
+  # Some of the modules included extend this method.
+  def list_entries
+    model_class.respond_to?(:list) ? model_scope.list : model_scope
   end
 
-  class << self
-    # The ActiveRecord class of the model.
-    def model_class
-      model_name = controller_path.classify.remove('::')
-      @model_class ||= model_name.constantize
-    end
+  # Include these modules after the #list_entries method is defined.
+  include DryCrud::Searchable
+  include DryCrud::Sortable
 
-    # The identifier of the model used for form parameters.
-    # I.e., the symbol of the underscored model name.
-    def model_identifier
-      @model_identifier ||= model_class.model_name.param_key
-    end
-
-    def list_serializer
-      model_serializer
-    end
-
-    def model_serializer
-      @model_serializer ||= "#{model_class.name}Serializer".constantize
-    end
-  end
 end
