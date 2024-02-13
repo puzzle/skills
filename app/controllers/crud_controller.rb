@@ -62,7 +62,7 @@ class CrudController < ListController
       assign_attributes
       created = with_callbacks(:create, :save) { entry.save }
       respond(created,
-              **options.merge(status: :created, render_on_failure: :new),
+              **options.reverse_merge(status: :created, render_on_failure: :new),
               &block)
       raise ActiveRecord::Rollback unless created
     end
@@ -169,7 +169,8 @@ class CrudController < ListController
   # template, otherwise redirect.
   def render_or_redirect_on_failure(**options)
     if options[:render_on_failure]
-      render options[:render_on_failure]
+      binding.pry
+      render options[:render_on_failure], status: options[:status]
     else
       redirect_on_failure(**options)
     end

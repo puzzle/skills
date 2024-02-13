@@ -11,7 +11,9 @@ class SkillsController < CrudController
   self.permitted_attrs = %i[title radar portfolio default_set category_id]
 
   def create
-    super(:location => skills_path)
+    super(:location => skills_path,
+          render_on_failure: 'skills/form_update',
+          status: :unprocessable_entity)
   end
 
   def unrated_by_person
