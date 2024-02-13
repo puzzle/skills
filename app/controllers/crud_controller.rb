@@ -171,7 +171,8 @@ class CrudController < ListController
   # template, otherwise redirect.
   def render_or_redirect_on_failure(**options)
     if options[:render_on_failure]
-      render options[:render_on_failure]
+      binding.pry
+      render options[:render_on_failure], status: options[:status]
     else
       redirect_on_failure(**options)
     end
