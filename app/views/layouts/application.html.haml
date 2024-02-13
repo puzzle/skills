@@ -13,4 +13,7 @@
     %pzsh-container
       %pzsh-topbar
         %img{:src=> "/assets/logo.svg",:height=>"32"}
-      = yield
+      %div.container-fluid
+        %div.row.d-flex.justify-content-center
+          %div.col-8
+            = yield

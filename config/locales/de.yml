@@ -1,0 +1,10 @@
+de:
+  skills:
+    table:
+      skill: Skill
+      members: Mitglieder
+      category: Kategorie
+      subcategory: Subkategorie
+      default_set: Default-Set
+      radar: Radar
+      modify: Ändern
