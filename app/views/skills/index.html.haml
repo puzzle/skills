@@ -21,4 +21,4 @@
         %td= skill.default_set.nil? ? "Neu" : (skill.default_set? ? "Ja" : "Nein")
         %td.table-light= skill.radar
         %td
-          %img{:src=> "/assets/pencil-square.svg",:height=>"16"}
+          =link_to image_tag("pencil-square.svg", class: "text-primary"), edit_skill_path(skill), class: "btn text-primary", data: { turbo_frame: "remote_modal" }
