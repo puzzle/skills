@@ -8,14 +8,14 @@
     = f.label :title, class: "form-label"
     = f.text_field :title, class: "form-control"
   .mb-2.w-100
-    = f.label :kategorie, class: "form-label w-25"
-    = f.collection_select :category_id, Category.all, :id, :title, {prompt: true}, class: "w-50"
+    = f.label :kategorie, class: "form-label w-100"
+    = f.collection_select :category_id, Category.all, :id, :title, {}, class: "form-select w-100"
   .mb-2.w-100
-    = f.label :radar, class: "form-label w-25"
-    = f.select :radar, Settings.radar
+    = f.label :radar, class: "form-label w-100"
+    = f.select :radar, Settings.radar, {}, class: "form-select"
   .mb-2.w-100
-    = f.label :portfolio, class: "form-label w-25"
-    = f.select :portfolio, Settings.portfolio
+    = f.label :portfolio, class: "form-label w-100"
+    = f.select :portfolio, Settings.portfolio, {}, class: "form-select"
 
   .mb-1.mt-4
     = f.button class:"btn btn-primary","aria-label":"Close"
