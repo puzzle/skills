@@ -4,6 +4,14 @@ $skills-gray: #f5f5f5;
 
 @import "bootstrap";
 
+#skill_radar {
+  width: 50% !important;
+}
+
+#skill_portfolio {
+  width: 50% !important;
+}
+
 .modal-dialog {
   max-width: 60%;
 }
