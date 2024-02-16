@@ -1,4 +1,9 @@
-= form_with model: @skill do |f|
+- if @skill.errors.any?
+  .alert.alert-danger
+    %ul
+      - @skill.errors.full_messages.each do |error|
+        %li= error
+= form_with(model: @skill) do |f|
   .mb-3
     = f.label :title, class: "form-label"
     = f.text_field :title, class: "form-control"
@@ -13,5 +18,5 @@
     = f.select :portfolio, Settings.portfolio
 
   .mb-3
-    = f.button class:"btn btn-primary", "data-bs-dismiss":"modal","aria-label":"Close"
+    = f.button class:"btn btn-primary","aria-label":"Close"
     = link_to "Cancel", skills_path, class: "btn btn-outline-secondary"

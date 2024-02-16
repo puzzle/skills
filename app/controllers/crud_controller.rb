@@ -159,6 +159,7 @@ class CrudController < ListController
         format.html { redirect_on_success(**options) }
         format.json { render_success_json(options[:status]) }
       else
+        format.turbo_stream { render options[:render_on_failure], status: options[:status] }
         format.html { render_or_redirect_on_failure(**options) }
         format.json { render_failure_json }
       end
@@ -169,7 +170,6 @@ class CrudController < ListController
   # template, otherwise redirect.
   def render_or_redirect_on_failure(**options)
     if options[:render_on_failure]
-      binding.pry
       render options[:render_on_failure], status: options[:status]
     else
       redirect_on_failure(**options)
