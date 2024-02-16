@@ -1,6 +1,6 @@
 - if @skill.errors.any?
   .alert.alert-danger
-    %ul
+    %ul.mb-0
       - @skill.errors.full_messages.each do |error|
         %li= error
 = form_with(model: @skill) do |f|
