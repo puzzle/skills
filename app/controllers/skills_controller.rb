@@ -10,14 +10,10 @@ class SkillsController < CrudController
 
   self.permitted_attrs = %i[title radar portfolio default_set category_id]
 
-  self.nested_models = %i[children parents]
-
-  self.permitted_relationships = %i[category people]
-
-  def index
-    return export if params[:format]
-
-    super
+  def create
+    super(:location => skills_path,
+          render_on_failure: 'skills/form_update',
+          status: :unprocessable_entity)
   end
 
   def unrated_by_person
@@ -28,12 +24,6 @@ class SkillsController < CrudController
       entries = Skill.list
     end
     render json: entries, each_serializer: SkillMinimalSerializer, include: '*'
-  end
-
-  protected
-
-  def render_unauthorized(message = 'unauthorized')
-    render json: message, status: :unauthorized
   end
 
   private

@@ -1,0 +1,22 @@
+- if @skill.errors.any?
+  .alert.alert-danger
+    %ul.mb-0
+      - @skill.errors.full_messages.each do |error|
+        %li= error
+= form_with(model: @skill) do |f|
+  .mb-4.w-100
+    = f.label :title, class: "form-label"
+    = f.text_field :title, class: "form-control"
+  .mb-2.w-100
+    = f.label :kategorie, class: "form-label w-100"
+    = f.collection_select :category_id, Category.all_children.sort_by { |category| category.parent&.title}, :id, :name_with_parent, {}, class: "form-select w-100"
+  .mb-2.w-100
+    = f.label :radar, class: "form-label w-100"
+    = f.select :radar, Settings.radar, {}, class: "form-select"
+  .mb-2.w-100
+    = f.label :portfolio, class: "form-label w-100"
+    = f.select :portfolio, Settings.portfolio, {}, class: "form-select"
+
+  .mb-1.mt-4
+    = f.button class:"btn btn-primary","aria-label":"Close"
+    = link_to "Cancel", skills_path, class: "btn btn-outline-secondary", "data-bs-dismiss":"modal"

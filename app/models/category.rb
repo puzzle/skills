@@ -31,4 +31,8 @@ class Category < ApplicationRecord
   scope :all_children, -> { order(:position).where.not(parent_id: nil) }
 
   scope :list, -> { order(:position) }
+
+  def name_with_parent
+    "#{parent.title} - #{title}"
+  end
 end
