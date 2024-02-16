@@ -19,6 +19,16 @@ Managing employees and getting an overview of each of their skills has never bee
 
 ![Skills Workflow](skills.gif)
 
+# Disclaimer
+
+We are currently rewriting the application and completely removing EmberJS.
+The new Techstack will solely rely on Rails and some Hotwire/Stimulus.
+
+If you still need the old state you can find the last release [here](https://github.com/puzzle/skills/releases/tag/v4.4.1).
+The EmberJS-based Application will no longer be maintained.
+
+However, we intend to provide the same functionality in the new Tech Stack without any fundamental data changes.
+
 ## Prerequisites
 
 You will need the following things properly installed on your computer:
