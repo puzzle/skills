@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DryCrud
 
   # Provide +before_render+ callbacks.

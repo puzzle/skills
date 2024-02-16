@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DryCrud
 
   # Sort functionality for the index table.

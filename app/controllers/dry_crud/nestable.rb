@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DryCrud
 
   # Provides functionality to nest controllers/resources.

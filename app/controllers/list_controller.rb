@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Abstract controller providing a basic list action.
 # The loaded model entries are available in the view as an instance variable
 # named after the +model_class+ or by the helper method +entries+.

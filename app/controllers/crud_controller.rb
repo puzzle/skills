@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Abstract controller providing basic CRUD actions.
 #
 # Some enhancements were made to ease extensibility.
@@ -156,14 +158,22 @@ class CrudController < ListController
     respond_to do |format|
       yield(format, success) if block_given?
       if success
-        format.html { redirect_on_success(**options) }
-        format.json { render_success_json(options[:status]) }
+        render_on_success(format, **options)
       else
-        format.turbo_stream { render options[:render_on_failure], status: options[:status] }
-        format.html { render_or_redirect_on_failure(**options) }
-        format.json { render_failure_json }
+        render_on_error(format, **options)
       end
     end
+  end
+
+  def render_on_success(format, **options)
+    format.html { redirect_on_success(**options) }
+    format.json { render_success_json(options[:status]) }
+  end
+
+  def render_on_error(format, **options)
+    format.turbo_stream { render options[:render_on_failure], status: options[:status] }
+    format.html { render_or_redirect_on_failure(**options) }
+    format.json { render_failure_json }
   end
 
   # If the option :render_on_failure is given, render the corresponding

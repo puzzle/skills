@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DryCrud
 
   # Connects the including controller to the model whose name corrsponds to
