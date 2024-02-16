@@ -39,7 +39,7 @@
           %td= @entry.birthdate.to_date.strftime('%d.%m.%Y')
         %th.fw-light Nationalität
         %tr
-          %td= @entry.nationality2.blank? ? @entry.nationality : "#{@entry.nationality}, #{@entry.nationality2}"
+          %td= @entry.nationality2.blank? ?  ISO3166::Country[@entry.nationality] : "#{ISO3166::Country[@entry.nationality]}, #{ISO3166::Country[@entry.nationality2]}"
         %th.fw-light Wohnort (Stadt)
         %tr
           %td= @entry.location
@@ -51,7 +51,57 @@
           %td= @entry.shortname
   %div.w-25
     %div.fw-light Sprachen
-    %div.border.border-dark-subtle.mt-1.p-2
+    %div.border.border-dark-subtle.mt-1.p-2.rounded
       - @entry.language_skills.each do |language|
         %div.mb-1= "#{language.language}: #{language.level} - #{language.certificate}"
 = link_to "Show all",  people_path
+
+= form_with model: @entry do |form|
+  %div.d-flex
+    %div.w-25.pe-5
+      %table
+        %tbody
+          %th.fw-light Name
+          %tr
+            %td= form.text_field :name
+          %th.fw-light Email
+          %tr
+            %td= form.text_field :email
+          %th.fw-light Abschluss
+          %tr
+            %td= form.text_field :title
+          %th.fw-light Funktionen
+          - @entry.roles.each do
+            %tr
+              %td
+                %div.border.border-dark-subtle.rounded.p-1
+                  = form.collection_select :role, Role.order(:name), :id, :name
+
+          %th.fw-light Organisationseinheit
+          %tr
+            %td= form.collection_select :department, Department.order(:name), :id, :name
+          %th.fw-light Firma
+          %tr
+            %td= form.collection_select :company, Company.order(:name), :id, :name
+          %th.fw-light Wohnort (Stadt)
+          %tr
+            %td= form.text_field :location
+
+    %div.w-25.pe-5
+      %table
+        %tbody
+          %th.fw-light Geburtsdatum
+          %tr
+            %td= form.date_field :birthdate
+          %th.fw-light Doppelbürger
+          %tr
+            %td= form.check_box :nationality2?
+          %th.fw-light Erste Nationalität
+          %tr
+            %td= form.collection_select :nationality, ISO3166::Country.all, :alpha2, :name
+          %th.fw-light Zweite Nationalität
+          %tr
+            %td= form.collection_select :nationality, ISO3166::Country.all, :alpha2, :name
+          %th.fw-light Zivilstand
+          %tr
+            %td= form.collection_select :marital_status, Person.marital_statuses, :second, :first
