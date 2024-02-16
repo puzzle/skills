@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DryCrud
 
   # The search functionality for the index table.
