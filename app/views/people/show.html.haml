@@ -50,6 +50,8 @@
         %tr
           %td= @entry.shortname
   %div.w-25
-    %div Sprachen
-
+    %div.fw-light Sprachen
+    %div.border.border-dark-subtle.mt-1.p-2
+      - @entry.language_skills.each do |language|
+        %div.mb-1= "#{language.language}: #{language.level} - #{language.certificate}"
 = link_to "Show all",  people_path
