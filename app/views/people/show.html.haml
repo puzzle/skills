@@ -8,48 +8,48 @@
 %div.d-flex
   %div.w-25
     %img.rounded-circle{src: @entry.picture, width: '141', height: '141'}
+    %div.mt-3= link_to "Bearbeiten",  edit_person_path
   %div.w-25.pe-5
     %table
       %tbody
-        %th Name:
+        %th.fw-light Name
         %tr
           %td= @entry.name
-        %th Email:
+        %th.fw-light Email
         %tr
           %td= @entry.email
-        %th Abschluss:
+        %th.fw-light Abschluss
         %tr
           %td= @entry.title
-        %th Funktion:
+        %th.fw-light Funktion
         - @entry.roles.each do |role|
           %tr
             %td= role.name
-        %th Organisationseinheit:
+        %th.fw-light Organisationseinheit
         %tr
           %td= @entry.department.name
-        %th Firma:
+        %th.fw-light Firma
         %tr
           %td= @entry.company.name
   %div.w-25.pe-5
     %table
       %tbody
-        %th Geburtsdatum:
+        %th.fw-light Geburtsdatum
         %tr
           %td= @entry.birthdate.to_date.strftime('%d.%m.%Y')
-        %th Nationalität:
+        %th.fw-light Nationalität
         %tr
           %td= @entry.nationality2.blank? ? @entry.nationality : "#{@entry.nationality}, #{@entry.nationality2}"
-        %th Wohnort (Stadt):
+        %th.fw-light Wohnort (Stadt)
         %tr
           %td= @entry.location
-        %th Zivilstand:
+        %th.fw-light Zivilstand
         %tr
           %td= @entry.marital_status
-        %th Kürzel:
+        %th.fw-light Kürzel
         %tr
           %td= @entry.shortname
   %div.w-25
     %div Sprachen
 
-= link_to "Person bearbeiten",  edit_person_path
 = link_to "Show all",  people_path
