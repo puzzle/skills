@@ -6,7 +6,9 @@
     's Profile
 
 %div.d-flex
-  %div.me-5
+  %div.w-25
+    %img.rounded-circle{src: @entry.picture, width: '141', height: '141'}
+  %div.w-25.pe-5
     %table
       %tbody
         %th Name:
@@ -19,15 +21,16 @@
         %tr
           %td= @entry.title
         %th Funktion:
-        %tr
-          %td= @entry.roles.map { |role| role.name }
+        - @entry.roles.each do |role|
+          %tr
+            %td= role.name
         %th Organisationseinheit:
         %tr
           %td= @entry.department.name
         %th Firma:
         %tr
           %td= @entry.company.name
-  %div
+  %div.w-25.pe-5
     %table
       %tbody
         %th Geburtsdatum:
@@ -35,7 +38,7 @@
           %td= @entry.birthdate.to_date.strftime('%d.%m.%Y')
         %th Nationalität:
         %tr
-          %td= @entry.nationality
+          %td= @entry.nationality2.blank? ? @entry.nationality : "#{@entry.nationality}, #{@entry.nationality2}"
         %th Wohnort (Stadt):
         %tr
           %td= @entry.location
@@ -44,7 +47,9 @@
           %td= @entry.marital_status
         %th Kürzel:
         %tr
-          %td= @entry.shortname ? @entry.shortname : "-"
+          %td= @entry.shortname
+  %div.w-25
+    %div Sprachen
 
 = link_to "Person bearbeiten",  edit_person_path
 = link_to "Show all",  people_path
