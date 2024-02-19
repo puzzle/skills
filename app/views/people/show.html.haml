@@ -71,18 +71,19 @@
           %tr
             %td= form.text_field :title
           %th.fw-light Funktionen
-          - @entry.roles.each do
+          - @entry.roles.each do |role|
             %tr
               %td
                 %div.border.border-dark-subtle.rounded.p-1
-                  = form.collection_select :role, Role.order(:name), :id, :name
-
-          %th.fw-light Organisationseinheit
+                  = form.collection_select :role_id, Role.order(:name), :id, :name, { selected: role.id }
+                  = form.collection_select :person_role_level_id, PersonRoleLevel.order(:level), :id, :level
+                  = form.number_field :percent, step: 1
+          %th.fw-light Organisationseinheit :
           %tr
-            %td= form.collection_select :department, Department.order(:name), :id, :name
+            %td= form.collection_select :department_id, Department.order(:name), :id, :name
           %th.fw-light Firma
           %tr
-            %td= form.collection_select :company, Company.order(:name), :id, :name
+            %td= form.collection_select :company_id, Company.order(:name), :id, :name
           %th.fw-light Wohnort (Stadt)
           %tr
             %td= form.text_field :location
@@ -95,13 +96,14 @@
             %td= form.date_field :birthdate
           %th.fw-light Doppelbürger
           %tr
-            %td= form.check_box :nationality2?
+            %td= check_box :has_nationality2?, { checked: @entry.nationality2? }
           %th.fw-light Erste Nationalität
           %tr
-            %td= form.collection_select :nationality, ISO3166::Country.all, :alpha2, :name
-          %th.fw-light Zweite Nationalität
-          %tr
-            %td= form.collection_select :nationality, ISO3166::Country.all, :alpha2, :name
+            %td= form.collection_select :nationality, ISO3166::Country.all.sort, :alpha2, :name
+          - if :has_nationality2?
+            %th.fw-light Zweite Nationalität
+            %tr
+              %td= form.collection_select :nationality2, ISO3166::Country.all.sort, :alpha2, :name
           %th.fw-light Zivilstand
           %tr
-            %td= form.collection_select :marital_status, Person.marital_statuses, :second, :first
+            %td= form.collection_select :marital_status, Person.marital_statuses, :second, :first, { selected: Person.marital_statuses[@entry.marital_status] }
