@@ -13,7 +13,7 @@
       %th{scope: "col"}= t "skills.table.modify"
   %tbody
     - @skills.each_with_index do |skill, index|
-      %tr{:contenteditable => "false", :id => "table-row-#{index}"}
+      %tr{:contenteditable => "false", :id => "table-row-#{index}", "data-controller" => "table", "data-table-target" => "row"}
         %td= skill.title
         %td.table-light= skill.people.count
         %td= skill.category.title
@@ -21,6 +21,6 @@
         %td= skill.default_set.nil? ? "Neu" : (skill.default_set? ? "Ja" : "Nein")
         %td.table-light= skill.radar
         %td{:contenteditable => "false"}
-          %img.pointer.edit-button{:src=> "/assets/pencil-square.svg",:height=>"16", :id=>"edit-button-#{index}"}
-          =link_to image_tag("/assets/floppy2-fill.svg", class: "text-primary", id: "save-button-#{index}"), "#{skill_path(skill)}", class: "btn text-primary", method: :put
-          %img.pointer.cancel-button{:src=> "/assets/x.svg",:height=>"16", :id=>"cancel-button-#{index}"}
+          %img.pointer.edit-button{:src=> "/assets/pencil-square.svg",:height=>"16", "data-action" => "click->table#editRow", "data-table-target" => "editButton"}
+          %img.pointer.save-button{:src=> "/assets/floppy2-fill.svg",:height=>"16", "data-table-target" => "saveButton", "style" => "display: none;"}
+          %img.pointer.cancel-button.d-none{:src=> "/assets/x.svg",:height=>"16", "data-action" => "click->table#cancelRow", "data-table-target" => "cancelButton", "style" => "display: none;"}
