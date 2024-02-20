@@ -1,7 +1,3 @@
-%select.form-select
-  - @people.order(:name).each do |person|
-    %option
-      = link_to person.name, person_path(person)
 
 = form_with(model: @person) do |f|
   %section{"data-controller"=>"dropdown"}
