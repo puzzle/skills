@@ -57,7 +57,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'bullet'
+  gem 'bullet', '~> 7.1', '>= 7.1.6'
   gem 'listen', '~> 3.0.5'
   gem 'rb-readline'
   # Spring speeds up development by keeping your application
