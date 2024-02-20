@@ -1,5 +1,3 @@
-=render partial:"people/search", :locals => {person: @person}
-
 %div
   %h1
     = @person.name
@@ -7,56 +5,56 @@
 
 %div.d-flex
   %div.w-25
-    %img.rounded-circle{src: @entry.picture, width: '141', height: '141'}
+    %img.rounded-circle{src: @person.picture, width: '141', height: '141'}
     %div.mt-3= link_to "Bearbeiten",  edit_person_path
   %div.w-25.pe-5
     %table
       %tbody
         %th.fw-light Name
         %tr
-          %td= @entry.name
+          %td= @person.name
         %th.fw-light Email
         %tr
-          %td= @entry.email
+          %td= @person.email
         %th.fw-light Abschluss
         %tr
-          %td= @entry.title
+          %td= @person.title
         %th.fw-light Funktion
-        - @entry.person_roles.each do |person_role|
+        - @person.person_roles.each do |person_role|
           %tr
             %td= "#{person_role.role.name} #{person_role.person_role_level.level} #{person_role.percent.to_i}%"
         %th.fw-light Organisationseinheit
         %tr
-          %td= @entry.department.name
+          %td= @person.department.name
         %th.fw-light Firma
         %tr
-          %td= @entry.company.name
+          %td= @person.company.name
   %div.w-25.pe-5
     %table
       %tbody
         %th.fw-light Geburtsdatum
         %tr
-          %td= @entry.birthdate.to_date.strftime('%d.%m.%Y')
+          %td= @person.birthdate.to_date.strftime('%d.%m.%Y')
         %th.fw-light Nationalität
         %tr
-          %td= @entry.nationality2.blank? ? ISO3166::Country[@entry.nationality] : "#{ISO3166::Country[@entry.nationality]}, #{ISO3166::Country[@entry.nationality2]}"
+          %td= @person.nationality2.blank? ? ISO3166::Country[@person.nationality] : "#{ISO3166::Country[@person.nationality]}, #{ISO3166::Country[@person.nationality2]}"
         %th.fw-light Wohnort (Stadt)
         %tr
-          %td= @entry.location
+          %td= @person.location
         %th.fw-light Zivilstand
         %tr
-          %td= @entry.marital_status
+          %td= @person.marital_status
         %th.fw-light Kürzel
         %tr
-          %td= @entry.shortname
+          %td= @person.shortname
   %div.w-25
     %div.fw-light Sprachen
     %div.border.border-dark-subtle.mt-1.p-2.rounded
-      - @entry.language_skills.each do |language|
+      - @person.language_skills.each do |language|
         %div.mb-1= "#{language.language}: #{language.level} - #{language.certificate}"
 = link_to "Show all",  people_path
 
-= form_with model: @entry do |form|
+= form_with model: @person do |form|
   %div.d-flex
     %div.w-25.pe-5
       %table
@@ -71,7 +69,7 @@
           %tr
             %td= form.text_field :title
           %th.fw-light Funktionen
-          - @entry.roles.each do |role|
+          - @person.roles.each do |role|
             %tr
               %td
                 %div.border.border-dark-subtle.rounded.p-1
@@ -99,14 +97,14 @@
             %td= form.date_field :birthdate
           %th.fw-light Doppelbürger
           %tr
-            %td= check_box :nationality2?, { checked: @entry.nationality2? }
+            %td= check_box :nationality2?, { checked: @person.nationality2? }
           %th.fw-light Erste Nationalität
           %tr
             %td= form.collection_select :nationality, ISO3166::Country.all.sort, :alpha2, :name
-          - if @entry.nationality2?
+          - if @person.nationality2?
             %th.fw-light Zweite Nationalität
             %tr
               %td= form.collection_select :nationality2, ISO3166::Country.all.sort, :alpha2, :name
           %th.fw-light Zivilstand
           %tr
-            %td= form.collection_select :marital_status, Person.marital_statuses, :second, :first, { selected: Person.marital_statuses[@entry.marital_status] }
+            %td= form.collection_select :marital_status, Person.marital_statuses, :second, :first, { selected: Person.marital_statuses[@person.marital_status] }
