@@ -21,6 +21,8 @@
         %td= skill.default_set.nil? ? "Neu" : (skill.default_set? ? "Ja" : "Nein")
         %td.table-light= skill.radar
         %td{:contenteditable => "false"}
+          %turbo-frame{id: "#{dom_id skill}"}
+            = link_to "Edit", edit_skill_path(skill), class: "btn bg-gray-100"
           %img.pointer.edit-button{:src=> "/assets/pencil-square.svg",:height=>"16", "data-action" => "click->table#editRow", "data-table-target" => "editButton"}
-          %img.pointer.save-button{:src=> "/assets/floppy2-fill.svg",:height=>"16", "data-table-target" => "saveButton", "style" => "display: none;"}
+          %img.pointer.save-button{:src=> "/assets/floppy2-fill.svg",:height=>"16", "data-action" => "click->table#saveData", "data-table-target" => "saveButton", "style" => "display: none;", "data-table-skill-param" => "#{skill.to_json}"}
           %img.pointer.cancel-button.d-none{:src=> "/assets/x.svg",:height=>"16", "data-action" => "click->table#cancelRow", "data-table-target" => "cancelButton", "style" => "display: none;"}
