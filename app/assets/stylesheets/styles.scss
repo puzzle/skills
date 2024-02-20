@@ -3,3 +3,56 @@
 .modal-dialog {
   max-width: 60%;
 }
+
+.content {
+  max-width: 60%;
+  flex-grow: 1;
+}
+
+.navbar {
+  flex-direction: row;
+  list-style-type: none;
+  margin: 0;
+}
+
+.hello-sir {
+  flex-direction: row;
+  list-style-type: none;
+  margin: 0;
+}
+
+.nav-link  {
+  color: white;
+  text-decoration: none;
+}
+
+.nav-pad {
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.over-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+.over-header-adjust {
+  display: flex;
+  align-items: end;
+}
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+}
+
+.scale-icon {
+  transform: scale(0.75);
+}
+
+.over-header-border {
+  border-right: 1px solid;
+  border-left: 1px solid;
+}

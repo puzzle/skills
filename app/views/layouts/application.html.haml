@@ -9,13 +9,34 @@
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
     = favicon_link_tag "favicon.png"
-  %body
-    %pzsh-container
-      %pzsh-topbar
-        %img{:src=> "/assets/logo.svg",:height=>"32"}
-      %div.container-fluid
-        %div.row.d-flex.justify-content-center
-          %div.col-8
-            = yield
-            = turbo_frame_tag "remote_modal", target: "_top"
-
+  %body.d-flex.justify-content-center
+    %div.content
+      %pzsh-container
+        %div.sticky-header
+          %div.over-header
+            %div.over-header-adjust
+              %img{:src=> "/assets/logo.svg",:height=>"32"}
+              %text.align-bottom.ms-2= "4.4.0"
+            %div.over-header-adjust
+              %div.d-flex.nav-pad.over-header-border
+                %pzsh-icon.scale-icon(name="user")
+                %text= "Curtis Jackson"
+              %pzsh-icon.nav-pad(name="question-circle")
+              %a.nav-pad.over-header-border= "Logout"
+          %div
+            %pzsh-topbar.p-0
+              %div.d-flex.justify-content-center
+                %ul.navbar
+                  %li
+                    %a.nav-link.nav-pad= "Profil"
+                  %li
+                    %a.nav-link.nav-pad= "Skill Suche"
+                  %li
+                    %a.nav-link.nav-pad= "CV Suche"
+                  %li
+                    %a.nav-link.nav-pad= "Skillset"
+        %div.container-fluid
+          %div.row.d-flex.justify-content-center
+            %div
+              = yield
+              = turbo_frame_tag "remote_modal", target: "_top"
