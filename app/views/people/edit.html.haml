@@ -1,9 +1,9 @@
 %turbo-frame{id: "#{dom_id @person}"}
   = form_with model: @person do |form|
-    %div.d-flex
-      %div
-        %img.rounded-circle{src: @person.picture, width: '141', height: '141'}
+    %div.d-flex.justify-content-between
       %div.pe-5
+        %img.rounded-circle{src: @person.picture, width: '141', height: '141'}
+      %div.pe-5.d-flex
         %table
           %tbody
             %th.fw-light Name
@@ -11,10 +11,10 @@
               %td= form.text_field :name, class: "w-100"
             %th.fw-light Email
             %tr
-              %td= form.text_field :email
+              %td= form.text_field :email, class: "w-100"
             %th.fw-light Abschluss
             %tr
-              %td= form.text_field :title
+              %td= form.text_field :title, class: "w-100"
             %th.fw-light Funktionen
             - @person.roles.each do |role|
               %tr
@@ -34,7 +34,7 @@
               %td= form.collection_select :company_id, Company.order(:name), :id, :name
             %th.fw-light Wohnort (Stadt)
             %tr
-              %td= form.text_field :location
+              %td= form.text_field :location, class: "w-100"
 
       %div.pe-5
         %table
@@ -54,10 +54,11 @@
                 %td= form.collection_select :nationality2, ISO3166::Country.all.sort, :alpha2, :name
             %th.fw-light Zivilstand
             %tr
-              %td= form.collection_select :marital_status, Person.marital_statuses, :second, :first, { selected: Person.marital_statuses[@person.marital_status] }
+              %td= form.collection_select :marital_status, Person.marital_statuses, :first, :first, { selected: Person.marital_statuses[@person.marital_status] }
       %div
         %div.fw-light Sprachen
         %div.border.border-dark-subtle.mt-1.p-2.rounded
           - @person.language_skills.each do |language|
             %div.mb-1= "#{language.language}: #{language.level} - #{language.certificate}"
+    = form.submit :Submit, class: "btn"
   = link_to "Abbrechen", person_path
