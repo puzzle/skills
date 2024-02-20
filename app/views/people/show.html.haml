@@ -22,9 +22,9 @@
         %tr
           %td= @entry.title
         %th.fw-light Funktion
-        - @entry.roles.each do |role|
+        - @entry.person_roles.each do |person_role|
           %tr
-            %td= role.name
+            %td= "#{person_role.role.name} #{person_role.person_role_level.level} #{person_role.percent.to_i}%"
         %th.fw-light Organisationseinheit
         %tr
           %td= @entry.department.name
@@ -39,7 +39,7 @@
           %td= @entry.birthdate.to_date.strftime('%d.%m.%Y')
         %th.fw-light Nationalität
         %tr
-          %td= @entry.nationality2.blank? ?  ISO3166::Country[@entry.nationality] : "#{ISO3166::Country[@entry.nationality]}, #{ISO3166::Country[@entry.nationality2]}"
+          %td= @entry.nationality2.blank? ? ISO3166::Country[@entry.nationality] : "#{ISO3166::Country[@entry.nationality]}, #{ISO3166::Country[@entry.nationality2]}"
         %th.fw-light Wohnort (Stadt)
         %tr
           %td= @entry.location
@@ -75,9 +75,12 @@
             %tr
               %td
                 %div.border.border-dark-subtle.rounded.p-1
+                  Rolle
                   = form.collection_select :role_id, Role.order(:name), :id, :name, { selected: role.id }
-                  = form.collection_select :person_role_level_id, PersonRoleLevel.order(:level), :id, :level
-                  = form.number_field :percent, step: 1
+                  %div.d-flex
+                    Stufe
+                    = form.collection_select :person_role_level_id, PersonRoleLevel.order(:level), :id, :level
+                    = form.number_field :percent, step: 1
           %th.fw-light Organisationseinheit :
           %tr
             %td= form.collection_select :department_id, Department.order(:name), :id, :name
@@ -96,11 +99,11 @@
             %td= form.date_field :birthdate
           %th.fw-light Doppelbürger
           %tr
-            %td= check_box :has_nationality2?, { checked: @entry.nationality2? }
+            %td= check_box :nationality2?, { checked: @entry.nationality2? }
           %th.fw-light Erste Nationalität
           %tr
             %td= form.collection_select :nationality, ISO3166::Country.all.sort, :alpha2, :name
-          - if :has_nationality2?
+          - if @entry.nationality2?
             %th.fw-light Zweite Nationalität
             %tr
               %td= form.collection_select :nationality2, ISO3166::Country.all.sort, :alpha2, :name
