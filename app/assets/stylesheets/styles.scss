@@ -13,12 +13,7 @@
   flex-direction: row;
   list-style-type: none;
   margin: 0;
-}
-
-.hello-sir {
-  flex-direction: row;
-  list-style-type: none;
-  margin: 0;
+  padding: 0;
 }
 
 .nav-link  {
@@ -31,16 +26,9 @@
   padding-left: 0.5rem;
 }
 
-.over-header {
+.align-center {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.25rem;
-  margin-top: 0.25rem;
-}
-
-.over-header-adjust {
-  display: flex;
-  align-items: end;
+  align-items: center;
 }
 
 .sticky-header {
@@ -48,11 +36,19 @@
   top: 0;
 }
 
-.scale-icon {
-  transform: scale(0.75);
+.scale-icon-06 {
+  transform: scale(0.6);
 }
 
-.over-header-border {
+.scale-icon-08 {
+  transform: scale(0.8);
+}
+
+.border-r-l {
   border-right: 1px solid;
   border-left: 1px solid;
+}
+
+.apfel-bananen-salat {
+  background-color: #3b7bbe
 }
