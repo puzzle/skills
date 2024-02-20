@@ -1,9 +1,9 @@
 %div
   %h1
-    = @entry.title
+    = @person.title
     's Profile
   %div
     %h5
-      This Person is from #{ @entry.nationality }
+      This Person is from #{ @person.nationality }
 = link_to "Person bearbeiten",  edit_person_path
 = link_to "Show all",  people_path
