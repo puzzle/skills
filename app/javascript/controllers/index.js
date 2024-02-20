@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
-import Remote_modal_controller from "./remote_modal_controller"
-application.register("remote-modal", Remote_modal_controller)
+import DropdownLinksController from "./dropdown_links_controller"
+application.register("dropdown-links", DropdownLinksController)
+
+import RemoteModalController from "./remote_modal_controller"
+application.register("remote-modal", RemoteModalController)

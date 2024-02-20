@@ -1,3 +1,9 @@
-- @entries.each do |person|
-  %h1
-    = link_to person.name,  person_path(person)
+%select.form-select
+  - @people.order(:name).each do |person|
+    %option
+      = link_to person.name, person_path(person)
+
+= form_with(model: @person) do |f|
+  %section{"data-controller"=>"dropdown-links"}
+    = f.collection_select :person_id, Person.all.sort_by(&:name), :id, :name, {}, {class: "form-select w-100", "data-action": "change->dropdown-links#handleChange", "data-value": "/people/"}
+
