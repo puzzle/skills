@@ -1,0 +1,19 @@
+= form_with(model: @skill) do |f|
+  .row.border.border-top.table-light.table-hover.table-row{"data-controller" => "table"}
+    .col-2.d-flex.align-items-center
+      = f.text_field :title, class: "form-control", value: @skill.title
+    .col-1.bg-light.d-flex.align-items-center
+      =@skill.people.count
+    .col-3.d-flex.align-items-center
+      = f.collection_select :category_id, Category.all_parents { |category| category.title}, :id, :title, {:selected => @skill.category.parent.id}, class: "form-select w-100", data: {action: "change->table#adjustChildren"}
+    .col-3.bg-light.d-flex.align-items-center
+      = f.collection_select :category_id, @skill.category.parent.children, :id, :title, {:selected => @skill.category.id}, class: "form-select w-100", data: {table_target: "childSelect"}
+    .col-1.d-flex.align-items-center
+      =@skill.default_set.nil? ? "Neu" : (skill.default_set? ? "Ja" : "Nein")
+    .col-1.bg-light.d-flex.align-items-center
+      =@skill.radar
+    .col-1
+      =link_to "Edit", edit_skill_path(skill), class: "btn bg-gray-100"
+      -# %img.pointer.edit-button{:src=> "/assets/pencil-square.svg",:height=>"16", "data-action" => "click->table#editRow", "data-table-target" => "editButton"}
+      -# %img.pointer.save-button{:src=> "/assets/floppy2-fill.svg",:height=>"16", "data-action" => "click->table#saveData", "data-table-target" => "saveButton", "style" => "display: none;", "data-table-skill-param" => "#{skill.to_json}"}
+      -# %img.pointer.cancel-button.d-none{:src=> "/assets/x.svg",:height=>"16", "data-action" => "click->table#cancelRow", "data-table-target" => "cancelButton", "style" => "display: none;"}

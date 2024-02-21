@@ -50,6 +50,14 @@ pzsh-topbar {
   color: $skills-text-gray;
 }
 
+.table-row {
+  background-color: white !important;
+}
+.table-row:hover {
+  background-color: $light !important;
+}
+
+
 .person-profile-header {
   background: $skills-gray;
   height: 3.25rem;

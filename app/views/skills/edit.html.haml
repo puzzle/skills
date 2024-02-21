@@ -1,5 +1,5 @@
 %div
   %h1.font-bold.text-2xl.mb-3 Editing Skill
   %turbo-frame{id: "#{dom_id @skill}"}
-    = render "form", skill: @skill
+    = render "row_html", skill: @skill
     = link_to "Never Mind", skills_path, class: "btn mb-3 bg-gray-100"
