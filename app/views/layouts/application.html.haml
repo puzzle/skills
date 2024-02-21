@@ -16,18 +16,18 @@
           %div.d-flex
             %div.mb-1.mt-1
               %img{:src=> "/assets/logo.svg",:height=>"32"}
-            %text.d-flex.align-items-end.ms-2= "4.4.0"
-          %ul.navbar
+            %text.d-flex.align-items-end.ms-2.small-text= "4.4.0"
+          %ul.navbar.grey-color
             %li.align-center.nav-pad.border-r-l.h-100
               %pzsh-icon.scale-icon-06(name="user")
               %text= "Curtis Jackson"
             %li.align-center.nav-pad
               %a.align-center{:href => "https://google.com"}
-                %pzsh-icon.scale-icon-08(name="question-circle")
+                %pzsh-icon.scale-icon-08.grey-color(name="question-circle")
             %li.align-center.nav-pad.border-r-l.h-100
               %a= "Logout"
         %div
-          %pzsh-topbar.p-0.apfel-bananen-salat
+          %pzsh-topbar.p-0.top-bar-color
             %div.d-flex.justify-content-center
               %ul.navbar
                 %li
@@ -37,7 +37,7 @@
                 %li
                   %a.nav-link.nav-pad= "CV Suche"
                 %li
-                  %a.nav-link.nav-pad= "Skillset"
+                  %a.nav-link.nav-pad{href: "/skills"} Skillset
       %div.container-fluid
         %div.row.d-flex.justify-content-center
           %div

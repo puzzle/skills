@@ -16,7 +16,7 @@
   padding: 0;
 }
 
-.nav-link  {
+.nav-link {
   color: white;
   text-decoration: none;
 }
@@ -24,6 +24,10 @@
 .nav-pad {
   padding-right: 0.5rem;
   padding-left: 0.5rem;
+}
+
+.nav-pad :hover {
+  cursor: pointer;
 }
 
 .align-center {
@@ -49,6 +53,14 @@
   border-left: 1px solid;
 }
 
-.apfel-bananen-salat {
+.top-bar-color {
   background-color: #3b7bbe
+}
+
+.grey-color {
+  color: #8e8e8e;
+}
+
+.small-text {
+  font-size: 10px;
 }
