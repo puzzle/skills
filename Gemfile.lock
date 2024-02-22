@@ -249,7 +249,7 @@ GEM
       net-protocol
     netrc (0.11.0)
     nio4r (2.7.0)
-    nokogiri (1.16.0-x86_64-linux)
+    nokogiri (1.16.2-x86_64-linux)
       racc (~> 1.4)
     odf-report (0.7.3)
       mime-types
@@ -273,7 +273,7 @@ GEM
     puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.7.3)
-    rack (2.2.8)
+    rack (2.2.8.1)
     rack-test (2.1.0)
       rack (>= 1.3)
     rails (7.0.4.2)
@@ -473,7 +473,7 @@ DEPENDENCIES
   rubocop
   rubocop-rails
   seed-fu
-  selenium-webdriver (~> 4.18, >= 4.18.1)
+  selenium-webdriver
   sentry-raven
   simplecov
   spring

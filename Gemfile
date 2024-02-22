@@ -69,7 +69,7 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'selenium-webdriver', '~> 4.18', '>= 4.18.1'
+  gem 'selenium-webdriver'
   gem 'simplecov'
   gem 'webdrivers'
 end
