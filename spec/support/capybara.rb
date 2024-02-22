@@ -1,7 +1,7 @@
 is_ci = ENV.fetch('IS_CI', false)
 
 Capybara.register_driver :headless do |app|
-  options = Selenium::WebDriver::Firefox::Options.new
+  options = Selenium::WebDriver::Chrome::Options.new
   options.add_argument('--headless')
   options.add_argument('--no-sandbox')
   options.add_argument('--disable-gpu')
@@ -11,7 +11,7 @@ Capybara.register_driver :headless do |app|
 
   Capybara::Selenium::Driver.new(
     app,
-    browser: :firefox,
+    browser: :chrome,
     options: options
   )
 end
