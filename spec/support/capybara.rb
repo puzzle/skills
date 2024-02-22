@@ -14,7 +14,7 @@ end
 
 RSpec.configure do |config|
   if is_ci
-    config.before(:each, type: :system) do
+    config.before(:each, type: :feature) do
       driven_by :headless_chrome
     end
   end
