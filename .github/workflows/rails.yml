@@ -35,6 +35,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+      
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1.5.0
+        with: 
+          version: 114
+          
 
       - name: 'Run database migrations'
         env:
