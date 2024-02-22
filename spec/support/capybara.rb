@@ -1,7 +1,4 @@
-
 is_ci = ENV.fetch('IS_CI', false)
-
-Capybara.default_max_wait_time = 10
 
 RSpec.configure do |config|
   if id_ci
