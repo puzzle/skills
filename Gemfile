@@ -72,6 +72,7 @@ group :test do
   gem 'selenium-webdriver', '~> 4.18', '>= 4.18.1'
   gem 'simplecov'
   gem 'webdrivers'
+  gem 'chromedriver-helper
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
