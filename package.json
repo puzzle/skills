@@ -26,6 +26,10 @@
     "defaults"
   ],
   "devDependencies": {
-    "husky": "^9.0.11"
+  },
+  "engines": {
+    "npm": "please-use-yarn",
+    "yarn": ">= 1.22.0",
+    "node": ">= 18.16.0"
   }
 }
