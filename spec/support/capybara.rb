@@ -6,7 +6,6 @@ Capybara.register_driver :headless_chrome do |app|
   options.add_argument('--no-sandbox')
   options.add_argument('--disable-gpu')
   options.add_argument('--disable-dev-shm-usage')
-  Webdrivers::Chromedriver.required_version = '114.0.5735.90'
 
 
   Capybara::Selenium::Driver.new(
