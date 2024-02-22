@@ -4,7 +4,7 @@ is_ci = ENV.fetch('IS_CI', false)
 Capybara.default_max_wait_time = 10
 
 RSpec.configure do |config|
-  if true
+  if id_ci
     config.before(:each, type: :feature) do
       Capybara.default_driver = Capybara.javascript_driver = :selenium_chrome_headless
       Capybara.current_driver = :selenium_chrome_headless
