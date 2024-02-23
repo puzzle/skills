@@ -2,8 +2,8 @@
   = form_with model: @person do |form|
     %div.d-flex.justify-content-between
       %div.pe-5
-        %img.rounded-circle{src: picture_path, width: '141', height: '141'}
-        -# = form.file_field :picture
+        %img.rounded-circle{src: "/api/people/#{@person.id}/picture", width: '141', height: '141'}
+        = form.file_field :picture
       %div.pe-5.d-flex
         %table
           %tbody

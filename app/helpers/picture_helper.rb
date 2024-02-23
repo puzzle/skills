@@ -1,0 +1,2 @@
+module PictureHelper
+end

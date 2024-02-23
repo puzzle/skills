@@ -6,7 +6,7 @@
 %turbo-frame{id: "#{dom_id @person}"}
   %div.d-flex.justify-content-between
     %div
-      -# %img.rounded-circle{src: @person.picture, width: '141', height: '141'}
+      %img.rounded-circle{src: "/api/people/#{@person.id}/picture", width: '141', height: '141'}
       %div.mt-3= link_to "Bearbeiten",  edit_person_path
     %div.pe-5
       %table
@@ -21,12 +21,19 @@
           %tr
             %td= @person.title
           %th.fw-light Funktion
-          - @person.person_roles.each do |person_role|
+          - unless @person.person_roles.empty?
+            - @person.person_roles.each do |person_role|
+              %tr
+                %td= "#{person_role.role.name} #{person_role.person_role_level.level} #{person_role.percent.to_i}%"
+          - else
             %tr
-              %td= "#{person_role.role.name} #{person_role.person_role_level.level} #{person_role.percent.to_i}%"
+              %td -
           %th.fw-light Organisationseinheit
           %tr
-            %td= @person.department&.name
+            - unless @person.department.nil?
+              %td= @person.department.name
+            - else
+              %td -
           %th.fw-light Firma
           %tr
             %td= @person.company.name
@@ -47,7 +54,10 @@
             %td= @person.marital_status
           %th.fw-light Kürzel
           %tr
-            %td= @person.shortname
+            - unless @person.shortname.nil?
+              %td= @person.shortname
+            - else
+              %td -
     %div
       %div.fw-light Sprachen
       %div.border.border-dark-subtle.mt-1.p-2.rounded
