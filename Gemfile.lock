@@ -435,7 +435,7 @@ DEPENDENCIES
   bleib (= 0.0.8)
   bootsnap
   brakeman
-  bullet (~> 7.1, >= 7.1.6)
+  bullet
   byebug
   capybara
   carrierwave
