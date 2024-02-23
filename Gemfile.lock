@@ -80,6 +80,7 @@ GEM
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
     ast (2.4.2)
+    attr_required (1.0.2)
     base64 (0.2.0)
     bigdecimal (3.1.6)
     bindata (2.5.0)
@@ -264,6 +265,29 @@ GEM
       mime-types
       nokogiri (>= 1.10.0)
       rubyzip (>= 1.3.0)
+    omniauth (2.1.2)
+      hashie (>= 3.4.6)
+      rack (>= 2.2.3)
+      rack-protection
+    omniauth-keycloak (1.5.2)
+      faraday
+      json-jwt (> 1.13.0)
+      omniauth (>= 2.0)
+      omniauth-oauth2 (>= 1.7, < 1.9)
+    omniauth-oauth2 (1.8.0)
+      oauth2 (>= 1.4, < 3)
+      omniauth (~> 2.0)
+    openid_connect (1.4.2)
+      activemodel
+      attr_required (>= 1.0.0)
+      json-jwt (>= 1.15.0)
+      net-smtp
+      rack-oauth2 (~> 1.21)
+      swd (~> 1.3)
+      tzinfo
+      validate_email
+      validate_url
+      webfinger (~> 1.2)
     parallel (1.22.1)
     parser (3.2.1.0)
       ast (~> 2.4.1)
@@ -284,6 +308,12 @@ GEM
       nio4r (~> 2.0)
     racc (1.7.3)
     rack (2.2.8)
+    rack-oauth2 (1.21.3)
+      activesupport
+      attr_required
+      httpclient
+      json-jwt (>= 1.11.0)
+      rack (>= 2.1.0)
     rack-protection (3.2.0)
       base64 (>= 0.1.0)
       rack (~> 2.2, >= 2.2.4)
@@ -413,6 +443,10 @@ GEM
     ssrf_filter (1.1.2)
     stimulus-rails (1.3.3)
       railties (>= 6.0.0)
+    swd (1.3.0)
+      activesupport (>= 3)
+      attr_required (>= 0.0.5)
+      httpclient (>= 2.4)
     temple (0.10.3)
     thor (1.3.0)
     tilt (2.3.0)
@@ -426,12 +460,21 @@ GEM
     unaccent (0.4.0)
     unicode-display_width (2.5.0)
     uniform_notifier (1.16.0)
+    validate_email (0.1.6)
+      activemodel (>= 3.0)
+      mail (>= 2.2.5)
+    validate_url (1.0.15)
+      activemodel (>= 3.0.0)
+      public_suffix
     version_gem (1.1.3)
     uri (0.13.0)
     webdrivers (5.3.1)
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
       selenium-webdriver (~> 4.0, < 4.11)
+    webfinger (1.2.0)
+      activesupport
+      httpclient (>= 2.4)
     websocket (1.2.10)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
@@ -474,6 +517,7 @@ DEPENDENCIES
   nokogiri (~> 1.14)
   odf-report
   omniauth-keycloak
+  openid_connect (~> 1.4)
   pg
   pg_search
   pry

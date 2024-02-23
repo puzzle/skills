@@ -11,6 +11,21 @@ Rails.application.routes.draw do
   resources :people
   resources :skills
 
+  namespace :session do
+    post '', action: :create
+    post 'local', to: 'local#create'
+    get 'local', to: 'local#new'
+
+    get 'new'
+    get 'destroy'
+    get 'show_update_password'
+    post 'update_password'
+
+    if AuthConfig.oidc_enabled?
+      get 'oidc', to: 'oidc#create'
+    end
+  end
+
   namespace :api do
 
     resources :people do
