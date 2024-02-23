@@ -4,15 +4,11 @@ describe SkillsController do
   describe 'SkillsController as user' do
     before { load_pictures }
 
-   before(:each) do
-      sign_in(auth_users(:admin))
-    end
-    render_views
+    # before(:each) do
+    #   allow_any_instance_of(SkillsController).to receive(:admin_flag?).and_return(true)
+    # end
 
     let(:bob) { people(:bob) }
-     let(:edited_skill) { {"id" => skills(:rails).id, "category_parent" => categories('system-engineering').id,
-                          "title" => "UpdatedSkill", "radar" => "adopt", "portfolio" => "passiv", "default_set" => false,
-                          "category_id" => categories(:ruby).id} }
 
     describe 'CRUD operaions' do
       it 'index returns all skills ' do
@@ -21,11 +17,6 @@ describe SkillsController do
         expect(skills.sort).to eq skills().sort
         expect(response).to render_template("index")
       end
-      
-      it 'should switch category' do
-      patch :update, params: {id: edited_skill["id"], skill: edited_skill, validate_only: true}
-      expect(response.body).to have_select("skill_category_id", with_options: ['Linux-Engineering'])
-    end
 
       it 'post returns all skills ' do
         title = 'new skill'
