@@ -5,7 +5,7 @@
     .col-1.bg-light.d-flex.align-items-center
       =@skill.people.count
     .col-3.d-flex.align-items-center
-      = f.collection_select :category_id, Category.all_parents { |category| category.title}, :id, :title, {:selected => @skill.category.parent.id}, class: "form-select w-100", data: {action: "change->table#adjustChildren"}
+      = f.collection_select :category_id, Category.all_parents { |category| category.title}, :id, :title, {:selected => @skill.category.parent.id}, class: "form-select w-100", data: {action: "change->table#adjustChildren", table_target: "parentSelect"}
     .col-3.bg-light.d-flex.align-items-center
       = f.collection_select :category_id, @skill.category.parent.children, :id, :title, {:selected => @skill.category.id}, class: "form-select w-100", data: {table_target: "childSelect"}
     .col-1.d-flex.align-items-center
