@@ -15,26 +15,19 @@ describe 'Skill Form', type: :system, js:true do
     select @category.title, from: 'skill_category_id'
     select @radar, from: 'skill_radar'
     select @portfolio, from: 'skill_portfolio'
-    require "pry"; binding.pry
-    click_button 'Close'
-    expect(@skill.reload.title).to eq('New Skill Title')
-    expect(page).to have_current_path(skills_path)
+    click_button 'Skill erstellen'
+    all 'tbody tr', count: 6
   end
 
   it 'displays error messages when present' do
-    visit edit_skill_path(@skill) # replace with the actual path to your form
-
-    fill_in 'Title', with: ''
-    click_button 'Close'
+    fill_in 'skill_title', with: ''
+    click_button 'Skill erstellen'
 
     expect(page).to have_css('.alert.alert-danger')
   end
 
   it 'redirects to the skills index when the cancel button is clicked' do
-    visit edit_skill_path(@skill)
-
-    click_link 'Cancel'
-
-    expect(page).to have_current_path(skills_path)
+    click_link(href:skills_path)
+    all 'tbody tr', count: 5
   end
 end
