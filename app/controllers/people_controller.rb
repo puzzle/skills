@@ -7,6 +7,14 @@ class PeopleController < CrudController
                             marital_status updated_by name nationality nationality2 title
                             competence_notes company_id email department_id shortname picture]
 
+  def update
+    binding.pry
+    person = params[:person]
+    PersonRole.create(person_id: @person.id, role_id: person.role_id, percent: ("%e" % person.role_percent),
+                      person_role_level_id: person.role_level_id)
+    super
+  end
+
   def show
     if format_odt?
       export

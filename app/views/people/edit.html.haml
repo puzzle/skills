@@ -23,12 +23,12 @@
                   %td
                     %div.border.border-dark-subtle.rounded.p-1.fw-light
                       Rolle
-                      = form.collection_select :role_ids, Role.order(:name), :id, :name, { selected: role.id }, class: "form-select w-100"
+                      = form.collection_select :role_id, Role.order(:name), :id, :name, { selected: role.id }, class: "form-select w-100"
                       %div
                         Stufe
                         %div.d-flex.fw-light
-                          = form.collection_select :person_role_level_id, PersonRoleLevel.order(:level), :id, :level, {}, class: "form-select w-50 me-1"
-                          = form.number_field :percent, step: 1, class: "form-control w-50"
+                          = form.collection_select :role_level_id, PersonRoleLevel.order(:level), :id, :level, {}, class: "form-select w-50 me-1"
+                          = form.number_field :role_percent, step: 1, class: "form-control w-50"
               %tr
                 %td
                   %button.btn.btn-link Neue Funktion
@@ -50,7 +50,7 @@
               %td= form.date_field :birthdate, class: "form-control w-100"
             %th.fw-normal Doppelbürger
             %tr
-              %td= check_box :nationality2?, { checked: @person.nationality2? }
+              %td= check_box :has_nationality2, {}, checked: @person.nationality2?
             %th.fw-normal Erste Nationalität
             %tr
               %td= form.collection_select :nationality, ISO3166::Country.all.sort, :alpha2, :name, {}, class: "form-select w-100"
