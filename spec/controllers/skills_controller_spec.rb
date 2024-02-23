@@ -21,7 +21,7 @@ describe SkillsController do
         expect(skills.sort).to eq skills().sort
         expect(response).to render_template("index")
       end
-      
+
       it 'should switch category' do
       patch :update, params: {id: edited_skill["id"], skill: edited_skill, validate_only: true}
       expect(response.body).to have_select("skill_category_id", with_options: ['Linux-Engineering'])
@@ -42,5 +42,4 @@ describe SkillsController do
         expect(response).to redirect_to(skills_path)
       end
     end
-  end
 end
