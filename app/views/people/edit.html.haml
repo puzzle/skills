@@ -17,18 +17,22 @@
             %tr
               %td= form.text_field :title, class: "w-100, form-control"
             %th.fw-normal Funktionen
-            - @person.roles.each do |role|
+            %div
+              - @person.roles.each do |role|
+                %tr
+                  %td
+                    %div.border.border-dark-subtle.rounded.p-1.fw-light
+                      Rolle
+                      = form.collection_select :role_ids, Role.order(:name), :id, :name, { selected: role.id }, class: "form-select w-100"
+                      %div
+                        Stufe
+                        %div.d-flex.fw-light
+                          = form.collection_select :person_role_level_id, PersonRoleLevel.order(:level), :id, :level, {}, class: "form-select w-50 me-1"
+                          = form.number_field :percent, step: 1, class: "form-control w-50"
               %tr
                 %td
-                  %div.border.border-dark-subtle.rounded.p-1.fw-light
-                    Rolle
-                    = form.collection_select :role_ids, Role.order(:name), :id, :name, { selected: role.id }, class: "form-select w-100"
-                    %div
-                      Stufe
-                      %div.d-flex.fw-light
-                        = form.collection_select :person_role_level_id, PersonRoleLevel.order(:level), :id, :level, {}, class: "form-select w-50 me-1"
-                        = form.number_field :percent, step: 1, class: "form-control w-50"
-            %th.fw-normal Organisationseinheit :
+                  %button.btn.btn-link Neue Funktion
+            %th.fw-normal Organisationseinheit
             %tr
               %td= form.collection_select :department_id, Department.order(:name), :id, :name, {}, class: "form-select w-100"
             %th.fw-normal Firma
@@ -56,7 +60,7 @@
                 %td= form.collection_select :nationality2, ISO3166::Country.all.sort, :alpha2, :name, {}, class: "form-select w-100"
             %th.fw-normal Zivilstand
             %tr
-              %td= form.collection_select :marital_status, Person.marital_statuses, :first, :first, { selected: Person.marital_statuses[@person.marital_status] }, class: "form-select w-100"
+              %td= form.collection_select :marital_status, Person.marital_statuses, :first, :first, { selected: @person.marital_status }, class: "form-select w-100"
       %div
         %div.fw-normal Sprachen
         %div.border.border-dark-subtle.mt-1.p-2.rounded
