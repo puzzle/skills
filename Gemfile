@@ -28,6 +28,8 @@ gem 'net-pop', require: false
 gem 'net-smtp', require: false
 gem 'nokogiri', '~> 1.14'
 gem 'odf-report'
+gem 'omniauth'
+gem 'omniauth-rails_csrf_protection'
 gem 'pg'
 gem 'pg_search'
 gem 'psych', '~> 3.3', '>= 3.3.4'
@@ -77,4 +79,4 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem "omniauth-keycloak", "~> 1.5"
+gem 'omniauth-keycloak', '~> 1.5'
