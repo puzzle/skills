@@ -13,7 +13,7 @@
     .col-1.bg-light.d-flex.align-items-center
       = f.select :radar, Settings.radar, {:selected => @skill.radar}, class: "form-select"
     .col-1.d-flex.align-items-center
-      = f.select :portfolio, Settings.portfolio, {:selected => @skill.portfolio}, class: "form-select"
+      = f.select :portfolio, Settings.portfolio, {:selected => @skill.portfolio}, class: "form-select portfolio-select"
     .col-1
       %div.h-100.d-flex.justify-content-center.align-items-center
         %img.pointer.save-button{:src=> "/assets/floppy2-fill.svg",:height=>"16"}

@@ -1,2 +1,8 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+select.form-select.portfolio-select {
+  width: 100% !important;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
