@@ -71,7 +71,8 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'simplecov'
-  gem 'webdrivers'
+  # Use fixed version of webdrivers to avoid compatibility issues with chrome and chromedriver
+  gem 'webdrivers', '~> 5.3', '>= 5.3.1'
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

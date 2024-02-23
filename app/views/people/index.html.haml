@@ -1,3 +1,1 @@
-- @entries.each do |person|
-  %h1
-    = link_to person.name,  person_path(person)
+= render partial: "people/search", locals: { person: @people.order(:name).first }
