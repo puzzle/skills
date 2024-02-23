@@ -8,57 +8,58 @@
           %tbody
             %th.fw-light Name
             %tr
-              %td= form.text_field :name, class: "w-100"
+              %td= form.text_field :name, class: "w-100 form-control"
             %th.fw-light Email
             %tr
-              %td= form.text_field :email, class: "w-100"
+              %td= form.text_field :email, class: "w-100, form-control"
             %th.fw-light Abschluss
             %tr
-              %td= form.text_field :title, class: "w-100"
+              %td= form.text_field :title, class: "w-100, form-control"
             %th.fw-light Funktionen
             - @person.roles.each do |role|
               %tr
                 %td
                   %div.border.border-dark-subtle.rounded.p-1
                     Rolle
-                    = form.collection_select :role_id, Role.order(:name), :id, :name, { selected: role.id }
-                    %div.d-flex
+                    = form.collection_select :role_ids, Role.order(:name), :id, :name, { selected: role.id }, class: "form-select w-100"
+                    %div
                       Stufe
-                      = form.collection_select :person_role_level_id, PersonRoleLevel.order(:level), :id, :level
-                      = form.number_field :percent, step: 1
+                      %div.d-flex
+                        = form.collection_select :person_role_level_id, PersonRoleLevel.order(:level), :id, :level, {}, class: "form-select w-50 me-1"
+                        = form.number_field :percent, step: 1, class: "form-control w-50"
             %th.fw-light Organisationseinheit :
             %tr
-              %td= form.collection_select :department_id, Department.order(:name), :id, :name
+              %td= form.collection_select :department_id, Department.order(:name), :id, :name, {}, class: "form-select w-100"
             %th.fw-light Firma
             %tr
-              %td= form.collection_select :company_id, Company.order(:name), :id, :name
+              %td= form.collection_select :company_id, Company.order(:name), :id, :name, {}, class: "form-select w-100"
             %th.fw-light Wohnort (Stadt)
             %tr
-              %td= form.text_field :location, class: "w-100"
+              %td= form.text_field :location, class: "form-control w-100"
 
       %div.pe-5
         %table
           %tbody
             %th.fw-light Geburtsdatum
             %tr
-              %td= form.date_field :birthdate
+              %td= form.date_field :birthdate, class: "form-control w-100"
             %th.fw-light Doppelbürger
             %tr
               %td= check_box :nationality2?, { checked: @person.nationality2? }
             %th.fw-light Erste Nationalität
             %tr
-              %td= form.collection_select :nationality, ISO3166::Country.all.sort, :alpha2, :name
+              %td= form.collection_select :nationality, ISO3166::Country.all.sort, :alpha2, :name, {}, class: "form-select w-100"
             - if @person.nationality2?
               %th.fw-light Zweite Nationalität
               %tr
-                %td= form.collection_select :nationality2, ISO3166::Country.all.sort, :alpha2, :name
+                %td= form.collection_select :nationality2, ISO3166::Country.all.sort, :alpha2, :name, {}, class: "form-select w-100"
             %th.fw-light Zivilstand
             %tr
-              %td= form.collection_select :marital_status, Person.marital_statuses, :first, :first, { selected: Person.marital_statuses[@person.marital_status] }
+              %td= form.collection_select :marital_status, Person.marital_statuses, :first, :first, { selected: Person.marital_statuses[@person.marital_status] }, class: "form-select w-100"
       %div
         %div.fw-light Sprachen
         %div.border.border-dark-subtle.mt-1.p-2.rounded
           - @person.language_skills.each do |language|
             %div.mb-1= "#{language.language}: #{language.level} - #{language.certificate}"
-    = form.submit :Submit, class: "btn"
+    = form.submit :Submit
   = link_to "Abbrechen", person_path
