@@ -6,7 +6,7 @@
 %turbo-frame{id: "#{dom_id @person}"}
   %div.d-flex.justify-content-between
     %div
-      %img.rounded-circle{src: @person.picture, width: '141', height: '141'}
+      -# %img.rounded-circle{src: @person.picture, width: '141', height: '141'}
       %div.mt-3= link_to "Bearbeiten",  edit_person_path
     %div.pe-5
       %table
@@ -26,7 +26,7 @@
               %td= "#{person_role.role.name} #{person_role.person_role_level.level} #{person_role.percent.to_i}%"
           %th.fw-light Organisationseinheit
           %tr
-            %td= @person.department.name
+            %td= @person.department&.name
           %th.fw-light Firma
           %tr
             %td= @person.company.name

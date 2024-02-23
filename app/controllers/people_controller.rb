@@ -3,6 +3,8 @@
 class PeopleController < CrudController
   include ExportController
 
+  helper_method :picture_path
+
   self.permitted_attrs = %i[birthdate location
                             marital_status updated_by name nationality nationality2 title
                             competence_notes company_id email department_id shortname]
@@ -39,5 +41,13 @@ class PeopleController < CrudController
     send_data odt_file.generate,
               type: 'application/vnd.oasis.opendocument.text',
               disposition: content_disposition('attachment', filename)
+  end
+
+  def picture_path
+    if @person.picture.file
+      @person.picture.url
+    else
+      "/default_avatar.png"
+    end
   end
 end
