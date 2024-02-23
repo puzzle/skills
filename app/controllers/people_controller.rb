@@ -5,7 +5,7 @@ class PeopleController < CrudController
 
   self.permitted_attrs = %i[birthdate location
                             marital_status updated_by name nationality nationality2 title
-                            competence_notes company_id email department_id shortname]
+                            competence_notes company_id email department_id shortname picture]
 
   def show
     if format_odt?
