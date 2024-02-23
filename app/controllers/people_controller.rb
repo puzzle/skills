@@ -50,4 +50,12 @@ class PeopleController < CrudController
               type: 'application/vnd.oasis.opendocument.text',
               disposition: content_disposition('attachment', filename)
   end
+
+  def picture_path
+    if @person.picture.file
+      @person.picture.url
+    else
+      "/default_avatar.png"
+    end
+  end
 end
