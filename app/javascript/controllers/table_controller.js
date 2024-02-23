@@ -23,7 +23,7 @@ export default class extends Controller {
             const categoryArray = response.included;
             for(let category of categoryArray) {
                 let opt = document.createElement("option");
-                opt.value = category.attributes.id;
+                opt.value = category.id;
                 opt.textContent = category.attributes.title;
                 this.childSelectTarget.append(opt);
             }
