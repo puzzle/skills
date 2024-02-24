@@ -1,3 +1,6 @@
+$skills-blue: #3b7bbe;
+$skills-text-gray: #8e8e8e;
+
 @import "bootstrap";
 
 .modal-dialog {
@@ -9,58 +12,34 @@
   flex-grow: 1;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .navbar {
   flex-direction: row;
   list-style-type: none;
   margin: 0;
   padding: 0;
+
+  .nav-link {
+    color: white;
+    text-decoration: none;
+  }
+
+  .scale-icon-06 {
+    transform: scale(0.6);
+  }
+
+  .scale-icon-08 {
+    transform: scale(0.8);
+  }
 }
 
-.nav-link {
-  color: white;
-  text-decoration: none;
+pzsh-topbar {
+  background-color: $skills-blue
 }
 
-.nav-pad {
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
-}
-
-.nav-pad :hover {
-  cursor: pointer;
-}
-
-.align-center {
-  display: flex;
-  align-items: center;
-}
-
-.sticky-header {
-  position: sticky;
-  top: 0;
-}
-
-.scale-icon-06 {
-  transform: scale(0.6);
-}
-
-.scale-icon-08 {
-  transform: scale(0.8);
-}
-
-.border-r-l {
-  border-right: 1px solid;
-  border-left: 1px solid;
-}
-
-.top-bar-color {
-  background-color: #3b7bbe
-}
-
-.grey-color {
-  color: #8e8e8e;
-}
-
-.small-text {
-  font-size: 10px;
+.text-gray {
+  color: $skills-text-gray;
 }

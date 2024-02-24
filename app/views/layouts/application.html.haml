@@ -11,33 +11,33 @@
     = favicon_link_tag "favicon.png"
   %body.d-flex.justify-content-center
     %pzsh-container.content
-      %div.sticky-header
-        %div.d-flex.justify-content-between
+      %div.position-sticky.top-0.z-3
+        %div.d-flex.justify-content-between.bg-white
           %div.d-flex
             %div.mb-1.mt-1
               %img{:src=> "/assets/logo.svg",:height=>"32"}
-            %text.d-flex.align-items-end.ms-2.small-text= "4.4.0"
-          %ul.navbar.grey-color
-            %li.align-center.nav-pad.border-r-l.h-100
+            %text.d-flex.align-items-end.ms-2.small= "4.4.0"
+          %ul.navbar.text-gray
+            %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
               %pzsh-icon.scale-icon-06(name="user")
               %text= "Curtis Jackson"
-            %li.align-center.nav-pad
-              %a.align-center{:href => "https://google.com"}
-                %pzsh-icon.scale-icon-08.grey-color(name="question-circle")
-            %li.align-center.nav-pad.border-r-l.h-100
+            %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2
+              %a.d-flex.align-items-center{:href => "https://github.com/puzzle/skills/issues"}
+                %pzsh-icon.scale-icon-08.text-gray(name="question-circle")
+            %li.d-flex.align-items-center.cursor-pointer.border-start.border-end.h-100.ps-2.pe-2
               %a= "Logout"
         %div
-          %pzsh-topbar.p-0.top-bar-color
+          %pzsh-topbar.p-0
             %div.d-flex.justify-content-center
               %ul.navbar
                 %li
-                  %a.nav-link.nav-pad= "Profil"
+                  %a.nav-link.cursor-pointer.ps-2.pe-2= "Profil"
                 %li
-                  %a.nav-link.nav-pad= "Skill Suche"
+                  %a.nav-link.cursor-pointer.ps-2.pe-2= "Skill Suche"
                 %li
-                  %a.nav-link.nav-pad= "CV Suche"
+                  %a.nav-link.cursor-pointer.ps-2.pe-2= "CV Suche"
                 %li
-                  %a.nav-link.nav-pad{href: "/skills"} Skillset
+                  %a.nav-link.cursor-pointer.ps-2.pe-2{href: skills_path} Skillset
       %div.container-fluid
         %div.row.d-flex.justify-content-center
           %div
