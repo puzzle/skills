@@ -5,7 +5,7 @@ provider: openid-connect
 
 oidc:
   client_id: pitc_skills_rails_backend  
-  host: keycloak
+  host: sso-test.puzzle.ch
   host_port: 8180
   host_scheme: https
   secret: 'r609dv7dl50164n4rlga121ott'
