@@ -275,16 +275,19 @@ Devise.setup do |config|
 
   config.omniauth :openid_connect, {
     name: :openid_connect,
-    scope: [:email],
+    scope: [:openid, :email],
     response_type: :code,
     uid_field: "preferred_username",
+    discovery: true,
+    issuer:"https://sso-test.puzzle.ch/auth/realms/pitc",
+    client_auth_method: :jwks,
+
     client_options: {
-      port: 443,
-      scheme: "https",
+      identifier: "pitc_skills_rails_backend",
+      secret: "r609dv7dl50164n4rlga121ott",
       host: "sso-test.puzzle.ch",
-      identifier: "pitc_skills_rails_backend"  ,
-      secret: "r609dv7dl50164n4rlga121ott" ,
-      redirect_uri: "http://localhost:3000/people/auth/openid_connect/callback",
+      jwks_uri: "https://sso-test.puzzle.ch/auth/realms/pitc/protocol/openid-connect/certs",
+      redirect_uri: "http://localhost:3000/people",
     },
   }
 
