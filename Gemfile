@@ -82,3 +82,5 @@ gem 'openid_connect', '~> 1.4'
 gem 'devise', '~> 4.9'
 
 gem 'omniauth_openid_connect'
+
+gem "omniauth-rails_csrf_protection", "~> 1.0"

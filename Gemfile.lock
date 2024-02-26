@@ -271,6 +271,9 @@ GEM
       hashie (>= 3.4.6)
       rack (>= 2.2.3)
       rack-protection
+    omniauth-rails_csrf_protection (1.0.1)
+      actionpack (>= 4.2)
+      omniauth (~> 2.0)
     omniauth_openid_connect (0.6.1)
       omniauth (>= 1.9, < 3)
       openid_connect (~> 1.1)
@@ -515,6 +518,7 @@ DEPENDENCIES
   net-smtp
   nokogiri (~> 1.14)
   odf-report
+  omniauth-rails_csrf_protection (~> 1.0)
   omniauth_openid_connect
   openid_connect (~> 1.4)
   pg
