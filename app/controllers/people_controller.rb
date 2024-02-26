@@ -13,6 +13,9 @@ class PeopleController < CrudController
 
   # self.permitted_relationships = %i[person_roles people_skills]
 
+  before_action :authenticate_person!
+
+
   def show
     if format_odt?
       export

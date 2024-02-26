@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :people
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
@@ -11,20 +12,20 @@ Rails.application.routes.draw do
   resources :people
   resources :skills
 
-  namespace :session do
-    post '', action: :create
-    post 'local', to: 'local#create'
-    get 'local', to: 'local#new'
+  # namespace :session do
+  #   post '', action: :create
+  #   post 'local', to: 'local#create'
+  #   get 'local', to: 'local#new'
 
-    get 'new'
-    get 'destroy'
-    get 'show_update_password'
-    post 'update_password'
+  #   get 'new'
+  #   get 'destroy'
+  #   get 'show_update_password'
+  #   post 'update_password'
 
-    if AuthConfig.oidc_enabled?
-      get 'oidc', to: 'oidc#create'
-    end
-  end
+  #   if AuthConfig.oidc_enabled?
+  #     get 'oidc', to: 'oidc#create'
+  #   end
+  # end
 
   namespace :api do
 

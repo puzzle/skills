@@ -25,6 +25,11 @@
 #
 
 class Person < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: [:openid_connect]
   include PgSearch::Model
 
   belongs_to :company
