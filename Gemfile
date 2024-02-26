@@ -28,7 +28,6 @@ gem 'net-pop', require: false
 gem 'net-smtp', require: false
 gem 'nokogiri', '~> 1.14'
 gem 'odf-report'
-gem 'omniauth-keycloak'
 gem 'pg'
 gem 'pg_search'
 gem 'psych', '~> 3.3', '>= 3.3.4'
