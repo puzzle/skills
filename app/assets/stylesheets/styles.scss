@@ -1,5 +1,45 @@
+$skills-blue: #3b7bbe;
+$skills-text-gray: #8e8e8e;
+
 @import "bootstrap";
 
 .modal-dialog {
   max-width: 60%;
+}
+
+.content {
+  max-width: 60%;
+  flex-grow: 1;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.navbar {
+  flex-direction: row;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  .nav-link {
+    color: white;
+    text-decoration: none;
+  }
+
+  .scale-icon-06 {
+    transform: scale(0.6);
+  }
+
+  .scale-icon-08 {
+    transform: scale(0.8);
+  }
+}
+
+pzsh-topbar {
+  background-color: $skills-blue
+}
+
+.text-gray {
+  color: $skills-text-gray;
 }
