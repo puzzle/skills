@@ -39,6 +39,7 @@ class Person < ApplicationRecord
   has_many :expertise_topics, through: :expertise_topic_skill_values
   has_many :language_skills, dependent: :delete_all
   has_many :person_roles, dependent: :destroy
+  accepts_nested_attributes_for :person_roles, allow_destroy: true
   has_many :people_skills, dependent: :destroy
   has_many :skills, through: :people_skills
   has_many :roles, through: :person_roles

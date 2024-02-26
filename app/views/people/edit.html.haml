@@ -18,17 +18,17 @@
               %td= form.text_field :title, class: "w-100, form-control"
             %th.fw-normal Funktionen
             %div
-              - @person.roles.each do |role|
+              = form.fields_for :person_roles do |person_role|
                 %tr
                   %td
                     %div.border.border-dark-subtle.rounded.p-1.fw-light
                       Rolle
-                      = form.collection_select :role_id, Role.order(:name), :id, :name, { selected: role.id }, class: "form-select w-100"
+                      = person_role.collection_select :role_id, Role.order(:name), :id, :name, {}, class: "form-select w-100"
                       %div
                         Stufe
                         %div.d-flex.fw-light
-                          = form.collection_select :role_level_id, PersonRoleLevel.order(:level), :id, :level, {}, class: "form-select w-50 me-1"
-                          = form.number_field :role_percent, step: 1, class: "form-control w-50"
+                          = person_role.collection_select :person_role_level_id, PersonRoleLevel.order(:level), :id, :level, {}, class: "form-select w-50 me-1"
+                          = person_role.number_field :percent, step: 1, class: "form-control w-50"
               %tr
                 %td
                   %button.btn.btn-link Neue Funktion
