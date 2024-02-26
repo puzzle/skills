@@ -78,4 +78,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem "openid_connect", "~> 1.4"
+gem 'openid_connect', '~> 1.4'
+
+gem 'devise', '~> 4.9'
