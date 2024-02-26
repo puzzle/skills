@@ -520,7 +520,6 @@ DEPENDENCIES
   odf-report
   omniauth-rails_csrf_protection (~> 1.0)
   omniauth_openid_connect
-  openid_connect (~> 1.4)
   pg
   pg_search
   pry
