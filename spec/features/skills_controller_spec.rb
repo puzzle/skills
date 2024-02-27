@@ -38,14 +38,13 @@ describe :skills do
           save_button.click
         end
       end
+      sleep(2)
       edited_skill = Skill.where(title: 'new Title')[0]
-      until edited_skill
-        expect(edited_skill.category.title).to eq('Linux-Engineering')
-        expect(edited_skill.category.parent.title).to eq('System-Engineering')
-        expect(edited_skill.default_set).to eq(true)
-        expect(edited_skill.radar).to eq('adopt')
-        expect(edited_skill.portfolio).to eq('nein')
-      end
+      expect(edited_skill.category.title).to eq('Linux-Engineering')
+      expect(edited_skill.category.parent.title).to eq('System-Engineering')
+      expect(edited_skill.default_set).to eq(true)
+      expect(edited_skill.radar).to eq('adopt')
+      expect(edited_skill.portfolio).to eq('nein')
     end
 
     it 'can cancel edited skill' do
