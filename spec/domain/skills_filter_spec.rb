@@ -18,10 +18,11 @@ describe SkillsFilter do
       filter = SkillsFilter.new(Skill.all, 458108788, nil, nil)
       filteredSkills = filter.scope
 
-      expect(filteredSkills.count).to eq(3)
+      expect(filteredSkills.count).to eq(4)
       expect(filteredSkills[0].title).to eq('Rails')
       expect(filteredSkills[1].title).to eq('JUnit')
       expect(filteredSkills[2].title).to eq('cunit')
+      expect(filteredSkills[3].title).to eq('ember')
     end
     
     it 'filters skills by title' do
