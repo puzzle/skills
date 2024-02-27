@@ -108,16 +108,5 @@ class Person < ApplicationRecord
         person.company = Company.first
       end
     end
-
-    def new_with_session(params, session)
-      require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
-      super.tap do |user|
-        data = session['devise.facebook_data']
-        session_info = session['devise.facebook_data']['extra']['raw_info']
-        if data && session_info && user.email.blank?
-          user.email = data['email']
-        end
-      end
-    end
   end
 end
