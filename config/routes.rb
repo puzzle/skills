@@ -1,34 +1,26 @@
 Rails.application.routes.draw do
-  devise_for :people
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
   get root to: 'people#index'
-  scope 'status' do
-    get 'health', to: 'status#health'
-    get 'readiness', to: 'status#readiness'
+
+  devise_for :people, skip: [:sessions], controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+
+
+  devise_scope :person do
+    get 'sign_in', :to => 'devise/sessions#new', :as => :new_person_session
+    delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_person_session
   end
 
   resources :people
   resources :skills
 
-  # namespace :session do
-  #   post '', action: :create
-  #   post 'local', to: 'local#create'
-  #   get 'local', to: 'local#new'
 
-  #   get 'new'
-  #   get 'destroy'
-  #   get 'show_update_password'
-  #   post 'update_password'
+  # Status
+  scope 'status' do
+    get 'health', to: 'status#health'
+    get 'readiness', to: 'status#readiness'
+  end
 
-  #   if AuthConfig.oidc_enabled?
-  #     get 'oidc', to: 'oidc#create'
-  #   end
-  # end
-
+  # Outdated api routes
   namespace :api do
-
     resources :people do
       collection do
         get 'search', to: 'people/search#index'
