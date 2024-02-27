@@ -286,7 +286,7 @@ Devise.setup do |config|
       identifier: "pitc_skills_rails_backend",
       secret: "r609dv7dl50164n4rlga121ott",
       host: "sso-test.puzzle.ch",
-      redirect_uri: "http://localhost:3000/people/1",
+      redirect_uri: "http://localhost:3000/people/auth/openid_connect/callback",
     },
   }
 
