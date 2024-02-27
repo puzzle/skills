@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  before_action :authenticate_person!
+  before_action :authenticate_person!, :except => [:get, :create, :post]
+  skip_before_action :verify_authenticity_token, only: :create
 
 
-  def new_session_path(_scope)
+  def authenticate_person!
     require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
-    new_person_session_path
+    super
   end
 
-  def session_path(_scope)
-    require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
-    person_session
+  def new_session_path(_scope)
+    new_person_session_path
   end
 end
