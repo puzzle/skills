@@ -18,7 +18,7 @@
     %strong= t "skills.table.portfolio"
   .col-1.bg-secondary-subtle.d-flex.align-items-center
     %strong= t "skills.table.modify"
-- @skills.each_with_index do |skill|
+- @skills.each do |skill|
   %turbo-frame{id: "#{dom_id skill}"}
     .row.border.border-top.table-light.tableform-hover.table-row
       .col-2.d-flex.align-items-center
