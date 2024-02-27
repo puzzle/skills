@@ -14,6 +14,7 @@ gem 'config'
 gem 'countries'
 gem 'cssbundling-rails'
 gem 'database_cleaner'
+gem 'devise', '~> 4.9'
 gem 'faker'
 gem 'haml-rails'
 gem 'i18n_data'
@@ -28,6 +29,8 @@ gem 'net-pop', require: false
 gem 'net-smtp', require: false
 gem 'nokogiri', '~> 1.14'
 gem 'odf-report'
+gem 'omniauth_openid_connect'
+gem 'omniauth-rails_csrf_protection', '~> 1.0'
 gem 'pg'
 gem 'pg_search'
 gem 'psych', '~> 3.3', '>= 3.3.4'
@@ -76,10 +79,3 @@ group :test do
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
-
-gem 'devise', '~> 4.9'
-
-gem 'omniauth_openid_connect'
-
-gem "omniauth-rails_csrf_protection", "~> 1.0"
