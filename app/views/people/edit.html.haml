@@ -50,14 +50,13 @@
               %td= form.date_field :birthdate, class: "form-control w-100"
             %th.fw-normal Doppelbürger
             %tr
-              %td= check_box :has_nationality2, {}, checked: @person.nationality2?
+              %td{"data-controller"=>"nationality-two"}= check_box :has_nationality2, {}, {"checked" => @person.nationality2?, "data-action" => "nationality-two#nationalityTwoVisible", "id" => "nat-two-checkbox"}
             %th.fw-normal Erste Nationalität
             %tr
               %td= form.collection_select :nationality, ISO3166::Country.all.sort, :alpha2, :name, {}, class: "form-select w-100"
-            - if @person.nationality2?
-              %th.fw-normal Zweite Nationalität
-              %tr
-                %td= form.collection_select :nationality2, ISO3166::Country.all.sort, :alpha2, :name, {}, class: "form-select w-100"
+            %th.fw-normal.nationality-two Zweite Nationalität
+            %tr.nationality-two
+              %td= form.collection_select :nationality2, ISO3166::Country.all.sort, :alpha2, :name, {}, class: "form-select w-100"
             %th.fw-normal Zivilstand
             %tr
               %td= form.collection_select :marital_status, Person.marital_statuses, :first, :first, { selected: @person.marital_status }, class: "form-select w-100"

@@ -15,6 +15,9 @@ class PeopleController < CrudController
 
   def update
     @person.roles.build if @person.roles.empty?
+    if params['has_nationality2']['{}'].to_i.zero?
+      params['person']['nationality2'] = nil
+    end
     super
   end
 
