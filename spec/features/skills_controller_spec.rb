@@ -38,7 +38,7 @@ describe :skills do
           save_button.click
         end
       end
-      sleep(2)
+      expect(page).to have_css("div.row.border.border-top.table-light.tableform-hover.table-row", text: 'new Title', wait: 2)
       edited_skill = Skill.where(title: 'new Title')[0]
       expect(edited_skill.category.title).to eq('Linux-Engineering')
       expect(edited_skill.category.parent.title).to eq('System-Engineering')
