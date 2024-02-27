@@ -3,10 +3,10 @@
 class PeopleController < CrudController
   include ExportController
 
-  self.permitted_attrs = %i[birthdate location
-                            marital_status updated_by name nationality nationality2 title
-                            competence_notes company_id email department_id shortname picture
-                            person_roles_attributes]
+  self.permitted_attrs = [:birthdate, :location,
+                          :marital_status, :updated_by, :name, :nationality, :nationality2, :title,
+                          :competence_notes, :company_id, :email, :department_id, :shortname, :picture,
+                          { person_roles_attributes: [:role_id, :person_role_level_id, :percent, :id] }]
 
   def new
     super
