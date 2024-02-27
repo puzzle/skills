@@ -286,8 +286,7 @@ Devise.setup do |config|
       identifier: "pitc_skills_rails_backend",
       secret: "r609dv7dl50164n4rlga121ott",
       host: "sso-test.puzzle.ch",
-      jwks_uri: "https://sso-test.puzzle.ch/auth/realms/pitc/protocol/openid-connect/certs",
-      redirect_uri: "http://localhost:3000/people",
+      redirect_uri: "http://localhost:3000/people/1",
     },
   }
 
@@ -312,7 +311,7 @@ Devise.setup do |config|
   #
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
-  config.omniauth_path_prefix = '/people/auth'
+  # config.omniauth_path_prefix = '/people/auth'
 
   # ==> Hotwire/Turbo configuration
   # When using Devise with Hotwire/Turbo, the http status for error responses

@@ -5,9 +5,6 @@ Rails.application.routes.draw do
     skip: [:sessions],
     controllers:
       { omniauth_callbacks: 'omniauth_callbacks' }
-    # path: '',
-    # path_names:
-    #   {:sign_in => 'login', :sign_out => 'logout'}
 
     devise_scope :person do
       get 'sign_in', :to => 'devise/sessions#new', :as => :new_person_session
