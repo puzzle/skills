@@ -11,10 +11,6 @@ Rails.application.routes.draw do
       delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_auth_user_session
     end
 
-  resources :people
-  resources :skills
-
-
   # Status
   scope 'status' do
     get 'health', to: 'status#health'
@@ -25,6 +21,7 @@ Rails.application.routes.draw do
     member do
       put 'picture', to: 'people/picture#update'
       get 'picture', to: 'people/picture#show'
+      get 'export', to: 'people#export'
     end
   end
   resources :skills

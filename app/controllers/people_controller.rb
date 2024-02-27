@@ -35,16 +35,6 @@ class PeopleController < CrudController
     super
   end
 
-  private
-
-  def fetch_entries
-    Person.includes(:company).list
-  end
-
-  def person
-    @person ||= Person.find(params[:person_id])
-  end
-
   def export
     anon = params[:anon].presence || 'false'
     odt_file = Odt::Cv.new(entry, params).export
@@ -57,5 +47,15 @@ class PeopleController < CrudController
     send_data odt_file.generate,
               type: 'application/vnd.oasis.opendocument.text',
               disposition: content_disposition('attachment', filename)
+  end
+
+  private
+
+  def fetch_entries
+    Person.includes(:company).list
+  end
+
+  def person
+    @person ||= Person.find(params[:person_id])
   end
 end
