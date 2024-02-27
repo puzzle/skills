@@ -4,7 +4,7 @@
     's Profile
 
 %turbo-frame{id: "#{dom_id @person}"}
-  %div.d-flex.justify-content-between
+  %div.d-flex.justify-content-between.flex-lg-row.flex-md-row.flex-sm-column.flex-column.overflow-scroll
     %div
       %img.rounded-circle{src: "/api/people/#{@person.id}/picture", width: '141', height: '141'}
       %div.mt-3= link_to "Bearbeiten",  edit_person_path

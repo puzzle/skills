@@ -1,6 +1,6 @@
 %turbo-frame{id: "#{dom_id @person}"}
   = form_with model: @person do |form|
-    %div.d-flex.justify-content-between
+    %div.d-flex.justify-content-between.flex-lg-row.flex-md-row.flex-sm-column.flex-column.overflow-scroll
       %div.pe-5
         %img.rounded-circle{src: "/api/people/#{@person.id}/picture", width: '141', height: '141'}
         = form.file_field :picture
@@ -65,5 +65,6 @@
         %div.border.border-dark-subtle.mt-1.p-2.rounded
           - @person.language_skills.each do |language|
             %div.mb-1= "#{language.language}: #{language.level} - #{language.certificate}"
-    = form.submit :Speichern, class: "btn btn-primary me-3"
-    = link_to "Abbrechen", person_path
+    %div.mt-3
+      = form.submit :Speichern, class: "btn btn-primary me-3"
+      = link_to "Abbrechen", person_path
