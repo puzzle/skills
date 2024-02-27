@@ -33,9 +33,9 @@
         =skill.default_set.nil? ? "Neu" : (skill.default_set? ? "Ja" : "Nein")
       .col-1.bg-light.d-flex.align-items-center
         =skill.radar
-      .col-1.bg-light.d-flex.align-items-center
+      .col-1.d-flex.align-items-center
         =skill.portfolio
-      .col-1
+      .col-1.bg-light
         %div.h-100.d-flex.justify-content-center.align-items-center
           =link_to edit_skill_path(skill), class: "btn bg-gray-100" do
             %img.pointer.edit-button{:src=> "/assets/pencil-square.svg",:height=>"16"}
