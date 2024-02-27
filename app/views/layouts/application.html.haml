@@ -20,12 +20,12 @@
           %ul.navbar.text-gray
             %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
               %pzsh-icon.scale-icon-06(name="user")
-              %text= "Curtis Jackson"
+              %text= current_person&.name
             %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2
               %a.d-flex.align-items-center{:href => "https://github.com/puzzle/skills/issues"}
                 %pzsh-icon.scale-icon-08.text-gray(name="question-circle")
             %li.d-flex.align-items-center.cursor-pointer.border-start.border-end.h-100.ps-2.pe-2
-              %a= "Logout"
+              =link_to "Logout", destroy_person_session_path, data: { "turbo-method": :delete }
         %div
           %pzsh-topbar.p-0
             %div.d-flex.justify-content-center

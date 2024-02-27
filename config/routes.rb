@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
     devise_scope :person do
       get 'sign_in', :to => 'devise/sessions#new', :as => :new_person_session
-      get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_person_session
+      post 'sign_in', to: 'devise/sessions#create', as: :person_session
+      delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_person_session
     end
 
   resources :people

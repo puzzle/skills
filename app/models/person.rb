@@ -99,18 +99,24 @@ class Person < ApplicationRecord
 
   class << self
     def from_omniauth(auth)
-      require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
-      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-        user.email = auth.info.email
-        user.password = Devise.friendly_token[0, 20]
-        user.name = auth.info.name # assuming the user model has a name
+      where(email: auth.info.email).first_or_create do |person|
+        person.email = auth.info.email
+        person.name = auth.info.name
+        person.birthdate = DateTime.new(2020, 1, 1)
+        person.nationality = 'CH'
+        person.location = 'Schweiz'
+        person.title = 'Software Engineer'
+        person.marital_status = :single
+        person.company = Company.first
       end
     end
 
     def new_with_session(params, session)
       require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
       super.tap do |user|
-        if (data = session['devise.facebook_data'] && session['devise.facebook_data']['extra']['raw_info']) && user.email.blank?
+        data = session['devise.facebook_data']
+        session_info = session['devise.facebook_data']['extra']['raw_info']
+        if data && session_info && user.email.blank?
           user.email = data['email']
         end
       end
