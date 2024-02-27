@@ -13,15 +13,13 @@ class PeopleController < CrudController
 
   # self.permitted_relationships = %i[person_roles people_skills]
 
-
-
-
   def show
-    require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
     if format_odt?
       export
       return
     end
+    @person = Person.includes(projects: :project_technologies,
+                              person_roles: [:role, :person_role_level]).find(params.fetch(:id))
     super
   end
 
