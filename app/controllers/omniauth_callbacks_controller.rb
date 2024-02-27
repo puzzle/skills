@@ -14,6 +14,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def failure
+    require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
     redirect_to root_path
   end
 end
