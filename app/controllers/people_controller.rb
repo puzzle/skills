@@ -19,10 +19,8 @@ class PeopleController < CrudController
   end
 
   def show
-    if format_odt?
-      export
-      return
-    end
+    return export if format_odt?
+    
     @person = Person.includes(projects: :project_technologies,
                               person_roles: [:role, :person_role_level]).find(params.fetch(:id))
     super
