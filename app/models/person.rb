@@ -97,8 +97,8 @@ class Person < ApplicationRecord
 
   class << self
     def from_omniauth(auth)
-      resources = auth.extra.raw_info.resource_access['pitc_skills_rails_backend']
-      is_admin = resources.roles.include? 'ADMIN'
+      resources = auth.extra.raw_info.resource_access[AuthConfig.client_id]
+      is_admin = resources.roles.include? AuthConfig.admin_role
       where(email: auth.info.email).first_or_create do |person|
         person.email = auth.info.email
         person.name = auth.info.name
