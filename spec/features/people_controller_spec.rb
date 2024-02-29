@@ -3,6 +3,11 @@ require 'rails_helper'
 describe :people do
   describe 'People Search', type: :feature, js: true do
 
+    before(:each) do
+      bob = people(:bob)
+      login_as(bob, scope: :person)
+    end
+
     it 'displays people in alphabetical order in select' do
       visit people_path
       list = Person.pluck(:name).sort
@@ -13,9 +18,8 @@ describe :people do
 
 
     it 'redirects to the selected person on change' do
-      visit people_path
       bob = people(:bob)
-
+      visit people_path
       within 'section[data-controller="dropdown"]' do
         select bob.name, from: 'person_id'
       end
