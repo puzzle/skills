@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'auth_config'
 # Assuming you have not yet modified this file, each configuration option below
 # is set to its default value. Note that some are commented out while others
 # are not: uncommented lines are intended to protect your configuration from
@@ -273,15 +274,16 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 
+  require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
   config.omniauth :keycloak_openid, {
     name: :keycloak_openid,
     scope: [:openid, :email],
-    client_id: "pitc_skills_rails_backend",
-    client_secret: "r609dv7dl50164n4rlga121ott",
+    client_id: AuthConfig.client_id,
+    client_secret: AuthConfig.secret,
 
     client_options: {
-      site: "https://sso-test.puzzle.ch",
-      realm: "pitc",
+      site: AuthConfig.host_url,
+      realm: AuthConfig.realm,
     },
     strategy_class: OmniAuth::Strategies::KeycloakOpenId,
   }
