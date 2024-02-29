@@ -3,8 +3,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_person!
 
-  def authenticate_person!
-    # require 'pry'; binding.pry
-    super
+  def admin?
+    current_person.is_admin
   end
 end
