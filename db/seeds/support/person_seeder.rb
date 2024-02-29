@@ -18,6 +18,7 @@ class PersonSeeder
       person.projects.each do |project|
         seed_project_technology(project.id)
       end
+      person.is_admin = false
     end
   end
 
@@ -102,6 +103,7 @@ class PersonSeeder
       p.competence_notes = competence_notes
       p.email = Faker::Internet.email
       p.department_id = Department.all.pluck(:id).sample
+      p.is_admin = false
     end
   end
 
