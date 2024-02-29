@@ -275,22 +275,13 @@ Devise.setup do |config|
 
   config.omniauth :keycloak_openid, {
     name: :keycloak_openid,
-    scope: [:openid, :email, :roles,:resource_access],
-    info_fields: 'resource_access',
-    response_type: :code,
-    uid_field: "preferred_username",
-    discovery: true,
-    issuer:"https://sso-test.puzzle.ch/auth/realms/pitc",
-    client_auth_method: :jwks,
+    scope: [:openid, :email],
+    client_id: "pitc_skills_rails_backend",
+    client_secret: "r609dv7dl50164n4rlga121ott",
 
     client_options: {
-      client_id: "pitc_skills_rails_backend",
-      identifier: "pitc_skills_rails_backend",
-      secret: "r609dv7dl50164n4rlga121ott",
-      host: "sso-test.puzzle.ch",
       site: "https://sso-test.puzzle.ch",
       realm: "pitc",
-      redirect_uri: "http://localhost:3000/people/auth/keycloak_openid/callback",
     },
     strategy_class: OmniAuth::Strategies::KeycloakOpenId,
   }

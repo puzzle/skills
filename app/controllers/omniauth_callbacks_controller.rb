@@ -1,8 +1,7 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  skip_before_action :verify_authenticity_token
+  skip_before_action :verify_authenticity_token, only: :keycloak_openid
 
-  def openid_connect
-    require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
+  def keycloak_openid
     omniauth_auth = request.env['omniauth.auth']
     @user = Person.from_omniauth(omniauth_auth)
     if @user.persisted?
@@ -13,13 +12,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
   end
 
-  def keycloak_openid
-    require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
-    # openid_connect
-  end
-
   def failure
-    require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
     redirect_to root_path
   end
 end
