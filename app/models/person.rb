@@ -98,7 +98,6 @@ class Person < ApplicationRecord
   class << self
     def from_omniauth(auth)
       roles = auth.extra.raw_info.pitc.roles
-      require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
       where(email: auth.info.email).first_or_create do |person|
         person.email = auth.info.email
         person.name = auth.info.name
