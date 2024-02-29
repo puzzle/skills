@@ -5,7 +5,7 @@ describe Api::PeopleController do
     before do
       load_pictures
       allow_any_instance_of(Odt::Cv).to receive(:location).and_return(branch_adresses(:bern))
-    end 
+    end
 
 
     describe 'Export person as odt' do
@@ -84,10 +84,10 @@ describe Api::PeopleController do
 
         people = json['data']
 
-        expect(people.count).to eq(6)
+        expect(people.count).to eq(7)
         alice_attrs = people.first['attributes']
         expect(alice_attrs.count).to eq(1)
-        expect(alice_attrs.first[1]).to eq('Alice Mante')
+        expect(alice_attrs.first[1]).to eq('Admin Anderson')
         json_object_includes_keys(alice_attrs, keys)
         expect(people).not_to include('relationships')
       end

@@ -3,8 +3,8 @@
 require 'keycloak_tools'
 
 class Api::SkillsController < Api::CrudController
-  include ExportController
   include KeycloakTools
+  include ExportController
 
   before_action :authorize_admin, except: %i[index show create unrated_by_person]
 

@@ -97,10 +97,7 @@ class Person < ApplicationRecord
 
   class << self
     def from_omniauth(auth)
-      resources = auth.extra.raw_info.resource_access[AuthConfig.client_id]
-      is_admin = resources.roles.include? AuthConfig.admin_role
       where(email: auth.info.email).first_or_create do |person|
-        person.email = auth.info.email
         person.name = auth.info.name
         person.birthdate = DateTime.new(2020, 1, 1)
         person.nationality = 'CH'
@@ -108,8 +105,16 @@ class Person < ApplicationRecord
         person.title = 'Software Engineer'
         person.marital_status = :single
         person.company = Company.first
-        person.is_admin = is_admin
+        person.is_admin = admin?(auth)
       end
     end
+
+    private
+
+    def admin?(auth)
+      resources = auth.extra.raw_info.resource_access[AuthConfig.client_id]
+      resources.roles.include? AuthConfig.admin_role
+    end
+
   end
 end
