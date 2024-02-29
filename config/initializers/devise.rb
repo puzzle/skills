@@ -275,7 +275,7 @@ Devise.setup do |config|
 
   config.omniauth :openid_connect, {
     name: :openid_connect,
-    scope: [:openid, :email, :roles,:resource_access],
+    scope: [:openid, :email],
     info_fields: 'resource_access',
     response_type: :code,
     uid_field: "preferred_username",
