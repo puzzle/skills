@@ -21,17 +21,23 @@ class AuthConfig
       get_var_from_environment(:realm)
     end
 
-    private
-
-    def get_var_from_environment(key)
-      if locale
-        settings_file[key]
-      else
-        ENV[key.to_s] || raise("Environment variable not set: '#{key}'")
-      end
+    def admin_role
+      get_var_from_environment(:admin_role, required: false)
     end
 
-    def locale
+    private
+
+    def get_var_from_environment(key, required: true)
+      if !locale? && required
+        ENV[key.to_s] || raise("Environment variable not set: '#{key}'")
+      elsif !locale?
+        ENV.fetch('locale', settings_file[key])
+      end
+
+      settings_file[key]
+    end
+
+    def locale?
       ENV.fetch('locale', true)
     end
 
@@ -40,15 +46,7 @@ class AuthConfig
     end
 
     def load_file
-      if Rails.env.test? || !valid_file?
-        return { provider: 'db' }
-      end
-
       YAML.safe_load_file(AUTH_CONFIG_PATH).deep_symbolize_keys
-    end
-
-    def valid_file?
-      File.exist?(AUTH_CONFIG_PATH) && !File.empty?(AUTH_CONFIG_PATH)
     end
   end
 end
