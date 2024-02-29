@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
-require 'keycloak_tools'
-
 class SkillsController < CrudController
   include ExportController
-  include KeycloakTools
 
   before_action :admin?
 

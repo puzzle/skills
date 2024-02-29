@@ -1,0 +1,4 @@
+client_id: pitc_skills_rails_backend
+secret: 'r609dv7dl50164n4rlga121ott'
+host_url: https://sso-test.puzzle.ch
+realm: pitc
