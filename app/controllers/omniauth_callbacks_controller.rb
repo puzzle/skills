@@ -3,7 +3,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def openid_connect
     omniauth_auth = request.env['omniauth.auth']
-    require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
     @user = Person.from_omniauth(omniauth_auth)
     if @user.persisted?
       sign_in_and_redirect @user, event: :authentication
