@@ -275,7 +275,8 @@ Devise.setup do |config|
 
   config.omniauth :openid_connect, {
     name: :openid_connect,
-    scope: [:openid, :email],
+    scope: [:openid, :email, :roles,:resource_access],
+    info_fields: 'resource_access',
     response_type: :code,
     uid_field: "preferred_username",
     discovery: true,
@@ -288,6 +289,7 @@ Devise.setup do |config|
       host: "sso-test.puzzle.ch",
       redirect_uri: "http://localhost:3000/people/auth/openid_connect/callback",
     },
+    # strategy_class: OmniAuth::Strategies::OpenIDConnect,
   }
 
   # ==> Warden configuration
