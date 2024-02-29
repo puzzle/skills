@@ -273,9 +273,9 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 
-  config.omniauth :openid_connect, {
-    name: :openid_connect,
-    scope: [:openid, :email],
+  config.omniauth :keycloak_openid, {
+    name: :keycloak_openid,
+    scope: [:openid, :email, :roles,:resource_access],
     info_fields: 'resource_access',
     response_type: :code,
     uid_field: "preferred_username",
@@ -287,9 +287,9 @@ Devise.setup do |config|
       identifier: "pitc_skills_rails_backend",
       secret: "r609dv7dl50164n4rlga121ott",
       host: "sso-test.puzzle.ch",
-      redirect_uri: "http://localhost:3000/people/auth/openid_connect/callback",
+      redirect_uri: "http://localhost:3000/people/auth/keycloak_openid/callback",
     },
-    # strategy_class: OmniAuth::Strategies::OpenIDConnect,
+    strategy_class: OmniAuth::Strategies::KeycloakOpenId,
   }
 
   # ==> Warden configuration
