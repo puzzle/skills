@@ -97,7 +97,9 @@ class Person < ApplicationRecord
 
   class << self
     def from_omniauth(auth)
-      roles = auth.extra.raw_info.pitc.roles
+      resources = auth.extra.raw_info.resource_access['pitc_skills_rails_backend']
+      is_admin = resources.roles.include? 'ADMIN'
+      require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
       where(email: auth.info.email).first_or_create do |person|
         person.email = auth.info.email
         person.name = auth.info.name
@@ -107,7 +109,7 @@ class Person < ApplicationRecord
         person.title = 'Software Engineer'
         person.marital_status = :single
         person.company = Company.first
-        person.is_admin = roles.include? 'puzzle'
+        person.is_admin = is_admin
       end
     end
   end
