@@ -29,7 +29,7 @@ gem 'net-pop', require: false
 gem 'net-smtp', require: false
 gem 'nokogiri', '~> 1.14'
 gem 'odf-report'
-gem 'omniauth_openid_connect'
+gem 'omniauth-keycloak'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 gem 'pg'
 gem 'pg_search'
