@@ -1,5 +1,5 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  skip_before_action :verify_authenticity_token, only: [:openid_connect, :keycloak_openid]
+  skip_before_action :verify_authenticity_token
 
   def openid_connect
     require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
