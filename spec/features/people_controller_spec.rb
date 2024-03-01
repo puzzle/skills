@@ -4,8 +4,8 @@ describe :people do
   describe 'People Search', type: :feature, js: true do
 
     before(:each) do
-      bob = people(:bob)
-      login_as(bob, scope: :person)
+      user = auth_users(:user)
+      login_as(user, scope: :auth_user)
     end
 
     it 'displays people in alphabetical order in select' do
