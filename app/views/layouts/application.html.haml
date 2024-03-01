@@ -20,9 +20,9 @@
           %ul.navbar.text-gray
             %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
               %pzsh-icon.scale-icon-06(name="user")
-              %text.pe-2= current_person&.name
+              %text= current_person&.name
               - if admin?
-                %text (Admin)
+                %text.ps-2 (Admin)
             %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2
               %a.d-flex.align-items-center{:href => "https://github.com/puzzle/skills/issues"}
                 %pzsh-icon.scale-icon-08.text-gray(name="question-circle")
