@@ -16,7 +16,7 @@ class SkillsController < CrudController
   def unrated_by_person
     if params[:person_id].present?
       entries = Skill.default_set.where
-                     .not(id: PeopleSkill.where(person_id: params[:person_id]).pluck(:skill_id))
+                     .not(id: PeopleSkill.where(person_id: params[:person_id]).select(:skill_id))
     else
       entries = Skill.list
     end

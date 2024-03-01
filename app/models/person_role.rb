@@ -16,7 +16,6 @@ class PersonRole < ApplicationRecord
   belongs_to :role
   belongs_to :person_role_level
 
-  validates :person_id, :role_id, presence: true
 
   validate :percent_must_be_a_number
 

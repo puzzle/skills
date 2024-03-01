@@ -46,6 +46,9 @@ Metrics/ParameterLists:
 Rails:
   Enabled: true
 
+Rails/I18nLocaleTexts:
+  Enabled: false
+
 # Keep for now, easier with superclass definitions
 Style/ClassAndModuleChildren:
   Enabled: false

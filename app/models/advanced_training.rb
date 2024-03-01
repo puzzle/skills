@@ -25,7 +25,7 @@ class AdvancedTraining < ApplicationRecord
 
   belongs_to :person, touch: true
 
-  validates :person_id, :description, presence: true
+  validates :description, presence: true
   validates :description, length: { maximum: 5000 }
 
   private

@@ -42,11 +42,11 @@ class LdapTools
     end
 
     def basename
-      @@basename ||= ENV['LDAP_BASENAME']
+      @@basename ||= ENV.fetch('LDAP_BASENAME', nil)
     end
 
     def hostname
-      @@hostname ||= ENV['LDAP_HOSTNAME']
+      @@hostname ||= ENV.fetch('LDAP_HOSTNAME', nil)
     end
 
     def port

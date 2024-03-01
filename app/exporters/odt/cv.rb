@@ -56,7 +56,6 @@ module Odt
       BranchAdress.find(@params[:location])
     end
 
-    # rubocop:disable Metrics/AbcSize
     attr_accessor :person
 
     def insert_general_sections(report)
@@ -89,8 +88,6 @@ module Odt
       end
       report.add_field(:languages, languages)
     end
-
-    # rubocop:enable Metrics/AbcSize
 
     def insert_competences(report)
       insert_level_skills(report) if include_skills_by_level?
@@ -162,7 +159,6 @@ module Odt
       end
     end
 
-    # rubocop:disable Metrics/AbcSize
     # rubocop:disable Metrics/MethodLength
     def insert_educations(report)
       educations_list = person.educations.list.collect do |e|
@@ -241,7 +237,6 @@ module Odt
         t.add_column(:project_technology, :project_technology)
       end
     end
-    # rubocop:enable Metrics/AbcSize
     # rubocop:enable Metrics/MethodLength
 
     def formatted_month(month)
