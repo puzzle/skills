@@ -44,6 +44,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_01_124103) do
   create_table "auth_users", force: :cascade do |t|
     t.string "uid"
     t.string "email"
+    t.string "name"
+    t.datetime "last_login"
+    t.boolean "is_admin", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["uid"], name: "index_auth_users_on_uid", unique: true
