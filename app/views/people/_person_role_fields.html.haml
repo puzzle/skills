@@ -1,4 +1,4 @@
-%div.border.border-dark-subtle.rounded.p-1.fw-light
+%div.border.border-dark-subtle.rounded.p-1.fw-light.nested-fields
   = person_role.hidden_field :_destroy
   Rolle
   = person_role.collection_select :role_id, Role.order(:name), :id, :name, {}, class: "form-select w-100"

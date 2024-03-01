@@ -33,4 +33,4 @@ class addFields {
         newFields ? link.insertAdjacentHTML("beforebegin", newFields) : null;
     }
 }
-window.addEventListener("turbolinks:load", () => new addFields());
+window.addEventListener("turbo:frame-render", () => new addFields());
