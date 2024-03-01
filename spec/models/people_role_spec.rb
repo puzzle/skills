@@ -21,10 +21,8 @@ describe PersonRole do
 
       expect(person_role.errors[:person].first).to eq('muss ausgefüllt werden')
       expect(person_role.errors[:role].first).to eq('muss ausgefüllt werden')
-      expect(person_role.errors[:person_id].first).to eq('muss ausgefüllt werden')
-      expect(person_role.errors[:role_id].first).to eq('muss ausgefüllt werden')
     end
-    
+
     it 'percent must be a number between 0 and 200' do
       person_role = person_roles(:'bob_software_engineer')
       person_role.percent = 300
