@@ -1,66 +1,70 @@
 %div
-  %h1
-    = @person.name
-    's Profile
+  %div.personals-header
+    Personalien
+  %div
+    %div
+      %h1
+        = @person.name
+        's Profile
 
-%turbo-frame{id: "#{dom_id @person}"}
-  %div.d-flex.justify-content-between.flex-lg-row.flex-md-row.flex-sm-column.flex-column
-    %div
-      %img.rounded-circle{src: "/api/people/#{@person.id}/picture", width: '141', height: '141'}
-      %div.mt-3= link_to "Bearbeiten",  edit_person_path
-    %div.pe-5
-      %table
-        %tbody
-          %th.fw-light Name
-          %tr
-            %td= @person.name
-          %th.fw-light Email
-          %tr
-            %td= @person.email
-          %th.fw-light Abschluss
-          %tr
-            %td= @person.title
-          %th.fw-light Funktion
-          - unless @person.person_roles.empty?
-            - @person.person_roles.each do |person_role|
+    %turbo-frame{id: "#{dom_id @person}"}
+      %div.d-flex.flex-xl-row.flex-lg-column.flex-md-column.flex-sm-column.flex-column
+        %div.col-xl-3.col-12
+          %img.rounded-circle{src: "/api/people/#{@person.id}/picture", width: '141', height: '141'}
+          %div.mt-3= link_to "Bearbeiten",  edit_person_path
+        %div.pe-5.col-xl-3.col-12
+          %table
+            %tbody
+              %th.fw-light Name
               %tr
-                %td= "#{person_role.role.name} #{person_role.person_role_level.level} #{person_role.percent.to_i}%"
-          - else
-            %tr
-              %td -
-          %th.fw-light Organisationseinheit
-          %tr
-            - unless @person.department.nil?
-              %td= @person.department.name
-            - else
-              %td -
-          %th.fw-light Firma
-          %tr
-            %td= @person.company.name
-    %div.pe-5
-      %table
-        %tbody
-          %th.fw-light Geburtsdatum
-          %tr
-            %td= @person.birthdate.to_date.strftime('%d.%m.%Y')
-          %th.fw-light Nationalität
-          %tr
-            %td= @person.nationality2.blank? ? ISO3166::Country[@person.nationality] : "#{ISO3166::Country[@person.nationality]}, #{ISO3166::Country[@person.nationality2]}"
-          %th.fw-light Wohnort (Stadt)
-          %tr
-            %td= @person.location
-          %th.fw-light Zivilstand
-          %tr
-            %td= @person.marital_status
-          %th.fw-light Kürzel
-          %tr
-            - unless @person.shortname.nil?
-              %td= @person.shortname
-            - else
-              %td -
-    %div
-      %div.fw-light Sprachen
-      %div.border.border-dark-subtle.mt-1.p-2.rounded
-        - @person.language_skills.each do |language|
-          %div.mb-1= "#{language.language}: #{language.level} - #{language.certificate}"
-  = link_to "Show all",  people_path
+                %td= @person.name
+              %th.fw-light Email
+              %tr
+                %td= @person.email
+              %th.fw-light Abschluss
+              %tr
+                %td= @person.title
+              %th.fw-light Funktion
+              - unless @person.person_roles.empty?
+                - @person.person_roles.each do |person_role|
+                  %tr
+                    %td= "#{person_role.role.name} #{person_role.person_role_level.level} #{person_role.percent.to_i}%"
+              - else
+                %tr
+                  %td -
+              %th.fw-light Organisationseinheit
+              %tr
+                - unless @person.department.nil?
+                  %td= @person.department.name
+                - else
+                  %td -
+              %th.fw-light Firma
+              %tr
+                %td= @person.company.name
+        %div.pe-5.col-xl-3.col-12
+          %table
+            %tbody
+              %th.fw-light Geburtsdatum
+              %tr
+                %td= @person.birthdate.to_date.strftime('%d.%m.%Y')
+              %th.fw-light Nationalität
+              %tr
+                %td= @person.nationality2.blank? ? ISO3166::Country[@person.nationality] : "#{ISO3166::Country[@person.nationality]}, #{ISO3166::Country[@person.nationality2]}"
+              %th.fw-light Wohnort (Stadt)
+              %tr
+                %td= @person.location
+              %th.fw-light Zivilstand
+              %tr
+                %td= @person.marital_status
+              %th.fw-light Kürzel
+              %tr
+                - unless @person.shortname.nil?
+                  %td= @person.shortname
+                - else
+                  %td -
+        %div.col-xl-3.col-12
+          %div.fw-light Sprachen
+          %div.border.border-dark-subtle.mt-1.p-2.rounded
+            - @person.language_skills.each do |language|
+              %div.mb-1= "#{language.language}: #{language.level} - #{language.certificate}"
+    = link_to "Show all",  people_path
