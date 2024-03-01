@@ -7,3 +7,4 @@
     %div.d-flex.fw-light
       = person_role.collection_select :person_role_level_id, PersonRoleLevel.order(:level), :id, :level, {}, class: "form-select w-50 me-1"
       = person_role.number_field :percent, step: 1, class: "form-control w-50"
+  = link_to "Remove", "#", class: "remove_fields"

@@ -21,10 +21,9 @@
               = form.fields_for :person_roles do |person_role|
                 %tr
                   %td= render "person_role_fields", person_role: person_role
-                %tr
-                  %td
-                    = link_to_add_role "Neue Funktion", @person, :person_roles
-                    %button.btn.btn-link Neue Funktion
+              %tr
+                %td
+                  = link_to_add_role "Neue Funktion", form, :person_roles
             %th.fw-normal Organisationseinheit
             %tr
               %td= form.collection_select :department_id, Department.order(:name), :id, :name, {}, class: "form-select w-100"
