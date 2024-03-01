@@ -3,7 +3,7 @@
 class SkillsController < CrudController
   include ExportController
 
-  before_action :admin?
+  before_action :admin?, except: %i[index show unrated_by_person]
 
   self.permitted_attrs = %i[title radar portfolio default_set category_id]
 
