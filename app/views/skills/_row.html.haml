@@ -5,15 +5,15 @@
     .col-1.bg-light.d-flex.align-items-center
       =@skill.people.count
     .col-3.d-flex.align-items-center
-      = f.collection_select :category_id, Category.all_parents { |category| category.title}, :id, :title, {:selected => @skill.category.parent.id}, class: "form-select w-100", data: {action: "change->table#adjustChildren", table_target: "parentSelect"}
+      = f.collection_select :category_id, Category.all_parents { |category| category.title}, :id, :title, {:selected => @category_parent.id}, class: "form-select w-100", data: {action: "change->table#adjustChildren", table_target: "parentSelect", table_skill_param: entry}
     .col-2.bg-light.d-flex.align-items-center
-      = f.collection_select :category_id, @skill.category.parent.children, :id, :title, {:selected => @skill.category.id}, class: "form-select w-100", data: {table_target: "childSelect"}
+      = f.collection_select :category_id, @category_parent.children, :id, :title, {:selected => entry.category.id}, class: "form-select w-100", data: {table_target: "childSelect"}
     .col-1.d-flex.align-items-center
-      =f.check_box :default_set, class: "form-check-input", checked: @skill.default_set
+      =f.check_box :default_set, class: "form-check-input", checked: entry.default_set
     .col-1.bg-light.d-flex.align-items-center
-      = f.select :radar, Settings.radar, {:selected => @skill.radar}, class: "form-select radar-select"
+      = f.select :radar, Settings.radar, {:selected => entry.radar}, class: "form-select radar-select"
     .col-1.d-flex.align-items-center
-      = f.select :portfolio, Settings.portfolio, {:selected => @skill.portfolio}, class: "form-select portfolio-select"
+      = f.select :portfolio, Settings.portfolio, {:selected => entry.portfolio}, class: "form-select portfolio-select"
     .col-1
       %div.h-100.d-flex.justify-content-center.align-items-center
         = image_submit_tag("/assets/floppy2-fill.svg")

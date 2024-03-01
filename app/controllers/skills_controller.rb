@@ -14,7 +14,7 @@ class SkillsController < CrudController
   end
 
   def edit
-    @skill = Skill.find(params[:id])
+    @category_parent = params[:parent] ? Category.where(id: params[:parent])[0] : entry.category.parent
   end
 
   def unrated_by_person
