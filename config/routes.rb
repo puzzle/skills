@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
   get root to: 'people#index'
 
-  devise_for :people,
+  devise_for :auth_users,
     skip: [:sessions],
     controllers:
       { omniauth_callbacks: 'omniauth_callbacks' }
 
-    devise_scope :person do
-      get 'sign_in', :to => 'devise/sessions#new', :as => :new_person_session
-      delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_person_session
+    devise_scope :auth_user do
+      get 'sign_in', :to => 'devise/sessions#new', :as => :new_auth_user_session
+      delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_auth_user_session
     end
 
   resources :people

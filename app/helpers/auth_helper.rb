@@ -6,6 +6,6 @@ module AuthHelper
   end
 
   def admin?
-    current_person&.is_admin
+    current_auth_user&.is_admin
   end
 end

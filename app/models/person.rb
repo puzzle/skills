@@ -27,8 +27,6 @@
 class Person < ApplicationRecord
   include PgSearch::Model
 
-  devise :omniauthable, omniauth_providers: [:keycloak_openid]
-
   belongs_to :company
   belongs_to :department, optional: true
 
