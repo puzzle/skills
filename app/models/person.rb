@@ -96,25 +96,25 @@ class Person < ApplicationRecord
   end
 
   class << self
-    def from_omniauth(auth)
-      p = where(email: auth.info.email).first_or_create do |person|
-        person.name = auth.info.name
-        person.birthdate = DateTime.new(2020, 1, 1)
-        person.nationality = 'CH'
-        person.location = 'Schweiz'
-        person.title = 'Software Engineer'
-        person.marital_status = :single
-        person.company = Company.first
+    def from_omniauth(auth) # rubocop:disable Metrics/AbcSize
+      person = where(email: auth.info.email).first_or_create do |user|
+        user.name = auth.info.name
+        user.birthdate = DateTime.new(2020, 1, 1)
+        user.nationality = 'CH'
+        user.location = 'Schweiz'
+        user.title = 'Software Engineer'
+        user.marital_status = :single
+        user.company = Company.first
       end
-      set_admin(p, auth)
+      set_admin(person, auth)
     end
 
     private
 
-    def set_admin(p, auth)
-      p.is_admin = admin?(auth)
-      p.save
-      p
+    def set_admin(person, auth)
+      person.is_admin = admin?(auth)
+      person.save
+      person
     end
 
     def admin?(auth)
