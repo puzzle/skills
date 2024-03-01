@@ -3,11 +3,9 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_person!
 
-  def admin?
-    # return true if Rails.env.development? && ENV['ENABLE_AUTH'].blank?
-    # return true if Rails.env.test? && ENV['FRONTEND_TESTS'].present?
+  def check_admin
+    return false if helpers.admin?
 
-    false
-    # current_person.is_admin
+    render 'unauthorized', status: :unauthorized
   end
 end
