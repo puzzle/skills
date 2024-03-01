@@ -5,8 +5,9 @@ class PeopleController < CrudController
 
   self.permitted_attrs = [:birthdate, :location,
                           :marital_status, :updated_by, :name, :nationality, :nationality2, :title,
-                          :competence_notes, :company_id, :email, :department_id, :shortname, :picture,
-                          { person_roles_attributes: [:role_id, :person_role_level_id, :percent, :id, :_destroy] }]
+                          :competence_notes, :company_id, :email, :department_id, :shortname,
+                          :picture, { person_roles_attributes: [:role_id, :person_role_level_id,
+                                                                :percent, :id, :_destroy] }]
 
   def new
     super
@@ -14,8 +15,7 @@ class PeopleController < CrudController
   end
 
   def update
-    @person.roles.build if @person.roles.empty?
-    if params['has_nationality2']['{}'].to_i.zero?
+    if params['has_nationality2'][0].to_i.zero?
       params['person']['nationality2'] = nil
     end
     super

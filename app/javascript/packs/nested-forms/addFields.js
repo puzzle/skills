@@ -1,5 +1,4 @@
 class addFields {
-    // This executes when the function is instantiated.
     constructor() {
         this.links = document.querySelectorAll(".add_fields");
         this.iterateLinks();
