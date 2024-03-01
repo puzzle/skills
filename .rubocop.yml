@@ -1,6 +1,5 @@
 require: rubocop-rails
 AllCops:
-  NewCops: enable
   DisplayCopNames: true
   Exclude:
     - Rakefile
@@ -16,7 +15,7 @@ AllCops:
 
 
 Metrics/AbcSize:
-  Max: 30
+  Max: 17
   Severity: error
 
 Metrics/ClassLength:
