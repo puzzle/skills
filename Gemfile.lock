@@ -489,7 +489,7 @@ DEPENDENCIES
   countries
   cssbundling-rails
   database_cleaner
-  devise (~> 4.9)
+  devise
   faker
   haml-rails
   i18n_data
