@@ -4,13 +4,13 @@ class AuthUser < ApplicationRecord
 
   devise :omniauthable, omniauth_providers: [:keycloak_openid]
 
-
   class << self
     def from_omniauth(auth)
-      person = where(email: auth.info.email).first_or_create do |user|
+      person = where(uid: auth.uid).first_or_create do |user|
         user.name = auth.info.name
-
+        user.email = auth.info.email
       end
+      person.last_login = Time.zone.now
       set_admin(person, auth)
     end
 

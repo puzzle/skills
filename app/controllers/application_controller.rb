@@ -3,7 +3,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_auth_user!
 
-  def check_admin
+  def render_unauthorized
     return false if helpers.admin?
 
     render 'unauthorized', status: :unauthorized

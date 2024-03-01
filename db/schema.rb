@@ -147,7 +147,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_01_124103) do
     t.string "email"
     t.integer "department_id"
     t.string "shortname"
-    t.boolean "is_admin", default: false, null: false
     t.index ["company_id"], name: "index_people_on_company_id"
   end
 

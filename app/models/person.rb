@@ -92,33 +92,4 @@ class Person < ApplicationRecord
 
     errors.add(:picture, 'grösse kann maximal 10MB sein')
   end
-
-  class << self
-    def from_omniauth(auth) # rubocop:disable Metrics/AbcSize
-      person = where(email: auth.info.email).first_or_create do |user|
-        user.name = auth.info.name
-        user.birthdate = DateTime.new(2020, 1, 1)
-        user.nationality = 'CH'
-        user.location = 'Schweiz'
-        user.title = 'Software Engineer'
-        user.marital_status = :single
-        user.company = Company.first
-      end
-      set_admin(person, auth)
-    end
-
-    private
-
-    def set_admin(person, auth)
-      person.is_admin = admin?(auth)
-      person.save
-      person
-    end
-
-    def admin?(auth)
-      resources = auth.extra.raw_info.resource_access[AuthConfig.client_id]
-      resources.roles.include? AuthConfig.admin_role
-    end
-
-  end
 end

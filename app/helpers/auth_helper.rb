@@ -2,7 +2,7 @@
 
 module AuthHelper
   def session_path(_scope)
-    new_person_session_path
+    new_auth_user_session_path
   end
 
   def admin?
