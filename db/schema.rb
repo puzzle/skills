@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_29_093827) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_01_124103) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -39,6 +39,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_29_093827) do
     t.integer "month_from"
     t.integer "month_to"
     t.index ["person_id"], name: "index_advanced_trainings_on_person_id"
+  end
+
+  create_table "auth_users", force: :cascade do |t|
+    t.string "uid"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["uid"], name: "index_auth_users_on_uid", unique: true
   end
 
   create_table "branch_adresses", force: :cascade do |t|

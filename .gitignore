@@ -99,4 +99,3 @@ config/docker/development/home/rails/.bash_history
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
-config/auth.yml
