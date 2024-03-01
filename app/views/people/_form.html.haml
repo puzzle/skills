@@ -8,13 +8,13 @@
         %tbody
           %th.fw-normal Name
           %tr
-            %td= form.text_field :name, class: "w-100 form-control"
+            %td= form.text_field :name, class: "mw-100 form-control"
           %th.fw-normal Email
           %tr
-            %td= form.text_field :email, class: "w-100, form-control"
+            %td= form.text_field :email, class: "mw-100, form-control"
           %th.fw-normal Abschluss
           %tr
-            %td= form.text_field :title, class: "w-100, form-control"
+            %td= form.text_field :title, class: "mw-100, form-control"
           %th.fw-normal Funktionen
           %div
             = form.fields_for :person_roles do |person_role|
@@ -25,32 +25,32 @@
                 = link_to_add_role "Neue Funktion", form, :person_roles
           %th.fw-normal Organisationseinheit
           %tr
-            %td= form.collection_select :department_id, Department.order(:name), :id, :name, {}, class: "form-select w-100"
+            %td= form.collection_select :department_id, Department.order(:name), :id, :name, {}, class: "form-select mw-100"
           %th.fw-normal Firma
           %tr
-            %td= form.collection_select :company_id, Company.order(:name), :id, :name, {}, class: "form-select w-100"
+            %td= form.collection_select :company_id, Company.order(:name), :id, :name, {}, class: "form-select mw-100"
           %th.fw-normal Wohnort (Stadt)
           %tr
-            %td= form.text_field :location, class: "form-control w-100"
+            %td= form.text_field :location, class: "form-control mw-100"
 
     %div.pe-5.col-xl-3.col-12
       %table
         %tbody
           %th.fw-normal Geburtsdatum
           %tr
-            %td= form.date_field :birthdate, class: "form-control w-100"
+            %td= form.date_field :birthdate, class: "form-control mw-100"
           %th.fw-normal Doppelbürger
           %tr
             %td{"data-controller"=>"nationality-two"}= check_box :has_nationality2, "", {"checked" => @person.nationality2?, "data-action" => "nationality-two#nationalityTwoVisible", "id" => "nat-two-checkbox"}
           %th.fw-normal Erste Nationalität
           %tr
-            %td= form.collection_select :nationality, ISO3166::Country.all.sort, :alpha2, :iso_short_name, {}, class: "form-select w-100"
+            %td= form.collection_select :nationality, ISO3166::Country.all.sort, :alpha2, :iso_short_name, {}, class: "form-select mw-100"
           %th.fw-normal.nationality-two Zweite Nationalität
           %tr.nationality-two
-            %td= form.collection_select :nationality2, ISO3166::Country.all.sort, :alpha2, :iso_short_name, {}, class: "form-select w-100"
+            %td= form.collection_select :nationality2, ISO3166::Country.all.sort, :alpha2, :iso_short_name, {}, class: "form-select mw-100"
           %th.fw-normal Zivilstand
           %tr
-            %td= form.collection_select :marital_status, Person.marital_statuses, :first, :first, { selected: @person.marital_status }, class: "form-select w-100"
+            %td= form.collection_select :marital_status, Person.marital_statuses, :first, :first, { selected: @person.marital_status }, class: "form-select mw-100"
     %div.col-xl-3.col-12.mw-100
       %div.fw-normal Sprachen
       %div.border.border-dark-subtle.mt-1.p-2.rounded
