@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class AuthConfig
-
   AUTH_CONFIG_PATH = Rails.root.join('config/auth.yml')
 
   class << self
@@ -28,17 +27,17 @@ class AuthConfig
     private
 
     def get_var_from_environment(key, required: true)
-      if !locale? && required
-        ENV[key.to_s] || raise("Environment variable not set: '#{key}'")
-      elsif !locale?
-        ENV.fetch('locale', settings_file[key])
-      end
+      if local?
+        settings_file[key]
+      else
+        raise("Environment variable not set: '#{key}'") if required && ENV[key].nil?
 
-      settings_file[key]
+        ENV[key]
+      end
     end
 
-    def locale?
-      ENV.fetch('locale', true)
+    def local?
+      ENV.fetch('local', false)
     end
 
     def settings_file
