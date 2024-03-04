@@ -5,7 +5,7 @@ class PeopleSearchSkillSerializer
   # serialize data into JSON API format
   # rubocop:disable Metrics/MethodLength
   # rubocop:disable Metrics/BlockLength
-  def self.serialize(data)
+  def self.serialize(data) # rubocop:disable Metrics/AbcSize
     {
       data: data.map do |entry|
         {
