@@ -1,5 +1,5 @@
 <%= turbo_stream.update "#{dom_id @person}" do %>
-  <%= render "form", skill: @skill %>
+  <%= render "form", person: @person %>
   <% if @person.errors.any? %>
     <div class="alert alert-danger mt-2">
       <ul class="mb-0">

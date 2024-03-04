@@ -2,7 +2,10 @@
   %div.d-flex.flex-xl-row.flex-lg-column.flex-md-column.flex-sm-column.flex-column
     %div.col-xl-3.col-12
       %img.rounded-circle#avatar{src: "/api/people/#{@person.id}/picture", width: '141', height: '141'}
-      %div{"data-controller"=>"image-upload"}= form.file_field :picture, { accept: "image/", "data-action" => "image-upload#changeImage", id: "avatar-uploader" }
+      %br
+      %label.btn.btn-primary{for: "avatar-uploader"} Bild ändern
+      %div.visually-hidden{"data-controller"=>"image-upload"}= form.file_field :picture, { accept: "image/", "data-action" => "image-upload#changeImage", id: "avatar-uploader" }
+      = form.hidden_field :picture_cache
     %div.pe-5.col-xl-3.col-12
       %table
         %tbody
