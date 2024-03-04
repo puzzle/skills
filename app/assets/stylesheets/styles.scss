@@ -52,3 +52,11 @@ pzsh-topbar {
   font-size: 18px;
   border-bottom: #d6d6d6 1px solid;
 }
+
+.bg-skills-blue {
+  background-color: $skills-blue;
+}
+
+.bg-skills-blue:hover {
+  background-color: #3268a1;
+}

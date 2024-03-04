@@ -3,7 +3,7 @@
     %div.col-xl-3.col-12
       %img.rounded-circle#avatar{src: "/api/people/#{@person.id}/picture", width: '141', height: '141'}
       %br
-      %label.btn.btn-primary{for: "avatar-uploader"} Bild ändern
+      %label.btn.btn-primary.bg-skills-blue{for: "avatar-uploader"} Bild ändern
       %div.visually-hidden{"data-controller"=>"image-upload"}= form.file_field :picture, { accept: "image/", "data-action" => "image-upload#changeImage", id: "avatar-uploader" }
       = form.hidden_field :picture_cache
     %div.pe-5.col-xl-3.col-12
@@ -60,5 +60,5 @@
         - @person.language_skills.each do |language|
           %div.mb-1= "#{language.language}: #{language.level} - #{language.certificate}"
   %div.mt-3
-    = form.submit :Speichern, class: "btn btn-primary me-3"
+    = form.submit :Speichern, class: "btn btn-primary me-3 bg-skills-blue"
     = link_to "Abbrechen", person_path
