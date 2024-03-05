@@ -37,7 +37,7 @@ class AuthConfig
     end
 
     def local?
-      ENV.fetch('local', false)
+      ENV.fetch('LOCAL', false)
     end
 
     def settings_file
