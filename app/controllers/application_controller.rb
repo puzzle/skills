@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def render_error(title_key, body_key, status = :bad_request)
-    render partial: 'remote_modal',
+    render partial: 'error_modal',
            locals: { title: translate("devise.failure.titles.#{title_key}"),
                      body: translate("devise.failure.#{body_key}") },
            :status => status
