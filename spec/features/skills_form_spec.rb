@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 
-describe 'Skill Form', type: :system, js:true do
+describe 'Skill Form', type: :feature, js:true do
   before do
     visit skills_path
     click_link(href: new_skill_path)
@@ -15,7 +15,6 @@ describe 'Skill Form', type: :system, js:true do
     select @category.title, from: 'skill_category_id'
     select @radar, from: 'skill_radar'
     select @portfolio, from: 'skill_portfolio'
-    click_button 'Skill erstellen'
     click_button 'Skill erstellen'
     all 'tbody tr', count: 6
     # Check for the skill names instead of the amount
@@ -37,7 +36,7 @@ describe 'Skill Form', type: :system, js:true do
   end
 
   it 'redirects to the skills index when the cancel button is clicked' do
-    click_link(href:skills_path)
+    click_link(href:skills_path, text: "Cancel")
     all 'tbody tr', count: 5
   end
 end
