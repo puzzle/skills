@@ -508,7 +508,7 @@ DEPENDENCIES
   nokogiri (~> 1.14)
   odf-report
   omniauth-keycloak
-  omniauth-rails_csrf_protection (~> 1.0)
+  omniauth-rails_csrf_protection
   pg
   pg_search
   pry

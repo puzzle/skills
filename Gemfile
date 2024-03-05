@@ -30,7 +30,7 @@ gem 'net-smtp', require: false
 gem 'nokogiri', '~> 1.14'
 gem 'odf-report'
 gem 'omniauth-keycloak'
-gem 'omniauth-rails_csrf_protection', '~> 1.0'
+gem 'omniauth-rails_csrf_protection'
 gem 'pg'
 gem 'pg_search'
 gem 'psych', '~> 3.3', '>= 3.3.4'

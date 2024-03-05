@@ -9,7 +9,7 @@ module AuthHelper
     current_auth_user&.is_admin
   end
 
-  def people_dropdown_config(person)
+  def generate_select_options_with_default(person)
     selected = person ? person.id : ''
     prompt = person ? false : true
     { :selected => selected, :prompt => prompt, :disabled => '' }

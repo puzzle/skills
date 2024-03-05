@@ -23,6 +23,7 @@
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
 bob:
   birthdate: 2014-03-02 13:15:11
   location: Bern
