@@ -140,6 +140,7 @@ GEM
     diff-lcs (1.5.1)
     docile (1.4.0)
     domain_name (0.6.20240107)
+    dotenv (3.1.0)
     dry-configurable (1.1.0)
       dry-core (~> 1.0, < 2)
       zeitwerk (~> 2.6)
@@ -490,6 +491,7 @@ DEPENDENCIES
   cssbundling-rails
   database_cleaner
   devise
+  dotenv
   faker
   haml-rails
   i18n_data
