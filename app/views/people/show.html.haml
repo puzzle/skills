@@ -1,4 +1,5 @@
 %div
+  =render partial:"people/search", :locals => {person: @person}
   %div.personals-header
     Personalien
   %div
@@ -11,7 +12,7 @@
       %div.d-flex.flex-xl-row.flex-lg-column.flex-md-column.flex-sm-column.flex-column
         %div.col-xl-3.col-12
           %img.rounded-circle{src: "/api/people/#{@person.id}/picture?#{Time.now.to_f}", width: '141', height: '141'}
-          %div.mt-3= link_to "Bearbeiten",  edit_person_path
+          %div.mt-3= link_to "Bearbeiten", edit_person_path, class: "edit_button"
         %div.pe-5.col-xl-3.col-12
           %table
             %tbody
@@ -28,7 +29,7 @@
               - unless @person.person_roles.empty?
                 - @person.person_roles.each do |person_role|
                   %tr
-                    %td= "#{person_role.role.name} #{person_role.person_role_level.level} #{person_role.percent.to_i}%"
+                    %td= "#{person_role.role.name} #{person_role.person_role_level&.level} #{person_role.percent&.to_i}%"
               - else
                 %tr
                   %td -
