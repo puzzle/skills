@@ -46,6 +46,9 @@ de:
       timeout: Ihre Sitzung ist abgelaufen, bitte melde Sie sich erneut an.
       unauthenticated: Sie müssen sich anmelden oder registrieren, bevor Sie fortfahren können.
       unconfirmed: Sie müssen Ihr Konto bestätigen, bevor Sie fortfahren können.
+      unauthorized: Sie sind nicht berechtigt, auf diese Seite zuzugreifen.
+      titles:
+        unauthorized: "401 Keine ausreichenden Berechtigungen"
     mailer:
       confirmation_instructions:
         action: Mein Konto bestätigen

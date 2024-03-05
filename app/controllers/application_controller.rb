@@ -3,16 +3,22 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_auth_user!
 
-  def render_unauthorized
-    return false if helpers.admin?
-
-    render 'unauthorized', status: :unauthorized
-  end
-
   def authenticate_auth_user!
     super unless helpers.development?
 
-    admin = AuthUser.find_by(email: 'admin@skills.ch')
+    admin = AuthUser.find_by(email: 'user@skills.ch')
     request.env['warden'].set_user(admin, :scope => :auth_user)
+  end
+
+  def render_unauthorized
+    return false if helpers.admin?
+
+    render_error('unauthorized', 'unauthorized', :unauthorized)
+  end
+
+  def render_error(title_key, body_key, status = :bad_request)
+    render partial: 'remote_modal',
+           locals: { title: translate("devise.failure.titles.#{title_key}"),
+                     body: translate("devise.failure.#{body_key}") }, :status => status
   end
 end
