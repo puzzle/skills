@@ -5,7 +5,7 @@ describe Api::PeopleController do
     before do
       load_pictures
       allow_any_instance_of(Odt::Cv).to receive(:location).and_return(branch_adresses(:bern))
-    end
+    end 
 
 
     describe 'Export person as odt' do
