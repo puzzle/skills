@@ -16,7 +16,6 @@ describe 'Skill Form', type: :feature, js:true do
     select @radar, from: 'skill_radar'
     select @portfolio, from: 'skill_portfolio'
     click_button 'Skill erstellen'
-    click_button 'Skill erstellen'
     all 'tbody tr', count: 6
     # Check for the skill names instead of the amount
     within('tbody') do
