@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_auth_user!
-    super unless ENV['DEVELOPMENT'] == 'true'
+    super unless helpers.development?
 
     admin = AuthUser.find_by(email: 'admin@skills.ch')
     request.env['warden'].set_user(admin, :scope => :auth_user)

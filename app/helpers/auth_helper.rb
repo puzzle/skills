@@ -14,4 +14,8 @@ module AuthHelper
     prompt = person ? false : true
     { :selected => selected, :prompt => prompt, :disabled => '' }
   end
+
+  def development?
+    ENV['DEVELOPMENT'] == 'true'
+  end
 end
