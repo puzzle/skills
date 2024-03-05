@@ -16,6 +16,6 @@ module AuthHelper
   end
 
   def development?
-    ENV['RAILS_ENV'] == 'development'
+    ENV['DEVELOPMENT'] == 'true' && ENV['RAILS_ENV'] == 'development'
   end
 end
