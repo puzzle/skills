@@ -2,6 +2,7 @@
 
 class SkillsController < CrudController
   include ExportController
+  before_action :update_category_parent, only: [:update]
 
   before_action :render_unauthorized, except: %i[index show unrated_by_person]
 
@@ -11,10 +12,6 @@ class SkillsController < CrudController
     super(:location => skills_path,
           render_on_failure: 'skills/form_update',
           status: :unprocessable_entity)
-  end
-
-  def edit
-    @category_parent = params[:parent] ? Category.where(id: params[:parent])[0] : entry.category.parent
   end
 
   def unrated_by_person
@@ -48,5 +45,11 @@ class SkillsController < CrudController
 
   def disposition
     content_disposition('attachment', filename('skillset', nil, 'csv'))
+  end
+
+  def update_category_parent
+    entry.category_id = Category.find(params[:skill][:category_parent]).children.first.id
+    params[:skill].delete(:category_parent)
+    params[:skill].delete(:category_id)
   end
 end

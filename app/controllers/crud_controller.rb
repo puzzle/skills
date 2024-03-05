@@ -83,13 +83,19 @@ class CrudController < ListController
   #
   # Specify a :location option if you wish to do a custom redirect.
   def update(**options, &block)
-    model_class.transaction do
+    if params[:validateOnly] == "true"
       assign_attributes
-      updated = with_callbacks(:update, :save) { entry.save }
-      respond(updated,
-              **options.merge(status: :ok, render_on_failure: :edit),
-              &block)
-      raise ActiveRecord::Rollback unless updated
+      respond(false, **options.merge(status: :ok, render_on_failure: :edit), &block)
+    else
+      model_class.transaction do
+        if assign_attributes
+          updated = with_callbacks(:update, :save) { entry.save }
+          respond(updated,
+                  **options.merge(status: :ok, render_on_failure: :edit),
+                  &block)
+          raise ActiveRecord::Rollback unless updated
+        end
+      end
     end
   end
 

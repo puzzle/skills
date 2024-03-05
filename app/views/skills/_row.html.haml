@@ -1,13 +1,13 @@
 = form_with(model: @skill) do |f|
-  .row.border.border-top.table-light.table-hover.table-row{"data-controller" => "table"}
+  .row.border.border-top.table-light.table-hover.table-row
     .col-2.d-flex.align-items-center
       = f.text_field :title, class: "form-control", value: @skill.title
     .col-1.bg-light.d-flex.align-items-center
       =@skill.people.count
     .col-3.d-flex.align-items-center
-      = f.collection_select :category_id, Category.all_parents { |category| category.title}, :id, :title, {:selected => @category_parent.id}, class: "form-select w-100", data: {action: "change->table#adjustChildren", table_target: "parentSelect", table_skill_param: entry}
+      = f.collection_select :category_parent, Category.all_parents { |category| category.title}, :id, :title, {:selected => @skill.category.parent.id}, class: "form-select w-100", onchange: "this.form.action = this.form.action + '?validateOnly=true'; this.form.submit()"
     .col-2.bg-light.d-flex.align-items-center
-      = f.collection_select :category_id, @category_parent.children, :id, :title, {:selected => entry.category.id}, class: "form-select w-100", data: {table_target: "childSelect"}
+      = f.collection_select :category_id, entry.category.parent.children, :id, :title, {:selected => entry.category.parent.children.first.id}, class: "form-select w-100"
     .col-1.d-flex.align-items-center
       =f.check_box :default_set, class: "form-check-input", checked: entry.default_set
     .col-1.bg-light.d-flex.align-items-center
