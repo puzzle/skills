@@ -31,12 +31,10 @@ describe :skills do
     it 'can save edited skill' do
       visit skills_path
       page.first('.edit-button').click
-      within 'div[data-controller="table"]' do
-        fill_out_form
-        within 'div.h-100.d-flex.justify-content-center.align-items-center' do
-          save_button = page.find("input[type='image']")
-          save_button.click
-        end
+      fill_out_form
+      within 'div.h-100.d-flex.justify-content-center.align-items-center' do
+        save_button = page.find("input[type='image']")
+        save_button.click
       end
       expect(page).to have_css("div.row.border.border-top.table-light.tableform-hover.table-row", text: 'new Title', wait: 2)
       edited_skill = Skill.where(title: 'new Title')[0]
@@ -50,14 +48,11 @@ describe :skills do
     it 'can cancel edited skill' do
       visit skills_path
       page.first('.edit-button').click
-
-      within "#skill_#{Skill.first.id}" do
-        page.first('.edit-button').click
-        fill_out_form
-        within 'div.h-100.d-flex.justify-content-center.align-items-center' do
+      page.first('.edit-button').click
+      fill_out_form
+      within 'div.h-100.d-flex.justify-content-center.align-items-center' do
           save_button = page.find("img.pointer")
           save_button.click
-        end
       end
 
       skill = Skill.first
