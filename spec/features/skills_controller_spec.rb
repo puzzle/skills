@@ -3,10 +3,10 @@ require 'rails_helper'
 describe :skills do
   def fill_out_form
     fill_in 'skill_title', with: 'new Title'
-    parent_select = first('#skill_category_id')
+    parent_select = first('#skill_category_parent')
     parent_select.select "System-Engineering"
 
-    child_select = page.all('#skill_category_id')[1]
+    child_select = page.all('#skill_category_id')
     child_select.select "Linux-Engineering"
 
     check 'skill_default_set'
