@@ -48,8 +48,12 @@ class SkillsController < CrudController
   end
 
   def update_category_parent
-    entry.category_id = Category.find(params[:skill][:category_parent]).children.first.id
-    params[:skill].delete(:category_parent)
-    params[:skill].delete(:category_id)
+    parent_category = Category.find(params[:skill][:category_id]).parent
+    child_category = Category.find(params[:skill][:category_parent])
+    if parent_category != child_category
+      entry.category_id = Category.find(params[:skill][:category_parent]).children.first.id
+      params[:skill].delete(:category_parent)
+      params[:skill].delete(:category_id)
+    end
   end
 end

@@ -5,9 +5,9 @@
     .col-1.bg-light.d-flex.align-items-center
       =@skill.people.count
     .col-3.d-flex.align-items-center
-      = f.collection_select :category_parent, Category.all_parents { |category| category.title}, :id, :title, {:selected => @skill.category.parent.id}, class: "form-select w-100", onchange: "this.form.action = this.form.action + '?validateOnly=true'; this.form.submit()"
+      = f.collection_select :category_parent, Category.all_parents { |category| category.title}, :id, :title, {:selected => @skill.category.parent.id}, class: "form-select w-100", onchange: "this.form.action = this.form.action + '?validate_only=true'; this.form.requestSubmit()"
     .col-2.bg-light.d-flex.align-items-center
-      = f.collection_select :category_id, entry.category.parent.children, :id, :title, {:selected => entry.category.parent.children.first.id}, class: "form-select w-100"
+      = f.collection_select :category_id, entry.category.parent.children, :id, :title, {:selected => entry.category.id}, class: "form-select w-100"
     .col-1.d-flex.align-items-center
       =f.check_box :default_set, class: "form-check-input", checked: entry.default_set
     .col-1.bg-light.d-flex.align-items-center
