@@ -55,7 +55,7 @@ describe :people do
     select '/ux', from: 'person_department_id'
     select 'Partner', from: 'person_company_id'
     fill_in 'person_location', with: 'Las Vegas'
-    fill_in 'person_birthdate', with: '28.03.1979'.to_date.strftime
+    fill_in 'person_birthdate', with: '1979-03-28'
     check 'nat-two-checkbox'
     select ISO3166::Country["DE"]&.iso_short_name, from: 'person_nationality'
     select ISO3166::Country["US"]&.iso_short_name, from: 'person_nationality2'
@@ -108,7 +108,7 @@ describe :people do
 
       expect(page).to have_content("Hansjakobli")
 
-      edited_person = Person.where(name: 'Hansjakobli')[0]
+      edited_person = Person.find_by(name: 'Hansjakobli')
       expect(edited_person.email).to eql('hanswurst@somemail.com')
       expect(edited_person.title).to eql('Wurstexperte')
       expect(edited_person.person_roles.count).to equal(3)
