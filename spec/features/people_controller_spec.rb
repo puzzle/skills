@@ -40,11 +40,34 @@ describe :people do
     end
   end
 
+  def fill_out_person_form
+    fill_in 'person_name', with: 'Hansjakobli'
+    fill_in 'person_email', with: 'hanswurst@somemail.com'
+    fill_in 'person_title', with: 'Wurstexperte'
+    page.first(".add_fields").click
+    role_select = page.all('.role-select').last
+    role_level_select = page.all('.role-level-select').last
+    role_percent_select = page.all('.person-role-percent').last
+    select 'System-Engineer', from: role_select[:id]
+    select 'S3', from: role_level_select[:id]
+    fill_in role_percent_select[:id], with: '80'
+
+    select '/ux', from: 'person_department_id'
+    select 'Partner', from: 'person_company_id'
+    fill_in 'person_location', with: 'Las Vegas'
+    fill_in 'person_birthdate', with: '28.03.1979'.to_date.strftime
+    check 'nat-two-checkbox'
+    select ISO3166::Country["DE"]&.iso_short_name, from: 'person_nationality'
+    select ISO3166::Country["US"]&.iso_short_name, from: 'person_nationality2'
+    select 'married', from: 'person_marital_status'
+    fill_in 'person_shortname', with: 'bb'
+  end
+
   describe 'Edit person', type: :feature, js: true do
-    it 'can edit person' do
+    it 'should have all edit fields' do
       bob = people(:bob)
       visit person_path(bob)
-      page.first('.edit_button').click
+      page.find('#edit_button').click
       expect(page).to have_field('person_name', with: bob.name)
       expect(page).to have_field('person_email', with: bob.email)
       expect(page).to have_field('person_title', with: bob.title)
@@ -73,6 +96,35 @@ describe :people do
       expect(page).to have_select('person_nationality', selected: ISO3166::Country[bob.nationality]&.iso_short_name)
       bob.nationality2.nil? ? (expect(page).not_to have_select('person_nationality2')) : (expect(page).to have_select('person_nationality2', selected: ISO3166::Country[bob.nationality2]&.iso_short_name))
       expect(page).to have_select('person_marital_status', selected: bob.marital_status)
+      expect(page).to have_field('person_shortname', with: bob.shortname)
+    end
+
+    it 'should edit and save changes' do
+      bob = people(:bob)
+      visit person_path(bob)
+      page.find('#edit_button').click
+      fill_out_person_form
+      page.find("#save_button").click
+
+      expect(page).to have_content("Hansjakobli")
+
+      edited_person = Person.where(name: 'Hansjakobli')[0]
+      expect(edited_person.email).to eql('hanswurst@somemail.com')
+      expect(edited_person.title).to eql('Wurstexperte')
+      expect(edited_person.person_roles.count).to equal(3)
+
+      edited_person_role = edited_person.person_roles.last
+      expect(edited_person_role.role.name).to eql('System-Engineer')
+      expect(edited_person_role.person_role_level.level).to eql('S3')
+      expect(edited_person_role.percent).to eq(80)
+      expect(edited_person.department.name).to eql('/ux')
+      expect(edited_person.company.name).to eql('Partner')
+      expect(edited_person.location).to eql('Las Vegas')
+      expect(edited_person.birthdate.to_date.strftime).to eql('1979-03-28')
+      expect(edited_person.nationality).to eql('DE')
+      expect(edited_person.nationality2).to eql('US')
+      expect(edited_person.marital_status).to eql('married')
+      expect(edited_person.shortname).to eql('bb')
     end
   end
 end
