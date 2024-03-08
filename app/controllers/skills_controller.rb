@@ -47,13 +47,14 @@ class SkillsController < CrudController
     content_disposition('attachment', filename('skillset', nil, 'csv'))
   end
 
-
+  # rubocop:disable Metrics/AbcSize
   def update_category_parent
     current_parent_id = Category.find(params[:skill][:category_id]).parent.id
-    new_parent_id = params[:skill].delete(:category_parent)
-    if current_parent_id != new_parent_id.to_i
+    new_parent_id = params[:skill].delete(:category_parent).to_i
+    if current_parent_id != new_parent_id
       entry.category_id = Category.find(new_parent_id).children.first.id
       params[:skill].delete(:category_id)
     end
   end
+  # rubocop:enable Metrics/AbcSize
 end

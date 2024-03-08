@@ -83,6 +83,8 @@ class CrudController < ListController
   # in the given block will take precedence over the one defined here.
   #
   # Specify a :location option if you wish to do a custom redirect.
+
+  # rubocop:disable Metrics/MethodLength
   def update(**options, &block)
     assign_attributes
     model_class.transaction do
@@ -91,7 +93,7 @@ class CrudController < ListController
         if true?(params[:validate_only])
           entry.validate
         else
-          updated = with_callbacks(:update, :save) { entry.save }
+          with_callbacks(:update, :save) { entry.save }
         end
 
         respond(updated,
@@ -99,6 +101,16 @@ class CrudController < ListController
                 &block)
         raise ActiveRecord::Rollback unless updated
       end
+    end
+  end
+  # rubocop:enable Metrics/MethodLength
+
+  def validate_validate_only_param
+    if true?(params[:validate_only])
+      entry.validate
+      false
+    else
+      with_callbacks(:update, :save) { entry.save }
     end
   end
 
