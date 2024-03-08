@@ -2,12 +2,7 @@
   =render partial:"people/search", :locals => {person: @person}
   %div.personals-header
     Personalien
-  %div
-    %div
-      %h1
-        = @person.name
-        's Profile
-
+  %div.mt-4
     %turbo-frame{id: "#{dom_id @person}"}
       %div.d-flex.flex-xl-row.flex-lg-column.flex-md-column.flex-sm-column.flex-column
         %div.col-xl-3.col-12
