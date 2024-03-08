@@ -1,6 +1,7 @@
 # frozen_string_literal: true
+
 module RoleFormHelper
-  # This method creates a link with `data-id` `data-fields` attributes. These attributes are used 
+  # This method creates a link with `data-id` `data-fields` attributes. These attributes are used
   # to create new instances of the nested fields through Javascript.
   def link_to_add_role(name, form, association)
     # Takes an object and creates a new instance of its associated model
