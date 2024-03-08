@@ -41,6 +41,7 @@ describe :people do
   end
 
   def fill_out_person_form
+    page.attach_file("avatar-uploader", Rails.root + 'app/assets/images/1.png')
     fill_in 'person_name', with: 'Hansjakobli'
     fill_in 'person_email', with: 'hanswurst@somemail.com'
     fill_in 'person_title', with: 'Wurstexperte'
@@ -68,6 +69,7 @@ describe :people do
       bob = people(:bob)
       visit person_path(bob)
       page.find('#edit-button').click
+      expect(page).to have_field('avatar-uploader')
       expect(page).to have_field('person_name', with: bob.name)
       expect(page).to have_field('person_email', with: bob.email)
       expect(page).to have_field('person_title', with: bob.title)
