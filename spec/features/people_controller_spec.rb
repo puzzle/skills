@@ -67,7 +67,7 @@ describe :people do
     it 'should have all edit fields' do
       bob = people(:bob)
       visit person_path(bob)
-      page.find('#edit_button').click
+      page.find('#edit-button').click
       expect(page).to have_field('person_name', with: bob.name)
       expect(page).to have_field('person_email', with: bob.email)
       expect(page).to have_field('person_title', with: bob.title)
@@ -102,9 +102,9 @@ describe :people do
     it 'should edit and save changes' do
       bob = people(:bob)
       visit person_path(bob)
-      page.find('#edit_button').click
+      page.find('#edit-button').click
       fill_out_person_form
-      page.find("#save_button").click
+      page.find("#save-button").click
 
       expect(page).to have_content("Hansjakobli")
 
@@ -125,6 +125,15 @@ describe :people do
       expect(edited_person.nationality2).to eql('US')
       expect(edited_person.marital_status).to eql('married')
       expect(edited_person.shortname).to eql('bb')
+    end
+
+    it 'should edit and cancel without saving' do
+      person = Person.first
+      visit person_path(person)
+      page.find('#edit-button').click
+      fill_out_person_form
+      page.find('#cancel-button').click
+      expect(person.attributes).to eql(Person.first.attributes)
     end
   end
 end

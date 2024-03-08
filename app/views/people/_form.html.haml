@@ -63,5 +63,5 @@
         - @person.language_skills.each do |language|
           %div.mb-1= "#{language.language}: #{language.level} - #{language.certificate}"
   %div.mt-3
-    = form.submit :Speichern, { class: "btn btn-primary me-3 bg-skills-blue", id: "save_button" }
-    = link_to "Abbrechen", person_path
+    = form.submit :Speichern, { class: "btn btn-primary me-3 bg-skills-blue", id: "save-button" }
+    = link_to "Abbrechen", person_path, { id: "cancel-button" }
