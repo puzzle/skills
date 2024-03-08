@@ -93,7 +93,7 @@ class CrudController < ListController
         if true?(params[:validate_only])
           entry.validate
         else
-          with_callbacks(:update, :save) { entry.save }
+          updated = with_callbacks(:update, :save) { entry.save }
         end
 
         respond(updated,
@@ -104,15 +104,6 @@ class CrudController < ListController
     end
   end
   # rubocop:enable Metrics/MethodLength
-
-  def validate_validate_only_param
-    if true?(params[:validate_only])
-      entry.validate
-      false
-    else
-      with_callbacks(:update, :save) { entry.save }
-    end
-  end
 
   #   DELETE /entries/1
   #   DELETE /entries/1.json
