@@ -16,7 +16,7 @@ class PeopleController < CrudController
   end
 
   def update
-    if params['has_nationality2']['has_nationality2'].to_i.zero?
+    if params['has_nationality2']['checked'].to_i.zero?
       params['person']['nationality2'] = nil
     end
     super
