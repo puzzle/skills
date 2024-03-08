@@ -120,7 +120,7 @@ describe :people do
       expect(edited_person.department.name).to eql('/ux')
       expect(edited_person.company.name).to eql('Partner')
       expect(edited_person.location).to eql('Las Vegas')
-      expect(edited_person.birthdate.to_date.strftime).to eql('28.03.1979')
+      expect(edited_person.birthdate.to_date.strftime('%d.%m.%Y')).to eql('28.03.1979')
       expect(edited_person.nationality).to eql('DE')
       expect(edited_person.nationality2).to eql('US')
       expect(edited_person.marital_status).to eql('married')
