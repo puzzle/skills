@@ -10,6 +10,7 @@
 # With the help of additional callbacks, it is possible to hook into the
 # action procedures without overriding the entire method.
 class CrudController < ListController
+  include ParamConverters
 
   class_attribute :permitted_attrs
 
@@ -64,7 +65,7 @@ class CrudController < ListController
       assign_attributes
       created = with_callbacks(:create, :save) { entry.save }
       respond(created,
-              **options.reverse_merge(status: :created, render_on_failure: :new),
+              **options.reverse_merge(status: :created, render_on_unsaved: :new),
               &block)
       raise ActiveRecord::Rollback unless created
     end
@@ -83,18 +84,20 @@ class CrudController < ListController
   #
   # Specify a :location option if you wish to do a custom redirect.
   def update(**options, &block)
-    if params[:validate_only] == "true"
-      assign_attributes
-      respond(false, **options.merge(status: :ok, render_on_failure: :edit), &block)
-    else
-      model_class.transaction do
-        if assign_attributes
+    assign_attributes
+    model_class.transaction do
+      if assign_attributes
+        updated = false
+        if true?(params[:validate_only])
+          entry.validate
+        else
           updated = with_callbacks(:update, :save) { entry.save }
-          respond(updated,
-                  **options.merge(status: :ok, render_on_failure: :edit),
-                  &block)
-          raise ActiveRecord::Rollback unless updated
         end
+
+        respond(updated,
+                **options.merge(status: :ok, render_on_unsaved: :edit),
+                &block)
+        raise ActiveRecord::Rollback unless updated
       end
     end
   end
@@ -164,29 +167,29 @@ class CrudController < ListController
     respond_to do |format|
       yield(format, success) if block_given?
       if success
-        format_on_success(format, **options)
+        render_on_success(format, **options)
       else
-        format_on_error(format, **options)
+        render_on_unsaved(format, **options)
       end
     end
   end
 
-  def format_on_success(format, **options)
+  def render_on_success(format, **options)
     format.html { redirect_on_success(**options) }
     format.json { render_success_json(options[:status]) }
   end
 
-  def format_on_error(format, **options)
-    format.turbo_stream { render options[:render_on_failure], status: options[:status] }
-    format.html { render_or_redirect_on_failure(**options) }
-    format.json { render_failure_json }
+  def render_on_unsaved(format, **options)
+    format.turbo_stream { render options[:render_on_unsaved], status: options[:status] }
+    format.html { render_or_redirect_on_unsaved(**options) }
+    format.json { render_unsaved_json }
   end
 
-  # If the option :render_on_failure is given, render the corresponding
+  # If the option :render_on_unsaved is given, render the corresponding
   # template, otherwise redirect.
-  def render_or_redirect_on_failure(**options)
-    if options[:render_on_failure]
-      render options[:render_on_failure], status: options[:status]
+  def render_or_redirect_on_unsaved(**options)
+    if options[:render_on_unsaved]
+      render options[:render_on_unsaved], status: options[:status]
     else
       redirect_on_failure(**options)
     end
@@ -219,7 +222,7 @@ class CrudController < ListController
   end
 
   # Render a json with the errors.
-  def render_failure_json
+  def render_unsaved_json
     render json: entry.errors, status: :unprocessable_entity
   end
 

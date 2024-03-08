@@ -47,12 +47,12 @@ class SkillsController < CrudController
     content_disposition('attachment', filename('skillset', nil, 'csv'))
   end
 
+
   def update_category_parent
-    parent_category = Category.find(params[:skill][:category_id]).parent
-    child_category = Category.find(params[:skill][:category_parent])
-    if parent_category != child_category
-      entry.category_id = Category.find(params[:skill][:category_parent]).children.first.id
-      params[:skill].delete(:category_parent)
+    current_parent_id = Category.find(params[:skill][:category_id]).parent.id
+    new_parent_id = params[:skill].delete(:category_parent)
+    if current_parent_id != new_parent_id.to_i
+      entry.category_id = Category.find(new_parent_id).children.first.id
       params[:skill].delete(:category_id)
     end
   end
