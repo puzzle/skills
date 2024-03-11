@@ -114,7 +114,6 @@ describe :people do
       expect(edited_person.email).to eql('hanswurst@somemail.com')
       expect(edited_person.title).to eql('Wurstexperte')
       expect(edited_person.person_roles.count).to equal(3)
-
       edited_person_role = edited_person.person_roles.last
       expect(edited_person_role.role.name).to eql('System-Engineer')
       expect(edited_person_role.person_role_level.level).to eql('S3')

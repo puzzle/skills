@@ -10,11 +10,6 @@ class PeopleController < CrudController
                           { person_roles_attributes: [:role_id, :person_role_level_id,
                                                       :percent, :id, :_destroy] }]
 
-  def new
-    super
-    @person.roles.build
-  end
-
   def update
     if false?(params['has_nationality2']['checked'])
       params['person']['nationality2'] = nil

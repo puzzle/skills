@@ -21,16 +21,19 @@ Rails.application.routes.draw do
     get 'readiness', to: 'status#readiness'
   end
 
+  resources :people do
+    member do
+      put 'picture', to: 'people/picture#update'
+      get 'picture', to: 'people/picture#show'
+    end
+  end
+  resources :skills
+
   # Outdated api routes
   namespace :api do
     resources :people do
       collection do
         get 'search', to: 'people/search#index'
-      end
-
-      member do
-        put 'picture', to: 'people/picture#update'
-        get 'picture', to: 'people/picture#show'
       end
     end
 
