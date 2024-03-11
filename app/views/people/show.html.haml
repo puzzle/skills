@@ -24,7 +24,7 @@
               - unless @person.person_roles.empty?
                 - @person.person_roles.each do |person_role|
                   %tr
-                    %td= "#{person_role.role.name} #{person_role.person_role_level&.level} #{person_role.percent&.to_i}%"
+                    %td= "#{person_role.role.name} #{person_role.person_role_level&.level} #{person_role.percent.nil? ? '' : person_role.percent.to_i.to_s + '%'}"
               - else
                 %tr
                   %td -
