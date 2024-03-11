@@ -33,9 +33,9 @@ class PeopleController < CrudController
   end
 
   def export
-    anon = true?(params[:anon])
-    params[:includeCS] = true?(params[:includeCS])
-    params[:skillsByLevel] = true?(params[:skillsByLevel])
+    anon = true?(params[:anon]).to_s
+    params[:includeCS] = true?(params[:includeCS]).to_s
+    params[:skillsByLevel] = true?(params[:skillsByLevel]).to_s
     odt_file = Odt::Cv.new(entry, params).export
     filename = if anon == 'true'
                  'CV_Puzzle_ITC_anonymized.odt'

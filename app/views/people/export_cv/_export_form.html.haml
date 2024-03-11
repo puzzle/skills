@@ -9,8 +9,8 @@
     = f.check_box :skillsByLevel, class: "form-check-input", "data-action": "click->skills-filter#toggleSwitch"
     = f.label "Skills nach Level", class: "form-check-label w-100"
     %div{"data-skills-filter-target": "container"}
-      = f.label "trainee", "data-skills-filter-target": "label", class: "w-25"
-      = f.range_field :levelValue, min: 1, max: 5, class: "form-range w-25", "data-action": "change->skills-filter#toggleLevel", "data-skills-filter-target": "switch"
+      = f.label "trainee", "data-skills-filter-target": "label", class: "w-100"
+      = f.range_field :levelValue, min: 1, max: 5, value: 1, class: "form-range w-25", "data-action": "change->skills-filter#toggleLevel", "data-skills-filter-target": "switch"
   .mb-2.w-100.form-check.form-switch
     = f.check_box :anon, class: "form-check-input"
     = f.label "Anonymisierter CV", class: "form-check-label w-100"
