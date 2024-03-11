@@ -19,6 +19,9 @@ application.register("person-roles", PersonRolesController)
 import RemoteModalController from "./remote_modal_controller"
 application.register("remote-modal", RemoteModalController)
 
+import SkillsFilterController from "./skills_filter_controller"
+application.register("skills-filter", SkillsFilterController)
+
 import DropdownLinksController from "./dropdown_controller"
 application.register("dropdown", DropdownLinksController)
 

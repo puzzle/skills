@@ -1,14 +1,19 @@
-= form_with(url: "/people/1?format=odt", method: 'get') do |f|
+= form_with(url: person_path(format: 'odt'), method: 'get', data: {controller: "skills-filter"}) do |f|
   .mb-2.w-100
     = f.label 'Niederlassung (für Footer):', class: "form-label w-100"
     = f.collection_select :location, BranchAdress.all, :id, :short_name, {}, class: "form-select w-100"
   .mb-2.w-100.form-check.form-switch
-    %input{class: "form-check-input", type: "checkbox", name: "includeCS"}
+    = f.check_box :includeCS, class: "form-check-input"
     = f.label 'Kernkompetenzen - Skills', class: "form-check-label w-100"
   .mb-2.w-100.form-check.form-switch
-    %input{class: "form-check-input", type: "checkbox", name: "skillsByLevel"}
+    = f.check_box :skillsByLevel, class: "form-check-input", "data-action": "click->skills-filter#toggleSwitch"
     = f.label "Skills nach Level", class: "form-check-label w-100"
-  = f.hidden_field :format, {value: 'odt'}
+    %div{"data-skills-filter-target": "container"}
+      = f.label "trainee", "data-skills-filter-target": "label", class: "w-25"
+      = f.range_field :levelValue, min: 1, max: 5, class: "form-range w-25", "data-action": "change->skills-filter#toggleLevel", "data-skills-filter-target": "switch"
+  .mb-2.w-100.form-check.form-switch
+    = f.check_box :anon, class: "form-check-input"
+    = f.label "Anonymisierter CV", class: "form-check-label w-100"
   .mb-1.mt-4
-    = f.button class:"btn btn-primary","aria-label":"Close"
+    = f.button "Herunterladen", class:"btn btn-primary","aria-label":"Close"
     = link_to "Cancel", skills_path, class: "btn btn-outline-secondary", "data-bs-dismiss":"modal"
