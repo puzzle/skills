@@ -11,7 +11,6 @@ class PeopleController < CrudController
                                                       :percent, :id, :_destroy] }]
 
   def update
-    binding.pry
     person = params[:person]
     PersonRole.create(person_id: @person.id, role_id: person.role_id, percent: ("%e" % person.role_percent),
                       person_role_level_id: person.role_level_id)

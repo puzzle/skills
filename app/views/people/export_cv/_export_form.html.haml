@@ -1,3 +1,14 @@
-%form(action="/submit" method="post")
-  %label(for="test") Test:
-  %input(type="text" name="test" id="test")
+= form_with(url: "/people/1?format=odt", method: 'get') do |f|
+  .mb-2.w-100
+    = f.label 'Niederlassung (für Footer):', class: "form-label w-100"
+    = f.collection_select :location, BranchAdress.all, :id, :short_name, {}, class: "form-select w-100"
+  .mb-2.w-100.form-check.form-switch
+    %input{class: "form-check-input", type: "checkbox", name: "includeCS"}
+    = f.label 'Kernkompetenzen - Skills', class: "form-check-label w-100"
+  .mb-2.w-100.form-check.form-switch
+    %input{class: "form-check-input", type: "checkbox", name: "skillsByLevel"}
+    = f.label "Skills nach Level", class: "form-check-label w-100"
+  = f.hidden_field :format, {value: 'odt'}
+  .mb-1.mt-4
+    = f.button class:"btn btn-primary","aria-label":"Close"
+    = link_to "Cancel", skills_path, class: "btn btn-outline-secondary", "data-bs-dismiss":"modal"
