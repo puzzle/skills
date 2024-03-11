@@ -9,17 +9,17 @@
           %img.rounded-circle{src: "/api/people/#{@person.id}/picture?#{Time.now.to_f}", width: '141', height: '141'}
           %div.mt-3= link_to "Bearbeiten", edit_person_path, id: "edit-button"
         %div.pe-5.col-xl-3.col-12
-          %table
+          %table.fixed-table
             %tbody
               %th.fw-light Name
               %tr
-                %td= @person.name
+                %td.text-break= @person.name
               %th.fw-light Email
               %tr
-                %td= @person.email
+                %td.text-break= @person.email
               %th.fw-light Abschluss
               %tr
-                %td= @person.title
+                %td.text-break= @person.title
               %th.fw-light Funktion
               - unless @person.person_roles.empty?
                 - @person.person_roles.each do |person_role|
@@ -30,34 +30,29 @@
                   %td -
               %th.fw-light Organisationseinheit
               %tr
-                - unless @person.department.nil?
-                  %td= @person.department.name
-                - else
-                  %td -
+                %td= @person.department.nil? ? '-' : @person.department.name
               %th.fw-light Firma
               %tr
                 %td= @person.company.name
         %div.pe-5.col-xl-3.col-12
-          %table
+          %table.fixed-table
             %tbody
               %th.fw-light Geburtsdatum
               %tr
                 %td= @person.birthdate.to_date.strftime('%d.%m.%Y')
               %th.fw-light Nationalität
               %tr
-                %td= @person.nationality2.blank? ? ISO3166::Country[@person.nationality] : "#{ISO3166::Country[@person.nationality]}, #{ISO3166::Country[@person.nationality2]}"
+                %td.text-break= @person.nationality2.blank? ? ISO3166::Country[@person.nationality] : "#{ISO3166::Country[@person.nationality]}, #{ISO3166::Country[@person.nationality2]}"
               %th.fw-light Wohnort (Stadt)
               %tr
-                %td= @person.location
+                %td.text-break= @person.location
               %th.fw-light Zivilstand
               %tr
                 %td= @person.marital_status
               %th.fw-light Kürzel
               %tr
-                - unless @person.shortname.nil?
-                  %td= @person.shortname
-                - else
-                  %td -
+                %td= @person.shortname.blank? ? '-' : @person.shortname
+
         %div.col-xl-3.col-12
           %div.fw-light Sprachen
           %div.border.border-dark-subtle.mt-1.p-2.rounded
