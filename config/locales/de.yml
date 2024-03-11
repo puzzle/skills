@@ -8,3 +8,9 @@ de:
       default_set: Default-Set
       radar: Radar
       modify: Ändern
+  ms:
+    single: ledig
+    married: verheiratet
+    widowed: verwitwet
+    registered_partnership: eingetragene partnerschaft
+    divorced: geschieden
