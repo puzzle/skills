@@ -7,7 +7,7 @@ module People
 
     def update
       person.update!(picture: params[:picture])
-      render json: { data: { picture_path: picture_api_person_path(params[:id]) } }
+      render json: { data: { picture_path: picture_person_path(params[:id]) } }
     end
 
     def show
