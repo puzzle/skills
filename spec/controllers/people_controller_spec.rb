@@ -6,6 +6,8 @@ describe PeopleController do
     let(:person) { people(:bob).attributes }
 
     it 'should save nationality2 as nil if checkbox is unchecked and save it if it is checked' do
+      expect(person["nationality2"]).not_to be(nil)
+
       put :update, params: {id: person["id"], person: person, has_nationality2: {checked: "0"}}
 
       response.code.should == "302"
