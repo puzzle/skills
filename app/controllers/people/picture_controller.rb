@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module People
-  class PictureController < Api::CrudController
+  class PictureController < CrudController
 
     self.permitted_attrs = %i[picture]
 
@@ -16,6 +16,10 @@ module People
     end
 
     private
+
+    def model_class
+      Person
+    end
 
     def person
       @person ||= Person.find(params[:id])
