@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 describe :people do
+  before(:each) do
+    sign_in auth_users(:user), scope: :auth_user
+    visit root_path
+  end
+
   describe 'CV-Export', type: :feature, js: true do
     it 'should display range after switch was clicked' do
       visit person_path(people(:bob))
