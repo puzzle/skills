@@ -4,8 +4,7 @@ describe :people do
   describe 'People Search', type: :feature, js: true do
 
     before(:each) do
-      user = auth_users(:user)
-      login_as(user, scope: :auth_user)
+      sign_in auth_users(:user), scope: :auth_user
     end
 
     let(:list) {Person.all.sort_by(&:name) }
@@ -65,6 +64,10 @@ describe :people do
   end
 
   describe 'Edit person', type: :feature, js: true do
+    before(:each) do
+      sign_in auth_users(:user), scope: :auth_user
+    end
+
     it 'should have all edit fields' do
       bob = people(:bob)
       visit person_path(bob)
