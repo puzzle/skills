@@ -8,7 +8,7 @@ en:
       default_set: Defaultset
       radar: Radar
       modify: Modify
-  martial_statuses:
+  ms:
     single: single
     married: married
     widowed: widowed
