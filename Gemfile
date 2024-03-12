@@ -14,6 +14,7 @@ gem 'config'
 gem 'countries'
 gem 'cssbundling-rails'
 gem 'database_cleaner'
+gem 'devise'
 gem 'faker'
 gem 'haml-rails'
 gem 'i18n_data'
@@ -28,6 +29,8 @@ gem 'net-pop', require: false
 gem 'net-smtp', require: false
 gem 'nokogiri', '~> 1.14'
 gem 'odf-report'
+gem 'omniauth-keycloak'
+gem 'omniauth-rails_csrf_protection'
 gem 'pg'
 gem 'pg_search'
 gem 'psych', '~> 3.3', '>= 3.3.4'
@@ -51,6 +54,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code
   # to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'dotenv'
   gem 'pry'
   gem 'pry-byebug'
   gem 'rspec-rails'

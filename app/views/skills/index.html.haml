@@ -17,7 +17,7 @@
         %td= skill.title
         %td.table-light= skill.people.count
         %td= skill.category.title
-        %td.table-light= skill.category.parent.title
+        %td.table-light= skill.category.parent&.title
         %td= skill.default_set.nil? ? "Neu" : (skill.default_set? ? "Ja" : "Nein")
         %td.table-light= skill.radar
         %td

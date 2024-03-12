@@ -1,18 +1,28 @@
 Rails.application.routes.draw do
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
   get root to: 'people#index'
+
+  devise_for :auth_users,
+    skip: [:sessions],
+    controllers:
+      { omniauth_callbacks: 'omniauth_callbacks' }
+
+    devise_scope :auth_user do
+      get 'sign_in', :to => 'devise/sessions#new', :as => :new_auth_user_session
+      delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_auth_user_session
+    end
+
+  resources :people
+  resources :skills
+
+
+  # Status
   scope 'status' do
     get 'health', to: 'status#health'
     get 'readiness', to: 'status#readiness'
   end
 
-  resources :people
-  resources :skills
-
+  # Outdated api routes
   namespace :api do
-
     resources :people do
       collection do
         get 'search', to: 'people/search#index'

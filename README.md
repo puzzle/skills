@@ -40,6 +40,16 @@ You will need the following things properly installed on your computer:
 ## Setup dockerized Application👩🏽‍💻
 We're glad you want to setup your machine for PuzzleSkills development 💃
 
+## Openshift deployment
+To deploy the project to openshift make sure you set the following environment variables:
+- LOCAL=false
+- client_id: 
+- secret: 
+- host_url: 
+- realm: 
+- admin_role: (Not required)
+
+
 ### Windows users
 If you're on Windows you should be able to Download Ubuntu from Microsoft Store. Note that you need to enable Subsystem for Linux and virtual machine platform in your Windows features.  
 Then you can open Ubuntu and follow the manual using the Ubuntu console.  
@@ -91,6 +101,7 @@ Access the web application by browser: http://localhost:4200 and enjoy the ride!
 -   Frontend tests with livereload `rake spec:frontend:serve`
 -   To run a single test run the following command in the frontend folder `npm test --filter "some filter words"`
 -   There is also `rake ci` and `rake ci:nightly` which should be periodically exectued by a build job (e.g. on jenkins)
+-   To use a user without admin privileges change email in `app/controllers/application_controller.rb#authenticate_auth_user"` to "user@skills.ch"
 
 
 ## Documentation

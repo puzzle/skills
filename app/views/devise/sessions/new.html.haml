@@ -1,0 +1,6 @@
+%h2 Log in
+- if devise_mapping.omniauthable?
+  - resource_class.omniauth_providers.each do |provider|
+    = button_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider), {data: { turbo: false }, class: "btn btn-primary"}
+- else
+  An error %occured, no Omniauth providers are available, please contact the administrator.
