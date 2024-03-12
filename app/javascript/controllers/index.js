@@ -13,5 +13,8 @@ application.register("image-upload", ImageUploadController)
 import NationalityTwoController from "./nationality_two_controller"
 application.register("nationality-two", NationalityTwoController)
 
+import PersonRolesController from "./person_roles_controller"
+application.register("person-roles", PersonRolesController)
+
 import RemoteModalController from "./remote_modal_controller"
 application.register("remote-modal", RemoteModalController)

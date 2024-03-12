@@ -24,7 +24,7 @@
               %tr
                 %td= render "person_role_fields", person_role: person_role
             %tr
-              %td
+              %td{"data-controller"=>"person-roles"}
                 = link_to_add_role "Neue Funktion", form, :person_roles
           %th.fw-normal Organisationseinheit
           %tr
