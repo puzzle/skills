@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 describe People::PictureController do
+  before(:each) do
+    sign_in auth_users(:user), scope: :auth_user
+  end
 
   it 'should show default_avatar' do
     get :show, params:{ id: bob.id }
