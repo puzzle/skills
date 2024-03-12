@@ -58,9 +58,9 @@ describe :people do
     fill_in 'person_location', with: 'Las Vegas'
     fill_in 'person_birthdate', with: '1979-03-28'.to_date
     check 'nat-two-checkbox'
-    select ISO3166::Country["DE"]&.iso_short_name, from: 'person_nationality'
-    select ISO3166::Country["US"]&.iso_short_name, from: 'person_nationality2'
-    select 'married', from: 'person_marital_status'
+    select ISO3166::Country["DE"].translations[I18n.locale], from: 'person_nationality'
+    select ISO3166::Country["US"].translations[I18n.locale], from: 'person_nationality2'
+    select I18n.t('ms.married'), from: 'person_marital_status'
     fill_in 'person_shortname', with: 'bb'
   end
 
@@ -95,9 +95,9 @@ describe :people do
       expect(page).to have_field('person_birthdate', with: bob.birthdate.to_date.strftime)
       expect(page).to have_field('nat-two-checkbox', with: bob.nationality2.nil? ? "0" : "1")
       expect(page.all('.nationality-two').count).to equal(bob.nationality2.nil? ? 0 : 2)
-      expect(page).to have_select('person_nationality', selected: ISO3166::Country[bob.nationality]&.iso_short_name)
-      bob.nationality2.nil? ? (expect(page).not_to have_select('person_nationality2')) : (expect(page).to have_select('person_nationality2', selected: ISO3166::Country[bob.nationality2]&.iso_short_name))
-      expect(page).to have_select('person_marital_status', selected: bob.marital_status)
+      expect(page).to have_select('person_nationality', selected: ISO3166::Country[bob.nationality].translations[I18n.locale])
+      bob.nationality2.nil? ? (expect(page).not_to have_select('person_nationality2')) : (expect(page).to have_select('person_nationality2', selected: ISO3166::Country[bob.nationality2].translations[I18n.locale]))
+      expect(page).to have_select('person_marital_status', selected: I18n.t("ms.#{bob.marital_status}"))
       expect(page).to have_field('person_shortname', with: bob.shortname)
     end
 
@@ -111,9 +111,10 @@ describe :people do
       expect(page).to have_content("Hansjakobli")
 
       edited_person = Person.find_by(name: 'Hansjakobli')
+      expect(edited_person.picture.identifier).to eql('1.png')
       expect(edited_person.email).to eql('hanswurst@somemail.com')
       expect(edited_person.title).to eql('Wurstexperte')
-      expect(edited_person.person_roles.count).to equal(3)
+      expect(edited_person.person_roles.count).to eql(3)
       edited_person_role = edited_person.person_roles.last
       expect(edited_person_role.role.name).to eql('System-Engineer')
       expect(edited_person_role.person_role_level.level).to eql('S3')
