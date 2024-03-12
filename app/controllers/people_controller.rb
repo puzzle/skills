@@ -12,14 +12,15 @@ class PeopleController < CrudController
 
   def update
     person = params[:person]
-    PersonRole.create(person_id: @person.id, role_id: person.role_id, percent: ("%e" % person.role_percent),
+    PersonRole.create(person_id: @person.id, role_id: person.role_id,
+                      percent: format('%e', person.role_percent),
                       person_role_level_id: person.role_level_id)
     super
   end
 
   def show
     return export if format_odt?
-    
+
     @person = Person.includes(projects: :project_technologies,
                               person_roles: [:role, :person_role_level]).find(params.fetch(:id))
     super
@@ -32,6 +33,7 @@ class PeopleController < CrudController
     super
   end
 
+  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   def export
     anon = true?(params[:anon]).to_s
     params[:includeCS] = true?(params[:includeCS]).to_s
@@ -47,6 +49,7 @@ class PeopleController < CrudController
               type: 'application/vnd.oasis.opendocument.text',
               disposition: content_disposition('attachment', filename)
   end
+  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
   private
 
