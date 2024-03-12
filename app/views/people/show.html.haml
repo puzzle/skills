@@ -42,7 +42,7 @@
                 %td= @person.birthdate.to_date.strftime('%d.%m.%Y')
               %th.fw-light Nationalität
               %tr
-                %td.text-break= @person.nationality2.blank? ? ISO3166::Country[@person.nationality].alpha2 : "#{ISO3166::Country[@person.nationality].translations[I18n.locale]}, #{ISO3166::Country[@person.nationality2].translations[I18n.locale]}"
+                %td.text-break= @person.nationality2.blank? ? ISO3166::Country[@person.nationality].translations[I18n.locale] : "#{ISO3166::Country[@person.nationality].translations[I18n.locale]}, #{ISO3166::Country[@person.nationality2].translations[I18n.locale]}"
               %th.fw-light Wohnort (Stadt)
               %tr
                 %td.text-break= @person.location
