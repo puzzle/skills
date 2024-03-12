@@ -30,9 +30,9 @@ class AuthConfig
       if local?
         settings_file[key]
       else
-        raise("Environment variable not set: '#{key}'") if required && ENV[key.to_s].nil?
+        raise("Environment variable not set: '#{key}'") if required && ENV[key.to_s.upcase].nil?
 
-        ENV[key]
+        ENV[key.to_s.upcase]
       end
     end
 
