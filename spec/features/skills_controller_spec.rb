@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 describe :skills do
+  before(:each) do
+    admin = auth_users(:admin)
+    login_as(admin, scope: :auth_user)
+  end
+
   def fill_out_form
     fill_in 'skill_title', with: 'new Title'
     select 'System-Engineering', from: 'skill_category_parent'

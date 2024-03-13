@@ -2,7 +2,11 @@ require 'rails_helper'
 
 describe SkillsController do
   describe 'Update Skill' do
+    before(:each) do
+      sign_in(auth_users(:admin))
+    end
     render_views
+
     let(:edited_skill) { {"id" => skills(:rails).id, "category_parent" => categories('system-engineering').id,
                           "title" => "UpdatedSkill", "radar" => "adopt", "portfolio" => "passiv", "default_set" => false,
                           "category_id" => categories(:ruby).id} }
