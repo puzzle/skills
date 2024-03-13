@@ -8,17 +8,17 @@
           %p.m-0= @skill.title
         %div.col-2
           %div.d-flex.flex-column
-            %label.form-label= ExpertiseTopicSkillValue.skill_levels.key(person_skill.level - 1)
+            %label.form-label.text-gray= ExpertiseTopicSkillValue.skill_levels.key(person_skill.level - 1)
             %input.form-range.w-75{type: "range", min: 0, max: 5, value: person_skill.level}
         %div.col-2
           %div.d-flex.flex-column
-            %label.form-label Interesse
+            %label.form-label.text-gray Interesse
             %input.form-range.w-75{type: "range", min: 0, max: 5, value: person_skill.interest}
         %div.col-2
           %div.d-flex.flex-row.form-check
             %input.form-check-input.me-2{type: "checkbox", checked: person_skill.certificate}
-            %label.form-label Zertifikat
+            %label.form-label.text-gray Zertifikat
         %div.col-2
           %div.d-flex.flex-row.form-check
             %input.form-check-input.me-2{type: "checkbox", checked: person_skill.certificate}
-            %label.form-label Kernkompetenz
+            %label.form-label.text-gray Kernkompetenz
