@@ -22,7 +22,7 @@
   %turbo-frame{id: "#{dom_id skill}"}
     .row.border.border-top.table-light.tableform-hover.table-row
       .col-2.d-flex.align-items-center
-        =skill.title
+        = link_to skill.title, skill_path(skill), data: { turbo_frame: "remote_modal" }
       .col-1.bg-light.d-flex.align-items-center
         =skill.people.count
       .col-3.d-flex.align-items-center

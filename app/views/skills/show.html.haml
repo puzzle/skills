@@ -1,20 +1,24 @@
-%turbo-frame{id: "#{dom_id @skill}"}
-  .row.border.border-top.table-light.tableform-hover.table-row
-    .col-2.d-flex.align-items-center
-      =@skill.title
-    .col-1.bg-light.d-flex.align-items-center
-      =@skill.people.count
-    .col-3.d-flex.align-items-center
-      =@skill.category.parent.title
-    .col-2.bg-light.d-flex.align-items-center
-      =@skill.category.title
-    .col-1.d-flex.align-items-center
-      =@skill.default_set.nil? ? "Neu" : (@skill.default_set? ? "Ja" : "Nein")
-    .col-1.bg-light.d-flex.align-items-center
-      =@skill.radar
-    .col-1.bg-light.d-flex.align-items-center
-      =@skill.portfolio
-    .col-1
-      %div.h-100.d-flex.justify-content-center.align-items-center
-        =link_to edit_skill_path(@skill), class: "btn bg-gray-100" do
-          %img.pointer.edit-button{:src=> "/assets/pencil-square.svg",:height=>"16"}
+= render "remote_modal", title: "Skill: #{@skill.title} (#{@skill.people_skills.count} Members)" do
+  %div.d-flex.flex-column
+    - @skill.people_skills.each do |person_skill|
+      %div.d-flex.flex-row.align-items-center.skill-row
+        %div.col-2
+          =link_to Person.find(person_skill.person_id).name, person_path(person_skill.person_id)
+        %div.col-2.d-flex.justify-content-center
+          %p.m-0= @skill.title
+        %div.col-2
+          %div.d-flex.flex-column
+            %label.form-label= ExpertiseTopicSkillValue.skill_levels.key(person_skill.level - 1)
+            %input.form-range.w-75{type: "range", min: 0, max: 5, value: person_skill.level}
+        %div.col-2
+          %div.d-flex.flex-column
+            %label.form-label Interesse
+            %input.form-range.w-75{type: "range", min: 0, max: 5, value: person_skill.interest}
+        %div.col-2
+          %div.d-flex.flex-row.form-check
+            %input.form-check-input.me-2{type: "checkbox", checked: person_skill.certificate}
+            %label.form-label Zertifikat
+        %div.col-2
+          %div.d-flex.flex-row.form-check
+            %input.form-check-input.me-2{type: "checkbox", checked: person_skill.certificate}
+            %label.form-label Kernkompetenz
