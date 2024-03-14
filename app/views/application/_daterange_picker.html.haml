@@ -1,7 +1,15 @@
-= f.select :month_from, Date::MONTHNAMES.compact.each_with_index.map { |month, index| [month, index + 1] }
-= f.select :year_from, (Time.zone.now.year - 100)..(Time.zone.now.year + 1)
-= f.select :month_to, Date::MONTHNAMES.compact.each_with_index.map { |month, index| [month, index + 1] }
-= f.select :year_to, (Time.zone.now.year - 100)..(Time.zone.now.year + 1)
+%div.d-flex.flex-column
+    %div.d-flex
+        %p placeholder
+        %p Monat
+        %p Jahr
+    %div.d-flex
+        %p von 
+        = f.select :month_from, Date::MONTHNAMES.compact.each_with_index.map { |month, index| [month, index + 1] }, {}, class: "form-select"
+        = f.select :year_from, (Time.zone.now.year - 100)..(Time.zone.now.year + 1), {}, class: "form-select"
 
-
+    %div.d-flex
+        %p bis 
+        = f.select :month_to, Date::MONTHNAMES.compact.each_with_index.map { |month, index| [month, index + 1] }, {}, class: "form-select"
+        = f.select :year_to, (Time.zone.now.year - 100)..(Time.zone.now.year + 1), {}, class: "form-select"
 
