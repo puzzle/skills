@@ -74,11 +74,10 @@
   = f.fields_for :advanced_trainings do |atf|
     %div.d-flex
       = render partial: 'application/daterange_picker', locals: { f: atf }
-      = atf.text_area :description, placeholder: "Description"
-      = f.button class:"btn btn-primary","aria-label":"Close"
+      = atf.text_area :description, placeholder: "Description", class: "form-text"
+  = f.button class:"btn btn-primary","aria-label":"Close"
 
 = link_to "Person bearbeiten",  edit_person_path
 = link_to "Show all",  people_path
-
       %div.d-flex.justify-content-end
         =link_to image_tag("plus-lg.svg", class: "text-primary")+ "Export", export_cv_person_path(@person), class: "btn text-primary", data: { turbo_frame: "remote_modal" }
