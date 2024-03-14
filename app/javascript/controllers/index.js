@@ -15,12 +15,17 @@ application.register("nationality-two", NationalityTwoController)
 
 import PersonRolesController from "./person_roles_controller"
 application.register("person-roles", PersonRolesController)
+import DropdownController from "./dropdown_controller"
+application.register("dropdown", DropdownController)
 
 import RemoteModalController from "./remote_modal_controller"
 application.register("remote-modal", RemoteModalController)
 
 import SkillsFilterController from "./skills_filter_controller"
 application.register("skills-filter", SkillsFilterController)
+
+import VisibilityController from "./visibility_controller"
+application.register("visibility", VisibilityController)
 
 import DropdownLinksController from "./dropdown_controller"
 application.register("dropdown", DropdownLinksController)
