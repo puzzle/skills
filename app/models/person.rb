@@ -44,6 +44,8 @@ class Person < ApplicationRecord
   has_many :skills, through: :people_skills
   has_many :roles, through: :person_roles
 
+  accepts_nested_attributes_for :advanced_trainings
+
   validates :birthdate, :location, :name, :nationality,
             :title, :marital_status, :email, presence: true
   validates :location, :name, :title,

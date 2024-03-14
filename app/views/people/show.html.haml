@@ -59,6 +59,26 @@
             - @person.language_skills.each do |language|
               %div.mb-1= "#{language.language}: #{language.level} - #{language.certificate}"
       = link_to "Show all", people_path, {"data-turbo"=>false}
+=render partial:"people/search", :locals => {person: @person}
+
+%div
+  %h1
+    = @person.name
+    's Profile
+  %div
+    %h5
+      This Person is from #{ @person.nationality }
+
+= form_with model: @person do |f|
+
+  = f.fields_for :advanced_trainings do |atf|
+    %div.d-flex
+      = render partial: 'application/daterange_picker', locals: { f: atf }
+      = atf.text_area :description, placeholder: "Description"
+      = f.button class:"btn btn-primary","aria-label":"Close"
+
+= link_to "Person bearbeiten",  edit_person_path
+= link_to "Show all",  people_path
 
       %div.d-flex.justify-content-end
         =link_to image_tag("plus-lg.svg", class: "text-primary")+ "Export", export_cv_person_path(@person), class: "btn text-primary", data: { turbo_frame: "remote_modal" }
