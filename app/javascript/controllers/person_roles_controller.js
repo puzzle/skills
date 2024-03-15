@@ -1,6 +1,13 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
+    connect() {
+        for(let nested_field of document.getElementsByClassName("nested-fields")) {
+            if(nested_field.querySelector('input[type="hidden"]').value === "true") {
+                nested_field.style.display = "none";
+            }
+        }
+    }
     addField(e) {
         let link = e.target
         // Stop the function from executing if a link or event were not passed into the function.
