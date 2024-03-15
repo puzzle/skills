@@ -1,24 +1,25 @@
-= render "remote_modal", title: "Skill: #{@skill.title} (#{@skill.people_skills.count} Members)" do
+= render "remote_modal", title: "Skill: #{@skill.title} (#{@skill.people_skills.where.not(level: nil, interest: nil).count} Members)" do
   %div.d-flex.flex-column
     - @skill.people_skills.each do |person_skill|
-      %div.d-flex.flex-row.align-items-center.skill-row
-        %div.col-2
-          =link_to Person.find(person_skill.person_id).name, person_path(person_skill.person_id)
-        %div.col-2.d-flex.justify-content-center
-          %p.m-0= @skill.title
-        %div.col-2
-          %div.d-flex.flex-column
-            %label.form-label.text-gray= ExpertiseTopicSkillValue.skill_levels.key(person_skill.level - 1)
-            %input.form-range.w-75{type: "range", min: 0, max: 5, value: person_skill.level}
-        %div.col-2
-          %div.d-flex.flex-column
-            %label.form-label.text-gray Interesse
-            %input.form-range.w-75{type: "range", min: 0, max: 5, value: person_skill.interest}
-        %div.col-2
-          %div.d-flex.flex-row.form-check
-            %input.form-check-input.me-2{type: "checkbox", checked: person_skill.certificate}
-            %label.form-label.text-gray Zertifikat
-        %div.col-2
-          %div.d-flex.flex-row.form-check
-            %input.form-check-input.me-2{type: "checkbox", checked: person_skill.certificate}
-            %label.form-label.text-gray Kernkompetenz
+      - if person_skill.level
+        %div.d-flex.flex-row.align-items-center.skill-row
+          %div.col-2
+            =link_to Person.find(person_skill.person_id).name, person_path(person_skill.person_id)
+          %div.col-2.d-flex.justify-content-center
+            %p.m-0= @skill.title
+          %div.col-2
+            %div.d-flex.flex-column
+              %label.form-label.text-gray= t ExpertiseTopicSkillValue.skill_levels.key(person_skill.level - 1)
+              %input.form-range.w-75{type: "range", min: 0, max: 5, value: person_skill.level, disabled: true}
+          %div.col-2
+            %div.d-flex.flex-column
+              %label.form-label.text-gray= t "people-skills.interest"
+              %input.form-range.w-75{type: "range", min: 0, max: 5, value: person_skill.interest, disabled: true}
+          %div.col-2
+            %div.d-flex.flex-row.form-check
+              %input.form-check-input.me-2{type: "checkbox", checked: person_skill.certificate, disabled: true}
+              %label.form-label.text-gray= t "people-skills.certificate"
+          %div.col-2
+            %div.d-flex.flex-row.form-check
+              %input.form-check-input.me-2{type: "checkbox", checked: person_skill.certificate, disabled: true}
+              %label.form-label.text-gray= t "people-skills.core-competence"

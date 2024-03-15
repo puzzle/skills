@@ -15,3 +15,14 @@ en:
     widowed: widowed
     registered_partnership: registered partnership
     divorced: divorced
+
+  people-skills:
+    level:
+      trainee: Trainee
+      junior: Junior
+      professional: Professional
+      senior: Senior
+      expert: Expert
+    interest: Interest
+    certificate: Certificate
+    core-competence: Core Competence
