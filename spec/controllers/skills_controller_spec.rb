@@ -14,11 +14,10 @@ describe SkillsController do
                           "title" => "UpdatedSkill", "radar" => "adopt", "portfolio" => "passiv", "default_set" => false,
                           "category_id" => categories(:ruby).id} }
 
-    describe 'CRUD operaions' do
 
-      before(:each) do
-        sign_in auth_users(:admin), scope: :auth_user
-      end
+
+
+
 
       it 'index returns all skills ' do
         get :index
@@ -28,10 +27,9 @@ describe SkillsController do
       end
 
       it 'should switch category' do
-      patch :update, params: {id: edited_skill["id"], skill: edited_skill, validate_only: true}
-      expect(response.body).to have_select("skill_category_id", with_options: ['Linux-Engineering'])
-    end
-
+        patch :update, params: {id: edited_skill["id"], skill: edited_skill, validate_only: true}
+        expect(response.body).to have_select("skill_category_id", with_options: ['Linux-Engineering'])
+      end
       it 'post returns all skills ' do
         title = 'new skill'
         category_id = categories(:java).id
