@@ -10,14 +10,6 @@ class PeopleController < CrudController
                           { person_roles_attributes: [:role_id, :person_role_level_id,
                                                       :percent, :id, :_destroy] }]
 
-  def update
-    person = params[:person]
-    PersonRole.create(person_id: @person.id, role_id: person.role_id,
-                      percent: format('%e', person.role_percent),
-                      person_role_level_id: person.role_level_id)
-    super
-  end
-
   def show
     return export if format_odt?
 
