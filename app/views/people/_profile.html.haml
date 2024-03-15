@@ -1,6 +1,6 @@
 %div
   =render partial:"people/search", :locals => {person: @person}
-  %div.profile-header.mw-100.border-bottom
+  %div.person-profile-header.mw-100.border-bottom
     Personalien
   %div.mt-4
     %turbo-frame{id: "#{dom_id @person}"}
@@ -56,9 +56,14 @@
         %div.col-xl-3.col-12
           %div.fw-normal.text-gray Sprachen
           %div.border.border-dark-subtle.mt-1.p-2.rounded
-            - @person.language_skills.each do |language|
-              %div.mb-1= "#{language.language}: #{language.level} - #{language.certificate}"
+            %table
+              %tbody
+                - @person.language_skills.each do |language|
+                  %tr
+                    %td= language.language
+                    %td= image_tag("language-levels/#{language.level.downcase}.svg", :alt => "Language level indicator")
+                    - unless language.certificate.nil?
+                      %td= image_tag("language-levels/icon_certificate.svg", :alt => "Language certificate icon", :title => language.certificate)
       = link_to "Show all", people_path, {"data-turbo"=>false}
-
       %div.d-flex.justify-content-end
         =link_to image_tag("plus-lg.svg", class: "text-primary")+ "Export", export_cv_person_path(@person), class: "btn text-primary", data: { turbo_frame: "remote_modal" }
