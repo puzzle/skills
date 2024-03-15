@@ -2,7 +2,7 @@ name: Build
 on:
   push:
     branches:
-      - feature/new-dockerfile
+      - main
 
 jobs:
   docker:
@@ -23,5 +23,5 @@ jobs:
       - uses: docker/build-push-action@v4
         with:
           tags: |
-            ${{ secrets.PUZZLE_REGISTRY }}/skills:test
+            ${{ secrets.PUZZLE_REGISTRY }}/skills:latest
           push: true
