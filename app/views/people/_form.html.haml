@@ -53,7 +53,7 @@
             %td= form.collection_select :nationality2, ISO3166::Country.all.sort.map { |country| [country.alpha2, country.translations[I18n.locale]] }, :first, :last, {}, class: "form-select mw-100"
           %th.fw-normal Zivilstand
           %tr
-            %td= form.collection_select :marital_status, Person.marital_statuses.keys.map { |ms| [ms, t("ms.#{ms}")] }, :first, :last, { selected: @person.marital_status }, class: "form-select mw-100"
+            %td= form.collection_select :marital_status, Person.marital_statuses.keys.map { |marital_status| [marital_status, t("marital_statuses.#{marital_status}")] }, :first, :last, { selected: @person.marital_status }, class: "form-select mw-100"
           %th.fw-normal Kürzel
           %tr
             %td= form.text_field :shortname, class: "mw-100 form-control"

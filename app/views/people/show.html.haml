@@ -48,7 +48,7 @@
                 %td.text-break= @person.location
               %th.fw-light Zivilstand
               %tr
-                %td= t("ms.#{@person.marital_status}")
+                %td= t("marital_statuses.#{@person.marital_status}")
               %th.fw-light Kürzel
               %tr
                 %td= @person.shortname.blank? ? '-' : @person.shortname

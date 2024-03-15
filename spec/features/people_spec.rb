@@ -59,7 +59,7 @@ describe :people do
     check 'nat-two-checkbox'
     select ISO3166::Country["DE"].translations[I18n.locale], from: 'person_nationality'
     select ISO3166::Country["US"].translations[I18n.locale], from: 'person_nationality2'
-    select I18n.t('ms.married'), from: 'person_marital_status'
+    select I18n.t('marital_statuses.married'), from: 'person_marital_status'
     fill_in 'person_shortname', with: 'bb'
   end
 
@@ -100,7 +100,7 @@ describe :people do
       expect(page.all('.nationality-two').count).to equal(bob.nationality2.nil? ? 0 : 2)
       expect(page).to have_select('person_nationality', selected: ISO3166::Country[bob.nationality].translations[I18n.locale])
       bob.nationality2.nil? ? (expect(page).not_to have_select('person_nationality2')) : (expect(page).to have_select('person_nationality2', selected: ISO3166::Country[bob.nationality2].translations[I18n.locale]))
-      expect(page).to have_select('person_marital_status', selected: I18n.t("ms.#{bob.marital_status}"))
+      expect(page).to have_select('person_marital_status', selected: I18n.t("marital_statuses.#{bob.marital_status}"))
       expect(page).to have_field('person_shortname', with: bob.shortname)
     end
 
