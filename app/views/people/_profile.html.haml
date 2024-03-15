@@ -59,8 +59,8 @@
               %tbody
                 - @person.language_skills.each do |language|
                   %tr
-                    %td= language.language
-                    %td= image_tag("language-levels/#{language.level.downcase}.svg", :alt => "Language level indicator")
+                    %td.p-2= language.language
+                    %td.p-2= image_tag("language-levels/#{language.level.downcase}.svg", :alt => "Language level indicator")
                     - unless language.certificate.nil?
-                      %td= image_tag("language-levels/icon_certificate.svg", :alt => "Language certificate icon", :title => language.certificate)
+                      %td.p-2= image_tag("language-levels/icon_certificate.svg", :alt => "Language certificate icon", :title => language.certificate)
       = link_to "Show all", people_path, {"data-turbo"=>false}
