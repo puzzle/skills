@@ -2,7 +2,9 @@ require 'rails_helper'
 
 
 describe 'Skill Form', type: :feature, js:true do
-  before do
+
+  before(:each) do
+    sign_in auth_users(:admin), scope: :auth_user
     visit skills_path
     click_link(href: new_skill_path)
     @category = categories(:ruby)

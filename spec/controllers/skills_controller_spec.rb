@@ -15,6 +15,11 @@ describe SkillsController do
                           "category_id" => categories(:ruby).id} }
 
     describe 'CRUD operaions' do
+
+      before(:each) do
+        sign_in auth_users(:admin), scope: :auth_user
+      end
+
       it 'index returns all skills ' do
         get :index
         skills = assigns(:skills)
@@ -42,4 +47,4 @@ describe SkillsController do
         expect(response).to redirect_to(skills_path)
       end
     end
-end
+  end
