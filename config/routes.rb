@@ -37,6 +37,13 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :people do
+      member do
+        put 'picture', to: 'people/picture#update'
+        get 'picture', to: 'people/picture#show'
+      end
+    end
+
     resources :skills do
       collection do
         get 'unrated_by_person'

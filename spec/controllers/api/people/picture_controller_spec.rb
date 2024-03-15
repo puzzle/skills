@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-xdescribe Api::People::PictureController do
+describe Api::People::PictureController do
 
   it 'should show default_avatar' do
     get :show, params:{ id: bob.id }
@@ -20,7 +20,7 @@ xdescribe Api::People::PictureController do
     
     expect(response.status).to eq(200)
     expect(bob['picture']).to eq('picture.png')
-    expect(path).to eq('/api/people/902541635/picture')
+    expect(path).to eq("/api/people/#{bob.id}/picture")
 
     process :show, method: :get , params: { id: bob.id }
 
