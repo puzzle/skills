@@ -1,0 +1,12 @@
+<%= turbo_stream.update "#{dom_id @person}" do %>
+  <%= render "form", person: @person %>
+  <% if @person.errors.any? %>
+    <div class="alert alert-danger mt-2">
+      <ul class="mb-0">
+        <% @person.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>

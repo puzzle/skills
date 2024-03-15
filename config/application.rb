@@ -47,5 +47,7 @@ module Skills
         ENV['KEYCLOAK_DISABLED'].present?
     end
 
+    config.assets.enabled = true
+    config.assets.paths << Rails.root.join("uploads")
   end
 end

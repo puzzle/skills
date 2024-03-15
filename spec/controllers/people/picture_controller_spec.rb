@@ -1,6 +1,9 @@
 require 'rails_helper'
 
-describe Api::People::PictureController do
+describe People::PictureController do
+  before(:each) do
+    sign_in auth_users(:user), scope: :auth_user
+  end
 
   it 'should show default_avatar' do
     get :show, params:{ id: bob.id }
@@ -17,10 +20,10 @@ describe Api::People::PictureController do
     path = json['data']['picture_path']
 
     bob.reload
-    
+
     expect(response.status).to eq(200)
     expect(bob['picture']).to eq('picture.png')
-    expect(path).to eq("/api/people/#{bob.id}/picture")
+    expect(path).to eq("/people/#{bob.id}/picture")
 
     process :show, method: :get , params: { id: bob.id }
 

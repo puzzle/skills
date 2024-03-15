@@ -244,6 +244,15 @@ class CrudController < ListController
     # rubocop:enable Rails/OutputSafety
   end
 
+  def get_asset_path(filename)
+    manifest_file = Rails.application.assets_manifest.assets[filename]
+    if manifest_file
+      File.join(Rails.application.assets_manifest.directory, manifest_file)
+    else
+      Rails.application.assets&.[](filename)&.filename
+    end
+  end
+
   # Class methods for CrudActions.
   class << self
     # Convenience callback to apply a callback on both form actions

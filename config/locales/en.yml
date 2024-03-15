@@ -8,3 +8,9 @@ en:
       default_set: Defaultset
       radar: Radar
       modify: Modify
+  marital_statuses:
+    single: single
+    married: married
+    widowed: widowed
+    registered_partnership: registered partnership
+    divorced: divorced
