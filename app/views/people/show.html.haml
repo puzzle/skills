@@ -13,24 +13,24 @@
             %tbody
               %th.fw-normal.text-gray Name
               %tr
-                %td.text-break= @person.name
+                %td.text-break.pb-1= @person.name
               %th.fw-normal.text-gray Email
               %tr
-                %td.text-break= @person.email
+                %td.text-break.pb-1= @person.email
               %th.fw-normal.text-gray Abschluss
               %tr
-                %td.text-break= @person.title
+                %td.text-break.pb-1= @person.title
               %th.fw-normal.text-gray Funktion
               - unless @person.person_roles.empty?
                 - @person.person_roles.each do |person_role|
                   %tr
-                    %td= person_role_string(person_role)
+                    %td.pb-1= person_role_string(person_role)
               - else
                 %tr
                   %td -
               %th.fw-normal.text-gray Organisationseinheit
               %tr
-                %td= @person.department.nil? ? '-' : @person.department.name
+                %td.pb-1= @person.department.nil? ? '-' : @person.department.name
               %th.fw-normal.text-gray Firma
               %tr
                 %td= @person.company.name
@@ -39,16 +39,16 @@
             %tbody
               %th.fw-normal.text-gray Geburtsdatum
               %tr
-                %td= @person.birthdate.to_date.strftime('%d.%m.%Y')
+                %td.pb-1= @person.birthdate.to_date.strftime('%d.%m.%Y')
               %th.fw-normal.text-gray Nationalität
               %tr
-                %td.text-break= nationality_string(@person.nationality, @person.nationality2)
+                %td.text-break.pb-1= nationality_string(@person.nationality, @person.nationality2)
               %th.fw-normal.text-gray Wohnort (Stadt)
               %tr
-                %td.text-break= @person.location
+                %td.text-break.pb-1= @person.location
               %th.fw-normal.text-gray Zivilstand
               %tr
-                %td= t("marital_statuses.#{@person.marital_status}")
+                %td.pb-1= t("marital_statuses.#{@person.marital_status}")
               %th.fw-normal.text-gray Kürzel
               %tr
                 %td= @person.shortname.blank? ? '-' : @person.shortname
