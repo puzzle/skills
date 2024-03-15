@@ -55,6 +55,12 @@
         %div.col-xl-3.col-12
           %div.fw-normal.text-gray Sprachen
           %div.border.border-dark-subtle.mt-1.p-2.rounded
-            - @person.language_skills.each do |language|
-              %div.mb-1= "#{language.language}: #{language.level} - #{language.certificate}"
+            %table
+              %tbody
+                - @person.language_skills.each do |language|
+                  %tr
+                    %td= language.language
+                    %td= image_tag("language-levels/#{language.level.downcase}.svg", :alt => "Language level indicator")
+                    - unless language.certificate.nil?
+                      %td= image_tag("language-levels/icon_certificate.svg", :alt => "Language certificate icon", :title => language.certificate)
       = link_to "Show all", people_path, {"data-turbo"=>false}
