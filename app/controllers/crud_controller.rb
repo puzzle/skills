@@ -86,7 +86,6 @@ class CrudController < ListController
 
   # rubocop:disable Metrics/MethodLength
   def update(**options, &block)
-    assign_attributes
     model_class.transaction do
       if assign_attributes
         updated = false
