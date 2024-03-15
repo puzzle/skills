@@ -1,10 +1,10 @@
 %div
   =render partial:"people/search", :locals => {person: @person}
-  %div.personals-header
+  %div.person-profile-header.mw-100.border-bottom
     Personalien
   %div.mt-4
     %turbo-frame{id: "#{dom_id @person}"}
-      %div.d-flex.flex-xl-row.flex-lg-column.flex-md-column.flex-sm-column.flex-column
+      %div.d-flex.flex-xl-row.flex-column
         %div.col-xl-3.col-12
           %img.rounded-circle{src: "/people/#{@person.id}/picture?#{Time.now.to_f}", width: '141', height: '141'}
           %div.mt-3= link_to "Bearbeiten", edit_person_path, id: "edit-button"

@@ -1,5 +1,6 @@
 $skills-blue: #3b7bbe;
 $skills-text-gray: #8e8e8e;
+$skills-gray: #f5f5f5;
 
 @import "bootstrap";
 
@@ -44,13 +45,11 @@ pzsh-topbar {
   color: $skills-text-gray;
 }
 
-.personals-header {
-  background: #f5f5f5;
-  max-width: 100%;
+.person-profile-header {
+  background: $skills-gray;
   height: 3.25rem;
   padding: 12px 20px 12px 20px;
   font-size: 18px;
-  border-bottom: #d6d6d6 1px solid;
 }
 
 .bg-skills-blue {
