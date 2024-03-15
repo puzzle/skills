@@ -7,11 +7,16 @@
         %p von 
         = f.select :month_from, Date::MONTHNAMES.compact.each_with_index.map { |month, index| [month, index + 1] }, {}, class: "form-select"
         = f.select :year_from, (Time.zone.now.year - 100)..(Time.zone.now.year + 1), {}, class: "form-select"
-    %div{"data-visibility-target" => "hideable", hidden=False}
+    %div{"data-visibility-target" => "hideable", :hidden => (f.object.month_to.nil? ? "hidden" : nil)}
         %div.d-flex
-            %p bis 
+            %p bis
             = f.select :month_to, Date::MONTHNAMES.compact.each_with_index.map { |month, index| [month, index + 1] }, {}, class: "form-select"
             = f.select :year_to, (Time.zone.now.year - 100)..(Time.zone.now.year + 1), {}, class: "form-select"
     %div.d-flex
-        %button{"data-action" => "visibility#toggleTargets", class: "btn btn-primary", :type => 'button'} Ohne Ende       
+        = f.object.month_to
+        = f.object.year_to
+        = f.object.month_to.nil?
+        = f.button :month_to,:name=> "#{f.object_name}[month_to]", :value=> (f.object.month_to.nil? ? Time.zone.now.month : "")
 
+        -# %button{"data-action" => "visibility#toggleTargets", :class => "form-button", :type=> "button"} Toggle Element Visibility
+        
