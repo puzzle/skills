@@ -26,4 +26,10 @@ module PersonHelper
       [country.alpha2, country.translations[I18n.locale]]
     end
   end
+
+  # If the path of the avatar includes tmp, the picture is cached
+  # and we can load it directly without the picture controller
+  def avatar_cached(picture)
+    picture&.file&.file&.include? 'tmp'
+  end
 end
