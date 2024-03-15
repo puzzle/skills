@@ -24,7 +24,7 @@
               - unless @person.person_roles.empty?
                 - @person.person_roles.each do |person_role|
                   %tr
-                    %td= "#{person_role.role.name} #{person_role.person_role_level&.level} #{person_role.percent.nil? ? '' : person_role.percent.to_i.to_s + '%'}"
+                    %td= person_role_string(person_role)
               - else
                 %tr
                   %td -
@@ -42,7 +42,7 @@
                 %td= @person.birthdate.to_date.strftime('%d.%m.%Y')
               %th.fw-light Nationalität
               %tr
-                %td.text-break= @person.nationality2.blank? ? ISO3166::Country[@person.nationality].translations[I18n.locale] : "#{ISO3166::Country[@person.nationality].translations[I18n.locale]}, #{ISO3166::Country[@person.nationality2].translations[I18n.locale]}"
+                %td.text-break= nationality_string(@person.nationality, @person.nationality2)
               %th.fw-light Wohnort (Stadt)
               %tr
                 %td.text-break= @person.location
