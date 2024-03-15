@@ -71,7 +71,7 @@ class Api::CrudController < Api::ListController
   def entry_url
     send("#{self.class.name.underscore
          .gsub(/_controller$/, '')
-         .gsub(/\//, '_').singularize}_url", entry)
+         .gsub('/', '_').singularize}_url", entry)
   end
 
   # Only allow a trusted parameter "white list" through.
@@ -101,9 +101,7 @@ class Api::CrudController < Api::ListController
     return model_data[:data][:id] unless model_data[:data].is_a?(Array)
 
     if permitted_relationship?(name)
-      model_data[:data].collect do |e|
-        e[:id]
-      end
+      model_data[:data].pluck(:id)
     end
   end
 

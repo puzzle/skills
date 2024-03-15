@@ -10,13 +10,6 @@ class PeopleController < CrudController
                           { person_roles_attributes: [:role_id, :person_role_level_id,
                                                       :percent, :id, :_destroy] }]
 
-  def update
-    if false?(params['has_nationality2']['checked'])
-      params['person']['nationality2'] = nil
-    end
-    super
-  end
-
   def show
     if format_odt?
       export
@@ -24,6 +17,13 @@ class PeopleController < CrudController
     end
     @person = Person.includes(projects: :project_technologies,
                               person_roles: [:role, :person_role_level]).find(params.fetch(:id))
+    super
+  end
+
+  def update
+    if false?(params['has_nationality2']['checked'])
+      params['person']['nationality2'] = nil
+    end
     super
   end
 

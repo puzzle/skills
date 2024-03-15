@@ -5,14 +5,14 @@ module People
 
     self.permitted_attrs = %i[picture]
 
-    def update
-      person.update!(picture: params[:picture])
-      render json: { data: { picture_path: picture_person_path(params[:id]) } }
-    end
-
     def show
       picture_url = person.picture.file.nil? ? default_avatar_path : person.picture.url
       send_file(picture_url, disposition: 'inline')
+    end
+
+    def update
+      person.update!(picture: params[:picture])
+      render json: { data: { picture_path: picture_person_path(params[:id]) } }
     end
 
     private

@@ -10,8 +10,8 @@ class Api::EnvSettingsController < Api::ApplicationController
 
   def values
     {
-      sentry: ENV['SENTRY_DSN_FRONTEND'],
-      helplink: ENV['HELPLINK'],
+      sentry: ENV.fetch('SENTRY_DSN_FRONTEND', nil),
+      helplink: ENV.fetch('HELPLINK', nil),
       keycloak: keycloak_info
     }
   end
@@ -19,9 +19,9 @@ class Api::EnvSettingsController < Api::ApplicationController
   def keycloak_info
     {
       disable: Rails.application.keycloak_disabled? ? 'true' : nil,
-      url: ENV['EMBER_KEYCLOAK_SERVER_URL'],
-      realm: ENV['EMBER_KEYCLOAK_REALM_NAME'],
-      clientId: ENV['EMBER_KEYCLOAK_CLIENT_ID']
+      url: ENV.fetch('EMBER_KEYCLOAK_SERVER_URL', nil),
+      realm: ENV.fetch('EMBER_KEYCLOAK_REALM_NAME', nil),
+      clientId: ENV.fetch('EMBER_KEYCLOAK_CLIENT_ID', nil)
     }
   end
 

@@ -4,9 +4,8 @@ class PeopleSearchSkillSerializer
   # write custom serializer to serialize object that doesn't exist as a model
   # serialize data into JSON API format
   # rubocop:disable Metrics/MethodLength
-  # rubocop:disable Metrics/AbcSize
   # rubocop:disable Metrics/BlockLength
-  def self.serialize(data)
+  def self.serialize(data) # rubocop:disable Metrics/AbcSize
     {
       data: data.map do |entry|
         {
@@ -70,6 +69,5 @@ class PeopleSearchSkillSerializer
     }
   end
   # rubocop:enable Metrics/BlockLength
-  # rubocop:enable Metrics/AbcSize
   # rubocop:enable Metrics/MethodLength
 end

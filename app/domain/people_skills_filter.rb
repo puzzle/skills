@@ -106,6 +106,6 @@ class PeopleSkillsFilter
   end
 
   def skill_ids
-    levels_and_interests_for_skills.map { |ls| ls[:skill] }
+    levels_and_interests_for_skills.pluck(:skill)
   end
 end

@@ -30,7 +30,7 @@ class Project < ApplicationRecord
 
   has_many :project_technologies, dependent: :destroy
 
-  validates :person_id, :role, :title, presence: true
+  validates :role, :title, presence: true
   validates :description, :technology, :role, length: { maximum: 5000 }
   validates :title, length: { maximum: 500 }
 

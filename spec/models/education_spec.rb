@@ -25,7 +25,7 @@ describe Education do
       education.valid?
 
       expect(education.errors[:year_from].first).to eq('muss ausgefüllt werden')
-      expect(education.errors[:person_id].first).to eq('muss ausgefüllt werden')
+      expect(education.errors[:person].first).to eq('muss ausgefüllt werden')
       expect(education.errors[:title].first).to eq('muss ausgefüllt werden')
       expect(education.errors[:location].first).to eq('muss ausgefüllt werden')
     end

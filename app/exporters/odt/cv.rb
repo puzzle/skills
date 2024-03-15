@@ -56,10 +56,9 @@ module Odt
       BranchAdress.find(@params[:location])
     end
 
-    # rubocop:disable Metrics/AbcSize
     attr_accessor :person
 
-    def insert_general_sections(report)
+    def insert_general_sections(report) # rubocop:disable Metrics/AbcSize
       report.add_field(:client, 'mg')
       report.add_field(:project, 'pcv')
       report.add_field(:section, 'dev1')
@@ -78,7 +77,7 @@ module Odt
       report.add_field(:niederlassung, location.adress_information)
     end
 
-    def insert_personalien(report)
+    def insert_personalien(report) # rubocop:disable Metrics/AbcSize
       report.add_field(:title, person.title)
       unless anon?
         report.add_field(:birthdate, Date.parse(person.birthdate.to_s)
@@ -89,8 +88,6 @@ module Odt
       end
       report.add_field(:languages, languages)
     end
-
-    # rubocop:enable Metrics/AbcSize
 
     def insert_competences(report)
       insert_level_skills(report) if include_skills_by_level?
@@ -162,9 +159,8 @@ module Odt
       end
     end
 
-    # rubocop:disable Metrics/AbcSize
     # rubocop:disable Metrics/MethodLength
-    def insert_educations(report)
+    def insert_educations(report) # rubocop:disable Metrics/AbcSize
       educations_list = person.educations.list.collect do |e|
         { year_from: formatted_year(e.year_from),
           month_from: formatted_month(e.month_from),
@@ -182,7 +178,7 @@ module Odt
       end
     end
 
-    def insert_advanced_trainings(report)
+    def insert_advanced_trainings(report) # rubocop:disable Metrics/AbcSize
       advanced_trainings_list = person.advanced_trainings.list.collect do |at|
         { year_from: formatted_year(at.year_from),
           month_from: formatted_month(at.month_from),
@@ -200,7 +196,7 @@ module Odt
       end
     end
 
-    def insert_activities(report)
+    def insert_activities(report) # rubocop:disable Metrics/AbcSize
       activities_list = person.activities.list.collect do |a|
         { year_from: formatted_year(a.year_from),
           month_from: formatted_month(a.month_from),
@@ -218,7 +214,7 @@ module Odt
       end
     end
 
-    def insert_projects(report)
+    def insert_projects(report) # rubocop:disable Metrics/AbcSize
       projects_list = person.projects.list.collect do |p|
         { year_from: formatted_year(p.year_from),
           month_from: formatted_month(p.month_from),
@@ -241,7 +237,6 @@ module Odt
         t.add_column(:project_technology, :project_technology)
       end
     end
-    # rubocop:enable Metrics/AbcSize
     # rubocop:enable Metrics/MethodLength
 
     def formatted_month(month)

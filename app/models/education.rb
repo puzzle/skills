@@ -25,7 +25,7 @@ class Education < ApplicationRecord
 
   belongs_to :person, touch: true
 
-  validates :person_id, :title, :location, presence: true
+  validates :title, :location, presence: true
   validates :location, :title, length: { maximum: 500 }
 
   private

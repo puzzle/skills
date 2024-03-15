@@ -32,7 +32,7 @@ class AuthConfig
       else
         raise("Environment variable not set: '#{key}'") if required && ENV[key.to_s.upcase].nil?
 
-        ENV[key.to_s.upcase]
+        ENV.fetch(key.to_s.upcase)
       end
     end
 

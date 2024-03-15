@@ -25,7 +25,7 @@ describe AdvancedTraining do
       advanced_training.valid?
 
       expect(advanced_training.errors[:year_from].first).to eq('muss ausgefüllt werden')
-      expect(advanced_training.errors[:person_id].first).to eq('muss ausgefüllt werden')
+      expect(advanced_training.errors[:person].first).to eq('muss ausgefüllt werden')
     end
 
     it 'checks validation maximum length for attribute' do

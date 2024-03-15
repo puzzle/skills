@@ -1,5 +1,6 @@
 require: rubocop-rails
 AllCops:
+  NewCops: enable
   DisplayCopNames: true
   Exclude:
     - Rakefile
@@ -44,6 +45,9 @@ Metrics/ParameterLists:
 
 Rails:
   Enabled: true
+
+Rails/I18nLocaleTexts:
+  Enabled: false
 
 # Keep for now, easier with superclass definitions
 Style/ClassAndModuleChildren:

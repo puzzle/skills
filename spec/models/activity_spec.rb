@@ -24,9 +24,8 @@ describe Activity do
     it 'checks whether required attribute values are present' do
       activity = Activity.new
       activity.valid?
-
       expect(activity.errors[:year_from].first).to eq('muss ausgefüllt werden')
-      expect(activity.errors[:person_id].first).to eq('muss ausgefüllt werden')
+      expect(activity.errors[:person].first).to eq('muss ausgefüllt werden')
       expect(activity.errors[:role].first).to eq('muss ausgefüllt werden')
     end
 
