@@ -10,11 +10,11 @@
           %div.col-2
             %div.d-flex.flex-column
               %label.form-label.text-gray= t ExpertiseTopicSkillValue.skill_levels.key(person_skill.level - 1)
-              %input.form-range.w-75{type: "range", min: 0, max: 5, value: person_skill.level, disabled: true}
+              %input.form-range.w-75.level{type: "range", min: 0, max: 5, value: person_skill.level, tabindex: -1}
           %div.col-2
             %div.d-flex.flex-column
               %label.form-label.text-gray= t "people-skills.interest"
-              %input.form-range.w-75{type: "range", min: 0, max: 5, value: person_skill.interest, disabled: true}
+              %input.form-range.w-75.interest{type: "range", min: 0, max: 5, value: person_skill.interest, tabindex: -1}
           %div.col-2
             %div.d-flex.flex-row.form-check
               %input.form-check-input.me-2.certificate{type: "checkbox", checked: person_skill.certificate, disabled: true}
