@@ -241,9 +241,6 @@ GEM
     mime-types (3.5.2)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2024.0206)
-    mimemagic (0.3.10)
-      nokogiri (~> 1)
-      rake
     mini_magick (4.12.0)
     mini_mime (1.1.5)
     minitest (5.22.2)
@@ -499,7 +496,6 @@ DEPENDENCIES
   keycloak-api-rails
   language_list
   listen (~> 3.0.5)
-  mimemagic (~> 0.3.6)
   mini_magick
   net-imap
   net-ldap (~> 0.16.0)

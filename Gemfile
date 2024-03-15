@@ -21,7 +21,6 @@ gem 'i18n_data'
 gem 'jsbundling-rails'
 gem 'keycloak-api-rails'
 gem 'language_list'
-gem 'mimemagic', '~> 0.3.6'
 gem 'mini_magick'
 gem 'net-imap', require: false
 gem 'net-ldap', '~> 0.16.0'
