@@ -15,10 +15,6 @@ describe SkillsController do
                           "category_id" => categories(:ruby).id} }
 
 
-
-
-
-
       it 'index returns all skills ' do
         get :index
         skills = assigns(:skills)

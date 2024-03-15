@@ -18,16 +18,13 @@ describe 'Skill Form', type: :feature, js:true do
     select @radar, from: 'skill_radar'
     select @portfolio, from: 'skill_portfolio'
     click_button 'Skill erstellen'
-    all 'tbody tr', count: 6
     # Check for the skill names instead of the amount
-    within('tbody') do
       expect(page).to have_content('Bash')
       expect(page).to have_content('cunit')
       expect(page).to have_content('ember')
       expect(page).to have_content('JUnit')
       expect(page).to have_content('Rails')
       expect(page).to have_content('New Skill Title')
-    end
   end
 
   it 'displays error messages when present' do
@@ -39,6 +36,6 @@ describe 'Skill Form', type: :feature, js:true do
 
   it 'redirects to the skills index when the cancel button is clicked' do
     click_link(href:skills_path, text: "Cancel")
-    all 'tbody tr', count: 5
+    all 'turbo-frame[id^="skill"]', count: 5
   end
 end
