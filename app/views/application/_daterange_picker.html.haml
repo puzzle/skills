@@ -18,5 +18,5 @@
         = f.object.month_to.nil?
         = f.button :month_to,:name=> "#{f.object_name}[month_to]", :value=> (f.object.month_to.nil? ? Time.zone.now.month : "")
 
-        -# %button{"data-action" => "visibility#toggleTargets", :class => "form-button", :type=> "button"} Toggle Element Visibility
+        %button{"data-action" => "visibility#toggleTargets", :class => "form-button", :type=> "button"} Toggle Element Visibility
         
