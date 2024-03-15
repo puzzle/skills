@@ -23,7 +23,7 @@ class PeopleController < CrudController
                           :email,
                           :department_id,
                           :shortname,
-                          { :advanced_trainings_attributes => {} }]
+                          { :advanced_trainings_attributes => [:month_to, :year_to] }]
 
   # self.nested_models = %i[advanced_trainings activities projects
   #                         educations language_skills person_roles

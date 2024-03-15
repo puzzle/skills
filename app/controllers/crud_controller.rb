@@ -152,6 +152,7 @@ class CrudController < ListController
 
   # The form params for this model.
   def model_params
+    require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
     params.require(model_identifier).permit(permitted_attrs)
   end
 
