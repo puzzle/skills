@@ -10,7 +10,7 @@ describe 'People skills Show', type: :feature, js: true do
       visit skills_path
       click_link('Rails')
       expect(page).to have_text('Skill: Rails (5 Members)')
-      expect(page).to have_selector('.skill-row', count: 5)
+      expect(page).to have_selector('.skill-row', count: 5, wait: 2)
   end
 
   it 'Should render elements correctly' do
