@@ -18,3 +18,7 @@ application.register("person-roles", PersonRolesController)
 
 import RemoteModalController from "./remote_modal_controller"
 application.register("remote-modal", RemoteModalController)
+
+import DropdownLinksController from "./dropdown_controller"
+application.register("dropdown", DropdownLinksController)
+

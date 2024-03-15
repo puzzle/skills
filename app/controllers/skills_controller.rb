@@ -2,6 +2,7 @@
 
 class SkillsController < CrudController
   include ExportController
+  before_action :update_category_parent, only: [:update]
 
   before_action :render_unauthorized, except: %i[index show unrated_by_person]
 
@@ -45,4 +46,15 @@ class SkillsController < CrudController
   def disposition
     content_disposition('attachment', filename('skillset', nil, 'csv'))
   end
+
+  # rubocop:disable Metrics/AbcSize
+  def update_category_parent
+    current_parent_id = Category.find(params[:skill][:category_id]).parent.id
+    new_parent_id = params[:skill].delete(:category_parent).to_i
+    if current_parent_id != new_parent_id
+      entry.category_id = Category.find(new_parent_id).children.first.id
+      params[:skill].delete(:category_id)
+    end
+  end
+  # rubocop:enable Metrics/AbcSize
 end

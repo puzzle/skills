@@ -57,13 +57,13 @@ describe Api::SkillsController do
         get :index, params: { category: parent_category.id }
 
         skills = json['data']
-        expect(skills.count).to eq(3)
+        expect(skills.count).to eq(4)
         cunit_attrs = skills.first['attributes']
-        junit_attrs = skills.second['attributes']
-        rails_attrs = skills.third['attributes']
+        ember_attrs = skills.second['attributes']
+        junit_attrs = skills.third['attributes']
         expect(cunit_attrs['title']).to eq ('cunit')
+        expect(ember_attrs['title']).to eq ('ember')
         expect(junit_attrs['title']).to eq ('JUnit')
-        expect(rails_attrs['title']).to eq ('Rails')
       end
 
       it 'returns skills with parent category software-engineering and defaultSet true' do
@@ -104,6 +104,7 @@ describe Api::SkillsController do
       end
     end
   end
+
   describe 'SkillsController as normal user' do
     before { load_pictures }
 
@@ -160,13 +161,13 @@ describe Api::SkillsController do
         get :index, params: { category: parent_category.id }
 
         skills = json['data']
-        expect(skills.count).to eq(3)
+        expect(skills.count).to eq(4)
         cunit_attrs = skills.first['attributes']
-        junit_attrs = skills.second['attributes']
-        rails_attrs = skills.third['attributes']
+        ember_attrs = skills.second['attributes']
+        junit_attrs = skills.third['attributes']
         expect(cunit_attrs['title']).to eq ('cunit')
+        expect(ember_attrs['title']).to eq ('ember')
         expect(junit_attrs['title']).to eq ('JUnit')
-        expect(rails_attrs['title']).to eq ('Rails')
       end
 
       it 'returns skills with parent category software-engineering and defaultSet true' do

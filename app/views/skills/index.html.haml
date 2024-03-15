@@ -1,24 +1,41 @@
 %div.d-flex.justify-content-end
   =link_to image_tag("plus-lg.svg", class: "text-primary")+ "Neuer Skill", new_skill_path, class: "btn text-primary", data: { turbo_frame: "remote_modal" }
 
-%table.table.table-hover
-  %thead.table-light
-    %tr
-      %th{scope: "col"}= t "skills.table.skill"
-      %th.table-secondary{scope: "col"}= t "skills.table.members"
-      %th{scope: "col"}= t "skills.table.category"
-      %th.table-secondary{scope: "col"}= t "skills.table.subcategory"
-      %th{scope: "col"}= t "skills.table.default_set"
-      %th.table-secondary{scope: "col"}= t "skills.table.radar"
-      %th{scope: "col"}= t "skills.table.modify"
-  %tbody
-    - @skills.each_with_index do |skill|
-      %tr
-        %td= skill.title
-        %td.table-light= skill.people.count
-        %td= skill.category.title
-        %td.table-light= skill.category.parent&.title
-        %td= skill.default_set.nil? ? "Neu" : (skill.default_set? ? "Ja" : "Nein")
-        %td.table-light= skill.radar
-        %td
-          %img{:src=> "/assets/pencil-square.svg",:height=>"16"}
+.row.bg-light-subtle.border.border-top.border-5.border-secondary.border-top-0.border-start-0.border-end-0
+  .col-2.d-flex.align-items-center
+    %strong= t "skills.table.skill"
+  .col-1.bg-secondary-subtle.d-flex.align-items-center
+    %strong= t "skills.table.members"
+  .col-3.d-flex.align-items-center
+    %strong= t "skills.table.category"
+  .col-2.bg-secondary-subtle.d-flex.align-items-center
+    %strong= t "skills.table.subcategory"
+  .col-1.d-flex.align-items-center
+    %strong= t "skills.table.default_set"
+  .col-1.bg-secondary-subtle.d-flex.align-items-center
+    %strong= t "skills.table.radar"
+  .col-1.d-flex.align-items-center
+    %strong= t "skills.table.portfolio"
+  .col-1.bg-secondary-subtle.d-flex.align-items-center
+    %strong= t "skills.table.modify"
+- @skills.each do |skill|
+  %turbo-frame{id: "#{dom_id skill}"}
+    .row.border.border-top.table-light.tableform-hover.table-row
+      .col-2.d-flex.align-items-center
+        =skill.title
+      .col-1.bg-light.d-flex.align-items-center
+        =skill.people.count
+      .col-3.d-flex.align-items-center
+        =skill.category.parent.title
+      .col-2.bg-light.d-flex.align-items-center
+        =skill.category.title
+      .col-1.d-flex.align-items-center
+        =skill.default_set.nil? ? "Neu" : (skill.default_set? ? "Ja" : "Nein")
+      .col-1.bg-light.d-flex.align-items-center
+        =skill.radar
+      .col-1.d-flex.align-items-center
+        =skill.portfolio
+      .col-1.bg-light
+        %div.h-100.d-flex.justify-content-center.align-items-center
+          =link_to edit_skill_path(skill), class: "btn bg-gray-100" do
+            %img.pointer.edit-button{:src=> "/assets/pencil-square.svg",:height=>"16"}

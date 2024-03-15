@@ -10,6 +10,7 @@
 # With the help of additional callbacks, it is possible to hook into the
 # action procedures without overriding the entire method.
 class CrudController < ListController
+  include ParamConverters
 
   class_attribute :permitted_attrs
 
@@ -64,7 +65,7 @@ class CrudController < ListController
       assign_attributes
       created = with_callbacks(:create, :save) { entry.save }
       respond(created,
-              **options.reverse_merge(status: :created, render_on_failure: :new),
+              **options.reverse_merge(status: :created, render_on_unsaved: :new),
               &block)
       raise ActiveRecord::Rollback unless created
     end
@@ -82,16 +83,26 @@ class CrudController < ListController
   # in the given block will take precedence over the one defined here.
   #
   # Specify a :location option if you wish to do a custom redirect.
+
+  # rubocop:disable Metrics/MethodLength
   def update(**options, &block)
     model_class.transaction do
-      assign_attributes
-      updated = with_callbacks(:update, :save) { entry.save }
-      respond(updated,
-              **options.merge(status: :ok, render_on_failure: :edit),
-              &block)
-      raise ActiveRecord::Rollback unless updated
+      if assign_attributes
+        updated = false
+        if true?(params[:validate_only])
+          entry.validate
+        else
+          updated = with_callbacks(:update, :save) { entry.save }
+        end
+
+        respond(updated,
+                **options.merge(status: :ok, render_on_unsaved: :edit),
+                &block)
+        raise ActiveRecord::Rollback unless updated
+      end
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   #   DELETE /entries/1
   #   DELETE /entries/1.json
@@ -160,7 +171,7 @@ class CrudController < ListController
       if success
         render_on_success(format, **options)
       else
-        render_on_error(format, **options)
+        render_on_unsaved(format, **options)
       end
     end
   end
@@ -170,17 +181,17 @@ class CrudController < ListController
     format.json { render_success_json(options[:status]) }
   end
 
-  def render_on_error(format, **options)
-    format.turbo_stream { render options[:render_on_failure], status: options[:status] }
-    format.html { render_or_redirect_on_failure(**options) }
-    format.json { render_failure_json }
+  def render_on_unsaved(format, **options)
+    format.turbo_stream { render options[:render_on_unsaved], status: options[:status] }
+    format.html { render_or_redirect_on_unsaved(**options) }
+    format.json { render_unsaved_json }
   end
 
-  # If the option :render_on_failure is given, render the corresponding
+  # If the option :render_on_unsaved is given, render the corresponding
   # template, otherwise redirect.
-  def render_or_redirect_on_failure(**options)
-    if options[:render_on_failure]
-      render options[:render_on_failure], status: options[:status]
+  def render_or_redirect_on_unsaved(**options)
+    if options[:render_on_unsaved]
+      render options[:render_on_unsaved], status: options[:status]
     else
       redirect_on_failure(**options)
     end
@@ -213,7 +224,7 @@ class CrudController < ListController
   end
 
   # Render a json with the errors.
-  def render_failure_json
+  def render_unsaved_json
     render json: entry.errors, status: :unprocessable_entity
   end
 

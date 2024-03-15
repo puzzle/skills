@@ -8,8 +8,13 @@ $skills-gray: #f5f5f5;
   max-width: 60%;
 }
 
-.content {
+.pointer {
+  cursor: pointer;
+}.modal-dialog {
   max-width: 60%;
+}
+.content {
+  max-width: 80%;
   flex-grow: 1;
 }
 
@@ -44,6 +49,11 @@ pzsh-topbar {
 .text-gray {
   color: $skills-text-gray;
 }
+
+.table-row:hover {
+  background-color: $light;
+}
+
 
 .person-profile-header {
   background: $skills-gray;

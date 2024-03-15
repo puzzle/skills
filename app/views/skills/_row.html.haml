@@ -1,0 +1,21 @@
+= form_with(model: @skill) do |f|
+  .row.border.border-top.table-light.table-hover.table-row
+    .col-2.d-flex.align-items-center
+      = f.text_field :title, class: "form-control", value: @skill.title
+    .col-1.bg-light.d-flex.align-items-center
+      =@skill.people.count
+    .col-3.d-flex.align-items-center
+      = f.collection_select :category_parent, Category.all_parents { |category| category.title}, :id, :title, {:selected => @skill.category.parent.id}, class: "form-select w-100", onchange: "this.form.action = this.form.action + '?validate_only=true'; this.form.requestSubmit()"
+    .col-2.bg-light.d-flex.align-items-center
+      = f.collection_select :category_id, entry.category.parent.children, :id, :title, {:selected => entry.category.id}, class: "form-select w-100"
+    .col-1.d-flex.align-items-center
+      =f.check_box :default_set, class: "form-check-input", checked: entry.default_set
+    .col-1.bg-light.d-flex.align-items-center
+      = f.select :radar, Settings.radar, {:selected => entry.radar}, class: "form-select radar-select"
+    .col-1.d-flex.align-items-center
+      = f.select :portfolio, Settings.portfolio, {:selected => entry.portfolio}, class: "form-select portfolio-select"
+    .col-1
+      %div.h-100.d-flex.justify-content-center.align-items-center
+        = image_submit_tag("/assets/floppy2-fill.svg")
+        = link_to skills_path, class: "ms-3" do
+          %img.pointer{:src=> "/assets/x.svg",:height=>"16"}
