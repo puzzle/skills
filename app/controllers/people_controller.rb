@@ -8,22 +8,8 @@ class PeopleController < CrudController
                           :nationality2, :title, :competence_notes, :company_id, :email,
                           :department_id, :shortname, :picture, :picture_cache,
                           { person_roles_attributes: [:role_id, :person_role_level_id,
-                                                      :percent, :id, :_destroy] }]
-
-  self.permitted_attrs = [:birthdate,
-                          :location,
-                          :marital_status,
-                          :updated_by,
-                          :name,
-                          :nationality,
-                          :nationality2,
-                          :title,
-                          :competence_notes,
-                          :company_id,
-                          :email,
-                          :department_id,
-                          :shortname,
-                          { :advanced_trainings_attributes => [:month_to, :year_to] }]
+                                                      :percent, :id, :_destroy] },
+                          { :advanced_trainings_attributes => {} }]
 
   # self.nested_models = %i[advanced_trainings activities projects
   #                         educations language_skills person_roles
@@ -43,7 +29,13 @@ class PeopleController < CrudController
     if params.include?('has_nationality2') && false?(params['has_nationality2']['checked'])
       params['person']['nationality2'] = nil
     end
+    marcs_vogu(:month_to)
+    marcs_vogu(:year_to)
     super
+  end
+
+  def marcs_vogu(name)
+    entry.advanced_trainings[name] = nil if params[name].blank?
   end
 
   def export
