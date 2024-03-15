@@ -35,6 +35,12 @@ alice_rails:
   certificate: false
   core_competence: false
 
+alice_bash:
+  skill: bash
+  person: alice
+  certificate: false
+  core_competence: false
+
 charlie_rails:
   skill: rails
   person: charlie
