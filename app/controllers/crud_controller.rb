@@ -87,6 +87,7 @@ class CrudController < ListController
   # rubocop:disable Metrics/MethodLength
   def update(**options, &block)
     model_class.transaction do
+      require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
       if assign_attributes
         updated = false
         if true?(params[:validate_only])
@@ -152,7 +153,6 @@ class CrudController < ListController
 
   # The form params for this model.
   def model_params
-    require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
     params.require(model_identifier).permit(permitted_attrs)
   end
 
