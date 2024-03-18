@@ -1,17 +1,25 @@
 %div.d-flex.flex-column{"data-controller"=>"visibility"}
-    %div.d-flex
-        %p placeholder
-        %p Monat
-        %p Jahr
-    %div.d-flex
-        %p von 
-        = f.select :month_from, Date::MONTHNAMES.compact.each_with_index.map { |month, index| [month, index + 1] }, {}, class: "form-select"
-        = f.select :year_from, (Time.zone.now.year - 100)..(Time.zone.now.year + 1),{}, class: "form-select"
+    %div.d-flex.row.justify-content-end
+        %span.col-5
+            %span.ps-3 Monat
+        %span.col-5
+            %span.ps-3 Jahr
+        %span.col-10
+            %hr.my-1
+    %div.d-flex.row.align-items-center
+        %span.fw-bold.col-2 Von:
+        %span.col-5
+            = f.select :month_from, Date::MONTHNAMES.compact.each_with_index.map { |month, index| [month, index + 1] }, {}, class: "form-select"
+        %span.col-5
+            = f.select :year_from, (Time.zone.now.year - 100)..(Time.zone.now.year + 1),{}, class: "form-select"
     %div{"data-visibility-target" => "hideable", :hidden => f.object.month_to.nil? && f.object.year_to.nil?}
-        %div.d-flex
-            %p bis
-            = f.select :month_to, Date::MONTHNAMES.compact.each_with_index.map { |month, index| [month, index + 1] }, {}, class: "form-select", "data-active-default" => f.object.month_to.nil?
-            = f.select :year_to, (Time.zone.now.year - 100)..(Time.zone.now.year + 1), {}, class: "form-select", "data-active-default" => f.object.year_to.nil?
-    %div.d-flex
-        %button{"data-action" => "visibility#toggleTargets", :class => "form-button", :type=> "button"} Toggle
-        
+        %div.d-flex.row.align-items-center
+            %span.fw-bold.col-2 Bis:
+            %span.col-5
+                = f.select :month_to, Date::MONTHNAMES.compact.each_with_index.map { |month, index| [month, index + 1] }, {}, class: "form-select", "data-active-default" => f.object.month_to.nil?
+            %span.col-5   
+                = f.select :year_to, (Time.zone.now.year - 100)..(Time.zone.now.year + 1), {}, class: "form-select", "data-active-default" => f.object.year_to.nil?
+    %div.d-flex.row.justify-content-end
+        %span.col-10
+            %button{"data-action" => "visibility#toggleTargets", :class => "btn btn-primary w-100", :type=> "button"} 
+                Ohne Ende

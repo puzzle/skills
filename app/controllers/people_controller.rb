@@ -11,6 +11,10 @@ class PeopleController < CrudController
                                                       :percent, :id, :_destroy] },
                           { :advanced_trainings_attributes => {} }]
 
+  self.nilified_attrs_if_missing = [
+    { :advanced_trainings_attributes => [:year_to, :month_to] }
+  ]
+
   # self.nested_models = %i[advanced_trainings activities projects
   #                         educations language_skills person_roles
   #                         people_skills categories]
@@ -26,20 +30,11 @@ class PeopleController < CrudController
   end
 
   def update
-    person_params = params[:person]
-    advanced_trainings = person_params[:advanced_trainings_attributes].values
-    person_params[:nationality2] = nil if false?(params[:has_nationality2]&.[](:checked))
-
-    advanced_trainings.each do |training|
-      fill_missing_with_nil(training, :year_to)
-      fill_missing_with_nil(training, :month_to)
-    end
+    params[:person][:nationality2] = nil if false?(params[:has_nationality2]&.[](:checked))
     super
   end
 
-  def fill_missing_with_nil(custom_params, property)
-    custom_params[property] = nil unless custom_params.key?(property)
-  end
+
 
   def export
     odt_file = Odt::Cv.new(entry, params).export
