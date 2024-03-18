@@ -26,16 +26,19 @@ class PeopleController < CrudController
   end
 
   def update
-    if false?(params[:has_nationality2]&.[](:checked))
-      params['person']['nationality2'] = nil
+    person_params = params[:person]
+    advanced_trainings = person_params[:advanced_trainings_attributes].values
+    person_params[:nationality2] = nil if false?(params[:has_nationality2]&.[](:checked))
+
+    advanced_trainings.each do |training|
+      fill_missing_with_nil(training, :year_to)
+      fill_missing_with_nil(training, :month_to)
     end
-    marcs_vogu(:month_to)
-    marcs_vogu(:year_to)
     super
   end
 
-  def marcs_vogu(name)
-    entry.advanced_trainings[name] = nil if params[name].blank?
+  def fill_missing_with_nil(custom_params, property)
+    custom_params[property] = nil unless custom_params.key?(property)
   end
 
   def export
