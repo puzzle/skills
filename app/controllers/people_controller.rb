@@ -25,7 +25,6 @@ class PeopleController < CrudController
     super
   end
 
-  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   def export
     odt_file = Odt::Cv.new(entry, params).export
     filename = if true?(params[:anon])
@@ -38,7 +37,6 @@ class PeopleController < CrudController
               type: 'application/vnd.oasis.opendocument.text',
               disposition: content_disposition('attachment', filename)
   end
-  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
   private
 
