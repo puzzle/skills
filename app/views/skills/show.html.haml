@@ -4,7 +4,7 @@
       - if person_skill.level
         %div.d-flex.flex-row.align-items-center.skill-row
           %div.col-2
-            =link_to Person.find(person_skill.person_id).name, person_path(person_skill.person_id)
+            = link_to Person.find(person_skill.person_id).name, person_path(person_skill.person_id)
           %div.col-2.d-flex.justify-content-center
             %p.m-0= @skill.title
           %div.col-2
@@ -23,3 +23,23 @@
             %div.d-flex.flex-row.form-check
               %input.form-check-input.me-2.core-competence{type: "checkbox", checked: person_skill.core_competence, disabled: true}
               %label.form-label.text-gray= t "people-skills.core-competence"
+%turbo-frame{id: "#{dom_id @skill}"}
+  .row.border.border-top.table-light.tableform-hover.table-row
+    .col-2.d-flex.align-items-center
+      = link_to @skill.title, skill_path(@skill), data: { turbo_frame: "remote_modal" }
+    .col-1.bg-light.d-flex.align-items-center
+      =@skill.people.count
+    .col-3.d-flex.align-items-center
+      =@skill.category.parent.title
+    .col-2.bg-light.d-flex.align-items-center
+      =@skill.category.title
+    .col-1.d-flex.align-items-center
+      =@skill.default_set.nil? ? "Neu" : (@skill.default_set? ? "Ja" : "Nein")
+    .col-1.bg-light.d-flex.align-items-center
+      =@skill.radar
+    .col-1.bg-light.d-flex.align-items-center
+      =@skill.portfolio
+    .col-1
+      %div.h-100.d-flex.justify-content-center.align-items-center
+        =link_to edit_skill_path(@skill), class: "btn bg-gray-100" do
+          %img.pointer.edit-button{:src=> "/assets/pencil-square.svg",:height=>"16"}
