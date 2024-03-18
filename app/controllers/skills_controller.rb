@@ -3,8 +3,9 @@
 class SkillsController < CrudController
   include ExportController
   before_action :update_category_parent, only: [:update]
-
   before_action :render_unauthorized, except: %i[index show unrated_by_person]
+
+  helper_method :filter_by_rated
 
   self.permitted_attrs = %i[title radar portfolio default_set category_id]
 
@@ -25,6 +26,11 @@ class SkillsController < CrudController
   end
 
   private
+
+  def filter_by_rated
+      @skill.people_skills.where.not(interest: 0)
+                    .or(@skill.people_skills.where.not(level: 0))
+  end
 
   def fetch_entries
     entries = if params[:format]

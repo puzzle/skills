@@ -1,6 +1,6 @@
-= render "remote_modal", title: "Skill: #{@skill.title} (#{@skill.people_skills.where.not(level: nil, interest: nil).count} Members)" do
+= render "remote_modal", title: "Skill: #{@skill.title} (#{filter_by_rated.count} Members)" do
   %div.d-flex.flex-column
-    - @skill.people_skills.each do |person_skill|
+    - filter_by_rated.each do |person_skill|
       - if person_skill.level
         %div.d-flex.flex-row.align-items-center.skill-row
           %div.col-2
@@ -10,11 +10,11 @@
           %div.col-2
             %div.d-flex.flex-column
               %label.form-label.text-gray= t ExpertiseTopicSkillValue.skill_levels.key(person_skill.level - 1)
-              %input.form-range.w-75.level{type: "range", min: 0, max: 5, value: person_skill.level, tabindex: -1}
+              %input.form-range.w-75.level{type: "range", min: 1, max: 5, value: person_skill.level, tabindex: -1}
           %div.col-2
             %div.d-flex.flex-column
               %label.form-label.text-gray= t "people-skills.interest"
-              %input.form-range.w-75.interest{type: "range", min: 0, max: 5, value: person_skill.interest, tabindex: -1}
+              %input.form-range.w-75.interest{type: "range", min: 1, max: 5, value: person_skill.interest, tabindex: -1}
           %div.col-2
             %div.d-flex.flex-row.form-check
               %input.form-check-input.me-2.certificate{type: "checkbox", checked: person_skill.certificate, disabled: true}
