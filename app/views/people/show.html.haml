@@ -1,6 +1,6 @@
 %div
   =render partial:"people/search", :locals => {person: @person}
-  %div.person-profile-header.mw-100.border-bottom
+  %div.profile-header.mw-100.border-bottom
     Personalien
   %div.mt-4
     %turbo-frame{id: "#{dom_id @person}"}
@@ -62,3 +62,16 @@
 
       %div.d-flex.justify-content-end
         =link_to image_tag("plus-lg.svg", class: "text-primary")+ "Export", export_cv_person_path(@person), class: "btn text-primary", data: { turbo_frame: "remote_modal" }
+    %div.border.border-secondary-subtle.border-1.d-flex.flex-column
+      %div.profile-header.mw-100.border-bottom
+        Kernkompetenzen
+      %div.d-flex.flex-column.ms-5.mt-3.mb-3
+        - @person.people_skills.each do |person_skill|
+          - if person_skill.core_competence
+            %div.d-flex.flex-row.border-bottom.border-1.pb-3.pt-3
+              %span.text-gray.w-25= person_skill.skill.category.parent.title
+              %span.w-75= person_skill.skill.title
+        %div.d-flex.flex-row.border-bottom.border-1.pb-3.pt-3
+          %span.text-gray.w-25 Notizen Member
+          %img.rounded-circle{src: "/assets/images/pencil_square.svg", width: '141', height: '141'}
+          %span.w-75 Hello World
