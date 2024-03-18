@@ -11,10 +11,8 @@ class PeopleController < CrudController
                                                       :percent, :id, :_destroy] }]
 
   def show
-    if format_odt?
-      export
-      return
-    end
+    return export if format_odt?
+
     @person = Person.includes(projects: :project_technologies,
                               person_roles: [:role, :person_role_level]).find(params.fetch(:id))
     super
@@ -27,20 +25,9 @@ class PeopleController < CrudController
     super
   end
 
-  private
-
-  def fetch_entries
-    Person.includes(:company).list
-  end
-
-  def person
-    @person ||= Person.find(params[:person_id])
-  end
-
   def export
-    anon = params[:anon].presence || 'false'
     odt_file = Odt::Cv.new(entry, params).export
-    filename = if anon == 'true'
+    filename = if true?(params[:anon])
                  'CV_Puzzle_ITC_anonymized.odt'
                else
                  filename(entry.name, 'CV_Puzzle_ITC')
@@ -49,5 +36,15 @@ class PeopleController < CrudController
     send_data odt_file.generate,
               type: 'application/vnd.oasis.opendocument.text',
               disposition: content_disposition('attachment', filename)
+  end
+
+  private
+
+  def fetch_entries
+    Person.includes(:company).list
+  end
+
+  def person
+    @person ||= Person.find(params[:person_id])
   end
 end
