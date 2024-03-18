@@ -82,3 +82,15 @@ pzsh-topbar {
   table-layout: fixed;
   width: 100%;
 }
+
+p{
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.data-range-select{
+  @extend .form-select;
+
+  @extend .col-4;
+}
+

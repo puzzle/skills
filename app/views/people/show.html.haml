@@ -56,17 +56,19 @@
         %div.col-xl-3.col-12
           %div.fw-normal.text-gray Sprachen
           %div.border.border-dark-subtle.mt-1.p-2.rounded
+          %div.border.border-dark-subtle.mt-1.p-2.rounded
             - @person.language_skills.each do |language|
               %div.mb-1= "#{language.language}: #{language.level} - #{language.certificate}"
       = link_to "Show all", people_path, {"data-turbo"=>false}
 
 
-= form_with model: @person do |f|
 
+= form_with model: @person do |f|
   = f.fields_for :advanced_trainings do |atf|
-    %div.d-flex
-      = render partial: 'application/daterange_picker', locals: { f: atf }
-      = atf.text_area :description, placeholder: "Description", class: "form-text"
+    %turbo-frame{id: "#{dom_id atf.object}"}
+      %div.d-flex
+        = render partial: 'application/daterange_picker', locals: { f: atf }
+        = atf.text_area :description, placeholder: "Description", class: "form-text"
   = f.button(class:"btn btn-primary", "data-turbo":false)
       %div.d-flex.justify-content-end
         =link_to image_tag("plus-lg.svg", class: "text-primary")+ "Export", export_cv_person_path(@person), class: "btn text-primary", data: { turbo_frame: "remote_modal" }
