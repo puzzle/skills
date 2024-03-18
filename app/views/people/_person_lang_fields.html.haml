@@ -1,0 +1,6 @@
+%div
+  %div= language_skill.collection_select :language, common_languages_translated, :first, :last, {}, class: "form-select mw-100"
+  %div Level
+  %div= language_skill.collection_select :level, %w[Keine A1 A2 B1 B2 C1 C2 Muttersprache], :itself, :itself, {}, class: "form-select mw-100"
+  %div Zertifikat
+  %div.mb-5= language_skill.text_field :certificate, class: "mw-100 form-control"
