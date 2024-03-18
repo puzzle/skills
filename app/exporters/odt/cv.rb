@@ -4,6 +4,7 @@ require 'i18n_data'
 module Odt
   # rubocop:disable Metrics/ClassLength
   class Cv
+    include ParamConverters
 
     def initialize(person, params)
       @person = person
@@ -33,15 +34,15 @@ module Odt
     private
 
     def anon?
-      @params[:anon].presence == 'true'
+      true?(@params[:anon])
     end
 
     def include_core_competences_and_skills?
-      @params[:includeCS].presence == 'true'
+      true?(@params[:includeCS])
     end
 
     def include_skills_by_level?
-      @params[:skillsByLevel].presence == 'true'
+      true?(@params[:skillsByLevel])
     end
 
     def skill_level_value

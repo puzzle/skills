@@ -27,11 +27,8 @@ class PeopleController < CrudController
 
   # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   def export
-    anon = true?(params[:anon]).to_s
-    params[:includeCS] = true?(params[:includeCS]).to_s
-    params[:skillsByLevel] = true?(params[:skillsByLevel]).to_s
     odt_file = Odt::Cv.new(entry, params).export
-    filename = if anon == 'true'
+    filename = if true?(params[:anon])
                  'CV_Puzzle_ITC_anonymized.odt'
                else
                  filename(entry.name, 'CV_Puzzle_ITC')
