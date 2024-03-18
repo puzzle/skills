@@ -92,6 +92,16 @@ pzsh-topbar {
   width: 100%;
 }
 
+.lang-square {
+  width: 3.5rem;
+  height: 2.6rem;
+  line-height: 2.6rem;
+  border-radius: 7px 7px 0 0;
+}
+
+.lang-square:hover {
+  border: 1px lightgrey solid;
+}
 .persisted-line-breaks {
   white-space: pre-wrap;
   overflow-wrap: break-word;
