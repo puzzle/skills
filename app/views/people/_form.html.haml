@@ -63,8 +63,12 @@
     %div.col-xl-3.col-12.mw-100
       %div.fw-normal Sprachen
       %div.border.border-dark-subtle.mt-1.p-2.rounded
-        - @person.language_skills.each do |language|
-          %div.mb-1= "#{language.language}: #{language.level} - #{language.certificate}"
+        = form.fields_for :language_skills do |language_skill|
+          %div= language_skill.collection_select :language, common_languages_translated, :first, :last, {}, class: "form-select mw-100"
+          %div Level
+          %div= language_skill.collection_select :level, %w[Keine A1 A2 B1 B2 C1 C2 Muttersprache], :itself, :itself, {}, class: "form-select mw-100"
+          %div Zertifikat
+          %div.mb-5= language_skill.text_field :certificate, class: "mw-100 form-control"
   %div.mt-3
     = form.submit :Speichern, { class: "btn btn-primary me-3 bg-skills-blue", id: "save-button" }
     = link_to "Abbrechen", person_path, { id: "cancel-button" }
