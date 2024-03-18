@@ -6,15 +6,12 @@
     %div.d-flex
         %p von 
         = f.select :month_from, Date::MONTHNAMES.compact.each_with_index.map { |month, index| [month, index + 1] }, {}, class: "form-select"
-        = f.select :year_from, (Time.zone.now.year - 100)..(Time.zone.now.year + 1), {}, class: "form-select"
+        = f.select :year_from, (Time.zone.now.year - 100)..(Time.zone.now.year + 1),{}, class: "form-select"
+    %div{"data-visibility-target" => "hideable", :hidden => f.object.month_to.nil? && f.object.year_to.nil?}
+        %div.d-flex
+            %p bis
+            = f.select :month_to, Date::MONTHNAMES.compact.each_with_index.map { |month, index| [month, index + 1] }, {}, class: "form-select", "data-active-default" => f.object.month_to.nil?
+            = f.select :year_to, (Time.zone.now.year - 100)..(Time.zone.now.year + 1), {}, class: "form-select", "data-active-default" => f.object.year_to.nil?
     %div.d-flex
-        %p bis
-        = f.select :month_to, Date::MONTHNAMES.compact.each_with_index.map { |month, index| [month, index + 1] }, {}, class: "form-select", :disabled => true
-        = f.select :year_to, (Time.zone.now.year - 100)..(Time.zone.now.year + 1), {}, class: "form-select", :disabled => true
-    %div.d-flex
-        = f.object.year_to
-        = f.object.month_to
-        = f.button "Toggle with rails",:name=> "#{f.object_name}[month_to]", :value=> (f.object.month_to.nil? ? Time.zone.now.month : "")
-
-        %button{"data-action" => "visibility#toggleTargets", :class => "form-button", :type=> "button"} Toggle with stimulus
+        %button{"data-action" => "visibility#toggleTargets", :class => "form-button", :type=> "button"} Toggle
         
