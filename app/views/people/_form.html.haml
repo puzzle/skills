@@ -64,10 +64,10 @@
       %div.fw-normal Sprachen
       %div.border.border-dark-subtle.mt-1.p-2.rounded
         %div.d-flex.flex-wrap
-          - @person.language_skills.each do |language_skill|
-            %div.lang-square.text-center.align-middle.me-2{role: "button"}
+          - @person.language_skills.each_with_index do |language_skill, i|
+            %div.lang-button.text-center.align-middle.me-2{role: "button", "lang-button": i, "data-controller" => "lang-selection", "data-action" => "click->lang-selection#selectLang"}
               %div= language_skill.language
-          %div.lang-square.text-center.align-middle{role: "button"}
+          %div.lang-button.text-center.align-middle{role: "button"}
             %div +
         = form.fields_for :language_skills do |language_skill|
           = render "person_lang_fields", language_skill: language_skill
