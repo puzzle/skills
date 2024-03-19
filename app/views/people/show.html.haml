@@ -61,6 +61,6 @@
               %div.mb-1= "#{language.language}: #{language.level} - #{language.certificate}"
       = link_to "Show all", people_path, {"data-turbo"=>false}
 
-= render 'advanced_trainings/index', locals: { person: @person }
+= render partial: 'advanced_trainings/index', locals: { person: @person }
       %div.d-flex.justify-content-end
         =link_to image_tag("plus-lg.svg", class: "text-primary")+ "Export", export_cv_person_path(@person), class: "btn text-primary", data: { turbo_frame: "remote_modal" }
