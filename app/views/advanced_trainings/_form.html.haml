@@ -1,9 +1,3 @@
-- if @advanced_training&.errors.any?
-  .alert.alert-danger
-    %ul.mb-0
-      - @advanced_training.errors.full_messages.each do |error|
-        %li= error
-
 = form_with model: @advanced_training do |f|
   %div.d-flex
     = render partial: 'application/daterange_picker', locals: { f: f }
