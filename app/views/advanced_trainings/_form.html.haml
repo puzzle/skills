@@ -1,0 +1,12 @@
+- if @advanced_training.errors.any?
+  .alert.alert-danger
+    %ul.mb-0
+      - @training.errors.full_messages.each do |error|
+        %li= error
+        
+%turbo-frame{id: "#{dom_id @advanced_training}"}
+  = form_with model: @advanced_training, method: :put do |f|
+    %div.d-flex
+      = render partial: 'application/daterange_picker', locals: { f: f }
+      = f.text_area :description, placeholder: "Description", class: "form-text"
+    = f.button(class:"btn btn-primary", "data-turbo":false)

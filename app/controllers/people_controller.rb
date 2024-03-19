@@ -11,16 +11,6 @@ class PeopleController < CrudController
                                                       :percent, :id, :_destroy] },
                           { :advanced_trainings_attributes => {} }]
 
-  self.nilified_attrs_if_missing = [
-    { :advanced_trainings_attributes => [:year_to, :month_to] }
-  ]
-
-  # self.nested_models = %i[advanced_trainings activities projects
-  #                         educations language_skills person_roles
-  #                         people_skills categories]
-
-  # self.permitted_relationships = %i[person_roles people_skills]
-
   def show
     return export if format_odt?
 

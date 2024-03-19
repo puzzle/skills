@@ -1,0 +1,6 @@
+= @person.advanced_trainings.each do |at|
+  %div.d-flex
+    %turbo-frame{id: "#{dom_id at}"}
+      = at.description
+      = link_to edit_advanced_training_path(at), class: "btn bg-gray-100" do 
+        = "edit advanced training with id #{at.id}"
