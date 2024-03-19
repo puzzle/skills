@@ -1,0 +1,6 @@
+%turbo-frame{id: "competence-notes"}
+  %div.d-flex
+    = @person.competence_notes
+  %div.d-flex.flex-row
+    = link_to image_tag("pencil-square.svg", class: "text-primary me-2 ms-0 d-flex align-items-center", width: '16', height: '16')+ "Bearbeiten",
+    competence_notes_person_path(@person), class: "d-flex align-items-center"

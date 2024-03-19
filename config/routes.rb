@@ -23,6 +23,8 @@ Rails.application.routes.draw do
       put 'picture', to: 'people/picture#update'
       get 'picture', to: 'people/picture#show'
       get 'export', to: 'people#export'
+      get 'competence-notes', to: 'people/competence_notes#edit'
+      post 'competence-notes', to: 'people/competence_notes#update'
     end
 
   end

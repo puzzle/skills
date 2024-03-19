@@ -74,6 +74,10 @@
         %div.d-flex.flex-row.border-bottom.border-1.pb-3.pt-3
           %span.text-gray.w-25 Notizen Member
           %span.w-75.d-flex.align-items-center
-            = link_to image_tag("pencil-square.svg", class: "text-primary me-2 ms-0 d-flex align-items-center", width: '16', height: '16')+ "Bearbeiten",
-            export_cv_person_path(@person), class: "d-flex align-items-center", data: { turbo_frame: "remote_modal" }
+            %turbo-frame{id: "competence-notes"}
+              %div.d-flex
+                = @person.competence_notes
+              %div.d-flex.flex-row
+                = link_to image_tag("pencil-square.svg", class: "text-primary me-2 ms-0 d-flex align-items-center", width: '16', height: '16')+ "Bearbeiten",
+                competence_notes_person_path(@person), class: "d-flex align-items-center"
 
