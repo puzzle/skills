@@ -148,7 +148,7 @@ class CrudController < ListController
 
   # Assigns the attributes from the params to the model entry.
   def assign_attributes
-    nilify_attrs_if_missing
+    nilify_attrs_if_missing if nilified_attrs_if_missing
     entry.attributes = model_params
   end
 
