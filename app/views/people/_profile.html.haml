@@ -61,8 +61,10 @@
                 - @person.language_skills.each do |language|
                   %tr
                     %td.p-2= language.language
-                    %td.p-2= image_tag("language-levels/#{language.level.downcase}.svg", :alt => "Language level indicator")
+                    %td.p-2= image_tag("language-levels/#{language.level.downcase}.svg", alt: "Language level indicator")
                     - unless language.certificate.nil?
-                      %td.p-2= image_tag("language-levels/icon_certificate.svg", :alt => "Language certificate icon", :title => language.certificate)
-      = link_to "Show all", people_path, {"data-turbo"=>false}      %div.d-flex.justify-content-end
+                      %td.p-2= image_tag("language-levels/icon_certificate.svg", alt: "Language certificate icon", title: language.certificate)
+      = link_to "Show all", people_path, {"data-turbo"=>false}
+
+      %div.d-flex.justify-content-end
         =link_to image_tag("plus-lg.svg", class: "text-primary")+ "Export", export_cv_person_path(@person), class: "btn text-primary", data: { turbo_frame: "remote_modal" }
