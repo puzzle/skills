@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class People::CompetenceNotesController < CrudController
   def update
     @person.update!(competence_notes: params[:competence_notes])
@@ -9,4 +10,3 @@ class People::CompetenceNotesController < CrudController
     Person
   end
 end
-
