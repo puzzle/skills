@@ -1,5 +1,4 @@
-= form_with model: @advanced_training do |f|
-  = @person
+= form_with model:@advanced_training.person do |f|
   %div.d-flex
     = render partial: 'application/daterange_picker', locals: { f: f }
     = f.text_area :description, placeholder: "Description", class: "form-text"
