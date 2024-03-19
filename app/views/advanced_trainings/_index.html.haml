@@ -1,7 +1,7 @@
 %turbo-frame{id: "#{dom_id AdvancedTraining.new}"}
 - @person.advanced_trainings.each do |at|
   %turbo-frame{id: "#{dom_id at}"}
-    = link_to edit_advanced_training_path(at), class: "text-decoration-none text-dark" do
+    = link_to edit_person_advanced_training_path(@person, at), class: "text-decoration-none text-dark" do
       %div.bg-hover-gray.border.rounded
         %div.d-flex.row
           %span.col-2

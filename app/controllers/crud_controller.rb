@@ -47,7 +47,8 @@ class CrudController < ListController
   #   GET /entries/1/edit
   #
   # Display a form to edit an exisiting entry of this model.
-  def edit; end
+  def edit
+  end
 
   #   POST /entries
   #   POST /entries.json
