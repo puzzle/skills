@@ -224,9 +224,9 @@ GEM
       rails (>= 4.2)
     language_list (1.2.1)
     language_server-protocol (3.17.0.3)
-    listen (3.0.8)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
+    listen (3.9.0)
+      rb-fsevent (~> 0.10, >= 0.10.3)
+      rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -499,7 +499,7 @@ DEPENDENCIES
   jsbundling-rails
   keycloak-api-rails
   language_list
-  listen (~> 3.0.5)
+  listen
   mini_magick
   net-imap
   net-ldap (~> 0.16.0)
@@ -538,4 +538,4 @@ DEPENDENCIES
   webdrivers (~> 5.3, >= 5.3.1)
 
 BUNDLED WITH
-   2.4.6
+   2.4.10
