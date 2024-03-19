@@ -1,0 +1,5 @@
+- if errors.any?
+  .alert.alert-danger
+    %ul.mb-0
+      - errors.full_messages.each do |error|
+        %li= error
