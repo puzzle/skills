@@ -1,7 +1,32 @@
+= render "remote_modal", title: "Skill: #{@skill.title} (#{filter_by_rated(@skill).count } Members)" do
+  %div.d-flex.flex-column
+    - filter_by_rated(@skill).each do |person_skill|
+      - if person_skill.level
+        %div.d-flex.flex-row.align-items-center.skill-row
+          %div.col-2
+            = link_to Person.find(person_skill.person_id).name, person_path(person_skill.person_id)
+          %div.col-2.d-flex.justify-content-center
+            %p.m-0= @skill.title
+          %div.col-2
+            %div.d-flex.flex-column
+              %label.form-label.text-gray= t ExpertiseTopicSkillValue.skill_levels.key(person_skill.level - 1)
+              %input.form-range.w-75.level{type: "range", min: 1, max: 5, value: person_skill.level, tabindex: -1}
+          %div.col-2
+            %div.d-flex.flex-column
+              %label.form-label.text-gray= t "people-skills.interest"
+              %input.form-range.w-75.interest{type: "range", min: 1, max: 5, value: person_skill.interest, tabindex: -1}
+          %div.col-2
+            %div.d-flex.flex-row.form-check
+              %input.form-check-input.me-2.certificate{type: "checkbox", checked: person_skill.certificate, disabled: true}
+              %label.form-label.text-gray= t "people-skills.certificate"
+          %div.col-2
+            %div.d-flex.flex-row.form-check
+              %input.form-check-input.me-2.core-competence{type: "checkbox", checked: person_skill.core_competence, disabled: true}
+              %label.form-label.text-gray= t "people-skills.core-competence"
 %turbo-frame{id: "#{dom_id @skill}"}
   .row.border.border-top.table-light.tableform-hover.table-row
     .col-2.d-flex.align-items-center
-      =@skill.title
+      = link_to @skill.title, skill_path(@skill), data: { turbo_frame: "remote_modal" }
     .col-1.bg-light.d-flex.align-items-center
       =@skill.people.count
     .col-3.d-flex.align-items-center

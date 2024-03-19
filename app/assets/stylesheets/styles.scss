@@ -50,6 +50,14 @@ pzsh-topbar {
   color: $skills-text-gray;
 }
 
+.skill-row {
+  height: 100px !important;
+  border-bottom: 2px solid $secondary-bg-subtle !important;
+}
+
+.interest, .level {
+  pointer-events: none !important;
+}
 .table-row:hover {
   background-color: $light;
 }

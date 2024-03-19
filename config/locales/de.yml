@@ -15,3 +15,14 @@ de:
     widowed: verwitwet
     registered_partnership: eingetragene Partnerschaft
     divorced: geschieden
+
+  people-skills:
+    level:
+      trainee: Trainee
+      junior: Junior
+      professional: Professional
+      senior: Senior
+      expert: Expert
+    interest: Interesse
+    certificate: Zertifikat
+    core-competence: Kernkompetenz
