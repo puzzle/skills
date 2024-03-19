@@ -24,7 +24,7 @@ describe "Core competences" do
     page.find('#edit-link').click
     expect(page).to have_selector('.form-control')
 
-    fill_in 'competence_notes', with: 'Hello World here'
+    fill_in 'person_competence_notes', with: 'Hello World here'
     page.find('#save').click
     expect(page).to have_text('Hello World here')
   end
@@ -34,7 +34,7 @@ describe "Core competences" do
     page.find('#edit-link').click
     expect(page).to have_selector('.form-control')
 
-    fill_in 'competence_notes', with: 'Hello World here'
+    fill_in 'person_competence_notes', with: 'Hello World here'
     page.find('#cancel').click
     expect(page).to have_text('LaTex\n Puppet\n Bash')
   end
