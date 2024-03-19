@@ -43,4 +43,16 @@ module PersonHelper
       [language.first, "#{language.last} (#{language.first})"] if LanguageList::LanguageInfo.find(language[0])&.common?
     end.compact.sort_by(&:last)
   end
+
+  def uneditable_language?(lang)
+    %w[DE EN FR].include?(lang)
+  end
+
+  def add_missing_mandatory_langs(form)
+    %w[DE EN FR].each do |language|
+      unless form.object.language_skills.map { |lang| lang.language }.include?(language)
+        form.object.language_skills.create({ language: language })
+      end
+    end
+  end
 end
