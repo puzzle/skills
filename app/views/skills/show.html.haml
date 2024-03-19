@@ -1,6 +1,6 @@
-= render "remote_modal", title: "Skill: #{@skill.title} (#{filter_by_rated.count} Members)" do
+= render "remote_modal", title: "Skill: #{@skill.title} (#{filter_by_rated(@skill).count } Members)" do
   %div.d-flex.flex-column
-    - filter_by_rated.each do |person_skill|
+    - filter_by_rated(@skill).each do |person_skill|
       - if person_skill.level
         %div.d-flex.flex-row.align-items-center.skill-row
           %div.col-2

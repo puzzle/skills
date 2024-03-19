@@ -27,9 +27,9 @@ class SkillsController < CrudController
 
   private
 
-  def filter_by_rated
-    @skill.people_skills.where.not(interest: 0)
-          .or(@skill.people_skills.where.not(level: 0))
+  def filter_by_rated(skill)
+    skill.people_skills.where.not(interest: 0)
+          .or(skill.people_skills.where.not(level: 0))
   end
 
   def fetch_entries
