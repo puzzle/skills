@@ -1,8 +1,3 @@
-- if @skill.errors.any?
-  .alert.alert-danger
-    %ul.mb-0
-      - @skill.errors.full_messages.each do |error|
-        %li= error
 = form_with(model: @skill) do |f|
   .mb-4.w-100
     = f.label :title, class: "form-label"

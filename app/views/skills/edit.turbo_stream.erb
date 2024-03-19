@@ -1,12 +1,4 @@
 <%= turbo_stream.update "#{dom_id @skill}" do %>
   <%= render "row", skill: @skill %>
-  <% if @skill.errors.any? %>
-    <div class="alert alert-danger mt-2">
-      <ul class="mb-0">
-        <% @skill.errors.full_messages.each do |error| %>
-          <li><%= error %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render "application/error_banners", errors: @skill.errors  %>
 <% end %>
