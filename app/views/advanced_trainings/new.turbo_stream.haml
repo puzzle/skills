@@ -1,2 +1,3 @@
-= turbo_stream.append "trainings" do
+= turbo_stream.update "#{dom_id AdvancedTraining.new}" do
+  = render "application/error_banners", errors: @advanced_training.errors
   = render partial: "form", locals: {advanced_training: @advanced_training}
