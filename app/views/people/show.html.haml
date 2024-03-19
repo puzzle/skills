@@ -68,7 +68,7 @@
       %div.d-flex.flex-column.ms-5.mt-3.mb-3
         - @person.people_skills.each do |person_skill|
           - if person_skill.core_competence
-            %div.d-flex.flex-row.border-bottom.border-1.pb-3.pt-3
+            %div.d-flex.flex-row.border-bottom.border-1.pb-3.pt-3.core-competence
               %span.text-gray.w-25= person_skill.skill.category.parent.title
               %span.w-75= person_skill.skill.title
         %div.d-flex.flex-row.border-bottom.border-1.pb-3.pt-3
