@@ -13,9 +13,6 @@ application.register("dynamic-fields", DynamicFieldsController)
 import ImageUploadController from "./image_upload_controller"
 application.register("image-upload", ImageUploadController)
 
-import LangSelectionController from "./lang_selection_controller"
-application.register("lang-selection", LangSelectionController)
-
 import NationalityTwoController from "./nationality_two_controller"
 application.register("nationality-two", NationalityTwoController)
 
