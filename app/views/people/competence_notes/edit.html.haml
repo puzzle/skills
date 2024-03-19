@@ -1,5 +1,5 @@
 %turbo-frame{id: "competence-notes"}
-  = form_with do |f|
+  = form_with model: @person do |f|
     .mb-4.w-100
       = f.text_area :competence_notes, class: "form-control", value: @person.competence_notes, rows: simple_format(@person.competence_notes).count('/n')
     .mb-1.mt-4
