@@ -1,4 +1,0 @@
-<%= turbo_stream.update "#{dom_id @person}" do %>
-  <%= render "form", person: @person %>
-  <%= render "application/error_banners", errors: @person.errors  %>
-<% end %>
