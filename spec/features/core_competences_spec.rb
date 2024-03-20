@@ -38,4 +38,10 @@ describe "Core competences" do
     page.find('#cancel').click
     expect(page).to have_text('LaTex\n Puppet\n Bash')
   end
+
+  it 'should display skill with same parent category in same row with divider' do
+    visit person_path(people(:alice))
+    expect(page).to have_selector('.circle-divider')
+    expect(page).to have_selector('.core-competence', count: 1, text: "Software-Engineering\nRails\nember")
+  end
 end

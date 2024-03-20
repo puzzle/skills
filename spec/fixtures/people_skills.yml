@@ -33,7 +33,15 @@ alice_rails:
   level: 0
   interest: 0
   certificate: false
-  core_competence: false
+  core_competence: true
+
+alice_ember:
+  skill: ember
+  person: alice
+  level: 1
+  interest: 4
+  certificate: true
+  core_competence: true
 
 alice_bash:
   skill: bash
