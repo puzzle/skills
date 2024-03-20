@@ -4,6 +4,8 @@ class PeopleController < CrudController
   include ExportController
   include ParamConverters
 
+  helper_method :group_person_skills_by_category
+
   self.permitted_attrs = [:birthdate, :location, :marital_status, :updated_by, :name, :nationality,
                           :nationality2, :title, :competence_notes, :company_id, :email,
                           :department_id, :shortname, :picture, :picture_cache,
@@ -46,5 +48,10 @@ class PeopleController < CrudController
 
   def person
     @person ||= Person.find(params[:person_id])
+  end
+
+  def group_person_skills_by_category
+    core_competences = person.people_skills.select{|ps| ps[:core_competence] != false}
+    core_competences.group_by { |ps| ps.skill.category.parent }
   end
 end
