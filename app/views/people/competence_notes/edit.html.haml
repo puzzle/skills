@@ -1,7 +1,8 @@
 %turbo-frame{id: "competence-notes"}
   = form_with model: @person do |f|
     .mb-4.w-100
-      = f.text_area :competence_notes, class: "form-control", value: @person.competence_notes, rows: simple_format(@person.competence_notes).count('/n')
+      = f.text_area :competence_notes, class: "form-control w-75", value: @person.competence_notes,
+      rows: simple_format(@person.competence_notes).count('/n')
     .mb-1.mt-4
       = f.button "Speichern", class:"btn btn-primary","aria-label":"Close", id: 'save'
       = link_to "Abbrechen", person_path(@person), class: "btn btn-outline-secondary", id: 'cancel'
