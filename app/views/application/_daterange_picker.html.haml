@@ -9,14 +9,14 @@
     %div.d-flex.row.align-items-center
         %span.fw-bold.col-2 Von:
         %span.col-5
-            = f.select :month_from, Date::MONTHNAMES.compact.each_with_index.map { |month, index| [month, index +1] }, {}, class: "form-select"
+            = f.select :month_from, translated_months.compact.each_with_index.map { |month, index| [month, index +1] }, {}, class: "form-select"
         %span.col-5
             = f.select :year_from, (Time.zone.now.year - 100)..(Time.zone.now.year + 1),{}, class: "form-select"
     %div{"data-visibility-target" => "hideable", :hidden => end_date}
         %div.d-flex.row.align-items-center
             %span.fw-bold.col-2 Bis:
             %span.col-5
-                = f.select :month_to, Date::MONTHNAMES.compact.each_with_index.map { |month, index| [month, index +1] }, {}, class: "form-select"
+                = f.select :month_to, translated_months.compact.each_with_index.map { |month, index| [month, index +1] }, {}, class: "form-select"
             %span.col-5
                 = f.select :year_to, (Time.zone.now.year - 100)..(Time.zone.now.year + 1), {}, class: "form-select"
     %div.d-flex.row.justify-content-end
