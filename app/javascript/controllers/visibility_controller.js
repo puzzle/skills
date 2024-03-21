@@ -9,9 +9,8 @@ export default class extends Controller {
   connect() {
     this.hideableTargets.forEach((el) => {
       el.querySelectorAll('select').forEach((select) => {
-        let is_active = /^true$/i.test(select.dataset.activeDefault);
-        select.disabled = is_active;
-        select.hidden = is_active;
+        select.disabled = el.hidden;
+        select.hidden = el.hidden;
       });
     });
   }
