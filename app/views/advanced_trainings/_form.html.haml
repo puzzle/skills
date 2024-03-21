@@ -1,5 +1,5 @@
 = form_with model: ([@person, @advanced_training]) do |f|
   %div.d-flex
-    = render partial: 'application/daterange_picker', locals: { f: f }
+    = render partial: 'application/daterange_picker', locals: { f: f, end_date: f.object.month_to.nil? && f.object.year_to.nil? }
     = f.text_area :description, placeholder: "Description", class: "form-text"
   = f.button(class:"btn btn-primary")

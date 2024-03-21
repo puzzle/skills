@@ -11,4 +11,16 @@ class AdvancedTrainingsController < PersonRelationsController
   def update
     super(:location => person_path(person))
   end
+
+  private
+
+  def entry
+    relation = super
+    relation.month_from ||= 1
+    relation.year_from ||= Time.zone.today.year - 1
+
+    relation.month_to ||= Time.zone.today.month
+    relation.year_to ||= Time.zone.today.year
+    relation
+  end
 end
