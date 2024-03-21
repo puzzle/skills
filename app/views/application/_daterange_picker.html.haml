@@ -12,14 +12,15 @@
             = f.select :month_from, Date::MONTHNAMES.compact.each_with_index.map { |month, index| [month, index +1] }, {}, class: "form-select"
         %span.col-5
             = f.select :year_from, (Time.zone.now.year - 100)..(Time.zone.now.year + 1),{}, class: "form-select"
-    %div{"data-visibility-target" => "hideable", :hidden => f.object.month_to.nil? && f.object.year_to.nil?}
+    %div{"data-visibility-target" => "hideable", :hidden => end_date}
         %div.d-flex.row.align-items-center
             %span.fw-bold.col-2 Bis:
             %span.col-5
-                = f.select :month_to, Date::MONTHNAMES.compact.each_with_index.map { |month, index| [month, index +1] }, {}, class: "form-select", "data-active-default" => f.object.month_to.nil?
-            %span.col-5   
-                = f.select :year_to, (Time.zone.now.year - 100)..(Time.zone.now.year + 1), {}, class: "form-select", "data-active-default" => f.object.year_to.nil?
+                = f.select :month_to, Date::MONTHNAMES.compact.each_with_index.map { |month, index| [month, index +1] }, {}, class: "form-select", "data-active-default" => end_date
+            %span.col-5
+                = f.select :year_to, (Time.zone.now.year - 100)..(Time.zone.now.year + 1), {}, class: "form-select", "data-active-default" => end_date
     %div.d-flex.row.justify-content-end
         %span.col-10
             %button{"data-action" => "visibility#toggleTargets", :class => "btn btn-primary w-100", :type=> "button"} 
-                Ohne Ende
+                %span{"data-visibility-target" => "hideable", :hidden => end_date} Ohne Ende
+                %span{"data-visibility-target" => "hideable", :hidden => !end_date} Mit Ende
