@@ -5,10 +5,10 @@ class AdvancedTrainingsController < PersonRelationsController
   self.nilified_attrs_if_missing = [:year_to, :month_to]
 
   def create
-    super(:location => person_path(entry.person))
+    super(:location => person_path(person))
   end
 
   def update
-    super(:location => person_path(entry.person))
+    super(:location => person_path(person))
   end
 end
