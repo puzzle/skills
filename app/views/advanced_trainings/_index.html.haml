@@ -1,15 +1,16 @@
 %turbo-frame{id: "#{dom_id AdvancedTraining.new}"}
-- @person.advanced_trainings.each do |at|
-  %div.border.rounded
-    %turbo-frame{id: "#{dom_id at}"}
-      %div.bg-hover-gray
-        = link_to edit_person_advanced_training_path(@person, at), class: "text-decoration-none text-dark" do
-          %div.d-flex.row
-            %span.col-2
-              #{Date::MONTHNAMES[at.month_from]} #{at.year_from} -
-              -if at.month_to.nil? && at.year_to.nil?
-                = "now"
-              - else 
-                #{Date::MONTHNAMES[at.month_to]} #{at.year_to}
-            %span.col
-              = at.description
+%turbo-frame{id: "advanced_trainings_all"}
+  - @person.advanced_trainings.list.each do |at|
+    %div.border.rounded
+      %turbo-frame{id: "#{dom_id at}"}
+        %div.bg-hover-gray
+          = link_to edit_person_advanced_training_path(@person, at), class: "text-decoration-none text-dark" do
+            %div.d-flex.row
+              %span.col-2
+                #{translated_months[at.month_from]} #{at.year_from}
+                -if (at.month_to.nil? && at.year_to.nil?)
+                  = "- now"
+                - elsif (at.month_to != at.month_from && at.year_to != at.year_from)
+                  = "- #{translated_months[at.month_to]} #{at.year_to}"
+              %span.col
+                = at.description
