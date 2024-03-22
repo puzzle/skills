@@ -53,7 +53,7 @@ jobs:
           POSTGRES_USER: ${{ env.POSTGRES_USER }}
           POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
           IS_CI: true
-        run: bundle exec rake
+        run: bundle exec rspec
 
       - name: 'Run RuboCop'
         run: bundle exec rubocop --parallel
