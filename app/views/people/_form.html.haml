@@ -60,7 +60,7 @@
           %th.fw-normal Kürzel
           %tr
             %td= form.text_field :shortname, class: "mw-100 form-control"
-    %div.col-xl-3.col-12
+    %div.col-xl-3.col-12{"data-controller"=>"lang-selection"}
       %div.fw-normal Sprachen
       %div.border.border-dark-subtle.mt-1.p-2.rounded
         = form.fields_for :language_skills do |language_skill|
