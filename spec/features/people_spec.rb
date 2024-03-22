@@ -61,6 +61,14 @@ describe :people do
     select ISO3166::Country["US"].translations[I18n.locale], from: 'person_nationality2'
     select I18n.t('marital_statuses.married'), from: 'person_marital_status'
     fill_in 'person_shortname', with: 'bb'
+
+    page.all(".add_fields").last.click
+    language_select = page.all('.language-select').last
+    language_level_select = page.all('.language-level-select').last
+    language_certificate_input = page.all('.language-certificate-input').last
+    select 'EN', from: language_select[:id]
+    select 'B2', from: language_level_select[:id]
+    fill_in language_certificate_input[:id], with: 'Some Certificate'
   end
 
   describe 'Edit person', type: :feature, js: true do
@@ -102,6 +110,20 @@ describe :people do
       bob.nationality2.nil? ? (expect(page).not_to have_select('person_nationality2')) : (expect(page).to have_select('person_nationality2', selected: ISO3166::Country[bob.nationality2].translations[I18n.locale]))
       expect(page).to have_select('person_marital_status', selected: I18n.t("marital_statuses.#{bob.marital_status}"))
       expect(page).to have_field('person_shortname', with: bob.shortname)
+
+      language_skills = bob.language_skills
+      language_selects = page.all('.language-select')
+      language_level_selects = page.all('.language-level-select')
+      language_certificate_inputs = page.all('.language-certificate-input')
+      language_selects.each_with_index do |language_select, i|
+        expect(language_select.value).to eql(language_skills[i].language)
+      end
+      language_level_selects.each_with_index do |language_level_select, i|
+        expect(language_level_select.value).to eql(language_skills[i].level)
+      end
+      language_certificate_inputs.each_with_index do |language_certificate_input, i|
+        expect(language_certificate_input.value).to eql(language_skills[i].certificate)
+      end
     end
 
     it 'should edit and save changes' do
@@ -130,6 +152,10 @@ describe :people do
       expect(edited_person.nationality2).to eql('US')
       expect(edited_person.marital_status).to eql('married')
       expect(edited_person.shortname).to eql('bb')
+      edited_language_skill = edited_person.language_skills.last
+      expect(edited_language_skill.language).to eql('EN')
+      expect(edited_language_skill.level).to eql('B2')
+      expect(edited_language_skill.certificate).to eql('Some Certificate')
     end
 
     it 'should edit and cancel without saving' do
