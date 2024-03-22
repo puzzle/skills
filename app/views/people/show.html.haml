@@ -60,7 +60,7 @@
             - @person.language_skills.each do |language|
               %div.mb-1= "#{language.language}: #{language.level} - #{language.certificate}"
       = link_to "Show all", people_path, {"data-turbo"=>false}
-
+= link_to image_tag("plus-lg.svg", class: "text-primary")+ "Export", export_cv_person_path(@person), class: "btn text-primary", data: { turbo_frame: "remote_modal" }
 = link_to "Weiterbildung hinzufügen", new_person_advanced_training_path(@person), data: { turbo_frame: "#{dom_id AdvancedTraining.new}"},  method: :get
-= render partial: 'advanced_trainings/index', locals: { person: @person }      %div.d-flex.justify-content-end
-        =link_to image_tag("plus-lg.svg", class: "text-primary")+ "Export", export_cv_person_path(@person), class: "btn text-primary", data: { turbo_frame: "remote_modal" }
+= render partial: 'advanced_trainings/index', locals: { person: @person }
+        

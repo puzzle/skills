@@ -22,9 +22,6 @@ application.register("remote-modal", RemoteModalController)
 import SkillsFilterController from "./skills_filter_controller"
 application.register("skills-filter", SkillsFilterController)
 
-import SkillsFilterController from "./skills_filter_controller"
-application.register("skills-filter", SkillsFilterController)
-
 import DatePickerController from "./date_picker_controller"
 application.register("date-picker", DatePickerController)
 
