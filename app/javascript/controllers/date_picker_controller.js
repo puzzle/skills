@@ -19,7 +19,7 @@ export default class extends Controller {
     this.hideableTargets.forEach((el) => {
       if(this.sameDate){
         this.sameDate = false;
-        this.setSelects(el, true);
+        this.setSelects(el, "disabled", true);
         return;
       }
       el.hidden = !el.hidden;
@@ -34,7 +34,7 @@ export default class extends Controller {
     let endDatePicker = document.querySelector("#end_date_picker")
     endDatePicker.hidden = this.sameDate;
     if (!this.sameDate) return;
-    this.setSelects(endDatePicker, false);
+    this.setSelects(endDatePicker, "disabled", false);
   }
 
   changeDate(event) {
@@ -44,9 +44,9 @@ export default class extends Controller {
     }
   }
 
-  setSelects(parent, value){
+  setSelects(parent, property, value){
     parent.querySelectorAll('select').forEach((select) => {
-      select.value = value;
+      select[property] = value;
     });
   }
 }
