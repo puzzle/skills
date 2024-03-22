@@ -10,10 +10,8 @@ describe 'People skills Show', type: :feature, js: true do
       visit skills_path
       click_link('Rails')
 
-      # We used visible false in this test because the modal is not accessible in any different way
-      # follow-up ticket for this: #628
-      expect(page).to have_selector('.modal-title', visible: false, text: 'Skill: Rails (4 Members)')
-      expect(page).to have_selector('.skill-row', visible: false, count: 4)
+      expect(page).to have_selector('.modal-title', text: 'Skill: Rails (4 Members)')
+      expect(page).to have_selector('.skill-row', count: 4)
   end
 
   it 'Should render elements correctly' do
