@@ -1,4 +1,4 @@
-%div.d-flex.flex-column{"data-controller"=>"visibility"}
+%div.d-flex.flex-column{"data-controller"=>"date-picker"}
     %div.d-flex.row.justify-content-end
         %span.col-5
             %span.ps-3 
@@ -15,7 +15,7 @@
             = f.select :month_from, translated_months.compact.each_with_index.map { |month, index| [month, index +1] }, {}, class: "form-select"
         %span.col-5
             = f.select :year_from, (Time.zone.now.year - 100)..(Time.zone.now.year + 1),{}, class: "form-select"
-    %div{"data-visibility-target" => "hideable", :hidden => end_date}
+    %div{"data-date-picker-target" => "hideable", :hidden => end_date}
         %div.d-flex.row.align-items-center
             %span.fw-bold.col-2 
                 = "#{I18n.t('date_range_picker.to')}:"
@@ -25,6 +25,6 @@
                 = f.select :year_to, (Time.zone.now.year - 100)..(Time.zone.now.year + 1), {}, class: "form-select"
     %div.d-flex.row.justify-content-end
         %span.col-10
-            %button{"data-action" => "visibility#toggleTargets", :class => "btn btn-primary w-100", :type=> "button"} 
-                %span{"data-visibility-target" => "hideable", :hidden => end_date} Ohne Ende
-                %span{"data-visibility-target" => "hideable", :hidden => !end_date} Mit Ende
+            %button{"data-action" => "date-picker#toggleTargets", :class => "btn btn-primary w-100", :type=> "button"} 
+                %span{"data-date-picker-target" => "hideable", :hidden => end_date} Bis Heute
+                %span{"data-date-picker-target" => "hideable", :hidden => !end_date} Mit Enddatum
