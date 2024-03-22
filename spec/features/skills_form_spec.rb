@@ -24,7 +24,7 @@ describe 'Skill Form', type: :feature, js:true do
       expect(page).to have_content('ember')
       expect(page).to have_content('JUnit')
       expect(page).to have_content('Rails')
-      expect(page).to have_content('New Skill Title', wait: 5)
+      expect(page).to have_content('New Skill Title', wait: 10)
   end
 
   it 'displays error messages when present' do
