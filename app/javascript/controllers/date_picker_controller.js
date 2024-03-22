@@ -25,6 +25,7 @@ export default class extends Controller {
       el.hidden = !el.hidden;
       el.querySelectorAll('select').forEach((select) => {
         select.disabled = !select.disabled;
+        select.hidden = !select.hidden;
       });
     });
   }
