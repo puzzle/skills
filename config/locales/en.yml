@@ -26,3 +26,7 @@ en:
     interest: Interest
     certificate: Certificate
     core-competence: Core Competence
+  date_range_picker:
+    from: From
+    to: To
+    today: Today
