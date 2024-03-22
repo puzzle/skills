@@ -2,6 +2,6 @@
 
 module DateHelper
   def translated_months
-    Date::MONTHNAMES
+    I18n.t('date.month_names')
   end
 end

@@ -15,6 +15,12 @@ de:
     widowed: verwitwet
     registered_partnership: eingetragene Partnerschaft
     divorced: geschieden
+  date_range_picker:
+    from: Von
+    to: Bis
+    today: Heute
+
+  
 
   people-skills:
     level:

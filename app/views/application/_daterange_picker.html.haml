@@ -1,20 +1,24 @@
 %div.d-flex.flex-column{"data-controller"=>"visibility"}
     %div.d-flex.row.justify-content-end
         %span.col-5
-            %span.ps-3 Monat
+            %span.ps-3 
+                = I18n.t("datetime.prompts.month")
         %span.col-5
-            %span.ps-3 Jahr
+            %span.ps-3 
+                = I18n.t("datetime.prompts.year")
         %span.col-10
             %hr.my-1
     %div.d-flex.row.align-items-center
-        %span.fw-bold.col-2 Von:
+        %span.fw-bold.col-2 
+            = "#{I18n.t('date_range_picker.from')}:"
         %span.col-5
             = f.select :month_from, translated_months.compact.each_with_index.map { |month, index| [month, index +1] }, {}, class: "form-select"
         %span.col-5
             = f.select :year_from, (Time.zone.now.year - 100)..(Time.zone.now.year + 1),{}, class: "form-select"
     %div{"data-visibility-target" => "hideable", :hidden => end_date}
         %div.d-flex.row.align-items-center
-            %span.fw-bold.col-2 Bis:
+            %span.fw-bold.col-2 
+                = "#{I18n.t('date_range_picker.to')}:"
             %span.col-5
                 = f.select :month_to, translated_months.compact.each_with_index.map { |month, index| [month, index +1] }, {}, class: "form-select"
             %span.col-5
