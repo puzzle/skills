@@ -34,7 +34,7 @@ module PersonHelper
   end
 
   def group_person_skills_by_category
-    core_competences = @person.people_skills.reject { |ps| ps[:core_competence] == false }
-    core_competences.group_by { |ps| ps.skill.category.parent }
+    PeopleSkill.core_competence.where(person_id: @person.id)
+               .group_by { |ps| ps.skill.category.parent }
   end
 end

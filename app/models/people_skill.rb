@@ -32,4 +32,5 @@ class PeopleSkill < ApplicationRecord
                                                'mehrmals ausgewählt werden' }
 
   scope :list, -> { order(:person_id, :skill_id) }
+  scope :core_competence, -> { where('core_competence = true')}
 end
