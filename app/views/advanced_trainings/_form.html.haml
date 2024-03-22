@@ -5,5 +5,6 @@
     %span.col-5.d-flex.flex-column
       Beschreibung
       = f.text_area :description, placeholder: "Description", class: "form-control w-100"
-    %div.col-3
+    %div.col-3.d-flex.flex-column
       = f.button(class:"btn btn-primary", data: { turbo_frame: "advanced_trainings_all"})
+      = link_to "Abbrechen", person_path(@person), data: { turbo_frame: "advanced_trainings_all"},  method: :get, class: "btn btn-link"

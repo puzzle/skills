@@ -28,6 +28,6 @@
             %button{"data-action" => "date-picker#toggleTargets", :class => "btn btn-primary w-100", :type=> "button"} 
                 %span{"data-date-picker-target" => "hideable", :hidden => end_date} Bis Heute
                 %span{"data-date-picker-target" => "hideable", :hidden => !end_date} Mit Enddatum
-            %button{"data-action" => "date-picker#sameDateToggle", :class => "btn btn-primary w-100", :type=> "button"} 
+            %button{"data-action" => "date-picker#sameDateToggle", :class => "btn btn-primary w-100", :type=> "button", :hidden => ""} 
                 %span{"data-date-picker-target" => "hideable", :hidden => end_date} Gleiches Start und Enddatum
                 %span{"data-date-picker-target" => "hideable", :hidden => !end_date} Unterschiedliches Start und Enddatum
