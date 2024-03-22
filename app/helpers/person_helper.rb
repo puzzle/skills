@@ -33,8 +33,8 @@ module PersonHelper
     picture&.file&.file&.include? 'tmp'
   end
 
-  def group_person_skills_by_category
-    PeopleSkill.core_competence.where(person_id: @person.id)
+  def group_person_skills_by_category(person)
+    PeopleSkill.core_competence.where(person_id: person.id)
                .group_by { |ps| ps.skill.category.parent }
   end
 end
