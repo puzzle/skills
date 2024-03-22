@@ -37,4 +37,12 @@ module PersonHelper
     PeopleSkill.core_competence.where(person_id: person.id)
                .group_by { |ps| ps.skill.category.parent }
   end
+
+  def category_skill_title(category_skill)
+    category_skill.first.title
+  end
+
+  def people_skills_of_category_skill(category_skill)
+    category_skill.second
+  end
 end
