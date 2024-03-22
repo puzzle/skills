@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="visibility"
+// Connects to data-controller="date-picker"
 export default class extends Controller {
 
 
