@@ -39,7 +39,7 @@ module PersonHelper
   end
 
   def common_languages_translated
-    I18nData.languages('DE').collect do |language|
+    [%w[- -]] + I18nData.languages('DE').collect do |language|
       if LanguageList::LanguageInfo.find(language[0])&.common?
         [language.first, "#{language.last} (#{language.first})"]
       end

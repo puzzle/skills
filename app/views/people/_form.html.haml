@@ -63,7 +63,7 @@
     %div.col-xl-3.col-12{"data-controller"=>"lang-selection"}
       %div.fw-normal Sprachen
       %div.border.border-dark-subtle.mt-1.p-2.rounded
-        = form.fields_for :language_skills do |language_skill|
+        = form.fields_for :language_skills, sort_languages(@person.language_skills) do |language_skill|
           = render "language_skill_fields", f: language_skill
         %div{"data-controller"=>"dynamic-fields"}
           = link_to_add_field "Add Language", form, :language_skills
