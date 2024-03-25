@@ -9,10 +9,10 @@ class AdvancedTrainingsController < PersonRelationsController
   def entry # rubocop:disable Metrics/AbcSize
     relation = super
     if relation.id.nil?
-      relation.month_from ||= 1
+      relation.month_from ||= 2
       relation.year_from ||= Time.zone.today.year - 1
 
-      relation.month_to ||= Time.zone.today.month
+      relation.month_to ||= Time.zone.today.month + 1
       relation.year_to ||= Time.zone.today.year
     end
     relation
