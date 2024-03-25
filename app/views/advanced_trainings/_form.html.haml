@@ -1,5 +1,5 @@
 = form_with model: ([@person, @advanced_training]) do |f|
-  %div.d-flex.row
+  %div.d-flex.row.py-3.ps-5
     %span.col-3
       = render partial: 'application/daterange_picker', locals: { f: f, end_date: f.object.month_to.nil? && f.object.year_to.nil? }
     %span.col-5.d-flex.flex-column
@@ -7,8 +7,8 @@
       = f.text_area :description, placeholder: "Description", class: "form-control w-100"
     %div.col-3.d-flex.flex-column
       = f.button(class:"btn btn-primary", data: { turbo_frame: "advanced_trainings_all"})
-
-
-= link_to "Abbrechen", person_path(@person), data: { turbo_frame: "advanced_trainings_all"},  method: :get, class: "btn btn-link"
-= button 'Ig wott hei', person_advanced_training_path(@person, @advanced_training), method: :delete, data: { turbo: :false }
-= link_to "Delete", person_advanced_training_path(@person, @advanced_training), method: :delete, class: "btn btn-link"
+      - if @advanced_training.persisted?
+        = link_to "Delete", person_advanced_training_path(@person, @advanced_training), data: { turbo_method: :delete, turbo_frame: "advanced_trainings_all"}, class: "btn btn-secondary"
+      - else
+        -# Add button "Save and new" here
+      = link_to "Abbrechen", person_path(@person), data: { turbo_frame: "advanced_trainings_all"},  method: :get, class: "btn btn-link"
