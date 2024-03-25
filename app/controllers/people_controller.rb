@@ -8,8 +8,7 @@ class PeopleController < CrudController
                           :nationality2, :title, :competence_notes, :company_id, :email,
                           :department_id, :shortname, :picture, :picture_cache,
                           { person_roles_attributes: [:role_id, :person_role_level_id,
-                                                      :percent, :id, :_destroy] },
-                          { :advanced_trainings_attributes => {} }]
+                                                      :percent, :id, :_destroy] }]
 
   def show
     return export if format_odt?
@@ -23,8 +22,6 @@ class PeopleController < CrudController
     params[:person][:nationality2] = nil if false?(params[:has_nationality2]&.[](:checked))
     super
   end
-
-
 
   def export
     odt_file = Odt::Cv.new(entry, params).export
