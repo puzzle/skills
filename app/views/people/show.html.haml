@@ -66,12 +66,12 @@
       %div.profile-header.mw-100.border-bottom
         Kernkompetenzen
       %div.d-flex.flex-column.ms-5.mt-3.mb-3
-        - group_person_skills_by_category(@person).each do |category_skill|
+        - group_person_skills_by_category(@person).each do |parent_skill, children_skills|
           %div.d-flex.flex-row.align-items-center.border-bottom.border-1.pb-3.pt-3.core-competence
-            %span.text-gray.w-25= category_skill_title(category_skill)
-            - people_skills_of_category_skill(category_skill).each do | person_skill |
+            %span.text-gray.w-25= parent_skill.title
+            - children_skills.each do | person_skill |
               %span= person_skill.skill.title
-              - if person_skill != people_skills_of_category_skill(category_skill).last
+              - if person_skill != children_skills.last
                 %div.circle-divider.ms-2.me-2
         %div.d-flex.flex-row.border-bottom.border-1.pb-3.pt-3
           %span.text-gray.w-25 Notizen Member
