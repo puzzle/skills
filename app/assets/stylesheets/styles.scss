@@ -85,6 +85,8 @@ pzsh-topbar {
 
 .persisted-line-breaks {
   white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: hidden;
 }
 
 #competence-notes {
