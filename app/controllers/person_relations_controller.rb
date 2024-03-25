@@ -1,7 +1,21 @@
 # frozen_string_literal: true
 
 class PersonRelationsController < CrudController
-  skip_before_action :entry, only: :destroy
+  def index
+    redirect_to person_path(entry.person)
+  end
+
+  def show
+    redirect_to person_path(entry.person)
+  end
+
+  def new
+    redirect_to person_path(entry.person)
+  end
+
+  def edit
+    redirect_to person_path(entry.person)
+  end
 
   def create
     super(:location => person_path(person))
