@@ -18,7 +18,7 @@ class PersonRelationsController < CrudController
   end
 
   def destroy
-    super(:location => person_path(person)) do |format, success|
+    super(:location => person_path(person)) do |format, _success|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(entry) }
     end
   end

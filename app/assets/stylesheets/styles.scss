@@ -83,16 +83,6 @@ pzsh-topbar {
   width: 100%;
 }
 
-p{
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-.data-range-select{
-  @extend .form-select;
-  @extend .col-4;
-}
-
 .bg-hover-gray:hover{
   background-color: #e5e5e5;
 }
