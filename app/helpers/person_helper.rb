@@ -47,13 +47,10 @@ module PersonHelper
   end
 
   def sort_languages(languages)
-    languages.sort_by do |lang|
-      if %w[DE FR EN].include?(lang.language)
-        [0, lang]
-      else
-        [1, lang]
-      end
+    mandatory_langs, optional_langs = languages.partition do |language|
+      uneditable_language?(language.language)
     end
+    mandatory_langs.sort_by(&:language) + optional_langs.sort_by(&:language)
   end
 
   def uneditable_language?(lang)

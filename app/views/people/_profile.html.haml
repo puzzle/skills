@@ -57,7 +57,7 @@
           %div.border.border-dark-subtle.mt-1.p-2.rounded.w-min-content
             %table
               %tbody
-                - @person.language_skills.each do |language|
+                - sort_languages(@person.language_skills).each do |language|
                   %tr
                     %td.p-2.pe-3.text-gray= language.language
                     %td.p-2.pe-3= image_tag("language-levels/#{language.level.downcase}.svg", alt: "Language level indicator")
