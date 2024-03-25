@@ -1,6 +1,18 @@
 # frozen_string_literal: true
 
 class PersonRelationsController < CrudController
+  def create
+    super(:location => person_path(person))
+  end
+
+  def update
+    super(:location => person_path(person))
+  end
+
+  def destroy
+    super(:location => person_path(person))
+  end
+
   private
 
   def entry
