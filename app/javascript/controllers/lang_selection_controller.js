@@ -11,7 +11,7 @@ export default class extends Controller {
     const languageSelects =  document.getElementsByClassName("language-select");
     for(const languageSelect of languageSelects) {
       //Check if field was not deleted by user
-      if(languageSelect.closest(".nested-fields").querySelector('input[type="hidden"]').value !== "1") {
+      if(!["1", "true"].includes(languageSelect.closest(".nested-fields").querySelector('input[type="hidden"]').value)) {
         selectedLanguages.push(languageSelect.selectedOptions[0].value)
       }
     }
