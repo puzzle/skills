@@ -92,25 +92,6 @@ pzsh-topbar {
   width: 100%;
 }
 
-.lang-button {
-  width: 3.5rem;
-  height: 2.6rem;
-  line-height: 2.6rem;
-  border-radius: 7px 7px 0 0;
-}
-
-.lang-button:hover {
-  border: 1px lightgrey solid;
-}
-
-.lang-box {
-  display: none;
-}.persisted-line-breaks {
-  white-space: pre-wrap;
-  overflow-wrap: break-word;
-  overflow: hidden;
-}
-
 #competence-notes {
   width: 100% !important;
 }
