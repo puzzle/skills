@@ -10,12 +10,16 @@ export default class extends Controller {
 
     const languageSelects =  document.getElementsByClassName("language-select");
     for(const languageSelect of languageSelects) {
-      selectedLanguages.push(languageSelect.selectedOptions[0].value)
+      //Check if field was not deleted by user
+      if(languageSelect.closest(".nested-fields").querySelector('input[type="hidden"]').value !== "1") {
+        selectedLanguages.push(languageSelect.selectedOptions[0].value)
+      }
     }
 
     for(const languageSelect of languageSelects) {
       for(const option of languageSelect.options) {
-        option.disabled = selectedLanguages.includes(option.value)
+        //Deactivate option if it is not the current option of the dropdown but is selected in another dropdown
+        option.disabled = (selectedLanguages.includes(option.value)) && (languageSelect.selectedOptions[0].value !== option.value)
       }
     }
   }
