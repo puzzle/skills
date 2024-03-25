@@ -1,6 +1,11 @@
-%div.d-flex.justify-content-end
-  =link_to image_tag("plus-lg.svg", class: "text-primary")+ "Neuer Skill", new_skill_path, class: "btn text-primary", data: { turbo_frame: "remote_modal" }
-
+%div.d-flex.justify-content-end.align-items-center
+  %div
+    %span.btn.text-primary
+      = image_tag("download.svg")
+      = "Export"
+  %div
+    =link_to image_tag("plus-lg.svg", class: "text-primary")+ "Neuer Skill", new_skill_path, class: "btn text-primary", data: { turbo_frame: "remote_modal" }
+1
 .row.bg-light-subtle.border.border-top.border-5.border-secondary.border-top-0.border-start-0.border-end-0
   .col-2.d-flex.align-items-center
     %strong= t "skills.table.skill"

@@ -26,7 +26,12 @@ Rails.application.routes.draw do
     end
 
   end
-  resources :skills
+
+  resources :skills do
+    collection do
+      get 'export-skills', to: 'skills#export'
+    end
+  end
 
   # Outdated api routes
   namespace :api do
