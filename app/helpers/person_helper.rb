@@ -46,6 +46,16 @@ module PersonHelper
     end.compact.sort_by(&:last)
   end
 
+  def sort_languages(languages)
+    languages.sort_by do |lang|
+      if %w[DE FR EN].include?(lang.language)
+        [0, lang]
+      else
+        [1, lang]
+      end
+    end
+  end
+
   def uneditable_language?(lang)
     %w[DE EN FR].include?(lang)
   end
