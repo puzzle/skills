@@ -63,7 +63,7 @@ pzsh-topbar {
 }
 
 
-.person-profile-header {
+.profile-header {
   background: $skills-gray;
   height: 3.25rem;
   padding: 12px 20px 12px 20px;
@@ -81,4 +81,21 @@ pzsh-topbar {
 .fixed-table {
   table-layout: fixed;
   width: 100%;
+}
+
+.persisted-line-breaks {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: hidden;
+}
+
+#competence-notes {
+  width: 100% !important;
+}
+
+.circle-divider {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #69b978
 }

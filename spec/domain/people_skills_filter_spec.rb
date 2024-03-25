@@ -9,9 +9,9 @@ describe PeopleSkillsFilter do
       levels = filteredPeopleSkills.pluck(:level)
       interests = filteredPeopleSkills.pluck(:interest)
 
-      expect(filteredPeopleSkills.count).to eq(15)
-      expect(levels).to eq([3, 1, 0, 0, 1, 5, 4, 5, 5, 5, 5, 1, 1, 1, 1])
-      expect(interests).to eq([5, 4, 0, 0, 2, 4, 5, 3, 2, 2, 4, 5, 3, 2, 4])
+      expect(filteredPeopleSkills.count).to eq(16)
+      expect(levels).to eq([3, 1, 0, 1, 0, 1, 5, 4, 5, 5, 5, 5, 1, 1, 1, 1])
+      expect(interests).to eq([5, 4, 0, 4, 0, 2, 4, 5, 3, 2, 2, 4, 5, 3, 2, 4])
     end
 
     it 'filters rated people skills' do
@@ -20,9 +20,9 @@ describe PeopleSkillsFilter do
       levels = filteredPeopleSkills.pluck(:level)
       interests = filteredPeopleSkills.pluck(:interest)
 
-      expect(filteredPeopleSkills.count).to eq(13)
-      expect(levels).to eq([3, 1, 1, 5, 4, 5, 5, 5, 5, 1, 1, 1, 1])
-      expect(interests).to eq([5, 4, 2, 4, 5, 3, 2, 2, 4, 5, 3, 2, 4])
+      expect(filteredPeopleSkills.count).to eq(14)
+      expect(levels).to eq([3, 1, 1, 1, 5, 4, 5, 5, 5, 5, 1, 1, 1, 1])
+      expect(interests).to eq([5, 4, 4, 2, 4, 5, 3, 2, 2, 4, 5, 3, 2, 4])
     end
 
     it 'it filters unrated people skills' do

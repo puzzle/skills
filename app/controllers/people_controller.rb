@@ -19,7 +19,7 @@ class PeopleController < CrudController
   end
 
   def update
-    if false?(params['has_nationality2']['checked'])
+    if params.include?('has_nationality2') && false?(params['has_nationality2']['checked'])
       params['person']['nationality2'] = nil
     end
     super

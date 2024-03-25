@@ -13,7 +13,7 @@ describe 'Skill Form', type: :feature, js:true do
   end
 
   it 'creates the skill when the form is submitted' do
-    fill_in 'skill_title', with: 'New Skill Title'
+    fill_in 'skill_title', with: 'New Skill'
     select @category.title, from: 'skill_category_id'
     select @radar, from: 'skill_radar'
     select @portfolio, from: 'skill_portfolio'
@@ -24,7 +24,7 @@ describe 'Skill Form', type: :feature, js:true do
       expect(page).to have_content('ember')
       expect(page).to have_content('JUnit')
       expect(page).to have_content('Rails')
-      expect(page).to have_content('New Skill Title')
+      expect(page).to have_content('New Skill')
   end
 
   it 'displays error messages when present' do
