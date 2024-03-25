@@ -156,15 +156,12 @@ class CrudController < ListController
     call_fill(params[model_identifier], nilified_attrs_if_missing)
   end
 
-  def call_fill(target, nullable_attrs) # rubocop:disable Metrics/CyclomaticComplexity,Metrics/MethodLength,Metrics/PerceivedComplexity
+  def call_fill(target, nullable_attrs) # rubocop:disable Metrics/CyclomaticComplexity,Metrics/MethodLength
     nullable_attrs.entries&.each do |nullable_attrs_elmnt|
       if nullable_attrs_elmnt.is_a?(Hash)
-        nullable_attrs_elmnt.each do |attr_name, attr_value|
-          attr_value.each do |attr_value_elmnt|
-            call_fill(attr_value_elmnt, attr_value_elmnt) if attr_value_elmnt.is_a?(Hash)
-            [target[attr_name].values].flatten&.each do |target_prop|
-              fill_missing_with_nil(target_prop, attr_value_elmnt)
-            end
+        nullable_attrs_elmnt.each_key do |attr_name|
+          [target[attr_name].values].flatten&.each do |target_prop|
+            call_fill(target_prop, attr_value_elmnt)
           end
         end
       else
