@@ -66,7 +66,7 @@ describe :people do
     language_select = page.all('.language-select').last
     language_level_select = page.all('.language-level-select').last
     language_certificate_input = page.all('.language-certificate-input').last
-    select 'EN', from: language_select[:id]
+    select 'FI', from: language_select[:id]
     select 'B2', from: language_level_select[:id]
     fill_in language_certificate_input[:id], with: 'Some Certificate'
   end
@@ -153,7 +153,7 @@ describe :people do
       expect(edited_person.marital_status).to eql('married')
       expect(edited_person.shortname).to eql('bb')
       edited_language_skill = edited_person.language_skills.last
-      expect(edited_language_skill.language).to eql('EN')
+      expect(edited_language_skill.language).to eql('FI')
       expect(edited_language_skill.level).to eql('B2')
       expect(edited_language_skill.certificate).to eql('Some Certificate')
     end
@@ -165,6 +165,26 @@ describe :people do
       fill_out_person_form
       page.find('#cancel-button').click
       expect(person.attributes).to eql(Person.first.attributes)
+    end
+
+    it 'should correctly deactivate languages that are already selected' do
+      bob = people(:bob)
+      visit person_path(bob)
+      page.find('#edit-button').click
+
+      #Create new language.
+      page.all(".add_fields").last.click
+      #Select language from dropdown in newly created language.
+      select 'FI', from: page.all('.language-select').last[:id]
+
+      #Create another new language.
+      page.all(".add_fields").last.click
+      #A language that the user would be able to select.
+      allowed_language = page.all('.language-select').last.find('option', text: 'ZH')
+      #The language from that we selected in the last dropdown. This on should be disabled now.
+      forbidden_language = page.all('.language-select').last.find('option', text: 'FI')
+      expect(allowed_language).not_to be_disabled
+      expect(forbidden_language).to be_disabled
     end
   end
 end
