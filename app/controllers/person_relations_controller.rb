@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class PersonRelationsController < CrudController
+  skip_before_action :entry, only: :destroy
+
   def create
     super(:location => person_path(person))
   end
@@ -17,7 +19,7 @@ class PersonRelationsController < CrudController
 
   def entry
     relation = super
-    relation.person = person
+    relation.person = person unless person == relation.person
     relation
   end
 
