@@ -61,6 +61,6 @@
                   %tr
                     %td.p-2.pe-3.text-gray= language.language
                     %td.p-2.pe-3= image_tag("language-levels/#{language.level.downcase}.svg", alt: "Language level indicator")
-                    - unless language.certificate.nil?
-                      %td.p-2= image_tag("language-levels/icon_certificate.svg", :alt => "Language certificate icon", :title => language.certificate)
+                    - unless language.certificate.blank?
+                      %td.p-2= image_tag("language-levels/icon_certificate.svg", alt: "Language certificate icon", title: language.certificate)
       = link_to "Show all", people_path, {"data-turbo"=>false}
