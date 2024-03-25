@@ -8,7 +8,9 @@
     %div.col-3.d-flex.flex-column
       = f.button(class:"btn btn-primary", data: { turbo_frame: "advanced_trainings_all"})
       - if @advanced_training.persisted?
-        = link_to "Delete", person_advanced_training_path(@person, @advanced_training), data: { turbo_method: :delete, turbo_frame: "advanced_trainings_all"}, class: "btn btn-secondary"
+        = link_to "Delete", person_advanced_training_path(@person, @advanced_training), data: { turbo_method: :delete, turbo_frame: "#{dom_id @advanced_training}"}, class: "btn btn-link"
       - else
         -# Add button "Save and new" here
-      = link_to "Abbrechen", person_path(@person), data: { turbo_frame: "advanced_trainings_all"},  method: :get, class: "btn btn-link"
+      = link_to "Abbrechen", person_path(@person), data: { turbo_frame: "#{dom_id @advanced_training}"},  method: :get, class: "btn btn-link"
+
+

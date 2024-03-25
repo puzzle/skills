@@ -9,14 +9,6 @@ class PersonRelationsController < CrudController
     redirect_to person_path(entry.person)
   end
 
-  def new
-    redirect_to person_path(entry.person)
-  end
-
-  def edit
-    redirect_to person_path(entry.person)
-  end
-
   def create
     super(:location => person_path(person))
   end
@@ -26,7 +18,9 @@ class PersonRelationsController < CrudController
   end
 
   def destroy
-    super(:location => person_path(person))
+    super(:location => person_path(person)) do |format, success|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(entry) }
+    end
   end
 
   private

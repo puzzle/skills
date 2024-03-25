@@ -2,6 +2,6 @@
 
 module DateHelper
   def translated_months
-    I18n.t('date.month_names')
+    I18n.t('date.month_names').map { |m| m || '' }
   end
 end
