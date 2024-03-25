@@ -18,8 +18,8 @@ export default class extends Controller {
 
     for(const languageSelect of languageSelects) {
       for(const option of languageSelect.options) {
-        //Deactivate option if it is not the current option of the dropdown but is selected in another dropdown
-        option.disabled = (selectedLanguages.includes(option.value)) && (languageSelect.selectedOptions[0].value !== option.value)
+        //Deactivate option if it is not the current option of the dropdown and not the default option, but is selected in another dropdown
+        option.disabled = (selectedLanguages.includes(option.value)) && (languageSelect.selectedOptions[0].value !== option.value) && (option.value !== '-')
       }
     }
   }
