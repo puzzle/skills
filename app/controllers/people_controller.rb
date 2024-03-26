@@ -20,6 +20,7 @@ class PeopleController < CrudController
     super
   end
 
+  # rubocop:disable Metrics/AbcSize
   def update
     if params.include?(:has_nationality2) && false?(params[:has_nationality2][:checked])
       params[:person][:nationality2] = nil
@@ -31,6 +32,7 @@ class PeopleController < CrudController
     end
     super
   end
+  # rubocop:enable Metrics/AbcSize
 
   def export
     odt_file = Odt::Cv.new(entry, params).export
