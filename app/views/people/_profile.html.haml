@@ -1,6 +1,6 @@
 %div
   =render partial:"people/search", :locals => {person: @person}
-  %div.person-profile-header.mw-100.border-bottom
+  %div.profile-header.mw-100.border-bottom
     Personalien
   %div.mt-4
     %turbo-frame{id: "#{dom_id @person}"}
