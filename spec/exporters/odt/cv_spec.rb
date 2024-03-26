@@ -32,7 +32,8 @@ describe Odt::Cv do
     it 'get one skill hash when filter on level 3' do
       skills = Odt::Cv.new(people(:bob), {'skillsByLevel' => 'true'}).send(:skills_by_level_value, 3)
 
-      expect(skills).to eq([{:category=>"Software-Engineering", :competence=>"Rails"}])
+      expect(skills).to eq([{:category=>"Software-Engineering",
+                             :competence=>"Kompetenzen des Levels Professional: \r\n- Rails \r\n"}])
     end
 
     it 'get empty skill hash when filter on level 5' do

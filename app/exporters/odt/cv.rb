@@ -49,8 +49,30 @@ module Odt
       @params[:levelValue]
     end
 
+    def skill_level_names
+      %w(Trainee Junior Professional Senior Expert)
+    end
+
     def stage_by_level
-      %w(Trainee Junior Professional Senior Expert)[skill_level_value.to_i - 1]
+      skill_level_names[skill_level_value.to_i - 1]
+    end
+
+    def stage_by_given_level(level)
+      skill_level_names[level - 1]
+    end
+
+    def format_competences_list(sort_by_level, skills, grouped_by_level_skills)
+      sort_by_level ? grouped_by_level_skills.join("\r\n") : skills.pluck(:title).join(', ')
+    end
+
+    def skills_by_level_string(grouped_people_skills_by_level)
+      grouped_people_skills_by_level.map do |key, value|
+        group_string = "Kompetenzen des Levels #{stage_by_given_level(key)}: \r\n"
+        value.each do |people_skill|
+          group_string << "- #{people_skill.skill.title} \r\n"
+        end
+        group_string
+      end
     end
 
     def location
@@ -115,25 +137,32 @@ module Odt
 
     def skills_by_level_value(level_value)
       level_skills_ids = skills_by_level(level_value).pluck(:skill_id)
-      competences_list(level_skills_ids)
+      competences_list(level_skills_ids, true)
     end
 
-    def competences_list(competences_ids)
+    # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+    def competences_list(competences_ids, sort_by_level)
       Category.all_parents.map do |parent_c|
         skills = Skill.joins(:category)
                       .where(categories: { parent_id: parent_c.id }, id: competences_ids)
-                      .pluck(:title)
+        grouped_people_skills_by_level = skills.map do |skill|
+          skill.people_skills.find_by(person_id: person.id)
+        end.group_by(&:level)
+        mapped_string = skills_by_level_string(grouped_people_skills_by_level.sort.reverse.to_h)
+
         next if skills.blank?
 
-        { category: parent_c.title, competence: skills.join(', ') }
+        { category: parent_c.title,
+          competence: format_competences_list(sort_by_level, skills, mapped_string) }
       end.compact
     end
+    # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
     # rubocop:disable Metrics/MethodLength
     def insert_core_competences(report)
       core_competence_skill_ids = person.people_skills.where(core_competence: true).pluck(:skill_id)
       competences_list = if include_core_competences_and_skills?
-                           [competences_list(core_competence_skill_ids),
+                           [competences_list(core_competence_skill_ids, false),
                             competence_notes_list].flatten
                          else
                            [competence_notes_list].flatten
