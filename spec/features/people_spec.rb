@@ -71,6 +71,13 @@ describe :people do
     fill_in language_certificate_input[:id], with: 'Some Certificate'
   end
 
+  def add_language(language)
+    #Create new language.
+    page.all(".add_fields").last.click
+    #Select language from dropdown in newly created language.
+    select language, from: page.all('.language-select').last[:id]
+  end
+
   describe 'Edit person', type: :feature, js: true do
     before(:each) do
       sign_in auth_users(:user), scope: :auth_user
@@ -167,24 +174,42 @@ describe :people do
       expect(person.attributes).to eql(Person.first.attributes)
     end
 
-    it 'should correctly deactivate languages that are already selected' do
+    it('should correctly disable languages if they are selected, changed, created or deleted') {
       bob = people(:bob)
       visit person_path(bob)
       page.find('#edit-button').click
 
-      #Create new language.
-      page.all(".add_fields").last.click
-      #Select language from dropdown in newly created language.
-      select 'FI', from: page.all('.language-select').last[:id]
+      add_language('JA')
+      add_language('ZH')
 
-      #Create another new language.
-      page.all(".add_fields").last.click
-      #A language that the user would be able to select.
-      allowed_language = page.all('.language-select').last.find('option', text: 'ZH')
-      #The language from that we selected in the last dropdown. This on should be disabled now.
-      forbidden_language = page.all('.language-select').last.find('option', text: 'FI')
-      expect(allowed_language).not_to be_disabled
-      expect(forbidden_language).to be_disabled
-    end
+      lang_selects = page.all('.language-select')
+      #ZH
+      lang_select = lang_selects[-1]
+      #JA
+      lang_select2 = lang_selects[-2]
+
+      #Check if currently selected language is still enabled
+      expect(lang_select.find('option', text: 'ZH')).not_to be_disabled
+      #Check if some other language is enabled
+      expect(lang_select.find('option', text: 'UR')).not_to be_disabled
+      #Check if language selected in another dropdown is disabled
+      expect(lang_select.find('option', text: 'JA')).to be_disabled
+
+      expect(lang_select2.find('option', text: 'JA')).not_to be_disabled
+      expect(lang_select.find('option', text: 'UR')).not_to be_disabled
+      expect(lang_select2.find('option', text: 'ZH')).to be_disabled
+
+      #Change language selected in dropdown
+      select 'KO', from: lang_select[:id]
+      #Old language selected in dropdown should not be disabled anymore
+      expect(lang_select2.find('option', text: 'ZH')).not_to be_disabled
+      #New language selected should be disabled
+      expect(lang_select2.find('option', text: 'KO')).to be_disabled
+
+      #Delete language
+      page.all('.remove_fields')[-1].click
+      #Language should now be re-enabled
+      expect(lang_select2.find('option', text: 'KO')).not_to be_disabled
+    }
   end
 end
