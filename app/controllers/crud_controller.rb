@@ -148,35 +148,21 @@ class CrudController < ListController
 
   # Assigns the attributes from the params to the model entry.
   def assign_attributes
-    nilify_attrs_if_missing if nilified_attrs_if_missing
-    entry.attributes = model_params
-  end
-
-  def nilify_attrs_if_missing
-    call_fill(params[model_identifier], nilified_attrs_if_missing)
-  end
-
-  def call_fill(target, nullable_attrs) # rubocop:disable Metrics/CyclomaticComplexity,Metrics/MethodLength
-    nullable_attrs.entries&.each do |nullable_attrs_elmnt|
-      if nullable_attrs_elmnt.is_a?(Hash)
-        nullable_attrs_elmnt.each_key do |attr_name|
-          [target[attr_name].values].flatten&.each do |target_prop|
-            call_fill(target_prop, attr_value_elmnt)
-          end
-        end
-      else
-        fill_missing_with_nil(target, nullable_attrs_elmnt)
-      end
-    end
-  end
-
-  def fill_missing_with_nil(custom_params, property)
-    custom_params[property] = nil unless custom_params.key?(property)
+    entry.attributes = nilify_attrs_if_missing
   end
 
   # The form params for this model.
   def model_params
     params.require(model_identifier).permit(permitted_attrs)
+  end
+
+  def nilify_attrs_if_missing
+    permitted_params = model_params
+    unspecified_attributes = nilified_attrs_if_missing - permitted_params.keys.map(&:to_sym)
+    unspecified_attributes.each do |attr|
+      permitted_params[attr] = nil
+    end
+    permitted_params
   end
 
   # Path of the index page to return to.
