@@ -25,6 +25,12 @@ class SkillsController < CrudController
     render json: entries, each_serializer: SkillMinimalSerializer, include: '*'
   end
 
+  def export
+    send_data Csv::Skillset.new(fetch_entries).export,
+              type: :csv,
+              disposition: disposition
+  end
+
   private
 
   def filter_by_rated(skill)
@@ -41,12 +47,6 @@ class SkillsController < CrudController
                                category: [:children, :parent]).list
               end
     SkillsFilter.new(entries, params[:category], params[:title], params[:defaultSet]).scope
-  end
-
-  def export
-    send_data Csv::Skillset.new(fetch_entries).export,
-              type: :csv,
-              disposition: disposition
   end
 
   def disposition
