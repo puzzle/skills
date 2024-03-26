@@ -3,6 +3,7 @@
 class PeopleController < CrudController
   include ExportController
   include ParamConverters
+  include PeopleControllerConcerns
 
   self.permitted_attrs = [:birthdate, :location, :marital_status, :updated_by, :name, :nationality,
                           :nationality2, :title, :competence_notes, :company_id, :email,
@@ -20,19 +21,11 @@ class PeopleController < CrudController
     super
   end
 
-  # rubocop:disable Metrics/AbcSize
   def update
-    if params.include?(:has_nationality2) && false?(params[:has_nationality2][:checked])
-      params[:person][:nationality2] = nil
-    end
-    params[:person][:language_skills_attributes]&.each_value do |language_skill|
-      unless %w[Keine A1 A2 B1 B2 C1 C2 Muttersprache].include?(language_skill[:level])
-        language_skill[:level] = 'Keine'
-      end
-    end
+    set_nationality2
+    validate_language_skill_levels
     super
   end
-  # rubocop:enable Metrics/AbcSize
 
   def export
     odt_file = Odt::Cv.new(entry, params).export
