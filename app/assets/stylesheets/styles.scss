@@ -92,6 +92,12 @@ pzsh-topbar {
   width: 100%;
 }
 
+.persisted-line-breaks {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: hidden;
+}
+
 #competence-notes {
   width: 100% !important;
 }
