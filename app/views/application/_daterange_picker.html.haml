@@ -12,7 +12,7 @@
         %span.fw-bold.col-2 
             = "#{I18n.t('date_range_picker.from')}:"
         %span.col-5
-            = f.select :month_from, translated_months.compact.each_with_index.map { |month, index| [month, index +1] }, {}, class: "form-select", "data-action": "change->date-picker#changeDate"
+            = f.select :month_from, translated_months.compact_blank.each_with_index.map { |month, index| [month, index +1] }, {}, class: "form-select", "data-action": "change->date-picker#changeDate"
         %span.col-5
             = f.select :year_from, (Time.zone.now.year - 100)..(Time.zone.now.year + 1),{}, class: "form-select", "data-action": "change->date-picker#changeDate"
     %div{"data-date-picker-target" => "hideable", :hidden => end_date, :id => "end_date_picker"}
@@ -20,7 +20,7 @@
             %span.fw-bold.col-2 
                 = "#{I18n.t('date_range_picker.to')}:"
             %span.col-5
-                = f.select :month_to, translated_months.compact.each_with_index.map { |month, index| [month, index +1] }, {}, class: "form-select"
+                = f.select :month_to, translated_months.compact_blank.each_with_index.map { |month, index| [month, index +1] }, {}, class: "form-select"
             %span.col-5
                 = f.select :year_to, (Time.zone.now.year - 100)..(Time.zone.now.year + 1), {}, class: "form-select"
     %div.d-flex.row.justify-content-end

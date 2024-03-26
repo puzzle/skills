@@ -58,9 +58,9 @@ describe AdvancedTrainingsController do
     end
   end
 
-  describe 'Use other behaveior' do
+  describe 'Replace missing values with nil for create and update' do
 
-    it 'Create action creates a new advanced training for person and renders parent person' do
+    it 'Create without end date' do
       description = 'This is a new description'
       month_from = 1
       year_from = 2020
@@ -73,7 +73,7 @@ describe AdvancedTrainingsController do
       expect(person.advanced_trainings.last.year_to).to eq nil
     end
 
-    it 'Update action changes an advanced training for person and renders parent person' do
+    it 'Update with end date' do
       advanced_training_id = person.advanced_trainings.last.id
       description = 'This is an updated description'
 
