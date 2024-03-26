@@ -148,7 +148,7 @@ module Odt
         grouped_people_skills_by_level = skills.map do |skill|
           skill.people_skills.find_by(person_id: person.id)
         end.group_by(&:level)
-        mapped_string = skills_by_level_string(Hash[grouped_people_skills_by_level.sort.reverse])
+        mapped_string = skills_by_level_string(grouped_people_skills_by_level.sort.reverse.to_h)
 
         next if skills.blank?
 
