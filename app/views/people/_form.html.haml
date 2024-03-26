@@ -9,18 +9,18 @@
       %label.btn.btn-link{for: "avatar-uploader"} Bild ändern
       %div.visually-hidden{"data-controller"=>"image-upload"}= form.file_field :picture, {  accept: "image/", "data-action" => "image-upload#changeImage", id: "avatar-uploader" }
       = form.hidden_field :picture_cache
-    %div.pe-5
-      %table.col-12
+    %div.pe-5.col-xl-3.col-12
+      %table.w-100
         %tbody
           %th.fw-normal Name
           %tr
             %td= form.text_field :name, class: "mw-100 form-control"
           %th.fw-normal Email
           %tr
-            %td= form.text_field :email, class: "mw-100, form-control"
+            %td= form.text_field :email, class: "mw-100 form-control"
           %th.fw-normal Abschluss
           %tr
-            %td= form.text_field :title, class: "mw-100, form-control"
+            %td= form.text_field :title, class: "mw-100 form-control"
           %th.fw-normal Funktionen
           %div
             = form.fields_for :person_roles do |person_role|
@@ -39,8 +39,8 @@
           %tr
             %td= form.text_field :location, class: "form-control mw-100"
 
-    %div.pe-5
-      %table.col-12
+    %div.pe-5.col-xl-3.col-12
+      %table.w-100
         %tbody
           %th.fw-normal Geburtsdatum
           %tr
@@ -62,7 +62,7 @@
             %td= form.text_field :shortname, class: "mw-100 form-control"
     %div.col-xl-3.col-12{"data-controller"=>"lang-selection"}
       %div.fw-normal Sprachen
-      %div.border.border-dark-subtle.mt-1.p-2.rounded
+      %div.border.border-dark-subtle.mt-1.p-2.rounded.w-100
         = form.fields_for :language_skills, sort_languages(@person.language_skills) do |language_skill|
           = render "language_skill_fields", f: language_skill
         %div{"data-controller"=>"dynamic-fields"}
