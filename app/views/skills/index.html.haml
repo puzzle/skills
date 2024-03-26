@@ -1,7 +1,6 @@
 %div.d-flex.justify-content-end.align-items-center
   %div
-    %span.btn.text-primary
-      =link_to image_tag("download.svg")+ "Export", "skills/export"
+    =link_to image_tag("download.svg")+ "Export", "skills/export"
   %div
     =link_to image_tag("plus-lg.svg", class: "text-primary")+ "Neuer Skill", new_skill_path, class: "btn text-primary", data: { turbo_frame: "remote_modal" }
 1
