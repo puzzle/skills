@@ -63,7 +63,7 @@ module Odt
 
     def skills_by_level_string(grouped_people_skills_by_level)
       grouped_people_skills_by_level.map do |key, value|
-        group_string= "#{stage_by_given_level(key)}: \r\n"
+        group_string= "Kompetenzen des Levels #{stage_by_given_level(key)}: \r\n"
         value.each do |people_skill|
           group_string << "- #{people_skill.skill.title} \r\n"
         end
