@@ -33,7 +33,9 @@ bob:
   nationality2: SE
   roles: [software-engineer]
   title: BSc in Cleaning
-  competence_notes: Java\n Ruby
+  competence_notes: |
+                  Java
+                  Ruby
   company: firma
   email: bob@example.com
   department: sys
@@ -47,7 +49,10 @@ alice:
   nationality: AU
   roles: [system-engineer]
   title: MSc in writing
-  competence_notes: LaTex\n Puppet\n Bash
+  competence_notes: |
+                  LaTex
+                  Puppet
+                  Bash
   company: partner
   email: alice@example.com
   department: sys
@@ -61,7 +66,10 @@ ken:
   nationality: AU
   roles: [system-engineer]
   title: MA in sending silly memes
-  competence_notes: LaTex\n Puppet\n Bash
+  competence_notes: |
+                  LaTex
+                  Puppet
+                  Bash
   company: partner
   email: kenthemaster@testi.com
   department: ux
@@ -74,7 +82,9 @@ charlie:
   roles: [system-engineer]
   company: partner
   title: MSc in Networking
-  competence_notes: C\n Bash
+  competence_notes: |
+                  C
+                  Bash
   email: charlie@example.com
   department: sys
 wally:
@@ -86,7 +96,13 @@ wally:
   roles: [software-engineer]
   company: partner
   title: Full-Stack Developer
-  competence_notes: C\n Bash\n Java\n Ruby\n LaTex\n Puppet
+  competence_notes: |
+                  C
+                  Bash
+                  Java
+                  Ruby
+                  LaTex
+                  Puppet
   email: wally@example.com
   department: sys
 hope:

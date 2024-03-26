@@ -15,7 +15,7 @@ describe "Core competences" do
 
   it 'should display competence notes and edit link correctly' do
     visit person_path(people(:alice))
-    expect(page).to have_text('LaTex\n Puppet\n Bash')
+    expect(page).to have_text("LaTex Puppet Bash", normalize_ws: true)
     expect(page).to have_selector('#edit-link')
   end
 
@@ -36,12 +36,13 @@ describe "Core competences" do
 
     fill_in 'person_competence_notes', with: 'Hello World here'
     page.find('#cancel').click
-    expect(page).to have_text('LaTex\n Puppet\n Bash')
+    expect(page).to have_text("LaTex Puppet Bash", normalize_ws: true)
   end
 
   it 'should display skill with same parent category in same row with divider' do
     visit person_path(people(:alice))
     expect(page).to have_selector('.circle-divider')
-    expect(page).to have_selector('.core-competence', count: 1,  text: "Software-Engineering\nRails\nember")
+    expect(page).to have_selector('.core-competence', count: 1,
+                                  text: "Software-Engineering Rails ember", normalize_ws: true)
   end
 end
