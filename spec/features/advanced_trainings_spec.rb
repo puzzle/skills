@@ -8,32 +8,58 @@ describe 'Advanced Trainings', type: :feature, js:true do
     visit person_path(person)
   end
 
-  it 'shows all' do
-    within('turbo-frame#advanced_trainings_all') do
-      expect(page).to have_content('2010 - 2012')
-      expect(page).to have_content('course about how to clean')
+  describe 'Simple interactions' do
+    it 'shows all' do
+      within('turbo-frame#advanced_trainings_all') do
+        expect(page).to have_content('2010 - 2012')
+        expect(page).to have_content('course about how to clean')
+      end
+    end
+
+    it 'Create new' do
+      description = "new description"
+      click_link(href: new_person_advanced_training_path(person))
+
+      within('turbo-frame#new_advanced_training') do
+        fill_in 'advanced_training_description', with: description
+        find("button[type='submit']").click
+      end
+
+      expect(person.advanced_trainings.last.description).to eq(description)
+    end
+
+    it 'Update entry' do
+      description = "updated description"
+
+      at = person.advanced_trainings.first
+      within("turbo-frame#advanced_training_#{at.id}") do
+        find("[href=\"#{edit_person_advanced_training_path(person, at)}\"]").all("*").first.click
+        fill_in 'advanced_training_description', with: description
+        find("button[type='submit']").click
+      end
+      expect(person.advanced_trainings.last.description).to eq(description)
     end
   end
 
-  it 'Create new' do
-    click_link(href: new_person_advanced_training_path(person))
+  describe 'Error handling' do
 
-    within('turbo-frame#new_advanced_training') do
-      fill_in 'advanced_training_description', with: 'new description'
-      require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
-      find("button[type='submit']").click
+    it 'Create new without description' do
+      click_link(href: new_person_advanced_training_path(person))
+
+      within('turbo-frame#new_advanced_training') do
+        find("button[type='submit']").click
+      end
+      expect(page).to have_css(".alert.alert-danger", text: "Description muss ausgefüllt werden")
     end
-  end
 
-  it 'displays error messages when present' do
-    at = person.advanced_trainings.first
-    within("turbo-frame#advanced_training_#{at.id}") do
-      find("[href=\"#{edit_person_advanced_training_path(person, at)}\"]").all("*").first.click
-      fill_in 'advanced_training_description', with: 'test'
-      find("button[type='submit']").click
+    it 'Update entry and clear description' do
+      at = person.advanced_trainings.first
+      within("turbo-frame#advanced_training_#{at.id}") do
+        find("[href=\"#{edit_person_advanced_training_path(person, at)}\"]").all("*").first.click
+        fill_in 'advanced_training_description', with: ""
+        find("button[type='submit']").click
+      end
+      expect(page).to have_css(".alert.alert-danger", text: "Description muss ausgefüllt werden")
     end
-  end
-
-  it 'redirects to the skills index when the cancel button is clicked' do
   end
 end
