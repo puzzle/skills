@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 
   resources :skills do
     collection do
-      get 'export-skills', to: 'skills#export'
+      get 'export', to: 'skills#export'
     end
   end
 
