@@ -49,12 +49,16 @@ module Odt
       @params[:levelValue]
     end
 
+    def skill_level_names
+      %w(Trainee Junior Professional Senior Expert)
+    end
+
     def stage_by_level
-      %w(Trainee Junior Professional Senior Expert)[skill_level_value.to_i - 1]
+      skill_level_names[skill_level_value.to_i - 1]
     end
 
     def stage_by_given_level(level)
-      %w(Trainee Junior Professional Senior Expert)[level - 1]
+      skill_level_names[level - 1]
     end
 
     def format_competences_list(sort_by_level, skills, grouped_by_level_skills)
