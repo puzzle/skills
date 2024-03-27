@@ -9,7 +9,7 @@
         - @person.people_skills.where(skill_id: category_child.skills.pluck(:id)).each do |person_skill|
           %div.mw-100.border-bottom.text-black.ps-5.border
             = form_with model: person_skill do |form|
-              %div.d-flex.flex-row.align-items-center
+              %div.d-flex.flex-row.align-items-center.mt-3
                 %div.col-2
                   = person_skill.skill.title
                 %div.col-2
@@ -29,5 +29,4 @@
                     = form.check_box :core_competence, class: "form-check-input me-2", checked: person_skill.core_competence
                     %label.form-label.text-gray= t "people-skills.core-competence"
               %div.mt-3
-              = form.submit :Speichern, { class: "btn btn-primary me-3 bg-skills-blue", id: "save-button" }
-              = link_to "Abbrechen", person_path, { id: "cancel-button" }
+              = form.submit :Speichern, { class: "btn btn-primary me-3 bg-skills-blue mb-3", id: "save-button" }
