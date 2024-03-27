@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
   end
   resources :skills
+  resources :people_skills
 
   # Outdated api routes
   namespace :api do

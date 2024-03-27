@@ -8,22 +8,26 @@
         =category_child.title
         - @person.people_skills.where(skill_id: category_child.skills.pluck(:id)).each do |person_skill|
           %div.mw-100.border-bottom.text-black.ps-5.border
-            %div.d-flex.flex-row.align-items-center
-              %div.col-2
-                = person_skill.skill.title
-              %div.col-2
-                %div.d-flex.flex-column
-                  %label.form-label.text-gray= t ExpertiseTopicSkillValue.skill_levels.key(person_skill.level - 1)
-                  %input.form-range.w-75{type: "range", min: 1, max: 5, value: person_skill.level}
-              %div.col-2
-                %div.d-flex.flex-column
-                  %label.form-label.text-gray= t "people-skills.interest"
-                  %input.form-range.w-75{type: "range", min: 1, max: 5, value: person_skill.interest}
-              %div.col-2
-                %div.d-flex.flex-row.form-check
-                  %input.form-check-input.me-2{type: "checkbox", checked: person_skill.certificate}
-                  %label.form-label.text-gray= t "people-skills.certificate"
-              %div.col-2
-                %div.d-flex.flex-row.form-check
-                  %input.form-check-input.me-2.core-competence{type: "checkbox", checked: person_skill.core_competence}
-                  %label.form-label.text-gray= t "people-skills.core-competence"
+            = form_with model: person_skill do |form|
+              %div.d-flex.flex-row.align-items-center
+                %div.col-2
+                  = person_skill.skill.title
+                %div.col-2
+                  %div.d-flex.flex-column
+                    %label.form-label.text-gray= t ExpertiseTopicSkillValue.skill_levels.key(person_skill.level - 1)
+                    = form.range_field :level, min: 1, max: 5, value: person_skill.level, class: "form-range w-75"
+                %div.col-2
+                  %div.d-flex.flex-column
+                    %label.form-label.text-gray= t "people-skills.interest"
+                    = form.range_field :interest, min: 1, max: 5, value: person_skill.interest, class: "form-range w-75"
+                %div.col-2
+                  %div.d-flex.flex-row.form-check
+                    = form.check_box :certificate, class: "form-check-input me-2", checked: person_skill.certificate
+                    %label.form-label.text-gray= t "people-skills.certificate"
+                %div.col-2
+                  %div.d-flex.flex-row.form-check
+                    = form.check_box :core_competence, class: "form-check-input me-2", checked: person_skill.core_competence
+                    %label.form-label.text-gray= t "people-skills.core-competence"
+              %div.mt-3
+              = form.submit :Speichern, { class: "btn btn-primary me-3 bg-skills-blue", id: "save-button" }
+              = link_to "Abbrechen", person_path, { id: "cancel-button" }
