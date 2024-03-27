@@ -1,1 +1,29 @@
-Richis Grochde
+%div.profile-header.mw-100.border-bottom
+  %p Skills
+  - Category.all_parents.each do |category|
+    %div.profile-header.mw-100.border-bottom.mt-4
+      = category.title
+    - category.children.each do |category_child|
+      %div.white-header.mw-100.border-bottom.text-gray
+        =category_child.title
+        - @person.people_skills.where(skill_id: category_child.skills.pluck(:id)).each do |person_skill|
+          %div.mw-100.border-bottom.text-black.ps-5.border
+            %div.d-flex.flex-row.align-items-center
+              %div.col-2
+                = person_skill.skill.title
+              %div.col-2
+                %div.d-flex.flex-column
+                  %label.form-label.text-gray= t ExpertiseTopicSkillValue.skill_levels.key(person_skill.level - 1)
+                  %input.form-range.w-75{type: "range", min: 1, max: 5, value: person_skill.level}
+              %div.col-2
+                %div.d-flex.flex-column
+                  %label.form-label.text-gray= t "people-skills.interest"
+                  %input.form-range.w-75{type: "range", min: 1, max: 5, value: person_skill.interest}
+              %div.col-2
+                %div.d-flex.flex-row.form-check
+                  %input.form-check-input.me-2{type: "checkbox", checked: person_skill.certificate}
+                  %label.form-label.text-gray= t "people-skills.certificate"
+              %div.col-2
+                %div.d-flex.flex-row.form-check
+                  %input.form-check-input.me-2.core-competence{type: "checkbox", checked: person_skill.core_competence}
+                  %label.form-label.text-gray= t "people-skills.core-competence"
