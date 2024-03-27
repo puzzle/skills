@@ -65,7 +65,7 @@
   %div.person-profile-header.border
   Ausbildung (#{@person.educations.count})
   %div.mt-4
-    = link_to "Ausbildung hinzufügen", new_person_education_path(@person), data: { turbo_frame: "#{dom_id Education.new}"},  method: :get
+    = link_to "Ausbildung hinzufügen", new_person_education_path(@person), data: { turbo_frame: "#{dom_id Education.new}"}, method: :get
     = render partial: 'educations/index', locals: { person: @person }
   %div.person-profile-header.border
     Weiterbildungen (#{@person.advanced_trainings.count})
