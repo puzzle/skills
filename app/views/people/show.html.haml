@@ -1,3 +1,11 @@
-= render('profile')
-= render('core_competences')
+%div{"data-controller": "profile-tab"}
+  %ul.nav.nav-tabs
+    %li.nav-item
+      %div.nav-link.active{ "data-profile-tab-target": "tab", "data-action": "click->profile-tab#switchToCv" } CV
+    %li.nav-item
+      %div.nav-link{ "data-profile-tab-target": "tab", "data-action": "click->profile-tab#switchToSkills"} Skills
 
+  %div{"data-profile-tab-target": "cv"}
+    = render('cv')
+  %div{"data-profile-tab-target": "skills"}
+    = render('skills')
