@@ -1,0 +1,16 @@
+= form_with model: ([@person, @education]) do |f|
+  %div.d-flex.row.py-3.ps-5
+    %span.col-3
+      = render partial: 'application/daterange_picker', locals: { f: f, end_date: f.object.month_to.nil? && f.object.year_to.nil? }
+    %span.col-5.d-flex.flex-column
+      Ausbildung
+      = f.text_field :title, placeholder: "Ausbildung", class: "form-control w-100"
+      Ausbildungsort
+      = f.text_area :location, placeholder: "Ausbildungsort", class: "form-control w-100"
+    %div.col-3.d-flex.flex-column
+      = f.button(class:"btn btn-primary", data: { turbo_frame: "educations_all"})
+      - if @education.persisted?
+        = link_to "Delete", person_education_path(@person, @education), data: { turbo_method: :delete, turbo_frame: "#{dom_id @education}"}, class: "btn btn-link"
+      - else
+        -# Add button "Save and new" here
+      = link_to "Abbrechen", person_path(@person), data: { turbo_frame: "#{dom_id @education}"},  method: :get, class: "btn btn-link"

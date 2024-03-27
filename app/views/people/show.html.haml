@@ -61,7 +61,12 @@
               %div.mb-1= "#{language.language}: #{language.level} - #{language.certificate}"
       = link_to "Show all", people_path, {"data-turbo"=>false}
 = link_to image_tag("plus-lg.svg", class: "text-primary")+ "Export", export_cv_person_path(@person), class: "btn text-primary", data: { turbo_frame: "remote_modal" }
-%div 
+%div
+  %div.person-profile-header.border
+  Ausbildung (#{@person.educations.count})
+  %div.mt-4
+    = link_to "Ausbildung hinzufügen", new_person_education_path(@person), data: { turbo_frame: "#{dom_id Education.new}"},  method: :get
+    = render partial: 'educations/index', locals: { person: @person }
   %div.person-profile-header.border
     Weiterbildungen (#{@person.advanced_trainings.count})
     %div.mt-4

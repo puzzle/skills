@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :people do
     resources :advanced_trainings
+    resources :educations
   end
 
   resources :skills
