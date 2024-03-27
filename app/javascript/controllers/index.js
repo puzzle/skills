@@ -28,3 +28,6 @@ application.register("date-picker", DatePickerController)
 import DropdownLinksController from "./dropdown_controller"
 application.register("dropdown", DropdownLinksController)
 
+import ProfileTabController from "./profile_tab_controller"
+application.register("profile-tab", ProfileTabController)
+
