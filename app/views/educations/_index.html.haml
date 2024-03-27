@@ -2,9 +2,9 @@
   %div.border.rounded.border
     %turbo-frame{id: "#{dom_id Education.new}"}
     - @person.educations.list.each do |education|
-      %div.border-top
+      %div.border-top.bg-hover-gray
         %turbo-frame{id: "#{dom_id education}"}
-          = link_to edit_person_education_path(@person, education), data:{turbo_prefetch: :false}, class: "text-decoration-none text-dark bg-hover-gray at-at" do
+          = link_to edit_person_education_path(@person, education), data:{turbo_prefetch: :false}, class: "text-decoration-none text-dark at-at" do
             %div.d-flex.row.pt-3.pb-5
               %span.col-3.ps-5
                 #{translated_months[education.month_from || 0]} #{education.year_from}
