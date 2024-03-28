@@ -4,7 +4,8 @@ export default class extends Controller {
     static targets = ['tab', 'cv', 'skills']
 
     connect() {
-        this.element.addEventListener("click", this.switchTab.bind(this))
+        this.element.addEventListener("click", this.switchTab.bind(this));
+        this.switchToCv();
     }
 
     switchTab(event) {
