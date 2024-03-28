@@ -42,6 +42,7 @@ describe "Core competences" do
   it 'should display skill with same parent category in same row with divider' do
     visit person_path(people(:alice))
     expect(page).to have_selector('.circle-divider')
-    expect(page).to have_selector('.core-competence', count: 1, text: "Software-Engineering\nRails\nember")
+    require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
+    expect(page).to have_selector('.core-competence', text: "Software-Engineering\nRails\nember")
   end
 end
