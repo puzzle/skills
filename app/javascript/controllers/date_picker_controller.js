@@ -36,8 +36,11 @@ export default class extends Controller {
     endDatePicker.hidden = this.sameDate;
     if (!this.sameDate) return;
     this.setSelects(endDatePicker, "disabled", false);
+    this.setSelects(endDatePicker, "hidden", false);
   }
 
+
+  // should be working 
   changeDate(event) {
     if(this.sameDate){
       let targetId = event.target.id.replace("from", "to");
@@ -45,6 +48,7 @@ export default class extends Controller {
     }
   }
 
+  // should be working 
   setSelects(parent, property, value){
     parent.querySelectorAll('select').forEach((select) => {
       select[property] = value;

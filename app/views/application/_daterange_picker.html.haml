@@ -23,11 +23,10 @@
                 = f.select :month_to, translated_months.compact_blank.each_with_index.map { |month, index| [month, index +1] }, {}, class: "form-select"
             %span.col-5
                 = f.select :year_to, (Time.zone.now.year - 100)..(Time.zone.now.year + 1), {}, class: "form-select"
+    %span{"data-date-picker-target" => "hideable", :hidden => !end_date} Bis Heute
+    
     %div.d-flex.row.justify-content-end
         %span.col-10
             %button{"data-action" => "date-picker#toggleTargets", :class => "btn btn-primary w-100", :type=> "button"} 
                 %span{"data-date-picker-target" => "hideable", :hidden => end_date} Bis Heute
                 %span{"data-date-picker-target" => "hideable", :hidden => !end_date} Mit Enddatum
-            %button{"data-action" => "date-picker#sameDateToggle", :class => "btn btn-primary w-100", :type=> "button", :hidden => ""} 
-                %span{"data-date-picker-target" => "hideable", :hidden => end_date} Gleiches Start und Enddatum
-                %span{"data-date-picker-target" => "hideable", :hidden => !end_date} Unterschiedliches Start und Enddatum
