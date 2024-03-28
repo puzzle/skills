@@ -41,6 +41,31 @@ describe 'Advanced Trainings', type: :feature, js:true do
     end
   end
 
+  describe 'Test dateranger picker' do
+
+    let(:at) { person.advanced_trainings.first }
+
+    before(:each) do
+      find("[href=\"#{edit_person_advanced_training_path(person, at)}\"]").all("*").first.click
+      fill_in 'advanced_training_description', with: "This description"
+    end
+
+    it 'Update entry and clear description' do
+      within("turbo-frame#advanced_training_#{at.id}") do
+
+        click_button(text:"Bis Heute")
+        expect(page).to have_selector("select#advanced_training_year_to[disabled][hidden]", visible: :all)
+        expect(page).to have_selector("select#advanced_training_month_to[disabled][hidden]", visible: :all)
+        expect(page).to have_content("Bis Heute")
+
+        click_button(text:"Mit Enddatum")
+
+        expect(page).to have_selector("select#advanced_training_year_to:not([hidden]):not(:disabled)")
+        expect(page).to have_selector("select#advanced_training_month_to:not([hidden]):not(:disabled)")
+      end
+    end
+  end
+
   describe 'Error handling' do
 
     it 'Create new without description' do
@@ -60,6 +85,18 @@ describe 'Advanced Trainings', type: :feature, js:true do
         find("button[type='submit']").click
       end
       expect(page).to have_css(".alert.alert-danger", text: "Description muss ausgefüllt werden")
+    end
+
+    it 'Update entry and clear description' do
+      at = person.advanced_trainings.first
+      within("turbo-frame#advanced_training_#{at.id}") do
+        find("[href=\"#{edit_person_advanced_training_path(person, at)}\"]").all("*").first.click
+        fill_in 'advanced_training_description', with: "This is a test"
+        select '2020', from: 'advanced_training_year_from'
+        select '2010', from: 'advanced_training_year_to'
+        find("button[type='submit']").click
+      end
+      expect(page).to have_css(".alert.alert-danger", text: "Year from muss vor \"Datum bis\" sein")
     end
   end
 end
