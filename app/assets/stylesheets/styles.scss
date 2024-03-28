@@ -108,15 +108,21 @@ pzsh-topbar {
 
 .rate {
   float: left;
-  height: 46px;
+  height: 30px;
   width: max-content;
+
+  label {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    width: 25px;
+  }
 }
 .rate:not(:checked) > input {
   display: none;
 }
 .rate:not(:checked) > label {
   float: right;
-  width: 1em;
   overflow:hidden;
   white-space:nowrap;
   cursor:pointer;
