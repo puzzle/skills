@@ -9,12 +9,6 @@ module AuthHelper
     current_auth_user&.is_admin
   end
 
-  def generate_select_options_with_default(person)
-    selected = person ? person.id : ''
-    prompt = person ? false : true
-    { :selected => selected, :prompt => prompt, :disabled => '' }
-  end
-
   def development?
     ENV['DEVELOPMENT'] == 'true' && ENV['RAILS_ENV'] == 'development'
   end

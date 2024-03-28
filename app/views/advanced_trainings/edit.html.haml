@@ -1,0 +1,4 @@
+%div
+  %h1.font-bold.text-2xl.mb-3 Edit Advanced Training
+  %turbo-frame{id: "#{dom_id @advanced_training}"}
+    = render partial: "form", locals: {advanced_training: @advanced_training}
