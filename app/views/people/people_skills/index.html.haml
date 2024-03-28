@@ -2,6 +2,4 @@
   %div.profile-header.mw-100.border-bottom
     %p.d-flex.align-items-center
       Skills
-      =link_to image_tag("pencil-square.svg", class: "text-primary me-1") + "Skills bearbeiten",
-    people_skills_edit_person_path(@person), class: "btn d-flex align-items-center text-primary w-75"
   = render "form", person: @person
