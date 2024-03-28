@@ -1,12 +1,17 @@
 %div{"data-controller": "profile-tab"}
   %ul.nav.nav-tabs
     %li.nav-item
-      %div.nav-link.active{ "data-profile-tab-target": "tab", "data-action": "click->profile-tab#switchToCv" } CV
+      =link_to person_path(@person), class: "btn d-flex align-items-center text-primary w-75",
+      data: {turbo_frame: "tab-content"} do
+        %div.nav-link.active{ "data-profile-tab-target": "tab"}
+          CV
     %li.nav-item
-      %div.nav-link{ "data-profile-tab-target": "tab", "data-action": "click->profile-tab#switchToSkills"} Skills
+      =link_to people_skills_person_path(@person), class: "btn d-flex align-items-center text-primary w-75",
+      data: {turbo_frame: "tab-content"} do
+        %div.nav-link{ "data-profile-tab-target": "tab"}
+          Skills
   %div
     =render partial:"people/search", :locals => {person: @person}
-  %div{"data-profile-tab-target": "cv"}
-    = render('cv')
-  %div{"data-profile-tab-target": "skills"}
-    = render('skills')
+  %turbo-frame{id: "tab-content"}
+    %div{"data-profile-tab-target": "cv"}
+      = render('cv')
