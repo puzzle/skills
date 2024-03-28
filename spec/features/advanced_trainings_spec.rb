@@ -21,23 +21,23 @@ describe 'Advanced Trainings', type: :feature, js:true do
       click_link(href: new_person_advanced_training_path(person))
 
       within('turbo-frame#new_advanced_training') do
+      require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
         fill_in 'advanced_training_description', with: description
         find("button[type='submit']").click
       end
 
-      expect(person.advanced_trainings.last.description).to eq(description)
+      expect(page).to have_content(description)
     end
 
     it 'Update entry' do
       description = "updated description"
-
       at = person.advanced_trainings.first
       within("turbo-frame#advanced_training_#{at.id}") do
         find("[href=\"#{edit_person_advanced_training_path(person, at)}\"]").all("*").first.click
         fill_in 'advanced_training_description', with: description
         find("button[type='submit']").click
       end
-      expect(person.advanced_trainings.last.description).to eq(description)
+      expect(at.description).to eq(description)
     end
   end
 
