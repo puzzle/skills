@@ -31,3 +31,6 @@ application.register("dropdown", DropdownLinksController)
 import ProfileTabController from "./profile_tab_controller"
 application.register("profile-tab", ProfileTabController)
 
+import SkillsLevelController from "./skill_level_controller"
+application.register("skills-level", SkillsLevelController)
+
