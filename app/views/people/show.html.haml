@@ -1,18 +1,4 @@
 = render('profile')
 = render('core_competences')
+= render('advanced_trainings')
 
-        %div.col-xl-3.col-12
-          %div.fw-normal.text-gray Sprachen
-          %div.border.border-dark-subtle.mt-1.p-2.rounded
-          %div.border.border-dark-subtle.mt-1.p-2.rounded
-            - @person.language_skills.each do |language|
-              %div.mb-1= "#{language.language}: #{language.level} - #{language.certificate}"
-      = link_to "Show all", people_path, {"data-turbo"=>false}
-= link_to image_tag("plus-lg.svg", class: "text-primary")+ "Export", export_cv_person_path(@person), class: "btn text-primary", data: { turbo_frame: "remote_modal" }
-%div 
-  %div.person-profile-header.border
-    Weiterbildungen (#{@person.advanced_trainings.count})
-    %div.mt-4
-      = link_to "Weiterbildung hinzufügen", new_person_advanced_training_path(@person), data: { turbo_frame: "#{dom_id AdvancedTraining.new}"},  method: :get
-      = render partial: 'advanced_trainings/index', locals: { person: @person }
-        
