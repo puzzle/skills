@@ -1,0 +1,41 @@
+- Category.all_parents.each do |category|
+  %div.profile-header.mw-100.border-bottom.mt-4
+    = category.title
+  - category.children.each do |category_child|
+    %div.white-header.mw-100.border-bottom.text-gray
+      =category_child.title
+      - @person.people_skills.where(skill_id: category_child.skills.pluck(:id)).each do |person_skill|
+        %div.mw-100.border-bottom.text-black.ps-5.border
+          = form_with(model: person_skill, url: people_skills_person_path(@person), data: {controller: "skills-level"}) do |form|
+            %div.d-flex.flex-row.align-items-center.mt-3
+              %div.col-2
+                = person_skill.skill.title
+              %div.col-2
+                %div.d-flex.flex-column
+                  %label.form-label.text-gray{"data-skills-level-target": "label"}= t ExpertiseTopicSkillValue.skill_levels.key(person_skill.level - 1)
+                  = form.range_field :level, min: 1, max: 5, value: person_skill.level, class: "form-range w-75",
+                    "data-action": "change->skills-level#toggleLevel", "data-skills-level-target": "switch"
+              %div.col-2
+                %div.d-flex.flex-column
+                  %label.form-label.text-gray= t "people-skills.interest"
+                  .rate
+                    %input{name: "people_skill[interest]", type: "radio", value: 5, id: "star5#{person_skill.id}", checked: person_skill.interest == 5}/
+                    %label{for: "star5#{person_skill.id}", title: "text", id: "star-label5#{person_skill.id}"} 5 stars
+                    %input{name: "people_skill[interest]", type: "radio", value: 4, id: "star4#{person_skill.id}", checked: person_skill.interest == 4}/
+                    %label{for: "star4#{person_skill.id}", title: "text", id: "star-label4#{person_skill.id}"} 4 stars
+                    %input{name: "people_skill[interest]", type: "radio", value: 3, id: "star3#{person_skill.id}", checked: person_skill.interest == 3}/
+                    %label{for: "star3#{person_skill.id}", title: "text", id: "star-label3#{person_skill.id}"} 3 stars
+                    %input{name: "people_skill[interest]", type: "radio", value: 2, id: "star2#{person_skill.id}", checked: person_skill.interest == 2}/
+                    %label{for: "star2#{person_skill.id}", title: "text", id: "star-label2#{person_skill.id}"} 2 stars
+                    %input{name: "people_skill[interest]", type: "radio", value: 1, id: "star1#{person_skill.id}", checked: person_skill.interest == 1}/
+                    %label{for: "star1#{person_skill.id}", title: "text", id: "star-label1#{person_skill.id}"} 1 star
+              %div.col-2
+                %div.d-flex.flex-row.form-check
+                  = form.check_box :certificate, class: "form-check-input me-2", checked: person_skill.certificate
+                  %label.form-label.text-gray= t "people-skills.certificate"
+              %div.col-2
+                %div.d-flex.flex-row.form-check
+                  = form.check_box :core_competence, class: "form-check-input me-2", checked: person_skill.core_competence
+                  %label.form-label.text-gray= t "people-skills.core-competence"
+            %div.mt-3
+            = form.submit :Speichern, { class: "btn btn-primary me-3 bg-skills-blue mb-3", id: "save-button" }

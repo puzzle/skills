@@ -1,11 +1,10 @@
 import {Controller} from "@hotwired/stimulus"
 
 export default class extends Controller {
-    static targets = ['tab', 'cv', 'skills']
+    static targets = ['tab']
 
     connect() {
         this.element.addEventListener("click", this.switchTab.bind(this));
-        this.switchToCv();
     }
 
     switchTab(event) {
@@ -14,18 +13,4 @@ export default class extends Controller {
             event.target.classList.add('active');
         }
     }
-
-    switchToCv() {
-        this.switchDisplay(this.skillsTarget, this.cvTarget);
-    }
-
-    switchToSkills() {
-        this.switchDisplay(this.cvTarget, this.skillsTarget);
-    }
-
-    switchDisplay(elementToHide, elementToShow) {
-        elementToHide.style.display = "none";
-        elementToShow.style.display = "block";
-    }
-
 }
