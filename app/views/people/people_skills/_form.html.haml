@@ -6,7 +6,7 @@
       =category_child.title
       - @person.people_skills.where(skill_id: category_child.skills.pluck(:id)).each do |person_skill|
         %div.mw-100.border-bottom.text-black.ps-5.border
-          = form_with(model: person_skill, url: people_skills_person_path(@person), data: {controller: "skills-level"}) do |form|
+          = form_with(model: person_skill, url: people_skill_path(person_skill), data: {controller: "skills-level"}) do |form|
             %div.d-flex.flex-row.align-items-center.mt-3
               %div.col-2
                 = person_skill.skill.title
