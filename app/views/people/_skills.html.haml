@@ -20,12 +20,17 @@
                 %div.col-2
                   %div.d-flex.flex-column
                     %label.form-label.text-gray= t "people-skills.interest"
-                    %div.btn-group{"data-toggle": "buttons-radio"}
-                      = form.radio_button :level, 1, class: "form-check-input"
-                      = form.radio_button :level, 2, class: "form-check-input"
-                      = form.radio_button :level, 3, class: "form-check-input"
-                      = form.radio_button :level, 4, class: "form-check-input"
-                      = form.radio_button :level, 5, class: "form-check-input"
+                    .rate
+                      %input{name: "interest", type: "radio", value: 5, id: "star5#{person_skill.id}", checked: person_skill.interest == 5}/
+                      %label{for: "star5#{person_skill.id}", title: "text", id: "star-label5#{person_skill.id}"} 5 stars
+                      %input{name: "interest", type: "radio", value: 4, id: "star4#{person_skill.id}", checked: person_skill.interest == 4}/
+                      %label{for: "star4#{person_skill.id}", title: "text", id: "star-label4#{person_skill.id}"} 4 stars
+                      %input{name: "interest", type: "radio", value: 3, id: "star3#{person_skill.id}", checked: person_skill.interest == 3}/
+                      %label{for: "star3#{person_skill.id}", title: "text", id: "star-label3#{person_skill.id}"} 3 stars
+                      %input{name: "interest", type: "radio", value: 2, id: "star2#{person_skill.id}", checked: person_skill.interest == 2}/
+                      %label{for: "star2#{person_skill.id}", title: "text", id: "star-label2#{person_skill.id}"} 2 stars
+                      %input{name: "interest", type: "radio", value: 1, id: "star1#{person_skill.id}", checked: person_skill.interest == 1}/
+                      %label{for: "star1#{person_skill.id}", title: "text", id: "star-label1#{person_skill.id}"} 1 star
                 %div.col-2
                   %div.d-flex.flex-row.form-check
                     = form.check_box :certificate, class: "form-check-input me-2", checked: person_skill.certificate
