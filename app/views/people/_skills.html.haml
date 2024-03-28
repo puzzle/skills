@@ -20,7 +20,12 @@
                 %div.col-2
                   %div.d-flex.flex-column
                     %label.form-label.text-gray= t "people-skills.interest"
-                    = form.range_field :interest, min: 1, max: 5, value: person_skill.interest, class: "form-range w-75"
+                    %div.btn-group{"data-toggle": "buttons-radio"}
+                      = form.radio_button :level, 1, class: "form-check-input"
+                      = form.radio_button :level, 2, class: "form-check-input"
+                      = form.radio_button :level, 3, class: "form-check-input"
+                      = form.radio_button :level, 4, class: "form-check-input"
+                      = form.radio_button :level, 5, class: "form-check-input"
                 %div.col-2
                   %div.d-flex.flex-row.form-check
                     = form.check_box :certificate, class: "form-check-input me-2", checked: person_skill.certificate
