@@ -26,6 +26,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
         find("button[type='submit']").click
       end
 
+
       expect(page).to have_content(description)
     end
 
@@ -36,8 +37,8 @@ describe 'Advanced Trainings', type: :feature, js:true do
         find("[href=\"#{edit_person_advanced_training_path(person, at)}\"]").all("*").first.click
         fill_in 'advanced_training_description', with: description
         find("button[type='submit']").click
+        expect(page).to have_content(description)
       end
-      expect(at.description).to eq(description)
     end
   end
 
