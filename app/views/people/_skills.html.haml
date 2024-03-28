@@ -8,14 +8,15 @@
         =category_child.title
         - @person.people_skills.where(skill_id: category_child.skills.pluck(:id)).each do |person_skill|
           %div.mw-100.border-bottom.text-black.ps-5.border
-            = form_with model: person_skill do |form|
+            = form_with model: person_skill, data: {controller: "skills-level"} do |form|
               %div.d-flex.flex-row.align-items-center.mt-3
                 %div.col-2
                   = person_skill.skill.title
                 %div.col-2
                   %div.d-flex.flex-column
-                    %label.form-label.text-gray= t ExpertiseTopicSkillValue.skill_levels.key(person_skill.level - 1)
-                    = form.range_field :level, min: 1, max: 5, value: person_skill.level, class: "form-range w-75"
+                    %label.form-label.text-gray{"data-skills-level-target": "label"}= t ExpertiseTopicSkillValue.skill_levels.key(person_skill.level - 1)
+                    = form.range_field :level, min: 1, max: 5, value: person_skill.level, class: "form-range w-75",
+                    "data-action": "change->skills-level#toggleLevel", "data-skills-level-target": "switch"
                 %div.col-2
                   %div.d-flex.flex-column
                     %label.form-label.text-gray= t "people-skills.interest"
