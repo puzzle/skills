@@ -13,7 +13,7 @@ class CrudController < ListController
   include ParamConverters
 
   class_attribute :permitted_attrs
-  class_attribute :nilified_attrs_if_missing
+  class_attribute :nilified_attrs_if_missing, default: []
 
   # Defines before and after callback hooks for create, update, save and
   # destroy actions.
