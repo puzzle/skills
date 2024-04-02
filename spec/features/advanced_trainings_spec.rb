@@ -54,14 +54,14 @@ describe 'Advanced Trainings', type: :feature, js:true do
       within("turbo-frame#advanced_training_#{at.id}") do
 
         click_button(text:"Bis Heute")
-        expect(page).to have_selector("select#advanced_training_year_to", :hidden)
-        expect(page).to have_selector("select#advanced_training_month_to", :hidden)
+        expect(page).to have_selector("select#advanced_training_year_to", :visible=> :hidden)
+        expect(page).to have_selector("select#advanced_training_month_to", :visible=> :hidden)
         expect(page).to have_content("Bis Heute")
 
         click_button(text:"Mit Enddatum")
 
-        expect(page).to have_selector("select#advanced_training_year_to", :visible)
-        expect(page).to have_selector("select#advanced_training_month_to", :visible)
+        expect(page).to have_selector("select#advanced_training_year_to", :visible => true )
+        expect(page).to have_selector("select#advanced_training_month_to", :visible => true )
       end
     end
   end
@@ -72,9 +72,22 @@ describe 'Advanced Trainings', type: :feature, js:true do
       click_link(href: new_person_advanced_training_path(person))
 
       within('turbo-frame#new_advanced_training') do
+        select '2020', from: 'advanced_training_year_from'
+
         find("button[type='submit']").click
       end
-      expect(page).to have_css(".alert.alert-danger", text: "Description muss ausgefüllt werden")
+      expect(page).to have_css(".alert.alert-danger", text: "Beschreibung muss ausgefüllt werden")
+    end
+
+    it 'year_from cant be empty' do
+      click_link(href: new_person_advanced_training_path(person))
+
+      within('turbo-frame#new_advanced_training') do
+        fill_in 'advanced_training_description', with: "This description"
+
+        find("button[type='submit']").click
+      end
+      expect(page).to have_css(".alert.alert-danger", text: "Year from muss ausgefüllt werden")
     end
 
     it 'Update entry and clear description' do
@@ -84,7 +97,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
         fill_in 'advanced_training_description', with: ""
         find("button[type='submit']").click
       end
-      expect(page).to have_css(".alert.alert-danger", text: "Description muss ausgefüllt werden")
+      expect(page).to have_css(".alert.alert-danger", text: "Beschreibung muss ausgefüllt werden")
     end
 
     it 'Update entry and clear description' do
