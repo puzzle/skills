@@ -3,10 +3,6 @@
         = link_to edit_person_advanced_training_path(@person, advanced_training), data:{turbo_prefetch: :false}, class: "text-decoration-none text-dark bg-hover-gray" do
             %div.d-flex.row.pt-3.pb-5
                 %span.col-3.ps-5
-                    #{t('date.month_names')[advanced_training.month_from || 0]} #{advanced_training.year_from}
-                    -if (advanced_training&.month_to.nil? && advanced_training&.year_to.nil?)
-                        = "- #{t('date_range_picker.today')}"
-                    - else 
-                        =  "- #{t('date.month_names')[advanced_training&.month_to || 0]} #{advanced_training.year_to}"
+                    = date_range_label advanced_training
                 %span.col
                     = advanced_training.description

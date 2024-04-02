@@ -8,7 +8,7 @@ module SelectHelper
   end
 
   def months_with_nil
-    t('date.month_names').each_with_index.map do |month, index|
+    months.each_with_index.map do |month, index|
       [month || '-', index.zero? ? nil : index]
     end
   end
