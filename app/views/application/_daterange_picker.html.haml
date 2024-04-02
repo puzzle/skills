@@ -23,10 +23,13 @@
                 = form.select :month_to, months_with_nil, {}, class: "form-select"
             %span.col-5
                 = form.select :year_to, last_100_years_disabled_hidden_nil, {}, class: "form-select"
-    %span{"data-date-picker-target" => "hideable", :hidden => !end_date} Bis Heute
+    %span{"data-date-picker-target" => "hideable", :hidden => !end_date} 
+        = t("date_range_picker.till_today")
     
     %div.d-flex.row.justify-content-end
         %span.col-10
             %button{"data-action" => "date-picker#toggleTargets", :class => "btn btn-primary w-100", :type=> "button"} 
-                %span{"data-date-picker-target" => "hideable", :hidden => end_date} Bis Heute
-                %span{"data-date-picker-target" => "hideable", :hidden => !end_date} Mit Enddatum
+                %span{"data-date-picker-target" => "hideable", :hidden => end_date} 
+                    = t("date_range_picker.till_today")
+                %span{"data-date-picker-target" => "hideable", :hidden => !end_date} 
+                    = t("date_range_picker.with_enddate")
