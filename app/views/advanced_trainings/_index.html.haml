@@ -7,12 +7,10 @@
           = link_to edit_person_advanced_training_path(@person, at), data:{turbo_prefetch: :false}, class: "text-decoration-none text-dark bg-hover-gray at-at" do
             %div.d-flex.row.pt-3.pb-5
               %span.col-3.ps-5
-                #{translated_months[at.month_from || 0]} #{at.year_from}
+                #{t('date.month_names')[at.month_from || 0]} #{at.year_from}
                 -if (at&.month_to.nil? && at&.year_to.nil?)
-                  = "- #{I18n.t('date_range_picker.today')}"
-                - elsif (at&.month_to != at&.month_from && at&.year_to != at&.year_from)
-                  = "- #{translated_months[at&.month_to || 0]} #{at&.year_to}"
+                  = "- #{t('date_range_picker.today')}"
                 - else 
-                  =  "- #{translated_months[at.month_from || 0]} #{at.year_to}"
+                  =  "- #{t('date.month_names')[at&.month_to || 0]} #{at.year_to}"
               %span.col
                 = at.description
