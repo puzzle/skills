@@ -13,7 +13,6 @@ class CrudController < ListController
   include ParamConverters
 
   class_attribute :permitted_attrs
-  class_attribute :nilified_attrs_if_missing, default: []
 
   # Defines before and after callback hooks for create, update, save and
   # destroy actions.
@@ -148,21 +147,12 @@ class CrudController < ListController
 
   # Assigns the attributes from the params to the model entry.
   def assign_attributes
-    entry.attributes = nilify_attrs_if_missing
+    entry.attributes = model_params
   end
 
   # The form params for this model.
   def model_params
     params.require(model_identifier).permit(permitted_attrs)
-  end
-
-  def nilify_attrs_if_missing
-    permitted_params = model_params
-    unspecified_attributes = nilified_attrs_if_missing - permitted_params.keys.map(&:to_sym)
-    unspecified_attributes.each do |attr|
-      permitted_params[attr] = nil
-    end
-    permitted_params
   end
 
   # Path of the index page to return to.

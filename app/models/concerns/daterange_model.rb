@@ -15,8 +15,11 @@ module DaterangeModel
     validate :start_at_before_finish_at
 
     scope :list, lambda {
-      order(Arel.sql('year_to IS NOT NULL, year_to desc, month_to IS NULL, month_to
-                                desc, year_from desc, month_from IS NULL, month_from desc'))
+      order('
+      year_to DESC NULLS FIRST,
+      year_from DESC,
+      month_to DESC NULLS FIRST,
+      month_from DESC NULLS FIRST')
     }
   end
 
