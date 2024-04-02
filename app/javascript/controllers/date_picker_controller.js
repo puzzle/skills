@@ -15,7 +15,6 @@ export default class extends Controller {
     });
   }
 
-
   setSelects(parent, property, value){
     parent.querySelectorAll('select').forEach((select) => {
       select[property] = value;

@@ -4,6 +4,8 @@ de:
       cancel: Abbrechen
       delete: Löschen
   activerecord:
+    models:
+      advanced_training: Weiterbildung
     attributes:
       advanced_training:
         description: Beschreibung

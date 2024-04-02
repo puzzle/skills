@@ -24,6 +24,14 @@ module DaterangeModel
     year_to.nil? && month_to.nil?
   end
 
+  def same_year?
+    year_to == year_from
+  end
+
+  def same_month?
+    month_from? == month_to
+  end
+
   private
 
   def start_at_before_finish_at
