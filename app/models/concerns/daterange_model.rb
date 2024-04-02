@@ -23,6 +23,10 @@ module DaterangeModel
     }
   end
 
+  def till_today?
+    year_to.nil? && month_to.nil?
+  end
+
   private
 
   def start_at_before_finish_at
