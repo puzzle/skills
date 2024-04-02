@@ -1,7 +1,7 @@
 %div.border.border-secondary-subtle.border-1.d-flex.flex-column
   %div.profile-header.mw-100.border-bottom
-    Weiterbildungen (#{@person.advanced_trainings.count})
+    = "#{t "activerecord.models.advanced_training"} (#{@person.advanced_trainings.count})"
   %div.d-flex.flex-column.ms-5.mt-3.mb-3
-    = link_to "Weiterbildung hinzufügen", new_person_advanced_training_path(@person), data: { turbo_frame: "#{dom_id AdvancedTraining.new}"},  method: :get
+    = link_to "#{t "activerecord.models.advanced_training"} hinzufügen", new_person_advanced_training_path(@person), data: { turbo_frame: "#{dom_id AdvancedTraining.new}"},  method: :get
     = render partial: 'advanced_trainings/index', locals: { person: @person }
         
