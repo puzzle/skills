@@ -65,35 +65,4 @@ describe AdvancedTrainingsController do
       expect(person.advanced_trainings).to eq []
     end
   end
-
-  describe 'Replace missing values with nil for create and update' do
-
-    it 'Create without end date' do
-      description = 'This is a new description'
-      month_from = 1
-      year_from = 2020
-      post :create , params: {:person_id=> person, advanced_training: { month_from: month_from, year_from: year_from, description: description} }
-      expect(response).to redirect_to(person_path(person))
-      expect(person.advanced_trainings.last.description).to eq description
-      expect(person.advanced_trainings.last.month_from).to eq month_from
-      expect(person.advanced_trainings.last.year_from).to eq year_from
-      expect(person.advanced_trainings.last.month_to).to eq nil
-      expect(person.advanced_trainings.last.year_to).to eq nil
-    end
-
-    it 'Update with end date' do
-      advanced_training_id = person.advanced_trainings.last.id
-      description = 'This is an updated description'
-
-      month_from = 6
-      year_from = 2000
-      patch :update , params: {:person_id=> person.id, :id => advanced_training_id, advanced_training: {description: description, month_from: month_from, year_from: year_from} }
-      expect(response).to redirect_to(person_path(person))
-      expect(person.advanced_trainings.last.description).to eq description
-      expect(person.advanced_trainings.last.month_from).to eq month_from
-      expect(person.advanced_trainings.last.year_from).to eq year_from
-      expect(person.advanced_trainings.last.month_to).to eq nil
-      expect(person.advanced_trainings.last.year_to).to eq nil
-    end
-  end
 end

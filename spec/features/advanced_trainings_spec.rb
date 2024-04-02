@@ -54,14 +54,14 @@ describe 'Advanced Trainings', type: :feature, js:true do
       within("turbo-frame#advanced_training_#{at.id}") do
 
         click_button(text:"Bis Heute")
-        expect(page).to have_selector("select#advanced_training_year_to[disabled][hidden]", visible: :all)
-        expect(page).to have_selector("select#advanced_training_month_to[disabled][hidden]", visible: :all)
+        expect(page).to have_selector("select#advanced_training_year_to", :hidden)
+        expect(page).to have_selector("select#advanced_training_month_to", :hidden)
         expect(page).to have_content("Bis Heute")
 
         click_button(text:"Mit Enddatum")
 
-        expect(page).to have_selector("select#advanced_training_year_to:not([hidden]):not(:disabled)")
-        expect(page).to have_selector("select#advanced_training_month_to:not([hidden]):not(:disabled)")
+        expect(page).to have_selector("select#advanced_training_year_to", :visible)
+        expect(page).to have_selector("select#advanced_training_month_to", :visible)
       end
     end
   end

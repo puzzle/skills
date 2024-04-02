@@ -28,6 +28,14 @@ class AdvancedTraining < ApplicationRecord
   validates :description, presence: true
   validates :description, length: { maximum: 5000 }
 
+  scope :list, lambda {
+    order('
+    year_to DESC NULLS FIRST,
+    year_from DESC,
+    month_to DESC NULLS FIRST,
+    month_from DESC NULLS FIRST')
+  }
+
   private
 
   def update_associations_updatet_at
