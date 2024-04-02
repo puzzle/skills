@@ -26,7 +26,15 @@ describe AdvancedTrainingsController do
       year_from = 2020
       month_to = 1
       year_to = 2023
-      post :create , params: {:person_id=> person, advanced_training: { month_from: month_from, year_from: year_from, month_to: month_to, year_to: year_to, description: description} }
+      post :create , params: {:person_id=> person,
+                              advanced_training: {
+                                month_from: month_from,
+                                year_from: year_from,
+                                month_to: month_to,
+                                year_to: year_to,
+                                description: description
+                                }
+                              }
       expect(response).to redirect_to(person_path(person))
       expect(person.advanced_trainings.last.description).to eq description
       expect(person.advanced_trainings.last.month_from).to eq month_from

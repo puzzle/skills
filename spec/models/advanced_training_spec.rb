@@ -59,7 +59,8 @@ describe AdvancedTraining do
       AdvancedTraining.create(description: 'test1', year_from: 2000, month_from: 1, person_id: bob_id)
       AdvancedTraining.create(description: 'test2', year_from: 2016, month_from: 1, year_to: 2030, month_to: 1, person_id: bob_id)
       AdvancedTraining.create(description: 'test3', year_from: 2016, month_from: nil, year_to: 2030, month_to: nil, person_id: bob_id)
-      AdvancedTraining.create(description: 'test4', year_from: 2016, month_from: 1, year_to: 2030, month_to: 1, person_id: bob_id)
+      AdvancedTraining.create(description: 'test4', year_from: 2016, month_from: 1, year_to: 2030, month_to: nil, person_id: bob_id)
+      AdvancedTraining.create(description: 'test5', year_from: 2016, month_from: nil, year_to: 2030, month_to: 1, person_id: bob_id)
 
       list = AdvancedTraining.all.list
 
