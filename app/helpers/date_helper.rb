@@ -3,8 +3,8 @@
 module DateHelper
   def date_range_label(date_range)
     now = "#{months[date_range.month_from || 0]} #{date_range.year_from} "
-    now +=  "- #{t('date_range_picker.today')}" if date_range&.till_today?
-    now +=  "- #{months[date_range&.month_to || 0]} #{date_range.year_to}" unless date_range&.till_today? # rubocop:disable Layout/LineLength
+    now += "- #{t('date_range_picker.today')}" if date_range&.till_today?
+    now += "- #{months[date_range&.month_to || 0]} #{date_range.year_to}" unless date_range&.till_today? # rubocop:disable Layout/LineLength
     now
   end
 
