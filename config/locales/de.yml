@@ -1,4 +1,12 @@
 de:
+  helpers:
+    submit:
+      cancel: Abbrechen
+      delete: Löschen
+  activerecord:
+    attributes:
+      advanced_training:
+        description: Beschreibung
   skills:
     table:
       skill: Skill
@@ -29,3 +37,5 @@ de:
     from: Von
     to: Bis
     today: Heute
+  advanced_training:
+    

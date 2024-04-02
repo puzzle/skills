@@ -66,7 +66,6 @@ describe AdvancedTraining do
 
       list = AdvancedTraining.all.list
 
-      require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
       expect(list[0].description).to eq('test1')
       expect(list[1].description).to eq('test2')
       expect(list[2].description).to eq('test3')
