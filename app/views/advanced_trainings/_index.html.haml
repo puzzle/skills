@@ -1,16 +1,5 @@
 %turbo-frame{id: "advanced_trainings_all"}
   %div.border.rounded.border
     %turbo-frame{id: "#{dom_id AdvancedTraining.new}"}
-    - @person.advanced_trainings.list.each do |at|
-      %div.border-top
-        %turbo-frame{id: "#{dom_id at}"}
-          = link_to edit_person_advanced_training_path(@person, at), data:{turbo_prefetch: :false}, class: "text-decoration-none text-dark bg-hover-gray at-at" do
-            %div.d-flex.row.pt-3.pb-5
-              %span.col-3.ps-5
-                #{t('date.month_names')[at.month_from || 0]} #{at.year_from}
-                -if (at&.month_to.nil? && at&.year_to.nil?)
-                  = "- #{t('date_range_picker.today')}"
-                - else 
-                  =  "- #{t('date.month_names')[at&.month_to || 0]} #{at.year_to}"
-              %span.col
-                = at.description
+      = render @person.advanced_trainings.list
+      

@@ -1,7 +1,7 @@
 = form_with model: ([@person, @advanced_training]) do |f|
   %div.d-flex.row.py-3.ps-5
     %span.col-3
-      = render partial: 'application/daterange_picker', locals: { f: f, end_date: f.object.month_to.nil? && f.object.year_to.nil? }
+      = render partial: 'application/daterange_picker', locals: { form: f, end_date: f.object.month_to.nil? && f.object.year_to.nil? }
     %span.col-5.d-flex.flex-column
       Beschreibung
       = f.text_area :description, placeholder: "Description", class: "form-control w-100"
@@ -12,5 +12,3 @@
       - else
         -# Add button "Save and new" here
       = link_to "Abbrechen", person_path(@person), data: { turbo_frame: "#{dom_id @advanced_training}"},  method: :get, class: "btn btn-link"
-
-
