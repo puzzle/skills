@@ -8,11 +8,9 @@ module SelectHelper
   end
 
   def months_with_nil
-    months = translated_months.compact_blank.each_with_index.map do |month, index|
-      [month, index + 1]
+    t('date.month_names').each_with_index.map do |month, index|
+      [month || '-', index.zero? ? nil : index]
     end
-    months.unshift(['-', nil])
-    months
   end
 
   def last_100_years_disabled_hidden_nil

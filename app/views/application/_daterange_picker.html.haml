@@ -2,15 +2,15 @@
     %div.d-flex.row.justify-content-end
         %span.col-5
             %span.ps-3 
-                = I18n.t("datetime.prompts.month")
+                = t("datetime.prompts.month")
         %span.col-5
             %span.ps-3 
-                = I18n.t("datetime.prompts.year")
+                = t("datetime.prompts.year")
         %span.col-10
             %hr.my-1
     %div.d-flex.row.align-items-center
         %span.fw-bold.col-2 
-            = "#{I18n.t('date_range_picker.from')}:"
+            = "#{t('date_range_picker.from')}:"
         %span.col-5
             = f.select :month_from, months_with_nil, {}, class: "form-select"
         %span.col-5
@@ -18,7 +18,7 @@
     %div{"data-date-picker-target" => "hideable", :hidden => end_date, :id => "end_date_picker"}
         %div.d-flex.row.align-items-center
             %span.fw-bold.col-2 
-                = "#{I18n.t('date_range_picker.to')}:"
+                = "#{t('date_range_picker.to')}:"
             %span.col-5
                 = f.select :month_to, months_with_nil, {}, class: "form-select"
             %span.col-5
