@@ -21,7 +21,6 @@ describe 'Advanced Trainings', type: :feature, js:true do
       click_link(href: new_person_advanced_training_path(person))
 
       within('turbo-frame#new_advanced_training') do
-      require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
         fill_in 'advanced_training_description', with: description
         find("button[type='submit']").click
       end
