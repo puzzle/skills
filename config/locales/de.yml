@@ -37,5 +37,6 @@ de:
     from: Von
     to: Bis
     today: Heute
-  advanced_training:
+    till_today: Bis Heute
+    with_enddate: Mit Enddatum
     

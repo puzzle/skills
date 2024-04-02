@@ -81,6 +81,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
 
     it 'year_from cant be empty' do
       click_link(href: new_person_advanced_training_path(person))
+      click_link(href: new_person_advanced_training_path(person))
 
       within('turbo-frame#new_advanced_training') do
         fill_in 'advanced_training_description', with: "This description"
