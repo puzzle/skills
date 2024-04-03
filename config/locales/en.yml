@@ -1,4 +1,9 @@
 en:
+  helpers:
+      submit:
+        cancel: Cancel
+        delete: Delete
+        save-and-new: Save & new
   skills:
     table:
       skill: Skill

@@ -10,6 +10,12 @@ class PersonRelationsController < CrudController
   end
 
   def create
+    if params.key?(:'save-and-new')
+      super(:location => person_path(person)) do |format, success|
+        format.turbo_stream { render 'advanced_trainings/save_and_new' } if success
+      end
+      return
+    end
     super(:location => person_path(person))
   end
 
