@@ -1,3 +1,7 @@
 %turbo-frame{id: "people-skill-form"}
-  =link_to image_tag("x.svg", class: "text-primary")+ "Abbrechen", people_skills_person_path(@person), class: "btn text-primary"
-  = render "form", person: @person
+  %div.w-25.bg-secondary-subtle.d-flex.justify-content-center.people-skills-actions
+    =link_to image_tag("x.svg", {class: "me-1"})+ "Abbrechen", people_skills_person_path(@person), class: "d-flex align-items-center text-dark"
+  %div.profile-header.mw-75.border-bottom.people-skills
+    %p.d-flex.align-items-center
+      Skills
+    = render "form", person: @person
