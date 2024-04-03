@@ -23,13 +23,23 @@
                 = form.select :month_to, add_default_option(months_with_nil, { text: '-' }), {}, class: "form-select"
             %span.col-5
                 = form.select :year_to, add_default_option(last_100_years, { hidden: true }), {}, class: "form-select"
-    %span{"data-date-picker-target": "hideable", hidden: !end_date} 
+    %span{"data-date-picker-target": "hideable", hidden: !end_date, id: "till_today_label"} 
         = t("date_range_picker.till_today")
     
     %div.d-flex.row.justify-content-end
         %span.col-10
-            %button{"data-action": "date-picker#toggleTargets", class: "btn btn-primary w-100", type: "button"} 
-                %span{"data-date-picker-target": "hideable", hidden: end_date} 
-                    = t("date_range_picker.till_today")
-                %span{"data-date-picker-target": "hideable", hidden: !end_date} 
+            %button{"data-action": "date-picker#toggleTillToday", class: "btn btn-primary w-100", type: "button"} 
+                %span.button-label{"data-date-picker-target": "hideable", hidden: end_date} 
+                    = t("date_range_picker.till_today") 
+                    1
+                %span.button-label{"data-date-picker-target": "hideable", hidden: !end_date} 
                     = t("date_range_picker.with_enddate")
+                    2
+
+            %button{"data-action" => "date-picker#toggleSameDate", :class => "btn btn-primary w-100", :type=> "button"} 
+                %span.button-label{"data-date-picker-target" => "hideable", :hidden => end_date} 
+                    Mit enddatum3
+                %span.button-label{"data-date-picker-target" => "hideable", :hidden => !end_date} 
+                    Kein Enddatum4
+
+    = form.hidden_field :same_date, value: :false, "data-date-picker-target" => "hiddenField"
