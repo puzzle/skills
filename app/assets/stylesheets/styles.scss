@@ -146,6 +146,21 @@ pzsh-topbar {
 .rate > label:hover ~ input:checked ~ label {
   color: #c59b08;
 }
-.bg-hover-gray:hover{
+
+.rate-show:not(:checked) > label {
+  cursor: default;
+}
+
+.rate-show > input:checked + label:hover,
+.rate-show > input:checked + label:hover ~ label,
+.rate-show > input:checked ~ label:hover,
+.rate-show > input:checked ~ label:hover ~ label,
+.rate-show > label:hover ~ input:checked ~ label {
+  color: #ffc700;
+}
+.rate-show:not(:checked) > label:hover,
+.rate-show:not(:checked) > label:hover ~ label {
+  color: #ccc;
+}.bg-hover-gray:hover{
   background-color: #e5e5e5;
 }

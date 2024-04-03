@@ -9,4 +9,9 @@ class People::PeopleSkillsController < CrudController
     super
   end
 
+  def edit
+    @person = Person.find(params[:id])
+    super
+  end
+
 end

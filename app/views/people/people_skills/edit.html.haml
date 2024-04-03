@@ -1,7 +1,3 @@
-%turbo-frame{id: "tab-content"}
-  %div.profile-header.mw-100.border-bottom
-    %p.d-flex.align-items-center
-      Skills
-      =link_to image_tag("pencil-square.svg", class: "text-primary me-1") + "Skills bearbeiten",
-    people_skills_edit_person_path(@person), class: "btn d-flex align-items-center text-primary w-75"
+%turbo-frame{id: "people-skill-form"}
+  =link_to image_tag("x.svg", class: "text-primary")+ "Abbrechen", people_skills_person_path(@person), class: "btn text-primary"
   = render "form", person: @person

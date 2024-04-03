@@ -2,4 +2,48 @@
   %div.profile-header.mw-100.border-bottom
     %p.d-flex.align-items-center
       Skills
-  = render "form", person: @person
+  %turbo-frame{id: "people-skill-form"}
+    =link_to image_tag("pencil-square.svg", class: "text-primary")+ "Skills bearbeiten", people_skills_edit_person_path(@person), class: "btn text-primary"
+    - Category.all_parents.each do |category|
+      %div.profile-header.mw-100.border-bottom.mt-4
+        = category.title
+      - category.children.each do |category_child|
+        %div.white-header.mw-100.border-bottom.text-gray
+          =category_child.title
+          - @person.people_skills.where(skill_id: category_child.skills.pluck(:id)).each do |person_skill|
+            = form_with(model: person_skill, url: people_skill_path(person_skill)) do
+              %div.mw-100.border-bottom.text-black.ps-5.border
+                %div.d-flex.flex-row.align-items-center.mt-3.mb-3
+                  %div.col-2
+                    = person_skill.skill.title
+                  %div.col-2
+                    %div.d-flex.flex-column
+                      %label.form-label.text-gray= t ExpertiseTopicSkillValue.skill_levels.key(person_skill.level - 1)
+                      %input{value: person_skill.level, class: "form-range w-75", type: "range", min: 1, max: 5, disabled: true}
+                  %div.col-2
+                    %div.d-flex.flex-column
+                      %label.form-label.text-gray= t "people-skills.interest"
+                      .rate.rate-show
+                        %input{name: "people_skill[interest]", type: "radio", value: 5, id: "star5#{person_skill.id}",
+                        checked: person_skill.interest == 5, disabled: true}/
+                        %label{for: "star5#{person_skill.id}", title: "text", id: "star-label5#{person_skill.id}"} 5 stars
+                        %input{name: "people_skill[interest]", type: "radio", value: 4, id: "star4#{person_skill.id}",
+                        checked: person_skill.interest == 4, disabled: true}/
+                        %label{for: "star4#{person_skill.id}", title: "text", id: "star-label4#{person_skill.id}"} 4 stars
+                        %input{name: "people_skill[interest]", type: "radio", value: 3, id: "star3#{person_skill.id}",
+                        checked: person_skill.interest == 3, disabled: true}/
+                        %label{for: "star3#{person_skill.id}", title: "text", id: "star-label3#{person_skill.id}"} 3 stars
+                        %input{name: "people_skill[interest]", type: "radio", value: 2, id: "star2#{person_skill.id}",
+                        checked: person_skill.interest == 2, disabled: true}/
+                        %label{for: "star2#{person_skill.id}", title: "text", id: "star-label2#{person_skill.id}"} 2 stars
+                        %input{name: "people_skill[interest]", type: "radio", value: 1, id: "star1#{person_skill.id}",
+                        checked: person_skill.interest == 1, disabled: true}/
+                        %label{for: "star1#{person_skill.id}", title: "text", id: "star-label1#{person_skill.id}"} 1 star
+                  %div.col-2
+                    %div.d-flex.flex-row.form-check
+                      %input.check_box{type: "checkbox", class: "form-check-input me-2", checked: person_skill.certificate, disabled: true}
+                      %label.form-label.text-gray= t "people-skills.certificate"
+                  %div.col-2
+                    %div.d-flex.flex-row.form-check
+                      %input.check_box{type: "checkbox", class: "form-check-input me-2", checked: person_skill.core_competence, disabled: true}
+                      %label.form-label.text-gray= t "people-skills.core-competence"
