@@ -12,7 +12,7 @@
         %span.fw-bold.col-2 
             = "#{t('date_range_picker.from')}:"
         %span.col-5
-            = form.select :month_from, months_with_nil, {}, class: "form-select"
+            = form.select :month_from, add_default_option(months_with_nil, { text: '-' }), {}, class: "form-select"
         %span.col-5
             = form.select :year_from, add_default_option(last_100_years, { hidden: true }),{}, class: "form-select"
     %div{"data-date-picker-target" => "hideable", :hidden => end_date, :id => "end_date_picker"}
@@ -20,7 +20,7 @@
             %span.fw-bold.col-2 
                 = "#{t('date_range_picker.to')}:"
             %span.col-5
-                = form.select :month_to, months_with_nil, {}, class: "form-select"
+                = form.select :month_to, add_default_option(months_with_nil, { text: '-' }), {}, class: "form-select"
             %span.col-5
                 = form.select :year_to, add_default_option(last_100_years, { hidden: true }), {}, class: "form-select"
     %span{"data-date-picker-target" => "hideable", :hidden => !end_date} 
