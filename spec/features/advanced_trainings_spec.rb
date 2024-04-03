@@ -22,11 +22,26 @@ describe 'Advanced Trainings', type: :feature, js:true do
 
       within('turbo-frame#new_advanced_training') do
         fill_in 'advanced_training_description', with: description
-        find("button[type='submit']").click
+        click_default_submit
       end
-
-
       expect(page).to have_content(description)
+    end
+
+    it 'Create new with save & new' do
+      description = "This is a new description created by the save & new functionallity"
+      click_link(href: new_person_advanced_training_path(person))
+
+      within('turbo-frame#new_advanced_training') do
+        fill_in 'advanced_training_description', with: description
+        select 'Januar', from: 'advanced_training_month_from'
+        select '2020', from: 'advanced_training_year_from'
+
+        click_save_and_new_submit
+      end
+      expect(page).to have_content(description)
+      expect(page).to have_select('advanced_training_year_from', selected: "")
+      expect(page).to have_select('advanced_training_month_from', selected: "-")
+      expect(page).to have_field('advanced_training_description', with: "")
     end
 
     it 'Update entry' do
@@ -35,7 +50,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
       within("turbo-frame#advanced_training_#{at.id}") do
         find("[href=\"#{edit_person_advanced_training_path(person, at)}\"]").all("*").first.click
         fill_in 'advanced_training_description', with: description
-        find("button[type='submit']").click
+        click_default_submit
         expect(page).to have_content(description)
       end
     end
@@ -74,7 +89,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
       within('turbo-frame#new_advanced_training') do
         select '2020', from: 'advanced_training_year_from'
 
-        find("button[type='submit']").click
+        click_default_submit
       end
       expect(page).to have_css(".alert.alert-danger", text: "Beschreibung muss ausgefüllt werden")
     end
@@ -86,7 +101,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
       within('turbo-frame#new_advanced_training') do
         fill_in 'advanced_training_description', with: "This description"
 
-        find("button[type='submit']").click
+        click_default_submit
       end
       expect(page).to have_css(".alert.alert-danger", text: "Year from muss ausgefüllt werden")
     end
@@ -96,7 +111,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
       within("turbo-frame#advanced_training_#{at.id}") do
         find("[href=\"#{edit_person_advanced_training_path(person, at)}\"]").all("*").first.click
         fill_in 'advanced_training_description', with: ""
-        find("button[type='submit']").click
+        click_default_submit
       end
       expect(page).to have_css(".alert.alert-danger", text: "Beschreibung muss ausgefüllt werden")
     end
@@ -108,9 +123,17 @@ describe 'Advanced Trainings', type: :feature, js:true do
         fill_in 'advanced_training_description', with: "This is a test"
         select '2020', from: 'advanced_training_year_from'
         select '2010', from: 'advanced_training_year_to'
-        find("button[type='submit']").click
+        click_default_submit
       end
       expect(page).to have_css(".alert.alert-danger", text: "Year from muss vor \"Datum bis\" sein")
     end
+  end
+
+  def click_default_submit
+    find("button[type='submit'][name='save']").click
+  end
+
+  def click_save_and_new_submit
+    find("button[type='submit'][name='save-and-new']").click
   end
 end
