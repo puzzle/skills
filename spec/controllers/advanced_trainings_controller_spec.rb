@@ -11,12 +11,12 @@ describe AdvancedTrainingsController do
   describe 'Crud with default behavior' do
 
     it 'index redirects to person itself' do
-      get :index, params:{:person_id=> person}
+      get :index, params:{person_id: person}
       expect(response).to redirect_to(person_path(person))
     end
 
     it 'show redirects to person itself' do
-      get :show, params:{:person_id=> person, id:person.advanced_trainings.first}
+      get :show, params:{person_id: person, id:person.advanced_trainings.first}
       expect(response).to redirect_to(person_path(person))
     end
 
@@ -26,7 +26,7 @@ describe AdvancedTrainingsController do
       year_from = 2020
       month_to = 1
       year_to = 2023
-      post :create , params: {:person_id=> person,
+      post :create , params: {person_id: person,
                               advanced_training: {
                                 month_from: month_from,
                                 year_from: year_from,
@@ -50,7 +50,7 @@ describe AdvancedTrainingsController do
       year_to = 2023
       description = 'This is an updated description'
 
-      patch :update , params: {:person_id=> person.id, :id => advanced_training_id, advanced_training: { month_from: month_from, year_from: year_from, month_to: month_to, year_to: year_to, description: description} }
+      patch :update , params: {person_id: person.id, id: advanced_training_id, advanced_training: { month_from: month_from, year_from: year_from, month_to: month_to, year_to: year_to, description: description} }
       expect(response).to redirect_to(person_path(person))
       expect(person.advanced_trainings.last.month_from).to eq month_from
       expect(person.advanced_trainings.last.year_from).to eq year_from
@@ -60,7 +60,7 @@ describe AdvancedTrainingsController do
     end
 
     it 'Delete action delete element ' do
-      post :destroy , params:{:person_id=> person, id: person.advanced_trainings.first}
+      post :destroy , params:{person_id: person, id: person.advanced_trainings.first}
       expect(response).to redirect_to(person_path(person))
       expect(person.advanced_trainings).to eq []
     end
