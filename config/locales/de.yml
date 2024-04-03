@@ -3,6 +3,7 @@ de:
     submit:
       cancel: Abbrechen
       delete: Löschen
+      save-and-new: Speichern & Neu
   activerecord:
     models:
       advanced_training: Weiterbildung
