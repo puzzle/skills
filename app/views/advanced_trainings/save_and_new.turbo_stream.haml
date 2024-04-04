@@ -1,6 +1,6 @@
 = turbo_stream.replace "advanced_trainings_all" do
-  = render partial: "index", locals: {person: @person}
+  = render partial: "index", locals: {person: @advanced_training.person}
 
 = turbo_stream.replace "#{dom_id AdvancedTraining.new}" do
-  = render partial: "form", locals: {advanced_training: @person.advanced_trainings.new}
+  = render partial: "form", locals: {advanced_training: @advanced_training.person.advanced_trainings.new}
 

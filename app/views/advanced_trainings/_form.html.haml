@@ -1,4 +1,5 @@
-= form_with model: ([@person, advanced_training]) do |f|
+= form_with model: ([advanced_training.person, advanced_training]) do |f|
+  = f.hidden_field :person_id
   %div.d-flex.row.py-3.ps-5
     %span.col-3
       = render partial: 'application/daterange_picker', locals: { form: f, end_date: f.object.till_today? }
@@ -8,7 +9,7 @@
     %div.col-3.d-flex.flex-column
       = f.button(name: :"save", class:"btn btn-primary", data: { turbo_frame: "advanced_trainings_all"})
       - if advanced_training.persisted?
-        = link_to t("helpers.submit.delete"), person_advanced_training_path(@person, advanced_training), data: { turbo_method: :delete, turbo_frame: ["#{dom_id advanced_training}"]}, class: "btn btn-link"
+        = link_to t("helpers.submit.delete"), person_advanced_training_path(advanced_training.person, advanced_training), data: { turbo_method: :delete, turbo_frame: ["#{dom_id advanced_training}"]}, class: "btn btn-link"
       - else 
         = f.button(t("helpers.submit.save-and-new"), name: :"save-and-new", class:"btn btn-link", data: { turbo_frame: "advanced_trainings_all"})
-      = link_to t("helpers.submit.cancel"), person_path(@person), data: { turbo_frame: "#{dom_id advanced_training}"},  method: :get, class: "btn btn-link"
+      = link_to t("helpers.submit.cancel"), person_path(advanced_training.person), data: { turbo_frame: "#{dom_id advanced_training}"},  method: :get, class: "btn btn-link"

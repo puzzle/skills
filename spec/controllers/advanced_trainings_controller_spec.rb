@@ -26,8 +26,10 @@ describe AdvancedTrainingsController do
       year_from = 2020
       month_to = 1
       year_to = 2023
-      post :create , params: {person_id: person,
+      post :create , params: {
+                              person_id: person,
                               advanced_training: {
+                                person_id: person.id,
                                 month_from: month_from,
                                 year_from: year_from,
                                 month_to: month_to,

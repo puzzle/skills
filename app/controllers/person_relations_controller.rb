@@ -2,38 +2,35 @@
 
 class PersonRelationsController < CrudController
   def index
-    redirect_to person_path(entry.person)
+    redirect_to person_path(person_id)
   end
 
   def show
-    redirect_to person_path(entry.person)
+    redirect_to person_path(person_id)
+  end
+
+  def new
+    params[model_identifier] = { person_id: person_id }
+    super
   end
 
   def create
-    super(:location => person_path(person)) do |format, success|
+    super(location: person_path(person_id)) do |format, success|
       format.turbo_stream { render 'save_and_new' } if success && params.key?(:'save-and-new')
     end
   end
 
   def update
-    super(:location => person_path(person))
+    super(location: person_path(person_id))
   end
 
   def destroy
-    super(:location => person_path(person)) do |format, success|
+    super(location: person_path(person_id)) do |format, success|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(entry) } if success
     end
   end
 
-  private
-
-  def entry
-    relation = super
-    relation.person = person unless person == relation.person
-    relation
-  end
-
-  def person
-    @person ||= Person.find(params[:person_id])
+  def person_id
+    params[:person_id] || model_params[:person_id]
   end
 end
