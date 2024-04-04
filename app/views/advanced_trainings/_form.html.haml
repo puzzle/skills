@@ -11,5 +11,5 @@
       - if advanced_training.persisted?
         = link_to t("helpers.submit.delete"), person_advanced_training_path(advanced_training.person, advanced_training), data: { turbo_method: :delete, turbo_frame: ["#{dom_id advanced_training}"]}, class: "btn btn-link"
       - else 
-        = f.button(t("helpers.submit.save-and-new"), name: :"save-and-new", class:"btn btn-link", data: { turbo_frame: "advanced_trainings_all"})
+        = f.button(t("helpers.submit.save-and-new"), name: :"render_new_after_save", class:"btn btn-link", data: { turbo_frame: "advanced_trainings_all"})
       = link_to t("helpers.submit.cancel"), person_path(advanced_training.person), data: { turbo_frame: "#{dom_id advanced_training}"},  method: :get, class: "btn btn-link"

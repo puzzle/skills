@@ -134,6 +134,6 @@ describe 'Advanced Trainings', type: :feature, js:true do
   end
 
   def click_save_and_new_submit
-    find("button[type='submit'][name='save-and-new']").click
+    find("button[type='submit'][name='render_new_after_save']").click
   end
 end

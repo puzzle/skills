@@ -16,7 +16,9 @@ class PersonRelationsController < CrudController
 
   def create
     super(location: person_path(person_id)) do |format, success|
-      format.turbo_stream { render 'save_and_new' } if success && params.key?(:'save-and-new')
+      if success && params.key?(:render_new_after_save)
+        format.turbo_stream { render 'new_after_save' }
+      end
     end
   end
 
