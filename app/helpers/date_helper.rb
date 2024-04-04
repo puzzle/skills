@@ -25,6 +25,6 @@ module DateHelper
   end
 
   def last_100_years
-    (100.years.ago.year..Time.zone.today.year).to_a
+    (100.years.ago.year..Time.zone.today.year).to_a.reverse
   end
 end

@@ -23,8 +23,10 @@
                 = form.select :month_to, add_default_option(months_with_nil, { text: '-' }), {}, class: "form-select"
             %span.col-5
                 = form.select :year_to, add_default_option(last_100_years, { hidden: true }), {}, class: "form-select"
-    %span{"data-date-picker-target": "hideable", hidden: !end_date} 
-        = t("date_range_picker.till_today")
+    %div{"data-date-picker-target": "hideable", hidden: !end_date}
+        %div.d-flex.justify-content-end
+            %span.d-flex.justify-content-center.fw-bold.py-2.col-10
+                = t("date_range_picker.till_today")
     
     %div.d-flex.row.justify-content-end
         %span.col-10
