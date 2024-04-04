@@ -1,14 +1,14 @@
-= form_with model: ([attribute.person, attribute]) do |f|
-  = f.hidden_field :person_id
-  %div.d-flex.row.py-3.ps-5
-    %span.col-3
-      = render partial: 'application/daterange_picker', locals: { form: f, end_date: f.object.till_today? }
-    %span.col-5.d-flex.flex-column
-      = yield 
-    %div.col-3.d-flex.flex-column
-      = f.button(name: :"save", class:"btn btn-primary", data: { turbo_frame: attr_name})
-      - if attribute.persisted?
-        = link_to t("helpers.submit.delete"), polymorphic_path([attribute.person, attr_name.singularize.to_sym]), data: { turbo_method: :delete, turbo_frame: ["#{dom_id attribute}"]}, class: "btn btn-link"
-      - else 
-        = f.button(t("helpers.submit.save-and-new"), name: :"save-and-new", class:"btn btn-link", data: { turbo_frame: attr_name})
-      = link_to t("helpers.submit.cancel"), polymorphic_path(attribute.person), data: { turbo_frame: attr_name},  method: :get, class: "btn btn-link"
+= yield
+= form.hidden_field :person_id
+%div.d-flex.row.py-3.ps-5
+  %span.col-3
+    = render partial: 'application/daterange_picker', locals: { form: form, end_date: form.object.till_today? }
+  %span.col-5.d-flex.flex-column
+    = yield :input
+  %div.col-3.d-flex.flex-column
+    = form.button(name: :"save", class:"btn btn-primary", data: { turbo_frame: attr_name})
+    - if attribute.persisted?
+      = link_to t("helpers.submit.delete"), polymorphic_path([attribute.person, attr_name.singularize.to_sym]), data: { turbo_method: :delete, turbo_frame: ["#{dom_id attribute}"]}, class: "btn btn-link"
+    - else 
+      = form.button(t("helpers.submit.save-and-new"), name: :"save-and-new", class:"btn btn-link", data: { turbo_frame: attr_name})
+    = link_to t("helpers.submit.cancel"), polymorphic_path(attribute.person), data: { turbo_frame: attr_name},  method: :get, class: "btn btn-link"

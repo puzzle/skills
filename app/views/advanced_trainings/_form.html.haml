@@ -1,3 +1,5 @@
-= render('people/date_range_entities/form', attribute: advanced_training, attr_name: "advanced_trainings") do
-  = t "activerecord.attributes.advanced_training.description"
-  //= text_area :description, placeholder: "Description", class: "form-control w-100"
+= form_with model: ([advanced_training.person, advanced_training]) do |f|
+  = render('people/date_range_entities/form', attribute: advanced_training, attr_name: "advanced_trainings", form: f) do
+    - content_for :input do
+      = t "activerecord.attributes.advanced_training.description"
+      = f.text_area :description, placeholder: "Description", class: "form-control w-100"
