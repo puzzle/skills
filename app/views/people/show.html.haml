@@ -1,4 +1,4 @@
 = render('profile')
 = render('core_competences')
-= render partial: 'advanced_trainings/index', locals: { person: @person }
+= render(partial: 'people/date_range_entities/index', locals: { person: @person, attr_name: "advanced_trainings" })
 

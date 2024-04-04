@@ -27,4 +27,12 @@ module DateHelper
   def last_100_years
     (100.years.ago.year..Time.zone.today.year).to_a
   end
+
+  def relation_of(model, relation)
+    model.public_send(relation)
+  end
+
+  def class_from_string(class_name)
+    class_name.classify.constantize
+  end
 end

@@ -1,7 +1,9 @@
 %div.border.border-secondary-subtle.border-1.d-flex.flex-column
-    = yield
     %div.profile-header.mw-100.border-bottom
-        = content_for(:header)
+        = "#{t "activerecord.models.#{attr_name.singularize}"} (#{relation_of(person, attr_name).count})"
     %div.d-flex.flex-column.ms-5.mt-3.mb-3
-        = content_for(:body)
-      
+        = link_to "#{t "activerecord.models.#{attr_name.singularize}"} hinzufügen", new_polymorphic_path([person, attr_name.singularize.to_sym]), data: { turbo_frame: "#{dom_id class_from_string(attr_name).new}"},  method: :get
+        %turbo-frame{id: attr_name}
+            %div.border.rounded.border
+                %turbo-frame{id: "#{dom_id  class_from_string(attr_name).new}"}
+                = render relation_of(person, attr_name).list

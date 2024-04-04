@@ -10,7 +10,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
 
   describe 'Simple interactions' do
     it 'shows all' do
-      within('turbo-frame#advanced_trainings_all') do
+      within('turbo-frame#advanced_trainings') do
         expect(page).to have_content('2010 - 2012')
         expect(page).to have_content('course about how to clean')
       end
