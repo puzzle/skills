@@ -182,8 +182,8 @@ class CrudController < ListController
   end
 
   def render_on_unsaved(format, **options)
-    format.turbo_stream { render options[:render_on_unsaved], status: options[:status] }
     format.html { render_or_redirect_on_unsaved(**options) }
+    format.turbo_stream { render options[:render_on_unsaved], status: options[:status] }
     format.json { render_unsaved_json }
   end
 

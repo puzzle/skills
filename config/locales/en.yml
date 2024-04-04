@@ -1,4 +1,9 @@
 en:
+  helpers:
+      submit:
+        cancel: Cancel
+        delete: Delete
+        save-and-new: Save & new
   skills:
     table:
       skill: Skill
@@ -15,7 +20,6 @@ en:
     widowed: widowed
     registered_partnership: registered partnership
     divorced: divorced
-
   people-skills:
     level:
       trainee: Trainee
@@ -26,3 +30,7 @@ en:
     interest: Interest
     certificate: Certificate
     core-competence: Core Competence
+  date_range_picker:
+    from: From
+    to: To
+    today: Today

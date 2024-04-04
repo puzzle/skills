@@ -1,0 +1,8 @@
+%div.border-top
+    %turbo-frame{id: "#{dom_id advanced_training}"}
+        = link_to edit_person_advanced_training_path(advanced_training.person, advanced_training), data:{turbo_prefetch: :false}, class: "text-decoration-none text-dark bg-hover-gray d-block" do
+            %div.d-flex.row.pt-3.pb-5
+                %span.col-3.ps-5
+                    = date_range_label advanced_training
+                %span.col
+                    = advanced_training.description

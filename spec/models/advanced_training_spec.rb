@@ -56,19 +56,24 @@ describe AdvancedTraining do
 
     it 'orders projects correctly with list scope' do
       bob_id = people(:bob).id
-      AdvancedTraining.create(description: 'test1', year_from: 2000, month_from: 1, person_id: bob_id)
-      AdvancedTraining.create(description: 'test2', year_from: 2016, month_from: 1, year_to: 2030, month_to: 1, person_id: bob_id)
-      AdvancedTraining.create(description: 'test3', year_from: 2016, month_from: 1, year_to: 2030, month_to: nil, person_id: bob_id)
-      AdvancedTraining.create(description: 'test4', year_from: 2016, month_from: nil, year_to: 2030, month_to: 1, person_id: bob_id)
+      AdvancedTraining.create(description: 'test1', year_from: 2016, month_from: nil, year_to: nil, month_to: nil, person_id: bob_id)
+      AdvancedTraining.create(description: 'test2', year_from: 2016, month_from: 1, year_to: nil, month_to: nil, person_id: bob_id)
+      AdvancedTraining.create(description: 'test3', year_from: 2016, month_from: nil, year_to: 2030, month_to: nil, person_id: bob_id)
+      AdvancedTraining.create(description: 'test4', year_from: 2016, month_from: 1, year_to: 2030, month_to: nil, person_id: bob_id)
+      AdvancedTraining.create(description: 'test5', year_from: 2016, month_from: nil, year_to: 2030, month_to: 1, person_id: bob_id)
+      AdvancedTraining.create(description: 'test6', year_from: 2016, month_from: 1, year_to: 2030, month_to: 1, person_id: bob_id)
+
 
       list = AdvancedTraining.all.list
 
       expect(list[0].description).to eq('test1')
       expect(list[1].description).to eq('test2')
-      expect(list[2].description).to eq('test4')
-      expect(list[3].description).to eq('test3')
-      expect(list[4].description).to eq('was nice')
-      expect(list[5].description).to eq('course about how to clean')
+      expect(list[2].description).to eq('test3')
+      expect(list[3].description).to eq('test4')
+      expect(list[4].description).to eq('test5')
+      expect(list[5].description).to eq('test6')
+      expect(list[6].description).to eq('was nice')
+      expect(list[7].description).to eq('course about how to clean')
     end
   end
 

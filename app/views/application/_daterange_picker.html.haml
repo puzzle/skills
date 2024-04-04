@@ -1,0 +1,37 @@
+%div.d-flex.flex-column{"data-controller": "date-picker"}
+    %div.d-flex.row.justify-content-end
+        %span.col-5
+            %span.ps-3 
+                = t("datetime.prompts.month")
+        %span.col-5
+            %span.ps-3 
+                = t("datetime.prompts.year")
+        %span.col-10
+            %hr.my-1
+    %div.d-flex.row.align-items-center
+        %span.fw-bold.col-2 
+            = "#{t('date_range_picker.from')}:"
+        %span.col-5
+            = form.select :month_from, add_default_option(months_with_nil, { text: '-' }), {}, class: "form-select"
+        %span.col-5
+            = form.select :year_from, add_default_option(last_100_years, { hidden: true }),{}, class: "form-select"
+    %div{"data-date-picker-target": "hideable", hidden: end_date, id: "end_date_picker"}
+        %div.d-flex.row.align-items-center
+            %span.fw-bold.col-2 
+                = "#{t('date_range_picker.to')}:"
+            %span.col-5
+                = form.select :month_to, add_default_option(months_with_nil, { text: '-' }), {}, class: "form-select"
+            %span.col-5
+                = form.select :year_to, add_default_option(last_100_years, { hidden: true }), {}, class: "form-select"
+    %div{"data-date-picker-target": "hideable", hidden: !end_date}
+        %div.d-flex.justify-content-end
+            %span.d-flex.justify-content-center.fw-bold.py-2.col-10
+                = t("date_range_picker.till_today")
+    
+    %div.d-flex.row.justify-content-end
+        %span.col-10
+            %button{"data-action": "date-picker#toggleTargets", class: "btn btn-primary w-100", type: "button"} 
+                %span{"data-date-picker-target": "hideable", hidden: end_date} 
+                    = t("date_range_picker.till_today")
+                %span{"data-date-picker-target": "hideable", hidden: !end_date} 
+                    = t("date_range_picker.with_enddate")

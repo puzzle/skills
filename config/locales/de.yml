@@ -1,4 +1,15 @@
 de:
+  helpers:
+    submit:
+      cancel: Abbrechen
+      delete: Löschen
+      save-and-new: Speichern & Neu
+  activerecord:
+    models:
+      advanced_training: Weiterbildung
+    attributes:
+      advanced_training:
+        description: Beschreibung
   skills:
     table:
       skill: Skill
@@ -15,7 +26,6 @@ de:
     widowed: verwitwet
     registered_partnership: eingetragene Partnerschaft
     divorced: geschieden
-
   people-skills:
     level:
       trainee: Trainee
@@ -26,3 +36,10 @@ de:
     interest: Interesse
     certificate: Zertifikat
     core-competence: Kernkompetenz
+  date_range_picker:
+    from: Von
+    to: Bis
+    today: Heute
+    till_today: Bis Heute
+    with_enddate: Mit Enddatum
+    
