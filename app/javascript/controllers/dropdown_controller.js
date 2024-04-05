@@ -9,11 +9,12 @@ export default class extends Controller {
     const options = this.element.querySelectorAll(".form-select option");
     options.forEach(option => {
       const optionText = option.textContent.toLowerCase();
-      if (optionText.includes(searchText) && searchText.length >= 2) {
-          option.style.display = "block";
-          console.log("Option: " + optionText);
+      if (optionText.includes(searchText)) {
+        option.style.display = "block";
+      } else if (searchText.length < 2) {
+        // shows everything
       } else {
-          option.style.display = "none";
+        option.style.display = "none";
       }
     });
   }
