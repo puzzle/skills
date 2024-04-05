@@ -1,3 +1,4 @@
 = form_with do |f|
   %section{"data-controller"=>"dropdown"}
-    = f.collection_select :person_id, Person.all.sort_by(&:name), :id, :name,  generate_select_options_with_default(person) , {class: "form-select w-100", "data-action": "change->dropdown#handleChange", "data-value": "/people/"}
+    %input#search-input.form-control{:placeholder => "Search...", :type => "text", "data-action" => "input->dropdown#filterOptions"}
+    = f.collection_select :person_id, Person.all.sort_by(&:name), :id, :name, generate_select_options_with_default(person), {class: "form-select w-100", "data-action": "change->dropdown#handleChange", "data-value": "/people/"}
