@@ -19,7 +19,6 @@ describe 'Advanced Trainings', type: :feature, js:true do
     it 'Create new' do
       description = "new description"
       click_link(href: new_person_advanced_training_path(person))
-
       within('turbo-frame#new_advanced_training') do
         fill_in 'advanced_training_description', with: description
         click_default_submit
@@ -85,7 +84,6 @@ describe 'Advanced Trainings', type: :feature, js:true do
 
     it 'Create new without description' do
       click_link(href: new_person_advanced_training_path(person))
-
       within('turbo-frame#new_advanced_training') do
         select '2020', from: 'advanced_training_year_from'
 

@@ -1,0 +1,6 @@
+= turbo_stream.replace attr_name do
+  = render(partial: 'people/date_range_entities/index', locals: { person: entry.person, attr_name: attr_name })
+
+= turbo_stream.replace "#{dom_id class_from_string(attr_name).new}" do
+  = render partial: "form", locals: {attribute: relation_of(entry.person, attr_name).new}
+

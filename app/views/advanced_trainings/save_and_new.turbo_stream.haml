@@ -1,6 +1,0 @@
-= turbo_stream.replace "advanced_trainings" do
-  = render(partial: 'people/date_range_entities/index', locals: { person: @advanced_training.person, attr_name: "advanced_trainings" })
-
-= turbo_stream.replace "#{dom_id AdvancedTraining.new}" do
-  = render partial: "form", locals: {advanced_training: @advanced_training.person.advanced_trainings.new}
-
