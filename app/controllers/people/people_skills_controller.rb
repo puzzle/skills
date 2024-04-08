@@ -14,4 +14,8 @@ class People::PeopleSkillsController < CrudController
     super
   end
 
+  def update
+    super
+  end
+
 end

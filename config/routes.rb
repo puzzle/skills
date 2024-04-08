@@ -35,6 +35,7 @@ Rails.application.routes.draw do
 
       get 'people-skills', to: 'people/people_skills#index'
       get 'people-skills-edit', to: 'people/people_skills#edit'
+      patch 'people-skills', to: 'people/people_skills#update'
     end
 
   end
