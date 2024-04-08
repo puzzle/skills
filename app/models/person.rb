@@ -68,6 +68,8 @@ class Person < ApplicationRecord
   enum marital_status: { single: 0, married: 1, widowed: 2, registered_partnership: 3,
                          divorced: 4 }
 
+  accepts_nested_attributes_for :people_skills
+
   pg_search_scope :search,
                   against: [
                     :name,

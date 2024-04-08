@@ -5,44 +5,43 @@
     %p.d-flex.align-items-center
       Skills
     = form_with(model: @person, url: people_skills_person_path(@person), data: {controller: "skills-level"}) do |form|
-      = form.fields_for :people_skills do |ff|
-        - Category.all_parents.each do |category|
-          %div.profile-header.mw-100.border-bottom.mt-4
-            = category.title
-          - category.children.each do |category_child|
-            %div.white-header.mw-100.border-bottom.text-gray
-              =category_child.title
-              - @person.people_skills.where(skill_id: category_child.skills.pluck(:id)).each_with_index do |person_skill, index|
-                %div.mw-100.border-bottom.text-black.ps-5.border
-                  %div.d-flex.flex-row.align-items-center.mt-3
-                    %div.col-2
-                      = person_skill.skill.title
-                    %div.col-2
-                      %div.d-flex.flex-column
-                        %label.form-label.text-gray{"data-skills-level-target": "label"}= t ExpertiseTopicSkillValue.skill_levels.key(person_skill.level - 1)
-                        = ff.range_field :level, min: 1, max: 5, value: person_skill.level, class: "form-range w-75",
-                          "data-action": "change->skills-level#toggleLevel", "data-skills-level-target": "switch"
-                    %div.col-2
-                      %div.d-flex.flex-column
-                        %label.form-label.text-gray= t "people-skills.interest"
-                        .rate
-                          = ff.radio_button :interest, 5, checked: person_skill.interest == 5, id: "star5#{person_skill.id}"
-                          %label{for: "star5#{person_skill.id}", title: "text", id: "star-label5#{person_skill.id}"} 5 stars
-                          = ff.radio_button :interest, 4, checked: person_skill.interest == 4, id: "star4#{person_skill.id}"
-                          %label{for: "star4#{person_skill.id}", title: "text", id: "star-label4#{person_skill.id}"} 4 stars
-                          = ff.radio_button :interest, 3, checked: person_skill.interest == 3, id: "star3#{person_skill.id}"
-                          %label{for: "star3#{person_skill.id}", title: "text", id: "star-label3#{person_skill.id}"} 3 stars
-                          = ff.radio_button :interest, 2, checked: person_skill.interest == 2, id: "star2#{person_skill.id}"
-                          %label{for: "star2#{person_skill.id}", title: "text", id: "star-label2#{person_skill.id}"} 2 stars
-                          = ff.radio_button :interest, 1, checked: person_skill.interest == 1, id: "star1#{person_skill.id}"
-                          %label{for: "star1#{person_skill.id}", title: "text", id: "star-label1#{person_skill.id}"} 1 star
-                    %div.col-2
-                      %div.d-flex.flex-row.form-check
-                        = ff.check_box :certificate, class: "form-check-input me-2", checked: person_skill.certificate
-                        %label.form-label.text-gray= t "people-skills.certificate"
-                    %div.col-2
-                      %div.d-flex.flex-row.form-check
-                        = ff.check_box :core_competence, class: "form-check-input me-2", checked: person_skill.core_competence
-                        %label.form-label.text-gray= t "people-skills.core-competence"
+      - Category.all_parents.each do |category|
+        %div.profile-header.mw-100.border-bottom.mt-4
+          = category.title
+        - category.children.each do |category_child|
+          %div.white-header.mw-100.border-bottom.text-gray
+            =category_child.title
+            = form.fields_for :people_skills, form.object.people_skills.where(skill: category_child.skills) do |ff|
+              %div.mw-100.border-bottom.text-black.ps-5.border
+                %div.d-flex.flex-row.align-items-center.mt-3.mb-3
+                  %div.col-2
+                    = ff.object.skill.title
+                  %div.col-2
+                    %div.d-flex.flex-column
+                      %label.form-label.text-gray{"data-skills-level-target": "label"}= t ExpertiseTopicSkillValue.skill_levels.key(ff.object.level - 1)
+                      = ff.range_field :level, min: 1, max: 5, class: "form-range w-75",
+                        "data-action": "change->skills-level#toggleLevel", "data-skills-level-target": "switch"
+                  %div.col-2
+                    %div.d-flex.flex-column
+                      %label.form-label.text-gray= t "people-skills.interest"
+                      .rate
+                        = ff.radio_button :interest, 5, checked: ff.object.interest == 5, id: "star5#{ff.object.id}"
+                        %label{for: "star5#{ff.object.id}", title: "text", id: "star-label5#{ff.object.id}"} 5 stars
+                        = ff.radio_button :interest, 4, checked: ff.object.interest == 4, id: "star4#{ff.object.id}"
+                        %label{for: "star4#{ff.object.id}", title: "text", id: "star-label4#{ff.object.id}"} 4 stars
+                        = ff.radio_button :interest, 3, checked: ff.object.interest == 3, id: "star3#{ff.object.id}"
+                        %label{for: "star3#{ff.object.id}", title: "text", id: "star-label3#{ff.object.id}"} 3 stars
+                        = ff.radio_button :interest, 2, checked: ff.object.interest == 2, id: "star2#{ff.object.id}"
+                        %label{for: "star2#{ff.object.id}", title: "text", id: "star-label2#{ff.object.id}"} 2 stars
+                        = ff.radio_button :interest, 1, checked: ff.object.interest == 1, id: "star1#{ff.object.id}"
+                        %label{for: "star1#{ff.object.id}", title: "text", id: "star-label1#{ff.object.id}"} 1 star
+                  %div.col-2
+                    %div.d-flex.flex-row.form-check
+                      = ff.check_box :certificate, class: "form-check-input me-2"
+                      %label.form-label.text-gray= t "people-skills.certificate"
+                  %div.col-2
+                    %div.d-flex.flex-row.form-check
+                      = ff.check_box :core_competence, class: "form-check-input me-2"
+                      %label.form-label.text-gray= t "people-skills.core-competence"
       %div.mt-3
         = form.submit :Speichern, { class: "btn btn-primary me-3 bg-skills-blue mb-3", id: "save-button" }
