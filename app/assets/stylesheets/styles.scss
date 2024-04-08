@@ -79,6 +79,10 @@ pzsh-topbar {
   background-color: $skills-blue;
 }
 
+.bg-skills-gray {
+  background-color: $skills-gray;
+}
+
 .bg-skills-blue:hover {
   background-color: #3268a1;
 }
@@ -166,9 +170,9 @@ pzsh-topbar {
 }
 
 .people-skills {
-  min-width: 85%;
+  min-width: 80%;
 }
 
 .people-skills-actions {
-  min-width: 15%;
+  min-width: 20%;
 }
