@@ -1,60 +1,63 @@
-%div.profile-header.mw-100.border-bottom.mt-2
-  Personalien
-%div.mt-4
-  %turbo-frame{id: "#{dom_id @person}"}
-    %div.d-flex.flex-xl-row.flex-column
-      %div.col-xl-3.col-12
-        %img.rounded-circle{src: "/people/#{@person.id}/picture?#{Time.now.to_f}", width: '141', height: '141'}
-        %div.mt-3= link_to "Bearbeiten", edit_person_path, id: "edit-button"
-      %div.pe-5.col-xl-3.col-12
-        %table.fixed-table
-          %tbody
-            %th.fw-normal.text-gray Name
-            %tr
-              %td.text-break.pb-1= @person.name
-            %th.fw-normal.text-gray Email
-            %tr
-              %td.text-break.pb-1= @person.email
-            %th.fw-normal.text-gray Abschluss
-            %tr
-              %td.text-break.pb-1= @person.title
-            %th.fw-normal.text-gray Funktion
-            - unless @person.person_roles.empty?
-              - @person.person_roles.each do |person_role|
-                %tr
-                  %td.pb-1= person_role_string(person_role)
-            - else
+%div
+  %div.profile-header.mw-100.border-bottom
+    Personalien
+  %div.mt-4
+    %turbo-frame{id: "#{dom_id @person}"}
+      %div.d-flex.flex-xl-row.flex-column
+        %div.col-xl-3.col-12
+          %img.rounded-circle{src: "/people/#{@person.id}/picture?#{Time.now.to_f}", width: '141', height: '141'}
+          %div.mt-3= link_to "Bearbeiten", edit_person_path, id: "edit-button"
+        %div.pe-5.col-xl-3.col-12
+          %table.fixed-table
+            %tbody
+              %th.fw-normal.text-gray Name
               %tr
-                %td -
-            %th.fw-normal.text-gray Organisationseinheit
-            %tr
-              %td.pb-1= @person.department.nil? ? '-' : @person.department.name
-            %th.fw-normal.text-gray Firma
-            %tr
-              %td= @person.company.name
-      %div.pe-5.col-xl-3.col-12
-        %table.fixed-table
-          %tbody
-            %th.fw-normal.text-gray Geburtsdatum
-            %tr
-              %td.pb-1= @person.birthdate.to_date.strftime('%d.%m.%Y')
-            %th.fw-normal.text-gray Nationalität
-            %tr
-              %td.text-break.pb-1= nationality_string(@person.nationality, @person.nationality2)
-            %th.fw-normal.text-gray Wohnort (Stadt)
-            %tr
-              %td.text-break.pb-1= @person.location
-            %th.fw-normal.text-gray Zivilstand
-            %tr
-              %td.pb-1= t("marital_statuses.#{@person.marital_status}")
-            %th.fw-normal.text-gray Kürzel
-            %tr
-              %td= @person.shortname.blank? ? '-' : @person.shortname
+                %td.text-break.pb-1= @person.name
+              %th.fw-normal.text-gray Email
+              %tr
+                %td.text-break.pb-1= @person.email
+              %th.fw-normal.text-gray Abschluss
+              %tr
+                %td.text-break.pb-1= @person.title
+              %th.fw-normal.text-gray Funktion
+              - unless @person.person_roles.empty?
+                - @person.person_roles.each do |person_role|
+                  %tr
+                    %td.pb-1= person_role_string(person_role)
+              - else
+                %tr
+                  %td -
+              %th.fw-normal.text-gray Organisationseinheit
+              %tr
+                %td.pb-1= @person.department.nil? ? '-' : @person.department.name
+              %th.fw-normal.text-gray Firma
+              %tr
+                %td= @person.company.name
+        %div.pe-5.col-xl-3.col-12
+          %table.fixed-table
+            %tbody
+              %th.fw-normal.text-gray Geburtsdatum
+              %tr
+                %td.pb-1= @person.birthdate.to_date.strftime('%d.%m.%Y')
+              %th.fw-normal.text-gray Nationalität
+              %tr
+                %td.text-break.pb-1= nationality_string(@person.nationality, @person.nationality2)
+              %th.fw-normal.text-gray Wohnort (Stadt)
+              %tr
+                %td.text-break.pb-1= @person.location
+              %th.fw-normal.text-gray Zivilstand
+              %tr
+                %td.pb-1= t("marital_statuses.#{@person.marital_status}")
+              %th.fw-normal.text-gray Kürzel
+              %tr
+                %td= @person.shortname.blank? ? '-' : @person.shortname
 
         %div.col-xl-3.col-12
           %div.fw-normal.text-gray Sprachen
           %div.border.border-dark-subtle.mt-1.p-2.rounded
             - @person.language_skills.each do |language|
               %div.mb-1= "#{language.language}: #{language.level} - #{language.certificate}"
-      = link_to "Show all", people_path, {"data-turbo": false}
-      = link_to image_tag("plus-lg.svg", class: "text-primary")+ "Export", export_cv_person_path(@person), class: "btn text-primary", data: { turbo_frame: "remote_modal" }
+      = link_to "Show all", people_path, {"data-turbo"=>false}
+
+      %div.d-flex.justify-content-end
+        =link_to image_tag("plus-lg.svg", class: "text-primary")+ "Export", export_cv_person_path(@person), class: "btn text-primary", data: { turbo_frame: "remote_modal" }
