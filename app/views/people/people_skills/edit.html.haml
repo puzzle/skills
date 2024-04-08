@@ -11,12 +11,13 @@
         %div.profile-header.mw-75.border-bottom.people-skills
           %p.d-flex.align-items-center
             Skills
+            ="(#{@person.people_skills.count})"
             - Category.all_parents.each do |category|
               %div.profile-header.mw-100.border-bottom.mt-4
                 = category.title
               - category.children.each do |category_child|
                 %div.white-header.mw-100.border-bottom.text-gray
-                  =category_child.title
+                  =category_child.title + " (#{people_skills_of_category(category_child).count})"
                   = form.fields_for :people_skills, form.object.people_skills.where(skill: category_child.skills) do |ff|
                     %div.mw-100.border-bottom.text-black.ps-5.border
                       %div.d-flex.flex-row.align-items-center.mt-3.mb-3
