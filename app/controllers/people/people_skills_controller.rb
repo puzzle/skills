@@ -2,7 +2,7 @@
 
 class People::PeopleSkillsController < CrudController
   include ParamConverters
-  self.permitted_attrs = [ { people_skills_attributes: [:id, :certificate, :level,
+  self.permitted_attrs = [{ people_skills_attributes: [:id, :certificate, :level,
                                                        :interest, :core_competence, :_destroy] }]
 
   def index
@@ -17,6 +17,10 @@ class People::PeopleSkillsController < CrudController
 
   def self.model_class
     Person
+  end
+
+  def show_path
+    people_skills_person_path(@person)
   end
 
 end
