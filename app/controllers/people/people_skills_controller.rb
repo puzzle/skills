@@ -2,7 +2,8 @@
 
 class People::PeopleSkillsController < CrudController
   include ParamConverters
-  self.permitted_attrs = [:level, :interest, :certificate, :core_competence]
+  self.permitted_attrs = [ { people_skills_attributes: [:id, :certificate, :level,
+                                                       :interest, :core_competence, :_destroy] }]
 
   def index
     @person = Person.find(params[:id])
@@ -14,8 +15,8 @@ class People::PeopleSkillsController < CrudController
     super
   end
 
-  def update
-    super
+  def self.model_class
+    Person
   end
 
 end

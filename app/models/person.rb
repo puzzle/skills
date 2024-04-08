@@ -41,6 +41,7 @@ class Person < ApplicationRecord
   has_many :person_roles, dependent: :destroy
   accepts_nested_attributes_for :person_roles, allow_destroy: true
   has_many :people_skills, dependent: :destroy
+  accepts_nested_attributes_for :people_skills
   has_many :skills, through: :people_skills
   has_many :roles, through: :person_roles
 
@@ -67,8 +68,6 @@ class Person < ApplicationRecord
 
   enum marital_status: { single: 0, married: 1, widowed: 2, registered_partnership: 3,
                          divorced: 4 }
-
-  accepts_nested_attributes_for :people_skills
 
   pg_search_scope :search,
                   against: [
