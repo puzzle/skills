@@ -8,8 +8,8 @@
             %span.fw-medium Bearbeiten
           = link_to "Abbrechen", people_skills_person_path(@person), class: "d-flex align-items-center text-decoration-none mt-2 mb-2"
           = form.submit :Speichern, { class: "btn btn-primary bg-skills-blue w-75", id: "save-button" }
-        %div.profile-header.mw-75.border-bottom.people-skills
-          %p.d-flex.align-items-center
+        %div.mw-75.border-bottom.people-skills.overflow-scroll
+          %p.d-flex.align-items-center.profile-header
             Skills
             ="(#{@person.people_skills.count})"
             - Category.all_parents.each do |category|
