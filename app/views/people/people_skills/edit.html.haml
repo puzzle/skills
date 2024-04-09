@@ -33,15 +33,15 @@
                             %label.form-label.text-gray= t "people-skills.interest"
                             .rate
                               = ff.radio_button :interest, 5, checked: ff.object.interest == 5, id: "star5#{ff.object.id}"
-                              %label{for: "star5#{ff.object.id}", title: "text", id: "star-label5#{ff.object.id}"} 5 stars
+                              %label{for: "star5#{ff.object.id}", title: "text", id: "star-label5#{ff.object.id}", class: "star5"} 5 stars
                               = ff.radio_button :interest, 4, checked: ff.object.interest == 4, id: "star4#{ff.object.id}"
-                              %label{for: "star4#{ff.object.id}", title: "text", id: "star-label4#{ff.object.id}"} 4 stars
+                              %label{for: "star4#{ff.object.id}", title: "text", id: "star-label4#{ff.object.id}", class: "star4"} 4 stars
                               = ff.radio_button :interest, 3, checked: ff.object.interest == 3, id: "star3#{ff.object.id}"
-                              %label{for: "star3#{ff.object.id}", title: "text", id: "star-label3#{ff.object.id}"} 3 stars
+                              %label{for: "star3#{ff.object.id}", title: "text", id: "star-label3#{ff.object.id}", class: "star3"} 3 stars
                               = ff.radio_button :interest, 2, checked: ff.object.interest == 2, id: "star2#{ff.object.id}"
-                              %label{for: "star2#{ff.object.id}", title: "text", id: "star-label2#{ff.object.id}"} 2 stars
+                              %label{for: "star2#{ff.object.id}", title: "text", id: "star-label2#{ff.object.id}", class: "star2"} 2 stars
                               = ff.radio_button :interest, 1, checked: ff.object.interest == 1, id: "star1#{ff.object.id}"
-                              %label{for: "star1#{ff.object.id}", title: "text", id: "star-label1#{ff.object.id}"} 1 star
+                              %label{for: "star1#{ff.object.id}", title: "text", id: "star-label1#{ff.object.id}", class: "star1"} 1 star
                         %div.col-2
                           %div.d-flex.flex-row.form-check
                             = ff.check_box :certificate, class: "form-check-input me-2"
