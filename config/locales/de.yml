@@ -28,6 +28,7 @@ de:
     divorced: geschieden
   people-skills:
     level:
+      unweighted: Nicht bewertet
       trainee: Trainee
       junior: Junior
       professional: Professional

@@ -77,5 +77,16 @@ describe :people do
       expect(page).to have_content('c (0)')
       expect(page).to have_content('Linux-Engineering (1)')
     end
+
+    it 'should display unweighted label if level is 0' do
+      # Switch to PeopleSkills tab
+      alice = people(:alice)
+      visit people_path
+      within 'section[data-controller="dropdown"]' do
+        select alice.name, from: 'person_id'
+      end
+      page.all('.nav-link', text: 'Skills')[1].click
+      expect(page).to have_content('Unweighted', count: 2)
+    end
   end
 end

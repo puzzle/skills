@@ -22,6 +22,7 @@ en:
     divorced: divorced
   people-skills:
     level:
+      unweighted: Unweighted
       trainee: Trainee
       junior: Junior
       professional: Professional
