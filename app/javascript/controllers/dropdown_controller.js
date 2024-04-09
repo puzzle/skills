@@ -10,10 +10,14 @@ export default class extends Controller {
     const errorText = document.getElementById("error-text");
     options.forEach(option => {
         const optionText = option.textContent.toLowerCase();
-        option.style.display = (optionText.includes(searchText) && searchText.length >= 2) || !searchText ? "block" : "none";
+        const moreOrEqualTo2 = searchText.length >= 2;
+        const lessOrEqualTo1 = searchText.length <= 1
+
+        option.style.display = (optionText.includes(searchText) && moreOrEqualTo2) || lessOrEqualTo1 ? "block" : "none";
     });
     errorText.style.display = searchText.length < 2 && searchText ? "block" : "none";
-}
+  }
+
   handleChange(event) {
       window.location.href = event.target.dataset.value + event.target.value;
   }
