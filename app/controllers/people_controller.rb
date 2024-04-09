@@ -23,7 +23,6 @@ class PeopleController < CrudController
 
   def update
     set_nationality2
-    validate_language_skill_levels
     super
   end
 

@@ -22,24 +22,5 @@ describe PeopleController do
       expect(response).to redirect_to(person_path(person["id"]))
       expect(people(:bob).reload.nationality2).to eql("DE")
     end
-
-    it 'should save valid language levels and replace invalid language levels with keine' do
-      valid_language_skill = language_skills(:deutsch)
-
-      person["language_skills_attributes"] = {"0" => valid_language_skill.attributes}
-      put :update, params: {id: person["id"], person: person}
-      response.code.should == "302"
-      response.should redirect_to(person_path(person["id"]))
-      expect(people(:bob).reload.language_skills[0]).to eql(valid_language_skill)
-
-      invalid_language_skill = valid_language_skill
-      invalid_language_skill.level = "Some random nonsense"
-
-      person["language_skills_attributes"] = {"0" => invalid_language_skill.attributes}
-      put :update, params: {id: person["id"], person: person}
-      response.code.should == "302"
-      response.should redirect_to(person_path(person["id"]))
-      expect(people(:bob).reload.language_skills.last.level).to eql("Keine")
-    end
   end
 end
