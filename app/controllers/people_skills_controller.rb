@@ -3,11 +3,12 @@
 class PeopleSkillsController < CrudController
   include ParamConverters
 
+  # rubocop:disable Metrics/MethodLength
   def fetch_entries
     base = PeopleSkill.includes(:person, skill: [
-      :category,
-      :people, { people_skills: :person }
-    ])
+                                  :category,
+                                  :people, { people_skills: :person }
+                                ])
     people_skills = PeopleSkillsFilter.new(
       base, params[:rated], params[:level], params[:interest], params[:skill_id]
     ).scope
@@ -17,4 +18,5 @@ class PeopleSkillsController < CrudController
 
     people_skills
   end
+  # rubocop:enable Metrics/MethodLength
 end
