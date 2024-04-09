@@ -32,6 +32,10 @@ Rails.application.routes.draw do
       get 'export', to: 'people#export'
       get 'competence-notes', to: 'people/competence_notes#edit'
       post 'competence-notes', to: 'people/competence_notes#update'
+
+      get 'people-skills', to: 'people/people_skills#index'
+      get 'people-skills-edit', to: 'people/people_skills#edit'
+      patch 'people-skills', to: 'people/people_skills#update'
     end
 
   end

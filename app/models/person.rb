@@ -41,6 +41,7 @@ class Person < ApplicationRecord
   has_many :person_roles, dependent: :destroy
   accepts_nested_attributes_for :person_roles, allow_destroy: true
   has_many :people_skills, dependent: :destroy
+  accepts_nested_attributes_for :people_skills
   has_many :skills, through: :people_skills
   has_many :roles, through: :person_roles
 
