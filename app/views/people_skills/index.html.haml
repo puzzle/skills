@@ -29,6 +29,10 @@
       - if filtered_entries.size == 0
         Keine Resultate
       - else
-        %h1 Motherfucker
-
-
+        - JSON.parse(filtered_entries)["data"].each do | person_skill_search |
+          %div.d-flex.flex-row.w-100
+            %div.d-flex.flex-column.mt-2.mb-2.w-25
+              = link_to Person.find(person_skill_search["id"]).name, person_path(person_skill_search["id"])
+            %div.d-flex.flex-row.mt-2.mb-2.w-75
+              - person_skill_search["relationships"]["skills"]["data"].each do | skill_search |
+                = PeopleSkill.find(skill_search["id"]).skill.title
