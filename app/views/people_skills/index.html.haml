@@ -1,0 +1,29 @@
+%div.mt-3
+  = form_with(model: entry, url: people_skills_path) do |form|
+    %div.w-100.d-flex.flex-row.justify-content-start{data: {controller: "skills-level"}}
+      %div.w-50.mt-3
+        = form.collection_select :id, Skill.all, :id, :title, {}, class: "form-select w-100"
+      %div.w-25.d-flex.flex-column.align-items-center
+        %label.form-label.text-gray.fs-6{"data-skills-level-target": "label"}= t ExpertiseTopicSkillValue.skill_levels.key(0)
+        = form.range_field :level, min: 1, max: 5, class: "form-range w-75",
+                              "data-action": "change->skills-level#toggleLevel", "data-skills-level-target": "switch", value: 1
+      %div.w-25.d-flex.flex-column.align-items-center
+        %label.form-label.text-gray.fs-6.mb-0.mt-0 Interesse
+        .rate
+          = form.radio_button :interest, 5, id: "star5#{form.object.id}"
+          %label{for: "star5#{form.object.id}", title: "text", id: "star-label5#{form.object.id}", class: "star5"} 5 stars
+          = form.radio_button :interest, 4, id: "star4#{form.object.id}"
+          %label{for: "star4#{form.object.id}", title: "text", id: "star-label4#{form.object.id}", class: "star4"} 4 stars
+          = form.radio_button :interest, 3, id: "star3#{form.object.id}"
+          %label{for: "star3#{form.object.id}", title: "text", id: "star-label3#{form.object.id}", class: "star3"} 3 stars
+          = form.radio_button :interest, 2, id: "star2#{form.object.id}"
+          %label{for: "star2#{form.object.id}", title: "text", id: "star-label2#{form.object.id}", class: "star2"} 2 stars
+          = form.radio_button :interest, 1, id: "star1#{form.object.id}", checked: true
+          %label{for: "star1#{form.object.id}", title: "text", id: "star-label1#{form.object.id}", class: "star1"} 1 star
+    %div.profile-header.mw-100.border-bottom.mt-4.fw-normal
+      Suchresultate
+    %hr
+    %turbo-frame{id: "search-results"}
+      Keine Resultate
+
+
