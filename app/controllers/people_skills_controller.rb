@@ -2,25 +2,25 @@
 
 class PeopleSkillsController < CrudController
   include ParamConverters
-  helper_method :search_level, :search_interest
+  helper_method :filtered_entries
 
-  def entries
-    return [] if params[:skill_id].blank?
-
-  # rubocop:disable Metrics/MethodLength
-  def fetch_entries
-    base = PeopleSkill.includes(:person, skill: [
-                                  :category,
-                                  :people, { people_skills: :person }
-                                ])
-    people_skills = PeopleSkillsFilter.new(
-      base, params[:rated], params[:level], params[:interest], params[:skill_id]
-    ).scope
-    if params.key?(:person_id)
-      return people_skills.where(person_id: params[:person_id])
-    end
-
-    people_skills
+  def index
+    @level = params[:level] ? Integer(params[:level]) : 1
+    @interest = params[:interest] ? Integer(params[:interest]) : 1
+    super
   end
-  # rubocop:enable Metrics/MethodLength
+
+  def filtered_entries
+    if params[:skill_id] != nil
+      base = PeopleSkill.includes(:person, skill: [
+        :category,
+        :people, { people_skills: :person }
+      ])
+      PeopleSkillsFilter.new(
+        base, true, params[:level], params[:interest], params[:skill_id]
+      ).scope
+    else
+      []
+    end
+  end
 end
