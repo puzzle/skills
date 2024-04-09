@@ -4,7 +4,7 @@
   %div.d-flex
     %div.w-25.me-2
       %div Level
-      %div= f.collection_select :level, %w[Keine A1 A2 B1 B2 C1 C2 Muttersprache], :itself, :itself, {}, class: "form-select mw-100 language-level-select"
+      %div= f.collection_select :level, language_skill_levels, :itself, :itself, {}, class: "form-select mw-100 language-level-select"
     %div.w-75
       %div Zertifikat
       %div= f.text_field :certificate, class: "mw-100 form-control language-certificate-input"
