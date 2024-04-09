@@ -24,7 +24,7 @@ module DynamicFormHelper
     # The `id:` value needs to match the value used in `child_index: id`.
     link_to(name, '#',
             { class: 'add_fields', 'data-action' =>
-              'dynamic-fields#addField lang-selection#setOptionState',
+              'dynamic-fields#addField lang-selection#setNewLangOption',
               data: { id: id, fields: fields.gsub("\n", '') } })
   end
 end
