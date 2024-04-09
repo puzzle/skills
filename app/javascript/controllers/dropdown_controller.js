@@ -4,21 +4,16 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   connect() {}
 
-  filterOptions(event) {
-    const searchText = event.target.value.toLowerCase();
+  filterNames(event) {
+    const searchText = event.target.value.trim().toLowerCase();
     const options = this.element.querySelectorAll(".form-select option");
+    const errorText = document.getElementById("error-text");
     options.forEach(option => {
-      const optionText = option.textContent.toLowerCase();
-      if (optionText.includes(searchText)) {
-        option.style.display = "block";
-      } else if (searchText.length < 2) {
-        // shows everything
-      } else {
-        option.style.display = "none";
-      }
+        const optionText = option.textContent.toLowerCase();
+        option.style.display = (optionText.includes(searchText) && searchText.length >= 2) || !searchText ? "block" : "none";
     });
-  }
-
+    errorText.style.display = searchText.length < 2 && searchText ? "block" : "none";
+}
   handleChange(event) {
       window.location.href = event.target.dataset.value + event.target.value;
   }

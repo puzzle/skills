@@ -1,4 +1,5 @@
 = form_with do |f|
   %section{"data-controller"=>"dropdown"}
-    %input#search-input.form-control{:placeholder => "Search...", :type => "text", "data-action" => "input->dropdown#filterOptions"}
+    %input#search-input.form-control{:placeholder => "Person suchen", :type => "text", "data-action" => "input->dropdown#filterNames"}
+    %text#error-text{style: "display:none"} Bitte gib mindestens Zwei Buchstaben ein
     = f.collection_select :person_id, Person.all.sort_by(&:name), :id, :name, generate_select_options_with_default(person), {class: "form-select w-100", "data-action": "change->dropdown#handleChange", "data-value": "/people/"}
