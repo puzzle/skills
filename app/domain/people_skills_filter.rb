@@ -55,7 +55,7 @@ class PeopleSkillsFilter
 
   def find_person_skills(entries, person_ids)
     skills_by_person(entries, person_ids).map do |person_id, skills|
-      { person_id: person_id, name: skills.first.person.name, skills: map_skills(skills) }
+      { person_id: person_id, name: skills.first.person.name, skills: skills }
     end
   end
 
@@ -64,23 +64,6 @@ class PeopleSkillsFilter
            .where(person_id: person_ids, skill_id: skill_ids)
            .group_by(&:person_id)
   end
-
-  # rubocop:disable Metrics/MethodLength
-  def map_skills(skills)
-    skills.map do |skill|
-      {
-        people_skill_id: skill.id,
-        skill_id: skill.skill_id,
-        title: skill.skill.title,
-        level: skill.level,
-        interest: skill.interest,
-        certificate: skill.certificate,
-        core_competence: skill.core_competence
-      }
-    end
-  end
-  # rubocop:enable Metrics/MethodLength
-
 
   def filter_for_skills_and_levels_and_interests(entries)
     result = PeopleSkill.none
