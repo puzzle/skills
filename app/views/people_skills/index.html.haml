@@ -34,8 +34,7 @@
           %div.d-flex.flex-row.w-100
             %div.d-flex.flex-column.mt-2.mb-2.w-25.justify-content-start
               = filtered_entry[:name]
-            -# = link_to Person.find(person_skill_search["id"]).name, person_path(person_skill_search["id"])
             %div.d-flex.flex-row.mt-2.mb-2.w-75
               - filtered_entry[:skills].each do |people_skill|
                 - @person_skill = people_skill
-                -# = render('person_skill')
+                = render('person_skill')
