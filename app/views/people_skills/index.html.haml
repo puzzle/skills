@@ -3,7 +3,7 @@
     %div.w-100.d-flex.flex-row.justify-content-start{data: {controller: "skills-level"}}
       %div.w-50.mt-3
         = form.collection_select :skill_id, Skill.all, :id, :title, {include_blank: "Select option", selected: params[:skill_id]},
-        class: "form-select w-100", onchange: "this.form.submit()"
+        class: "form-select w-100", onchange: "this.form.requestSubmit()"
       %div.w-25.d-flex.flex-column.align-items-center
         %label.form-label.text-gray.fs-6{"data-skills-level-target": "label"}= t ExpertiseTopicSkillValue.skill_levels.key(search_level - 1)
         = form.range_field :level, min: 1, max: 5, value: search_level, class: "form-range w-75",
@@ -35,6 +35,5 @@
             %div.d-flex.flex-column.mt-2.mb-2.w-25.justify-content-start
               = filtered_entry[:name]
             %div.d-flex.flex-row.mt-2.mb-2.w-75
-              - filtered_entry[:skills].each do |people_skill|
-                - @person_skill = people_skill
-                = render('person_skill')
+              - filtered_entry[:skills].each do |person_skill|
+                = render('person_skill', {person_skill: person_skill})
