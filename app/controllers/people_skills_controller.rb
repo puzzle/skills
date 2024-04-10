@@ -7,7 +7,7 @@ class PeopleSkillsController < CrudController
   def entries
     return [] if params[:skill_id].blank?
 
-     base = PeopleSkill.includes(:person, skill: [
+    base = PeopleSkill.includes(:person, skill: [
                                   :category,
                                   :people, { people_skills: :person }
                                 ])
