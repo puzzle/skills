@@ -3,5 +3,5 @@
 %div.mt-2
   %div.profile-header.mw-100.border-bottom
     Personalien
-  %turbo-frame{id: "#{dom_id Person.new}"}
+  %div{id: "#{dom_id Person.new}"}
     = render "form", person: @person

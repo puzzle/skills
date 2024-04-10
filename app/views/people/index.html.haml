@@ -1,1 +1,4 @@
-= render partial: "people/search", locals: { person: nil }
+%div.d-flex.align-items-center.justify-content-between
+  %div.w-50
+    = render partial: "people/search", locals: { person: nil }
+  = link_to "Neues Profil", new_person_path
