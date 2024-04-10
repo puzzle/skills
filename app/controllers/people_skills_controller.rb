@@ -2,12 +2,12 @@
 
 class PeopleSkillsController < CrudController
   include ParamConverters
-  helper_method :filtered_entries, :search_level, :search_interest
+  helper_method :search_level, :search_interest
 
-  def filtered_entries
+  def entries
     return [] if params[:skill_id].blank?
 
-    base = PeopleSkill.includes(:person, skill: [
+     base = PeopleSkill.includes(:person, skill: [
                                   :category,
                                   :people, { people_skills: :person }
                                 ])

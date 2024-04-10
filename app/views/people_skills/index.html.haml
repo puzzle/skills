@@ -26,11 +26,10 @@
       Suchresultate
     %hr
     %turbo-frame{id: "search-results"}
-      - filtered_entries_results = filtered_entries
-      - if filtered_entries_results.size == 0
+      - if entries.size == 0
         Keine Resultate
       - else
-        - filtered_entries_results.each do | filtered_entry|
+        - entries.each do | filtered_entry|
           %div.d-flex.flex-row.w-100
             %div.d-flex.flex-column.mt-2.mb-2.w-25.justify-content-start
               = filtered_entry[:name]
