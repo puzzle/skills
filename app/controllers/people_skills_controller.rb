@@ -5,7 +5,7 @@ class PeopleSkillsController < CrudController
   helper_method :filtered_entries, :search_level, :search_interest
 
   def filtered_entries
-    return [] if params[:skill_id].nil? || params[:skill_id] == ""
+    return [] if params[:skill_id].nil? || params[:skill_id] == ''
 
     base = PeopleSkill.includes(:person, skill: [
                                   :category,
