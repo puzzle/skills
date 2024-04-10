@@ -50,10 +50,7 @@ class PeopleSkillsFilter
     person_ids = persons_with_required_skill(skills_per_person)
 
     # include skill and person to access name and title in query
-    data = find_person_skills(entries, person_ids)
-
-    # Serialize Data and convert to json before returning
-    JSON.generate(PeopleSearchSkillSerializer.serialize(data))
+    find_person_skills(entries, person_ids)
   end
 
   def find_person_skills(entries, person_ids)

@@ -29,12 +29,13 @@
       - filtered_entries_results = filtered_entries
       - if filtered_entries_results.size == 0
         Keine Resultate
-      - else
-        - JSON.parse(filtered_entries_results)["data"].each do | person_skill_search |
-          %div.d-flex.flex-row.w-100
-            %div.d-flex.flex-column.mt-2.mb-2.w-25.justify-content-start
-              = link_to Person.find(person_skill_search["id"]).name, person_path(person_skill_search["id"])
-            %div.d-flex.flex-row.mt-2.mb-2.w-75
-              - person_skill_search["relationships"]["skills"]["data"].each do | skill_search |
-                - @person_skill = PeopleSkill.find(skill_search["id"])
-                = render('person_skill')
+      -# - else
+        -# - require 'pry'; binding.pry
+        -# - JSON.parse(filtered_entries_results)["data"].each do | person_skill_search |
+        -#   %div.d-flex.flex-row.w-100
+        -#     %div.d-flex.flex-column.mt-2.mb-2.w-25.justify-content-start
+        -#       = link_to Person.find(person_skill_search["id"]).name, person_path(person_skill_search["id"])
+        -#     %div.d-flex.flex-row.mt-2.mb-2.w-75
+        -#       - person_skill_search["relationships"]["skills"]["data"].each do | skill_search |
+        -#         - @person_skill = PeopleSkill.find(skill_search["id"])
+        -#         = render('person_skill')
