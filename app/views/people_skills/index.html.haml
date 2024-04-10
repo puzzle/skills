@@ -35,34 +35,5 @@
               = link_to Person.find(person_skill_search["id"]).name, person_path(person_skill_search["id"])
             %div.d-flex.flex-row.mt-2.mb-2.w-75
               - person_skill_search["relationships"]["skills"]["data"].each do | skill_search |
-                %div.col-2.d-flex.align-items-center
-                  = PeopleSkill.find(skill_search["id"]).skill.title
-                %div.d-flex.flex-column.align-items-center.col-3
-                  %label.form-label.text-gray= t ExpertiseTopicSkillValue.skill_levels.key(PeopleSkill.find(skill_search["id"]).level - 1)
-                  %input{value: PeopleSkill.find(skill_search["id"]).level, class: "form-range w-75", type: "range", min: 1, max: 5, disabled: true}
-                %div.d-flex.flex-column.align-items-center.col-3
-                  %label.form-label.text-gray= t "people-skills.interest"
-                  .rate.rate-show
-                    %input{type: "radio", value: 5, id: "star5#{PeopleSkill.find(skill_search["id"]).id}",
-                            checked: PeopleSkill.find(skill_search["id"]).interest == 5, disabled: true}/
-                    %label{for: "star5#{PeopleSkill.find(skill_search["id"]).id}", title: "text", id: "star-label5#{PeopleSkill.find(skill_search["id"]).id}"} 5 stars
-                    %input{type: "radio", value: 4, id: "star4#{PeopleSkill.find(skill_search["id"]).id}",
-                            checked: PeopleSkill.find(skill_search["id"]).interest == 4, disabled: true}/
-                    %label{for: "star4#{PeopleSkill.find(skill_search["id"]).id}", title: "text", id: "star-label4#{PeopleSkill.find(skill_search["id"]).id}"} 4 stars
-                    %input{type: "radio", value: 3, id: "star3#{PeopleSkill.find(skill_search["id"]).id}",
-                            checked: PeopleSkill.find(skill_search["id"]).interest == 3, disabled: true}/
-                    %label{for: "star3#{PeopleSkill.find(skill_search["id"]).id}", title: "text", id: "star-label3#{PeopleSkill.find(skill_search["id"]).id}"} 3 stars
-                    %input{type: "radio", value: 2, id: "star2#{PeopleSkill.find(skill_search["id"]).id}",
-                            checked: PeopleSkill.find(skill_search["id"]).interest == 2, disabled: true}/
-                    %label{for: "star2#{PeopleSkill.find(skill_search["id"]).id}", title: "text", id: "star-label2#{PeopleSkill.find(skill_search["id"]).id}"} 2 stars
-                    %input{type: "radio", value: 1, id: "star1#{PeopleSkill.find(skill_search["id"]).id}",
-                            checked: PeopleSkill.find(skill_search["id"]).interest == 1, disabled: true}/
-                    %label{for: "star1#{PeopleSkill.find(skill_search["id"]).id}", title: "text", id: "star-label1#{PeopleSkill.find(skill_search["id"]).id}"} 1 star
-                %div.col-2.d-flex.align-items-center
-                  %div.d-flex.flex-row.form-check
-                    %input.check_box{type: "checkbox", class: "form-check-input me-2", checked: PeopleSkill.find(skill_search["id"]).certificate, disabled: true}
-                    %label.form-label.text-gray= t "people-skills.certificate"
-                %div.col-2.d-flex.align-items-center
-                  %div.d-flex.flex-row.form-check
-                    %input.check_box{type: "checkbox", class: "form-check-input me-2", checked: PeopleSkill.find(skill_search["id"]).core_competence, disabled: true}
-                    %label.form-label.text-gray= t "people-skills.core-competence"
+                - @person_skill = PeopleSkill.find(skill_search["id"])
+                = render('person_skill')
