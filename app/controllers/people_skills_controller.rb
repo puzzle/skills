@@ -11,16 +11,14 @@ class PeopleSkillsController < CrudController
   end
 
   def filtered_entries
-    if params[:skill_id] != nil
-      base = PeopleSkill.includes(:person, skill: [
-        :category,
-        :people, { people_skills: :person }
-      ])
-      PeopleSkillsFilter.new(
-        base, true, params[:level], params[:interest], params[:skill_id]
-      ).scope
-    else
-      []
-    end
+    return [] if params[:skill_id].nil?
+
+    base = PeopleSkill.includes(:person, skill: [
+                                  :category,
+                                  :people, { people_skills: :person }
+                                ])
+    PeopleSkillsFilter.new(
+      base, true, params[:level], params[:interest], params[:skill_id]
+    ).scope
   end
 end
