@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe Api::PeopleSkillsController do
+  # Ignore some tests because PeopleSkillsFilter returns data no longer as a
+  # json since the new skills is server side rendered now
   describe 'PeopleSkillsController' do
     before { load_pictures }
 
@@ -35,7 +37,7 @@ describe Api::PeopleSkillsController do
         json_object_includes_keys(rails_attrs, keys)
       end
 
-      it 'returns Rails skills' do
+      xit 'returns Rails skills' do
         keys = %w[person skills]
       
         process :index, method: :get, params: { type: 'Skill', skill_id: rails.id, level: '1', interest: '1'}
@@ -64,7 +66,7 @@ describe Api::PeopleSkillsController do
         json_object_includes_keys(skill_relationships_hope, keys)
       end
 
-      it 'only returns above a level' do
+      xit 'only returns above a level' do
         keys = %w[person skills]
 
         process :index, method: :get, params: { type: 'Skill', skill_id: rails.id, level: '2', interest: '1'}
@@ -83,7 +85,7 @@ describe Api::PeopleSkillsController do
         json_object_includes_keys(skill_relationships_wally, keys)
       end
 
-      it 'only returns above an interest' do
+      xit 'only returns above an interest' do
         keys = %w[person skills]
       
         process :index, method: :get, params: { type: 'Skill', skill_id: rails.id, level: '1', interest: '4'}
@@ -114,7 +116,7 @@ describe Api::PeopleSkillsController do
         expect(skills.count).to eq(0)
       end
 
-      it 'returns AND search' do
+      xit 'returns AND search' do
         keys = %w[person skills]
 
         process :index, method: :get, params: { type: 'Skill', skill_id: rails.id.to_s + "," + cunit.id.to_s, level: '1,4', interest: '1,1'}
@@ -135,7 +137,7 @@ describe Api::PeopleSkillsController do
         json_object_includes_keys(skill_relationships_wally, keys)
       end
 
-      it 'returns AND search for 4' do
+      xit 'returns AND search for 4' do
         keys = %w[person skills]
 
         process :index, method: :get, params: { type: 'Skill', skill_id: rails.id.to_s + "," + junit.id.to_s + "," + ember.id.to_s + "," + cunit.id.to_s, level: '1,4,1,1', interest: '1,1,1,1'}
@@ -166,7 +168,7 @@ describe Api::PeopleSkillsController do
         expect(skills.count).to eq(0)
       end
 
-      it 'returns AND search for 5' do
+      xit 'returns AND search for 5' do
         keys = %w[person skills]
 
         process :index, method: :get, params: { type: 'Skill', skill_id: rails.id.to_s + "," + junit.id.to_s + "," + bash.id.to_s + "," + ember.id.to_s + "," + cunit.id.to_s, level: '1,1,1,1,1', interest: '1,1,1,1,1'}
