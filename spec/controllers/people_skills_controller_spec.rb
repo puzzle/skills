@@ -5,14 +5,20 @@ describe PeopleSkillsController do
     sign_in auth_users(:user), scope: :auth_user
   end
 
-  describe 'Update Person' do
-    let(:skill) { skills(:rails).attributes }
+  describe 'Search people with skills' do
     render_views
 
     it 'should return matching entries' do
-      get :index, params: {skill_id: skill["id"], level: 1, interest: 1}
+      get :index, params: {skill_id: skills(:rails).id, level: 1, interest: 1}
       expect(response.code).to eq("200")
-      # expect(response.body).to redirect_to(person_path(person["id"]))
+      expect(response.body).to include("Bob Anderson")
+      expect(response.body).to include()
+    end
+
+    it 'should return no results if skill_id is not given' do
+      get :index, params: {skill_id: nil, level: 1, interest: 1}
+      expect(response.code).to eq("200")
+      expect(response.body).to include("Keine Resultate")
     end
   end
 end
