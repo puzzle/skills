@@ -4,4 +4,4 @@
   %div.profile-header.mw-100.border-bottom.mb-3
     Personalien
   %div{id: "#{dom_id Person.new}"}
-    = render "form", person: @person
+    = render partial: "form", locals: {person: @person, editing: true}

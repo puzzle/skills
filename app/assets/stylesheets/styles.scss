@@ -186,3 +186,11 @@ pzsh-topbar {
   min-width: 20%;
   height: min-content;
 }
+
+#avatar {
+  display: none;
+}
+
+#avatar[src] {
+  display: block;
+}
