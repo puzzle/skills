@@ -55,7 +55,7 @@ describe Odt::Cv do
 
     it 'formats competence notes' do
       notes = Odt::Cv.new(people(:bob), {'anon' => 'false'}).send(:competence_notes_list)[:competence]
-      expect(notes).to eq('Java\n Ruby')
+      expect(notes).to eq("Java\nRuby")
     end
 	
   end

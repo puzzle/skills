@@ -3,12 +3,15 @@
 class PeopleController < CrudController
   include ExportController
   include ParamConverters
+  include PeopleControllerConcerns
 
   self.permitted_attrs = [:birthdate, :location, :marital_status, :updated_by, :name, :nationality,
                           :nationality2, :title, :competence_notes, :company_id, :email,
                           :department_id, :shortname, :picture, :picture_cache,
-                          { person_roles_attributes: [:role_id, :person_role_level_id,
-                                                      :percent, :id, :_destroy] }]
+                          { person_roles_attributes:
+                              [:role_id, :person_role_level_id, :percent, :id, :_destroy] },
+                          { language_skills_attributes:
+                              [:language, :level, :certificate, :id, :_destroy] }]
 
   def show
     return export if format_odt?
@@ -19,7 +22,7 @@ class PeopleController < CrudController
   end
 
   def update
-    params[:person][:nationality2] = nil if false?(params[:has_nationality2]&.[](:checked))
+    set_nationality2
     super
   end
 

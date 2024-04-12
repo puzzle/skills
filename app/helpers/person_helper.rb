@@ -37,4 +37,27 @@ module PersonHelper
     PeopleSkill.core_competence.where(person_id: person.id)
                .group_by { |ps| ps.skill.category.parent }
   end
+
+  def common_languages_translated
+    I18nData.languages('DE').collect do |language|
+      if LanguageList::LanguageInfo.find(language[0])&.common?
+        [language.first, "#{language.last} (#{language.first})"]
+      end
+    end.compact.sort_by(&:last)
+  end
+
+  def sort_languages(languages)
+    mandatory_langs, optional_langs = languages.partition do |language|
+      uneditable_language?(language.language)
+    end
+    mandatory_langs.sort_by(&:language) + optional_langs.sort_by(&:language)
+  end
+
+  def uneditable_language?(lang)
+    %w[DE EN FR].include?(lang)
+  end
+
+  def language_skill_levels
+    %w[Keine A1 A2 B1 B2 C1 C2 Muttersprache]
+  end
 end

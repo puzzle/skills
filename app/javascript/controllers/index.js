@@ -7,14 +7,17 @@ import { application } from "./application"
 import DropdownController from "./dropdown_controller"
 application.register("dropdown", DropdownController)
 
+import DynamicFieldsController from "./dynamic_fields_controller"
+application.register("dynamic-fields", DynamicFieldsController)
+
 import ImageUploadController from "./image_upload_controller"
 application.register("image-upload", ImageUploadController)
 
+import LangSelectionController from "./lang_selection_controller"
+application.register("lang-selection", LangSelectionController)
+
 import NationalityTwoController from "./nationality_two_controller"
 application.register("nationality-two", NationalityTwoController)
-
-import PersonRolesController from "./person_roles_controller"
-application.register("person-roles", PersonRolesController)
 
 import RemoteModalController from "./remote_modal_controller"
 application.register("remote-modal", RemoteModalController)
