@@ -21,10 +21,10 @@
             %text.d-flex.align-items-end.ms-2.small= "4.4.0"
           %ul.navbar.text-gray
             %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
-              %pzsh-icon.scale-icon-06(name="user")
+              %div.scale-icon-06(name="user")
               %span#username
-                =current_auth_user&.name 
-                - if admin?  
+                =current_auth_user&.name
+                - if admin?
                   (Admin)
             %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2
               %a.d-flex.align-items-center{:href => "https://github.com/puzzle/skills/issues"}
@@ -35,18 +35,17 @@
                   =link_to "Logout", destroy_auth_user_session_path, data: { "turbo-method": :delete}
                 - elsif devise_mapping.omniauthable?
                   =button_to "Login", omniauth_authorize_path(resource_name, resource_class.omniauth_providers.first), {data: { "turbo": false}, class: "btn btn-link"}
-        %div
-          %pzsh-topbar.p-0
-            %div.d-flex.justify-content-center
-              %ul.navbar
-                %li
-                  %a.nav-link.cursor-pointer.ps-2.pe-2{href: people_path} Profil
-                %li
-                  %a.nav-link.cursor-pointer.ps-2.pe-2= "Skill Suche"
-                %li
-                  %a.nav-link.cursor-pointer.ps-2.pe-2= "CV Suche"
-                %li
-                  %a.nav-link.cursor-pointer.ps-2.pe-2{href: skills_path} Skillset
+        %div.puzzle-header
+          %div.d-flex.h-100
+            %ul.navbar.h-100
+              %li.bg-skills-blue.h-100.d-flex.align-items-center
+                %a.nav-link.cursor-pointer.ps-2.pe-2{href: people_path} Profil
+              %li.bg-skills-blue.h-100.d-flex.align-items-center
+                %a.nav-link.cursor-pointer.ps-2.pe-2= "Skill Suche"
+              %li.bg-skills-blue.h-100.d-flex.align-items-center
+                %a.nav-link.cursor-pointer.ps-2.pe-2= "CV Suche"
+              %li.bg-skills-blue.h-100.d-flex.align-items-center
+                %a.nav-link.cursor-pointer.ps-2.pe-2{href: skills_path} Skillset
       %div.container-fluid
         %div.row.d-flex.justify-content-center
           %div
