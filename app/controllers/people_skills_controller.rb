@@ -19,8 +19,7 @@ class PeopleSkillsController < CrudController
   def filtered_skills_count
     count = params[:filtered_skills_count] ? Integer(params[:level]) : 1
     count = count < 1 ? 1 : filtered_skills_count
-    count = count > 5 ? 5 : filtered_skills_count
-    count
+    count > 5 ? 5 : filtered_skills_count
   end
 
   def search_level
