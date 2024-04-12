@@ -16,6 +16,13 @@ class PeopleSkillsController < CrudController
     ).scope
   end
 
+  def filtered_skills_count
+    count = params[:filtered_skills_count] ? Integer(params[:level]) : 1
+    count = count < 1 ? 1 : filtered_skills_count
+    count = count > 5 ? 5 : filtered_skills_count
+    count
+  end
+
   def search_level
     params[:level] ? Integer(params[:level]) : 1
   end
