@@ -54,15 +54,15 @@ class PeopleSkillsFilter
   end
 
   def find_person_skills(entries, person_ids)
-    skills_by_person(entries, person_ids).map do |person_id, skills|
-      { person_id: person_id, name: skills.first.person.name, skills: skills }
+    skills_by_person(entries, person_ids).map do |person, skills|
+      { person: person, skills: skills }
     end
   end
 
   def skills_by_person(entries, person_ids)
     entries.includes(:skill, :person)
            .where(person_id: person_ids, skill_id: skill_ids)
-           .group_by(&:person_id)
+           .group_by(&:person)
   end
 
   def filter_for_skills_and_levels_and_interests(entries)

@@ -2,7 +2,7 @@
   = form_with(url: people_skills_path, method: :get) do |form|
     %div.w-100.d-flex.flex-row.justify-content-start{data: {controller: "skills-level"}}
       %div.w-50.mt-3
-        = form.collection_select :skill_id, Skill.all, :id, :title, {include_blank: "Select option", selected: params[:skill_id]},
+        = form.collection_select :skill_id, Skill.all.sort_by(&:title), :id, :title, {include_blank: "Select option", selected: params[:skill_id]},
         class: "form-select w-100", onchange: "this.form.requestSubmit()"
       %div.w-25.d-flex.flex-column.align-items-center
         %label.form-label.text-gray.fs-6{"data-skills-level-target": "label"}= t ExpertiseTopicSkillValue.skill_levels.key(search_level - 1)
@@ -24,15 +24,15 @@
           %label{for: "star1", title: "text", id: "star-label1", class: "star1"} 1 star
     %div.profile-header.mw-100.border-bottom.mt-4.fw-normal
       Suchresultate
-    %hr
     %turbo-frame{id: "search-results"}
-      - if entries.size == 0
-        Keine Resultate
-      - else
-        - entries.each do | filtered_entry|
-          %div.d-flex.flex-row.w-100
-            %div.d-flex.flex-column.mt-2.mb-2.w-25.justify-content-start
-              = filtered_entry[:name]
-            %div.d-flex.flex-row.mt-2.mb-2.w-75
-              - filtered_entry[:skills].each do |person_skill|
-                = render('person_skill', {person_skill: person_skill})
+      %div.border.p-3.rounded-bottom
+        - if entries.size == 0
+          Keine Resultate
+        - else
+          - entries.each do | filtered_entry|
+            %div.d-flex.flex-row.w-100.border-bottom
+              %div.d-flex.flex-column.mt-2.mb-2.w-25.justify-content-start
+                = link_to filtered_entry[:person].name, person_path(filtered_entry[:person]), {"data-turbo"=>false}
+              %div.d-flex.flex-row.mt-2.mb-2.w-75
+                - filtered_entry[:skills].each do |person_skill|
+                  = render('person_skill', {person_skill: person_skill})
