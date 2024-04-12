@@ -76,6 +76,6 @@
   %div.mt-3
     = form.submit :Speichern, { class: "btn btn-primary me-3 bg-skills-blue", id: "save-button" }
     - if @person.id.nil?
-      = link_to "Abbrechen", people_path
+      = link_to "Abbrechen", people_path, { id: "cancel-button" }
     - else
-      = link_to "Abbrechen", person_path(@person)
+      = link_to "Abbrechen", person_path(@person),  { id: "cancel-button" }
