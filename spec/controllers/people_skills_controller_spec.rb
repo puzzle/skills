@@ -15,7 +15,7 @@ describe PeopleSkillsController do
       expect(response.body).to include()
     end
 
-    it 'should return no results if skill_id is not given' do
+    it 'should return no results if skill id is not given' do
       get :index, params: {skill_id: nil, level: 1, interest: 1}
       expect(response.code).to eq("200")
       expect(response.body).to include("Keine Resultate")
