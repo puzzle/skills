@@ -222,16 +222,6 @@ GEM
       net-protocol
     netrc (0.11.0)
     nio4r (2.7.1)
-    nokogiri (1.16.4-aarch64-linux)
-      racc (~> 1.4)
-    nokogiri (1.16.4-arm-linux)
-      racc (~> 1.4)
-    nokogiri (1.16.4-arm64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.16.4-x86-linux)
-      racc (~> 1.4)
-    nokogiri (1.16.4-x86_64-darwin)
-      racc (~> 1.4)
     nokogiri (1.16.4-x86_64-linux)
       racc (~> 1.4)
     oauth2 (2.0.9)
@@ -443,11 +433,6 @@ GEM
     zeitwerk (2.6.13)
 
 PLATFORMS
-  aarch64-linux
-  arm-linux
-  arm64-darwin
-  x86-linux
-  x86_64-darwin
   x86_64-linux
 
 DEPENDENCIES
@@ -510,4 +495,4 @@ DEPENDENCIES
   tzinfo-data
 
 BUNDLED WITH
-   2.5.7
+   2.4.10

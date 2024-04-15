@@ -28,11 +28,4 @@ module DateHelper
     (100.years.ago.year..Time.zone.today.year).to_a.reverse
   end
 
-  def name_of_obj(entry)
-    entry.class.to_s.split('::').first.underscore
-  end
-
-  def class_of(entry)
-    name_of_obj(entry).classify.constantize
-  end
 end
