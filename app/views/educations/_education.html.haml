@@ -1,0 +1,15 @@
+%div.border-top
+    %turbo-frame{id: "#{dom_id education}"}
+        = link_to edit_person_education_path(@person, education), data:{turbo_prefetch: :false}, class: "text-decoration-none text-dark bg-hover-gray d-block" do
+            %div.d-flex.row.pt-3.pb-5
+                %span.col-3.ps-5
+                #{months[education.month_from || 0]} #{education.year_from}
+                -if education&.month_to.nil? && education&.year_to.nil?
+                    = "- #{I18n.t('date_range_picker.today')}"
+                - elsif education&.month_to != education&.month_from && education&.year_to != education&.year_from
+                    = "- #{months[education&.month_to || 0]} #{education&.year_to}"
+                - else
+                    =  "- #{months[education.month_from || 0]} #{education.year_to}"
+                %span.col
+                .fw-bolder= education.title
+                = education.location

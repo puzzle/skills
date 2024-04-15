@@ -1,4 +1,4 @@
-require 'rails_helper'
+https://github.com/puzzle/skills/pull/636/files#diff-60b6464e962782f051f505de18dc92ea395c7dacd8c6096b072203aa001b889erequire 'rails_helper'
 
 describe AdvancedTrainingsController do
 
