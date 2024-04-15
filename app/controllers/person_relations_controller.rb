@@ -2,6 +2,7 @@
 
 class PersonRelationsController < CrudController
   before_action :set_path
+
   def index
     redirect_to person_path(entry.person)
   end
@@ -14,9 +15,7 @@ class PersonRelationsController < CrudController
     super do |format, success|
       if success && params.key?(:render_new_after_save)
         remove_instance_variable(model_ivar_name)
-        format.turbo_stream do
-          render('save_and_new')
-        end
+        format.turbo_stream { render('save_and_new') }
       end
     end
   end

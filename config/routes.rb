@@ -11,21 +11,16 @@ Rails.application.routes.draw do
       delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_auth_user_session
     end
 
-  resources :people do
-    resources :advanced_trainings
-  end
-
-  resources :skills
-  resources :people_skills
-
-
   # Status
   scope 'status' do
     get 'health', to: 'status#health'
     get 'readiness', to: 'status#readiness'
   end
 
+  resources :people_skills
+
   resources :people do
+    resources :advanced_trainings
     member do
       get 'export-cv', to: 'people/export_cv#show'
       put 'picture', to: 'people/picture#update'
