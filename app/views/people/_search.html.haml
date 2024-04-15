@@ -1,4 +1,0 @@
-= form_with(url: people_path, method: :get) do |f|
-  = f.text_field :searched_string, { id: "search-input", class: "form-control", placeholder: "Person suchen", type: "text", onchange: "this.form.requestSubmit()"}
-- entries.each do | entry | 
-  %div= entry.name

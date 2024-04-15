@@ -26,6 +26,9 @@ Rails.application.routes.draw do
       get 'competence-notes', to: 'people/competence_notes#edit'
       post 'competence-notes', to: 'people/competence_notes#update'
     end
+    collection do
+      get 'search', to: 'people/search#index'
+    end
 
   end
   resources :skills
