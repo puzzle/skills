@@ -4,10 +4,6 @@ describe Api::SkillsController do
   describe 'SkillsController as admin' do
     before { load_pictures }
 
-    before(:each) do
-      allow_any_instance_of(Api::SkillsController).to receive(:admin_flag?).and_return(true)
-    end
-
     let(:bob) { people(:bob) }
 
     describe 'GET index' do
@@ -107,10 +103,6 @@ describe Api::SkillsController do
 
   describe 'SkillsController as normal user' do
     before { load_pictures }
-
-    before(:each) do
-      allow_any_instance_of(Api::SkillsController).to receive(:admin_flag?).and_return(false)
-    end
 
     let(:bob) { people(:bob) }
 

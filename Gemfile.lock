@@ -184,9 +184,6 @@ GEM
     jsonapi-renderer (0.2.2)
     jwt (2.8.1)
       base64
-    keycloak-api-rails (0.12.2)
-      json-jwt (>= 1.11.0)
-      rails (>= 4.2)
     language_list (1.2.1)
     language_server-protocol (3.17.0.3)
     listen (3.9.0)
@@ -459,7 +456,6 @@ DEPENDENCIES
   haml-rails
   i18n_data
   jsbundling-rails
-  keycloak-api-rails
   language_list
   listen
   mini_magick

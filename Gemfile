@@ -19,7 +19,6 @@ gem 'faker'
 gem 'haml-rails'
 gem 'i18n_data'
 gem 'jsbundling-rails'
-gem 'keycloak-api-rails'
 gem 'language_list'
 gem 'mini_magick'
 gem 'net-imap', require: false

@@ -35,19 +35,6 @@ module Skills
 
     config.filter_parameters += [:authorizationToken]
 
-    KEYCLOAK_ENV_VARS = %w[
-      RAILS_KEYCLOAK_SERVER_URL
-      RAILS_KEYCLOAK_REALM_ID
-      EMBER_KEYCLOAK_SERVER_URL
-      EMBER_KEYCLOAK_REALM_NAME
-      EMBER_KEYCLOAK_CLIENT_ID
-    ].freeze
-
-    def keycloak_disabled?
-      KEYCLOAK_ENV_VARS.none? { |e| ENV[e].present? } &&
-        ENV['KEYCLOAK_DISABLED'].present?
-    end
-
     config.assets.enabled = true
     config.assets.paths << Rails.root.join("uploads")
   end

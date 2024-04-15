@@ -18,7 +18,6 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
 require 'simplecov'
-require 'support/keycloak_helpers'
 SimpleCov.start
 SimpleCov.coverage_dir 'spec/coverage'
 
