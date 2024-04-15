@@ -30,6 +30,11 @@ class PeopleController < CrudController
     end
   end
 
+  def create
+    set_nationality2
+    super
+  end
+
   def update
     set_nationality2
     super
