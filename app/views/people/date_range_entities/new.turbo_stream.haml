@@ -1,0 +1,3 @@
+= turbo_stream.update "#{dom_id entry.class.new}" do
+  = render "application/error_banners", errors: entry.errors
+  = render partial: "form", locals: {attribute: entry}

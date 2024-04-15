@@ -11,6 +11,7 @@
 # action procedures without overriding the entire method.
 class CrudController < ListController
   include ParamConverters
+  include ParamConverters
 
   class_attribute :permitted_attrs
 
@@ -84,7 +85,6 @@ class CrudController < ListController
   #
   # Specify a :location option if you wish to do a custom redirect.
 
-  # rubocop:disable Metrics/MethodLength
   def update(**options, &block)
     model_class.transaction do
       if assign_attributes
@@ -94,9 +94,8 @@ class CrudController < ListController
         else
           updated = with_callbacks(:update, :save) { entry.save }
         end
-
         respond(updated,
-                **options.merge(status: :ok, render_on_unsaved: :edit),
+                **options.reverse_merge(status: :ok, render_on_unsaved: :edit),
                 &block)
         raise ActiveRecord::Rollback unless updated
       end
@@ -120,7 +119,7 @@ class CrudController < ListController
     model_class.transaction do
       destroyed = run_callbacks(:destroy) { entry.destroy }
       respond(destroyed,
-              **options.merge(status: :no_content),
+              **options.reverse_merge(status: :no_content),
               &block)
       raise ActiveRecord::Rollback unless destroyed
     end

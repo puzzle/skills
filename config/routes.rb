@@ -15,6 +15,10 @@ Rails.application.routes.draw do
     resources :advanced_trainings
   end
 
+  resources :people do
+    resources :advanced_trainings
+  end
+
   resources :skills
 
 
@@ -27,6 +31,7 @@ Rails.application.routes.draw do
   resources :people do
     member do
       get 'export-cv', to: 'people/export_cv#show'
+      get 'export-cv', to: 'people/export_cv#show'
       put 'picture', to: 'people/picture#update'
       get 'picture', to: 'people/picture#show'
       get 'export', to: 'people#export'
@@ -36,6 +41,16 @@ Rails.application.routes.draw do
       get 'people-skills', to: 'people/people_skills#index'
       get 'people-skills-edit', to: 'people/people_skills#edit'
       patch 'people-skills', to: 'people/people_skills#update'
+    end
+
+  end
+
+  resources :skills do
+    collection do
+      get 'export', to: 'skills#export'
+      get 'export', to: 'people#export'
+      get 'competence-notes', to: 'people/competence_notes#edit'
+      post 'competence-notes', to: 'people/competence_notes#update'
     end
 
   end

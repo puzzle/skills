@@ -1,0 +1,6 @@
+= turbo_stream.replace name_of_obj(entry) do
+  = render entries
+  
+= turbo_stream.replace "#{dom_id entry.class.new}" do
+  = render partial: "form", locals: {attribute: entries.new}
+
