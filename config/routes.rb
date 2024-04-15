@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   end
 
   resources :skills
+  resources :people_skills
 
 
   # Status
