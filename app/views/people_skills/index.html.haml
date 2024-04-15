@@ -1,11 +1,13 @@
 %div.mt-3{"data-controller": "people-skills-filter"}
-  = render("search_form")
-  - for a in 1..3 do
-    %div{"data-people-skills-filter-target": "filter"}
-      %div.d-flex.flex-row.w-100.align-items-center
-        = render("search_form")
-        %img{:src=> "/assets/x.svg",:height=>"20", class: "pointer", "data-action": "click->people-skills-filter#hide",
-    "data-people-skills-filter-id-param": a}
+  = form_with(url: people_skills_path, method: :get, class: "filter-form", data: {"turbo-frame": "search-results"}) do |form|
+    = render("search_form", form: form)
+    = form.fields_for :people_skills do |ff|
+      - 3.times do |i|
+        %div{"data-people-skills-filter-target": "filter"}
+          %div.d-flex.flex-row.w-100.align-items-center
+            = render("search_form", form: ff)
+            %img{:src=> "/assets/x.svg",:height=>"20", class: "pointer", "data-action": "click->people-skills-filter#hide",
+            "data-people-skills-filter-id-param": i}
   %button.btn.text-primary.text-decoration-underline.pointer.align-items-center{"data-action": "click->people-skills-filter#show", "data-people-skills-filter-target": "add"}
     %img{:src=> "/assets/plus-lg.svg",:height=>"20"}
     Skill hinzufügen (max. 5))

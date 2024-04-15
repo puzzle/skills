@@ -11,7 +11,7 @@ export default class extends Controller {
     }
 
     hide({params}) {
-        this.filterTargets[params.id - 1].style.display = "none";
+        this.filterTargets[params.id].style.display = "none";
         this.addTarget.style.display = "flex";
     }
 
@@ -19,11 +19,15 @@ export default class extends Controller {
         for(let target of this.filterTargets) {
             if(target.style.display === "none") {
                 target.style.display = "block";
-                if(target === this.filterTargets[this.filterTargets.length - 1]) {
+                if(this.countHidden() === this.filterTargets.length) {
                     this.addTarget.style.display = "none";
                 }
                 return;
             }
         }
+    }
+
+    countHidden() {
+        return this.filterTargets.filter(x => x.style.display === "block").length;
     }
 }
