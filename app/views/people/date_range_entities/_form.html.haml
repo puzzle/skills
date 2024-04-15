@@ -8,7 +8,7 @@
   %div.col-3.d-flex.flex-column
     = form.button(name: :"save", class:"btn btn-primary", data: { turbo_frame: name_of_obj(entry)})
     - if entry.persisted?
-      = link_to t("helpers.submit.delete"), polymorphic_path([entry.person, name_of_obj(entry).to_sym]), data: { turbo_method: :delete, turbo_frame: ["#{dom_id entry}"]}, class: "btn btn-link"
+      = link_to t("helpers.submit.delete"),polymorphic_path([entry.person, entry]), data: { turbo_method: :delete, turbo_frame: ["#{dom_id entry}"]}, class: "btn btn-link"
     - else 
       = form.button(t("helpers.submit.save-and-new"), name: :"render_new_after_save", class:"btn btn-link", data: { turbo_frame: name_of_obj(entry)})
     = link_to t("helpers.submit.cancel"), polymorphic_path(entry.person), data: { turbo_frame: name_of_obj(entry)},  method: :get, class: "btn btn-link"

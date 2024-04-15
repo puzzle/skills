@@ -11,7 +11,6 @@
 # action procedures without overriding the entire method.
 class CrudController < ListController
   include ParamConverters
-  include ParamConverters
 
   class_attribute :permitted_attrs
 
