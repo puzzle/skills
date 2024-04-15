@@ -35,3 +35,18 @@ en:
     from: From
     to: To
     today: Today
+
+  people-skills:
+    level:
+      trainee: Trainee
+      junior: Junior
+      professional: Professional
+      senior: Senior
+      expert: Expert
+    interest: Interest
+    certificate: Certificate
+    core-competence: Core Competence
+  date_range_picker:
+    from: From
+    to: To
+    today: Today

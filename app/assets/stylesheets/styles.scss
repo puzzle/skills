@@ -11,7 +11,13 @@ $skills-gray: #f5f5f5;
 .pointer {
   cursor: pointer;
 }.modal-dialog {
+.pointer {
+  cursor: pointer;
+}.modal-dialog {
   max-width: 60%;
+}
+.content {
+  max-width: 80%;
 }
 .content {
   max-width: 80%;
@@ -95,6 +101,27 @@ pzsh-topbar {
 .fixed-table {
   table-layout: fixed;
   width: 100%;
+}
+
+.persisted-line-breaks {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: hidden;
+}
+
+#competence-notes {
+  width: 100% !important;
+}
+
+.circle-divider {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #69b978
+}
+
+.bg-hover-gray:hover{
+  background-color: #e5e5e5;
 }
 
 .persisted-line-breaks {
