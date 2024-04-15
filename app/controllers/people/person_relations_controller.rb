@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class PersonRelationsController < CrudController
-  before_action :set_path
+class People::PersonRelationsController < CrudController
 
   def index
     redirect_to person_path(entry.person)
@@ -28,9 +27,5 @@ class PersonRelationsController < CrudController
     super do |format, success|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(entry) } if success
     end
-  end
-
-  def set_path
-    prepend_view_path 'app/views/people'
   end
 end
