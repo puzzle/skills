@@ -13,6 +13,7 @@ class PersonRelationsController < CrudController
   def create
     super(render_on_unsaved: 'people/date_range_entities/new') do |format, success|
       if success && params.key?(:render_new_after_save)
+        remove_instance_variable(model_ivar_name)
         format.turbo_stream do
           render('people/date_range_entities/save_and_new')
         end

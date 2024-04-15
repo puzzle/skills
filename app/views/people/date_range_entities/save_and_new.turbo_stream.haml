@@ -1,6 +1,6 @@
-= turbo_stream.replace name_of_obj(entry) do
-  = render entries
-  
-= turbo_stream.replace "#{dom_id entry.class.new}" do
-  = render partial: "form", locals: {attribute: entries.new}
+= turbo_stream.update name_of_obj(entry) do
+  %div.border.rounded.border
+    %turbo-frame{id: dom_id(entry.class.new)}
+      = render partial: "form"
+    = render entries
 
