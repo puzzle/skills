@@ -38,8 +38,6 @@ describe AdvancedTrainingsController do
                                 }
                               }
 
-
-      # would it be helpful to redirect to the person?
       expect(response).to redirect_to(person_advanced_training_path(person, person.advanced_trainings.last ))
 
       expect(person.advanced_trainings.last.description).to eq description
@@ -68,7 +66,6 @@ describe AdvancedTrainingsController do
 
     it 'Delete action delete element ' do
       post :destroy , params:{person_id: person, id: person.advanced_trainings.first}
-      # Is returning true really needed
       expect(response).to redirect_to(person_advanced_trainings_path(person, returning: true))
       expect(person.advanced_trainings).to eq []
     end

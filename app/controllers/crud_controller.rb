@@ -84,7 +84,7 @@ class CrudController < ListController
   #
   # Specify a :location option if you wish to do a custom redirect.
 
-  def update(**options, &block)
+  def update(**options, &block) # rubocop:disable Metrics/MethodLength
     model_class.transaction do
       if assign_attributes
         updated = false
@@ -100,7 +100,6 @@ class CrudController < ListController
       end
     end
   end
-  # rubocop:enable Metrics/MethodLength
 
   #   DELETE /entries/1
   #   DELETE /entries/1.json

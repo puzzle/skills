@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PersonRelationsController < CrudController
+  TEMPLATE_BASE_PATH = 'people/date_range_entities'
 
   def index
     redirect_to person_path(entry.person)
@@ -10,19 +11,27 @@ class PersonRelationsController < CrudController
     redirect_to person_path(entry.person)
   end
 
+  def new
+    render "#{TEMPLATE_BASE_PATH}/new"
+  end
+
+  def edit
+    render "#{TEMPLATE_BASE_PATH}/edit"
+  end
+
   def create
-    super(render_on_unsaved: 'people/date_range_entities/new') do |format, success|
+    super(render_on_unsaved: "#{TEMPLATE_BASE_PATH}/new") do |format, success|
       if success && params.key?(:render_new_after_save)
         remove_instance_variable(model_ivar_name)
         format.turbo_stream do
-          render('people/date_range_entities/save_and_new')
+          render("#{TEMPLATE_BASE_PATH}/save_and_new")
         end
       end
     end
   end
 
   def update
-    super(location: person_path(entry.person), render_on_unsaved: 'people/date_range_entities/edit')
+    super(location: person_path(entry.person), render_on_unsaved: "#{TEMPLATE_BASE_PATH}/edit")
   end
 
   def destroy
