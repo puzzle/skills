@@ -17,10 +17,10 @@ class PeopleSkillsController < CrudController
   end
 
   def search_level
-    params[:level] ? Integer(params[:level]) : 1
+    params[:level] ? params[:level].to_i : 1
   end
 
   def search_interest
-    params[:interest] ? Integer(params[:interest]) : 1
+    params[:interest] ? params[:interest].to_i : 1
   end
 end
