@@ -1,0 +1,6 @@
+= turbo_stream.update name_of_obj(entry) do
+  = render entries
+
+= turbo_stream.update dom_id(entry.class.new) do
+  = render partial: "form"
+

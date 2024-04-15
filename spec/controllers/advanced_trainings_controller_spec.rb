@@ -37,7 +37,9 @@ describe AdvancedTrainingsController do
                                 description: description
                                 }
                               }
-      expect(response).to redirect_to(person_path(person))
+
+      expect(response).to redirect_to(person_advanced_training_path(person, person.advanced_trainings.last ))
+
       expect(person.advanced_trainings.last.description).to eq description
       expect(person.advanced_trainings.last.month_from).to eq month_from
       expect(person.advanced_trainings.last.year_from).to eq year_from
@@ -53,6 +55,7 @@ describe AdvancedTrainingsController do
       description = 'This is an updated description'
 
       patch :update , params: {person_id: person.id, id: advanced_training_id, advanced_training: { month_from: month_from, year_from: year_from, month_to: month_to, year_to: year_to, description: description} }
+
       expect(response).to redirect_to(person_path(person))
       expect(person.advanced_trainings.last.month_from).to eq month_from
       expect(person.advanced_trainings.last.year_from).to eq year_from
@@ -63,7 +66,7 @@ describe AdvancedTrainingsController do
 
     it 'Delete action delete element ' do
       post :destroy , params:{person_id: person, id: person.advanced_trainings.first}
-      expect(response).to redirect_to(person_path(person))
+      expect(response).to redirect_to(person_advanced_trainings_path(person, returning: true))
       expect(person.advanced_trainings).to eq []
     end
   end

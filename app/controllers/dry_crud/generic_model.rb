@@ -34,10 +34,14 @@ module DryCrud
     # Get the instance variable named after the +model_class+.
     # If the collection variable is required, pass true as the second argument.
     def model_ivar_get(plural: false)
+      name = model_ivar_name(plural: plural)
+      instance_variable_get(name) if instance_variable_defined?(name)
+    end
+
+    def model_ivar_name(plural: false)
       name = ivar_name(model_class)
       name = name.pluralize if plural
-      name = :"@#{name}"
-      instance_variable_get(name) if instance_variable_defined?(name)
+      :"@#{name}"
     end
 
     # Sets an instance variable with the underscored class name if the given

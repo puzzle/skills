@@ -44,3 +44,20 @@ de:
     till_today: Bis Heute
     with_enddate: Mit Enddatum
     
+  people-skills:
+    level:
+      trainee: Trainee
+      junior: Junior
+      professional: Professional
+      senior: Senior
+      expert: Expert
+    interest: Interesse
+    certificate: Zertifikat
+    core-competence: Kernkompetenz
+  date_range_picker:
+    from: Von
+    to: Bis
+    today: Heute
+    till_today: Bis Heute
+    with_enddate: Mit Enddatum
+    

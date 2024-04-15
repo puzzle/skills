@@ -1,0 +1,9 @@
+%div.border.border-secondary-subtle.border-1.d-flex.flex-column
+    %div.profile-header.mw-100.border-bottom
+        = "#{t "activerecord.models.#{name_of_obj(list)}"} (#{list.count})"
+    %div.d-flex.flex-column.ms-5.mt-3.mb-3
+        = link_to "#{t "activerecord.models.#{name_of_obj(list)}"} hinzufügen", new_polymorphic_path([entry, name_of_obj(list).to_sym]), data: { turbo_frame: dom_id(list.model.new)},  method: :get
+        %div.border.rounded.border
+            %turbo-frame{id: dom_id(list.model.new)}
+            %turbo-frame{id: name_of_obj(list)}
+                = render list

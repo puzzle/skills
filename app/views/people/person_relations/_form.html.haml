@@ -1,0 +1,14 @@
+= yield
+= form.hidden_field :person_id
+%div.d-flex.row.py-3.ps-5
+  %span.col-3
+    = render partial: 'application/daterange_picker', locals: { form: form, end_date: form.object.till_today? }
+  %span.col-5.d-flex.flex-column
+    = yield :input
+  %div.col-3.d-flex.flex-column
+    = form.button(name: :"save", class:"btn btn-primary")
+    - if entry.persisted?
+      = link_to t("helpers.submit.delete"),polymorphic_path([entry.person, entry]), data: { turbo_method: :delete, turbo_frame: dom_id(entry)}, class: "btn btn-link"
+    - else 
+      = form.button(t("helpers.submit.save-and-new"), name: :"render_new_after_save", class:"btn btn-link", data: { turbo_frame: dom_id(entry.class.new)})
+    = link_to t("helpers.submit.cancel"), polymorphic_path(entry.person), data: { turbo_frame: dom_id(entry.persisted? ? entry : entry.class.new)},  method: :get, class: "btn btn-link"
