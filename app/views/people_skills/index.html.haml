@@ -6,7 +6,7 @@
         = render("search_form")
         %img{:src=> "/assets/x.svg",:height=>"20", class: "pointer", "data-action": "click->people-skills-filter#hide",
     "data-people-skills-filter-id-param": a}
-  %button.btn.text-primary.text-decoration-underline.pointer{"data-action": "click->people-skills-filter#show", "data-people-skills-filter-target": "add"}
+  %button.btn.text-primary.text-decoration-underline.pointer.align-items-center{"data-action": "click->people-skills-filter#show", "data-people-skills-filter-target": "add"}
     %img{:src=> "/assets/plus-lg.svg",:height=>"20"}
     Skill hinzufügen (max. 5))
   %div.profile-header.mw-100.border-bottom.mt-4.fw-normal
