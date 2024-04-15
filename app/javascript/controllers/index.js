@@ -49,5 +49,8 @@ application.register("skills-level", SkillsLevelController)
 import SkillsEmptySpaceController from "./skills_empty_space_controller"
 application.register("skills-empty-space", SkillsEmptySpaceController)
 
+import PeopleSkillsFilterController from "./people_skills_filter_controller"
+application.register("people-skills-filter", PeopleSkillsFilterController)
+
 import ScrollController from "./scroll_controller"
 application.register("scroll", ScrollController)

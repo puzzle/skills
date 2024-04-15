@@ -1,0 +1,23 @@
+= form_with(url: people_skills_path, method: :get, class: "filter-form") do |form|
+  %div.w-100.d-flex.flex-row.justify-content-start{data: {controller: "skills-level"}}
+    %div.w-50.mt-3
+      = form.collection_select :skill_id, Skill.all.sort_by(&:title), :id, :title, {include_blank: "Select option", selected: params[:skill_id]},
+        class: "form-select w-100", onchange: "this.form.requestSubmit()"
+    %div.w-25.d-flex.flex-column.align-items-center
+      %label.form-label.text-gray.fs-6{"data-skills-level-target": "label"}= t ExpertiseTopicSkillValue.skill_levels.key(search_level - 1)
+      = form.range_field :level, min: 1, max: 5, value: search_level, class: "form-range w-75",
+                              "data-action": "change->skills-level#toggleLevel", "data-skills-level-target": "switch",
+                               onchange: "this.form.requestSubmit()"
+    %div.w-25.d-flex.flex-column.align-items-center
+      %label.form-label.text-gray.fs-6.mb-0.mt-0 Interesse
+      .rate
+        = form.radio_button :interest, 5, id: "star5", checked: search_interest  == 5, onClick: "this.form.requestSubmit()"
+        %label{for: "star5", title: "text", id: "star-label5", class: "star5"} 5 stars
+        = form.radio_button :interest, 4, id: "star4", checked: search_interest == 4, onClick: "this.form.requestSubmit()"
+        %label{for: "star4", title: "text", id: "star-label4", class: "star4"} 4 stars
+        = form.radio_button :interest, 3, id: "star3", checked: search_interest == 3, onClick: "this.form.requestSubmit()"
+        %label{for: "star3", title: "text", id: "star-label3", class: "star3"} 3 stars
+        = form.radio_button :interest, 2, id: "star2", checked: search_interest == 2, onClick: "this.form.requestSubmit()"
+        %label{for: "star2", title: "text", id: "star-label2", class: "star2"} 2 stars
+        = form.radio_button :interest, 1, id: "star1", checked: search_interest == 1, onClick: "this.form.requestSubmit()"
+        %label{for: "star1", title: "text", id: "star-label1", class: "star1"} 1 star
