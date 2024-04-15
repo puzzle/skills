@@ -1,3 +1,6 @@
-= form_with do |f|
-  %section{"data-controller"=>"dropdown"}
-    = f.collection_select :person_id, Person.all.sort_by(&:name), :id, :name,  select_when_availabale(person) , {class: "form-select w-100", "data-action": "change->dropdown#handleChange", "data-value": "/people/"}
+%div.d-flex.align-items-center.justify-content-between
+  %div.w-50
+    = form_with do |f|
+      %section{"data-controller"=>"dropdown"}
+        = f.collection_select :person_id, Person.all.sort_by(&:name), :id, :name,  select_when_availabale(person) , {class: "form-select w-100", "data-action": "change->dropdown#handleChange", "data-value": "/people/"}
+  = link_to "Neues Profil", new_person_path
