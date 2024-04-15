@@ -1,3 +1,4 @@
 %turbo-frame{id: "search-people"}  
   - entries.each do | entry |
-    %div= entry.name
+    %div.dropdown-option.w-100
+      = link_to entry.name, person_path(entry), {"data-turbo": false}

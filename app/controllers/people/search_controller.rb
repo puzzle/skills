@@ -6,12 +6,13 @@ class People::SearchController < CrudController
     self.permitted_attrs = []
   
     def entries
-      return [] if params[:searched_string].blank?
-
-      searched_name = params[:searched_string].downcase
-      
-      Person.all.where('LOWER(name) LIKE ?', "%#{searched_name}%")
+      if (params[:searched_string].blank?)
+        Person.all
+      else
+        searched_name = params[:searched_string].downcase
+  
+        Person.all.where('LOWER(name) LIKE ?', "%#{searched_name}%")
+      end
     end
-    
   end
   

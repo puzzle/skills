@@ -38,13 +38,6 @@ class PeopleController < CrudController
               disposition: content_disposition('attachment', filename)
   end
 
-  def entries
-    return [] if params[:searched_string].blank?
-
-    searched_name = params[:searched_string]
-    Person.all.where('name LIKE ?', "%#{searched_name}%")
-  end
-
   private
 
   def fetch_entries
