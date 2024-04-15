@@ -267,5 +267,15 @@ describe :people do
 
       assert_form_persisted(false)
     end
+
+    it 'should go back to overview after cancelling and not save new person' do
+      visit people_path
+      page.find('#new-person-button').click
+      fill_out_person_form
+      page.find("#cancel-button").click
+      expect(current_path).to eql('/people')
+
+      expect(Person.all.find_by(name: "Hansjakobli")).to be_nil
+    end
   end
 end
