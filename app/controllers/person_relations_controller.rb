@@ -14,8 +14,7 @@ class PersonRelationsController < CrudController
     super(render_on_unsaved: 'people/date_range_entities/new') do |format, success|
       if success && params.key?(:render_new_after_save)
         format.turbo_stream do
-          render('people/date_range_entities/save_and_new',
-                 locals: { attr_name: model_class.to_s.underscore.pluralize })
+          render('people/date_range_entities/save_and_new')
         end
       end
     end
