@@ -1,5 +1,4 @@
-= form_with do |f|
-  %section{"data-controller"=>"dropdown"}
-    %input#search-input.form-control{:placeholder => "Person suchen", :type => "text", "data-action" => "input->dropdown#filterNames"}
-    %text#error-text{style: "display:none"} Bitte gib mindestens zwei Zeichen ein
-    = f.collection_select :person_id, Person.all.sort_by(&:name), :id, :name, generate_select_options_with_default(person), {class: "form-select w-100", "data-action": "change->dropdown#handleChange", "data-value": "/people/"}
+= form_with(url: people_path, method: :get) do |f|
+  = f.text_field :searched_string, { id: "search-input", class: "form-control", placeholder: "Person suchen", type: "text", onchange: "this.form.requestSubmit()"}
+- entries.each do | entry | 
+  %div= entry.name
