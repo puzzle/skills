@@ -83,6 +83,12 @@ ARG RAILS_HOST_NAME
 ARG SECRET_KEY_BASE
 ARG TZ
 
+# Random stuff for keycloak variables that would raise during build
+ARG CLIENT_ID=none
+ARG SECRET=none
+ARG HOST_URL=none
+ARG REALM=none
+
 # Set build shell
 SHELL ["/bin/bash", "-c"]
 
