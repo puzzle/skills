@@ -3,8 +3,7 @@
         = "#{t "activerecord.models.#{name_of_obj(list)}"} (#{list.count})"
     %div.d-flex.flex-column.ms-5.mt-3.mb-3
         = link_to "#{t "activerecord.models.#{name_of_obj(list)}"} hinzufügen", new_polymorphic_path([entry, name_of_obj(list).to_sym]), data: { turbo_frame: "#{dom_id class_of(list).new}"},  method: :get
-        %turbo-frame{id: name_of_obj(list)}
-            %div.border.rounded.border
-                -# Should probably be on the same level as line 6 
-                %turbo-frame{id: "#{dom_id class_of(list).new}"}
+        %div.border.rounded.border
+            %turbo-frame{id: "#{dom_id class_of(list).new}"}
+            %turbo-frame{id: name_of_obj(list)}
                 = render list
