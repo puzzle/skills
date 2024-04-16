@@ -1,0 +1,4 @@
+= turbo_stream.append "search-filters" do
+  %div.d-flex.flex-row.align-items-center{id: "#{@id}"}
+    = render('search_form')
+    = link_to image_tag("x.svg", class: "text-primary me-1", height: "20"), people_skills_path + "?row=#{@id}&format=turbo_stream"

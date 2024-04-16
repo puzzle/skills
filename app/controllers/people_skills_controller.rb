@@ -2,31 +2,30 @@
 
 class PeopleSkillsController < CrudController
   include ParamConverters
-  helper_method :search_level, :search_interest
+
+  def index
+    if params[:row].present?
+      respond_to do |format|
+        if params[:row] == "add"
+          @id = SecureRandom.uuid
+          format.turbo_stream { render :add_filter, status: :ok }
+        else
+          format.turbo_stream { render :remove_filter, status: :ok, locals: {id: params[:row] }}
+        end
+      end
+    else
+      super
+    end
+  end
 
   def entries
     return [] if params[:skill_id].blank?
-
     base = PeopleSkill.includes(:person, skill: [
                                   :category,
                                   :people, { people_skills: :person }
                                 ])
     PeopleSkillsFilter.new(
-      base, true, params[:level], params[:interest], params[:skill_id]
+      base, true, skill_ids, levels, interests
     ).scope
-  end
-
-  def filtered_skills_count
-    count = params[:filtered_skills_count] ? Integer(params[:level]) : 1
-    count = count < 1 ? 1 : filtered_skills_count
-    count > 5 ? 5 : filtered_skills_count
-  end
-
-  def search_level
-    params[:level] ? Integer(params[:level]) : 1
-  end
-
-  def search_interest
-    params[:interest] ? Integer(params[:interest]) : 1
   end
 end
