@@ -1,3 +1,1 @@
-= form_with(url: search_people_path, method: :get, data: {"turbo-frame": "search-people"}) do |f|
-  = f.text_field :searched_string, { class: "form-control", placeholder: "Person suchen", type: "text", onInput: "this.form.requestSubmit();", onfocus: "this.form.requestSubmit();"}
-  %turbo-frame{id: "search-people"}
+= render partial: "people/search/search_bar", locals: {searched_string: ""}

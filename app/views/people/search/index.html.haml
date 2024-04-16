@@ -1,4 +1,4 @@
 %turbo-frame{id: "search-people"}  
   - entries.each do | entry |
     %div.dropdown-option.w-100
-      = link_to entry.name, person_path(entry), {"data-turbo": false}
+      = link_to entry.name, person_path(entry), {class: "decoration-none" ,"data-turbo": false}

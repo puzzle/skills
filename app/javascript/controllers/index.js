@@ -4,9 +4,6 @@
 
 import { application } from "./application"
 
-import DropdownController from "./dropdown_controller"
-application.register("dropdown", DropdownController)
-
 import ImageUploadController from "./image_upload_controller"
 application.register("image-upload", ImageUploadController)
 
@@ -22,6 +19,5 @@ application.register("remote-modal", RemoteModalController)
 import SkillsFilterController from "./skills_filter_controller"
 application.register("skills-filter", SkillsFilterController)
 
-import DropdownLinksController from "./dropdown_controller"
-application.register("dropdown", DropdownLinksController)
-
+import DropdownController from "./dropdown_controller"
+application.register("dropdown", DropdownController)
