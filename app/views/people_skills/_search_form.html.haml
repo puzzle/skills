@@ -1,4 +1,4 @@
-= form_with(url: people_skills_path, method: :get, class: "filter-form", data: {"turbo-frame": "search-results"}) do |form|
+%turbo-frame{id: "search-filters"}
   %div.w-100.d-flex.flex-row.justify-content-start{data: {controller: "skills-level"}}
     %div.w-50.mt-3
       = form.collection_select "skill_id[]", Skill.all.sort_by(&:title), :id, :title, {include_blank: "Select option"},

@@ -4,18 +4,8 @@ class PeopleSkillsController < CrudController
   include ParamConverters
 
   def index
-    if params[:row].present?
-      respond_to do |format|
-        if params[:row] == "add"
-          @id = SecureRandom.uuid
-          format.turbo_stream { render :add_filter, status: :ok }
-        else
-          format.turbo_stream { render :remove_filter, status: :ok, locals: {id: params[:row] }}
-        end
-      end
-    else
+      @row = params[:rows].to_i
       super
-    end
   end
 
   def entries
