@@ -80,27 +80,27 @@ describe :people do
     fill_in language_certificate_input[:id], with: 'Some Certificate'
   end
 
-  def assert_form_persisted(editing)
+  def assert_form_persisted(old_number_of_roles)
     expect(page).to have_content("Hansjakobli")
 
-    edited_person = Person.find_by(name: 'Hansjakobli')
-    expect(edited_person.picture.identifier).to eql('1.png')
-    expect(edited_person.email).to eql('hanswurst@somemail.com')
-    expect(edited_person.title).to eql('Wurstexperte')
-    expect(edited_person.person_roles.count).to eql(editing ? 3 : 1)
-    edited_person_role = edited_person.person_roles.last
+    person = Person.find_by(name: 'Hansjakobli')
+    expect(person.picture.identifier).to eql('1.png')
+    expect(person.email).to eql('hanswurst@somemail.com')
+    expect(person.title).to eql('Wurstexperte')
+    expect(person.person_roles.count).to eql(old_number_of_roles + 1)
+    edited_person_role = person.person_roles.last
     expect(edited_person_role.role.name).to eql('System-Engineer')
     expect(edited_person_role.person_role_level.level).to eql('S3')
     expect(edited_person_role.percent).to eq(80)
-    expect(edited_person.department.name).to eql('/ux')
-    expect(edited_person.company.name).to eql('Partner')
-    expect(edited_person.location).to eql('Las Vegas')
-    expect(edited_person.birthdate.to_date.strftime('%d.%m.%Y')).to eql('28.03.1979')
-    expect(edited_person.nationality).to eql('DE')
-    expect(edited_person.nationality2).to eql('US')
-    expect(edited_person.marital_status).to eql('married')
-    expect(edited_person.shortname).to eql('bb')
-    edited_language_skill = edited_person.language_skills.last
+    expect(person.department.name).to eql('/ux')
+    expect(person.company.name).to eql('Partner')
+    expect(person.location).to eql('Las Vegas')
+    expect(person.birthdate.to_date.strftime('%d.%m.%Y')).to eql('28.03.1979')
+    expect(person.nationality).to eql('DE')
+    expect(person.nationality2).to eql('US')
+    expect(person.marital_status).to eql('married')
+    expect(person.shortname).to eql('bb')
+    edited_language_skill = person.language_skills.last
     expect(edited_language_skill.language).to eql('FI')
     expect(edited_language_skill.level).to eql('B2')
     expect(edited_language_skill.certificate).to eql('Some Certificate')
@@ -192,11 +192,12 @@ describe :people do
 
     it 'should edit and save changes' do
       bob = people(:bob)
+      old_number_of_roles = bob.person_roles.count
       visit person_path(bob)
       page.find('#edit-button').click
       fill_out_person_form
       page.find("#save-button").click
-      assert_form_persisted(true)
+      assert_form_persisted(old_number_of_roles)
     end
 
     it 'should edit and cancel without saving' do
@@ -265,7 +266,7 @@ describe :people do
       fill_out_person_form
       page.find("#save-button").click
 
-      assert_form_persisted(false)
+      assert_form_persisted(0)
     end
 
     it 'should go back to overview after cancelling and not save new person' do
