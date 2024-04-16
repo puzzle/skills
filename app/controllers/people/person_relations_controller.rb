@@ -12,9 +12,13 @@ class People::PersonRelationsController < CrudController
 
   def create
     super do |format, success|
-      if success && params.key?(:render_new_after_save)
+      return unless success
+
+      if params.key?(:render_new_after_save)
         remove_instance_variable(model_ivar_name)
         format.turbo_stream { render('save_and_new') }
+      else
+        format.turbo_stream { render('refresh_after_new') }
       end
     end
   end
