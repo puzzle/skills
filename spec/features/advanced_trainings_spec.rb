@@ -21,8 +21,10 @@ describe 'Advanced Trainings', type: :feature, js:true do
       click_link(href: new_person_advanced_training_path(person))
       within('turbo-frame#new_advanced_training') do
         fill_in 'advanced_training_description', with: description
+        select '2020', from: 'advanced_training_year_from'
         click_default_submit
       end
+      require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
       expect(page).to have_content(description)
     end
 
@@ -99,7 +101,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
 
         click_default_submit
       end
-      expect(page).to have_css(".alert.alert-danger", text: "Year from muss ausgefüllt werden")
+      expect(page).to have_css(".alert.alert-danger", text: "Jahr von muss ausgefüllt werden")
     end
 
     it 'Update entry and clear description' do
@@ -121,7 +123,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
         select '2010', from: 'advanced_training_year_to'
         click_default_submit
       end
-      expect(page).to have_css(".alert.alert-danger", text: "Year from muss vor \"Datum bis\" sein")
+      expect(page).to have_css(".alert.alert-danger", text: "Jahr von muss vor \"Datum bis\" sein")
     end
   end
 
