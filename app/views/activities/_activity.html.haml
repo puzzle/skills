@@ -1,0 +1,16 @@
+%div.border-top
+  %turbo-frame{id: dom_id(activity)}
+    = link_to edit_person_activity_path(@person, activity), data:{turbo_prefetch: :false}, class: "text-decoration-none text-dark bg-hover-gray d-block" do
+      %div.d-flex.row.pt-3.pb-5
+        %span.col-3.ps-5
+          #{months[activity.month_from || 0]} #{activity.year_from}
+          -if activity&.month_to.nil? && activity&.year_to.nil?
+            = "- #{I18n.t('date_range_picker.today')}"
+          - elsif activity&.month_to != activity&.month_from && activity&.year_to != activity&.year_from
+            = "- #{months[activity&.month_to || 0]} #{activity&.year_to}"
+          - else
+            =  "- #{months[activity.month_from || 0]} #{activity.year_to}"
+        %span.col.d-flex.flex-column
+          %span.fw-bolder
+            = activity.role
+          = activity.description
