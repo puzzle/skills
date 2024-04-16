@@ -25,13 +25,14 @@ describe 'Educations', type: :feature, js:true do
       click_link(href: new_person_education_path(person))
 
       within('turbo-frame#new_education') do
-        select '2020', from: 'education_year_from'
+        select '2024', from: 'education_year_from'
         fill_in 'education_title', with: title
         fill_in 'education_location', with: new_location
         click_default_submit
       end
-      expect(person.educations.last.title).to eq(title)
-      expect(person.educations.last.location).to eq(new_location)
+
+      expect(page).to have_content(title)
+      expect(page).to have_content(new_location)
     end
 
     it 'updates education' do
@@ -43,7 +44,7 @@ describe 'Educations', type: :feature, js:true do
         fill_in 'education_location', with: updated_location
         click_default_submit
       end
-      expect(person.educations.first.location).to eq(updated_location)
+      expect(page).to have_content(updated_location)
     end
 
     it 'cancels without saving' do
