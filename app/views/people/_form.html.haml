@@ -3,10 +3,15 @@
     %div.col-xl-3.col-12
       - if avatar_cached?(@person.picture)
         %img.rounded-circle#avatar{src: "#{@person.picture}?#{Time.now.to_f}", width: '141', height: '141'}
+      - elsif @person.id.nil?
+        %img.rounded-circle#avatar{width: '141', height: '141'}
       - else
         %img.rounded-circle#avatar{src: "#{@person.id}/picture?#{Time.now.to_f}", width: '141', height: '141'}
       %br
-      %label.btn.btn-link{for: "avatar-uploader"} Bild ändern
+      - if @person.id.nil?
+        %label.btn.btn-link{for: "avatar-uploader"} Bild hochladen
+      - else
+        %label.btn.btn-link{for: "avatar-uploader"} Bild ändern
       %div.visually-hidden{"data-controller"=>"image-upload"}= form.file_field :picture, {  accept: "image/", "data-action" => "image-upload#changeImage", id: "avatar-uploader" }
       = form.hidden_field :picture_cache
     %div.pe-5.col-xl-3.col-12
@@ -70,4 +75,7 @@
 
   %div.mt-3
     = form.submit :Speichern, { class: "btn btn-primary me-3 bg-skills-blue", id: "save-button" }
-    = link_to "Abbrechen", person_path, { id: "cancel-button" }
+    - if @person.id.nil?
+      = link_to "Abbrechen", people_path, { id: "cancel-button" }
+    - else
+      = link_to "Abbrechen", person_path(@person), { id: "cancel-button" }

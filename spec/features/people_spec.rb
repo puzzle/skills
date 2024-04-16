@@ -39,6 +39,15 @@ describe :people do
     end
   end
 
+  def common_languages_translated
+    I18nData.languages('DE').collect do |language|
+      if LanguageList::LanguageInfo.find(language[0])&.common?
+        [language.first, "#{language.last} (#{language.first})"]
+      end
+    end.compact.sort_by(&:last)
+  end
+
+
   def fill_out_person_form
     page.attach_file("avatar-uploader", Rails.root + 'app/assets/images/1.png')
     fill_in 'person_name', with: 'Hansjakobli'
@@ -71,6 +80,97 @@ describe :people do
     fill_in language_certificate_input[:id], with: 'Some Certificate'
   end
 
+  def assert_form_persisted(old_number_of_roles)
+    expect(page).to have_content("Hansjakobli")
+
+    person = Person.find_by(name: 'Hansjakobli')
+    expect(person.picture.identifier).to eql('1.png')
+    expect(person.email).to eql('hanswurst@somemail.com')
+    expect(person.title).to eql('Wurstexperte')
+    expect(person.person_roles.count).to eql(old_number_of_roles + 1)
+    edited_person_role = person.person_roles.last
+    expect(edited_person_role.role.name).to eql('System-Engineer')
+    expect(edited_person_role.person_role_level.level).to eql('S3')
+    expect(edited_person_role.percent).to eq(80)
+    expect(person.department.name).to eql('/ux')
+    expect(person.company.name).to eql('Partner')
+    expect(person.location).to eql('Las Vegas')
+    expect(person.birthdate.to_date.strftime('%d.%m.%Y')).to eql('28.03.1979')
+    expect(person.nationality).to eql('DE')
+    expect(person.nationality2).to eql('US')
+    expect(person.marital_status).to eql('married')
+    expect(person.shortname).to eql('bb')
+    edited_language_skill = person.language_skills.last
+    expect(edited_language_skill.language).to eql('FI')
+    expect(edited_language_skill.level).to eql('B2')
+    expect(edited_language_skill.certificate).to eql('Some Certificate')
+  end
+
+  def check_edit_fields(person, editing)
+    expect(page).to have_field('avatar-uploader')
+    expect(page).to have_field('person_name', with: person.name)
+    expect(page).to have_field('person_email', with: person.email)
+    expect(page).to have_field('person_title', with: person.title)
+    person_roles = person.person_roles
+    role_selects = page.all('.role-select')
+    role_level_selects = page.all('.role-level-select')
+    role_percent_selects = page.all('.person-role-percent')
+    expect(role_selects.count).to equal(person_roles.count)
+    expect(role_level_selects.count).to equal(person_roles.count)
+    expect(role_percent_selects.count).to equal(person_roles.count)
+    role_selects.each_with_index do |role_select, i|
+      expect(role_select.value.to_i).to equal(person_roles[i].role_id)
+    end
+    role_level_selects.each_with_index do |role_level_select, i|
+      person_roles[i].person_role_level_id.nil? ? (expect(role_level_select.value.to_i).to equal(PersonRoleLevel.first.id)) : (expect(role_level_select.value.to_i).to equal(person_roles[i].person_role_level_id))
+    end
+    role_percent_selects.each_with_index do |role_percent_select, i|
+      expect(role_percent_select.value.to_i).to equal(person_roles[i].percent.to_i)
+    end
+    expect(page).to have_select('person_department_id', selected: person.department.nil? ? Department.order(:name).first&.name : person.department.name)
+    expect(page).to have_select('person_company_id', selected: person.company.nil? ? Company.order(:name).first&.name : person.company.name)
+    expect(page).to have_field('person_location', with: person.location)
+    expect(page).to have_field('person_birthdate', with: person.birthdate&.to_date&.strftime)
+    if person.nationality2.nil?
+      expect(find_field('nat-two-checkbox')).not_to be_checked
+    else
+      expect(find_field('nat-two-checkbox')).to be_checked
+    end
+    expect(page.all('.nationality-two').count).to equal(person.nationality2.nil? ? 0 : 2)
+    expect(page).to have_select('person_nationality', selected: person.nationality.nil? ? ISO3166::Country[common_languages_translated.first.first].translations[I18n.locale] : ISO3166::Country[person.nationality].translations[I18n.locale])
+    person.nationality2.nil? ? (expect(page).not_to have_select('person_nationality2')) : (expect(page).to have_select('person_nationality2', selected: ISO3166::Country[person.nationality2].translations[I18n.locale]))
+    expect(page).to have_select('person_marital_status', selected: I18n.t("marital_statuses.#{person.marital_status}"))
+    expect(page).to have_field('person_shortname', with: person.shortname)
+
+    language_skills = person.language_skills
+    language_selects = page.all('.language-select')
+    language_level_selects = page.all('.language-level-select')
+    language_certificate_inputs = page.all('.language-certificate-input')
+    if editing
+      language_selects.each_with_index do |language_select, i|
+        expect(language_select.value).to eql(language_skills[i].language)
+      end
+      language_level_selects.each_with_index do |language_level_select, i|
+        expect(language_level_select.value).to eql(language_skills[i].level)
+      end
+      language_certificate_inputs.each_with_index do |language_certificate_input, i|
+        expect(language_certificate_input.value).to eql(language_skills[i].certificate)
+      end
+    else
+      default_languages = %w[DE EN FR]
+      expect(language_selects.count).to eql(3)
+      language_selects.each_with_index do |language_select, i|
+        expect(language_select.value).to eql(default_languages[i])
+      end
+      language_level_selects.each do |language_level_select|
+        expect(language_level_select.value).to eql('Keine')
+      end
+      language_certificate_inputs.each do |language_certificate_input|
+        expect(language_certificate_input.value).to eql('')
+      end
+    end
+  end
+
   def add_language(language)
     #Create new language.
     page.all(".add_fields").last.click
@@ -87,82 +187,17 @@ describe :people do
       bob = people(:bob)
       visit person_path(bob)
       page.find('#edit-button').click
-      expect(page).to have_field('avatar-uploader')
-      expect(page).to have_field('person_name', with: bob.name)
-      expect(page).to have_field('person_email', with: bob.email)
-      expect(page).to have_field('person_title', with: bob.title)
-      person_roles = bob.person_roles
-      role_selects = page.all('.role-select')
-      role_level_selects = page.all('.role-level-select')
-      role_percent_selects = page.all('.person-role-percent')
-      expect(role_selects.count).to equal(person_roles.count)
-      expect(role_level_selects.count).to equal(person_roles.count)
-      expect(role_percent_selects.count).to equal(person_roles.count)
-      role_selects.each_with_index do |role_select, i|
-        expect(role_select.value.to_i).to equal(person_roles[i].role_id)
-      end
-      role_level_selects.each_with_index do |role_level_select, i|
-        person_roles[i].person_role_level_id.nil? ? (expect(role_level_select.value.to_i).to equal(PersonRoleLevel.first.id)) : (expect(role_level_select.value.to_i).to equal(person_roles[i].person_role_level_id))
-      end
-      role_percent_selects.each_with_index do |role_percent_select, i|
-        expect(role_percent_select.value.to_i).to equal(person_roles[i].percent.to_i)
-      end
-      expect(page).to have_select('person_department_id', selected: bob.department.name)
-      expect(page).to have_select('person_company_id', selected: bob.company.name)
-      expect(page).to have_field('person_location', with: bob.location)
-      expect(page).to have_field('person_birthdate', with: bob.birthdate.to_date.strftime)
-      expect(page).to have_field('nat-two-checkbox', with: bob.nationality2.nil? ? "0" : "1")
-      expect(page.all('.nationality-two').count).to equal(bob.nationality2.nil? ? 0 : 2)
-      expect(page).to have_select('person_nationality', selected: ISO3166::Country[bob.nationality].translations[I18n.locale])
-      bob.nationality2.nil? ? (expect(page).not_to have_select('person_nationality2')) : (expect(page).to have_select('person_nationality2', selected: ISO3166::Country[bob.nationality2].translations[I18n.locale]))
-      expect(page).to have_select('person_marital_status', selected: I18n.t("marital_statuses.#{bob.marital_status}"))
-      expect(page).to have_field('person_shortname', with: bob.shortname)
-
-      language_skills = bob.language_skills
-      language_selects = page.all('.language-select')
-      language_level_selects = page.all('.language-level-select')
-      language_certificate_inputs = page.all('.language-certificate-input')
-      language_selects.each_with_index do |language_select, i|
-        expect(language_select.value).to eql(language_skills[i].language)
-      end
-      language_level_selects.each_with_index do |language_level_select, i|
-        expect(language_level_select.value).to eql(language_skills[i].level)
-      end
-      language_certificate_inputs.each_with_index do |language_certificate_input, i|
-        expect(language_certificate_input.value).to eql(language_skills[i].certificate)
-      end
+      check_edit_fields(bob, true)
     end
 
     it 'should edit and save changes' do
       bob = people(:bob)
+      old_number_of_roles = bob.person_roles.count
       visit person_path(bob)
       page.find('#edit-button').click
       fill_out_person_form
       page.find("#save-button").click
-
-      expect(page).to have_content("Hansjakobli")
-
-      edited_person = Person.find_by(name: 'Hansjakobli')
-      expect(edited_person.picture.identifier).to eql('1.png')
-      expect(edited_person.email).to eql('hanswurst@somemail.com')
-      expect(edited_person.title).to eql('Wurstexperte')
-      expect(edited_person.person_roles.count).to eql(3)
-      edited_person_role = edited_person.person_roles.last
-      expect(edited_person_role.role.name).to eql('System-Engineer')
-      expect(edited_person_role.person_role_level.level).to eql('S3')
-      expect(edited_person_role.percent).to eq(80)
-      expect(edited_person.department.name).to eql('/ux')
-      expect(edited_person.company.name).to eql('Partner')
-      expect(edited_person.location).to eql('Las Vegas')
-      expect(edited_person.birthdate.to_date.strftime('%d.%m.%Y')).to eql('28.03.1979')
-      expect(edited_person.nationality).to eql('DE')
-      expect(edited_person.nationality2).to eql('US')
-      expect(edited_person.marital_status).to eql('married')
-      expect(edited_person.shortname).to eql('bb')
-      edited_language_skill = edited_person.language_skills.last
-      expect(edited_language_skill.language).to eql('FI')
-      expect(edited_language_skill.level).to eql('B2')
-      expect(edited_language_skill.certificate).to eql('Some Certificate')
+      assert_form_persisted(old_number_of_roles)
     end
 
     it 'should edit and cancel without saving' do
@@ -211,5 +246,36 @@ describe :people do
       #Language should now be re-enabled
       expect(lang_select2.find('option', text: 'KO')).not_to be_disabled
     }
+  end
+
+  describe 'Create person', type: :feature, js: true do
+    before(:each) do
+      sign_in auth_users(:user), scope: :auth_user
+    end
+
+    it 'should have all edit fields' do
+      visit people_path
+      new_person = Person.new
+      page.find('#new-person-button').click
+      check_edit_fields(new_person, false)
+    end
+
+    it 'should create new person' do
+      visit people_path
+      page.find('#new-person-button').click
+      fill_out_person_form
+      page.find("#save-button").click
+
+      assert_form_persisted(0)
+    end
+
+    it 'should go back to overview after cancelling and not save new person' do
+      visit people_path
+      page.find('#new-person-button').click
+      fill_out_person_form
+      page.find("#cancel-button").click
+      expect(page).to have_current_path("/people")
+      expect(Person.all.find_by(name: "Hansjakobli")).to be_nil
+    end
   end
 end
