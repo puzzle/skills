@@ -36,6 +36,27 @@ describe 'Activities', type: :feature, js:true do
       expect(page).to have_content(description)
     end
 
+    it 'Create new with save & new' do
+      role = "This is a new role created by the save & new functionality"
+      description = "This is a new description created by the save & new functionality"
+      click_link(href: new_person_activity_path(person))
+
+      within('turbo-frame#new_activity') do
+        fill_in 'activity_role', with: role
+        fill_in 'activity_description', with: description
+        select 'Januar', from: 'activity_month_from'
+        select '2020', from: 'activity_year_from'
+
+        click_save_and_new_submit
+      end
+      expect(page).to have_content(role)
+      expect(page).to have_content(description)
+      expect(page).to have_select('activity_year_from', selected: "")
+      expect(page).to have_select('activity_month_from', selected: "-")
+      expect(page).to have_field('activity_role', with: "")
+      expect(page).to have_field('activity_description', with: "")
+    end
+
     it 'updates activity' do
       updated_description = 'I am an updated description'
 
