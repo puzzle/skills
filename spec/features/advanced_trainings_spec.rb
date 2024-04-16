@@ -24,7 +24,6 @@ describe 'Advanced Trainings', type: :feature, js:true do
         select '2020', from: 'advanced_training_year_from'
         click_default_submit
       end
-      require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
       expect(page).to have_content(description)
     end
 
