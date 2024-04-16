@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Educations', type: :feature, js:true do
+describe 'Activities', type: :feature, js:true do
   let(:person) { people(:bob) }
 
   before(:each) do
