@@ -1,3 +1,3 @@
 = turbo_stream.update "#{dom_id Person.new}" do
-  = render partial: "form", locals: {person: @person, editing: true}
+  = render partial: "form", locals: {person: @person}
   = render "application/error_banners", errors: @person.errors
