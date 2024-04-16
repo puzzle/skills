@@ -11,6 +11,14 @@ class People::PeopleSkillsController < CrudController
     Person
   end
 
+  def update
+    if params[:person].blank?
+      render(:index, status: :ok)
+    else
+      super
+    end
+  end
+
   def show_path
     people_skills_person_path(@person)
   end
