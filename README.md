@@ -23,6 +23,7 @@ Managing employees and getting an overview of each of their skills has never bee
 
 We are currently rewriting the application and completely removing EmberJS.
 The new Techstack will solely rely on Rails and some Hotwire/Stimulus.
+Therefore, the documentation below is not accurate anymore and will be rewritten soon.
 
 If you still need the old state you can find the last release [here](https://github.com/puzzle/skills/releases/tag/v4.4.1).
 The EmberJS-based Application will no longer be maintained.
