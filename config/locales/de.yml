@@ -4,12 +4,22 @@ de:
       cancel: Abbrechen
       delete: Löschen
       save-and-new: Speichern & Neu
+
+  attributes:
+    year_from: Jahr von
+    year_to: Jahr bis
+    month_from: Monat von
+    month_to: Monat bis
   activerecord:
     models:
       advanced_training: Weiterbildung
+      education: Ausbildung
     attributes:
       advanced_training:
         description: Beschreibung
+      education:
+        title: Ausbildung
+        location: Ausbildungsort
   skills:
     table:
       skill: Skill
