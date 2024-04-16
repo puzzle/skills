@@ -274,8 +274,7 @@ describe :people do
       page.find('#new-person-button').click
       fill_out_person_form
       page.find("#cancel-button").click
-      expect(current_path).to eql('/people')
-
+      expect(page).to have_current_path("/people")
       expect(Person.all.find_by(name: "Hansjakobli")).to be_nil
     end
   end
