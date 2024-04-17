@@ -22,7 +22,7 @@ describe 'Activities', type: :feature, js:true do
       role = 'Pressure-washer dealer'
       description = 'Deals with pressure-washers'
 
-      open_create_dialogue("Station hinzufügen", "#activity_role")
+      open_create_form(Activity)
 
       within('turbo-frame#new_activity') do
         select '2024', from: 'activity_year_from'
@@ -40,7 +40,7 @@ describe 'Activities', type: :feature, js:true do
       role = "This is a new role created by the save & new functionality"
       description = "This is a new description created by the save & new functionality"
 
-      open_create_dialogue("Station hinzufügen", "#activity_role")
+      open_create_form(Activity)
 
       within('turbo-frame#new_activity') do
         fill_in 'activity_role', with: role
@@ -62,8 +62,8 @@ describe 'Activities', type: :feature, js:true do
       updated_description = 'I am an updated description'
 
       activity = person.activities.first
+      open_edit_form(activity)
       within("turbo-frame#activity_#{activity.id}") do
-        find("[href=\"#{edit_person_activity_path(person, activity)}\"]").all("*").first.click
         fill_in 'activity_description', with: updated_description
         click_default_submit
       end
@@ -75,8 +75,8 @@ describe 'Activities', type: :feature, js:true do
       old_description = activity.description
       updated_description = 'I like long descriptions'
 
+      open_edit_form(activity)
       within("turbo-frame#activity_#{activity.id}") do
-        find("[href=\"#{edit_person_activity_path(person, activity)}\"]").all("*").first.click
         fill_in 'activity_description', with: updated_description
         find('a', text: 'Abbrechen').click
       end
@@ -86,8 +86,8 @@ describe 'Activities', type: :feature, js:true do
     it 'deletes activity' do
       activity = person.activities.first
       role = activity.role
+      open_edit_form(activity)
       within("turbo-frame#activity_#{activity.id}") do
-        find("[href=\"#{edit_person_activity_path(person, activity)}\"]").all("*").first.click
         click_link("Löschen")
       end
       expect(page).not_to have_content(role)
@@ -96,7 +96,7 @@ describe 'Activities', type: :feature, js:true do
 
   describe 'Error handling' do
     it 'create new activity without role' do
-      open_create_dialogue("Station hinzufügen", "#activity_role")
+      open_create_form(Activity)
 
       within('turbo-frame#new_activity') do
         click_default_submit
@@ -106,8 +106,8 @@ describe 'Activities', type: :feature, js:true do
 
     it 'Update entry and clear role' do
       activity = person.activities.first
+      open_edit_form(activity)
       within("turbo-frame#activity_#{activity.id}") do
-        find("[href=\"#{edit_person_activity_path(person, activity)}\"]").all("*").first.click
         fill_in 'activity_role', with: ""
         click_default_submit
       end

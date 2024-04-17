@@ -19,7 +19,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
     it 'Create new' do
       description = "new description"
 
-      open_create_dialogue("Weiterbildung hinzufügen", "#advanced_training_description")
+      open_create_form(AdvancedTraining)
 
       within('turbo-frame#new_advanced_training') do
         fill_in 'advanced_training_description', with: description
@@ -31,7 +31,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
 
     it 'Create new with save & new' do
       description = "This is a new description created by the save & new functionallity"
-      open_create_dialogue("Weiterbildung hinzufügen", "#advanced_training_description")
+      open_create_form(AdvancedTraining)
 
       within('turbo-frame#new_advanced_training') do
         fill_in 'advanced_training_description', with: description
@@ -49,8 +49,9 @@ describe 'Advanced Trainings', type: :feature, js:true do
     it 'Update entry' do
       description = "updated description"
       at = person.advanced_trainings.first
+      open_edit_form(at)
       within("turbo-frame#advanced_training_#{at.id}") do
-        find("[href=\"#{edit_person_advanced_training_path(person, at)}\"]").all("*").first.click
+        expect(page).to have_css('#advanced_training_description')
         fill_in 'advanced_training_description', with: description
         click_default_submit
         expect(page).to have_content(description)
@@ -63,7 +64,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
     let(:at) { person.advanced_trainings.first }
 
     before(:each) do
-      find("[href=\"#{edit_person_advanced_training_path(person, at)}\"]").all("*").first.click
+      open_edit_form(at)
       fill_in 'advanced_training_description', with: "This description"
     end
 
@@ -86,7 +87,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
   describe 'Error handling' do
 
     it 'Create new without description' do
-      open_create_dialogue("Weiterbildung hinzufügen", "#advanced_training_description")
+      open_create_form(AdvancedTraining)
       within('turbo-frame#new_advanced_training') do
         select '2020', from: 'advanced_training_year_from'
 
@@ -96,7 +97,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
     end
 
     it 'year_from cant be empty' do
-      open_create_dialogue("Weiterbildung hinzufügen", "#advanced_training_description")
+      open_create_form(AdvancedTraining)
       within('turbo-frame#new_advanced_training') do
         fill_in 'advanced_training_description', with: "This description"
 
@@ -107,8 +108,9 @@ describe 'Advanced Trainings', type: :feature, js:true do
 
     it 'Update entry and clear description' do
       at = person.advanced_trainings.first
+
+      open_edit_form(at)
       within("turbo-frame#advanced_training_#{at.id}") do
-        find("[href=\"#{edit_person_advanced_training_path(person, at)}\"]").all("*").first.click
         fill_in 'advanced_training_description', with: ""
         click_default_submit
       end
@@ -117,8 +119,8 @@ describe 'Advanced Trainings', type: :feature, js:true do
 
     it 'Update entry and clear description' do
       at = person.advanced_trainings.first
+      open_edit_form(at)
       within("turbo-frame#advanced_training_#{at.id}") do
-        find("[href=\"#{edit_person_advanced_training_path(person, at)}\"]").all("*").first.click
         fill_in 'advanced_training_description', with: "This is a test"
         select '2020', from: 'advanced_training_year_from'
         select '2010', from: 'advanced_training_year_to'
