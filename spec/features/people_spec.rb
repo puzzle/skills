@@ -196,7 +196,9 @@ describe :people do
       visit person_path(bob)
       page.find('#edit-button').click
       fill_out_person_form
-      page.find("#save-button").click
+      save_button = find_button("Speichern")
+      scroll_to(save_button, align: :center)
+      save_button.click
       assert_form_persisted(old_number_of_roles)
     end
 
