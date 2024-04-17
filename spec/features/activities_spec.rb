@@ -44,7 +44,10 @@ describe 'Activities', type: :feature, js:true do
 
       open_create_form(Activity)
 
-      find('#activity_role')
+      link = find_link("Station hinzufügen")
+      scroll_to(link, align: :center)
+      link.click
+      expect(page).to have_css("#activity_role")
 
       within('turbo-frame#new_activity') do
         fill_in 'activity_role', with: role
