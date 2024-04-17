@@ -22,7 +22,7 @@ describe 'Educations', type: :feature, js:true do
       title = 'Döner-Verkäufer'
       new_location = 'Dönerbude'
 
-      click_link(href: new_person_education_path(person))
+      open_create_dialogue("Ausbildung hinzufügen", "#education_title")
 
       within('turbo-frame#new_education') do
         select '2024', from: 'education_year_from'
@@ -63,7 +63,7 @@ describe 'Educations', type: :feature, js:true do
 
   describe 'Error handling' do
     it 'create new education without title and location' do
-      click_link(href: new_person_education_path(person))
+      open_create_dialogue("Ausbildung hinzufügen", "#education_title")
 
       within('turbo-frame#new_education') do
         click_default_submit

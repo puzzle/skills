@@ -60,6 +60,7 @@ RSpec.configure do |config|
   config.include(JsonMacros, type: :controller)
   config.include(JsonAssertion, type: :controller)
   config.include(ControllerHelpers, type: :controller)
+  config.include(PersonRelationsHelpers)
   config.include(Devise::Test::IntegrationHelpers, type: :feature)
   config.include(Devise::Test::ControllerHelpers, type: :controller)
 

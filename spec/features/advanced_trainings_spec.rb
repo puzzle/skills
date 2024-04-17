@@ -18,7 +18,9 @@ describe 'Advanced Trainings', type: :feature, js:true do
 
     it 'Create new' do
       description = "new description"
-      click_link(href: new_person_advanced_training_path(person))
+
+      open_create_dialogue("Weiterbildung hinzufügen", "#advanced_training_description")
+
       within('turbo-frame#new_advanced_training') do
         fill_in 'advanced_training_description', with: description
         select '2020', from: 'advanced_training_year_from'
@@ -29,7 +31,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
 
     it 'Create new with save & new' do
       description = "This is a new description created by the save & new functionallity"
-      click_link(href: new_person_advanced_training_path(person))
+      open_create_dialogue("Weiterbildung hinzufügen", "#advanced_training_description")
 
       within('turbo-frame#new_advanced_training') do
         fill_in 'advanced_training_description', with: description
@@ -84,7 +86,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
   describe 'Error handling' do
 
     it 'Create new without description' do
-      click_link(href: new_person_advanced_training_path(person))
+      open_create_dialogue("Weiterbildung hinzufügen", "#advanced_training_description")
       within('turbo-frame#new_advanced_training') do
         select '2020', from: 'advanced_training_year_from'
 
@@ -94,7 +96,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
     end
 
     it 'year_from cant be empty' do
-      click_link(href: new_person_advanced_training_path(person))
+      open_create_dialogue("Weiterbildung hinzufügen", "#advanced_training_description")
       within('turbo-frame#new_advanced_training') do
         fill_in 'advanced_training_description', with: "This description"
 
