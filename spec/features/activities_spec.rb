@@ -24,6 +24,8 @@ describe 'Activities', type: :feature, js:true do
 
       click_link(href: new_person_activity_path(person))
 
+      page.find('#activity_role')
+
       within('turbo-frame#new_activity') do
         select '2024', from: 'activity_year_from'
         fill_in 'activity_role', with: role
@@ -40,6 +42,8 @@ describe 'Activities', type: :feature, js:true do
       role = "This is a new role created by the save & new functionality"
       description = "This is a new description created by the save & new functionality"
       click_link(href: new_person_activity_path(person))
+
+      page.find('#activity_role')
 
       within('turbo-frame#new_activity') do
         fill_in 'activity_role', with: role
@@ -81,11 +85,23 @@ describe 'Activities', type: :feature, js:true do
       end
       expect(page).to have_content(old_description)
     end
+
+    it 'deletes activity' do
+      activity = person.activities.first
+      role = activity.role
+      within("turbo-frame#activity_#{activity.id}") do
+        find("[href=\"#{edit_person_activity_path(person, activity)}\"]").all("*").first.click
+        click_link("Löschen")
+      end
+      expect(page).not_to have_content(role)
+    end
   end
 
   describe 'Error handling' do
     it 'create new activity without role' do
       click_link(href: new_person_activity_path(person))
+
+      page.find('#activity_role')
 
       within('turbo-frame#new_activity') do
         click_default_submit
