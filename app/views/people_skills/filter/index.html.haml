@@ -1,0 +1,7 @@
+%turbo-frame{id: "search-filters"}
+  = form_with(url: people_skills_path, method: :get, class: "filter-form") do |form|
+    = render("people_skills/search_form", form: form, rowNumber: 0)
+    - search_row.times do | i |
+      = render("people_skills/search_form", form: form, rowNumber: i + 1)
+  = link_to image_tag("plus-lg.svg", class: "text-primary me-1") + "Skill hinzufügen (max. 5)",
+    filter_people_skills_path + "?rows=#{search_row + 1}", class: "btn d-flex align-items-center text-primary w-75", data: {"turbo-frame": "search-filters"}

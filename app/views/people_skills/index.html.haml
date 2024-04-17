@@ -1,11 +1,11 @@
 %div.mt-3{"data-controller": "people-skills-filter"}
   %turbo-frame{id: "search-filters"}
-    = form_with(url: people_skills_path, method: :get, class: "filter-form", data: {"turbo-frame": "search-results"}) do |form|
-      = render("search_form", form: form)
-      - @row.times do
-        = render("search_form", form: form)
-  = link_to image_tag("plus-lg.svg", class: "text-primary me-1") + "Skill hinzufügen (max. 5)",
-  people_skills_path + "?rows=#{@row + 1}", class: "btn d-flex align-items-center text-primary w-75"
+    = form_with(url: people_skills_path, method: :get, class: "filter-form") do |form|
+      - row_count.times do |i|
+        = render("search_form", form: form, rowNumber: i)
+      = link_to image_tag("plus-lg.svg", class: "text-primary me-1") + "Skill hinzufügen (max. 5)",
+       filter_people_skills_path + "?rows=#{row_count}", class: "btn d-flex align-items-center text-primary w-75",
+       data: {"turbo-frame": "search-filters"}
   %div.profile-header.mw-100.border-bottom.mt-4.fw-normal
     Suchresultate
   %turbo-frame{id: "search-results"}

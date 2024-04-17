@@ -16,7 +16,11 @@ Rails.application.routes.draw do
   end
 
   resources :skills
-  resources :people_skills
+  resources :people_skills do
+    collection do
+      get 'filter', to: "people_skills/filter#index"
+    end
+  end
 
 
   # Status
