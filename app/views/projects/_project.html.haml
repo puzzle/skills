@@ -1,0 +1,8 @@
+%div.border-top
+    %turbo-frame{id: dom_id(project)}
+        = link_to edit_person_advanced_training_path(project.person, project), data:{turbo_prefetch: :false, turbo_frame: dom_id(project)}, class: "text-decoration-none text-dark bg-hover-gray d-block" do
+            %div.d-flex.row.pt-3.pb-5
+                %span.col-3.ps-5
+                    = date_range_label project
+                %span.col
+                    = project.description
