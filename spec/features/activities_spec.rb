@@ -22,9 +22,10 @@ describe 'Activities', type: :feature, js:true do
       role = 'Pressure-washer dealer'
       description = 'Deals with pressure-washers'
 
-      click_link("Station hinzufügen")
-
-      find('#activity_role')
+      link = find_link("Station hinzufügen")
+      scroll_to(link, align: :center)
+      link.click
+      expect(page).to have_css("#activity_role")
 
       within('turbo-frame#new_activity') do
         select '2024', from: 'activity_year_from'
@@ -41,9 +42,11 @@ describe 'Activities', type: :feature, js:true do
     it 'Create new with save & new' do
       role = "This is a new role created by the save & new functionality"
       description = "This is a new description created by the save & new functionality"
-      click_link("Station hinzufügen")
 
-      find('#activity_role')
+      link = find_link("Station hinzufügen")
+      scroll_to(link, align: :center)
+      link.click
+      expect(page).to have_css("#activity_role")
 
       within('turbo-frame#new_activity') do
         fill_in 'activity_role', with: role
@@ -99,9 +102,10 @@ describe 'Activities', type: :feature, js:true do
 
   describe 'Error handling' do
     it 'create new activity without role' do
-      click_link("Station hinzufügen")
-
-      find('#activity_role')
+      link = find_link("Station hinzufügen")
+      scroll_to(link, align: :center)
+      link.click
+      expect(page).to have_css("#activity_role")
 
       within('turbo-frame#new_activity') do
         click_default_submit
