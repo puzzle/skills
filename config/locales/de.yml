@@ -4,6 +4,8 @@ de:
       cancel: Abbrechen
       delete: Löschen
       save-and-new: Speichern & Neu
+    button:
+      edit: Bearbeiten
 
   attributes:
     year_from: Jahr von
@@ -15,6 +17,7 @@ de:
       advanced_training: Weiterbildung
       education: Ausbildung
       activity: Station
+      project: Projekt
     attributes:
       advanced_training:
         description: Beschreibung
@@ -24,7 +27,11 @@ de:
       activity:
         role: Rolle
         description: Firmenangaben und Beschreibung der Tätigkeit
-
+      project: 
+        title: Projekt
+        description: Beschreibung
+        role: Rolle und Aufgaben
+        technology: Eingesetzte Technologien
   skills:
     table:
       skill: Skill
