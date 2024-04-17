@@ -24,7 +24,7 @@ describe 'Activities', type: :feature, js:true do
 
       open_create_form(Activity)
 
-      page.find('#activity_role')
+      find('#activity_role')
 
       within('turbo-frame#new_activity') do
         select '2024', from: 'activity_year_from'
@@ -44,7 +44,7 @@ describe 'Activities', type: :feature, js:true do
 
       open_create_form(Activity)
 
-      page.find('#activity_role')
+      find('#activity_role')
 
       within('turbo-frame#new_activity') do
         fill_in 'activity_role', with: role
@@ -102,7 +102,7 @@ describe 'Activities', type: :feature, js:true do
     it 'create new activity without role' do
       open_create_form(Activity)
 
-      page.find('#activity_role')
+      find('#activity_role')
 
       within('turbo-frame#new_activity') do
         click_default_submit
