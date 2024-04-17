@@ -19,7 +19,11 @@ describe 'Advanced Trainings', type: :feature, js:true do
     it 'Create new' do
       description = "new description"
 
+<<<<<<< HEAD
       open_create_form(AdvancedTraining)
+=======
+      open_create_dialogue("Weiterbildung hinzufügen", "#advanced_training_description")
+>>>>>>> Move code to savely open person_relation create field to helper method and use helper method in specs
 
       within('turbo-frame#new_advanced_training') do
         fill_in 'advanced_training_description', with: description
@@ -31,7 +35,11 @@ describe 'Advanced Trainings', type: :feature, js:true do
 
     it 'Create new with save & new' do
       description = "This is a new description created by the save & new functionallity"
+<<<<<<< HEAD
       open_create_form(AdvancedTraining)
+=======
+      open_create_dialogue("Weiterbildung hinzufügen", "#advanced_training_description")
+>>>>>>> Move code to savely open person_relation create field to helper method and use helper method in specs
 
       within('turbo-frame#new_advanced_training') do
         fill_in 'advanced_training_description', with: description
@@ -86,7 +94,11 @@ describe 'Advanced Trainings', type: :feature, js:true do
   describe 'Error handling' do
 
     it 'Create new without description' do
+<<<<<<< HEAD
       open_create_form(AdvancedTraining)
+=======
+      open_create_dialogue("Weiterbildung hinzufügen", "#advanced_training_description")
+>>>>>>> Move code to savely open person_relation create field to helper method and use helper method in specs
       within('turbo-frame#new_advanced_training') do
         select '2020', from: 'advanced_training_year_from'
 
@@ -96,7 +108,11 @@ describe 'Advanced Trainings', type: :feature, js:true do
     end
 
     it 'year_from cant be empty' do
+<<<<<<< HEAD
       open_create_form(AdvancedTraining)
+=======
+      open_create_dialogue("Weiterbildung hinzufügen", "#advanced_training_description")
+>>>>>>> Move code to savely open person_relation create field to helper method and use helper method in specs
       within('turbo-frame#new_advanced_training') do
         fill_in 'advanced_training_description', with: "This description"
 
