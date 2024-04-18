@@ -5,20 +5,23 @@ class PeopleSkillsController < CrudController
 
   helper_method :search_skill, :search_level, :search_interest, :row_count, :query_params
 
+  # rubocop:disable Metrics/MethodLength
   def entries
     return [] if params[:skill_id].blank?
 
     extracted_queries = extract_query_params
+    return [] if extracted_queries[:skill_ids].empty?
+
     base = PeopleSkill.includes(:person, skill: [
                                   :category,
                                   :people, { people_skills: :person }
                                 ])
-    return [] if extracted_queries[:skill_ids].empty?
     PeopleSkillsFilter.new(
       base, true, extracted_queries[:levels], extracted_queries[:interests],
       extracted_queries[:skill_ids]
     ).scope
   end
+  # rubocop:enable Metrics/MethodLength
 
   def row_count
     params[:skill_id].present? ? params[:skill_id].length : 1

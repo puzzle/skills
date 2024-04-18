@@ -221,6 +221,13 @@ pzsh-topbar {
   display: block;
 }
 
+.person-filter-container {
+  width: 20%;
+}
+
+.skills-filter-container {
+  width: 80%;
+}
 .highlighted {
   background-color: $skills-dark-blue;
 }

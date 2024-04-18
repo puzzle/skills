@@ -14,15 +14,15 @@
   %div.profile-header.mw-100.border-bottom.mt-4.fw-normal
     Suchresultate
   %turbo-frame{id: "search-results"}
-    %div.border.p-3.rounded-bottom
+    %div.border.p-3.rounded-bottom.search-results
       - if entries.size == 0
         Keine Resultate
       - else
         - entries.each do | filtered_entry|
           %div.d-flex.flex-row.w-100.border-bottom
-            %div.d-flex.flex-column.mt-2.mb-2.w-25.justify-content-start
+            %div.d-flex.flex-column.mt-2.mb-2.person-filter-container.justify-content-start
               = link_to filtered_entry[:person].name, person_path(filtered_entry[:person]), {"data-turbo"=>false}
-            %div.d-flex.flex-column.mt-2.mb-2.w-75
+            %div.d-flex.flex-column.mt-2.mb-2.skills-filter-container
               - filtered_entry[:skills].each do |person_skill|
-                %div.d-flex.flex-row
+                %div.d-flex.flex-row.mb-5
                   = render('person_skill', {person_skill: person_skill})
