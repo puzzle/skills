@@ -17,12 +17,13 @@ Rails.application.routes.draw do
     get 'readiness', to: 'status#readiness'
   end
 
-  resources :people_skills
 
   resources :people do
     resources :advanced_trainings
     resources :educations
     resources :activities
+    resources :people_skills, controller: 'people/people_skills'
+
     member do
       get 'export-cv', to: 'people/export_cv#show'
       put 'picture', to: 'people/picture#update'
@@ -30,12 +31,11 @@ Rails.application.routes.draw do
       get 'export', to: 'people#export'
       get 'competence-notes', to: 'people/competence_notes#edit'
       post 'competence-notes', to: 'people/competence_notes#update'
-
-      get 'people-skills', to: 'people/people_skills#index'
-      get 'people-skills-edit', to: 'people/people_skills#edit'
-      patch 'people-skills', to: 'people/people_skills#update'
     end
   end
+
+  resources :people_skills
+
 
   resources :skills do
     collection do

@@ -3,7 +3,8 @@
     %turbo-frame.d-flex.flex-row.w-100{id: "people-skill-form"}
       %div.bg-skills-gray.d-flex.justify-content-center.people-skills-actions.me-2.mt-2.border.border-light-subtle.border-2
         = link_to image_tag("pencil-square.svg", {class: "me-1"})+ "Skills bearbeiten",
-        people_skills_edit_person_path(@person), class: "d-flex align-items-center p-3"
+        person_people_skills_path(@person), class: "d-flex align-items-center p-3"
+        = link_to "Skills erstellen", new_person_people_skill_path(@person), class: "d-flex align-items-center p-3"
       %div.border-bottom.people-skills.overflow-scroll
         %p.d-flex.align-items-center.profile-header
           Skills

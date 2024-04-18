@@ -7,7 +7,7 @@
         data: {turbo_frame: "tab-content"} do
         %div.nav-link.active{ "data-profile-tab-target": "tab"}
           CV
-      =link_to people_skills_person_path(@person), class: "btn d-flex align-items-center justify-content-center text-primary p-0",
+      =link_to person_people_skills_path(@person), class: "btn d-flex align-items-center justify-content-center text-primary p-0",
         data: {turbo_frame: "tab-content"} do
         %div.nav-link{ "data-profile-tab-target": "tab"}
           Skills
