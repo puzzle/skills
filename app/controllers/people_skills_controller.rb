@@ -31,7 +31,6 @@ class PeopleSkillsController < CrudController
   end
 
   def row_count
-    query_params
     params[:skill_id].present? ? params[:skill_id].length : 1
   end
 
