@@ -9,5 +9,6 @@
             = render("people_skills/search_form", form: form, rowNumber: i + 1)
           = image_tag("x.svg", class: "text-primary pointer",
           "data-action": "click->people-skills-filter#remove", "data-people-skills-filter-id-param": i)
-    = link_to image_tag("plus-lg.svg", class: "text-primary me-1") + "Skill hinzufügen (max. 5)",
-      filter_people_skills_path + "?rows=#{search_row + 1}&#{query_params}", class: "btn d-flex align-items-center text-primary w-75", data: {"turbo-frame": "search-filters"}
+    - if search_row < 4
+      = link_to image_tag("plus-lg.svg", class: "text-primary me-1") + "Skill hinzufügen (max. 5)",
+        filter_people_skills_path + "?rows=#{search_row + 1}&#{query_params}", class: "btn d-flex align-items-center text-primary w-75", data: {"turbo-frame": "search-filters"}
