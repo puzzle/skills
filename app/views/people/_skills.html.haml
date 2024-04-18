@@ -3,4 +3,6 @@
     Skills
     =link_to image_tag("pencil-square.svg", class: "text-primary me-1") + "Skills bearbeiten",
     people_skills_path, class: "btn d-flex align-items-center text-primary w-75"
+
+    = link_to "Skill erstellen", people_skills_path, class: "btn d-flex align-items-center text-primary w-75"
   = render "people_skills/form", person: @person
