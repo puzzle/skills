@@ -1,0 +1,7 @@
+= form_with model: ([entry.person, entry]) do |f|
+  = render('people/person_relations/form', form: f) do
+    - content_for :input do
+      = t "activerecord.attributes.activity.role"
+      = f.text_area :role, placeholder: "Rolle", class: "form-control w-100"
+      = t "activerecord.attributes.activity.description"
+      = f.text_area :description, placeholder: "Beschreibung", class: "form-control w-100"

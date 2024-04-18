@@ -14,12 +14,17 @@ de:
     models:
       advanced_training: Weiterbildung
       education: Ausbildung
+      activity: Station
     attributes:
       advanced_training:
         description: Beschreibung
       education:
         title: Ausbildung
         location: Ausbildungsort
+      activity:
+        role: Rolle
+        description: Firmenangaben und Beschreibung der Tätigkeit
+
   skills:
     table:
       skill: Skill

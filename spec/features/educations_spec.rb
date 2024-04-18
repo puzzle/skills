@@ -22,7 +22,7 @@ describe 'Educations', type: :feature, js:true do
       title = 'Döner-Verkäufer'
       new_location = 'Dönerbude'
 
-      click_link(href: new_person_education_path(person))
+      open_create_form(Education)
 
       within('turbo-frame#new_education') do
         select '2024', from: 'education_year_from'
@@ -39,8 +39,8 @@ describe 'Educations', type: :feature, js:true do
       updated_location = 'Dönerbude des Vertrauens'
 
       education = person.educations.first
+      open_edit_form(education)
       within("turbo-frame#education_#{education.id}") do
-        find("[href=\"#{edit_person_education_path(person, education)}\"]").all("*").first.click
         fill_in 'education_location', with: updated_location
         click_default_submit
       end
@@ -52,8 +52,9 @@ describe 'Educations', type: :feature, js:true do
       old_location = education.location
       updated_location = 'Dönerbude des Vertrauens'
 
+      open_edit_form(education)
+
       within("turbo-frame#education_#{education.id}") do
-        find("[href=\"#{edit_person_education_path(person, education)}\"]").all("*").first.click
         fill_in 'education_location', with: updated_location
         find('a', text: 'Abbrechen').click
       end
@@ -63,7 +64,7 @@ describe 'Educations', type: :feature, js:true do
 
   describe 'Error handling' do
     it 'create new education without title and location' do
-      click_link(href: new_person_education_path(person))
+      open_create_form(Education)
 
       within('turbo-frame#new_education') do
         click_default_submit
@@ -74,8 +75,8 @@ describe 'Educations', type: :feature, js:true do
 
     it 'Update entry and clear title & description' do
       education = person.educations.first
+      open_edit_form(education)
       within("turbo-frame#education_#{education.id}") do
-        find("[href=\"#{edit_person_education_path(person, education)}\"]").all("*").first.click
         fill_in 'education_title', with: ""
         fill_in 'education_location', with: ""
         click_default_submit
