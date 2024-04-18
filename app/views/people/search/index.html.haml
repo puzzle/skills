@@ -1,4 +1,5 @@
 %turbo-frame{id: "search-people"}  
-  - entries.each do | entry |
-    %div.dropdown-option.w-100
-      = link_to entry.name, person_path(entry), {class: "decoration-none" ,"data-turbo": false}
+  - sorted_entries = entries.sort_by(&:name)
+  - sorted_entries.each do |entry|
+    %div.dropdown-option
+      = link_to entry.name, person_path(entry), {class: "dropdown-text", "data-turbo": false}

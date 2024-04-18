@@ -100,20 +100,29 @@ pzsh-topbar {
   background-color: #69b978
 }
 
-.decoration-none {
-  text-decoration: none;
-  color: black;
+.dropdown {
+  max-height: 14em;
+  overflow-y: scroll;
+  background-color: white;
+  position: absolute;
+  z-index: 1;
+  border: 0.5px solid #cccccc;
+  border-radius: 3px;
+  width: 100%;
 }
 
 .dropdown-option {
-  height: 2vh;
+  display: flex;
+  align-items: center;
+  height: 2em;
 }
 
-.dropdown-option :hover {
-  color: #2c97a6;
+.dropdown-option:hover {
+  background-color: #2c97a6;
 }
 
-.test {
-  height: 16vh;
-  overflow-y: scroll;
+.dropdown-text {
+  text-decoration: none;
+  color: black;
+  margin-left: 12px;
 }
