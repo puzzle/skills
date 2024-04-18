@@ -10,4 +10,4 @@
           = image_tag("x.svg", class: "text-primary pointer",
           "data-action": "click->people-skills-filter#remove", "data-people-skills-filter-id-param": i)
     = link_to image_tag("plus-lg.svg", class: "text-primary me-1") + "Skill hinzufügen (max. 5)",
-      filter_people_skills_path + "?rows=#{search_row + 1}", class: "btn d-flex align-items-center text-primary w-75", data: {"turbo-frame": "search-filters"}
+      filter_people_skills_path + "?rows=#{search_row + 1}&#{query_params}", class: "btn d-flex align-items-center text-primary w-75", data: {"turbo-frame": "search-filters"}
