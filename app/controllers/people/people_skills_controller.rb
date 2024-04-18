@@ -10,7 +10,7 @@ class People::PeopleSkillsController < CrudController
 
   def update
     if params[:person].blank?
-      render(:index, status: :ok)
+      render('index', status: :ok)
     else
       super
     end
@@ -24,5 +24,19 @@ class People::PeopleSkillsController < CrudController
 
   def people_skills_of_category(category)
     @person.people_skills.where(skill_id: category.skills.pluck(:id))
+  end
+
+  def find_entry
+    model_scope.first
+  end
+
+  def parent_entry(clazz)
+    id = params["#{clazz.name.underscore}_id"] || params[:id]
+    model_ivar_set(clazz.find(id))
+  end
+
+  def model_identifier
+    # super
+    params.key?(super) ? super : :person
   end
 end

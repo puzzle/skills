@@ -6,7 +6,7 @@
           %div.d-flex.flex-row
             = image_tag("pencil-square.svg", {class: "me-1"})
             %span.fw-medium Bearbeiten
-          = link_to "Abbrechen", people_skills_person_path(@person), class: "d-flex align-items-center text-decoration-none mt-2 mb-2"
+          = link_to "Abbrechen", person_people_skills_path(@person), class: "d-flex align-items-center text-decoration-none mt-2 mb-2"
           = form.submit :Speichern, { class: "btn btn-primary bg-skills-blue w-75", id: "save-button" }
         %div.mw-75.border-bottom.people-skills.overflow-scroll
           %p.d-flex.align-items-center.profile-header

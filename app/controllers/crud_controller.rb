@@ -86,6 +86,7 @@ class CrudController < ListController
 
   def update(**options, &block) # rubocop:disable Metrics/MethodLength
     model_class.transaction do
+      require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
       if assign_attributes
         updated = false
         if true?(params[:validate_only])
@@ -144,6 +145,7 @@ class CrudController < ListController
 
   # Assigns the attributes from the params to the model entry.
   def assign_attributes
+    require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
     entry.attributes = model_params
   end
 
@@ -198,6 +200,7 @@ class CrudController < ListController
   def redirect_on_success(**options)
     location = options[:location] ||
       (entry.destroyed? ? index_path : show_path)
+    require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
     flash[:notice] ||= flash_message(:success)
     redirect_to location
   end
