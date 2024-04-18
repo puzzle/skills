@@ -21,7 +21,5 @@ module PersonRelationsHelpers
 
   def find_by_turbo_frame_id(id)
     find("a[data-turbo-frame='#{id}']")
-    n_children = find("##{element_id}").all("*").count
-    expect(n_children).to be > 0
   end
 end

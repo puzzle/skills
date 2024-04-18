@@ -31,8 +31,8 @@ describe 'Advanced Trainings', type: :feature, js:true do
 
     it 'Create new with save & new' do
       description = "This is a new description created by the save & new functionallity"
-
       open_create_form(AdvancedTraining)
+
       within('turbo-frame#new_advanced_training') do
         fill_in 'advanced_training_description', with: description
         select 'Januar', from: 'advanced_training_month_from'

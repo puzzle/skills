@@ -24,8 +24,6 @@ describe 'Activities', type: :feature, js:true do
 
       open_create_form(Activity)
 
-      find('#activity_role')
-
       within('turbo-frame#new_activity') do
         select '2024', from: 'activity_year_from'
         fill_in 'activity_role', with: role
@@ -43,11 +41,6 @@ describe 'Activities', type: :feature, js:true do
       description = "This is a new description created by the save & new functionality"
 
       open_create_form(Activity)
-
-      link = find_link("Station hinzufügen")
-      scroll_to(link, align: :center)
-      link.click
-      expect(page).to have_css("#activity_role")
 
       within('turbo-frame#new_activity') do
         fill_in 'activity_role', with: role
@@ -104,8 +97,6 @@ describe 'Activities', type: :feature, js:true do
   describe 'Error handling' do
     it 'create new activity without role' do
       open_create_form(Activity)
-
-      find('#activity_role')
 
       within('turbo-frame#new_activity') do
         click_default_submit
