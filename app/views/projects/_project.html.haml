@@ -1,0 +1,23 @@
+%div.border-top
+    %turbo-frame{id: dom_id(project)}
+        = link_to edit_person_project_path(project.person, project), data:{turbo_prefetch: :false, turbo_frame: dom_id(project)}, class: "text-decoration-none text-dark bg-hover-gray d-block" do
+            %div.border.border-secondary-subtle.border-1.d-flex.flex-column
+                %div.profile-header.mw-100.border-bottom
+                    = "#{date_range_label project} | #{project.title}"
+                %div.d-flex.flex-column.ms-5.mt-3.mb-3
+                    %div.d-flex.gap-1.flex-column
+                        %div.row
+                            %span.fw-bold.col-12.col-lg-2
+                                = t "activerecord.attributes.project.description"
+                            %span.col
+                                = project.description
+                        %div.row
+                            %span.fw-bold.col-12.col-lg-2
+                                = t "activerecord.attributes.project.role"
+                            %span.col
+                                = project.role
+                        %div.row
+                            %span.fw-bold.col-12.col-lg-2
+                                = t "activerecord.attributes.project.technology"
+                            %span.col
+                                = project.technology

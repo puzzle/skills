@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     resources :advanced_trainings
     resources :educations
     resources :activities
+    resources :projects
+
     member do
       get 'export-cv', to: 'people/export_cv#show'
       put 'picture', to: 'people/picture#update'
