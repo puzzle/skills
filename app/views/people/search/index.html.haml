@@ -1,5 +1,6 @@
-%turbo-frame{id: "search-people"}  
+%turbo-frame{id: "search-people", "data-controller": "dropdown"}  
   - sorted_entries = entries.sort_by(&:name)
   - sorted_entries.each do |entry|
-    %div.dropdown-option
-      = link_to entry.name, person_path(entry), {class: "dropdown-text", "data-turbo": false}
+    =link_to person_path(entry), {class: "d-flex align-items-center dropdown-option", "data-dropdown-target": "options", "data-turbo": false} do 
+      %div.dropdown-text
+        = entry.name

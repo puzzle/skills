@@ -112,17 +112,19 @@ pzsh-topbar {
 }
 
 .dropdown-option {
-  display: flex;
-  align-items: center;
   height: 2em;
+  text-decoration: none !important;
+  color: black;
 }
 
 .dropdown-option:hover {
   background-color: #2c97a6;
 }
 
+.dropdown-option:focus {
+  background-color: #2c97a6;
+}
+
 .dropdown-text {
-  text-decoration: none;
-  color: black;
-  margin-left: 12px;
+  margin-left: 12px
 }

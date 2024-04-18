@@ -1,5 +1,5 @@
 %div.position-relative{"data-controller": "dropdown"}
   = form_with(url: search_people_path, method: :get, data: {"turbo-frame": "search-people"}) do |f|
     = f.text_field :searched_string, { class: "form-control", placeholder: "Person suchen", type: "text", onInput: "this.form.requestSubmit();", onfocus: "this.form.requestSubmit();", "data-action": "focusout->dropdown#hide focus->dropdown#show"}
-  %div{class: "dropdown" ,"data-dropdown-target": "results"}
+  %div{class: "dropdown", "data-dropdown-target": "results"}
     %turbo-frame{id: "search-people"}
