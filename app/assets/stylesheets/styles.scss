@@ -1,6 +1,9 @@
 $skills-blue: #3b7bbe;
 $skills-text-gray: #8e8e8e;
 $skills-gray: #f5f5f5;
+$skills-green: #69b978;
+$skills-green-hover: #4e903c;
+$skills-search-result-blue: #238bca;
 $skills-banner-text-blue: #1e5a96;
 
 @import "bootstrap";
@@ -91,6 +94,22 @@ pzsh-topbar {
 
 .bg-skills-blue:hover {
   background-color: #3268a1;
+}
+
+.bg-skills-green {
+  background-color: $skills-green;
+}
+
+.bg-skills-green:hover {
+  background-color: $skills-green-hover;
+}
+
+.bg-skills-search-result-blue {
+  background-color: $skills-search-result-blue;
+}
+
+.bg-skills-search-result-blue:hover {
+  background-color: $skills-green-hover;
 }
 
 .fixed-table {
