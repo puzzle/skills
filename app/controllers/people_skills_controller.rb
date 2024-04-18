@@ -13,6 +13,7 @@ class PeopleSkillsController < CrudController
                                   :category,
                                   :people, { people_skills: :person }
                                 ])
+    return [] if extracted_queries[:skill_ids].empty?
     PeopleSkillsFilter.new(
       base, true, extracted_queries[:levels], extracted_queries[:interests],
       extracted_queries[:skill_ids]
