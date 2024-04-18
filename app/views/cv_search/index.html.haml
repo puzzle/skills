@@ -1,0 +1,6 @@
+%div.mt-2
+  %input{class: "form-control w-75", placeholder: "CVs durchsuchen..."}
+  %div.profile-header.mw-100.border-bottom.mt-2
+    Suchresultate
+  - @cv_search_results.each do |result|
+    %div= result

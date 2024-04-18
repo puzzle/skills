@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
   resources :people_skills
 
+  resources :cv_search
+
   resources :people do
     resources :advanced_trainings
     resources :educations
