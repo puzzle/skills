@@ -20,9 +20,10 @@ class PeopleSkillsFilter
 
   def set_levels_and_interests_for_skills(levels, interests, skill_ids)
     return if levels.blank? || skill_ids.blank? || interests.blank?
-    levels = levels.join(",").split(',')
-    interests = interests.join(",").split(',')
-    skill_ids = skill_ids.join(",").split(',')
+
+    levels = levels.join(',').split(',')
+    interests = interests.join(',').split(',')
+    skill_ids = skill_ids.join(',').split(',')
 
     # rubocop:disable Layout/LineLength
     @levels_and_interests_for_skills = skill_ids.zip(levels, interests)

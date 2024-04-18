@@ -3,7 +3,7 @@
 class PeopleSkills::FilterController < ApplicationController
   include ParamConverters
 
-  helper_method :search_row,:search_skill, :search_level, :search_interest, :query_params
+  helper_method :search_row, :search_skill, :search_level, :search_interest, :query_params
 
   def search_row
     params[:rows].present? ? params[:rows].to_i : nil

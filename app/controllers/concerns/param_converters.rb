@@ -37,24 +37,25 @@ module ParamConverters
   end
 
   def query_params
-    skill_ids = map_array_to_query("skill_id")
-    levels = map_array_to_query("level")
-    interests = map_hash_to_query("interest")
-    return "" if skill_ids.nil?
-    (skill_ids + levels + interests).join("&")
+    skill_ids = map_array_to_query('skill_id')
+    levels = map_array_to_query('level')
+    interests = map_hash_to_query('interest')
+    return '' if skill_ids.nil?
+
+    (skill_ids + levels + interests).join('&')
   end
 
   def map_array_to_query(query_name)
-    if params["#{query_name}"].present?
-      params["#{query_name}"].map do |skill|
+    if params[query_name.to_s].present?
+      params[query_name.to_s].map do |skill|
         "#{query_name}[]=#{skill}"
       end
     end
   end
 
   def map_hash_to_query(query_name)
-    if params["#{query_name}"].present?
-      params["#{query_name}"].values.map.with_index do |skill, index|
+    if params[query_name.to_s].present?
+      params[query_name.to_s].values.map.with_index do |skill, index|
         "#{query_name}[#{index}]=#{skill}"
       end
     end
