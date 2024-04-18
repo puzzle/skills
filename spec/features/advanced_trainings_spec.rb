@@ -51,7 +51,6 @@ describe 'Advanced Trainings', type: :feature, js:true do
       at = person.advanced_trainings.first
       open_edit_form(at)
       within("turbo-frame#advanced_training_#{at.id}") do
-        expect(page).to have_css('#advanced_training_description')
         fill_in 'advanced_training_description', with: description
         click_default_submit
         expect(page).to have_content(description)
