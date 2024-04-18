@@ -1,11 +1,13 @@
 %div.mt-3{"data-controller": "people-skills-filter"}
   %turbo-frame{id: "search-filters"}
-    = form_with(url: people_skills_path, method: :get, class: "filter-form") do |form|
+    = form_with(url: people_skills_path, method: :get, class: "filter-form", data: {"people-skills-filter-target": "form"}) do |form|
       - row_count.times do |i|
-        %div.d-flex.flex-row.align-items-center
-          = render("search_form", form: form, rowNumber: i)
+        %div.d-flex.flex-row.align-items-center{"data-people-skills-filter-target": "filter"}
+          %div.filter-container.me-1
+            = render("search_form", form: form, rowNumber: i)
           - if i != 0
-            = image_tag("x.svg", class: "text-primary pointer")
+            = image_tag("x.svg", class: "text-primary pointer", "data-action": "click->people-skills-filter#remove",
+            "data-people-skills-filter-id-param": i)
       = link_to image_tag("plus-lg.svg", class: "text-primary me-1") + "Skill hinzufügen (max. 5)",
        filter_people_skills_path + "?rows=#{row_count}&#{query_params}", class: "btn d-flex align-items-center text-primary w-75",
        data: {"turbo-frame": "search-filters"}
