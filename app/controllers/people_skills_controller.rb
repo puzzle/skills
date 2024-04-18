@@ -26,7 +26,7 @@ class PeopleSkillsController < CrudController
                                   :people, { people_skills: :person }
                                 ])
     PeopleSkillsFilter.new(
-      base, true, skill_ids, levels, interests
+      base, true, levels, interests, skill_ids
     ).scope
   end
 

@@ -33,10 +33,10 @@ class PeopleSkillsFilter
 
   def filter_by_rated
     case rated
-    when 'true'
+    when true
       return entries.where.not(interest: 0)
                     .or(entries.where.not(level: 0))
-    when 'false'
+    when false
       return entries.where(interest: 0, level: 0)
     end
     entries
