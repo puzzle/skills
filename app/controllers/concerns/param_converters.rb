@@ -21,19 +21,11 @@ module ParamConverters
   end
 
   def search_level(row_id)
-    if params[:level].present?
-      params[:level][row_id].present? ? params[:level][row_id].to_i : 1
-    else
-      1
-    end
+    params[:level].present? ? params[:level][row_id].to_i : 1
   end
 
   def search_interest(row_id)
-    if params[:interest].present?
-      params[:interest].values[row_id].present? ? params[:interest].values[row_id].to_i : 1
-    else
-      1
-    end
+    params[:interest].present? ? params[:interest].values[row_id].to_i : 1
   end
 
   def query_params
@@ -46,17 +38,17 @@ module ParamConverters
   end
 
   def map_array_to_query(query_name)
-    if params[query_name.to_s].present?
-      params[query_name.to_s].map do |skill|
-        "#{query_name}[]=#{skill}"
+    if params[query_name].present?
+      params[query_name].map do |value|
+        "#{query_name}[]=#{value}"
       end
     end
   end
 
   def map_hash_to_query(query_name)
-    if params[query_name.to_s].present?
-      params[query_name.to_s].values.map.with_index do |skill, index|
-        "#{query_name}[#{index}]=#{skill}"
+    if params[query_name].present?
+      params[query_name].values.map.with_index do |value, index|
+        "#{query_name}[#{index}]=#{value}"
       end
     end
   end
