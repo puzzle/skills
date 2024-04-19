@@ -19,7 +19,7 @@ export default class extends Controller {
         } else if (event.code == "ArrowUp") {
           counter--;
         }
-        counter = counter >= this.optionsTargets.length - 1 ? 0 : counter;
+        counter = counter >= this.optionsTargets.length ? 0 : counter;
         counter = counter < 0 ? 0 : counter;
         this.optionsTargets[counter].focus();
       }
