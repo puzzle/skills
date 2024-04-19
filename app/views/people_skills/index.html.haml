@@ -8,9 +8,10 @@
           - if i != 0
             = image_tag("x.svg", class: "text-primary pointer", "data-action": "click->people-skills-filter#remove",
             "data-people-skills-filter-id-param": i)
-      = link_to image_tag("plus-lg.svg", class: "text-primary me-1") + "Skill hinzufügen (max. 5)",
-       filter_people_skills_path + "?rows=#{row_count}&#{query_params}", class: "btn d-flex align-items-center text-primary w-75",
-       data: {"turbo-frame": "search-filters"}
+      - if row_count < 5
+        = link_to image_tag("plus-lg.svg", class: "text-primary me-1") + "Skill hinzufügen (max. 5)",
+         filter_people_skills_path + "?rows=#{row_count}&#{query_params}", class: "btn d-flex align-items-center text-primary w-75",
+         data: {"turbo-frame": "search-filters"}
   %div.profile-header.mw-100.border-bottom.mt-4.fw-normal
     Suchresultate
   %turbo-frame{id: "search-results"}
