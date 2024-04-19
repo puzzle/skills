@@ -11,7 +11,7 @@ describe :people_skills do
     it 'Should return matching entries to page' do
       visit people_skills_path
 
-      select skill["title"].to_s, from: 'skill_id[]'
+      select rails["title"].to_s, from: 'skill_id[]'
       page.find("#row0_star-label5").click(x: 10, y: 10)
       page.first(".form-range").set(3)
       expect(page).to have_text('Bob Anderson')
@@ -38,6 +38,55 @@ describe :people_skills do
         page.find('#add-row-button').click
       end
       expect(page).not_to have_selector "#add-row-button"
+    end
+
+    it 'Should return user which matches filters' do
+      visit(people_skills_path)
+      4.times do
+        page.find('#add-row-button').click
+      end
+      expect(page).to have_selector("#filter-row-4")
+
+      # set skills in filters
+      page.all('select', wait: 5)[0].select('JUnit')
+      page.all('select')[1].select('Rails')
+      page.all('select')[2].select('ember')
+      page.all('select')[3].select('Bash')
+      page.all('select')[4].select('cunit')
+
+      # set level in filters
+      page.all(".form-range")[0].set(5)
+      page.all(".form-range")[1].set(4)
+      page.all(".form-range")[2].set(5)
+      page.all(".form-range")[3].set(5)
+      page.all(".form-range")[4].set(5)
+
+      page.find('#row0_star-label3').click(x: 10, y: 10)
+      page.find('#row1_star-label5').click(x: 10, y: 10)
+      page.find('#row2_star-label4').click(x: 10, y: 10)
+      page.find('#row3_star-label2').click(x: 10, y: 10)
+      page.find('#row4_star-label2').click(x: 10, y: 10)
+
+      expect(page).to have_text("Wally Allround")
+    end
+
+    it 'Should return no results if no user matches filters' do
+      visit(people_skills_path)
+      4.times do
+        page.find('#add-row-button').click
+      end
+      expect(page).to have_selector("#filter-row-4")
+
+      # set skills in filters
+      page.all('select', wait: 5)[0].select('JUnit')
+      page.all('select')[1].select('Rails')
+      page.all('select')[2].select('ember')
+      page.all('select')[3].select('Bash')
+      page.all('select')[4].select('cunit')
+
+      # set level in filters
+      page.find('#row4_star-label5').click(x: 10, y: 10)
+      expect(page).to have_text("Keine Resultate")
     end
 
   end
