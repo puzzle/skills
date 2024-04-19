@@ -19,5 +19,20 @@ describe PeopleSkillsController do
       expect(response.code).to eq("200")
       expect(response.body).to include("Keine Resultate")
     end
+
+    it 'should set filters according to parameters' do
+      query_params = {
+        skill_id: [skills(:rails).id, skills(:bash).id, skills(:junit).id, skills(:cunit).id],
+        level: [4, 5, 5, 5],
+        "interest[0]": 5,
+        "interest[1]": 2,
+        "interest[2]": 3,
+        "interest[3]": 2,
+      }
+      get :index, params: query_params
+
+      expect(response.code).to eq("200")
+      expect(response.body).to include("Wally Allround")
+    end
   end
 end
