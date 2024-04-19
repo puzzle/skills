@@ -19,7 +19,7 @@
       - if entries.size == 0
         Keine Resultate
       - else
-        - entries.each do | filtered_entry|
+        - entries.each do | filtered_entry |
           %div.d-flex.flex-row.w-100.border-bottom
             %div.d-flex.flex-column.mt-2.mb-2.person-filter-container.justify-content-start
               = link_to filtered_entry[:person].name, person_path(filtered_entry[:person]), {"data-turbo"=>false}

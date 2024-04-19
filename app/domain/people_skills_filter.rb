@@ -58,6 +58,7 @@ class PeopleSkillsFilter
   def skills_by_person(entries, person_ids)
     entries.includes(:skill, :person)
            .where(person_id: person_ids, skill_id: skill_ids)
+           .sort_by{|item| item.skill.title}
            .group_by(&:person)
   end
 
