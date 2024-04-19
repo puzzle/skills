@@ -20,7 +20,7 @@ describe PeopleSkillsController do
       expect(response.body).to include("Keine Resultate")
     end
 
-    it 'should set filters according to parameters' do
+    it 'should get results over url too' do
       query_params = {
         skill_id: [skills(:rails).id, skills(:bash).id, skills(:junit).id, skills(:cunit).id],
         level: [4, 5, 5, 5],
