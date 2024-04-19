@@ -1,6 +1,6 @@
 %div.mt-2
-  %form{data: {"turbo-frame": "search-results"}}
-    %input{class: 'form-control w-75', placeholder: 'CVs durchsuchen...', name: 'q', oninput: 'this.form.requestSubmit()'}
+  %form{data: {"turbo-frame": "search-results"}, "data-controller": "search"}
+    %input{class: 'form-control w-75', placeholder: 'CVs durchsuchen...', name: 'q', "data-action" => "search#submitWithTimeout"}
   %div.profile-header.mw-100.border-bottom.mt-2.mb-2
     Suchresultate
   %turbo-frame{id: "search-results"}
