@@ -1,12 +1,12 @@
 %div.mt-2
-  %form
-    %input{class: 'form-control w-75', placeholder: 'CVs durchsuchen...', name: 'q', onchange: 'this.form.requestSubmit()'}
+  %form{data: {"turbo-frame": "search-results"}}
+    %input{class: 'form-control w-75', placeholder: 'CVs durchsuchen...', name: 'q', oninput: 'this.form.requestSubmit()'}
   %div.profile-header.mw-100.border-bottom.mt-2.mb-2
     Suchresultate
-  - if @cv_search_results.blank?
-    Keine Resultate
-  - else
-    %div{id: 'search_results'}
+  %turbo-frame{id: "search-results"}
+    - if @cv_search_results.blank?
+      Keine Resultate
+    - else
       - @cv_search_results.each do |result|
         %div.w-50.d-flex
           = link_to result[:person][:name], person_path(result[:person][:id]), class: "bg-skills-green w-50 text-decoration-none text-white ps-1 p-2 rounded-1"
