@@ -12,7 +12,8 @@ export default class extends Controller {
     });
 
     document.addEventListener("keydown", (event) => {
-      if(event.code == "ArrowDown" || event.code == "ArrowUp") {
+      const allowedKeyCodes = ["ArrowDown", "ArrowUp"];
+      if(allowedKeyCodes.includes(event.code)) {
         event.preventDefault();
         if(event.code == "ArrowDown") {
           counter++;

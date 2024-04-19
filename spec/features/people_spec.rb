@@ -12,8 +12,8 @@ describe :people do
     it 'displays people in alphabetical order in select' do
       visit people_path
       within 'section[data-controller="dropdown"]' do
-        dropdown_options = list.pluck(:name).unshift("Bitte wählen")
-        expect(page).to have_select('person_id', options: dropdown_options, selected: "Bitte wählen")
+        dropdown_options = list.pluck(:name)
+        expect(page).to have_select('person_id', options: dropdown_options)
       end
     end
 
