@@ -21,11 +21,19 @@ module ParamConverters
   end
 
   def search_level(row_id)
-    params[:level].present? ? params[:level][row_id].to_i : 1
+    if params[:level].present?
+      params[:level][row_id].present? ? params[:level][row_id].to_i : 1
+    else
+      1
+    end
   end
 
   def search_interest(row_id)
-    params[:interest].present? ? params[:interest].values[row_id].to_i : 1
+    if params[:interest].present?
+      params[:interest].values[row_id].present? ? params[:interest].values[row_id].to_i : 1
+    else
+      1
+    end
   end
 
   def query_params
