@@ -6,8 +6,11 @@ export default class extends Controller {
   connect() {
     const element = document.getElementById('dropdown');
     const choices = new Choices(element, {
-      searchResultLimit: 8,
+      searchResultLimit: 50,
       searchFloor: 2,
+      fuseOptions: {
+        threshold: 0.2
+      },
     });
   }
 
