@@ -16,7 +16,8 @@ class PeopleController < CrudController
                               [:language, :level, :certificate, :id, :_destroy] }]
 
   def index
-    return flash[:alert] = "Profile could not be found." if params[:alert].present?
+    return flash[:alert] = 'Profile could not be found.' if params[:alert].present?
+
     super
   end
 
