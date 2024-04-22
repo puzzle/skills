@@ -1,6 +1,6 @@
 %div.mt-2
   =render partial:"people/search", :locals => {person: @person}
-%div{"data-controller": "profile-tab"}
+%div{"data-controller": "profile-tab highlight"}
   %ul.nav.nav-tabs.d-flex.flex-row.mt-2
     %div.w-50.d-flex.flex-row
       =link_to person_path(@person), class: "btn d-flex align-items-center justify-content-center text-primary p-0",

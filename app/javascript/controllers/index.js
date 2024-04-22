@@ -13,6 +13,9 @@ application.register("dropdown", DropdownController)
 import DynamicFieldsController from "./dynamic_fields_controller"
 application.register("dynamic-fields", DynamicFieldsController)
 
+import HighlightController from "./highlight_controller"
+application.register("highlight", HighlightController)
+
 import ImageUploadController from "./image_upload_controller"
 application.register("image-upload", ImageUploadController)
 

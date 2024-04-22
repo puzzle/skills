@@ -9,4 +9,11 @@ export default class extends Controller {
             form.requestSubmit();
         }, 400)
     }
+
+    redirectWithParams(e) {
+        e.preventDefault();
+        const href = e.target.href;
+        const params = new URLSearchParams(window.location.search);
+        window.location.href = href + "?" + params;
+    }
 }
