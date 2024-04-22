@@ -8,7 +8,7 @@ class PeopleSearch
   def initialize(search_term)
     @search_term = search_term
     @entries = search_result
-    @entries = @entries.filter { |entry| entry if entry[:found_in] }
+    @entries = @entries.filter { |entry| entry[:found_in] }
   end
 
   private
