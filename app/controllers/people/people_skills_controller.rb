@@ -33,4 +33,14 @@ class People::PeopleSkillsController < CrudController
     @person = Person.find(params[:id])
   end
 
+  def unrated_by_person
+    if params[:person_id].present?
+      entries = Skill.default_set.where
+                     .not(id: PeopleSkill.where(person_id: params[:person_id]).select(:skill_id))
+    else
+      entries = Skill.list
+    end
+    render json: entries, each_serializer: SkillMinimalSerializer, include: '*'
+  end
+
 end
