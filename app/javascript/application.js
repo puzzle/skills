@@ -1,4 +1,4 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
-import "choices"
+import "choices.js"
 
