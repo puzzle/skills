@@ -6,7 +6,9 @@ export default class extends Controller {
         const form = e.target.parentElement;
         clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
-            form.requestSubmit();
+            if(e.target.value.length >= 3) {
+                form.requestSubmit();
+            }
         }, 400)
     }
 }
