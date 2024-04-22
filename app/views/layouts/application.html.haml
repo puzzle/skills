@@ -24,7 +24,7 @@
               %div.scale-icon-06(name="user")
               %span#username
                 - if find_profile_by_keycloak_user.nil?
-                  = link_to current_auth_user&.name, people_path
+                  = link_to current_auth_user&.name, people_path(alert: "true")
                 - else
                   = link_to find_profile_by_keycloak_user.name, person_path(find_profile_by_keycloak_user)
                 - if admin?
