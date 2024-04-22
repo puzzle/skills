@@ -25,6 +25,8 @@ class ApplicationController < ActionController::Base
            :status => status
   end
 
+  protected
+
   def find_profile_by_keycloak_user
     Person.find_by(name: current_auth_user&.name)
   end
