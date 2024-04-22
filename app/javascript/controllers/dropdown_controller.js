@@ -5,7 +5,10 @@ import Choices from 'choices.js';
 export default class extends Controller {
   connect() {
     const element = document.getElementById('dropdown');
-    const choices = new Choices(element, {});
+    const choices = new Choices(element, {
+      searchResultLimit: 8,
+      searchFloor: 2,
+    });
   }
 
   handleChange(event) {
