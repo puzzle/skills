@@ -2,7 +2,7 @@
   %div.w-50
     = form_with do |f|
       %section{"data-controller"=>"dropdown"}
-        = f.collection_select :person_id, Person.all.sort_by(&:name), :id, :name,  select_when_availabale(person) , {id: "dropdown", class: "form-select w-100", "data-action": "change->dropdown#handleChange", "data-value": "/people/"}
+        = f.collection_select :person_id, Person.all.sort_by(&:name.downcase), :id, :name, select_when_availabale(person), {id: "dropdown", class: "form-select w-100", "data-action": "change->dropdown#handleChange", "data-value": "/people/"}
   %a.d-flex.justify-content-between#new-person-button{href: "/people/new"}
     %img.pe-1{src: "/assets/plus-lg.svg"}
-    Neues Profil
+    Neues Profile

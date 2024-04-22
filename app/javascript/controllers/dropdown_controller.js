@@ -8,9 +8,13 @@ export default class extends Controller {
     const choices = new Choices(element, {
       searchResultLimit: 50,
       searchFloor: 2,
+      // See "classNames" in the huge setup-code for all classes: https://github.com/Choices-js/Choices?tab=readme-ov-file#setup
+      classNames: {
+        highlightedState: 'dropdown-option-highlighted',
+      },
       fuseOptions: {
         threshold: 0.2
-      },
+      }
     });
   }
 

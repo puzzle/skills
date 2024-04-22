@@ -7,29 +7,33 @@ describe :people do
       sign_in auth_users(:user), scope: :auth_user
     end
 
-    let(:list) {Person.all.sort_by(&:name) }
+    let(:list) {Person.all}
 
     it 'displays people in alphabetical order in select' do
       visit people_path
       within 'section[data-controller="dropdown"]' do
-        dropdown_options = list.pluck(:name).unshift("Bitte wählen")
-        expect(page).to have_select('person_id', options: dropdown_options, selected: "Bitte wählen")
+        dropdown_options = list.pluck(:name).push("Bitte wählen").sort_by(&:downcase)
+        page.find('.choices').click
+        dropdown_options.each_with_index do | option, index |
+          expect(page).to have_css("div[data-id='#{index + 1}']", text: option)
+        end
       end
     end
 
-
     it 'redirects to the selected person on change' do
-      bob = people(:bob)
       visit people_path
+      bob = people(:bob)
       within 'section[data-controller="dropdown"]' do
-        select bob.name, from: 'person_id'
+        page.find('.choices').click
+        page.find("div[data-value='#{bob.id}']").click
       end
 
       expect(page).to have_current_path(person_path(bob))
-      expect(page).to have_select('person_id', selected: bob.name)
+      page.find('.choices').click
+      expect(page).to have_css(".is-selected", text: bob.name)
     end
 
-    it 'redirect to the first entry ' do
+    it 'redirect to the first entry' do
       visit people_path
       within 'section[data-controller="dropdown"]' do
         first('#person_id option:enabled', minimum: 1).select_option
