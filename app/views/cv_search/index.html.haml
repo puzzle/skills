@@ -4,7 +4,7 @@
   %div.profile-header.mw-100.border-bottom.mt-2.mb-2
     Suchresultate
   %turbo-frame{id: "search-results"}
-    - if @cv_search_results.blank?
+    - if @cv_search_results.blank? || params[:q].length < 3
       Keine Resultate
     - else
       - @cv_search_results.each do |result|
