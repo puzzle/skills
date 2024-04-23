@@ -3,7 +3,7 @@
 class CvSearchController < ApplicationController
 
   def index
-    @cv_search_results = search_results
+    @cv_search_results = query.nil? || query.length < 3 ? [] : search_results
   end
 
   private
