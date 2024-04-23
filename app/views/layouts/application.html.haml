@@ -34,7 +34,7 @@
                 - if auth_user_signed_in?
                   =link_to "Logout", destroy_auth_user_session_path, data: { "turbo-method": :delete}
                 - elsif devise_mapping.omniauthable?
-                  =button_to "Login", omniauth_authorize_path(resource_name, resource_class.omniauth_providers.first), {data: { "turbo": false}, class: "btn btn-link"}
+                  =button_to "Login", omniauth_authorize_path(resource_name, resource_class.omniauth_providers.first), {data: { "turbo": false }, class: "btn btn-link"}
         %div.puzzle-header
           %div.d-flex.h-100
             %ul.navbar.h-100
@@ -43,7 +43,7 @@
               %li.bg-skills-blue.h-100.d-flex.align-items-center
                 %a.nav-link.cursor-pointer.ps-2.pe-2{href: people_skills_path} Skill Suche
               %li.bg-skills-blue.h-100.d-flex.align-items-center
-                %a.nav-link.cursor-pointer.ps-2.pe-2{href: "/cv_search"} CV Suche
+                %a.nav-link.cursor-pointer.ps-2.pe-2{href: cv_search_index_path} CV Suche
               %li.bg-skills-blue.h-100.d-flex.align-items-center
                 %a.nav-link.cursor-pointer.ps-2.pe-2{href: skills_path} Skillset
       %div.container-fluid
