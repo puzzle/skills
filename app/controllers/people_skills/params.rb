@@ -41,6 +41,7 @@ module PeopleSkills
       interest_params = map_to_query_params_with_index(interests, 'interest')
 
       return '' if skill_params.empty?
+
       (skill_params + level_params + interest_params).join('&')
     end
 
