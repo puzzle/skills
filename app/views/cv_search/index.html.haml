@@ -1,0 +1,16 @@
+%div.mt-2
+  %form{data: {"turbo-frame": "search-results", "turbo-action": "advance"}, "data-controller": "search"}
+    %input{class: 'form-control w-75', placeholder: 'CVs durchsuchen...', name: 'q', "data-action": "search#submitWithTimeout", id: "cv_search_field"}
+  %div.profile-header.mw-100.border-bottom.mt-2.mb-2
+    Suchresultate
+  %turbo-frame{id: "search-results"}
+    - if @cv_search_results.blank?
+      Keine Resultate
+    - else
+      - @cv_search_results.each do |result|
+        %div.w-50.d-flex
+          = link_to result[:person][:name], person_path(result[:person][:id]), {class: "bg-skills-green w-50 text-decoration-none text-white ps-1 p-2 rounded-1", "data-turbo": "false"}
+          %div.w-50.d-flex.justify-content-end.align-items-center
+            %div.me-1 gefunden in:
+            = link_to translate_found_in(result), person_path_with_query(result), {class: "bg-skills-search-result-blue w-50 text-decoration-none text-white ps-1 p-2 rounded-1 text-center", "data-turbo": "false"}
+        %br

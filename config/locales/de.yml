@@ -83,3 +83,14 @@ de:
     till_today: Bis Heute
     with_enddate: Mit Enddatum
     
+  cv_search:
+    advanced_trainings: Weiterbildungen
+    educations: Ausbildungen
+    activities: Stationen
+    projects: Projekte
+    name: Name
+    location: Wohnort
+    title: Abschluss
+    competence_notes: Kompetenzen
+    roles: Funktionen
+    department: Organisationseinheit
