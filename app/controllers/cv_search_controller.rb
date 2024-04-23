@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class CvSearchController < ApplicationController
-
+  include CvSearchConcerns
   def index
-    @cv_search_results = query.nil? || query.length < 3 ? [] : search_results
+    @cv_search_results = should_search ? [] : search_results
   end
 
   private
