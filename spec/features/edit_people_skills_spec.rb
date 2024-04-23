@@ -13,7 +13,8 @@ describe :people do
       bob = people(:bob)
       visit people_path
       within 'section[data-controller="dropdown"]' do
-        select bob.name, from: 'person_id'
+        page.find('.choices').click
+        page.find("div[data-value='#{bob.id}']").click
       end
       page.all('.nav-link', text: 'Skills')[1].click
 
@@ -30,7 +31,8 @@ describe :people do
       alice = people(:alice)
       visit people_path
       within 'section[data-controller="dropdown"]' do
-        select alice.name, from: 'person_id'
+        page.find('.choices').click
+        page.find("div[data-value='#{alice.id}']").click
       end
 
       # Modify people skills
@@ -69,7 +71,8 @@ describe :people do
       alice = people(:alice)
       visit people_path
       within 'section[data-controller="dropdown"]' do
-        select alice.name, from: 'person_id'
+        page.find('.choices').click
+        page.find("div[data-value='#{alice.id}']").click
       end
       page.all('.nav-link', text: 'Skills')[1].click
       expect(page).to have_content('Ruby (2)')
@@ -83,7 +86,8 @@ describe :people do
       alice = people(:alice)
       visit people_path
       within 'section[data-controller="dropdown"]' do
-        select alice.name, from: 'person_id'
+        page.find('.choices').click
+        page.find("div[data-value='#{alice.id}']").click
       end
       page.all('.nav-link', text: 'Skills')[1].click
       expect(page).to have_content('Unweighted', count: 2)
