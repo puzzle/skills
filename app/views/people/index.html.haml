@@ -1,7 +1,5 @@
-= render partial: "people/search", locals: { person: nil }
-- flash.each do |type, msg|
-  .alert.alert-danger.mt-3
-    = msg
+%div.mt-2
+  = render partial: "people/search", locals: { person: nil }
 %div.mt-3
   %h1.d-inline-block.me-3.banner-text Willkommen bei
   =image_tag('logo.svg', width: '340', class: 'align-baseline test')
