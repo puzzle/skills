@@ -10,7 +10,7 @@
             "data-people-skills-filter-id-param": i, id: "remove-row-#{i}")
       - if row_count < 5
         = link_to image_tag("plus-lg.svg", class: "text-primary me-1") + "Skill hinzufügen (max. 5)",
-         filter_people_skills_path + "?rows=#{row_count}&#{query_params}", class: "btn d-flex align-items-center text-primary w-75",
+         filter_people_skills_path + "?rows=#{row_count}&#{@converted_params.query_params}", class: "btn d-flex align-items-center text-primary w-75",
          data: {"turbo-frame": "search-filters"}, id: "add-row-button"
   %div.profile-header.mw-100.border-bottom.mt-4.fw-normal
     Suchresultate
