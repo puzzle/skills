@@ -7,12 +7,12 @@ describe :people do
       sign_in auth_users(:user), scope: :auth_user
     end
 
-    let(:list) {Person.all}
+    let(:people_list) {Person.all}
 
     it 'displays people in alphabetical order in select' do
       visit people_path
       within 'section[data-controller="dropdown"]' do
-        dropdown_options = list.pluck(:name).push("Bitte wählen").sort_by(&:downcase)
+        dropdown_options = people_list.pluck(:name).push("Bitte wählen").sort_by(&:downcase)
         page.find('.choices').click
         dropdown_options.each_with_index do | option, index |
           expect(page).to have_css("div[data-id='#{index + 1}']", text: option)
@@ -35,7 +35,7 @@ describe :people do
 
     it 'redirect to the first entry' do
       visit people_path
-      sorted_list = list.sort_by { |item| item.name.downcase }
+      sorted_list = people_list.sort_by { |item| item.name.downcase }
       within 'section[data-controller="dropdown"]' do
         page.find('.choices').click
         page.find("div[data-value='#{sorted_list.first.id}']").click
@@ -47,7 +47,7 @@ describe :people do
 
     it 'should only display matched people' do
       visit people_path
-      sorted_list = list.sort_by { |item| item.name.downcase }
+      sorted_list = people_list.sort_by { |item| item.name.downcase }
       search_string = "al"
       within 'section[data-controller="dropdown"]' do
         page.find('.choices').click
