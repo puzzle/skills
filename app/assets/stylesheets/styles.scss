@@ -1,6 +1,7 @@
 $skills-blue: #3b7bbe;
 $skills-text-gray: #8e8e8e;
 $skills-gray: #f5f5f5;
+$skills-banner-text-blue: #1e5a96;
 
 @import "bootstrap";
 
@@ -193,4 +194,14 @@ pzsh-topbar {
 
 #avatar[src] {
   display: block;
+}
+
+.banner-text {
+  font-size: 55px;
+  color: $skills-banner-text-blue;
+  font-family: Roboto, sans-serif;
+}
+
+.banner-sub-text {
+  color: $skills-banner-text-blue;
 }
