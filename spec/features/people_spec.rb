@@ -35,11 +35,34 @@ describe :people do
 
     it 'redirect to the first entry' do
       visit people_path
+      sorted_list = list.sort_by { |item| item.name.downcase }
       within 'section[data-controller="dropdown"]' do
-        first('#person_id option:enabled', minimum: 1).select_option
+        page.find('.choices').click
+        page.find("div[data-value='#{sorted_list.first.id}']").click
       end
-      expect(page).to have_current_path(person_path(list.first))
-      expect(page).to have_select('person_id', selected: list.first.name)
+      expect(page).to have_current_path(person_path(sorted_list.first.id))
+      page.find('.choices').click
+      expect(page).to have_css(".is-selected", text: sorted_list.first.name)
+    end
+
+    it 'should only display matched people' do
+      visit people_path
+      sorted_list = list.sort_by { |item| item.name.downcase }
+      search_string = "al"
+      within 'section[data-controller="dropdown"]' do
+        page.find('.choices').click
+        page.find('.choices__input').send_keys(search_string)
+      end
+      
+      matched_strings, not_matched_strings = sorted_list.partition do |person|
+        person.name.downcase.include?(search_string)
+      end
+      matched_strings.pluck(:id).each do |id|
+        expect(page).to have_selector("div[data-value='#{id}']")
+      end
+      not_matched_strings.pluck(:id).each do |id|
+        expect(page).to have_no_selector("div[data-value='#{id}']")
+      end
     end
   end
 
