@@ -86,30 +86,30 @@ pzsh-topbar {
 
 .bg-skills-blue {
   background-color: $skills-blue;
+
+  &:hover {
+    background-color: #3268a1;
+  }
 }
 
 .bg-skills-gray {
   background-color: $skills-gray;
 }
 
-.bg-skills-blue:hover {
-  background-color: #3268a1;
-}
-
 .bg-skills-green {
   background-color: $skills-green;
-}
 
-.bg-skills-green:hover {
-  background-color: $skills-green-hover;
+  &:hover {
+    background-color: $skills-green-hover;
+  }
 }
 
 .bg-skills-search-result-blue {
   background-color: $skills-search-result-blue;
-}
 
-.bg-skills-search-result-blue:hover {
-  background-color: $skills-green-hover;
+  &:hover {
+    background-color: $skills-green-hover;
+  }
 }
 
 .fixed-table {
