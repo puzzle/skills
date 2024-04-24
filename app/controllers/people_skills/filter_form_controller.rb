@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PeopleSkills::FilterController < ApplicationController
+class PeopleSkills::FilterFormController < ApplicationController
   include ParamConverters
   include PeopleSkills
 
