@@ -4,7 +4,6 @@ $skills-gray: #f5f5f5;
 $skills-green: #69b978;
 $skills-green-hover: #4e903c;
 $skills-search-result-blue: #238bca;
-$skills-banner-text-blue: #1e5a96;
 $skills-dark-blue: #1e5a96;
 
 @import "bootstrap";
@@ -221,14 +220,10 @@ pzsh-topbar {
 }
 .banner-text {
   font-size: 55px;
-  color: $skills-banner-text-blue;
+  color: $skills-dark-blue;
   font-family: Roboto, sans-serif;
 }
 
 .banner-sub-text {
-  color: $skills-banner-text-blue;
-}
-
-.highlighted {
-  background-color: #1e5a96;
+  color: $skills-dark-blue;
 }
