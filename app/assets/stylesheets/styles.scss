@@ -216,6 +216,9 @@ pzsh-topbar {
   display: block;
 }
 
+.highlighted {
+  background-color: $skills-dark-blue;
+}
 .banner-text {
   font-size: 55px;
   color: $skills-banner-text-blue;
