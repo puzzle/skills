@@ -4,8 +4,6 @@ class PeopleSkillsController < CrudController
   include ParamConverters
   include PeopleSkills
 
-  helper_method :search_skill, :search_level, :search_interest, :row_count, :query_params
-
   def index
     @converted_params = Params.new(params)
     super
