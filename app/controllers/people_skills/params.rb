@@ -36,25 +36,22 @@ module PeopleSkills
     end
 
     def query_params
-      skill_params = map_to_query_params(skills, 'skill_id')
-      level_params = map_to_query_params(levels, 'level')
-      interest_params = map_to_query_params_with_index(interests, 'interest')
+      skill_params = map_to_query_params(skills, 'skill_id', false)
+      level_params = map_to_query_params(levels, 'level', false)
+      interest_params = map_to_query_params(interests, 'interest', true)
 
       return '' if skill_params.empty?
 
       (skill_params + level_params + interest_params).join('&')
     end
 
-    def map_to_query_params(query_param_values, query_param_name)
+    def map_to_query_params(query_param_values, query_param_name, include_index)
       return '' if query_param_values.nil?
 
+      if include_index
+        return query_param_values.map.with_index { |value, index| "#{query_param_name}[#{index}]=#{value}" }
+      end
       query_param_values.map { |value| "#{query_param_name}[]=#{value}" }
-    end
-
-    def map_to_query_params_with_index(query_param_values, query_param_name)
-      return '' if query_param_values.nil?
-
-      query_param_values.map.with_index { |value, index| "#{query_param_name}[#{index}]=#{value}" }
     end
   end
 end
