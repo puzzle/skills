@@ -11,8 +11,8 @@
     = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
     = javascript_include_tag "application", "https://unpkg.com/@puzzleitc/puzzle-shell/dist/bundle.js", type: "module"
     = favicon_link_tag "favicon.png"
-  %body.d-flex.justify-content-center
-    %div.content
+  %body.d-flex.justify-content-center{"data-controller": "skills-empty-space"}
+    %div.content{"data-skills-empty-space-target": "container"}
       %div.position-sticky.top-0.z-3
         %div.d-flex.justify-content-between.bg-white
           %div.d-flex
@@ -23,13 +23,16 @@
             %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
               %div.scale-icon-06(name="user")
               %span#username
-                =current_auth_user&.name
+                - if find_profile_by_keycloak_user.nil?
+                  = link_to current_auth_user&.name, people_path(alert: "true")
+                - else
+                  = link_to find_profile_by_keycloak_user.name, person_path(find_profile_by_keycloak_user)
                 - if admin?
                   (Admin)
             %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2
               %a.d-flex.align-items-center{:href => "https://github.com/puzzle/skills/issues"}
                 %pzsh-icon.scale-icon-08.text-gray(name="question-circle")
-            %li.d-flex.align-items-center.cursor-pointer.border-start.border-end.h-100.ps-2.pe-2
+            %li.d-flex.align-items-center.cursor-pointer.border-start.border-end.h-100.ps-2.pe-2{"data-action": "click->skills-empty-space#goCrazy"}
               - if !development?
                 - if auth_user_signed_in?
                   =link_to "Logout", destroy_auth_user_session_path, data: { "turbo-method": :delete}
@@ -38,13 +41,13 @@
         %div.puzzle-header
           %div.d-flex.h-100
             %ul.navbar.h-100
-              %li.bg-skills-blue.h-100.d-flex.align-items-center
+              %li.bg-skills-blue.h-100.d-flex.align-items-center{class: "#{'highlighted' if request.url.match?("people") && request.url.exclude?("people_skills")}"}
                 %a.nav-link.cursor-pointer.ps-2.pe-2{href: people_path} Profil
-              %li.bg-skills-blue.h-100.d-flex.align-items-center
+              %li.bg-skills-blue.h-100.d-flex.align-items-center{class: "#{'highlighted' if request.url.include? "people_skills"}"}
                 %a.nav-link.cursor-pointer.ps-2.pe-2{href: people_skills_path} Skill Suche
-              %li.bg-skills-blue.h-100.d-flex.align-items-center
+              %li.bg-skills-blue.h-100.d-flex.align-items-center{class: "#{'highlighted' if request.url.include? cv_search_index_path}"}
                 %a.nav-link.cursor-pointer.ps-2.pe-2{href: cv_search_index_path} CV Suche
-              %li.bg-skills-blue.h-100.d-flex.align-items-center
+              %li.bg-skills-blue.h-100.d-flex.align-items-center{class: "#{'highlighted' if request.url.include?("skills") && request.url.exclude?("people_skills")}"}
                 %a.nav-link.cursor-pointer.ps-2.pe-2{href: skills_path} Skillset
       %div.container-fluid
         %div.row.d-flex.justify-content-center

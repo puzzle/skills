@@ -1,4 +1,6 @@
 de:
+  errors:
+    profile-not-found: Profil konnte nicht gefunden werden.
   helpers:
     submit:
       cancel: Abbrechen

@@ -23,6 +23,7 @@ names = ['Jorah Mormont',
          'Bob Stark',
          'Daenerys Targaryen',
          'Davos Seaworth',
-         'Arya Stark']
+         'Arya Stark',
+         'Anderson Admin']
 
 seeder.seed_people(names)

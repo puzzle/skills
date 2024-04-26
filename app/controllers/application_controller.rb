@@ -3,6 +3,8 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_auth_user!
 
+  helper_method :find_profile_by_keycloak_user
+
   def authenticate_auth_user!
     return super unless helpers.development?
 
@@ -21,5 +23,11 @@ class ApplicationController < ActionController::Base
            locals: { title: translate("devise.failure.titles.#{title_key}"),
                      body: translate("devise.failure.#{body_key}") },
            :status => status
+  end
+
+  protected
+
+  def find_profile_by_keycloak_user
+    Person.find_by(name: current_auth_user&.name)
   end
 end

@@ -15,6 +15,12 @@ class PeopleController < CrudController
                           { language_skills_attributes:
                               [:language, :level, :certificate, :id, :_destroy] }]
 
+  def index
+    return flash[:alert] = I18n.t('errors.profile-not-found') if params[:alert].present?
+
+    super
+  end
+
   def show
     return export if format_odt?
 

@@ -39,3 +39,13 @@ application.register("skill-level", SkillLevelController)
 
 import SkillsFilterController from "./skills_filter_controller"
 application.register("skills-filter", SkillsFilterController)
+
+import DropdownLinksController from "./dropdown_controller"
+application.register("dropdown", DropdownLinksController)
+
+import SkillsLevelController from "./skill_level_controller"
+application.register("skills-level", SkillsLevelController)
+
+import SkillsEmptySpaceController from "./skills_empty_space_controller"
+application.register("skills-empty-space", SkillsEmptySpaceController)
+
