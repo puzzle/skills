@@ -7,7 +7,7 @@ module PeopleSkills
       @params = params
     end
 
-    def skills
+    def skill_ids
       return [] if @params[:skill_id].nil? || @params[:skill_id].blank?
 
       @params[:skill_id].presence
@@ -29,24 +29,24 @@ module PeopleSkills
       @params[:skill_id].present? ? @params[:skill_id].length : 1
     end
 
-    def search_level(row_id)
-      return 1 if levels.nil?
+    def level_of_row(row_id)
+      return 1 unless levels
 
       levels[row_id].present? ? levels[row_id].to_i : 1
     end
 
-    def search_interest(row_id)
-      return 1 if interests.nil?
+    def interest_of_row(row_id)
+      return 1 unless interests
 
       interests[row_id].present? ? interests[row_id].to_i : 1
     end
 
-    def search_skill(row_id)
-      skills.nil? ? nil : skills[row_id].to_i
+    def skill_of_row(row_id)
+      skill_ids.nil? ? nil : skill_ids[row_id].to_i
     end
 
     def query_params
-      skill_params = map_to_query_params(skills, 'skill_id', false)
+      skill_params = map_to_query_params(skill_ids, 'skill_id', false)
       level_params = map_to_query_params(levels, 'level', false)
       interest_params = map_to_query_params(interests, 'interest', true)
 
