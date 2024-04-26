@@ -10,7 +10,7 @@ module PeopleSkills
     def skills
       return [] if @params[:skill_id].nil? || @params[:skill_id].blank?
 
-      @params[:skill_id].select { |skill| skill.present? }
+      @params[:skill_id].presence
     end
 
     def levels

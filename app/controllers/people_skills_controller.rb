@@ -11,9 +11,9 @@ class PeopleSkillsController < CrudController
 
   # rubocop:disable Metrics/MethodLength
   def entries
-    return [] if @converted_params.skills.empty?
+    return [] if @converted_params.skills.select { |skill| skill.present? }.empty?
 
-    skills = @converted_params.skills.map(&:to_i)
+    skills = @converted_params.skills.select { |skill| skill.present? }.map(&:to_i)
     levels = @converted_params.levels.take(skills.length).map(&:to_i)
     interests = @converted_params.interests.take(skills.length).map(&:to_i)
 
