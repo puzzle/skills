@@ -19,6 +19,14 @@ module PeopleSkills
       @params[:interest].present? ? @params[:interest].values : nil
     end
 
+    def rows
+      @params[:rows].present? ? @params[:rows].to_i : nil
+    end
+
+    def rows_count
+      @params[:skill_id].present? ? @params[:skill_id].length : 1
+    end
+
     def search_level(row_id)
       return 1 if levels.nil?
 

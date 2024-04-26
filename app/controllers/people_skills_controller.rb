@@ -13,9 +13,7 @@ class PeopleSkillsController < CrudController
 
   # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
   def entries
-    return [] if params[:skill_id].nil?
-
-    return [] if @converted_params.skills.empty?
+    return [] if params[:skill_id].nil? || @converted_params.skills.empty?
 
     skills = @converted_params.skills.select { |skill| skill.present? }.map(&:to_i)
     levels = @converted_params.levels.take(skills.length).map(&:to_i)
@@ -30,8 +28,4 @@ class PeopleSkillsController < CrudController
     ).scope
   end
   # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
-
-  def row_count
-    params[:skill_id].present? ? params[:skill_id].length : 1
-  end
 end

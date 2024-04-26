@@ -1,16 +1,16 @@
 %div.mt-3{"data-controller": "people-skills-filter"}
   %turbo-frame{id: "search-filters"}
     = form_with(url: people_skills_path, method: :get, class: "filter-form", data: {"people-skills-filter-target": "form"}) do |form|
-      - row_count.times do |i|
+      - @converted_params.rows_count.times do |i|
         %div.d-flex.flex-row.align-items-center{"data-people-skills-filter-target": "filter", id: "filter-row-#{i+ 1}"}
           %div.filter-container.me-1
             = render("search_form", form: form, rowNumber: i)
           - if i != 0
             = image_tag("x.svg", class: "text-primary pointer", "data-action": "click->people-skills-filter#remove",
             "data-people-skills-filter-id-param": i, id: "remove-row-#{i}")
-      - if row_count < 5
+      - if @converted_params.rows_count < 5
         = link_to image_tag("plus-lg.svg", class: "text-primary me-1") + "Skill hinzufügen (max. 5)",
-         filter_people_skills_path + "?rows=#{row_count}&#{@converted_params.query_params}", class: "btn d-flex align-items-center text-primary w-75",
+         filter_people_skills_path + "?rows=#{@converted_params.rows_count}&#{@converted_params.query_params}", class: "btn d-flex align-items-center text-primary w-75",
          data: {"turbo-frame": "search-filters"}, id: "add-row-button"
   %div.profile-header.mw-100.border-bottom.mt-4.fw-normal
     Suchresultate

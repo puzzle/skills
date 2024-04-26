@@ -10,7 +10,5 @@ class PeopleSkills::FilterFormController < ApplicationController
     @converted_params = Params.new(params)
   end
 
-  def search_row
-    params[:rows].present? ? params[:rows].to_i : nil
-  end
+
 end
