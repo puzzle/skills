@@ -240,11 +240,6 @@ pzsh-topbar {
   width: 15%;
 }
 
-.skills-selected {
-  background-color: $skills-blue;
-  color: white;
-}
-
 .skills-blue-text {
   color: $skills-blue;
 }
@@ -256,7 +251,15 @@ pzsh-topbar {
 .min-height {
   height: min-content;
 }
-#modal-animation {
+
+.skills-selected {
+  background-color: $skills-blue;
+  color: white;
+}
+
+.skills-selected:hover {
+  color: white;
+}#modal-animation {
   opacity: 0;
   transition: opacity 0.5s;
 }
