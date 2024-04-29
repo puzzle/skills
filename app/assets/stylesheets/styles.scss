@@ -232,12 +232,12 @@ pzsh-topbar {
   word-break: break-word;
 }
 
-.w-85 {
-  width: 85%;
+.w-80 {
+  width: 80%;
 }
 
-.w-15 {
-  width: 15%;
+.w-20 {
+  width: 20%;
 }
 
 .skills-blue-text {
@@ -266,4 +266,10 @@ pzsh-topbar {
 
 #modal-animation.fader {
   opacity: 1;
+}
+
+.side-container {
+  max-height: 70em;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }

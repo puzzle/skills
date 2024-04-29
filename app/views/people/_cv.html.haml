@@ -1,5 +1,5 @@
 %div.d-flex.flex-row.mt-3
-  %div.w-15.bg-skills-gray.me-3.border.border-light-subtle.border-2.min-height
+  %div.w-20.bg-skills-gray.me-3.border.border-light-subtle.border-2.min-height
     %div.ps-3.pt-3.pb-3.skills-blue-text.skills-selected
       %span.cursor-pointer Personalien
     %div.ps-3.pt-3.pb-3
@@ -12,7 +12,7 @@
       %span.cursor-pointer.skills-blue-text Stationen
     %div.ps-3.pt-3.pb-3
       %span.cursor-pointer.skills-blue-text Projekte
-  %div.w-85
+  %div.w-80.side-container
     = render('profile')
     = render('core_competences')
     = render('people/person_relations/index', list: @person.advanced_trainings.list)
