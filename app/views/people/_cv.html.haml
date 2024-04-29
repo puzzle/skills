@@ -1,6 +1,21 @@
-= render('profile')
-= render('core_competences')
-= render('people/person_relations/index', list: @person.advanced_trainings.list)
-= render('people/person_relations/index', list: @person.educations.list)
-= render('people/person_relations/index', list: @person.activities.list)
-= render('people/person_relations/index', list: @person.projects.list)
+%div.d-flex.flex-row.mt-3
+  %div.w-15.bg-skills-gray.me-3.border.border-light-subtle.border-2.min-height
+    %div.ps-3.pt-2.pb-3
+      %span.cursor-pointer.skills-blue-text Personalien
+    %div.ps-3.pt-2.pb-3
+      %span.cursor-pointer.skills-blue-text Kernkompetenzen
+    %div.ps-3.pt-2.pb-3
+      %span.cursor-pointer.skills-blue-text Ausbildung
+    %div.ps-3.pt-2.pb-3
+      %span.cursor-pointer.skills-blue-text Weiterbildung
+    %div.ps-3.pt-2.pb-3
+      %span.cursor-pointer.skills-blue-text Stationen
+    %div.ps-3.pt-2.pb-3
+      %span.cursor-pointer.skills-blue-text Projekte
+  %div.w-85
+    = render('profile')
+    = render('core_competences')
+    = render('people/person_relations/index', list: @person.advanced_trainings.list)
+    = render('people/person_relations/index', list: @person.educations.list)
+    = render('people/person_relations/index', list: @person.activities.list)
+    = render('people/person_relations/index', list: @person.projects.list)
