@@ -23,7 +23,7 @@
 - @skills.each do |skill|
   %turbo-frame{id: "#{dom_id skill}"}
     .row.border.border-top.table-light.tableform-hover.table-row
-      .col-2.d-flex.align-items-center
+      .col-2.d-flex.align-items-center.text-break
         = link_to skill.title, skill_path(skill), data: { turbo_frame: "remote_modal" }
       .col-1.bg-light.d-flex.align-items-center
         = filter_by_rated(skill).count
