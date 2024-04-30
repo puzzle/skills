@@ -1,29 +1,6 @@
 %div.d-flex.flex-row.mt-3{"data-controller": "scroll"}
   %div.w-20.bg-skills-gray.me-3.border.border-light-subtle.border-2.min-height
-    %div.ps-3.pt-3.pb-3.skills-blue-text.skills-selected{"data-scroll-target": "listItem"}
-      %span.cursor-pointer{"data-action": "click->scroll#scrollToElement",
-      "data-scroll-id-param": "personal-data"}
-        = t "profile.personal_data"
-    %div.ps-3.pt-3.pb-3.skills-blue-text{"data-scroll-target": "listItem"}
-      %span.cursor-pointer{"data-action": "click->scroll#scrollToElement",
-      "data-scroll-id-param": "core-competences"}
-        = t "profile.core_competences"
-    %div.ps-3.pt-3.pb-3.skills-blue-text{"data-scroll-target": "listItem"}
-      %span.cursor-pointer{"data-action": "click->scroll#scrollToElement",
-      "data-scroll-id-param": "educations"}
-        = t "profile.educations"
-    %div.ps-3.pt-3.pb-3.skills-blue-text{"data-scroll-target": "listItem"}
-      %span.cursor-pointer{"data-action": "click->scroll#scrollToElement",
-      "data-scroll-id-param": "advanced-trainings"}
-        = t "profile.advanced_trainings"
-    %div.ps-3.pt-3.pb-3.skills-blue-text{"data-scroll-target": "listItem"}
-      %span.cursor-pointer{"data-action": "click->scroll#scrollToElement",
-      "data-scroll-id-param": "activities"}
-        = t "profile.activities"
-    %div.ps-3.pt-3.pb-3.skills-blue-text{"data-scroll-target": "listItem"}
-      %span.cursor-pointer{"data-action": "click->scroll#scrollToElement",
-      "data-scroll-id-param": "projects"}
-        = t "profile.projects"
+    = render('scroll_to_menu')
   %div.w-80.side-container#scroll-content{"data-action": "scroll->scroll#scrollEvent"}
     = render('profile')
     = render('core_competences')
