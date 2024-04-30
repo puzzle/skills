@@ -1,21 +1,32 @@
 %div.d-flex.flex-row.mt-3
-  %div.w-20.bg-skills-gray.me-3.border.border-light-subtle.border-2.min-height
+  %div.w-20.bg-skills-gray.me-3.border.border-light-subtle.border-2.min-height{"data-controller": "scroll"}
     %div.ps-3.pt-3.pb-3.skills-blue-text.skills-selected
-      %span.cursor-pointer Personalien
+      %span.cursor-pointer{"data-action": "click->scroll#scrollToElement", "data-scroll-id-param": "personal-data"}
+        Personalien
     %div.ps-3.pt-3.pb-3
-      %span.cursor-pointer.skills-blue-text Kernkompetenzen
+      %span.cursor-pointer.skills-blue-text{"data-action": "click->scroll#scrollToElement",
+      "data-scroll-id-param": "core-competences"}
+        Kernkompetenzen
     %div.ps-3.pt-3.pb-3
-      %span.cursor-pointer.skills-blue-text Ausbildung
+      %span.cursor-pointer.skills-blue-text{"data-action": "click->scroll#scrollToElement",
+      "data-scroll-id-param": "educations"}
+        Ausbildung
     %div.ps-3.pt-3.pb-3
-      %span.cursor-pointer.skills-blue-text Weiterbildung
+      %span.cursor-pointer.skills-blue-text{"data-action": "click->scroll#scrollToElement",
+      "data-scroll-id-param": "advanced-trainings"}
+        Weiterbildung
     %div.ps-3.pt-3.pb-3
-      %span.cursor-pointer.skills-blue-text Stationen
+      %span.cursor-pointer.skills-blue-text{"data-action": "click->scroll#scrollToElement",
+      "data-scroll-id-param": "activities"}
+        Stationen
     %div.ps-3.pt-3.pb-3
-      %span.cursor-pointer.skills-blue-text Projekte
+      %span.cursor-pointer.skills-blue-text{"data-action": "click->scroll#scrollToElement",
+      "data-scroll-id-param": "projects"}
+        Projekte
   %div.w-80.side-container
     = render('profile')
     = render('core_competences')
-    = render('people/person_relations/index', list: @person.advanced_trainings.list)
-    = render('people/person_relations/index', list: @person.educations.list)
-    = render('people/person_relations/index', list: @person.activities.list)
-    = render('people/person_relations/index', list: @person.projects.list)
+    = render('people/person_relations/index', list: @person.advanced_trainings.list, id: "advanced-trainings")
+    = render('people/person_relations/index', list: @person.educations.list, id: "educations")
+    = render('people/person_relations/index', list: @person.activities.list, id: "activities")
+    = render('people/person_relations/index', list: @person.projects.list, id: "projects")
