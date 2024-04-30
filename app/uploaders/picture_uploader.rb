@@ -38,4 +38,8 @@ class PictureUploader < CarrierWave::Uploader::Base
   def extension_white_list
     EXTENSION_WHITE_LIST
   end
+
+  def size_range
+    1.byte..2.megabytes
+  end
 end
