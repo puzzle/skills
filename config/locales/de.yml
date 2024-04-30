@@ -2,7 +2,7 @@ de:
   errors:
     profile-not-found: Profil konnte nicht gefunden werden.
     messages:
-      max_size_error: Error Nachricht
+      max_size_error: ist zu gross
   helpers:
     submit:
       cancel: Abbrechen
@@ -22,6 +22,8 @@ de:
       activity: Station
       project: Projekt
     attributes:
+      person:
+        picture: Bild
       advanced_training:
         description: Beschreibung
       education:
