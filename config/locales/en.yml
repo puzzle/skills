@@ -7,6 +7,13 @@ en:
         delete: Delete
         save-and-new: Save & new
         edit: Edit
+  profile:
+    personal_data: Personal data
+    core_competences: Core competences
+    educations: Educations
+    advanced_trainings: Advanced trainings
+    activities: Activities
+    projects: Projects
   skills:
     table:
       skill: Skill
