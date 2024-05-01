@@ -2,7 +2,7 @@ de:
   errors:
     profile-not-found: Profil konnte nicht gefunden werden.
     messages:
-      max_size_error: ist zu gross
+      max_size_error: sollte nicht grösser als 10MB sein.
   helpers:
     submit:
       cancel: Abbrechen
