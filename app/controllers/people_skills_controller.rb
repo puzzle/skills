@@ -2,21 +2,17 @@
 
 class PeopleSkillsController < CrudController
   include ParamConverters
-  include PeopleSkills
 
-  def index
-    @converted_params = Params.new(params)
-    super
-  end
+  helper_method :filter_params
 
-  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
   def entries
-    filtered_string_skills = @converted_params.skill_ids.select { |skill| skill.present? }
+    filtered_string_skills = filter_params.skill_ids.select { |skill| skill.present? }
     return [] if filtered_string_skills.empty?
 
     skill_ids = filtered_string_skills
-    levels = @converted_params.levels.take(skill_ids.length)
-    interests = @converted_params.interests.take(skill_ids.length)
+    levels = filter_params.levels.take(skill_ids.length)
+    interests = filter_params.interests.take(skill_ids.length)
 
     base = PeopleSkill.includes(:person, skill: [
                                   :category,
@@ -26,5 +22,11 @@ class PeopleSkillsController < CrudController
       base, true, levels, interests, skill_ids
     ).scope
   end
-  # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
+
+  private
+
+  def filter_params
+    PeopleSkills::FilterParams.new(params)
+  end
 end

@@ -2,9 +2,12 @@
 
 class PeopleSkills::FilterFormController < ApplicationController
   include ParamConverters
-  include PeopleSkills
 
-  def index
-    @converted_params = Params.new(params)
+  helper_method :filter_params
+
+  private
+
+  def filter_params
+    PeopleSkills::FilterParams.new(params)
   end
 end
