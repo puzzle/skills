@@ -6,7 +6,7 @@ module People
     self.permitted_attrs = %i[picture]
 
     def show
-      picture_url = person.picture.file.nil? ? default_avatar_path : person.picture.url
+      picture_url = person.picture.file.nil? ? default_avatar_path : person.picture.path
       send_file(picture_url, disposition: 'inline')
     end
 
