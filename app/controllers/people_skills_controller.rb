@@ -7,19 +7,20 @@ class PeopleSkillsController < CrudController
 
   # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
   def entries
-    filtered_string_skills = filter_params.skill_ids.select { |skill| skill.present? }
-    return [] if filtered_string_skills.empty?
+    return [] if filter_params.skill_ids.empty?
 
-    skill_ids = filtered_string_skills
-    levels = filter_params.levels.take(skill_ids.length)
-    interests = filter_params.interests.take(skill_ids.length)
+    combined_array = filter_params.skill_ids.zip(filter_params.levels, filter_params.interests)
+    filtered_array = combined_array.reject { |arr| arr.first == '' }
+    required_search_values = filtered_array.transpose
+
+    return [] if required_search_values.empty?
 
     base = PeopleSkill.includes(:person, skill: [
                                   :category,
                                   :people, { people_skills: :person }
                                 ])
     PeopleSkillsFilter.new(
-      base, true, levels, interests, skill_ids
+      base, true, required_search_values[1], required_search_values[2], required_search_values[0]
     ).scope
   end
   # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
