@@ -34,6 +34,7 @@ describe :people_skills do
 
     it 'Should return no results if skill id is not set' do
       visit(people_skills_path)
+      expect(page).to have_selector('#add-row-button')
       4.times do
         page.find('#add-row-button').click
       end
