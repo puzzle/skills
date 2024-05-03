@@ -5,16 +5,8 @@ import SlimSelect from 'slim-select';
 export default class extends Controller {
 
   connect() {
-    const element = document.getElementById('dropdown');
-    console.log(element)
-    let select =  new SlimSelect({
-          select: element
-    });
-  }
-
-  disconnect() {
-    window.addEventListener("popstate", () => {
-      window.location.reload();
+    new SlimSelect({
+          select: '#dropdown'
     });
   }
 
