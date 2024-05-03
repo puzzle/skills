@@ -13,7 +13,9 @@ describe :people do
       bob = people(:bob)
       visit people_path
       within 'section[data-controller="dropdown"]' do
-        page.find('.choices').click
+        page.find('.ss-main').click
+        require 'pry'; binding.pry
+        # Select option from dropdown
         page.find("div[data-value='#{bob.id}']").click
       end
       page.all('.nav-link', text: 'Skills')[1].click
