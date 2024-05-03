@@ -1,23 +1,12 @@
-version: '3.2'
-
-services:
-  postgres:
-    image: postgres:9.5.7
-    ports:
-      - '5432:5432'
-    environment:
-      - POSTGRES_DB=skills_development
-      - POSTGRES_USER=skills
-      - POSTGRES_PASSWORD=skills
-    volumes:
-      - postgres:/var/lib/postgres
+services:      
   rails:
+    container_name: rails
     image: skills-dev/rails
     user: "${UID:-1000}"
     tty: true
     stdin_open: true
     environment:
-      RAILS_DB_HOST: 'postgres'
+      RAILS_DB_HOST: 'postgres-rails'
       DISPLAY: ${DISPLAY}
     build:
       context: ./config/docker/development
@@ -30,6 +19,40 @@ services:
       - ./config/docker/development/home/rails:/home/developer
       - /tmp/.X11-unix:/tmp/.X11-unix
       - bundler_cache:/opt/bundle
+      
+  keycloak:
+    container_name: keycloak
+    command:
+      - start-dev
+      - --import-realm
+    image: quay.io/keycloak/keycloak:23.0.7
+    env_file: keycloak.env
+    ports:
+      - 8080:8080
+    volumes:
+      - ${PWD}/realm-export.json:/opt/keycloak/data/import/realm.json
+
+  # postgres-keycloak:
+  #   container_name: postgres-keycloak
+  #   image: postgres:16
+  #   volumes:
+  #     - postgres_keycloak:/var/lib/postgresql/data
+  #   env_file: keycloak.env
+
+  postgres-rails:
+    container_name: postgres-rails
+    image: postgres:16
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_DB=skills_development
+      - POSTGRES_USER=skills
+      - POSTGRES_PASSWORD=skills
+    volumes:
+      - postgres_rails:/var/lib/postgres
+
 volumes:
   bundler_cache:
-  postgres:
+  postgres_rails:
+  postgres_keycloak:  
+
