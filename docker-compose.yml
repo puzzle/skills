@@ -5,9 +5,7 @@ services:
     user: "${UID:-1000}"
     tty: true
     stdin_open: true
-    environment:
-      RAILS_DB_HOST: 'postgres-rails'
-      DISPLAY: ${DISPLAY}
+    env_file: .env
     build:
       context: ./config/docker/development
       dockerfile: Rails.dockerfile
@@ -19,31 +17,31 @@ services:
       - ./config/docker/development/home/rails:/home/developer
       - /tmp/.X11-unix:/tmp/.X11-unix
       - bundler_cache:/opt/bundle
+    depends_on:
+      - postgres-rails
+      - keycloak
+
       
   keycloak:
     container_name: keycloak
+    image: quay.io/keycloak/keycloak:23.0.7
+    env_file: keycloak.env
+    environment:
+      - PORT=8080
+    ports:
+      - "8080:8080"
     command:
       - start-dev
       - --import-realm
-    image: quay.io/keycloak/keycloak:23.0.7
-    env_file: keycloak.env
-    ports:
-      - 8080:8080
+      - --http-relative-path=/auth
     volumes:
-      - ${PWD}/realm-export.json:/opt/keycloak/data/import/realm.json
-
-  # postgres-keycloak:
-  #   container_name: postgres-keycloak
-  #   image: postgres:16
-  #   volumes:
-  #     - postgres_keycloak:/var/lib/postgresql/data
-  #   env_file: keycloak.env
+      - ${PWD}/realm-skills.json:/opt/keycloak/data/import/realm.json
 
   postgres-rails:
     container_name: postgres-rails
     image: postgres:16
     ports:
-      - '5432:5432'
+      - 5432:5432
     environment:
       - POSTGRES_DB=skills_development
       - POSTGRES_USER=skills
@@ -54,5 +52,4 @@ services:
 volumes:
   bundler_cache:
   postgres_rails:
-  postgres_keycloak:  
 
