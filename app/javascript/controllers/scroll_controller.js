@@ -6,7 +6,9 @@ export default class extends Controller {
     currentSelectedIndex = 0;
 
     scrollToElement({params}) {
-        document.getElementById(params.id).scrollIntoView();
+        document.getElementById(params.id).scrollIntoView({
+            behavior: "smooth"
+        });
     }
 
     scrollEvent() {
@@ -27,7 +29,6 @@ export default class extends Controller {
         return (
             rect.top >= 0 &&
             rect.left >= 0 &&
-            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
             rect.right <= (window.innerWidth || document.documentElement.clientWidth)
         );
     }
