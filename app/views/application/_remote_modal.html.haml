@@ -1,5 +1,6 @@
 = turbo_frame_tag "remote_modal" do
-  .modal.fade{tabindex:"-1", "data-controller":"remote-modal", "data-action":"turbo:before-render@document->remote-modal#hideBeforeRender"}
+  #modal-animation.modal{tabindex:"-1", "data-controller":"remote-modal",
+  "data-action":"turbo:before-render@document->remote-modal#hideBeforeRender"}
     .modal-dialog
       .modal-content
         .modal-header

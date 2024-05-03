@@ -3,9 +3,15 @@ import { Modal } from "bootstrap"
 
 export default class extends Controller {
     connect() {
-        this.modal = new Modal(this.element)
-        this.modal.show()
+        this.modal = new Modal(this.element);
+        this.modal.show();
+        this.element.classList.toggle('fader');
     }
+
+    disconnect() {
+        this.element.classList.remove('fader');
+    }
+
 
     hideBeforeRender(event) {
         if (this.isOpen()) {
