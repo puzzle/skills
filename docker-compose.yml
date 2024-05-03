@@ -35,7 +35,7 @@ services:
       - --import-realm
       - --http-relative-path=/auth
     volumes:
-      - ${PWD}/realm-skills.json:/opt/keycloak/data/import/realm.json
+      - ${PWD}/new-realm-export.json:/opt/keycloak/data/import/realm.json
 
   postgres-rails:
     container_name: postgres-rails

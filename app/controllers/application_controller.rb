@@ -5,12 +5,13 @@ class ApplicationController < ActionController::Base
 
   helper_method :find_profile_by_keycloak_user
 
-  def authenticate_auth_user!
-    return super unless helpers.development?
+  # def authenticate_auth_user!
+  #   require 'pry'; binding.pry
+  #   return super unless helpers.development?
 
-    admin = AuthUser.find_by(email: 'admin@skills.ch')
-    request.env['warden'].set_user(admin, :scope => :auth_user)
-  end
+  #   admin = AuthUser.find_by(email: 'admin@skills.ch')
+  #   request.env['warden'].set_user(admin, :scope => :auth_user)
+  # end
 
   def render_unauthorized
     return false if helpers.admin?
