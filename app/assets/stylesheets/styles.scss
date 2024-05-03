@@ -231,3 +231,12 @@ pzsh-topbar {
 .modal-title {
   word-break: break-word;
 }
+
+#modal-animation {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+#modal-animation.fader {
+  opacity: 1;
+}
