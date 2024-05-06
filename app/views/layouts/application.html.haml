@@ -20,24 +20,23 @@
               %img{:src=> "/assets/logo.svg",:height=>"32"}
             %text.d-flex.align-items-end.ms-2.small= "5.0.0"
           %ul.navbar.text-gray
-            %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
-              %div.scale-icon-06(name="user")
-              %span#username
-                - if find_profile_by_keycloak_user.nil?
-                  = link_to current_auth_user&.name, people_path(alert: "true")
-                - else
+            - if find_profile_by_keycloak_user.present?
+              %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
+                %div.scale-icon-06(name="user")
+                %span#username
                   = link_to find_profile_by_keycloak_user.name, person_path(find_profile_by_keycloak_user)
-                - if admin?
-                  (Admin)
-            %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2
+                  - if admin?
+                    (Admin)
+            %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.h-100
               %a.d-flex.align-items-center{:href => "https://github.com/puzzle/skills/issues"}
                 %pzsh-icon.scale-icon-08.text-gray(name="question-circle")
-            %li.d-flex.align-items-center.cursor-pointer.border-start.border-end.h-100.ps-2.pe-2{"data-action": "click->skills-empty-space#goCrazy"}
-              - if !development?
+            - if AuthConfig.keycloak?
+              %li.d-flex.align-items-center.cursor-pointer.border-start.border-end.h-100.ps-2.pe-2
                 - if auth_user_signed_in?
                   =link_to "Logout", destroy_auth_user_session_path, data: { "turbo-method": :delete}
                 - elsif devise_mapping.omniauthable?
                   =button_to "Login", omniauth_authorize_path(resource_name, resource_class.omniauth_providers.first), {data: { "turbo": false }, class: "btn btn-link"}
+            %li.d-flex.align-items-center.cursor-pointer.border-start.border-end.h-100.ps-2.pe-2{"data-action": "click->skills-empty-space#goCrazy"}
         %div.puzzle-header
           %div.d-flex.h-100
             %ul.navbar.h-100
