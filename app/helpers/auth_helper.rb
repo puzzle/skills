@@ -9,6 +9,10 @@ module AuthHelper
     current_auth_user&.is_admin
   end
 
+  def find_person_by_auth_user
+    Person.find_by(name: current_auth_user&.name)
+  end
+
   def development?
     ENV['DEVELOPMENT'] == 'true' && Rails.env.development?
   end
