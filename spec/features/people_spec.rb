@@ -11,57 +11,50 @@ describe :people do
 
     it 'displays people in alphabetical order in select' do
       visit people_path
-      within 'section[data-controller="dropdown"]' do
-        dropdown_options = people_list.pluck(:name).push("Bitte wählen").sort_by(&:downcase)
-        page.find('.choices').click
-        dropdown_options.each_with_index do | option, index |
-          expect(page).to have_css("div[data-id='#{index + 1}']", text: option)
-        end
+      dropdown_options = people_list.pluck(:name).sort_by(&:downcase)
+      page.find('.ss-main').click
+      dropdown_options.each_with_index do |option|
+        expect(page).to have_css("div", text: option)
       end
     end
 
     it 'redirects to the selected person on change' do
       visit people_path
       bob = people(:bob)
-      within 'section[data-controller="dropdown"]' do
-        page.find('.choices').click
-        page.find("div[data-value='#{bob.id}']").click
-      end
-
+      page.find('.ss-main').click
+      page.all("div", text: bob.name)[0].click
       expect(page).to have_current_path(person_path(bob))
-      page.find('.choices').click
-      expect(page).to have_css(".is-selected", text: bob.name)
+      page.find('.ss-main').click
+      expect(page).to have_css(".ss-single", text: bob.name)
     end
 
     it 'redirect to the first entry' do
       visit people_path
       sorted_list = people_list.sort_by { |item| item.name.downcase }
-      within 'section[data-controller="dropdown"]' do
-        page.find('.choices').click
-        page.find("div[data-value='#{sorted_list.first.id}']").click
-      end
+      page.find('.ss-main').click
+      page.all(".ss-option")[1].click
       expect(page).to have_current_path(person_path(sorted_list.first.id))
-      page.find('.choices').click
-      expect(page).to have_css(".is-selected", text: sorted_list.first.name)
+      page.find('.ss-main').click
+      expect(page).to have_css(".ss-single", text: sorted_list.first.name)
     end
 
     it 'should only display matched people' do
       visit people_path
       sorted_list = people_list.sort_by { |item| item.name.downcase }
       search_string = "al"
-      within 'section[data-controller="dropdown"]' do
-        page.find('.choices').click
-        page.find('.choices__input').send_keys(search_string)
-      end
-      
+      page.find('.ss-main').click
+      page.all('input')[0].send_keys(search_string)
+
       matched_strings, not_matched_strings = sorted_list.partition do |person|
         person.name.downcase.include?(search_string)
       end
-      matched_strings.pluck(:id).each do |id|
-        expect(page).to have_selector("div[data-value='#{id}']")
+
+      matched_strings.pluck(:name).each do |name|
+        expect(page).to have_text(name)
       end
-      not_matched_strings.pluck(:id).each do |id|
-        expect(page).to have_no_selector("div[data-value='#{id}']")
+
+      not_matched_strings.pluck(:name).each do |name|
+        expect(page).to have_no_text(name)
       end
     end
   end

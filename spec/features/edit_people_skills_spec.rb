@@ -12,12 +12,9 @@ describe :people do
       # Switch to PeopleSkills tab
       bob = people(:bob)
       visit people_path
-      within 'section[data-controller="dropdown"]' do
-        page.find('.ss-main').click
-        require 'pry'; binding.pry
-        # Select option from dropdown
-        page.find("div[data-value='#{bob.id}']").click
-      end
+      page.find('.ss-main').click
+      # Select option from dropdown
+      page.find(".ss-option", text: bob.name).click
       page.all('.nav-link', text: 'Skills')[1].click
 
       expect(page).to have_content('Rails')
@@ -32,10 +29,8 @@ describe :people do
       # Switch to PeopleSkills tab
       alice = people(:alice)
       visit people_path
-      within 'section[data-controller="dropdown"]' do
-        page.find('.choices').click
-        page.find("div[data-value='#{alice.id}']").click
-      end
+      page.find('.ss-main').click
+      page.find(".ss-option", text: alice.name).click
 
       # Modify people skills
       page.all('.nav-link', text: 'Skills')[1].click
@@ -72,10 +67,8 @@ describe :people do
       # Switch to PeopleSkills tab
       alice = people(:alice)
       visit people_path
-      within 'section[data-controller="dropdown"]' do
-        page.find('.choices').click
-        page.find("div[data-value='#{alice.id}']").click
-      end
+      page.find('.ss-main').click
+      page.find(".ss-option", text: alice.name).click
       page.all('.nav-link', text: 'Skills')[1].click
       expect(page).to have_content('Ruby (2)')
       expect(page).to have_content('Java (1)')
@@ -87,10 +80,8 @@ describe :people do
       # Switch to PeopleSkills tab
       alice = people(:alice)
       visit people_path
-      within 'section[data-controller="dropdown"]' do
-        page.find('.choices').click
-        page.find("div[data-value='#{alice.id}']").click
-      end
+      page.find('.ss-main').click
+      page.find(".ss-option", text: alice.name).click
       page.all('.nav-link', text: 'Skills')[1].click
       expect(page).to have_content('Unweighted', count: 2)
     end
