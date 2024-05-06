@@ -242,10 +242,10 @@ pzsh-topbar {
 
 .skills-blue-text {
   color: $skills-blue;
-}
 
-.skills-blue-text:hover {
-  color: $skills-dark-blue;
+  &:hover {
+    color: $skills-dark-blue;
+  }
 }
 
 .min-height {
@@ -259,7 +259,9 @@ pzsh-topbar {
 
 .skills-selected:hover {
   color: white;
-}#modal-animation {
+}
+
+#modal-animation {
   opacity: 0;
   transition: opacity 0.5s;
 }
