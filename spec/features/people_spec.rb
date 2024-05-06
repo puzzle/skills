@@ -254,7 +254,9 @@ describe :people do
       visit person_path(bob)
       page.find('#edit-button').click
 
-      page.attach_file("avatar-uploader", Rails.root + 'app/assets/images/huge_picture.jpg')
+      allow_any_instance_of(CarrierWave::SanitizedFile).to receive(:size).and_return(12.megabytes)
+
+      page.attach_file("avatar-uploader", Rails.root + 'app/assets/images/favicon.png')
       page.find("#save-button").click
       expect(page).to have_css('.alert-danger', text: 'Bild sollte nicht grösser als 10MB sein')
     end
