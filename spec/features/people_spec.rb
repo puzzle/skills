@@ -248,6 +248,18 @@ describe :people do
       #Language should now be re-enabled
       expect(lang_select2.find('option', text: 'KO')).not_to be_disabled
     }
+
+    it('should display error when uploading a too big avatar file') do
+      bob = people(:bob)
+      visit person_path(bob)
+      page.find('#edit-button').click
+
+      allow_any_instance_of(CarrierWave::SanitizedFile).to receive(:size).and_return(12.megabytes)
+
+      page.attach_file("avatar-uploader", Rails.root + 'app/assets/images/favicon.png')
+      page.find("#save-button").click
+      expect(page).to have_css('.alert-danger', text: 'Bild sollte nicht grösser als 10MB sein')
+    end
   end
 
   describe 'Create person', type: :feature, js: true do

@@ -1,6 +1,8 @@
 de:
   errors:
     profile-not-found: Profil konnte nicht gefunden werden.
+    messages:
+      max_size_error: sollte nicht grösser als 10MB sein.
   helpers:
     submit:
       cancel: Abbrechen
@@ -8,7 +10,6 @@ de:
       save-and-new: Speichern & Neu
     button:
       edit: Bearbeiten
-
   attributes:
     year_from: Jahr von
     year_to: Jahr bis
@@ -21,6 +22,8 @@ de:
       activity: Station
       project: Projekt
     attributes:
+      person:
+        picture: Bild
       advanced_training:
         description: Beschreibung
       education:
