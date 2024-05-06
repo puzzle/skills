@@ -10,6 +10,13 @@ de:
       save-and-new: Speichern & Neu
     button:
       edit: Bearbeiten
+  profile:
+    personal_data: Personalien
+    core_competences: Kernkompetenzen
+    educations: Ausbildungen
+    advanced_trainings: Weiterbildungen
+    activities: Stationen
+    projects: Projekte
   attributes:
     year_from: Jahr von
     year_to: Jahr bis

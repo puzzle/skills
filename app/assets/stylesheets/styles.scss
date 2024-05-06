@@ -232,6 +232,31 @@ pzsh-topbar {
   word-break: break-word;
 }
 
+.w-80 {
+  width: 80%;
+}
+
+.w-20 {
+  width: 20%;
+}
+
+.skills-blue-text {
+  color: $skills-blue;
+
+  &:hover {
+    color: $skills-dark-blue;
+  }
+}
+
+.min-height {
+  height: min-content;
+}
+
+.skills-selected {
+  background-color: $skills-blue;
+  color: white;
+}
+
 #modal-animation {
   opacity: 0;
   transition: opacity 0.5s;
@@ -239,4 +264,10 @@ pzsh-topbar {
 
 #modal-animation.fader {
   opacity: 1;
+}
+
+.side-container {
+  max-height: 70em;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }

@@ -1,6 +1,10 @@
-= render('profile')
-= render('core_competences')
-= render('people/person_relations/index', list: @person.advanced_trainings.list)
-= render('people/person_relations/index', list: @person.educations.list)
-= render('people/person_relations/index', list: @person.activities.list)
-= render('people/person_relations/index', list: @person.projects.list)
+%div.d-flex.flex-row.mt-3{"data-controller": "scroll"}
+  %div.w-20.bg-skills-gray.me-3.border.border-light-subtle.border-2.min-height
+    = render('scroll_to_menu')
+  %div.w-80.side-container#scroll-content{"data-action": "scroll->scroll#scrollEvent"}
+    = render('profile')
+    = render('core_competences')
+    = render('people/person_relations/index', list: @person.educations.list, id: "educations")
+    = render('people/person_relations/index', list: @person.advanced_trainings.list, id: "advanced-trainings")
+    = render('people/person_relations/index', list: @person.activities.list, id: "activities")
+    = render('people/person_relations/index', list: @person.projects.list, id: "projects")
