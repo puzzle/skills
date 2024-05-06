@@ -6,10 +6,10 @@ class ApplicationController < ActionController::Base
   helper_method :find_profile_by_keycloak_user
 
   def authenticate_auth_user!
-    super
+    return super if AuthConfig.keycloak?
 
-    # admin = AuthUser.find_by(email: 'admin@skills.ch')
-    # request.env['warden'].set_user(admin, :scope => :auth_user)
+    admin = AuthUser.find_by(email: 'admin@skills.ch')
+    request.env['warden'].set_user(admin, :scope => :auth_user)
   end
 
   def render_unauthorized

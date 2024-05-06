@@ -10,6 +10,6 @@ module AuthHelper
   end
 
   def development?
-    ENV['DEVELOPMENT'] == 'true' && ENV['RAILS_ENV'] == 'development'
+    ENV['DEVELOPMENT'] == 'true' && Rails.env.development?
   end
 end

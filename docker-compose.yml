@@ -20,7 +20,6 @@ services:
     depends_on:
       - postgres-rails
       - keycloak
-
       
   keycloak:
     container_name: keycloak
@@ -35,7 +34,7 @@ services:
       - --import-realm
       - --http-relative-path=/auth
     volumes:
-      - ${PWD}/new-realm-export.json:/opt/keycloak/data/import/realm.json
+      - ${PWD}/pitc-with-users.json:/opt/keycloak/data/import/realm.json
 
   postgres-rails:
     container_name: postgres-rails

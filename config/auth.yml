@@ -1,5 +1,5 @@
-client_id: pitc_skills_rails_backend
-secret: 
-host_url: https://sso-test.puzzle.ch
-realm: pitc
 admin_role: ADMIN
+host_url:
+realm:
+client_id:
+secret: 

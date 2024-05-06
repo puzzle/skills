@@ -24,15 +24,19 @@ class AuthConfig
       get_var_from_environment(:admin_role, required: false)
     end
 
+    def keycloak?
+      get_var_from_environment(:keycloak, required: false, default: true)
+    end
+
     private
 
-    def get_var_from_environment(key, required: true)
+    def get_var_from_environment(key, required: true, default: nil)
       if local?
         settings_file[key]
       else
         raise("Environment variable not set: '#{key}'") if required && ENV[key.to_s.upcase].nil?
 
-        ENV.fetch(key.to_s.upcase)
+        ENV.fetch(key.to_s.upcase, default || settings_file[key])
       end
     end
 
