@@ -2,6 +2,8 @@
 
 class AuthConfig
   AUTH_CONFIG_PATH = Rails.root.join('config/auth.yml')
+  TRUTHY_VALUES = %w(t true yes y 1).freeze
+  FALSEY_VALUES = %w(f false n no 0).freeze
 
   class << self
     def client_id
@@ -25,7 +27,7 @@ class AuthConfig
     end
 
     def keycloak?
-      get_var_from_environment(:keycloak, required: false, default: true)
+      to_boolean(get_var_from_environment(:keycloak, required: false, default: false))
     end
 
     private
@@ -36,12 +38,19 @@ class AuthConfig
       else
         raise("Environment variable not set: '#{key}'") if required && ENV[key.to_s.upcase].nil?
 
-        ENV.fetch(key.to_s.upcase, default || settings_file[key])
+        ENV.fetch(key.to_s.upcase, default.to_s || settings_file[key])
       end
     end
 
     def local?
-      ENV.fetch('LOCAL', false)
+      to_boolean(ENV.fetch('LOCAL', false))
+    end
+
+    def to_boolean(value)
+      return true if TRUTHY_VALUES.include?(value.to_s)
+      return false if FALSEY_VALUES.include?(value.to_s)
+
+      raise "Invalid value '#{value}' for boolean casting"
     end
 
     def settings_file
