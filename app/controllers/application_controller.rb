@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   helper_method :find_profile_by_keycloak_user
 
   def authenticate_auth_user!
-    return super if AuthConfig.keycloak?
+    return super unless helpers.devise?
 
     admin = AuthUser.find_by(email: 'admin@skills.ch')
     request.env['warden'].set_user(admin, :scope => :auth_user)
