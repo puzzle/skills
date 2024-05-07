@@ -5,6 +5,8 @@ services:
     user: "${UID:-1000}"
     tty: true
     stdin_open: true
+    environment:
+      - RAILS_DB_HOST=postgres
     env_file: .env
     build:
       context: ./config/docker/development
