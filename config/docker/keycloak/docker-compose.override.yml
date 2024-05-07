@@ -1,11 +1,11 @@
 include:
-  - ../../docker-compose.yml
+  - ../../../docker-compose.yml
 
 services:
-
   rails:
-    env_file: rails.env
-
+    env_file:
+      - rails.env
+      
   keycloak:
     container_name: keycloak
     image: quay.io/keycloak/keycloak:23.0.7
