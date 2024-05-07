@@ -25,10 +25,7 @@ services:
     image: postgres:16
     ports:
       - 5432:5432
-    environment:
-      - POSTGRES_DB=skills_development
-      - POSTGRES_USER=skills
-      - POSTGRES_PASSWORD=skills
+    env_file: .env
     volumes:
       - postgres:/var/lib/postgres
 
