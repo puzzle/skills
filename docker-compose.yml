@@ -46,7 +46,25 @@ services:
     volumes:
       - postgres_rails:/var/lib/postgres
 
+  assets:
+    container_name: assets
+    image: ruby:3.2
+    working_dir: /myapp
+    command: >
+     /bin/bash -c "
+      apt-get update &&
+      apt-get install nodejs npm -y &&
+      npm install -g yarn && bin/assets &&
+      sleep infinity"
+    volumes:
+      - ./:/myapp
+      - bundler_cache:/opt/bundle
+      - assets_cache:/usr/bin/
+    depends_on:
+      - rails
+      
 volumes:
   bundler_cache:
+  assets_cache:
   postgres_rails:
 
