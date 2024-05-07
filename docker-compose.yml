@@ -32,10 +32,6 @@ services:
     volumes:
       - postgres_rails:/var/lib/postgres
 
-  keycloak:
-    image: alpine
-    command: ["echo", "This is a placholder for keycloak service"]
-
   assets:
     container_name: assets
     image: ruby:3.2

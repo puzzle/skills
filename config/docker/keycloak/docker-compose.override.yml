@@ -1,20 +1,3 @@
-include:
-  - ../../../docker-compose.yml
-
 services:
   rails:
-    env_file:
-      - rails.env
-      
-  keycloak:
-    container_name: keycloak
-    image: quay.io/keycloak/keycloak:23.0.7
-    env_file: keycloak.env
-    ports:
-      - 8080:8080
-    command:
-      - start-dev
-      - --import-realm
-      - --http-relative-path=/auth
-    volumes:
-      - ${PWD}/pitc-with-users.json:/opt/keycloak/data/import/realm.json
+    env_file: rails.env
