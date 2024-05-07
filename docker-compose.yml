@@ -18,10 +18,10 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - bundler_cache:/opt/bundle
     depends_on:
-      - postgres-rails
+      - postgres
 
-  postgres-rails:
-    container_name: postgres-rails
+  postgres:
+    container_name: postgres
     image: postgres:16
     ports:
       - 5432:5432
@@ -30,7 +30,7 @@ services:
       - POSTGRES_USER=skills
       - POSTGRES_PASSWORD=skills
     volumes:
-      - postgres_rails:/var/lib/postgres
+      - postgres:/var/lib/postgres
 
   assets:
     container_name: assets
@@ -53,5 +53,5 @@ services:
 volumes:
   bundler_cache:
   assets_cache:
-  postgres_rails:
+  postgres:
 
