@@ -20,6 +20,13 @@
               %img{:src=> "/assets/logo.svg",:height=>"32"}
             %text.d-flex.align-items-end.ms-2.small= "5.0.0"
           %ul.navbar.text-gray
+            - if development?
+              %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
+                %span#username
+                  - if AuthConfig.keycloak?
+                    Keycloak
+                  - else
+                    InMemory
             -# Username 
             - if auth_user_signed_in?
               %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
