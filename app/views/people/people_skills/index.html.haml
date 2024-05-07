@@ -1,13 +1,16 @@
 %turbo-frame{id: "tab-content"}
-  %div.d-flex.flex-row.w-100.mt-2
-    %turbo-frame.d-flex.flex-row.w-100{id: "people-skill-form"}
+  %div.d-flex.flex-row.mt-3{"data-controller": "scroll"}
+    %div.w-20.me-3.min-height
+      = render('people/scroll_to_menu')
       %div.bg-skills-gray.d-flex.justify-content-center.people-skills-actions.me-2.mt-2.border.border-light-subtle.border-2
         = link_to image_tag("pencil-square.svg", {class: "me-1"})+ "Skills bearbeiten",
-        people_skills_edit_person_path(@person), class: "d-flex align-items-center p-3"
-      %div.border-bottom.people-skills.overflow-scroll
-        %p.d-flex.align-items-center.profile-header
-          Skills
-          ="(#{@person.people_skills.count})"
+             people_skills_edit_person_path(@person), class: "d-flex align-items-center p-3"
+    %div.w-80.side-container#scroll-content{"data-action": "scroll->scroll#scrollEvent"}
+      %div.d-flex.flex-row.w-100
+        %div.border-bottom.people-skills.overflow-scroll.w-100
+          %p.d-flex.align-items-center.profile-header
+            Skills
+            ="(#{@person.people_skills.count})"
           - Category.all_parents.each do |category|
             %div.profile-header.mw-100.border-bottom.mt-4
               = category.title
