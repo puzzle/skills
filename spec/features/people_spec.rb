@@ -7,35 +7,55 @@ describe :people do
       sign_in auth_users(:user), scope: :auth_user
     end
 
-    let(:list) {Person.all.sort_by(&:name) }
+    let(:people_list) {Person.all}
 
     it 'displays people in alphabetical order in select' do
       visit people_path
-      within 'section[data-controller="dropdown"]' do
-        dropdown_options = list.pluck(:name).unshift("Bitte wählen")
-        expect(page).to have_select('person_id', options: dropdown_options, selected: "Bitte wählen")
+      dropdown_options = people_list.pluck(:name).sort_by(&:downcase)
+      page.find('.ss-main').click
+      dropdown_options.each_with_index do |option|
+        expect(page).to have_css("div", text: option)
       end
     end
-
 
     it 'redirects to the selected person on change' do
-      bob = people(:bob)
       visit people_path
-      within 'section[data-controller="dropdown"]' do
-        select bob.name, from: 'person_id'
-      end
-
+      bob = people(:bob)
+      page.find('.ss-main').click
+      page.all("div", text: bob.name)[0].click
       expect(page).to have_current_path(person_path(bob))
-      expect(page).to have_select('person_id', selected: bob.name)
+      page.find('.ss-main').click
+      expect(page).to have_css(".ss-single", text: bob.name)
     end
 
-    it 'redirect to the first entry ' do
+    it 'redirect to the first entry' do
       visit people_path
-      within 'section[data-controller="dropdown"]' do
-        first('#person_id option:enabled', minimum: 1).select_option
+      sorted_list = people_list.sort_by { |item| item.name.downcase }
+      page.find('.ss-main').click
+      page.all(".ss-option")[1].click
+      expect(page).to have_current_path(person_path(sorted_list.first.id))
+      page.find('.ss-main').click
+      expect(page).to have_css(".ss-single", text: sorted_list.first.name)
+    end
+
+    it 'should only display matched people' do
+      visit people_path
+      sorted_list = people_list.sort_by { |item| item.name.downcase }
+      search_string = "al"
+      page.find('.ss-main').click
+      page.all('input')[0].send_keys(search_string)
+
+      matched_strings, not_matched_strings = sorted_list.partition do |person|
+        person.name.downcase.include?(search_string)
       end
-      expect(page).to have_current_path(person_path(list.first))
-      expect(page).to have_select('person_id', selected: list.first.name)
+
+      matched_strings.pluck(:name).each do |name|
+        expect(page).to have_text(name)
+      end
+
+      not_matched_strings.pluck(:name).each do |name|
+        expect(page).to have_no_text(name)
+      end
     end
   end
 

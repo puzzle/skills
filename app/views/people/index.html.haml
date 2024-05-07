@@ -1,4 +1,5 @@
-= render partial: "people/search", locals: { person: nil }
+%div.mt-2
+  = render partial: "people/search", locals: { person: nil }
 - flash.each do |type, msg|
   - if type == 'error'
     .alert.alert-danger.mt-3

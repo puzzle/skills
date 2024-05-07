@@ -12,9 +12,9 @@ describe :people do
       # Switch to PeopleSkills tab
       bob = people(:bob)
       visit people_path
-      within 'section[data-controller="dropdown"]' do
-        select bob.name, from: 'person_id'
-      end
+      page.find('.ss-main').click
+      # Select option from dropdown
+      page.find(".ss-option", text: bob.name).click
       page.all('.nav-link', text: 'Skills')[1].click
 
       expect(page).to have_content('Rails')
@@ -29,9 +29,8 @@ describe :people do
       # Switch to PeopleSkills tab
       alice = people(:alice)
       visit people_path
-      within 'section[data-controller="dropdown"]' do
-        select alice.name, from: 'person_id'
-      end
+      page.find('.ss-main').click
+      page.find(".ss-option", text: alice.name).click
 
       # Modify people skills
       page.all('.nav-link', text: 'Skills')[1].click
@@ -68,9 +67,8 @@ describe :people do
       # Switch to PeopleSkills tab
       alice = people(:alice)
       visit people_path
-      within 'section[data-controller="dropdown"]' do
-        select alice.name, from: 'person_id'
-      end
+      page.find('.ss-main').click
+      page.find(".ss-option", text: alice.name).click
       page.all('.nav-link', text: 'Skills')[1].click
       expect(page).to have_content('Ruby (2)')
       expect(page).to have_content('Java (1)')
@@ -82,9 +80,8 @@ describe :people do
       # Switch to PeopleSkills tab
       alice = people(:alice)
       visit people_path
-      within 'section[data-controller="dropdown"]' do
-        select alice.name, from: 'person_id'
-      end
+      page.find('.ss-main').click
+      page.find(".ss-option", text: alice.name).click
       page.all('.nav-link', text: 'Skills')[1].click
       expect(page).to have_content('Unweighted', count: 2)
     end
