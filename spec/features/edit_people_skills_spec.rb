@@ -33,6 +33,7 @@ describe :people do
       page.find(".ss-option", text: alice.name).click
 
       # Modify people skills
+      expect(page).to have_selector(".nav-link", text: "Skills", count: 2, wait: 5)
       page.all('.nav-link', text: 'Skills')[1].click
       page.find('a', text: 'Skills bearbeiten').click
       page.find('#person_people_skills_attributes_0_level').set(5)
