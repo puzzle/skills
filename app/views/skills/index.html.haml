@@ -1,5 +1,5 @@
 = render("header")
-%div.w-100
+%div.w-100.header-margin
   .row.bg-light-subtle.border.border-top.border-5.border-secondary.border-top-0.border-start-0.border-end-0.position-fixed.w-80
     .col-2.d-flex.align-items-center
       %strong= t "skills.table.skill"
@@ -17,25 +17,24 @@
       %strong= t "skills.table.portfolio"
     .col-1.bg-secondary-subtle.d-flex.align-items-center
       %strong= t "skills.table.modify"
-  %div.header-margin
-    - @skills.each do |skill|
-      %turbo-frame{id: "#{dom_id skill}"}
-        .row.border.border-top.table-light.tableform-hover.table-row
-          .col-2.d-flex.align-items-center.text-break
-            = link_to skill.title, skill_path(skill), data: { turbo_frame: "remote_modal" }
-          .col-1.bg-light.d-flex.align-items-center
-            = filter_by_rated(skill).count
-          .col-3.d-flex.align-items-center
-            =skill.category.parent.title
-          .col-2.bg-light.d-flex.align-items-center
-            =skill.category.title
-          .col-1.d-flex.align-items-center
-            =skill.default_set.nil? ? "Neu" : (skill.default_set? ? "Ja" : "Nein")
-          .col-1.bg-light.d-flex.align-items-center
-            =skill.radar
-          .col-1.d-flex.align-items-center
-            =skill.portfolio
-          .col-1.bg-light
-            %div.h-100.d-flex.justify-content-center.align-items-center
-              =link_to edit_skill_path(skill), class: "btn bg-gray-100" do
-                %img.pointer.edit-button{:src=> "/assets/pencil-square.svg",:height=>"16"}
+  - @skills.each do |skill|
+    %turbo-frame{id: "#{dom_id skill}"}
+      .row.border.border-top.table-light.tableform-hover.table-row
+        .col-2.d-flex.align-items-center.text-break
+          = link_to skill.title, skill_path(skill), data: { turbo_frame: "remote_modal" }
+        .col-1.bg-light.d-flex.align-items-center
+          = filter_by_rated(skill).count
+        .col-3.d-flex.align-items-center
+          =skill.category.parent.title
+        .col-2.bg-light.d-flex.align-items-center
+          =skill.category.title
+        .col-1.d-flex.align-items-center
+          =skill.default_set.nil? ? "Neu" : (skill.default_set? ? "Ja" : "Nein")
+        .col-1.bg-light.d-flex.align-items-center
+          =skill.radar
+        .col-1.d-flex.align-items-center
+          =skill.portfolio
+        .col-1.bg-light
+          %div.h-100.d-flex.justify-content-center.align-items-center
+            =link_to edit_skill_path(skill), class: "btn bg-gray-100" do
+              %img.pointer.edit-button{:src=> "/assets/pencil-square.svg",:height=>"16"}
