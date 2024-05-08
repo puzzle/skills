@@ -1,2 +1,25 @@
-%div.bg-skills-gray
-  %h1 Scuderia Ferrari
+%div.d-flex.flex-column.pt-3.position-fixed.bg-white.w-80
+  %div.d-flex.flex-row
+    %input.form-control.skills-search-field.rounded-end-0.z-3{placeholder: "Charles Leclerc"}
+    %div.border.d-flex.justify-content-center.align-items-center.rounded-end.bg-white
+      %img.pointer.p-2{src: "/assets/search.svg"}
+  %div.d-flex.flex-row.mt-3
+    %div.w-25
+      .btn-group{"aria-label" => "Basic outlined example", role: "group"}
+        %button.btn.btn-outline-primary{type: "button"} Alle
+        %button.btn.btn-outline-primary{type: "button"} Neue
+        %button.btn.btn-outline-primary{type: "button"} Default
+    %div.d-flex.flex-row.align-items-center.justify-content-center.w-25
+      %span.text-gray.me-3
+        Kategorie
+      %select.form-control
+        - Category.all_parents.each do | category |
+          %option
+            = category.title
+    %div.w-25.d-flex.justify-content-center.align-items-center
+      =link_to image_tag("download.svg")+ "Export", export_skills_path, class: "btn text-primary"
+    %div.w-25.d-flex.justify-content-center.align-items-center
+      =link_to image_tag("plus-lg.svg", class: "text-primary")+ "Neuer Skill",
+      new_skill_path, class: "btn text-primary", data: { turbo_frame: "remote_modal" }
+
+
