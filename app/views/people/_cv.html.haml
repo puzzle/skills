@@ -1,6 +1,7 @@
 %div.d-flex.flex-row.mt-3{"data-controller": "scroll"}
   %div.w-20.bg-skills-gray.me-3.border.border-light-subtle.border-2.min-height
-    = render('scroll_to_menu')
+    = render('scroll_to_menu',
+    items: %w[personal-data core-competences educations advanced-trainings activities projects], translate: true)
   %div.w-80.side-container#scroll-content{"data-action": "scroll->scroll#scrollEvent"}
     = render('profile')
     = render('core_competences')

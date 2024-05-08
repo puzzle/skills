@@ -11,10 +11,10 @@ de:
     button:
       edit: Bearbeiten
   profile:
-    personal_data: Personalien
-    core_competences: Kernkompetenzen
+    personal-data: Personalien
+    core-competences: Kernkompetenzen
     educations: Ausbildungen
-    advanced_trainings: Weiterbildungen
+    advanced-trainings: Weiterbildungen
     activities: Stationen
     projects: Projekte
   attributes:
