@@ -97,6 +97,7 @@ describe :people_skills do
       expect(page).to have_selector("#filter-row-1")
 
       # set skills in filters
+      expect(page).to have_css('select', count: 2)
       page.all('select')[0].select('ember', wait: 2)
       expect(page).to have_text("Alice Mante")
       expect(page).to have_text("Wally Allround")
