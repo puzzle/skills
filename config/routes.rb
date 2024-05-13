@@ -11,13 +11,23 @@ Rails.application.routes.draw do
       delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_auth_user_session
     end
 
+  resources :skills do
+    collection do
+      get 'export', to: 'skills#export'
+    end
+  end
+
+  resources :people_skills do
+    collection do
+      get 'filter_form', to: "people_skills/filter_form#index"
+    end
+  end
+
   # Status
   scope 'status' do
     get 'health', to: 'status#health'
     get 'readiness', to: 'status#readiness'
   end
-
-  resources :people_skills
 
   resources :cv_search
 
@@ -38,12 +48,6 @@ Rails.application.routes.draw do
       get 'people-skills', to: 'people/people_skills#index'
       get 'people-skills-edit', to: 'people/people_skills#edit'
       patch 'people-skills', to: 'people/people_skills#update'
-    end
-  end
-
-  resources :skills do
-    collection do
-      get 'export', to: 'skills#export'
     end
   end
 

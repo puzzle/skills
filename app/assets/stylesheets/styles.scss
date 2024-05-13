@@ -207,7 +207,13 @@ pzsh-topbar {
   height: min-content;
 }
 
-#avatar {
+.filter-form {
+  width: 95%;
+}
+
+.filter-container {
+  width: 98%;
+}#avatar {
   display: none;
 }
 
@@ -215,6 +221,13 @@ pzsh-topbar {
   display: block;
 }
 
+.person-filter-container {
+  width: 20%;
+}
+
+.skills-filter-container {
+  width: 80%;
+}
 .highlighted {
   background-color: $skills-dark-blue;
 }

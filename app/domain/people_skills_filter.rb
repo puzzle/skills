@@ -21,10 +21,6 @@ class PeopleSkillsFilter
   def set_levels_and_interests_for_skills(levels, interests, skill_ids)
     return if levels.blank? || skill_ids.blank? || interests.blank?
 
-    levels = levels.split(',')
-    interests = interests.split(',')
-    skill_ids = skill_ids.split(',')
-
     # rubocop:disable Layout/LineLength
     @levels_and_interests_for_skills = skill_ids.zip(levels, interests)
                                                 .map { |search_param| { skill: search_param[0], level: search_param[1], interest: search_param[2] } }
@@ -33,10 +29,10 @@ class PeopleSkillsFilter
 
   def filter_by_rated
     case rated
-    when 'true'
+    when true
       return entries.where.not(interest: 0)
                     .or(entries.where.not(level: 0))
-    when 'false'
+    when false
       return entries.where(interest: 0, level: 0)
     end
     entries
@@ -62,6 +58,7 @@ class PeopleSkillsFilter
   def skills_by_person(entries, person_ids)
     entries.includes(:skill, :person)
            .where(person_id: person_ids, skill_id: skill_ids)
+           .sort_by { |item| item.skill.title.downcase }
            .group_by(&:person)
   end
 

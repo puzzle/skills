@@ -2,25 +2,33 @@
 
 class PeopleSkillsController < CrudController
   include ParamConverters
-  helper_method :search_level, :search_interest
+
+  helper_method :filter_params
 
   def entries
-    return [] if params[:skill_id].blank?
+    return [] if filter_params.skill_ids.empty?
+
+    required_search_values = extract_required_search_values
+
+    return [] if required_search_values.empty?
 
     base = PeopleSkill.includes(:person, skill: [
                                   :category,
                                   :people, { people_skills: :person }
                                 ])
     PeopleSkillsFilter.new(
-      base, true, params[:level], params[:interest], params[:skill_id]
+      base, true, required_search_values[1], required_search_values[2], required_search_values[0]
     ).scope
   end
 
-  def search_level
-    params[:level] ? params[:level].to_i : 1
+  private
+
+  def filter_params
+    PeopleSkills::FilterParams.new(params)
   end
 
-  def search_interest
-    params[:interest] ? params[:interest].to_i : 1
+  def extract_required_search_values
+    filtered_array = filter_params.skill_ids.zip(filter_params.levels, filter_params.interests)
+    filtered_array.reject { |arr| arr.first == '' }.transpose
   end
 end

@@ -15,7 +15,7 @@ describe PeopleSkillsFilter do
     end
 
     it 'filters rated people skills' do
-      filter = PeopleSkillsFilter.new(PeopleSkill.all, 'true')
+      filter = PeopleSkillsFilter.new(PeopleSkill.all, true)
       filteredPeopleSkills = filter.scope
       levels = filteredPeopleSkills.pluck(:level)
       interests = filteredPeopleSkills.pluck(:interest)
@@ -25,8 +25,8 @@ describe PeopleSkillsFilter do
       expect(interests).to eq([5, 4, 4, 2, 4, 5, 3, 2, 2, 4, 5, 3, 2, 4])
     end
 
-    it 'it filters unrated people skills' do
-      filter = PeopleSkillsFilter.new(PeopleSkill.all, 'false')
+    it 'filters unrated people skills' do
+      filter = PeopleSkillsFilter.new(PeopleSkill.all, false)
       filteredPeopleSkills = filter.scope
       levels = filteredPeopleSkills.pluck(:level)
       interests = filteredPeopleSkills.pluck(:interest)
