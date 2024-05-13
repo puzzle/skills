@@ -92,7 +92,7 @@ class Person < ApplicationRecord
 
 
   def last_updated_at
-    [associations_updatet_at, updated_at].max
+    [associations_updatet_at, updated_at].compact.max
   end
 
   private
