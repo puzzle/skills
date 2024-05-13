@@ -1,6 +1,5 @@
 %div.mt-2
   =render partial:"people/search", :locals => {person: @person}
-  = "#{t 'profile.updated_at'}: #{@person.last_updated_at}"
 %div{"data-controller": "profile-tab highlight"}
   %ul.nav.nav-tabs.d-flex.flex-row.mt-2
     %div.w-50.d-flex.flex-row
