@@ -1,25 +1,29 @@
 %div.d-flex.flex-column.position-fixed.bg-white.w-80.z-3
-  %div.d-flex.flex-row.mt-2
-    %input.form-control.skills-search-field.rounded-end-0.z-3{placeholder: "Charles Leclerc"}
-    %div.border.d-flex.justify-content-center.align-items-center.rounded-end.bg-white
-      %img.pointer.p-2{src: "/assets/search.svg"}
-  %div.d-flex.flex-row.mt-3
-    %div.w-25
-      .btn-group{"aria-label" => "Basic outlined example", role: "group"}
-        %button.btn.btn-outline-primary{type: "button"} Alle
-        %button.btn.btn-outline-primary{type: "button"} Neue
-        %button.btn.btn-outline-primary{type: "button"} Default
-    %div.d-flex.flex-row.align-items-center.justify-content-center.w-25
-      %span.text-gray.me-3
-        Kategorie
-      %select.form-control
-        - Category.all_parents.each do | category |
-          %option
-            = category.title
-    %div.w-25.d-flex.justify-content-center.align-items-center
-      =link_to image_tag("download.svg")+ "Export", export_skills_path, class: "btn text-primary"
-    %div.w-25.d-flex.justify-content-center.align-items-center
-      =link_to image_tag("plus-lg.svg", class: "text-primary")+ "Neuer Skill",
-      new_skill_path, class: "btn text-primary", data: { turbo_frame: "remote_modal" }
+  = form_with(url: skills_path, method: :get) do |form|
+    %div.d-flex.flex-row.mt-2
+      %input.form-control.skills-search-field.rounded-end-0.z-3{placeholder: "Charles Leclerc"}
+      %div.border.d-flex.justify-content-center.align-items-center.rounded-end.bg-white
+        %img.pointer.p-2{src: "/assets/search.svg"}
+    %div.d-flex.flex-row.mt-3
+      %div.w-25
+        .btn-group{"aria-label" => "Basic outlined example", role: "group"}
+          %label.btn.btn-outline-primary
+            = form.radio_button :default_set, false, onClick: "this.form.submit()", class: "d-none"
+            Alle
+          %label.btn.btn-outline-primary
+            = form.radio_button :default_set, "new", onClick: "this.form.submit()", class: "d-none"
+            Neue
+          %label.btn.btn-outline-primary
+            = form.radio_button :default_set, true, onClick: "this.form.submit()", class: "d-none"
+            Default
+      %div.d-flex.flex-row.align-items-center.justify-content-center.w-25
+        %span.text-gray.me-3
+          Kategorie
+        = form.collection_select :category, Category.all_parents.order(:title), :id, :title, {}, class: "form-select mw-100", onchange: 'this.form.submit();'
+      %div.w-25.d-flex.justify-content-center.align-items-center
+        =link_to image_tag("download.svg")+ "Export", export_skills_path, class: "btn text-primary"
+      %div.w-25.d-flex.justify-content-center.align-items-center
+        =link_to image_tag("plus-lg.svg", class: "text-primary")+ "Neuer Skill",
+        new_skill_path, class: "btn text-primary", data: { turbo_frame: "remote_modal" }
 
 
