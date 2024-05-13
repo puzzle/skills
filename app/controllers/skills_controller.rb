@@ -53,6 +53,11 @@ class SkillsController < CrudController
     content_disposition('attachment', filename('skillset', nil, 'csv'))
   end
 
+  def entries
+    @skills =
+    SkillsFilter.new(Skill.all, params[:category], params[:title], params[:defaultSet]).scope
+  end
+
   # rubocop:disable Metrics/AbcSize
   def update_category_parent
     current_parent_id = Category.find(params[:skill][:category_id]).parent.id
