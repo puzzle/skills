@@ -76,7 +76,7 @@ describe :people_skills do
       4.times do
         page.find('#add-row-button').click
       end
-      expect(page).to have_selector("#filter-row-4")
+      expect(page).to have_selector("#filter-row-4", wait: 2)
 
       # set skills in filters
       page.all('select')[0].select('JUnit')
