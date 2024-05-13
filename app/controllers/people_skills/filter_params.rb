@@ -20,7 +20,7 @@ module PeopleSkills
     end
 
     def rows
-      @params[:rows]&.presence.to_i
+      @params[:rows].to_i
     end
 
     def rows_count
@@ -43,22 +43,24 @@ module PeopleSkills
       skill_ids.nil? ? nil : skill_ids[row_id].to_i
     end
 
-    # rubocop:disable Metrics/MethodLength
     def query_params
       skill_params = skill_ids.to_query('skill_id')
       level_params = levels.to_query('level')
-      interest_params = if interests.nil?
-                          ''
-                        else
-                          interests.map.with_index do |value, index|
-                            ["interest[#{index}]", value]
-                          end.to_h.to_query
-                        end
+      interest_params = extract_interest_params
 
       return '' if [skill_params, level_params, interest_params].all?(&:empty?)
 
       "#{skill_params}&#{level_params}&#{interest_params}"
     end
-    # rubocop:enable Metrics/MethodLength
+
+    def extract_interest_params
+      if interests.nil?
+        ''
+      else
+        interests.map.with_index do |value, index|
+          ["interest[#{index}]", value]
+        end.to_h.to_query
+      end
+    end
   end
 end
