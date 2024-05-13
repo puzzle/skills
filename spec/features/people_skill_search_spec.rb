@@ -49,6 +49,7 @@ describe :people_skills do
       expect(page).to have_selector("#filter-row-4", wait: 2)
 
       # set skills in filters
+      expect(page).to have_css("select", count: 5)
       page.all('select')[0].select('JUnit')
       page.all('select')[1].select('Rails')
       page.all('select')[2].select('ember')
