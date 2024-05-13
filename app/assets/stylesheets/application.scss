@@ -1,9 +1,4 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
 @import 'slim-select/src/slim-select/slimselect';
-
-.portfolio-select, .radar-select {
-  width: 100% !important;
-  padding-right: 0 !important;
-  padding-left: 0 !important;
-}
+@import 'styles';
