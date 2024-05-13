@@ -1,21 +1,23 @@
 %turbo-frame{id: "tab-content"}
-  %div.d-flex.flex-row.w-100.mt-2
-    %turbo-frame.d-flex.flex-row.w-100{id: "people-skill-form"}
+  %div.d-flex.flex-row.mt-3{"data-controller": "scroll"}
+    %div.w-20.d-flex.flex-column
+      %div.me-3.min-height.bg-skills-gray.me-3.border.border-light-subtle.border-2
+        = render('people/scroll_to_menu', items: Category.all_parents.pluck(:title), translate: false)
       %div.bg-skills-gray.d-flex.justify-content-center.people-skills-actions.me-2.mt-2.border.border-light-subtle.border-2
         = link_to image_tag("pencil-square.svg", {class: "me-1"})+ "Skills bearbeiten",
-        people_skills_edit_person_path(@person), class: "d-flex align-items-center p-3"
-      %div.border-bottom.people-skills.overflow-scroll
-        %p.d-flex.align-items-center.profile-header
-          Skills
-          ="(#{@person.people_skills.count})"
-          - Category.all_parents.each do |category|
-            %div.profile-header.mw-100.border-bottom.mt-4
-              = category.title
-            - category.children.each do |category_child|
-              %div.white-header.mw-100.border-bottom.text-gray
-                =category_child.title + " (#{people_skills_of_category(category_child).count})"
-                - people_skills_of_category(category_child).each do |person_skill|
-                  - @person_skill = person_skill
-                  %div.mw-100.border-bottom.text-black.ps-5.border
-                    %div.d-flex.flex-row.align-items-center.mt-3.mb-3
-                      = render("people_skills/person_skill", {person_skill: @person_skill})
+             people_skills_edit_person_path(@person), class: "d-flex align-items-center p-3"
+    %div.w-80.side-container#scroll-content{"data-action": "scroll->scroll#scrollEvent"}
+      %p.d-flex.align-items-center.profile-header
+        Skills
+        ="(#{@person.people_skills.count})"
+      - Category.all_parents.each do |category|
+        %div.profile-header.mw-100.border-bottom.mt-4{id: category.title, "data-scroll-target": "scrollItem"}
+          = category.title
+        - category.children.each do |category_child|
+          %div.white-header.mw-100.border-bottom.text-gray
+            =category_child.title + " (#{people_skills_of_category(category_child).count})"
+            - people_skills_of_category(category_child).each do |person_skill|
+              - @person_skill = person_skill
+              %div.mw-100.border-bottom.text-black.ps-5.border
+                %div.d-flex.flex-row.align-items-center.mt-3.mb-3
+                  = render("people_skills/person_skill", {person_skill: @person_skill})
