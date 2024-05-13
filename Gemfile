@@ -25,7 +25,7 @@ gem 'net-imap', require: false
 gem 'net-ldap', '~> 0.16.0'
 gem 'net-pop', require: false
 gem 'net-smtp', require: false
-gem 'nokogiri', '~> 1.14'
+gem 'nokogiri', '~> 1.16'
 gem 'odf-report'
 gem 'omniauth-keycloak'
 gem 'omniauth-rails_csrf_protection'
