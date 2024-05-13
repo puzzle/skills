@@ -38,7 +38,8 @@ describe :people_skills do
       4.times do
         page.find('#add-row-button').click
       end
-      expect(page).not_to have_selector "#add-row-button"
+      require 'pry'; binding.pry
+      expect(page).not_to have_selector("#add-row-button", wait: 2)
     end
 
     it 'Should return user which matches filters' do
