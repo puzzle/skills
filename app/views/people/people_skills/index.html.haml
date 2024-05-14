@@ -1,7 +1,7 @@
 %div.d-flex.flex-row.w-100.mt-2
   %turbo-frame#people-skill-form.d-flex.flex-row.w-100.gap-2{"data-controller": "scroll"}
-    %div.w-20.d-flex.flex-column
-      %div.me-3.min-height.bg-skills-gray.me-3.border.border-light-subtle.border-2
+    %div.w-20.d-flex.flex-column.me-3.gap-2
+      %div.people-skills-actions.d-flex.flex-column
         = render('people/scroll_to_menu', items: Category.all_parents.pluck(:title), translate: false)
       %div.people-skills-actions
         = link_to image_tag("pencil-square.svg", {class: "me-1"})+ t("helpers.submit.edit", model: Skill.model_name.plural.capitalize()),

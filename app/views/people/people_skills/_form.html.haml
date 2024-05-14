@@ -4,7 +4,7 @@
         %label.form-label.text-gray= t "people-skills.skill"
         = f.fields_for :skill do |sf|
             = sf.select :id, options_for_select(skills_dropdown_options, disabled: person.skills.pluck(:id)), {}, 
-                {data: {"people-skills-target": "skillsDD"}}
+                {data: {"people-skills-target": "skillsDropdown"}}
             = sf.hidden_field :title, {data: {"people-skills-target": "skillTitle"}}
             = sf.hidden_field :default_set, value: false
             = sf.hidden_field :radar, value: Settings.radar[1]
@@ -13,7 +13,7 @@
             %div
                 - @category_hidden = sf.object.category&.id.present? && sf.object&.id.present?
                 %label.form-label.text-gray{hidden:@category_hidden}= t "people-skills.category"
-                = sf.collection_select :category_id, Category.where.not(parent_id: nil), :id, :name_with_parent, {}, class: "form-select", hidden: @category_hidden, data: {"people-skills-target": "categoriesDD"}
+                = sf.collection_select :category_id, Category.where.not(parent_id: nil), :id, :name_with_parent, {}, class: "form-select", hidden: @category_hidden, data: {"people-skills-target": "categoriesDropdown"}
         
         %label.form-label.text-gray= t "people-skills.levels.level"
         %div.d-flex.gap-2

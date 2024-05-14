@@ -3,14 +3,14 @@ import SlimSelect from 'slim-select'
 
 
 export default class extends Controller {
-    static targets = ['switch', 'label', 'skillsDD', 'categoriesDD', 'skillTitle']
+    static targets = ['switch', 'label', 'skillsDropdown', 'categoriesDropdown', 'skillTitle']
     levels = ["Nicht Bewertet", "Trainee", "Junior", "Professional", "Senior", "Expert"]
-    skills = Array.from(this.skillsDDTarget.options).map(e => { return { id: e.value, title: e.innerHTML } })
+    skills = Array.from(this.skillsDropdownTarget.options).map(e => { return { id: e.value, title: e.innerHTML } })
 
 
     connect() {
         const select = new SlimSelect({
-            select: this.skillsDDTarget,
+            select: this.skillsDropdownTarget,
             events: {
                 addable: (value) => this.addNewSkill(value),
                 afterChange: (newVal) => this.changeSkill(newVal)
@@ -44,13 +44,13 @@ export default class extends Controller {
     }
 
     changeSkill(newVal) {
-        const selected_skill = this.skillsDDTarget.value
-        const skill_category_id = this.skillsDDTarget.options[this.skillsDDTarget.selectedIndex]?.dataset.categoryId
+        const selected_skill = this.skillsDropdownTarget.value
+        const skill_category_id = this.skillsDropdownTarget.options[this.skillsDropdownTarget.selectedIndex]?.dataset.categoryId
         const all_skill_ids = this.skills.map(e => e.id)
         const is_existing_skill = all_skill_ids.includes(selected_skill)
 
         this.skillTitleTarget.value = newVal[0].text
-        Array.from(this.categoriesDDTarget.parentElement.children).forEach(e => e.hidden = is_existing_skill);
-        this.categoriesDDTarget.value = is_existing_skill ? skill_category_id : ""
+        Array.from(this.categoriesDropdownTarget.parentElement.children).forEach(e => e.hidden = is_existing_skill);
+        this.categoriesDropdownTarget.value = is_existing_skill ? skill_category_id : ""
     }
 }
