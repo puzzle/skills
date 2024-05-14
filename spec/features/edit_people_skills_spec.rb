@@ -34,7 +34,7 @@ describe :people do
       page.find(".ss-option", text: alice.name).click
 
       # Modify people skills
-      expect(page).to have_css('.nav-link', text: "Skills")
+      expect(page).to have_css('.nav-link', text: "Skills", count: 2)
       page.all('.nav-link', text: 'Skills')[1].click
       page.find('a', text: 'Skills bearbeiten').click
       page.find('#person_people_skills_attributes_0_level').set(5)
@@ -84,6 +84,7 @@ describe :people do
       visit people_path
       page.find('.ss-main').click
       page.find(".ss-option", text: alice.name).click
+      expect(page).to have_css('.nav-link', text: 'Skills', count: 2)
       page.all('.nav-link', text: 'Skills')[1].click
       expect(page).to have_content('Unweighted', count: 2)
     end
