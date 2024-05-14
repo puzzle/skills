@@ -68,10 +68,7 @@ describe :people do
     it 'should show amount of skills' do
       # Switch to PeopleSkills tab
       alice = people(:alice)
-      visit people_path
-      page.find('.ss-main').click
-      page.find(".ss-option", text: alice.name).click
-      page.all('.nav-link', text: 'Skills')[1].click
+      visit person_people_skills_path(alice)
       expect(page).to have_content('Ruby (2)')
       expect(page).to have_content('Java (1)')
       expect(page).to have_content('c (0)')
@@ -81,9 +78,8 @@ describe :people do
     it 'should display unweighted label if level is 0' do
       # Switch to PeopleSkills tab
       alice = people(:alice)
-      visit people_path
-      page.find('.ss-main').click
-      page.find(".ss-option", text: alice.name).click
+      visit person_people_skills_path(alice)
+
       expect(page).to have_css('.nav-link', text: 'Skills', count: 2)
       page.all('.nav-link', text: 'Skills')[1].click
       expect(page).to have_content('Unweighted', count: 2)
