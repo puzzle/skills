@@ -6,7 +6,6 @@ $skills-green-hover: #4e903c;
 $skills-search-result-blue: #238bca;
 $skills-dark-blue: #1e5a96;
 
-@import "bootstrap";
 
 .modal-dialog {
   max-width: 60%;
@@ -139,7 +138,8 @@ pzsh-topbar {
 }
 
 .rate {
-  float: left;
+  display: flex;
+  flex-direction: row-reverse;
   height: 30px;
   width: max-content;
 
@@ -148,52 +148,62 @@ pzsh-topbar {
     align-items: center;
     height: 30px;
     width: 25px;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 30px;
+    color: #ccc;
+
+    &:before {
+      content: "★ ";
+    }
+
+    &:hover,
+    &:hover ~ label {
+      color: #deb217;
+    }
+  }
+
+  input:checked ~ label,
+  div:has(input:checked) ~ label {
+    color: #ffc700;
+  }
+
+  input:checked + label:hover,
+  input:checked + label:hover ~ label,
+  input:checked ~ label:hover,
+  input:checked ~ label:hover ~ label,
+  label:hover ~ input:checked ~ label,
+  div:has(input:checked) + label:hover,
+  div:has(input:checked) + label:hover ~ label,
+  div:has(input:checked) ~ label:hover,
+  div:has(input:checked) ~ label:hover ~ label,
+  label:hover ~ div:has(input:checked) ~ label {
+    color: #c59b08;
+  }
+
+  input {
+    display: none;
   }
 }
-.rate:not(:checked) > input {
-  display: none;
-}
-.rate:not(:checked) > label {
-  float: right;
-  overflow:hidden;
-  white-space:nowrap;
-  cursor:pointer;
-  font-size:30px;
-  color:#ccc;
-}
-.rate:not(:checked) > label:before {
-  content: '★ ';
-}
-.rate > input:checked ~ label {
-  color: #ffc700;
-}
-.rate:not(:checked) > label:hover,
-.rate:not(:checked) > label:hover ~ label {
-  color: #deb217;
-}
-.rate > input:checked + label:hover,
-.rate > input:checked + label:hover ~ label,
-.rate > input:checked ~ label:hover,
-.rate > input:checked ~ label:hover ~ label,
-.rate > label:hover ~ input:checked ~ label {
-  color: #c59b08;
-}
 
-.rate-show:not(:checked) > label {
+.rate-show:not(:checked) label {
   cursor: default;
 }
 
-.rate-show > input:checked + label:hover,
-.rate-show > input:checked + label:hover ~ label,
-.rate-show > input:checked ~ label:hover,
-.rate-show > input:checked ~ label:hover ~ label,
-.rate-show > label:hover ~ input:checked ~ label {
+.rate-show input:checked + label:hover,
+.rate-show input:checked + label:hover ~ label,
+.rate-show input:checked ~ label:hover,
+.rate-show input:checked ~ label:hover ~ label,
+.rate-show label:hover ~ input:checked ~ label {
   color: #ffc700;
 }
-.rate-show:not(:checked) > label:hover,
-.rate-show:not(:checked) > label:hover ~ label {
+.rate-show:not(:checked) label:hover,
+.rate-show:not(:checked) label:hover ~ label {
   color: #ccc;
-}.bg-hover-gray:hover{
+}
+
+.bg-hover-gray:hover{
   background-color: #e5e5e5;
 }
 
@@ -203,8 +213,13 @@ pzsh-topbar {
 }
 
 .people-skills-actions {
-  min-width: 20%;
+  display: flex;
+  background-color: $skills-gray;
   height: min-content;
+  @extend .border;
+  @extend .border-light-subtle;
+  @extend .border-2;
+  @extend .rounded-1;
 }
 
 .filter-form {
@@ -213,12 +228,20 @@ pzsh-topbar {
 
 .filter-container {
   width: 98%;
-}#avatar {
+}
+
+#avatar {
   display: none;
 }
 
 #avatar[src] {
   display: block;
+}
+
+.portfolio-select, .radar-select {
+  width: 100% !important;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
 }
 
 .person-filter-container {

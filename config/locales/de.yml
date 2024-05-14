@@ -5,6 +5,8 @@ de:
       max_size_error: sollte nicht grösser als 10MB sein.
   helpers:
     submit:
+      edit: "%{model} bearbeiten"
+      add: "%{model} hinzufügen"
       cancel: Abbrechen
       delete: Löschen
       save-and-new: Speichern & Neu
@@ -28,6 +30,8 @@ de:
       education: Ausbildung
       activity: Station
       project: Projekt
+      skill: Skill
+      people_skill: Skill
     attributes:
       person:
         picture: Bild
@@ -67,7 +71,8 @@ de:
     registered_partnership: eingetragene Partnerschaft
     divorced: geschieden
   people-skills:
-    level:
+    levels:
+      level: Erfahrung
       unweighted: Nicht bewertet
       trainee: Trainee
       junior: Junior

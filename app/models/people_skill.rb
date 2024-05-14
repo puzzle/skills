@@ -16,6 +16,7 @@
 class PeopleSkill < ApplicationRecord
   belongs_to :person
   belongs_to :skill
+  accepts_nested_attributes_for :skill
 
   validates :certificate, :core_competence, exclusion: { in: [nil],
                                                          message: 'muss ausgefüllt werden' }
@@ -33,4 +34,13 @@ class PeopleSkill < ApplicationRecord
 
   scope :list, -> { order(:person_id, :skill_id) }
   scope :core_competence, -> { where('core_competence = true') }
+
+  def skill_attributes=(attributes)
+    if Skill.exists?(attributes[:id])
+      self.skill = Skill.find(attributes[:id])
+    else
+      attributes.delete(:id)
+    end
+    super
+  end
 end

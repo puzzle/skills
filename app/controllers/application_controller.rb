@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   before_action :authenticate_auth_user!
+  before_action :set_first_path!
 
   helper_method :find_profile_by_keycloak_user
 
@@ -10,6 +11,10 @@ class ApplicationController < ActionController::Base
 
     admin = AuthUser.find_by(email: 'admin@skills.ch')
     request.env['warden'].set_user(admin, :scope => :auth_user)
+  end
+
+  def set_first_path!
+    @first_path = Pathname(request.path).each_filename.to_a.map { |e| "/#{e}" }.first
   end
 
   def render_unauthorized

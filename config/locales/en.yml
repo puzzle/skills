@@ -3,10 +3,16 @@ en:
     profile-not-found: Profile could not be found.
   helpers:
       submit:
+        edit: "Edit %{model}"
+        add: "Add %{model}"
         cancel: Cancel
         delete: Delete
         save-and-new: Save & new
         edit: Edit
+  active_record:
+    models:
+      skill: Skill
+      people_skill: Skill
   profile:
     personal-data: Personal data
     core-competences: Core competences
@@ -37,7 +43,8 @@ en:
     registered_partnership: registered partnership
     divorced: divorced
   people-skills:
-    level:
+    levels:
+      level: Experience
       unweighted: Unweighted
       trainee: Trainee
       junior: Junior

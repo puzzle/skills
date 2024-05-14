@@ -61,6 +61,7 @@ RSpec.configure do |config|
   config.include(JsonAssertion, type: :controller)
   config.include(ControllerHelpers, type: :controller)
   config.include(PersonRelationsHelpers)
+  config.include(PeopleSkillsHelpers)
   config.include(Devise::Test::IntegrationHelpers, type: :feature)
   config.include(Devise::Test::ControllerHelpers, type: :controller)
   config.include(ActionView::RecordIdentifier, type: :feature)

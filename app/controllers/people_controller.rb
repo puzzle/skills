@@ -14,6 +14,7 @@ class PeopleController < CrudController
                               [:role_id, :person_role_level_id, :percent, :id, :_destroy] },
                           { language_skills_attributes:
                               [:language, :level, :certificate, :id, :_destroy] }]
+  layout 'person', only: [:show]
 
   def index
     return flash[:alert] = I18n.t('errors.profile-not-found') if params[:alert].present?
