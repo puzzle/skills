@@ -15,6 +15,7 @@ describe :people do
       page.find('.ss-main').click
       # Select option from dropdown
       page.find(".ss-option", text: bob.name).click
+      expect(page).to have_css('.nav-link', text: 'Skills', count: 2)
       page.all('.nav-link', text: 'Skills')[1].click
 
       expect(page).to have_content('Rails')
