@@ -1,0 +1,39 @@
+= form_with(model: pskill, url: person_people_skills_path(person)) do |f|
+    %div.d-flex.flex-column{data: {controller: "people-skills"}}
+        = f.hidden_field :person_id
+        %label.form-label.text-gray= t "people-skills.skill"
+        = f.fields_for :skill do |sf|
+            = sf.select :id, options_for_select(skills_dropdown_options, disabled: person.skills.pluck(:id)), {}, 
+                {data: {"people-skills-target": "skillsDropdown"}}
+            = sf.hidden_field :title, {data: {"people-skills-target": "skillTitle"}}
+            = sf.hidden_field :default_set, value: false
+            = sf.hidden_field :radar, value: Settings.radar[1]
+            = sf.hidden_field :portfolio, value: Settings.portfolio[1]
+            
+            %div
+                - @category_hidden = sf.object.category&.id.present? && sf.object&.id.present?
+                %label.form-label.text-gray{hidden:@category_hidden}= t "people-skills.category"
+                = sf.collection_select :category_id, Category.where.not(parent_id: nil), :id, :name_with_parent, {}, class: "form-select", hidden: @category_hidden, data: {"people-skills-target": "categoriesDropdown"}
+        
+        %label.form-label.text-gray= t "people-skills.levels.level"
+        %div.d-flex.gap-2
+            = f.range_field :level, min: 1, max: 5, value: 1,  class: "form-range w-25", 
+            data: { "action": "change->people-skills#displayLevelLabel", "people-skills-target": "switch"  }
+                                   
+            %label.form-label.text-gray#skill-level-label{"data-people-skills-target": "label"}
+                
+        %label.form-label.text-gray= t "people-skills.interest"
+        %div.rate
+            - 5.downto(1) do |i|
+                = f.radio_button :interest, i, checked: f.object.interest == i, id: "star#{i}#{f.object.id}"
+                %label{for: "star#{i}#{f.object.id}", title: "text", id: "star-label#{i}#{f.object.id}", class: "star#{i}"} 
+                    = "#{i} stars"
+
+        %div
+            = f.check_box :certificate, class: "form-check-input me-2"
+            %label.form-label.text-gray= t "people-skills.certificate"
+        %div
+            = f.check_box :core_competence, class: "form-check-input me-2"
+            %label.form-label.text-gray= t "people-skills.core-competence"
+        = f.submit class: "btn btn-primary", "aria-label":"Close"
+        

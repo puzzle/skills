@@ -41,15 +41,16 @@
         %div.puzzle-header
           %div.d-flex.h-100
             %ul.navbar.h-100
-              %li.bg-skills-blue.h-100.d-flex.align-items-center{class: "#{'highlighted' if request.url.match?("people") && request.url.exclude?("people_skills")}"}
+              - @first_path = Pathname(request.path).each_filename.to_a.map{|e| "/"+e}[0]
+              %li.bg-skills-blue.h-100.d-flex.align-items-center{class: "#{'highlighted' if @first_path == people_path}"}
                 %a.nav-link.cursor-pointer.ps-2.pe-2{href: people_path} Profil
-              %li.bg-skills-blue.h-100.d-flex.align-items-center{class: "#{'highlighted' if request.url.include? "people_skills"}"}
+              %li.bg-skills-blue.h-100.d-flex.align-items-center{class: "#{'highlighted' if @first_path == people_skills_path}"}
                 %a.nav-link.cursor-pointer.ps-2.pe-2{href: people_skills_path} Skill Suche
-              %li.bg-skills-blue.h-100.d-flex.align-items-center{class: "#{'highlighted' if request.url.include? cv_search_index_path}"}
+              %li.bg-skills-blue.h-100.d-flex.align-items-center{class: "#{'highlighted' if @first_path == cv_search_index_path}"}
                 %a.nav-link.cursor-pointer.ps-2.pe-2{href: cv_search_index_path} CV Suche
-              %li.bg-skills-blue.h-100.d-flex.align-items-center{class: "#{'highlighted' if request.url.include?("skills") && request.url.exclude?("people_skills")}"}
+              %li.bg-skills-blue.h-100.d-flex.align-items-center{class: "#{'highlighted' if @first_path == skills_path}"}
                 %a.nav-link.cursor-pointer.ps-2.pe-2{href: skills_path} Skillset
       %div.container-fluid
         %div.row.d-flex.justify-content-center
-          = yield
+          = content_for?(:content) ? yield(:content) : yield
           = turbo_frame_tag "remote_modal", target: "_top"

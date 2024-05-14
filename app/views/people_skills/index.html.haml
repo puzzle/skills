@@ -2,7 +2,7 @@
   %turbo-frame{id: "search-filters"}
     = form_with(url: people_skills_path, method: :get, class: "filter-form", data: {"people-skills-filter-target": "form"}) do |form|
       - filter_params.rows_count.times do |i|
-        %div.d-flex.flex-row.align-items-center{"data-people-skills-filter-target": "filter", id: "filter-row-#{i+ 1}"}
+        %div.d-flex.flex-row.align-items-center{"data-people-skills-filter-target": "filter", id: "filter-row-#{i}"}
           %div.filter-container.me-1
             = render("search_form", form: form, row_number: i, filter_params: filter_params)
           - if i != 0

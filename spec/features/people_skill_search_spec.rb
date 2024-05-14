@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe :people_skills do
   describe 'People Search', type: :feature, js: true do
-    let(:skill) { skills(:rails).attributes }
+    let(:skill) { skills(:rails) }
 
     before(:each) do
       sign_in auth_users(:user), scope: :auth_user
@@ -10,16 +10,13 @@ describe :people_skills do
 
     it 'Should return matching entries to page' do
       visit people_skills_path
-
-      select skill["title"].to_s, from: 'skill_id[]'
-      page.find("#row0_star-label5").click(x: 10, y: 10)
-      page.first(".form-range").set(3)
+      fill_out_row(skill.title, 3, 5)
       expect(page).to have_text('Bob Anderson')
       expect(page).to have_text('Wally Allround')
     end
 
     it 'Should set values of query parameters' do
-      visit people_skills_path({skill_id: [skill["id"]], level: [3], "interest[0]": 5})
+      visit people_skills_path({skill_id: [skill.id], level: [3], "interest[0]": 5})
       expect(page).to have_select("skill_id[]", selected: "Rails")
       expect(page).to have_field("level[]", with: 3)
       expect(page).to have_field("interest[0]", with: 5, visible: false)
@@ -34,71 +31,39 @@ describe :people_skills do
 
     it 'Should return user which matches filters' do
       visit(people_skills_path)
-      4.times do
-        page.find('#add-row-button').click
-      end
-      expect(page).to have_selector("#filter-row-4", wait: 2)
-
-      # set skills in filters
-      expect(page).to have_css("select", count: 5)
-      page.all('select')[0].select('JUnit')
-      page.all('select')[1].select('Rails')
-      page.all('select')[2].select('ember')
-      page.all('select')[3].select('Bash')
-      page.all('select')[4].select('cunit')
-
-      # set level in filters
-      page.all(".form-range")[0].set(5)
-      page.all(".form-range")[1].set(4)
-      page.all(".form-range")[2].set(5)
-      page.all(".form-range")[3].set(5)
-      page.all(".form-range")[4].set(5)
-
-      page.find('#row0_star-label3').click(x: 10, y: 10)
-      page.find('#row1_star-label5').click(x: 10, y: 10)
-      page.find('#row2_star-label4').click(x: 10, y: 10)
-      page.find('#row3_star-label2').click(x: 10, y: 10)
-      page.find('#row4_star-label2').click(x: 10, y: 10)
+      fill_out_row("JUnit", 5, 3)
+      add_and_fill_out_row("Rails", 4, 5)
+      add_and_fill_out_row("ember", 5, 4)
+      add_and_fill_out_row("Bash", 5, 2)
+      add_and_fill_out_row("cunit", 5, 2)
 
       expect(page).to have_text("Wally Allround")
     end
 
     it 'Should return no results if no user matches filters' do
       visit(people_skills_path)
-      4.times do
-        page.find('#add-row-button').click
-      end
-      expect(page).to have_selector("#filter-row-4", wait: 2)
-
-      # set skills in filters
-      page.all('select')[0].select('JUnit')
-      page.all('select')[1].select('Rails')
-      page.all('select')[2].select('ember')
-      page.all('select')[3].select('Bash')
-      page.all('select')[4].select('cunit')
-
-      # set level in filters
-      page.find('#row4_star-label5').click(x: 10, y: 10)
+      fill_out_row("Bash", 5, 3)
       expect(page).to have_text("Keine Resultate")
     end
 
     it 'Should be able to remove filter row and switch results accordingly' do
       visit(people_skills_path)
-      page.find('#add-row-button').click
-      expect(page).to have_selector("#filter-row-1")
 
       # set skills in filters
-      expect(page).to have_css('select', count: 2)
-      page.all('select')[0].select('ember', wait: 2)
+      fill_out_row("ember", 1, 1)
+
       expect(page).to have_text("Alice Mante")
-      expect(page).to have_text("Wally Allround")
       expect(page).to have_text("Hope Sunday")
+      expect(page).to have_text("Wally Allround")
+
 
       # add skill filter
-      page.all('select')[1].select('cunit')
-      expect(page).to have_text("Wally Allround")
-      expect(page).to have_text("Hope Sunday")
+      add_and_fill_out_row("cunit", 1, 1)
+
       expect(page).to_not have_text("Alice Mante")
+      expect(page).to have_text("Hope Sunday")
+      expect(page).to have_text("Wally Allround")
+
 
       # remove skill filter
       page.find('#remove-row-1').click
@@ -106,6 +71,32 @@ describe :people_skills do
       expect(page).to have_text("Wally Allround")
       expect(page).to have_text("Hope Sunday")
     end
+  end
 
+  def add_and_fill_out_row(skill, level, interest)
+    old_row_number = last_row[:id][-1, 1].to_i
+    find('#add-row-button').click
+    new_row_id = "filter-row-#{old_row_number + 1}"
+    expect(page).to have_css("[id='#{new_row_id}']")
+    fill_out_row(skill, level, interest)
+  end
+
+  def fill_out_row(skill, level, interest)
+    row_selector = "##{last_row[:id]}"
+    within row_selector do
+      find('select').select(skill)
+    end
+
+    within row_selector do
+      find('input[type="range"]').set(level)
+    end
+
+    within row_selector do
+      find("[id$='star-label#{interest}']").click()
+    end
+  end
+
+  def last_row
+    page.all("[id^='filter-row-']").sort_by {|row| row[:id]}.last
   end
 end
