@@ -41,7 +41,6 @@
         %div.puzzle-header
           %div.d-flex.h-100
             %ul.navbar.h-100
-              - @first_path = Pathname(request.path).each_filename.to_a.map{|e| "/"+e}[0]
               %li.bg-skills-blue.h-100.d-flex.align-items-center{class: "#{'highlighted' if @first_path == people_path}"}
                 %a.nav-link.cursor-pointer.ps-2.pe-2{href: people_path} Profil
               %li.bg-skills-blue.h-100.d-flex.align-items-center{class: "#{'highlighted' if @first_path == people_skills_path}"}
