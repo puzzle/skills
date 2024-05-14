@@ -50,6 +50,7 @@ de:
       new: Neue
       default: Default
       category: Kategorie
+      search: Skills suchen
     table:
       skill: Skill
       members: Mitglieder

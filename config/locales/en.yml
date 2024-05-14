@@ -20,6 +20,7 @@ en:
       new: New
       default: Default
       category: Category
+      search: Search skills
     table:
       skill: Skill
       members: Members

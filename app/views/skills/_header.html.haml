@@ -1,7 +1,7 @@
 %div.d-flex.flex-column.position-fixed.bg-white.w-80.z-3{"data-controller": "skillset-selected"}
   = form_with(url: skills_path, method: :get, data: { turbo_frame: 'skills' }) do |form|
     %div.d-flex.flex-row.mt-2
-      = form.text_field :title, class: "form-control skills-search-field rounded-end-0 z-3", placeholder: "Bash", oninput: "this.form.requestSubmit()", include_blank: true
+      = form.text_field :title, class: "form-control skills-search-field rounded-end-0 z-3", placeholder: "#{t('skills.header.search')}", oninput: "this.form.requestSubmit()", include_blank: true
       %div.border.d-flex.justify-content-center.align-items-center.rounded-end.bg-white
         %img.pointer.p-2{src: "/assets/search.svg"}
     %div.d-flex.flex-row.mt-3
