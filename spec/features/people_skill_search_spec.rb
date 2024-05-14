@@ -47,18 +47,22 @@ describe :people_skills do
       page.all('select')[3].select('Bash')
       page.all('select')[4].select('cunit')
 
-      # set level in filters
-      page.all(".form-range")[0].set(5)
-      page.all(".form-range")[1].set(4)
-      page.all(".form-range")[2].set(5)
-      page.all(".form-range")[3].set(5)
-      page.all(".form-range")[4].set(5)
 
-      page.find('#row0_star-label3').click(x: 10, y: 10)
-      page.find('#row1_star-label5').click(x: 10, y: 10)
-      page.find('#row2_star-label4').click(x: 10, y: 10)
-      page.find('#row3_star-label2').click(x: 10, y: 10)
-      page.find('#row4_star-label2').click(x: 10, y: 10)
+      # set level in filters
+      expect(page).to have_css(".form-range:not(:disabled)", count: 5)
+      sliders = page.all(".form-range:not(:disabled)")
+      expect(sliders.count).to eq(5)
+      sliders[0].set(5)
+      sliders[1].set(4)
+      sliders[2].set(5)
+      sliders[3].set(5)
+      sliders[4].set(5)
+
+      page.find('#row0_star-label3').click()
+      page.find('#row1_star-label5').click()
+      page.find('#row2_star-label4').click()
+      page.find('#row3_star-label2').click()
+      page.find('#row4_star-label2').click()
 
       expect(page).to have_text("Wally Allround")
     end
