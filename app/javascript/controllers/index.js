@@ -54,3 +54,6 @@ application.register("people-skills-filter", PeopleSkillsFilterController)
 
 import ScrollController from "./scroll_controller"
 application.register("scroll", ScrollController)
+
+import SkillsetSelectedController from "./skillset_selected_controller"
+application.register("skillset-selected", SkillsetSelectedController)
