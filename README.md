@@ -38,9 +38,6 @@ You will need the following things properly installed on your computer:
 -   [RVM (Ruby Version Manager)](https://rvm.io/) ([installation](https://rvm.io/rvm/install) requires `curl` and `gpg`)
 -   Either [PostgreSQL](https://www.postgresql.org/) or [Docker](https://www.docker.com/) for the Database (Docker is recommended)
 
-## Setup dockerized Application👩🏽‍💻
-We're glad you want to setup your machine for PuzzleSkills development 💃
-
 ## Openshift deployment
 To deploy the project to openshift make sure you set the following environment variables:
 - LOCAL=false
@@ -50,6 +47,8 @@ To deploy the project to openshift make sure you set the following environment v
 - realm: 
 - admin_role: (Not required)
 
+## Setup dockerized Application👩🏽‍💻
+We're glad you want to setup your machine for PuzzleSkills development 💃
 
 ### Windows users
 If you're on Windows you should be able to Download Ubuntu from Microsoft Store. Note that you need to enable Subsystem for Linux and virtual machine platform in your Windows features.  
@@ -67,33 +66,47 @@ git clone https://github.com/puzzle/skills.git && cd ~/git/skills
 ⚡ If your user id is not 1000 (run id -u to check), you need to export this as env variable: **export UID=$UID** before running any of the further commands. Maybe you want to add this to your bashrc.
 
 ## Start Development Containers
+<img src="https://developers.redhat.com/sites/default/files/styles/article_feature/public/blog/2014/05/homepage-docker-logo.png?itok=zx0e-vcP" alt="docker whale" width="350">
+
+**Without Keycloak (recommended)**
+Since this is the default, you don't have to do anything and can run all commands inside the root of the project.
+
+**With Keycloak**
+To use the application with Keycloak, navigate to `config/docker/keycloak` and run all commands from this directory.
+You can log in either as `user` or as `admin`. The password for both accounts is `password`.
+
+
+### Start application
 To start the PuzzleSkills application, run the following commands in your shell:
 
 ```bash
-docker compose build
 docker compose up -d
 ```
 
-⚡ This will also install all required gems and seed the database, which takes some time to complete if it's executed the first time. You can follow the progress using `docker-compose logs --follow rails` (exit with Ctrl+C).
+⚡ This will also install all required gems and seed the database, which takes some time to complete if it's executed the first time. You can follow the progress using `docker logs -f rails` (exit with Ctrl+C).
 
-After the startup has completed (once you see `Listening on tcp://0.0.0.0:4200` in the logs), make sure all services are up and running:
+After the startup has completed (once you see `Listening on http://0.0.0.0:3000` in the logs), make sure all services are up and running:
 
 ```bash
-docker-compose ps
+docker ps
 ```
 
 This should look something like this:
 
 ```
-Name                           Command                State   Ports                                                            
--------------------------------------------------------------------------------------------------------
-skills-ember-1                 skills-postgres-1      Up      0.0.0.0:4200->4200/tcp, :::4200->4200/tcp
-skills-postgres-1              docker-entrypoint.s…   Up      0.0.0.0:5432->5432/tcp, :::5432->5432/tcp
-skills-rails-1                 rails-entrypoint ra…   Up      0.0.0.0:3000->3000/tcp, :::3000->3000/tcp
+IMAGE              COMMAND                   PORTS                                       NAMES
+ruby:3.2           "/bin/bash -c '\n apt…"                                               assets
+skills-dev/rails   "rails-entrypoint ra…"    0.0.0.0:3000->3000/tcp, :::3000->3000/tcp   rails
+postgres:16        "docker-entrypoint.s…"    0.0.0.0:5432->5432/tcp, :::5432->5432/tcp   postgres
 ```
 
-Access the web application by browser: http://localhost:4200 and enjoy the ride!
-<img src="https://developers.redhat.com/sites/default/files/styles/article_feature/public/blog/2014/05/homepage-docker-logo.png?itok=zx0e-vcP" alt="docker whale" width="350">
+Access the web application by browser: http://localhost:3000 and enjoy the ride!
+
+## Debugging
+To interact with `pry` inside a controller, you have to attach to the container first using `docker attach rails`.
+This will show you any **new** logs, and if you encounter a `pry` prompt, you can interact with it.
+To detach from the container without stopping it, press `CTRL + p` then `CTRL + q`.
+
 
 ## Testing
 
