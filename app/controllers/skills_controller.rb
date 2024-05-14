@@ -5,7 +5,7 @@ class SkillsController < CrudController
   before_action :update_category_parent, only: [:update]
   before_action :render_unauthorized, except: %i[index show unrated_by_person]
 
-  helper_method :filter_by_rated
+  helper_method :filter_by_rated, :compare_default_set
 
   self.permitted_attrs = %i[title radar portfolio default_set category_id]
 
@@ -38,6 +38,10 @@ class SkillsController < CrudController
          .or(skill.people_skills.where.not(level: 0))
   end
 
+  def compare_default_set(value)
+    value == params[:defaultSet]
+  end
+
   def fetch_entries
     entries = if params[:format]
                 Skill.list
@@ -51,6 +55,11 @@ class SkillsController < CrudController
 
   def disposition
     content_disposition('attachment', filename('skillset', nil, 'csv'))
+  end
+
+  def entries
+    @skills =
+      SkillsFilter.new(Skill.all, params[:category], params[:title], params[:defaultSet]).scope
   end
 
   # rubocop:disable Metrics/AbcSize

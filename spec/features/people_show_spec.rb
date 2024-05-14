@@ -8,10 +8,10 @@ describe 'People skills Show', type: :feature, js: true do
 
   it 'Should only display valid amount of members' do
       visit skills_path
-      click_link('Rails')
+      click_link('JUnit')
 
-      expect(page).to have_selector('.modal-title', text: 'Skill: Rails (4 Members)')
-      expect(page).to have_selector('.skill-row', count: 4)
+      expect(page).to have_selector('.modal-title', text: 'Skill: JUnit (3 Members)')
+      expect(page).to have_selector('.skill-row', count: 3)
   end
 
   it 'Should render elements correctly' do

@@ -15,6 +15,12 @@ en:
     activities: Activities
     projects: Projects
   skills:
+    header:
+      all: All
+      new: New
+      default: Default
+      category: Category
+      search: Search skills
     table:
       skill: Skill
       members: Members

@@ -45,6 +45,12 @@ de:
         role: Rolle und Aufgaben
         technology: Eingesetzte Technologien
   skills:
+    header:
+      all: Alle
+      new: Neue
+      default: Default
+      category: Kategorie
+      search: Skills suchen
     table:
       skill: Skill
       members: Mitglieder
