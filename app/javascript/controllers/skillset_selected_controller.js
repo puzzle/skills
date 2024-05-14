@@ -5,10 +5,6 @@ export default class extends Controller {
     static targets = ["selectButton"];
     selectedButton = null;
 
-    connect() {
-        console.log("Connected");
-    }
-
     selectButton({params}) {
         if(this.selectedButton != null) {
             this.selectButtonTargets[this.selectedButton].classList.remove("btn-primary");
