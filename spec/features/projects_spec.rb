@@ -131,12 +131,4 @@ describe 'Projects', type: :feature, js:true do
       expect(page).to have_css(".alert.alert-danger", text: "Rolle und Aufgaben muss ausgefüllt werden")
     end
   end
-
-  def click_default_submit
-    find("button[type='submit'][name='save']").click
-  end
-
-  def click_save_and_new_submit
-    find("button[type='submit'][name='render_new_after_save']").click
-  end
 end

@@ -22,4 +22,12 @@ module PersonRelationsHelpers
   def find_by_turbo_frame_id(id)
     find("a[data-turbo-frame='#{id}']")
   end
+
+  def click_default_submit
+    find("button[type='submit'][name='save']").click
+  end
+
+  def click_save_and_new_submit
+    find("button[type='submit'][name='render_new_after_save']").click
+  end
 end
