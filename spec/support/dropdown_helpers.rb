@@ -1,5 +1,6 @@
 module DropdownHelpers
   def select_from_slim_dropdown(id, option, create_if_missing=false)
+    expect(page).to have_selector("##{id }", visible: false)
     find("##{id}", visible: false).find(:xpath, '..').find(".ss-main").click
     find('div.ss-search input[type="search"]').fill_in with: option
     if(create_if_missing)
