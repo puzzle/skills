@@ -1,6 +1,6 @@
 module SlimselectHelpers
   def select_from_slim_select(id, option, create_if_missing=false)
-    open_slim_select(id)
+    toggle_slim_select(id)
     search_in_slim_select(option)
     if(create_if_missing)
       find('div.ss-addable').click
@@ -22,11 +22,13 @@ module SlimselectHelpers
   end
 
   def dropdown_options_from_slim_select(id)
-    open_slim_select(id)
-    all('.ss-content .ss-list .ss-option').map{|o| o.text}
+    toggle_slim_select(id)
+    options = all('.ss-content .ss-list .ss-option').map{|o| o.text}
+    toggle_slim_select(id)
+    options
   end
 
-  def open_slim_select(select_id)
+  def toggle_slim_select(select_id)
     find_slim_select(select_id).click
   end
 

@@ -12,6 +12,7 @@ describe :people do
     it 'displays people in alphabetical order in select' do
       visit people_path
       dropdown_options = people_list.pluck(:name).sort_by(&:downcase)
+      dropdown_options.unshift("Bitte wählen")
       check_options_from_slim_select("person_id_person", dropdown_options)
     end
 
