@@ -11,10 +11,8 @@ describe :people do
     it 'displays people-skills' do
       # Switch to PeopleSkills tab
       bob = people(:bob)
-      visit people_path
-      page.find('.ss-main').click
-      # Select option from dropdown
-      page.find(".ss-option", text: bob.name).click
+      visit person_path(bob)
+
       expect(page).to have_css('.nav-link', text: 'Skills', count: 2)
       page.all('.nav-link', text: 'Skills')[1].click
 
@@ -29,9 +27,7 @@ describe :people do
     it 'can edit people-skills' do
       # Switch to PeopleSkills tab
       alice = people(:alice)
-      visit people_path
-      page.find('.ss-main').click
-      page.find(".ss-option", text: alice.name).click
+      visit person_path(alice)
 
       # Modify people skills
       expect(page).to have_css('.nav-link', text: "Skills", count: 2)
