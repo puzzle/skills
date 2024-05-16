@@ -1,11 +1,11 @@
 module PeopleSkillsHelpers
   def select_skill(skill)
-    select_from_dropdown("people_skill_skill_attributes_id", skill.title)
+    select_from_slim_dropdown("people_skill_skill_attributes_id", skill.title)
     expect(page).to have_select("people_skill_skill_attributes_category_id", selected: skill.category.name_with_parent, visible: false)
   end
 
   def select_and_create_skill(skill_name, category)
-    select_from_dropdown("people_skill_skill_attributes_id", skill_name, category)
+    select_from_slim_dropdown("people_skill_skill_attributes_id", skill_name, category)
     select category.name_with_parent, from: 'people_skill_skill_attributes_category_id'
   end
 
@@ -16,17 +16,6 @@ module PeopleSkillsHelpers
 
   def select_star_rating(level)
     find("#star-label#{level}").click()
-  end
-
-  def select_from_dropdown(id, option, create_if_missing=false)
-    find("##{id}", visible: false).find(:xpath, '..').find(".ss-main").click
-    find('div.ss-search input[type="search"]').fill_in with: option
-    if(create_if_missing)
-      find('div.ss-addable').click
-    else
-      find('div.ss-option:not(.ss-disabled)', text: option).click
-    end
-    expect(page).to have_select(id, selected: option, visible: false)
   end
 
   def validate_people_skill(person, skill_name)

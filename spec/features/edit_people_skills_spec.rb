@@ -8,13 +8,18 @@ describe :people do
       sign_in auth_users(:user), scope: :auth_user
     end
 
-    it 'displays people-skills' do
-      # Switch to PeopleSkills tab
+    it 'Go to people-skills tab of person' do
       bob = people(:bob)
       visit person_path(bob)
 
       expect(page).to have_css('.nav-link', text: 'Skills', count: 2)
       page.all('.nav-link', text: 'Skills')[1].click
+    end
+
+    it 'displays people-skills' do
+      # Switch to PeopleSkills tab
+      bob = people(:bob)
+      visit person_people_skills_path(bob)
 
       expect(page).to have_content('Rails')
       expect(page).to have_content('Professional')
@@ -27,11 +32,8 @@ describe :people do
     it 'can edit people-skills' do
       # Switch to PeopleSkills tab
       alice = people(:alice)
-      visit person_path(alice)
+      visit person_people_skills_path(alice)
 
-      # Modify people skills
-      expect(page).to have_css('.nav-link', text: "Skills", count: 2)
-      page.all('.nav-link', text: 'Skills')[1].click
       page.find('a', text: 'Skills bearbeiten').click
       page.find('#person_people_skills_attributes_0_level').set(5)
       page.find('#person_people_skills_attributes_1_level').set(5)
