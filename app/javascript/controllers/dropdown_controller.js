@@ -3,10 +3,10 @@ import SlimSelect from 'slim-select';
 
 // Connects to data-controller="dropdown-links"
 export default class extends Controller {
-
+  static targets = [ "dropdown" ]
   connect() {
     new SlimSelect({
-          select: '#dropdown'
+          select: this.dropdownTarget
     });
   }
 

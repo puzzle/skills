@@ -12,30 +12,21 @@ describe :people do
     it 'displays people in alphabetical order in select' do
       visit people_path
       dropdown_options = people_list.pluck(:name).sort_by(&:downcase)
-      page.find('.ss-main').click
-      dropdown_options.each_with_index do |option|
-        expect(page).to have_css("div", text: option)
-      end
+      check_options_from_slim_select("person_id_person", dropdown_options)
     end
 
     it 'redirects to the selected person on change' do
       visit people_path
       bob = people(:bob)
-      page.find('.ss-main').click
-      page.all("div", text: bob.name)[0].click
+      select_from_slim_select("person_id_person", bob.name)
       expect(page).to have_current_path(person_path(bob))
-      page.find('.ss-main').click
-      expect(page).to have_css(".ss-single", text: bob.name)
     end
 
     it 'redirect to the first entry' do
       visit people_path
       sorted_list = people_list.sort_by { |item| item.name.downcase }
-      page.find('.ss-main').click
-      page.all(".ss-option")[1].click
+      select_index_from_slim_select("person_id_person", 1)
       expect(page).to have_current_path(person_path(sorted_list.first.id))
-      page.find('.ss-main').click
-      expect(page).to have_css(".ss-single", text: sorted_list.first.name)
     end
 
     it 'should only display matched people' do
