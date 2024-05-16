@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Skills Filter" do
+describe "Skills Filter", type: :feature, js: true do
   before(:each) do
     sign_in auth_users(:user), scope: :auth_user
     visit root_path
@@ -37,7 +37,7 @@ describe "Skills Filter" do
     expect(page).to have_no_content("JUnit")
     expect(page).to have_no_content("cunit")
 
-    fill_in 'title', with: ''
+    find("#title").send_keys([:control, 'a'], :space)
     expect(page).to have_content("Rails")
 
     select "System-Engineering", from: "category"
