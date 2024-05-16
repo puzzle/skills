@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
     return super unless helpers.devise?
 
     admin = AuthUser.find_by(email: 'admin@skills.ch')
+    raise 'User not found. This is highly likely due to a non-seeded database.' unless admin
+
     request.env['warden'].set_user(admin, :scope => :auth_user)
   end
 
