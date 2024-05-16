@@ -44,19 +44,21 @@ describe :people do
         select_and_create_skill(skill_name, category)
         select_level(4)
         click_button 'Skill erstellen'
+
+        expect(page).to have_select("people_skill_skill_attributes_id", selected: skill_name, visible: false)
+        expect(page).to have_select("people_skill_skill_attributes_category_id", selected: category.name_with_parent)
       end
-      expect(page).to have_select("people_skill_skill_attributes_id", selected: skill_name, visible:false)
-      expect(page).to have_select("people_skill_skill_attributes_category_id", selected: category.name_with_parent)
     end
 
-    it 'Fail while add skill to people-skills' do
+    it 'Fail while add skill existing skill to people-skills' do
       skill = skills(:junit)
       within '#remote_modal' do
         select_skill(skill)
         click_button 'Skill erstellen'
+
+        expect(page).to have_select("people_skill_skill_attributes_id", selected: skill.title, visible:false)
+        expect(page).to have_select("people_skill_skill_attributes_category_id", selected: skill.category.name_with_parent, visible: false)
       end
-      expect(page).to have_select("people_skill_skill_attributes_id", selected: skill.title, visible:false)
-      expect(page).to have_select("people_skill_skill_attributes_category_id", selected: skill.category.name_with_parent, visible: false)
     end
 
     it 'Fail while add skill to people-skills, intrest should be persisted' do

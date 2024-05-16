@@ -14,7 +14,8 @@ class People::PeopleSkillsCreateController < CrudController
 
   def new
     super
-    @people_skill.skill = Skill.new
+    @people_skill.skill ||= Skill.new
+    @category_hidden = @people_skill.skill.category&.id.present? && @people_skill.skill&.id.present?
   end
 
   def self.model_class

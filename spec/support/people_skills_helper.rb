@@ -20,8 +20,7 @@ module PeopleSkillsHelpers
 
   def validate_people_skill(person, skill_name)
     expect(page).to have_content(skill_name)
-    expect(page).to have_content(skill_name)
-    skill_div = find("div.people-skill-title", text: skill_name).find(:xpath, '..').find(:xpath, '..')
+    skill_div = find("div.people-skill-title", text: skill_name).find(:xpath, '../..')
     people_skill = people_skill_from_skill_name(person, skill_name)
 
     within skill_div do
