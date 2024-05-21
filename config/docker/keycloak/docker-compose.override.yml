@@ -1,0 +1,3 @@
+services:
+  rails:
+    env_file: rails.env

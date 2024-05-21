@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
+require_relative '../app/controllers/concerns/param_converters'
+
+
 class AuthConfig
+  extend ParamConverters
+
   AUTH_CONFIG_PATH = Rails.root.join('config/auth.yml')
 
   class << self
@@ -24,20 +29,24 @@ class AuthConfig
       get_var_from_environment(:admin_role, required: false)
     end
 
+    def keycloak?
+      to_boolean(get_var_from_environment(:keycloak, required: false, default: false))
+    end
+
     private
 
-    def get_var_from_environment(key, required: true)
+    def get_var_from_environment(key, required: true, default: nil)
       if local?
-        settings_file[key]
+        settings_file[key] || default
       else
         raise("Environment variable not set: '#{key}'") if required && ENV[key.to_s.upcase].nil?
 
-        ENV.fetch(key.to_s.upcase)
+        ENV.fetch(key.to_s.upcase, default)
       end
     end
 
     def local?
-      ENV.fetch('LOCAL', false)
+      to_boolean(ENV.fetch('LOCAL', false))
     end
 
     def settings_file

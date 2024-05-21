@@ -1,54 +1,56 @@
-version: '3.2'
-
-services:
-  postgres:
-    image: postgres:9.5.7
-    ports:
-      - '5432:5432'
-    environment:
-      - POSTGRES_DB=skills_development
-      - POSTGRES_USER=skills
-      - POSTGRES_PASSWORD=skills
-    volumes:
-      - postgres:/var/lib/postgres
+services:      
   rails:
+    container_name: rails
     image: skills-dev/rails
     user: "${UID:-1000}"
     tty: true
     stdin_open: true
     environment:
-      RAILS_DB_HOST: 'postgres'
-      DISPLAY: ${DISPLAY}
+      - RAILS_DB_HOST=postgres
+    env_file: .env
     build:
       context: ./config/docker/development
       dockerfile: Rails.dockerfile
     ports:
-      - "3000:3000"
+      - 3000:3000
     volumes:
       - ./:/myapp
       - ./tmp/seed:/seed
       - ./config/docker/development/home/rails:/home/developer
       - /tmp/.X11-unix:/tmp/.X11-unix
       - bundler_cache:/opt/bundle
-  ember:
-    image: skills-dev/ember
-    tty: true
-    stdin_open: true
-    user: "${UID:-1000}"
-    build:
-      context: ./config/docker/development
-      dockerfile: Ember.dockerfile
-    volumes:
-      - ./frontend:/myapp
-      - ./tmp/bash_history:/root/.bash_history
-      - yarn_cache:/myapp/node_modules
-    tmpfs:
-      - /myapp/tmp
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: postgres
+    image: postgres:16
     ports:
-      - "4200:4200"
-      - "7020:7020"
-      - "7357:7357"
+      - 5432:5432
+    env_file: .env
+    volumes:
+      - postgres:/var/lib/postgres
+
+  assets:
+    container_name: assets
+    image: ruby:3.2
+    working_dir: /myapp
+    command: >
+     /bin/bash -c "
+      curl -fsSL https://deb.nodesource.com/setup_18.x | bash - &&
+      apt-get install -y nodejs &&
+      npm install -g yarn && bin/assets &&
+      sleep infinity"
+    volumes:
+      - ./:/myapp
+      - bundler_cache:/opt/bundle
+      - assets_cache:/usr/bin/
+    depends_on:
+      - rails
+  
+      
 volumes:
   bundler_cache:
-  yarn_cache:
+  assets_cache:
   postgres:
+

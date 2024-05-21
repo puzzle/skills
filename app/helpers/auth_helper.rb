@@ -9,7 +9,12 @@ module AuthHelper
     current_auth_user&.is_admin
   end
 
-  def development?
-    ENV['DEVELOPMENT'] == 'true' && ENV['RAILS_ENV'] == 'development'
+  def find_person_by_auth_user
+    Person.find_by(name: current_auth_user&.name)
+  end
+
+  # This method returns true if the user should be authenticated by devise
+  def devise?
+    AuthConfig.keycloak? || !Rails.env.test?
   end
 end

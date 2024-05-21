@@ -1,12 +1,12 @@
 user:
   uid: 1234-5678-9012-3456
-  name: User Name
+  name: Ursula User
   email: user@skills.ch
   is_admin: false
 
 
 admin: 
   uid: 1234-5678-9012-3457
-  name: Admin Name
+  name: Andreas Admin
   email: admin@skills.ch
   is_admin: true

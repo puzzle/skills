@@ -23,8 +23,11 @@ class AuthUser < ApplicationRecord
     end
 
     def admin?(auth)
-      resources = auth.extra.raw_info.resource_access[AuthConfig.client_id]
-      resources.roles.include? AuthConfig.admin_role
+      client_roles(auth).include? AuthConfig.admin_role
+    end
+
+    def client_roles(auth)
+      auth.extra&.raw_info&.resource_access&.[](AuthConfig.client_id)&.roles || []
     end
   end
 end

@@ -1,15 +1,25 @@
 # frozen_string_literal: true
 
 module ParamConverters
-
   private
 
+  TRUTHY_VALUES = %w(t true yes y 1).freeze
+  FALSEY_VALUES = %w(f false n no 0).freeze
+
+
   def true?(value)
-    %w[1 yes true].include?(value.to_s.downcase)
+    TRUTHY_VALUES.include?(value.to_s.downcase)
   end
 
   def false?(value)
-    %w[0 no false].include?(value.to_s.downcase)
+    FALSEY_VALUES.include?(value.to_s.downcase)
+  end
+
+  def to_boolean(value)
+    return true if true?(value)
+    return false if false?(value)
+
+    raise "Invalid value '#{value}' for boolean casting"
   end
 
   def nil_param?(value)

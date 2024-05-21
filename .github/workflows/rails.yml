@@ -39,19 +39,19 @@ jobs:
       - name: 'Run database migrations'
         env:
           RAILS_ENV: test
-          PGHOST: ${{ env.PGHOST }}
-          POSTGRES_DB: ${{ env.POSTGRES_DB }}
-          POSTGRES_USER: ${{ env.POSTGRES_USER }}
-          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
+          RAILS_DB_HOST: ${{ env.PGHOST }}
+          RAILS_DB_NAME: ${{ env.POSTGRES_DB }}
+          RAILS_DB_USERNAME: ${{ env.POSTGRES_USER }}
+          RAILS_DB_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
         run: |
           bundle exec rake db:create db:migrate
 
       - name: 'Run tests'
         env:
           PGHOST: ${{ env.PGHOST }}
-          POSTGRES_DB: ${{ env.POSTGRES_DB }}
-          POSTGRES_USER: ${{ env.POSTGRES_USER }}
-          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
+          RAILS_DB_NAME: ${{ env.POSTGRES_DB }}
+          RAILS_DB_USERNAME: ${{ env.POSTGRES_USER }}
+          RAILS_DB_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
           IS_CI: true
         run: bundle exec rake
 
