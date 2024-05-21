@@ -15,6 +15,6 @@ module AuthHelper
 
   # This method returns true if the user should be authenticated by devise
   def devise?
-    AuthConfig.keycloak? || !Rails.env.test?
+    AuthConfig.keycloak? || Rails.env.test?
   end
 end

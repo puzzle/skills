@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   helper_method :find_profile_by_keycloak_user
 
   def authenticate_auth_user!
-    return super unless helpers.devise?
+    return super if helpers.devise?
 
     admin = AuthUser.find_by(email: 'admin@skills.ch')
     raise 'User not found. This is highly likely due to a non-seeded database.' unless admin
