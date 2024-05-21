@@ -86,11 +86,4 @@ describe 'Educations', type: :feature, js:true do
     end
   end
 
-  def click_default_submit
-    find("button[type='submit'][name='save']").click
-  end
-
-  def click_save_and_new_submit
-    find("button[type='submit'][name='render_new_after_save']").click
-  end
 end

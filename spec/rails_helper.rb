@@ -33,6 +33,7 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.example_status_persistence_file_path = "tmp/failures.txt"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -57,16 +58,23 @@ RSpec.configure do |config|
 
   config.infer_spec_type_from_file_location!
 
+  # Controller helper
   config.include(JsonMacros, type: :controller)
   config.include(JsonAssertion, type: :controller)
   config.include(ControllerHelpers, type: :controller)
-  config.include(PersonRelationsHelpers)
-  config.include(PeopleSkillsHelpers)
+
+  # Feature helper
+
+  # Helpers from gems
   config.include(Devise::Test::IntegrationHelpers, type: :feature)
   config.include(Devise::Test::ControllerHelpers, type: :controller)
   config.include(ActionView::RecordIdentifier, type: :feature)
 
+  # Custom helpers
+  config.include(PersonRelationsHelpers, type: :feature)
+  config.include(SlimselectHelpers, type: :feature)
+  config.include(PeopleSkillsHelpers, type: :feature)
+
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
-
 end

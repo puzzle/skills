@@ -11,7 +11,6 @@
             = sf.hidden_field :portfolio, value: Settings.portfolio[1]
             
             %div
-                - @category_hidden = sf.object.category&.id.present? && sf.object&.id.present?
                 %label.form-label.text-gray{hidden:@category_hidden}= t "people-skills.category"
                 = sf.collection_select :category_id, Category.where.not(parent_id: nil), :id, :name_with_parent, {}, class: "form-select", hidden: @category_hidden, data: {"people-skills-target": "categoriesDropdown"}
         
