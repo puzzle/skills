@@ -10,7 +10,7 @@ ARG YARN_VERSION="1.22.10"
 
 # Packages
 ARG BUILD_PACKAGES="nodejs build-essential shared-mime-info"
-ARG RUN_PACKAGES="shared-mime-info postgresql"
+ARG RUN_PACKAGES="shared-mime-info postgresql graphicsmagick"
 
 # Scripts
 ARG PRE_INSTALL_SCRIPT="curl -sL https://deb.nodesource.com/setup_${NODEJS_VERSION}.x -o /tmp/nodesource_setup.sh && bash /tmp/nodesource_setup.sh"
