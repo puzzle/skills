@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class AuthConfig
+  include ParamConverters
+
   AUTH_CONFIG_PATH = Rails.root.join('config/auth.yml')
-  TRUTHY_VALUES = %w(t true yes y 1).freeze
-  FALSEY_VALUES = %w(f false n no 0).freeze
+
 
   class << self
     def client_id
@@ -44,13 +45,6 @@ class AuthConfig
 
     def local?
       to_boolean(ENV.fetch('LOCAL', false))
-    end
-
-    def to_boolean(value)
-      return true if TRUTHY_VALUES.include?(value.to_s)
-      return false if FALSEY_VALUES.include?(value.to_s)
-
-      raise "Invalid value '#{value}' for boolean casting"
     end
 
     def settings_file
