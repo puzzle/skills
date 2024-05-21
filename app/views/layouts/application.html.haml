@@ -20,7 +20,7 @@
               %img{:src=> "/assets/logo.svg",:height=>"32"}
             %text.d-flex.align-items-end.ms-2.small= "5.0.0"
           %ul.navbar.text-gray
-            - if development?
+            - if Rails.env.development?
               %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
                 %span#username
                   - if devise?
