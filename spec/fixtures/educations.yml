@@ -29,3 +29,31 @@ msc:
   year_to: 2015
   year_from: 2010
   person: alice
+
+mscp:
+  location: Brookville Technical College
+  title: MSc in physics
+  year_to: 2005
+  year_from: 2000
+  person: longmax
+
+mod:
+  location: University of New York
+  title: Master of Design
+  year_to: 2010
+  year_from: 2005
+  person: longmax
+
+moe:
+  location: Iceborough College
+  title: Master of Engineering
+  year_to: 2014
+  year_from: 2010
+  person: longmax
+
+mscw:
+  location: University of Applied Sciences Bern
+  title: MSc in writing
+  year_to: 2020
+  year_from: 2014
+  person: longmax

@@ -117,3 +117,25 @@ hope:
   competence_notes: Ruby
   email: hope@example.com
   department: ux
+longmax:
+  birthdate: 2003-02-05 01:01:01
+  location: Biel
+  marital_status: <%= Person.marital_statuses[:single] %>
+  name: Longmax Smith
+  nationality: ZW
+  roles: [software-engineer]
+  company: firma
+  title: BSc in Architecture
+  competence_notes: | 
+                  C
+                  Bash
+                  Java
+                  Ruby
+                  LaTex
+                  Puppet
+                  HTML
+                  CSS
+                  Spring
+                  .NET Maui
+  email: longmax@example.com
+  department: sys

@@ -17,15 +17,43 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 course:
-  description: course about how to clean
+  description: Course about how to clean
   updated_by: bob
   year_to: 2012
   year_from: 2010
   person: bob
 
 education:
-  description: was nice
+  description: Was nice
   updated_by: alice
   year_to: 2015
   year_from: 2011
   person: alice
+
+training:
+  description: Training how to relax properly
+  updated_by: longmax
+  year_to: 2005
+  year_from: 2000
+  person: longmax
+
+scholarship:
+  description: Course about building a house
+  updated_by: longmax
+  year_to: 2010
+  year_from: 2005
+  person: longmax
+
+education:
+  description: Further training about writing music
+  updated_by: longmax
+  year_to: 2015
+  year_from: 2010
+  person: longmax
+
+tutoring:
+  description: Further training to programming ruby
+  updated_by: longmax
+  year_to: 2020
+  year_from: 2015
+  person: longmax

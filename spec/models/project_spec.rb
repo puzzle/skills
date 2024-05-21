@@ -81,8 +81,14 @@ describe Project do
       expect(list[1].title).to eq('test2')
       expect(list[2].title).to eq('test4')
       expect(list[3].title).to eq('test3')
-      expect(list[4].title).to eq('google')
-      expect(list[5].title).to eq('duckduckgo')
+      expect(list[4].title).to eq('fisherman')
+      expect(list[5].title).to eq('system engineer')
+      expect(list[6].title).to eq('it director')
+      expect(list[7].title).to eq('google')
+      expect(list[8].title).to eq('salesman')
+      expect(list[9].title).to eq('duckduckgo')
+      expect(list[10].title).to eq('community manager')
+      expect(list[11].title).to eq('construction analyst')
     end
   end
 

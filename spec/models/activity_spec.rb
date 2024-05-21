@@ -70,8 +70,12 @@ describe Activity do
       expect(list[1].description).to eq('test2')
       expect(list[2].description).to eq('test4')
       expect(list[3].description).to eq('test3')
-      expect(list[4].description).to eq('Ascom')
-      expect(list[5].description).to eq('Swisscom')
+      expect(list[4].description).to eq('Migros')
+      expect(list[5].description).to eq('Ascom')
+      expect(list[6].description).to eq('Roche')
+      expect(list[7].description).to eq('UBS')
+      expect(list[8].description).to eq('Swisscom')
+      expect(list[9].description).to eq('Novartis')
     end
   end
 

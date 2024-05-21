@@ -32,3 +32,35 @@ ascom:
   year_to: 2015
   year_from: 2010
   person: alice
+
+novartis:
+  description: Novartis
+  updated_by: MyString
+  role: Project Manager
+  year_to: 2005
+  year_from: 2000
+  person: longmax
+
+ubs:
+  description: UBS
+  updated_by: MyString
+  role: User Experience Consultant
+  year_to: 2010
+  year_from: 2005
+  person: longmax
+
+roche:
+  description: Roche
+  updated_by: MyString
+  role: Scrum Master
+  year_to: 2014
+  year_from: 2010
+  person: longmax
+
+migros:
+  description: Migros
+  updated_by: MyString
+  role: Businessman
+  year_to: 2020
+  year_from: 2014
+  person: longmax

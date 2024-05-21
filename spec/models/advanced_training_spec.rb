@@ -72,8 +72,11 @@ describe AdvancedTraining do
       expect(list[3].description).to eq('test4')
       expect(list[4].description).to eq('test5')
       expect(list[5].description).to eq('test6')
-      expect(list[6].description).to eq('was nice')
-      expect(list[7].description).to eq('course about how to clean')
+      expect(list[6].description).to eq('Further training to programming ruby')
+      expect(list[7].description).to eq('Further training about writing music')
+      expect(list[8].description).to eq('Course about how to clean')
+      expect(list[9].description).to eq('Course about building a house')
+      expect(list[10].description).to eq('Training how to relax properly')
     end
   end
 
