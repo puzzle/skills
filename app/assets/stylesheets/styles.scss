@@ -286,8 +286,6 @@ pzsh-topbar {
 
 .min-height {
   height: min-content;
-  position: sticky;
-  top: 194px;
 }
 
 .profile-header-and-tabs {
@@ -329,4 +327,9 @@ pzsh-topbar {
 }
 .margin-row {
   margin-top: 7.5rem;
+}
+
+.profile-sidebar {
+  position: sticky;
+  top: 194px;
 }
