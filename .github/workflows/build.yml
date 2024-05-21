@@ -18,7 +18,7 @@ jobs:
           username: ${{ secrets.PUZZLE_REGISTRY_USERNAME }}
           password: ${{ secrets.PUZZLE_REGISTRY_PASSWORD }}
 
-      - uses: docker/build-push-action@v4
+      - uses: docker/build-push-action@v5
         with:
           tags: |
             ${{ secrets.PUZZLE_REGISTRY }}/skills:latest
