@@ -37,8 +37,8 @@ services:
     working_dir: /myapp
     command: >
      /bin/bash -c "
-      apt-get update &&
-      apt-get install nodejs npm -y &&
+      curl -fsSL https://deb.nodesource.com/setup_18.x | bash - &&
+      apt-get install -y nodejs &&
       npm install -g yarn && bin/assets &&
       sleep infinity"
     volumes:

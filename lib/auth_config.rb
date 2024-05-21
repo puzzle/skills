@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
+require_relative '../app/controllers/concerns/param_converters'
+
+
 class AuthConfig
-  include ParamConverters
+  extend ParamConverters
 
   AUTH_CONFIG_PATH = Rails.root.join('config/auth.yml')
-
 
   class << self
     def client_id
