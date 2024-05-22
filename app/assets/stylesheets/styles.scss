@@ -290,7 +290,7 @@ pzsh-topbar {
 
 .profile-header-and-tabs {
   position: sticky;
-  top: 88px;
+  top: 80px;
   background-color: white;
 }
 
@@ -332,4 +332,8 @@ pzsh-topbar {
 .profile-sidebar {
   position: sticky;
   top: 194px;
+}
+
+.testing-lol {
+  z-index: -1 !important;
 }
