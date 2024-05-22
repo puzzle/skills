@@ -1,14 +1,15 @@
 %div.d-flex.flex-row.w-100.mt-2
   %turbo-frame#people-skill-form.d-flex.flex-row.w-100.gap-2{"data-controller": "scroll"}
-    %div.w-20.d-flex.flex-column.me-3.gap-2
-      %div.people-skills-actions.d-flex.flex-column.test-class.profile-sidebar
-        = render('people/scroll_to_menu', items: Category.all_parents.pluck(:title), translate: false)
-      %div.people-skills-actions
-        = link_to image_tag("pencil-square.svg", {class: "me-1"})+ t("helpers.submit.edit", model: Skill.model_name.plural.capitalize()),
-        people_skills_edit_person_path(@person), class: "d-flex align-items-center p-3"
-      %div.people-skills-actions
-        = link_to image_tag("plus-lg.svg", {class: "me-1"}) +  t("helpers.submit.add", model: Skill), new_person_people_skill_path(@person), 
-        class: "d-flex align-items-center p-3", data: { turbo_frame: "remote_modal"}
+    %div.w-20.d-flex.flex-column.me-3.mt-3
+      %div.profile-sidebar
+        %div.people-skills-actions.d-flex.flex-column.test-class
+          = render('people/scroll_to_menu', items: Category.all_parents.pluck(:title), translate: false)
+        %div.people-skills-actions.edit-skills-buttton.mt-2
+          = link_to image_tag("pencil-square.svg", {class: "me-1"})+ t("helpers.submit.edit", model: Skill.model_name.plural.capitalize()),
+          people_skills_edit_person_path(@person), class: "d-flex align-items-center p-3"
+        %div.people-skills-actions.add-skills-button.mt-2
+          = link_to image_tag("plus-lg.svg", {class: "me-1"}) +  t("helpers.submit.add", model: Skill), new_person_people_skill_path(@person), 
+          class: "d-flex align-items-center p-3", data: { turbo_frame: "remote_modal"}
     %div.w-80.side-container#scroll-content{"data-action": "scroll->scroll#scrollEvent"}
       %p.d-flex.align-items-center.profile-header
         Skills
