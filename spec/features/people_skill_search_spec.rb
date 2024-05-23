@@ -17,7 +17,7 @@ describe :people_skills do
 
     it 'Should set values of query parameters' do
       visit people_skills_path({skill_id: [skill.id], level: [3], "interest[0]": 5})
-      expect(page).to have_select("skill_id[]", selected: "Rails")
+      expect(page).to have_select("skill_id[]", selected: "Rails", visible: false)
       expect(page).to have_field("level[]", with: 3)
       expect(page).to have_field("interest[0]", with: 5, visible: false)
     end
@@ -84,7 +84,8 @@ describe :people_skills do
   def fill_out_row(skill, level, interest)
     row_selector = "##{last_row[:id]}"
     within row_selector do
-      find('select').select(skill)
+      select_id = find('select', visible: false)[:id]
+      select_from_slim_select(select_id, skill)
     end
 
     within row_selector do

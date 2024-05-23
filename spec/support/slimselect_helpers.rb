@@ -1,11 +1,11 @@
 module SlimselectHelpers
-  def select_from_slim_select(id, option, create_if_missing=false)
+  def select_from_slim_select(id, option, create_if_missing=false, search=false)
     toggle_slim_select(id)
-    search_in_slim_select(option)
+    search_in_slim_select(option) if search
     if(create_if_missing)
-      find('div.ss-addable').click
+      page.document.find('div.ss-addable').click
     else
-      find('div.ss-option:not(.ss-disabled)', text: option).click
+      page.document.find('div.ss-option:not(.ss-disabled)', text: option).click
     end
     expect(page).to have_select(id, selected: option, visible: false)
     expect(page).to have_selector '.ss-main .ss-values .ss-single', text: option
@@ -33,11 +33,11 @@ module SlimselectHelpers
   end
 
   def find_slim_select(select_id)
-    expect(page).to have_selector("##{select_id}", visible: false)
-    find("##{select_id}", visible: false).find(:xpath, '..').find(".ss-main")
+    expect(page).to have_selector("[id='#{select_id}']", visible: false)
+    find("[id='#{select_id}']", visible: false).find(:xpath, '..').find(".ss-main")
   end
 
   def search_in_slim_select(option)
-    find('div.ss-search input[type="search"]').fill_in with: option
+    page.document.find('div.ss-search input[type="search"]').fill_in with: option
   end
 end
