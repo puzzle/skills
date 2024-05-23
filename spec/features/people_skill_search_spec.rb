@@ -93,7 +93,8 @@ describe :people_skills do
     end
 
     within row_selector do
-      find("[id$='star-label#{interest}']").click()
+      id = find("[id$='star-label#{interest}']")[:for]
+      choose(id, allow_label_click: true)
     end
   end
 

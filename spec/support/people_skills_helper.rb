@@ -15,7 +15,8 @@ module PeopleSkillsHelpers
   end
 
   def select_star_rating(level)
-    find("#star-label#{level}").click()
+    id = find("#star-label#{level}")[:for]
+    choose(id, allow_label_click: true)
   end
 
   def validate_people_skill(person, skill_name)
