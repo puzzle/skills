@@ -38,15 +38,6 @@ You will need the following things properly installed on your computer:
 -   [RVM (Ruby Version Manager)](https://rvm.io/) ([installation](https://rvm.io/rvm/install) requires `curl` and `gpg`)
 -   Either [PostgreSQL](https://www.postgresql.org/) or [Docker](https://www.docker.com/) for the Database (Docker is recommended)
 
-## Openshift deployment
-To deploy the project to openshift make sure you set the following environment variables:
-- LOCAL=false
-- client_id: 
-- secret: 
-- host_url: 
-- realm: 
-- admin_role: (Not required)
-
 ## Setup dockerized Application👩🏽‍💻
 We're glad you want to setup your machine for PuzzleSkills development 💃
 
@@ -111,18 +102,11 @@ To detach from the container without stopping it, press `CTRL + p` then `CTRL + 
 ## Testing
 
 -   To run the backend tests run `rake spec`
--   Frontend tests can be executed with `rake spec:frontend`
--   Frontend tests with livereload `rake spec:frontend:serve`
--   To run a single test run the following command in the frontend folder `npm test --filter "some filter words"`
--   There is also `rake ci` and `rake ci:nightly` which should be periodically exectued by a build job (e.g. on jenkins)
 -   To use a user without admin privileges change email in `app/controllers/application_controller.rb#authenticate_auth_user"` to "user@skills.ch"
-
 
 ## Documentation
 Find further Documentation at the links below
 
 [Changelog](https://github.com/puzzle/skills/blob/master/doc/CHANGELOG.md)  
-[Configuration](https://github.com/puzzle/skills/blob/master/doc/CONFIGURATION.md)  
 [Contributing](https://github.com/puzzle/skills/blob/master/doc/CONTRIBUTING.md)  
-[DockerImage](https://github.com/puzzle/skills/blob/master/doc/DOCKER.md)  
 

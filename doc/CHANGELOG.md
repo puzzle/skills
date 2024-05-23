@@ -1,3 +1,10 @@
+# 5.0.0 - The Big Rewrite
+
+### Features
+
+- **Tech-Stack** Kompletter Rewrite des Tech-Stacks. EmberJS wurde entfernt und dessen Funktionalität durch Rails + Hotwire "Feature complete" ersetzt.
+- **Docker Setup** Dank dem extrem vereinfachten Tech-Stack ist das Docker Setup nun auch entsprechend funtkioneller.
+
 # 4.4.0
 
 ### Features

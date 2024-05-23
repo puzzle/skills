@@ -10,11 +10,10 @@ All you need to do is adhere to the Definion of Done below
 
 #### Definition of Done
 
--   Implementation (including frontend and backend tests)
+-   Implementation (including tests - wherever needed feature tests)
 -   `rake spec` passes
--   `rake spec:frontend` passes
 -   `rubocop` passes
--   Manual testing (start server, frontend and click through the new feature)
+-   Manual testing (start server and click through the new feature)
 -   Peer review (We will assign a reviewer)
 -   Remove obsolete code
 -   Make sure your code follows the Guidelines linked below 
@@ -22,7 +21,6 @@ All you need to do is adhere to the Definion of Done below
 #### Code Guidelines
 - [Ruby Style Guide](https://github.com/rubocop-hq/ruby-style-guide)  
 - [Rails Style Guide](https://github.com/rubocop-hq/rails-style-guide)  
-- [Ember Style Guide](https://github.com/emberjs/ember.js/blob/master/STYLEGUIDE.md) (Guide is a bit old and we use double quotes in this project)
 
 - Use spaces instead of tabs
 
