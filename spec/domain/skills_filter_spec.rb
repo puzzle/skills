@@ -8,10 +8,11 @@ describe SkillsFilter do
       filtered_skills = filter.scope
 
       expect(filtered_skills.count).to eq(5)
-      expect(filtered_skills[0].title).to eq('Rails')
-      expect(filtered_skills[1].title).to eq('JUnit')
-      expect(filtered_skills[2].title).to eq('Bash')
-      expect(filtered_skills[3].title).to eq('cunit')
+      expect(filtered_skills[0].title).to eq('Bash')
+      expect(filtered_skills[1].title).to eq('cunit')
+      expect(filtered_skills[2].title).to eq('ember')
+      expect(filtered_skills[3].title).to eq('JUnit')
+      expect(filtered_skills[4].title).to eq('Rails')
     end
 
     it 'filters skills by category' do
@@ -45,8 +46,8 @@ describe SkillsFilter do
       filtered_skills = filter.scope
 
       expect(filtered_skills.count).to eq(2)
-      expect(filtered_skills[0].title).to eq('JUnit')
-      expect(filtered_skills[1].title).to eq('cunit')
+      expect(filtered_skills[0].title).to eq('cunit')
+      expect(filtered_skills[1].title).to eq('JUnit')
     end
   end
 end
