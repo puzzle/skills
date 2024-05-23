@@ -59,7 +59,7 @@ class SkillsController < CrudController
 
   def entries
     @skills =
-      SkillsFilter.new(Skill.all, params[:category], params[:title], params[:defaultSet]).scope
+      SkillsFilter.new(Skill.all.sort_by { |s| s.title.downcase }, params[:category], params[:title], params[:defaultSet]).scope
   end
 
   # rubocop:disable Metrics/AbcSize
