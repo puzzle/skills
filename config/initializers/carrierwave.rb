@@ -4,5 +4,5 @@ CarrierWave.configure do |config|
     config.enable_processing = false
   end
 
-  config.root = Rails.root
+  config.root = Rails.root unless Rails.env.test?
 end
