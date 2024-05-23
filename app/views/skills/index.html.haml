@@ -1,7 +1,7 @@
-%div.bg-white.w-100.d-flex.justify-content-center
+%div.bg-white.w-100.d-flex
   = render("header")
 %div.w-100.margin-header.mt-4
-  .row.bg-light-subtle.border.border-top.pt-5.mt-5.border-5.border-secondary.border-top-0.border-start-0.border-end-0.position-fixed.w-80.text-nowrap
+  .row.bg-light-subtle.border.border-top.border-5.border-secondary.border-top-0.border-start-0.border-end-0
     .col-2.d-flex.align-items-center
       %strong= t "skills.table.skill"
     .col-1.bg-secondary-subtle.d-flex.align-items-center
@@ -18,7 +18,7 @@
       %strong= t "skills.table.portfolio"
     .col-1.bg-secondary-subtle.d-flex.align-items-center
       %strong= t "skills.table.modify"
-  %div.margin-row
+  %div
     %turbo-frame{id: "skills"}
       - @skills.each do |skill|
         %turbo-frame{id: "#{dom_id skill}"}

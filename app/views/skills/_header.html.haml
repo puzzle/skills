@@ -1,32 +1,27 @@
-%div.d-flex.flex-column.position-fixed.bg-white.w-80.z-3{"data-controller": "skillset-selected"}
+%div.d-flex.flex-column.bg-white{"data-controller": "skillset-selected"}
   = form_with(url: skills_path, method: :get, data: { turbo_frame: 'skills' }) do |form|
     %div.d-flex.flex-row.mt-2
       = form.text_field :title, class: "form-control skills-search-field rounded-end-0 z-3", placeholder: "#{t('skills.header.search')}", oninput: "this.form.requestSubmit()", include_blank: true
-      %div.border.d-flex.justify-content-center.align-items-center.rounded-end.bg-white
+      %div.border.d-flex.rounded-end.bg-white
         %img.pointer.p-2{src: "/assets/search.svg"}
-    %div.d-flex.flex-row.mt-3
-      %div.w-25
-        .btn-group
-          %label.btn.btn-outline-primary{"data-skillset-selected-target": "selectButton",
-          "data-action": "click->skillset-selected#selectButton", "data-skillset-selected-id-param": 0}
-            = form.radio_button :defaultSet, false, onClick: "this.form.requestSubmit()", class: "d-none"
-            = t('skills.header.all')
-          %label.btn.btn-outline-primary{"data-skillset-selected-target": "selectButton",
-          "data-action": "click->skillset-selected#selectButton", "data-skillset-selected-id-param": 1}
-            = form.radio_button :defaultSet, "new", onClick: "this.form.requestSubmit()", class: "d-none"
-            = t('skills.header.new')
-          %label.btn.btn-outline-primary{"data-skillset-selected-target": "selectButton",
-          "data-action": "click->skillset-selected#selectButton", "data-skillset-selected-id-param": 2}
-            = form.radio_button :defaultSet, true, onClick: "this.form.requestSubmit()", class: "d-none"
-            = t('skills.header.default')
-      %div.d-flex.flex-row.align-items-center.justify-content-center.w-25
-        %span.text-gray.me-3
-          = t('skills.header.category')
-        = form.collection_select :category, Category.all_parents.order(:title), :id, :title, {include_blank: "Select a category"}, class: "form-select mw-100", onchange: 'this.form.requestSubmit();'
-      %div.w-25.d-flex.justify-content-center.align-items-center
-        =link_to image_tag("download.svg")+ "Export", export_skills_path, class: "btn text-primary"
-      %div.w-25.d-flex.justify-content-center.align-items-center
-        =link_to image_tag("plus-lg.svg", class: "text-primary")+ "Neuer Skill",
-        new_skill_path, class: "btn text-primary", data: { turbo_frame: "remote_modal" }
-
-
+    %div.d-flex.flex-row.mt-3.flex-wrap.gap-2
+      %span.btn-group.me-3
+        %label.btn.btn-outline-primary{"data-skillset-selected-target": "selectButton",
+        "data-action": "click->skillset-selected#selectButton", "data-skillset-selected-id-param": 0}
+          = form.radio_button :defaultSet, false, onClick: "this.form.requestSubmit()", class: "d-none"
+          = t('skills.header.all')
+        %label.btn.btn-outline-primary{"data-skillset-selected-target": "selectButton",
+        "data-action": "click->skillset-selected#selectButton", "data-skillset-selected-id-param": 1}
+          = form.radio_button :defaultSet, "new", onClick: "this.form.requestSubmit()", class: "d-none"
+          = t('skills.header.new')
+        %label.btn.btn-outline-primary{"data-skillset-selected-target": "selectButton",
+        "data-action": "click->skillset-selected#selectButton", "data-skillset-selected-id-param": 2}
+          = form.radio_button :defaultSet, true, onClick: "this.form.requestSubmit()", class: "d-none"
+          = t('skills.header.default')
+      %span.d-flex.align-items-center.flex-wrap
+        %span.text-gray.me-1
+          = "#{t('skills.header.category')}:"
+        = form.collection_select :category, Category.all_parents.order(:title), :id, :title, {include_blank: "Select a category"}, class: "form-select fit-content", onchange: 'this.form.requestSubmit();'
+      =link_to image_tag("download.svg")+ "Export", export_skills_path, class: "btn text-primary d-flex p-0 center-xy"
+      =link_to image_tag("plus-lg.svg", class: "text-primary")+ "Neuer Skill",
+        new_skill_path, class: "btn text-primary p-0 d-flex center-xy", data: { turbo_frame: "remote_modal" }
