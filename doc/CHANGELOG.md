@@ -3,7 +3,7 @@
 ### Features
 
 - **Tech-Stack** Kompletter Rewrite des Tech-Stacks. EmberJS wurde entfernt und dessen Funktionalität durch Rails + Hotwire "Feature complete" ersetzt.
-- **Docker Setup** Dank dem extrem vereinfachten Tech-Stack ist das Docker Setup nun auch entsprechend funtkioneller.
+- **Docker Setup** Dank dem extrem vereinfachten Tech-Stack ist das Docker Setup nun auch entsprechend funktioneller.
 
 # 4.4.0
 
