@@ -5,7 +5,7 @@ module PeopleSkillsHelpers
   end
 
   def select_and_create_skill(skill_name, category)
-    select_from_slim_select("people_skill_skill_attributes_id", skill_name, category)
+    select_from_slim_select("people_skill_skill_attributes_id", skill_name, category, true)
     select category.name_with_parent, from: 'people_skill_skill_attributes_category_id'
   end
 
