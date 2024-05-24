@@ -1,43 +1,73 @@
 module SlimselectHelpers
-  def select_from_slim_select(id, option, create_if_missing=false)
-    toggle_slim_select(id)
-    search_in_slim_select(option)
+  def select_from_slim_select(selector, option_text, create_if_missing=false)
+    ss_open(selector)
     if(create_if_missing)
-      find('div.ss-addable').click
+      ss_create(selector, option_text)
     else
-      find('div.ss-option:not(.ss-disabled)', text: option).click
+      ss_select_text(selector, option_text)
+      ss_close(selector)
     end
-    expect(page).to have_select(id, selected: option, visible: false)
-    expect(page).to have_selector '.ss-main .ss-values .ss-single', text: option
+
+    select = find(selector, visible: false)
+    select_id = select[:id]
+    select_parent = select.find(:xpath, '..')
+
+    within select_parent do
+      expect(page).to have_select(select_id, selected: option_text, visible: false)
+      expect(page).to have_selector '.ss-main .ss-values .ss-single', text: option_text
+    end
   end
 
-  def select_index_from_slim_select(id, index)
-    option = dropdown_options_from_slim_select(id)[index]
-    select_from_slim_select(id, option)
+  def ss_select_index(selector, index)
+    option = ss_options(selector)[index]
+    option_value = option['value']
+    ss_select(selector, option_value)
   end
 
-  def check_options_from_slim_select(id, options)
-    dropdown_options = dropdown_options_from_slim_select(id)
+  def ss_options(selector)
+    call(selector, "getData")
+  end
+
+  def ss_check_options(selector, options)
+    dropdown_options = ss_options(selector).map{|e| e["text"]}
     expect(dropdown_options).to eq options
   end
 
-  def dropdown_options_from_slim_select(id)
-    toggle_slim_select(id)
-    options = all('.ss-content .ss-list .ss-option').map{|o| o.text}
-    toggle_slim_select(id)
-    options
+  private
+
+  def ss_open(selector)
+    call(selector, "open")
   end
 
-  def toggle_slim_select(select_id)
-    find_slim_select(select_id).click
+  def ss_close(selector)
+    call(selector, "close")
   end
 
-  def find_slim_select(select_id)
-    expect(page).to have_selector("##{select_id}", visible: false)
-    find("##{select_id}", visible: false).find(:xpath, '..').find(".ss-main")
+  def ss_select_text(selector, option_text)
+    options = ss_options(selector)
+    option_value = options.filter{|e|e["text"] == option_text }.first["value"]
+    ss_select(selector, option_value)
   end
 
-  def search_in_slim_select(option)
-    find('div.ss-search input[type="search"]').fill_in with: option
+  def ss_select(selector, option_value)
+    call(selector, "setSelected", option_value)
+  end
+
+  def ss_search(selector, text)
+    ss_open(selector)
+    call(selector, "search", text)
+  end
+
+  def ss_create(selector, option_text)
+    ss_search(selector, option_text)
+    page.document.find('div.ss-addable').click
+  end
+
+  def call(selector, method, *args)
+    args = args.map { |a| (a.is_a? Integer) ? a : "'#{a}'"}
+    args = args.count > 1 ? args : args.first
+    selector = selector.gsub("\"", "\\\\'").gsub("'", "\\\\'")
+    script = "document.querySelector('#{selector}').slim.#{method}(#{args})"
+    evaluate_script(script)
   end
 end

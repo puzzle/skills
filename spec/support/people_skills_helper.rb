@@ -1,11 +1,11 @@
 module PeopleSkillsHelpers
   def select_skill(skill)
-    select_from_slim_select("people_skill_skill_attributes_id", skill.title)
+    select_from_slim_select("#people_skill_skill_attributes_id", skill.title)
     expect(page).to have_select("people_skill_skill_attributes_category_id", selected: skill.category.name_with_parent, visible: false)
   end
 
   def select_and_create_skill(skill_name, category)
-    select_from_slim_select("people_skill_skill_attributes_id", skill_name, category)
+    select_from_slim_select("#people_skill_skill_attributes_id", skill_name, category)
     select category.name_with_parent, from: 'people_skill_skill_attributes_category_id'
   end
 
@@ -15,7 +15,8 @@ module PeopleSkillsHelpers
   end
 
   def select_star_rating(level)
-    find("#star-label#{level}").click()
+    id = find("#star-label#{level}")[:for]
+    choose(id, allow_label_click: true)
   end
 
   def validate_people_skill(person, skill_name)

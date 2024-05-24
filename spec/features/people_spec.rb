@@ -13,20 +13,20 @@ describe :people do
       visit people_path
       dropdown_options = people_list.pluck(:name).sort_by(&:downcase)
       dropdown_options.unshift("Bitte wählen")
-      check_options_from_slim_select("person_id_person", dropdown_options)
+      ss_check_options("#person_id_person", dropdown_options)
     end
 
     it 'redirects to the selected person on change' do
       visit people_path
       bob = people(:bob)
-      select_from_slim_select("person_id_person", bob.name)
+      select_from_slim_select("#person_id_person", bob.name)
       expect(page).to have_current_path(person_path(bob))
     end
 
     it 'redirect to the first entry' do
       visit people_path
       sorted_list = people_list.sort_by { |item| item.name.downcase }
-      select_index_from_slim_select("person_id_person", 1)
+      ss_select_index("#person_id_person", 1)
       expect(page).to have_current_path(person_path(sorted_list.first.id))
     end
 
