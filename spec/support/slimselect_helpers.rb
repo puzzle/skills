@@ -8,9 +8,15 @@ module SlimselectHelpers
       ss_select_text(selector, option_text)
       ss_close(selector)
     end
-    select_id = find(selector, visible: false)[:id]
-    expect(page).to have_select(select_id, selected: option_text, visible: false)
-    expect(page).to have_selector '.ss-main .ss-values .ss-single', text: option_text
+
+    select = find(selector, visible: false)
+    select_id = select[:id]
+    select_parent = select.find(:xpath, '..')
+
+    within select_parent do
+      expect(page).to have_select(select_id, selected: option_text, visible: false)
+      expect(page).to have_selector '.ss-main .ss-values .ss-single', text: option_text
+    end
   end
 
   def ss_select_index(selector, index)
