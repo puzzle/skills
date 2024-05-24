@@ -14,15 +14,19 @@
         Skills
         ="(#{@person.people_skills.count})"
       %div.ms-3
-        = form_with(url: person_people_skills_path(@person), method: :get, data: { turbo_frame: 'people-skills' }) do |f|
+        = form_with(url: person_people_skills_path(@person), method: :get, data: {controller: "filter", turbo_frame: "people-skills"}) do |f|
           %span.btn-group
-            = f.radio_button :rating, 1, class: "btn-check", onClick: "this.form.requestSubmit()"
+            -rating = request.query_parameters[:rating] || "0"
+            = f.radio_button :rating, 1, class: "btn-check", checked: rating == "1",
+              onClick: "this.form.requestSubmit()", data: {action: "change->filter#submit"}
             = f.label :rating, 'All', value: 1, class: "btn btn-outline-primary"
 
-            = f.radio_button :rating, 0, class: "btn-check", onClick: "this.form.requestSubmit()", checked: true
+            = f.radio_button :rating, 0, class: "btn-check", checked: rating == "0",
+              onClick: "this.form.requestSubmit()", data: {action: "change->filter#submit"}
             = f.label :rating, 'Rated', value: 0, class: "btn btn-outline-primary"
 
-            = f.radio_button :rating, -1, class: "btn-check", onClick: "this.form.requestSubmit()"
+            = f.radio_button :rating, -1, class: "btn-check", checked: rating == "-1",
+              onClick: "this.form.requestSubmit()", data: {action: "change->filter#submit"}
             = f.label :rating, 'Unrated', value: -1, class: "btn btn-outline-primary"
         = turbo_frame_tag 'people-skills' do
           - Category.all_parents.each do |category|
