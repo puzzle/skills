@@ -13,14 +13,26 @@
       %p.d-flex.align-items-center.profile-header
         Skills
         ="(#{@person.people_skills.count})"
-        - Category.all_parents.each do |category|
-          %div.profile-header.mw-100.border-bottom.mt-4{id: category.title, "data-scroll-target": "scrollItem"}
-            = category.title
-          - ([category] + category.children.to_a).each do |category_child|
-            %div.white-header.mw-100.border-bottom.text-gray
-              =category_child.title + " (#{people_skills_of_category(@person, category_child).count})"
-              - people_skills_of_category(@person, category_child).each do |person_skill|
-                - @person_skill = person_skill
-                %div.mw-100.border-bottom.text-black.ps-5.border
-                  %div.d-flex.flex-row.align-items-center.mt-3.mb-3
-                    = render("people_skills/person_skill", {person_skill: @person_skill})
+      %div.ms-3
+        = form_with(url: person_people_skills_path(@person), method: :get, data: { turbo_frame: 'people-skills' }) do |f|
+          %span.btn-group
+            = f.radio_button :rating, 1, class: "btn-check", onClick: "this.form.requestSubmit()"
+            = f.label :rating, 'All', value: 1, class: "btn btn-outline-primary"
+
+            = f.radio_button :rating, 0, class: "btn-check", onClick: "this.form.requestSubmit()", checked: true
+            = f.label :rating, 'Rated', value: 0, class: "btn btn-outline-primary"
+
+            = f.radio_button :rating, -1, class: "btn-check", onClick: "this.form.requestSubmit()"
+            = f.label :rating, 'Unrated', value: -1, class: "btn btn-outline-primary"
+        = turbo_frame_tag 'people-skills' do
+          - Category.all_parents.each do |category|
+            %div.profile-header.mw-100.border-bottom.mt-4{id: category.title, "data-scroll-target": "scrollItem"}
+              = category.title
+            - ([category] + category.children.to_a).each do |category_child|
+              %div.white-header.mw-100.border-bottom.text-gray
+                - @people_skills_of_category = people_skills_of_category(category_child)
+                =category_child.title + " (#{@people_skills_of_category.count})"
+                - @people_skills_of_category.each do |person_skill|
+                  %div.mw-100.border-bottom.text-black.ps-5.border
+                    %div.d-flex.flex-row.align-items-center.mt-3.mb-3
+                      = render("people_skills/person_skill", {person_skill: person_skill})
