@@ -37,7 +37,6 @@ class People::PeopleSkillsCreateController < CrudController
 
   def filter_by_rating(people_skills, rating)
     return people_skills.where('level > ?', 0) if rating == '0'
-
     return people_skills.where(level: 0) if rating == '-1'
 
     people_skills
