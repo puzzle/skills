@@ -19,15 +19,15 @@
             - rating = request.query_parameters[:rating]
             = f.radio_button :rating, 1, class: "btn-check", checked: rating == "1",
               onClick: "this.form.requestSubmit()", data: {action: "change->filter#submit"}
-            = f.label :rating, 'All', value: 1, class: "btn btn-outline-primary"
+            = f.label :rating, t("people-skills.filter.all"), value: 1, class: "btn btn-outline-primary"
 
             = f.radio_button :rating, 0, class: "btn-check", checked: rating == "0",
               onClick: "this.form.requestSubmit()", data: {action: "change->filter#submit"}
-            = f.label :rating, 'Rated', value: 0, class: "btn btn-outline-primary"
+            = f.label :rating, t("people-skills.filter.rated"), value: 0, class: "btn btn-outline-primary"
 
             = f.radio_button :rating, -1, class: "btn-check", checked: rating == "-1",
               onClick: "this.form.requestSubmit()", data: {action: "change->filter#submit"}
-            = f.label :rating, 'Unrated', value: -1, class: "btn btn-outline-primary"
+            = f.label :rating, t("people-skills.filter.unrated"), value: -1, class: "btn btn-outline-primary"
         = turbo_frame_tag 'people-skills' do
           - Category.all_parents.each do |category|
             %div.profile-header.mw-100.border-bottom.mt-4{id: category.title, "data-scroll-target": "scrollItem"}

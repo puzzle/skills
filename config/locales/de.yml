@@ -100,6 +100,10 @@ de:
     interest: Interesse
     certificate: Zertifikat
     core-competence: Kernkompetenz
+    filter:
+      all: Alle
+      rated: Bewertet
+      unrated: Nicht bewertet
   date_range_picker:
     from: Von
     to: Bis
