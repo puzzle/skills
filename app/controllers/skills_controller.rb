@@ -51,6 +51,7 @@ class SkillsController < CrudController
                                parent_category: [:children, :parent],
                                category: [:children, :parent]).list
               end
+
     SkillsFilter.new(entries, params[:category], params[:title], params[:defaultSet]).scope
   end
 
@@ -60,7 +61,10 @@ class SkillsController < CrudController
 
   def entries
     @skills =
-      SkillsFilter.new(Skill.all, params[:category], params[:title], params[:defaultSet]).scope
+      SkillsFilter.new(Skill.all,
+                       params[:category],
+                       params[:title]&.strip,
+                       params[:defaultSet]).scope
   end
 
   # rubocop:disable Metrics/AbcSize
