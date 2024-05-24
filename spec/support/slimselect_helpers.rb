@@ -1,5 +1,4 @@
 module SlimselectHelpers
-  # 9H
   def select_from_slim_select(selector, option_text, create_if_missing=false)
     ss_open(selector)
     if(create_if_missing)
@@ -67,8 +66,8 @@ module SlimselectHelpers
   def call(selector, method, *args)
     args = args.map { |a| (a.is_a? Integer) ? a : "'#{a}'"}
     args = args.count > 1 ? args : args.first
+    selector = selector.gsub("\"", "\\\\'").gsub("'", "\\\\'")
     script = "document.querySelector('#{selector}').slim.#{method}(#{args})"
-    puts script
     evaluate_script(script)
   end
 end

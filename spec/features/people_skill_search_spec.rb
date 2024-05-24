@@ -85,7 +85,7 @@ describe :people_skills do
     row_selector = "##{last_row[:id]}"
     within row_selector do
       select_id = find('select', visible: false)[:id]
-      select_from_slim_select("#{row_selector} [id=\"#{select_id}\"]", skill)
+      select_from_slim_select("#{row_selector} [id='#{select_id}']", skill)
     end
 
     within row_selector do
