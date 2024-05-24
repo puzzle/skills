@@ -16,7 +16,7 @@
       %div.ms-3
         = form_with(url: person_people_skills_path(@person), method: :get, data: {controller: "filter", turbo_frame: "people-skills"}) do |f|
           %span.btn-group
-            -rating = request.query_parameters[:rating] || "0"
+            -rating = request.query_parameters[:rating]
             = f.radio_button :rating, 1, class: "btn-check", checked: rating == "1",
               onClick: "this.form.requestSubmit()", data: {action: "change->filter#submit"}
             = f.label :rating, 'All', value: 1, class: "btn btn-outline-primary"

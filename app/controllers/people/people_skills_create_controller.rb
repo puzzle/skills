@@ -9,6 +9,14 @@ class People::PeopleSkillsCreateController < CrudController
   helper_method :people_skills_of_category
   layout 'person'
 
+  def index
+    if params[:rating].blank?
+      redirect_to url_for(request.params.merge(rating: 0))
+      return
+    end
+    super
+  end
+
   def show
     redirect_to person_people_skills_path(@person)
   end
@@ -23,22 +31,23 @@ class People::PeopleSkillsCreateController < CrudController
     PeopleSkill
   end
 
-  def entries # rubocop:disable Metrics/MethodLength
-    rating = params[:rating] || '0'
-    list = super
-    if rating == '1'
-      list = super
-    end
+  def list_entries
+    rating = params[:rating]
+    return filter_by_rating(super, rating) if rating.present?
 
+    super
+  end
+
+  def filter_by_rating(people_skills, rating)
     if rating == '0'
-      list = super.where('level > ?', 0)
+      return people_skills.where('level > ?', 0)
     end
 
     if rating == '-1'
-      list = super.where(level: 0)
+      return people_skills.where(level: 0)
     end
 
-    model_ivar_set(list)
+    people_skills
   end
 
   def self.controller_path
@@ -46,6 +55,6 @@ class People::PeopleSkillsCreateController < CrudController
   end
 
   def people_skills_of_category(category)
-    model_ivar_get(plural: true).where(skill_id: category.skills.pluck(:id))
+    @people_skills.where(skill_id: category.skills.pluck(:id))
   end
 end
