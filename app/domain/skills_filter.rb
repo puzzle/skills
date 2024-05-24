@@ -19,7 +19,7 @@ class SkillsFilter
     if title.present?
       filtered_entries = filtered_entries.where('lower(skills.title) like lower(?)', "%#{title}%")
     end
-    filtered_entries.sort_by { |s| s.title.downcase }
+    filtered_entries.order(:title)
   end
 
   private
