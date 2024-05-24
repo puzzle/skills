@@ -52,7 +52,6 @@ group :development, :test do
   # Call 'byebug' anywhere in the code
   # to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'dotenv'
   gem 'pry'
   gem 'pry-byebug'
   gem 'rspec-rails'
@@ -60,6 +59,7 @@ end
 
 group :development do
   gem 'bullet'
+  gem 'dotenv'
   gem 'listen'
   gem 'rb-readline'
   # Spring speeds up development by keeping your application

@@ -46,7 +46,7 @@ class AuthConfig
     end
 
     def local?
-      to_boolean(ENV.fetch('LOCAL', false))
+      to_boolean(ENV.fetch('LOCAL', false)) || Rails.env.test?
     end
 
     def settings_file
