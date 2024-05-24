@@ -54,3 +54,6 @@ application.register("scroll", ScrollController)
 
 import SkillsetSelectedController from "./skillset_selected_controller"
 application.register("skillset-selected", SkillsetSelectedController)
+
+import FilterController from "./filter_controller"
+application.register("filter", FilterController)

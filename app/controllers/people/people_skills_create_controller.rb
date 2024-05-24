@@ -6,7 +6,14 @@ class People::PeopleSkillsCreateController < CrudController
                           { skill_attributes:
                           [:id, :title, :radar, :portfolio, :default_set, :category_id] }]
   self.nesting = Person
+  helper_method :people_skills_of_category
   layout 'person'
+
+  def index
+    return super if params[:rating].present?
+
+    redirect_to url_for(request.params.merge(rating: 0))
+  end
 
   def show
     redirect_to person_people_skills_path(@person)
@@ -22,7 +29,24 @@ class People::PeopleSkillsCreateController < CrudController
     PeopleSkill
   end
 
+  def list_entries
+    return super if params[:rating].blank?
+
+    filter_by_rating(super, params[:rating])
+  end
+
+  def filter_by_rating(people_skills, rating)
+    return people_skills.where('level > ?', 0) if rating == '0'
+    return people_skills.where(level: 0) if rating == '-1'
+
+    people_skills
+  end
+
   def self.controller_path
     'people/people_skills'
+  end
+
+  def people_skills_of_category(category)
+    @people_skills.where(skill_id: category.skills.ids)
   end
 end
