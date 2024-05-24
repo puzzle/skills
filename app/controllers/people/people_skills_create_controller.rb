@@ -10,11 +10,9 @@ class People::PeopleSkillsCreateController < CrudController
   layout 'person'
 
   def index
-    if params[:rating].blank?
-      redirect_to url_for(request.params.merge(rating: 0))
-      return
-    end
-    super
+    return super if params[:rating].present?
+
+    redirect_to url_for(request.params.merge(rating: 0))
   end
 
   def show
@@ -32,20 +30,15 @@ class People::PeopleSkillsCreateController < CrudController
   end
 
   def list_entries
-    rating = params[:rating]
-    return filter_by_rating(super, rating) if rating.present?
+    return super if params[:rating].blank?
 
-    super
+    filter_by_rating(super, params[:rating])
   end
 
   def filter_by_rating(people_skills, rating)
-    if rating == '0'
-      return people_skills.where('level > ?', 0)
-    end
+    return people_skills.where('level > ?', 0) if rating == '0'
 
-    if rating == '-1'
-      return people_skills.where(level: 0)
-    end
+    return people_skills.where(level: 0) if rating == '-1'
 
     people_skills
   end
@@ -55,6 +48,6 @@ class People::PeopleSkillsCreateController < CrudController
   end
 
   def people_skills_of_category(category)
-    @people_skills.where(skill_id: category.skills.pluck(:id))
+    @people_skills.where(skill_id: category.skills.ids)
   end
 end
