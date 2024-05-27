@@ -11,7 +11,7 @@ describe Api::People::PictureController do
     expect(Digest::MD5.hexdigest(response.body)).to eq(default_avatar_md5)
   end
 
-  xit 'should update picture' do
+  it 'should update picture' do
     process :update, method: :put, params: { id: bob.id, picture: fixture_file_upload('picture.png', 'image/png') }
 
     path = json['data']['picture_path']

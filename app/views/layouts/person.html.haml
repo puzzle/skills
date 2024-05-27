@@ -1,10 +1,10 @@
 = content_for :content do
-    %div.profile-header-and-tabs.pt-2
-        %div
-            =render partial:"people/search", :locals => {person: @person}
-        %div{"data-controller": "profile-tab"}
-            = render "application/tabbar", tabs: person_tabs(@person) do
-                =link_to image_tag("export.svg", class: "text-primary")+ "Export", export_cv_person_path(@person), class: "btn text-primary", data: { turbo_frame: "remote_modal" }
-    %turbo-frame{id: "tab-content"}
-        = yield
+  %div.profile-header-and-tabs.pt-2
+    %div
+      =render partial:"people/search", :locals => {person: @person}
+    %div{"data-controller": "profile-tab"}
+      = render "application/tabbar", tabs: person_tabs(@person) do
+        =link_to image_tag("export.svg", class: "text-primary")+ "Export", export_cv_person_path(@person), class: "btn text-primary", data: { turbo_frame: "remote_modal" }
+  %turbo-frame{id: "tab-content"}
+    = yield
 = render template: "layouts/application"
