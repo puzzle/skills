@@ -312,7 +312,6 @@ pzsh-topbar {
   background-color: #2c97a6;
 }
 
-
 .skills-search-field {
   max-width: 300px;
 }
@@ -325,15 +324,12 @@ pzsh-topbar {
   align-items: center;
   justify-content: center;
 }
+
 .margin-row {
   margin-top: 7.5rem;
 }
 
 .profile-sidebar {
   position: sticky;
-  top: 194px;
-}
-
-.testing-lol {
-  z-index: -1 !important;
+  top: 204px;
 }
