@@ -1,15 +1,16 @@
 require 'rails_helper'
 
 describe 'Profile scroll-to', type: :feature, js: true do
-  let(:bob) { people(:bob) }
+  let(:longmax) { people(:longmax) }
 
   before(:each) do
     sign_in auth_users(:user), scope: :auth_user
     visit root_path
+    Capybara.page.driver.browser.manage.window.maximize
   end
 
   it 'Should change background of selected section' do
-    visit person_path(bob)
+    visit person_path(longmax)
     page.find('span', text: 'Ausbildung').click
     expect(page.all('div', text: 'Ausbildung')[0]).to have_css('.skills-selected')
 
@@ -18,7 +19,7 @@ describe 'Profile scroll-to', type: :feature, js: true do
   end
 
   it 'Should be in viewport when clicked on list item' do
-    visit person_path(bob)
+    visit person_path(longmax)
     page.find('span', text: 'Weiterbildung').click
 
     in_view = evaluate_script("(function(el) {

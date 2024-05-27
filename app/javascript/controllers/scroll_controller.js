@@ -5,6 +5,18 @@ export default class extends Controller {
     static targets = ["listItem", "scrollItem"]
     currentSelectedIndex = 0;
 
+    connect() {
+        document.addEventListener("scroll", () => {
+            this.scrollEvent();
+        });
+    }
+
+    disconnect() {
+        document.removeEventListener("scroll", () => {
+            this.scrollEvent();
+        });
+    }
+
     scrollToElement({params}) {
         document.getElementById(params.id).scrollIntoView({
             behavior: "smooth"

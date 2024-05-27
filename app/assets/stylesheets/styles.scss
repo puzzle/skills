@@ -288,6 +288,12 @@ pzsh-topbar {
   height: min-content;
 }
 
+.profile-header-and-tabs {
+  position: sticky;
+  top: 80px;
+  background-color: white;
+}
+
 .skills-selected {
   background-color: $skills-blue;
   color: white;
@@ -306,12 +312,6 @@ pzsh-topbar {
   background-color: #2c97a6;
 }
 
-.side-container {
-  max-height: 70em;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-
 .skills-search-field {
   max-width: 300px;
 }
@@ -323,4 +323,9 @@ pzsh-topbar {
 .center-xy{
   align-items: center;
   justify-content: center;
+}
+
+.profile-sidebar {
+  position: sticky;
+  top: 204px;
 }
