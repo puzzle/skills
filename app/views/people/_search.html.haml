@@ -1,5 +1,5 @@
 %div.d-flex.align-items-center.justify-content-between
-  %div.d-flex.col-12.gap-3
+  %div.d-flex.col-9.gap-3
     %span.col-6{"data-controller": "dropdown"}
       = collection_select :person_id, :person, Person.all.sort_by {|p| p.name.downcase }, :id, :name, select_when_availabale(person), {data:{"dropdown-target": "dropdown" , action: "change->dropdown#handleChange", value: "/people/"}}
     %div.d-flex.align-items-center.text-gray
