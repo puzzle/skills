@@ -4,44 +4,50 @@ export default class extends Controller {
 
     static targets = ["listItem", "scrollItem"]
     currentSelectedIndex = 0;
+    headerHeight = 180;
 
-    connect() {
-        document.addEventListener("scroll", () => {
-            this.scrollEvent();
-        });
+  connect() {
+    this.scrollEvent = this.scrollEvent.bind(this);
+    document.addEventListener("scroll", this.scrollEvent);
+  }
+
+  disconnect() {
+    document.removeEventListener("scroll", this.scrollEvent);
+  }
+
+  scrollToElement({params}) {
+    document.getElementById(params.id).scrollIntoView({
+      behavior: "smooth"
+    });
+  }
+
+  scrollEvent() {
+    let firstVisibleIndex = -1;
+
+    for (let i = 0; i < this.scrollItemTargets.length; i++) {
+      const currentElement = this.scrollItemTargets[i];
+      const rect = currentElement.getBoundingClientRect();
+
+      if (rect.bottom >= this.headerHeight && rect.top < (window.innerHeight || document.documentElement.clientHeight)) {
+        firstVisibleIndex = i;
+        break;
+      }
     }
 
-    disconnect() {
-        document.removeEventListener("scroll", () => {
-            this.scrollEvent();
-        });
+    if (firstVisibleIndex !== -1 && this.currentSelectedIndex !== firstVisibleIndex) {
+      this.listItemTargets[this.currentSelectedIndex].classList.remove("skills-selected");
+      this.listItemTargets[firstVisibleIndex].classList.add("skills-selected");
+      this.currentSelectedIndex = firstVisibleIndex;
     }
+  }
 
-    scrollToElement({params}) {
-        document.getElementById(params.id).scrollIntoView({
-            behavior: "smooth"
-        });
-    }
-
-    scrollEvent() {
-        for(let i = 0; i < this.scrollItemTargets.length; i++) {
-            if(this.isElementInViewport(this.scrollItemTargets[i])) {
-                if(this.currentSelectedIndex !== i) {
-                    this.listItemTargets[i].classList.add("skills-selected");
-                    this.listItemTargets[this.currentSelectedIndex].classList.remove("skills-selected");
-                    this.currentSelectedIndex = i;
-                }
-                break;
-            }
-        }
-    }
-
-    isElementInViewport(el) {
-        let rect = el.getBoundingClientRect();
-        return (
-            rect.top >= 0 &&
-            rect.left >= 0 &&
-            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-        );
-    }
+  isElementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top >= this.headerHeight &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
 }
