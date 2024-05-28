@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class StatusController < ApplicationController
+  skip_before_action :authenticate_auth_user!
 
   # Web Server Okay?
   def health
