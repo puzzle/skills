@@ -212,16 +212,6 @@ pzsh-topbar {
   height: 82vh;
 }
 
-.people-skills-actions {
-  display: flex;
-  background-color: $skills-gray;
-  height: min-content;
-  @extend .border;
-  @extend .border-light-subtle;
-  @extend .border-2;
-  @extend .rounded-1;
-}
-
 .filter-form {
   width: 95%;
 }
@@ -326,7 +316,40 @@ pzsh-topbar {
   justify-content: center;
 }
 
-.profile-sidebar {
+.sidebar {
+  display: flex;
+  flex-direction: column;
   position: sticky;
   top: 204px;
+  height: min-content;
+  @extend .col-2
+}
+
+.sidebar-item {
+  @extend .p-3;
+  @extend .skills-blue-text;
+  @extend .bg-skills-gray;
+
+  cursor: pointer;
+}
+
+.sidebar-item-only {
+  display: flex;
+  flex-direction: column;
+  height: min-content;
+  @extend .sidebar-item;
+  @extend .border;
+  @extend .border-light-subtle;
+  @extend .border-2;
+  @extend .rounded-1;
+}
+
+.sidebar-extras{
+  display: flex;
+  flex-direction: column;
+  @extend .gap-3;
+
+  a {
+    @extend .sidebar-item
+  }
 }

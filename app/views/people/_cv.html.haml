@@ -1,9 +1,7 @@
-%div.d-flex.flex-row{"data-controller": "scroll"}
-  %div.w-20.bg-skills-gray.me-3.border.border-light-subtle.border-2.min-height.profile-sidebar
-    = render 'scroll_to_menu',
-    items: %w[personal-data core-competences educations advanced-trainings activities projects], translate: true
-  %div.d-flex.align-items-start
-    = link_to image_tag("export.svg", class: "text-primary") + " Export", export_cv_person_path(@person), class: "btn text-primary", data: { turbo_frame: "remote_modal" }
+%div.d-flex.gap-3.flex-row{"data-controller": "scroll"}
+  = render 'scroll_to_menu', items: %w[personal-data core-competences educations advanced-trainings activities projects], translate: true do
+    -# %div.bg-skills-gray.border.border-light-subtle.border-2
+    = link_to image_tag("export.svg", class: "text-primary") + " Export", export_cv_person_path(@person), data: { turbo_frame: "remote_modal" }
   %div.w-80#scroll-content{data: { "scroll-target": "parent"}}
     = render('profile')
     = render('core_competences')

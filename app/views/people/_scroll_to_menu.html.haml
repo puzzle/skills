@@ -1,8 +1,14 @@
-- items.each do | item |
-  %div.px-3.pt-3.pb-3.skills-blue-text.cursor-pointer{"data-scroll-target": "listItem", "data-action": "click->scroll#scrollToElement",
-        "data-scroll-id-param": item}
-    %span
-      - if translate
-        = t "profile.#{item}"
-      - else
-        = item
+%div.d-flex.flex-column.bg-skills-gray.border.border-light-subtle.border-2
+
+%div.sidebar
+  - items.each do | item |
+    %div.sidebar-item{"data-scroll-target": "listItem", "data-action": "click->scroll#scrollToElement",
+          "data-scroll-id-param": item}
+      %span
+        - if translate
+          = t "profile.#{item}"
+        - else
+          = item
+
+%div.sidebar-extras
+  = yield
