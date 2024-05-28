@@ -1,6 +1,6 @@
-%div.d-flex.flex-row.w-100.mt-2
+%div.d-flex.flex-row.w-100
   %turbo-frame#people-skill-form.d-flex.flex-row.w-100.gap-2{"data-controller": "scroll"}
-    %div.w-20.d-flex.flex-column.me-3.mt-3
+    %div.col-2.d-flex.flex-column.me-3
       %div.profile-sidebar
         %div.people-skills-actions.d-flex.flex-column.test-class
           = render('people/scroll_to_menu', items: Category.all_parents.pluck(:title), translate: false)
@@ -10,7 +10,7 @@
         %div.people-skills-actions.add-skills-button.mt-2
           = link_to image_tag("plus-lg.svg", {class: "me-1"}) +  t("helpers.submit.add", model: Skill), new_person_people_skill_path(@person), 
           class: "d-flex align-items-center p-3", data: { turbo_frame: "remote_modal"}
-    %div.w-80#scroll-content{"data-action": "scroll->scroll#scrollEvent"}
+    %div.w-80#scroll-content{data: { "scroll-target": "parent"}}
       %p.d-flex.align-items-center.profile-header
         Skills
         ="(#{@person.people_skills.count})"
@@ -31,7 +31,7 @@
             = f.label :rating, t("people-skills.filter.unrated"), value: -1, class: "btn btn-outline-primary"
         = turbo_frame_tag 'people-skills' do
           - Category.all_parents.each do |category|
-            %div.profile-header.mw-100.border-bottom.mt-4{id: category.title, "data-scroll-target": "scrollItem"}
+            %div.profile-header.mw-100.border-bottom.mt-4{id: category.title.parameterize, "data-scroll-target": "scrollItem"}
               = category.title
             - ([category] + category.children.to_a).each do |category_child|
               %div.white-header.mw-100.border-bottom.text-gray
