@@ -6,6 +6,7 @@ export default class extends Controller {
     offsetY = this.parentTarget.getBoundingClientRect().top;
 
     connect() {
+        window.scrollTo({ top: 0, behavior: 'instant'});
         document.addEventListener("scroll", () => {
             this.highlight();
         });
