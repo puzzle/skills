@@ -19,7 +19,7 @@ export default class extends Controller {
     }
 
     scrollToElement({ params }) {
-        const elem = document.getElementById(params.id)
+        const elem = document.getElementById(params.id);
         const y = elem.getBoundingClientRect().top - this.offsetY + window.scrollY;
         window.scrollTo({ top: y, behavior: 'smooth' });
     }

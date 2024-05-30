@@ -4,7 +4,7 @@
     people_skills_edit_person_path(@person)
     = link_to image_tag("plus-lg.svg") + t("helpers.submit.add", model: Skill), new_person_people_skill_path(@person), 
     data: { turbo_frame: "remote_modal"}
-  %div.w-100#scroll-content{data: { "scroll-target": "parent"}}
+  %div.w-100{data: { "scroll-target": "parent"}}
     %p.d-flex.align-items-center.profile-header
       Skills
       ="(#{@person.people_skills.count})"
