@@ -6,14 +6,14 @@ $skills-green-hover: #4e903c;
 $skills-search-result-blue: #238bca;
 $skills-dark-blue: #1e5a96;
 
-
 .modal-dialog {
   max-width: 60%;
 }
 
 .pointer {
   cursor: pointer;
-}.modal-dialog {
+}
+.modal-dialog {
   max-width: 60%;
 }
 .content {
@@ -46,7 +46,7 @@ $skills-dark-blue: #1e5a96;
 }
 
 pzsh-topbar {
-  background-color: $skills-blue
+  background-color: $skills-blue;
 }
 
 .text-gray {
@@ -58,13 +58,13 @@ pzsh-topbar {
   border-bottom: 2px solid $secondary-bg-subtle !important;
 }
 
-.interest, .level {
+.interest,
+.level {
   pointer-events: none !important;
 }
 .table-row:hover {
   background-color: $light;
 }
-
 
 .profile-header {
   background: $skills-gray;
@@ -130,7 +130,7 @@ pzsh-topbar {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: #69b978
+  background-color: #69b978;
 }
 
 .w-min-content {
@@ -203,7 +203,7 @@ pzsh-topbar {
   color: #ccc;
 }
 
-.bg-hover-gray:hover{
+.bg-hover-gray:hover {
   background-color: #e5e5e5;
 }
 
@@ -228,7 +228,8 @@ pzsh-topbar {
   display: block;
 }
 
-.portfolio-select, .radar-select {
+.portfolio-select,
+.radar-select {
   width: 100% !important;
   padding-right: 0 !important;
   padding-left: 0 !important;
@@ -311,9 +312,16 @@ pzsh-topbar {
   width: fit-content;
 }
 
-.center-xy{
+.center-xy {
   align-items: center;
   justify-content: center;
+}
+
+.sidebar-item {
+  @extend .p-3;
+  @extend .skills-blue-text;
+  @extend .bg-skills-gray;
+  cursor: pointer;
 }
 
 .sidebar {
@@ -323,16 +331,10 @@ pzsh-topbar {
   top: 204px;
   height: min-content;
   @extend .col-2;
-  @extend .gap-2
+  @extend .gap-2;
 }
 
-.sidebar-item {
-  @extend .p-3;
-  @extend .skills-blue-text;
-  @extend .bg-skills-gray;
-  width: 100%;
-  cursor: pointer;
-}
+
 
 .sidebar-item-only {
   display: flex;
@@ -343,14 +345,23 @@ pzsh-topbar {
   @extend .border-light-subtle;
   @extend .border-2;
   @extend .rounded-1;
+  @extend .col-2;
 }
 
-.sidebar-extras{
+.sidebar-extras {
   display: flex;
   flex-direction: column;
   @extend .gap-2;
 
   a {
-    @extend .sidebar-item
+    @extend .sidebar-item;
   }
+}
+
+a > img {
+  @extend .text-primary;
+  @extend .me-1;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
 }

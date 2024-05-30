@@ -1,11 +1,10 @@
-%div.d-flex.gap-3.flex-row{"data-controller": "scroll"}
-  = render 'scroll_to_menu', items: %w[personal-data core-competences educations advanced-trainings activities projects], translate: true do
-    -# %div.bg-skills-gray.border.border-light-subtle.border-2
-    = link_to image_tag("export.svg", class: "text-primary") + " Export", export_cv_person_path(@person), data: { turbo_frame: "remote_modal" }
-  %div.w-80#scroll-content{data: { "scroll-target": "parent"}}
-    = render('profile')
-    = render('core_competences')
-    = render('people/person_relations/index', list: @person.educations.list, id: "educations")
-    = render('people/person_relations/index', list: @person.advanced_trainings.list, id: "advanced-trainings")
-    = render('people/person_relations/index', list: @person.activities.list, id: "activities")
-    = render('people/person_relations/index', list: @person.projects.list, id: "projects")
+= render 'scroll_to_menu', items: %w[personal-data core-competences educations advanced-trainings activities projects], translate: true do
+  -# %div.bg-skills-gray.border.border-light-subtle.border-2
+  = link_to image_tag("export.svg") + "Export", export_cv_person_path(@person), data: { turbo_frame: "remote_modal" }
+%div.w-80#scroll-content{data: { "scroll-target": "parent"}}
+  = render('profile')
+  = render('core_competences')
+  = render('people/person_relations/index', list: @person.educations.list, id: "educations")
+  = render('people/person_relations/index', list: @person.advanced_trainings.list, id: "advanced-trainings")
+  = render('people/person_relations/index', list: @person.activities.list, id: "activities")
+  = render('people/person_relations/index', list: @person.projects.list, id: "projects")

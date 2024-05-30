@@ -1,7 +1,7 @@
 %div.sidebar
   %div
     - items.each do | item |
-      %div.sidebar-item{"data-scroll-target": "listItem", "data-action": "click->scroll#scrollToElement",
+      %div.sidebar-item.w-100{"data-scroll-target": "listItem", "data-action": "click->scroll#scrollToElement",
             "data-scroll-id-param": item}
         %span
           - if translate
