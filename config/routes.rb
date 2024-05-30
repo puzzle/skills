@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   end
 
   resources :cv_search
+  resources :admin, only: [:index]
+
 
   resources :people do
     resources :advanced_trainings
