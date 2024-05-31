@@ -1,7 +1,7 @@
 %turbo-frame{id: "people-skill-form"}
   %div.w-100
     = form_with(model: @person, url: people_skills_person_path(@person)) do |form|
-      %div.d-flex.flex-row.w-100
+      %div.d-flex.flex-row.w-100.gap-3
         %div.sidebar-item-only
           = form.submit :Speichern, { class: "btn btn-primary bg-skills-blue", id: "save-button" }
           = link_to t("helpers.submit.cancel"), person_people_skills_path(@person), class: "text-center"
