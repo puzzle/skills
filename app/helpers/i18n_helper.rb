@@ -32,7 +32,7 @@ module I18nHelper
     if assoc && assoc.options[:polymorphic].nil?
       variables[:default] ||= [association_klass_key(assoc, key).to_sym,
                                :"global.associations.#{key}"]
-      t(association_owner_key(assoc, key), variables)
+      t(association_owner_key(assoc, key), **variables)
     else
       t("global.associations.#{key}", **variables)
     end
