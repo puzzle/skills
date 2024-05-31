@@ -79,3 +79,9 @@ end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'rails-controller-testing', '~> 1.0'
+
+gem "rubocop-capybara", "~> 2.20"
+
+gem "rubocop-rspec_rails", "~> 2.28"
+
+gem "haml-lint", "~> 0.999.999"
