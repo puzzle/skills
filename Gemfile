@@ -45,7 +45,11 @@ gem 'turbo-rails'
 group :metrics do
   gem 'brakeman'
   gem 'rubocop'
+  gem 'rubocop-rspec', require: false
   gem 'rubocop-rails', require: false
+  gem "rubocop-capybara", require: false
+  gem "rubocop-rspec_rails",require: false
+  gem "haml-lint", require: false
 end
 
 group :development, :test do
@@ -79,9 +83,3 @@ end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'rails-controller-testing', '~> 1.0'
-
-gem "rubocop-capybara", "~> 2.20"
-
-gem "rubocop-rspec_rails", "~> 2.28"
-
-gem "haml-lint", "~> 0.999.999"

@@ -1,4 +1,9 @@
-require: rubocop-rails
+require: 
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-capybara
+  - rubocop-rspec_rails
+
 AllCops:
   NewCops: enable
   DisplayCopNames: true

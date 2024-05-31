@@ -260,7 +260,7 @@ GEM
       omniauth (~> 2.0)
     orm_adapter (0.5.0)
     parallel (1.24.0)
-    parser (3.3.0.5)
+    parser (3.3.2.0)
       ast (~> 2.4.1)
       racc
     pg (1.5.6)
@@ -277,7 +277,7 @@ GEM
     public_suffix (5.0.5)
     puma (6.4.2)
       nio4r (~> 2.0)
-    racc (1.7.3)
+    racc (1.8.0)
     rack (2.2.9)
     rack-protection (3.2.0)
       base64 (>= 0.1.0)
@@ -330,7 +330,7 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     rb-readline (0.5.5)
-    regexp_parser (2.9.0)
+    regexp_parser (2.9.2)
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
@@ -358,7 +358,7 @@ GEM
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
     rspec-support (3.13.1)
-    rubocop (1.63.1)
+    rubocop (1.64.1)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -369,15 +369,22 @@ GEM
       rubocop-ast (>= 1.31.1, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 3.0)
-    rubocop-ast (1.31.2)
-      parser (>= 3.3.0.4)
+    rubocop-ast (1.31.3)
+      parser (>= 3.3.1.0)
     rubocop-capybara (2.20.0)
+      rubocop (~> 1.41)
+    rubocop-factory_bot (2.25.1)
       rubocop (~> 1.41)
     rubocop-rails (2.24.1)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.33.0, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
+    rubocop-rspec (2.29.2)
+      rubocop (~> 1.40)
+      rubocop-capybara (~> 2.17)
+      rubocop-factory_bot (~> 2.22)
+      rubocop-rspec_rails (~> 2.28)
     rubocop-rspec_rails (2.28.3)
       rubocop (~> 1.40)
     ruby-graphviz (1.2.5)
@@ -468,7 +475,7 @@ DEPENDENCIES
   devise
   dotenv
   faker
-  haml-lint (~> 0.999.999)
+  haml-lint
   haml-rails
   i18n_data
   jsbundling-rails
@@ -498,9 +505,10 @@ DEPENDENCIES
   rest-client
   rspec-rails
   rubocop
-  rubocop-capybara (~> 2.20)
+  rubocop-capybara
   rubocop-rails
-  rubocop-rspec_rails (~> 2.28)
+  rubocop-rspec
+  rubocop-rspec_rails
   seed-fu
   selenium-webdriver (>= 4.11.8)
   sentry-raven
