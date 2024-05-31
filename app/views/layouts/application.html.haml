@@ -14,11 +14,12 @@
   %body.d-flex.justify-content-center{"data-controller": "skills-empty-space"}
     %div.content{"data-skills-empty-space-target": "container"}
       %div.position-sticky.top-0.z-3
-        %div.d-flex.justify-content-between.bg-white
-          %div.d-flex
-            %div.mb-1.mt-1
-              %img{:src=> "/assets/logo.svg",:height=>"32"}
-            %text.d-flex.align-items-end.ms-2.small= "5.0.0"
+        %div.d-flex.justify-content-between.bg-white.flex-wrap
+          = link_to root_path, class: "text-decoration-none text-dark" do
+            %div.d-flex
+              %div.mb-1.mt-1
+                %img{:src=> "/assets/logo.svg",:height=>"32"}
+              %text.d-flex.align-items-end.ms-2.small= "5.0.0"
           %ul.navbar.text-gray
             - if Rails.env.development?
               %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
@@ -33,7 +34,7 @@
                 %div.scale-icon-06(name="user")
                 %span#username
                   - if find_person_by_auth_user.nil?
-                    = link_to current_auth_user&.name, people_path(alert: "true")
+                    = link_to current_auth_user&.name || current_auth_user&.email, people_path(alert: "true")
                   - else
                     = link_to find_person_by_auth_user.name, person_path(find_person_by_auth_user)
                   - if admin?
