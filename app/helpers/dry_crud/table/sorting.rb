@@ -24,9 +24,9 @@ module DryCrud
       # Renders a sort link header, otherwise similar to :attr.
       def sortable_attr(attr, header = nil, &)
         if template.sortable?(attr)
-          attr_reader(attr, sort_header(attr, header), &)
+          attr(attr, sort_header(attr, header), &) # rubocop:disable Style/Attr
         else
-          attr_reader(attr, header, &)
+          attr(attr, header, &) # rubocop:disable Style/Attr
         end
       end
 

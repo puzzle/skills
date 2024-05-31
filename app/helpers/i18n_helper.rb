@@ -18,6 +18,7 @@ module I18nHelper
     partial = defined?(@virtual_path) ? @virtual_path.gsub(/.*\/_?/, '') : nil
     defaults = inheritable_translation_defaults(key, partial)
     variables[:default] ||= defaults
+    require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
     t(defaults.shift, variables)
   end
 

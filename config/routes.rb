@@ -30,7 +30,12 @@ Rails.application.routes.draw do
   end
 
   resources :cv_search
+
   resources :admin, only: [:index]
+
+  namespace :admin do
+    resources :departments
+  end
 
 
   resources :people do
