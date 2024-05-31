@@ -1,4 +1,4 @@
-%ul.nav.nav-tabs.d-flex.flex-row.mt-2.justify-content-between
+%ul.nav.nav-tabs.d-flex.flex-row.mt-2.justify-content-between.mb-3
     %div.d-flex.flex-row
         - tabs.each do |tab|
             = link_to tab[:path], class: "btn text-primary p-0", "data-action": "click->profile-tab#setCurrentTab" do

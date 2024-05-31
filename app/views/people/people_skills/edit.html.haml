@@ -1,11 +1,11 @@
 %turbo-frame{id: "people-skill-form"}
   %div.w-100
     = form_with(model: @person, url: people_skills_person_path(@person)) do |form|
-      %div.d-flex.flex-row.w-100
-        %div.w-25.bg-skills-gray.d-flex.flex-column.align-items-center.people-skills-actions.pt-3.pb-3.me-2.mt-2.border.border-light-subtle.border-2
-          = form.submit :Speichern, { class: "btn btn-primary bg-skills-blue w-75", id: "save-button" }
-          = link_to t("helpers.submit.cancel"), person_people_skills_path(@person), class: "d-flex align-items-center text-decoration-none mt-2 mb-2"
-        %div.mw-75.border-bottom.people-skills.overflow-scroll
+      %div.d-flex.flex-row.w-100.gap-3
+        %div.sidebar-item-only
+          = form.submit :Speichern, { class: "btn btn-primary bg-skills-blue", id: "save-button" }
+          = link_to t("helpers.submit.cancel"), person_people_skills_path(@person), class: "text-center"
+        %div.border-bottom.people-skills.overflow-scroll
           %p.d-flex.align-items-center.profile-header
             Skills
             ="(#{@person.people_skills.count})"

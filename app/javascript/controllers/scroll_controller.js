@@ -1,34 +1,36 @@
-import {Controller} from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-
-    static targets = ["listItem", "scrollItem"]
-    currentSelectedIndex = 0;
+    static targets = ["list", "listItem", "scrollItem", "parent"]
+    currentSelectedIndex = -1;
+    offsetY = this.parentTarget.getBoundingClientRect().top + window.scrollY;
 
     connect() {
+        this.listTarget.style.top = `${this.offsetY}px`;
         document.addEventListener("scroll", () => {
-            this.scrollEvent();
+            this.highlight();
         });
+        this.highlight()
     }
 
     disconnect() {
         document.removeEventListener("scroll", () => {
-            this.scrollEvent();
+            this.highlight();
         });
     }
 
-    scrollToElement({params}) {
-        document.getElementById(params.id).scrollIntoView({
-            behavior: "smooth"
-        });
+    scrollToElement({ params }) {
+        const elem = document.getElementById(params.id);
+        const y = elem.getBoundingClientRect().top - this.offsetY + window.scrollY;
+        window.scrollTo({ top: y, behavior: 'smooth' });
     }
 
-    scrollEvent() {
-        for(let i = 0; i < this.scrollItemTargets.length; i++) {
-            if(this.isElementInViewport(this.scrollItemTargets[i])) {
-                if(this.currentSelectedIndex !== i) {
+    highlight() {
+        for (const [i, scrollItem] of this.scrollItemTargets.entries()) {
+            if (this.isElementInViewport(scrollItem)) {
+                if (this.currentSelectedIndex !== i) {
+                    this.listItemTargets.forEach(e => e.classList.remove("skills-selected"))
                     this.listItemTargets[i].classList.add("skills-selected");
-                    this.listItemTargets[this.currentSelectedIndex].classList.remove("skills-selected");
                     this.currentSelectedIndex = i;
                 }
                 break;
@@ -38,10 +40,6 @@ export default class extends Controller {
 
     isElementInViewport(el) {
         let rect = el.getBoundingClientRect();
-        return (
-            rect.top >= 0 &&
-            rect.left >= 0 &&
-            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-        );
+        return rect.top >= this.offsetY;
     }
 }

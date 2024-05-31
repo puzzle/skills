@@ -23,5 +23,5 @@
           = "#{t('skills.header.category')}:"
         = form.collection_select :category, Category.all_parents.order(:title), :id, :title, {include_blank: "Select a category"}, class: "form-select fit-content", onchange: 'this.form.requestSubmit();'
       =link_to image_tag("download.svg")+ "Export", export_skills_path, class: "btn text-primary d-flex p-0 center-xy"
-      =link_to image_tag("plus-lg.svg", class: "text-primary")+ "Neuer Skill",
+      =link_to image_tag("plus-lg.svg")+ "Neuer Skill",
         new_skill_path, class: "btn text-primary p-0 d-flex center-xy", data: { turbo_frame: "remote_modal" }
