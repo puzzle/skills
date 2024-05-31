@@ -8,12 +8,12 @@
 module FormatHelper
 
   # Formats a basic value based on its Ruby class.
-  def f(value)
+  def f(value) # rubocop:disable Metrics/CyclomaticComplexity,Metrics/MethodLength
     case value
-    when Float, BigDecimal then
+    when Float, BigDecimal
       number_with_precision(value, precision: t('number.format.precision'),
                                    delimiter: t('number.format.delimiter'))
-    when Integer then
+    when Integer
       number_with_delimiter(value, delimiter: t('number.format.delimiter'))
     when Date   then l(value)
     when Time   then "#{l(value.to_date)} #{l(value, format: :time)}"
@@ -59,8 +59,8 @@ module FormatHelper
 
   # Renders an arbitrary content with the given label. Used for uniform
   # presentation.
-  def labeled(label, content = nil, &block)
-    content = capture(&block) if block_given?
+  def labeled(label, content = nil, &)
+    content = capture(&) if block_given?
     render('shared/labeled', label: label, content: content)
   end
 
@@ -111,7 +111,7 @@ module FormatHelper
   # Formats an arbitrary attribute of the given object depending on its data
   # type. For Active Records, take the defined data type into account for
   # special types that have no own object class.
-  def format_type(obj, attr)
+  def format_type(obj, attr) # rubocop:disable Metrics/AbcSize,Metrics/CyclomaticComplexity,Metrics/MethodLength
     val = obj.send(attr)
     return UtilityHelper::EMPTY_STRING if val.blank? && val != false
 
@@ -119,8 +119,8 @@ module FormatHelper
     when :time    then l(val, format: :time)
     when :date    then f(val.to_date)
     when :datetime, :timestamp then f(val.time)
-    when :text    then simple_format(h(val))
-    when :decimal then
+    when :text then simple_format(h(val))
+    when :decimal
       number_with_precision(val.to_s.to_f,
                             precision: column_property(obj, attr, :scale),
                             delimiter: t('number.format.delimiter'))
@@ -159,7 +159,7 @@ module FormatHelper
   # Returns true if no link should be created when formatting the given
   # association.
   def assoc_link?(_assoc, val)
-    respond_to?("#{val.class.model_name.singular_route_key}_path".to_sym)
+    respond_to?(:"#{val.class.model_name.singular_route_key}_path")
   end
 
 end

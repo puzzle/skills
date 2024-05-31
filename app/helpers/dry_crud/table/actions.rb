@@ -44,7 +44,7 @@ module DryCrud
         action_col do |entry|
           path = action_path(entry, &block)
           if path
-            path = path.is_a?(String) ? path : edit_polymorphic_path(path)
+            path = edit_polymorphic_path(path) unless path.is_a?(String)
             table_action_link('pencil', path, html_options.clone)
           end
         end
@@ -53,7 +53,7 @@ module DryCrud
       # Action column to destroy the row entry.
       # A block may be given to define the link path for the row entry.
       # If the block returns nil, no link is rendered.
-      def destroy_action_col(html_options = {}, &block)
+      def destroy_action_col(html_options = {}, &block) # rubocop:disable Metrics/MethodLength
         action_col do |entry|
           path = action_path(entry, &block)
           if path
@@ -69,8 +69,8 @@ module DryCrud
 
       # Action column inside a table. No header.
       # The cell content should be defined in the passed block.
-      def action_col(&block)
-        col('', class: 'action', &block)
+      def action_col(&)
+        col('', class: 'action', &)
       end
 
       # Generic action link inside a table.

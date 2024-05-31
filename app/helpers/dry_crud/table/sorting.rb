@@ -20,11 +20,11 @@ module DryCrud
       end
 
       # Renders a sort link header, otherwise similar to :attr.
-      def sortable_attr(attr, header = nil, &block)
+      def sortable_attr(attr, header = nil, &)
         if template.sortable?(attr)
-          attr(attr, sort_header(attr, header), &block)
+          attr(attr, sort_header(attr, header), &)
         else
-          attr(attr, header, &block)
+          attr(attr, header, &)
         end
       end
 

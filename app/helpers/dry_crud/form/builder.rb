@@ -108,7 +108,7 @@ module DryCrud
       def text_area(attr, html_options = {})
         add_css_class(html_options, 'form-control')
         html_options[:rows] ||= 5
-        super(attr, html_options)
+        super
       end
 
       # Render a select element for a :belongs_to association defined by attr.
@@ -131,7 +131,7 @@ module DryCrud
         end
       end
 
-      # rubocop:disable PredicateName
+      # rubocop:disable Naming/PredicateName
 
       # Render a multi select element for a :has_many or
       # :has_and_belongs_to_many association defined by attr.
@@ -144,7 +144,7 @@ module DryCrud
         add_css_class(html_options, 'multiselect')
         belongs_to_field(attr, html_options)
       end
-      # rubocop:enable PredicateName
+      # rubocop:enable Naming/PredicateName
 
       ### VARIOUS FORM ELEMENTS
 
@@ -195,7 +195,7 @@ module DryCrud
 
       # Depending if the given attribute must be present, return
       # only an initial selection prompt or a blank option, respectively.
-      def select_options(attr, options = {})
+      def select_options(attr, options = {}) # rubocop:disable Metrics/MethodLength
         prompt = options.delete(:prompt)
         blank = options.delete(:include_blank)
         if options[:multiple]
@@ -234,10 +234,10 @@ module DryCrud
       # The following options may be passed:
       # * <tt>:span</tt> - Number of columns the content should span.
       # * <tt>:caption</tt> - Different caption for the label.
-      def labeled(attr, content = {}, options = {}, &block)
+      def labeled(attr, content = {}, options = {}, &)
         if block_given?
           options = content
-          content = capture(&block)
+          content = capture(&)
         end
         control = control_class.new(self, attr, options)
         control.render_labeled(content)
@@ -248,10 +248,10 @@ module DryCrud
       # E.g. labeled_boolean_field(:checked, class: 'bold')
       # To add an additional help text, use the help option.
       # E.g. labeled_boolean_field(:checked, help: 'Some Help')
-      def method_missing(name, *args)
+      def method_missing(name, *)
         field_method = labeled_field_method?(name)
         if field_method
-          build_labeled_field(field_method, *args)
+          build_labeled_field(field_method, *)
         else
           super
         end
@@ -269,7 +269,7 @@ module DryCrud
       def labeled_field_method?(name)
         prefix = 'labeled_'
         if name.to_s.start_with?(prefix)
-          field_method = name.to_s[prefix.size..-1]
+          field_method = name.to_s[prefix.size..]
           field_method if respond_to?(field_method)
         end
       end

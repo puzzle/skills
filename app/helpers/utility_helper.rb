@@ -8,14 +8,14 @@ module UtilityHelper
 
   # Render a content tag with the collected contents rendered
   # by &block for each item in collection.
-  def content_tag_nested(tag, collection, options = {}, &block)
-    content_tag(tag, safe_join(collection, &block), options)
+  def content_tag_nested(tag, collection, options = {}, &)
+    content_tag(tag, safe_join(collection, &), options)
   end
 
   # Overridden method that takes a block that is executed for each item in
   # array before appending the results.
-  def safe_join(array, sep = $OUTPUT_FIELD_SEPARATOR, &block)
-    super(block_given? ? array.map(&block).compact : array, sep)
+  def safe_join(array, sep = $OUTPUT_FIELD_SEPARATOR, &)
+    super(block_given? ? array.map(&).compact : array, sep)
   end
 
   # Returns the css class for the given flash level.
@@ -30,7 +30,7 @@ module UtilityHelper
   # Adds a class to the given options, even if there are already classes.
   def add_css_class(options, classes)
     if options[:class]
-      options[:class] += ' ' + classes if classes
+      options[:class] += " #{classes}" if classes
     else
       options[:class] = classes
     end
