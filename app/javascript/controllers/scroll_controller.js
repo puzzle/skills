@@ -1,11 +1,12 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-    static targets = ["listItem", "scrollItem", "parent"]
+    static targets = ["list", "listItem", "scrollItem", "parent"]
     currentSelectedIndex = -1;
-    offsetY = this.parentTarget.getBoundingClientRect().top+ window.scrollY;
+    offsetY = this.parentTarget.getBoundingClientRect().top + window.scrollY;
 
     connect() {
+        this.listTarget.style.top = `${this.offsetY}px`;
         document.addEventListener("scroll", () => {
             this.highlight();
         });
