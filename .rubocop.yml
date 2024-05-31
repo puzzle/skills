@@ -37,7 +37,7 @@ Layout/LineLength:
   Severity: error
 
 Metrics/MethodLength:
-  Max: 10
+  Max: 10 # 18?
   Severity: error
 
 Metrics/ModuleLength:
@@ -160,4 +160,22 @@ Style/SingleLineBlockParams:
 
 # We think that's fine
 Style/HashSyntax:
+  Enabled: false
+
+Rails/ActionControllerTestCase:
+  Enabled: false
+
+Rails/HelperInstanceVariable:
+  Enabled: false
+
+Rails/OutputSafety:
+  Exclude:
+    - '**/*_test.rb'
+    - '**/*_spec.rb'
+
+# Rails does not, we do not
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Attr:
   Enabled: false
