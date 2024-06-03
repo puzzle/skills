@@ -1,7 +1,7 @@
 = form_with(url: person_path(format: 'odt'), method: 'get', data: {controller: "skills-filter"}) do |f|
   .mb-2.w-100
     = f.label 'Niederlassung (für Footer):', class: "form-label w-100"
-    = f.collection_select :location, BranchAdress.all, :id, :short_name, {}, class: "form-select w-100"
+    = f.collection_select :location, BranchAdress.all, :id, :short_name, {selected: BranchAdress.find_by(default_branch_adress: true).id}, class: "form-select w-100"
   .mb-2.w-100.form-check.form-switch
     = f.check_box :includeCS, class: "form-check-input"
     = f.label 'Kernkompetenzen - Skills', class: "form-check-label w-100"
