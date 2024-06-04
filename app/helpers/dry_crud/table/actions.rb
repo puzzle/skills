@@ -60,8 +60,8 @@ module DryCrud
             table_action_link('remove',
                               path,
                               html_options.merge(
-                                data: { confirm: ti(:confirm_delete),
-                                        method: :delete }
+                                data: { turbo: { confirm: ti(:confirm_delete),
+                                                 method: :delete } }
                               ))
           end
         end

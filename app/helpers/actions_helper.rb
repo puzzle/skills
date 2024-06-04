@@ -39,8 +39,8 @@ module ActionsHelper
   def destroy_action_link(path = nil)
     path ||= path_args(entry)
     action_link(ti('link.delete'), 'remove', path,
-                data: { confirm: ti(:confirm_delete),
-                        method: :delete })
+                data: { turbo: { confirm: ti(:confirm_delete),
+                                 method: :delete } })
   end
 
   # Standard list action to the given path.
