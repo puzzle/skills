@@ -44,7 +44,7 @@ gem 'turbo-rails'
 
 group :metrics do
   gem 'brakeman'
-  gem 'haml-lint', require: false
+  gem 'haml_lint', require: false
   gem 'rubocop'
   gem 'rubocop-capybara', require: false
   gem 'rubocop-rails', require: false

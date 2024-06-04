@@ -155,8 +155,6 @@ GEM
       temple (>= 0.8.2)
       thor
       tilt
-    haml-lint (0.999.999)
-      haml_lint
     haml-rails (2.1.0)
       actionpack (>= 5.1)
       activesupport (>= 5.1)
@@ -475,8 +473,8 @@ DEPENDENCIES
   devise
   dotenv
   faker
-  haml-lint
   haml-rails
+  haml_lint
   i18n_data
   jsbundling-rails
   language_list
