@@ -37,7 +37,7 @@ Layout/LineLength:
   Severity: error
 
 Metrics/MethodLength:
-  Max: 10 # 18?
+  Max: 10
   Severity: error
 
 Metrics/ModuleLength:
@@ -162,9 +162,7 @@ Style/SingleLineBlockParams:
 Style/HashSyntax:
   Enabled: false
 
-Rails/ActionControllerTestCase:
-  Enabled: false
-
+# We think that's fine. 
 Rails/HelperInstanceVariable:
   Enabled: false
 
