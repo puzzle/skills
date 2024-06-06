@@ -13,8 +13,7 @@
               %input.form-range.w-75.level{type: "range", min: 1, max: 5, value: person_skill.level, tabindex: -1}
           %div.col-2
             %div.d-flex.flex-column
-              %label.form-label.text-gray= t "people-skills.interest"
-              %input.form-range.w-75.interest{type: "range", min: 1, max: 5, value: person_skill.interest, tabindex: -1}
+              = render partial: "show_interest_stars", locals: {person_skill: person_skill}
           %div.col-2
             %div.d-flex.flex-row.form-check
               %input.form-check-input.me-2.certificate{type: "checkbox", checked: person_skill.certificate, disabled: true}

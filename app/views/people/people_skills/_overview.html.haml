@@ -1,0 +1,15 @@
+%p.d-flex.align-items-center.profile-header
+  Skills
+  ="(#{@person.people_skills.count})"
+  - Category.all_parents.each do |category|
+    %div.profile-header.mw-100.border-bottom.mt-4{id: category.title, "data-scroll-target": "scrollItem"}
+      = category.title
+    - ([category] + category.children.to_a).each do |category_child|
+      - people_skills_of_category = people_skills_of_category(@person, category_child)
+      %div.white-header.mw-100.border-bottom.text-gray
+        =category_child.title + " (#{people_skills_of_category.count})"
+        - people_skills_of_category.each do |person_skill|
+          - @person_skill = person_skill
+          = form_with model: @person, url: people_skills_person_path(@person) do |form|
+            = form.fields_for :people_skills, @person_skill do |ff|
+              = render "people/people_skills/edit_form", ff: ff

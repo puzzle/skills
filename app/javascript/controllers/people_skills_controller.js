@@ -5,10 +5,13 @@ import SlimSelect from 'slim-select'
 export default class extends Controller {
     static targets = ['switch', 'label', 'skillsDropdown', 'categoriesDropdown', 'skillTitle']
     levels = ["Nicht Bewertet", "Trainee", "Junior", "Professional", "Senior", "Expert"]
-    skills = Array.from(this.skillsDropdownTarget.options).map(e => { return { id: e.value, title: e.innerHTML } })
+    skills = Array.from(this.hasSkillsDropdownTarget ? this.skillsDropdownTarget.options : []).map(e => { return { id: e.value, title: e.innerHTML } })
 
 
     connect() {
+        if (!this.hasSkillsDropdownTarget)
+            return;
+
         const select = new SlimSelect({
             select: this.skillsDropdownTarget,
             events: {
@@ -52,5 +55,29 @@ export default class extends Controller {
         this.skillTitleTarget.value = newVal[0].text
         Array.from(this.categoriesDropdownTarget.parentElement.children).forEach(e => e.hidden = is_existing_skill);
         this.categoriesDropdownTarget.value = is_existing_skill ? skill_category_id : ""
+    }
+
+    unrateSkill(e) {
+        e.preventDefault();
+        this.setUnratedField(e, true);
+        e.target.form.requestSubmit();
+    }
+
+    rateSkill(e) {
+        e.preventDefault();
+        if(!this.isEditMode(e)) return;
+        this.setUnratedField(e, false);
+        e.target.form.requestSubmit();
+    }
+
+    setUnratedField(e, value) {
+        const formElements = Array.from(e.target.form.elements);
+        const unratedField = formElements.find(e=> e.id.startsWith("unrated-field"))
+        unratedField.value = value;
+    }
+
+    isEditMode(e) {
+        const formElements = Array.from(e.target.form.elements);
+        return formElements.some(e=> e.id === "person_people_skills_attributes_0_id");
     }
 }

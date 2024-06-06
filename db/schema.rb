@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_01_124103) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_31_121712) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -157,6 +157,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_01_124103) do
     t.integer "interest"
     t.boolean "certificate", default: false
     t.boolean "core_competence", default: false
+    t.boolean "unrated"
     t.index ["person_id"], name: "index_people_skills_on_person_id"
     t.index ["skill_id"], name: "index_people_skills_on_skill_id"
   end

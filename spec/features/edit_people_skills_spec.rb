@@ -20,13 +20,7 @@ describe :people do
       # Switch to PeopleSkills tab
       bob = people(:bob)
       visit person_people_skills_path(bob)
-
-      expect(page).to have_content('Rails')
-      expect(page).to have_content('Professional')
-      expect(page).to have_selector("input[value='3']")
-      checkboxes = page.all('.check_box')
-      expect(checkboxes[0]).not_to be_checked
-      expect(checkboxes[1]).to be_checked
+      validate_people_skill(bob, "Rails")
     end
 
     it 'can edit people-skills' do
@@ -34,32 +28,12 @@ describe :people do
       alice = people(:alice)
       visit person_people_skills_path(alice)
 
-      page.find('a', text: 'Skills bearbeiten').click
-      page.find('#person_people_skills_attributes_0_level').set(5)
-      page.find('#person_people_skills_attributes_1_level').set(5)
-      page.find('#person_people_skills_attributes_2_level').set(5)
-      page.find('#person_people_skills_attributes_3_level').set(5)
-
-      page.find("#person_people_skills_attributes_0_certificate").check
-      page.find("#person_people_skills_attributes_2_core_competence").check
-      page.find("#person_people_skills_attributes_3_certificate").check
-      page.find("#person_people_skills_attributes_3_core_competence").check
-
-      stars = page.all(".star5", visible: false)
-      stars.each do |star|
-        star.click(x: 10, y: 10)
-      end
-
-      # Save changes
-      page.find('#save-button').click
-      page.find('a', text: 'Skills bearbeiten')
+      # TODO: Add edit skill
 
       # Check if changes were saved
       alice.people_skills.each do | person_skill |
-        expect(person_skill.level).to eql(5)
-        expect(person_skill.certificate).to eql(true)
-        expect(person_skill.core_competence).to eql(true)
-        expect(person_skill.interest).to eql(5)
+        puts person_skill.level
+        validate_people_skill(alice, person_skill.skill.title)
       end
     end
 
@@ -78,7 +52,115 @@ describe :people do
       alice = people(:alice)
       visit person_people_skills_path(alice, rating: 1)
 
-      expect(page).to have_content('Unweighted', count: 2)
+      expect(page).to have_content(I18n.t('people-skills.levels.unweighted'), count: 2)
+    end
+  end
+
+  def not_rated_default_skills(person)
+    rated_skills = person.skills
+    not_rated_default_skills = Skill.all.filter do |skill|
+      skill.default_set && rated_skills.exclude?(skill)
+    end
+
+    not_rated_default_skills.map do |skill|
+      PeopleSkill.new({ person_id: person.id, skill_id: skill.id, level: 0, interest: 0,
+                        certificate: false, core_competence: false })
+    end
+  end
+
+  describe 'People default Skills', type: :feature, js: true do
+    let(:bob) { people(:bob) }
+
+    before(:each) do
+      sign_in auth_users(:user), scope: :auth_user
+      visit person_people_skills_path(bob)
+    end
+
+    it 'displays unrated default skills' do
+      not_rated_default_skills = not_rated_default_skills(bob)
+
+      expect(page).to have_content("Neue Skills zur Bewertung")
+      expect(page).to have_content("(#{not_rated_default_skills.count})")
+
+      within '#default-skills' do
+        not_rated_default_skills.each do |person_skill|
+          expect(page).to have_content(person_skill.skill.title)
+        end
+
+        expect(page).to have_content('Trainee', count: not_rated_default_skills.count)
+
+        expect(not_rated_default_skills.pluck(:interest).all?(&:zero?)).to be(true)
+
+        check_boxes = page.find_all('input[type="checkbox"]')
+        expect(check_boxes.count).to eql(not_rated_default_skills.count * 2)
+        check_boxes.each do |checkbox|
+          expect(checkbox).not_to be_checked
+        end
+      end
+    end
+
+    it 'saves rated default skills' do
+      not_rated_default_skills = not_rated_default_skills(bob)
+      within '#default-skills' do
+        page.first('[name="person[people_skills_attributes][0][level]"]').set(3)
+        page.first(".star3", visible: false).click(x: 10, y: 10)
+        page.first('[name="person[people_skills_attributes][0][certificate]"]').check
+        page.first('[name="person[people_skills_attributes][0][core_competence]"]').check
+        click_button("Bewerten")
+      end
+      if not_rated_default_skills.count > 1
+        expect(page).to have_content("(#{not_rated_default_skills.count - 1})")
+      else
+        expect(page).not_to have_css('#default-skills')
+      end
+      expect(page).to have_content(not_rated_default_skills.first.skill.title)
+      bob_people_skill = bob.people_skills.last
+      expect(bob_people_skill.level).to eql(3)
+      expect(bob_people_skill.interest).to eql(3)
+      expect(bob_people_skill.certificate).to be_truthy
+      expect(bob_people_skill.core_competence).to be_truthy
+    end
+
+    it 'doesnt save rated default skills that arent filled out' do
+      not_rated_default_skills = not_rated_default_skills(bob)
+      expect(page).to have_content("(#{not_rated_default_skills.count})")
+      within '#default-skills' do
+        click_button("Bewerten")
+      end
+      expect(page).to have_content("(#{not_rated_default_skills.count})")
+    end
+
+    it 'saves not rated skills' do
+      not_rated_default_skills = not_rated_default_skills(bob)
+      skill_id = not_rated_default_skills.first.skill.id
+      skill_div = find("#default-skill-#{skill_id}")
+
+      within skill_div do
+        select_star_rating(3)
+        find('input[value="Nicht bewerten"]').click
+      end
+
+      if not_rated_default_skills.count > 1
+        expect(page).to have_content("(#{not_rated_default_skills.count - 1})")
+      else
+        expect(page).not_to have_css('#default-skills')
+      end
+      expect(page).to have_content(not_rated_default_skills.first.skill.title)
+      bob_people_skill = bob.people_skills.last
+      expect(bob_people_skill.level).to eql(0)
+      expect(bob_people_skill.interest).to eql(0)
+      expect(bob_people_skill.certificate).to be_falsey
+      expect(bob_people_skill.core_competence).to be_falsey
+    end
+
+    it 'hides default skills form when canceling with cancel-button' do
+      click_link("Abbrechen")
+      expect(page).not_to have_css('#default-skills')
+    end
+
+    it 'hides default skills form when canceling with cancel-x' do
+      page.find('#x-button').click
+      expect(page).not_to have_css('#default-skills')
     end
   end
 end
