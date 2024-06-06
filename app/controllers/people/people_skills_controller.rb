@@ -2,8 +2,9 @@
 
 class People::PeopleSkillsController < CrudController
   include ParamConverters
-  self.permitted_attrs = [{ people_skills_attributes: [:id, :certificate, :level,
-                                                       :interest, :core_competence, :_destroy] }]
+  self.permitted_attrs = [{ people_skills_attributes: [:id, :certificate, :level, :interest,
+                                                       :core_competence, :skill_id, :unrated,
+                                                       :_destroy] }]
   before_action :set_person
 
   def self.model_class
@@ -13,8 +14,10 @@ class People::PeopleSkillsController < CrudController
   def update
     if params[:person].blank?
       render(:index, status: :ok)
-    else
-      super
+      return
+    end
+    super do |format, success|
+      format.turbo_stream { render 'people/people_skills/update', status: :ok } if success
     end
   end
 

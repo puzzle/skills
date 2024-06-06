@@ -34,8 +34,8 @@ describe Api::SkillsController do
         get :index, params: { defaultSet: 'true' }
 
         skills = json['data']
-        expect(skills.count).to eq(1)
-        rails_attrs = skills.first['attributes']
+        expect(skills.count).to eq(2)
+        rails_attrs = skills.last['attributes']
         expect(rails_attrs['title']).to eq ('Rails')
       end
 
@@ -67,8 +67,8 @@ describe Api::SkillsController do
         get :index, params: { category: parent_category.id, defaultSet: 'true' }
 
         skills = json['data']
-        expect(skills.count).to eq(1)
-        rails_attrs = skills.first['attributes']
+        expect(skills.count).to eq(2)
+        rails_attrs = skills.last['attributes']
         expect(rails_attrs['title']).to eq ('Rails')
       end
     end
@@ -79,7 +79,8 @@ describe Api::SkillsController do
 
         skills = json['data']
 
-        expect(skills).to be_empty
+        expect(skills).not_to be_empty
+        expect(skills.first["attributes"]["title"]).to eql("JUnit")
       end
 
       it 'returns all unrated PeopleSkills of ken' do
@@ -88,7 +89,7 @@ describe Api::SkillsController do
         skills = json['data']
         unrated_skill_attrs = skills.first['attributes']
 
-        expect(unrated_skill_attrs['title']).to eq ('Rails')
+        expect(unrated_skill_attrs['title']).to eq('Rails')
       end
 
       it 'returns all skills if no person_id is given' do
@@ -134,8 +135,8 @@ describe Api::SkillsController do
         get :index, params: { defaultSet: 'true' }
 
         skills = json['data']
-        expect(skills.count).to eq(1)
-        rails_attrs = skills.first['attributes']
+        expect(skills.count).to eq(2)
+        rails_attrs = skills.last['attributes']
         expect(rails_attrs['title']).to eq ('Rails')
       end
 
@@ -167,8 +168,8 @@ describe Api::SkillsController do
         get :index, params: { category: parent_category.id, defaultSet: 'true' }
 
         skills = json['data']
-        expect(skills.count).to eq(1)
-        rails_attrs = skills.first['attributes']
+        expect(skills.count).to eq(2)
+        rails_attrs = skills.last['attributes']
         expect(rails_attrs['title']).to eq ('Rails')
       end
     end

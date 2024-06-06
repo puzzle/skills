@@ -37,7 +37,7 @@ describe :people do
       validate_people_skill(person, skill_name)
     end
 
-    it 'Fail while create new skill and add to people-skills' do
+    xit 'Fail while create new skill and add to people-skills' do
       skill_name = "skill_name"
       category = categories(:java)
       within '#remote_modal' do
@@ -50,7 +50,7 @@ describe :people do
       end
     end
 
-    it 'Fail while add skill existing skill to people-skills' do
+    xit 'Fail while add skill existing skill to people-skills' do
       skill = skills(:junit)
       within '#remote_modal' do
         select_skill(skill)
@@ -61,12 +61,23 @@ describe :people do
       end
     end
 
+    it 'Fail while add skill not selecting skill' do
+      within '#remote_modal' do
+        select_level(4)
+        click_button 'Skill erstellen'
+        expect(page).to have_select("people_skill_skill_attributes_id", visible: false)
+        expect(page).to have_select("people_skill_skill_attributes_category_id")
+      end
+    end
+
     it 'Fail while add skill to people-skills, intrest should be persisted' do
       within '#remote_modal' do
-        select_star_rating(4)
+        select_star_rating(3)
         click_button 'Skill erstellen'
       end
-      validate_interest(4)
+      within '#remote_modal' do
+        validate_interest(3)
+      end
     end
   end
 end

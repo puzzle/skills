@@ -1,0 +1,31 @@
+%div.mw-100.border-bottom.text-black.ps-5.border{id: "default-skill-#{ff.object.skill.id}"}
+  %div.d-flex.flex-row.align-items-center.mt-3.mb-3.w-100{data: {controller: "people-skills"}}
+    %div.col-2
+      = ff.object.skill.title
+      = ff.hidden_field :interest
+      = ff.hidden_field :unrated, value: false, id: "unrated-field-#{ff.object.skill.id}"
+    %div.col-2
+      %div.d-flex.flex-column.align-items-center
+        %label.form-label.text-gray= t "people-skills.levels.level"
+        %label.form-label.text-gray{"data-people-skills-target": "label"}= t "people-skills.levels.#{ExpertiseTopicSkillValue.skill_levels.key(ff.object.level - 1)}"
+        - range_min = (ff.object.id.nil? || ff.object.level != 0) ? 1 : 0
+        = ff.range_field :level, min: range_min, max: 5, class: "form-range w-75",
+        "data-action": "change->people-skills#displayLevelLabel people-skills#rateSkill",
+        "data-people-skills-target": "switch"
+    %div.col-2
+      %div.d-flex.flex-column.align-items-center
+        = render partial: "edit_interest_stars", locals: { ff: ff }
+    %div.col-2
+      %div.d-flex.flex-row.form-check
+        = ff.check_box :certificate, { class: "form-check-input me-2", "data-action": "change->people-skills#rateSkill" }
+        %label.form-label.text-gray= t "people-skills.certificate"
+    %div.col-2
+      %div.d-flex.flex-row.form-check
+        = ff.check_box :core_competence, { class: "form-check-input me-2", "data-action": "change->people-skills#rateSkill" }
+        %label.form-label.text-gray= t "people-skills.core-competence"
+        = ff.hidden_field :skill_id
+    %div.col-2
+      - if ff.object.id.nil?
+        = ff.submit "Bewerten", { class: "btn btn-link" }
+      - if !ff.object.unrated
+        = ff.submit "Nicht bewerten", { class: "btn btn-link", "data-action": "people-skills#unrateSkill"}

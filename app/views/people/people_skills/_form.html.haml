@@ -21,12 +21,8 @@
                                    
             %label.form-label.text-gray#skill-level-label{"data-people-skills-target": "label"}
                 
-        %label.form-label.text-gray= t "people-skills.interest"
-        %div.rate
-            - 5.downto(1) do |i|
-                = f.radio_button :interest, i, checked: f.object.interest == i, id: "star#{i}#{f.object.id}"
-                %label{for: "star#{i}#{f.object.id}", title: "text", id: "star-label#{i}#{f.object.id}", class: "star#{i}"} 
-                    = "#{i} stars"
+        %div
+            = render partial: "edit_interest_stars", locals: { ff: f }
 
         %div
             = f.check_box :certificate, class: "form-check-input me-2"
