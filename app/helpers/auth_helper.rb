@@ -9,6 +9,10 @@ module AuthHelper
     current_auth_user&.is_admin
   end
 
+  def conf_admin?
+    current_auth_user&.is_conf_admin || false
+  end
+
   def find_person_by_auth_user
     Person.find_by(name: current_auth_user&.name)
   end

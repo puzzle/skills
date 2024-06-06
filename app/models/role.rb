@@ -11,8 +11,13 @@
 #
 
 class Role < ApplicationRecord
-  has_and_belongs_to_many :people, dependent: :restrict
+  has_and_belongs_to_many :people, dependent: :restrict_with_error,
+                                   join_table: 'person_roles'
   validates :name, length: { maximum: 100 }
 
   scope :list, -> { order(:name) }
+
+  def to_s
+    name
+  end
 end

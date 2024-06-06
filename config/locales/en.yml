@@ -13,6 +13,18 @@ en:
     models:
       skill: Skill
       people_skill: Skill
+      role:
+        one: Role
+        other: Roles
+      company:
+        one: Company
+        other: Companies
+      department:
+        one: Department
+        other: Departments
+  admin:
+    panel:
+      title: Admin panel
   profile:
     personal-data: Personal data
     core-competences: Core competences

@@ -21,6 +21,7 @@
                 %img{:src=> "/assets/logo.svg",:height=>"32"}
               %text.d-flex.align-items-end.ms-2.small= "5.0.0"
           %ul.navbar.text-gray
+            -# Devise/Mockdata
             - if Rails.env.development?
               %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
                 %span#username
@@ -28,6 +29,10 @@
                     Devise
                   - else
                     Mockdata
+            -# Admin panel
+            - if conf_admin?
+              %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
+                = link_to "Admin panel", admin_index_path
             -# Username 
             - if auth_user_signed_in?
               %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
@@ -65,5 +70,7 @@
       %div.container-fluid
         %div.row.d-flex.justify-content-center
           #flash= render partial: 'layouts/flash', collection: [:notice, :alert], as: :level
+          %span
+            = yield :actions
           = content_for?(:content) ? yield(:content) : yield
           = turbo_frame_tag "remote_modal", target: "_top"

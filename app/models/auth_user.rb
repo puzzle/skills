@@ -17,13 +17,14 @@ class AuthUser < ApplicationRecord
     private
 
     def set_admin(person, auth)
-      person.is_admin = admin?(auth)
+      person.is_admin = role?(auth, AuthConfig.admin_role)
+      person.is_conf_admin = role?(auth, AuthConfig.conf_admin_role)
       person.save
       person
     end
 
-    def admin?(auth)
-      client_roles(auth).include? AuthConfig.admin_role
+    def role?(auth, role)
+      client_roles(auth).include? role
     end
 
     def client_roles(auth)
