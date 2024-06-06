@@ -44,8 +44,12 @@ gem 'turbo-rails'
 
 group :metrics do
   gem 'brakeman'
+  gem 'haml_lint', require: false
   gem 'rubocop'
+  gem 'rubocop-capybara', require: false
   gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'rubocop-rspec_rails', require: false
 end
 
 group :development, :test do

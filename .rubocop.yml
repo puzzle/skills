@@ -1,4 +1,9 @@
-require: rubocop-rails
+require: 
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-capybara
+  - rubocop-rspec_rails
+
 AllCops:
   NewCops: enable
   DisplayCopNames: true
@@ -155,4 +160,20 @@ Style/SingleLineBlockParams:
 
 # We think that's fine
 Style/HashSyntax:
+  Enabled: false
+
+# We think that's fine. 
+Rails/HelperInstanceVariable:
+  Enabled: false
+
+Rails/OutputSafety:
+  Exclude:
+    - '**/*_test.rb'
+    - '**/*_spec.rb'
+
+# Rails does not, we do not
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Attr:
   Enabled: false
