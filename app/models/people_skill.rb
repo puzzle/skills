@@ -48,8 +48,8 @@ class PeopleSkill < ApplicationRecord
   end
 
   def before_actions
-    self.level = 1 if level.zero? && !interest.zero?
-    self.interest = 1 if interest.zero? && !level.zero?
+    self.level = 1 if level.zero? && !unrated
+    self.interest = 1 if interest.zero? && !unrated
 
     if unrated
       unrate
