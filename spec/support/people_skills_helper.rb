@@ -46,9 +46,9 @@ module PeopleSkillsHelpers
     star_labels = page.find_all("label[id^='star']", visible: false).to_a.reverse
     star_labels.each_with_index do |label, index|
       if index < interest
-        expect(label.native.css_value('color')).to eql('rgb(255, 199, 0)')
+        expect(label.native.css_value('color')).to eql('rgb(255, 199, 0)') or eql('rgb(255, 199, 0, 1)')
       else
-        expect(label.native.css_value('color')).to eql('rgb(204, 204, 204)')
+        expect(label.native.css_value('color')).to eql('rgb(204, 204, 204)') or eql('rgb(204, 204, 204, 1)')
       end
     end
   end
