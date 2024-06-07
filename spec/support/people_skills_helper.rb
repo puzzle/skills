@@ -6,11 +6,12 @@ module PeopleSkillsHelpers
 
   def select_and_create_skill(skill_name, category)
     select_from_slim_select("#people_skill_skill_attributes_id", skill_name, category)
+    expect(page).to have_field('people_skill_skill_attributes_category_id')
     select category.name_with_parent, from: 'people_skill_skill_attributes_category_id'
   end
 
-  def select_level(level)
-    fill_in 'people_skill_level', with: level
+  def select_level(level, selector= nil)
+    fill_in selector || 'people_skill_level', with: level
     validate_skill_level_label(level)
   end
 
@@ -45,10 +46,12 @@ module PeopleSkillsHelpers
   def validate_interest(interest)
     star_labels = page.find_all("label[id^='star']", visible: false).to_a.reverse
     star_labels.each_with_index do |label, index|
+      body = page.document.find('body')
+      body.send_keys(:tab)
       if index < interest
-        expect(label.native.css_value('color')).to eql('rgb(255, 199, 0)').or(eql('rgba(255, 199, 0, 1)'))
+        expect(label).to match_style(color: 'rgb(255, 199, 0)').or(match_style(color: 'rgba(255, 199, 0, 1)'))
       else
-        expect(label.native.css_value('color')).to eql('rgb(204, 204, 204)').or(eql('rgba(204, 204, 204, 1)'))
+        expect(label).to match_style(color: 'rgb(204, 204, 204)').or(match_style(color: 'rgba(204, 204, 204, 1)'))
       end
     end
   end
