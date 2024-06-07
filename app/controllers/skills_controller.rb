@@ -3,7 +3,7 @@
 class SkillsController < CrudController
   include ExportController
   before_action :update_category_parent, only: [:update]
-  before_action :render_unauthorized, except: %i[index show unrated_by_person]
+  before_action :render_unauthorized_not_admin, except: %i[index show unrated_by_person]
 
   helper_method :filter_by_rated, :compare_default_set
 
