@@ -38,8 +38,30 @@ describe :people do
       alice.people_skills.each do | person_skill |
         validate_people_skill(alice, person_skill.skill.title)
       end
-      expect(ember.reload.level).to eq(3)
-      expect(ember.reload.interest).to eq(2)
+      ember.reload
+      expect(ember.level).to eq(3)
+      expect(ember.interest).to eq(2)
+    end
+
+    it 'interest is changed from 0 when level is not 0 anymore' do
+      # Switch to PeopleSkills tab
+      alice = people(:alice)
+      visit person_people_skills_path(alice, rating: 1)
+
+      bash = people_skills(:alice_bash)
+      expect(bash.level).to eq(0)
+      expect(bash.interest).to eq(0)
+      within("#default-skill-#{bash.skill.id}") do
+        select_level(3, "person[people_skills_attributes][0][level]")
+      end
+
+      # Check if changes were saved
+      alice.people_skills.each do | person_skill |
+        validate_people_skill(alice, person_skill.skill.title)
+      end
+      bash.reload
+      expect(bash.level).to eq(3)
+      expect(bash.interest).to eq(1)
     end
 
     it 'can reset people-skills' do
