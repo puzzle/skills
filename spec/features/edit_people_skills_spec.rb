@@ -42,6 +42,25 @@ describe :people do
       expect(ember.reload.interest).to eq(2)
     end
 
+    it 'can reset people-skills' do
+      # Switch to PeopleSkills tab
+      alice = people(:alice)
+      visit person_people_skills_path(alice, rating: 1)
+      ember = alice.people_skills.first
+      within("#default-skill-#{ember.skill.id}") do
+        click_button("Nicht bewerten")
+      end
+      # Check if changes were saved
+      alice.people_skills.each do | person_skill |
+        validate_people_skill(alice, person_skill.skill.title)
+      end
+      ember.reload
+      expect(ember.level).to eq(0)
+      expect(ember.interest).to eq(0)
+      expect(ember.certificate).to eq(false)
+      expect(ember.core_competence).to eq(false)
+    end
+
     it 'should show amount of skills' do
       # Switch to PeopleSkills tab
       alice = people(:alice)
