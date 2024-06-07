@@ -12,6 +12,7 @@ class People::PeopleSkillsController < CrudController
   end
 
   def update
+    @people_skills = filtered_people_skills
     if params[:person].blank?
       render(:index, status: :ok)
       return
@@ -29,5 +30,18 @@ class People::PeopleSkillsController < CrudController
 
   def set_person
     @person = Person.find(params[:id])
+  end
+
+  def filtered_people_skills
+    return @person.people_skills if params[:rating].blank?
+
+    filter_by_rating(@person.people_skills, params[:rating])
+  end
+
+  def filter_by_rating(people_skills, rating)
+    return people_skills.where('level > ?', 0) if rating == '0'
+    return people_skills.where(level: 0) if rating == '-1'
+
+    people_skills
   end
 end

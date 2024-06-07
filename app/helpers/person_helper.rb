@@ -61,8 +61,8 @@ module PersonHelper
     %w[Keine A1 A2 B1 B2 C1 C2 Muttersprache]
   end
 
-  def people_skills_of_category(person, category)
-    person.people_skills.where(skill_id: category.skills.pluck(:id))
+  def people_skills_of_category(category)
+    @people_skills.where(skill_id: category.skills.pluck(:id))
   end
 
   def not_rated_default_skills(person)

@@ -13,7 +13,7 @@
           = link_to person_people_skills_path(@person, no_default_skill_prompt: "") do
             =image_tag("x.svg", alt: "Default-skill-form cancel button", width: 25, height: 25, id: "x-button")
         - not_rated_default_skills(@person).each do |skill|
-          = form_with model: @person, url: people_skills_person_path(@person) do |form|
+          = form_with model: @person, url: people_skills_person_path(@person, rating: params["rating"]) do |form|
             = form.fields_for :people_skills, skill do |ff|
               = render "people/people_skills/edit_form", ff: ff
         %div.align-items-center.mt-3
