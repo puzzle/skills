@@ -27,5 +27,5 @@
     %div.col-2
       - if ff.object.id.nil?
         = ff.submit "Bewerten", { class: "btn btn-link" }
-      - if !ff.object.unrated
+      - unless ff.object.unrated
         = ff.submit "Nicht bewerten", { class: "btn btn-link", "data-action": "people-skills#unrateSkill"}
