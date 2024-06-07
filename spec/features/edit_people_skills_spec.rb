@@ -51,8 +51,9 @@ describe :people do
       # Switch to PeopleSkills tab
       alice = people(:alice)
       visit person_people_skills_path(alice, rating: 1)
-
-      expect(page).to have_content(I18n.t('people-skills.levels.unweighted'), count: 2)
+      within('#people-skills') do
+        expect(page).to have_content(I18n.t('people-skills.levels.unweighted'), count: alice.people_skills.where(level: 0, interest: 0).count)
+      end
     end
   end
 
@@ -73,7 +74,7 @@ describe :people do
 
     before(:each) do
       sign_in auth_users(:user), scope: :auth_user
-      visit person_people_skills_path(bob)
+      visit person_people_skills_path(bob, rating: 1)
     end
 
     it 'displays unrated default skills' do
