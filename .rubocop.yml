@@ -37,7 +37,7 @@ Layout/LineLength:
   Severity: error
 
 Metrics/MethodLength:
-  Max: 10 # 18?
+  Max: 10
   Severity: error
 
 Metrics/ModuleLength:
