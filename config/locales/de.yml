@@ -33,6 +33,15 @@ de:
       project: Projekt
       skill: Skill
       people_skill: Skill
+      role:
+        one: Rolle
+        other: Rollen
+      company:
+        one: Firma
+        other: Firmen
+      department:
+        one: Organisationseinheit
+        other: Organisationseinheiten
     attributes:
       person:
         picture: Bild
@@ -49,6 +58,9 @@ de:
         description: Beschreibung
         role: Rolle und Aufgaben
         technology: Eingesetzte Technologien
+  admin:
+    panel:
+      title: Admin Panel
   skills:
     header:
       all: Alle

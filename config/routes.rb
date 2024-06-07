@@ -31,6 +31,13 @@ Rails.application.routes.draw do
 
   resources :cv_search
 
+  resources :admin, only: :index
+  namespace :admin do
+    resources :departments
+    resources :roles
+    resources :companies
+  end
+
   resources :people do
     resources :advanced_trainings
     resources :educations

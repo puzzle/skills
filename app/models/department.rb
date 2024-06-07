@@ -5,4 +5,8 @@ class Department < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 100 }
   scope :list, -> { order('name asc') }
+
+  def to_s
+    name
+  end
 end

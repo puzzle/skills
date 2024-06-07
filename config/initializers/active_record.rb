@@ -4,7 +4,8 @@ class ActiveRecord::Base
       [
         %i[restrict_with_error restrict_with_exception].exclude?(assoc.options[:dependent]),
         (assoc.macro == :has_one && send(assoc.name).nil?),
-        (assoc.macro == :has_many && send(assoc.name).empty?)
+        (assoc.macro == :has_many && send(assoc.name).empty?),
+        (assoc.macro == :has_and_belongs_to_many && send(assoc.name).empty?)
       ].any?
     end
   end

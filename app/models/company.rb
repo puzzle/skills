@@ -17,4 +17,8 @@ class Company < ApplicationRecord
   validates :name, length: { maximum: 100 }
 
   scope :list, -> { order('name asc') }
+
+  def to_s
+    name
+  end
 end
