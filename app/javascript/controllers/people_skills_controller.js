@@ -9,8 +9,11 @@ export default class extends Controller {
 
 
     connect() {
-        if (!this.hasSkillsDropdownTarget)
+        if (!this.hasSkillsDropdownTarget){
+            Turbo.cache.exemptPageFromCache()
             return;
+        }
+            
 
         const select = new SlimSelect({
             select: this.skillsDropdownTarget,
