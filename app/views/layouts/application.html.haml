@@ -69,8 +69,9 @@
                 %a.nav-link.cursor-pointer.ps-2.pe-2{href: skills_path} Skillset
       %div.container-fluid
         %div.row.d-flex.justify-content-center
-          #flash= render partial: 'layouts/flash', collection: [:notice, :alert], as: :level
-          %span
-            = yield :actions
+          = render partial: 'layouts/flash', collection: [:notice, :alert], as: :level
+          - content_for(:actions) do
+            %span
+              = yield :actions
           = content_for?(:content) ? yield(:content) : yield
           = turbo_frame_tag "remote_modal", target: "_top"
