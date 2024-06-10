@@ -20,6 +20,7 @@ de:
     activities: Stationen
     projects: Projekte
     updated_at: Zuletzt bearbeitet
+    no_skills_rated_msg: Dieses Profil hat noch keine skills bewertet. Gehe zum Skills Tab und bewerte einige für dich relevante skills.
   attributes:
     year_from: Jahr von
     year_to: Jahr bis
