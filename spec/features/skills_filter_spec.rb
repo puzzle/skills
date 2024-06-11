@@ -34,7 +34,7 @@ describe "Skills Filter", type: :feature, js: true do
     expect(page).to have_content("cunit")
 
     page.all('label.btn')[2].click
-    expect(page).to have_no_content("JUnit")
+    expect(page).to have_content("JUnit")
     expect(page).to have_no_content("cunit")
 
     find("#title").send_keys([:control, 'a'], :space)

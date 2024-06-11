@@ -158,6 +158,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_03_085509) do
     t.integer "interest"
     t.boolean "certificate", default: false
     t.boolean "core_competence", default: false
+    t.boolean "unrated"
     t.index ["person_id"], name: "index_people_skills_on_person_id"
     t.index ["skill_id"], name: "index_people_skills_on_skill_id"
   end

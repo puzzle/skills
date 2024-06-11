@@ -23,7 +23,7 @@ junit:
   title: JUnit
   radar: 2
   portfolio: 1
-  default_set: false
+  default_set: true
   category: java
 
 bash:

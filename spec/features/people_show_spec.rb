@@ -17,10 +17,12 @@ describe 'People skills Show', type: :feature, js: true do
   it 'Should render elements correctly' do
     visit skills_path
     click_link('Bash')
-    expect(page).to have_text('Skill: Bash (1 Members)')
-    expect(page).to have_xpath("//input[@value=5]")
-    expect(page).to have_xpath("//input[@value=2]")
-    expect(page.first(".certificate")).to be_checked
-    expect(page.first(".core-competence")).not_to be_checked
+    within('.modal-content') do
+      expect(page).to have_text('Skill: Bash (1 Members)')
+      expect(page).to have_xpath("//input[@value=5]")
+      select_star_rating(2, true)
+      expect(page.first(".certificate")).to be_checked
+      expect(page.first(".core-competence")).not_to be_checked
+    end
   end
 end

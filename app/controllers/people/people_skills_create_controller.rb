@@ -6,7 +6,6 @@ class People::PeopleSkillsCreateController < CrudController
                           { skill_attributes:
                           [:id, :title, :radar, :portfolio, :default_set, :category_id] }]
   self.nesting = Person
-  helper_method :people_skills_of_category
   layout 'person'
 
   def index
@@ -44,9 +43,5 @@ class People::PeopleSkillsCreateController < CrudController
 
   def self.controller_path
     'people/people_skills'
-  end
-
-  def people_skills_of_category(category)
-    @people_skills.where(skill_id: category.skills.ids)
   end
 end

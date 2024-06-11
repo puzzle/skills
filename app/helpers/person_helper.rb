@@ -61,7 +61,19 @@ module PersonHelper
     %w[Keine A1 A2 B1 B2 C1 C2 Muttersprache]
   end
 
-  def people_skills_of_category(person, category)
-    person.people_skills.where(skill_id: category.skills.pluck(:id))
+  def people_skills_of_category(category)
+    @people_skills.where(skill_id: category.skills.pluck(:id)).sort_by(&:id)
+  end
+
+  def not_rated_default_skills(person)
+    rated_skills = person.skills
+    not_rated_default_skills = Skill.all.filter do |skill|
+      skill.default_set && rated_skills.exclude?(skill)
+    end
+
+    not_rated_default_skills.map do |skill|
+      PeopleSkill.new({ person_id: person.id, skill_id: skill.id, level: 1, interest: 1,
+                        certificate: false, core_competence: false })
+    end
   end
 end

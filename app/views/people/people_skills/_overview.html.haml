@@ -1,0 +1,33 @@
+%p.d-flex.align-items-center.profile-header
+  Skills
+  ="(#{@person.people_skills.count})"
+
+%div.ms-3
+  = form_with(url: person_people_skills_path(@person), method: :get, data: {controller: "filter", turbo_frame: "people-skills"}) do |f|
+    %span.btn-group
+      - rating = request.query_parameters[:rating]
+      = f.radio_button :rating, 1, class: "btn-check", checked: rating == "1",
+            onClick: "this.form.requestSubmit()", data: {action: "change->filter#submit"}
+      = f.label :rating, t("people-skills.filter.all"), value: 1, class: "btn btn-outline-primary"
+
+      = f.radio_button :rating, 0, class: "btn-check", checked: rating == "0",
+            onClick: "this.form.requestSubmit()", data: {action: "change->filter#submit"}
+      = f.label :rating, t("people-skills.filter.rated"), value: 0, class: "btn btn-outline-primary"
+
+      = f.radio_button :rating, -1, class: "btn-check", checked: rating == "-1",
+            onClick: "this.form.requestSubmit()", data: {action: "change->filter#submit"}
+      = f.label :rating, t("people-skills.filter.unrated"), value: -1, class: "btn btn-outline-primary"
+
+  = turbo_frame_tag 'people-skills' do
+    - Category.all_parents.each do |category|
+      %div.profile-header.mw-100.border-bottom.mt-4{id: category.title, "data-scroll-target": "scrollItem"}
+        = category.title
+      - ([category] + category.children.to_a).each do |category_child|
+        - people_skills_of_category = people_skills_of_category(category_child)
+        %div.white-header.mw-100.border-bottom.text-gray
+          =category_child.title + " (#{people_skills_of_category.count})"
+          - people_skills_of_category.each do |person_skill|
+            - @person_skill = person_skill
+            = form_with model: @person, url: people_skills_person_path(@person, rating: params["rating"]) do |form|
+              = form.fields_for :people_skills, @person_skill do |ff|
+                = render "people/people_skills/edit_form", ff: ff

@@ -18,6 +18,9 @@ class PeopleSkill < ApplicationRecord
   belongs_to :skill
   accepts_nested_attributes_for :skill
 
+  before_create :before_actions
+  before_update :before_actions
+
   validates :certificate, :core_competence, exclusion: { in: [nil],
                                                          message: 'muss ausgefüllt werden' }
 
@@ -42,5 +45,21 @@ class PeopleSkill < ApplicationRecord
       attributes.delete(:id)
     end
     super
+  end
+
+  def before_actions
+    self.level = 1 if level.zero? && !unrated
+    self.interest = 1 if interest.zero? && !unrated
+
+    if unrated
+      unrate
+    end
+  end
+
+  def unrate
+    self.level = 0
+    self.interest = 0
+    self.certificate = false
+    self.core_competence = false
   end
 end
