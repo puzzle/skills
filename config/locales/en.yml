@@ -33,7 +33,7 @@ en:
     activities: Activities
     projects: Projects
     updated_at: Zuletzt bearbeitet
-    no_skills_rated_msg: This profile hasn't rated any skills yet, head to the Skills Tab and rate some of the skills relevant to you.
+    no_skills_rated_msg: This profile doesn't have any rated skills yet, head to the Skills Tab and rate some of the skills relevant to you.
   skills:
     header:
       all: All
