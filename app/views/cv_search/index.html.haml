@@ -1,6 +1,9 @@
 %div.mt-2
-  %form{data: {"turbo-frame": "search-results", "turbo-action": "advance"}, "data-controller": "search"}
+  %form.d-flex.align-items-center{data: {"turbo-frame": "search-results", "turbo-action": "advance"}, "data-controller": "search"}
     %input{class: 'form-control w-75', placeholder: 'CVs durchsuchen...', name: 'q', "data-action": "search#submitWithTimeout", id: "cv_search_field"}
+    %div.ms-5
+      %input{type: "checkbox"} 
+      Search trough skills as well
   %div.profile-header.mw-100.border-bottom.mt-2.mb-2
     Suchresultate
   %turbo-frame{id: "search-results"}
