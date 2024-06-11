@@ -2,9 +2,10 @@
   = link_to image_tag("export.svg") + "Export", export_cv_person_path(@person), data: { turbo_frame: "remote_modal" }
 %div.w-100{data: { "scroll-target": "parent"}}
   - if @person.people_skills.count == 0
-    %span
-      %p.alert.alert-info= t('profile.no_skills_rated_msg')
-
+    %span{"data-controller": "people", "data-people-target": "message"}
+      %p.alert.alert-info.d-flex.justify-content-between
+        = t('profile.no_skills_rated_msg')
+        = image_tag("x.svg", "data-action": "click->people#remove", class: "x-img")
   = render('profile')
   = render('core_competences')
   = render('people/person_relations/index', list: @person.educations.list, id: "educations")

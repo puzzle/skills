@@ -304,4 +304,17 @@ describe :people do
       expect(Person.all.find_by(name: "Hansjakobli")).to be_nil
     end
   end
+
+  describe 'Visit person', type: :feature, js: true do
+    let(:longmax) { people(:longmax) }
+
+    before(:each) do
+      sign_in auth_users(:user), scope: :auth_user
+    end
+
+    it 'should display message when no skills are rated' do
+      visit person_path(longmax)
+      expect(page).to have_selector('p.alert.alert-info.d-flex.justify-content-between', text: I18n.t('profile.no_skills_rated_msg'))
+    end
+  end
 end
