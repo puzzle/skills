@@ -62,7 +62,7 @@ module PersonHelper
   end
 
   def people_skills_of_category(category)
-    @people_skills.where(skill_id: category.skills.pluck(:id))
+    @people_skills.where(skill_id: category.skills.pluck(:id)).sort_by(&:id)
   end
 
   def not_rated_default_skills(person)
