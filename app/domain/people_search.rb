@@ -5,8 +5,9 @@ class PeopleSearch
                          role technology location}.freeze
   attr_reader :search_term, :entries, :search_skills
 
-  def initialize(search_term, search_skills: true)
+  def initialize(search_term, search_skills)
     @search_term = search_term
+    @search_skills = search_skills
     @entries = search_result
     @entries = @entries.filter { |entry| entry[:found_in] }
   end
@@ -25,7 +26,6 @@ class PeopleSearch
   def found_in(person)
     res = in_attributes(person.attributes)
     res ||= in_associations(person)
-    res ||= in_skills(person) if search_skills
     res.try(:camelize, :lower)
   end
 
@@ -36,8 +36,7 @@ class PeopleSearch
     person_keys = people.map(&:id)
 
     Person.includes(:department, :roles, :projects, :activities,
-                    :educations, :advanced_trainings, :expertise_topics,
-                    :people_skills => :skill)
+                    :educations, :advanced_trainings, :expertise_topics, (:skills if search_skills))
           .find(person_keys)
   end
 
@@ -87,10 +86,5 @@ class PeopleSearch
   def searchable_fields(fields)
     keys = fields.keys & SEARCHABLE_FIELDS
     fields.slice(*keys)
-  end
-
-  def in_skills(person)
-    person.people_skills do |people_skill|
-      # map and return
   end
 end

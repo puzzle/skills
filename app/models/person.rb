@@ -82,7 +82,8 @@ class Person < ApplicationRecord
                     projects: [:description, :title, :role, :technology],
                     activities: [:description, :role],
                     educations: [:location, :title],
-                    advanced_trainings: :description
+                    advanced_trainings: :description,
+                    skills: [:title]
                   },
                   using: {
                     tsearch: {
