@@ -18,15 +18,20 @@ class PeopleSearch
     people = Person.all.search(search_term)
     people = pre_load(people)
 
+    results = []
+
     people.map do |p|
-      { person: { id: p.id, name: p.name }, found_in: found_in(p) }
+      found_in(p).each do |result|
+        results.push({ person: { id: p.id, name: p.name }, found_in: result })
+      end
     end
+    results
   end
 
   def found_in(person)
-    res = in_attributes(person.attributes)
-    res ||= in_associations(person)
-    res.try(:camelize, :lower)
+    res_attributes = in_attributes(person.attributes)
+    res_associations = in_associations(person)
+    [res_attributes, res_associations].compact
   end
 
   # Load the attributes of the given people into cache
