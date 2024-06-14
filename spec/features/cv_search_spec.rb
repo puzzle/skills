@@ -53,6 +53,16 @@ describe 'Advanced Trainings', type: :feature, js:true do
       fill_in 'cv_search_field', with: person.name.slice(0, 3)
       expect(page).to have_content(person.name)
     end
+
+    it 'should dynamically search skills' do
+      skill_title = person.skills.last.title
+      fill_in 'cv_search_field', with: skill_title
+      expect(page).to have_content("Keine Resultate")
+      page.check('search_skills')
+      expect(page).not_to have_content("Keine Resultate")
+      check_search_results(I18n.t("cv_search.skills"))
+      expect(page).to have_link(href: "#{person_people_skills_path(person)}?q=#{skill_title.split(" ").join("+")}&rating=1")
+    end
   end
 end
 
