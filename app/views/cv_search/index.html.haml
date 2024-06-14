@@ -2,7 +2,7 @@
   %form.d-flex.align-items-center{data: {"turbo-frame": "search-results", "turbo-action": "advance"}, "data-controller": "search"}
     %input{class: 'form-control w-75', placeholder: 'CVs durchsuchen...', name: 'q', "data-action": "search#submitWithTimeout", id: "cv_search_field"}
     %div.ms-5
-      %input{type: "checkbox", name: 'search_skills', onchange: 'this.form.requestSubmit();'}
+      %input{type: "checkbox", name: 'search_skills', id: 'search_skills_checkbox', onchange: 'this.form.requestSubmit();'}
       Search trough skills as well
   %div.profile-header.mw-100.border-bottom.mt-2.mb-2
     Suchresultate
