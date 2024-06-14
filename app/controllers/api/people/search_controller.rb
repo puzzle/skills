@@ -10,7 +10,7 @@ module Api::People
     private
 
     def search_results
-      PeopleSearch.new(query).entries
+      PeopleSearch.new(query, false).entries
     end
 
     def query

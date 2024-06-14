@@ -44,7 +44,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
       fill_in 'cv_search_field', with: education_location
       check_search_results(I18n.t("cv_search.educations"))
       click_link(I18n.t("cv_search.educations"))
-      expect(page).to have_current_path("#{person_path(person)}")
+      expect(page).to have_current_path("#{person_path(person)}?q=#{education_location.split(" ").join("+")}")
     end
 
     it 'should only display results when length of search-text is > 3' do
