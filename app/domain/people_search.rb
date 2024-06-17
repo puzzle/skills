@@ -50,7 +50,8 @@ class PeopleSearch
       attribute_names = in_association(person, sym)
       attribute_names.map do |attribute_name|
         format('%<association>s#%<attribute_name>s',
-                association: sym.to_s, attribute_name: attribute_name)
+               association: sym.to_s,
+               attribute_name: attribute_name)
       end
     end.flatten
   end
