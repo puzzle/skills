@@ -31,7 +31,7 @@ class PeopleSearch
   def found_in(person)
     res_attributes = in_attributes(person.attributes)
     res_associations = in_associations(person)
-    [res_attributes, res_associations].compact
+    [res_attributes, res_associations].flatten.compact
   end
 
   # Load the attributes of the given people into cache
@@ -46,14 +46,13 @@ class PeopleSearch
   end
 
   def in_associations(person)
-    association_symbols.each do |sym|
-      attribute_name = in_association(person, sym)
-      if attribute_name
-        return format('%<association>s#%<attribute_name>s',
+    association_symbols.map do |sym|
+      attribute_names = in_association(person, sym)
+      attribute_names.map do |attribute_name|
+        format('%<association>s#%<attribute_name>s',
                       association: sym.to_s, attribute_name: attribute_name)
       end
-    end
-    nil
+    end.flatten
   end
 
   def association_symbols
@@ -72,20 +71,18 @@ class PeopleSearch
   end
 
   def attribute_in_array(array)
-    array.each do |t|
-      attribute = in_attributes(t.attributes)
-      return attribute unless attribute.nil?
-    end
-    nil
+    array.map do |t|
+      in_attributes(t.attributes)
+    end.flatten
   end
 
   def in_attributes(attrs)
-    attribute = searchable_fields(attrs).find do |_key, value|
+    attribute = searchable_fields(attrs).find_all do |_key, value|
       next if value.nil?
 
       value.downcase.include?(search_term.downcase) # PG Search is not case sensitive
     end
-    attribute.try(:first)
+    attribute.map!(&:first)
   end
 
   def searchable_fields(fields)

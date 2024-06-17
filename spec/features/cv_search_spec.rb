@@ -36,7 +36,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
     it 'should open person when clicking result' do
       fill_in 'cv_search_field', with: person.projects.first.technology
       check_search_results(I18n.t("cv_search.projects"))
-      click_link(person.name)
+      first("a", text: person.name).click();
       expect(page).to have_current_path(person_path(person))
 
       visit("/cv_search")
