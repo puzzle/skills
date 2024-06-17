@@ -59,9 +59,9 @@ class Person < ApplicationRecord
 
   validates :nationality,
             inclusion: { in: ISO3166::Country.all.collect(&:alpha2) }
-  validates :nationality2,
-            inclusion: { in: ISO3166::Country.all.collect(&:alpha2) },
-            allow_blank: true
+  # validates :nationality2,
+  #           inclusion: { in: ISO3166::Country.all.collect(&:alpha2) },
+  #           allow_blank: true
 
   validate :picture_size
 
