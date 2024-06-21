@@ -55,9 +55,16 @@ class PeopleSearch
     Person.reflections.keys.excluding('company').map(&:to_sym)
   end
 
+  # rubocop:disable Metrics/MethodLength
   def in_association(person, sym)
     target = person.association(sym).target
     return if target.nil?
+
+    if sym == :skills
+      target.filter! do |skill|
+        !person.people_skills.find_by(skill_id: skill.id).unrated?
+      end
+    end
 
     if target.is_a?(Array)
       attribute_in_array(target)
@@ -65,6 +72,7 @@ class PeopleSearch
       in_attributes(target.attributes)
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   def attribute_in_array(array)
     array.map do |t|
