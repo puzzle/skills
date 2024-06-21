@@ -2,7 +2,7 @@
 
 module CvSearchHelper
   def translate_found_in(result)
-    I18n.t("cv_search.#{result[:found_in].split('#')[0].underscore}")
+    I18n.t("cv_search.#{result[:found_in].underscore}")
   end
 
   def found_in_skills?(result)
