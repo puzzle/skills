@@ -9,7 +9,6 @@ class PeopleSearch
     @search_term = search_term
     @search_skills = search_skills
     @entries = search_result
-    @entries = @entries.filter { |entry| entry[:found_in] }
   end
 
   private
@@ -41,7 +40,7 @@ class PeopleSearch
     person_keys = people.map(&:id)
 
     Person.includes(:department, :roles, :projects, :activities,
-                    :educations, :advanced_trainings, :expertise_topics, (:skills if search_skills))
+                    :educations, :advanced_trainings, (:skills if search_skills))
           .find(person_keys)
   end
 
