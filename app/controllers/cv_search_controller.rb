@@ -8,11 +8,15 @@ class CvSearchController < ApplicationController
   private
 
   def search_results
-    PeopleSearch.new(query).entries
+    PeopleSearch.new(query, search_skills: search_skills?).entries
   end
 
   def query
     params[:q]
+  end
+
+  def search_skills?
+    params.key?(:search_skills)
   end
 
   def should_search

@@ -36,7 +36,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
     it 'should open person when clicking result' do
       fill_in 'cv_search_field', with: person.projects.first.technology
       check_search_results(I18n.t("cv_search.projects"))
-      click_link(person.name)
+      first("a", text: person.name).click();
       expect(page).to have_current_path(person_path(person))
 
       visit("/cv_search")
@@ -44,7 +44,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
       fill_in 'cv_search_field', with: education_location
       check_search_results(I18n.t("cv_search.educations"))
       click_link(I18n.t("cv_search.educations"))
-      expect(page).to have_current_path("#{person_path(person)}")
+      expect(page).to have_current_path("#{person_path(person)}?q=#{education_location.split(" ").join("+")}")
     end
 
     it 'should only display results when length of search-text is > 3' do
@@ -52,6 +52,16 @@ describe 'Advanced Trainings', type: :feature, js:true do
       expect(page).not_to have_content(person.name)
       fill_in 'cv_search_field', with: person.name.slice(0, 3)
       expect(page).to have_content(person.name)
+    end
+
+    it 'should dynamically search skills' do
+      skill_title = person.skills.last.title
+      fill_in 'cv_search_field', with: skill_title
+      expect(page).to have_content("Keine Resultate")
+      page.check('search_skills')
+      expect(page).not_to have_content("Keine Resultate")
+      check_search_results(I18n.t("cv_search.skills"))
+      expect(page).to have_link(href: "#{person_people_skills_path(person)}?q=#{skill_title.split(" ").join("+")}&rating=1")
     end
   end
 end

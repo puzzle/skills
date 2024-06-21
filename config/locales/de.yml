@@ -108,6 +108,7 @@ de:
     with_enddate: Mit Enddatum
 
   cv_search:
+    search_skills: Skills ebenfalls durchsuchen
     advanced_trainings: Weiterbildungen
     educations: Ausbildungen
     activities: Stationen
@@ -118,3 +119,4 @@ de:
     competence_notes: Kompetenzen
     roles: Funktionen
     department: Organisationseinheit
+    skills: Skills
