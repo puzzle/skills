@@ -5,7 +5,7 @@ class PeopleSearch
                          role technology location}.freeze
   attr_reader :search_term, :entries, :search_skills
 
-  def initialize(search_term, search_skills)
+  def initialize(search_term, search_skills: false)
     @search_term = search_term
     @search_skills = search_skills
     @entries = search_result
