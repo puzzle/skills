@@ -7,7 +7,9 @@ services:
     stdin_open: true
     environment:
       - RAILS_DB_HOST=postgres
-    env_file: .env
+    env_file:
+      - .env
+      - .sec
     build:
       context: ./config/docker/development
       dockerfile: Rails.dockerfile
