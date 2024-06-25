@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-ptime_base_test_url = "www.api.com"
+ptime_base_test_url = "www.ptime.example.com"
 ptime_api_test_username = "test username"
 ptime_api_test_password = "test password"
 ENV["PTIME_BASE_URL"] = ptime_base_test_url
@@ -17,7 +17,7 @@ describe Ptime::Client do
             'shortname': 'LSM',
             'firstname': 'Longmax',
             'lastname': 'Smith',
-            'email': 'longmax@smith.com',
+            'email': 'longmax@example.com',
             'single': 'single',
             'nationalities': [
               'ZW'
@@ -34,7 +34,7 @@ describe Ptime::Client do
             'shortname': 'AMA',
             'firstname': 'Alice',
             'lastname': 'Mante',
-            'email': 'alice@mante.com',
+            'email': 'alice@example.com',
             'single': 'single',
             'nationalities': [
               'AU'
@@ -51,7 +51,7 @@ describe Ptime::Client do
             'shortname': 'CFO',
             'firstname': 'Charlie',
             'lastname': 'Ford',
-            'email': 'charlie@ford.com',
+            'email': 'charlie@example.com',
             'single': 'married',
             'nationalities': [
               'GB'
@@ -74,9 +74,9 @@ describe Ptime::Client do
     end
 
     it 'should throw error message when host is not reachable' do
-        ENV["PTIME_BASE_URL"] = "www.unreachablehost.com"
+        ENV["PTIME_BASE_URL"] = "www.unreachablehost.example.com"
 
-        stub_request(:get, "www.unreachablehost.com/api/v1/").
+        stub_request(:get, "www.unreachablehost.example.com/api/v1/").
           to_return(body: employees_json, status: 404)
           .with(basic_auth: [ptime_api_test_username, ptime_api_test_password])
 

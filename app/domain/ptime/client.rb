@@ -23,6 +23,12 @@ module Ptime
       raise e
     end
 
+    def response_error_message(exception)
+      JSON.parse(exception.response.body).dig('error', 'message')
+    rescue # do not fail if response is not JSON
+      nil
+    end
+
     def headers
       {
         authorization: "Basic #{basic_token}",
