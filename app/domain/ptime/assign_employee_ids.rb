@@ -7,7 +7,7 @@ module Ptime
     # rubocop:disable Metrics/AbcSize
     def run
       puts 'Fetching required data...'
-      ptime_employees = Ptime::Client.new.get('employees', { per_page: 2 })['data']
+      ptime_employees = Ptime::Client.new.get('employees', { per_page: 1000 })['data']
       skills_people = Person.all
       puts 'Successfully fetched data'
 
@@ -23,8 +23,8 @@ module Ptime
       mapped_people_count = 0
 
       ptime_employees.each do |ptime_employee|
-        ptime_employee_firstname = ptime_employee['attributes']['first_name']
-        ptime_employee_lastname = ptime_employee['attributes']['last_name']
+        ptime_employee_firstname = ptime_employee['attributes']['firstname']
+        ptime_employee_lastname = ptime_employee['attributes']['lastname']
         ptime_employee_name = "#{ptime_employee_firstname} #{ptime_employee_lastname}"
         matched_skills_people = Person.where(ptime_employee_id: nil)
                                       .where(name: ptime_employee_name)
