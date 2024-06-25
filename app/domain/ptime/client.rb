@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rest_client'
 require 'base64'
 require_relative '../../../config/environment'
@@ -5,7 +7,7 @@ require_relative '../../../config/environment'
 module Ptime
   class Client
     def initialize
-      @base_url = "#{ENV.fetch('PTIME_BASE_URL')}/api/v1/".freeze
+      @base_url = "#{ENV.fetch('PTIME_BASE_URL')}/api/v1/"
     end
 
     def get(endpoint, params = {})
@@ -15,7 +17,8 @@ module Ptime
     private
 
     def request(method, path, params = nil)
-      response = RestClient.send(method, path, headers.merge(params))
+      path = "#{path}?#{URI.encode_www_form(params)}"
+      response = RestClient.send(method, path, headers)
       JSON.parse(response.body)
     rescue RestClient::BadRequest => e
       msg = response_error_message(e)
