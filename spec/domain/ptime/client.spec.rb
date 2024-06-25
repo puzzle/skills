@@ -1,8 +1,11 @@
 require 'rails_helper'
 
-ENV["PTIME_BASE_URL"] = "www.api.com"
-ENV["PTIME_API_USERNAME"] = "test username"
-ENV["PTIME_API_PASSWORD"] = "test password"
+ptime_base_test_url = "www.api.com"
+ptime_api_test_username = "test username"
+ptime_api_test_password = "test password"
+ENV["PTIME_BASE_URL"] = ptime_base_test_url
+ENV["PTIME_API_USERNAME"] = ptime_api_test_username
+ENV["PTIME_API_PASSWORD"] = ptime_api_test_password
 
 describe Ptime::Client do
     employees_json = {
@@ -62,8 +65,9 @@ describe Ptime::Client do
     }.to_json
 
     it 'should be able to fetch employee data' do
-        stub_request(:get, "#{ENV["PTIME_BASE_URL"]}/api/v1/employees").
+        stub_request(:get, "#{ptime_base_test_url}/api/v1/employees").
           to_return(body: employees_json, headers: { 'pagination-total-count': 200, 'pagination-per-page': 20, 'pagination-current-page': 5, 'pagination-total-pages': 10, 'content-type': "application/vnd.api+json; charset=utf-8" }, status: 200)
+                                                                       .with(basic_auth: [ptime_api_test_username, ptime_api_test_password])
 
         fetched_employees = Ptime::Client.new.get("employees")
         expect(fetched_employees).to eq(JSON.parse(employees_json))
@@ -74,6 +78,7 @@ describe Ptime::Client do
 
         stub_request(:get, "www.unreachablehost.com/api/v1/").
           to_return(body: employees_json, status: 404)
+          .with(basic_auth: [ptime_api_test_username, ptime_api_test_password])
 
         expect{ Ptime::Client.new.get("") }.to raise_error(RestClient::NotFound)
     end
