@@ -66,7 +66,7 @@ describe Ptime::Client do
 
     it 'should be able to fetch employee data' do
         stub_request(:get, "#{ptime_base_test_url}/api/v1/employees").
-          to_return(body: employees_json, headers: { 'pagination-total-count': 200, 'pagination-per-page': 20, 'pagination-current-page': 5, 'pagination-total-pages': 10, 'content-type': "application/vnd.api+json; charset=utf-8" }, status: 200)
+          to_return(body: employees_json, headers: { 'content-type': "application/vnd.api+json; charset=utf-8" }, status: 200)
                                                                        .with(basic_auth: [ptime_api_test_username, ptime_api_test_password])
 
         fetched_employees = Ptime::Client.new.get("employees")
