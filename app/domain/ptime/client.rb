@@ -4,10 +4,12 @@ require_relative '../../../config/environment'
 
 module Ptime
   class Client
-    BASE_URL = "#{ENV.fetch('PTIME_BASE_URL')}/api/v1/".freeze
+    def initialize
+      @base_url = "#{ENV.fetch('PTIME_BASE_URL')}/api/v1/".freeze
+    end
 
     def get(endpoint, params = {})
-      request(:get, BASE_URL + endpoint, params)
+      request(:get, @base_url + endpoint, params)
     end
 
     private

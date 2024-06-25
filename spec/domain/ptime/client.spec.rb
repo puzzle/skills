@@ -61,13 +61,20 @@ describe Ptime::Client do
       ]
     }.to_json
 
-    before(:each) do
-        stub_request(:get, "#{ENV["PTIME_BASE_URL"]}/api/v1/employees").
-            to_return(body: employees_json, headers: { 'pagination-total-count': 200, 'pagination-per-page': 20, 'pagination-current-page': 5, 'pagination-total-pages': 10, 'content-type': "application/vnd.api+json; charset=utf-8" }, status: 200)
-    end
-
     it 'should be able to fetch employee data' do
+        stub_request(:get, "#{ENV["PTIME_BASE_URL"]}/api/v1/employees").
+          to_return(body: employees_json, headers: { 'pagination-total-count': 200, 'pagination-per-page': 20, 'pagination-current-page': 5, 'pagination-total-pages': 10, 'content-type': "application/vnd.api+json; charset=utf-8" }, status: 200)
+
         fetched_employees = Ptime::Client.new.get("employees")
         expect(fetched_employees).to eq(JSON.parse(employees_json))
+    end
+
+    it 'should throw error message when host is not reachable' do
+        ENV["PTIME_BASE_URL"] = "www.unreachablehost.com"
+
+        stub_request(:get, "www.unreachablehost.com/api/v1/").
+          to_return(body: employees_json, status: 404)
+
+        expect{ Ptime::Client.new.get("") }.to raise_error(RestClient::NotFound)
     end
 end
