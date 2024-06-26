@@ -5,6 +5,7 @@ module Ptime
   class AssignEmployeeIds
     # rubocop:disable Metrics/MethodLength
     # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Rails/Output
     def run
       puts 'Fetching required data...'
       ptime_employees = Ptime::Client.new.get('employees', { per_page: 1000 })['data']
@@ -54,6 +55,7 @@ module Ptime
     end
     # rubocop:enable Metrics/MethodLength
     # rubocop:enable Metrics/AbcSize
+    # rubocop:enable Rails/Output
   end
 end
 
