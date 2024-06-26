@@ -26,8 +26,10 @@ module Ptime
         ptime_employee_firstname = ptime_employee['attributes']['firstname']
         ptime_employee_lastname = ptime_employee['attributes']['lastname']
         ptime_employee_name = "#{ptime_employee_firstname} #{ptime_employee_lastname}"
+        ptime_employee_email = ptime_employee['attributes']['email']
         matched_skills_people = Person.where(ptime_employee_id: nil)
                                       .where(name: ptime_employee_name)
+                                      .where(email: ptime_employee_email)
 
         if matched_skills_people.empty?
           unmatched_entries << { name: ptime_employee_name, id: ptime_employee['id'] }
