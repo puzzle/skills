@@ -109,6 +109,7 @@ describe Ptime::AssignEmployeeIds do
     person_charlie = people(:charlie)
 
     person_charlie.name = "Alice Mante"
+    person_charlie.email = "alice@example.com"
     person_charlie.save!
 
     Ptime::AssignEmployeeIds.new.run
