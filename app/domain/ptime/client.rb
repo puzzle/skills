@@ -28,7 +28,7 @@ module Ptime
 
     def response_error_message(exception)
       JSON.parse(exception.response.body).dig('error', 'message')
-    rescue # do not fail if response is not JSON
+    rescue JSON::ParserError # rescue only JSON parsing errors
       nil
     end
 
