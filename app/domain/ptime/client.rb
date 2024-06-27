@@ -2,7 +2,6 @@
 
 require 'rest_client'
 require 'base64'
-require_relative '../../../config/environment'
 
 module Ptime
   class Client

@@ -1,5 +1,3 @@
-require_relative '../../../config/environment'
-
 # This script will assign each person the corresponding employee ID from PuzzleTime
 module Ptime
   class AssignEmployeeIds
