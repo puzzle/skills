@@ -73,4 +73,3 @@ module Ptime
     # rubocop:enable Rails/Output
   end
 end
-

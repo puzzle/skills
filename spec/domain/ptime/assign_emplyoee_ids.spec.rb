@@ -134,5 +134,4 @@ describe Ptime::AssignEmployeeIds do
     expect(person_alice.reload.ptime_employee_id).to be_nil
     expect(person_charlie.reload.ptime_employee_id).to be_nil
   end
-
 end
