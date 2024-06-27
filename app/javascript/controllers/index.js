@@ -22,6 +22,9 @@ application.register("highlight", HighlightController)
 import ImageUploadController from "./image_upload_controller"
 application.register("image-upload", ImageUploadController)
 
+import InstantClickController from "./instant_click_controller"
+application.register("instant-click", InstantClickController)
+
 import LangSelectionController from "./lang_selection_controller"
 application.register("lang-selection", LangSelectionController)
 

@@ -21,6 +21,10 @@ class AuthConfig
       get_var_from_environment(:host_url)
     end
 
+    def keycloak_redirect_host_url
+      get_var_from_environment(:keycloak_redirect_host_url, default: host_url)
+    end
+
     def realm
       get_var_from_environment(:realm)
     end

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'auth_config'
+require 'skills_keycloak_omniauth_strategie'
+
 # Assuming you have not yet modified this file, each configuration option below
 # is set to its default value. Note that some are commented out while others
 # are not: uncommented lines are intended to protect your configuration from
@@ -273,7 +275,6 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-
   config.omniauth :keycloak_openid, {
     name: :keycloak_openid,
     scope: [:openid, :email],
@@ -283,9 +284,11 @@ Devise.setup do |config|
     client_options: {
       site: AuthConfig.host_url,
       realm: AuthConfig.realm,
+      keycloak_redirect_site: AuthConfig.keycloak_redirect_host_url,
     },
-    strategy_class: OmniAuth::Strategies::KeycloakOpenId,
+    strategy_class: SkillsKeycloakOmniauthStrategie,
   }
+  OmniAuth.config.logger = Rails.logger if Rails.env.development?
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
