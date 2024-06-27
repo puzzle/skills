@@ -37,7 +37,7 @@ module Ptime
 
         if matched_skills_people.empty?
           unmatched_entries << { name: ptime_employee_name, id: ptime_employee['id'] }
-        elsif matched_skills_people.count == 1
+        elsif matched_skills_people.one?
           if should_map
             matched_skills_person = matched_skills_people.first
             matched_skills_person.ptime_employee_id = ptime_employee['id']
