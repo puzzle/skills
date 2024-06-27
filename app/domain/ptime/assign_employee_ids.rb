@@ -6,7 +6,10 @@ module Ptime
     # rubocop:disable Metrics/MethodLength
     # rubocop:disable Metrics/AbcSize
     # rubocop:disable Rails/Output
-    def run
+    # rubocop:disable Metrics/CyclomaticComplexity
+    def run(should_map: false)
+      puts 'Notice this is a dry run and mapping will not happen!' if should_map
+      puts '--------------------------'
       puts 'Fetching required data...'
       ptime_employees = Ptime::Client.new.get('employees', { per_page: 1000 })['data']
       skills_people = Person.all
@@ -35,9 +38,11 @@ module Ptime
         if matched_skills_people.empty?
           unmatched_entries << { name: ptime_employee_name, id: ptime_employee['id'] }
         elsif matched_skills_people.count == 1
-          matched_skills_person = matched_skills_people.first
-          matched_skills_person.ptime_employee_id = ptime_employee['id']
-          matched_skills_person.save!
+          if should_map
+            matched_skills_person = matched_skills_people.first
+            matched_skills_person.ptime_employee_id = ptime_employee['id']
+            matched_skills_person.save!
+          end
           mapped_people_count += 1
         else
           ambiguous_entries << { name: ptime_employee_name, id: ptime_employee['id'] }
@@ -56,5 +61,6 @@ module Ptime
     # rubocop:enable Metrics/MethodLength
     # rubocop:enable Metrics/AbcSize
     # rubocop:enable Rails/Output
+    # rubocop:enable Metrics/CyclomaticComplexity
   end
 end
