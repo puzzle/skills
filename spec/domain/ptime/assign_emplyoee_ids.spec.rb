@@ -80,7 +80,7 @@ describe Ptime::AssignEmployeeIds do
     expect(person_charlie.reload.ptime_employee_id).to eq(45)
   end
 
-  it 'should not match people that are not found' do
+  it 'should not map people that are not found' do
     parsed_employees_json = JSON.parse(employees_json)
     parsed_employees_json['data'].first["attributes"]["firstname"] = "Rochus"
     parsed_employees_json['data'].second["attributes"]["firstname"] = "Melchior"
@@ -99,7 +99,7 @@ describe Ptime::AssignEmployeeIds do
     expect(person_charlie.reload.ptime_employee_id).to eq(45)
   end
 
-  it 'should not match people that are ambiguous' do
+  it 'should not map people that are ambiguous' do
     stub_request(:get, "#{ptime_base_test_url}/api/v1/employees?per_page=1000").
       to_return(body: employees_json, headers: { 'content-type': "application/vnd.api+json; charset=utf-8" }, status: 200)
                                                                  .with(basic_auth: [ptime_api_test_username, ptime_api_test_password])
@@ -118,4 +118,21 @@ describe Ptime::AssignEmployeeIds do
     expect(person_alice.reload.ptime_employee_id).to be_nil
     expect(person_charlie.reload.ptime_employee_id).to be_nil
   end
+
+  it 'should not map people on dry run' do
+    stub_request(:get, "#{ptime_base_test_url}/api/v1/employees?per_page=1000").
+      to_return(body: employees_json, headers: { 'content-type': "application/vnd.api+json; charset=utf-8" }, status: 200)
+                                                                               .with(basic_auth: [ptime_api_test_username, ptime_api_test_password])
+
+    person_longmax = people(:longmax)
+    person_alice = people(:alice)
+    person_charlie = people(:charlie)
+
+    Ptime::AssignEmployeeIds.new.run
+
+    expect(person_longmax.reload.ptime_employee_id).to be_nil
+    expect(person_alice.reload.ptime_employee_id).to be_nil
+    expect(person_charlie.reload.ptime_employee_id).to be_nil
+  end
+
 end
