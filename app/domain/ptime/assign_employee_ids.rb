@@ -3,30 +3,32 @@ require_relative '../../../config/environment'
 # This script will assign each person the corresponding employee ID from PuzzleTime
 module Ptime
   class AssignEmployeeIds
-    # rubocop:disable Metrics/MethodLength
-    # rubocop:disable Metrics/AbcSize
+
     # rubocop:disable Rails/Output
-    # rubocop:disable Metrics/CyclomaticComplexity
     def run(should_map: false)
-      puts 'Notice this is a dry run and mapping will not happen!' if should_map
-      puts '--------------------------'
-      puts 'Fetching required data...'
-      ptime_employees = Ptime::Client.new.get('employees', { per_page: 1000 })['data']
-      skills_people = Person.all
-      puts 'Successfully fetched data'
+      puts 'Notice this is a dry run and mapping will not happen!' unless should_map
+      fetch_data
 
       puts "Currently there are:
-      - #{ptime_employees.length} employees in PuzzleTime
-      - #{skills_people.count} people in PuzzleSkills
-      This is a difference of #{(skills_people.count - ptime_employees.length).abs} entries"
+      - #{@ptime_employees.length} employees in PuzzleTime
+      - #{@skills_people.count} people in PuzzleSkills
+      This is a difference of #{(@skills_people.count - @ptime_employees.length).abs} entries"
+      map_employees(should_map)
+    end
 
+    private
+
+    # rubocop:disable Metrics/MethodLength
+    # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/CyclomaticComplexity
+    def map_employees(should_map)
       puts 'Assigning employee IDs now...'
 
       ambiguous_entries = []
       unmatched_entries = []
       mapped_people_count = 0
 
-      ptime_employees.each do |ptime_employee|
+      @ptime_employees.each do |ptime_employee|
         ptime_employee_firstname = ptime_employee['attributes']['firstname']
         ptime_employee_lastname = ptime_employee['attributes']['lastname']
         ptime_employee_name = "#{ptime_employee_firstname} #{ptime_employee_lastname}"
@@ -60,7 +62,15 @@ module Ptime
     end
     # rubocop:enable Metrics/MethodLength
     # rubocop:enable Metrics/AbcSize
-    # rubocop:enable Rails/Output
     # rubocop:enable Metrics/CyclomaticComplexity
+
+    def fetch_data
+      puts 'Fetching required data...'
+      @ptime_employees = Ptime::Client.new.get('employees', { per_page: 1000 })['data']
+      @skills_people = Person.all
+      puts 'Successfully fetched data'
+    end
+    # rubocop:enable Rails/Output
   end
 end
+

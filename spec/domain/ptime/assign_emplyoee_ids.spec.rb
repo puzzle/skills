@@ -73,7 +73,7 @@ describe Ptime::AssignEmployeeIds do
     person_alice = people(:alice)
     person_charlie = people(:charlie)
 
-    Ptime::AssignEmployeeIds.new.run
+    Ptime::AssignEmployeeIds.new.run(should_map: true)
 
     expect(person_longmax.reload.ptime_employee_id).to eq(33)
     expect(person_alice.reload.ptime_employee_id).to eq(21)
@@ -92,7 +92,7 @@ describe Ptime::AssignEmployeeIds do
     person_alice = people(:alice)
     person_charlie = people(:charlie)
 
-    Ptime::AssignEmployeeIds.new.run
+    Ptime::AssignEmployeeIds.new.run(should_map: true)
 
     expect(person_longmax.reload.ptime_employee_id).to be_nil
     expect(person_alice.reload.ptime_employee_id).to be_nil
@@ -112,7 +112,7 @@ describe Ptime::AssignEmployeeIds do
     person_charlie.email = "alice@example.com"
     person_charlie.save!
 
-    Ptime::AssignEmployeeIds.new.run
+    Ptime::AssignEmployeeIds.new.run(should_map: true)
 
     expect(person_longmax.reload.ptime_employee_id).to eq(33)
     expect(person_alice.reload.ptime_employee_id).to be_nil
