@@ -18,7 +18,7 @@ module Ptime
 
     # rubocop:disable Metrics
     def map_employees(should_map)
-      puts 'Assigning employee IDs now...'
+      puts 'Assigning employee IDs now...' if should_map
 
       ambiguous_entries = []
       unmatched_entries = []
