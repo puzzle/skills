@@ -8,4 +8,9 @@ namespace :ptime do
   task :evaluate_assign => :environment do
     Ptime::AssignEmployeeIds.new.run
   end
+
+  desc 'update person data with the data from ptime'
+  task :update_people => :environment do
+    Ptime::UpdatePeopleData.new.run
+  end
 end
