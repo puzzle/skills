@@ -16,10 +16,17 @@ module Ptime
         skills_person = Person.find_by(ptime_employee_id: ptime_employee['id'])
         skills_person ||= Person.new
 
-        skills_person[:name] = ptime_employee_name
+        skills_person.name = ptime_employee_name
+        skills_person.ptime_employee_id = ptime_employee['id']
         ptime_employee['attributes'].each do |key, value|
-          skills_person[ATTRIBUTE_MAPPING[key.to_sym]] = value if key.to_sym.in?(ATTRIBUTE_MAPPING.keys)
+          if key.to_sym.in?(ATTRIBUTE_MAPPING.keys)
+            skills_person[ATTRIBUTE_MAPPING[key.to_sym]] = value
+          end
         end
+        skills_person.company = Company.first
+        skills_person.birthdate = '1.1.2000'
+        skills_person.location = 'Bern'
+        skills_person.nationality = 'CH'
         skills_person.save!
       end
     end
