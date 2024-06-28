@@ -9,4 +9,12 @@ class ActiveRecord::Base
       ].any?
     end
   end
+
+  def human_attribute_name(*args)
+    attr_name = args.first
+    attr = self.send(attr_name)
+    countable = attr.respond_to?(:count) && attr.method(:count).parameters.empty?
+    args[1] ||= {count: attr.count} if countable
+    self.class.human_attribute_name(*args)
+  end
 end
