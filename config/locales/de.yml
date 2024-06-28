@@ -48,7 +48,17 @@ de:
         other: Organisationseinheiten
     attributes:
       person:
+        name: Name
+        email: Email
+        title: Abschluss
+        person_roles:
+          one: Funktion
+          other: Funktionen
+        languages:
+          one: Sprache
+          other: Sprachen
         picture: Bild
+        tile: 
       advanced_training:
         description: Beschreibung
       education:
