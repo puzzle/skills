@@ -23,13 +23,9 @@ module AuthHelper
   end
 
   def language_selector
-    # test = I18n.available_locales.map do |locale|
-    #   [I18n.t('language.name', locale: locale), locale]
-    # end
     test = I18n.available_locales.map do |locale|
-      [locale, locale]
+      [I18n.t(locale, scope: 'language'), locale]
     end
-
     options_for_select(test, I18n.locale)
   end
 
