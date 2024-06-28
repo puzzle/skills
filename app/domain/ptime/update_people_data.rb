@@ -2,14 +2,23 @@
 
 class UpdatePeopleData
   module Ptime
-    ATTRIBUTES = []
+    ATTRIBUTE_MAPPING = { shortname: :shortname, email: :email, marital_status: :marital_status,
+                          graduation: :title }.freeze
     def run
       ptime_employees = Ptime::Client.new.get('employees', { per_page: 1000 })['data']
-      person_ptime_ids = Person.pluck(:ptime_employee_id)
       ptime_employees.each do |ptime_employee|
-        if ptime_employee['id'].in?(person_ptime_ids)
-          person = Person.where(ptime_employee_id: ptime_employee['id'])
+        ptime_employee_firstname = ptime_employee['attributes']['firstname']
+        ptime_employee_lastname = ptime_employee['attributes']['lastname']
+        ptime_employee_name = "#{ptime_employee_firstname} #{ptime_employee_lastname}"
+
+        skills_person = Person.find_by(ptime_employee_id: ptime_employee['id'])
+        skills_person ||= Person.new
+
+        skills_person[:name] = ptime_employee_name
+        ptime_employee['attributes'].each do |key, value|
+          skills_person[ATTRIBUTE_MAPPING[key]] = value
         end
+        skills_person.save!
       end
     end
   end
