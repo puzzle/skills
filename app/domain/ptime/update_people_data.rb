@@ -17,7 +17,7 @@ module Ptime
         skills_person ||= Person.new
 
         skills_person.name = ptime_employee_name
-        skills_person.ptime_employee_id = ptime_employee['id']
+        skills_person.ptime_employee_id ||= ptime_employee['id']
         ptime_employee['attributes'].each do |key, value|
           if key.to_sym.in?(ATTRIBUTE_MAPPING.keys)
             skills_person[ATTRIBUTE_MAPPING[key.to_sym]] = value
