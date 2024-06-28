@@ -4,6 +4,8 @@ class UpdatePeopleData
   module Ptime
     ATTRIBUTE_MAPPING = { shortname: :shortname, email: :email, marital_status: :marital_status,
                           graduation: :title }.freeze
+
+    # rubocop:disable Metrics
     def run
       ptime_employees = Ptime::Client.new.get('employees', { per_page: 1000 })['data']
       ptime_employees.each do |ptime_employee|
@@ -21,5 +23,6 @@ class UpdatePeopleData
         skills_person.save!
       end
     end
+    # rubocop:enable Metrics
   end
 end
