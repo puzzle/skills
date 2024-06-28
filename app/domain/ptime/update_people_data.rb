@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class UpdatePeopleData
-  module Ptime
+module Ptime
+  class UpdatePeopleData
     ATTRIBUTE_MAPPING = { shortname: :shortname, email: :email, marital_status: :marital_status,
                           graduation: :title }.freeze
 
@@ -18,7 +18,7 @@ class UpdatePeopleData
 
         skills_person[:name] = ptime_employee_name
         ptime_employee['attributes'].each do |key, value|
-          skills_person[ATTRIBUTE_MAPPING[key]] = value
+          skills_person[ATTRIBUTE_MAPPING[key.to_sym]] = value if key.to_sym.in?(ATTRIBUTE_MAPPING.keys)
         end
         skills_person.save!
       end
