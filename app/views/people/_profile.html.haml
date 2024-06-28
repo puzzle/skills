@@ -32,11 +32,11 @@
                 %tr
                   %td -
               %th.fw-normal.text-gray 
-                = @person.human_attribute_name(:department)
+                = Person.human_attribute_name(:department)
               %tr
-                %td.pb-1= @person.department.nil? ? '-' : @person.department.name
+                %td.pb-1= @person.department.name || "-"
               %th.fw-normal.text-gray 
-                = @person.human_attribute_name(:company)
+                = Person.human_attribute_name(:company)
               %tr
                 %td= @person.company.name
         %div.pe-5.col-xl-3.col-12
@@ -45,22 +45,29 @@
               %th.fw-normal.text-gray
                 = @person.human_attribute_name(:birthdate)
               %tr
-                %td.pb-1= @person.birthdate.to_date.strftime('%d.%m.%Y')
-              %th.fw-normal.text-gray Nationalität
+                %td.pb-1
+                  = @person.birthdate.to_date.strftime('%d.%m.%Y')
+              %th.fw-normal.text-gray 
+                = @person.human_attribute_name(:nationality)
               %tr
-                %td.text-break.pb-1= nationality_string(@person.nationality, @person.nationality2)
-              %th.fw-normal.text-gray Wohnort (Stadt)
+                %td.text-break.pb-1
+                  = nationality_string(@person.nationality, @person.nationality2)
+              %th.fw-normal.text-gray 
+                = @person.human_attribute_name(:location)
               %tr
                 %td.text-break.pb-1= @person.location
-              %th.fw-normal.text-gray Zivilstand
+              %th.fw-normal.text-gray 
+                = @person.human_attribute_name(:marital_status)
               %tr
                 %td.pb-1= t("marital_statuses.#{@person.marital_status}")
-              %th.fw-normal.text-gray Kürzel
+              %th.fw-normal.text-gray 
+                = @person.human_attribute_name(:shortname)
               %tr
-                %td= @person.shortname.blank? ? '-' : @person.shortname
+                %td= @person.shortname || "-"
 
         %div.col-xl-3.col-12
-          %div.fw-normal.text-gray Sprachen
+          %div.fw-normal.text-gray 
+            = @person.human_attribute_name(:language_skills)
           %div.border.border-dark-subtle.mt-1.p-2.rounded.w-min-content
             %table
               %tbody
