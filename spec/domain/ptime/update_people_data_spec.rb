@@ -3,7 +3,6 @@ require 'rails_helper'
 ptime_base_test_url = "www.ptime.example.com"
 ptime_api_test_username = "test username"
 ptime_api_test_password = "test password"
-ENV["PTIME_BASE_URL"] = ptime_base_test_url
 ENV["PTIME_API_USERNAME"] = ptime_api_test_username
 ENV["PTIME_API_PASSWORD"] = ptime_api_test_password
 
@@ -64,6 +63,10 @@ describe Ptime::UpdatePeopleData do
     ]
   }.to_json
 
+  before(:each) do
+    ENV["PTIME_BASE_URL"] = ptime_base_test_url
+  end
+
   it 'should update the data of existing people after mapping' do
     stub_request(:get, "#{ptime_base_test_url}/api/v1/employees?per_page=1000").
       to_return(body: employees_json, headers: { 'content-type': "application/vnd.api+json; charset=utf-8" }, status: 200)
@@ -92,9 +95,6 @@ describe Ptime::UpdatePeopleData do
   end
 
   it 'should create new person when person does not exist' do
-    ATTRIBUTE_MAPPING = { shortname: :shortname, email: :email, marital_status: :marital_status,
-                          graduation: :title }.freeze
-
     new_employee = {
       'data': [
         {
