@@ -74,4 +74,8 @@
             %span
               = yield :actions
           = content_for?(:content) ? yield(:content) : yield
+          
+          = form_with url: change_locale_path, method: :post, local: true do |f|
+            = f.select :locale, language_selector, {}, onchange: 'this.form.submit();', class: "form-control"
+
           = turbo_frame_tag "remote_modal", target: "_top"
