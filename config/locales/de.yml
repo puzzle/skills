@@ -1,4 +1,7 @@
 de:
+  language: 
+    de: "Deutsch"
+    en: "Englisch"
   errors:
     profile-not-found: Profil konnte nicht gefunden werden.
     messages:
