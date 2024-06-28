@@ -10,16 +10,20 @@
         %div.pe-5.col-xl-3.col-12
           %table.fixed-table
             %tbody
-              %th.fw-normal.text-gray Name
+              %th.fw-normal.text-gray 
+                = @person.human_attribute_name(:name)
               %tr
                 %td.text-break.pb-1= @person.name
-              %th.fw-normal.text-gray Email
+              %th.fw-normal.text-gray
+                = @person.human_attribute_name(:email)
               %tr
                 %td.text-break.pb-1= @person.email
-              %th.fw-normal.text-gray Abschluss
+              %th.fw-normal.text-gray 
+                = @person.human_attribute_name(:title)
               %tr
                 %td.text-break.pb-1= @person.title
-              %th.fw-normal.text-gray Funktion
+              %th.fw-normal.text-gray 
+                = @person.human_attribute_name(:person_roles)
               - unless @person.person_roles.empty?
                 - @person.person_roles.each do |person_role|
                   %tr
@@ -27,16 +31,19 @@
               - else
                 %tr
                   %td -
-              %th.fw-normal.text-gray Organisationseinheit
+              %th.fw-normal.text-gray 
+                = @person.human_attribute_name(:department)
               %tr
                 %td.pb-1= @person.department.nil? ? '-' : @person.department.name
-              %th.fw-normal.text-gray Firma
+              %th.fw-normal.text-gray 
+                = @person.human_attribute_name(:company)
               %tr
                 %td= @person.company.name
         %div.pe-5.col-xl-3.col-12
           %table.fixed-table
             %tbody
-              %th.fw-normal.text-gray Geburtsdatum
+              %th.fw-normal.text-gray
+                = @person.human_attribute_name(:birthdate)
               %tr
                 %td.pb-1= @person.birthdate.to_date.strftime('%d.%m.%Y')
               %th.fw-normal.text-gray Nationalität
