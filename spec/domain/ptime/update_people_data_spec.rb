@@ -18,7 +18,7 @@ describe Ptime::UpdatePeopleData do
           'firstname': 'Longmax',
           'lastname': 'Smith',
           'email': 'longmax@example.com',
-          'single': 'single',
+          'marital_status': 'single',
           'nationalities': [
             'ZW'
           ],
@@ -35,7 +35,7 @@ describe Ptime::UpdatePeopleData do
           'firstname': 'Alice',
           'lastname': 'Mante',
           'email': 'alice@example.com',
-          'single': 'single',
+          'marital_status': 'single',
           'nationalities': [
             'AU'
           ],
@@ -52,7 +52,7 @@ describe Ptime::UpdatePeopleData do
           'firstname': 'Charlie',
           'lastname': 'Ford',
           'email': 'charlie@example.com',
-          'single': 'married',
+          'marital_status': 'married',
           'nationalities': [
             'GB'
           ],
@@ -75,10 +75,6 @@ describe Ptime::UpdatePeopleData do
 
     Ptime::AssignEmployeeIds.new.run(should_map: true)
 
-    person_longmax.reload
-    person_alice.reload
-    person_charlie.reload
-
     parsed_employees_json = JSON.parse(employees_json)
     parsed_employees_json['data'].first["attributes"]["email"] = "changedmax@example.com"
     parsed_employees_json['data'].second["attributes"]["graduation"] = "MSc in some other field"
@@ -93,5 +89,54 @@ describe Ptime::UpdatePeopleData do
     expect(person_longmax.reload.email).to eq("changedmax@example.com")
     expect(person_alice.reload.title).to eq("MSc in some other field")
     expect(person_charlie.reload.name).to eq("Claudius Ford")
+  end
+
+  it 'should create new person when person does not exist' do
+    ATTRIBUTE_MAPPING = { shortname: :shortname, email: :email, marital_status: :marital_status,
+                          graduation: :title }.freeze
+
+    new_employee = {
+      'data': [
+        {
+          'id': 33,
+          'type': 'employee',
+          'attributes': {
+            'shortname': 'PFI',
+            'firstname': 'Peterson',
+            'lastname': 'Findus',
+            'email': 'peterson@example.com',
+            'marital_status': 'single',
+            'nationalities': [
+              'ZW'
+            ],
+            'graduation': 'Cat caretaker',
+            'department_shortname': 'CAT',
+            'employment_roles': []
+          }
+        }
+      ]
+    }
+
+    stub_request(:get, "#{ptime_base_test_url}/api/v1/employees?per_page=1000").
+      to_return(body: new_employee.to_json, headers: { 'content-type': "application/vnd.api+json; charset=utf-8" }, status: 200)
+                                                                               .with(basic_auth: [ptime_api_test_username, ptime_api_test_password])
+
+    Ptime::AssignEmployeeIds.new.run(should_map: true)
+    Ptime::UpdatePeopleData.new.run
+
+    new_employee_attributes = new_employee[:data].first[:attributes]
+    new_employee_name = "#{new_employee_attributes[:firstname]} #{new_employee_attributes[:lastname]}"
+    created_person = Person.find_by(name: new_employee_name)
+    expect(created_person).not_to be_nil
+    expect(created_person.ptime_employee_id).to eq(new_employee[:data].first[:id])
+    expect(created_person.shortname).to eq(new_employee_attributes[:shortname])
+    expect(created_person.name).to eq(new_employee_name)
+    expect(created_person.email).to eq(new_employee_attributes[:email])
+    expect(created_person.marital_status).to eq(new_employee_attributes[:marital_status])
+    expect(created_person.title).to eq(new_employee_attributes[:graduation])
+    expect(created_person.company).to eq(Company.first)
+    expect(created_person.birthdate).to eq('1.1.2000')
+    expect(created_person.location).to eq('Bern')
+    expect(created_person.nationality).to eq('CH')
   end
 end

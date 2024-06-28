@@ -18,7 +18,7 @@ describe Ptime::Client do
             'firstname': 'Longmax',
             'lastname': 'Smith',
             'email': 'longmax@example.com',
-            'single': 'single',
+            'marital_status': 'single',
             'nationalities': [
               'ZW'
             ],
@@ -35,7 +35,7 @@ describe Ptime::Client do
             'firstname': 'Alice',
             'lastname': 'Mante',
             'email': 'alice@example.com',
-            'single': 'single',
+            'marital_status': 'single',
             'nationalities': [
               'AU'
             ],
@@ -52,7 +52,7 @@ describe Ptime::Client do
             'firstname': 'Charlie',
             'lastname': 'Ford',
             'email': 'charlie@example.com',
-            'single': 'married',
+            'marital_status': 'married',
             'nationalities': [
               'GB'
             ],
