@@ -16,9 +16,7 @@ module Ptime
 
     private
 
-    # rubocop:disable Metrics/MethodLength
-    # rubocop:disable Metrics/AbcSize
-    # rubocop:disable Metrics/CyclomaticComplexity
+    # rubocop:disable Metrics
     def map_employees(should_map)
       puts 'Assigning employee IDs now...'
 
@@ -58,9 +56,7 @@ module Ptime
       puts "#{ambiguous_entries.size} people ambiguous matched"
       ambiguous_entries.each { |entry| puts "- #{entry[:name]} with id #{entry[:id]}" }
     end
-    # rubocop:enable Metrics/MethodLength
-    # rubocop:enable Metrics/AbcSize
-    # rubocop:enable Metrics/CyclomaticComplexity
+    # rubocop:enable Metrics
 
     def fetch_data
       puts 'Fetching required data...'
