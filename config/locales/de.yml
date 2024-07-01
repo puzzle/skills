@@ -3,32 +3,19 @@ de:
     de: "Deutsch"
     en: "Englisch"
   errors:
-    profile-not-found: Profil konnte nicht gefunden werden.
     messages:
+      profile-not-found: Profil konnte nicht gefunden werden.
       max_size_error: sollte nicht grösser als 10MB sein.
   helpers:
     submit:
       edit: "%{model} bearbeiten"
       add: "%{model} hinzufügen"
-      cancel: Abbrechen
       delete: Löschen
       save-and-new: Speichern & Neu
-    button:
-      edit: Bearbeiten
+    cancel: Abbrechen
   profile:
-    personal-data: Personalien
-    core-competences: Kernkompetenzen
-    educations: Ausbildungen
-    advanced-trainings: Weiterbildungen
-    activities: Stationen
-    projects: Projekte
     updated_at: Zuletzt bearbeitet
     no_skills_rated_msg: Dieses Profil hat noch keine bewerteten Skills. Gehe zum Skills Tab und bewerte die für dich relevanten Skills.
-  attributes:
-    year_from: Jahr von
-    year_to: Jahr bis
-    month_from: Monat von
-    month_to: Monat bis
   activerecord:
     models:
       advanced_training: Weiterbildung
@@ -58,7 +45,8 @@ de:
           one: Sprache
           other: Sprachen
         picture: Bild
-        tile: 
+        competence_notes: Notizen Member
+        dual_citizen: Doppelbürger
       advanced_training:
         description: Beschreibung
       education:
@@ -75,6 +63,13 @@ de:
   admin:
     panel:
       title: Admin Panel
+  people:
+    profile:
+      personals: Personalien
+      upload_image: Bild hochladen
+      change_image: Bild ändern
+    skills:
+      core_competences: Kernkompetenzen
   skills:
     header:
       all: Alle
