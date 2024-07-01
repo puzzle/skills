@@ -37,5 +37,7 @@ module Skills
 
     config.assets.enabled = true
     config.assets.paths << Rails.root.join("uploads")
+
+    config.active_job.queue_adapter = :delayed_job
   end
 end
