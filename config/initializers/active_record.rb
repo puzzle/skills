@@ -13,8 +13,7 @@ class ActiveRecord::Base
   def human_attribute_name(*args)
     attr_name = args.first
     attr = self.send(attr_name)
-    countable = attr.respond_to?(:count) && attr.method(:count).parameters.empty?
-    args[1] ||= {count: attr.count} if countable
+    args[1] ||= {count: attr.length} if attr.respond_to?(:length)
     self.class.human_attribute_name(*args)
   end
 end
