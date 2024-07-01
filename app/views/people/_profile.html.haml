@@ -32,11 +32,11 @@
                 %tr
                   %td -
               %th.fw-normal.text-gray 
-                = Person.human_attribute_name(:department)
+                = @person.human_attribute_name(:department)
               %tr
                 %td.pb-1= @person.department.name || "-"
               %th.fw-normal.text-gray 
-                = Person.human_attribute_name(:company)
+                = @person.human_attribute_name(:company)
               %tr
                 %td= @person.company.name
         %div.pe-5.col-xl-3.col-12
