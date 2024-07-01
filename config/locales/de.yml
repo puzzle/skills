@@ -68,6 +68,8 @@ de:
       personals: Personalien
       upload_image: Bild hochladen
       change_image: Bild ändern
+      add_language: Sprache hinzufügen
+      add_function: Funktion hinzufügen
     skills:
       core_competences: Kernkompetenzen
   skills:
