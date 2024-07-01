@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_auth_user!
   before_action :set_first_path!
   around_action :switch_locale
+  default_form_builder SkillsFormBuilder
 
   def change_locale
     origin_url = request.referer || request.origin
