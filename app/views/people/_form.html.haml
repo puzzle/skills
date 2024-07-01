@@ -38,7 +38,7 @@
                 %td= render "person_role_fields", f: person_role
             %tr
               %td{"data-controller"=>"dynamic-fields"}
-                = link_to_add_field "Neue Funktion", form, :person_roles
+                = link_to_add_field t("people.profile.add_function"), form, :person_roles
 
           %th.fw-normal 
             = form.label :department
@@ -87,7 +87,7 @@
         = form.fields_for :language_skills, sort_languages(@person.language_skills) do |language_skill|
           = render "language_skill_fields", f: language_skill
         %div{"data-controller"=>"dynamic-fields"}
-          = link_to_add_field "Add Language", form, :language_skills
+          = link_to_add_field t("people.profile.add_language"), form, :language_skills
 
   %div.mt-3
     = form.submit class: "btn btn-primary me-3 bg-skills-blue", id: "save-button"
