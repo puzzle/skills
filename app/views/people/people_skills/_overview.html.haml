@@ -1,5 +1,5 @@
 %p.d-flex.align-items-center.profile-header
-  Skills
+  = PeopleSkill.model_name.human(count:2)
   ="(#{@person.people_skills.count})"
 
 %div.ms-3
