@@ -59,6 +59,13 @@ module ActionsHelper
     action_link(ti('link.add'), 'plus', path)
   end
 
+  def add_action_link_modal(path = nil, url_options = {})
+    path ||= path_args(model_class)
+    path = new_polymorphic_path(path, url_options) unless path.is_a?(String)
+    options = { data: { turbo_frame: 'remote_modal' } }
+    action_link(ti('link.add'), 'plus', path, options)
+  end
+
   def export_action_link(path, options = {})
     action_link(ti('link.export'), 'export', path, options)
   end
