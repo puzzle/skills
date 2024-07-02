@@ -59,4 +59,8 @@ module ActionsHelper
     action_link(ti('link.add'), 'plus', path)
   end
 
+  def export_action_link(path, options = {})
+    action_link(ti('link.export'), 'export', path, options)
+  end
+
 end
