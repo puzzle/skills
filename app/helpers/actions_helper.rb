@@ -53,10 +53,10 @@ module ActionsHelper
 
   # Standard add action to given path.
   # Uses the current +model_class+ if no path is given.
-  def add_action_link(path = nil, url_options = {})
+  def add_action_link(path = nil, url_options = {}, html_options = {})
     path ||= path_args(model_class)
     path = new_polymorphic_path(path, url_options) unless path.is_a?(String)
-    action_link(ti('link.add'), 'plus', path)
+    action_link(ti('link.add'), 'plus', path, html_options)
   end
 
   def add_action_link_modal(path = nil, url_options = {})
