@@ -3,6 +3,7 @@ de:
     link:
       add: "%{model} erstellen"
       edit: Bearbeiten
+      cancel: Abbrechen
   language: 
     de: "Deutsch"
     en: "Englisch"
@@ -96,12 +97,11 @@ de:
         trainee: Trainee
         download: Herunterladen
     people_skills:
-      global: 
-        link:
-          # add: Test
       edit_form:
         rate: Bewerten
         unrate: Nicht bewerten
+      index:
+        new_skills_to_rate: Neue Skills zur Bewertung
       
   skills:
     header:

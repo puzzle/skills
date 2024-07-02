@@ -70,4 +70,11 @@ module ActionsHelper
     action_link(ti('link.export'), 'export', path, options)
   end
 
+  def close_action_link(path, options = {})
+    action_link('', 'close', path, options)
+  end
+
+  def cancel_action_link(path, options = {})
+    action_link(ti('link.cancel'), '', path, options)
+  end
 end
