@@ -29,10 +29,10 @@ module Ptime
         skills_person.nationality = 'CH'
         skills_person.save!
 
-        # Ptime::UpdatePeopleData.run
+        Ptime::UpdatePeopleData.run
       end
     end
     # rubocop:enable Metrics
-    # handle_asynchronously :run, :run_at => Proc.new { 15.minutes.from_now }
+    handle_asynchronously :run, :run_at => proc { 15.minutes.from_now }
   end
 end
