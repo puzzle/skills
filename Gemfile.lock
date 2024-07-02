@@ -82,6 +82,7 @@ GEM
     ast (2.4.2)
     base64 (0.2.0)
     bcrypt (3.1.20)
+    bigdecimal (3.1.8)
     bindata (2.5.0)
     bleib (0.0.8)
     bootsnap (1.18.3)
@@ -118,9 +119,13 @@ GEM
       deep_merge (~> 1.2, >= 1.2.1)
     countries (6.0.0)
       unaccent (~> 0.3)
+    crack (1.0.0)
+      bigdecimal
+      rexml
     crass (1.0.6)
     cssbundling-rails (1.4.0)
       railties (>= 6.0.0)
+    daemons (1.4.1)
     database_cleaner (2.0.2)
       database_cleaner-active_record (>= 2, < 3)
     database_cleaner-active_record (2.1.0)
@@ -129,6 +134,11 @@ GEM
     database_cleaner-core (2.0.1)
     date (3.3.4)
     deep_merge (1.2.2)
+    delayed_job (4.1.11)
+      activesupport (>= 3.0, < 8.0)
+    delayed_job_active_record (4.1.8)
+      activerecord (>= 3.0, < 8.0)
+      delayed_job (>= 3.0, < 5)
     devise (4.9.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -166,6 +176,7 @@ GEM
       rainbow
       rubocop (>= 1.0)
       sysexits (~> 1.1)
+    hashdiff (1.1.0)
     hashie (5.0.0)
     http-accept (1.7.0)
     http-cookie (1.0.5)
@@ -444,6 +455,10 @@ GEM
     version_gem (1.1.4)
     warden (1.2.9)
       rack (>= 2.0.9)
+    webmock (3.23.1)
+      addressable (>= 2.8.0)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
     websocket (1.2.10)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
@@ -469,7 +484,9 @@ DEPENDENCIES
   config
   countries
   cssbundling-rails
+  daemons
   database_cleaner
+  delayed_job_active_record
   devise
   dotenv
   faker
@@ -517,6 +534,7 @@ DEPENDENCIES
   stimulus-rails
   turbo-rails
   tzinfo-data
+  webmock
 
 BUNDLED WITH
    2.4.10
