@@ -12,11 +12,15 @@ module I18nHelper
   #  - {parent_controller}.global.{key}
   #  - ...
   #  - global.{key}
-  def translate_inheritable(key, variables = {})
+  def translate_inheritable(key, variables = {}) # rubocop:disable Metrics/CyclomaticComplexity,Metrics/AbcSize
     partial = defined?(@virtual_path) ? @virtual_path.gsub(/.*\/_?/, '') : nil
     defaults = inheritable_translation_defaults(key, partial)
+    defaults = defaults.collect(&:to_s).flat_map do |e|
+      e.include?('/') ? [e, e.gsub('/', '.')] : [e]
+    end.collect(&:to_sym)
     variables[:default] ||= defaults
-    t(defaults.shift, **variables)
+    variables[:model] = model_class.model_name.human
+    t(defaults.shift, **variables).upcase_first
   end
 
   alias ti translate_inheritable
