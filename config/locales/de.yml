@@ -1,4 +1,8 @@
 de:
+  global:
+    link: 
+      edit: Bearbeiten
+  language: 
   language: 
     de: "Deutsch"
     en: "Englisch"
@@ -47,6 +51,7 @@ de:
         picture: Bild
         competence_notes: Notizen Member
         dual_citizen: Doppelbürger
+        location: Ort
       advanced_training:
         description: Beschreibung
       education:
@@ -70,8 +75,15 @@ de:
       change_image: Bild ändern
       add_language: Sprache hinzufügen
       add_function: Funktion hinzufügen
-    skills:
       core_competences: Kernkompetenzen
+    export_cv:
+      export_form:
+        location: "Niederlassung (für Footer):"
+        competences_skills: Kernkompetenzen - Skills
+        skills_by_level: Skills nach Level
+        anonymised_cv: Anonymisierter CV
+        trainee: Trainee
+        download: Herunterladen
   skills:
     header:
       all: Alle
