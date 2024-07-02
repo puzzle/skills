@@ -1,8 +1,8 @@
 de:
   global:
-    link: 
+    link:
+      add: "%{model} erstellen"
       edit: Bearbeiten
-  language: 
   language: 
     de: "Deutsch"
     en: "Englisch"
@@ -26,8 +26,12 @@ de:
       education: Ausbildung
       activity: Station
       project: Projekt
-      skill: Skill
-      people_skill: Skill
+      skill: 
+        one: Skill
+        other: Skills
+      people_skill:
+        one: Skill
+        other: Skills
       role:
         one: Rolle
         other: Rollen
@@ -65,6 +69,13 @@ de:
         description: Beschreibung
         role: Rolle und Aufgaben
         technology: Eingesetzte Technologien
+      people_skill:
+        skill: Skill
+        level: Level
+        core_competence: Kernkompetenz
+        certificate: Zertifikat
+      skill:
+        category: Kategorie
   admin:
     panel:
       title: Admin Panel
@@ -84,6 +95,14 @@ de:
         anonymised_cv: Anonymisierter CV
         trainee: Trainee
         download: Herunterladen
+    people_skills:
+      global: 
+        link:
+          # add: Test
+      edit_form:
+        rate: Bewerten
+        unrate: Nicht bewerten
+      
   skills:
     header:
       all: Alle
