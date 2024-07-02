@@ -1,39 +1,40 @@
 de:
+  global:
+    link:
+      add: "%{model} erstellen"
+      edit: Bearbeiten
+      cancel: Abbrechen
+      delete: Löschen
+      save_new: Speichern & Neu
+  language: 
+    de: "Deutsch"
+    en: "Englisch"
   errors:
-    profile-not-found: Profil konnte nicht gefunden werden.
     messages:
+      profile-not-found: Profil konnte nicht gefunden werden.
       max_size_error: sollte nicht grösser als 10MB sein.
   helpers:
     submit:
       edit: "%{model} bearbeiten"
       add: "%{model} hinzufügen"
-      cancel: Abbrechen
-      delete: Löschen
-      save-and-new: Speichern & Neu
-    button:
-      edit: Bearbeiten
+      delete: Löschen 
+    cancel: Abbrechen
   profile:
-    personal-data: Personalien
-    core-competences: Kernkompetenzen
-    educations: Ausbildungen
-    advanced-trainings: Weiterbildungen
-    activities: Stationen
-    projects: Projekte
     updated_at: Zuletzt bearbeitet
-    no_skills_rated_msg: Dieses Profil hat noch keine bewerteten Skills. Gehe zum Skills Tab und bewerte die für dich relevanten Skills.
-  attributes:
-    year_from: Jahr von
-    year_to: Jahr bis
-    month_from: Monat von
-    month_to: Monat bis
   activerecord:
     models:
       advanced_training: Weiterbildung
-      education: Ausbildung
+      education: 
+        one: Ausbildung
+        other: Ausbildungen
       activity: Station
       project: Projekt
-      skill: Skill
-      people_skill: Skill
+      skill: 
+        one: Skill
+        other: Skills
+      people_skill:
+        one: Skill
+        other: Skills
       role:
         one: Rolle
         other: Rollen
@@ -45,7 +46,19 @@ de:
         other: Organisationseinheiten
     attributes:
       person:
+        name: Name
+        email: Email
+        title: Abschluss
+        person_roles:
+          one: Funktion
+          other: Funktionen
+        languages:
+          one: Sprache
+          other: Sprachen
         picture: Bild
+        competence_notes: Notizen Member
+        dual_citizen: Doppelbürger
+        location: Ort
       advanced_training:
         description: Beschreibung
       education:
@@ -59,9 +72,40 @@ de:
         description: Beschreibung
         role: Rolle und Aufgaben
         technology: Eingesetzte Technologien
+      people_skill:
+        skill: Skill
+        level: Level
+        core_competence: Kernkompetenz
+        certificate: Zertifikat
+      skill:
+        category: Kategorie
   admin:
     panel:
       title: Admin Panel
+  people:
+    profile:
+      personals: Personalien
+      upload_image: Bild hochladen
+      change_image: Bild ändern
+      add_language: Sprache hinzufügen
+      add_function: Funktion hinzufügen
+      core_competences: Kernkompetenzen
+    export_cv:
+      export_form:
+        location: "Niederlassung (für Footer):"
+        competences_skills: Kernkompetenzen - Skills
+        skills_by_level: Skills nach Level
+        anonymised_cv: Anonymisierter CV
+        trainee: Trainee
+        download: Herunterladen
+    people_skills:
+      edit_form:
+        rate: Bewerten
+        unrate: Nicht bewerten
+      index:
+        new_skills_to_rate: Neue Skills zur Bewertung
+    cv:
+      no_skills_rated_msg: Dieses Profil hat noch keine bewerteten Skills. Gehe zum Skills Tab und bewerte die für dich relevanten Skills.
   skills:
     header:
       all: Alle

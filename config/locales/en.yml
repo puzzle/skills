@@ -1,4 +1,7 @@
 en:
+  language:
+    de: German
+    en: English
   errors:
     profile-not-found: Profile could not be found.
   helpers:

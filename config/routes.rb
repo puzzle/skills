@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     get 'health', to: 'status#health'
     get 'readiness', to: 'status#readiness'
   end
+  post 'change_locale', to: 'application#change_locale'
+
 
   resources :cv_search
 

@@ -167,11 +167,22 @@ GEM
       rubocop (>= 1.0)
       sysexits (~> 1.1)
     hashie (5.0.0)
+    highline (3.0.1)
     http-accept (1.7.0)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
     i18n (1.14.4)
       concurrent-ruby (~> 1.0)
+    i18n-tasks (1.0.14)
+      activesupport (>= 4.0.2)
+      ast (>= 2.1.0)
+      erubi
+      highline (>= 2.0.0)
+      i18n
+      parser (>= 3.2.2.1)
+      rails-i18n
+      rainbow (>= 2.2.2, < 4.0)
+      terminal-table (>= 1.5.1)
     i18n_data (0.17.1)
       simple_po_parser (~> 1.1)
     image_processing (1.12.2)
@@ -428,6 +439,8 @@ GEM
     strscan (3.1.0)
     sysexits (1.2.0)
     temple (0.10.3)
+    terminal-table (3.0.2)
+      unicode-display_width (>= 1.1.1, < 3)
     thor (1.3.1)
     tilt (2.3.0)
     timeout (0.4.1)
@@ -475,6 +488,7 @@ DEPENDENCIES
   faker
   haml-rails
   haml_lint
+  i18n-tasks (~> 1.0.14)
   i18n_data
   jsbundling-rails
   language_list
