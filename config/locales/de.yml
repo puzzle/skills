@@ -4,6 +4,8 @@ de:
       add: "%{model} erstellen"
       edit: Bearbeiten
       cancel: Abbrechen
+      delete: Löschen
+      save_new: Speichern & Neu
   language: 
     de: "Deutsch"
     en: "Englisch"
@@ -15,16 +17,16 @@ de:
     submit:
       edit: "%{model} bearbeiten"
       add: "%{model} hinzufügen"
-      delete: Löschen
-      save-and-new: Speichern & Neu
+      delete: Löschen 
     cancel: Abbrechen
   profile:
     updated_at: Zuletzt bearbeitet
-    no_skills_rated_msg: Dieses Profil hat noch keine bewerteten Skills. Gehe zum Skills Tab und bewerte die für dich relevanten Skills.
   activerecord:
     models:
       advanced_training: Weiterbildung
-      education: Ausbildung
+      education: 
+        one: Ausbildung
+        other: Ausbildungen
       activity: Station
       project: Projekt
       skill: 
@@ -102,7 +104,8 @@ de:
         unrate: Nicht bewerten
       index:
         new_skills_to_rate: Neue Skills zur Bewertung
-      
+    cv:
+      no_skills_rated_msg: Dieses Profil hat noch keine bewerteten Skills. Gehe zum Skills Tab und bewerte die für dich relevanten Skills.
   skills:
     header:
       all: Alle
