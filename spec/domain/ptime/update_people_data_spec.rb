@@ -105,7 +105,7 @@ describe Ptime::UpdatePeopleData do
       to_return(body: employees.to_json, headers: { 'content-type': "application/vnd.api+json; charset=utf-8" }, status: 200)
                                                                                .with(basic_auth: [ptime_api_test_username, ptime_api_test_password])
 
-    Ptime::UpdatePeopleData.new.run_without_delay
+    Ptime::UpdatePeopleData.new.run
 
     expect(person_longmax.reload.email).to eq("changedmax@example.com")
     expect(person_alice.reload.title).to eq("MSc in some other field")
@@ -141,7 +141,7 @@ describe Ptime::UpdatePeopleData do
                                                                                .with(basic_auth: [ptime_api_test_username, ptime_api_test_password])
 
     Ptime::AssignEmployeeIds.new.run(should_map: true)
-    Ptime::UpdatePeopleData.new.run_without_delay
+    Ptime::UpdatePeopleData.new.run
 
     new_employee_attributes = new_employee[:data].first[:attributes]
     new_employee_name = "#{new_employee_attributes[:firstname]} #{new_employee_attributes[:lastname]}"
