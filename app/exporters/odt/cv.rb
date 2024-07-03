@@ -175,7 +175,7 @@ module Odt
     # rubocop:enable Metrics/MethodLength
 
     def skills_by_level(level_value)
-      person.people_skills.where('level >= ?', level_value)
+      person.people_skills.where(level: level_value..)
     end
 
     def competence_notes_list

@@ -3,6 +3,7 @@ require:
   - rubocop-rspec
   - rubocop-capybara
   - rubocop-rspec_rails
+  - ./lib/custom_cops/translated_haml_files
 
 AllCops:
   NewCops: enable
@@ -177,3 +178,6 @@ Style/FrozenStringLiteralComment:
 
 Style/Attr:
   Enabled: false
+
+CustomCops/TranslatedHamlFiles:
+  Enabled: true
