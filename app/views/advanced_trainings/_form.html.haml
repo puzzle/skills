@@ -1,5 +1,5 @@
 = form_with model: ([entry.person, entry]) do |f|
   = render('people/person_relations/form', form: f) do
     - content_for :input do
-      = t "activerecord.attributes.advanced_training.description"
+      = f.label :description
       = f.text_area :description, placeholder: "Description", class: "form-control w-100"
