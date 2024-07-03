@@ -9,19 +9,18 @@
         %label.btn.btn-outline-primary{"data-skillset-selected-target": "selectButton",
         "data-action": "click->skillset-selected#selectButton", "data-skillset-selected-id-param": 0}
           = form.radio_button :defaultSet, false, onClick: "this.form.requestSubmit()", class: "d-none"
-          = t('skills.header.all')
+          = ti('all')
         %label.btn.btn-outline-primary{"data-skillset-selected-target": "selectButton",
         "data-action": "click->skillset-selected#selectButton", "data-skillset-selected-id-param": 1}
           = form.radio_button :defaultSet, "new", onClick: "this.form.requestSubmit()", class: "d-none"
-          = t('skills.header.new')
+          = ti('new')
         %label.btn.btn-outline-primary{"data-skillset-selected-target": "selectButton",
         "data-action": "click->skillset-selected#selectButton", "data-skillset-selected-id-param": 2}
           = form.radio_button :defaultSet, true, onClick: "this.form.requestSubmit()", class: "d-none"
-          = t('skills.header.default')
+          = ti('default')
       %span.d-flex.align-items-center.flex-wrap
         %span.text-gray.me-1
-          = "#{t('skills.header.category')}:"
+          = "#{ti('category')}:"
         = form.collection_select :category, Category.all_parents.order(:title), :id, :title, {include_blank: "Select a category"}, class: "form-select fit-content", onchange: 'this.form.requestSubmit();'
-      =link_to image_tag("download.svg")+ "Export", export_skills_path, class: "btn text-primary d-flex p-0 center-xy"
-      =link_to image_tag("plus-lg.svg")+ "Neuer Skill",
-        new_skill_path, class: "btn text-primary p-0 d-flex center-xy", data: { turbo_frame: "remote_modal" }
+      = export_action_link  export_skills_path
+      = add_action_link_modal
