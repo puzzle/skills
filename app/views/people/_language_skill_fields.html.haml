@@ -6,10 +6,11 @@
     %div.visually-hidden= f.collection_select :language, common_languages_translated, :first, :last, { selected: f.object.language }
   %div.d-flex
     %div.w-25.me-2
-      %div Level
+        = f.label :level
       %div= f.collection_select :level, language_skill_levels, :itself, :itself, {}, class: "form-select mw-100 language-level-select"
     %div.w-75
-      %div Zertifikat
+      = f.label :certificate
       %div= f.text_field :certificate, class: "mw-100 form-control language-certificate-input"
   - unless uneditable_language?(f.object.language)
-    %div{"data-controller"=>"dynamic-fields"}= link_to "Remove", "#", { class: "remove_fields", 'data-action' => 'dynamic-fields#removeField lang-selection#setOptionState' }
+    %div{"data-controller"=>"dynamic-fields"}
+      = link_to "Remove", "#", { class: "remove_fields", 'data-action' => 'dynamic-fields#removeField lang-selection#setOptionState' }
