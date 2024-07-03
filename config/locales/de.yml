@@ -1,5 +1,8 @@
 de:
   global:
+    new: Neu
+    yes: Ja
+    no: Nein
     link:
       add: "%{model} erstellen"
       edit: Bearbeiten
@@ -124,21 +127,24 @@ de:
       personals: Personalien
 
   skills:
+    global:
+      table:
+        skill: Skill
+        members: Mitglieder
+        category: Kategorie
+        subcategory: Subkategorie
+        default_set: Default-Set
+        radar: Radar
+        portfolio: Portfolio
+        modify: Ändern
+    show: 
+      title: "Skill: %{title} (%{amount} Members)"
     header:
       all: Alle
       new: Neue
       default: Default
       category: Kategorie
       search: Skills suchen
-    table:
-      skill: Skill
-      members: Mitglieder
-      category: Kategorie
-      subcategory: Subkategorie
-      default_set: Default-Set
-      radar: Radar
-      portfolio: Portfolio
-      modify: Ändern
   marital_statuses:
     single: ledig
     married: verheiratet

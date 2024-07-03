@@ -1,4 +1,2 @@
-%div
-  %h1.font-bold.text-2xl.mb-3 Editing Skill
-  %turbo-frame{id: "#{dom_id @skill}"}
-    = render "skills/row", skill: @skill
+%turbo-frame{id: "#{dom_id @skill}"}
+  = render "skills/row", skill: @skill

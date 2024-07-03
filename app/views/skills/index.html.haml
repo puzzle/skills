@@ -3,26 +3,26 @@
 %div.w-100.margin-header.mt-4
   .row.bg-light-subtle.border.border-top.border-5.border-secondary.border-top-0.border-start-0.border-end-0
     .col-2.d-flex.align-items-center
-      %strong= t "skills.table.skill"
+      %strong= ti "table.skill"
     .col-1.bg-secondary-subtle.d-flex.align-items-center
-      %strong= t "skills.table.members"
+      %strong= ti "table.members"
     .col-3.d-flex.align-items-center
-      %strong= t "skills.table.category"
+      %strong= ti "table.category"
     .col-2.bg-secondary-subtle.d-flex.align-items-center
-      %strong= t "skills.table.subcategory"
+      %strong= ti "table.subcategory"
     .col-1.d-flex.align-items-center
-      %strong= t "skills.table.default_set"
+      %strong= ti "table.default_set"
     .col-1.bg-secondary-subtle.d-flex.align-items-center
-      %strong= t "skills.table.radar"
+      %strong= ti "table.radar"
     .col-1.d-flex.align-items-center
-      %strong= t "skills.table.portfolio"
+      %strong= ti "table.portfolio"
     .col-1.bg-secondary-subtle.d-flex.align-items-center
-      %strong= t "skills.table.modify"
+      %strong= ti "table.modify"
   %div
     %turbo-frame{id: "skills"}
       - @skills.each do |skill|
         %turbo-frame{id: "#{dom_id skill}"}
-          .row.border.border-top.table-light.tableform-hover.table-row
+          .row.border.border-top.table-light.tableform-hover.table-row.py-2
             .col-2.d-flex.align-items-center.text-break
               = link_to skill.title, skill_path(skill), data: { turbo_frame: "remote_modal" }
             .col-1.bg-light.d-flex.align-items-center
@@ -39,5 +39,5 @@
               =skill.portfolio
             .col-1.bg-light
               %div.h-100.d-flex.justify-content-center.align-items-center
-                =link_to edit_skill_path(skill), class: "btn bg-gray-100" do
-                  %img.pointer.edit-button{:src=> "/assets/pencil-square.svg",:height=>"16"}
+                =action_link("", "pencil", edit_skill_path(skill))
+              
