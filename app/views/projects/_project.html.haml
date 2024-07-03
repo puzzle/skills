@@ -8,16 +8,16 @@
                     %div.d-flex.gap-1.flex-column
                         %div.row
                             %span.fw-bold.col-12.col-lg-2
-                                = t "activerecord.attributes.project.description"
+                                = project.human_attribute_name(:description)
                             %span.col
                                 = project.description
                         %div.row
                             %span.fw-bold.col-12.col-lg-2
-                                = t "activerecord.attributes.project.role"
+                                = project.human_attribute_name(:role)
                             %span.col
                                 = project.role
                         %div.row
                             %span.fw-bold.col-12.col-lg-2
-                                = t "activerecord.attributes.project.technology"
+                                = project.human_attribute_name(:technology)
                             %span.col
                                 = project.technology
