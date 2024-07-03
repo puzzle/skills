@@ -161,6 +161,10 @@ de:
     interest: Interesse
     certificate: Zertifikat
     core-competence: Kernkompetenz
+  people_skills:
+    global: 
+      link:
+        add: Skill hinzufügen (max. 5)
   date_range_picker:
     from: Von
     to: Bis
