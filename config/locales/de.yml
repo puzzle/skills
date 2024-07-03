@@ -165,6 +165,10 @@ de:
     global: 
       link:
         add: Skill hinzufügen (max. 5)
+  admin:
+    global: 
+      link:
+        list: Admin Panel
   date_range_picker:
     from: Von
     to: Bis
