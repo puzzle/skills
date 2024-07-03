@@ -6,6 +6,7 @@ de:
       cancel: Abbrechen
       delete: Löschen
       save_new: Speichern & Neu
+      export: Exportieren
   language: 
     de: "Deutsch"
     en: "Englisch"
@@ -106,6 +107,22 @@ de:
         new_skills_to_rate: Neue Skills zur Bewertung
     cv:
       no_skills_rated_msg: Dieses Profil hat noch keine bewerteten Skills. Gehe zum Skills Tab und bewerte die für dich relevanten Skills.
+    scroll_to_menu:
+      personal-data: Personliche Daten
+      core-competences: Kernkompetenzen
+      educations: Ausbildungen
+      advanced-trainings: Weiterbildungen
+      activities: Station
+      projects: Projekte
+    search:
+      new_profile: Neues Profil
+      updated_at: Zuletzt bearbeitet
+    index: 
+      welcome: Willkommen bei
+      choose_create_person: Wähle eine Person aus oder erfasse ein neues Profil
+    new:
+      personals: Personalien
+
   skills:
     header:
       all: Alle

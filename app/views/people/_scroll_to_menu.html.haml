@@ -4,10 +4,7 @@
       %div.sidebar-item.w-100{data: {"scroll-target": "listItem", "action": "click->scroll#scrollToElement",
             "scroll-id-param": item.parameterize}}
         %span
-          - if translate
-            = t "profile.#{item}"
-          - else
-            = item
+          = t(".#{item}", default: item)
 
   %div.sidebar-extras
     = yield
