@@ -24,6 +24,10 @@ de:
       today: Heute
       month: Monat
       year: Jahr
+      from: Von
+      to: Bis
+      till_today: Bis Heute
+      with_enddate: Mit Enddatum
   language: 
     de: "Deutsch"
     en: "Englisch"
@@ -197,15 +201,5 @@ de:
     with_enddate: Mit Enddatum
 
   cv_search:
-    search_skills: Skills ebenfalls durchsuchen
-    advanced_trainings: Weiterbildungen
-    educations: Ausbildungen
-    activities: Stationen
-    projects: Projekte
-    name: Name
-    location: Wohnort
-    title: Abschluss
-    competence_notes: Kompetenzen
-    roles: Funktionen
-    department: Organisationseinheit
-    skills: Skills
+    global:
+      search_skills: Skills ebenfalls durchsuchen

@@ -1,2 +1,198 @@
+---
 en:
-  
+  activerecord:
+    attributes:
+      activity:
+        description: Company details and description of the activity
+        role: Role
+      advanced_training:
+        description: Description
+      education:
+        location: Training location
+        title: Education
+      people_skill:
+        certificate: Certificate
+        core_competence: Core competence
+        level: Level
+        skill: Skill
+      person:
+        competence_notes: Notes Member
+        dual_citizen: Dual citizens
+        email: Email
+        languages:
+          one: Language
+          other: Languages
+        location: Place
+        name: Name
+        person_roles:
+          one: Function
+          other: Functions
+        picture: Image
+        title: Conclusion
+      project:
+        description: Description
+        role: Role and tasks
+        technology: Technologies used
+        title: Project
+      skill:
+        category: Category
+    models:
+      activity: Station
+      advanced_training: Further training
+      company:
+        one: Company
+        other: Companies
+      department:
+        one: Organizational unit
+        other: Organizational units
+      education:
+        one: Education
+        other: Trainings
+      people_skill:
+        one: Skill
+        other: Skills
+      project: Project
+      role:
+        one: Role
+        other: Rollers
+      skill:
+        one: Skill
+        other: Skills
+  admin:
+    global:
+      link:
+        list: Admin Panel
+  cv_search:
+    global:
+      search_skills: Search skills as well
+  date_range_picker:
+    from: From
+    till_today: Until today
+    to: Until
+    today: Today
+    with_enddate: With end date
+  errors:
+    messages:
+      max_size_error: should not be larger than 10MB.
+      profile-not-found: Profile could not be found.
+  global:
+    date:
+      from: From
+      month: Month
+      till_today: Until today
+      to: Until
+      today: Today
+      with_enddate: With end date
+      year: Year
+    devise:
+      admin: "(Admin)"
+      devise: Motto
+      mockdata: Mockdata
+      no_omniauth_providers: An error, no Omniauth providers are available, please contact the administrator.
+      sign_in: Log in
+      sign_in_with: 'Log in with %{provider} '
+    'false': 'No'
+    link:
+      cancel: Cancel
+      export: Export
+      save_new: Save & New
+    new: New
+    search:
+      no_results: No results
+      search_results: Search results
+    'true': 'Yes'
+  helpers:
+    cancel: Cancel
+    submit:
+      add: "%{model} add"
+      delete: Delete
+      edit: "%{model} edit"
+  language:
+    de: German
+    en: English
+  marital_statuses:
+    divorced: divorced
+    married: married
+    registered_partnership: registered partnership
+    single: single
+    widowed: widowed
+  people:
+    cv:
+      no_skills_rated_msg: This profile has no rated skills yet. Go to the Skills tab and rate the skills relevant to you.
+    export_cv:
+      export_form:
+        anonymised_cv: Anonymized CV
+        competences_skills: Core competencies - Skills
+        download: Download
+        location: 'Branch office (for footer):'
+        skills_by_level: Skills by level
+        trainee: Trainee
+    index:
+      choose_create_person: Select a person or create a new profile
+      welcome: Welcome to
+    new:
+      personals: Personal details
+    people_skills:
+      edit_form:
+        rate: Rate
+        unrate: Do not rate
+      index:
+        new_skills_to_rate: New skills for evaluation
+    profile:
+      add_function: Add function
+      add_language: Add language
+      change_image: Change picture
+      core_competences: Core competencies
+      personals: Personal data
+      upload_image: Upload image
+    scroll_to_menu:
+      activities: Station
+      advanced-trainings: Further training
+      core-competences: Core competencies
+      educations: Trainings
+      personal-data: Personal data
+      projects: Projects
+    search:
+      new_profile: New profile
+      updated_at: Last edited
+  people-skills:
+    certificate: Certificate
+    core-competence: Core competence
+    filter:
+      all: All
+      rated: Rated
+      unrated: Not rated
+    interest: Interest
+    levels:
+      expert: Expert
+      junior: Junior
+      level: Experience
+      professional: Professional
+      senior: Senior
+      trainee: Trainee
+      unweighted: Not rated
+  people_skills:
+    global:
+      link:
+        add: Add skill (max. 5)
+  profile:
+    updated_at: Last edited
+  skills:
+    global:
+      table:
+        category: Category
+        default_set: Default set
+        members: Members
+        modify: Change
+        portfolio: Portfolio
+        radar: Radar
+        skill: Skill
+        subcategory: Subcategory
+    header:
+      all: All
+      category: Category
+      default: Default
+      new: New
+      search: Search skills
+    show:
+      title: 'Skill: %{title} (%{amount} Members)'

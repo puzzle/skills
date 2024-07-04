@@ -1,0 +1,42 @@
+---
+it:
+  activerecord:
+    attributes:
+      user:
+        confirmation_sent_at: Conferma inviata su
+        confirmation_token: Gettone di conferma
+        confirmed_at: Confermato su
+        created_at: Creato il
+        current_password: Parola d'ordine precedente
+        current_sign_in_at: Registrazione attuale da
+        current_sign_in_ip: IP dell'applicazione corrente
+        email: E-mail
+        encrypted_password: Password criptata
+        failed_attempts: Tentativi falliti
+        last_sign_in_at: Ultima registrazione il
+        last_sign_in_ip: IP dell'ultimo accesso
+        locked_at: Bloccato su
+        password: Password
+        password_confirmation: Conferma della password
+        privacy_accepted_at: Informativa sulla privacy
+        remember_created_at: Rimanere registrati da
+        remember_me: Rimani connesso
+        reset_password_sent_at: Email di reimpostazione della password inviata il
+        reset_password_token: Token per la reimpostazione della password
+        sign_in_count: Numero di registrazioni
+        terms_accepted_at: GTC
+        unconfirmed_email: Indirizzo e-mail non confermato
+        unlock_token: Gettone di sblocco
+        updated_at: Aggiornato il
+    models:
+      user: Utenti
+  errors:
+    messages:
+      already_confirmed: è già stato confermato, si prega di provare ad accedere
+      confirmation_period_expired: "%{period} doveva essere confermato entro , si prega di richiedere nuovamente."
+      expired: è scaduto, richiederne uno nuovo
+      not_found: non trovato
+      not_locked: non è bloccato
+      not_saved:
+        one: "%{resource} non è stato possibile salvarlo a causa di un errore:"
+        other: "%{count} %{resource} Gli errori hanno impedito il salvataggio di :"
