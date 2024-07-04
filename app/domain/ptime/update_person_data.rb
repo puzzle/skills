@@ -11,9 +11,10 @@ module Ptime
                      email: 'default@example.com', ptime_employee_id: ptime_employee_id)
     end
 
+    # rubocop:disable Metrics
     def update_person_data(person)
-      attribute_mapping = { shortname: :shortname, email: :email, marital_status: :marital_status,
-                            graduation: :title, company: :company, birthdate: :birthdate,
+      attribute_mapping = { full_name: :name, shortname: :shortname, email: :email, marital_status:
+                            :marital_status, graduation: :title, birthdate: :birthdate,
                             location: :location, nationality: :nationality }.freeze
 
       begin
@@ -25,17 +26,16 @@ module Ptime
       rescue StandardError
         nil
       else
-        ptime_employee_firstname = ptime_employee['attributes']['firstname']
-        ptime_employee_lastname = ptime_employee['attributes']['lastname']
-        ptime_employee_name = "#{ptime_employee_firstname} #{ptime_employee_lastname}"
-        person.name = ptime_employee_name
         ptime_employee['attributes'].each do |key, value|
           if key.to_sym.in?(attribute_mapping.keys)
             person[attribute_mapping[key.to_sym]] = (value.presence || '-')
           end
         end
+        ptime_employee_employed = ptime_employee['attributes']['is_employed']
+        person.company = Company.find_by(name: ptime_employee_employed ? 'Firma' : 'Ex-Mitarbeiter')
         person.save!
       end
     end
+    # rubocop:enable Metrics
   end
 end
