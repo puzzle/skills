@@ -20,6 +20,10 @@ de:
       devise: Devise
       mockdata: Mockdata
       admin: (Admin)
+    date: 
+      today: Heute
+      month: Monat
+      year: Jahr
   language: 
     de: "Deutsch"
     en: "Englisch"

@@ -7,12 +7,12 @@ module DateHelper
   end
 
   def months
-    t('date.month_names')
+    (1..12).map { |m| I18n.l(DateTime.parse(Date::MONTHNAMES[m]), format: '%B') }
   end
 
   def date_range_end_label(model_with_dates)
     if model_with_dates&.till_today?
-      return "- #{t('date_range_picker.today')}"
+      return "- #{ti('date.today')}"
     elsif !(model_with_dates.same_year? && model_with_dates.same_month?)
       return "- #{months[model_with_dates&.month_to || 0]} #{model_with_dates&.year_to}"
     end
