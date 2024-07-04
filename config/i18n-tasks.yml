@@ -1,5 +1,5 @@
 # i18n-tasks finds and manages missing and unused translations: https://github.com/glebm/i18n-tasks
-
+<% require './lib/custom_translation_matchers/dry_crud_ti_scanner' %>
 # The "main" locale.
 base_locale: de
 ## All available locales are inferred from the data by default. Alternatively, specify them explicitly:
@@ -90,15 +90,16 @@ search:
 
   ## Allows adding ast_matchers for finding translations using the AST-scanners
   ## The available matchers are:
-  ## - RailsModelMatcher
+  # - RailsModelMatcher
   ##     Matches ActiveRecord translations like
   ##     User.human_attribute_name(:email) and User.model_name.human
   ## - DefaultI18nSubjectMatcher
   ##     Matches ActionMailer's default_i18n_subject method
   ##
   ## To implement your own, please see `I18n::Tasks::Scanners::AstMatchers::BaseMatcher`.
-  # ast_matchers:
-  #   - 'I18n::Tasks::Scanners::AstMatchers::RailsModelMatcher'
+  ast_matchers:
+    - 'I18n::Tasks::Scanners::AstMatchers::RailsModelMatcher'
+    - 'CustomTranslationMatchers::DryCrudTiScanner'
   #   - 'I18n::Tasks::Scanners::AstMatchers::DefaultI18nSubjectMatcher'
 
   ## Multiple scanners can be used. Their results are merged.
