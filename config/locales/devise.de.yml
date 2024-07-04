@@ -94,6 +94,7 @@ de:
       updated: Ihr Passwort wurde geändert. Sie sind jetzt angemeldet.
       updated_not_active: Ihr Passwort wurde geändert.
     registrations:
+      updated_but_not_signed_in: Ihre Daten wurden aktualisiert, aber Sie müssen sich anmelden, um fortzufahren.
       destroyed: Ihr Konto wurde gelöscht.
       edit:
         are_you_sure: Sind Sie sicher?

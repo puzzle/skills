@@ -1,7 +1,7 @@
 # i18n-tasks finds and manages missing and unused translations: https://github.com/glebm/i18n-tasks
 
 # The "main" locale.
-base_locale: en
+base_locale: de
 ## All available locales are inferred from the data by default. Alternatively, specify them explicitly:
 # locales: [es, fr]
 ## Reporting locale, default: en. Available: en, ru.
@@ -16,7 +16,8 @@ data:
   # Locale files or `Dir.glob` patterns where translations are read from:
   read:
     ## Default:
-    # - config/locales/%{locale}.yml
+    - config/locales/%{locale}.yml
+    - config/locales/*.%{locale}.yml
     ## More files:
     # - config/locales/**/*.%{locale}.yml
 
@@ -105,12 +106,15 @@ search:
   ## See this example of a custom scanner: https://github.com/glebm/i18n-tasks/wiki/A-custom-scanner-example
 
 ## Translation Services
-# translation:
+translation:
 #   # Google Translate
 #   # Get an API key and set billing info at https://code.google.com/apis/console to use Google Translate
 #   google_translate_api_key: "AbC-dEf5"
 #   # DeepL Pro Translate
 #   # Get an API key and subscription at https://www.deepl.com/pro to use DeepL Pro
+  deepl_api_key: "xxx"
+  deepl_host: "https://api-free.deepl.com"
+  deepl_version: "v2"
 #   deepl_api_key: "48E92789-57A3-466A-9959-1A1A1A1A1A1A"
 #   # deepl_host: "https://api.deepl.com"
 #   # deepl_version: "v2"
@@ -137,9 +141,11 @@ search:
 #   #   Keep in mind the context of all the strings for a more accurate translation.
 
 ## Do not consider these keys missing:
-# ignore_missing:
+ignore_missing:
 # - 'errors.messages.{accepted,blank,invalid,too_short,too_long}'
-# - '{devise,simple_form}.*'
+  - '{devise,simple_form}.*'
+  - 'datetime.prompts.{month,year}'
+  - 'number.format.{delimiter, precision}'
 
 ## Consider these keys used:
 # ignore_unused:

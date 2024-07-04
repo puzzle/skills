@@ -1,0 +1,198 @@
+---
+it:
+  activerecord:
+    attributes:
+      activity:
+        description: Dati dell'azienda e descrizione dell'attività
+        role: Ruolo
+      advanced_training:
+        description: Descrizione del
+      education:
+        location: Luogo di formazione
+        title: Istruzione
+      people_skill:
+        certificate: Certificato
+        core_competence: Competenza di base
+        level: Livello
+        skill: Abilità
+      person:
+        competence_notes: Note Membro
+        dual_citizen: Doppi cittadini
+        email: E-mail
+        languages:
+          one: Lingua
+          other: Le lingue
+        location: Luogo
+        name: Nome
+        person_roles:
+          one: Funzione
+          other: Funzioni
+        picture: Immagine
+        title: Conclusione
+      project:
+        description: Descrizione del
+        role: Ruolo e compiti
+        technology: Tecnologie utilizzate
+        title: Progetto
+      skill:
+        category: Categoria
+    models:
+      activity: Stazione
+      advanced_training: Formazione continua
+      company:
+        one: Azienda
+        other: Aziende
+      department:
+        one: Unità organizzativa
+        other: Unità organizzative
+      education:
+        one: Istruzione
+        other: Programmi di formazione
+      people_skill:
+        one: Abilità
+        other: Competenze
+      project: Progetto
+      role:
+        one: Ruolo
+        other: Rulli
+      skill:
+        one: Abilità
+        other: Competenze
+  admin:
+    global:
+      link:
+        list: Pannello di amministrazione
+  cv_search:
+    global:
+      search_skills: Anche le capacità di ricerca
+  date_range_picker:
+    from: Da
+    till_today: Fino ad oggi
+    to: Fino a quando
+    today: Oggi
+    with_enddate: Con data di scadenza
+  errors:
+    messages:
+      max_size_error: non dovrebbe essere più grande di 10 MB.
+      profile-not-found: Il profilo non è stato trovato.
+  global:
+    date:
+      from: Da
+      month: Mese
+      till_today: Fino ad oggi
+      to: Fino a quando
+      today: Oggi
+      with_enddate: Con data di scadenza
+      year: Anno
+    devise:
+      admin: "(Admin)"
+      devise: Motto
+      mockdata: Mockdata
+      no_omniauth_providers: Errore, non sono disponibili provider Omniauth, contattare l'amministratore.
+      sign_in: Accedi
+      sign_in_with: "%{provider} Accedere con"
+    'false': 'No'
+    link:
+      cancel: Annullamento
+      export: Esportazione
+      save_new: Risparmi e novità
+    new: Nuovo
+    search:
+      no_results: Nessun risultato
+      search_results: Risultati della ricerca
+    'true': Sì
+  helpers:
+    cancel: Annullamento
+    submit:
+      add: "%{model} aggiungere"
+      delete: Cancellare
+      edit: "%{model} modifica"
+  language:
+    de: Tedesco
+    en: Inglese
+  marital_statuses:
+    divorced: divorziato
+    married: sposato
+    registered_partnership: società registrata
+    single: singolo
+    widowed: vedova
+  people:
+    cv:
+      no_skills_rated_msg: Questo profilo non ha ancora competenze valutate. Andate alla scheda Competenze e valutate le competenze che vi interessano.
+    export_cv:
+      export_form:
+        anonymised_cv: CV anonimo
+        competences_skills: Competenze di base - Capacità
+        download: Scaricare
+        location: 'Sede secondaria (per il piè di pagina):'
+        skills_by_level: Competenze per livello
+        trainee: Apprendista
+    index:
+      choose_create_person: Selezionare una persona o creare un nuovo profilo
+      welcome: Benvenuti a
+    new:
+      personals: Dati personali
+    people_skills:
+      edit_form:
+        rate: Tasso
+        unrate: Non valutare
+      index:
+        new_skills_to_rate: Nuove competenze per la valutazione
+    profile:
+      add_function: Aggiungi funzione
+      add_language: Aggiungi lingua
+      change_image: Cambia immagine
+      core_competences: Competenze di base
+      personals: Dati personali
+      upload_image: Carica immagine
+    scroll_to_menu:
+      activities: Stazione
+      advanced-trainings: Formazione continua
+      core-competences: Competenze di base
+      educations: Programmi di formazione
+      personal-data: Dati personali
+      projects: Progetti
+    search:
+      new_profile: Nuovo profilo
+      updated_at: Ultima modifica
+  people-skills:
+    certificate: Certificato
+    core-competence: Competenza di base
+    filter:
+      all: Tutti
+      rated: Valutazione
+      unrated: Non valutato
+    interest: Interesse per
+    levels:
+      expert: Esperto
+      junior: Junior
+      level: Esperienza
+      professional: Professionale
+      senior: Senior
+      trainee: Apprendista
+      unweighted: Non valutato
+  people_skills:
+    global:
+      link:
+        add: Aggiungi abilità (max. 5)
+  profile:
+    updated_at: Ultima modifica
+  skills:
+    global:
+      table:
+        category: Categoria
+        default_set: Set predefinito
+        members: Membri
+        modify: Cambiamento
+        portfolio: Portafoglio
+        radar: Radar
+        skill: Abilità
+        subcategory: Sottocategoria
+    header:
+      all: Tutti
+      category: Categoria
+      default: Predefinito
+      new: Nuovo
+      search: Capacità di ricerca
+    show:
+      title: "%{title}%{amount} Abilità: ( Membri)"

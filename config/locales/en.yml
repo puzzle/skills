@@ -1,24 +1,44 @@
+---
 en:
-  language:
-    de: German
-    en: English
-  errors:
-    profile-not-found: Profile could not be found.
-  helpers:
-      submit:
-        edit: "Edit %{model}"
-        add: "Add %{model}"
-        cancel: Cancel
-        delete: Delete
-        save-and-new: Save & new
-        edit: Edit
-  active_record:
+  activerecord:
+    attributes:
+      activity:
+        description: Company details and description of the activity
+        role: Role
+      advanced_training:
+        description: Description
+      education:
+        location: Training location
+        title: Education
+      people_skill:
+        certificate: Certificate
+        core_competence: Core competence
+        level: Level
+        skill: Skill
+      person:
+        competence_notes: Notes Member
+        dual_citizen: Dual citizens
+        email: Email
+        languages:
+          one: Language
+          other: Languages
+        location: Place
+        name: Name
+        person_roles:
+          one: Function
+          other: Functions
+        picture: Image
+        title: Conclusion
+      project:
+        description: Description
+        role: Role and tasks
+        technology: Technologies used
+        title: Project
+      skill:
+        category: Category
     models:
-      skill: Skill
-      people_skill: Skill
-      role:
-        one: Role
-        other: Roles
+      activity: Station
+      advanced_training: Further training
       company:
         one: Company
         other: Companies

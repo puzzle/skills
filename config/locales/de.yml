@@ -24,6 +24,10 @@ de:
       today: Heute
       month: Monat
       year: Jahr
+      from: Von
+      to: Bis
+      till_today: Bis Heute
+      with_enddate: Mit Enddatum
   language: 
     de: "Deutsch"
     en: "Englisch"
@@ -215,3 +219,6 @@ de:
       more_actions: Weitere Aktionen
       link:
         delete: Person löschen
+
+    global:
+      search_skills: Skills ebenfalls durchsuchen
