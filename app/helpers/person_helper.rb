@@ -76,4 +76,24 @@ module PersonHelper
                         certificate: false, core_competence: false })
     end
   end
+
+  def fetch_ptime_employees
+    ptime_employees = Ptime::Client.new.get('employees', { per_page: 1000 })['data']
+    ptime_employee_id_map = Person.take(3).map do |p|
+      { p.ptime_employee_id.to_s => p.id }
+    end.reduce({}, :merge)
+    ptime_employees_dropdown_data = []
+    ptime_employees.each do |ptime_employee|
+      ptime_employee_name = append_ptime_employee_name(ptime_employee)
+      person_id = ptime_employee_id_map[ptime_employee['id']]
+      ptime_employees_dropdown_data << [person_id, ptime_employee_name]
+    end
+    ptime_employees_dropdown_data
+  end
+
+  def append_ptime_employee_name(ptime_employee)
+    ptime_employee_firstname = ptime_employee['attributes']['firstname']
+    ptime_employee_lastname = ptime_employee['attributes']['lastname']
+    "#{ptime_employee_firstname} #{ptime_employee_lastname}"
+  end
 end
