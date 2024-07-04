@@ -6,10 +6,9 @@ module Ptime
       person = Person.find_by(ptime_employee_id: ptime_employee_id)
       return person unless person.nil?
 
-      new_person = Person.includes(projects: :project_technologies,
-                                   person_roles: [:role, :person_role_level]).new
-      new_person.ptime_employee_id = ptime_employee_id
-      new_person
+      Person.create!(name: 'Default name', company: Company.first, birthdate: '1.1.1970',
+                     nationality: 'CH', location: 'Bern', title: 'Default title',
+                     email: 'default@example.com', ptime_employee_id: ptime_employee_id)
     end
 
     def update_person_data(person)
@@ -18,6 +17,8 @@ module Ptime
                             location: :location, nationality: :nationality }.freeze
 
       begin
+        return unless person.ptime_employee_id
+
         ptime_employee = Ptime::Client.new.get("employees/#{person.ptime_employee_id}")['data']
       rescue RestClient::NotFound
         raise "Ptime_employee with id #{person.ptime_employee_id} not found"
@@ -30,7 +31,7 @@ module Ptime
         person.name = ptime_employee_name
         ptime_employee['attributes'].each do |key, value|
           if key.to_sym.in?(attribute_mapping.keys)
-            person[attribute_mapping[key.to_sym]] = value
+            person[attribute_mapping[key.to_sym]] = (value.presence || '-')
           end
         end
         person.save!

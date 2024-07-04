@@ -8,8 +8,6 @@ class PeopleController < CrudController
   self.permitted_attrs = [:birthdate, :location, :marital_status, :updated_by, :name, :nationality,
                           :nationality2, :title, :competence_notes, :company_id, :email,
                           :department_id, :shortname, :picture, :picture_cache,
-                          { person_roles_attributes: [:role_id, :person_role_level_id,
-                                                      :percent, :id, :_destroy] },
                           { person_roles_attributes:
                               [:role_id, :person_role_level_id, :percent, :id, :_destroy] },
                           { language_skills_attributes:
@@ -25,21 +23,20 @@ class PeopleController < CrudController
   def show
     return export if format_odt?
 
-    unless @person.new_record?
-      @person = Person.includes(projects: :project_technologies,
-                                person_roles: [:role, :person_role_level]).find(@person.id)
-    end
+    @person = Person.includes(projects: :project_technologies,
+                              person_roles: [:role, :person_role_level]).find(@person.id)
+
     Ptime::UpdatePersonData.new.update_person_data(@person)
     super
   end
 
   def new
     @person = Ptime::UpdatePersonData.new.create_person(params[:ptime_employee_id])
-    redirect_to @person
-    # super
-    # %w[DE EN FR].each do |language|
-    #   @person.language_skills.push(LanguageSkill.new({ language: language }))
-    # end
+    %w[DE EN FR].each do |language|
+      @person.language_skills.push(LanguageSkill.new({ language: language, level: 'A1' }))
+    end
+    redirect_to(@person)
+    #super
   end
 
   def create
