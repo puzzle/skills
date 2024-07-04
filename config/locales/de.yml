@@ -10,6 +10,16 @@ de:
       delete: Löschen
       save_new: Speichern & Neu
       export: Exportieren
+    search:
+      search_results: Suchergebnisse
+      no_results: Keine Ergebnisse
+    devise:
+      sign_in: Anmelden
+      sign_in_with: "Mit %{provider} anmelden"
+      no_omniauth_providers: An error, no Omniauth providers are available, please contact the administrator.
+      devise: Devise
+      mockdata: Mockdata
+      admin: (Admin)
   language: 
     de: "Deutsch"
     en: "Englisch"

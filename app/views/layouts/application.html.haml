@@ -30,9 +30,9 @@
               %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
                 %span#username
                   - if devise?
-                    Devise
+                    = ti("devise.devise")
                   - else
-                    Mockdata
+                    = ti("devise.mockdata")
             -# Admin panel
             - if conf_admin?
               %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
@@ -47,7 +47,7 @@
                   - else
                     = link_to find_person_by_auth_user.name, person_path(find_person_by_auth_user)
                   - if admin?
-                    (Admin)
+                    = ti "admin"
             -# Login/Logout
             - if devise?
               %li.d-flex.align-items-center.cursor-pointer.border-start.border-end.h-100.ps-2.pe-2
