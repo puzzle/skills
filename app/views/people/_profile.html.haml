@@ -12,19 +12,19 @@
           %table.fixed-table
             %tbody
               %th.fw-normal.text-gray 
-                = @person.human_attribute_name(:name)
+                = Person.human_attribute_name(:name)
               %tr
                 %td.text-break.pb-1= @person.name
               %th.fw-normal.text-gray
-                = @person.human_attribute_name(:email)
+                = Person.human_attribute_name(:email)
               %tr
                 %td.text-break.pb-1= @person.email
               %th.fw-normal.text-gray 
-                = @person.human_attribute_name(:title)
+                = Person.human_attribute_name(:title)
               %tr
                 %td.text-break.pb-1= @person.title
               %th.fw-normal.text-gray 
-                = @person.human_attribute_name(:person_roles)
+                = Person.human_attribute_name(:person_roles, count: @person.person_roles.count)
               - unless @person.person_roles.empty?
                 - @person.person_roles.each do |person_role|
                   %tr
@@ -33,42 +33,42 @@
                 %tr
                   %td -
               %th.fw-normal.text-gray 
-                = @person.human_attribute_name(:department)
+                = Person.human_attribute_name(:department)
               %tr
                 %td.pb-1= @person.department.name || "-"
               %th.fw-normal.text-gray 
-                = @person.human_attribute_name(:company)
+                = Person.human_attribute_name(:company)
               %tr
                 %td= @person.company.name
         %div.pe-5.col-xl-3.col-12
           %table.fixed-table
             %tbody
               %th.fw-normal.text-gray
-                = @person.human_attribute_name(:birthdate)
+                = Person.human_attribute_name(:birthdate)
               %tr
                 %td.pb-1
                   = @person.birthdate.to_date.strftime('%d.%m.%Y')
               %th.fw-normal.text-gray 
-                = @person.human_attribute_name(:nationality)
+                = Person.human_attribute_name(:nationality)
               %tr
                 %td.text-break.pb-1
                   = nationality_string(@person.nationality, @person.nationality2)
               %th.fw-normal.text-gray 
-                = @person.human_attribute_name(:location)
+                = Person.human_attribute_name(:location)
               %tr
                 %td.text-break.pb-1= @person.location
               %th.fw-normal.text-gray 
-                = @person.human_attribute_name(:marital_status)
+                = Person.human_attribute_name(:marital_status)
               %tr
                 %td.pb-1= t("marital_statuses.#{@person.marital_status}")
               %th.fw-normal.text-gray 
-                = @person.human_attribute_name(:shortname)
+                = Person.human_attribute_name(:shortname)
               %tr
                 %td= @person.shortname || "-"
 
         %div.col-xl-3.col-12
           %div.fw-normal.text-gray 
-            = @person.human_attribute_name(:language_skills)
+            = Person.human_attribute_name(:language_skills, count: @person.language_skills.count)
           %div.border.border-dark-subtle.mt-1.p-2.rounded.w-min-content
             %table
               %tbody
