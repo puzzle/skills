@@ -25,21 +25,25 @@ class PeopleController < CrudController
   def show
     return export if format_odt?
 
-    @person = Person.includes(projects: :project_technologies,
-                              person_roles: [:role, :person_role_level]).find(params.fetch(:id))
-
+    unless @person.new_record?
+      @person = Person.includes(projects: :project_technologies,
+                                person_roles: [:role, :person_role_level]).find(params.fetch(:id))
+    end
     update_person_data
     super
   end
 
   def new
-    ptime_employee_id = params[:ptime_employee_id]
-    person = Person.find_by(ptime_employee_id: ptime_employee_id) if ptime_employee_id
-    redirect_to action: :index unless person.nil?
-    new_person = Person.new
-    new_person.ptime_employee_id = ptime_employee_id
-    @person = new_person
-    redirect_to action: :show
+    ptime_employee_id = params.fetch(:ptime_employee_id)
+    if ptime_employee_id
+      person = Person.find_by(ptime_employee_id: ptime_employee_id)
+      redirect_to action: :index unless person.nil?
+      new_person = Person.includes(projects: :project_technologies,
+                                   person_roles: [:role, :person_role_level]).new
+      new_person.ptime_employee_id = ptime_employee_id
+      @person = new_person
+      redirect_to action: :show
+    end
     # super
     # %w[DE EN FR].each do |language|
     #   @person.language_skills.push(LanguageSkill.new({ language: language }))
@@ -93,7 +97,6 @@ class PeopleController < CrudController
       ptime_employee_lastname = ptime_employee['attributes']['lastname']
       ptime_employee_name = "#{ptime_employee_firstname} #{ptime_employee_lastname}"
       @person.name = ptime_employee_name
-      @person.ptime_employee_id ||= ptime_employee['id']
       ptime_employee['attributes'].each do |key, value|
         if key.to_sym.in?(attribute_mapping.keys)
           @person[attribute_mapping[key.to_sym]] = value
