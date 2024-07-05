@@ -79,13 +79,13 @@ module PersonHelper
 
   def fetch_ptime_employees
     ptime_employees = Ptime::Client.new.get('employees', { per_page: 1000 })['data']
-    ptime_employee_id_map = Person.take(3).map do |p|
+    ptime_employee_id_map = Person.order(:name).all.map do |p|
       { p.ptime_employee_id.to_s => p.id }
     end.reduce({}, :merge)
     ptime_employees_dropdown_data = []
     ptime_employees.each do |ptime_employee|
       ptime_employee_name = append_ptime_employee_name(ptime_employee)
-      person_id = ptime_employee_id_map[ptime_employee['id']]
+      person_id = ptime_employee_id_map[ptime_employee['id'].to_s]
       ptime_employees_dropdown_data << [person_id, ptime_employee_name]
     end
     ptime_employees_dropdown_data
