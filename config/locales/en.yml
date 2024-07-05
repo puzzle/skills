@@ -46,6 +46,64 @@ en:
         one: Department
         other: Departments
   admin:
+    global:
+      link:
+        list: Admin Panel
+  cv_search:
+    global:
+      search_skills: Search skills as well
+  date_range_picker:
+    from: From
+    till_today: Until today
+    to: Until
+    today: Today
+    with_enddate: With end date
+  errors:
+    messages:
+      max_size_error: should not be larger than 10MB.
+      profile-not-found: Profile could not be found.
+  global:
+    date:
+      from: From
+      month: Month
+      till_today: Until today
+      to: Until
+      today: Today
+      with_enddate: With end date
+      year: Year
+    devise:
+      admin: "(Admin)"
+      admin_panel: Admin Panel
+      devise: Motto
+      mockdata: Mockdata
+      no_omniauth_providers: An error, no Omniauth providers are available, please contact the administrator.
+      sign_in: Log in
+      sign_in_with: 'Log in with %{provider} '
+      sign_out: Log out
+    'false': 'No'
+    link:
+      cancel: Cancel
+      export: Export
+      save_new: Save & New
+    navbar:
+      cv_search: CV search
+      profile: Profile
+      skill_search: Skill search
+      skillset: Skillset
+    new: New
+    search:
+      no_results: No results
+      search_results: Search results
+    'true': 'Yes'
+  helpers:
+    cancel: Cancel
+    submit:
+      add: "%{model} add"
+      delete: Delete
+      edit: "%{model} edit"
+  language:
+    de: German
+    en: English
     panel:
       title: Admin panel
   profile:
