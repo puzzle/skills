@@ -1,0 +1,223 @@
+---
+fr:
+  activerecord:
+    attributes:
+      activity:
+        description: Coordonnées de la société et description de l'activité
+        role: Rouleau
+        year_from: Date de début
+      advanced_training:
+        description: Description
+        year_from: Date de début
+      education:
+        location: Lieu de formation
+        title: Formation
+        year_from: Date de début
+      people_skill:
+        certificate: Certificat
+        core_competence: Compétence clé
+        level: Niveau
+        skill: Compétence
+      person:
+        competence_notes: Notes Member
+        dual_citizen: Double nationalité
+        email: Email
+        languages:
+          one: Langue
+          other: Langues
+        location: Lieu
+        name: Nom
+        person_roles:
+          one: Fonction
+          other: Fonctions
+        picture: Image
+        title: Conclusion
+      project:
+        description: Description
+        role: Rôle et tâches
+        technology: Technologies utilisées
+        title: Projet
+        year_from: Date de début
+      skill:
+        category: Catégorie
+    models:
+      activity: Station
+      advanced_training: Formation continue
+      company:
+        one: Société
+        other: Entreprises
+      department:
+        one: Unité organisationnelle
+        other: Unités organisationnelles
+      education:
+        one: Formation
+        other: Formations
+      people_skill:
+        one: Compétence
+        other: Compétences
+      project: Projet
+      role:
+        one: Rouleau
+        other: Rouleaux
+      skill:
+        one: Compétence
+        other: Compétences
+  admin:
+    global:
+      link:
+        list: Panneau d'administration
+  cv_search:
+    global:
+      search_skills: Rechercher également des compétences
+  date_range_picker:
+    from: De
+    till_today: Jusqu'à aujourd'hui
+    to: Jusqu'à
+    today: Aujourd'hui
+    with_enddate: Avec date de fin
+  errors:
+    messages:
+      invalid_date_range: doit être antérieure à la date de fin.
+      max_size_error: ne doit pas dépasser 10 Mo.
+      profile-not-found: Le profil n'a pas été trouvé.
+  global:
+    date:
+      from: De
+      month: Mois
+      till_today: Jusqu'à aujourd'hui
+      to: Jusqu'à
+      today: Aujourd'hui
+      with_enddate: Avec date de fin
+      year: Année
+    devise:
+      admin: "(Admin)"
+      admin_panel: Panneau d'administration
+      devise: Devise
+      mockdata: Mockdata
+      no_omniauth_providers: An error, no Omniauth providers are available, please contact the administrator.
+      sign_in: S'inscrire
+      sign_in_with: 'S''inscrire avec %{provider} '
+      sign_out: Se désinscrire
+    'false': Non
+    link:
+      cancel: Annuler
+      export: Exporter
+      save_new: Enregistrer & Nouveau
+    navbar:
+      cv_search: Recherche de CV
+      profile: Profil
+      skill_search: Recherche de compétences
+      skillset: Kit de compétences
+    new: Nouveau
+    people_skills:
+      levels:
+        expert: Expert
+        junior: Junior
+        level: Expérience
+        professional: Professionnel
+        senior: Senior
+        trainee: Stagiaire
+        unweighted: Non évalué
+    search:
+      found_in: Trouvé dans
+      no_results: Pas de résultats
+      search_results: Résultats de la recherche
+    'true': Oui
+  helpers:
+    cancel: Annuler
+    submit:
+      add: "%{model} ajouter"
+      delete: Supprimer
+      edit: "%{model} éditer"
+  language:
+    de: Allemand
+    en: Anglais
+  marital_statuses:
+    divorced: divorcé(e)
+    married: marié(e)
+    registered_partnership: partenariat enregistré
+    single: célibataire
+    widowed: veuf/veuve
+  people:
+    cv:
+      no_skills_rated_msg: Ce profil n'a pas encore de skills évalués. Va dans l'onglet Skills et évalue les skills qui te concernent.
+    export_cv:
+      export_form:
+        anonymised_cv: CV anonyme
+        competences_skills: Compétences clés - Skills
+        download: Télécharger
+        location: 'Établissement (pour le pied de page) :'
+        skills_by_level: Compétences par niveau
+        trainee: Stagiaire
+    index:
+      choose_create_person: Choisis une personne ou saisis un nouveau profil
+      welcome: Bienvenue chez
+    new:
+      personals: Données personnelles
+    people_skills:
+      edit_form:
+        rate: Évaluer
+        unrate: Ne pas évaluer
+      global:
+        link:
+          add: Ajouter une compétence
+      index:
+        new_skills_to_rate: Nouvelles compétences pour l'évaluation
+    profile:
+      add_function: Ajouter une fonction
+      add_language: Ajouter une langue
+      change_image: Modifier l'image
+      core_competences: Compétences clés
+      personals: Données personnelles
+      upload_image: Télécharger une image
+    scroll_to_menu:
+      activities: Station
+      advanced-trainings: Formations continues
+      core-competences: Compétences clés
+      educations: Formations
+      personal-data: Données personnelles
+      projects: Projets
+    search:
+      new_profile: Nouveau profil
+      updated_at: Dernièrement édité
+  people-skills:
+    certificate: Certificat
+    core-competence: Compétence clé
+    filter:
+      all: Tous les
+      rated: Évalué
+      unrated: Non évalué
+    interest: Intérêt
+    levels:
+      expert: Esperto
+      junior: Junior
+      level: Esperienza
+      professional: Professionnel
+      senior: Senior
+      trainee: Apprendista
+      unweighted: Non valutato
+  people_skills:
+    global:
+      link:
+        add: Ajouter une compétence (max. 5)
+  profile:
+    updated_at: Dernièrement édité
+  skills:
+    global:
+      table:
+        category: Catégorie
+        default_set: Set par défaut
+        members: Membres
+        modify: Modifier
+        portfolio: Portefeuille
+        radar: Radar
+        skill: Compétence
+        subcategory: Sous-catégorie
+    header:
+      all: Tous les
+      category: Catégorie
+      default: Défaut
+      new: Nouveau
+      search: Chercher des compétences
+    show:
+      title: 'Compétence : %{title} (%{amount} Members)'
