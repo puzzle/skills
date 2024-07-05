@@ -314,7 +314,8 @@ describe :people do
 
     it 'should display message when no skills are rated' do
       visit person_path(longmax)
-      expect(page).to have_selector('p.alert.alert-info.d-flex.justify-content-between', text: I18n.t('profile.no_skills_rated_msg'))
+      error_msg = "Dieses Profil hat noch keine bewerteten Skills. Gehe zum Skills Tab und bewerte die für dich relevanten Skills."
+      expect(page).to have_selector('p.alert.alert-info.d-flex.justify-content-between', text: error_msg)
     end
 
     it 'should delete person' do

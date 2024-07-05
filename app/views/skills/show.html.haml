@@ -9,7 +9,7 @@
             %p.m-0= @skill.title
           %div.col-2
             %div.d-flex.flex-column
-              %label.form-label.text-gray= t ExpertiseTopicSkillValue.skill_levels.key(person_skill.level - 1)
+              %label.form-label.text-gray= ti "people_skills.levels.#{ExpertiseTopicSkillValue.skill_levels.key(person_skill.level - 1)}"
               %input.form-range.w-75.level{type: "range", min: 1, max: 5, value: person_skill.level, tabindex: -1}
           %div.col-2
             %div.d-flex.flex-column
@@ -40,4 +40,4 @@
       =@skill.portfolio
     .col-1
       %div.h-100.d-flex.justify-content-center.align-items-center
-        =action_link("", "pencil", edit_skill_path(skill))
+        =action_link("", "pencil", edit_skill_path)

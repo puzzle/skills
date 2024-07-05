@@ -7,7 +7,7 @@
     %div.col-2
       %div.d-flex.flex-column.align-items-center
         = ff.label :level
-        = ff.label(t("people-skills.levels.#{ExpertiseTopicSkillValue.skill_levels.key(ff.object.level - 1)}"), {"data-people-skills-target": "label"})
+        = ff.label(ti("people_skills.levels.#{ExpertiseTopicSkillValue.skill_levels.key(ff.object.level - 1)}"), {"data-people-skills-target": "label"})
         - range_min = (ff.object.id.nil? || ff.object.level != 0) ? 1 : 0
         = ff.range_field :level, min: range_min, max: 5, class: "form-range w-75",
         "data-action": "change->people-skills#displayLevelLabel people-skills#rateSkill",
