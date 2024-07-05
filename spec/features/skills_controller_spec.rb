@@ -32,7 +32,6 @@ describe :skills do
 
     it 'can save edited skill' do
       visit skills_path
-      require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
       page.all('.icon.icon-pencil')[1].click
       fill_out_form
       save_button = page.find("input[type='image']")
