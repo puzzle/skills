@@ -105,9 +105,19 @@ de:
       save_new: Speichern & Neu
     new: Neu
     search:
-      no_results: Keine Ergebnisse
+      found_in: Gefunden in
+      no_results: Keine Resultate
       search_results: Suchergebnisse
     'true': Ja
+    people_skills:
+      levels:
+        expert: Expert
+        junior: Junior
+        level: Erfahrung
+        professional: Professional
+        senior: Senior
+        trainee: Trainee
+        unweighted: Nicht bewertet
   helpers:
     cancel: Abbrechen
     submit:
@@ -170,14 +180,6 @@ de:
       rated: Bewertet
       unrated: Nicht bewertet
     interest: Interesse
-    levels:
-      expert: Expert
-      junior: Junior
-      level: Erfahrung
-      professional: Professional
-      senior: Senior
-      trainee: Trainee
-      unweighted: Nicht bewertet
   people_skills:
     global:
       link:
