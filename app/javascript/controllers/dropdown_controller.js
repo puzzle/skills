@@ -7,7 +7,7 @@ export default class extends Controller {
   connect() {
     if (!this.hasDropdownTarget)
       return;
-    
+
     new SlimSelect({
           select: this.dropdownTarget
     });

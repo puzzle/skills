@@ -87,14 +87,20 @@ module PersonHelper
 
   def fetch_ptime_employees
     ptime_employees = Ptime::Client.new.get('employees', { per_page: 1000 })['data']
+    # employed_employees = ptime_employees.select { |employee| employee['is_employed'] }
     ptime_employee_id_map = Person.order(:name).all.map do |p|
       { p.ptime_employee_id.to_s => p.id }
     end.reduce({}, :merge)
     ptime_employees_dropdown_data = []
-    ptime_employees.each do |ptime_employee|
+    ptime_employee_ids = Person.all.pluck(:ptime_employee_id)
+    ptime_employees.each do |ptime_employee| # Replace 'ptime_employees' with 'employed_employees'
       ptime_employee_name = append_ptime_employee_name(ptime_employee)
       person_id = ptime_employee_id_map[ptime_employee['id'].to_s]
-      ptime_employees_dropdown_data << [person_id, ptime_employee_name]
+      ptime_employees_dropdown_data << {id: person_id,
+                                        ptime_employee_id: ptime_employee['id'],
+                                        name: ptime_employee_name,
+                                        already_exists: ptime_employee['id'].in?(ptime_employee_ids)
+                                      }
     end
     ptime_employees_dropdown_data
   end
