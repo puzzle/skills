@@ -5,11 +5,14 @@ en:
       activity:
         description: Company details and description of the activity
         role: Role
+        year_from: Start date
       advanced_training:
         description: Description
+        year_from: Start date
       education:
         location: Training location
         title: Education
+        year_from: Start date
       people_skill:
         certificate: Certificate
         core_competence: Core competence
@@ -34,6 +37,7 @@ en:
         role: Role and tasks
         technology: Technologies used
         title: Project
+        year_from: Start date
       skill:
         category: Category
     models:
@@ -73,6 +77,7 @@ en:
     with_enddate: With end date
   errors:
     messages:
+      invalid_date_range: must be before the end date.
       max_size_error: should not be larger than 10MB.
       profile-not-found: Profile could not be found.
   global:
@@ -104,7 +109,17 @@ en:
       skill_search: Skill search
       skillset: Skillset
     new: New
+    people_skills:
+      levels:
+        expert: Expert
+        junior: Junior
+        level: Experience
+        professional: Professional
+        senior: Senior
+        trainee: Trainee
+        unweighted: Not rated
     search:
+      found_in: Found in
       no_results: No results
       search_results: Search results
     'true': 'Yes'
@@ -143,6 +158,9 @@ en:
       edit_form:
         rate: Rate
         unrate: Do not rate
+      global:
+        link:
+          add: Add skill
       index:
         new_skills_to_rate: New skills for evaluation
     profile:

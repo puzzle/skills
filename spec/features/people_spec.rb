@@ -198,7 +198,7 @@ describe :people do
     it 'should have all edit fields' do
       bob = people(:bob)
       visit person_path(bob)
-      page.find('#edit-button').click
+      click_link('Bearbeiten', href: edit_person_path(bob))
       check_edit_fields(bob, true)
     end
 
@@ -206,9 +206,9 @@ describe :people do
       bob = people(:bob)
       old_number_of_roles = bob.person_roles.count
       visit person_path(bob)
-      page.find('#edit-button').click
+      click_link('Bearbeiten', href: edit_person_path(bob))
       fill_out_person_form
-      save_button = find_button("Speichern")
+      save_button = find_button("Person aktualisieren")
       scroll_to(save_button, align: :center)
       save_button.click
       assert_form_persisted(old_number_of_roles)
@@ -217,16 +217,16 @@ describe :people do
     it 'should edit and cancel without saving' do
       person = Person.first
       visit person_path(person)
-      page.find('#edit-button').click
+      click_link('Bearbeiten', href: edit_person_path(person))
       fill_out_person_form
-      page.find('#cancel-button').click
+      click_link 'Abbrechen'
       expect(person.attributes).to eql(Person.first.attributes)
     end
 
     it('should correctly disable languages if they are selected, changed, created or deleted') {
       bob = people(:bob)
       visit person_path(bob)
-      page.find('#edit-button').click
+      click_link('Bearbeiten', href: edit_person_path(bob))
 
       add_language('JA')
       add_language('ZH')
@@ -264,7 +264,7 @@ describe :people do
     it('should display error when uploading a too big avatar file') do
       bob = people(:bob)
       visit person_path(bob)
-      page.find('#edit-button').click
+      click_link('Bearbeiten', href: edit_person_path(bob))
 
       allow_any_instance_of(CarrierWave::SanitizedFile).to receive(:size).and_return(12.megabytes)
 
@@ -282,24 +282,24 @@ describe :people do
     it 'should have all edit fields' do
       visit people_path
       new_person = Person.new
-      page.find('#new-person-button').click
+      click_link 'Neues Profil'
       check_edit_fields(new_person, false)
     end
 
     it 'should create new person' do
       visit people_path
-      page.find('#new-person-button').click
+      click_link 'Neues Profil'
       fill_out_person_form
-      page.find("#save-button").click
+      click_button "Person erstellen"
 
       assert_form_persisted(0)
     end
 
     it 'should go back to overview after cancelling and not save new person' do
       visit people_path
-      page.find('#new-person-button').click
+      click_link 'Neues Profil'
       fill_out_person_form
-      page.find("#cancel-button").click
+      click_link 'Abbrechen'
       expect(page).to have_current_path("/people")
       expect(Person.all.find_by(name: "Hansjakobli")).to be_nil
     end

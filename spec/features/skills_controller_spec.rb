@@ -20,7 +20,7 @@ describe :skills do
     it 'can edit skill in table ' do
       visit skills_path
       within "#skill_#{Skill.second.id}" do
-        page.find('.edit-button').click
+        page.find('.icon.icon-pencil').click
         expect(page).to have_field('skill_title', with: Skill.second.title)
         expect(page).to have_select('skill_category_parent', selected: Skill.second.category.parent.title)
         expect(page).to have_select('skill_category_id', selected: Skill.second.category.title)
@@ -32,7 +32,8 @@ describe :skills do
 
     it 'can save edited skill' do
       visit skills_path
-      page.all('.edit-button')[1].click
+      require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
+      page.all('.icon.icon-pencil')[1].click
       fill_out_form
       save_button = page.find("input[type='image']")
       save_button.click
@@ -48,7 +49,8 @@ describe :skills do
 
     it 'can cancel edited skill' do
       visit skills_path
-      page.all('.edit-button')[1].click
+      page.all('.icon.icon-pencil')[1].click
+
       fill_out_form
       save_button = page.first("img.pointer")
       save_button.click

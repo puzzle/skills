@@ -5,11 +5,14 @@ it:
       activity:
         description: Dati dell'azienda e descrizione dell'attività
         role: Ruolo
+        year_from: Data di inizio
       advanced_training:
         description: Descrizione del
+        year_from: Data di inizio
       education:
         location: Luogo di formazione
         title: Istruzione
+        year_from: Data di inizio
       people_skill:
         certificate: Certificato
         core_competence: Competenza di base
@@ -34,6 +37,7 @@ it:
         role: Ruolo e compiti
         technology: Tecnologie utilizzate
         title: Progetto
+        year_from: Data di inizio
       skill:
         category: Categoria
     models:
@@ -73,6 +77,7 @@ it:
     with_enddate: Con data di scadenza
   errors:
     messages:
+      invalid_date_range: deve essere precedente alla data di scadenza.
       max_size_error: non dovrebbe essere più grande di 10 MB.
       profile-not-found: Il profilo non è stato trovato.
   global:
@@ -104,7 +109,17 @@ it:
       skill_search: Ricerca di competenze
       skillset: Competenze
     new: Nuovo
+    people_skills:
+      levels:
+        expert: Esperto
+        junior: Junior
+        level: Esperienza
+        professional: Professionale
+        senior: Senior
+        trainee: Apprendista
+        unweighted: Non valutato
     search:
+      found_in: Trovato in
       no_results: Nessun risultato
       search_results: Risultati della ricerca
     'true': Sì
@@ -143,6 +158,9 @@ it:
       edit_form:
         rate: Tasso
         unrate: Non valutare
+      global:
+        link:
+          add: Aggiungi abilità
       index:
         new_skills_to_rate: Nuove competenze per la valutazione
     profile:

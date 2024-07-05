@@ -27,7 +27,7 @@ describe "Core competences", type: :feature, js: true do
 
     fill_in 'person_competence_notes', with: 'Hello World here'
     click_button "Person aktualisieren"
-    expect(page).to have_text('Hello World here')
+    expect(page).to have_content('Hello World here')
   end
 
   it 'should not update competence notes when clicking cancel button' do
