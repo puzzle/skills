@@ -21,6 +21,10 @@
                 %img{:src=> "/assets/logo.svg",:height=>"32"}
               %text.d-flex.align-items-end.ms-2.small= "5.0.0"
           %ul.navbar.text-gray
+            -# Language selector
+            %li.d-flex.align-items-center.cursor-pointer.border-start.border-end.h-100.ps-2.pe-2
+              = form_with url: change_locale_path, method: :post, local: true do |f|
+                = f.select :locale, language_selector, {}, onchange: 'this.form.submit();', class: "form-control"
             -# Devise/Mockdata
             - if Rails.env.development?
               %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
@@ -74,8 +78,5 @@
             %span
               = yield :actions
           = content_for?(:content) ? yield(:content) : yield
-          
-          = form_with url: change_locale_path, method: :post, local: true do |f|
-            = f.select :locale, language_selector, {}, onchange: 'this.form.submit();', class: "form-control"
 
           = turbo_frame_tag "remote_modal", target: "_top"
