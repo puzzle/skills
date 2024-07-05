@@ -1,64 +1,48 @@
-# Translations of all crud strings.
-# See also I18nHelper#translate_inheritable and #translate_association.
-
+---
 de:
-  # global scope
-  global:
-    "yes": "ja"
-    "no": "nein"
-    no_list_entries: Keine Einträge gefunden.
-    confirm_delete: Wollen Sie diesen Eintrag wirklich löschen?
-
-    associations:
-      # association keys may be customized per model with the prefix
-      # 'activerecord.associations.{model}.' or even per actual association with
-      # 'activerecord.associations.models.{holder_model}.{assoc_name}.'
-      no_entry: (keine)
-      none_available: (keine verfügbar)
-      please_select: Bitte auswählen
-
-    button:
-      save: Speichern
-      cancel: Abbrechen
-      search: Suchen
-
-    link:
-      show: Anzeigen
-      edit: Bearbeiten
-      add: Erstellen
-      delete: Löschen
-      list: Liste
-
-    errors:
-      header:
-        one: "Ein Fehler verhinderte das Speichern dieses Eintrages:"
-        other: "%{count} Fehler verhinderten das Speichern dieses Eintrages:"
-
-  # formats
-  time:
-    formats:
-      time: "%H:%M"
-
-  # list controller
-  list:
-    index:
-      title: "%{models}"
-
-  # crud controller
   crud:
-    show:
-      title: "%{model}"
-    new:
-      title: "%{model} erstellen"
-    edit:
-      title: "%{model} bearbeiten"
     create:
       flash:
         success: "%{model} wurde erfolgreich erstellt."
+    destroy:
+      flash:
+        failure: "%{model} konnte nicht gelöscht werden."
+        success: "%{model} wurde erfolgreich gelöscht."
+    edit:
+      title: "%{model} bearbeiten"
+    new:
+      title: "%{model} erstellen"
+    show:
+      title: "%{model}"
     update:
       flash:
         success: "%{model} wurde erfolgreich aktualisiert."
-    destroy:
-      flash:
-        success: "%{model} wurde erfolgreich gelöscht."
-        failure: "%{model} konnte nicht gelöscht werden."
+  global:
+    associations:
+      no_entry: "(keine)"
+      none_available: "(keine verfügbar)"
+      please_select: Bitte auswählen
+    button:
+      cancel: Abbrechen
+      save: Speichern
+      search: Suchen
+    confirm_delete: Wollen Sie diesen Eintrag wirklich löschen?
+    errors:
+      header:
+        one: 'Ein Fehler verhinderte das Speichern dieses Eintrages:'
+        other: "%{count} Fehler verhinderten das Speichern dieses Eintrages:"
+    link:
+      add: Erstellen
+      delete: Löschen
+      edit: Bearbeiten
+      list: Liste
+      show: Anzeigen
+    'no': nein
+    no_list_entries: Keine Einträge gefunden.
+    'yes': ja
+  list:
+    index:
+      title: "%{models}"
+  time:
+    formats:
+      time: "%H:%M"
