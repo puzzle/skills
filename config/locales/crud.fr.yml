@@ -1,0 +1,48 @@
+---
+fr:
+  crud:
+    create:
+      flash:
+        success: "%{model} a été créé avec succès."
+    destroy:
+      flash:
+        failure: "%{model} n'a pas pu être supprimé."
+        success: "%{model} a été supprimé avec succès."
+    edit:
+      title: "%{model} éditer"
+    new:
+      title: "%{model} créer"
+    show:
+      title: "%{model}"
+    update:
+      flash:
+        success: "%{model} a été mis à jour avec succès."
+  global:
+    associations:
+      no_entry: "(aucune)"
+      none_available: "(aucun disponible)"
+      please_select: Veuillez sélectionner
+    button:
+      cancel: Annuler
+      save: Enregistrer
+      search: Rechercher
+    confirm_delete: Voulez-vous vraiment supprimer cette entrée ?
+    errors:
+      header:
+        one: 'Une erreur a empêché l''enregistrement de cette entrée :'
+        other: "%{count} Des erreurs ont empêché l'enregistrement de cette entrée :"
+    link:
+      add: Créer
+      delete: Supprimer
+      edit: Modifier
+      list: Liste
+      show: Annonces
+    'no': non
+    no_list_entries: Aucune entrée trouvée.
+    'yes': oui
+  list:
+    index:
+      title: "%{models}"
+  time:
+    formats:
+      time: "%H:%M"

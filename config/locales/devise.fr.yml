@@ -1,0 +1,42 @@
+---
+fr:
+  activerecord:
+    attributes:
+      user:
+        confirmation_sent_at: Confirmation envoyée le
+        confirmation_token: Jeton de confirmation
+        confirmed_at: Confirmé le
+        created_at: Créé le
+        current_password: Ancien mot de passe
+        current_sign_in_at: Inscription actuelle du
+        current_sign_in_ip: IP de la connexion actuelle
+        email: Courrier électronique
+        encrypted_password: Mot de passe crypté
+        failed_attempts: Tentatives ratées
+        last_sign_in_at: Dernière inscription le
+        last_sign_in_ip: IP de la dernière connexion
+        locked_at: Bloqué le
+        password: Mot de passe
+        password_confirmation: Confirmation du mot de passe
+        privacy_accepted_at: Déclaration de confidentialité
+        remember_created_at: Rester connecté du
+        remember_me: Rester connecté
+        reset_password_sent_at: E-mail de réinitialisation du mot de passe envoyé le
+        reset_password_token: Jeton de réinitialisation du mot de passe
+        sign_in_count: Nombre d'inscriptions
+        terms_accepted_at: CONDITIONS GÉNÉRALES DE VENTE
+        unconfirmed_email: Adresse e-mail non confirmée
+        unlock_token: Jeton de déverrouillage
+        updated_at: Mis à jour le
+    models:
+      user: Utilisateur
+  errors:
+    messages:
+      already_confirmed: a déjà été confirmé, veuillez essayer de vous connecter
+      confirmation_period_expired: devait être confirmée dans un délai de %{period}, veuillez en faire la demande à nouveau.
+      expired: a expiré, veuillez en redemander
+      not_found: pas trouvé
+      not_locked: n'est pas bloqué
+      not_saved:
+        one: "%{resource} n'a pas pu être enregistré en raison d'une erreur :"
+        other: "%{count} Des erreurs empêchaient l'enregistrement de %{resource}:"
