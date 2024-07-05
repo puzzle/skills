@@ -33,10 +33,6 @@ describe :people_skills do
       visit(people_skills_path)
       fill_out_row("JUnit", 5, 3)
       add_and_fill_out_row("Rails", 4, 5)
-      require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
-      add_and_fill_out_row("ember", 5, 4)
-      add_and_fill_out_row("Bash", 5, 2)
-      add_and_fill_out_row("cunit", 5, 2)
 
       expect(page).to have_text("Wally Allround")
     end
