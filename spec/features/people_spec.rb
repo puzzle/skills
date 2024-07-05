@@ -1,5 +1,12 @@
 require 'rails_helper'
 
+ptime_base_test_url = "www.ptime.example.com"
+ptime_api_test_username = "test username"
+ptime_api_test_password = "test password"
+ENV["PTIME_BASE_URL"] = ptime_base_test_url
+ENV["PTIME_API_USERNAME"] = ptime_api_test_username
+ENV["PTIME_API_PASSWORD"] = ptime_api_test_password
+
 describe :people do
   describe 'People Search', type: :feature, js: true do
     employees_json = {
@@ -106,26 +113,17 @@ describe :people do
     end
 
     it 'should redirect to correct person ' do
-      visit people_path
-      longmax = people(:longmax)
       alice = people(:alice)
-      charlie = people(:charlie)
-
-      longmax.ptime_employee_id = 33
       alice.ptime_employee_id = 21
-      charlie.ptime_employee_id = 45
-      longmax.save!
       alice.save!
-      charlie.save!
-
-      stub_request(:get, "#{ptime_base_test_url}/api/v1/employees?per_page=1000").
+      stub_request(:get, "http://#{ptime_base_test_url}/api/v1/employees?per_page=1000").
       to_return(body: employees_json, headers: { 'content-type': "application/vnd.api+json; charset=utf-8" }, status: 200)
                                                                  .with(basic_auth: [ptime_api_test_username, ptime_api_test_password])
-
-      fetch_ptime_employees
-
-      select_from_slim_select("#person_id_person", longmax.name)
-      expect(page).to have_current_path(person_path(longmax))
+      visit people_path
+      select_from_slim_select("#person_id_person", alice.name)
+      require "pry"; binding.pry
+      expect(page).to have_current_path(person_path(alice))
+      expect(page).to have_css('.ss-single', text: 'Alice Mante')
     end
   end
 
