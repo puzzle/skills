@@ -42,7 +42,7 @@ describe AdvancedTraining do
       advanced_training.year_from = 2016
       advanced_training.valid?
 
-      expect(advanced_training.errors[:year_from].first).to eq('muss vor "Datum bis" sein')
+      expect(advanced_training.errors[:year_from].first).to eq('muss vor dem Enddatum sein.')
     end
 
     it 'year_to can be blank' do

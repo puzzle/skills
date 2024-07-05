@@ -11,7 +11,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
   describe 'Simple interactions' do
     it 'shows all' do
       within('turbo-frame#advanced_training') do
-        expect(page).to have_content('2010 - 2012')
+        expect(page).to have_content('Januar 2010 - Januar 2012')
         expect(page).to have_content('Course about how to clean')
       end
     end
@@ -92,7 +92,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
 
         click_default_submit
       end
-      expect(page).to have_css(".alert.alert-danger", text: "Beschreibung muss ausgefüllt werden")
+      expect(page).to have_css(".alert.alert-danger", text: /Beschreibung muss ausgefüllt werden/)
     end
 
     it 'year_from cant be empty' do
@@ -102,7 +102,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
 
         click_default_submit
       end
-      expect(page).to have_css(".alert.alert-danger", text: "Jahr von muss ausgefüllt werden")
+      expect(page).to have_css(".alert.alert-danger", text: /Startdatum muss ausgefüllt werden/)
     end
 
     it 'Update entry and clear description' do
@@ -113,7 +113,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
         fill_in 'advanced_training_description', with: ""
         click_default_submit
       end
-      expect(page).to have_css(".alert.alert-danger", text: "Beschreibung muss ausgefüllt werden")
+      expect(page).to have_css(".alert.alert-danger", text: /Beschreibung muss ausgefüllt werden/)
     end
 
     it 'Update entry and clear description' do
@@ -125,7 +125,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
         select '2010', from: 'advanced_training_year_to'
         click_default_submit
       end
-      expect(page).to have_css(".alert.alert-danger", text: "Jahr von muss vor \"Datum bis\" sein")
+      expect(page).to have_css(".alert.alert-danger", text: /Startdatum muss vor dem Enddatum sein/)
     end
   end
 end

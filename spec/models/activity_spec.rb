@@ -45,7 +45,7 @@ describe Activity do
       activity.year_from = 2016
       activity.valid?
 
-      expect(activity.errors[:year_from].first).to eq('muss vor "Datum bis" sein')
+      expect(activity.errors[:year_from].first).to eq('muss vor dem Enddatum sein.')
     end
 
     it 'year_to can be blank' do
