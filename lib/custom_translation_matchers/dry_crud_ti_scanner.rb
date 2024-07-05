@@ -16,26 +16,15 @@ module CustomTranslationMatchers
     private
 
     def human_attribute_name_to_key_occurences(send_node:, location:) # rubocop:disable Metrics/MethodLength
-      methods_check = %i[action_link
-                         action_icon
-                         show_action_link
-                         edit_action_link
-                         destroy_action_link
-                         index_action_link
-                         add_action_link
-                         add_action_link_modal
-                         export_action_link
-                         close_action_link
-                         cancel_action_link]
       children = Array(send_node&.children)
-      receiver = children[0]
-      method_name = children[1]
+      children[0]
+      children[1]
 
       # !send_node.loc.expression.to_json.start_with?('app/helpers')
 
 
-      value = children[2]
-      string = Array(children[2]).first
+      children[2]
+      Array(children[2]).first
 
 
       key = 'activerecord.attributes.tet'
