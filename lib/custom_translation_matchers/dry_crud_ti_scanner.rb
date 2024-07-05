@@ -15,7 +15,7 @@ module CustomTranslationMatchers
 
     private
 
-    def human_attribute_name_to_key_occurences(send_node:, location:) # rubocop:disable Metrics/MethodLength,Metrics/AbcSize
+    def human_attribute_name_to_key_occurences(send_node:, location:) # rubocop:disable Metrics/MethodLength
       methods_check = %i[action_link
                          action_icon
                          show_action_link
@@ -30,13 +30,9 @@ module CustomTranslationMatchers
       children = Array(send_node&.children)
       receiver = children[0]
       method_name = children[1]
-      require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
-      return unless methods_check.include? :action_link
 
       # !send_node.loc.expression.to_json.start_with?('app/helpers')
 
-      # puts ti('hi')
-      require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
 
       value = children[2]
       string = Array(children[2]).first
