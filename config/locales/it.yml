@@ -86,16 +86,23 @@ it:
       year: Anno
     devise:
       admin: "(Admin)"
+      admin_panel: Pannello di amministrazione
       devise: Motto
       mockdata: Mockdata
       no_omniauth_providers: Errore, non sono disponibili provider Omniauth, contattare l'amministratore.
       sign_in: Accedi
       sign_in_with: "%{provider} Accedere con"
+      sign_out: Disconnettersi
     'false': 'No'
     link:
       cancel: Annullamento
       export: Esportazione
       save_new: Risparmi e novità
+    navbar:
+      cv_search: Ricerca di CV
+      profile: Profilo
+      skill_search: Ricerca di competenze
+      skillset: Competenze
     new: Nuovo
     search:
       no_results: Nessun risultato

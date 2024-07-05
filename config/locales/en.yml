@@ -86,16 +86,23 @@ en:
       year: Year
     devise:
       admin: "(Admin)"
+      admin_panel: Admin Panel
       devise: Motto
       mockdata: Mockdata
       no_omniauth_providers: An error, no Omniauth providers are available, please contact the administrator.
       sign_in: Log in
       sign_in_with: 'Log in with %{provider} '
+      sign_out: Log out
     'false': 'No'
     link:
       cancel: Cancel
       export: Export
       save_new: Save & New
+    navbar:
+      cv_search: CV search
+      profile: Profile
+      skill_search: Skill search
+      skillset: Skillset
     new: New
     search:
       no_results: No results

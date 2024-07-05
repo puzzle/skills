@@ -76,6 +76,11 @@ de:
       max_size_error: sollte nicht grösser als 10MB sein.
       profile-not-found: Profil konnte nicht gefunden werden.
   global:
+    navbar:
+      skillset: Skillset
+      cv_search: CV Suche
+      profile: Profil
+      skill_search: Skill Suche
     date:
       from: Von
       month: Monat
@@ -90,7 +95,9 @@ de:
       mockdata: Mockdata
       no_omniauth_providers: An error, no Omniauth providers are available, please contact the administrator.
       sign_in: Anmelden
+      sign_out: Abmelden
       sign_in_with: Mit %{provider} anmelden
+      admin_panel: Admin Panel
     'false': Nein
     link:
       cancel: Abbrechen
@@ -196,3 +203,5 @@ de:
       search: Skills suchen
     show:
       title: 'Skill: %{title} (%{amount} Members)'
+  
+
