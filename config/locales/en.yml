@@ -5,11 +5,14 @@ en:
       activity:
         description: Company details and description of the activity
         role: Role
+        year_from: Start date
       advanced_training:
         description: Description
+        year_from: Start date
       education:
         location: Training location
         title: Education
+        year_from: Start date
       people_skill:
         certificate: Certificate
         core_competence: Core competence
@@ -34,6 +37,7 @@ en:
         role: Role and tasks
         technology: Technologies used
         title: Project
+        year_from: Start date
       skill:
         category: Category
     models:
@@ -60,6 +64,7 @@ en:
     with_enddate: With end date
   errors:
     messages:
+      invalid_date_range: must be before the end date.
       max_size_error: should not be larger than 10MB.
       profile-not-found: Profile could not be found.
   global:
@@ -91,7 +96,17 @@ en:
       skill_search: Skill search
       skillset: Skillset
     new: New
+    people_skills:
+      levels:
+        expert: Expert
+        junior: Junior
+        level: Experience
+        professional: Professional
+        senior: Senior
+        trainee: Trainee
+        unweighted: Not rated
     search:
+      found_in: Found in
       no_results: No results
       search_results: Search results
     'true': 'Yes'
@@ -136,6 +151,50 @@ en:
     married: married
     widowed: widowed
     registered_partnership: registered partnership
+    single: single
+    widowed: widowed
+  people:
+    cv:
+      no_skills_rated_msg: This profile has no rated skills yet. Go to the Skills tab and rate the skills relevant to you.
+    export_cv:
+      export_form:
+        anonymised_cv: Anonymized CV
+        competences_skills: Core competencies - Skills
+        download: Download
+        location: 'Branch office (for footer):'
+        skills_by_level: Skills by level
+        trainee: Trainee
+    index:
+      choose_create_person: Select a person or create a new profile
+      welcome: Welcome to
+    new:
+      personals: Personal details
+    people_skills:
+      edit_form:
+        rate: Rate
+        unrate: Do not rate
+      global:
+        link:
+          add: Add skill
+      index:
+        new_skills_to_rate: New skills for evaluation
+    profile:
+      add_function: Add function
+      add_language: Add language
+      change_image: Change picture
+      core_competences: Core competencies
+      personals: Personal data
+      upload_image: Upload image
+    scroll_to_menu:
+      activities: Station
+      advanced-trainings: Further training
+      core-competences: Core competencies
+      educations: Trainings
+      personal-data: Personal data
+      projects: Projects
+    search:
+      new_profile: New profile
+      updated_at: Last edited
     divorced: divorced
   people-skills:
     levels:

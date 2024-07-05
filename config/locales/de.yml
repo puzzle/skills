@@ -2,7 +2,6 @@
 de:
   activerecord:
     attributes:
-      
       activity:
         description: Firmenangaben und Beschreibung der Tätigkeit
         role: Rolle
@@ -78,15 +77,10 @@ de:
     with_enddate: Mit Enddatum
   errors:
     messages:
+      invalid_date_range: muss vor dem Enddatum sein.
       max_size_error: sollte nicht grösser als 10MB sein.
       profile-not-found: Profil konnte nicht gefunden werden.
-      invalid_date_range: muss vor dem Enddatum sein.
   global:
-    navbar:
-      skillset: Skillset
-      cv_search: CV Suche
-      profile: Profil
-      skill_search: Skill Suche
     date:
       from: Von
       month: Monat
@@ -97,24 +91,24 @@ de:
       year: Jahr
     devise:
       admin: "(Admin)"
+      admin_panel: Admin Panel
       devise: Devise
       mockdata: Mockdata
       no_omniauth_providers: An error, no Omniauth providers are available, please contact the administrator.
       sign_in: Anmelden
-      sign_out: Abmelden
       sign_in_with: Mit %{provider} anmelden
-      admin_panel: Admin Panel
+      sign_out: Abmelden
     'false': Nein
     link:
       cancel: Abbrechen
       export: Exportieren
       save_new: Speichern & Neu
+    navbar:
+      cv_search: CV Suche
+      profile: Profil
+      skill_search: Skill Suche
+      skillset: Skillset
     new: Neu
-    search:
-      found_in: Gefunden in
-      no_results: Keine Resultate
-      search_results: Suchergebnisse
-    'true': Ja
     people_skills:
       levels:
         expert: Expert
@@ -124,6 +118,11 @@ de:
         senior: Senior
         trainee: Trainee
         unweighted: Nicht bewertet
+    search:
+      found_in: Gefunden in
+      no_results: Keine Resultate
+      search_results: Suchergebnisse
+    'true': Ja
   helpers:
     cancel: Abbrechen
     submit:
@@ -156,12 +155,12 @@ de:
     new:
       personals: Personalien
     people_skills:
-      global:
-        link:
-          add: Skill hinzufügen
       edit_form:
         rate: Bewerten
         unrate: Nicht bewerten
+      global:
+        link:
+          add: Skill hinzufügen
       index:
         new_skills_to_rate: Neue Skills zur Bewertung
     profile:
@@ -189,6 +188,14 @@ de:
       rated: Bewertet
       unrated: Nicht bewertet
     interest: Interesse
+    levels:
+      expert: Esperto
+      junior: Junior
+      level: Esperienza
+      professional: Professionale
+      senior: Senior
+      trainee: Apprendista
+      unweighted: Non valutato
   people_skills:
     global:
       link:
@@ -233,5 +240,3 @@ de:
       search: Skills suchen
     show:
       title: 'Skill: %{title} (%{amount} Members)'
-  
-
