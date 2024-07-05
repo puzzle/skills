@@ -1,10 +1,11 @@
 require 'rails_helper'
 
-describe "Core competences" do
+describe "Core competences", type: :feature, js: true do
   before(:each) do
     sign_in auth_users(:user), scope: :auth_user
     visit root_path
   end
+  let(:alice) { people(:alice) }
 
   it 'should display core competences' do
     visit person_path(people(:bob))
@@ -14,33 +15,33 @@ describe "Core competences" do
   end
 
   it 'should display competence notes and edit link correctly' do
-    visit person_path(people(:alice))
+    visit person_path(alice)
     expect(page).to have_text("LaTex Puppet Bash", normalize_ws: true)
-    expect(page).to have_selector('#edit-link')
+    expect(page).to have_selector('.icon-pencil')
   end
 
   it 'should update competence notes' do
-    visit person_path(people(:alice))
-    page.find('#edit-link').click
+    visit person_path(alice)
+    click_link(href: competence_notes_person_path(alice))
     expect(page).to have_selector('.form-control')
 
     fill_in 'person_competence_notes', with: 'Hello World here'
-    page.find('#save').click
+    click_button "Person aktualisieren"
     expect(page).to have_text('Hello World here')
   end
 
   it 'should not update competence notes when clicking cancel button' do
-    visit person_path(people(:alice))
-    page.find('#edit-link').click
+    visit person_path(alice)
+    click_link(href: competence_notes_person_path(alice))
     expect(page).to have_selector('.form-control')
 
     fill_in 'person_competence_notes', with: 'Hello World here'
-    page.find('#cancel').click
+    click_link(text: "Abbrechen")
     expect(page).to have_text("LaTex Puppet Bash", normalize_ws: true)
   end
 
   it 'should display skill with same parent category in same row with divider' do
-    visit person_path(people(:alice))
+    visit person_path(alice)
     expect(page).to have_selector('.circle-divider')
     expect(page).to have_selector('.core-competence', count: 1,
                                   text: "Software-Engineering Rails ember", normalize_ws: true)

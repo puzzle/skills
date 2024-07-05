@@ -75,7 +75,7 @@ describe :people_skills do
 
   def add_and_fill_out_row(skill, level, interest)
     old_row_number = last_row[:id][-1, 1].to_i
-    find('#add-row-button').click
+    click_link "Skill hinzufügen (max. 5)"
     new_row_id = "filter-row-#{old_row_number + 1}"
     expect(page).to have_css("[id='#{new_row_id}']")
     fill_out_row(skill, level, interest)
@@ -85,6 +85,7 @@ describe :people_skills do
     row_selector = "##{last_row[:id]}"
     within row_selector do
       select_id = find('select', visible: false)[:id]
+      require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
       select_from_slim_select("#{row_selector} [id='#{select_id}']", skill)
     end
 

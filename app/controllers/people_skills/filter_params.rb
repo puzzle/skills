@@ -20,7 +20,7 @@ module PeopleSkills
     end
 
     def rows
-      @params[:rows].to_i
+      [@params[:rows].to_i, 1].max
     end
 
     def rows_count
