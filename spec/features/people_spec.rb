@@ -35,6 +35,7 @@ describe :people do
           'shortname': 'AMA',
           'firstname': 'Alice',
           'lastname': 'Mante',
+          'full_name': 'Alice Mante',
           'email': 'alice@example.com',
           'marital_status': 'single',
           'nationalities': [
@@ -43,6 +44,9 @@ describe :people do
           'graduation': 'MSc in writing',
           'department_shortname': 'SYS',
           'employment_roles': []
+          'is_employed': false,
+          'birthdate': '01.04.2001'
+          'location': 'Bern'
         }
       },
       {
