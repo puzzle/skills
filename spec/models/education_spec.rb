@@ -54,7 +54,7 @@ describe Education do
       education.year_from = 2016
       education.valid?
 
-      expect(education.errors[:year_from].first).to eq('muss vor "Datum bis" sein')
+      expect(education.errors[:year_from].first).to eq('muss vor dem Enddatum sein.')
     end
 
     it 'orders education correctly with list scope' do

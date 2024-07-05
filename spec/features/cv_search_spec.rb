@@ -43,7 +43,12 @@ describe 'Advanced Trainings', type: :feature, js:true do
       fill_in 'cv_search_field', with: education_location
       check_search_results(Person.human_attribute_name(:educations))
       click_link(Person.human_attribute_name(:educations))
-      expect(page).to have_current_path("#{person_path(person)}?q=#{education_location.split(" ").join("+")}")
+      url = URI.parse(current_url)
+      path = url.path
+      query_params = url.query.split("&")
+
+      expect(path).to eq(person_people_skills_path(person))
+      expect(query_params).to include({q: education_location}.to_query)
     end
 
     it 'should only display results when length of search-text is > 3' do
@@ -60,7 +65,6 @@ describe 'Advanced Trainings', type: :feature, js:true do
       page.check('search_skills')
       expect(page).not_to have_content("Keine Resultate")
       check_search_results(Skill.model_name.human(count: 2))
-      require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
       link = person_people_skills_path(person, q: skill_title, rating: 1)
       expect(page).to have_link(href: link)
     end

@@ -2,14 +2,18 @@
 de:
   activerecord:
     attributes:
+      
       activity:
         description: Firmenangaben und Beschreibung der Tätigkeit
         role: Rolle
+        year_from: Startdatum
       advanced_training:
         description: Beschreibung
+        year_from: Startdatum
       education:
         location: Ausbildungsort
         title: Ausbildung
+        year_from: Startdatum
       people_skill:
         certificate: Zertifikat
         core_competence: Kernkompetenz
@@ -34,6 +38,7 @@ de:
         role: Rolle und Aufgaben
         technology: Eingesetzte Technologien
         title: Projekt
+        year_from: Startdatum
       skill:
         category: Kategorie
     models:
@@ -75,6 +80,7 @@ de:
     messages:
       max_size_error: sollte nicht grösser als 10MB sein.
       profile-not-found: Profil konnte nicht gefunden werden.
+      invalid_date_range: muss vor dem Enddatum sein.
   global:
     navbar:
       skillset: Skillset
@@ -150,6 +156,9 @@ de:
     new:
       personals: Personalien
     people_skills:
+      global:
+        link:
+          add: Skill hinzufügen
       edit_form:
         rate: Bewerten
         unrate: Nicht bewerten
