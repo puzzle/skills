@@ -41,7 +41,7 @@ services:
      /bin/bash -c "
       curl -fsSL https://deb.nodesource.com/setup_18.x | bash - &&
       apt-get install -y nodejs &&
-      npm install -g yarn && yarn add nodemon esbuild add && bin/assets &&
+      npm install -g yarn && yarn add nodemon esbuild && bin/assets &&
       sleep infinity"
     volumes:
       - ./:/myapp
