@@ -1,7 +1,8 @@
 %div.d-flex.align-items-center.justify-content-between
   %div.d-flex.col-9.gap-3
     %span.col-6{"data-controller": "dropdown"}
-      = select :person_id, :person, options_for_select(fetch_ptime_employees.map { |p| [ p[:name], p[:already_exists] ? p[:id] : "new?ptime_employee_id=#{p[:ptime_employee_id]}" ] }), {}, {data: { "dropdown-target" => "dropdown", action: "change->dropdown#handleChange", value: "/people/" }}
+      - sorted_employees = fetch_ptime_employees.sort_by { |p| p[:name] }
+      = select :person_id, :person, options_for_select(sorted_employees.map { |p| [ p[:name], p[:already_exists] ? p[:id] : "new?ptime_employee_id=#{p[:ptime_employee_id]}" ] }), {}, {data: { "dropdown-target" => "dropdown", action: "change->dropdown#handleChange", value: "/people/" }}
       -# = collection_select :person_id, :person, fetch_ptime_employees, :first, :last, select_when_availabale(person), {data:{"dropdown-target": "dropdown" , action: "change->dropdown#handleChange", value: "/people/"}}
     %div.d-flex.align-items-center.text-gray
       = "#{t 'profile.updated_at'}: #{@person&.last_updated_at.strftime("%d.%m.%Y")}" if @person&.last_updated_at
