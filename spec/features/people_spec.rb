@@ -10,64 +10,58 @@ ENV["PTIME_API_PASSWORD"] = ptime_api_test_password
 describe :people do
   describe 'People Search', type: :feature, js: true do
     employees_json = {
-    'data': [
-      {
-        'id': 33,
-        'type': 'employee',
-        'attributes': {
-          'shortname': 'LSM',
-          'firstname': 'Longmax',
-          'lastname': 'Smith',
-          'email': 'longmax@example.com',
-          'marital_status': 'single',
-          'nationalities': [
-            'ZW'
-          ],
-          'graduation': 'BSc in Architecture',
-          'department_shortname': 'SYS',
-          'employment_roles': []
+      'data' => [
+        {
+          'id' => 33,
+          'type' => 'employee',
+          'attributes' => {
+            'shortname' => 'LSM',
+            'firstname' => 'Longmax',
+            'lastname' => 'Smith',
+            'email' => 'longmax@example.com',
+            'marital_status' => 'single',
+            'nationalities' => ['ZW'],
+            'graduation' => 'BSc in Architecture',
+            'department_shortname' => 'SYS',
+            'employment_roles' => []
+          }
+        },
+        {
+          'id' => 21,
+          'type' => 'employee',
+          'attributes' => {
+            'shortname' => 'AMA',
+            'firstname' => 'Alice',
+            'lastname' => 'Mante',
+            'full_name' => 'Alice Mante',
+            'email' => 'alice@example.com',
+            'marital_status' => 'single',
+            'nationalities' => ['AU'],
+            'graduation' => 'MSc in writing',
+            'department_shortname' => 'SYS',
+            'employment_roles' => [],
+            'is_employed' => false,
+            'birthdate' => '01.04.2001',
+            'location' => 'Bern'
+          }
+        },
+        {
+          'id' => 45,
+          'type' => 'employee',
+          'attributes' => {
+            'shortname' => 'CFO',
+            'firstname' => 'Charlie',
+            'lastname' => 'Ford',
+            'email' => 'charlie@example.com',
+            'marital_status' => 'married',
+            'nationalities' => ['GB'],
+            'graduation' => 'MSc in networking',
+            'department_shortname' => 'SYS',
+            'employment_roles' => []
+          }
         }
-      },
-      {
-        'id': 21,
-        'type': 'employee',
-        'attributes': {
-          'shortname': 'AMA',
-          'firstname': 'Alice',
-          'lastname': 'Mante',
-          'full_name': 'Alice Mante',
-          'email': 'alice@example.com',
-          'marital_status': 'single',
-          'nationalities': [
-            'AU'
-          ],
-          'graduation': 'MSc in writing',
-          'department_shortname': 'SYS',
-          'employment_roles': []
-          'is_employed': false,
-          'birthdate': '01.04.2001'
-          'location': 'Bern'
-        }
-      },
-      {
-        'id': 45,
-        'type': 'employee',
-        'attributes': {
-          'shortname': 'CFO',
-          'firstname': 'Charlie',
-          'lastname': 'Ford',
-          'email': 'charlie@example.com',
-          'marital_status': 'married',
-          'nationalities': [
-            'GB'
-          ],
-          'graduation': 'MSc in networking',
-          'department_shortname': 'SYS',
-          'employment_roles': []
-        }
-      },
-    ]
-  }.to_json
+      ]
+    }.to_json
 
     before(:each) do
       sign_in auth_users(:user), scope: :auth_user
@@ -125,7 +119,6 @@ describe :people do
                                                                  .with(basic_auth: [ptime_api_test_username, ptime_api_test_password])
       visit people_path
       select_from_slim_select("#person_id_person", alice.name)
-      require "pry"; binding.pry
       expect(page).to have_current_path(person_path(alice))
       expect(page).to have_css('.ss-single', text: 'Alice Mante')
     end
