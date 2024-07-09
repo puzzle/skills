@@ -78,28 +78,43 @@ module PersonHelper
   end
 
   def fetch_ptime_employees
-    ptime_employees = Ptime::Client.new.get('employees', { per_page: 1000 })['data']
-    # employed_employees = ptime_employees.select { |employee| employee['is_employed'] }
-    ptime_employee_id_map = Person.order(:name).all.map do |p|
-      { p.ptime_employee_id.to_s => p.id }
-    end.reduce({}, :merge)
-    ptime_employees_dropdown_data = []
-    ptime_employee_ids = Person.all.pluck(:ptime_employee_id)
-    ptime_employees.each do |ptime_employee| # Replace 'ptime_employees' with 'employed_employees'
+    ptime_employees = fetch_all_ptime_employees
+    ptime_employee_ids = fetch_all_ptime_employee_ids
+    build_dropdown_data(ptime_employees, ptime_employee_ids)
+  end
+
+  def fetch_all_ptime_employees
+    Ptime::Client.new.get('employees', { per_page: 1000 })['data']
+  end
+
+  def fetch_all_ptime_employee_ids
+    Person.all.pluck(:ptime_employee_id)
+  end
+
+  def build_dropdown_data(ptime_employees, ptime_employee_ids)
+    ptime_employees.map do |ptime_employee|
       ptime_employee_name = append_ptime_employee_name(ptime_employee)
-      person_id = ptime_employee_id_map[ptime_employee['id'].to_s]
-      ptime_employees_dropdown_data << {id: person_id,
-                                        ptime_employee_id: ptime_employee['id'],
-                                        name: ptime_employee_name,
-                                        already_exists: ptime_employee['id'].in?(ptime_employee_ids)
-                                      }
+      person_id = map_ptime_employee_id(ptime_employee)
+      {
+        id: person_id,
+        ptime_employee_id: ptime_employee['id'],
+        name: ptime_employee_name,
+        already_exists: ptime_employee['id'].in?(ptime_employee_ids)
+      }
     end
-    ptime_employees_dropdown_data
+  end
+
+  def map_ptime_employee_id(ptime_employee)
+    ptime_employee_id_map = Person.all.each_with_object({}) do |person, hash|
+      hash[person.ptime_employee_id.to_s] = person.id
+    end
+
+    ptime_employee_id_map[ptime_employee['id'].to_s]
   end
 
   def append_ptime_employee_name(ptime_employee)
-    ptime_employee_firstname = ptime_employee['attributes']['firstname']
-    ptime_employee_lastname = ptime_employee['attributes']['lastname']
-    "#{ptime_employee_firstname} #{ptime_employee_lastname}"
+    firstname = ptime_employee['attributes']['firstname']
+    lastname = ptime_employee['attributes']['lastname']
+    "#{firstname} #{lastname}"
   end
 end

@@ -16,13 +16,14 @@ module Ptime
     private
 
     def request(method, path, params = nil)
+      ENV['PTIME_API_ACCESSIBLE'] = 'true'
       path = "#{path}?#{URI.encode_www_form(params)}"
       response = RestClient.send(method, path, headers)
       JSON.parse(response.body)
-    rescue RestClient::BadRequest => e
+    rescue RestClient::ExceptionWithResponse => e
+      ENV['PTIME_API_ACCESSIBLE'] = 'false'
       msg = response_error_message(e)
       e.message = msg if msg.present?
-      raise e
     end
 
     def response_error_message(exception)
