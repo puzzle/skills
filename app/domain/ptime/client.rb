@@ -10,13 +10,12 @@ module Ptime
     end
 
     def get(endpoint, params = {})
-      request(:get, @base_url + endpoint, params)
+      request(:get, @base_url + endpoint, params) unless ENV['PTIME_API_ACCESSIBLE']
     end
 
     private
 
     def request(method, path, params = nil)
-      ENV['PTIME_API_ACCESSIBLE'] = 'true'
       path = "#{path}?#{URI.encode_www_form(params)}"
       response = RestClient.send(method, path, headers)
       JSON.parse(response.body)
