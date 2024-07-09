@@ -5,6 +5,8 @@ class PeopleController < CrudController
   include ParamConverters
   include PeopleControllerConcerns
 
+  helper_method :ptime_broken?
+
   self.permitted_attrs = [:birthdate, :location, :marital_status, :updated_by, :name, :nationality,
                           :nationality2, :title, :competence_notes, :company_id, :email,
                           :department_id, :shortname, :picture, :picture_cache,
@@ -68,5 +70,10 @@ class PeopleController < CrudController
 
   def person
     @person ||= Person.find(params[:person_id])
+  end
+
+  def ptime_broken?
+    # Test what happens when ptime_accessible is nil
+    !ActiveModel::Type::Boolean.new.cast(ENV.fetch('PTIME_API_ACCESSIBLE', true))
   end
 end
