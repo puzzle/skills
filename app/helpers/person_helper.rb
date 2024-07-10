@@ -125,4 +125,14 @@ module PersonHelper
     lastname = ptime_employee['attributes']['lastname']
     "#{firstname} #{lastname}"
   end
+
+  def try_new_ptime_api_call
+    last_datetime = ENV['LAST_PTIME_API_REQUEST'].to_datetime
+    current_datetime = DateTime.now
+    difference_in_minutes = ((current_datetime - last_datetime) * 24 * 60).to_i
+
+    if difference_in_minutes >= 5
+      fetch_all_ptime_employees
+    end
+  end
 end

@@ -21,8 +21,11 @@ module Ptime
       JSON.parse(response.body)
     rescue RestClient::ExceptionWithResponse => e
       ENV['PTIME_API_ACCESSIBLE'] = 'false'
+      ENV['LAST_PTIME_API_REQUEST'] = DateTime.current.to_s
       msg = response_error_message(e)
       e.message = msg if msg.present?
+
+      get('employees', { per_page: 1000 })['data']
     end
 
     def response_error_message(exception)
