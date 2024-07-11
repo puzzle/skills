@@ -84,7 +84,7 @@ module PersonHelper
   end
 
   def fetch_all_ptime_employees
-    Ptime::Client.new.get('employees', { per_page: 1000 })['data']
+    Ptime::Client.new.request(:get, 'employees', { per_page: 1000 })['data']
   end
 
   def fetch_all_ptime_employee_ids
@@ -116,15 +116,5 @@ module PersonHelper
     firstname = ptime_employee['attributes']['firstname']
     lastname = ptime_employee['attributes']['lastname']
     "#{firstname} #{lastname}"
-  end
-
-  def try_new_ptime_api_call
-    last_datetime = ENV['LAST_PTIME_API_REQUEST'].to_datetime
-    current_datetime = DateTime.now
-    difference_in_minutes = ((current_datetime - last_datetime) * 24 * 60).to_i
-
-    if difference_in_minutes >= 5
-      fetch_all_ptime_employees
-    end
   end
 end

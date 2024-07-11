@@ -7,7 +7,7 @@ module Ptime
 
     # rubocop:disable Metrics
     def run
-      ptime_employees = Ptime::Client.new.get('employees', { per_page: 1000 })['data']
+      ptime_employees = Ptime::Client.new.request(:get, 'employees', { per_page: 1000 })['data']
       ptime_employees.each do |ptime_employee|
         ptime_employee_firstname = ptime_employee['attributes']['firstname']
         ptime_employee_lastname = ptime_employee['attributes']['lastname']
