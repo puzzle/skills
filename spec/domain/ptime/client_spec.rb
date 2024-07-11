@@ -69,7 +69,7 @@ describe Ptime::Client do
           to_return(body: employees_json, headers: { 'content-type': "application/vnd.api+json; charset=utf-8" }, status: 200)
                                                                        .with(basic_auth: [ptime_api_test_username, ptime_api_test_password])
 
-        fetched_employees = Ptime::Client.new.get("employees")
+        fetched_employees = Ptime::Client.new.request(:get, "employees")
         expect(fetched_employees).to eq(JSON.parse(employees_json))
     end
 
@@ -80,6 +80,6 @@ describe Ptime::Client do
           to_return(body: employees_json, status: 404)
           .with(basic_auth: [ptime_api_test_username, ptime_api_test_password])
 
-        expect{ Ptime::Client.new.get("") }.to raise_error(RestClient::NotFound)
+        expect{ Ptime::Client.new.request(:get, "") }.to raise_error(RestClient::NotFound)
     end
 end
