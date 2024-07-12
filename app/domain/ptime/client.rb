@@ -56,8 +56,6 @@ module Ptime
     def skills_database_request
       ENV['PTIME_API_ACCESSIBLE'] = 'false'
       ENV['LAST_PTIME_API_REQUEST'] = DateTime.current.to_s
-
-      get('employees', { per_page: 1000 })['data']
     end
   end
 end
