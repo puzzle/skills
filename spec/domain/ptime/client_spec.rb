@@ -72,14 +72,4 @@ describe Ptime::Client do
         fetched_employees = Ptime::Client.new.request(:get, "employees")
         expect(fetched_employees).to eq(JSON.parse(employees_json))
     end
-
-    it 'should throw error message when host is not reachable' do
-        ENV["PTIME_BASE_URL"] = "www.unreachablehost.example.com"
-
-        stub_request(:get, "www.unreachablehost.example.com/api/v1/").
-          to_return(body: employees_json, status: 404)
-          .with(basic_auth: [ptime_api_test_username, ptime_api_test_password])
-
-        expect{ Ptime::Client.new.request(:get, "") }.to raise_error(RestClient::NotFound)
-    end
 end

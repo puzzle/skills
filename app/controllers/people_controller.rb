@@ -62,6 +62,10 @@ class PeopleController < CrudController
               disposition: content_disposition('attachment', filename)
   end
 
+  def ptime_broken?
+    !ActiveModel::Type::Boolean.new.cast(ENV.fetch('PTIME_API_ACCESSIBLE', true))
+  end
+
   private
 
   def fetch_entries
@@ -70,10 +74,5 @@ class PeopleController < CrudController
 
   def person
     @person ||= Person.find(params[:person_id])
-  end
-
-  def ptime_broken?
-    # Test what happens when ptime_accessible is nil
-    !ActiveModel::Type::Boolean.new.cast(ENV.fetch('PTIME_API_ACCESSIBLE', true))
   end
 end
