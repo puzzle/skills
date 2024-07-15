@@ -11,7 +11,7 @@ module Ptime
 
     def request(method, endpoint, params = {})
       path = @base_url + endpoint
-      if ENV['PTIME_API_ACCESSIBLE'].nil? && last_ptime_api_request_more_than_5_minutes
+      if last_ptime_api_request_more_than_5_minutes
         send_request_and_parse_response(method, path, params)
       else
         skills_database_request
@@ -48,6 +48,7 @@ module Ptime
     end
 
     def send_request_and_parse_response(method, path, params)
+      ENV['PTIME_API_ACCESSIBLE'] = 'true'
       path = "#{path}?#{URI.encode_www_form(params)}" if method == :get
       response = RestClient.send(method, path, headers)
       JSON.parse(response.body)

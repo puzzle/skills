@@ -77,6 +77,12 @@ module PersonHelper
     end
   end
 
+  def fetch_ptime_or_skills_data
+    ptime_employees = Ptime::Client.new.request(:get, 'employees', { per_page: 1000 })['data']
+    all_skills_people = Person.all
+    return all_skills_people if ENV['PTIME_API_ACCESSIBLE'] == 'false'
+
+    ptime_employee_ids = all_skills_people.pluck(:ptime_employee_id)
   def sorted_people
     people_for_select.sort_by { |e| e.first.downcase }
   end
@@ -89,14 +95,6 @@ module PersonHelper
     ptime_employees = fetch_all_ptime_employees
     ptime_employee_ids = fetch_all_ptime_employee_ids
     build_dropdown_data(ptime_employees, ptime_employee_ids)
-  end
-
-  def fetch_all_ptime_employees
-    Ptime::Client.new.request(:get, 'employees', { per_page: 1000 })['data']
-  end
-
-  def fetch_all_ptime_employee_ids
-    Person.all.pluck(:ptime_employee_id)
   end
 
   def build_dropdown_data(ptime_employees, ptime_employee_ids)
@@ -121,8 +119,6 @@ module PersonHelper
   end
 
   def append_ptime_employee_name(ptime_employee)
-    firstname = ptime_employee['attributes']['firstname']
-    lastname = ptime_employee['attributes']['lastname']
-    "#{firstname} #{lastname}"
+    "#{ptime_employee['attributes']['firstname']} #{ptime_employee['attributes']['lastname']}"
   end
 end
