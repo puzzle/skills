@@ -44,6 +44,7 @@ module PeopleSkillsHelpers
   end
 
   def validate_interest(interest)
+    require "pry"; binding.pry
     star_labels = page.find_all("label[id^='star']", visible: false).to_a.reverse
     star_labels.each_with_index do |label, index|
       body = page.document.find('body')
