@@ -5,6 +5,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
   let(:person) { people(:bob) }
 
   before(:each) do
+    set_env_variables_and_stub_request
     sign_in auth_users(:admin)
     visit("/cv_search")
   end
