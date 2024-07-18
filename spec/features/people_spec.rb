@@ -5,7 +5,7 @@ describe :people do
 
     before(:each) do
       set_env_variables_and_stub_request
-      ENV['LAST_PTIME_API_REQUEST'] = DateTime.current.to_s
+      ENV['LAST_PTIME_API_REQUEST'] = DateTime.current.to_s # This is needed to activate the fallback and still test for the skills people
       sign_in auth_users(:user), scope: :auth_user
     end
 
@@ -204,7 +204,7 @@ describe :people do
 
   describe 'Edit person', type: :feature, js: true do
     before(:each) do
-      Capybara.page.driver.browser.manage.window.maximize
+      # Capybara.page.driver.browser.manage.window.maximize
       set_env_variables_and_stub_request
       sign_in auth_users(:user), scope: :auth_user
     end
