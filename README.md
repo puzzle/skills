@@ -1,8 +1,4 @@
-<p align="center">
-  <a href="https://github.com/puzzle/skills">
-    <img src="https://skills.puzzle.ch/logo.svg"  width="400" height="82">
-  </a>
-</p>
+![Skills Logo](logo.svg)
 
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/puzzle/skills/issues)
 ![Build Status](https://github.com/puzzle/skills/workflows/Rails/badge.svg)
