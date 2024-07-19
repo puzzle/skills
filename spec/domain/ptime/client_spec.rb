@@ -16,4 +16,12 @@ describe Ptime::Client do
         fetched_employees = Ptime::Client.new.request(:get, "employees")
         expect(fetched_employees).to eq(JSON.parse(return_ptime_employees_json))
     end
+
+    it 'should fallback to skills if last request was right now' do
+        ENV['LAST_PTIME_API_REQUEST'] = DateTime.current.to_s
+
+        skills_people = Ptime::Client.new.request(:get, "employees")
+
+        expect(ENV['PTIME_API_ACCESSIBLE']).to eq('false')
+    end
 end
