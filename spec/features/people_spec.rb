@@ -5,7 +5,7 @@ describe :people do
 
     before(:each) do
       set_env_variables_and_stub_request
-      ENV['LAST_PTIME_API_REQUEST'] = DateTime.current.to_s # This is needed to activate the fallback and still test for the skills people
+      ENV['LAST_PTIME_API_REQUEST'] = DateTime.current.to_s # This is needed to activate the fallback and test for the skills people
       sign_in auth_users(:user), scope: :auth_user
     end
 

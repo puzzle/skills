@@ -1,74 +1,11 @@
 require 'rails_helper'
 
-ptime_base_test_url = "www.ptime.example.com"
-ptime_api_test_username = "test username"
-ptime_api_test_password = "test password"
-ENV["PTIME_BASE_URL"] = ptime_base_test_url
-ENV["PTIME_API_USERNAME"] = ptime_api_test_username
-ENV["PTIME_API_PASSWORD"] = ptime_api_test_password
-
 describe Ptime::AssignEmployeeIds do
-  employees_json = {
-    'data': [
-      {
-        'id': 33,
-        'type': 'employee',
-        'attributes': {
-          'shortname': 'LSM',
-          'firstname': 'Longmax',
-          'lastname': 'Smith',
-          'email': 'longmax@example.com',
-          'marital_status': 'single',
-          'nationalities': [
-            'ZW'
-          ],
-          'graduation': 'BSc in Architecture',
-          'department_shortname': 'SYS',
-          'employment_roles': []
-        }
-      },
-      {
-        'id': 21,
-        'type': 'employee',
-        'attributes': {
-          'shortname': 'AMA',
-          'firstname': 'Alice',
-          'lastname': 'Mante',
-          'email': 'alice@example.com',
-          'marital_status': 'single',
-          'nationalities': [
-            'AU'
-          ],
-          'graduation': 'MSc in writing',
-          'department_shortname': 'SYS',
-          'employment_roles': []
-        }
-      },
-      {
-        'id': 45,
-        'type': 'employee',
-        'attributes': {
-          'shortname': 'CFO',
-          'firstname': 'Charlie',
-          'lastname': 'Ford',
-          'email': 'charlie@example.com',
-          'marital_status': 'married',
-          'nationalities': [
-            'GB'
-          ],
-          'graduation': 'MSc in networking',
-          'department_shortname': 'SYS',
-          'employment_roles': []
-        }
-      },
-    ]
-  }.to_json
+  before(:each) do
+    set_env_variables_and_stub_request
+  end
 
   it 'should map people with the correct puzzletime id' do
-    stub_request(:get, "#{ptime_base_test_url}/api/v1/employees?per_page=1000").
-      to_return(body: employees_json, headers: { 'content-type': "application/vnd.api+json; charset=utf-8" }, status: 200)
-                                                                 .with(basic_auth: [ptime_api_test_username, ptime_api_test_password])
-
     person_longmax = people(:longmax)
     person_alice = people(:alice)
     person_charlie = people(:charlie)
@@ -81,12 +18,12 @@ describe Ptime::AssignEmployeeIds do
   end
 
   it 'should not map people that are not found' do
-    parsed_employees_json = JSON.parse(employees_json)
+    parsed_employees_json = JSON.parse(return_ptime_employees_json)
     parsed_employees_json['data'].first["attributes"]["firstname"] = "Rochus"
     parsed_employees_json['data'].second["attributes"]["firstname"] = "Melchior"
-    stub_request(:get, "#{ptime_base_test_url}/api/v1/employees?per_page=1000").
+    stub_request(:get, "#{ENV["PTIME_BASE_URL"]}/api/v1/employees?per_page=1000").
       to_return(body: parsed_employees_json.to_json, headers: { 'content-type': "application/vnd.api+json; charset=utf-8" }, status: 200)
-                                                                               .with(basic_auth: [ptime_api_test_username, ptime_api_test_password])
+                                                                               .with(basic_auth: [ENV["PTIME_API_USERNAME"], ENV["PTIME_API_PASSWORD"]])
 
     person_longmax = people(:longmax)
     person_alice = people(:alice)
@@ -100,10 +37,6 @@ describe Ptime::AssignEmployeeIds do
   end
 
   it 'should not map people that are ambiguous' do
-    stub_request(:get, "#{ptime_base_test_url}/api/v1/employees?per_page=1000").
-      to_return(body: employees_json, headers: { 'content-type': "application/vnd.api+json; charset=utf-8" }, status: 200)
-                                                                 .with(basic_auth: [ptime_api_test_username, ptime_api_test_password])
-    
     person_longmax = people(:longmax)
     person_alice = people(:alice)
     person_charlie = people(:charlie)
@@ -120,10 +53,6 @@ describe Ptime::AssignEmployeeIds do
   end
 
   it 'should not map people on dry run' do
-    stub_request(:get, "#{ptime_base_test_url}/api/v1/employees?per_page=1000").
-      to_return(body: employees_json, headers: { 'content-type': "application/vnd.api+json; charset=utf-8" }, status: 200)
-                                                                               .with(basic_auth: [ptime_api_test_username, ptime_api_test_password])
-
     person_longmax = people(:longmax)
     person_alice = people(:alice)
     person_charlie = people(:charlie)
