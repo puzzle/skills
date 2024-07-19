@@ -118,6 +118,7 @@ module PersonHelper
     ptime_employee_id_map[ptime_employee['id'].to_s]
   end
 
+  # Once https://github.com/puzzle/skills/issues/744 is merged there should be no need for this
   def append_ptime_employee_name(ptime_employee)
     "#{ptime_employee['attributes']['firstname']} #{ptime_employee['attributes']['lastname']}"
   end

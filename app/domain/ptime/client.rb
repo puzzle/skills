@@ -22,6 +22,7 @@ module Ptime
 
     private
 
+    # Currently not in use can be removed
     def response_error_message(exception)
       JSON.parse(exception.response.body).dig('error', 'message')
     rescue JSON::ParserError # rescue only JSON parsing errors
