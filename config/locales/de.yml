@@ -19,24 +19,24 @@ de:
         level: Level
         skill: Skill
       person:
+        birthdate: Geburtsdatum
         competence_notes: Notizen Member
+        department: Organisationseinheit
         dual_citizen: Doppelbürger
         email: Email
         languages:
           one: Sprache
           other: Sprachen
         location: Ort
+        marital_status: Zivilstand
         name: Name
+        nationality: Nationalität
         person_roles:
           one: Funktion
           other: Funktionen
         picture: Bild
-        title: Abschluss
-        department: Organisationseinheit
-        birthdate: Geburtsdatum
-        nationality: Nationalität
-        marital_status: Zivilstand
         shortname: Kurzname
+        title: Abschluss
       project:
         description: Beschreibung
         role: Rolle und Aufgaben

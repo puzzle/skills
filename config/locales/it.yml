@@ -19,18 +19,23 @@ it:
         level: Livello
         skill: Abilità
       person:
+        birthdate: Data di nascita
         competence_notes: Note Membro
+        department: Unità organizzativa
         dual_citizen: Doppi cittadini
         email: E-mail
         languages:
           one: Lingua
           other: Le lingue
         location: Luogo
+        marital_status: Stato civile
         name: Nome
+        nationality: Nazionalità
         person_roles:
           one: Funzione
           other: Funzioni
         picture: Immagine
+        shortname: Nome breve
         title: Conclusione
       project:
         description: Descrizione del
