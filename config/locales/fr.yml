@@ -19,24 +19,24 @@ fr:
         level: Niveau
         skill: Compétence
       person:
+        birthdate: Date de naissance
         competence_notes: Notes Member
+        department: Département
         dual_citizen: Double nationalité
         email: Email
         languages:
           one: Langue
           other: Langues
         location: Lieu
+        marital_status: Statut marital
         name: Nom
+        nationality: Nationalité
         person_roles:
           one: Fonction
           other: Fonctions
         picture: Image
-        title: Conclusion
-        department: Département
-        birthdate: Date de naissance
-        nationality: Nationalité
-        marital_status: Statut marital
         shortname: Nom court
+        title: Conclusion
       project:
         description: Description
         role: Rôle et tâches
