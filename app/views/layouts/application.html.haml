@@ -23,7 +23,7 @@
           %ul.navbar.text-gray
             -# Language selector
             %li.d-flex.align-items-center.cursor-pointer.border-start.border-end.h-100.ps-2.pe-2
-              = form_with url: change_locale_path, method: :post, local: true do |f|
+              = form_with url: "/change_locale", method: :post, local: true do |f|
                 = f.select :locale, language_selector, {}, onchange: 'this.form.submit();', class: "form-control"
             -# Devise/Mockdata
             - if Rails.env.development?

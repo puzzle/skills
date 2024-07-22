@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
 
   def change_locale
     origin_url = request.referer || request.origin
-
     uri = URI.parse(origin_url)
     query_params = Rack::Utils.parse_nested_query(uri.query)
 
@@ -56,5 +55,9 @@ class ApplicationController < ActionController::Base
            locals: { title: translate("devise.failure.titles.#{title_key}"),
                      body: translate("devise.failure.#{body_key}") },
            :status => status
+  end
+
+  def default_url_options
+    { locale: I18n.locale }
   end
 end
