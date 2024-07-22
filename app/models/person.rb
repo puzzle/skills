@@ -96,6 +96,11 @@ class Person < ApplicationRecord
     [associations_updatet_at, updated_at].compact.max
   end
 
+  def path
+    locale = I18n.locale == I18n.default_locale ? nil : I18n.locale
+    Rails.application.routes.url_helpers.person_path(self, locale: locale)
+  end
+
   private
 
   def picture_size
@@ -103,4 +108,6 @@ class Person < ApplicationRecord
 
     errors.add(:picture, 'grösse kann maximal 10MB sein')
   end
+
+
 end
