@@ -32,6 +32,11 @@ fr:
           other: Fonctions
         picture: Image
         title: Conclusion
+        department: Département
+        birthdate: Date de naissance
+        nationality: Nationalité
+        marital_status: Statut marital
+        shortname: Nom court
       project:
         description: Description
         role: Rôle et tâches

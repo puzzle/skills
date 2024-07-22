@@ -32,6 +32,11 @@ de:
           other: Funktionen
         picture: Bild
         title: Abschluss
+        department: Organisationseinheit
+        birthdate: Geburtsdatum
+        nationality: Nationalität
+        marital_status: Zivilstand
+        shortname: Kurzname
       project:
         description: Beschreibung
         role: Rolle und Aufgaben

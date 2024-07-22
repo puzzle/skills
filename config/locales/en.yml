@@ -32,6 +32,11 @@ en:
           other: Functions
         picture: Image
         title: Conclusion
+        department: Department
+        birthdate: Birthdate
+        nationality: Nationality
+        marital_status: Marital status
+        shortname: Short name
       project:
         description: Description
         role: Role and tasks
@@ -42,7 +47,7 @@ en:
         category: Category
     models:
       activity: Station
-      advanced_training: Further training
+      advanced_training: Advanced training
       company:
         one: Company
         other: Companies

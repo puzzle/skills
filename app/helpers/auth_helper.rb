@@ -23,10 +23,10 @@ module AuthHelper
   end
 
   def language_selector
-    test = I18n.available_locales.map do |locale|
-      [I18n.t(locale, scope: 'language'), locale]
+    languages = I18nData.languages(I18n.locale).to_a.map do |e|
+      [e.second.titleize, e.first.downcase.to_sym]
     end
-    options_for_select(test, I18n.locale)
+    languages = languages.select { |e| I18n.available_locales.include? e.second }
+    options_for_select(languages, I18n.locale)
   end
-
 end
