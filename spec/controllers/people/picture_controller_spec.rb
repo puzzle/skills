@@ -23,7 +23,7 @@ describe People::PictureController do
 
     expect(response.status).to eq(200)
     expect(bob['picture']).to eq('picture.png')
-    expect(path).to eq("/people/#{bob.id}/picture")
+    expect(path).to eq(picture_person_path(bob))
 
     process :show, method: :get , params: { id: bob.id }
 

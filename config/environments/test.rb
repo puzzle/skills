@@ -54,4 +54,5 @@ Rails.application.configure do
     Bullet.bullet_logger = true
     Bullet.raise = false # raise an error if n+1 query occurs
   end
+  Rails.application.routes.default_url_options[:locale] = :de
 end

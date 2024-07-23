@@ -300,7 +300,7 @@ describe :people do
       click_link 'Neues Profil'
       fill_out_person_form
       click_link 'Abbrechen'
-      expect(page).to have_current_path("/people")
+      expect(page).to have_current_path(people_path)
       expect(Person.all.find_by(name: "Hansjakobli")).to be_nil
     end
   end

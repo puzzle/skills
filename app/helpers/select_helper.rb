@@ -2,7 +2,7 @@
 
 module SelectHelper
   def select_when_availabale(obj)
-    selected = obj ? obj.id : ''
+    selected = obj ? obj.path : ''
     prompt = obj ? false : true
     { selected: selected, prompt: prompt, disabled: '' }
   end
