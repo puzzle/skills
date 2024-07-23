@@ -9,6 +9,6 @@ class People::CompetenceNotesController < CrudController
   end
 
   def computed_size
-    [@person.competence_notes&.lines&.count, 10].max
+    [@person.competence_notes&.lines&.count, 10].compact.max
   end
 end
