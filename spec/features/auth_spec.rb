@@ -34,7 +34,7 @@ describe 'Check authentications', type: :feature, js: true do
     it 'Admin can create new skill' do
       visit skills_path
       click_link(href: new_skill_path)
-      expect(page).to have_selector("form[action='/skills']")
+      expect(page).to have_field('skill_title')
     end
   end
 end

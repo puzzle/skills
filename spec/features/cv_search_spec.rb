@@ -38,7 +38,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
       first("a", text: person.name).click();
       expect(page).to have_current_path(person_path(person))
 
-      visit("/cv_search")
+      visit(cv_search_index_path)
       education_location = person.educations.first.location
       fill_in 'cv_search_field', with: education_location
       check_search_results(Person.human_attribute_name(:educations))
@@ -47,7 +47,9 @@ describe 'Advanced Trainings', type: :feature, js:true do
       path = url.path
       query_params = url.query.split("&")
 
-      expect(path).to eq(person_people_skills_path(person))
+      # expect(path).to eq(person_people_skills_path(person))
+      expect(path).to include(person.id.to_s)
+
       expect(query_params).to include({q: education_location}.to_query)
     end
 

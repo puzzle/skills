@@ -63,7 +63,6 @@ describe :people_skills do
 
 
       # remove skill filter
-      require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
       page.find('#remove-row-2').click
       expect(page).to have_text("Alice Mante")
       expect(page).to have_text("Wally Allround")
