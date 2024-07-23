@@ -1,62 +1,68 @@
+LOCALE_REGEX = /#{I18n.available_locales.join('|')}/ unless defined?(LOCALE_REGEX)
+
 Rails.application.routes.draw do
-  get root to: 'people#index'
-
+  # Devise
   devise_for :auth_users,
-    skip: [:sessions],
-    controllers:
-      { omniauth_callbacks: 'omniauth_callbacks' }
+      skip: [:sessions],
+      controllers:
+        { omniauth_callbacks: 'omniauth_callbacks' }
 
-    devise_scope :auth_user do
-      get 'sign_in', :to => 'devise/sessions#new', :as => :new_auth_user_session
-      delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_auth_user_session
-    end
-
-  resources :skills do
-    collection do
-      get 'export', to: 'skills#export'
-    end
+  devise_scope :auth_user do
+    get 'sign_in', :to => 'devise/sessions#new', :as => :new_auth_user_session
+    delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_auth_user_session
   end
 
-  resources :people_skills do
-    collection do
-      get 'filter_form', to: "people_skills/filter_form#index"
-    end
-  end
 
   # Status
   scope 'status' do
     get 'health', to: 'status#health'
     get 'readiness', to: 'status#readiness'
   end
-  post 'change_locale', to: 'application#change_locale'
+
+  scope "(:locale)", locale: LOCALE_REGEX do
+    get root to: 'people#index'
+
+    resources :skills do
+      collection do
+        get 'export', to: 'skills#export'
+      end
+    end
+
+    resources :people_skills do
+      collection do
+        get 'filter_form', to: "people_skills/filter_form#index"
+      end
+    end
 
 
-  resources :cv_search
 
-  resources :admin, only: :index
-  namespace :admin do
-    resources :departments
-    resources :roles
-    resources :companies
-  end
+    resources :cv_search
 
-  resources :people do
-    resources :advanced_trainings
-    resources :educations
-    resources :activities
-    resources :projects
-    resources :people_skills, controller: 'people/people_skills_create'
+    resources :admin, only: :index
+    namespace :admin do
+      resources :departments
+      resources :roles
+      resources :companies
+    end
 
-    member do
-      get 'export-cv', to: 'people/export_cv#show'
-      put 'picture', to: 'people/picture#update'
-      get 'picture', to: 'people/picture#show'
-      get 'export', to: 'people#export'
-      get 'competence-notes', to: 'people/competence_notes#edit'
-      post 'competence-notes', to: 'people/competence_notes#update'
+    resources :people do
+      resources :advanced_trainings
+      resources :educations
+      resources :activities
+      resources :projects
+      resources :people_skills, controller: 'people/people_skills_create'
 
-      get 'people-skills-edit', to: 'people/people_skills#edit'
-      patch 'people-skills', to: 'people/people_skills#update'
+      member do
+        get 'export-cv', to: 'people/export_cv#show'
+        put 'picture', to: 'people/picture#update'
+        get 'picture', to: 'people/picture#show'
+        get 'export', to: 'people#export'
+        get 'competence-notes', to: 'people/competence_notes#edit'
+        post 'competence-notes', to: 'people/competence_notes#update'
+
+        get 'people-skills-edit', to: 'people/people_skills#edit'
+        patch 'people-skills', to: 'people/people_skills#update'
+      end
     end
   end
 

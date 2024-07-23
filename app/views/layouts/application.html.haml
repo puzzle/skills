@@ -22,9 +22,8 @@
               %text.d-flex.align-items-end.ms-2.small= "5.0.0"
           %ul.navbar.text-gray
             -# Language selector
-            %li.d-flex.align-items-center.cursor-pointer.border-start.border-end.h-100.ps-2.pe-2
-              = form_with url: "/change_locale", method: :post, local: true do |f|
-                = f.select :locale, language_selector, {}, onchange: 'this.form.submit();', class: "form-control"
+            %li.d-flex.align-items-center.cursor-pointer.border-start.border-end.h-100.ps-2.pe-2{"data-controller": "dropdown"}
+              = select :locale, :test, language_selector, {}, class: "form-control", data:{action: "change->dropdown#handleChange"}
             -# Devise/Mockdata
             - if Rails.env.development?
               %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100

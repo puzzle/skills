@@ -5,6 +5,9 @@ import SlimSelect from 'slim-select';
 export default class extends Controller {
   static targets = [ "dropdown" ]
   connect() {
+    if (!this.hasDropdownTarget)
+      return;
+    
     new SlimSelect({
           select: this.dropdownTarget
     });
