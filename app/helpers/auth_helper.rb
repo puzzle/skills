@@ -22,12 +22,15 @@ module AuthHelper
     AuthConfig.keycloak? || Rails.env.test?
   end
 
-  def language_selector
+  def language_selector # rubocop:disable Metrics/AbcSize
     languages = I18nData.languages(I18n.locale).to_a.map do |e|
       [e.second.titleize, e.first.downcase.to_sym]
     end
     languages = languages.select { |e| I18n.available_locales.include? e.second }
-    options_for_select(languages, I18n.locale)
+    languages = languages.map do |e|
+      [e.first, url_for(locale: e.second)]
+    end
+    options_for_select(languages, url_for(locale: I18n.locale))
   end
 
   def active_locale

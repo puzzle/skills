@@ -101,8 +101,8 @@ class Person < ApplicationRecord
   end
 
   def path
-    locale = I18n.locale == I18n.default_locale ? nil : I18n.locale
-    Rails.application.routes.url_helpers.person_path(self, locale: locale)
+    # locale = I18n.locale == I18n.default_locale ? nil : I18n.locale
+    Rails.application.routes.url_helpers.person_path(self, locale: nil)
   end
 
   private

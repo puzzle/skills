@@ -3,19 +3,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_auth_user!
   before_action :set_first_path!
-  around_action :switch_locale
   default_form_builder SkillsFormBuilder
-
-  def change_locale
-    origin_url = request.referer || request.origin
-    uri = URI.parse(origin_url)
-    query_params = Rack::Utils.parse_nested_query(uri.query)
-
-    locale = params[:locale] || I18n.default_locale
-    query_params['locale'] = locale
-    uri.query = query_params.to_query
-    redirect_to uri.to_s
-  end
 
   def authenticate_auth_user!
     return super if helpers.devise?
@@ -28,11 +16,6 @@ class ApplicationController < ActionController::Base
 
   def set_first_path!
     @first_path = Pathname(request.path).each_filename.to_a.map { |e| "/#{e}" }.first
-  end
-
-  def switch_locale(&)
-    locale = params[:locale] || I18n.default_locale
-    I18n.with_locale(locale, &)
   end
 
   def render_unauthorized_not_admin
@@ -55,9 +38,5 @@ class ApplicationController < ActionController::Base
            locals: { title: translate("devise.failure.titles.#{title_key}"),
                      body: translate("devise.failure.#{body_key}") },
            :status => status
-  end
-
-  def default_url_options
-    { locale: I18n.locale }
   end
 end
