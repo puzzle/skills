@@ -29,4 +29,8 @@ module AuthHelper
     languages = languages.select { |e| I18n.available_locales.include? e.second }
     options_for_select(languages, I18n.locale)
   end
+
+  def active_locale
+    I18n.locale if I18n.locale != I18n.default_locale
+  end
 end
