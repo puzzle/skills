@@ -73,6 +73,7 @@ it:
         list: Pannello di amministrazione
   cv_search:
     global:
+      search_placeholder: Ricerca CV...
       search_skills: Anche le capacità di ricerca
   date_range_picker:
     from: Da

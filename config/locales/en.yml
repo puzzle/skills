@@ -60,6 +60,7 @@ en:
         list: Admin Panel
   cv_search:
     global:
+      search_placeholder: Search CVs...
       search_skills: Search skills as well
   date_range_picker:
     from: From

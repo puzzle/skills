@@ -73,6 +73,7 @@ fr:
         list: Panneau d'administration
   cv_search:
     global:
+      search_placeholder: Chercher dans les CV...
       search_skills: Rechercher également des compétences
   date_range_picker:
     from: De
