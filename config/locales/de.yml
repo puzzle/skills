@@ -74,6 +74,7 @@ de:
   cv_search:
     global:
       search_skills: Skills ebenfalls durchsuchen
+      search_placeholder: CVs durchsuchen...
   date_range_picker:
     from: Von
     till_today: Bis Heute

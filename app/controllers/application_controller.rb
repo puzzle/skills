@@ -3,7 +3,14 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_auth_user!
   before_action :set_first_path!
+  around_action :switch_locale
+
   default_form_builder SkillsFormBuilder
+
+  def switch_locale(&)
+    locale = params[:locale] || I18n.default_locale
+    I18n.with_locale(locale, &)
+  end
 
   def authenticate_auth_user!
     return super if helpers.devise?
@@ -38,5 +45,9 @@ class ApplicationController < ActionController::Base
            locals: { title: translate("devise.failure.titles.#{title_key}"),
                      body: translate("devise.failure.#{body_key}") },
            :status => status
+  end
+
+  def default_url_options
+    { locale: I18n.locale }
   end
 end
