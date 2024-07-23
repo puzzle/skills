@@ -13,7 +13,8 @@ export default class extends Controller {
     }
 
     isCorrectTab(currentTab) {
-        const currentTabPath = currentTab.parentElement.getAttribute('href');
+        const currentTabHref = currentTab.parentElement.getAttribute('href');
+        const currentTabPath = new URL(currentTabHref, window.location.origin).pathname
         const currentPath =  window.location.pathname
         return currentTabPath === currentPath
     }

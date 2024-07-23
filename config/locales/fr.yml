@@ -134,9 +134,6 @@ fr:
       add: "%{model} ajouter"
       delete: Supprimer
       edit: "%{model} éditer"
-  language:
-    de: Allemand
-    en: Anglais
   marital_statuses:
     divorced: divorcé(e)
     married: marié(e)
