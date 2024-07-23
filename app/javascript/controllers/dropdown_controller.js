@@ -11,7 +11,6 @@ export default class extends Controller {
   }
 
   handleChange(event) {
-      const params = window.location.search
-      window.location.href = event.target.value + params;
+      window.location.href = event.target.value;
   }
 }
