@@ -73,8 +73,8 @@ de:
         list: Admin Panel
   cv_search:
     global:
-      search_skills: Skills ebenfalls durchsuchen
       search_placeholder: CVs durchsuchen...
+      search_skills: Skills ebenfalls durchsuchen
   date_range_picker:
     from: Von
     till_today: Bis Heute
