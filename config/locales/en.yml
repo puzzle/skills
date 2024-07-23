@@ -36,7 +36,7 @@ en:
           other: Functions
         picture: Image
         shortname: Short name
-        title: Conclusion
+        title: Degree
       project:
         description: Description
         role: Role and tasks
@@ -134,9 +134,6 @@ en:
       add: "%{model} add"
       delete: Delete
       edit: "%{model} edit"
-  language:
-    de: German
-    en: English
   marital_statuses:
     divorced: divorced
     married: married
@@ -177,7 +174,7 @@ en:
       upload_image: Upload image
     scroll_to_menu:
       activities: Station
-      advanced-trainings: Further training
+      advanced-trainings: Advanced trainings
       core-competences: Core competencies
       educations: Trainings
       personal-data: Personal data

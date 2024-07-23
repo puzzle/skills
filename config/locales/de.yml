@@ -134,9 +134,6 @@ de:
       add: "%{model} hinzufügen"
       delete: Löschen
       edit: "%{model} bearbeiten"
-  language:
-    de: Deutsch
-    en: Englisch
   marital_statuses:
     divorced: geschieden
     married: verheiratet
