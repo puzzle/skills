@@ -20,14 +20,14 @@ describe :people do
       visit people_path
       bob = people(:bob)
       select_from_slim_select("#person_id_person", bob.name)
-      expect(page).to have_current_path(person_path(bob))
+      expect(page).to have_current_path(person_path(bob, locale: nil))
     end
 
     it 'redirect to the first entry' do
       visit people_path
       sorted_list = people_list.sort_by { |item| item.name.downcase }
       ss_select_index("#person_id_person", 1)
-      expect(page).to have_current_path(person_path(sorted_list.first.id))
+      expect(page).to have_current_path(person_path(sorted_list.first.id, locale: nil))
     end
 
     it 'should only display matched people' do
