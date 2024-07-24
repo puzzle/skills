@@ -2,7 +2,6 @@
 
 class ApplicationController < ActionController::Base
   before_action :authenticate_auth_user!
-  before_action :set_first_path!
   around_action :switch_locale
 
   default_form_builder SkillsFormBuilder
@@ -19,10 +18,6 @@ class ApplicationController < ActionController::Base
     raise 'User not found. This is highly likely due to a non-seeded database.' unless admin
 
     request.env['warden'].set_user(admin, :scope => :auth_user)
-  end
-
-  def set_first_path!
-    @first_path = Pathname(request.path).each_filename.to_a.map { |e| "/#{e}" }.first
   end
 
   def render_unauthorized_not_admin

@@ -83,7 +83,10 @@ it:
     with_enddate: Con data di scadenza
   errors:
     messages:
+      between_0_and_200: deve essere compreso tra 0 e 200.
+      cannot_remove: non deve essere cancellato.
       invalid_date_range: deve essere precedente alla data di scadenza.
+      max_size_10MB: non dovrebbe essere più grande di 10 MB.
       max_size_error: non dovrebbe essere più grande di 10 MB.
       profile-not-found: Il profilo non è stato trovato.
   global:
@@ -108,6 +111,7 @@ it:
     link:
       cancel: Annullamento
       export: Esportazione
+      remove: Rimuovere
       save_new: Risparmi e novità
     navbar:
       cv_search: Ricerca di CV
@@ -152,6 +156,9 @@ it:
         location: 'Sede secondaria (per il piè di pagina):'
         skills_by_level: Competenze per livello
         trainee: Apprendista
+    global:
+      link:
+        add: Nuovo profilo
     index:
       choose_create_person: Selezionare una persona o creare un nuovo profilo
       welcome: Benvenuti a

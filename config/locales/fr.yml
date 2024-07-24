@@ -83,7 +83,10 @@ fr:
     with_enddate: Avec date de fin
   errors:
     messages:
+      between_0_and_200: doit être compris entre 0 et 200.
+      cannot_remove: ne doit pas être supprimé.
       invalid_date_range: doit être antérieure à la date de fin.
+      max_size_10MB: ne doit pas dépasser 10 Mo.
       max_size_error: ne doit pas dépasser 10 Mo.
       profile-not-found: Le profil n'a pas été trouvé.
   global:
@@ -108,6 +111,7 @@ fr:
     link:
       cancel: Annuler
       export: Exporter
+      remove: Supprimer
       save_new: Enregistrer & Nouveau
     navbar:
       cv_search: Recherche de CV
@@ -152,6 +156,9 @@ fr:
         location: 'Établissement (pour le pied de page) :'
         skills_by_level: Compétences par niveau
         trainee: Stagiaire
+    global:
+      link:
+        add: Nouveau profil
     index:
       choose_create_person: Choisis une personne ou saisis un nouveau profil
       welcome: Bienvenue chez

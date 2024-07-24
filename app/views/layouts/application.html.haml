@@ -23,7 +23,7 @@
           %ul.navbar.text-gray
             -# Language selector
             %li.d-flex.align-items-center.cursor-pointer.border-start.border-end.h-100.ps-2.pe-2{"data-controller": "dropdown"}
-              = select :locale, :test, language_selector, {}, class: "form-control", data:{action: "change->dropdown#handleChange"}
+              = select :i18n, :language, language_selector, {}, class: "form-control", data:{action: "change->dropdown#handleChange"}
             -# Devise/Mockdata
             - if Rails.env.development?
               %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
@@ -62,16 +62,16 @@
         %div.puzzle-header
           %div.d-flex.h-100
             %ul.navbar.h-100
-              %li.bg-skills-blue.h-100.d-flex.align-items-center{class: "#{'highlighted' if @first_path == people_path(locale: nil)}"}
+              %li.bg-skills-blue.h-100.d-flex.align-items-center{class: "#{'highlighted' if first_path == people_path(locale: nil)}"}
                 %a.nav-link.cursor-pointer.ps-2.pe-2{href: people_path} 
                   = ti("navbar.profile")
-              %li.bg-skills-blue.h-100.d-flex.align-items-center{class: "#{'highlighted' if @first_path == people_skills_path(locale: nil)}"}
+              %li.bg-skills-blue.h-100.d-flex.align-items-center{class: "#{'highlighted' if first_path == people_skills_path(locale: nil)}"}
                 %a.nav-link.cursor-pointer.ps-2.pe-2{href: people_skills_path} 
                   = ti("navbar.skill_search")
-              %li.bg-skills-blue.h-100.d-flex.align-items-center{class: "#{'highlighted' if @first_path == cv_search_index_path(locale: nil)}"}
+              %li.bg-skills-blue.h-100.d-flex.align-items-center{class: "#{'highlighted' if first_path == cv_search_index_path(locale: nil)}"}
                 %a.nav-link.cursor-pointer.ps-2.pe-2{href: cv_search_index_path} 
                   = ti("navbar.cv_search")
-              %li.bg-skills-blue.h-100.d-flex.align-items-center{class: "#{'highlighted' if @first_path == skills_path(locale: nil)}"}
+              %li.bg-skills-blue.h-100.d-flex.align-items-center{class: "#{'highlighted' if first_path== skills_path(locale: nil)}"}
                 %a.nav-link.cursor-pointer.ps-2.pe-2{href: skills_path} 
                   = ti("navbar.skillset")
       %div.container-fluid

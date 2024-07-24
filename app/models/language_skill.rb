@@ -29,7 +29,7 @@ class LanguageSkill < ApplicationRecord
   def language_is_not_obligatory
     return unless %w(DE EN FR).include?(language)
 
-    errors.add(:language, 'darf nicht gelöscht werden')
+    errors.add(:language, :cannot_remove)
     throw(:abort)
   end
 end

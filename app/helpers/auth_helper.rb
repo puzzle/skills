@@ -33,7 +33,13 @@ module AuthHelper
     options_for_select(languages, url_for(locale: I18n.locale))
   end
 
-  def active_locale
-    I18n.locale if I18n.locale != I18n.default_locale
+  def first_path
+    path_parts = Pathname(request.path).each_filename.to_a.map { |e| "/#{e}" }
+    return '' if path_parts.empty?
+
+    path_parts = path_parts.drop(1) if I18n.available_locales.include?(
+      path_parts.first.gsub('/', '').to_sym
+    )
+    path_parts.first
   end
 end
