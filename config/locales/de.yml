@@ -146,9 +146,6 @@ de:
     single: ledig
     widowed: verwitwet
   people:
-    global:
-      link:
-        add: Neues Profil
     cv:
       no_skills_rated_msg: Dieses Profil hat noch keine bewerteten Skills. Gehe zum Skills Tab und bewerte die für dich relevanten Skills.
     export_cv:
@@ -159,6 +156,9 @@ de:
         location: 'Niederlassung (für Footer):'
         skills_by_level: Skills nach Level
         trainee: Trainee
+    global:
+      link:
+        add: Neues Profil
     index:
       choose_create_person: Wähle eine Person aus oder erfasse ein neues Profil
       welcome: Willkommen bei
