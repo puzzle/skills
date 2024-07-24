@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_auth_user_session
   end
 
+  get "/:locale", locale: LOCALE_REGEX, to: 'people#index'
 
   # Status
   scope 'status' do
