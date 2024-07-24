@@ -158,14 +158,14 @@ fr:
     new:
       personals: Données personnelles
     people_skills:
-      scroll_to_menu:
-        link:
-          add: Ajouter une compétence
       edit_form:
         rate: Évaluer
         unrate: Ne pas évaluer
       index:
         new_skills_to_rate: Nouvelles compétences pour l'évaluation
+      scroll_to_menu:
+        link:
+          add: Ajouter une compétence
     profile:
       add_function: Ajouter une fonction
       add_language: Ajouter une langue
