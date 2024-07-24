@@ -83,7 +83,10 @@ de:
     with_enddate: Mit Enddatum
   errors:
     messages:
+      between_0_and_200: muss zwischen 0 und 200 liegen.
+      cannot_remove: darf nicht gelöscht werden.
       invalid_date_range: muss vor dem Enddatum sein.
+      max_size_10MB: sollte nicht grösser als 10MB sein.
       max_size_error: sollte nicht grösser als 10MB sein.
       profile-not-found: Profil konnte nicht gefunden werden.
   global:
@@ -108,6 +111,7 @@ de:
     link:
       cancel: Abbrechen
       export: Exportieren
+      remove: Entfernen
       save_new: Speichern & Neu
     navbar:
       cv_search: CV Suche
@@ -142,6 +146,9 @@ de:
     single: ledig
     widowed: verwitwet
   people:
+    global:
+      link:
+        add: Neues Profil
     cv:
       no_skills_rated_msg: Dieses Profil hat noch keine bewerteten Skills. Gehe zum Skills Tab und bewerte die für dich relevanten Skills.
     export_cv:

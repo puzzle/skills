@@ -97,8 +97,8 @@ class Person < ApplicationRecord
   end
 
   def path
-    # locale = I18n.locale == I18n.default_locale ? nil : I18n.locale
-    Rails.application.routes.url_helpers.person_path(self, locale: nil)
+    locale = I18n.locale == I18n.default_locale ? nil : I18n.locale
+    Rails.application.routes.url_helpers.person_path(self, locale: locale)
   end
 
   private
@@ -106,8 +106,6 @@ class Person < ApplicationRecord
   def picture_size
     return if picture.nil? || picture.size < 10.megabytes
 
-    errors.add(:picture, 'grösse kann maximal 10MB sein')
+    errors.add(:picture, :max_size_10MB)
   end
-
-
 end

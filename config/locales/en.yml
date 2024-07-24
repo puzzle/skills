@@ -83,7 +83,10 @@ en:
     with_enddate: With end date
   errors:
     messages:
+      between_0_and_200: must be between 0 and 200.
+      cannot_remove: must not be deleted.
       invalid_date_range: must be before the end date.
+      max_size_10MB: should not be larger than 10MB.
       max_size_error: should not be larger than 10MB.
       profile-not-found: Profile could not be found.
   global:
@@ -108,6 +111,7 @@ en:
     link:
       cancel: Cancel
       export: Export
+      remove: Remove
       save_new: Save & New
     navbar:
       cv_search: CV search
@@ -152,6 +156,9 @@ en:
         location: 'Branch office (for footer):'
         skills_by_level: Skills by level
         trainee: Trainee
+    global:
+      link:
+        add: New profile
     index:
       choose_create_person: Select a person or create a new profile
       welcome: Welcome to

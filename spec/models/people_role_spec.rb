@@ -28,7 +28,7 @@ describe PersonRole do
       person_role.percent = 300
       person_role.valid?
 
-      expect(person_role.errors[:percent].first).to eq('muss zwischen 0 und 200 sein')
+      expect(person_role.errors[:percent].first).to eq('muss zwischen 0 und 200 liegen.')
     end
   end
 end

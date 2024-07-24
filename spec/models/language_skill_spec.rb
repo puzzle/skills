@@ -33,7 +33,7 @@ describe LanguageSkill do
       skill = language_skills(:deutsch)
       skill.destroy
 
-      expect(skill.errors[:language].first).to eq('darf nicht gelöscht werden')
+      expect(skill.errors[:language].first).to eq('darf nicht gelöscht werden.')
     end
   end
 end
