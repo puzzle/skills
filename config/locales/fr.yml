@@ -158,12 +158,12 @@ fr:
     new:
       personals: Données personnelles
     people_skills:
+      scroll_to_menu:
+        link:
+          add: Ajouter une compétence
       edit_form:
         rate: Évaluer
         unrate: Ne pas évaluer
-      global:
-        link:
-          add: Ajouter une compétence
       index:
         new_skills_to_rate: Nouvelles compétences pour l'évaluation
     profile:

@@ -146,12 +146,12 @@ en:
     new:
       personals: Personal details
     people_skills:
+      scroll_to_menu:
+        link:
+          add: Add skill
       edit_form:
         rate: Rate
         unrate: Do not rate
-      global:
-        link:
-          add: Add skill
       index:
         new_skills_to_rate: New skills for evaluation
     profile:
