@@ -1,9 +1,5 @@
 ---
 de:
-  application:
-    search: 
-      link: 
-        add: Neues Profil
   activerecord:
     attributes:
       activity:
@@ -162,14 +158,14 @@ de:
     new:
       personals: Personalien
     people_skills:
-      scroll_to_menu:
-        link:
-          add: Skill hinzufügen
       edit_form:
         rate: Bewerten
         unrate: Nicht bewerten
       index:
         new_skills_to_rate: Neue Skills zur Bewertung
+      scroll_to_menu:
+        link:
+          add: Skill hinzufügen
     profile:
       add_function: Funktion hinzufügen
       add_language: Sprache hinzufügen

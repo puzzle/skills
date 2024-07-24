@@ -158,14 +158,14 @@ it:
     new:
       personals: Dati personali
     people_skills:
-      scroll_to_menu:
-          link:
-            add: Aggiungi abilità
       edit_form:
         rate: Tasso
         unrate: Non valutare
       index:
         new_skills_to_rate: Nuove competenze per la valutazione
+      scroll_to_menu:
+        link:
+          add: Aggiungi abilità
     profile:
       add_function: Aggiungi funzione
       add_language: Aggiungi lingua
