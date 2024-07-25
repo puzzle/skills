@@ -8,8 +8,6 @@ class People::PeopleSkillsCreateController < CrudController
   self.nesting = Person
   layout 'person'
 
-  helper_method :ptime_broken?
-
   def index
     return super if params[:rating].present?
 
@@ -45,9 +43,5 @@ class People::PeopleSkillsCreateController < CrudController
 
   def self.controller_path
     'people/people_skills'
-  end
-
-  def ptime_broken?
-    !ActiveModel::Type::Boolean.new.cast(ENV.fetch('PTIME_API_ACCESSIBLE', true))
   end
 end

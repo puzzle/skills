@@ -5,8 +5,6 @@ class PeopleController < CrudController
   include ParamConverters
   include PeopleControllerConcerns
 
-  helper_method :ptime_broken?
-
   self.permitted_attrs = [:birthdate, :location, :marital_status, :updated_by, :name, :nationality,
                           :nationality2, :title, :competence_notes, :company_id, :email,
                           :department_id, :shortname, :picture, :picture_cache,
@@ -60,10 +58,6 @@ class PeopleController < CrudController
     send_data odt_file.generate,
               type: 'application/vnd.oasis.opendocument.text',
               disposition: content_disposition('attachment', filename)
-  end
-
-  def ptime_broken?
-    !ActiveModel::Type::Boolean.new.cast(ENV.fetch('PTIME_API_ACCESSIBLE', true))
   end
 
   private
