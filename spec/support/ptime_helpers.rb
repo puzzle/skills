@@ -11,7 +11,11 @@ module PtimeHelpers
     end
 
     def ptime_employees
-        fixture_data "all_ptime_employees"
+        fixture_data("all_ptime_employees")
+    end
+
+    def ptime_employees_data
+        fixture_data("all_ptime_employees")[:data]
     end
 
     def stub_ptime_request(return_body, path =nil)

@@ -78,7 +78,7 @@ module PersonHelper
   end
 
   def fetch_ptime_or_skills_data
-    ptime_employees = Ptime::Client.new.request(:get, 'employees', { per_page: 1000 })[:data]
+    ptime_employees = Ptime::Client.new.request(:get, 'employees', { per_page: 1000 })
     all_skills_people = Person.all
     return all_skills_people if ENV['PTIME_API_ACCESSIBLE'] == 'false'
 

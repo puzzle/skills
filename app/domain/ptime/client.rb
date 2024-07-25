@@ -52,7 +52,7 @@ module Ptime
       ENV['PTIME_API_ACCESSIBLE'] = 'true'
       path = "#{path}?#{URI.encode_www_form(params)}" if method == :get && params.present?
       response = RestClient.send(method, path, headers)
-      JSON.parse(response.body, symbolize_names: true)
+      JSON.parse(response.body, symbolize_names: true)[:data]
     end
 
     def skills_database_request
