@@ -66,6 +66,8 @@ RSpec.configure do |config|
     set_env_variables_and_stub_request
   end
 
+  config.before { allow($stdout).to receive(:puts) }
+
   # Controller helper
   config.include(JsonMacros, type: :controller)
   config.include(JsonAssertion, type: :controller)

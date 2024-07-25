@@ -15,9 +15,11 @@ describe Ptime::AssignEmployeeIds do
   end
 
   it 'should not map people that are not found' do
-    parsed_employees_json = JSON.parse(return_ptime_employees_json)
-    parsed_employees_json['data'].first["attributes"]["firstname"] = "Rochus"
-    parsed_employees_json['data'].second["attributes"]["firstname"] = "Melchior"
+    parsed_employees_json = ptime_employees
+    parsed_employees_json[:data].first[:attributes][:firstname] = "Rochus"
+    parsed_employees_json[:data].second[:attributes][:firstname] = "Melchior"
+
+
     stub_request(:get, "#{ENV["PTIME_BASE_URL"]}/api/v1/employees?per_page=1000").
       to_return(body: parsed_employees_json.to_json, headers: { 'content-type': "application/vnd.api+json; charset=utf-8" }, status: 200)
                                                                                .with(basic_auth: [ENV["PTIME_API_USERNAME"], ENV["PTIME_API_PASSWORD"]])

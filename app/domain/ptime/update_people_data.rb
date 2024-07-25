@@ -7,18 +7,18 @@ module Ptime
 
     # rubocop:disable Metrics
     def run
-      ptime_employees = Ptime::Client.new.request(:get, 'employees', { per_page: 1000 })['data']
+      ptime_employees = Ptime::Client.new.request(:get, 'employees', { per_page: 1000 })[:data]
       ptime_employees.each do |ptime_employee|
-        ptime_employee_firstname = ptime_employee['attributes']['firstname']
-        ptime_employee_lastname = ptime_employee['attributes']['lastname']
+        ptime_employee_firstname = ptime_employee[:attributes][:firstname]
+        ptime_employee_lastname = ptime_employee[:attributes][:lastname]
         ptime_employee_name = "#{ptime_employee_firstname} #{ptime_employee_lastname}"
 
-        skills_person = Person.find_by(ptime_employee_id: ptime_employee['id'])
+        skills_person = Person.find_by(ptime_employee_id: ptime_employee[:id])
         skills_person ||= Person.new
 
         skills_person.name = ptime_employee_name
-        skills_person.ptime_employee_id ||= ptime_employee['id']
-        ptime_employee['attributes'].each do |key, value|
+        skills_person.ptime_employee_id ||= ptime_employee[:id]
+        ptime_employee[:attributes].each do |key, value|
           if key.to_sym.in?(ATTRIBUTE_MAPPING.keys)
             skills_person[ATTRIBUTE_MAPPING[key.to_sym]] = value
           end
