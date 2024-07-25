@@ -20,9 +20,7 @@ describe Ptime::AssignEmployeeIds do
     parsed_employees_json[:data].second[:attributes][:firstname] = "Melchior"
 
 
-    stub_request(:get, "#{ENV["PTIME_BASE_URL"]}/api/v1/employees?per_page=1000").
-      to_return(body: parsed_employees_json.to_json, headers: { 'content-type': "application/vnd.api+json; charset=utf-8" }, status: 200)
-                                                                               .with(basic_auth: [ENV["PTIME_API_USERNAME"], ENV["PTIME_API_PASSWORD"]])
+    stub_ptime_request(parsed_employees_json.to_json)
 
     person_longmax = people(:longmax)
     person_alice = people(:alice)
