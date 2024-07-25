@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 describe Ptime::AssignEmployeeIds do
-  before(:each) do
-    set_env_variables_and_stub_request
-  end
 
   it 'should map people with the correct puzzletime id' do
     person_longmax = people(:longmax)

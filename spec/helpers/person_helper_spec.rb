@@ -4,7 +4,6 @@ RSpec.describe PersonHelper, type: :helper do
   describe '#fetch_ptime_or_skills_data' do
 
     it 'should send request to ptime api' do
-      set_env_variables_and_stub_request
       fetch_ptime_or_skills_data
     end
 
