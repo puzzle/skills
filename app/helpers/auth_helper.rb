@@ -23,8 +23,8 @@ module AuthHelper
     AuthConfig.keycloak? || Rails.env.test?
   end
 
-  def ptime_broken?
-    !ActiveModel::Type::Boolean.new.cast(ENV.fetch('PTIME_API_ACCESSIBLE', true))
+  def ptime_available?
+    ActiveModel::Type::Boolean.new.cast(ENV.fetch('PTIME_API_ACCESSIBLE', true))
   end
 
   def language_selector

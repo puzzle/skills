@@ -77,10 +77,16 @@ module PersonHelper
     end
   end
 
+  def sorted_people
+    fetch_ptime_or_skills_data.sort_by(&:first)
+  end
+
   def fetch_ptime_or_skills_data
+    all_skills_people = Person.all.map { |p| [p.name, person_path(p)] }
+
+    return all_skills_people unless ptime_available?
+
     ptime_employees = Ptime::Client.new.request(:get, 'employees', { per_page: 1000 })
-    all_skills_people = Person.all
-    return all_skills_people if ENV['PTIME_API_ACCESSIBLE'] == 'false'
 
     ptime_employee_ids = all_skills_people.pluck(:ptime_employee_id)
   def sorted_people
@@ -101,12 +107,12 @@ module PersonHelper
     ptime_employees.map do |ptime_employee|
       ptime_employee_name = append_ptime_employee_name(ptime_employee)
       person_id = map_ptime_employee_id(ptime_employee)
-      {
-        id: person_id,
-        ptime_employee_id: ptime_employee[:id],
-        name: ptime_employee_name,
-        already_exists: ptime_employee[:id].in?(ptime_employee_ids)
-      }
+      ptime_employee_id = ptime_employee[:id]
+      already_exists = ptime_employee_id.in?(ptime_employee_ids)
+
+      path = person_path(person_id)
+      path = new_person_path(ptime_employee_id: ptime_employee_id) unless already_exists
+      [ptime_employee_name, path]
     end
   end
 

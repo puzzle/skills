@@ -1,12 +1,7 @@
 %div.d-flex.align-items-center.justify-content-between
   %div.d-flex.col-9.gap-3
     %span.col-6{"data-controller": "dropdown"}
-      - people_data = fetch_ptime_or_skills_data
-      - if ptime_broken? # people_data == skills
-        = collection_select :person_id, :person, people_data.sort_by {|p| p.name.downcase }, :id, :name, select_when_availabale(person), {data:{"dropdown-target": "dropdown" , action: "change->dropdown#handleChange", value: "/people/"}}        
-      - elsif ENV['PTIME_API_ACCESSIBLE'] = 'true' # people_data == time
-        - sorted_employees = people_data.sort_by { |p| p[:name] }
-        = select :person_id, :person, options_for_select(sorted_employees.map { |p| [ p[:name], p[:already_exists] ? p[:id] : "new?ptime_employee_id=#{p[:ptime_employee_id]}" ] }), {}, {data: { "dropdown-target" => "dropdown", action: "change->dropdown#handleChange", value: "/people/" }}
+      = select :person_id, :person, options_for_select(sorted_people, select_when_availabale(person)), {prompt: person.nil?}, {data: { "dropdown-target" => "dropdown", action: "change->dropdown#handleChange"}}
     %div.d-flex.align-items-center.text-gray
       = "#{t '.updated_at'}: #{@person&.last_updated_at.strftime("%d.%m.%Y")}" if @person&.last_updated_at
   %a.d-flex.justify-content-between#new-person-button
