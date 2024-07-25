@@ -78,7 +78,7 @@ module PersonHelper
   end
 
   def fetch_ptime_or_skills_data
-    ptime_employees = Ptime::Client.new.request(:get, 'employees', { per_page: 1000 })['data']
+    ptime_employees = Ptime::Client.new.request(:get, 'employees', { per_page: 1000 })[:data]
     all_skills_people = Person.all
     return all_skills_people if ENV['PTIME_API_ACCESSIBLE'] == 'false'
 
@@ -92,9 +92,9 @@ module PersonHelper
       person_id = map_ptime_employee_id(ptime_employee)
       {
         id: person_id,
-        ptime_employee_id: ptime_employee['id'],
+        ptime_employee_id: ptime_employee[:id],
         name: ptime_employee_name,
-        already_exists: ptime_employee['id'].in?(ptime_employee_ids)
+        already_exists: ptime_employee[:id].in?(ptime_employee_ids)
       }
     end
   end
@@ -104,11 +104,11 @@ module PersonHelper
       hash[person.ptime_employee_id.to_s] = person.id
     end
 
-    ptime_employee_id_map[ptime_employee['id'].to_s]
+    ptime_employee_id_map[ptime_employee[:id].to_s]
   end
 
   # Once https://github.com/puzzle/skills/issues/744 is merged there should be no need for this
   def append_ptime_employee_name(ptime_employee)
-    "#{ptime_employee['attributes']['firstname']} #{ptime_employee['attributes']['lastname']}"
+    "#{ptime_employee[:attributes][:firstname]} #{ptime_employee[:attributes][:lastname]}"
   end
 end

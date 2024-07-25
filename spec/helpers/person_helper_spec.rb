@@ -24,8 +24,8 @@ RSpec.describe PersonHelper, type: :helper do
       alice.update!(ptime_employee_id: 21)
       charlie.update!(ptime_employee_id: 45)
 
-      parsed_employees = JSON.parse(return_ptime_employees_json)
-      dropdown_data = build_dropdown_data(parsed_employees['data'], Person.all.pluck(:ptime_employee_id))
+      parsed_employees = ptime_employees
+      dropdown_data = build_dropdown_data(parsed_employees[:data], Person.all.pluck(:ptime_employee_id))
 
       expect(dropdown_data[0][:id]).to eq(longmax.id)
       expect(dropdown_data[0][:ptime_employee_id]).to eq(longmax.ptime_employee_id)

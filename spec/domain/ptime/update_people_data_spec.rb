@@ -12,82 +12,9 @@ describe Ptime::UpdatePeopleData do
   end
 
   it 'should update the data of existing people after mapping' do
-    employees = {
-      'data': [
-        {
-          'id': 33,
-          'type': 'employee',
-          'attributes': {
-            'shortname': 'LSM',
-            'firstname': 'Longmax',
-            'lastname': 'Smith',
-            'email': 'longmax@example.com',
-            'marital_status': 'single',
-            'nationalities': [
-              'ZW'
-            ],
-            'graduation': 'BSc in Architecture',
-            'department_shortname': 'SYS',
-            'employment_roles': []
-          }
-        },
-        {
-          'id': 21,
-          'type': 'employee',
-          'attributes': {
-            'shortname': 'AMA',
-            'firstname': 'Alice',
-            'lastname': 'Mante',
-            'email': 'alice@example.com',
-            'marital_status': 'single',
-            'nationalities': [
-              'AU'
-            ],
-            'graduation': 'MSc in writing',
-            'department_shortname': 'SYS',
-            'employment_roles': []
-          }
-        },
-        {
-          'id': 45,
-          'type': 'employee',
-          'attributes': {
-            'shortname': 'CFO',
-            'firstname': 'Charlie',
-            'lastname': 'Ford',
-            'email': 'charlie@example.com',
-            'marital_status': 'married',
-            'nationalities': [
-              'GB'
-            ],
-            'graduation': 'MSc in networking',
-            'department_shortname': 'SYS',
-            'employment_roles': []
-          }
-        },
-        {
-          'id': 50,
-          'type': 'employee',
-          'attributes': {
-            'shortname': 'WAL',
-            'firstname': 'Wally',
-            'lastname': 'Allround',
-            'email': 'wally@example.com',
-            'marital_status': 'married',
-            'nationalities': [
-              'US'
-            ],
-            'graduation': 'Full-Stack Developer',
-            'department_shortname': 'SYS',
-            'employment_roles': []
-          }
-        },
-      ]
-    }
+    employees = fixture_data "updating_ptime_employees"
 
-    stub_request(:get, "#{ptime_base_test_url}/api/v1/employees?per_page=1000").
-      to_return(body: employees.to_json, headers: { 'content-type': "application/vnd.api+json; charset=utf-8" }, status: 200)
-                                                                               .with(basic_auth: [ptime_api_test_username, ptime_api_test_password])
+    stub_ptime_request(employees.to_json)
 
     person_longmax = people(:longmax)
     person_alice = people(:alice)
@@ -95,15 +22,14 @@ describe Ptime::UpdatePeopleData do
     person_wally = people(:wally)
 
     Ptime::AssignEmployeeIds.new.run(should_map: true)
+    employees_data = employees[:data]
+    employees_data.first[:attributes][:email] = "changedmax@example.com"
+    employees_data.second[:attributes][:graduation] = "MSc in some other field"
+    employees_data.third[:attributes][:firstname] = "Claudius"
+    employees_data.fourth[:attributes][:marital_status] = "single"
 
-    employees[:data].first[:attributes][:email] = "changedmax@example.com"
-    employees[:data].second[:attributes][:graduation] = "MSc in some other field"
-    employees[:data].third[:attributes][:firstname] = "Claudius"
-    employees[:data].fourth[:attributes][:marital_status] = "single"
 
-    stub_request(:get, "#{ptime_base_test_url}/api/v1/employees?per_page=1000").
-      to_return(body: employees.to_json, headers: { 'content-type': "application/vnd.api+json; charset=utf-8" }, status: 200)
-                                                                               .with(basic_auth: [ptime_api_test_username, ptime_api_test_password])
+    stub_ptime_request(employees.to_json)
 
     Ptime::UpdatePeopleData.new.run
 
@@ -114,31 +40,9 @@ describe Ptime::UpdatePeopleData do
   end
 
   it 'should create new person when person does not exist' do
-    new_employee = {
-      'data': [
-        {
-          'id': 33,
-          'type': 'employee',
-          'attributes': {
-            'shortname': 'PFI',
-            'firstname': 'Peterson',
-            'lastname': 'Findus',
-            'email': 'peterson@example.com',
-            'marital_status': 'single',
-            'nationalities': [
-              'ZW'
-            ],
-            'graduation': 'Cat caretaker',
-            'department_shortname': 'CAT',
-            'employment_roles': []
-          }
-        }
-      ]
-    }
+    new_employee =  fixture_data "new_ptime_employee"
 
-    stub_request(:get, "#{ptime_base_test_url}/api/v1/employees?per_page=1000").
-      to_return(body: new_employee.to_json, headers: { 'content-type': "application/vnd.api+json; charset=utf-8" }, status: 200)
-                                                                               .with(basic_auth: [ptime_api_test_username, ptime_api_test_password])
+    stub_ptime_request(new_employee.to_json)
 
     Ptime::AssignEmployeeIds.new.run(should_map: true)
     Ptime::UpdatePeopleData.new.run

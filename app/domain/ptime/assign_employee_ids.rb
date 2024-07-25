@@ -25,25 +25,25 @@ module Ptime
       mapped_people_count = 0
 
       @ptime_employees.each do |ptime_employee|
-        ptime_employee_firstname = ptime_employee['attributes']['firstname']
-        ptime_employee_lastname = ptime_employee['attributes']['lastname']
+        ptime_employee_firstname = ptime_employee[:attributes][:firstname]
+        ptime_employee_lastname = ptime_employee[:attributes][:lastname]
         ptime_employee_name = "#{ptime_employee_firstname} #{ptime_employee_lastname}"
-        ptime_employee_email = ptime_employee['attributes']['email']
+        ptime_employee_email = ptime_employee[:attributes][:email]
         matched_skills_people = Person.where(ptime_employee_id: nil)
                                       .where(name: ptime_employee_name)
                                       .where(email: ptime_employee_email)
 
         if matched_skills_people.empty?
-          unmatched_entries << { name: ptime_employee_name, id: ptime_employee['id'] }
+          unmatched_entries << { name: ptime_employee_name, id: ptime_employee[:id] }
         elsif matched_skills_people.one?
           if should_map
             matched_skills_person = matched_skills_people.first
-            matched_skills_person.ptime_employee_id = ptime_employee['id']
+            matched_skills_person.ptime_employee_id = ptime_employee[:id]
             matched_skills_person.save!
           end
           mapped_people_count += 1
         else
-          ambiguous_entries << { name: ptime_employee_name, id: ptime_employee['id'] }
+          ambiguous_entries << { name: ptime_employee_name, id: ptime_employee[:id] }
         end
       end
 
@@ -60,7 +60,7 @@ module Ptime
 
     def fetch_data
       puts 'Fetching required data...'
-      @ptime_employees = Ptime::Client.new.request(:get, 'employees', { per_page: 1000 })['data']
+      @ptime_employees = Ptime::Client.new.request(:get, 'employees', { per_page: 1000 })[:data]
       @skills_people = Person.all
       puts 'Successfully fetched data'
     end

@@ -52,12 +52,13 @@ module Ptime
       ENV['PTIME_API_ACCESSIBLE'] = 'true'
       path = "#{path}?#{URI.encode_www_form(params)}" if method == :get && params.present?
       response = RestClient.send(method, path, headers)
-      JSON.parse(response.body)
+      JSON.parse(response.body, symbolize_names: true)
     end
 
     def skills_database_request
       ENV['PTIME_API_ACCESSIBLE'] = 'false'
       ENV['LAST_PTIME_API_REQUEST'] = DateTime.current.to_s
+      {}
     end
   end
 end
