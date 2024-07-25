@@ -29,18 +29,6 @@ module Ptime
       nil
     end
 
-    def headers
-      {
-        authorization: "Basic #{basic_token}",
-        content_type: :json,
-        accept: :json
-      }
-    end
-
-    def basic_token
-      Base64.encode64("#{ENV.fetch('PTIME_API_USERNAME')}:#{ENV.fetch('PTIME_API_PASSWORD')}")
-    end
-
     def last_ptime_api_request_more_than_5_minutes
       last_request_time = ENV.fetch('LAST_PTIME_API_REQUEST', nil)
       return true if last_request_time.nil?
@@ -48,10 +36,20 @@ module Ptime
       last_request_time.to_datetime <= 5.minutes.ago
     end
 
-    def send_request_and_parse_response(method, path, params)
+    def ptime_request(method, url)
+      RestClient::Request.new(
+        :method => method,
+        :url => url,
+        :user => ENV.fetch('PTIME_API_USERNAME'),
+        :password => ENV.fetch('PTIME_API_PASSWORD'),
+        :headers => { :accept => :json, :content_type => :json }
+      )
+    end
+
+    def send_request_and_parse_response(method, url, params)
       ENV['PTIME_API_ACCESSIBLE'] = 'true'
-      path = "#{path}?#{URI.encode_www_form(params)}" if method == :get && params.present?
-      response = RestClient.send(method, path, headers)
+      url += "?#{params.to_query}" if method == :get && params.present?
+      response = ptime_request(method, url).execute
       JSON.parse(response.body, symbolize_names: true)[:data]
     end
 
