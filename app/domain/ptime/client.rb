@@ -50,7 +50,7 @@ module Ptime
 
     def send_request_and_parse_response(method, path, params)
       ENV['PTIME_API_ACCESSIBLE'] = 'true'
-      path = "#{path}?#{URI.encode_www_form(params)}" if method == :get
+      path = "#{path}?#{URI.encode_www_form(params)}" if method == :get && params.present?
       response = RestClient.send(method, path, headers)
       JSON.parse(response.body)
     end
