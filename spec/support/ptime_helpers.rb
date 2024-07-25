@@ -13,58 +13,6 @@ module PtimeHelpers
     end
 
     def return_ptime_employees_json
-        employees_json = {
-            'data' => [
-            {
-                'id' => 33,
-                'type' => 'employee',
-                'attributes' => {
-                'shortname' => 'LSM',
-                'firstname' => 'Longmax',
-                'lastname' => 'Smith',
-                'email' => 'longmax@example.com',
-                'marital_status' => 'single',
-                'nationalities' => ['ZW'],
-                'graduation' => 'BSc in Architecture',
-                'department_shortname' => 'SYS',
-                'employment_roles' => []
-                }
-            },
-            {
-                'id' => 21,
-                'type' => 'employee',
-                'attributes' => {
-                'shortname' => 'AMA',
-                'firstname' => 'Alice',
-                'lastname' => 'Mante',
-                'full_name' => 'Alice Mante',
-                'email' => 'alice@example.com',
-                'marital_status' => 'single',
-                'nationalities' => ['AU'],
-                'graduation' => 'MSc in writing',
-                'department_shortname' => 'SYS',
-                'employment_roles' => [],
-                'is_employed' => false,
-                'birthdate' => '01.04.2001',
-                'location' => 'Bern'
-                }
-            },
-            {
-                'id' => 45,
-                'type' => 'employee',
-                'attributes' => {
-                'shortname' => 'CFO',
-                'firstname' => 'Charlie',
-                'lastname' => 'Ford',
-                'email' => 'charlie@example.com',
-                'marital_status' => 'married',
-                'nationalities' => ['GB'],
-                'graduation' => 'MSc in networking',
-                'department_shortname' => 'SYS',
-                'employment_roles' => []
-                }
-            }
-            ]
-        }.to_json
+        json_data filename: "all_ptime_employees"
     end
 end
