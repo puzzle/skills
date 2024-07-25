@@ -1,11 +1,8 @@
 module PtimeHelpers
     def set_env_variables_and_stub_request
-        ptime_base_test_url = "www.ptime.example.com"
-        ptime_api_test_username = "test username"
-        ptime_api_test_password = "test password"
-        ENV["PTIME_BASE_URL"] = ptime_base_test_url
-        ENV["PTIME_API_USERNAME"] = ptime_api_test_username
-        ENV["PTIME_API_PASSWORD"] = ptime_api_test_password
+        ENV["PTIME_BASE_URL"] = "www.ptime.example.com"
+        ENV["PTIME_API_USERNAME"] = "test username"
+        ENV["PTIME_API_PASSWORD"] = "test password"
 
         stub_ptime_request(ptime_employees.to_json)
     end
