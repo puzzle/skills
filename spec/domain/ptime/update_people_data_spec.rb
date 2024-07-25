@@ -22,11 +22,10 @@ describe Ptime::UpdatePeopleData do
     person_wally = people(:wally)
 
     Ptime::AssignEmployeeIds.new.run(should_map: true)
-    employees_data = employees[:data]
-    employees_data.first[:attributes][:email] = "changedmax@example.com"
-    employees_data.second[:attributes][:graduation] = "MSc in some other field"
-    employees_data.third[:attributes][:firstname] = "Claudius"
-    employees_data.fourth[:attributes][:marital_status] = "single"
+    employees[:data].first[:attributes][:email] = "changedmax@example.com"
+    employees[:data].second[:attributes][:graduation] = "MSc in some other field"
+    employees[:data].third[:attributes][:firstname] = "Claudius"
+    employees[:data].fourth[:attributes][:marital_status] = "single"
 
 
     stub_ptime_request(employees.to_json)
@@ -41,17 +40,17 @@ describe Ptime::UpdatePeopleData do
 
   it 'should create new person when person does not exist' do
     new_employee =  fixture_data "new_ptime_employee"
-
+    new_employee_data = new_employee[:data]
     stub_ptime_request(new_employee.to_json)
 
     Ptime::AssignEmployeeIds.new.run(should_map: true)
     Ptime::UpdatePeopleData.new.run
 
-    new_employee_attributes = new_employee[:data].first[:attributes]
+    new_employee_attributes = new_employee_data.first[:attributes]
     new_employee_name = "#{new_employee_attributes[:firstname]} #{new_employee_attributes[:lastname]}"
     created_person = Person.find_by(name: new_employee_name)
     expect(created_person).not_to be_nil
-    expect(created_person.ptime_employee_id).to eq(new_employee[:data].first[:id])
+    expect(created_person.ptime_employee_id).to eq(new_employee_data.first[:id])
     expect(created_person.shortname).to eq(new_employee_attributes[:shortname])
     expect(created_person.name).to eq(new_employee_name)
     expect(created_person.email).to eq(new_employee_attributes[:email])
