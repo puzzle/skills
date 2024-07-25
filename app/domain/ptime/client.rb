@@ -14,10 +14,10 @@ module Ptime
       if last_ptime_api_request_more_than_5_minutes
         send_request_and_parse_response(method, path, params)
       else
-        skills_database_request
+        raise CustomExceptions::PTimeError, 'Error'
       end
     rescue RestClient::ExceptionWithResponse
-      skills_database_request
+      raise CustomExceptions::PTimeError, 'Error'
     end
 
     private
@@ -47,16 +47,9 @@ module Ptime
     end
 
     def send_request_and_parse_response(method, url, params)
-      ENV['PTIME_API_ACCESSIBLE'] = 'true'
       url += "?#{params.to_query}" if method == :get && params.present?
       response = ptime_request(method, url).execute
       JSON.parse(response.body, symbolize_names: true)[:data]
-    end
-
-    def skills_database_request
-      ENV['PTIME_API_ACCESSIBLE'] = 'false'
-      ENV['LAST_PTIME_API_REQUEST'] = DateTime.current.to_s
-      {}
     end
   end
 end
