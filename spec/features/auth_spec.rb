@@ -4,7 +4,6 @@ describe 'Check authentications', type: :feature, js: true do
   context 'Check user privileges' do
 
     before(:each) do
-      set_env_variables_and_stub_request
       sign_in auth_users(:user), scope: :auth_user
       visit root_path
     end
@@ -24,7 +23,6 @@ describe 'Check authentications', type: :feature, js: true do
   context 'Check admin privileges' do
 
     before(:each) do
-      set_env_variables_and_stub_request
       sign_in(auth_users(:admin))
       visit visit people_path
     end

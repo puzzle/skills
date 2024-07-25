@@ -5,7 +5,6 @@ describe :people do
     let(:person) { people(:bob) }
 
     before(:each) do
-      set_env_variables_and_stub_request
       sign_in auth_users(:user), scope: :auth_user
       visit person_people_skills_path(person)
       click_link text: "Skill hinzufügen"

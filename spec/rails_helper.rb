@@ -62,6 +62,10 @@ RSpec.configure do |config|
 
   config.infer_spec_type_from_file_location!
 
+  config.before(:each) do
+    set_env_variables_and_stub_request
+  end
+
   # Controller helper
   config.include(JsonMacros, type: :controller)
   config.include(JsonAssertion, type: :controller)
