@@ -81,6 +81,11 @@ RSpec.configure do |config|
   config.include(ActionView::RecordIdentifier, type: :feature)
 
   # Custom helpers
+  ## Global helpers
+  config.include(PtimeHelpers)
+  config.include(JsonHelpers)
+
+  ## Feature helpers
   config.include(PersonRelationsHelpers, type: :feature)
   config.include(SlimselectHelpers, type: :feature)
   config.include(PeopleSkillsHelpers, type: :feature)
