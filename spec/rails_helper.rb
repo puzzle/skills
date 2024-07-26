@@ -66,7 +66,8 @@ RSpec.configure do |config|
     stub_env_variables_and_request
   end
 
-  config.before { allow($stdout).to receive(:puts) }
+  show_logs = ENV.fetch('SHOW_LOGS', false)
+  config.before { allow($stdout).to receive(:puts) } unless show_logs
 
   # Controller helper
   config.include(JsonMacros, type: :controller)
