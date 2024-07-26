@@ -63,7 +63,7 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.before(:each) do
-    set_env_variables_and_stub_request
+    stub_env_variables_and_request
   end
 
   config.before { allow($stdout).to receive(:puts) }

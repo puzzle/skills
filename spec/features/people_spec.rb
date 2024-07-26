@@ -4,7 +4,7 @@ describe :people do
   describe 'People Search', type: :feature, js: true do
 
     before(:each) do
-      ENV['LAST_PTIME_ERROR'] = DateTime.current.to_s # This is needed to activate the fallback and test for the skills people
+      use_skills_db
       sign_in auth_users(:user), scope: :auth_user
     end
 

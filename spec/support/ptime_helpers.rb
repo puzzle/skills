@@ -1,9 +1,8 @@
 module PtimeHelpers
-    def set_env_variables_and_stub_request
-        ENV["PTIME_BASE_URL"] = "www.ptime.example.com"
-        ENV["PTIME_API_USERNAME"] = "test username"
-        ENV["PTIME_API_PASSWORD"] = "test password"
-
+    def stub_env_variables_and_request
+        stub_env_var("PTIME_BASE_URL", "www.ptime.example.com")
+        stub_env_var("PTIME_API_USERNAME", "test username")
+        stub_env_var("PTIME_API_PASSWORD", "test password")
         stub_ptime_request(ptime_employees.to_json)
     end
 
@@ -23,5 +22,16 @@ module PtimeHelpers
         stub_request(:get, url)
             .to_return(body: return_body, headers: { 'content-type': content_type }, status: 200)
             .with(basic_auth: [ENV["PTIME_API_USERNAME"], ENV["PTIME_API_PASSWORD"]])
+    end
+
+    def use_skills_db
+        allow_any_instance_of(RestClient::Request)
+       .to receive(:execute)
+       .and_raise(RestClient::ExceptionWithResponse)
+    end
+
+    def stub_env_var(name, value)
+        allow(ENV).to receive(:fetch).with(name).and_return(value)
+        stub_const('ENV', ENV.to_hash.merge(name => value))
     end
 end

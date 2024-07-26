@@ -85,36 +85,33 @@ module PersonHelper
     all_skills_people = Person.all.map { |p| [p.name, person_path(p)] }
     return all_skills_people unless ptime_available?
 
-    begin
-      ptime_employees = Ptime::Client.new.request(:get, 'employees', { per_page: 1000 })
-      ptime_employee_ids = Person.pluck(:ptime_employee_id)
-      build_dropdown_data(ptime_employees, ptime_employee_ids)
-    rescue CustomExceptions::PTimeClientError
-      ENV['LAST_PTIME_ERROR'] = DateTime.current.to_s
-      all_skills_people
-    end
-
-    def sorted_people
-      people_for_select.sort_by { |e| e.first.downcase }
-    end
-
-    def people_for_select
-      Person.all.map { |p| [p.name, person_path(p)] }
-    end
-
-    def fetch_ptime_employees
-      ptime_employees = fetch_all_ptime_employees
-      ptime_employee_ids = fetch_all_ptime_employee_ids
-      build_dropdown_data(ptime_employees, ptime_employee_ids)
-    end
+    ptime_employees = Ptime::Client.new.request(:get, 'employees', { per_page: 1000 })
+    build_dropdown_data(ptime_employees)
+  rescue CustomExceptions::PTimeClientError
+    ENV['LAST_PTIME_ERROR'] = DateTime.current.to_s
+    all_skills_people
   end
 
-  def build_dropdown_data(ptime_employees, ptime_employee_ids)
+  def sorted_people
+    people_for_select.sort_by { |e| e.first.downcase }
+  end
+
+  def people_for_select
+    Person.all.map { |p| [p.name, person_path(p)] }
+  end
+
+  def fetch_ptime_employees
+    ptime_employees = fetch_all_ptime_employees
+    ptime_employee_ids = fetch_all_ptime_employee_ids
+    build_dropdown_data(ptime_employees)
+  end
+
+  def build_dropdown_data(ptime_employees)
     ptime_employees.map do |ptime_employee|
       ptime_employee_name = append_ptime_employee_name(ptime_employee)
       person_id = Person.find_by(ptime_employee_id: ptime_employee[:id])
       ptime_employee_id = ptime_employee[:id]
-      already_exists = ptime_employee_id.in?(ptime_employee_ids)
+      already_exists = ptime_employee_id.in?(Person.pluck(:ptime_employee_id))
       path = new_person_path(ptime_employee_id: ptime_employee_id)
       path = person_path(person_id) if already_exists
 
