@@ -11,26 +11,18 @@ module Ptime
 
     def request(method, endpoint, params = {})
       path = @base_url + endpoint
-      if last_ptime_api_request_more_than_5_minutes
+
+      if last_ptime_error_more_than_5_minutes_ago?
         send_request_and_parse_response(method, path, params)
       else
-        raise CustomExceptions::PTimeError, 'Error'
+        raise CustomExceptions::PTimeClientError, 'Error'
       end
-    rescue RestClient::ExceptionWithResponse
-      raise CustomExceptions::PTimeError, 'Error'
     end
 
     private
 
-    # Currently not in use can be removed
-    def response_error_message(exception)
-      JSON.parse(exception.response.body).dig('error', 'message')
-    rescue JSON::ParserError # rescue only JSON parsing errors
-      nil
-    end
-
-    def last_ptime_api_request_more_than_5_minutes
-      last_request_time = ENV.fetch('LAST_PTIME_API_REQUEST', nil)
+    def last_ptime_error_more_than_5_minutes_ago?
+      last_request_time = ENV.fetch('LAST_PTIME_ERROR', nil)
       return true if last_request_time.nil?
 
       last_request_time.to_datetime <= 5.minutes.ago
@@ -50,6 +42,8 @@ module Ptime
       url += "?#{params.to_query}" if method == :get && params.present?
       response = ptime_request(method, url).execute
       JSON.parse(response.body, symbolize_names: true)[:data]
+    rescue RestClient::ExceptionWithResponse
+      raise CustomExceptions::PTimeClientError, 'Error'
     end
   end
 end

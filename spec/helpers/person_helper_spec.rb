@@ -5,8 +5,8 @@ RSpec.describe PersonHelper, type: :helper do
 
     it 'should send request to ptime api' do
       allow(helper).to receive(:ptime_available?).and_return(true)
-      expected = skills_people = helper.fetch_ptime_or_skills_data
-      [
+      skills_people = helper.fetch_ptime_or_skills_data
+      expected = [
         ["Longmax Smith", "/people/new?ptime_employee_id=33"],
         ["Alice Mante", "/people/new?ptime_employee_id=21"],
         ["Charlie Ford", "/people/new?ptime_employee_id=45"]

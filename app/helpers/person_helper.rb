@@ -85,13 +85,12 @@ module PersonHelper
     all_skills_people = Person.all.map { |p| [p.name, person_path(p)] }
     return all_skills_people unless ptime_available?
 
-    begin
-      ptime_employees = Ptime::Client.new.request(:get, 'employees', { per_page: 1000 })
-      ptime_employee_ids = Person.pluck(:ptime_employee_id)
-      build_dropdown_data(ptime_employees, ptime_employee_ids)
-    rescue CustomExceptions::PTimeError
-      all_skills_people
-    end
+    ptime_employees = Ptime::Client.new.request(:get, 'employees', { per_page: 1000 })
+    ptime_employee_ids = Person.pluck(:ptime_employee_id)
+    build_dropdown_data(ptime_employees, ptime_employee_ids)
+  rescue CustomExceptions::PTimeClientError
+    ENV['LAST_PTIME_ERROR'] = DateTime.current.to_s
+    all_skills_people
   end
 
   def build_dropdown_data(ptime_employees, ptime_employee_ids)
