@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module SelectHelper
-  def select_when_availabale(obj)
+  def select_when_available(obj)
     selected = obj ? obj.path : ''
     prompt = obj ? false : true
     { selected: selected, prompt: prompt, disabled: '' }

@@ -75,20 +75,14 @@ fr:
     global:
       search_placeholder: Chercher dans les CV...
       search_skills: Rechercher également des compétences
-  date_range_picker:
-    from: De
-    till_today: Jusqu'à aujourd'hui
-    to: Jusqu'à
-    today: Aujourd'hui
-    with_enddate: Avec date de fin
   errors:
     messages:
-      between_0_and_200: doit être compris entre 0 et 200.
       cannot_remove: ne doit pas être supprimé.
       invalid_date_range: doit être antérieure à la date de fin.
       max_size_10MB: ne doit pas dépasser 10 Mo.
       max_size_error: ne doit pas dépasser 10 Mo.
       profile-not-found: Le profil n'a pas été trouvé.
+      valid_percent_range: doit être compris entre 0 et 200.
   global:
     date:
       from: De
@@ -103,7 +97,7 @@ fr:
       admin_panel: Panneau d'administration
       devise: Devise
       mockdata: Mockdata
-      no_omniauth_providers: An error, no Omniauth providers are available, please contact the administrator.
+      no_omniauth_providers: Une erreur s'est produite, aucun fournisseur Omniauth n'est disponible, veuillez contacter l'administrateur.
       sign_in: S'inscrire
       sign_in_with: 'S''inscrire avec %{provider} '
       sign_out: Se désinscrire

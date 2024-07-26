@@ -24,7 +24,7 @@ fr:
         reset_password_sent_at: E-mail de réinitialisation du mot de passe envoyé le
         reset_password_token: Jeton de réinitialisation du mot de passe
         sign_in_count: Nombre d'inscriptions
-        terms_accepted_at: CONDITIONS GÉNÉRALES DE VENTE
+        terms_accepted_at: Conditions générales de vente
         unconfirmed_email: Adresse e-mail non confirmée
         unlock_token: Jeton de déverrouillage
         updated_at: Mis à jour le

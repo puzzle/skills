@@ -74,6 +74,8 @@ RSpec.configure do |config|
   config.include(PersonRelationsHelpers, type: :feature)
   config.include(SlimselectHelpers, type: :feature)
   config.include(PeopleSkillsHelpers, type: :feature)
+  config.include(PeopleSkillsHelpers, type: :feature)
+  config.include(UtilitiesHelpers)
 
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!

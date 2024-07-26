@@ -80,7 +80,7 @@ describe :people do
     check 'nat-two-checkbox'
     select ISO3166::Country["DE"].translations[I18n.locale], from: 'person_nationality'
     select ISO3166::Country["US"].translations[I18n.locale], from: 'person_nationality2'
-    select I18n.t('marital_statuses.married'), from: 'person_marital_status'
+    select t('marital_statuses.married'), from: 'person_marital_status'
     fill_in 'person_shortname', with: 'bb'
 
     page.all(".add_fields").last.click
@@ -151,7 +151,7 @@ describe :people do
     expect(page.all('.nationality-two').count).to equal(person.nationality2.nil? ? 0 : 2)
     expect(page).to have_select('person_nationality', selected: person.nationality.nil? ? ISO3166::Country[common_languages_translated.first.first].translations[I18n.locale] : ISO3166::Country[person.nationality].translations[I18n.locale])
     person.nationality2.nil? ? (expect(page).not_to have_select('person_nationality2')) : (expect(page).to have_select('person_nationality2', selected: ISO3166::Country[person.nationality2].translations[I18n.locale]))
-    expect(page).to have_select('person_marital_status', selected: I18n.t("marital_statuses.#{person.marital_status}"))
+    expect(page).to have_select('person_marital_status', selected: t("marital_statuses.#{person.marital_status}"))
     expect(page).to have_field('person_shortname', with: person.shortname)
 
     language_skills = person.language_skills
@@ -270,7 +270,7 @@ describe :people do
 
       page.attach_file("avatar-uploader", Rails.root + 'app/assets/images/favicon.png')
       page.find("#save-button").click
-      expect(page).to have_css('.alert-danger', text: 'Bild sollte nicht grösser als 10MB sein')
+      expect(page).to have_css('.alert-danger', text: 'Bild darf nicht grösser als 10MB sein')
     end
   end
 
@@ -314,8 +314,7 @@ describe :people do
 
     it 'should display message when no skills are rated' do
       visit person_path(longmax)
-      error_msg = "Dieses Profil hat noch keine bewerteten Skills. Gehe zum Skills Tab und bewerte die für dich relevanten Skills."
-      expect(page).to have_selector('p.alert.alert-info.d-flex.justify-content-between', text: error_msg)
+      expect(page).to have_selector('p.alert.alert-info.d-flex.justify-content-between', text: t("people.cv.no_skills_rated_msg"))
     end
   end
 end

@@ -129,7 +129,6 @@ GEM
     database_cleaner-core (2.0.1)
     date (3.3.4)
     deep_merge (1.2.2)
-    deepl-rb (2.5.3)
     devise (4.9.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -484,7 +483,6 @@ DEPENDENCIES
   countries
   cssbundling-rails
   database_cleaner
-  deepl-rb (~> 2.5)
   devise
   dotenv
   faker

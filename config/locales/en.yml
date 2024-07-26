@@ -75,20 +75,14 @@ en:
     global:
       search_placeholder: Search CVs...
       search_skills: Search skills as well
-  date_range_picker:
-    from: From
-    till_today: Until today
-    to: Until
-    today: Today
-    with_enddate: With end date
   errors:
     messages:
-      between_0_and_200: must be between 0 and 200.
       cannot_remove: must not be deleted.
       invalid_date_range: must be before the end date.
       max_size_10MB: should not be larger than 10MB.
       max_size_error: should not be larger than 10MB.
       profile-not-found: Profile could not be found.
+      valid_percent_range: must be between 0 and 200.
   global:
     date:
       from: From

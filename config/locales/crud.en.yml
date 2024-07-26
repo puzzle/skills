@@ -29,7 +29,7 @@ en:
     confirm_delete: Do you really want to delete this entry?
     errors:
       header:
-        one: '1 error prohibited this entry from being saved:'
+        one: 'One error prohibited this entry from being saved:'
         other: "%{count} errors prohibited this entry from being saved:"
     link:
       add: Add

@@ -1,5 +1,4 @@
 # i18n-tasks finds and manages missing and unused translations: https://github.com/glebm/i18n-tasks
-<% require './lib/custom_translation_matchers/dry_crud_ti_scanner' %>
 # The "main" locale.
 base_locale: de
 ## All available locales are inferred from the data by default. Alternatively, specify them explicitly:
@@ -148,6 +147,7 @@ ignore_missing:
   - 'datetime.prompts.{month,year}'
   - 'number.format.{delimiter, precision}'
   - 'helpers.select.prompt' 
+  - 'date.month_names'
 
 ## Consider these keys used:
 # ignore_unused:

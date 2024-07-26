@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module AuthHelper
+  NAVBAR_REGEX = /^(?:\/(?:#{I18n.available_locales.join('|')}))?(\/[^\/]+)(?:\/|$)/
+
   def session_path(_scope)
     new_auth_user_session_path
   end
@@ -34,12 +36,6 @@ module AuthHelper
   end
 
   def first_path
-    path_parts = Pathname(request.path).each_filename.to_a.map { |e| "/#{e}" }
-    return '' if path_parts.empty?
-
-    path_parts = path_parts.drop(1) if I18n.available_locales.include?(
-      path_parts.first.gsub('/', '').to_sym
-    )
-    path_parts.first
+    request.path.match(NAVBAR_REGEX)&.captures&.first
   end
 end
