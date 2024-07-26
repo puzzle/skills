@@ -94,7 +94,7 @@ de:
       year: Jahr
     devise:
       admin: "(Admin)"
-      admin_panel: Admin Panel
+      admin_panel: Admin Bereich
       devise: Devise
       mockdata: Mockdata
       no_omniauth_providers: Ein Fehler ist aufgetreten, es sind keine Omniauth-Anbieter verfügbar, bitte kontaktieren Sie den Administrator.
