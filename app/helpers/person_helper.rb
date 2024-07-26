@@ -97,7 +97,7 @@ module PersonHelper
   def build_dropdown_data(ptime_employees, ptime_employee_ids)
     ptime_employees.map do |ptime_employee|
       ptime_employee_name = append_ptime_employee_name(ptime_employee)
-      person_id = map_ptime_employee_id(ptime_employee)
+      person_id = Person.find_by(ptime_employee_id: ptime_employee[:id])
       ptime_employee_id = ptime_employee[:id]
       already_exists = ptime_employee_id.in?(ptime_employee_ids)
       path = new_person_path(ptime_employee_id: ptime_employee_id)
@@ -105,14 +105,6 @@ module PersonHelper
 
       [ptime_employee_name, path]
     end
-  end
-
-  def map_ptime_employee_id(ptime_employee)
-    ptime_employee_id_map = Person.all.each_with_object({}) do |person, hash|
-      hash[person.ptime_employee_id.to_s] = person.id
-    end
-
-    ptime_employee_id_map[ptime_employee[:id].to_s]
   end
 
   # Once https://github.com/puzzle/skills/issues/744 is merged there should be no need for this

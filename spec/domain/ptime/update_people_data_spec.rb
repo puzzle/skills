@@ -1,16 +1,6 @@
 require 'rails_helper'
 
-ptime_base_test_url = "www.ptime.example.com"
-ptime_api_test_username = "test username"
-ptime_api_test_password = "test password"
-ENV["PTIME_API_USERNAME"] = ptime_api_test_username
-ENV["PTIME_API_PASSWORD"] = ptime_api_test_password
-
 describe Ptime::UpdatePeopleData do
-  before(:each) do
-    ENV["PTIME_BASE_URL"] = ptime_base_test_url
-  end
-
   it 'should update the data of existing people after mapping' do
     employees = fixture_data "updating_ptime_employees"
 
