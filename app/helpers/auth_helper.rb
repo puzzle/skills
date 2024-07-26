@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module AuthHelper
-  NAVBAR_REGEX = /^(?:\/(?:#{I18n.available_locales.join('|')}))?(\/[^\/]+)(?:\/|$)/
 
   def session_path(_scope)
     new_auth_user_session_path
@@ -33,9 +32,5 @@ module AuthHelper
       [e.first, url_for(locale: e.second)]
     end
     options_for_select(languages, url_for(locale: I18n.locale))
-  end
-
-  def first_path
-    request.path.match(NAVBAR_REGEX)&.captures&.first
   end
 end
