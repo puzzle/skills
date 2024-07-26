@@ -29,7 +29,7 @@ it:
     confirm_delete: Vuoi davvero eliminare questo elemento?
     errors:
       header:
-        one: '1 errore impedisce il salvataggio di questo elemento:'
+        one: 'Un errore impedisce il salvataggio di questo elemento:'
         other: "%{count} errori impediscono il salvataggio di questo elemento:"
     link:
       add: Aggiungi

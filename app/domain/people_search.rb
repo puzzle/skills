@@ -21,8 +21,8 @@ class PeopleSearch
 
     people.map do |p|
       found_in(p).each do |result|
-        translated_attr_name = Person.human_attribute_name(result)
-        results.push({ person: { id: p.id, name: p.name }, found_in: translated_attr_name })
+        translated_attr = Person.human_attribute_name(result)
+        results.push({ person: { id: p.id, name: p.name }, found_in: translated_attr })
       end
     end
     results

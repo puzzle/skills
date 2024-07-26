@@ -7,7 +7,7 @@ module DateHelper
   end
 
   def months
-    (1..12).map { |m| I18n.l(DateTime.parse(Date::MONTHNAMES[m]), format: '%B') }
+    t('date.month_names')
   end
 
   def date_range_end_label(model_with_dates)

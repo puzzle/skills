@@ -75,20 +75,14 @@ it:
     global:
       search_placeholder: Ricerca CV...
       search_skills: Anche le capacità di ricerca
-  date_range_picker:
-    from: Da
-    till_today: Fino ad oggi
-    to: Fino a quando
-    today: Oggi
-    with_enddate: Con data di scadenza
   errors:
     messages:
-      between_0_and_200: deve essere compreso tra 0 e 200.
       cannot_remove: non deve essere cancellato.
       invalid_date_range: deve essere precedente alla data di scadenza.
       max_size_10MB: non dovrebbe essere più grande di 10 MB.
       max_size_error: non dovrebbe essere più grande di 10 MB.
       profile-not-found: Il profilo non è stato trovato.
+      valid_percent_range: deve essere compreso tra 0 e 200.
   global:
     date:
       from: Da

@@ -1,5 +1,5 @@
 %p.d-flex.align-items-center.profile-header
-  = "#{PeopleSkill.model_name.human(count:2)} (#{@person.people_skills.count})"
+  = "#{PeopleSkill.model_name.human(count: @person.people_skills.count)} (#{@person.people_skills.count})"
 
 %div.ms-3
   = form_with(url: person_people_skills_path(@person), method: :get, data: {controller: "filter", turbo_frame: "people-skills"}) do |f|

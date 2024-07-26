@@ -98,7 +98,7 @@ describe :people do
       alice = people(:alice)
       visit person_people_skills_path(alice, rating: 1)
       within('#people-skills') do
-        expect(page).to have_content(I18n.t('global.people_skills.levels.unweighted'), count: alice.people_skills.where(level: 0, interest: 0).count)
+        expect(page).to have_content(t('global.people_skills.levels.unweighted'), count: alice.people_skills.where(level: 0, interest: 0).count)
       end
     end
   end
