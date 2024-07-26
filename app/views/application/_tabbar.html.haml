@@ -1,8 +1,8 @@
-%ul.nav.nav-tabs.d-flex.flex-row.mt-2.justify-content-between.mb-3
-    %div.d-flex.flex-row{"data-controller": "profile-tab"}
+%div.d-flex.flex-row.justify-content-between{class: "#{bar_class}"}
+    %div.d-flex.flex-row
         - tabs.each do |tab|
-            = link_to tab[:path], class: "btn text-primary p-0", "data-action": "click->profile-tab#setCurrentTab" do
-                %div.nav-link{ "data-profile-tab-target": "tab"}
+            = link_to tab[:path], class: "btn text-primary p-0 d-flex align-items-center" do
+                %div{class: "nav-link h-100 d-flex align-items-center #{'active' if active_path == tab[:path]}"}
                     = tab[:title]
     %div
-        = yield
+        = yield if defined?(do_yield) && do_yield|| false

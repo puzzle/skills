@@ -40,9 +40,6 @@ application.register("people-skills", PeopleSkillsController)
 import PeopleSkillsFilterController from "./people_skills_filter_controller"
 application.register("people-skills-filter", PeopleSkillsFilterController)
 
-import ProfileTabController from "./profile_tab_controller"
-application.register("profile-tab", ProfileTabController)
-
 import RemoteModalController from "./remote_modal_controller"
 application.register("remote-modal", RemoteModalController)
 
