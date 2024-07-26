@@ -40,7 +40,7 @@ RSpec.describe PersonHelper, type: :helper do
       longmax.update!(ptime_employee_id: 33)
       alice.update!(ptime_employee_id: 21)
 
-      dropdown_data = build_dropdown_data(ptime_employees_data, Person.all.pluck(:ptime_employee_id))
+      dropdown_data = build_dropdown_data(ptime_employees_data)
       expected = [
         ["Longmax Smith", "/people/169654640"],
         ["Alice Mante", "/people/663665735"],
