@@ -109,11 +109,11 @@ module PersonHelper
   def build_dropdown_data(ptime_employees)
     ptime_employees.map do |ptime_employee|
       ptime_employee_name = append_ptime_employee_name(ptime_employee)
-      person_id = Person.find_by(ptime_employee_id: ptime_employee[:id])
+      skills_person = Person.find_by(ptime_employee_id: ptime_employee[:id])
       ptime_employee_id = ptime_employee[:id]
       already_exists = ptime_employee_id.in?(Person.pluck(:ptime_employee_id))
       path = new_person_path(ptime_employee_id: ptime_employee_id)
-      path = person_path(person_id) if already_exists
+      path = person_path(skills_person) if already_exists
 
       [ptime_employee_name, path]
     end
