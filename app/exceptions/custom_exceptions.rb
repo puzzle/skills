@@ -1,5 +1,5 @@
 module CustomExceptions
 
-  class PTimeError < StandardError; end
+  class PTimeClientError < StandardError; end
 
 end
