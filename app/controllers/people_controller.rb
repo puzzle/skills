@@ -31,7 +31,7 @@ class PeopleController < CrudController
   end
 
   def new
-    @person = Ptime::PeopleEmployees.new.create_person(params[:ptime_employee_id])
+    @person = Ptime::PeopleEmployees.new.create_or_find(params[:ptime_employee_id])
     # (%w[DE EN FR] - @person.language_skills.pluck(:language)).each do |language|
     #   @person.language_skills.push(LanguageSkill.new({ language: language, level: 'A1' }))
     # end

@@ -1,6 +1,6 @@
 module Ptime
   class PeopleEmployees
-    def create_person(ptime_employee_id)
+    def create_or_find(ptime_employee_id)
       raise 'No ptime_employee_id provided' unless ptime_employee_id
 
       person = Person.find_by(ptime_employee_id: ptime_employee_id)
