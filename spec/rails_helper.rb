@@ -45,6 +45,10 @@ RSpec.configure do |config|
     self.class.fixtures :all
   end
 
+  config.before(:each, js: true) do
+    Capybara.page.current_window.resize_to(1920, 1080)
+  end
+
   if Bullet.enable?
     config.before(:each) do
       Bullet.start_request
@@ -57,6 +61,13 @@ RSpec.configure do |config|
   end
 
   config.infer_spec_type_from_file_location!
+
+  config.before(:each) do
+    stub_env_variables_and_request
+  end
+
+  show_logs = ENV.fetch('SHOW_LOGS', false)
+  config.before { allow($stdout).to receive(:puts) } unless show_logs
 
   # Controller helper
   config.include(JsonMacros, type: :controller)
@@ -71,6 +82,11 @@ RSpec.configure do |config|
   config.include(ActionView::RecordIdentifier, type: :feature)
 
   # Custom helpers
+  ## Global helpers
+  config.include(PtimeHelpers)
+  config.include(JsonHelpers)
+
+  ## Feature helpers
   config.include(PersonRelationsHelpers, type: :feature)
   config.include(SlimselectHelpers, type: :feature)
   config.include(PeopleSkillsHelpers, type: :feature)

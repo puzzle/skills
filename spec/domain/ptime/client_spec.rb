@@ -1,85 +1,29 @@
 require 'rails_helper'
 
-ptime_base_test_url = "www.ptime.example.com"
-ptime_api_test_username = "test username"
-ptime_api_test_password = "test password"
-ENV["PTIME_BASE_URL"] = ptime_base_test_url
-ENV["PTIME_API_USERNAME"] = ptime_api_test_username
-ENV["PTIME_API_PASSWORD"] = ptime_api_test_password
-
 describe Ptime::Client do
-    employees_json = {
-      'data': [
-        {
-          'id': 33,
-          'type': 'employee',
-          'attributes': {
-            'shortname': 'LSM',
-            'firstname': 'Longmax',
-            'lastname': 'Smith',
-            'email': 'longmax@example.com',
-            'marital_status': 'single',
-            'nationalities': [
-              'ZW'
-            ],
-            'graduation': 'BSc in Architecture',
-            'department_shortname': 'SYS',
-            'employment_roles': []
-          }
-        },
-        {
-          'id': 21,
-          'type': 'employee',
-          'attributes': {
-            'shortname': 'AMA',
-            'firstname': 'Alice',
-            'lastname': 'Mante',
-            'email': 'alice@example.com',
-            'marital_status': 'single',
-            'nationalities': [
-              'AU'
-            ],
-            'graduation': 'MSc in writing',
-            'department_shortname': 'SYS',
-            'employment_roles': []
-          }
-        },
-        {
-          'id': 45,
-          'type': 'employee',
-          'attributes': {
-            'shortname': 'CFO',
-            'firstname': 'Charlie',
-            'lastname': 'Ford',
-            'email': 'charlie@example.com',
-            'marital_status': 'married',
-            'nationalities': [
-              'GB'
-            ],
-            'graduation': 'MSc in networking',
-            'department_shortname': 'SYS',
-            'employment_roles': []
-          }
-        },
-      ]
-    }.to_json
-
     it 'should be able to fetch employee data' do
-        stub_request(:get, "#{ptime_base_test_url}/api/v1/employees").
-          to_return(body: employees_json, headers: { 'content-type': "application/vnd.api+json; charset=utf-8" }, status: 200)
-                                                                       .with(basic_auth: [ptime_api_test_username, ptime_api_test_password])
-
-        fetched_employees = Ptime::Client.new.get("employees")
-        expect(fetched_employees).to eq(JSON.parse(employees_json))
+        fetched_employees = Ptime::Client.new.request(:get, "employees", { per_page: 1000 })
+        expect(fetched_employees).to eq(ptime_employees_data)
     end
 
-    it 'should throw error message when host is not reachable' do
-        ENV["PTIME_BASE_URL"] = "www.unreachablehost.example.com"
+    it 'should not raise PTimeClientError if LAST_PTIME_ERROR is more than 5 minutes ago' do
+        stub_env_var("LAST_PTIME_ERROR", 6.minutes.ago.to_s)
+        fetched_employees = Ptime::Client.new.request(:get, "employees", { per_page: 1000 })
+        expect(fetched_employees).to eq(ptime_employees_data)
+    end
 
-        stub_request(:get, "www.unreachablehost.example.com/api/v1/").
-          to_return(body: employees_json, status: 404)
-          .with(basic_auth: [ptime_api_test_username, ptime_api_test_password])
+    it 'should raise PTimeClientError page is unreachable' do
+        stub_env_var("PTIME_BASE_URL", "irgend.oepp.is")
+        stub_ptime_request(ptime_employees.to_json, "employees?per_page=1000", 404)
+        expect {
+            Ptime::Client.new.request(:get, "employees", { per_page: 1000 })
+        }.to raise_error(CustomExceptions::PTimeClientError)
+    end
 
-        expect{ Ptime::Client.new.get("") }.to raise_error(RestClient::NotFound)
+    it 'should raise PTimeClientError if LAST_PTIME_ERROR is less than 5 minutes ago' do
+        stub_env_var("LAST_PTIME_ERROR", 4.minutes.ago.to_s)
+        expect {
+            Ptime::Client.new.request(:get, "employees", { per_page: 1000 })
+        }.to raise_error(CustomExceptions::PTimeClientError)
     end
 end

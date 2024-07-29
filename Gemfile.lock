@@ -125,7 +125,6 @@ GEM
     crass (1.0.6)
     cssbundling-rails (1.4.0)
       railties (>= 6.0.0)
-    daemons (1.4.1)
     database_cleaner (2.0.2)
       database_cleaner-active_record (>= 2, < 3)
     database_cleaner-active_record (2.1.0)
@@ -134,11 +133,6 @@ GEM
     database_cleaner-core (2.0.1)
     date (3.3.4)
     deep_merge (1.2.2)
-    delayed_job (4.1.11)
-      activesupport (>= 3.0, < 8.0)
-    delayed_job_active_record (4.1.8)
-      activerecord (>= 3.0, < 8.0)
-      delayed_job (>= 3.0, < 5)
     devise (4.9.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -484,9 +478,7 @@ DEPENDENCIES
   config
   countries
   cssbundling-rails
-  daemons
   database_cleaner
-  delayed_job_active_record
   devise
   dotenv
   faker

@@ -1,0 +1,21 @@
+{
+    "data": [
+      {
+        "id": 33,
+        "type": "employee",
+        "attributes": {
+          "shortname": "PFI",
+          "firstname": "Peterson",
+          "lastname": "Findus",
+          "email": "peterson@example.com",
+          "marital_status": "single",
+          "nationalities": [
+            "ZW"
+          ],
+          "graduation": "Cat caretaker",
+          "department_shortname": "CAT",
+          "employment_roles": []
+        }
+      }
+    ]
+  }

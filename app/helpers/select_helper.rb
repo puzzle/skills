@@ -2,8 +2,8 @@
 
 module SelectHelper
   def select_when_availabale(obj)
-    selected = obj ? obj.id : ''
-    prompt = obj ? false : true
+    selected = obj.present? ? polymorphic_path(obj) : ''
+    prompt = obj.nil?
     { selected: selected, prompt: prompt, disabled: '' }
   end
 

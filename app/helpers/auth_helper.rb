@@ -21,4 +21,8 @@ module AuthHelper
   def devise?
     AuthConfig.keycloak? || Rails.env.test?
   end
+
+  def ptime_available?
+    ActiveModel::Type::Boolean.new.cast(ENV.fetch('PTIME_API_ACCESSIBLE', true))
+  end
 end
