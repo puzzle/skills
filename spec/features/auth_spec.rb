@@ -32,8 +32,6 @@ describe 'Check authentications', type: :feature, js: true do
     end
 
     it 'Admin can create new skill' do
-      require 'pry'; binding.pry # rubocop:disable Style/Semicolon,Lint/Debugger
-
       visit skills_path
       click_link(href: new_skill_path)
       expect(page).to have_field('skill_title')
