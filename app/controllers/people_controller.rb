@@ -26,12 +26,12 @@ class PeopleController < CrudController
     @person = Person.includes(projects: :project_technologies,
                               person_roles: [:role, :person_role_level]).find(@person.id)
 
-    Ptime::UpdatePersonData.new.update_person_data(@person)
+    Ptime::PeopleEmployees.new.update_person_data(@person)
     super
   end
 
   def new
-    @person = Ptime::UpdatePersonData.new.create_person(params[:ptime_employee_id])
+    @person = Ptime::PeopleEmployees.new.create_person(params[:ptime_employee_id])
     # (%w[DE EN FR] - @person.language_skills.pluck(:language)).each do |language|
     #   @person.language_skills.push(LanguageSkill.new({ language: language, level: 'A1' }))
     # end

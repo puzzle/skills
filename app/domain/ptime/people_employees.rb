@@ -1,5 +1,5 @@
 module Ptime
-  class UpdatePersonData
+  class PeopleEmployees
     def create_person(ptime_employee_id)
       raise 'No ptime_employee_id provided' unless ptime_employee_id
 

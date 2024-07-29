@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Ptime::UpdatePersonData do
+describe Ptime::PeopleEmployees do
   ptime_base_test_url = "www.ptime.example.com"
   ptime_api_test_username = "test username"
   ptime_api_test_password = "test password"
@@ -11,7 +11,7 @@ describe Ptime::UpdatePersonData do
   end
 
   it 'should raise error when no ptime_employee_id is passed to new action' do
-    expect{ Ptime::UpdatePersonData.new.create_person(nil) }.to raise_error(RuntimeError, 'No ptime_employee_id provided')
+    expect{ Ptime::PeopleEmployees.new.create_person(nil) }.to raise_error(RuntimeError, 'No ptime_employee_id provided')
   end
 
   it 'should return person if it has the given ptime_employee_id' do
@@ -19,7 +19,7 @@ describe Ptime::UpdatePersonData do
     person_wally.ptime_employee_id = 123
     person_wally.save!
 
-    new_person = Ptime::UpdatePersonData.new.create_person(person_wally.ptime_employee_id)
+    new_person = Ptime::PeopleEmployees.new.create_person(person_wally.ptime_employee_id)
     expect(person_wally.attributes.except(*%w[created_at updated_at])).to eql(new_person.attributes.except(*%w[created_at updated_at]))
   end
 
@@ -31,6 +31,6 @@ describe Ptime::UpdatePersonData do
     person_wally = people(:wally)
     person_wally.ptime_employee_id = 50
     person_wally.save!
-    expect{ Ptime::UpdatePersonData.new.update_person_data(person_wally) }.to raise_error(RuntimeError, 'Ptime_employee with ptime_employee_id 50 not found')
+    expect{ Ptime::PeopleEmployees.new.update_person_data(person_wally) }.to raise_error(RuntimeError, 'Ptime_employee with ptime_employee_id 50 not found')
   end
 end

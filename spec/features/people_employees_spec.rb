@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Ptime::UpdatePersonData do
+describe Ptime::PeopleEmployees do
   ptime_base_test_url = "www.ptime.example.com"
   ptime_api_test_username = "test username"
   ptime_api_test_password = "test password"
