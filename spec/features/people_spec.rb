@@ -316,5 +316,13 @@ describe :people do
       visit person_path(longmax)
       expect(page).to have_selector('p.alert.alert-info.d-flex.justify-content-between', text: I18n.t('profile.no_skills_rated_msg'))
     end
+
+    it 'should delete person' do
+      visit person_path(longmax)
+      accept_confirm do
+        click_link("Löschen", href: person_path(longmax))
+      end
+      expect(page).to have_selector('.alert', text: "Person Longmax Smith wurde erfolgreich gelöscht.")
+    end
   end
 end
