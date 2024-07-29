@@ -83,7 +83,7 @@ module PersonHelper
 
   def fetch_ptime_or_skills_data
     all_skills_people = Person.all.map { |p| [p.name, person_path(p)] }
-    return all_skills_people unless ptime_available?
+    return all_skills_people unless Skills.ptime_available?
 
     ptime_employees = Ptime::Client.new.request(:get, 'employees', { per_page: 1000 })
     build_dropdown_data(ptime_employees)
