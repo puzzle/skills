@@ -1,86 +1,15 @@
 require 'rails_helper'
 
-ptime_base_test_url = "www.ptime.example.com"
-ptime_api_test_username = "test username"
-ptime_api_test_password = "test password"
-ENV["PTIME_BASE_URL"] = ptime_base_test_url
-ENV["PTIME_API_USERNAME"] = ptime_api_test_username
-ENV["PTIME_API_PASSWORD"] = ptime_api_test_password
-
-employees = {
-  'data': [
-    {
-      'id': 33,
-      'type': 'employee',
-      'attributes': {
-        'shortname': 'LSM',
-        'firstname': 'Longmax',
-        'lastname': 'Smith',
-        'email': 'longmax@example.com',
-        'marital_status': 'single',
-        'nationalities': [
-          'ZW'
-        ],
-        'graduation': 'BSc in Architecture',
-        'department_shortname': 'SYS',
-        'employment_roles': []
-      }
-    },
-    {
-      'id': 21,
-      'type': 'employee',
-      'attributes': {
-        'shortname': 'AMA',
-        'firstname': 'Alice',
-        'lastname': 'Mante',
-        'email': 'alice@example.com',
-        'marital_status': 'single',
-        'nationalities': [
-          'AU'
-        ],
-        'graduation': 'MSc in writing',
-        'department_shortname': 'SYS',
-        'employment_roles': []
-      }
-    },
-    {
-      'id': 45,
-      'type': 'employee',
-      'attributes': {
-        'shortname': 'CFO',
-        'firstname': 'Charlie',
-        'lastname': 'Ford',
-        'email': 'charlie@example.com',
-        'marital_status': 'married',
-        'nationalities': [
-          'GB'
-        ],
-        'graduation': 'MSc in networking',
-        'department_shortname': 'SYS',
-        'employment_roles': []
-      }
-    },
-    {
-      'id': 50,
-      'type': 'employee',
-      'attributes': {
-        'shortname': 'WAL',
-        'firstname': 'Wally',
-        'lastname': 'Allround',
-        'email': 'wally@example.com',
-        'marital_status': 'married',
-        'nationalities': [
-          'US'
-        ],
-        'graduation': 'Full-Stack Developer',
-        'department_shortname': 'SYS',
-        'employment_roles': []
-      }
-    },
-  ]
-}
-
 describe Ptime::UpdatePersonData do
+  ptime_base_test_url = "www.ptime.example.com"
+  ptime_api_test_username = "test username"
+  ptime_api_test_password = "test password"
+  before(:each) do
+    ENV["PTIME_BASE_URL"] = ptime_base_test_url
+    ENV["PTIME_API_USERNAME"] = ptime_api_test_username
+    ENV["PTIME_API_PASSWORD"] = ptime_api_test_password
+  end
+
   describe 'Update or create person', type: :feature, js: true do
     before(:each) do
       sign_in auth_users(:user), scope: :auth_user

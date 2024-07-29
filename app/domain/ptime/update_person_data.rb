@@ -6,7 +6,7 @@ module Ptime
       person = Person.find_by(ptime_employee_id: ptime_employee_id)
       return person unless person.nil?
 
-      update_person_data(person)
+      update_person_data(Person.new(ptime_employee_id: ptime_employee_id))
     end
 
     # rubocop:disable Metrics
