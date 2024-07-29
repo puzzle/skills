@@ -6,9 +6,7 @@ module Ptime
       person = Person.find_by(ptime_employee_id: ptime_employee_id)
       return person unless person.nil?
 
-      Person.create!(name: 'Default name', company: Company.first, birthdate: '1.1.1970',
-                     nationality: 'CH', location: 'Bern', title: 'Default title',
-                     email: 'default@example.com', ptime_employee_id: ptime_employee_id)
+      update_person_data(person)
     end
 
     # rubocop:disable Metrics
@@ -18,14 +16,11 @@ module Ptime
                             location: :location }.freeze
 
       begin
-        return unless person.ptime_employee_id
+        raise 'Person has no ptime_employee_id' unless person.ptime_employee_id
 
         ptime_employee = Ptime::Client.new.get("employees/#{person.ptime_employee_id}")['data']
       rescue RestClient::NotFound
-        person.destroy! if person.created_at == person.updated_at
-        raise "Ptime_employee with id #{person.ptime_employee_id} not found"
-      rescue StandardError
-        nil
+        raise "Ptime_employee with ptime_employee_id #{person.ptime_employee_id} not found"
       else
         ptime_employee['attributes'].each do |key, value|
           if key.to_sym.in?(attribute_mapping.keys)
@@ -37,8 +32,8 @@ module Ptime
         ptime_employee_nationalities = ptime_employee['attributes']['nationalities']
         person.nationality = ptime_employee_nationalities[0]
         person.nationality2 = ptime_employee_nationalities[1]
-        person.destroy! if !person.valid? && person.created_at == person.updated_at
         person.save!
+        person
       end
     end
     # rubocop:enable Metrics
