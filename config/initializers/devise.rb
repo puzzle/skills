@@ -286,7 +286,7 @@ Devise.setup do |config|
       realm: AuthConfig.realm,
       keycloak_redirect_site: AuthConfig.keycloak_redirect_host_url,
     },
-    strategy_class: SkillsKeycloakOmniauthStrategie,
+    strategy_class: Rails.env.development? ? SkillsKeycloakOmniauthStrategie: OmniAuth::Strategies::KeycloakOpenId,
   }
   OmniAuth.config.logger = Rails.logger if Rails.env.development?
 
