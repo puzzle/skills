@@ -7,7 +7,7 @@ module ActionsHelper
   # A generic helper method to create action links.
   # These link could be styled to look like buttons, for example.
   def action_link(label, icon = nil, url = {}, html_options = {})
-    add_css_class html_options, 'action btn btn-light'
+    add_css_class html_options, 'action btn btn-link d-flex align-items-center'
     link_to(icon ? action_icon(icon, label) : label,
             url, html_options)
   end
@@ -39,7 +39,7 @@ module ActionsHelper
   def destroy_action_link(path = nil)
     path ||= path_args(entry)
     action_link(ti('link.delete'), 'remove', path,
-                data: { confirm: ti(:confirm_delete),
+                data: { turbo_confirm: ti(:confirm_delete),
                         method: :delete, 'turbo-method': :delete })
   end
 

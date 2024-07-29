@@ -4,7 +4,9 @@
       =render partial:"people/search", :locals => {person: @person}
     %div{"data-controller": "profile-tab highlight"}
       = render "application/tabbar", tabs: person_tabs(@person) do
-        =link_to image_tag("export.svg")+ "Export", export_cv_person_path(@person), class: "btn text-primary", data: { turbo_frame: "remote_modal" }
+        %span.d-flex
+          =link_to image_tag("export.svg")+ "Export", export_cv_person_path(@person), class: "btn text-primary", data: { turbo_frame: "remote_modal" }
+          = destroy_action_link
   %turbo-frame#tab-content.d-flex.gap-3{"data-controller": "scroll"}
     = yield
 = render template: "layouts/application"
