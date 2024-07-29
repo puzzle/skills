@@ -10,10 +10,10 @@ module Ptime
     end
 
     def request(method, endpoint, params = {})
-      path = @base_url + endpoint
+      url = @base_url + endpoint
 
       if last_ptime_error_more_than_5_minutes_ago?
-        send_request_and_parse_response(method, path, params)
+        send_request_and_parse_response(method, url, params)
       else
         raise CustomExceptions::PTimeClientError, 'Error'
       end
