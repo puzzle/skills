@@ -43,7 +43,8 @@ class ApplicationController < ActionController::Base
   end
 
   def default_url_options
-    active_locale = I18n.locale == I18n.default_locale ? nil : I18n.locale
-    { locale: active_locale }
+    # active_locale = I18n.locale == I18n.default_locale ? nil : I18n.locale
+    # { locale: active_locale }
+    { locale: I18n.locale }
   end
 end
