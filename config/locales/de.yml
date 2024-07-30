@@ -120,3 +120,8 @@ de:
     roles: Funktionen
     department: Organisationseinheit
     skills: Skills
+  people:
+    show:
+      confirm_delete: Willst du diese Person wirklich löschen?
+      link:
+        delete: Person löschen
