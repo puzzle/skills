@@ -26,18 +26,14 @@ class PeopleController < CrudController
     @person = Person.includes(projects: :project_technologies,
                               person_roles: [:role, :person_role_level]).find(@person.id)
 
-    Ptime::PeopleEmployees.new.update_person_data(@person)
     super
   end
 
   def new
-    @person = Ptime::PeopleEmployees.new.create_or_find(params[:ptime_employee_id])
-    redirect_to(@person)
-
-    # %w[DE EN FR].each do |language|
-    #   @person.language_skills.push(LanguageSkill.new({ language: language, level: 'A1' }))
-    # end
-    # super
+    %w[DE EN FR].each do |language|
+      @person.language_skills.push(LanguageSkill.new({ language: language, level: 'A1' }))
+    end
+    super
   end
 
   def create
