@@ -8,7 +8,7 @@
                             "data-skills-level-target": "switch", onchange: "this.form.submit()"
   %div.w-25.d-flex.flex-column.align-items-center
     %span.fs-6.text-gray
-      = t "people_skills.interest"
+      = ti "people_skills.interest"
     .rate
       - 5.downto(1) do |index|
         = form.radio_button "interest[#{row_number}]", index, id: "row#{row_number}_star#{index}", checked: index == filter_params.interest_of_row(row_number), onClick: "this.form.submit()"

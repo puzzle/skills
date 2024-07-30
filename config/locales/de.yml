@@ -19,10 +19,19 @@ de:
         level: Level
         skill: Skill
       person:
+        activities:
+          one: Station
+          other: Stationen
+        advanced_trainings:
+          one: Weiterbildung
+          other: Weiterbildungen
         birthdate: Geburtsdatum
         competence_notes: Notizen Member
         department: Organisationseinheit
         dual_citizen: Doppelbürger
+        educations:
+          one: Ausbildung
+          other: Ausbildungen
         email: Email
         languages:
           one: Sprache
@@ -35,26 +44,17 @@ de:
           one: Funktion
           other: Funktionen
         picture: Bild
-        shortname: Kurzname
-        title: Abschluss
         projects:
           one: Projekt
           other: Projekte
-        activities:
-          one: Station
-          other: Stationen
-        advanced_trainings:
-          one: Weiterbildung
-          other: Weiterbildungen
-        educations: 
-          one: Ausbildung
-          other: Ausbildungen
-        roles: 
+        roles:
           one: Funktion
           other: Funktionen
+        shortname: Kurzname
         skills:
           one: Skill
           other: Skills
+        title: Abschluss
       project:
         description: Beschreibung
         role: Rolle und Aufgaben
@@ -102,13 +102,6 @@ de:
       profile-not-found: Profil konnte nicht gefunden werden.
       valid_percent_range: muss zwischen 0 und 200 liegen.
   global:
-    filter:
-      all: Alle
-      new: Neue
-      rated: Bewertet
-      unrated: Nicht bewertet
-      default: Default
-      search: '%{target} suchen'
     date:
       from: Von
       month: Monat
@@ -127,6 +120,13 @@ de:
       sign_in_with: Mit %{provider} anmelden
       sign_out: Abmelden
     'false': Nein
+    filter:
+      all: Alle
+      default: Default
+      new: Neue
+      rated: Bewertet
+      search: "%{target} suchen"
+      unrated: Nicht bewertet
     link:
       cancel: Abbrechen
       export: Exportieren
@@ -212,6 +212,22 @@ de:
     search:
       new_profile: Neues Profil
       updated_at: Zuletzt bearbeitet
+  people-skills:
+    certificate: Certificato
+    core-competence: Competenza di base
+    filter:
+      all: Tutti
+      rated: Valutazione
+      unrated: Non valutato
+    interest: Interesse per
+    levels:
+      expert: Esperto
+      junior: Junior
+      level: Esperienza
+      professional: Professionale
+      senior: Senior
+      trainee: Apprendista
+      unweighted: Non valutato
   people_skills:
     global:
       link:
@@ -248,5 +264,11 @@ de:
         radar: Radar
         skill: Skill
         subcategory: Subkategorie
+    header:
+      all: Tutti
+      category: Categoria
+      default: Predefinito
+      new: Nuovo
+      search: Capacità di ricerca
     show:
       title: 'Skill: %{title} (%{amount} Members)'

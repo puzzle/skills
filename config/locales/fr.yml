@@ -19,10 +19,19 @@ fr:
         level: Niveau
         skill: Compétence
       person:
+        activities:
+          one: Station
+          other: Stations
+        advanced_trainings:
+          one: Formation continue
+          other: Formations continues
         birthdate: Date de naissance
         competence_notes: Notes Member
         department: Département
         dual_citizen: Double nationalité
+        educations:
+          one: Formation
+          other: Formations
         email: Email
         languages:
           one: Langue
@@ -35,7 +44,16 @@ fr:
           one: Fonction
           other: Fonctions
         picture: Image
+        projects:
+          one: Projet
+          other: Projets
+        roles:
+          one: Fonction
+          other: Fonctions
         shortname: Nom court
+        skills:
+          one: Compétence
+          other: Compétences
         title: Conclusion
       project:
         description: Description
@@ -102,6 +120,13 @@ fr:
       sign_in_with: 'S''inscrire avec %{provider} '
       sign_out: Se désinscrire
     'false': Non
+    filter:
+      all: Tous les
+      default: Défaut
+      new: Nouveau
+      rated: Évalué
+      search: "%{target} cherchent"
+      unrated: Non évalué
     link:
       cancel: Annuler
       export: Exporter
@@ -114,6 +139,9 @@ fr:
       skillset: Kit de compétences
     new: Nouveau
     people_skills:
+      certificate: Certificat
+      core-competence: Compétence clé
+      interest: Intérêt
       levels:
         expert: Expert
         junior: Junior

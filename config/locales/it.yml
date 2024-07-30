@@ -19,10 +19,19 @@ it:
         level: Livello
         skill: Abilità
       person:
+        activities:
+          one: Stazione
+          other: Stazioni
+        advanced_trainings:
+          one: Formazione continua
+          other: Formazione continua
         birthdate: Data di nascita
         competence_notes: Note Membro
         department: Unità organizzativa
         dual_citizen: Doppi cittadini
+        educations:
+          one: Istruzione
+          other: Programmi di formazione
         email: E-mail
         languages:
           one: Lingua
@@ -35,7 +44,16 @@ it:
           one: Funzione
           other: Funzioni
         picture: Immagine
+        projects:
+          one: Progetto
+          other: Progetti
+        roles:
+          one: Funzione
+          other: Funzioni
         shortname: Nome breve
+        skills:
+          one: Abilità
+          other: Competenze
         title: Conclusione
       project:
         description: Descrizione del
@@ -102,6 +120,13 @@ it:
       sign_in_with: "%{provider} Accedere con"
       sign_out: Disconnettersi
     'false': 'No'
+    filter:
+      all: Tutti
+      default: Predefinito
+      new: Nuovo
+      rated: Valutazione
+      search: "%{target} ricerca"
+      unrated: Non valutato
     link:
       cancel: Annullamento
       export: Esportazione
@@ -114,6 +139,9 @@ it:
       skillset: Competenze
     new: Nuovo
     people_skills:
+      certificate: Certificato
+      core-competence: Competenza di base
+      interest: Interesse per
       levels:
         expert: Esperto
         junior: Junior

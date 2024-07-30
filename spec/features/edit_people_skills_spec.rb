@@ -134,7 +134,7 @@ describe :people do
           expect(page).to have_content(person_skill.skill.title)
         end
 
-        expect(page).to have_content('Trainee', count: not_rated_default_skills.count)
+        expect(page).to have_content('Azubi', count: not_rated_default_skills.count)
 
         expect(not_rated_default_skills.pluck(:interest).all?(&:zero?)).to be(true)
 
