@@ -2,8 +2,8 @@
 
 module SelectHelper
   def select_when_available(obj)
-    selected = obj ? obj.path : ''
-    prompt = obj ? false : true
+    selected = obj || ''
+    prompt = selected.blank?
     { selected: selected, prompt: prompt, disabled: '' }
   end
 

@@ -216,6 +216,10 @@ de:
     global:
       link:
         add: Skill hinzufügen (max. 5)
+  people_skills/filter_form:
+    global:
+      link:
+        add: Skill hinzufügen (max. 5)
   profile:
     updated_at: Zuletzt bearbeitet
   skills:
