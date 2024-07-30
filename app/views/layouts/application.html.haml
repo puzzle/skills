@@ -50,7 +50,7 @@
                 - if auth_user_signed_in?
                   =link_to "Logout", destroy_auth_user_session_path, data: { "turbo-method": :delete}, class: "btn btn-link"
                 - elsif devise_mapping.omniauthable?
-                  =button_to "Login", omniauth_authorize_path(resource_name, resource_class.omniauth_providers.first), {data: { "turbo": false }, class: "btn btn-link"}
+                  =button_to "Login", omniauth_authorize_path(resource_name, resource_class.omniauth_providers.first), {data: { "turbo": false, controller: "instant-click"}, class: "btn btn-link"}
             -# Help
             %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.h-100
               %a.d-flex.align-items-center{:href => "https://github.com/puzzle/skills/issues"}

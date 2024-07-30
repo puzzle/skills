@@ -18,7 +18,8 @@ services:
       - ./tmp/seed:/seed
       - ./config/docker/development/home/rails:/home/developer
       - /tmp/.X11-unix:/tmp/.X11-unix
-      - bundler_cache:/opt/bundle
+      - ${GEM_PATH}:/opt/bundle
+
     depends_on:
       - postgres
 
