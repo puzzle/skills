@@ -19,10 +19,19 @@ en:
         level: Level
         skill: Skill
       person:
+        activities:
+          one: Station
+          other: Stations
+        advanced_trainings:
+          one: Further training
+          other: Further training
         birthdate: Birthdate
         competence_notes: Notes Member
         department: Department
         dual_citizen: Dual citizens
+        educations:
+          one: Education
+          other: Trainings
         email: Email
         languages:
           one: Language
@@ -35,7 +44,16 @@ en:
           one: Function
           other: Functions
         picture: Image
+        projects:
+          one: Project
+          other: Projects
+        roles:
+          one: Function
+          other: Functions
         shortname: Short name
+        skills:
+          one: Skill
+          other: Skills
         title: Degree
       project:
         description: Description
@@ -102,6 +120,13 @@ en:
       sign_in_with: 'Log in with %{provider} '
       sign_out: Log out
     'false': 'No'
+    filter:
+      all: All
+      default: Default
+      new: New
+      rated: Rated
+      search: "%{target} search"
+      unrated: Not rated
     link:
       cancel: Cancel
       export: Export
@@ -114,6 +139,9 @@ en:
       skillset: Skillset
     new: New
     people_skills:
+      certificate: Certificate
+      core-competence: Core competence
+      interest: Interest
       levels:
         expert: Expert
         junior: Junior
