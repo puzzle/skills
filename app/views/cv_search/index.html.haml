@@ -16,5 +16,9 @@
           %div.w-50.d-flex.justify-content-end.align-items-center
             %div.me-1 
               = ti("search.found_in")
-            = link_to result[:found_in], person_people_skills_path(result[:person][:id], q: params[:q], rating: found_in_skills?(result)? 1: nil), {class: "bg-skills-search-result-blue w-50 text-decoration-none text-white ps-1 p-2 rounded-1 text-center", "data-turbo": "false"}
+            - url_params = {q: params[:q], rating: found_in_skills?(result)? 1: nil}
+            - person_id = result[:person][:id]
+            - path = person_path(person_id, url_params)
+            - path = person_people_skills_path(person_id, url_params) if found_in_skills?(result)
+            = link_to result[:found_in], path, {class: "bg-skills-search-result-blue w-50 text-decoration-none text-white ps-1 p-2 rounded-1 text-center", "data-turbo": "false"}
         %br
