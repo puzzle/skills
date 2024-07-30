@@ -123,5 +123,6 @@ de:
   people:
     show:
       confirm_delete: Willst du diese Person wirklich löschen?
+      more_actions: Weitere Aktionen
       link:
         delete: Person löschen
