@@ -323,7 +323,7 @@ describe :people do
       accept_confirm do
         click_link(I18n.t("people.show.link.delete"), href: person_path(longmax))
       end
-      expect(page).to have_selector('.alert', text: "Person Longmax Smith wurde erfolgreich gelöscht.")
+      expect(page).to have_selector('.alert', text: I18n.t("crud.destroy.flash.success", model: longmax))
     end
   end
 end
