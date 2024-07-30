@@ -1,6 +1,6 @@
 = form_with(url: person_path(format: 'odt'), method: 'get', data: {controller: "skills-filter"}) do |f|
   .mb-2.w-100
-    = f.label t(".location"), class: "form-label w-100"
+    = f.label :location, class: "form-label w-100"
     = f.collection_select :location, BranchAdress.all, :id, :short_name, {selected: (BranchAdress.find_by(default_branch_adress: true) || BranchAdress.first).id}, class: "form-select w-100"
   .mb-2.w-100.form-check.form-switch
     = f.check_box :includeCS, class: "form-check-input"
@@ -10,11 +10,11 @@
     = f.label t(".skills_by_level"), class: "form-check-label w-100"
 
     %div{"data-skills-filter-target": "container"}
-      = f.label t(".trainee"), "data-skills-filter-target": "label", class: "w-100"
+      = f.label t("global.people_skills.levels.trainee"), "data-skills-filter-target": "label", class: "w-100"
       = f.range_field :levelValue, min: 1, max: 5, value: 1, class: "form-range w-25", "data-action": "change->skills-filter#toggleLevel", "data-skills-filter-target": "switch"
   .mb-2.w-100.form-check.form-switch
     = f.check_box :anon, class: "form-check-input"
     = f.label t(".anonymised_cv"), class: "form-check-label w-100"
   .mb-1.mt-4
-    = f.submit t(".download"), class:"btn btn-primary"
+    = f.submit ti("link.download")
     = f.cancel person_path, "data-bs-dismiss":"modal"
