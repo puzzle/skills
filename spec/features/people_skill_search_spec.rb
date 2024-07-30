@@ -33,6 +33,9 @@ describe :people_skills do
       visit(people_skills_path)
       fill_out_row("JUnit", 5, 3)
       add_and_fill_out_row("Rails", 4, 5)
+      add_and_fill_out_row("ember", 5, 4)
+      add_and_fill_out_row("Bash", 5, 2)
+      add_and_fill_out_row("cunit", 5, 2)
 
       expect(page).to have_text("Wally Allround")
     end
@@ -72,9 +75,11 @@ describe :people_skills do
 
   def add_and_fill_out_row(skill, level, interest)
     old_row_number = last_row[:id][-1, 1].to_i
-    click_link "Skill hinzufügen (max. 5)"
+    click_link(t("people_skills.global.link.add"))
+
     new_row_id = "filter-row-#{old_row_number + 1}"
-    expect(page).to have_css("[id='#{new_row_id}']")
+    expect(page).to have_selector("[id='#{new_row_id}']")
+
     fill_out_row(skill, level, interest)
   end
 
