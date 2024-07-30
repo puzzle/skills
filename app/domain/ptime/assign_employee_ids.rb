@@ -24,8 +24,7 @@ module Ptime
       mapped_people_count = 0
 
       @ptime_employees.each do |ptime_employee|
-        ptime_employee_name =
-          "#{ptime_employee[:attributes][:firstname]} #{ptime_employee[:attributes][:lastname]}"
+        ptime_employee_name = ptime_employee[:attributes][:full_name]
         ptime_employee_email = ptime_employee[:attributes][:email]
         matched_person = Person.where(ptime_employee_id: nil).find_by(email: ptime_employee_email)
 
