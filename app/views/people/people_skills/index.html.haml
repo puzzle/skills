@@ -7,7 +7,7 @@
         %div#default-skill-errors
         %div.d-flex.align-items-center.profile-header.justify-content-between.mb-2
           %div
-            = t(".new_skills_to_rate")
+            = ti("new_skills_to_rate")
             = "(#{not_rated_default_skills(@person).count})"
 
           = close_action_link person_people_skills_path(@person, no_default_skill_prompt: "")

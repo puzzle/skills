@@ -26,6 +26,6 @@
         = ff.hidden_field :skill_id
     %div.col-2
       - if ff.object.id.nil?
-        = ff.submit t(".rate"), { class: "btn btn-link" }
+        = ff.submit ti("rate"), { class: "btn btn-link" }
       - unless ff.object.unrated
-        = ff.submit t(".unrate"), { class: "btn btn-link", "data-action": "people-skills#unrateSkill"}
+        = ff.submit ti("unrate"), { class: "btn btn-link", "data-action": "people-skills#unrateSkill"}
