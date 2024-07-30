@@ -48,6 +48,7 @@ module PeopleSkillsHelpers
     star_labels.each_with_index do |label, index|
       body = page.document.find('body')
       body.send_keys(:tab)
+      body.hover
       if index < interest
         expect(label).to match_style(color: 'rgb(255, 199, 0)').or(match_style(color: 'rgba(255, 199, 0, 1)'))
       else

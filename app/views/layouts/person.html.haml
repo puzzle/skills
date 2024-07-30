@@ -4,7 +4,13 @@
       =render partial:"people/search", :locals => {person: @person}
     %div{"data-controller": "profile-tab highlight"}
       = render "application/tabbar", tabs: person_tabs(@person) do
-        =link_to image_tag("export.svg")+ "Export", export_cv_person_path(@person), class: "btn text-primary", data: { turbo_frame: "remote_modal" }
+        %div.dropdown
+          = button_tag ti(:more_actions), class: "btn dropdown-toggle", data: { "bs-toggle": "dropdown" }
+          %ul.dropdown-menu
+            %li 
+              = link_to image_tag("export.svg")+ "Export", export_cv_person_path(@person), class: "btn text-primary", data: { turbo_frame: "remote_modal" }
+            %li.text-nowrap
+              = destroy_action_link
   %turbo-frame#tab-content.d-flex.gap-3{"data-controller": "scroll"}
     = yield
 = render template: "layouts/application"

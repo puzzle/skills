@@ -91,3 +91,9 @@ en:
     from: From
     to: To
     today: Today
+  people:
+    show:
+      confirm_delete: Are you sure you want to delete this person?
+      more_actions: More actions
+      link:
+        delete: Delete person

@@ -10,7 +10,7 @@ describe :people do
     it 'should display 2 export buttons' do
       visit person_path(people(:bob))
 
-      expect(page.all('a', text: 'Export').count).to eql(2)
+      expect(page.all('a', text: 'Export').count).to eql(1)
     end
 
     it 'should display range after switch was clicked' do

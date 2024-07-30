@@ -96,6 +96,10 @@ class Person < ApplicationRecord
     [associations_updatet_at, updated_at].compact.max
   end
 
+  def to_s
+    name
+  end
+
   private
 
   def picture_size

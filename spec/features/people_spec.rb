@@ -316,5 +316,14 @@ describe :people do
       visit person_path(longmax)
       expect(page).to have_selector('p.alert.alert-info.d-flex.justify-content-between', text: I18n.t('profile.no_skills_rated_msg'))
     end
+
+    it 'should delete person' do
+      visit person_path(longmax)
+      click_button(I18n.t("people.show.more_actions"))
+      accept_confirm do
+        click_link(I18n.t("people.show.link.delete"), href: person_path(longmax))
+      end
+      expect(page).to have_selector('.alert', text: I18n.t("crud.destroy.flash.success", model: longmax))
+    end
   end
 end
