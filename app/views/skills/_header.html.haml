@@ -1,7 +1,7 @@
 %div.d-flex.flex-column.bg-white{"data-controller": "skillset-selected"}
   = form_with(url: skills_path, method: :get, data: { turbo_frame: 'skills' }) do |form|
     %div.d-flex.flex-row.mt-2
-      = form.text_field :title, class: "form-control skills-search-field rounded-end-0", placeholder: "#{ti('filter.search', target: Skill.model_name.human(count:2))}", oninput: "this.form.requestSubmit()", include_blank: true
+      = form.text_field :title, class: "form-control skills-search-field rounded-end-0", placeholder: "#{ti('filter.search', target: Skill.model_name.human)}", oninput: "this.form.requestSubmit()", include_blank: true
       %div.border.d-flex.rounded-end.bg-white
         %img.pointer.p-2{src: "/assets/search.svg"}
     %div.d-flex.flex-row.mt-3.flex-wrap.gap-2
@@ -21,6 +21,6 @@
       %span.d-flex.align-items-center.flex-wrap
         %span.text-gray.me-1
           = "#{Category.model_name.human}:"
-        = form.collection_select :category, Category.all_parents.order(:title), :id, :title, {include_blank: "Select a category"}, class: "form-select fit-content", onchange: 'this.form.requestSubmit();'
+        = form.collection_select :category, Category.all_parents.order(:title), :id, :title, {prompt: true}, class: "form-select fit-content", onchange: 'this.form.requestSubmit();'
       = export_action_link  export_skills_path
       = add_action_link_modal
