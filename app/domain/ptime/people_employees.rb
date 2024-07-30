@@ -6,7 +6,11 @@ module Ptime
       person = Person.find_by(ptime_employee_id: ptime_employee_id)
       return person unless person.nil?
 
-      update_person_data(Person.new(ptime_employee_id: ptime_employee_id))
+      new_person = Person.new(ptime_employee_id: ptime_employee_id)
+      %w[DE EN FR].each do |language|
+        new_person.language_skills.push(LanguageSkill.new({ language: language, level: 'A1' }))
+      end
+      update_person_data(new_person)
     end
 
     # rubocop:disable Metrics
