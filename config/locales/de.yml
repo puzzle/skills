@@ -37,6 +37,24 @@ de:
         picture: Bild
         shortname: Kurzname
         title: Abschluss
+        projects:
+          one: Projekt
+          other: Projekte
+        activities:
+          one: Station
+          other: Stationen
+        advanced_trainings:
+          one: Weiterbildung
+          other: Weiterbildungen
+        educations: 
+          one: Ausbildung
+          other: Ausbildungen
+        roles: 
+          one: Funktion
+          other: Funktionen
+        skills:
+          one: Skill
+          other: Skills
       project:
         description: Beschreibung
         role: Rolle und Aufgaben

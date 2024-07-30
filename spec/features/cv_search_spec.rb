@@ -66,7 +66,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
       expect(page).to have_content("Keine Resultate")
       page.check('search_skills')
       expect(page).not_to have_content("Keine Resultate")
-      check_search_results(Skill.model_name.human(count: 2))
+      check_search_results(Skill.model_name.human.pluralize)
       link = person_people_skills_path(person, q: skill_title, rating: 1)
       expect(page).to have_link(href: link)
     end
