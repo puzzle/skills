@@ -1,46 +1,13 @@
 require 'rails_helper'
 
 describe Ptime::PeopleEmployees do
-  ptime_base_test_url = "www.ptime.example.com"
-  ptime_api_test_username = "test username"
-  ptime_api_test_password = "test password"
-  before(:each) do
-    ENV["PTIME_BASE_URL"] = ptime_base_test_url
-    ENV["PTIME_API_USERNAME"] = ptime_api_test_username
-    ENV["PTIME_API_PASSWORD"] = ptime_api_test_password
-  end
-
   describe 'Update or create person', type: :feature, js: true do
     before(:each) do
       sign_in auth_users(:user), scope: :auth_user
     end
 
     it 'should update person when visited' do
-      updated_wally = {
-        'data': {
-          'id': 50,
-          'type': 'employee',
-          'attributes': {
-            'shortname': 'CAL',
-            'firstname': 'Changed Wally',
-            'lastname': 'Allround',
-            'full_name': 'Changed Wally Allround',
-            'email': 'changedwally@example.com',
-            'marital_status': 'single',
-            'nationalities': %w[DE DK],
-            'graduation': 'Quarter-Stack Developer',
-            'department_shortname': 'SYS',
-            'employment_roles': [],
-            'is_employed': false,
-            'birthdate': '1.1.2000',
-            'location': 'Basel',
-          }}
-        }
-
-
-      stub_request(:get, "#{ptime_base_test_url}/api/v1/employees/50").
-        to_return(body: updated_wally.to_json, headers: { 'content-type': "application/vnd.api+json; charset=utf-8" }, status: 200)
-                                                                                 .with(basic_auth: [ptime_api_test_username, ptime_api_test_password])
+      stub_ptime_request(fixture_data("wally").to_json, "employees/50", 200)
 
       Company.create!(name: "Ex-Mitarbeiter")
       person_wally = people(:wally)
@@ -63,30 +30,8 @@ describe Ptime::PeopleEmployees do
     end
 
     it 'should create person when visited' do
-      updated_wally = {
-        'data': {
-          'id': 50,
-          'type': 'employee',
-          'attributes': {
-            'shortname': 'CAL',
-            'firstname': 'Changed Wally',
-            'lastname': 'Allround',
-            'full_name': 'Changed Wally Allround',
-            'email': 'changedwally@example.com',
-            'marital_status': 'single',
-            'nationalities': %w[DE EG],
-            'graduation': 'Quarter-Stack Developer',
-            'department_shortname': 'SYS',
-            'employment_roles': [],
-            'is_employed': true,
-            'birthdate': '1.1.2000',
-            'location': 'Basel',
-          }}
-      }
+      stub_ptime_request(fixture_data("wally").to_json, "employees/50", 200)
 
-      stub_request(:get, "#{ptime_base_test_url}/api/v1/employees/50").
-        to_return(body: updated_wally.to_json, headers: { 'content-type': "application/vnd.api+json; charset=utf-8" }, status: 200)
-                                                                      .with(basic_auth: [ptime_api_test_username, ptime_api_test_password])
       Company.create!(name: "Ex-Mitarbeiter")
 
       person_wally = people(:wally)
@@ -102,7 +47,7 @@ describe Ptime::PeopleEmployees do
       expect(new_wally.birthdate).to eq('1.1.2000')
       expect(new_wally.location).to eq('Basel')
       expect(new_wally.nationality).to eq('DE')
-      expect(new_wally.nationality2).to eq('EG')
+      expect(new_wally.nationality2).to eq('DK')
     end
   end
 end

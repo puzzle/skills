@@ -1,15 +1,6 @@
 require 'rails_helper'
 
 describe Ptime::PeopleEmployees do
-  ptime_base_test_url = "www.ptime.example.com"
-  ptime_api_test_username = "test username"
-  ptime_api_test_password = "test password"
-  before(:each) do
-    ENV["PTIME_BASE_URL"] = ptime_base_test_url
-    ENV["PTIME_API_USERNAME"] = ptime_api_test_username
-    ENV["PTIME_API_PASSWORD"] = ptime_api_test_password
-  end
-
   it 'should raise error when no ptime_employee_id is passed to new action' do
     expect{ Ptime::PeopleEmployees.new.create_or_find(nil) }.to raise_error(RuntimeError, 'No ptime_employee_id provided')
   end
@@ -24,9 +15,7 @@ describe Ptime::PeopleEmployees do
   end
 
   it 'should raise error when person is not found in ptime api' do
-    stub_request(:get, "#{ptime_base_test_url}/api/v1/employees/50").
-      to_return(headers: { 'content-type': "application/vnd.api+json; charset=utf-8" }, status: 404)
-                                                                    .with(basic_auth: [ptime_api_test_username, ptime_api_test_password])
+    stub_ptime_request('', "employees/50", 404)
 
     person_wally = people(:wally)
     person_wally.ptime_employee_id = 50
