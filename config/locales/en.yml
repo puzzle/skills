@@ -25,9 +25,9 @@ en:
         advanced_trainings:
           one: Further training
           other: Further training
-        birthdate: Birthdate
+        birthdate: Date of birth
         competence_notes: Notes Member
-        department: Department
+        department: Organizational unit
         dual_citizen: Dual citizens
         educations:
           one: Education
@@ -36,7 +36,7 @@ en:
         languages:
           one: Language
           other: Languages
-        location: Place
+        location: Location
         marital_status: Marital status
         name: Name
         nationality: Nationality
@@ -54,7 +54,7 @@ en:
         skills:
           one: Skill
           other: Skills
-        title: Degree
+        title: Conclusion
       project:
         description: Description
         role: Role and tasks
@@ -65,7 +65,7 @@ en:
         category: Category
     models:
       activity: Station
-      advanced_training: Advanced training
+      advanced_training: Further training
       company:
         one: Company
         other: Companies
@@ -97,8 +97,8 @@ en:
     messages:
       cannot_remove: must not be deleted.
       invalid_date_range: must be before the end date.
-      max_size_10MB: should not be larger than 10MB.
-      max_size_error: should not be larger than 10MB.
+      max_size_10MB: must not be larger than 10MB.
+      max_size_error: must not be larger than 10MB.
       profile-not-found: Profile could not be found.
       valid_percent_range: must be between 0 and 200.
   global:
@@ -112,10 +112,10 @@ en:
       year: Year
     devise:
       admin: "(Admin)"
-      admin_panel: Admin Panel
+      admin_panel: Admin area
       devise: Motto
       mockdata: Mockdata
-      no_omniauth_providers: An error, no Omniauth providers are available, please contact the administrator.
+      no_omniauth_providers: An error has occurred, there are no Omniauth providers available, please contact the administrator.
       sign_in: Log in
       sign_in_with: 'Log in with %{provider} '
       sign_out: Log out
@@ -145,10 +145,10 @@ en:
       levels:
         expert: Expert
         junior: Junior
-        level: Experience
+        level: Level
         professional: Professional
         senior: Senior
-        trainee: Trainee
+        trainee: Apprentice
         unweighted: Not rated
     search:
       found_in: Found in
@@ -186,25 +186,16 @@ en:
       welcome: Welcome to
     new:
       personals: Personal details
-    people_skills:
-      edit_form:
-        rate: Rate
-        unrate: Do not rate
-      index:
-        new_skills_to_rate: New skills for evaluation
-      scroll_to_menu:
-        link:
-          add: Add skill
     profile:
       add_function: Add function
       add_language: Add language
       change_image: Change picture
       core_competences: Core competencies
-      personals: Personal data
+      personals: Personal details
       upload_image: Upload image
     scroll_to_menu:
       activities: Station
-      advanced-trainings: Advanced trainings
+      advanced-trainings: Further training
       core-competences: Core competencies
       educations: Trainings
       personal-data: Personal data
@@ -212,22 +203,15 @@ en:
     search:
       new_profile: New profile
       updated_at: Last edited
-  people-skills:
-    certificate: Certificate
-    core-competence: Core competence
-    filter:
-      all: All
-      rated: Rated
-      unrated: Not rated
-    interest: Interest
-    levels:
-      expert: Expert
-      junior: Junior
-      level: Experience
-      professional: Professional
-      senior: Senior
-      trainee: Trainee
-      unweighted: Not rated
+  people/people_skills:
+    edit_form:
+      rate: Rate
+      unrate: Do not rate
+    index:
+      new_skills_to_rate: New skills for evaluation
+    scroll_to_menu:
+      link:
+        add: Add skill
   people_skills:
     global:
       link:
@@ -245,11 +229,5 @@ en:
         radar: Radar
         skill: Skill
         subcategory: Subcategory
-    header:
-      all: All
-      category: Category
-      default: Default
-      new: New
-      search: Search skills
     show:
       title: 'Skill: %{title} (%{amount} Members)'

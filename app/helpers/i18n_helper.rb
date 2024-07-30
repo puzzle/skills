@@ -62,23 +62,17 @@ module I18nHelper
     k << key.to_s
   end
 
-  def inheritable_translation_defaults(key, partial) # rubocop:disable Metrics/MethodLength,Metrics/AbcSize
+  def inheritable_translation_defaults(key, partial)
     defaults = []
     current = controller.class
     while current < ActionController::Base
       folder = current.controller_path
       if folder.present?
-        folders = get_all_parent_folders(folder)
-        folders += get_all_parent_folders(folder.gsub('/', '.'), '.')
-        folders = folders.uniq.sort_by(&:length).reverse
-        folders.each do |f|
-          append_controller_translation_keys(defaults, f, partial, key)
-        end
+        append_controller_translation_keys(defaults, folder, partial, key)
       end
       current = current.superclass
     end
     defaults << :"global.#{key}"
-    defaults.uniq
   end
 
   def append_controller_translation_keys(defaults, folder, partial, key)
@@ -87,9 +81,4 @@ module I18nHelper
     defaults << :"#{folder}.global.#{key}"
   end
 
-  def get_all_parent_folders(folder, splitter = '/')
-    folder.split(splitter).inject([]) do |acc, part|
-      acc.empty? ? [part] : acc + ["#{acc.last}#{splitter}#{part}"]
-    end.reverse
-  end
 end
