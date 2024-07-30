@@ -68,8 +68,8 @@ module I18nHelper
     while current < ActionController::Base
       folder = current.controller_path
       if folder.present?
-        folders = get_all_parent_folders(folder) +
-                  get_all_parent_folders(folder.gsub('/', '.'), '.')
+        folders = get_all_parent_folders(folder)
+        folders += get_all_parent_folders(folder.gsub('/', '.'), '.')
         folders = folders.uniq.sort_by(&:length).reverse
         folders.each do |f|
           append_controller_translation_keys(defaults, f, partial, key)
