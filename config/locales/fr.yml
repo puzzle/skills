@@ -27,7 +27,7 @@ fr:
           other: Formations continues
         birthdate: Date de naissance
         competence_notes: Notes Member
-        department: Département
+        department: Unité organisationnelle
         dual_citizen: Double nationalité
         educations:
           one: Formation
@@ -37,7 +37,7 @@ fr:
           one: Langue
           other: Langues
         location: Lieu
-        marital_status: Statut marital
+        marital_status: État civil
         name: Nom
         nationality: Nationalité
         person_roles:
@@ -112,7 +112,7 @@ fr:
       year: Année
     devise:
       admin: "(Admin)"
-      admin_panel: Panneau d'administration
+      admin_panel: Zone d'administration
       devise: Devise
       mockdata: Mockdata
       no_omniauth_providers: Une erreur s'est produite, aucun fournisseur Omniauth n'est disponible, veuillez contacter l'administrateur.
@@ -145,10 +145,10 @@ fr:
       levels:
         expert: Expert
         junior: Junior
-        level: Expérience
+        level: Niveau
         professional: Professionnel
         senior: Senior
-        trainee: Stagiaire
+        trainee: Apprenti
         unweighted: Non évalué
     search:
       found_in: Trouvé dans
@@ -182,19 +182,10 @@ fr:
       link:
         add: Nouveau profil
     index:
-      choose_create_person: Choisis une personne ou saisis un nouveau profil
+      choose_create_person: Sélectionne une personne ou saisis un nouveau profil
       welcome: Bienvenue chez
     new:
       personals: Données personnelles
-    people_skills:
-      edit_form:
-        rate: Évaluer
-        unrate: Ne pas évaluer
-      index:
-        new_skills_to_rate: Nouvelles compétences pour l'évaluation
-      scroll_to_menu:
-        link:
-          add: Ajouter une compétence
     profile:
       add_function: Ajouter une fonction
       add_language: Ajouter une langue
@@ -212,22 +203,15 @@ fr:
     search:
       new_profile: Nouveau profil
       updated_at: Dernièrement édité
-  people-skills:
-    certificate: Certificat
-    core-competence: Compétence clé
-    filter:
-      all: Tous les
-      rated: Évalué
-      unrated: Non évalué
-    interest: Intérêt
-    levels:
-      expert: Esperto
-      junior: Junior
-      level: Esperienza
-      professional: Professionnel
-      senior: Senior
-      trainee: Apprendista
-      unweighted: Non valutato
+  people/people_skills:
+    edit_form:
+      rate: Évaluer
+      unrate: Ne pas évaluer
+    index:
+      new_skills_to_rate: Nouvelles compétences pour l'évaluation
+    scroll_to_menu:
+      link:
+        add: Ajouter une compétence
   people_skills:
     global:
       link:
@@ -245,11 +229,5 @@ fr:
         radar: Radar
         skill: Compétence
         subcategory: Sous-catégorie
-    header:
-      all: Tous les
-      category: Catégorie
-      default: Défaut
-      new: Nouveau
-      search: Chercher des compétences
     show:
       title: 'Compétence : %{title} (%{amount} Members)'

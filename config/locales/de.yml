@@ -186,15 +186,6 @@ de:
       welcome: Willkommen bei
     new:
       personals: Personalien
-    people_skills:
-      edit_form:
-        rate: Bewerten
-        unrate: Nicht bewerten
-      index:
-        new_skills_to_rate: Neue Skills zur Bewertung
-      scroll_to_menu:
-        link:
-          add: Skill hinzufügen
     profile:
       add_function: Funktion hinzufügen
       add_language: Sprache hinzufügen
@@ -212,22 +203,15 @@ de:
     search:
       new_profile: Neues Profil
       updated_at: Zuletzt bearbeitet
-  people-skills:
-    certificate: Certificato
-    core-competence: Competenza di base
-    filter:
-      all: Tutti
-      rated: Valutazione
-      unrated: Non valutato
-    interest: Interesse per
-    levels:
-      expert: Esperto
-      junior: Junior
-      level: Esperienza
-      professional: Professionale
-      senior: Senior
-      trainee: Apprendista
-      unweighted: Non valutato
+  people/people_skills:
+      edit_form:
+        rate: Bewerten
+        unrate: Nicht bewerten
+      index:
+        new_skills_to_rate: Neue Skills zur Bewertung
+      scroll_to_menu:
+        link:
+          add: Skill hinzufügen
   people_skills:
     global:
       link:
@@ -264,11 +248,5 @@ de:
         radar: Radar
         skill: Skill
         subcategory: Subkategorie
-    header:
-      all: Tutti
-      category: Categoria
-      default: Predefinito
-      new: Nuovo
-      search: Capacità di ricerca
     show:
       title: 'Skill: %{title} (%{amount} Members)'
