@@ -19,7 +19,7 @@ module Ptime
       raise 'Person has no ptime_employee_id' unless person.ptime_employee_id
 
       ptime_employee = Ptime::Client.new.request(:get, "employees/#{person.ptime_employee_id}")
-    rescue CustomExceptions::PTimeTemporarlyUnavailableError
+    rescue CustomExceptions::PTimeTemporarilyUnavailableError
       nil
     else
       ptime_employee[:attributes].each do |key, value|

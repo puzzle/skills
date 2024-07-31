@@ -1,1 +1,0 @@
-PeopleController.include Ptime::PtimeConnection if Skills.ptime_available?

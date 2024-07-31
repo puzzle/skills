@@ -1,5 +1,5 @@
 module Ptime
-  module PtimeConnection
+  module PeopleController
     def show
       return export if format_odt?
 
