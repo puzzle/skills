@@ -27,6 +27,8 @@
 class Person < ApplicationRecord
   include PgSearch::Model
 
+  after_initialize :set_default_languages
+
   belongs_to :company
   belongs_to :department, optional: true
 
@@ -102,5 +104,11 @@ class Person < ApplicationRecord
     return if picture.nil? || picture.size < 10.megabytes
 
     errors.add(:picture, 'grösse kann maximal 10MB sein')
+  end
+
+  def set_default_languages
+    %w[DE EN FR].each do |language|
+      language_skills.push(LanguageSkill.new({ language: language, level: 'A1' }))
+    end
   end
 end
