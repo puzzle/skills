@@ -129,6 +129,7 @@ it:
       unrated: Non valutato
     link:
       cancel: Annullamento
+      download: Scaricare
       export: Esportazione
       remove: Rimuovere
       save_new: Risparmi e novità
@@ -174,7 +175,6 @@ it:
       export_form:
         anonymised_cv: CV anonimo
         competences_skills: Competenze di base - Capacità
-        download: Scaricare
         location: 'Sede secondaria (per il piè di pagina):'
         skills_by_level: Competenze per livello
         trainee: Apprendista
@@ -213,6 +213,10 @@ it:
       link:
         add: Aggiungi abilità
   people_skills:
+    global:
+      link:
+        add: Aggiungi abilità (max. 5)
+  people_skills/filter_form:
     global:
       link:
         add: Aggiungi abilità (max. 5)
