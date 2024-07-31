@@ -133,10 +133,6 @@ fr:
       export: Exporter
       remove: Supprimer
       save_new: Enregistrer & Nouveau
-      submit:
-        add: "%{model} ajouter"
-        delete: Supprimer
-        edit: "%{model} éditer"
     navbar:
       cv_search: Recherche de CV
       profile: Profil
@@ -160,6 +156,12 @@ fr:
       no_results: Pas de résultats
       search_results: Résultats de la recherche
     'true': Oui
+  helpers:
+    cancel: Annuler
+    submit:
+      add: "%{model} ajouter"
+      delete: Supprimer
+      edit: "%{model} éditer"
   marital_statuses:
     divorced: divorcé(e)
     married: marié(e)

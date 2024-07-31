@@ -36,7 +36,7 @@ it:
         languages:
           one: Lingua
           other: Le lingue
-        location: Luogo
+        location: Posizione
         marital_status: Stato civile
         name: Nome
         nationality: Nazionalità
@@ -133,10 +133,6 @@ it:
       export: Esportazione
       remove: Rimuovere
       save_new: Risparmi e novità
-      submit:
-        add: "%{model} aggiungere"
-        delete: Cancellare
-        edit: "%{model} modifica"
     navbar:
       cv_search: Ricerca di CV
       profile: Profilo
@@ -160,6 +156,12 @@ it:
       no_results: Nessun risultato
       search_results: Risultati della ricerca
     'true': Sì
+  helpers:
+    cancel: Annullamento
+    submit:
+      add: "%{model} aggiungere"
+      delete: Cancellare
+      edit: "%{model} modifica"
   marital_statuses:
     divorced: divorziato
     married: sposato

@@ -133,10 +133,6 @@ de:
       export: Exportieren
       remove: Entfernen
       save_new: Speichern & Neu
-      submit:
-        add: "%{model} hinzufügen"
-        delete: Löschen
-        edit: "%{model} bearbeiten"
     navbar:
       cv_search: CV Suche
       profile: Profil
@@ -160,6 +156,12 @@ de:
       no_results: Keine Resultate
       search_results: Suchergebnisse
     'true': Ja
+  helpers:
+    cancel: Abbrechen
+    submit:
+      add: "%{model} hinzufügen"
+      delete: Löschen
+      edit: "%{model} bearbeiten"
   marital_statuses:
     divorced: geschieden
     married: verheiratet
