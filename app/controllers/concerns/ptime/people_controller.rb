@@ -11,7 +11,7 @@ module Ptime
     end
 
     def new
-      @person = Ptime::PeopleEmployees.new.create_or_find(params[:ptime_employee_id])
+      @person = Ptime::PeopleEmployees.new.find_or_create(params[:ptime_employee_id])
       redirect_to(@person)
     end
   end

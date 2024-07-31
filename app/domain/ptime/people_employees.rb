@@ -3,7 +3,7 @@ module Ptime
     ATTRIBUTES_MAPPING = { full_name: :name, shortname: :shortname, email: :email, marital_status:
       :marital_status, graduation: :title, birthdate: :birthdate,
                            location: :location }.freeze
-    def create_or_find(ptime_employee_id)
+    def find_or_create(ptime_employee_id)
       raise 'No ptime_employee_id provided' unless ptime_employee_id
 
       person = Person.find_by(ptime_employee_id: ptime_employee_id)
@@ -20,7 +20,7 @@ module Ptime
 
       ptime_employee = Ptime::Client.new.request(:get, "employees/#{person.ptime_employee_id}")
     rescue CustomExceptions::PTimeTemporarilyUnavailableError
-      nil
+      return
     else
       ptime_employee[:attributes].each do |key, value|
         if key.to_sym.in?(ATTRIBUTES_MAPPING.keys)
