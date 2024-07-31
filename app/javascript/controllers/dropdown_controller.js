@@ -14,6 +14,6 @@ export default class extends Controller {
   }
 
   handleChange(event) {
-      window.location.href = event.target.value;
+    window.location.href = event.target.value;
   }
 }

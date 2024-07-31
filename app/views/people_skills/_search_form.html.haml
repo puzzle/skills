@@ -1,6 +1,7 @@
 %div.w-100.d-flex.flex-row.justify-content-start{data: {controller: "skills-level"}}
   %div.w-50.mt-3{"data-controller": "dropdown"}
-    = form.collection_select "skill_id[]", Skill.all.order(:title), :id, :title, {prompt: true, selected: filter_params.skill_of_row(row_number)}, data:{"dropdown-target": "dropdown"},  onchange: "this.form.submit()"
+    - config = select_when_available(filter_params.skill_of_row(row_number))
+    = form.collection_select "skill_id[]", Skill.all.order(:title), :id, :title, config, data:{"dropdown-target": "dropdown"},  onchange: "this.form.submit()"
   %div.w-25.d-flex.flex-column.align-items-center
     %label.form-label.text-gray.fs-6{"data-skills-level-target": "label"}= ti "people_skills.levels.#{ExpertiseTopicSkillValue.skill_levels.key(filter_params.level_of_row(row_number)-1)}"
     = form.range_field "level[]", min: 1, max: 5, value: filter_params.level_of_row(row_number), class: "form-range w-75",
