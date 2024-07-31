@@ -129,10 +129,10 @@ de:
       unrated: Nicht bewertet
     link:
       cancel: Abbrechen
+      download: Herunterladen
       export: Exportieren
       remove: Entfernen
       save_new: Speichern & Neu
-      download: Herunterladen
     navbar:
       cv_search: CV Suche
       profile: Profil

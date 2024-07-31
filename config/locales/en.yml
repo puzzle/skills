@@ -129,6 +129,7 @@ en:
       unrated: Not rated
     link:
       cancel: Cancel
+      download: Download
       export: Export
       remove: Remove
       save_new: Save & New
@@ -174,7 +175,6 @@ en:
       export_form:
         anonymised_cv: Anonymized CV
         competences_skills: Core competencies - Skills
-        download: Download
         location: 'Branch office (for footer):'
         skills_by_level: Skills by level
         trainee: Trainee
@@ -213,6 +213,10 @@ en:
       link:
         add: Add skill
   people_skills:
+    global:
+      link:
+        add: Add skill (max. 5)
+  people_skills/filter_form:
     global:
       link:
         add: Add skill (max. 5)

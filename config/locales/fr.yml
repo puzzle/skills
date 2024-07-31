@@ -129,6 +129,7 @@ fr:
       unrated: Non évalué
     link:
       cancel: Annuler
+      download: Télécharger
       export: Exporter
       remove: Supprimer
       save_new: Enregistrer & Nouveau
@@ -174,7 +175,6 @@ fr:
       export_form:
         anonymised_cv: CV anonyme
         competences_skills: Compétences clés - Skills
-        download: Télécharger
         location: 'Établissement (pour le pied de page) :'
         skills_by_level: Compétences par niveau
         trainee: Stagiaire
@@ -213,6 +213,10 @@ fr:
       link:
         add: Ajouter une compétence
   people_skills:
+    global:
+      link:
+        add: Ajouter une compétence (max. 5)
+  people_skills/filter_form:
     global:
       link:
         add: Ajouter une compétence (max. 5)
