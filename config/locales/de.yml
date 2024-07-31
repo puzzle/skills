@@ -133,6 +133,10 @@ de:
       export: Exportieren
       remove: Entfernen
       save_new: Speichern & Neu
+      submit:
+        add: "%{model} hinzufügen"
+        delete: Löschen
+        edit: "%{model} bearbeiten"
     navbar:
       cv_search: CV Suche
       profile: Profil
@@ -156,12 +160,6 @@ de:
       no_results: Keine Resultate
       search_results: Suchergebnisse
     'true': Ja
-  helpers:
-    cancel: Abbrechen
-    submit:
-      add: "%{model} hinzufügen"
-      delete: Löschen
-      edit: "%{model} bearbeiten"
   marital_statuses:
     divorced: geschieden
     married: verheiratet
@@ -179,8 +177,11 @@ de:
         skills_by_level: Skills nach Level
         trainee: Trainee
     global:
+      confirm_delete: Willst du diese Person wirklich löschen?
       link:
         add: Neues Profil
+        delete: Person löschen
+      more_actions: Weitere Aktionen
     index:
       choose_create_person: Wähle eine Person aus oder erfasse ein neues Profil
       welcome: Willkommen bei
@@ -207,6 +208,12 @@ de:
     edit_form:
       rate: Bewerten
       unrate: Nicht bewerten
+    global:
+      confirm_delete: Willst du diese Person wirklich löschen?
+      link:
+        add: Neues Profil
+        delete: Person löschen
+      more_actions: Weitere Aktionen
     index:
       new_skills_to_rate: Neue Skills zur Bewertung
     scroll_to_menu:
@@ -223,25 +230,6 @@ de:
   profile:
     updated_at: Zuletzt bearbeitet
   skills:
-    search_skills: Skills ebenfalls durchsuchen
-    advanced_trainings: Weiterbildungen
-    educations: Ausbildungen
-    activities: Stationen
-    projects: Projekte
-    name: Name
-    location: Wohnort
-    title: Abschluss
-    competence_notes: Kompetenzen
-    roles: Funktionen
-    department: Organisationseinheit
-    skills: Skills
-  people:
-    show:
-      confirm_delete: Willst du diese Person wirklich löschen?
-      more_actions: Weitere Aktionen
-      link:
-        delete: Person löschen
-
     global:
       table:
         category: Kategorie

@@ -133,6 +133,10 @@ fr:
       export: Exporter
       remove: Supprimer
       save_new: Enregistrer & Nouveau
+      submit:
+        add: "%{model} ajouter"
+        delete: Supprimer
+        edit: "%{model} éditer"
     navbar:
       cv_search: Recherche de CV
       profile: Profil
@@ -156,12 +160,6 @@ fr:
       no_results: Pas de résultats
       search_results: Résultats de la recherche
     'true': Oui
-  helpers:
-    cancel: Annuler
-    submit:
-      add: "%{model} ajouter"
-      delete: Supprimer
-      edit: "%{model} éditer"
   marital_statuses:
     divorced: divorcé(e)
     married: marié(e)
@@ -179,8 +177,11 @@ fr:
         skills_by_level: Compétences par niveau
         trainee: Stagiaire
     global:
+      confirm_delete: Veux-tu vraiment supprimer cette personne ?
       link:
         add: Nouveau profil
+        delete: Supprimer une personne
+      more_actions: Autres actions
     index:
       choose_create_person: Sélectionne une personne ou saisis un nouveau profil
       welcome: Bienvenue chez
@@ -207,6 +208,12 @@ fr:
     edit_form:
       rate: Évaluer
       unrate: Ne pas évaluer
+    global:
+      confirm_delete: Veux-tu vraiment supprimer cette personne ?
+      link:
+        add: Nouveau profil
+        delete: Supprimer une personne
+      more_actions: Autres actions
     index:
       new_skills_to_rate: Nouvelles compétences pour l'évaluation
     scroll_to_menu:

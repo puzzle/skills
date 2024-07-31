@@ -319,9 +319,9 @@ describe :people do
 
     it 'should delete person' do
       visit person_path(longmax)
-      click_button(I18n.t("people.show.more_actions"))
+      click_button(t("people.show.more_actions"))
       accept_confirm do
-        click_link(I18n.t("people.show.link.delete"), href: person_path(longmax))
+        click_link(t("people.show.link.delete"), href: person_path(longmax))
       end
       expect(page).to have_selector('.alert', text: I18n.t("crud.destroy.flash.success", model: longmax))
     end

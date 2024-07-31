@@ -27,11 +27,11 @@ en:
           other: Further training
         birthdate: Date of birth
         competence_notes: Notes Member
-        department: Organizational unit
+        department: Department
         dual_citizen: Dual citizens
         educations:
           one: Education
-          other: Trainings
+          other: Educations
         email: Email
         languages:
           one: Language
@@ -54,7 +54,7 @@ en:
         skills:
           one: Skill
           other: Skills
-        title: Conclusion
+        title: Degree
       project:
         description: Description
         role: Role and tasks
@@ -72,6 +72,19 @@ en:
       department:
         one: Department
         other: Departments
+      education:
+        one: Education
+        other: Educations
+      people_skill:
+        one: Skill
+        other: Skills
+      project: Project
+      role:
+        one: Role
+        other: Roles
+      skill:
+        one: Skill
+        other: Skills
   admin:
     global:
       link:
@@ -100,7 +113,7 @@ en:
     devise:
       admin: "(Admin)"
       admin_panel: Admin area
-      devise: Motto
+      devise: Devise
       mockdata: Mockdata
       no_omniauth_providers: An error has occurred, there are no Omniauth providers available, please contact the administrator.
       sign_in: Log in
@@ -120,6 +133,10 @@ en:
       export: Export
       remove: Remove
       save_new: Save & New
+      submit:
+        add: "%{model} add"
+        delete: Delete
+        edit: "%{model} edit"
     navbar:
       cv_search: CV search
       profile: Profile
@@ -136,23 +153,16 @@ en:
         level: Level
         professional: Professional
         senior: Senior
-        trainee: Apprentice
+        trainee: Trainee
         unweighted: Not rated
     search:
       found_in: Found in
       no_results: No results
       search_results: Search results
     'true': 'Yes'
-  helpers:
-    cancel: Cancel
-    submit:
-      add: "%{model} add"
-      delete: Delete
-      edit: "%{model} edit"
   marital_statuses:
-    single: single
+    divorced: divorced
     married: married
-    widowed: widowed
     registered_partnership: registered partnership
     single: single
     widowed: widowed
@@ -167,8 +177,11 @@ en:
         skills_by_level: Skills by level
         trainee: Trainee
     global:
+      confirm_delete: Do you really want to delete this person?
       link:
         add: New profile
+        delete: Delete person
+      more_actions: More actions
     index:
       choose_create_person: Select a person or create a new profile
       welcome: Welcome to
@@ -195,8 +208,14 @@ en:
     edit_form:
       rate: Rate
       unrate: Do not rate
+    global:
+      confirm_delete: Do you really want to delete this person?
+      link:
+        add: New profile
+        delete: Delete person
+      more_actions: More actions
     index:
-      new_skills_to_rate: New skills for evaluation
+      new_skills_to_rate: New skills to rate
     scroll_to_menu:
       link:
         add: Add skill
@@ -206,46 +225,6 @@ en:
         add: Add skill (max. 5)
   people_skills/filter_form:
     global:
-    divorced: divorced
-  people-skills:
-    levels:
-      level: Experience
-      unweighted: Unweighted
-      trainee: Trainee
-      junior: Junior
-      professional: Professional
-      senior: Senior
-      expert: Expert
-    interest: Interest
-    certificate: Certificate
-    core-competence: Core Competence
-  date_range_picker:
-    from: From
-    to: To
-    today: Today
-
-  people-skills:
-    level:
-      trainee: Trainee
-      junior: Junior
-      professional: Professional
-      senior: Senior
-      expert: Expert
-    interest: Interest
-    certificate: Certificate
-    core-competence: Core Competence
-    filter:
-      all: ALl
-      rated: Rated
-      unrated: Unrated
-  date_range_picker:
-    from: From
-    to: To
-    today: Today
-  people:
-    show:
-      confirm_delete: Are you sure you want to delete this person?
-      more_actions: More actions
       link:
         add: Add skill (max. 5)
   profile:

@@ -88,7 +88,9 @@ describe 'Activities', type: :feature, js:true do
       role = activity.role
       open_edit_form(activity)
       within("turbo-frame#activity_#{activity.id}") do
-        click_link("Löschen")
+        accept_confirm do
+          click_link("Löschen")
+        end
       end
       expect(page).not_to have_content(role)
     end
