@@ -12,7 +12,6 @@ Rails.application.routes.draw do
     delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_auth_user_session
   end
 
-  get "/:locale", locale: LOCALE_REGEX, to: 'people#index'
 
   # Status
   scope 'status' do
@@ -20,8 +19,10 @@ Rails.application.routes.draw do
     get 'readiness', to: 'status#readiness'
   end
 
-  scope "(:locale)", locale: LOCALE_REGEX do
-    get root to: 'people#index'
+  get "/", to: redirect(path: "/people")
+
+  scope "/:locale", locale: LOCALE_REGEX, defaults: {locale: I18n.locale} do
+    get root to: redirect(path: "/%{locale}/people")
 
     resources :skills do
       collection do
@@ -66,6 +67,8 @@ Rails.application.routes.draw do
       end
     end
   end
+  match '*path', to: redirect("/#{I18n.locale}/%{path}"), :via => [:get, :post]
+
 
   # Outdated api routes
   namespace :api do
