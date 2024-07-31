@@ -107,8 +107,10 @@ class Person < ApplicationRecord
   end
 
   def set_default_languages
-    %w[DE EN FR].each do |language|
-      language_skills.push(LanguageSkill.new({ language: language, level: 'A1' }))
+    if new_record?
+      %w[DE EN FR].each do |language|
+        language_skills.push(LanguageSkill.new({ language: language, level: 'Keine' }))
+      end
     end
   end
 end
