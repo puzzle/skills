@@ -159,9 +159,9 @@ en:
   helpers:
     cancel: Cancel
     submit:
-        add: "%{model} add"
-        delete: Delete
-        edit: "%{model} edit"
+      add: "%{model} add"
+      delete: Delete
+      edit: "%{model} edit"
   marital_statuses:
     divorced: divorced
     married: married
