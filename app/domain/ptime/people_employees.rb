@@ -27,14 +27,18 @@ module Ptime
           person[ATTRIBUTES_MAPPING[key.to_sym]] = (value.presence || '-')
         end
       end
+      set_additional_attributes(person, ptime_employee)
+      person.save!
+      person
+    end
+    # rubocop:enable Metrics
+
+    def set_additional_attributes(person, ptime_employee)
       ptime_employee_employed = ptime_employee[:attributes][:is_employeed]
       person.company = Company.find_by(name: ptime_employee_employed ? 'Firma' : 'Ex-Mitarbeiter')
       ptime_employee_nationalities = ptime_employee[:attributes][:nationalities]
       person.nationality = ptime_employee_nationalities[0]
       person.nationality2 = ptime_employee_nationalities[1]
-      person.save!
-      person
     end
-    # rubocop:enable Metrics
   end
 end
