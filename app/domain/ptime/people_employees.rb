@@ -34,7 +34,7 @@ module Ptime
     # rubocop:enable Metrics
 
     def set_additional_attributes(person, ptime_employee)
-      ptime_employee_employed = ptime_employee[:attributes][:is_employeed]
+      ptime_employee_employed = ptime_employee[:attributes][:is_employed]
       person.company = Company.find_by(name: ptime_employee_employed ? 'Firma' : 'Ex-Mitarbeiter')
       ptime_employee_nationalities = ptime_employee[:attributes][:nationalities]
       person.nationality = ptime_employee_nationalities[0]
