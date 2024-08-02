@@ -14,7 +14,6 @@ class PeopleController < CrudController
                               [:language, :level, :certificate, :id, :_destroy] }]
   layout 'person', only: [:show]
 
-  helper_method :sorted_people
   def index
     return flash[:alert] = I18n.t('errors.messages.profile-not-found') if params[:alert].present?
 
@@ -59,17 +58,8 @@ class PeopleController < CrudController
               disposition: content_disposition('attachment', filename)
   end
 
-  def sorted_people
-    people_for_select.sort_by { |e| e.first.downcase }
-  end
-
-
 
   private
-
-  def people_for_select
-    Person.all.map { |p| [p.name, person_path(p)] }
-  end
 
   def fetch_entries
     Person.includes(:company).list
