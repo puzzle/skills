@@ -60,4 +60,18 @@ describe 'Update or create person' do
     expect(new_wally.nationality).to eq('DE')
     expect(new_wally.nationality2).to eq('DK')
   end
+
+  it 'should not update but still show person if ptime temporarily unavailable' do
+    stub_env_var('LAST_PTIME_ERROR', 1.minute.ago)
+    stub_ptime_request(fixture_data("wally").to_json, "employees/50", 500)
+
+    Company.create!(name: "Ex-Mitarbeiter")
+    person_wally = people(:wally)
+    person_wally.ptime_employee_id = 50
+    person_wally.save!
+
+    get "/people/#{person_wally.id}"
+
+    expect(person_wally.attributes.except(*%w[created_at updated_at])).to eq(Person.find(person_wally.id).attributes.except(*%w[created_at updated_at]))
+  end
 end
