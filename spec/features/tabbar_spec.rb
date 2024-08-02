@@ -19,53 +19,63 @@ describe 'Tabbar', type: :feature, js:true do
     ]
   }
 
-  before(:each) do
-    sign_in auth_users(:admin)
-    visit root_path
-  end
 
-  describe 'Global' do
-    it 'Should highlight right tab using click' do
-      global_tabs.each do |hash|
-        click_link(href: hash[:path])
-        check_highlighted_tab(hash[:title])
+
+  [:de, :en, :it, :fr].each do |locale|
+    describe "Check if tabbar works for #{locale}" do
+
+      before(:each) do
+        sign_in auth_users(:admin)
+        visit root_path(locale: locale)
       end
-    end
 
-    it 'Should highlight right tab after visit by url' do
-      global_tabs.each do |hash|
-        visit (hash[:path])
-        check_highlighted_tab(hash[:title])
+      after(:each)  do
+        expect(current_path).to start_with("/#{locale}")
       end
-    end
+
+      describe 'Global' do
+        it 'Should highlight right tab using click' do
+          global_tabs.each do |hash|
+            click_link(href: hash[:path])
+            check_highlighted_tab(hash[:title])
+          end
+        end
+
+        it 'Should highlight right tab after visit by url' do
+          global_tabs.each do |hash|
+            visit (hash[:path])
+            check_highlighted_tab(hash[:title])
+          end
+        end
 
 
-    def check_highlighted_tab(text)
-      expect(page).to have_selector("div.skills-navbar .btn .nav-link.active", text: text)
-    end
-  end
-
-  describe 'Person' do
-
-    it 'Should highlight right tab using dropdown' do
-      person_tabs.each do |hash|
-        visit root_path
-        select_from_slim_select("#person_id_person", bob.name)
-        check_highlighted_tab("CV")
-        click_link(href: hash[:path])
-        check_highlighted_tab(hash[:title])
+        def check_highlighted_tab(text)
+          expect(page).to have_selector("div.skills-navbar .btn .nav-link.active", text: text)
+        end
       end
-    end
 
-    it 'Should highlight right tab after visit by url' do
-      person_tabs.each do |hash|
-        visit (hash[:path])
-        check_highlighted_tab(hash[:title])
+      describe 'Person' do
+        it 'Should highlight right tab using dropdown' do
+          person_tabs.each do |hash|
+            visit root_path
+            select_from_slim_select("#person_id_person", bob.name)
+            check_highlighted_tab("CV")
+            click_link(href: hash[:path])
+            check_highlighted_tab(hash[:title])
+          end
+        end
+
+        it 'Should highlight right tab after visit by url' do
+          person_tabs.each do |hash|
+            visit (hash[:path])
+            check_highlighted_tab(hash[:title])
+          end
+        end
+
+        def check_highlighted_tab(text)
+          expect(page).to have_selector(".nav.nav-tabs .btn .nav-link.active", text: text)
+        end
       end
-    end
-
-    def check_highlighted_tab(text)
-      expect(page).to have_selector(".nav.nav-tabs .btn .nav-link.active", text: text)
     end
   end
 end
