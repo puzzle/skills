@@ -13,8 +13,8 @@ describe 'Tabbar', type: :feature, js:true do
 
   PERSON_TABS =
     [
-      { title: 'CV', path: "/%{locale}/people/%{id}" },
-      { title: 'Skills', path: "/%{locale}/people/%{id}/people_skills" }
+      { title: 'people.global.tabbar.cv', path: "/%{locale}/people/%{id}" },
+      { title: 'people.global.tabbar.skills', path: "/%{locale}/people/%{id}/people_skills" }
     ]
 
   [:de, :en, :it, :fr].each do |locale|
@@ -56,7 +56,7 @@ describe 'Tabbar', type: :feature, js:true do
       describe 'Person' do
         PERSON_TABS.each do |hash|
           let(:path) { hash[:path] % { id: bob.id, locale: locale } }
-          let(:title) { hash[:title] }
+          let(:title) { t hash[:title] }
 
           it "Should highlight '#{hash[:title]}' tab using dropdown" do
             visit people_path

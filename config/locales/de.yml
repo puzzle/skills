@@ -184,6 +184,9 @@ de:
         add: Neues Profil
         delete: Person löschen
       more_actions: Weitere Aktionen
+      tabbar:
+        cv: CV
+        skills: Skills
     index:
       choose_create_person: Wähle eine Person aus oder erfasse ein neues Profil
       welcome: Willkommen bei
@@ -216,6 +219,9 @@ de:
         add: Neues Profil
         delete: Person löschen
       more_actions: Weitere Aktionen
+      tabbar:
+        cv: CV
+        skills: Skills
     index:
       new_skills_to_rate: Neue Skills zur Bewertung
     scroll_to_menu:
