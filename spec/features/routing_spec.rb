@@ -5,7 +5,8 @@ describe 'Check routes', type: :feature, js: true do
     "/": "/de/people",
     "/de/": "/de/people",
     "/people": "/de/people",
-    "/people_skills": "/de/people_skills"
+    "/people_skills": "/de/people_skills",
+    "/en": "/en/people",
   }
   before(:each) do
     sign_in auth_users(:user), scope: :auth_user

@@ -15,7 +15,7 @@ describe People::PictureController do
   end
 
   it 'should update picture' do
-    process :update, method: :put, params: { id: bob.id, picture: fixture_file_upload('picture.png', 'image/png') }
+    put :update, params: { id: bob.id, picture: fixture_file_upload('picture.png', 'image/png') }
 
     path = json['data']['picture_path']
 
@@ -25,7 +25,7 @@ describe People::PictureController do
     expect(bob['picture']).to eq('picture.png')
     expect(path).to eq(picture_person_path(bob))
 
-    process :show, method: :get , params: { id: bob.id }
+    get :show, params: { id: bob.id }
 
     new_picture_md5 = 'c903aeff2bec840bd7c028631bd56596'
 

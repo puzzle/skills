@@ -66,6 +66,8 @@ RSpec.configure do |config|
   config.include(JsonMacros, type: :controller)
   config.include(JsonAssertion, type: :controller)
   config.include(ControllerHelpers, type: :controller)
+  config.include DefaultParams, type: :controller
+
 
   # Feature helper
 
@@ -85,6 +87,6 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
 
   config.before(:each, type: :feature) do
-    default_url_options[:locale] = I18n.default_locale
+    default_url_options[:locale] = I18n.locale
   end
 end
