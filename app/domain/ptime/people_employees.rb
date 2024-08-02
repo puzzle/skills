@@ -20,7 +20,7 @@ module Ptime
 
       ptime_employee = Ptime::Client.new.request(:get, "employees/#{person.ptime_employee_id}")
     rescue CustomExceptions::PTimeTemporarilyUnavailableError
-      return
+      # Ignored
     else
       ptime_employee[:attributes].each do |key, value|
         if key.to_sym.in?(ATTRIBUTES_MAPPING.keys)
