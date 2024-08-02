@@ -72,6 +72,8 @@ describe 'Update or create person' do
 
     get "/people/#{person_wally.id}"
 
+    expect(response).to render_template(:show)
+
     expect(person_wally.attributes.except(*%w[created_at updated_at])).to eq(Person.find(person_wally.id).attributes.except(*%w[created_at updated_at]))
   end
 end
