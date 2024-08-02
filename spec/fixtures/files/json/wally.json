@@ -1,0 +1,23 @@
+{
+  "data": {
+    "id": 50,
+    "type": "employee",
+    "attributes": {
+      "shortname": "CAL",
+      "firstname": "Changed Wally",
+      "lastname": "Allround",
+      "full_name": "Changed Wally Allround",
+      "email": "changedwally@example.com",
+      "marital_status": "single",
+      "nationalities": [
+        "DE", "DK"
+      ],
+      "graduation": "Quarter-Stack Developer",
+      "department_shortname": "SYS",
+      "employment_roles2": [],
+      "is_employed": false,
+      "birthdate": "1.1.2000",
+      "location": "Basel"
+    }
+  }
+}

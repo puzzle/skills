@@ -78,6 +78,7 @@ RSpec.configure do |config|
 
   # Helpers from gems
   config.include(Devise::Test::IntegrationHelpers, type: :feature)
+  config.include(Devise::Test::IntegrationHelpers, type: :request)
   config.include(Devise::Test::ControllerHelpers, type: :controller)
   config.include(ActionView::RecordIdentifier, type: :feature)
 

@@ -15,7 +15,7 @@ module Ptime
       if last_ptime_error_more_than_5_minutes_ago?
         send_request_and_parse_response(method, url, params)
       else
-        raise CustomExceptions::PTimeClientError, 'Error'
+        raise CustomExceptions::PTimeTemporarilyUnavailableError, 'PTime is temporarily unavailable'
       end
     end
 
