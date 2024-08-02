@@ -8,14 +8,13 @@ class PeopleController < CrudController
   self.permitted_attrs = [:birthdate, :location, :marital_status, :updated_by, :name, :nationality,
                           :nationality2, :title, :competence_notes, :company_id, :email,
                           :department_id, :shortname, :picture, :picture_cache,
-                          { person_roles_attributes: [:role_id, :person_role_level_id,
-                                                      :percent, :id, :_destroy] },
                           { person_roles_attributes:
                               [:role_id, :person_role_level_id, :percent, :id, :_destroy] },
                           { language_skills_attributes:
                               [:language, :level, :certificate, :id, :_destroy] }]
   layout 'person', only: [:show]
 
+  helper_method :sorted_people
   def index
     return flash[:alert] = I18n.t('errors.messages.profile-not-found') if params[:alert].present?
 
@@ -60,7 +59,17 @@ class PeopleController < CrudController
               disposition: content_disposition('attachment', filename)
   end
 
+  def sorted_people
+    people_for_select.sort_by { |e| e.first.downcase }
+  end
+
+
+
   private
+
+  def people_for_select
+    Person.all.map { |p| [p.name, person_path(p)] }
+  end
 
   def fetch_entries
     Person.includes(:company).list

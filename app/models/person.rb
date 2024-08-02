@@ -100,10 +100,6 @@ class Person < ApplicationRecord
     name
   end
 
-  def path
-    Rails.application.routes.url_helpers.person_path(self, locale: I18n.locale)
-  end
-
   private
 
   def picture_size
