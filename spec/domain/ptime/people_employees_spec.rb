@@ -13,13 +13,4 @@ describe Ptime::PeopleEmployees do
     new_person = Ptime::PeopleEmployees.new.find_or_create(person_wally.ptime_employee_id)
     expect(person_wally.attributes.except(*%w[created_at updated_at])).to eql(new_person.attributes.except(*%w[created_at updated_at]))
   end
-
-  xit 'should raise error when person is not found in ptime api' do
-    stub_ptime_request('', "employees/50", 404)
-
-    person_wally = people(:wally)
-    person_wally.ptime_employee_id = 50
-    person_wally.save!
-    expect{ Ptime::PeopleEmployees.new.update_person_data(person_wally) }.to raise_error(RuntimeError, 'Ptime_employee with ptime_employee_id 50 not found')
-  end
 end
