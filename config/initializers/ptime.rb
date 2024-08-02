@@ -1,3 +1,3 @@
-Rails.application.config.to_prepare do
+Rails.application.config.after_initialize do
   PeopleController.prepend Ptime::PeopleController if Skills.ptime_available?
 end
