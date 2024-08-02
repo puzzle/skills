@@ -66,6 +66,9 @@ en:
     models:
       activity: Station
       advanced_training: Further training
+      category:
+        one: Category
+        other: Categories
       company:
         one: Company
         other: Companies

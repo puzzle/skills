@@ -65,7 +65,12 @@ de:
         category: Kategorie
     models:
       activity: Station
-      advanced_training: Weiterbildung
+      advanced_training:
+        one: Weiterbildung
+        other: Weiterbildungen
+      category:
+        one: Kategorie
+        other: Kategorien
       company:
         one: Firma
         other: Firmen
@@ -78,7 +83,9 @@ de:
       people_skill:
         one: Skill
         other: Skills
-      project: Projekt
+      project:
+        one: Projekt
+        other: Projekte
       role:
         one: Rolle
         other: Rollen

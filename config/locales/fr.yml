@@ -66,6 +66,9 @@ fr:
     models:
       activity: Station
       advanced_training: Formation continue
+      category:
+        one: Catégorie
+        other: Catégories
       company:
         one: Société
         other: Entreprises
