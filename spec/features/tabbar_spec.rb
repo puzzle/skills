@@ -3,30 +3,29 @@ require 'rails_helper'
 describe 'Tabbar', type: :feature, js:true do
   let(:bob) { people(:bob) }
 
-  let(:global_tabs){
+  GLOBAL_TABS =
     [
-      { title: t('global.navbar.profile'), path: people_path },
-      { title: t('global.navbar.skill_search'), path: people_skills_path },
-      { title: t('global.navbar.cv_search'), path: cv_search_index_path },
-      { title: t('global.navbar.skillset'), path: skills_path }
+      { title: 'global.navbar.profile', path: "/%{locale}/people" },
+      { title: 'global.navbar.skill_search', path: "/%{locale}/people_skills" },
+      { title: 'global.navbar.cv_search', path: "/%{locale}/cv_search" },
+      { title: 'global.navbar.skillset', path: "/%{locale}/skills" }
     ]
-  }
 
-  let(:person_tabs) {
+  PERSON_TABS =
     [
-      { title: 'CV', path: person_path(bob) },
-      { title: 'Skills', path: person_people_skills_path(bob) }
+      { title: 'CV', path: "/%{locale}/people/%{id}" },
+      { title: 'Skills', path: "/%{locale}/people/%{id}/people_skills" }
     ]
-  }
-
-
 
   [:de, :en, :it, :fr].each do |locale|
     describe "Check if tabbar works for #{locale}" do
 
       before(:each) do
         sign_in auth_users(:admin)
-        visit root_path(locale: locale)
+        I18n.locale = locale
+        default_url_options[:locale] = locale
+
+        visit people_path
       end
 
       after(:each)  do
@@ -34,20 +33,20 @@ describe 'Tabbar', type: :feature, js:true do
       end
 
       describe 'Global' do
-        it 'Should highlight right tab using click' do
-          global_tabs.each do |hash|
-            click_link(href: hash[:path])
-            check_highlighted_tab(hash[:title])
+        GLOBAL_TABS.each do |hash|
+          let(:path) { hash[:path] % { locale: locale } }
+          let(:title) { t hash[:title] }
+
+          it "Should highlight '#{hash[:title]}' tab using click" do
+            click_link(href: path)
+            check_highlighted_tab(title)
+          end
+
+          it "Should highlight '#{hash[:title]}' tab after visit by url" do
+            visit (path)
+            check_highlighted_tab(title)
           end
         end
-
-        it 'Should highlight right tab after visit by url' do
-          global_tabs.each do |hash|
-            visit (hash[:path])
-            check_highlighted_tab(hash[:title])
-          end
-        end
-
 
         def check_highlighted_tab(text)
           expect(page).to have_selector("div.skills-navbar .btn .nav-link.active", text: text)
@@ -55,20 +54,21 @@ describe 'Tabbar', type: :feature, js:true do
       end
 
       describe 'Person' do
-        it 'Should highlight right tab using dropdown' do
-          person_tabs.each do |hash|
-            visit root_path
+        PERSON_TABS.each do |hash|
+          let(:path) { hash[:path] % { id: bob.id, locale: locale } }
+          let(:title) { hash[:title] }
+
+          it "Should highlight '#{hash[:title]}' tab using dropdown" do
+            visit people_path
             select_from_slim_select("#person_id_person", bob.name)
             check_highlighted_tab("CV")
-            click_link(href: hash[:path])
-            check_highlighted_tab(hash[:title])
+            click_link(href: path)
+            check_highlighted_tab(title)
           end
-        end
 
-        it 'Should highlight right tab after visit by url' do
-          person_tabs.each do |hash|
-            visit (hash[:path])
-            check_highlighted_tab(hash[:title])
+          it "Should highlight '#{hash[:title]}' tab after visit by url" do
+            visit (path)
+            check_highlighted_tab(title)
           end
         end
 

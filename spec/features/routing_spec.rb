@@ -17,8 +17,6 @@ describe 'Routing', type: :feature, js: true do
       "/en": "/en/people",
     }
 
-
-
     ROUTES.each do |url, target|
       it "Should route from '#{url}' to #{target}" do
           visit url
@@ -30,8 +28,9 @@ describe 'Routing', type: :feature, js: true do
   describe "Check if language is applied correctly" do
     context "Set locale via dropdown" do
       before(:each) do
-        visit root_path
+        visit people_path
         select 'Italienisch', from: "i18n_language"
+        default_url_options[:locale] = :it
       end
 
       it "Should open profile with correct language" do

@@ -19,10 +19,11 @@ Rails.application.routes.draw do
     get 'readiness', to: 'status#readiness'
   end
 
-  get "/", to: redirect(path: "/people")
+  get root to: redirect(path: "/people")
 
-  scope "/:locale", locale: LOCALE_REGEX, defaults: {locale: I18n.locale} do
-    get root to: redirect(path: "/%{locale}/people")
+
+  scope "/:locale", locale: LOCALE_REGEX do
+    get '/:locale' => redirect("%{locale}/people")
 
     resources :skills do
       collection do
@@ -35,8 +36,6 @@ Rails.application.routes.draw do
         get 'filter_form', to: "people_skills/filter_form#index"
       end
     end
-
-
 
     resources :cv_search
 
