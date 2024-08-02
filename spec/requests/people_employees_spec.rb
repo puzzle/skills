@@ -4,6 +4,16 @@ describe 'Update or create person' do
   before(:each) do
     sign_in auth_users(:user), scope: :auth_user
   end
+
+  before(:all) do
+    PeopleController.prepend(Ptime::PeopleController)
+  end
+
+  after(:all) do
+    Ptime::PeopleController.remove_method(:new)
+    Ptime::PeopleController.remove_method(:show)
+  end
+
   it 'should update person when visited' do
     stub_ptime_request(fixture_data("wally").to_json, "employees/50", 200)
 
