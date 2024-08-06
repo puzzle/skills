@@ -29,7 +29,7 @@ describe 'Routing', type: :feature, js: true do
     context "Set locale via dropdown" do
       before(:each) do
         visit people_path
-        select 'Italienisch', from: "i18n_language"
+        select 'Italiano', from: "i18n_language"
         default_url_options[:locale] = :it
       end
 

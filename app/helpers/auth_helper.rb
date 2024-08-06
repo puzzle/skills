@@ -23,13 +23,10 @@ module AuthHelper
     AuthConfig.keycloak? || Rails.env.test?
   end
 
-  def language_selector # rubocop:disable Metrics/AbcSize
-    languages = I18nData.languages(I18n.locale).to_a.map do |e|
-      [e.second.titleize, e.first.downcase.to_sym]
-    end
-    languages = languages.select { |e| I18n.available_locales.include? e.second }
-    languages = languages.map do |e|
-      [e.first, url_for(locale: e.second)]
+  def language_selector
+    languages = I18n.available_locales.map { |e| e.to_s }.map do |lang_code|
+      language = I18nData.languages(lang_code)[lang_code.upcase]
+      [language, url_for(locale: lang_code)]
     end
     options_for_select(languages, url_for(locale: I18n.locale))
   end
