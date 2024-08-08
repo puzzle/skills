@@ -2,5 +2,4 @@
   %div.d-flex
     %div.persisted-line-breaks= @person.competence_notes
   %div.d-flex.flex-row
-    = link_to image_tag("pencil-square.svg")+ "Bearbeiten",
-    competence_notes_person_path(@person), class: "d-flex align-items-center", id: "edit-link"
+    = edit_action_link competence_notes_person_path(@person)

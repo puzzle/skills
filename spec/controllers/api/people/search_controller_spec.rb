@@ -15,6 +15,6 @@ describe Api::People::SearchController do
 
     expect(alice_attrs.count).to eq(2)
     expect(alice_attrs['person']['name']).to eq('Alice Mante')
-    expect(alice_attrs['found_in']).to eq('location')
+    expect(alice_attrs['found_in']).to eq('Ort')
   end
 end

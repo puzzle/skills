@@ -1,3 +1,4 @@
+---
 de:
   activerecord:
     attributes:
@@ -17,16 +18,16 @@ de:
         locked_at: Gesperrt am
         password: Passwort
         password_confirmation: Passwortbestätigung
+        privacy_accepted_at: Datenschutzerklärung
         remember_created_at: Angemeldet bleiben vom
         remember_me: Angemeldet bleiben
         reset_password_sent_at: Passwort-Zurücksetzen-E-Mail gesendet am
         reset_password_token: Passwort-Zurücksetzen-Token
         sign_in_count: Anzahl Anmeldungen
+        terms_accepted_at: AGB
         unconfirmed_email: Unbestätigte E-Mail-Adresse
         unlock_token: Entsperrungs-Token
         updated_at: Aktualisiert am
-        terms_accepted_at: AGB
-        privacy_accepted_at: Datenschutzerklärung
     models:
       user: Benutzer
   devise:
@@ -44,11 +45,11 @@ de:
       locked: Ihr Konto ist gesperrt.
       not_found_in_database: "%{authentication_keys} oder Passwort ungültig."
       timeout: Ihre Sitzung ist abgelaufen, bitte melde Sie sich erneut an.
-      unauthenticated: Sie müssen sich anmelden oder registrieren, bevor Sie fortfahren können.
-      unconfirmed: Sie müssen Ihr Konto bestätigen, bevor Sie fortfahren können.
-      unauthorized: Sie sind nicht berechtigt, auf diese Seite zuzugreifen.
       titles:
-        unauthorized: "401 Keine ausreichenden Berechtigungen"
+        unauthorized: 401 Keine ausreichenden Berechtigungen
+      unauthenticated: Sie müssen sich anmelden oder registrieren, bevor Sie fortfahren können.
+      unauthorized: Sie sind nicht berechtigt, auf diese Seite zuzugreifen.
+      unconfirmed: Sie müssen Ihr Konto bestätigen, bevor Sie fortfahren können.
     mailer:
       confirmation_instructions:
         action: Mein Konto bestätigen

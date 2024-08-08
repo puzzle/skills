@@ -6,18 +6,17 @@
           %div.filter-container.me-1
             = render("search_form", form: form, row_number: i, filter_params: filter_params)
           - if i != 0
-            = image_tag("x.svg", class: "text-primary pointer", "data-action": "click->people-skills-filter#remove",
-            "data-people-skills-filter-id-param": i, id: "remove-row-#{i}")
+            = close_action_link "#", {data: {action: "click->people-skills-filter#remove", "people-skills-filter-id-param": i}, id: "remove-row-#{i+1}"}
       - if filter_params.rows_count < 5
-        = link_to image_tag("plus-lg.svg") + "Skill hinzufügen (max. 5)",
-         filter_form_people_skills_path + "?rows=#{filter_params.rows_count}&#{filter_params.query_params}", class: "btn d-flex align-items-center text-primary w-75",
-         data: {"turbo-frame": "search-filters"}, id: "add-row-button"
+        - path = filter_form_people_skills_path(rows: filter_params.rows_count) + "&#{filter_params.query_params}"
+        = add_action_link path, {}, {data: {"turbo-frame": "search-filters"},  id: "add-row-button"}
+
   %div.profile-header.mw-100.border-bottom.mt-4.fw-normal
-    Suchresultate
+    = ti "search.search_results"
   %turbo-frame{id: "search-results"}
     %div.border.p-3.rounded-bottom.search-results
       - if entries.size == 0
-        Keine Resultate
+        = ti "search.no_results"
       - else
         - entries.each do | filtered_entry |
           %div.d-flex.flex-row.w-100.border-bottom

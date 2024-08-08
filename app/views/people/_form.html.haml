@@ -8,74 +8,87 @@
       - else
         %img.rounded-circle#avatar{src: "#{@person.id}/picture?#{Time.now.to_f}", width: '141', height: '141'}
       %br
-      - if @person.id.nil?
-        %label.btn.btn-link{for: "avatar-uploader"} Bild hochladen
-      - else
-        %label.btn.btn-link{for: "avatar-uploader"} Bild ändern
+      %label.btn.btn-link{for: "avatar-uploader"} 
+        - if @person.id.nil?
+          = t "people.profile.upload_image"
+        - else
+          = t "people.profile.change_image"
       %div.visually-hidden{"data-controller"=>"image-upload"}= form.file_field :picture, {  accept: "image/", "data-action" => "image-upload#changeImage", id: "avatar-uploader" }
       = form.hidden_field :picture_cache
     %div.pe-5.col-xl-3.col-12
       %table.w-100
         %tbody
-          %th.fw-normal Name
+          %th.fw-normal 
+            = form.label :name
           %tr
             %td= form.text_field :name, class: "mw-100 form-control"
-          %th.fw-normal Email
+          %th.fw-normal 
+            = form.label :email
           %tr
             %td= form.text_field :email, class: "mw-100 form-control"
-          %th.fw-normal Abschluss
+          %th.fw-normal 
+            = form.label :title
           %tr
             %td= form.text_field :title, class: "mw-100 form-control"
-          %th.fw-normal Funktionen
+          %th.fw-normal 
+            = form.label :person_roles
           %div
             = form.fields_for :person_roles do |person_role|
               %tr
                 %td= render "person_role_fields", f: person_role
             %tr
               %td{"data-controller"=>"dynamic-fields"}
-                = link_to_add_field "Neue Funktion", form, :person_roles
-          %th.fw-normal Organisationseinheit
+                = link_to_add_field t("people.profile.add_function"), form, :person_roles
+
+          %th.fw-normal 
+            = form.label :department
           %tr
             %td= form.collection_select :department_id, Department.order(:name), :id, :name, {}, class: "form-select mw-100"
-          %th.fw-normal Firma
+          %th.fw-normal 
+            = form.label :company
           %tr
             %td= form.collection_select :company_id, Company.order(:name), :id, :name, {}, class: "form-select mw-100"
-          %th.fw-normal Wohnort (Stadt)
+          %th.fw-normal 
+            = form.label :location
           %tr
             %td= form.text_field :location, class: "form-control mw-100"
 
     %div.pe-5.col-xl-3.col-12
       %table.w-100
         %tbody
-          %th.fw-normal Geburtsdatum
+          %th.fw-normal 
+            = form.label :birthdate
           %tr
             %td= form.date_field :birthdate, class: "form-control mw-100"
-          %th.fw-normal Doppelbürger
+          %th.fw-normal 
+            = form.label :dual_citizen
           %tr
             %td{"data-controller"=>"nationality-two"}= check_box :has_nationality2, "checked", {"checked" => @person.nationality2?, "data-action" => "nationality-two#nationalityTwoVisible", "id" => "nat-two-checkbox"}
-          %th.fw-normal Erste Nationalität
+          %th.fw-normal 
+            = form.label :nationality
           %tr
             %td= form.collection_select :nationality, country_alpha2_translation_map, :first, :last, {}, class: "form-select mw-100"
-          %th.fw-normal.nationality-two Zweite Nationalität
+          %th.fw-normal.nationality-two 
+            = form.label :nationality2
           %tr.nationality-two
             %td= form.collection_select :nationality2, country_alpha2_translation_map, :first, :last, {}, class: "form-select mw-100"
-          %th.fw-normal Zivilstand
+          %th.fw-normal 
+            = form.label :marital_status
           %tr
             %td= form.collection_select :marital_status, marital_status_translation_map, :first, :last, { selected: @person.marital_status }, class: "form-select mw-100"
-          %th.fw-normal Kürzel
+          %th.fw-normal 
+            = form.label :shortname
           %tr
             %td= form.text_field :shortname, class: "mw-100 form-control"
     %div.col-xl-3.col-12{"data-controller"=>"lang-selection"}
-      %div.fw-normal Sprachen
+      %div.fw-normal 
+        = form.label :language_skills
       %div.border.border-dark-subtle.mt-1.p-2.rounded.w-100
         = form.fields_for :language_skills, sort_languages(@person.language_skills) do |language_skill|
           = render "language_skill_fields", f: language_skill
         %div{"data-controller"=>"dynamic-fields"}
-          = link_to_add_field "Add Language", form, :language_skills
+          = link_to_add_field t("people.profile.add_language"), form, :language_skills
 
   %div.mt-3
-    = form.submit :Speichern, { class: "btn btn-primary me-3 bg-skills-blue", id: "save-button" }
-    - if @person.id.nil?
-      = link_to "Abbrechen", people_path, { id: "cancel-button" }
-    - else
-      = link_to "Abbrechen", person_path(@person), { id: "cancel-button" }
+    = form.submit class: "btn btn-primary me-3 bg-skills-blue", id: "save-button"
+    = form.cancel

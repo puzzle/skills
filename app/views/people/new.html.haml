@@ -2,6 +2,6 @@
   =render partial:"people/search", :locals => { person: nil }
 %div.mt-2
   %div.profile-header.mw-100.border-bottom.mb-3
-    Personalien
+    = ti("personals")
   %div{id: "#{dom_id Person.new}"}
     = render partial: "form", locals: {person: @person}

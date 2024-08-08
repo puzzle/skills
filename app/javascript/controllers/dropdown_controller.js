@@ -5,12 +5,15 @@ import SlimSelect from 'slim-select';
 export default class extends Controller {
   static targets = [ "dropdown" ]
   connect() {
+    if (!this.hasDropdownTarget)
+      return;
+    
     new SlimSelect({
           select: this.dropdownTarget
     });
   }
 
   handleChange(event) {
-      window.location.href = event.target.dataset.value + event.target.value;
+    window.location.href = event.target.value;
   }
 }

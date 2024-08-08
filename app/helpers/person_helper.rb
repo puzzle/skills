@@ -76,4 +76,12 @@ module PersonHelper
                         certificate: false, core_competence: false })
     end
   end
+
+  def sorted_people
+    people_for_select.sort_by { |e| e.first.downcase }
+  end
+
+  def people_for_select
+    Person.all.map { |p| [p.name, person_path(p)] }
+  end
 end

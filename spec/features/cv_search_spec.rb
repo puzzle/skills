@@ -12,39 +12,38 @@ describe 'Advanced Trainings', type: :feature, js:true do
   describe 'Search' do
     it 'should find correct results' do
       fill_in 'cv_search_field', with: person.name
-      check_search_results(I18n.t("cv_search.name"))
+      check_search_results(Person.human_attribute_name(:name))
       fill_in 'cv_search_field', with: person.projects.first.technology
-      check_search_results(I18n.t("cv_search.projects"))
+      check_search_results(Person.human_attribute_name(:projects))
       fill_in 'cv_search_field', with: person.title
-      check_search_results(I18n.t("cv_search.title"))
+      check_search_results(Person.human_attribute_name(:title))
       fill_in 'cv_search_field', with: person.roles.first.name
-      check_search_results(I18n.t("cv_search.roles"))
+      check_search_results(Person.human_attribute_name(:roles))
       fill_in 'cv_search_field', with: person.department.name
-      check_search_results(I18n.t("cv_search.department"))
+      check_search_results(Person.human_attribute_name(:department))
       fill_in 'cv_search_field', with: person.competence_notes.split.first
-      check_search_results(I18n.t("cv_search.competence_notes"))
+      check_search_results(Person.human_attribute_name(:competence_notes))
       fill_in 'cv_search_field', with: person.advanced_trainings.first.description
-      check_search_results(I18n.t("cv_search.advanced_trainings"))
+      check_search_results(Person.human_attribute_name(:advanced_trainings))
       fill_in 'cv_search_field', with: person.educations.first.location
-      check_search_results(I18n.t("cv_search.educations"))
+      check_search_results(Person.human_attribute_name(:educations))
       fill_in 'cv_search_field', with: person.activities.first.description
-      check_search_results(I18n.t("cv_search.activities"))
+      check_search_results(Person.human_attribute_name(:activities))
       fill_in 'cv_search_field', with: person.projects.first.description
-      check_search_results(I18n.t("cv_search.projects"))
     end
 
     it 'should open person when clicking result' do
       fill_in 'cv_search_field', with: person.projects.first.technology
-      check_search_results(I18n.t("cv_search.projects"))
+      check_search_results(Person.human_attribute_name(:projects))
       first("a", text: person.name).click();
       expect(page).to have_current_path(person_path(person))
 
-      visit("/cv_search")
+      visit(cv_search_index_path)
       education_location = person.educations.first.location
       fill_in 'cv_search_field', with: education_location
-      check_search_results(I18n.t("cv_search.educations"))
-      click_link(I18n.t("cv_search.educations"))
-      expect(page).to have_current_path("#{person_path(person)}?q=#{education_location.split(" ").join("+")}")
+      check_search_results(Person.human_attribute_name(:educations))
+      click_link(Person.human_attribute_name(:educations))
+      expect(current_url).to end_with(person_path(person, q: education_location))
     end
 
     it 'should only display results when length of search-text is > 3' do
@@ -60,8 +59,9 @@ describe 'Advanced Trainings', type: :feature, js:true do
       expect(page).to have_content("Keine Resultate")
       page.check('search_skills')
       expect(page).not_to have_content("Keine Resultate")
-      check_search_results(I18n.t("cv_search.skills"))
-      expect(page).to have_link(href: "#{person_people_skills_path(person)}?q=#{skill_title.split(" ").join("+")}&rating=1")
+      check_search_results(Skill.model_name.human.pluralize)
+      link = person_people_skills_path(person, q: skill_title, rating: 1)
+      expect(page).to have_link(href: link)
     end
   end
 end

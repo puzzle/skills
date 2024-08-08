@@ -98,7 +98,7 @@ describe :people do
       alice = people(:alice)
       visit person_people_skills_path(alice, rating: 1)
       within('#people-skills') do
-        expect(page).to have_content(I18n.t('people-skills.levels.unweighted'), count: alice.people_skills.where(level: 0, interest: 0).count)
+        expect(page).to have_content(t('global.people_skills.levels.unweighted'), count: alice.people_skills.where(level: 0, interest: 0).count)
       end
     end
   end
@@ -134,7 +134,7 @@ describe :people do
           expect(page).to have_content(person_skill.skill.title)
         end
 
-        expect(page).to have_content('Trainee', count: not_rated_default_skills.count)
+        expect(page).to have_content('Azubi', count: not_rated_default_skills.count)
 
         expect(not_rated_default_skills.pluck(:interest).all?(&:zero?)).to be(true)
 
@@ -206,7 +206,7 @@ describe :people do
     end
 
     it 'hides default skills form when canceling with cancel-x' do
-      page.find('#x-button').click
+      page.find('.icon.icon-close').click
       expect(page).not_to have_css('#default-skills')
     end
   end

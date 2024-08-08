@@ -66,7 +66,7 @@ describe :people_skills do
 
 
       # remove skill filter
-      page.find('#remove-row-1').click
+      page.find('#remove-row-2').click
       expect(page).to have_text("Alice Mante")
       expect(page).to have_text("Wally Allround")
       expect(page).to have_text("Hope Sunday")
@@ -75,9 +75,11 @@ describe :people_skills do
 
   def add_and_fill_out_row(skill, level, interest)
     old_row_number = last_row[:id][-1, 1].to_i
-    find('#add-row-button').click
+    click_link(t("people_skills.global.link.add"))
+
     new_row_id = "filter-row-#{old_row_number + 1}"
-    expect(page).to have_css("[id='#{new_row_id}']")
+    expect(page).to have_selector("[id='#{new_row_id}']")
+
     fill_out_row(skill, level, interest)
   end
 

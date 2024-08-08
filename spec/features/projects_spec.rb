@@ -105,7 +105,9 @@ describe 'Projects', type: :feature, js:true do
       role = project.role
       open_edit_form(project)
       within("turbo-frame##{dom_id project}") do
-        click_link("Löschen")
+        accept_confirm do
+          click_link("Löschen")
+        end
       end
       expect(page).not_to have_content(role)
     end

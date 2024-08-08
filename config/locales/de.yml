@@ -1,128 +1,259 @@
+---
 de:
-  errors:
-    profile-not-found: Profil konnte nicht gefunden werden.
-    messages:
-      max_size_error: sollte nicht grösser als 10MB sein.
-  helpers:
-    submit:
-      edit: "%{model} bearbeiten"
-      add: "%{model} hinzufügen"
-      cancel: Abbrechen
-      delete: Löschen
-      save-and-new: Speichern & Neu
-    button:
-      edit: Bearbeiten
-  profile:
-    personal-data: Personalien
-    core-competences: Kernkompetenzen
-    educations: Ausbildungen
-    advanced-trainings: Weiterbildungen
-    activities: Stationen
-    projects: Projekte
-    updated_at: Zuletzt bearbeitet
-    no_skills_rated_msg: Dieses Profil hat noch keine bewerteten Skills. Gehe zum Skills Tab und bewerte die für dich relevanten Skills.
-  attributes:
-    year_from: Jahr von
-    year_to: Jahr bis
-    month_from: Monat von
-    month_to: Monat bis
   activerecord:
+    attributes:
+      activity:
+        description: Firmenangaben und Beschreibung der Tätigkeit
+        role: Rolle
+        year_from: Startdatum
+      advanced_training:
+        description: Beschreibung
+        year_from: Startdatum
+      education:
+        location: Ausbildungsort
+        title: Ausbildung
+        year_from: Startdatum
+      people_skill:
+        certificate: Zertifikat
+        core_competence: Kernkompetenz
+        level: Level
+        skill: Skill
+      person:
+        activities:
+          one: Station
+          other: Stationen
+        advanced_trainings:
+          one: Weiterbildung
+          other: Weiterbildungen
+        birthdate: Geburtsdatum
+        competence_notes: Notizen Member
+        department: Organisationseinheit
+        dual_citizen: Doppelbürger
+        educations:
+          one: Ausbildung
+          other: Ausbildungen
+        email: Email
+        languages:
+          one: Sprache
+          other: Sprachen
+        location: Ort
+        marital_status: Zivilstand
+        name: Name
+        nationality: Nationalität
+        person_roles:
+          one: Funktion
+          other: Funktionen
+        picture: Bild
+        projects:
+          one: Projekt
+          other: Projekte
+        roles:
+          one: Funktion
+          other: Funktionen
+        shortname: Kurzname
+        skills:
+          one: Skill
+          other: Skills
+        title: Abschluss
+      project:
+        description: Beschreibung
+        role: Rolle und Aufgaben
+        technology: Eingesetzte Technologien
+        title: Projekt
+        year_from: Startdatum
+      skill:
+        category: Kategorie
     models:
-      advanced_training: Weiterbildung
-      education: Ausbildung
       activity: Station
-      project: Projekt
-      skill: Skill
-      people_skill: Skill
-      role:
-        one: Rolle
-        other: Rollen
+      advanced_training:
+        one: Weiterbildung
+        other: Weiterbildungen
+      category:
+        one: Kategorie
+        other: Kategorien
       company:
         one: Firma
         other: Firmen
       department:
         one: Organisationseinheit
         other: Organisationseinheiten
-    attributes:
-      person:
-        picture: Bild
-      advanced_training:
-        description: Beschreibung
       education:
-        title: Ausbildung
-        location: Ausbildungsort
-      activity:
-        role: Rolle
-        description: Firmenangaben und Beschreibung der Tätigkeit
-      project: 
-        title: Projekt
-        description: Beschreibung
-        role: Rolle und Aufgaben
-        technology: Eingesetzte Technologien
+        one: Ausbildung
+        other: Ausbildungen
+      people_skill:
+        one: Skill
+        other: Skills
+      project:
+        one: Projekt
+        other: Projekte
+      role:
+        one: Rolle
+        other: Rollen
+      skill:
+        one: Skill
+        other: Skills
   admin:
-    panel:
-      title: Admin Panel
-  skills:
-    header:
-      all: Alle
-      new: Neue
-      default: Default
-      category: Kategorie
-      search: Skills suchen
-    table:
-      skill: Skill
-      members: Mitglieder
-      category: Kategorie
-      subcategory: Subkategorie
-      default_set: Default-Set
-      radar: Radar
-      portfolio: Portfolio
-      modify: Ändern
-  marital_statuses:
-    single: ledig
-    married: verheiratet
-    widowed: verwitwet
-    registered_partnership: eingetragene Partnerschaft
-    divorced: geschieden
-  people-skills:
-    levels:
-      level: Erfahrung
-      unweighted: Nicht bewertet
-      trainee: Trainee
-      junior: Junior
-      professional: Professional
-      senior: Senior
-      expert: Expert
+    global:
+      link:
+        list: Admin Panel
+  cv_search:
+    global:
+      search_placeholder: CVs durchsuchen...
+      search_skills: Skills ebenfalls durchsuchen
+  errors:
+    messages:
+      cannot_remove: darf nicht gelöscht werden.
+      invalid_date_range: muss vor dem Enddatum sein.
+      max_size_10MB: darf nicht grösser als 10MB sein.
+      max_size_error: darf nicht grösser als 10MB sein.
+      profile-not-found: Profil konnte nicht gefunden werden.
+      valid_percent_range: muss zwischen 0 und 200 liegen.
+  global:
+    date:
+      from: Von
+      month: Monat
+      till_today: Bis Heute
+      to: Bis
+      today: Heute
+      with_enddate: Mit Enddatum
+      year: Jahr
+    devise:
+      admin: "(Admin)"
+      admin_panel: Admin Bereich
+      devise: Devise
+      mockdata: Mockdata
+      no_omniauth_providers: Ein Fehler ist aufgetreten, es sind keine Omniauth-Anbieter verfügbar, bitte kontaktieren Sie den Administrator.
+      sign_in: Anmelden
+      sign_in_with: Mit %{provider} anmelden
+      sign_out: Abmelden
+    'false': Nein
     filter:
       all: Alle
+      default: Default
+      new: Neue
       rated: Bewertet
+      search: "%{target} suchen"
       unrated: Nicht bewertet
-    interest: Interesse
-    certificate: Zertifikat
-    core-competence: Kernkompetenz
-  date_range_picker:
-    from: Von
-    to: Bis
-    today: Heute
-    till_today: Bis Heute
-    with_enddate: Mit Enddatum
-
-  cv_search:
-    search_skills: Skills ebenfalls durchsuchen
-    advanced_trainings: Weiterbildungen
-    educations: Ausbildungen
-    activities: Stationen
-    projects: Projekte
-    name: Name
-    location: Wohnort
-    title: Abschluss
-    competence_notes: Kompetenzen
-    roles: Funktionen
-    department: Organisationseinheit
-    skills: Skills
+    link:
+      cancel: Abbrechen
+      download: Herunterladen
+      export: Exportieren
+      remove: Entfernen
+      save_new: Speichern & Neu
+    navbar:
+      cv_search: CV Suche
+      profile: Profil
+      skill_search: Skill Suche
+      skillset: Skillset
+    new: Neu
+    people_skills:
+      certificate: Zertifikat
+      core-competence: Kernkompetenz
+      interest: Interesse
+      levels:
+        expert: Experte
+        junior: Junior
+        level: Level
+        professional: Professionell
+        senior: Senior
+        trainee: Azubi
+        unweighted: Nicht bewertet
+    search:
+      found_in: Gefunden in
+      no_results: Keine Resultate
+      search_results: Suchergebnisse
+    'true': Ja
+  helpers:
+    cancel: Abbrechen
+    submit:
+      add: "%{model} hinzufügen"
+      delete: Löschen
+      edit: "%{model} bearbeiten"
+  marital_statuses:
+    divorced: geschieden
+    married: verheiratet
+    registered_partnership: eingetragene Partnerschaft
+    single: ledig
+    widowed: verwitwet
   people:
-    show:
+    cv:
+      no_skills_rated_msg: Dieses Profil hat noch keine bewerteten Skills. Gehe zum Skills Tab und bewerte die für dich relevanten Skills.
+    export_cv:
+      export_form:
+        anonymised_cv: Anonymisierter CV
+        competences_skills: Kernkompetenzen - Skills
+        location: 'Niederlassung (für Footer):'
+        skills_by_level: Skills nach Level
+        trainee: Trainee
+    global:
       confirm_delete: Willst du diese Person wirklich löschen?
-      more_actions: Weitere Aktionen
       link:
+        add: Neues Profil
         delete: Person löschen
+      more_actions: Weitere Aktionen
+      tabbar:
+        cv: CV
+        skills: Skills
+    index:
+      choose_create_person: Wähle eine Person aus oder erfasse ein neues Profil
+      welcome: Willkommen bei
+    new:
+      personals: Personalien
+    profile:
+      add_function: Funktion hinzufügen
+      add_language: Sprache hinzufügen
+      change_image: Bild ändern
+      core_competences: Kernkompetenzen
+      personals: Personalien
+      upload_image: Bild hochladen
+    scroll_to_menu:
+      activities: Station
+      advanced-trainings: Weiterbildungen
+      core-competences: Kernkompetenzen
+      educations: Ausbildungen
+      personal-data: Personliche Daten
+      projects: Projekte
+    search:
+      new_profile: Neues Profil
+      updated_at: Zuletzt bearbeitet
+  people/people_skills:
+    edit_form:
+      rate: Bewerten
+      unrate: Nicht bewerten
+    global:
+      confirm_delete: Willst du diese Person wirklich löschen?
+      link:
+        add: Neues Profil
+        delete: Person löschen
+      more_actions: Weitere Aktionen
+      tabbar:
+        cv: CV
+        skills: Skills
+    index:
+      new_skills_to_rate: Neue Skills zur Bewertung
+    scroll_to_menu:
+      link:
+        add: Skill hinzufügen
+  people_skills:
+    global:
+      link:
+        add: Skill hinzufügen (max. 5)
+  people_skills/filter_form:
+    global:
+      link:
+        add: Skill hinzufügen (max. 5)
+  profile:
+    updated_at: Zuletzt bearbeitet
+  skills:
+    global:
+      table:
+        category: Kategorie
+        default_set: Default-Set
+        members: Mitglieder
+        modify: Ändern
+        portfolio: Portfolio
+        radar: Radar
+        skill: Skill
+        subcategory: Subkategorie
+    show:
+      title: 'Skill: %{title} (%{amount} Members)'

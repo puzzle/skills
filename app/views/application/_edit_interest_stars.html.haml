@@ -1,4 +1,4 @@
-%label.form-label.text-gray= t "people-skills.interest"
+%label.form-label.text-gray= ti "people_skills.interest"
 .rate
   = ff.radio_button :interest, 5, { checked: ff.object.interest == 5, id: "star5#{ff.object.skill.id}", "data-action": "change->people-skills#rateSkill" }
   %label{for: "star5#{ff.object.skill.id}", title: "text", id: "star-label5#{ff.object.skill.id}", class: "star5"} 5 stars

@@ -1,7 +1,7 @@
 %div.d-flex.flex-column.bg-white{"data-controller": "skillset-selected"}
   = form_with(url: skills_path, method: :get, data: { turbo_frame: 'skills' }) do |form|
     %div.d-flex.flex-row.mt-2
-      = form.text_field :title, class: "form-control skills-search-field rounded-end-0", placeholder: "#{t('skills.header.search')}", oninput: "this.form.requestSubmit()", include_blank: true
+      = form.text_field :title, class: "form-control skills-search-field rounded-end-0", placeholder: "#{ti('filter.search', target: Skill.model_name.human)}", oninput: "this.form.requestSubmit()", include_blank: true
       %div.border.d-flex.rounded-end.bg-white
         %img.pointer.p-2{src: "/assets/search.svg"}
     %div.d-flex.flex-row.mt-3.flex-wrap.gap-2
@@ -9,19 +9,18 @@
         %label.btn.btn-outline-primary{"data-skillset-selected-target": "selectButton",
         "data-action": "click->skillset-selected#selectButton", "data-skillset-selected-id-param": 0}
           = form.radio_button :defaultSet, false, onClick: "this.form.requestSubmit()", class: "d-none"
-          = t('skills.header.all')
+          = ti('filter.all')
         %label.btn.btn-outline-primary{"data-skillset-selected-target": "selectButton",
         "data-action": "click->skillset-selected#selectButton", "data-skillset-selected-id-param": 1}
           = form.radio_button :defaultSet, "new", onClick: "this.form.requestSubmit()", class: "d-none"
-          = t('skills.header.new')
+          = ti('filter.new')
         %label.btn.btn-outline-primary{"data-skillset-selected-target": "selectButton",
         "data-action": "click->skillset-selected#selectButton", "data-skillset-selected-id-param": 2}
           = form.radio_button :defaultSet, true, onClick: "this.form.requestSubmit()", class: "d-none"
-          = t('skills.header.default')
+          = ti('filter.default')
       %span.d-flex.align-items-center.flex-wrap
         %span.text-gray.me-1
-          = "#{t('skills.header.category')}:"
-        = form.collection_select :category, Category.all_parents.order(:title), :id, :title, {include_blank: "Select a category"}, class: "form-select fit-content", onchange: 'this.form.requestSubmit();'
-      =link_to image_tag("download.svg")+ "Export", export_skills_path, class: "btn text-primary d-flex p-0 center-xy"
-      =link_to image_tag("plus-lg.svg")+ "Neuer Skill",
-        new_skill_path, class: "btn text-primary p-0 d-flex center-xy", data: { turbo_frame: "remote_modal" }
+          = "#{Category.model_name.human}:"
+        = form.collection_select :category, Category.all_parents.order(:title), :id, :title, {prompt: true}, class: "form-select fit-content", onchange: 'this.form.requestSubmit();'
+      = export_action_link  export_skills_path
+      = add_action_link_modal

@@ -8,8 +8,6 @@ class PeopleController < CrudController
   self.permitted_attrs = [:birthdate, :location, :marital_status, :updated_by, :name, :nationality,
                           :nationality2, :title, :competence_notes, :company_id, :email,
                           :department_id, :shortname, :picture, :picture_cache,
-                          { person_roles_attributes: [:role_id, :person_role_level_id,
-                                                      :percent, :id, :_destroy] },
                           { person_roles_attributes:
                               [:role_id, :person_role_level_id, :percent, :id, :_destroy] },
                           { language_skills_attributes:
@@ -17,7 +15,7 @@ class PeopleController < CrudController
   layout 'person', only: [:show]
 
   def index
-    return flash[:alert] = I18n.t('errors.profile-not-found') if params[:alert].present?
+    return flash[:alert] = I18n.t('errors.messages.profile-not-found') if params[:alert].present?
 
     super
   end
@@ -59,6 +57,7 @@ class PeopleController < CrudController
               type: 'application/vnd.oasis.opendocument.text',
               disposition: content_disposition('attachment', filename)
   end
+
 
   private
 

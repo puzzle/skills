@@ -26,6 +26,6 @@ class PersonRole < ApplicationRecord
   def percent_must_be_a_number
     return if percent.nil? || percent.between?(0, 200)
 
-    errors.add(:percent, 'muss zwischen 0 und 200 sein')
+    errors.add(:percent, :valid_percent_range)
   end
 end

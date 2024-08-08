@@ -25,6 +25,16 @@ $skills-dark-blue: #1e5a96;
   cursor: pointer;
 }
 
+.skills-navbar{
+  .nav-link {
+    color: white;
+    @extend .px-2;
+    &.active {
+      background-color: $skills-dark-blue;
+    }
+  }
+}
+
 .navbar {
   flex-direction: row;
   list-style-type: none;

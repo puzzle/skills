@@ -14,7 +14,7 @@ describe ErrorSerializer do
       expect(json[:errors].first[:id]).to eq(:company)
       expect(json[:errors].first[:title]).to eq('Company muss ausgefüllt werden')
       expect(json[:errors].second[:id]).to eq(:birthdate)
-      expect(json[:errors].second[:title]).to eq('Birthdate muss ausgefüllt werden')
+      expect(json[:errors].second[:title]).to eq('Geburtsdatum muss ausgefüllt werden')
     end
   end
 end

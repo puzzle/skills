@@ -1,5 +1,6 @@
 - if errors.any?
-  .alert.alert-danger
-    %ul.mb-0
-      - errors.full_messages.each do |error|
-        %li= error
+  #error_explanation.alert.alert-danger
+    %h2= ti(:"errors.header", count: errors.count, model: (defined?(object) && object&.to_s) || "Error")
+    %ul
+      - errors.full_messages.each do |msg|
+        %li= msg

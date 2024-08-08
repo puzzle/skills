@@ -150,7 +150,7 @@ module DryCrud
 
       # Render the error messages for the current form.
       def error_messages
-        @template.render('shared/error_messages',
+        @template.render('application/error_banners',
                          errors: @object.errors,
                          object: @object)
       end

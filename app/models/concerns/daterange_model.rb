@@ -41,6 +41,6 @@ module DaterangeModel
     formatted_month_to = month_to || 12
     start_at = Date.new(year_from, formatted_month_from)
     finish_at = Date.new(year_to, formatted_month_to)
-    errors.add(:year_from, 'muss vor "Datum bis" sein') if start_at > finish_at
+    errors.add(:year_from, :invalid_date_range) if start_at > finish_at
   end
 end

@@ -105,6 +105,6 @@ class Person < ApplicationRecord
   def picture_size
     return if picture.nil? || picture.size < 10.megabytes
 
-    errors.add(:picture, 'grösse kann maximal 10MB sein')
+    errors.add(:picture, :max_size_10MB)
   end
 end

@@ -6,8 +6,8 @@
       = ff.hidden_field :unrated, value: false, id: "unrated-field-#{ff.object.skill.id}"
     %div.col-2
       %div.d-flex.flex-column.align-items-center
-        %label.form-label.text-gray= t "people-skills.levels.level"
-        %label.form-label.text-gray{"data-people-skills-target": "label"}= t "people-skills.levels.#{ExpertiseTopicSkillValue.skill_levels.key(ff.object.level - 1)}"
+        = ff.label :level
+        = ff.label(ti("people_skills.levels.#{ExpertiseTopicSkillValue.skill_levels.key(ff.object.level - 1)}"), {"data-people-skills-target": "label"})
         - range_min = (ff.object.id.nil? || ff.object.level != 0) ? 1 : 0
         = ff.range_field :level, min: range_min, max: 5, class: "form-range w-75",
         "data-action": "change->people-skills#displayLevelLabel people-skills#rateSkill",
@@ -18,14 +18,14 @@
     %div.col-2
       %div.d-flex.flex-row.form-check
         = ff.check_box :certificate, { class: "form-check-input me-2", "data-action": "change->people-skills#rateSkill" }
-        %label.form-label.text-gray= t "people-skills.certificate"
+        = ff.label :certificate
     %div.col-2
       %div.d-flex.flex-row.form-check
         = ff.check_box :core_competence, { class: "form-check-input me-2", "data-action": "change->people-skills#rateSkill" }
-        %label.form-label.text-gray= t "people-skills.core-competence"
+        = ff.label :core_competence
         = ff.hidden_field :skill_id
     %div.col-2
       - if ff.object.id.nil?
-        = ff.submit "Bewerten", { class: "btn btn-link" }
+        = ff.submit ti("rate"), { class: "btn btn-link" }
       - unless ff.object.unrated
-        = ff.submit "Nicht bewerten", { class: "btn btn-link", "data-action": "people-skills#unrateSkill"}
+        = ff.submit ti("unrate"), { class: "btn btn-link", "data-action": "people-skills#unrateSkill"}

@@ -7,10 +7,7 @@
         %div.d-flex.flex-row.align-items-center{"data-people-skills-filter-target": "filter", id: "filter-row-#{i+ 1}"}
           %div.filter-container.me-1
             = render("people_skills/search_form", form: form, row_number: i + 1)
-          = image_tag("x.svg", class: "text-primary pointer",
-          "data-action": "click->people-skills-filter#remove", "data-people-skills-filter-id-param": i, id: "remove-row-#{i+1}")
+          = close_action_link "#", {data: {action: "click->people-skills-filter#remove", "people-skills-filter-id-param": i}, id: "remove-row-#{i+1}"}
     - if filter_params.rows < 4
-      = link_to image_tag("plus-lg.svg") + "Skill hinzufügen (max. 5)",
-        filter_form_people_skills_path + "?rows=#{filter_params.rows + 1}&#{filter_params.query_params}",
-        class: "btn d-flex align-items-center text-primary w-75", data: {"turbo-frame": "search-filters"},
-        id: "add-row-button"
+      - path = filter_form_people_skills_path(rows: filter_params.rows + 1) + "&#{filter_params.query_params}"
+      = add_action_link path, {}, {data: {"turbo-frame": "search-filters"},  id: "add-row-button"}

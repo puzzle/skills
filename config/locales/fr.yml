@@ -1,0 +1,255 @@
+---
+fr:
+  activerecord:
+    attributes:
+      activity:
+        description: Coordonnées de la société et description de l'activité
+        role: Rouleau
+        year_from: Date de début
+      advanced_training:
+        description: Description
+        year_from: Date de début
+      education:
+        location: Lieu de formation
+        title: Formation
+        year_from: Date de début
+      people_skill:
+        certificate: Certificat
+        core_competence: Compétence clé
+        level: Niveau
+        skill: Compétence
+      person:
+        activities:
+          one: Station
+          other: Stations
+        advanced_trainings:
+          one: Formation continue
+          other: Formations continues
+        birthdate: Date de naissance
+        competence_notes: Notes Member
+        department: Unité organisationnelle
+        dual_citizen: Double nationalité
+        educations:
+          one: Formation
+          other: Formations
+        email: Email
+        languages:
+          one: Langue
+          other: Langues
+        location: Lieu
+        marital_status: État civil
+        name: Nom
+        nationality: Nationalité
+        person_roles:
+          one: Fonction
+          other: Fonctions
+        picture: Image
+        projects:
+          one: Projet
+          other: Projets
+        roles:
+          one: Fonction
+          other: Fonctions
+        shortname: Nom court
+        skills:
+          one: Compétence
+          other: Compétences
+        title: Conclusion
+      project:
+        description: Description
+        role: Rôle et tâches
+        technology: Technologies utilisées
+        title: Projet
+        year_from: Date de début
+      skill:
+        category: Catégorie
+    models:
+      activity: Station
+      advanced_training: Formation continue
+      category:
+        one: Catégorie
+        other: Catégories
+      company:
+        one: Société
+        other: Entreprises
+      department:
+        one: Unité organisationnelle
+        other: Unités organisationnelles
+      education:
+        one: Formation
+        other: Formations
+      people_skill:
+        one: Compétence
+        other: Compétences
+      project: Projet
+      role:
+        one: Rouleau
+        other: Rouleaux
+      skill:
+        one: Compétence
+        other: Compétences
+  admin:
+    global:
+      link:
+        list: Panneau d'administration
+  cv_search:
+    global:
+      search_placeholder: Chercher dans les CV...
+      search_skills: Rechercher également des compétences
+  errors:
+    messages:
+      cannot_remove: ne doit pas être supprimé.
+      invalid_date_range: doit être antérieure à la date de fin.
+      max_size_10MB: ne doit pas dépasser 10 Mo.
+      max_size_error: ne doit pas dépasser 10 Mo.
+      profile-not-found: Le profil n'a pas été trouvé.
+      valid_percent_range: doit être compris entre 0 et 200.
+  global:
+    date:
+      from: De
+      month: Mois
+      till_today: Jusqu'à aujourd'hui
+      to: Jusqu'à
+      today: Aujourd'hui
+      with_enddate: Avec date de fin
+      year: Année
+    devise:
+      admin: "(Admin)"
+      admin_panel: Zone d'administration
+      devise: Devise
+      mockdata: Mockdata
+      no_omniauth_providers: Une erreur s'est produite, aucun fournisseur Omniauth n'est disponible, veuillez contacter l'administrateur.
+      sign_in: S'inscrire
+      sign_in_with: 'S''inscrire avec %{provider} '
+      sign_out: Se désinscrire
+    'false': Non
+    filter:
+      all: Tous les
+      default: Défaut
+      new: Nouveau
+      rated: Évalué
+      search: "%{target} cherchent"
+      unrated: Non évalué
+    link:
+      cancel: Annuler
+      download: Télécharger
+      export: Exporter
+      remove: Supprimer
+      save_new: Enregistrer & Nouveau
+    navbar:
+      cv_search: Recherche de CV
+      profile: Profil
+      skill_search: Recherche de compétences
+      skillset: Kit de compétences
+    new: Nouveau
+    people_skills:
+      certificate: Certificat
+      core-competence: Compétence clé
+      interest: Intérêt
+      levels:
+        expert: Expert
+        junior: Junior
+        level: Niveau
+        professional: Professionnel
+        senior: Senior
+        trainee: Apprenti
+        unweighted: Non évalué
+    search:
+      found_in: Trouvé dans
+      no_results: Pas de résultats
+      search_results: Résultats de la recherche
+    'true': Oui
+  helpers:
+    cancel: Annuler
+    submit:
+      add: "%{model} ajouter"
+      delete: Supprimer
+      edit: "%{model} éditer"
+  marital_statuses:
+    divorced: divorcé(e)
+    married: marié(e)
+    registered_partnership: partenariat enregistré
+    single: célibataire
+    widowed: veuf/veuve
+  people:
+    cv:
+      no_skills_rated_msg: Ce profil n'a pas encore de skills évalués. Va dans l'onglet Skills et évalue les skills qui te concernent.
+    export_cv:
+      export_form:
+        anonymised_cv: CV anonyme
+        competences_skills: Compétences clés - Skills
+        location: 'Établissement (pour le pied de page) :'
+        skills_by_level: Compétences par niveau
+        trainee: Stagiaire
+    global:
+      confirm_delete: Veux-tu vraiment supprimer cette personne ?
+      link:
+        add: Nouveau profil
+        delete: Supprimer une personne
+      more_actions: Autres actions
+      tabbar:
+        cv: CV
+        skills: Compétences
+    index:
+      choose_create_person: Sélectionne une personne ou saisis un nouveau profil
+      welcome: Bienvenue chez
+    new:
+      personals: Données personnelles
+    profile:
+      add_function: Ajouter une fonction
+      add_language: Ajouter une langue
+      change_image: Modifier l'image
+      core_competences: Compétences clés
+      personals: Données personnelles
+      upload_image: Télécharger une image
+    scroll_to_menu:
+      activities: Station
+      advanced-trainings: Formations continues
+      core-competences: Compétences clés
+      educations: Formations
+      personal-data: Données personnelles
+      projects: Projets
+    search:
+      new_profile: Nouveau profil
+      updated_at: Dernièrement édité
+  people/people_skills:
+    edit_form:
+      rate: Évaluer
+      unrate: Ne pas évaluer
+    global:
+      confirm_delete: Veux-tu vraiment supprimer cette personne ?
+      link:
+        add: Nouveau profil
+        delete: Supprimer une personne
+      more_actions: Autres actions
+      tabbar:
+        cv: CV
+        skills: Compétences
+    index:
+      new_skills_to_rate: Nouvelles compétences pour l'évaluation
+    scroll_to_menu:
+      link:
+        add: Ajouter une compétence
+  people_skills:
+    global:
+      link:
+        add: Ajouter une compétence (max. 5)
+  people_skills/filter_form:
+    global:
+      link:
+        add: Ajouter une compétence (max. 5)
+  profile:
+    updated_at: Dernièrement édité
+  skills:
+    global:
+      table:
+        category: Catégorie
+        default_set: Set par défaut
+        members: Membres
+        modify: Modifier
+        portfolio: Portefeuille
+        radar: Radar
+        skill: Compétence
+        subcategory: Sous-catégorie
+    show:
+      title: 'Compétence : %{title} (%{amount} Members)'

@@ -80,7 +80,7 @@ describe :people do
     check 'nat-two-checkbox'
     select ISO3166::Country["DE"].translations[I18n.locale], from: 'person_nationality'
     select ISO3166::Country["US"].translations[I18n.locale], from: 'person_nationality2'
-    select I18n.t('marital_statuses.married'), from: 'person_marital_status'
+    select t('marital_statuses.married'), from: 'person_marital_status'
     fill_in 'person_shortname', with: 'bb'
 
     page.all(".add_fields").last.click
@@ -151,7 +151,7 @@ describe :people do
     expect(page.all('.nationality-two').count).to equal(person.nationality2.nil? ? 0 : 2)
     expect(page).to have_select('person_nationality', selected: person.nationality.nil? ? ISO3166::Country[common_languages_translated.first.first].translations[I18n.locale] : ISO3166::Country[person.nationality].translations[I18n.locale])
     person.nationality2.nil? ? (expect(page).not_to have_select('person_nationality2')) : (expect(page).to have_select('person_nationality2', selected: ISO3166::Country[person.nationality2].translations[I18n.locale]))
-    expect(page).to have_select('person_marital_status', selected: I18n.t("marital_statuses.#{person.marital_status}"))
+    expect(page).to have_select('person_marital_status', selected: t("marital_statuses.#{person.marital_status}"))
     expect(page).to have_field('person_shortname', with: person.shortname)
 
     language_skills = person.language_skills
@@ -198,7 +198,7 @@ describe :people do
     it 'should have all edit fields' do
       bob = people(:bob)
       visit person_path(bob)
-      page.find('#edit-button').click
+      click_link('Bearbeiten', href: edit_person_path(bob))
       check_edit_fields(bob, true)
     end
 
@@ -206,9 +206,9 @@ describe :people do
       bob = people(:bob)
       old_number_of_roles = bob.person_roles.count
       visit person_path(bob)
-      page.find('#edit-button').click
+      click_link('Bearbeiten', href: edit_person_path(bob))
       fill_out_person_form
-      save_button = find_button("Speichern")
+      save_button = find_button("Person aktualisieren")
       scroll_to(save_button, align: :center)
       save_button.click
       assert_form_persisted(old_number_of_roles)
@@ -217,16 +217,16 @@ describe :people do
     it 'should edit and cancel without saving' do
       person = Person.first
       visit person_path(person)
-      page.find('#edit-button').click
+      click_link('Bearbeiten', href: edit_person_path(person))
       fill_out_person_form
-      page.find('#cancel-button').click
+      click_link 'Abbrechen'
       expect(person.attributes).to eql(Person.first.attributes)
     end
 
     it('should correctly disable languages if they are selected, changed, created or deleted') {
       bob = people(:bob)
       visit person_path(bob)
-      page.find('#edit-button').click
+      click_link('Bearbeiten', href: edit_person_path(bob))
 
       add_language('JA')
       add_language('ZH')
@@ -264,13 +264,13 @@ describe :people do
     it('should display error when uploading a too big avatar file') do
       bob = people(:bob)
       visit person_path(bob)
-      page.find('#edit-button').click
+      click_link('Bearbeiten', href: edit_person_path(bob))
 
       allow_any_instance_of(CarrierWave::SanitizedFile).to receive(:size).and_return(12.megabytes)
 
       page.attach_file("avatar-uploader", Rails.root + 'app/assets/images/favicon.png')
       page.find("#save-button").click
-      expect(page).to have_css('.alert-danger', text: 'Bild sollte nicht grösser als 10MB sein')
+      expect(page).to have_css('.alert-danger', text: 'Bild darf nicht grösser als 10MB sein')
     end
   end
 
@@ -282,25 +282,25 @@ describe :people do
     it 'should have all edit fields' do
       visit people_path
       new_person = Person.new
-      page.find('#new-person-button').click
+      click_link 'Neues Profil'
       check_edit_fields(new_person, false)
     end
 
     it 'should create new person' do
       visit people_path
-      page.find('#new-person-button').click
+      click_link 'Neues Profil'
       fill_out_person_form
-      page.find("#save-button").click
+      click_button "Person erstellen"
 
       assert_form_persisted(0)
     end
 
     it 'should go back to overview after cancelling and not save new person' do
       visit people_path
-      page.find('#new-person-button').click
+      click_link 'Neues Profil'
       fill_out_person_form
-      page.find("#cancel-button").click
-      expect(page).to have_current_path("/people")
+      click_link 'Abbrechen'
+      expect(page).to have_current_path(people_path)
       expect(Person.all.find_by(name: "Hansjakobli")).to be_nil
     end
   end
@@ -314,14 +314,14 @@ describe :people do
 
     it 'should display message when no skills are rated' do
       visit person_path(longmax)
-      expect(page).to have_selector('p.alert.alert-info.d-flex.justify-content-between', text: I18n.t('profile.no_skills_rated_msg'))
+      expect(page).to have_selector('p.alert.alert-info.d-flex.justify-content-between', text: t("people.cv.no_skills_rated_msg"))
     end
 
     it 'should delete person' do
       visit person_path(longmax)
-      click_button(I18n.t("people.show.more_actions"))
+      click_button(t("people.global.more_actions"))
       accept_confirm do
-        click_link(I18n.t("people.show.link.delete"), href: person_path(longmax))
+        click_link(t("people.global.link.delete"), href: person_path(longmax))
       end
       expect(page).to have_selector('.alert', text: I18n.t("crud.destroy.flash.success", model: longmax))
     end

@@ -40,7 +40,7 @@ module PeopleSkills
     end
 
     def skill_of_row(row_id)
-      skill_ids.nil? ? nil : skill_ids[row_id].to_i
+      skill_ids[row_id]&.to_i
     end
 
     def query_params

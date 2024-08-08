@@ -1,25 +1,30 @@
 %div.mb-3#personal-data{"data-scroll-target": "scrollItem"}
   %div.profile-header.mw-100.border-bottom
-    Personalien
+    = t "people.profile.personals"
   %div.mt-4
     %turbo-frame{id: "#{dom_id @person}"}
       %div.d-flex.flex-xl-row.flex-column
         %div.col-xl-3.col-12
-          %img.rounded-circle{src: "/people/#{@person.id}/picture?#{Time.now.to_f}", width: '141', height: '141'}
-          %div.mt-3= link_to "Bearbeiten", edit_person_path, id: "edit-button"
+          %img.rounded-circle{src: picture_person_path(Person.first, timestamp:Time.now.to_f), width: '141', height: '141'}
+          %div.mt-3
+            = edit_action_link
         %div.pe-5.col-xl-3.col-12
           %table.fixed-table
             %tbody
-              %th.fw-normal.text-gray Name
+              %th.fw-normal.text-gray 
+                = Person.human_attribute_name(:name)
               %tr
                 %td.text-break.pb-1= @person.name
-              %th.fw-normal.text-gray Email
+              %th.fw-normal.text-gray
+                = Person.human_attribute_name(:email)
               %tr
                 %td.text-break.pb-1= @person.email
-              %th.fw-normal.text-gray Abschluss
+              %th.fw-normal.text-gray 
+                = Person.human_attribute_name(:title)
               %tr
                 %td.text-break.pb-1= @person.title
-              %th.fw-normal.text-gray Funktion
+              %th.fw-normal.text-gray 
+                = Person.human_attribute_name(:person_roles, count: @person.person_roles.count)
               - unless @person.person_roles.empty?
                 - @person.person_roles.each do |person_role|
                   %tr
@@ -27,33 +32,43 @@
               - else
                 %tr
                   %td -
-              %th.fw-normal.text-gray Organisationseinheit
+              %th.fw-normal.text-gray 
+                = Person.human_attribute_name(:department)
               %tr
-                %td.pb-1= @person.department.nil? ? '-' : @person.department.name
-              %th.fw-normal.text-gray Firma
+                %td.pb-1= @person.department.name || "-"
+              %th.fw-normal.text-gray 
+                = Person.human_attribute_name(:company)
               %tr
                 %td= @person.company.name
         %div.pe-5.col-xl-3.col-12
           %table.fixed-table
             %tbody
-              %th.fw-normal.text-gray Geburtsdatum
+              %th.fw-normal.text-gray
+                = Person.human_attribute_name(:birthdate)
               %tr
-                %td.pb-1= @person.birthdate.to_date.strftime('%d.%m.%Y')
-              %th.fw-normal.text-gray Nationalität
+                %td.pb-1
+                  = @person.birthdate.to_date.strftime('%d.%m.%Y')
+              %th.fw-normal.text-gray 
+                = Person.human_attribute_name(:nationality)
               %tr
-                %td.text-break.pb-1= nationality_string(@person.nationality, @person.nationality2)
-              %th.fw-normal.text-gray Wohnort (Stadt)
+                %td.text-break.pb-1
+                  = nationality_string(@person.nationality, @person.nationality2)
+              %th.fw-normal.text-gray 
+                = Person.human_attribute_name(:location)
               %tr
                 %td.text-break.pb-1= @person.location
-              %th.fw-normal.text-gray Zivilstand
+              %th.fw-normal.text-gray 
+                = Person.human_attribute_name(:marital_status)
               %tr
                 %td.pb-1= t("marital_statuses.#{@person.marital_status}")
-              %th.fw-normal.text-gray Kürzel
+              %th.fw-normal.text-gray 
+                = Person.human_attribute_name(:shortname)
               %tr
-                %td= @person.shortname.blank? ? '-' : @person.shortname
+                %td= @person.shortname || "-"
 
         %div.col-xl-3.col-12
-          %div.fw-normal.text-gray Sprachen
+          %div.fw-normal.text-gray 
+            = Person.human_attribute_name(:language_skills, count: @person.language_skills.count)
           %div.border.border-dark-subtle.mt-1.p-2.rounded.w-min-content
             %table
               %tbody

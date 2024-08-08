@@ -53,10 +53,28 @@ module ActionsHelper
 
   # Standard add action to given path.
   # Uses the current +model_class+ if no path is given.
-  def add_action_link(path = nil, url_options = {})
+  def add_action_link(path = nil, url_options = {}, html_options = {})
     path ||= path_args(model_class)
     path = new_polymorphic_path(path, url_options) unless path.is_a?(String)
-    action_link(ti('link.add'), 'plus', path)
+    action_link(ti('link.add'), 'plus', path, html_options)
   end
 
+  def add_action_link_modal(path = nil, url_options = {})
+    path ||= path_args(model_class)
+    path = new_polymorphic_path(path, url_options) unless path.is_a?(String)
+    options = { data: { turbo_frame: 'remote_modal' } }
+    action_link(ti('link.add'), 'plus', path, options)
+  end
+
+  def export_action_link(path, options = {})
+    action_link(ti('link.export'), 'export', path, options)
+  end
+
+  def close_action_link(path, options = {})
+    action_link('', 'close', path, options)
+  end
+
+  def cancel_action_link(path, options = {})
+    action_link(ti('link.cancel'), '', path, options)
+  end
 end

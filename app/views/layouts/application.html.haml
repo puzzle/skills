@@ -24,18 +24,21 @@
                 %img{:src=> "/assets/logo.svg",:height=>"32"}
               %text.d-flex.align-items-end.ms-2.small= "5.0.0"
           %ul.navbar.text-gray
+            -# Language selector
+            %li.d-flex.align-items-center.cursor-pointer.border-start.border-end.h-100.ps-2.pe-2{"data-controller": "dropdown"}
+              = select :i18n, :language, language_selector, {}, class: "form-control", data:{action: "change->dropdown#handleChange"}
             -# Devise/Mockdata
             - if Rails.env.development?
               %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
                 %span#username
                   - if devise?
-                    Devise
+                    = ti("devise.devise")
                   - else
-                    Mockdata
+                    = ti("devise.mockdata")
             -# Admin panel
             - if conf_admin?
               %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
-                = link_to "Admin panel", admin_index_path
+                = link_to ti("devise.admin_panel"), admin_index_path
             -# Username 
             - if auth_user_signed_in?
               %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
@@ -46,14 +49,14 @@
                   - else
                     = link_to find_person_by_auth_user.name, person_path(find_person_by_auth_user)
                   - if admin?
-                    (Admin)
+                    = ti "devise.admin"
             -# Login/Logout
             - if devise?
               %li.d-flex.align-items-center.cursor-pointer.border-start.border-end.h-100.ps-2.pe-2
                 - if auth_user_signed_in?
-                  =link_to "Logout", destroy_auth_user_session_path, data: { "turbo-method": :delete}, class: "btn btn-link"
+                  =link_to ti("devise.sign_out"), destroy_auth_user_session_path, data: { "turbo-method": :delete}, class: "btn btn-link"
                 - elsif devise_mapping.omniauthable?
-                  =button_to "Login", omniauth_authorize_path(resource_name, resource_class.omniauth_providers.first), {data: { "turbo": false, controller: "instant-click"}, class: "btn btn-link"}
+                  =button_to ti("devise.sign_in"), omniauth_authorize_path(resource_name, resource_class.omniauth_providers.first), {data: { "turbo": false, controller: "instant-click" }, class: "btn btn-link"}
             -# Help
             %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.h-100
               %a.d-flex.align-items-center{:href => "https://github.com/puzzle/skills/issues"}
@@ -61,15 +64,7 @@
             %li.d-flex.align-items-center.cursor-pointer.border-start.border-end.h-100.ps-2.pe-2{"data-action": "click->skills-empty-space#goCrazy"}
         %div.puzzle-header
           %div.d-flex.h-100
-            %ul.navbar.h-100
-              %li.bg-skills-blue.h-100.d-flex.align-items-center{class: "#{'highlighted' if @first_path == people_path}"}
-                %a.nav-link.cursor-pointer.ps-2.pe-2{href: people_path} Profil
-              %li.bg-skills-blue.h-100.d-flex.align-items-center{class: "#{'highlighted' if @first_path == people_skills_path}"}
-                %a.nav-link.cursor-pointer.ps-2.pe-2{href: people_skills_path} Skill Suche
-              %li.bg-skills-blue.h-100.d-flex.align-items-center{class: "#{'highlighted' if @first_path == cv_search_index_path}"}
-                %a.nav-link.cursor-pointer.ps-2.pe-2{href: cv_search_index_path} CV Suche
-              %li.bg-skills-blue.h-100.d-flex.align-items-center{class: "#{'highlighted' if @first_path == skills_path}"}
-                %a.nav-link.cursor-pointer.ps-2.pe-2{href: skills_path} Skillset
+            = render "application/tabbar", tabs: global_tabs, bar_class: "skills-navbar", active_path: global_navbar_path
       %div.container-fluid
         %div.row.d-flex.justify-content-center
           = render partial: 'layouts/flash', collection: [:notice, :alert], as: :level
@@ -77,4 +72,5 @@
             %span
               = yield :actions
           = content_for?(:content) ? yield(:content) : yield
+
           = turbo_frame_tag "remote_modal", target: "_top"

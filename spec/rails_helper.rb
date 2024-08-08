@@ -66,6 +66,8 @@ RSpec.configure do |config|
   config.include(JsonMacros, type: :controller)
   config.include(JsonAssertion, type: :controller)
   config.include(ControllerHelpers, type: :controller)
+  config.include DefaultParams, type: :controller
+
 
   # Feature helper
 
@@ -78,7 +80,16 @@ RSpec.configure do |config|
   config.include(PersonRelationsHelpers, type: :feature)
   config.include(SlimselectHelpers, type: :feature)
   config.include(PeopleSkillsHelpers, type: :feature)
+  config.include(UtilitiesHelpers)
 
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
+
+  config.after(:each) do
+    I18n.locale = I18n.default_locale
+  end
+
+  config.before(:each, type: :feature) do
+    default_url_options[:locale] = I18n.locale
+  end
 end

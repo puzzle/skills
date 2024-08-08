@@ -1,15 +1,15 @@
 %div.d-flex.align-items-center.col-2.people-skill-title
   = person_skill.skill.title
 %div.d-flex.flex-column.align-items-center.col-2
-  %label.form-label.text-gray#skill-level-label= t "people-skills.levels.#{ExpertiseTopicSkillValue.skill_levels.key(person_skill.level - 1)}"
+  %label.form-label.text-gray#skill-level-label= ti "people_skills.levels.#{ExpertiseTopicSkillValue.skill_levels.key(person_skill.level - 1)}"
   %input#people_skill_level{value: person_skill.level, class: "form-range w-75", type: "range", min: 1, max: 5, disabled: true}
 %div.d-flex.flex-column.align-items-center.col-3
   = render partial: "show_interest_stars", locals: { person_skill: person_skill }
 %div.d-flex.align-items-center.col-2
   %div.d-flex.flex-row.form-check
     %input.check_box#certificate-checkbox{type: "checkbox", class: "form-check-input me-2 ", checked: person_skill.certificate, disabled: true}
-    %label.form-label.text-gray= t "people-skills.certificate"
+    %label.form-label.text-gray= PeopleSkill.human_attribute_name(:certificate)
 %div.d-flex.align-items-center
   %div.d-flex.flex-row.form-check.col-2
     %input.check_box#core-competence-checkbox{type: "checkbox", class: "form-check-input me-2", checked: person_skill.core_competence, disabled: true}
-    %label.form-label.text-gray= t "people-skills.core-competence"
+    %label.form-label.text-gray= PeopleSkill.human_attribute_name(:core_competence)

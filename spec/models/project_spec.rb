@@ -56,7 +56,7 @@ describe Project do
       project.year_from = 2016
       project.valid?
 
-      expect(project.errors[:year_from].first).to eq('muss vor "Datum bis" sein')
+      expect(project.errors[:year_from].first).to eq('muss vor dem Enddatum sein.')
     end
 
     it 'year_to can be blank' do

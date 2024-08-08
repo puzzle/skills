@@ -1,4 +1,4 @@
-= render "remote_modal", title: "Skill: #{@skill.title} (#{filter_by_rated(@skill).count } Members)" do
+= render "remote_modal", title: ti("title", title: @skill.title, amount: filter_by_rated(@skill).count) do
   %div.d-flex.flex-column
     - filter_by_rated(@skill).each do |person_skill|
       - if person_skill.level
@@ -9,7 +9,7 @@
             %p.m-0= @skill.title
           %div.col-2
             %div.d-flex.flex-column
-              %label.form-label.text-gray= t ExpertiseTopicSkillValue.skill_levels.key(person_skill.level - 1)
+              %label.form-label.text-gray= ti "people_skills.levels.#{ExpertiseTopicSkillValue.skill_levels.key(person_skill.level - 1)}"
               %input.form-range.w-75.level{type: "range", min: 1, max: 5, value: person_skill.level, tabindex: -1}
           %div.col-2
             %div.d-flex.flex-column
@@ -17,11 +17,11 @@
           %div.col-2
             %div.d-flex.flex-row.form-check
               %input.form-check-input.me-2.certificate{type: "checkbox", checked: person_skill.certificate, disabled: true}
-              %label.form-label.text-gray= t "people-skills.certificate"
+              %label.form-label.text-gray= Skill.human_attribute_name(:certificate)
           %div.col-2
             %div.d-flex.flex-row.form-check
               %input.form-check-input.me-2.core-competence{type: "checkbox", checked: person_skill.core_competence, disabled: true}
-              %label.form-label.text-gray= t "people-skills.core-competence"
+              %label.form-label.text-gray= Skill.human_attribute_name(:core_competence)
 %turbo-frame{id: "#{dom_id @skill}"}
   .row.border.border-top.table-light.tableform-hover.table-row
     .col-2.d-flex.align-items-center
@@ -33,12 +33,11 @@
     .col-2.bg-light.d-flex.align-items-center
       =@skill.category.title
     .col-1.d-flex.align-items-center
-      =@skill.default_set.nil? ? "Neu" : (@skill.default_set? ? "Ja" : "Nein")
+      =@skill.default_set.nil? ? ti("new") : (@skill.default_set? ? ti("yes") : ti("no"))
     .col-1.bg-light.d-flex.align-items-center
       =@skill.radar
     .col-1.bg-light.d-flex.align-items-center
       =@skill.portfolio
     .col-1
       %div.h-100.d-flex.justify-content-center.align-items-center
-        =link_to edit_skill_path(@skill), class: "btn bg-gray-100" do
-          %img.pointer.edit-button{:src=> "/assets/pencil-square.svg",:height=>"16"}
+        =action_link("", "pencil", edit_skill_path)
