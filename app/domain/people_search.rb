@@ -59,7 +59,7 @@ class PeopleSearch
   # rubocop:disable Metrics/MethodLength
   def in_association(person, sym)
     target = person.association(sym).target
-    return if target.nil?
+    return [] if target.nil?
 
     if sym == :skills
       target.filter! do |skill|
