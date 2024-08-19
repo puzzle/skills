@@ -48,7 +48,7 @@ class PeopleSearch
   def in_associations(person)
     association_symbols.map do |sym|
       attribute_names = in_association(person, sym)
-      sym.to_s if attribute_names&.any?
+      sym.to_s if attribute_names.any?
     end.flatten
   end
 
