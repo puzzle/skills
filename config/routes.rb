@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :auth_users,
       skip: [:sessions],
       controllers:
-        { omniauth_callbacks: 'omniauth_callbacks' }
+        { omniauth_callbacks: 'omniauth_callbacks' }, defaults: { locale: nil }
 
   devise_scope :auth_user do
     get 'sign_in', :to => 'devise/sessions#new', :as => :new_auth_user_session
