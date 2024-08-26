@@ -35,7 +35,7 @@
               %th.fw-normal.text-gray 
                 = Person.human_attribute_name(:department)
               %tr
-                %td.pb-1= @person.department.name || "-"
+                %td.pb-1= @person.department&.name || "-"
               %th.fw-normal.text-gray 
                 = Person.human_attribute_name(:company)
               %tr
