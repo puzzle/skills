@@ -2,7 +2,6 @@
   = ti("devise.sign_in")
 - if devise_mapping.omniauthable?
   - resource_class.omniauth_providers.each do |provider|
-    = 
-    = button_to ti("sign_in_with", provider: provider.to_s.titleize), omniauth_authorize_path(resource_name, provider), {data: { turbo: false }, class: "btn btn-primary"}
+    = button_to ti("devise.sign_in_with", provider: provider.to_s.titleize), omniauth_authorize_path(resource_name, provider), {data: { turbo: false }, class: "btn btn-primary"}
 - else
   = ti("devise.no_omniauth_providers")
