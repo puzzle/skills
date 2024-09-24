@@ -1,10 +1,10 @@
 default: &default
   adapter: <%= ENV['RAILS_DB_ADAPTER'] || 'postgresql' %>
-  host: <%= ENV['RAILS_DB_HOST'] || '127.0.0.1' %>
+  host: <%= ENV['RAILS_DB_HOST'] || "localhost" %>
   port: <%= ENV['RAILS_DB_PORT'] || 5432 %>
   username: <%= ENV['RAILS_DB_USERNAME'] || "skills" %>
   password: <%= ENV['RAILS_DB_PASSWORD'] || "skills" %>
-  database: <%= ENV['RAILS_DB_NAME'] || "skills_development" %>
+  database: <%= ENV['RAILS_DB_NAME'] || "skills" %>
   pool: 5
   timeout: 5000
   encoding: unicode

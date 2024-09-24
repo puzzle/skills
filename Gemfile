@@ -84,3 +84,4 @@ end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'rails-controller-testing', '~> 1.0'
+gem 'bootstrap', '~> 5.0.0'

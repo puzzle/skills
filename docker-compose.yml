@@ -2,6 +2,7 @@ services:
   rails:
     container_name: rails
     image: skills-dev/rails
+    network_mode: "host"
     user: "${UID:-1000}"
     tty: true
     stdin_open: true
@@ -13,22 +14,26 @@ services:
       dockerfile: Rails.dockerfile
     ports:
       - 3000:3000
+    dns:
+      - 8.8.8.8
     volumes:
       - ./:/myapp
       - ./tmp/seed:/seed
       - ./config/docker/development/home/rails:/home/developer
       - /tmp/.X11-unix:/tmp/.X11-unix
       - ${GEM_PATH}:/opt/bundle
-
     depends_on:
       - postgres
 
   postgres:
+    network_mode: "host"
     container_name: postgres
     image: postgres:16
     ports:
       - 5432:5432
     env_file: .env
+    environment:
+          POSTGRES_HOST_AUTH_METHOD: trust
     volumes:
       - postgres:/var/lib/postgres
 

@@ -12,6 +12,9 @@ ARG YARN_VERSION="1.22.10"
 ARG BUILD_PACKAGES="nodejs build-essential shared-mime-info"
 ARG RUN_PACKAGES="shared-mime-info postgresql graphicsmagick"
 
+
+
+
 # Scripts
 ARG PRE_INSTALL_SCRIPT="curl -sL https://deb.nodesource.com/setup_${NODEJS_VERSION}.x -o /tmp/nodesource_setup.sh && bash /tmp/nodesource_setup.sh"
 ARG INSTALL_SCRIPT="node -v && npm -v && npm install -g yarn && yarn set version ${YARN_VERSION}"
@@ -96,6 +99,13 @@ SHELL ["/bin/bash", "-c"]
 USER root
 
 RUN bash -vxc "${PRE_INSTALL_SCRIPT:-"echo 'no PRE_INSTALL_SCRIPT provided'"}"
+
+# Install Node.js
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
+    && apt-get install -y nodejs
+
+# Install Yarn (if needed)
+RUN npm install -g yarn
 
 # Install dependencies
 RUN    export DEBIAN_FRONTEND=noninteractive \
