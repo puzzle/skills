@@ -24,8 +24,7 @@ module DateHelper
     months.compact.each_with_index.map { |month, index| [month, index + 1] }
   end
 
-  def last_100_years
-    (100.years.ago.year..Time.zone.today.year).to_a.reverse
+  def year_range
+    (100.years.ago.year..5.years.from_now.year).to_a.reverse
   end
-
 end
