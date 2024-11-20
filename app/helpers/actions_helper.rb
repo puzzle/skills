@@ -59,6 +59,11 @@ module ActionsHelper
     action_link(ti('link.add'), 'plus', path, html_options)
   end
 
+  def add_person_relation_link(path, person_relation_name, html_options)
+    path = new_polymorphic_path(path, url_options, html_options) unless path.is_a?(String)
+    action_link(t("people.#{person_relation_name}.link.add"), 'plus', path, html_options)
+  end
+
   def add_action_link_modal(path = nil, url_options = {})
     path ||= path_args(model_class)
     path = new_polymorphic_path(path, url_options) unless path.is_a?(String)

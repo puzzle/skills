@@ -216,6 +216,18 @@ de:
     search:
       new_profile: Neues Profil
       updated_at: Zuletzt bearbeitet
+    educations:
+      link:
+        add: Neue Ausbildung
+    activities:
+      link:
+        add: Neue Station
+    advanced_trainings:
+      link:
+        add: Neue Weiterbildung
+    projects:
+      link:
+        add: Neues Projekt
   people/people_skills:
     edit_form:
       rate: Bewerten
