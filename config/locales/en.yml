@@ -212,6 +212,18 @@ en:
     search:
       new_profile: New profile
       updated_at: Last edited
+    educations:
+      link:
+        add: New education
+    activities:
+      link:
+        add: New activity
+    advanced_trainings:
+      link:
+        add: New advanced training
+    projects:
+      link:
+        add: New project
   people/people_skills:
     edit_form:
       rate: Rate

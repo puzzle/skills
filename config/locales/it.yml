@@ -212,6 +212,18 @@ it:
     search:
       new_profile: Nuovo profilo
       updated_at: Ultima modifica
+    educations:
+      link:
+        add: Nuova formazione
+    activities:
+      link:
+        add: Nuova stazione
+    advanced_trainings:
+      link:
+        add: Nuova formazione continua
+    projects:
+      link:
+        add: Nuovo progetto
   people/people_skills:
     edit_form:
       rate: Tasso
