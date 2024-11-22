@@ -214,10 +214,10 @@ it:
       updated_at: Ultima modifica
     educations:
       link:
-        add: Nuova formazione
+        add: Nuovo programma di formazione
     activities:
       link:
-        add: Nuova stazione
+        add: Nuova Stazione
     advanced_trainings:
       link:
         add: Nuova formazione continua
