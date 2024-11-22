@@ -172,8 +172,17 @@ en:
     single: single
     widowed: widowed
   people:
+    activities:
+      link:
+        add: New station
+    advanced_trainings:
+      link:
+        add: New further training
     cv:
       no_skills_rated_msg: This profile has no rated skills yet. Go to the Skills tab and rate the skills relevant to you.
+    educations:
+      link:
+        add: New education
     export_cv:
       export_form:
         anonymised_cv: Anonymized CV
@@ -202,6 +211,9 @@ en:
       core_competences: Core competencies
       personals: Personal details
       upload_image: Upload image
+    projects:
+      link:
+        add: New project
     scroll_to_menu:
       activities: Station
       advanced-trainings: Further training
