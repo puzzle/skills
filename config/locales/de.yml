@@ -176,8 +176,17 @@ de:
     single: ledig
     widowed: verwitwet
   people:
+    activities:
+      link:
+        add: Neue Station
+    advanced_trainings:
+      link:
+        add: Neue Weiterbildung
     cv:
       no_skills_rated_msg: Dieses Profil hat noch keine bewerteten Skills. Gehe zum Skills Tab und bewerte die für dich relevanten Skills.
+    educations:
+      link:
+        add: Neue Ausbildung
     export_cv:
       export_form:
         anonymised_cv: Anonymisierter CV
@@ -206,6 +215,9 @@ de:
       core_competences: Kernkompetenzen
       personals: Personalien
       upload_image: Bild hochladen
+    projects:
+      link:
+        add: Neues Projekt
     scroll_to_menu:
       activities: Station
       advanced-trainings: Weiterbildungen
@@ -216,18 +228,6 @@ de:
     search:
       new_profile: Neues Profil
       updated_at: Zuletzt bearbeitet
-    educations:
-      link:
-        add: Neue Ausbildung
-    activities:
-      link:
-        add: Neue Station
-    advanced_trainings:
-      link:
-        add: Neue Weiterbildung
-    projects:
-      link:
-        add: Neues Projekt
   people/people_skills:
     edit_form:
       rate: Bewerten
