@@ -172,8 +172,17 @@ it:
     single: singolo
     widowed: vedova
   people:
+    activities:
+      link:
+        add: Nuova Stazione
+    advanced_trainings:
+      link:
+        add: Nuova formazione continua
     cv:
       no_skills_rated_msg: Questo profilo non ha ancora competenze valutate. Andate alla scheda Competenze e valutate le competenze che vi interessano.
+    educations:
+      link:
+        add: Nuovo programma di formazione
     export_cv:
       export_form:
         anonymised_cv: CV anonimo
@@ -202,6 +211,9 @@ it:
       core_competences: Competenze di base
       personals: Dati personali
       upload_image: Carica immagine
+    projects:
+      link:
+        add: Nuovo progetto
     scroll_to_menu:
       activities: Stazione
       advanced-trainings: Formazione continua
