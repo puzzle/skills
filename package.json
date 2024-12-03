@@ -14,7 +14,7 @@
     "postcss": "^8.4.33",
     "postcss-cli": "^11.0.0",
     "sass": "^1.70.0",
-    "slim-select": "^2.8.2"
+    "slim-select": "^2.9.2"
   },
   "scripts": {
     "build": "node esbuild.config.mjs",
