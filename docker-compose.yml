@@ -34,7 +34,7 @@ services:
 
   assets:
     container_name: assets
-    image: ruby:3.2
+    image: ruby:3.4.1
     working_dir: /myapp
     command: >
      /bin/bash -c "
