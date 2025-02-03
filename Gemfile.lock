@@ -82,6 +82,7 @@ GEM
     ast (2.4.2)
     base64 (0.2.0)
     bcrypt (3.1.20)
+    bigdecimal (3.1.9)
     bindata (2.5.0)
     bleib (0.0.8)
     bootsnap (1.18.3)
@@ -121,6 +122,7 @@ GEM
     crass (1.0.6)
     cssbundling-rails (1.4.0)
       railties (>= 6.0.0)
+    csv (3.3.2)
     database_cleaner (2.0.2)
       database_cleaner-active_record (>= 2, < 3)
     database_cleaner-active_record (2.1.0)
@@ -139,6 +141,7 @@ GEM
     docile (1.4.0)
     domain_name (0.6.20240107)
     dotenv (3.1.0)
+    drb (2.2.1)
     erubi (1.13.0)
     faker (3.3.1)
       i18n (>= 1.8.11, < 2)
@@ -225,6 +228,7 @@ GEM
     minitest (5.25.4)
     msgpack (1.7.2)
     multi_xml (0.6.0)
+    mutex_m (0.3.0)
     net-http (0.4.1)
       uri
     net-imap (0.4.14)
@@ -239,7 +243,7 @@ GEM
       net-protocol
     netrc (0.11.0)
     nio4r (2.7.3)
-    nokogiri (1.16.8-x86_64-linux)
+    nokogiri (1.18.2-x86_64-linux-gnu)
       racc (~> 1.4)
     oauth2 (2.0.9)
       faraday (>= 0.17.3, < 3.0)
@@ -470,6 +474,7 @@ DEPENDENCIES
   active_model_serializers
   activerecord-postgresql-adapter
   annotate
+  bigdecimal
   bleib (= 0.0.8)
   bootsnap
   brakeman
@@ -480,9 +485,11 @@ DEPENDENCIES
   config
   countries
   cssbundling-rails
+  csv
   database_cleaner
   devise
   dotenv
+  drb
   faker
   haml-rails
   haml_lint
@@ -492,11 +499,12 @@ DEPENDENCIES
   language_list
   listen
   mini_magick
+  mutex_m
   net-imap
   net-ldap (~> 0.16.0)
   net-pop
   net-smtp
-  nokogiri (~> 1.16)
+  nokogiri
   odf-report
   omniauth-keycloak
   omniauth-rails_csrf_protection
