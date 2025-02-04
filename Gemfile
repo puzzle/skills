@@ -80,7 +80,7 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'selenium-webdriver', '>= 4.11.8'
+  gem 'selenium-webdriver', '>= 4.28.0'
   gem 'simplecov'
   # Use fixed version of webdrivers to avoid compatibility issues with chrome and chromedriver
 end

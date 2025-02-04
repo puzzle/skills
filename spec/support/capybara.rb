@@ -8,3 +8,6 @@ RSpec.configure do |config|
     end
   end
 end
+
+# Required to remove deprecation warnings coming from capybara. See: https://github.com/teamcapybara/capybara/issues/2779
+Selenium::WebDriver.logger.ignore(:clear_local_storage, :clear_session_storage)

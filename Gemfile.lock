@@ -410,7 +410,7 @@ GEM
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
     rspec-support (3.13.2)
-    rubocop (1.71.1)
+    rubocop (1.71.2)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
@@ -568,7 +568,7 @@ DEPENDENCIES
   rubocop-rspec
   rubocop-rspec_rails
   seed-fu
-  selenium-webdriver (>= 4.11.8)
+  selenium-webdriver (>= 4.28.0)
   sentry-raven
   simplecov
   spring
