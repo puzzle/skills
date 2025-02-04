@@ -11,9 +11,6 @@ class AddTypeToPersonForSti < ActiveRecord::Migration[5.0]
   private
 
   def migrate_variations
-    Person.all.find_each do |p|
-      next if p.origin_person_id.nil?
-      p.update_column(:type, Person::Variation)
-    end
+    execute "UPDATE people SET type = 'Person::Variation' WHERE origin_person_id IS NOT NULL"
   end
 end
