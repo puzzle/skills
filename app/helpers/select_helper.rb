@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module SelectHelper
-  def select_when_availabale(obj)
-    selected = obj.present? ? polymorphic_path(obj) : ''
-    prompt = obj.nil?
+  def select_when_available(obj)
+    selected = obj || ''
+    prompt = selected.blank?
     { selected: selected, prompt: prompt, disabled: '' }
   end
 
