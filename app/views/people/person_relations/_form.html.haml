@@ -1,5 +1,4 @@
 = yield
-= form.hidden_field :person_id
 %div.d-flex.row.py-3.ps-5
   %span.col-3
     = render partial: 'application/daterange_picker', locals: { form: form, end_date: form.object.till_today? }
