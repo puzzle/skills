@@ -67,8 +67,8 @@ class Person < ApplicationRecord
 
   scope :list, -> { order(:name) }
 
-  enum marital_status: { single: 0, married: 1, widowed: 2, registered_partnership: 3,
-                         divorced: 4 }
+  enum :marital_status, { single: 0, married: 1, widowed: 2, registered_partnership: 3,
+                          divorced: 4 }
 
   pg_search_scope :search,
                   against: [

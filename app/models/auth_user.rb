@@ -27,8 +27,10 @@ class AuthUser < ApplicationRecord
       client_roles(auth).include? role
     end
 
+    # rubocop:disable Style/SafeNavigationChainLength
     def client_roles(auth)
       auth.extra&.raw_info&.resource_access&.[](AuthConfig.client_id)&.roles || []
     end
+    # rubocop:enable Style/SafeNavigationChainLength
   end
 end

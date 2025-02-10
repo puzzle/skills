@@ -21,8 +21,4 @@ module ParamConverters
 
     raise "Invalid value '#{value}' for boolean casting"
   end
-
-  def nil_param?(value)
-    value == 'null' ? nil : value
-  end
 end

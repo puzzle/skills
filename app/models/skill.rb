@@ -20,8 +20,8 @@ class Skill < ApplicationRecord
   belongs_to :category
   has_one :parent_category, through: :category, source: :parent
 
-  enum radar: Settings.radar
-  enum portfolio: Settings.portfolio
+  enum :radar, Settings.radar
+  enum :portfolio, Settings.portfolio
 
   validates :title, presence: true
   validates :title, length: { maximum: 100 }

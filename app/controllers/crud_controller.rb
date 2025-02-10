@@ -60,13 +60,13 @@ class CrudController < ListController
   # in the given block will take precedence over the one defined here.
   #
   # Specify a :location option if you wish to do a custom redirect.
-  def create(**options, &block)
+  def create(**options, &)
     model_class.transaction do
       assign_attributes
       created = with_callbacks(:create, :save) { entry.save }
       respond(created,
               **options.reverse_merge(status: :created, render_on_unsaved: :new),
-              &block)
+              &)
       raise ActiveRecord::Rollback unless created
     end
   end
@@ -84,7 +84,7 @@ class CrudController < ListController
   #
   # Specify a :location option if you wish to do a custom redirect.
 
-  def update(**options, &block) # rubocop:disable Metrics/MethodLength
+  def update(**options, &) # rubocop:disable Metrics/MethodLength
     model_class.transaction do
       if assign_attributes
         updated = false
@@ -95,7 +95,7 @@ class CrudController < ListController
         end
         respond(updated,
                 **options.reverse_merge(status: :ok, render_on_unsaved: :edit),
-                &block)
+                &)
         raise ActiveRecord::Rollback unless updated
       end
     end
@@ -113,12 +113,12 @@ class CrudController < ListController
   # in the given block will take precedence over the one defined here.
   #
   # Specify a :location option if you wish to do a custom redirect.
-  def destroy(**options, &block)
+  def destroy(**options, &)
     model_class.transaction do
       destroyed = run_callbacks(:destroy) { entry.destroy }
       respond(destroyed,
               **options.reverse_merge(status: :no_content),
-              &block)
+              &)
       raise ActiveRecord::Rollback unless destroyed
     end
   end
@@ -162,13 +162,13 @@ class CrudController < ListController
     path_args(entry)
   end
 
-  def respond(success, **options)
+  def respond(success, **)
     respond_to do |format|
       yield(format, success) if block_given?
       if success
-        render_on_success(format, **options)
+        render_on_success(format, **)
       else
-        render_on_unsaved(format, **options)
+        render_on_unsaved(format, **)
       end
     end
   end
