@@ -36,6 +36,6 @@ class MigrateMaritalStatus < ActiveRecord::Migration[5.2]
                   geschieden: :divorced }
 
   class Person < ApplicationRecord
-    enum marital_status: %i[single married widowed registered_partnership divorced]
+    enum :marital_status, %i[single married widowed registered_partnership divorced]
   end
 end

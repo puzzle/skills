@@ -17,14 +17,6 @@ module Skills
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
 
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
-
-    # Only loads a smaller set of middleware suitable for API only apps.
-    # Middleware like session, flash, cookies can be added back manually.
-    # Skip views, helpers and assets when generating a new resource.
-
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
     I18n.available_locales = [:de, :en, :fr, :it]
     config.i18n.default_locale = :de
@@ -37,9 +29,7 @@ module Skills
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
-    config.autoload_lib(ignore: %w(assets tasks templates))
-
-    config.add_autoload_paths_to_load_path = false
+    config.autoload_lib(ignore: %w[assets tasks templates])
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -51,7 +41,5 @@ module Skills
 
     # Don't generate system test files.
     config.generators.system_tests = nil
-
-    config.active_support.cache_format_version = 7.1
   end
 end
