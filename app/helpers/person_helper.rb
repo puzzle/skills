@@ -82,7 +82,7 @@ module PersonHelper
   end
 
   def fetch_ptime_or_skills_data
-    all_skills_people = Person.all.map { |p| [p.name, person_path(p)] }
+    all_skills_people = Person.all.map { |p| [p.name, person_path(p, locale: I18n.locale)] }
     return all_skills_people unless Skills.ptime_available?
 
     ptime_employees = Ptime::Client.new.request(:get, 'employees', { per_page: 1000 })
@@ -112,8 +112,8 @@ module PersonHelper
       skills_person = Person.find_by(ptime_employee_id: ptime_employee[:id])
       ptime_employee_id = ptime_employee[:id]
       already_exists = ptime_employee_id.in?(Person.pluck(:ptime_employee_id))
-      path = new_person_path(ptime_employee_id: ptime_employee_id)
-      path = person_path(skills_person) if already_exists
+      path = new_person_path(ptime_employee_id: ptime_employee_id, locale: I18n.locale)
+      path = person_path(skills_person, locale: I18n.locale) if already_exists
 
       [ptime_employee_name, path]
     end
