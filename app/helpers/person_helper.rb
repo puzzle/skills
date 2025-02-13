@@ -92,28 +92,16 @@ module PersonHelper
     all_skills_people
   end
 
-  def sorted_people
-    people_for_select.sort_by { |e| e.first.downcase }
-  end
-
-  def people_for_select
-    Person.all.map { |p| [p.name, person_path(p)] }
-  end
-
-  def fetch_ptime_employees
-    ptime_employees = fetch_all_ptime_employees
-    ptime_employee_ids = fetch_all_ptime_employee_ids
-    build_dropdown_data(ptime_employees)
-  end
-
   def build_dropdown_data(ptime_employees)
     ptime_employees.map do |ptime_employee|
       ptime_employee_name = append_ptime_employee_name(ptime_employee)
       skills_person = Person.find_by(ptime_employee_id: ptime_employee[:id])
-      ptime_employee_id = ptime_employee[:id]
-      already_exists = ptime_employee_id.in?(Person.pluck(:ptime_employee_id))
-      path = new_person_path(ptime_employee_id: ptime_employee_id, locale: I18n.locale)
-      path = person_path(skills_person, locale: I18n.locale) if already_exists
+
+      path = if skills_person.present?
+               person_path(skills_person, locale: I18n.locale)
+             else
+               new_person_path(ptime_employee_id: ptime_employee[:id], locale: I18n.locale)
+             end
 
       [ptime_employee_name, path]
     end
