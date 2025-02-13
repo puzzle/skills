@@ -14,6 +14,7 @@ gem 'carrierwave'
 gem 'config'
 gem 'countries'
 gem 'cssbundling-rails'
+gem 'daemons'
 gem 'csv'
 gem 'database_cleaner'
 gem 'devise'
@@ -82,6 +83,7 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver', '>= 4.11.8'
   gem 'simplecov'
+  gem 'webmock'
   # Use fixed version of webdrivers to avoid compatibility issues with chrome and chromedriver
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

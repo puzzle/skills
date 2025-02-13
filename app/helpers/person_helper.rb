@@ -78,10 +78,37 @@ module PersonHelper
   end
 
   def sorted_people
-    people_for_select.sort_by { |e| e.first.downcase }
+    fetch_ptime_or_skills_data.sort_by { |e| e.first.downcase }
   end
 
-  def people_for_select
-    Person.all.map { |p| [p.name, person_path(p)] }
+  def fetch_ptime_or_skills_data
+    all_skills_people = Person.all.map { |p| [p.name, person_path(p, locale: I18n.locale)] }
+    return all_skills_people unless Skills.ptime_available?
+
+    ptime_employees = Ptime::Client.new.request(:get, 'employees', { per_page: 1000 })
+    build_dropdown_data(ptime_employees)
+  rescue CustomExceptions::PTimeClientError
+    ENV['LAST_PTIME_ERROR'] = DateTime.current.to_s
+    all_skills_people
+  end
+
+  def build_dropdown_data(ptime_employees)
+    ptime_employees.map do |ptime_employee|
+      ptime_employee_name = append_ptime_employee_name(ptime_employee)
+      skills_person = Person.find_by(ptime_employee_id: ptime_employee[:id])
+
+      path = if skills_person.present?
+               person_path(skills_person, locale: I18n.locale)
+             else
+               new_person_path(ptime_employee_id: ptime_employee[:id], locale: I18n.locale)
+             end
+
+      [ptime_employee_name, path]
+    end
+  end
+
+  # Once https://github.com/puzzle/skills/issues/744 is merged there should be no need for this
+  def append_ptime_employee_name(ptime_employee)
+    "#{ptime_employee[:attributes][:firstname]} #{ptime_employee[:attributes][:lastname]}"
   end
 end

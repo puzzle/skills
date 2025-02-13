@@ -13,6 +13,10 @@ require 'action_mailer/railtie'
 Bundler.require(*Rails.groups)
 
 module Skills
+  def self.ptime_available?
+    ActiveModel::Type::Boolean.new.cast(ENV.fetch('PTIME_API_ACCESSIBLE', true))
+  end
+
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
