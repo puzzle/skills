@@ -2,9 +2,9 @@
 
 class People::PeopleSkillsController < CrudController
   include ParamConverters
-  self.permitted_attrs = [{ people_skills_attributes: [:id, :certificate, :level, :interest,
-                                                       :core_competence, :skill_id, :unrated,
-                                                       :_destroy] }]
+  self.permitted_attrs = [{ people_skills_attributes: [[:id, :certificate, :level, :interest,
+                                                        :core_competence, :skill_id, :unrated,
+                                                        :_destroy]] }]
   before_action :set_person
 
   def self.model_class
