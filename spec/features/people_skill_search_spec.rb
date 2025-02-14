@@ -91,12 +91,14 @@ describe :people_skills do
     end
 
     within row_selector do
+      # Tests are flaky in firefox
       sleep 0.3
       find('input[type="range"]').set(level)
     end
 
     within row_selector do
       id = find("[id$='star-label#{interest}']")[:for]
+      # Tests are flaky in firefox
       sleep 0.3
       choose(id, allow_label_click: true)
     end
