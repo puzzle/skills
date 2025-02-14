@@ -3,7 +3,7 @@ require 'rails_helper'
 describe AdvancedTrainingsController do
 
   before(:each) do
-    sign_in(auth_users(:admin))
+    sign_in auth_users(:admin), scope: :auth_user
   end
 
   let(:person) { people(:bob) }
