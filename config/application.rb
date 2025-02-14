@@ -15,7 +15,7 @@ Bundler.require(*Rails.groups)
 module Skills
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.2
+    config.load_defaults 8.0
 
     I18n.available_locales = [:de, :en, :fr, :it]
     config.i18n.default_locale = :de
