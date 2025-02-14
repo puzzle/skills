@@ -149,7 +149,7 @@ class CrudController < ListController
 
   # The form params for this model.
   def model_params
-    params.require(model_identifier).permit(permitted_attrs)
+    params.expect(model_identifier => [permitted_attrs])
   end
 
   # Path of the index page to return to.
