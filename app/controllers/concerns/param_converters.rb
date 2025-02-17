@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 module ParamConverters
-  private
-
   TRUTHY_VALUES = %w(t true yes y 1).freeze
   FALSEY_VALUES = %w(f false n no 0).freeze
 
