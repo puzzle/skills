@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'rails', '~> 7.0.8'
+gem 'rails', '~> 8.0'
 
 gem 'active_model_serializers'
 gem 'activerecord-postgresql-adapter'
@@ -41,7 +41,8 @@ gem 'rack'
 gem 'rails-i18n'
 gem 'rest-client'
 gem 'seed-fu'
-gem 'sentry-raven'
+gem 'sentry-rails'
+gem 'sentry-ruby'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
@@ -80,7 +81,7 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'selenium-webdriver', '>= 4.11.8'
+  gem 'selenium-webdriver', '>= 4.28.0'
   gem 'simplecov'
   # Use fixed version of webdrivers to avoid compatibility issues with chrome and chromedriver
 end

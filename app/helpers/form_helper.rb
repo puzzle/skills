@@ -23,12 +23,12 @@ module FormHelper
   # If a block is given, custom input fields may be rendered and attrs is
   # ignored. Before the input fields, the error messages are rendered,
   # if present. An options hash may be given as the last argument.
-  def standard_form(object, *attrs, &block)
+  def standard_form(object, *attrs, &)
     plain_form(object, attrs.extract_options!) do |form|
       content = [form.error_messages]
 
       content << if block_given?
-                   capture(form, &block)
+                   capture(form, &)
                  else
                    form.labeled_input_fields(*attrs)
                  end

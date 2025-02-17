@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 module ParamConverters
-  private
-
   TRUTHY_VALUES = %w(t true yes y 1).freeze
   FALSEY_VALUES = %w(f false n no 0).freeze
 
@@ -20,9 +18,5 @@ module ParamConverters
     return false if false?(value)
 
     raise "Invalid value '#{value}' for boolean casting"
-  end
-
-  def nil_param?(value)
-    value == 'null' ? nil : value
   end
 end

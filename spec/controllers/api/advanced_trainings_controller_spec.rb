@@ -52,10 +52,9 @@ describe Api::AdvancedTrainingsController do
     it 'updates existing person' do
       course = advanced_trainings(:course)
       updated_attributes = { description: 'changed' }
-      process :update, method: :put, params: update_params(course.id,
-                                                           updated_attributes,
-                                                           bob.id,
-                                                           'advanced-training')
+      put :update, params: update_params(course.id,
+                                           updated_attributes,
+                                           'advanced-training')
 
       course.reload
       expect(course.description).to eq('changed')
@@ -86,13 +85,11 @@ describe Api::AdvancedTrainingsController do
               }, type: model_type } }
   end
 
-  def update_params(object_id, updated_attributes, user_id, model_type)
+  def update_params(object_id, updated_attributes, model_type)
     { data: {
       id: object_id,
       attributes: updated_attributes,
-      relationships: {
-        person: { data: { type: 'people', id: user_id } }
-      }, type: model_type
+      type: model_type
     }, id: object_id }
   end
 end

@@ -17,18 +17,18 @@ module DryCrud
       # Renders the passed attr with a link to the show action for
       # the current entry.
       # A block may be given to define the link path for the row entry.
-      def attr_with_show_link(attr, &block)
+      def attr_with_show_link(attr, &)
         sortable_attr(attr) do |entry|
-          link_to(format_attr(entry, attr), action_path(entry, &block))
+          link_to(format_attr(entry, attr), action_path(entry, &))
         end
       end
 
       # Action column to show the row entry.
       # A block may be given to define the link path for the row entry.
       # If the block returns nil, no link is rendered.
-      def show_action_col(html_options = {}, &block)
+      def show_action_col(html_options = {}, &)
         action_col do |entry|
-          path = action_path(entry, &block)
+          path = action_path(entry, &)
           if path
             table_action_link('zoom-in',
                               path,
@@ -40,9 +40,9 @@ module DryCrud
       # Action column to edit the row entry.
       # A block may be given to define the link path for the row entry.
       # If the block returns nil, no link is rendered.
-      def edit_action_col(html_options = {}, &block)
+      def edit_action_col(html_options = {}, &)
         action_col do |entry|
-          path = action_path(entry, &block)
+          path = action_path(entry, &)
           if path
             path = edit_polymorphic_path(path) unless path.is_a?(String)
             table_action_link('pencil', path, html_options.clone)
@@ -53,9 +53,9 @@ module DryCrud
       # Action column to destroy the row entry.
       # A block may be given to define the link path for the row entry.
       # If the block returns nil, no link is rendered.
-      def destroy_action_col(html_options = {}, &block) # rubocop:disable Metrics/MethodLength
+      def destroy_action_col(html_options = {}, &) # rubocop:disable Metrics/MethodLength
         action_col do |entry|
-          path = action_path(entry, &block)
+          path = action_path(entry, &)
           if path && entry.destroyable?
             table_action_link('remove',
                               path,

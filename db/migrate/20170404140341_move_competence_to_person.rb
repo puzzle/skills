@@ -28,18 +28,11 @@ class MoveCompetenceToPerson < ActiveRecord::Migration[5.0]
   end
 
   def move_competences_to_person_attribute
-    Person.all.find_each do |person|
-      competences = ""
-      person_competences = Competence.where(person_id: person.id)
+    person_ids = select_values("SELECT id FROM people")
 
-      person_competences.find_each do |competence|
-        if competence == person_competences.last
-          competences << competence.description.to_s
-        else
-          competences << "#{competence.description} \n"
-        end
-      end
-      person.update_column(:competences, competences)
+    person_ids.each do |id|
+      competences = select_values("SELECT description FROM competences where person_id = #{id}").join('\n')
+      execute "UPDATE people SET competences = #{competences} WHERE id = #{id}"
     end
   end
 

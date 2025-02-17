@@ -1,9 +1,11 @@
-require: 
-  - rubocop-rails
-  - rubocop-rspec
+require:
   - rubocop-capybara
   - rubocop-rspec_rails
   - ./lib/custom_cops/translated_haml_files
+
+plugins:
+  - rubocop-rails
+  - rubocop-rspec
 
 AllCops:
   NewCops: enable
@@ -109,7 +111,7 @@ Style/IfUnlessModifier:
   Enabled: false
 
 # We thinks that's fine
-HasAndBelongsToMany:
+Rails/HasAndBelongsToMany:
   Enabled: false
 
 # We think that's the developers choice

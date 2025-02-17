@@ -22,6 +22,8 @@ describe Api::People::PictureController do
     expect(bob['picture']).to eq('picture.png')
     expect(path).to eq(picture_api_person_path(bob))
 
+    @request.env.delete('CONTENT_TYPE')
+
     process :show, method: :get , params: { id: bob.id }
 
     new_picture_md5 = 'c903aeff2bec840bd7c028631bd56596'

@@ -1,6 +1,6 @@
-require_relative 'boot'
+require_relative "boot"
 
-require 'rails'
+require "rails"
 
 require 'active_model/railtie'
 require 'active_record/railtie'
@@ -15,17 +15,8 @@ Bundler.require(*Rails.groups)
 module Skills
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.0
+    config.load_defaults 8.0
 
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
-
-    # Only loads a smaller set of middleware suitable for API only apps.
-    # Middleware like session, flash, cookies can be added back manually.
-    # Skip views, helpers and assets when generating a new resource.
-    config.autoload_paths += %W( #{config.root}/app/uploaders) #
-    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
     I18n.available_locales = [:de, :en, :fr, :it]
     config.i18n.default_locale = :de
 
@@ -34,9 +25,20 @@ module Skills
     # Bullet tries to add finish_at to insert statement, which does not exist anymore
     config.active_record.partial_inserts = true
 
-    config.filter_parameters += [:authorizationToken]
+    # Please, add to the `ignore` list any other `lib` subdirectories that do
+    # not contain `.rb` files, or that should not be reloaded or eager loaded.
+    # Common ones are `templates`, `generators`, or `middleware`, for example.
+    config.autoload_lib(ignore: %w[assets tasks templates])
 
-    config.assets.enabled = true
-    config.assets.paths << Rails.root.join("uploads")
+    # Configuration for the application, engines, and railties goes here.
+    #
+    # These settings can be overridden in specific environments using the files
+    # in config/environments, which are processed later.
+    #
+    # config.time_zone = "Central Time (US & Canada)"
+    # config.eager_load_paths << Rails.root.join("extras")
+
+    # Don't generate system test files.
+    config.generators.system_tests = nil
   end
 end

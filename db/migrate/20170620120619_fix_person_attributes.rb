@@ -2,12 +2,8 @@ class FixPersonAttributes < ActiveRecord::Migration[5.1]
   def up
     change_column_default :people, :origin_person_id, nil
 
-    Person.where(origin_person_id: -1).find_each do |p|
-      p.update_column(:origin_person_id, nil)
-    end
+    execute "UPDATE people SET origin_person_id = NULL WHERE ORIGIN_PERSON_ID = -1"
 
-    Person.where(origin_person_id: nil).find_each do |p|
-      p.update_column(:variation_name, nil)
-    end
+    execute "UPDATE people SET variation_name = NULL WHERE ORIGIN_PERSON_ID IS NULL"
   end
 end

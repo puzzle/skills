@@ -9,9 +9,9 @@ class PeopleController < CrudController
                           :nationality2, :title, :competence_notes, :company_id, :email,
                           :department_id, :shortname, :picture, :picture_cache,
                           { person_roles_attributes:
-                              [:role_id, :person_role_level_id, :percent, :id, :_destroy] },
-                          { language_skills_attributes:
-                              [:language, :level, :certificate, :id, :_destroy] }]
+                            [[:role_id, :person_role_level_id, :percent, :id, :_destroy]],
+                            language_skills_attributes:
+                            [[:language, :level, :certificate, :id, :_destroy]] }]
   layout 'person', only: [:show]
 
   def index

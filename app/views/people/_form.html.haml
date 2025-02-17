@@ -13,7 +13,7 @@
           = t "people.profile.upload_image"
         - else
           = t "people.profile.change_image"
-      %div.visually-hidden{"data-controller"=>"image-upload"}= form.file_field :picture, {  accept: "image/", "data-action" => "image-upload#changeImage", id: "avatar-uploader" }
+      %div.visually-hidden{"data-controller"=>"image-upload"}= form.file_field :picture, {  accept: "image/*", "data-action" => "image-upload#changeImage", id: "avatar-uploader" }
       = form.hidden_field :picture_cache
     %div.pe-5.col-xl-3.col-12
       %table.w-100
