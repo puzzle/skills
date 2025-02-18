@@ -159,9 +159,15 @@ de:
         trainee: Azubi
         unweighted: Nicht bewertet
     search:
+      no_skill: Skill zur Suche hinzufügen
       found_in: Gefunden in
       no_results: Keine Resultate
       search_results: Suchergebnisse
+      no_match:
+        only_skill: "Keine Resultate mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser."
+        first_skill: "Keine Resultate mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser und"
+        skill: "mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser und"
+        last_skill: "mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser."
     'true': Ja
   helpers:
     cancel: Abbrechen
