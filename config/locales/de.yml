@@ -158,6 +158,12 @@ de:
         senior: Senior
         trainee: Azubi
         unweighted: Nicht bewertet
+      levels_by_index:
+        1: Azubi
+        2: Junior
+        3: Professionell
+        4: Senior
+        5: Experte
     search:
       no_skill: Skill zur Suche hinzufügen
       found_in: Gefunden in

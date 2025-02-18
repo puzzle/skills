@@ -23,14 +23,14 @@
             %br
             - if i == 0
               - if i == filter_params.rows_count - 1
-                = ti("search.no_match.only_skill",skill: Skill.find(filter_params.skill_of_row(i)).title,level: ti("people_skills.levels.#{ExpertiseTopicSkillValue.skill_levels.key(filter_params.level_of_row(i)-1)}") , interest: filter_params.interest_of_row(i))
+                = ti("search.no_match.only_skill",skill: Skill.find(filter_params.skill_of_row(i)).title,level: ti("people_skills.levels_by_index.#{filter_params.level_of_row(i)}") , interest: filter_params.interest_of_row(i))
               - else
-                = ti("search.no_match.first_skill",skill: Skill.find(filter_params.skill_of_row(i)).title,level: ti("people_skills.levels.#{ExpertiseTopicSkillValue.skill_levels.key(filter_params.level_of_row(i)-1)}") , interest: filter_params.interest_of_row(i))
+                = ti("search.no_match.first_skill",skill: Skill.find(filter_params.skill_of_row(i)).title,level: ti("people_skills.levels_by_index.#{filter_params.level_of_row(i)}") , interest: filter_params.interest_of_row(i))
             - else
               - if i == filter_params.rows_count - 1
-                = ti("search.no_match.last_skill",skill: Skill.find(filter_params.skill_of_row(i)).title,level: ti("people_skills.levels.#{ExpertiseTopicSkillValue.skill_levels.key(filter_params.level_of_row(i)-1)}") , interest: filter_params.interest_of_row(i)).downcase_first
+                = ti("search.no_match.last_skill",skill: Skill.find(filter_params.skill_of_row(i)).title,level: ti("people_skills.levels_by_index.#{filter_params.level_of_row(i)}") , interest: filter_params.interest_of_row(i)).downcase_first
               - else
-                = ti("search.no_match.skill",skill: Skill.find(filter_params.skill_of_row(i)).title,level: ti("people_skills.levels.#{ExpertiseTopicSkillValue.skill_levels.key(filter_params.level_of_row(i)-1)}") , interest: filter_params.interest_of_row(i)).downcase_first
+                = ti("search.no_match.skill",skill: Skill.find(filter_params.skill_of_row(i)).title,level: ti("people_skills.levels_by_index.#{filter_params.level_of_row(i)}") , interest: filter_params.interest_of_row(i)).downcase_first
       - else
         - entries.each do | filtered_entry |
           %div.d-flex.flex-row.w-100.border-bottom
