@@ -1,4 +1,4 @@
-= form_with(url: person_path(format: 'odt'), method: 'get', data: {controller: "skills-filter"}) do |f|
+= form_with(url: person_path(format: 'odt'), method: 'get', data: {controller: "skills-filter", turbo: false}) do |f|
   .mb-2.w-100
     = f.label :location, class: "form-label w-100"
     = f.collection_select :location, BranchAdress.all, :id, :short_name, {selected: (BranchAdress.find_by(default_branch_adress: true) || BranchAdress.first).id}, class: "form-select w-100"
