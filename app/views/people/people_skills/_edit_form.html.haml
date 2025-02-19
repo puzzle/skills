@@ -6,7 +6,7 @@
       = ff.hidden_field :unrated, value: false, id: "unrated-field-#{ff.object.skill.id}"
     %div.col-2
       %div.d-flex.flex-column.align-items-center
-        = ff.label :level
+        = ff.label :level, for: "level_#{ff.object.skill_id}"
         = ff.label(ti("people_skills.levels.#{ExpertiseTopicSkillValue.skill_levels.key(ff.object.level - 1)}"), {"data-people-skills-target": "label"})
         - range_min = (ff.object.id.nil? || ff.object.level != 0) ? 1 : 0
         = ff.range_field :level, min: range_min, max: 5, class: "form-range w-75", id: "level_#{ff.object.skill_id}",
@@ -18,11 +18,11 @@
     %div.col-2
       %div.d-flex.flex-row.form-check
         = ff.check_box :certificate, { class: "form-check-input me-2", id: "certificate_#{ff.object.skill_id}", "data-action": "change->people-skills#rateSkill" }
-        = ff.label :certificate
+        = ff.label :certificate, for: "certificate_#{ff.object.skill_id}"
     %div.col-2
       %div.d-flex.flex-row.form-check
         = ff.check_box :core_competence, { class: "form-check-input me-2", id: "core_competence_#{ff.object.skill_id}", "data-action": "change->people-skills#rateSkill" }
-        = ff.label :core_competence
+        = ff.label :core_competence, for: "core_competence_#{ff.object.skill_id}"
         = ff.hidden_field :skill_id
     %div.col-2
       - if ff.object.id.nil?
