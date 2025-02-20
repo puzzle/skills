@@ -16,7 +16,9 @@
   %turbo-frame{id: "search-results"}
     %div.border.p-3.rounded-bottom.search-results
       - if entries.size == 0
-        - if filter_params.skill_ids.present? && !filter_params.skill_ids.empty?
+        - if filter_params.skill_ids.blank? || filter_params.skill_ids.empty? || !filter_params.skill_ids.grep("/^[1-9]\d*$/")
+          = ti "search.no_skill"
+        - else
           - for i in 0...filter_params.rows_count
             %br
             - if i == 0
@@ -29,8 +31,6 @@
                 = ti("search.no_match.last_skill",skill: Skill.find(filter_params.skill_of_row(i)).title,level: ti("people_skills.levels_by_index.#{filter_params.level_of_row(i)}") , interest: filter_params.interest_of_row(i)).downcase_first
               - else
                 = ti("search.no_match.skill",skill: Skill.find(filter_params.skill_of_row(i)).title,level: ti("people_skills.levels_by_index.#{filter_params.level_of_row(i)}") , interest: filter_params.interest_of_row(i)).downcase_first
-        - else
-          = ti "search.no_skill"
       - else
         - entries.each do | filtered_entry |
           %div.d-flex.flex-row.w-100.border-bottom
