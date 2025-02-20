@@ -154,7 +154,8 @@ fr:
         senior: Senior
         trainee: Apprenti
         unweighted: Non évalué
-      levels_by_index:
+      levels_by_id:
+        '0': Non évalué
         '1': Apprenti
         '2': Junior
         '3': Professionnel
@@ -163,12 +164,12 @@ fr:
     search:
       found_in: Trouvé dans
       no_match:
-        first_skill: Aucun résultat avec la compétence %{skill} au niveau %{level} ou supérieur et l'intérêt %{interest} ou plus grand et
-        last_skill: avec la compétence %{skill} au niveau %{level} ou supérieur et l'intérêt %{interest} ou plus grand.
-        only_skill: Aucun résultat avec la compétence %{skill} au niveau %{level} ou supérieur et l'intérêt %{interest} ou plus grand.
-        skill: avec la compétence %{skill} au niveau %{level} ou supérieur et l'intérêt %{interest} ou plus grand et
-      no_results: Pas de résultats
-      no_skill: Ajouter une compétence à la recherche
+        first_skill: Aucun résultat trouvé avec la compétence %{skill} au niveau %{level} ou supérieur et l'intérêt %{interest} ou plus et
+        last_skill: avec la compétence %{skill} au niveau %{level} ou supérieur et l'intérêt %{interest} ou plus.
+        only_skill: Aucun résultat trouvé avec la compétence %{skill} au niveau %{level} ou supérieur et l'intérêt %{interest} ou plus.
+        skill: avec la compétence %{skill} au niveau %{level} ou supérieur et l'intérêt %{interest} ou plus et
+      no_results: Aucun résultat
+      no_skill: Aucun résultat trouvé, veuillez ajouter une compétence à la recherche.
       search_results: Résultats de la recherche
     'true': Oui
   helpers:
