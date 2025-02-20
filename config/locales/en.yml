@@ -162,14 +162,14 @@ en:
         '5': Expert
     search:
       found_in: Found in
-      no_match:
-        first_skill: Keine Resultate mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser und
-        last_skill: mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser.
-        only_skill: Keine Resultate mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser.
-        skill: mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser und
       no_results: No results
-      no_skill: Skill zur Suche hinzufügen
       search_results: Search results
+      no_skill: Add a skill to the search
+      no_match:
+        first_skill: No results with the skill %{skill} at level %{level} or higher and interest %{interest} or greater and
+        last_skill: with the skill %{skill} at level %{level} or higher and interest %{interest} or greater.
+        only_skill: No results with the skill %{skill} at level %{level} or higher and interest %{interest} or greater.
+        skill: with the skill %{skill} at level %{level} or higher and interest %{interest} or greater and
     'true': 'Yes'
   helpers:
     cancel: Cancel
