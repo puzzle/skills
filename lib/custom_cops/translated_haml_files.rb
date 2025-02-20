@@ -1,5 +1,3 @@
-require 'rubocop'
-
 module CustomCops
   class TranslatedHamlFiles < RuboCop::Cop::Base
     MSG = 'Each line in a HAML file must start with `=`, `-`, or `%`.'.freeze
