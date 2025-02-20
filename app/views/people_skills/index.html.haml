@@ -16,7 +16,7 @@
   %turbo-frame{id: "search-results"}
     %div.border.p-3.rounded-bottom.search-results
       - if entries.size == 0
-        - if filter_params.skill_ids.blank? || filter_params.skill_ids.empty? || !filter_params.skill_ids.grep("/^[1-9]\d*$/")
+        - if filter_params.skill_ids.blank? || filter_params.skill_ids.empty? || filter_params.skill_ids.grep("/^[1-9]\d*$/")
           = ti "search.no_skill"
         - else
           - for i in 0...filter_params.rows_count
