@@ -154,10 +154,22 @@ it:
         senior: Senior
         trainee: Apprendista
         unweighted: Non valutato
+      levels_by_index:
+        1: Azubi
+        2: Junior
+        3: Professionell
+        4: Senior
+        5: Experte
     search:
       found_in: Trovato in
       no_results: Nessun risultato
       search_results: Risultati della ricerca
+      no_skill: Skill zur Suche hinzufügen
+      no_match:
+        only_skill: "Keine Resultate mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser."
+        first_skill: "Keine Resultate mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser und"
+        skill: "mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser und"
+        last_skill: "mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser."
     'true': Sì
   helpers:
     cancel: Annullamento
