@@ -16,9 +16,9 @@
   %turbo-frame{id: "search-results"}
     %div.border.p-3.rounded-bottom.search-results
       - if entries.size == 0
-        -if filter_params.skill_ids.present? || filter_params.skill_ids.empty?
+        - if filter_params.skill_ids.blank? || filter_params.skill_ids.empty?
           = ti "search.no_skill"
-        -else
+        - else
           - for i in 0...filter_params.rows_count
             %br
             - if i == 0
