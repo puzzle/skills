@@ -162,15 +162,14 @@ fr:
         '5': Expert
     search:
       found_in: Trouvé dans
-      no_results: Pas de résultats
-      search_results: Résultats de la recherche
-      no_skill: Ajouter une compétence à la recherche
       no_match:
         first_skill: Aucun résultat avec la compétence %{skill} au niveau %{level} ou supérieur et l'intérêt %{interest} ou plus grand et
         last_skill: avec la compétence %{skill} au niveau %{level} ou supérieur et l'intérêt %{interest} ou plus grand.
         only_skill: Aucun résultat avec la compétence %{skill} au niveau %{level} ou supérieur et l'intérêt %{interest} ou plus grand.
         skill: avec la compétence %{skill} au niveau %{level} ou supérieur et l'intérêt %{interest} ou plus grand et
-
+      no_results: Pas de résultats
+      no_skill: Ajouter une compétence à la recherche
+      search_results: Résultats de la recherche
     'true': Oui
   helpers:
     cancel: Annuler
