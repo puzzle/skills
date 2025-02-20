@@ -52,7 +52,7 @@ describe :people_skills do
       skill1 = "Bash"
       skill2 = "Angular"
       fill_out_row(skill1, 5, 3)
-      fill_out_row(skill2, 1, 4)
+      add_and_fill_out_row(skill2, 1, 4)
       expect(page).to have_text("Keine Resultate gefunden, mit dem Skill #{skill1} auf dem Level Experte oder höher und dem Interesse 3 oder grösser und mit dem Skill #{skill2} auf dem Level Azubi oder höher und dem Interesse 4 oder grösser.")
     end
 
