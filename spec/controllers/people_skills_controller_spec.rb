@@ -14,10 +14,10 @@ describe PeopleSkillsController do
       expect(response.body).to include("Bob Anderson")
     end
 
-    it 'should return no results if skill id is not given' do
+    it 'should return add skill to search if skill id is not given' do
       get :index, params: {"skill_id[]": nil, "level[]": 1, "interest[0]": 1}
       expect(response.code).to eq("200")
-      expect(response.body).to include("Keine Resultate")
+      expect(response.body).to include("Skill zur Suche hinzufügen")
     end
 
     it 'should get results over url too' do
