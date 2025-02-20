@@ -38,8 +38,7 @@ module PeopleSkillsHelpers
   end
 
   def validate_skill_level_label(level)
-    skill_level_key = ExpertiseTopicSkillValue.skill_levels.key(level-1)
-    skill_level_label = t("global.people_skills.levels_by_id.#{skill_level_key}")
+    skill_level_label = t("global.people_skills.levels_by_id.#{level}")
     expect(page).to have_selector('[data-people-skills-target="label"]', text: /#{skill_level_label}/i)
   end
 
