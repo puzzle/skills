@@ -158,9 +158,22 @@ de:
         senior: Senior
         trainee: Azubi
         unweighted: Nicht bewertet
+      levels_by_id:
+        '0': Nicht bewertet
+        '1': Azubi
+        '2': Junior
+        '3': Professionell
+        '4': Senior
+        '5': Experte
     search:
       found_in: Gefunden in
+      no_match:
+        first_skill: Keine Resultate gefunden, mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser und
+        last_skill: mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser.
+        only_skill: Keine Resultate gefunden, mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser.
+        skill: mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser und
       no_results: Keine Resultate
+      no_skill: Keine Resultate gefunden, fügen sie einen Skill zur Suche hinzu.
       search_results: Suchergebnisse
     'true': Ja
   helpers:
