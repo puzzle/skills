@@ -165,10 +165,10 @@ de:
         4: Senior
         5: Experte
     search:
-      no_skill: Skill zur Suche hinzufügen
       found_in: Gefunden in
       no_results: Keine Resultate
       search_results: Suchergebnisse
+      no_skill: Skill zur Suche hinzufügen
       no_match:
         only_skill: "Keine Resultate mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser."
         first_skill: "Keine Resultate mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser und"
