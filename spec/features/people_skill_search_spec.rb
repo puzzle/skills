@@ -16,14 +16,14 @@ describe :people_skills do
     end
 
     it 'Should set values of query parameters' do
-      visit people_skills_path({skill_id: [skill.id], level: [3], "interest[0]": 5})
+      visit people_skills_path({ skill_id: [skill.id], level: [3], "interest[0]": 5 })
       expect(page).to have_select("skill_id[]", selected: "Rails", visible: false)
       expect(page).to have_field("level[]", with: 3)
       expect(page).to have_field("interest[0]", with: 5, visible: false)
     end
 
     it 'Should return add skill to search if skill id is not set' do
-      visit people_skills_path({level: [3], "interest[0]": 5})
+      visit people_skills_path({ level: [3], "interest[0]": 5 })
       expect(page).to have_field("level[]", with: 3)
       expect(page).to have_field("interest[0]", with: 5, visible: false)
       expect(page).to have_text("Skill zur Suche hinzufügen")
@@ -42,8 +42,9 @@ describe :people_skills do
 
     it 'Should return no results if no user matches filters' do
       visit(people_skills_path)
-      fill_out_row("Bash", 5, 3)
-      expect(page).to have_text("Keine Resultate")
+      skill = "Bash"
+      fill_out_row(skill, 5, 3)
+      expect(page).to have_text("Keine Resultate mit dem Skill #{skill} auf dem Level Experte oder höher und dem Interesse 3 oder grösser.")
     end
 
     it 'Should be able to remove filter row and switch results accordingly' do
@@ -56,14 +57,12 @@ describe :people_skills do
       expect(page).to have_text("Hope Sunday")
       expect(page).to have_text("Wally Allround")
 
-
       # add skill filter
       add_and_fill_out_row("cunit", 1, 1)
 
       expect(page).to_not have_text("Alice Mante")
       expect(page).to have_text("Hope Sunday")
       expect(page).to have_text("Wally Allround")
-
 
       # remove skill filter
       page.find('#remove-row-2').click
@@ -105,6 +104,6 @@ describe :people_skills do
   end
 
   def last_row
-    page.all("[id^='filter-row-']").sort_by {|row| row[:id]}.last
+    page.all("[id^='filter-row-']").sort_by { |row| row[:id] }.last
   end
 end
