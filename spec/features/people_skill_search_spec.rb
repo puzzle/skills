@@ -22,11 +22,11 @@ describe :people_skills do
       expect(page).to have_field("interest[0]", with: 5, visible: false)
     end
 
-    it 'Should return no results if skill id is not set' do
+    it 'Should return add skill to search if skill id is not set' do
       visit people_skills_path({level: [3], "interest[0]": 5})
       expect(page).to have_field("level[]", with: 3)
       expect(page).to have_field("interest[0]", with: 5, visible: false)
-      expect(page).to have_text("Keine Resultate")
+      expect(page).to have_text("Skill zur Suche hinzufügen")
     end
 
     it 'Should return user which matches filters' do

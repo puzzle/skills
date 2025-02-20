@@ -155,21 +155,21 @@ en:
         trainee: Trainee
         unweighted: Not rated
       levels_by_index:
-        1: Trainee
-        2: Junior
-        3: Professional
-        4: Senior
-        5: Expert
+        '1': Trainee
+        '2': Junior
+        '3': Professional
+        '4': Senior
+        '5': Expert
     search:
       found_in: Found in
-      no_results: No results
-      search_results: Search results
-      no_skill: Skill zur Suche hinzufügen
       no_match:
-        only_skill: "Keine Resultate mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser."
-        first_skill: "Keine Resultate mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser und"
-        skill: "mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser und"
-        last_skill: "mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser."
+        first_skill: Keine Resultate mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser und
+        last_skill: mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser.
+        only_skill: Keine Resultate mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser.
+        skill: mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser und
+      no_results: No results
+      no_skill: Skill zur Suche hinzufügen
+      search_results: Search results
     'true': 'Yes'
   helpers:
     cancel: Cancel
