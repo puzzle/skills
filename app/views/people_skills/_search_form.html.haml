@@ -3,7 +3,7 @@
     - config = select_when_available(filter_params.skill_of_row(row_number))
     = form.collection_select "skill_id[]", Skill.all.order(:title), :id, :title, config, data:{"dropdown-target": "dropdown"},  onchange: "this.form.submit()"
   %div.w-25.d-flex.flex-column.align-items-center
-    %label.form-label.text-gray.fs-6{"data-skills-level-target": "label"}= ti "people_skills.levels_by_index.#{filter_params.level_of_row(row_number)}"
+    %label.form-label.text-gray.fs-6{"data-skills-level-target": "label"}= ti "people_skills.levels_by_id.#{filter_params.level_of_row(row_number)}"
     = form.range_field "level[]", min: 1, max: 5, value: filter_params.level_of_row(row_number), class: "form-range w-75",
                             "data-action": "change->skills-level#toggleLevel",
                             "data-skills-level-target": "switch", onchange: "this.form.submit()"
