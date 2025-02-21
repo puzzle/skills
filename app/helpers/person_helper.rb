@@ -82,6 +82,6 @@ module PersonHelper
   end
 
   def people_for_select
-    Person.all.map { |p| [p.name, person_path(p)] }
+    Person.all.map { |p| [p.name, person_path(p), {'data-html': "<a href='#{person_path(p)}' class='dropdown-option'>#{p.name}</a>" }] }
   end
 end

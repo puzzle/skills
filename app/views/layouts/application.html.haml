@@ -2,8 +2,7 @@
 %html
   %head
     // This disables the Turbo prefetch in development as it gets quite annoying when debugging
-    - if Rails.env.development?
-      %meta{:name => "turbo-prefetch", :content => "false"}/
+    %meta{:name => "turbo-prefetch", :content => "true"}/
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title PuzzleSkills
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/

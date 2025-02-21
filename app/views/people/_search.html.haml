@@ -2,7 +2,7 @@
   %div.d-flex.col-9.gap-3
     %span.col-6{"data-controller": "dropdown"}
       - selected_path = model_path_or_nil(person)
-      = select :person_id, :person, options_for_select(sorted_people, select_when_available(selected_path)), {prompt: person.nil?}, {data:{"dropdown-target": "dropdown" , action: "change->dropdown#handleChange"}}
+      = select :person_id, :person, options_for_select(sorted_people, select_when_available(selected_path)), {prompt: person.nil?}, {data:{"dropdown-target": "dropdown"}}
     %div.d-flex.align-items-center.text-gray
       = "#{t '.updated_at'}: #{@person&.last_updated_at.strftime("%d.%m.%Y")}" if @person&.last_updated_at
   %a.d-flex.justify-content-between#new-person-button

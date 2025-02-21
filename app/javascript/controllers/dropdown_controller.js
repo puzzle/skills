@@ -9,11 +9,13 @@ export default class extends Controller {
       return;
     
     new SlimSelect({
-          select: this.dropdownTarget
+      select: this.dropdownTarget,
+      events: {
+        beforeChange: (newVal) => {
+          Turbo.visit(newVal[0].value)
+          return false
+        }
+      },
     });
-  }
-
-  handleChange(event) {
-    window.location.href = event.target.value;
   }
 }

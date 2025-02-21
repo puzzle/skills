@@ -310,6 +310,13 @@ pzsh-topbar {
   opacity: 1;
 }
 
+.dropdown-option {
+  width: 100%;
+  display: block;
+  text-decoration: none;
+  color: black;
+}
+
 .dropdown-option-highlighted {
   background-color: #2c97a6;
 }
