@@ -19,7 +19,7 @@
 
   = turbo_frame_tag 'people-skills' do
     - Category.all_parents.each do |category|
-      %div.profile-header.mw-100.border-bottom.mt-4{id: category.title, "data-scroll-target": "scrollItem"}
+      %div.profile-header.mw-100.border-bottom.mt-4{id: category.title.parameterize, "data-scroll-target": "scrollItem"}
         = category.title
       - ([category] + category.children.to_a).each do |category_child|
         - people_skills_of_category = people_skills_of_category(category_child)

@@ -25,11 +25,11 @@ module PeopleSkillsHelpers
     people_skill = people_skill_from_skill_name(person, skill_name)
     skill_div = find("#default-skill-#{people_skill.skill.id}")
     within skill_div do
-      expect(page).to have_field('person_people_skills_attributes_0_level', with: people_skill.level)
+      expect(page).to have_field("level_#{people_skill.skill_id}", with: people_skill.level)
       validate_skill_level_label(people_skill.level)
       validate_interest(people_skill.interest)
-      expect(find("#person_people_skills_attributes_0_certificate").checked?).to eq people_skill.certificate
-      expect(find("#person_people_skills_attributes_0_core_competence").checked?).to eq people_skill.core_competence
+      expect(find("#certificate_#{people_skill.skill_id}").checked?).to eq people_skill.certificate
+      expect(find("#core_competence_#{people_skill.skill_id}").checked?).to eq people_skill.core_competence
     end
   end
 
