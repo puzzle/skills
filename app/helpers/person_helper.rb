@@ -111,4 +111,8 @@ module PersonHelper
   def append_ptime_employee_name(ptime_employee)
     "#{ptime_employee[:attributes][:firstname]} #{ptime_employee[:attributes][:lastname]}"
   end
+
+  def ptime_api_available?
+    Skills.ptime_available?
+  end
 end

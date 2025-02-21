@@ -4,6 +4,8 @@
       = select :person_id, :person, options_for_select(sorted_people, select_when_available(person)), {prompt: person.nil?}, {data: { "dropdown-target" => "dropdown", action: "change->dropdown#handleChange"}}
     %div.d-flex.align-items-center.text-gray
       = "#{t 'profile.updated_at'}: #{@person&.last_updated_at.strftime("%d.%m.%Y")}" if @person&.last_updated_at
-  %a.d-flex.justify-content-between#new-person-button{href: "/people/new"}
-    %img.pe-1{src: "/assets/plus-lg.svg"}
-    Neues Profil
+
+  - unless ptime_api_available?
+    %a.d-flex.justify-content-between#new-person-button{href: "/people/new"}
+      %img.pe-1{src: "/assets/plus-lg.svg"}
+      Neues Profil
