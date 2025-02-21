@@ -28,6 +28,7 @@ module Ptime
         end
       end
       set_additional_attributes(person, ptime_employee)
+      set_full_name(person, ptime_employee)
       person.save!
       person
     end
@@ -40,13 +41,15 @@ module Ptime
       person.nationality = ptime_employee_nationalities[0]
       person.nationality2 = ptime_employee_nationalities[1]
 
-      first_name = ptime_employee[:attributes][:firstname].presence || ''
-      last_name = ptime_employee[:attributes][:lastname].presence || ''
-      person[:name] = "#{first_name} #{last_name}".strip
-
       # temporary until the Ptime API gets updated
       person.birthdate = DateTime.new(2000, 2, 3)
       person.location = 'Boston, MA'
+    end
+
+    def set_full_name(person, ptime_employee)
+      first_name = ptime_employee[:attributes][:firstname].presence || ''
+      last_name = ptime_employee[:attributes][:lastname].presence || ''
+      person[:name] = "#{first_name} #{last_name}".strip
     end
   end
 end
