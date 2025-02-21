@@ -24,7 +24,7 @@ module AuthHelper
   end
 
   def ptime_available?
-    ActiveModel::Type::Boolean.new.cast(ENV.fetch('PTIME_API_ACCESSIBLE', true))
+    ActiveModel::Type::Boolean.new.cast(ENV.fetch('PTIME_API_ACCESSIBLE'))
   end
 
   def language_selector

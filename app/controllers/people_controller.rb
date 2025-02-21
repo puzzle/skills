@@ -25,14 +25,8 @@ class PeopleController < CrudController
 
     @person = Person.includes(projects: :project_technologies,
                               person_roles: [:role, :person_role_level]).find(params.fetch(:id))
-    super
-  end
 
-  def new
     super
-    %w[DE EN FR].each do |language|
-      @person.language_skills.push(LanguageSkill.new({ language: language }))
-    end
   end
 
   def create
