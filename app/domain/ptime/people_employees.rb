@@ -1,8 +1,8 @@
 module Ptime
   class PeopleEmployees
-    ATTRIBUTES_MAPPING = { full_name: :name, shortname: :shortname, email: :email, marital_status:
-      :marital_status, graduation: :title, birthdate: :birthdate,
-                           location: :location }.freeze
+    # Need to add 'city: :location & birthdate: :birthdate'
+    ATTRIBUTES_MAPPING = { firstname: :name, shortname: :shortname, email: :email, marital_status:
+      :marital_status, graduation: :title,  location: :location }.freeze
     def find_or_create(ptime_employee_id)
       raise 'No ptime_employee_id provided' unless ptime_employee_id
 
@@ -39,6 +39,10 @@ module Ptime
       ptime_employee_nationalities = ptime_employee[:attributes][:nationalities]
       person.nationality = ptime_employee_nationalities[0]
       person.nationality2 = ptime_employee_nationalities[1]
+
+      # temporary until the Ptime API gets updated
+      person.birthdate = DateTime.new(2000, 2, 3)
+      person.location = 'Boston, MA'
     end
   end
 end
