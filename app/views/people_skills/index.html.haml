@@ -23,16 +23,7 @@
             - skill = find_skill_title_by_id(filter_params.skill_of_row(i))
             - level = ti("people_skills.levels_by_id.#{filter_params.level_of_row(i)}")
             - interest = filter_params.interest_of_row(i)
-            - if i == 0
-              - if i == filter_params.rows_count - 1
-                = ti("search.no_match.only_skill",skill: skill ,level: level, interest: interest)
-              - else
-                = ti("search.no_match.first_skill",skill: skill ,level: level, interest: interest)
-            - else
-              - if i == filter_params.rows_count - 1
-                = ti("search.no_match.last_skill",skill: skill ,level: level, interest: interest).downcase_first
-              - else
-                = ti("search.no_match.skill",skill: skill ,level: level, interest: interest).downcase_first
+            = ti(get_no_match_translation(i), skill: skill ,level: level, interest: interest)
       - else
         - entries.each do | filtered_entry |
           %div.d-flex.flex-row.w-100.border-bottom
