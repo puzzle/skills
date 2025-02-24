@@ -53,7 +53,7 @@ describe :people_skills do
       skill2 = "Rails"
       fill_out_row(skill1, 5, 3)
       add_and_fill_out_row(skill2, 1, 4)
-      expect(page).to have_text("Keine Resultate gefunden, mit dem Skill #{skill1} auf dem Level Experte oder höher und dem Interesse 3 oder grösser und mit dem Skill #{skill2} auf dem Level Azubi oder höher und dem Interesse 4 oder grösser.")
+      expect(page).to have_text("Keine Resultate gefunden, mit dem Skill #{skill1} auf dem Level Experte oder höher und dem Interesse 3 oder grösser und Mit dem Skill #{skill2} auf dem Level Azubi oder höher und dem Interesse 4 oder grösser.")
     end
 
     it 'Should be able to remove filter row and switch results accordingly' do
