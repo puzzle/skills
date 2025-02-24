@@ -20,7 +20,7 @@
           = ti "search.no_skill"
         - else
           - for i in 0...filter_params.rows_count
-            - skill = Skill.find(filter_params.skill_of_row(i)).title
+            - skill = find_skill_title_by_id(filter_params.skill_of_row(i))
             - level = ti("people_skills.levels_by_id.#{filter_params.level_of_row(i)}")
             - interest = filter_params.interest_of_row(i)
             - if i == 0
