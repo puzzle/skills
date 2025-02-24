@@ -24,6 +24,6 @@ describe Ptime::Client do
         stub_env_var("LAST_PTIME_ERROR", 4.minutes.ago.to_s)
         expect {
             Ptime::Client.new.request(:get, "employees", { per_page: 1000 })
-        }.to raise_error(CustomExceptions::PTimeClientError)
+        }.to raise_error(CustomExceptions::PTimeTemporarilyUnavailableError)
     end
 end
