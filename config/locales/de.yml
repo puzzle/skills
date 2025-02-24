@@ -173,7 +173,7 @@ de:
         only_skill: Keine Resultate gefunden, mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser.
         skill: mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser und
       no_results: Keine Resultate
-      no_skill: Keine Resultate gefunden, fügen sie einen Skill zur Suche hinzu.
+      no_skill: Keine Resultate gefunden, fügen Sie einen Skill zur Suche hinzu.
       search_results: Suchergebnisse
     'true': Ja
   helpers:
