@@ -3,7 +3,7 @@
 class PeopleSkillsController < CrudController
   include ParamConverters
 
-  helper_method :filter_params
+  helper_method :filter_params, :find_skill_title_by_id
 
   def entries
     return [] if filter_params.skill_ids.empty?
@@ -25,6 +25,10 @@ class PeopleSkillsController < CrudController
 
   def filter_params
     PeopleSkills::FilterParams.new(params)
+  end
+
+  def find_skill_title_by_id(id)
+    Skill.find(id).title
   end
 
   def extract_required_search_values
