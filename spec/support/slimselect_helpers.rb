@@ -51,6 +51,13 @@ module SlimselectHelpers
 
   def ss_select(selector, option_value)
     call(selector, "setSelected", option_value)
+
+    # Manually call the beforeChange event because we manually update the slim select object, which doesn't trigger the event callback
+
+    # Check if option_value is a path
+    if option_value.starts_with? '/'
+      evaluate_script("document.querySelector('#person_id_person').slim.events.beforeChange([{value: '#{option_value}', html: '<a></a>'}])")
+    end
   end
 
   def ss_search(selector, text)
