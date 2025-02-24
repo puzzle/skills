@@ -12,7 +12,7 @@
             
             %div
                 = sf.label :category, {hidden:@category_hidden}
-                = sf.collection_select :category_id, Category.where.not(parent_id: nil), :id, :name_with_parent, {}, class: "form-select", hidden: @category_hidden, data: {"people-skills-target": "categoriesDropdown"}
+                = sf.collection_select :category_id, Category.where.not(parent_id: nil).sort_by(&:position), :id, :name_with_parent, {}, class: "form-select", hidden: @category_hidden, data: {"people-skills-target": "categoriesDropdown"}
         
         = f.label :level
         %div.d-flex.gap-2
