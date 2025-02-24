@@ -37,18 +37,14 @@ class PeopleSkillsController < CrudController
   end
 
   def get_no_match_translation(index)
-    if index == 0
-      if index == filter_params.rows_count - 1
-        "search.no_match.only_skill"
-      else
-        "search.no_match.first_skill"
-      end
+    if index.zero? && index == filter_params.rows_count - 1
+      'search.no_match.only_skill'
+    elsif index.zero? && index
+      'search.no_match.first_skill'
+    elsif index == filter_params.rows_count - 1
+      'search.no_match.last_skill'
     else
-      if index == filter_params.rows_count - 1
-        "search.no_match.last_skill"
-      else
-        "search.no_match.skill"
-      end
+      'search.no_match.skill'
     end
   end
 end
