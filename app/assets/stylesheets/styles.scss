@@ -310,11 +310,16 @@ pzsh-topbar {
   opacity: 1;
 }
 
-.dropdown-option {
+.dropdown-option-link {
   width: 100%;
   display: block;
   text-decoration: none;
   color: black;
+  padding: 5px 7px;
+}
+
+.ss-main .dropdown-option-link {
+  padding: 0;
 }
 
 .dropdown-option-highlighted {
