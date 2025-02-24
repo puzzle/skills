@@ -23,8 +23,4 @@ export default class extends Controller {
       },
     });
   }
-
-  handleChange(e) {
-    Turbo.visit(e.target.value);
-  }
 }
