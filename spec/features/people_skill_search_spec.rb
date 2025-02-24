@@ -26,7 +26,7 @@ describe :people_skills do
       visit people_skills_path({ level: [3], "interest[0]": 5 })
       expect(page).to have_field("level[]", with: 3)
       expect(page).to have_field("interest[0]", with: 5, visible: false)
-      expect(page).to have_text("Keine Resultate gefunden, fügen sie einen Skill zur Suche hinzu.")
+      expect(page).to have_text("Keine Resultate gefunden, fügen Sie einen Skill zur Suche hinzu.")
     end
 
     it 'Should return user which matches filters' do
