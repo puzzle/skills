@@ -1,7 +1,7 @@
 module SlimselectHelpers
   def select_from_slim_select(selector, option_text, create_if_missing=false)
     ss_open(selector)
-    if(create_if_missing)
+    if create_if_missing
       ss_create(selector, option_text)
     else
       ss_select_text(selector, option_text)

@@ -12,8 +12,13 @@ export default class extends Controller {
       select: this.dropdownTarget,
       events: {
         beforeChange: (newVal) => {
-          Turbo.visit(newVal[0].value)
-          return false
+          newVal = newVal[0];
+
+          // Check if dropdown element is a link
+          if(newVal.html.startsWith("<a")) {
+            Turbo.visit(newVal.value);
+            return false;
+          }
         }
       },
     });
