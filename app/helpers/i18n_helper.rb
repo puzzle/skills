@@ -18,7 +18,11 @@ module I18nHelper
     defaults = inheritable_translation_defaults(key, partial)
     variables[:default] ||= defaults
     variables[:model] ||= model_class&.model_name&.human if respond_to?(:model_class)
-    variables.has_key?(:upcase) ? t(defaults.shift, **variables).downcase_first : t(defaults.shift, **variables).upcase_first
+    if variables.has_key?(:upcase) && !variables[:upcase]
+      t(defaults.shift, **variables).downcase_first
+    else
+      t(defaults.shift, **variables).upcase_first
+    end
   end
 
   alias ti translate_inheritable
