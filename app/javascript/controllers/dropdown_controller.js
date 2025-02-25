@@ -23,4 +23,11 @@ export default class extends Controller {
       },
     });
   }
+
+  handleChange(event) {
+    const value = event.target.value;
+    if(value.startsWith("/")) {
+      Turbo.visit(value);
+    }
+  }
 }
