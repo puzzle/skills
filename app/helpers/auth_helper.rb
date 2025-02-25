@@ -28,10 +28,9 @@ module AuthHelper
       language = I18nData.languages(lang_code)[lang_code.upcase]
       [
         language.capitalize, url_for(locale: lang_code),
-        {
-          'data-html': "<a href='#{url_for(locale: lang_code)}' class='dropdown-option-link'>#{language}</a>",
-          class: 'p-0'
-        }
+        { 'data-html':
+            "<a href='#{url_for(locale: lang_code)}' class='dropdown-option-link'>#{language}</a>",
+          class: 'p-0' }
       ]
     end
     options_for_select(languages, url_for(locale: I18n.locale))
