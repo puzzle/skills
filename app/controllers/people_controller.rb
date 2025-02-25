@@ -15,9 +15,7 @@ class PeopleController < CrudController
   layout 'person', only: [:show]
 
   def index
-    @current_user = Person.find_by(name: current_auth_user.name)
     return flash[:alert] = I18n.t('errors.messages.profile-not-found') if params[:alert].present?
-
     super
   end
 

@@ -205,9 +205,9 @@ de:
         skills: Skills
     index:
       choose_create_person: Wähle eine Person aus oder erfasse ein neues Profil
-      welcome: Willkommen bei
       export_cv: Schneller Export Ihres Lebenslaufs (verwendet Bern als Standardstandort)
       profile: Gehe zu deinem Profil
+      welcome: Willkommen bei
     new:
       personals: Personalien
     profile:
