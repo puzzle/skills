@@ -328,7 +328,6 @@ describe :people do
   end
 
   describe 'Click Quick loading Buttons' do
-
     it 'shows profile after clicking button' do
       sign_in auth_users(:admin), scope: :auth_user
       visit people_path
@@ -345,12 +344,11 @@ describe :people do
       expect(page).to have_content("CV-Export")
     end
 
-    it 'shows2 export cv dialog after clicking button' do
+    it 'does not shows buttons if the logged-in user has no profile' do
       sign_in auth_users(:user), scope: :auth_user
       visit people_path
       expect(page).to have_no_content(t("people.index.export_cv"))
       expect(page).to have_no_content(t("people.index.profile"))
-
     end
   end
 end
