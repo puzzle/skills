@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   scope 'status' do
     get 'health', to: 'status#health'
     get 'readiness', to: 'status#readiness'
+    get 'sentry_error', to: 'status#sentry_error'
   end
 
   get root to: redirect(path: "/people")
