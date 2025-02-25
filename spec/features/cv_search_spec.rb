@@ -35,7 +35,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
     it 'should open person when clicking result' do
       fill_in 'cv_search_field', with: person.projects.first.technology
       check_search_results(Person.human_attribute_name(:projects))
-      first("a", text: person.name).click();
+      first("a", text: person.name).click
       expect(page).to have_current_path(person_path(person))
 
       visit(cv_search_index_path)
@@ -68,7 +68,7 @@ end
 
 def check_search_results(field_name)
   within('turbo-frame#search-results') {
-    expect(page).to have_content(person.name)
-    expect(page).to have_content(field_name)
+    expect(page).to have_link(person.name)
+    expect(page).to have_link(field_name)
   }
 end
