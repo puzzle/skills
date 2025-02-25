@@ -11,7 +11,8 @@
   %h4.banner-sub-text.mt-3
     = ti("choose_create_person")
 %div.row.justify-content-start
-  %div.col-2.p-0.me-3
-    = button_to ti('profile'), person_path(@current_user), method: 'get' ,class: "btn btn-outline-primary h-100 w-100", form: { class: "h-100 m-0" }
-  %div.col-2.p-0
-    = button_to ti('export_cv'), export_cv_person_path(@current_user), method: 'get' ,class: "btn btn-outline-primary w-100", data: { turbo_frame: "remote_modal" }
+  - if !@current_user.nil?
+    %div.col-2.p-0.me-3
+      = button_to ti('profile'), person_path(@current_user.id), method: 'get' ,class: "btn btn-outline-primary h-100 w-100", form: { class: "h-100 m-0" }
+    %div.col-2.p-0
+      = button_to ti('export_cv'), export_cv_person_path(@current_user.id), method: 'get' ,class: "btn btn-outline-primary w-100", data: { turbo_frame: "remote_modal" }

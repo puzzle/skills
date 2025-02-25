@@ -326,4 +326,35 @@ describe :people do
       expect(page).to have_selector('.alert', text: I18n.t("crud.destroy.flash.success", model: longmax))
     end
   end
+
+  describe 'Click Quick loading Buttons' do
+
+    before(:each) do
+      sign_in auth_users(:user), scope: :auth_user
+    end
+
+    it 'shows profile after clicking button' do
+      sign_in auth_users(:user), scope: :auth_user
+      visit people_path
+      expect(page).to have_content(t("people.index.profile"))
+      click_button(t("people.index.profile"))
+      expect(page).to have_content(t("people.profile.personals"))
+    end
+
+    it 'shows export cv dialog after clicking button' do
+      sign_in auth_users(:user), scope: :auth_user
+      visit people_path
+      expect(page).to have_content(t("people.index.export_cv"))
+      click_button(t("people.index.export_cv"))
+      expect(page).to have_content("CV-Export")
+    end
+
+    it 'shows2 export cv dialog after clicking button' do
+      sign_in auth_users(:admin), scope: :auth_user
+      visit people_path
+      expect(page).to have_no_content(t("people.index.export_cv"))
+      expect(page).to have_no_content(t("people.index.profile"))
+
+    end
+  end
 end
