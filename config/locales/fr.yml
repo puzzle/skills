@@ -202,6 +202,8 @@ fr:
     index:
       choose_create_person: Sélectionne une personne ou saisis un nouveau profil
       welcome: Bienvenue chez
+      export_cv: Exportation rapide de votre CV (utilise Berne comme emplacement par défaut)
+      profile: Aller à votre profil
     new:
       personals: Données personnelles
     profile:

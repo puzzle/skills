@@ -202,6 +202,8 @@ it:
     index:
       choose_create_person: Selezionare una persona o creare un nuovo profilo
       welcome: Benvenuti a
+      export_cv: Esporta rapidamente il tuo CV (usa Berna come posizione predefinita)
+      profile: Vai al tuo profilo
     new:
       personals: Dati personali
     profile:
