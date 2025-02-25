@@ -16,6 +16,7 @@ class PeopleController < CrudController
 
   def index
     return flash[:alert] = I18n.t('errors.messages.profile-not-found') if params[:alert].present?
+
     super
   end
 
