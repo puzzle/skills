@@ -14,7 +14,7 @@ Bundler.require(*Rails.groups)
 
 module Skills
   def self.ptime_available?
-    ActiveModel::Type::Boolean.new.cast(ENV.fetch('PTIME_API_ACCESSIBLE', true))
+    ActiveModel::Type::Boolean.new.cast(ENV.fetch('PTIME_API_ACCESSIBLE', false))
   end
 
   class Application < Rails::Application
