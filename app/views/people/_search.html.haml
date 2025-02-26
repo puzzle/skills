@@ -1,7 +1,7 @@
 %div.d-flex.align-items-center.justify-content-between
   %div.d-flex.col-9.gap-3
     %span.col-6{"data-controller": "dropdown"}
-      = select :person_id, :person, options_for_select(sorted_people, select_when_available(person)), {prompt: person.nil?}, {data: { "dropdown-target" => "dropdown", action: "change->dropdown#handleChange"}}
+      = select :person_id, :person, options_for_select(sorted_people, select_when_available(model_path_or_nil(person))), {prompt: person.nil?}, {data: { "dropdown-target" => "dropdown", action: "change->dropdown#handleChange"}}
     %div.d-flex.align-items-center.text-gray
       = "#{t 'profile.updated_at'}: #{@person&.last_updated_at.strftime("%d.%m.%Y")}" if @person&.last_updated_at
 
