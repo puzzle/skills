@@ -2,8 +2,8 @@
 
 class PeopleSkillsController < CrudController
   include ParamConverters
-
-  helper_method :filter_params, :find_skill_title_by_id, :get_no_match_translation
+  include I18nHelper
+  helper_method :filter_params, :no_results_message
 
   def entries
     return [] if filter_params.skill_ids.empty?
@@ -13,9 +13,9 @@ class PeopleSkillsController < CrudController
     return [] if required_search_values.empty?
 
     base = PeopleSkill.includes(:person, skill: [
-                                  :category,
-                                  :people, { people_skills: :person }
-                                ])
+      :category,
+      :people, { people_skills: :person }
+    ])
     PeopleSkillsFilter.new(
       base, true, required_search_values[1], required_search_values[2], required_search_values[0]
     ).scope
@@ -32,19 +32,20 @@ class PeopleSkillsController < CrudController
     filtered_array.reject { |arr| arr.first == '' }.transpose
   end
 
-  def find_skill_title_by_id(id)
-    Skill.find(id).title
+  def no_results_message
+    if filter_params.skill_ids.empty? || filter_params.skill_ids.any? { |x| x.to_i <= 0 }
+      ti 'search.no_skill'
+    else
+      skills = filter_params.skill_ids.map { |skill_id| Skill.find(skill_id).title }
+      levels = filter_params.levels.map { |level_id| ti("people_skills.levels_by_id.#{level_id}") }
+      interests = filter_params.interests
+      skills.zip(levels, interests).map do |skill, level, interest|
+        ti("search.no_match", skill: skill, level: level, interest: interest)
+      end
+    end
   end
 
-  def get_no_match_translation(index)
-    if index.zero? && index == filter_params.rows_count - 1
-      'search.no_match.only_skill'
-    elsif index.zero? && index
-      'search.no_match.first_skill'
-    elsif index == filter_params.rows_count - 1
-      'search.no_match.last_skill'
-    else
-      'search.no_match.skill'
-    end
+  def controller
+    self
   end
 end
