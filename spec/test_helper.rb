@@ -1,5 +1,4 @@
 ENV['RAILS_ENV'] ||= 'test'
-ENV['PTIME_API_ACCESSIBLE']=false
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
