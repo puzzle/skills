@@ -62,5 +62,9 @@ module PeopleSkills
         end.to_h.to_query
       end
     end
+
+    def skill_level_interest
+      [skill_ids, levels, interests]
+    end
   end
 end
