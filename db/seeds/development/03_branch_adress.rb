@@ -15,6 +15,15 @@ branch_adress_information = [
   "Mittelgasse 1, CH-3600 Thun / Tel. +41 66 666 66 66",
 ]
 
-seeder.seed_branch_adresses(branch_adress_short_names, branch_adress_information)
+branch_adress_default_branch_adress = [
+  true,
+  false,
+  false,
+  false,
+  false,
+  false
+]
+
+seeder.seed_branch_adresses(branch_adress_short_names, branch_adress_information, branch_adress_default_branch_adress)
 
 
