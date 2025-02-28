@@ -18,7 +18,7 @@ export default class extends Controller {
           if(newVal.html.startsWith("<a")) {
             Turbo.visit(newVal.value);
 
-            // Make currently selected element does not follow link when clicked on, so opening the dropdown is possible
+            // Make currently selected element not follow link when clicked on, so opening the dropdown is possible
             if(slimSelectDropdown.getSelected()[0]) {
               document.querySelector('.ss-main .dropdown-option-link').href = "javascript:void(0)";
             }
@@ -29,16 +29,13 @@ export default class extends Controller {
       },
     });
 
-    // Make currently selected element does not follow link when clicked on, so opening the dropdown is possible
+    // Make currently selected element not follow link when clicked on, so opening the dropdown is possible
     if(slimSelectDropdown.getSelected()[0]?.startsWith("/")) {
       document.querySelector('.ss-main .dropdown-option-link').href = "javascript:void(0)";
     }
   }
 
-  handleChange(event) {
-    const value = event.target.value;
-    if(value.startsWith("/")) {
-      document.location.href = value;
-    }
+  navigateOnChange(event) {
+    document.location.href = event.target.value;
   }
 }

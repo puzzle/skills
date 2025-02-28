@@ -25,7 +25,7 @@
           %ul.navbar.text-gray
             -# Language selector
             %li.d-flex.align-items-center.cursor-pointer.border-start.border-end.h-100.ps-2.pe-2{"data-controller": "dropdown"}
-              = select :i18n, :language, language_selector, {}, class: "form-control", data:{action: "change->dropdown#handleChange"}
+              = select :i18n, :language, language_selector, {}, class: "form-control", data:{action: "change->dropdown#navigateOnChange"}
             -# Devise/Mockdata
             - if Rails.env.development?
               %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
