@@ -36,6 +36,6 @@ export default class extends Controller {
   }
 
   navigateOnChange(event) {
-    document.location.href = event.target.value;
+    window.location.href = event.target.value;
   }
 }
