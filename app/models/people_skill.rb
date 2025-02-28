@@ -64,6 +64,6 @@ class PeopleSkill < ApplicationRecord
   end
 
   def to_s
-    skill.title
+    skill&.title
   end
 end
