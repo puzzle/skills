@@ -35,15 +35,19 @@ describe 'Advanced Trainings', type: :feature, js:true do
     it 'should open person when clicking result' do
       fill_in 'cv_search_field', with: person.projects.first.technology
       check_search_results(Person.human_attribute_name(:projects))
-      first("a", text: person.name).click();
+      # Tests are flaky in firefox
+      sleep 0.3
+      click_link person.name
       expect(page).to have_current_path(person_path(person))
 
       visit(cv_search_index_path)
       education_location = person.educations.first.location
       fill_in 'cv_search_field', with: education_location
       check_search_results(Person.human_attribute_name(:educations))
+      # Tests are flaky in firefox
+      sleep 0.3
       click_link(Person.human_attribute_name(:educations))
-      expect(current_url).to end_with(person_path(person, q: education_location))
+      expect(page).to have_current_path(person_path(person, q: education_location))
     end
 
     it 'should only display results when length of search-text is > 3' do
@@ -68,7 +72,7 @@ end
 
 def check_search_results(field_name)
   within('turbo-frame#search-results') {
-    expect(page).to have_content(person.name)
-    expect(page).to have_content(field_name)
+    expect(page).to have_link(person.name)
+    expect(page).to have_link(field_name)
   }
 end

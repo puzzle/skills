@@ -8,12 +8,29 @@ export default class extends Controller {
     if (!this.hasDropdownTarget)
       return;
     
-    new SlimSelect({
-          select: this.dropdownTarget
+    const slimSelectDropdown = new SlimSelect({
+      select: this.dropdownTarget,
+      events: {
+        beforeChange: (newVal) => {
+          newVal = newVal[0];
+
+          // Check if dropdown element is a link
+          if(newVal.html.startsWith("<a")) {
+            Turbo.visit(newVal.value);
+
+            return false;
+          }
+        }
+      },
     });
+
+    // Make currently selected element not follow link when clicked on, so opening the dropdown is possible
+    if(slimSelectDropdown.getSelected()[0]?.startsWith("/")) {
+      document.querySelector('.ss-main .dropdown-option-link').href = "javascript:void(0)";
+    }
   }
 
-  handleChange(event) {
+  navigateOnChange(event) {
     window.location.href = event.target.value;
   }
 }
