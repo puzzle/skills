@@ -19,12 +19,12 @@ describe 'Skill Form', type: :feature, js:true do
     select @portfolio, from: 'skill_portfolio'
     click_button 'Skill erstellen'
     # Check for the skill names instead of the amount
-      expect(page).to have_content('Bash')
-      expect(page).to have_content('cunit')
-      expect(page).to have_content('ember')
-      expect(page).to have_content('JUnit')
-      expect(page).to have_content('Rails')
-      expect(page).to have_content('New Skill')
+    expect(page).to have_content('Bash')
+    expect(page).to have_content('cunit')
+    expect(page).to have_content('ember')
+    expect(page).to have_content('JUnit')
+    expect(page).to have_content('Rails')
+    expect(page).to have_content('New Skill')
 
     within('.alert-success') do |success_banner|
       expect(success_banner).to have_content(t('crud.create.flash.success', model: Skill.find_by(title: 'New Skill')))
