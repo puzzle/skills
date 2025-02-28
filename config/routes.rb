@@ -24,8 +24,6 @@ Rails.application.routes.draw do
 
 
   scope "/:locale", locale: LOCALE_REGEX do
-    get '/:locale' => redirect("%{locale}/people")
-
     resources :skills do
       collection do
         get 'export', to: 'skills#export'
@@ -66,6 +64,8 @@ Rails.application.routes.draw do
         patch 'people-skills', to: 'people/people_skills#update'
       end
     end
+
+    get '*', to: redirect("404")
   end
   match '*path', to: redirect("/#{I18n.locale}/%{path}"), :via => [:get, :post]
 
