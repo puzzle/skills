@@ -24,6 +24,8 @@ Rails.application.routes.draw do
 
 
   scope "/:locale", locale: LOCALE_REGEX do
+    get '/:locale' => redirect("%{locale}/people")
+
     resources :skills do
       collection do
         get 'export', to: 'skills#export'
