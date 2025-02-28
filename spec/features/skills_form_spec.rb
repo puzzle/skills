@@ -25,6 +25,10 @@ describe 'Skill Form', type: :feature, js:true do
       expect(page).to have_content('JUnit')
       expect(page).to have_content('Rails')
       expect(page).to have_content('New Skill')
+
+    within('.alert-success') do |success_banner|
+      expect(success_banner).to have_content(t('crud.create.flash.success', model: Skill.find_by(title: 'New Skill')))
+    end
   end
 
   it 'displays error messages when present' do
