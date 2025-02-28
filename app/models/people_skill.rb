@@ -62,4 +62,8 @@ class PeopleSkill < ApplicationRecord
     self.certificate = false
     self.core_competence = false
   end
+
+  def to_s
+    skill.title
+  end
 end

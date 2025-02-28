@@ -30,4 +30,8 @@ class Skill < ApplicationRecord
   scope :list, -> { order(:title) }
 
   scope :default_set, -> { where(default_set: true) }
+
+  def to_s
+    title
+  end
 end
