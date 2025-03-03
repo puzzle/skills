@@ -1,0 +1,25 @@
+{
+    "data": [
+      {
+        "id": 33,
+        "type": "employee",
+        "attributes": {
+          "shortname": "PFI",
+          "firstname": "Peterson",
+          "lastname": "Findus",
+          "full_name": "Peterson Findus",
+          "email": "peterson@example.com",
+          "marital_status": "single",
+          "nationalities": [
+            "ZW"
+          ],
+          "graduation": "Cat caretaker",
+          "department_shortname": "CAT",
+          "employment_roles": [],
+          "is_employed" : true,
+          "birthdate" : "12.12.1958",
+          "location" : "Bern"
+        }
+      }
+    ]
+}

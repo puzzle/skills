@@ -23,6 +23,10 @@ module AuthHelper
     AuthConfig.keycloak? || Rails.env.test?
   end
 
+  def ptime_available?
+    ActiveModel::Type::Boolean.new.cast(ENV.fetch('PTIME_API_ACCESSIBLE'))
+  end
+
   def language_selector
     languages = I18n.available_locales.map { |e| e.to_s }.map do |lang_code|
       [language(lang_code).capitalize, url_for(locale: lang_code)]
