@@ -33,6 +33,17 @@ describe SkillsFilter do
       expect(filtered_skills[0].title).to eq('Rails')
     end
 
+    ["Web Components", "WebComponents", "web components", "webcomponents", " w e b co  mpo ne n   ts"].each do |query|
+      it 'search of skill dropdown is space insensitive' do
+        filter = SkillsFilter.new(Skill.all, nil, query, nil)
+        filtered_skills = filter.scope
+
+        expect(filtered_skills.count).to eq(2)
+        expect(filtered_skills[0].title).to eq('Web Components')
+        expect(filtered_skills[1].title).to eq('WebComponents')
+      end
+    end
+
     it 'filters skills by default set' do
       filter = SkillsFilter.new(Skill.all, nil, nil, 'new')
       filtered_skills = filter.scope
