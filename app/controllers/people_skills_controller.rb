@@ -13,9 +13,9 @@ class PeopleSkillsController < CrudController
     return [] if required_search_values.empty?
 
     base = PeopleSkill.includes(:person, skill: [
-      :category,
-      :people, { people_skills: :person }
-    ])
+                                  :category,
+                                  :people, { people_skills: :person }
+                                ])
     PeopleSkillsFilter.new(
       base, true, required_search_values[1], required_search_values[2], required_search_values[0]
     ).scope
@@ -36,12 +36,21 @@ class PeopleSkillsController < CrudController
     if filter_params.skill_ids.empty?
       ti 'search.no_skill'
     else
-      skills = filter_params.skill_ids.map { |skill_id| Skill.find(skill_id).title }
-      levels = filter_params.levels.map { |level_id| ti("people_skills.levels_by_id.#{level_id}") }
-      interests = filter_params.interests
-      skills.zip(levels, interests).map do |skill, level, interest|
-        ti("search.no_match", skill: skill, level: level, interest: interest)
-      end
+      no_match_message
+    end
+  end
+
+  def no_match_message
+    skills = filter_params.skill_ids.map { |skill_id| Skill.find(skill_id).title }
+    levels = filter_params.levels.map { |level_id| ti("people_skills.levels_by_id.#{level_id}") }
+    interests = filter_params.interests
+    "#{ti('search.no_results')} #{map_skill_level_interest_to_s(skills, levels,
+                                                                interests).to_sentence}"
+  end
+
+  def map_skill_level_interest_to_s(skills, levels, interests)
+    skills.zip(levels, interests).map do |skill, level, interest|
+      ti('search.no_match', skill: skill, level: level, interest: interest).downcase_first
     end
   end
 

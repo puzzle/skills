@@ -163,12 +163,8 @@ it:
         '5': Esperto
     search:
       found_in: Trovato in
-      no_match:
-        first_skill: Nessun risultato trovato con la competenza %{skill} al livello %{level} o superiore e l'interesse %{interest} o maggiore e
-        last_skill: con la competenza %{skill} al livello %{level} o superiore e l'interesse %{interest} o maggiore.
-        only_skill: Nessun risultato trovato con la competenza %{skill} al livello %{level} o superiore e l'interesse %{interest} o maggiore.
-        skill: con la competenza %{skill} al livello %{level} o superiore e l'interesse %{interest} o maggiore e
-      no_results: Nessun risultato
+      no_match: Con l'abilità %{skill} al livello %{level} o superiore e l'interesse %{interest} o maggiore
+      no_results: Nessun risultato trovato
       no_skill: Nessun risultato trovato, aggiungi una competenza alla ricerca.
       search_results: Risultati della ricerca
     'true': Sì
