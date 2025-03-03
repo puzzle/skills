@@ -62,6 +62,13 @@ RSpec.configure do |config|
 
   config.infer_spec_type_from_file_location!
 
+  config.before(:each) do
+    stub_env_variables_and_request
+  end
+
+  show_logs = ENV.fetch('SHOW_LOGS', false)
+  config.before { allow($stdout).to receive(:puts) } unless show_logs
+
   # Controller helper
   config.include(JsonMacros, type: :controller)
   config.include(JsonAssertion, type: :controller)
@@ -73,13 +80,20 @@ RSpec.configure do |config|
 
   # Helpers from gems
   config.include(Devise::Test::IntegrationHelpers, type: :feature)
+  config.include(Devise::Test::IntegrationHelpers, type: :request)
   config.include(Devise::Test::ControllerHelpers, type: :controller)
   config.include(ActionView::RecordIdentifier, type: :feature)
 
   # Custom helpers
+  ## Global helpers
+  config.include(PtimeHelpers)
+  config.include(JsonHelpers)
+
+  ## Feature helpers
   config.include(PersonRelationsHelpers, type: :feature)
   config.include(SlimselectHelpers, type: :feature)
   config.include(PeopleSkillsHelpers, type: :feature)
+  config.include(PtimeHelpers)
   config.include(UtilitiesHelpers)
 
   config.infer_spec_type_from_file_location!

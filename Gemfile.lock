@@ -129,11 +129,16 @@ GEM
     connection_pool (2.5.0)
     countries (7.1.1)
       unaccent (~> 0.3)
+    crack (1.0.0)
+      bigdecimal
+      rexml
     crass (1.0.6)
     cssbundling-rails (1.4.1)
       railties (>= 6.0.0)
     csv (3.3.2)
     database_cleaner (2.1.0)
+    daemons (1.4.1)
+    database_cleaner (2.0.2)
       database_cleaner-active_record (>= 2, < 3)
     database_cleaner-active_record (2.2.0)
       activerecord (>= 5.a)
@@ -181,6 +186,7 @@ GEM
       rainbow
       rubocop (>= 1.0)
       sysexits (~> 1.1)
+    hashdiff (1.1.0)
     hashie (5.0.0)
     highline (3.1.2)
       reline
@@ -504,6 +510,10 @@ GEM
     version_gem (1.1.4)
     warden (1.2.9)
       rack (>= 2.0.9)
+    webmock (3.23.1)
+      addressable (>= 2.8.0)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
     websocket (1.2.11)
     websocket-driver (0.7.7)
       base64
@@ -533,6 +543,7 @@ DEPENDENCIES
   countries
   cssbundling-rails
   csv
+  daemons
   database_cleaner
   devise
   dotenv
@@ -585,6 +596,7 @@ DEPENDENCIES
   stimulus-rails
   turbo-rails
   tzinfo-data
+  webmock
 
 BUNDLED WITH
    2.4.10
