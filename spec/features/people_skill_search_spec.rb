@@ -26,7 +26,7 @@ describe :people_skills do
       visit people_skills_path({ level: [3], "interest[0]": 5 })
       expect(page).to have_field("level[]", with: 3)
       expect(page).to have_field("interest[0]", with: 5, visible: false)
-      expect(page).to have_text("Keine Resultate gefunden, fügen Sie einen Skill zur Suche hinzu.")
+      expect(page).to have_text("Füge einen Skill zur Suche hinzu.")
     end
 
     it 'Should return user which matches filters' do
@@ -44,7 +44,7 @@ describe :people_skills do
       visit(people_skills_path)
       skill = "Bash"
       fill_out_row(skill, 5, 3)
-      expect(page).to have_text("Keine Resultate gefunden, mit dem Skill #{skill} auf dem Level Experte oder höher und dem Interesse 3 oder grösser.")
+      expect(page).to have_text("Keine Resultate gefunden mit dem Skill #{skill} auf dem Level Experte oder höher und dem Interesse 3 oder grösser.")
     end
 
     it 'Should return no results if no user matches multiple filters' do
@@ -53,7 +53,7 @@ describe :people_skills do
       skill2 = "Rails"
       fill_out_row(skill1, 5, 3)
       add_and_fill_out_row(skill2, 1, 4)
-      expect(page).to have_text("Keine Resultate gefunden, mit dem Skill #{skill1} auf dem Level Experte oder höher und dem Interesse 3 oder grösser und mit dem Skill #{skill2} auf dem Level Azubi oder höher und dem Interesse 4 oder grösser.")
+      expect(page).to have_text("Keine Resultate gefunden mit dem Skill #{skill1} auf dem Level Experte oder höher und dem Interesse 3 oder grösser und mit dem Skill #{skill2} auf dem Level Azubi oder höher und dem Interesse 4 oder grösser.")
     end
 
     it 'Should be able to remove filter row and switch results accordingly' do

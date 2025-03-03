@@ -45,7 +45,7 @@ class PeopleSkillsController < CrudController
     levels = filter_params.levels.map { |level_id| ti("people_skills.levels_by_id.#{level_id}") }
     interests = filter_params.interests
     "#{ti('search.no_results')} #{map_skill_level_interest_to_s(skills, levels,
-                                                                interests).to_sentence}"
+                                                                interests).to_sentence}."
   end
 
   def map_skill_level_interest_to_s(skills, levels, interests)
