@@ -58,7 +58,6 @@ class PeopleController < CrudController
               disposition: content_disposition('attachment', filename)
   end
 
-
   private
 
   def fetch_entries
