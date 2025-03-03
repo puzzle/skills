@@ -10,6 +10,7 @@ class SkillsFilter
     @default_set = default_set
   end
 
+  # rubocop:disable Metrics/MethodLength
   def scope
     filtered_entries = filter_by_default_set
     if category.present?
@@ -17,10 +18,15 @@ class SkillsFilter
                                          .where(categories: { parent_id: category })
     end
     if title.present?
-      filtered_entries = filtered_entries.where('lower(skills.title) like lower(?)', "%#{title}%")
+
+      filtered_entries = filtered_entries.where(
+        "regexp_replace(lower(skills.title), '\\s', '', 'g') like lower(?)",
+        "%#{title.gsub(/\s+/, '')}%"
+      )
     end
     filtered_entries.order(:title)
   end
+  # rubocop:enable Metrics/MethodLength
 
   private
 
