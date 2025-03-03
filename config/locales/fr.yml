@@ -201,7 +201,7 @@ fr:
         skills: Compétences
     index:
       choose_create_person: Sélectionne une personne ou saisis un nouveau profil
-      default_location: 'utilise %{default_location} comme emplacement par défaut'
+      default_location: utilise %{default_location} comme emplacement par défaut
       export_cv: Exportation rapide de votre CV
       profile: Aller à votre profil
       welcome: Bienvenue chez
