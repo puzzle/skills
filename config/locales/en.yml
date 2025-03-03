@@ -163,12 +163,8 @@ en:
         '5': Expert
     search:
       found_in: Found in
-      no_match:
-        first_skill: No results found with the skill %{skill} at level %{level} or higher and interest %{interest} or greater and
-        last_skill: with the skill %{skill} at level %{level} or higher and interest %{interest} or greater.
-        only_skill: No results found with the skill %{skill} at level %{level} or higher and interest %{interest} or greater.
-        skill: with the skill %{skill} at level %{level} or higher and interest %{interest} or greater and
-      no_results: No results
+      no_match: With the skill %{skill} at level %{level} or higher and the interest %{interest} or greater
+      no_results: No results found
       no_skill: No results found, please add a skill to the search.
       search_results: Search results
     'true': 'Yes'
