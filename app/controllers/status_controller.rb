@@ -16,6 +16,10 @@ class StatusController < ApplicationController
     render json: { status: status, message: message }, status: http_code
   end
 
+  def sentry_error
+    1 / 0
+  end
+
   private
 
   def assess_readiness

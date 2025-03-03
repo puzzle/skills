@@ -11,6 +11,7 @@
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
+    = javascript_include_tag "application", "https://unpkg.com/@puzzleitc/puzzle-shell/dist/bundle.js", type: "module"
     = favicon_link_tag "favicon.png"
   %body.d-flex.justify-content-center{"data-controller": "skills-empty-space"}
     %div.content{"data-skills-empty-space-target": "container"}
@@ -20,11 +21,11 @@
             %div.d-flex
               %div.mb-1.mt-1
                 %img{:src=> "/assets/logo.svg",:height=>"32"}
-              %text.d-flex.align-items-end.ms-2.small= "5.0.0"
+              %text.d-flex.align-items-end.ms-2.small= "5.1.0"
           %ul.navbar.text-gray
             -# Language selector
             %li.d-flex.align-items-center.cursor-pointer.border-start.border-end.h-100.ps-2.pe-2{"data-controller": "dropdown"}
-              = select :i18n, :language, language_selector, {}, class: "form-control", data:{action: "change->dropdown#handleChange"}
+              = select :i18n, :language, language_selector, {}, class: "form-control", data:{action: "change->dropdown#navigateOnChange"}
             -# Devise/Mockdata
             - if Rails.env.development?
               %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
