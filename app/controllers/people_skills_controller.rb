@@ -33,7 +33,7 @@ class PeopleSkillsController < CrudController
   end
 
   def no_results_message
-    if filter_params.skill_ids.empty? || filter_params.skill_ids.any? { |x| x.to_i <= 0 }
+    if filter_params.skill_ids.empty?
       ti 'search.no_skill'
     else
       skills = filter_params.skill_ids.map { |skill_id| Skill.find(skill_id).title }

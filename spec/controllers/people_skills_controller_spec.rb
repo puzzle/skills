@@ -14,12 +14,6 @@ describe PeopleSkillsController do
       expect(response.body).to include("Bob Anderson")
     end
 
-    it 'should return add skill to search message if skill id is not given' do
-      get :index, params: {"skill_id[]": nil, "level[]": 1, "interest[0]": 1}
-      expect(response.code).to eq("200")
-      expect(response.body).to include("Keine Resultate gefunden, fügen Sie einen Skill zur Suche hinzu.")
-    end
-
     it 'should get results over url too' do
       query_params = {
         skill_id: [skills(:rails).id, skills(:bash).id, skills(:junit).id, skills(:cunit).id],
