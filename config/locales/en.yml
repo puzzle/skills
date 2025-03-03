@@ -201,7 +201,8 @@ en:
         skills: Skills
     index:
       choose_create_person: Select a person or create a new profile
-      export_cv: Quick Export your CV (uses Bern as default location)
+      default_location: 'uses %{default_location} as default location'
+      export_cv: Quick Export your CV
       profile: Go to your profile
       welcome: Welcome to
     new:

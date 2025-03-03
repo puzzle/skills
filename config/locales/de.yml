@@ -205,7 +205,8 @@ de:
         skills: Skills
     index:
       choose_create_person: Wähle eine Person aus oder erfasse ein neues Profil
-      export_cv: Schneller Export deines Lebenslaufs (verwendet %{default_location} als Standardstandort)
+      default_location: 'verwendet %{default_location} als Standardstandort'
+      export_cv: Schneller Export deines Lebenslaufs
       profile: Gehe zu deinem Profil
       welcome: Willkommen bei
     new:

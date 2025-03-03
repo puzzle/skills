@@ -1,3 +1,3 @@
 MiniMagick.configure do |config|
-  config.graphicsmagick = Rails.env.production?
+  config.graphicsmagick = true
 end
