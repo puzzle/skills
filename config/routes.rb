@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   get root to: redirect(path: "/people")
 
 
-  scope "/:locale", locale: LOCALE_REGEX do
+  scope "(:locale)", locale: LOCALE_REGEX do
     get '/:locale' => redirect("%{locale}/people")
 
     resources :skills do
@@ -67,7 +67,6 @@ Rails.application.routes.draw do
       end
     end
   end
-  match '*path', to: redirect("/#{I18n.locale}/%{path}"), :via => [:get, :post]
 
 
   # Outdated api routes

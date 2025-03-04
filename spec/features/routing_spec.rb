@@ -10,10 +10,10 @@ describe 'Routing', type: :feature, js: true do
 
   describe "Check auto rerouting" do
     ROUTES = {
-      "/": "/de/people",
+      "/": "/people",
       "/de/": "/de/people",
-      "/people": "/de/people",
-      "/people_skills": "/de/people_skills",
+      "/people": "/people",
+      "/people_skills": "/people_skills",
       "/en": "/en/people",
     }
 
