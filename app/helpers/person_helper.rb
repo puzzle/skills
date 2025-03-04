@@ -92,8 +92,4 @@ module PersonHelper
       ]
     end
   end
-
-  def default_branch_adress
-    BranchAdress.find_by(default_branch_adress: true) || BranchAdress.first
-  end
 end
