@@ -71,7 +71,6 @@ class PeopleController < CrudController
     @person ||= Person.find(params[:person_id])
   end
 
-
   def default_branch_adress
     BranchAdress.find_by(default_branch_adress: true) || BranchAdress.first
   end
