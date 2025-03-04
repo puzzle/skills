@@ -21,6 +21,9 @@ describe :people do
         click_button 'Skill erstellen'
       end
       validate_people_skill(person, skill.title)
+      within('.alert-success') do |success_banner|
+        expect(success_banner).to have_content(t('crud.create.flash.success', model: skill))
+      end
     end
 
     it 'Create new skill and add to people-skills' do
@@ -35,6 +38,9 @@ describe :people do
         click_button 'Skill erstellen'
       end
       validate_people_skill(person, skill_name)
+      within('.alert-success') do |success_banner|
+        expect(success_banner).to have_content(t('crud.create.flash.success', model: people_skill_from_skill_name(person, skill_name)))
+      end
     end
 
     it 'Fail while add skill not selecting skill' do
