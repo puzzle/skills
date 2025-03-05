@@ -1,3 +1,3 @@
 MiniMagick.configure do |config|
-  config.graphicsmagick = false
+  config.graphicsmagick = true
 end
