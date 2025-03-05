@@ -63,6 +63,15 @@ de:
         year_from: Startdatum
       skill:
         category: Kategorie
+      certificate:
+        name: Name
+        points_value: Punkte
+        description: Beschreibung
+        provider: Herausgeber
+        exam_duration: Prüfungsdauer in Minuten
+        type_of_exam: Prüfungsart
+        study_time: Lernaufwand in Tagen
+        notes: Notizen
     models:
       activity: Station
       advanced_training:
@@ -92,6 +101,9 @@ de:
       skill:
         one: Skill
         other: Skills
+      certificate:
+        one: Zertifikat
+        other: Zertifikate
   admin:
     global:
       link:

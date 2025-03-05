@@ -63,6 +63,15 @@ fr:
         year_from: Date de début
       skill:
         category: Catégorie
+      certificate:
+        name: Nom
+        points_value: Points
+        description: Description
+        provider: Éditeur
+        exam_duration: Durée de l'examen en minutes
+        type_of_exam: Type d'examen
+        study_time: Temps d'étude en jours
+        notes: Notes
     models:
       activity: Station
       advanced_training: Formation continue
@@ -88,6 +97,9 @@ fr:
       skill:
         one: Compétence
         other: Compétences
+      certificate:
+        one: Certificat
+        other: Certificats
   admin:
     global:
       link:
