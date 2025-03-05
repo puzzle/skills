@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_05_121251) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_05_074320) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -69,6 +69,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_05_121251) do
     t.datetime "updated_at", precision: nil, null: false
     t.integer "position"
     t.index ["parent_id"], name: "index_categories_on_parent_id"
+  end
+
+  create_table "certificates", force: :cascade do |t|
+    t.string "name", null: false
+    t.decimal "points_value", null: false
+    t.string "description", null: false
+    t.string "provider"
+    t.integer "exam_duration", null: false
+    t.string "type_of_exam", null: false
+    t.integer "study_time", null: false
+    t.text "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "companies", force: :cascade do |t|
