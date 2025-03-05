@@ -108,6 +108,17 @@ de:
     global:
       link:
         list: Admin Panel
+  certificates:
+    global:
+      table:
+        description: Beschreibung
+        exam_duration: Prüfungsdauer in Minuten
+        name: Name
+        notes: Notizen
+        points_value: Punkte
+        provider: Herausgeber
+        study_time: Lernaufwand in Tagen
+        type_of_exam: Prüfungsart
   cv_search:
     global:
       search_placeholder: CVs durchsuchen...
