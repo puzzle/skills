@@ -150,11 +150,11 @@ fr:
       remove: Supprimer
       save_new: Enregistrer & Nouveau
     navbar:
+      certificates: Certificats
       cv_search: Recherche de CV
       profile: Profil
       skill_search: Recherche de compétences
       skillset: Kit de compétences
-      certificates: Certificats
     new: Nouveau
     people_skills:
       certificate: Certificat

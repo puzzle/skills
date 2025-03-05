@@ -144,11 +144,11 @@ en:
       remove: Remove
       save_new: Save & New
     navbar:
+      certificates: Certificates
       cv_search: CV search
       profile: Profile
       skill_search: Skill search
       skillset: Skillset
-      certificates: Certificates
     new: New
     people_skills:
       certificate: Certificate

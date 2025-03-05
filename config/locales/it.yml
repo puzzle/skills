@@ -150,11 +150,11 @@ it:
       remove: Rimuovere
       save_new: Risparmi e novità
     navbar:
+      certificates: Certificati
       cv_search: Ricerca di CV
       profile: Profilo
       skill_search: Ricerca di competenze
       skillset: Competenze
-      certificates: Certificati
     new: Nuovo
     people_skills:
       certificate: Certificato
