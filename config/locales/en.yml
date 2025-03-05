@@ -10,8 +10,14 @@ en:
         description: Description
         year_from: Start date
       certificate:
+        description: Description
         exam_duration: Exam duration in minutes
+        name: Name
+        notes: Notes
+        points_value: Points
+        provider: Provider
         study_time: Study time in days
+        type_of_exam: Type of exam
       education:
         location: Training location
         title: Education
