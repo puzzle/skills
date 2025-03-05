@@ -1,0 +1,9 @@
+aws-certification:
+  name: AWS certification
+  points_value: 1
+  description: An AWS certification
+  provider: AWS Training and Certification
+  exam_duration: 120
+  type_of_exam: Multiple Choice
+  study_time: 5
+  notes: Some notes about this certificate
