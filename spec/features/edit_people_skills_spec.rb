@@ -32,7 +32,6 @@ describe :people do
       within("#default-skill-#{ember.skill.id}") do
         select_star_rating(2)
         select_level(3, "person[people_skills_attributes][0][level]")
-        find('#person_people_skills_attributes_0_certificate').hover
       end
 
       # Check if changes were saved
