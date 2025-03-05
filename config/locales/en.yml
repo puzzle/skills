@@ -63,6 +63,9 @@ en:
         year_from: Start date
       skill:
         category: Category
+      certificate:
+        exam_duration: Exam duration in minutes
+        study_time: Study time in days
     models:
       activity: Station
       advanced_training: Further training
@@ -88,6 +91,9 @@ en:
       skill:
         one: Skill
         other: Skills
+      certificate:
+        one: Certificate
+        other: Certificates
   admin:
     global:
       link:
