@@ -45,7 +45,6 @@ Rails.application.routes.draw do
       resources :departments
       resources :roles
       resources :companies
-      resources :certificates
     end
 
     resources :people do
@@ -67,6 +66,8 @@ Rails.application.routes.draw do
         patch 'people-skills', to: 'people/people_skills#update'
       end
     end
+
+    resources :certificates
   end
 
 
