@@ -45,6 +45,7 @@ Rails.application.routes.draw do
       resources :departments
       resources :roles
       resources :companies
+      resources :certificates
     end
 
     resources :people do
