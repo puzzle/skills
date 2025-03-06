@@ -41,6 +41,23 @@ bob:
   department: sys
   shortname: BA
 
+admin:
+  birthdate: 2014-03-02 13:15:11
+  location: Bern
+  marital_status: <%= Person.marital_statuses[:single] %>
+  name: Andreas Admin
+  nationality: CH
+  nationality2: SE
+  roles: [software-engineer]
+  title: BSc in Cleaning
+  competence_notes: |
+    Java
+    Ruby
+  company: firma
+  email: admin@example.com
+  department: sys
+  shortname: BA
+
 alice:
   birthdate: 2016-10-20 13:15:11
   location: London

@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 8.0'
 
+gem 'abbrev'
 gem 'active_model_serializers'
 gem 'activerecord-postgresql-adapter'
 gem 'annotate'

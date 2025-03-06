@@ -5,6 +5,8 @@ class PeopleController < CrudController
   include ParamConverters
   include PeopleControllerConcerns
 
+  helper_method :default_branch_adress
+
   self.permitted_attrs = [:birthdate, :location, :marital_status, :updated_by, :name, :nationality,
                           :nationality2, :title, :competence_notes, :company_id, :email,
                           :department_id, :shortname, :picture, :picture_cache,
@@ -67,5 +69,9 @@ class PeopleController < CrudController
 
   def person
     @person ||= Person.find(params[:person_id])
+  end
+
+  def default_branch_adress
+    BranchAdress.find_by(default_branch_adress: true) || BranchAdress.first
   end
 end
