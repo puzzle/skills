@@ -82,14 +82,36 @@ module PersonHelper
   end
 
   def fetch_people_data
-    all_skills_people = Person.all.map { |p| [p.name, person_path(p, locale: I18n.locale)] }
+    all_skills_people = fetch_local_people_data
     return all_skills_people unless Skills.ptime_available?
 
+    fetch_ptime_people_data
+  rescue CustomExceptions::PTimeClientError
+    handle_ptime_error
+    all_skills_people
+  end
+
+  private
+
+  def fetch_local_people_data
+    Person.all.map do |p|
+      [
+        p.name, person_path(p),
+        {
+          'data-html': "<a href='#{person_path(p)}' class='dropdown-option-link'>#{p.name}</a>",
+          class: 'p-0'
+        }
+      ]
+    end
+  end
+
+  def fetch_ptime_people_data
     ptime_employees = Ptime::Client.new.request(:get, 'employees', { per_page: 1000 })
     build_people_dropdown(ptime_employees)
-  rescue CustomExceptions::PTimeClientError
+  end
+
+  def handle_ptime_error
     ENV['LAST_PTIME_ERROR'] = DateTime.current.to_s
-    all_skills_people
   end
 
   def build_people_dropdown(ptime_employees)
