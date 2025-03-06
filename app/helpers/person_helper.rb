@@ -96,9 +96,9 @@ module PersonHelper
   def fetch_local_people_data
     Person.all.map do |p|
       [
-        p.name, person_path(p, locale: I18n.locale),
+        p.name, person_path(p),
         {
-          'data-html': "<a href='#{person_path(p, locale: I18n.locale)}' class='dropdown-option-link'>#{p.name}</a>",
+          'data-html': "<a href='#{person_path(p)}' class='dropdown-option-link'>#{p.name}</a>",
           class: 'p-0'
         }
       ]
