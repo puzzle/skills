@@ -1,15 +1,15 @@
 require 'rails_helper'
 RSpec.describe PersonHelper, type: :helper do
 
-  describe '#fetch_ptime_or_skills_data' do
+  describe '#fetch_people_data' do
 
     it 'should send request to ptime api' do
       allow(Skills).to receive(:ptime_available?).and_return(true)
       skills_people = helper.fetch_people_data
       expected = [
-        ["Longmax Smith", "/de/people/new?ptime_employee_id=33"],
-        ["Alice Mante", "/de/people/new?ptime_employee_id=21"],
-        ["Charlie Ford", "/de/people/new?ptime_employee_id=45"]
+        ["Longmax Smith", "people/new?ptime_employee_id=33"],
+        ["Alice Mante", "people/new?ptime_employee_id=21"],
+        ["Charlie Ford", "people/new?ptime_employee_id=45"]
       ]
       expect(skills_people).to eq(expected)
     end
@@ -19,13 +19,13 @@ RSpec.describe PersonHelper, type: :helper do
 
       skills_people = helper.fetch_people_data
       expected = [
-        ["Bob Anderson", "/de/people/902541635"],
-        ["Alice Mante", "/de/people/663665735"],
-        ["ken", "/de/people/155397742"],
-        ["Charlie Ford", "/de/people/786122151"],
-        ["Wally Allround", "/de/people/790004949"],
-        ["Hope Sunday", "/de/people/247095502"],
-        ["Longmax Smith", "/de/people/169654640"]
+        ["Bob Anderson", "people/902541635"],
+        ["Alice Mante", "people/663665735"],
+        ["ken", "people/155397742"],
+        ["Charlie Ford", "people/786122151"],
+        ["Wally Allround", "people/790004949"],
+        ["Hope Sunday", "people/247095502"],
+        ["Longmax Smith", "people/169654640"]
       ]
       expect(skills_people).to eq(expected)
     end
