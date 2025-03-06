@@ -167,7 +167,7 @@ de:
         '5': Experte
     search:
       found_in: Gefunden in
-      no_match: Mit dem Skill %{skill} auf dem Level %{level} oder höher und dem Interesse %{interest} oder grösser
+      no_match: 'Keine Resultate gefunden mit der folgenden Suche: '
       no_results: Keine Resultate gefunden
       no_skill: Füge einen Skill zur Suche hinzu.
       search_results: Suchergebnisse

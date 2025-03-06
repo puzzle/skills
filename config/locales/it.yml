@@ -163,7 +163,7 @@ it:
         '5': Esperto
     search:
       found_in: Trovato in
-      no_match: Con l'abilità %{skill} al livello %{level} o superiore e l'interesse %{interest} o maggiore
+      no_match: 'Nessun risultato trovato per la seguente ricerca: '
       no_results: Nessun risultato trovato
       no_skill: Nessun risultato trovato, aggiungi una competenza alla ricerca.
       search_results: Risultati della ricerca

@@ -2,8 +2,7 @@
 
 class PeopleSkillsController < CrudController
   include ParamConverters
-  include I18nHelper
-  helper_method :filter_params, :no_results_message
+  helper_method :filter_params, :no_match_message
 
   def entries
     return [] if filter_params.skill_ids.empty?
@@ -32,29 +31,16 @@ class PeopleSkillsController < CrudController
     filtered_array.reject { |arr| arr.first == '' }.transpose
   end
 
-  def no_results_message
-    if filter_params.skill_ids.empty?
-      ti 'search.no_skill'
-    else
-      no_match_message
-    end
-  end
-
   def no_match_message
     skills = filter_params.skill_ids.map { |skill_id| Skill.find(skill_id).title }
-    levels = filter_params.levels.map { |level_id| ti("people_skills.levels_by_id.#{level_id}") }
+    levels = filter_params.levels
     interests = filter_params.interests
-    "#{ti('search.no_results')} #{map_skill_level_interest_to_s(skills, levels,
-                                                                interests).to_sentence}."
+    map_skill_level_interest_to_s(skills, levels, interests).to_sentence
   end
 
   def map_skill_level_interest_to_s(skills, levels, interests)
     skills.zip(levels, interests).map do |skill, level, interest|
-      ti('search.no_match', skill: skill, level: level, interest: interest).downcase_first
+      "#{skill} (#{level}/#{interest})"
     end
-  end
-
-  def controller
-    self
   end
 end

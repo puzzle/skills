@@ -163,7 +163,7 @@ en:
         '5': Expert
     search:
       found_in: Found in
-      no_match: With the skill %{skill} at level %{level} or higher and the interest %{interest} or greater
+      no_match: 'No Results found for the following search: '
       no_results: No results found
       no_skill: No results found, please add a skill to the search.
       search_results: Search results
