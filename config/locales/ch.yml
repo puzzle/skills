@@ -1,0 +1,274 @@
+---
+ch:
+  activerecord:
+    attributes:
+      activity:
+        description: Firmäangabä und Beschribig vor Tätigkeit
+        role: Rouä
+        year_from: Startdatum
+      advanced_training:
+        description: Beschribig
+        year_from: Startdatum
+      education:
+        location: Usbiudigsort
+        title: Usbiudig
+        year_from: Startdatum
+      people_skill:
+        certificate: Zertifikat
+        core_competence: chärnkompetenz
+        level: Level
+        skill: Skill
+      person:
+        activities:
+          one: Station
+          other: Stationen
+        advanced_trainings:
+          one: Witerbiudig
+          other: Witerbiudigä
+        birthdate: Geburtsdatum
+        competence_notes: Notizä Member
+        department: Organisationsiheit
+        dual_citizen: Doppubürger
+        educations:
+          one: Usbiudig$
+          other: Usbiudigä
+        email: Email
+        languages:
+          one: Sprach
+          other: Sprachä
+        location: Ort
+        marital_status: Ziviustand
+        name: Namä
+        nationality: Nationalität
+        person_roles:
+          one: Funktion
+          other: Funktionä
+        picture: Biud
+        projects:
+          one: Projekt
+          other: Projektä
+        roles:
+          one: Funktion
+          other: Funktionä
+        shortname: churznamä
+        skills:
+          one: Skill
+          other: Skills
+        title: Abschluss
+      project:
+        description: Beschribig
+        role: Rouä u Ufgabe
+        technology: Igsetzti Technologiä
+        title: Projekt
+        year_from: Startdatum
+      skill:
+        category: Kategorie
+    models:
+      activity: Station
+      advanced_training:
+        one: Witerbiudig
+        other: Witerbiudigä
+      category:
+        one: Kategorie
+        other: Kategoriä
+      company:
+        one: Firma
+        other: Firmä
+      department:
+        one: Organisationsiheit
+        other: Organisationseiheitä
+      education:
+        one: Usbiudig
+        other: Usbiudigä
+      people_skill:
+        one: Skill
+        other: Skills
+      project:
+        one: Projekt
+        other: Projektä
+      role:
+        one: Rouä
+        other: Rouänä
+      skill:
+        one: Skill
+        other: Skills
+  admin:
+    global:
+      link:
+        list: Admin Panel
+  cv_search:
+    global:
+      search_placeholder: CVs dürsuechä...
+      search_skills: Skills äbäfaus dürsuechä
+  errors:
+    messages:
+      cannot_remove: darf nid glöscht wärdä.
+      invalid_date_range: muess vorem Änddatum si.
+      max_size_10MB: darf nid grösser aus 10MB si.
+      max_size_error: darf nid grösser aus 10MB si.
+      profile-not-found: Profiu isch nid gfungä wordä.
+      valid_percent_range: muess zwüschä 0 u 200 liegä.
+  global:
+    date:
+      from: Vom
+      month: Monat
+      till_today: Bis Hüt
+      to: Bis
+      today: Hüt
+      with_enddate: mitem Änddatum
+      year: Jahr
+    devise:
+      admin: "(Admin)"
+      admin_panel: Admin Berich
+      devise: Devise
+      mockdata: Mockdata
+      no_omniauth_providers: Ä Fähler ist uftretä, es si ke Omniauth-Abieter verfügbar, bitte kontaktieren Sie dr Administrator.
+      sign_in: Amäudä
+      sign_in_with: Mit %{provider} amäudä
+      sign_out: Abmäudä
+    'false': Nei
+    filter:
+      all: Aui
+      default: Default
+      new: Neui
+      rated: Bewärtet
+      search: "%{target} suechä"
+      unrated: Nid Bewärtet
+    link:
+      cancel: Abbrächä
+      download: Abeladä
+      export: Exportierä
+      remove: Entfärnä
+      save_new: Spicherä & Neu
+    navbar:
+      cv_search: CV Suechi
+      profile: Profiu
+      skill_search: Skill Suechi
+      skillset: Skillset
+    new: Neu
+    people_skills:
+      certificate: Zertifikat
+      core-competence: chärnkompetenz
+      interest: Interässä
+      levels:
+        expert: Expert
+        junior: Junior
+        level: Level
+        professional: Professionell
+        senior: Senior
+        trainee: Azubi
+        unweighted: Nid Bewärtet
+    search:
+      found_in: Gfungä in
+      no_results: Kei Resultatä
+      search_results: Suechergäbnissä
+    'true': Ja
+  helpers:
+    cancel: Abbrächä
+    submit:
+      add: "%{model} hinzuefügä"
+      delete: Löschä
+      edit: "%{model} bearbeitä"
+  marital_statuses:
+    divorced: gschiedä
+    married: verhüratet
+    registered_partnership: itrageni Partnerschaft
+    single: ledig
+    widowed: verwitwet
+  people:
+    activities:
+      link:
+        add: Neui Station
+    advanced_trainings:
+      link:
+        add: Neui Witerbiudig
+    cv:
+      no_skills_rated_msg: Ds Profiu het no kei bewärtetä Skills. Gang zum Skills Tab und bewärtä diä für di relevantä Skills.
+    educations:
+      link:
+        add: Neui Usbiudig
+    export_cv:
+      export_form:
+        anonymised_cv: Anonymisierter CV
+        competences_skills: Chärnkompetenzä - Skills
+        location: 'Niderlassig (für Footer):'
+        skills_by_level: Skills nach Level
+        trainee: Trainee
+    global:
+      confirm_delete: Wosch du diä Person würk löschä?
+      link:
+        add: Neues Profiu
+        delete: Person löschä
+      more_actions: Witeri Aktionä
+      tabbar:
+        cv: CV
+        skills: Skills
+    index:
+      choose_create_person: Wäu ä Person us oder erfass es neues Profiu
+      default_location: verwändet %{default_location} us Standardstandort
+      export_cv: Schnäuä Export vo dim Läbenslauf
+      profile: Gang zu dim Profiu
+      welcome: Willkomme bi
+    new:
+      personals: Personaliä
+    profile:
+      add_function: Funktion hinzuäfüegä
+      add_language: Sprache hinzuäfüegä
+      change_image: Biud änderä
+      core_competences: Chärnkompetenzä
+      personals: Personaliä
+      upload_image: Biud hochladä
+    projects:
+      link:
+        add: Neues Projekt
+    scroll_to_menu:
+      activities: Station
+      advanced-trainings: Witerbiudigä
+      core-competences: Chärnkompetenzä
+      educations: Usbiudigä
+      personal-data: Personlechi Datä
+      projects: Projekte
+    search:
+      new_profile: Neues Profiu
+      updated_at: Z'letzt bearbeitet
+  people/people_skills:
+    edit_form:
+      rate: Bewärtet
+      unrate: Nid bewärtet
+    global:
+      confirm_delete: Wosch du diä Person würk löschä?
+      link:
+        add: Neues Profiu
+        delete: Person löschä
+      more_actions: Witeri Aktionä
+      tabbar:
+        cv: CV
+        skills: Skills
+    index:
+      new_skills_to_rate: Neui Skills zur Bewärtig
+    scroll_to_menu:
+      link:
+        add: Skill hinzuäfüegä
+  people_skills:
+    global:
+      link:
+        add: Skill hinzuäfüegä (max. 5)
+  people_skills/filter_form:
+    global:
+      link:
+        add: Skill hinzuäfüegä (max. 5)
+  profile:
+    updated_at: Z'letzt bearbeitet
+  skills:
+    global:
+      table:
+        category: Kategorie
+        default_set: Default-Set
+        members: Mitglider
+        modify: Änderä
+        portfolio: Portfolio
+        radar: Radar
+        skill: Skill
+        subcategory: Subkategorie
+    show:
+      title: 'Skill: %{title} (%{amount} Members)'

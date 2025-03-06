@@ -25,6 +25,7 @@ module AuthHelper
 
   def language_selector
     languages = I18n.available_locales.map { |e| e.to_s }.map do |lang_code|
+      puts lang_code
       language = I18nData.languages(lang_code)[lang_code.upcase]
       [language.capitalize, url_for(locale: lang_code)]
     end
