@@ -119,6 +119,7 @@ de:
         provider: Herausgeber
         study_time: Lernaufwand in Tagen
         type_of_exam: Prüfungsart
+        modify: Ändern
   cv_search:
     global:
       search_placeholder: CVs durchsuchen...
