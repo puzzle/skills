@@ -4,7 +4,7 @@ RSpec.describe PersonHelper, type: :helper do
   describe '#fetch_people_data' do
 
     it 'should send request to ptime api' do
-      allow(Skills).to receive(:ptime_available?).and_return(true)
+      allow(Skills).to receive(:use_ptime_sync?).and_return(true)
       skills_people = helper.fetch_people_data
       expected = [
         ["Longmax Smith", "/de/people/new?ptime_employee_id=33"],
@@ -15,7 +15,7 @@ RSpec.describe PersonHelper, type: :helper do
     end
 
     it 'should return people from skills database if last request was right now' do
-      allow(Skills).to receive(:ptime_available?).and_return(false)
+      allow(Skills).to receive(:use_ptime_sync?).and_return(false)
 
       skills_people = helper.fetch_people_data
       expected = [
