@@ -120,12 +120,19 @@ module PersonHelper
       skills_person = Person.find_by(ptime_employee_id: ptime_employee[:id])
 
       path = if skills_person.present?
-               person_path(skills_person, locale: I18n.locale)
+               person_path(skills_person)
              else
-               new_person_path(ptime_employee_id: ptime_employee[:id], locale: I18n.locale)
+               new_person_path(ptime_employee_id: ptime_employee[:id])
              end
 
-      [ptime_employee_name, path]
+      [
+        ptime_employee_name,
+        path,
+        {
+          'data-html': "<a href='#{path}' class='dropdown-option-link'>#{ptime_employee_name}</a>",
+          class: 'p-0'
+        }
+      ]
     end
   end
 
