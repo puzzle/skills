@@ -1,0 +1,72 @@
+{
+    "data": [
+      {
+        "id": 33,
+        "type": "employee",
+        "attributes": {
+          "shortname": "LSM",
+          "firstname": "Longmax",
+          "lastname": "Smith",
+          "email": "longmax@example.com",
+          "marital_status": "single",
+          "nationalities": [
+            "ZW"
+          ],
+          "graduation": "BSc in Architecture",
+          "department_shortname": "SYS",
+          "employment_roles": []
+        }
+      },
+      {
+        "id": 21,
+        "type": "employee",
+        "attributes": {
+          "shortname": "AMA",
+          "firstname": "Alice",
+          "lastname": "Mante",
+          "email": "alice@example.com",
+          "marital_status": "single",
+          "nationalities": [
+            "AU"
+          ],
+          "graduation": "MSc in writing",
+          "department_shortname": "SYS",
+          "employment_roles": []
+        }
+      },
+      {
+        "id": 45,
+        "type": "employee",
+        "attributes": {
+          "shortname": "CFO",
+          "firstname": "Charlie",
+          "lastname": "Ford",
+          "email": "charlie@example.com",
+          "marital_status": "married",
+          "nationalities": [
+            "GB"
+          ],
+          "graduation": "MSc in networking",
+          "department_shortname": "SYS",
+          "employment_roles": []
+        }
+      },
+      {
+        "id": 50,
+        "type": "employee",
+        "attributes": {
+          "shortname": "WAL",
+          "firstname": "Wally",
+          "lastname": "Allround",
+          "email": "wally@example.com",
+          "marital_status": "married",
+          "nationalities": [
+            "US"
+          ],
+          "graduation": "Full-Stack Developer",
+          "department_shortname": "SYS",
+          "employment_roles": []
+        }
+      }
+    ]
+  }
