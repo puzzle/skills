@@ -95,13 +95,7 @@ module PersonHelper
 
   def fetch_local_people_data
     Person.all.map do |p|
-      [
-        p.name, person_path(p),
-        {
-          'data-html': "<a href='#{person_path(p)}' class='dropdown-option-link'>#{p.name}</a>",
-          class: 'p-0'
-        }
-      ]
+      build_dropdown_entry(p.name, person_path(p))
     end
   end
 
@@ -125,15 +119,19 @@ module PersonHelper
                new_person_path(ptime_employee_id: ptime_employee[:id])
              end
 
-      [
-        ptime_employee_name,
-        path,
-        {
-          'data-html': "<a href='#{path}' class='dropdown-option-link'>#{ptime_employee_name}</a>",
-          class: 'p-0'
-        }
-      ]
+      build_dropdown_entry(ptime_employee_name, path)
     end
+  end
+
+  def build_dropdown_entry(name, path)
+    [
+      name,
+      path,
+      {
+        'data-html': "<a href='#{path}' class='dropdown-option-link'>#{name}</a>",
+        class: 'p-0'
+      }
+    ]
   end
 
   # Once https://github.com/puzzle/skills/issues/744 is merged there should be no need for this
