@@ -12,7 +12,7 @@ describe Api::SkillsController do
         get :index
 
         skills = json['data']
-        expect(skills.count).to eq(5)
+        expect(skills.count).to eq(7)
         bash_attrs = skills.first['attributes']
         expect(bash_attrs.count).to eq (5)
         expect(bash_attrs['title']).to eq ('Bash')
@@ -53,7 +53,7 @@ describe Api::SkillsController do
         get :index, params: { category: parent_category.id }
 
         skills = json['data']
-        expect(skills.count).to eq(4)
+        expect(skills.count).to eq(6)
         cunit_attrs = skills.first['attributes']
         ember_attrs = skills.second['attributes']
         junit_attrs = skills.third['attributes']
@@ -97,7 +97,7 @@ describe Api::SkillsController do
 
         skills = json['data']
 
-        expect(skills.count).to eq(5)
+        expect(skills.count).to eq(7)
       end
     end
   end
@@ -113,7 +113,7 @@ describe Api::SkillsController do
         get :index
 
         skills = json['data']
-        expect(skills.count).to eq(5)
+        expect(skills.count).to eq(7)
         bash_attrs = skills.first['attributes']
         expect(bash_attrs.count).to eq (5)
         expect(bash_attrs['title']).to eq ('Bash')
@@ -154,7 +154,7 @@ describe Api::SkillsController do
         get :index, params: { category: parent_category.id }
 
         skills = json['data']
-        expect(skills.count).to eq(4)
+        expect(skills.count).to eq(6)
         cunit_attrs = skills.first['attributes']
         ember_attrs = skills.second['attributes']
         junit_attrs = skills.third['attributes']

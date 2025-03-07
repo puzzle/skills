@@ -27,6 +27,18 @@ describe "Skills Filter", type: :feature, js: true do
     expect(page).to have_content("Bash")
   end
 
+  ["Web Components", "WebComponents", "web components", "webcomponents", " w e b co  mpo ne n   ts"].each do |query|
+    it 'should filter by title space insensitive' do
+      visit skills_path
+      fill_in 'title', with: query
+      expect(page).to have_no_content("JUnit")
+      expect(page).to have_no_content("cunit")
+      expect(page).to have_no_content("ember")
+      expect(page).to have_content("Web Components")
+      expect(page).to have_content("WebComponents")
+    end
+  end
+
   it 'should be able to combine filters' do
     visit skills_path
     fill_in 'title', with: 'unit'

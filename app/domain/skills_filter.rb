@@ -17,7 +17,8 @@ class SkillsFilter
                                          .where(categories: { parent_id: category })
     end
     if title.present?
-      filtered_entries = filtered_entries.where('lower(skills.title) like lower(?)', "%#{title}%")
+
+      filtered_entries = filtered_entries.where(filter_query, "%#{title.gsub(/\s+/, '')}%")
     end
     filtered_entries.order(:title)
   end
@@ -32,5 +33,9 @@ class SkillsFilter
       return entries.where(default_set: nil)
     end
     entries
+  end
+
+  def filter_query
+    "regexp_replace(lower(skills.title), '\\s', '', 'g') like lower(?)"
   end
 end

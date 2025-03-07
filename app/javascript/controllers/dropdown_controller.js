@@ -11,6 +11,9 @@ export default class extends Controller {
     const slimSelectDropdown = new SlimSelect({
       select: this.dropdownTarget,
       events: {
+        searchFilter: (option, search) => {
+          return option.text.toLowerCase().replace(/\s/g, '').indexOf(search.toLowerCase().replace(/\s/g, '')) !== -1
+        },
         beforeChange: (newVal) => {
           newVal = newVal[0];
 
