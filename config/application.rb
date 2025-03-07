@@ -13,7 +13,7 @@ require 'action_mailer/railtie'
 Bundler.require(*Rails.groups)
 
 module Skills
-  def self.ptime_available?
+  def self.use_ptime_sync?
     ActiveModel::Type::Boolean.new.cast(ENV.fetch('PTIME_API_ACCESSIBLE', false))
   end
 

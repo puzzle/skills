@@ -83,7 +83,7 @@ module PersonHelper
 
   def fetch_people_data
     all_skills_people = fetch_local_people_data
-    return all_skills_people unless Skills.ptime_available?
+    return all_skills_people unless Skills.use_ptime_sync?
 
     fetch_ptime_people_data
   rescue CustomExceptions::PTimeClientError
@@ -139,7 +139,7 @@ module PersonHelper
     "#{ptime_employee[:attributes][:firstname]} #{ptime_employee[:attributes][:lastname]}"
   end
 
-  def ptime_api_available?
-    Skills.ptime_available?
+  def ptime_sync_active?
+    Skills.use_ptime_sync?
   end
 end
