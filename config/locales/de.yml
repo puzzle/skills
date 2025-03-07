@@ -9,6 +9,15 @@ de:
       advanced_training:
         description: Beschreibung
         year_from: Startdatum
+      certificate:
+        description: Beschreibung
+        exam_duration: Prüfungsdauer in Minuten
+        name: Name
+        notes: Notizen
+        points_value: Punkte
+        provider: Herausgeber
+        study_time: Lernaufwand in Tagen
+        type_of_exam: Prüfungsart
       education:
         location: Ausbildungsort
         title: Ausbildung
@@ -71,6 +80,9 @@ de:
       category:
         one: Kategorie
         other: Kategorien
+      certificate:
+        one: Zertifikat
+        other: Zertifikate
       company:
         one: Firma
         other: Firmen
@@ -96,6 +108,18 @@ de:
     global:
       link:
         list: Admin Panel
+  certificates:
+    global:
+      table:
+        description: Beschreibung
+        exam_duration: Prüfungsdauer in Minuten
+        name: Name
+        notes: Notizen
+        points_value: Punkte
+        provider: Herausgeber
+        study_time: Lernaufwand in Tagen
+        type_of_exam: Prüfungsart
+        modify: Ändern
   cv_search:
     global:
       search_placeholder: CVs durchsuchen...
@@ -141,6 +165,7 @@ de:
       remove: Entfernen
       save_new: Speichern & Neu
     navbar:
+      certificates: Zertifikate
       cv_search: CV Suche
       profile: Profil
       skill_search: Skill Suche
