@@ -26,6 +26,18 @@ describe :people do
       end
     end
 
+    ["Web Components", "WebComponents", "web components", "webcomponents", " w e b co  mpo ne n   ts"].each do |query|
+      it 'searches skills space insensitive' do
+        within '#remote_modal' do
+          page.find('.ss-main').click
+          page.all('input')[0].send_keys(query)
+          sleep 0.3
+          expect(page).to have_text("Web Components")
+          expect(page).to have_text("WebComponents")
+        end
+      end
+    end
+
     it 'Create new skill and add to people-skills' do
       skill_name = "skill_name"
       category = categories(:java)

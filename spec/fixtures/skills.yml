@@ -45,3 +45,18 @@ ember:
   portfolio: 2
   default_set: false
   category: ruby
+
+# Web Components is duplicated on purpose to test space insensitivity of search
+webcomponents:
+  title: WebComponents
+  radar: 2
+  portfolio: 1
+  default_set: false
+  category: ruby
+
+web-components:
+  title: Web Components
+  radar: 2
+  portfolio: 1
+  default_set: false
+  category: ruby
