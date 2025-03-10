@@ -42,9 +42,8 @@ describe :people_skills do
 
     it 'Should return no results if no user matches filters' do
       visit(people_skills_path)
-      skill = "Bash"
-      fill_out_row(skill, 5, 3)
-      expect(page).to have_text("Keine Resultate gefunden mit der folgenden Suche: #{skill} (5/3)")
+      fill_out_row("Bash", 5, 3)
+      expect(page).to have_text("Keine Resultate gefunden mit der folgenden Suche: Bash (5/3)")
     end
 
     it 'Should return no results if no user matches multiple filters' do
