@@ -34,17 +34,6 @@ module ActionsHelper
     action_link(ti('link.edit'), 'pencil', path)
   end
 
-
-  def admin_action_link(label, icon = nil, url = {}, html_options = {})
-    if current_auth_user.is_admin
-      add_css_class html_options, 'action btn btn-link d-flex align-items-center gap-2'
-    else
-      add_css_class html_options, 'action btn btn-link d-flex align-items-center gap-2 disabled'
-    end
-    link_to(icon ? action_icon(icon, label) : label,
-            url, html_options)
-  end
-
   # Standard destroy action to the given path.
   # Uses the current +entry+ if no path is given.
   def destroy_action_link(path = nil)
