@@ -9,6 +9,15 @@ fr:
       advanced_training:
         description: Description
         year_from: Date de début
+      certificate:
+        description: Description
+        exam_duration: Durée de l'examen en minutes
+        name: Nom
+        notes: Notes
+        points_value: Points
+        provider: Éditeur
+        study_time: Temps d'étude en jours
+        type_of_exam: Type d'examen
       education:
         location: Lieu de formation
         title: Formation
@@ -69,6 +78,9 @@ fr:
       category:
         one: Catégorie
         other: Catégories
+      certificate:
+        one: Certificat
+        other: Certificats
       company:
         one: Société
         other: Entreprises
@@ -137,6 +149,7 @@ fr:
       remove: Supprimer
       save_new: Enregistrer & Nouveau
     navbar:
+      certificates: Certificats
       cv_search: Recherche de CV
       profile: Profil
       skill_search: Recherche de compétences

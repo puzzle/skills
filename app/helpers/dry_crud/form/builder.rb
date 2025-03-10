@@ -100,7 +100,7 @@ module DryCrud
 
       def decimal_field(attr, html_options = {})
         html_options[:step] ||=
-          (10**-column_property(object, attr, :scale)).to_f
+          (10**-(column_property(object, attr, :scale) || 1)).to_f
         number_field(attr, html_options)
       end
 
