@@ -78,18 +78,68 @@ module PersonHelper
   end
 
   def sorted_people
-    people_for_select.sort_by { |e| e.first.downcase }
+    fetch_people_data.sort_by { |e| e.first.downcase }
   end
 
-  def people_for_select
+  def fetch_people_data
+    all_skills_people = fetch_local_people_data
+    return all_skills_people unless Skills.use_ptime_sync?
+
+    fetch_ptime_people_data
+  rescue CustomExceptions::PTimeClientError
+    handle_ptime_error
+    all_skills_people
+  end
+
+  private
+
+  def fetch_local_people_data
     Person.all.map do |p|
-      [
-        p.name, person_path(p),
-        {
-          'data-html': "<a href='#{person_path(p)}' class='dropdown-option-link'>#{p.name}</a>",
-          class: 'p-0'
-        }
-      ]
+      build_dropdown_entry(p.name, person_path(id: p.id))
     end
+  end
+
+  def fetch_ptime_people_data
+    ptime_employees = Ptime::Client.new.request(:get, 'employees', { per_page: 1000 })
+    build_people_dropdown(ptime_employees)
+  end
+
+  def handle_ptime_error
+    ENV['LAST_PTIME_ERROR'] = DateTime.current.to_s
+  end
+
+  def build_people_dropdown(ptime_employees)
+    ptime_employees.map do |ptime_employee|
+      ptime_employee_name = append_ptime_employee_name(ptime_employee)
+      skills_person = Person.find_by(ptime_employee_id: ptime_employee[:id])
+
+      path = if skills_person.present?
+               person_path(skills_person)
+             else
+               new_person_path(ptime_employee_id: ptime_employee[:id])
+             end
+
+      build_dropdown_entry(ptime_employee_name, path)
+    end
+  end
+
+  def build_dropdown_entry(name, path)
+    [
+      name,
+      path,
+      {
+        'data-html': "<a href='#{path}' class='dropdown-option-link'>#{name}</a>",
+        class: 'p-0'
+      }
+    ]
+  end
+
+  # Once https://github.com/puzzle/skills/issues/744 is merged there should be no need for this
+  def append_ptime_employee_name(ptime_employee)
+    "#{ptime_employee[:attributes][:firstname]} #{ptime_employee[:attributes][:lastname]}"
+  end
+
+  def ptime_sync_active?
+    Skills.use_ptime_sync?
   end
 end
