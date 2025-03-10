@@ -32,15 +32,15 @@ class PeopleSkillsController < CrudController
   end
 
   def no_match_message
-    skills = filter_params.skill_ids.map { |skill_id| Skill.find(skill_id).title }
+    skill_titles = filter_params.skill_ids.map { |skill_id| Skill.find(skill_id).title }
     levels = filter_params.levels
     interests = filter_params.interests
-    map_skill_level_interest_to_s(skills, levels, interests).to_sentence
+    combine_to_feedback_sentence(skill_titles, levels, interests)
   end
 
-  def map_skill_level_interest_to_s(skills, levels, interests)
-    skills.zip(levels, interests).map do |skill, level, interest|
-      "#{skill} (#{level}/#{interest})"
-    end
+  def combine_to_feedback_sentence(skill_titles, levels, interests)
+    skill_titles.zip(levels, interests).map do |skill_title, level, interest|
+      "#{skill_title} (#{level}/#{interest})"
+    end.to_sentence
   end
 end

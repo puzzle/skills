@@ -49,11 +49,9 @@ describe :people_skills do
 
     it 'Should return no results if no user matches multiple filters' do
       visit(people_skills_path)
-      skill1 = "Bash"
-      skill2 = "Rails"
-      fill_out_row(skill1, 5, 3)
-      add_and_fill_out_row(skill2, 1, 4)
-      expect(page).to have_text("Keine Resultate gefunden mit der folgenden Suche: #{skill1} (5/3) und #{skill2} (1/4)")
+      fill_out_row("Bash", 5, 3)
+      add_and_fill_out_row("Rails", 1, 4)
+      expect(page).to have_text("Keine Resultate gefunden mit der folgenden Suche: Bash (5/3) und Rails (1/4)")
     end
     it 'Should be able to remove filter row and switch results accordingly' do
       visit(people_skills_path)

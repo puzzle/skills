@@ -20,7 +20,6 @@ module I18nHelper
     t(defaults.shift, **variables).upcase_first
   end
 
-
   alias ti translate_inheritable
 
   # Translates the passed key for an active record association. This helper is
