@@ -17,7 +17,7 @@ describe Certificate do
     end
 
     it 'checks validation maximum length for attribute' do
-      certificate = certificates('aws-certification')
+      certificate = certificates('aws-certificate')
       certificate.name = SecureRandom.hex(101)
       certificate.provider = SecureRandom.hex(101)
       certificate.description = SecureRandom.hex(251)
