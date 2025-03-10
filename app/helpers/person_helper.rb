@@ -95,7 +95,7 @@ module PersonHelper
 
   def fetch_local_people_data
     Person.all.map do |p|
-      build_dropdown_entry(p.name, person_path(p))
+      build_dropdown_entry(p.name, person_path(id: p.id))
     end
   end
 
