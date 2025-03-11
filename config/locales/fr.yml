@@ -104,6 +104,18 @@ fr:
     global:
       link:
         list: Panneau d'administration
+  certificates:
+    global:
+      table:
+        description: Description
+        exam_duration: Durée de l'examen en minutes
+        modify: Modifier
+        name: Nom
+        notes: Notes
+        points_value: Points
+        provider: Éditeur
+        study_time: Temps d'étude en jours
+        type_of_exam: Type d'examen
   cv_search:
     global:
       search_placeholder: Chercher dans les CV...

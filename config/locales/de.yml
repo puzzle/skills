@@ -113,13 +113,13 @@ de:
       table:
         description: Beschreibung
         exam_duration: Prüfungsdauer in Minuten
+        modify: Ändern
         name: Name
         notes: Notizen
         points_value: Punkte
         provider: Herausgeber
         study_time: Lernaufwand in Tagen
         type_of_exam: Prüfungsart
-        modify: Ändern
   cv_search:
     global:
       search_placeholder: CVs durchsuchen...

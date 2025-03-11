@@ -104,6 +104,18 @@ en:
     global:
       link:
         list: Admin Panel
+  certificates:
+    global:
+      table:
+        description: Description
+        exam_duration: Exam duration in minutes
+        modify: Change
+        name: Name
+        notes: Notes
+        points_value: Points
+        provider: Provider
+        study_time: Study time in days
+        type_of_exam: Type of exam
   cv_search:
     global:
       search_placeholder: Search CVs...
