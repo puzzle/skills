@@ -14,6 +14,7 @@ RUN apt-get update
 RUN apt-get install direnv -y
 RUN apt-get install firefox-esr -y
 RUN apt-get install -y nodejs
+RUN apt-get install -y graphicsmagick
 RUN npm install -g yarn
 
 RUN mkdir /opt/bundle && chmod 777 /opt/bundle
