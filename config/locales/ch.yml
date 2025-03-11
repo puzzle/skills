@@ -180,6 +180,8 @@ ch:
     'true': Ja
   helpers:
     cancel: Abbrächä
+    select:
+      prompt: Bitte uswählä
     submit:
       add: "%{model} hinzuefügä"
       delete: Löschä
