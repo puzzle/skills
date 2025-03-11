@@ -4,7 +4,7 @@ class CertificatesController < CrudController
                             study_time notes]
   before_action :render_unauthorized_not_admin
 
-  def create(**options, &)
+  def create
     super(:location => certificates_path,
           status: :unprocessable_entity)
   end
