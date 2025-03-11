@@ -16,51 +16,60 @@
   %body.d-flex.justify-content-center{"data-controller": "skills-empty-space"}
     %div.content{"data-skills-empty-space-target": "container"}
       %div.position-sticky.top-0.z-3
-        %div.d-flex.justify-content-between.bg-white.flex-wrap
-          = link_to root_path, class: "text-decoration-none text-dark" do
-            %div.d-flex
-              %div.mb-1.mt-1
-                %img{:src=> "/assets/logo.svg",:height=>"32"}
-              %text.d-flex.align-items-end.ms-2.small= "5.1.0"
-          %ul.navbar.text-gray
-            -# Language selector
-            %li.d-flex.align-items-center.cursor-pointer.border-start.border-end.h-100.ps-2.pe-2{"data-controller": "dropdown"}
-              = select :i18n, :language, language_selector, {}, class: "form-control", data:{action: "change->dropdown#navigateOnChange"}
-            -# Devise/Mockdata
+        %pzsh-topbar.p-0{href: root_path}
+          %img.m-0{:src=> "/assets/logo.svg",:height=>"32"}
+          -# %ul.navbar.text-gray
+          -#   -# Language selector
+          -#   %li.d-flex.align-items-center.cursor-pointer.border-start.border-end.h-100.ps-2.pe-2{"data-controller": "dropdown"}
+          -#     = select :i18n, :language, language_selector, {}, class: "form-control", data:{action: "change->dropdown#navigateOnChange"}
+          -#   -# Devise/Mockdata
+          -#   - if Rails.env.development?
+          -#     %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
+          -#       %span#username
+          -#         - if devise?
+          -#           = ti("devise.devise")
+          -#         - else
+          -#           = ti("devise.mockdata")
+          -#   -# Admin panel
+          -#   - if conf_admin?
+          -#     %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
+          -#       = link_to ti("devise.admin_panel"), admin_index_path
+          -#   -# Username
+          -#   - if auth_user_signed_in?
+          -#     %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
+          -#       %div.scale-icon-06(name="user")
+          -#       %span#username
+          -#         - if find_person_by_auth_user.nil?
+          -#           = link_to current_auth_user&.name || current_auth_user&.email, people_path(alert: "true")
+          -#         - else
+          -#           = link_to find_person_by_auth_user.name, person_path(find_person_by_auth_user)
+          -#         - if admin?
+          -#           = ti "devise.admin"
+          -#   -# Login/Logout
+          -#   - if devise?
+          -#     %li.d-flex.align-items-center.cursor-pointer.border-start.border-end.h-100.ps-2.pe-2
+          -#       - if auth_user_signed_in?
+          -#         =link_to ti("devise.sign_out"), destroy_auth_user_session_path, data: { "turbo-method": :delete}, class: "btn btn-link"
+          -#       - elsif devise_mapping.omniauthable?
+          -#         =button_to ti("devise.sign_in"), omniauth_authorize_path(resource_name, resource_class.omniauth_providers.first), {data: { "turbo": false, controller: "instant-click" }, class: "btn btn-link"}
+          -#   -# Help
+          -#   %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.h-100
+          -#     %a.d-flex.align-items-center{:href => "https://github.com/puzzle/skills/issues"}
+          -#       %pzsh-icon.scale-icon-08.text-gray(name="question-circle")
+          -#   %li.d-flex.align-items-center.cursor-pointer.border-start.border-end.h-100.ps-2.pe-2{"data-action": "click->skills-empty-space#goCrazy"}
+        %pzsh-menu
+          %div{slot:"actions"}
+            %pzsh-menu-action
+              %div{"data-controller": "dropdown"}
+                = select :i18n, :language, language_selector, {}, class: "form-control", data:{action: "change->dropdown#navigateOnChange"}
             - if Rails.env.development?
-              %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
+              %pzsh-menu-action
+                %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
                 %span#username
                   - if devise?
                     = ti("devise.devise")
                   - else
                     = ti("devise.mockdata")
-            -# Admin panel
-            - if conf_admin?
-              %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
-                = link_to ti("devise.admin_panel"), admin_index_path
-            -# Username 
-            - if auth_user_signed_in?
-              %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
-                %div.scale-icon-06(name="user")
-                %span#username
-                  - if find_person_by_auth_user.nil?
-                    = link_to current_auth_user&.name || current_auth_user&.email, people_path(alert: "true")
-                  - else
-                    = link_to find_person_by_auth_user.name, person_path(find_person_by_auth_user)
-                  - if admin?
-                    = ti "devise.admin"
-            -# Login/Logout
-            - if devise?
-              %li.d-flex.align-items-center.cursor-pointer.border-start.border-end.h-100.ps-2.pe-2
-                - if auth_user_signed_in?
-                  =link_to ti("devise.sign_out"), destroy_auth_user_session_path, data: { "turbo-method": :delete}, class: "btn btn-link"
-                - elsif devise_mapping.omniauthable?
-                  =button_to ti("devise.sign_in"), omniauth_authorize_path(resource_name, resource_class.omniauth_providers.first), {data: { "turbo": false, controller: "instant-click" }, class: "btn btn-link"}
-            -# Help
-            %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.h-100
-              %a.d-flex.align-items-center{:href => "https://github.com/puzzle/skills/issues"}
-                %pzsh-icon.scale-icon-08.text-gray(name="question-circle")
-            %li.d-flex.align-items-center.cursor-pointer.border-start.border-end.h-100.ps-2.pe-2{"data-action": "click->skills-empty-space#goCrazy"}
         %div.puzzle-header
           %div.d-flex.h-100
             = render "application/tabbar", tabs: global_tabs, bar_class: "skills-navbar", active_path: global_navbar_path
