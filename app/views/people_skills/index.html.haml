@@ -16,7 +16,10 @@
   %turbo-frame{id: "search-results"}
     %div.border.p-3.rounded-bottom.search-results
       - if entries.size == 0
-        = ti "search.no_results"
+        - if filter_params.skill_ids.empty?
+          = ti 'search.no_skill'
+        - else
+          = ti('search.no_match') + no_match_message
       - else
         - entries.each do | filtered_entry |
           %div.d-flex.flex-row.w-100.border-bottom

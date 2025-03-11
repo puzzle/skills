@@ -154,9 +154,18 @@ it:
         senior: Senior
         trainee: Apprendista
         unweighted: Non valutato
+      levels_by_id:
+        '0': Non valutato
+        '1': Apprendista
+        '2': Junior
+        '3': Professionale
+        '4': Senior
+        '5': Esperto
     search:
       found_in: Trovato in
-      no_results: Nessun risultato
+      no_match: 'Nessun risultato trovato per la seguente ricerca: '
+      no_results: Nessun risultato trovato
+      no_skill: Nessun risultato trovato, aggiungi una competenza alla ricerca.
       search_results: Risultati della ricerca
     'true': Sì
   helpers:

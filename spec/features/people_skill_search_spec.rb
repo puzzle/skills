@@ -16,17 +16,17 @@ describe :people_skills do
     end
 
     it 'Should set values of query parameters' do
-      visit people_skills_path({skill_id: [skill.id], level: [3], "interest[0]": 5})
+      visit people_skills_path({ skill_id: [skill.id], level: [3], "interest[0]": 5 })
       expect(page).to have_select("skill_id[]", selected: "Rails", visible: false)
       expect(page).to have_field("level[]", with: 3)
       expect(page).to have_field("interest[0]", with: 5, visible: false)
     end
 
-    it 'Should return no results if skill id is not set' do
-      visit people_skills_path({level: [3], "interest[0]": 5})
+    it 'Should return add skill to search message if skill id is not given' do
+      visit people_skills_path({ level: [3], "interest[0]": 5 })
       expect(page).to have_field("level[]", with: 3)
       expect(page).to have_field("interest[0]", with: 5, visible: false)
-      expect(page).to have_text("Keine Resultate")
+      expect(page).to have_text("Füge einen Skill zur Suche hinzu.")
     end
 
     it 'Should return user which matches filters' do
@@ -43,9 +43,15 @@ describe :people_skills do
     it 'Should return no results if no user matches filters' do
       visit(people_skills_path)
       fill_out_row("Bash", 5, 3)
-      expect(page).to have_text("Keine Resultate")
+      expect(page).to have_text("Keine Resultate gefunden mit der folgenden Suche: Bash (5/3)")
     end
 
+    it 'Should return no results if no user matches multiple filters' do
+      visit(people_skills_path)
+      fill_out_row("Bash", 5, 3)
+      add_and_fill_out_row("Rails", 1, 4)
+      expect(page).to have_text("Keine Resultate gefunden mit der folgenden Suche: Bash (5/3) und Rails (1/4)")
+    end
     it 'Should be able to remove filter row and switch results accordingly' do
       visit(people_skills_path)
 
@@ -56,14 +62,12 @@ describe :people_skills do
       expect(page).to have_text("Hope Sunday")
       expect(page).to have_text("Wally Allround")
 
-
       # add skill filter
       add_and_fill_out_row("cunit", 1, 1)
 
       expect(page).to_not have_text("Alice Mante")
       expect(page).to have_text("Hope Sunday")
       expect(page).to have_text("Wally Allround")
-
 
       # remove skill filter
       page.find('#remove-row-2').click
@@ -105,6 +109,6 @@ describe :people_skills do
   end
 
   def last_row
-    page.all("[id^='filter-row-']").sort_by {|row| row[:id]}.last
+    page.all("[id^='filter-row-']").sort_by { |row| row[:id] }.last
   end
 end
