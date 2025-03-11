@@ -5,11 +5,12 @@
     .alert.alert-danger.mt-3
       = msg
 %div.mt-3
-  %h1.d-inline-block.me-3.banner-text 
-    = ti("welcome")
-  =image_tag('logo.svg', width: '340', class: 'align-baseline test')
-  %h4.banner-sub-text.mt-3
-    = ti("choose_create_person")
+  %pzsh-hero
+    %h1.d-inline-block.me-3.banner-text{slot: "title"}
+      = ti("welcome")
+    %h4.banner-sub-text.mt-3{slot: "slogan"}
+      = ti("choose_create_person")
+    %img{src: 'assets/logo.svg', width: '340', class: 'align-baseline test'}
 %div.row.w-50.ms-0.me-auto
   - unless find_person_by_auth_user.nil?
     %div.col-3.p-0.me-3
