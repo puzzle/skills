@@ -25,13 +25,16 @@ module AuthHelper
 
   def language_selector
     languages = I18n.available_locales.map { |e| e.to_s }.map do |lang_code|
-      # ToDo hopefully make this cleaner later on
-      language = lang_code == "ch" ?  "Schwizer Dütsch" : I18nData.languages(lang_code)[lang_code.upcase]
-      [language.capitalize, url_for(locale: lang_code)]
+      [language(lang_code).capitalize, url_for(locale: lang_code)]
     end
     options_for_select(languages, url_for(locale: I18n.locale))
   end
+
+  def language(lang_code)
+    if lang_code == 'ch'
+      'Schwizer Dütsch'
+    else
+      I18nData.languages(lang_code)[lang_code.upcase] unless lang_code == 'ch'
+    end
+  end
 end
-
-
-
