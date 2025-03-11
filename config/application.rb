@@ -17,7 +17,7 @@ module Skills
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 8.0
 
-    I18n.available_locales = [:de, :en, :fr, :it, :ch]
+    I18n.available_locales = [:de, :en, :fr, :it, "de-CH"]
     config.i18n.default_locale = :de
 
     config.active_record.verify_foreign_keys_for_fixtures = false
