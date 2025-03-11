@@ -62,6 +62,7 @@ describe :certificates, type: :feature, js: true do
           fill_in "certificate_#{attr}", with: value
         end
         should_save ? save_certificate : cancel_certificate
+        expect(page).to have_css(".icon.icon-pencil") if should_save
       end
     end
 
