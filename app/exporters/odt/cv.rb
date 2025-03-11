@@ -293,7 +293,6 @@ module Odt
     end
 
     def languages
-      Rails.logger.debug 123
       languages = []
       person.language_skills.list.collect do |l|
         language = I18nData.languages('DE')[l.language]
