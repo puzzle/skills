@@ -89,5 +89,20 @@ describe :certificates, type: :feature, js: true do
       edit_certificate(Certificate.first.id, updated_certificate_values, false)
       expect(unedited_certificate.attributes).to eql(Certificate.first.attributes)
     end
+
+    it 'displays validation errors when updating certificate' do
+      empty_certificate_values = {
+        name: '', description: '', points_value: '',
+        provider: '', exam_duration: '', type_of_exam: '',
+        study_time: '', notes: ''
+      }
+      edit_certificate(Certificate.second.id, empty_certificate_values, true)
+
+      empty_cert = Certificate.new
+      empty_cert.valid?
+      empty_cert.errors.each do |error|
+        expect(page).to have_text(error.full_message)
+      end
+    end
   end
 end
