@@ -173,9 +173,18 @@ de-CH:
         senior: Senior
         trainee: Azubi
         unweighted: Nid Bewärtet
+      levels_by_id:
+        '0': Nid bewärtet
+        '1': Azubi
+        '2': Junior
+        '3': Professionell
+        '4': Senior
+        '5': Expert
     search:
       found_in: Gfungä in
+      no_match: 'Kei Resultat gfungä mit dr folgende Suechi: '
       no_results: Kei Resultatä
+      no_skill: Füegä Sie ä Skill zur Suechi hinzu.
       search_results: Suechergäbnissä
     'true': Ja
   helpers:
