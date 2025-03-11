@@ -1,0 +1,48 @@
+---
+de-CH:
+  crud:
+    create:
+      flash:
+        success: "%{model} isch erfolgreich erstellt wordä."
+    destroy:
+      flash:
+        failure: "%{model} het nid chönne glöscht wärdä."
+        success: "%{model} isch erfougrich gelöscht wordä."
+    edit:
+      title: "%{model} bearbeitä"
+    new:
+      title: "%{model} ersteuä"
+    show:
+      title: "%{model}"
+    update:
+      flash:
+        success: "%{model} isch erfougrich aktualisiert wordä."
+  global:
+    associations:
+      no_entry: "(keni)"
+      none_available: "(keni verfügbar)"
+      please_select: Bitte uswählä
+    button:
+      cancel: Abbrechä
+      save: Spicherä
+      search: Suechä
+    confirm_delete: Wosch du dä Itrag würk löschä?
+    errors:
+      header:
+        one: 'Ä Fähler verhinderte ds Spiicherä vo däm Itrag:'
+        other: "%{count} Fähler verhinderä ds Spicherä vo däm Itrag:"
+    link:
+      add: Ersteuä
+      delete: Löschä
+      edit: Bearbeitä
+      list: Listä
+      show: Anzeigä
+    'no': nei
+    no_list_entries: kei Iträg gfungä.
+    'yes': ja
+  list:
+    index:
+      title: "%{models}"
+  time:
+    formats:
+      time: "%H:%M"

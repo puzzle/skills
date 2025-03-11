@@ -1,0 +1,150 @@
+---
+de-CH:
+  activerecord:
+    attributes:
+      user:
+        confirmation_sent_at: Bestätigung gsendet am
+        confirmation_token: Bestätigungs-Token
+        confirmed_at: Bestätigt am
+        created_at: Ersteut am
+        current_password: Bishäriges Passwort
+        current_sign_in_at: Aktuelli Amäudig vom
+        current_sign_in_ip: IP vor aktuellä Amäudig
+        email: E-Mail
+        encrypted_password: Verschlüssletes Passwort
+        failed_attempts: Fählversüech
+        last_sign_in_at: Letzti Amäudig am
+        last_sign_in_ip: IP vor letztä Amäudig
+        locked_at: Gsperrt am
+        password: Passwort
+        password_confirmation: Passwortbestätigung
+        privacy_accepted_at: Datäschutzerklärig
+        remember_created_at: Agmäudet blibä vom
+        remember_me: Agmäudet blibä
+        reset_password_sent_at: Passwort-Zrücksetzä-E-Mail gesändet am
+        reset_password_token: Passwort-Zrücksetzä-Token
+        sign_in_count: Anzahl Amäudige
+        terms_accepted_at: AGB
+        unconfirmed_email: Unbestätigti E-Mail-Adressä
+        unlock_token: Entsperrigs-Token
+        updated_at: Aktualisiert am
+    models:
+      user: Benutzer
+  devise:
+    confirmations:
+      confirmed: Ihri E-Mail-Adrässä isch erfougrich bestätigt wordä.
+      new:
+        resend_confirmation_instructions: Anleitig zur Bestätigung no mau schickä
+      send_instructions: Sie erhautä i wenigä Minutä ä E-Mail, mit derä Sie Ihri Registrierig bestätigä chönd.
+      send_paranoid_instructions: Faus Ihri E-Mail-Adrässä i üserä Datenbank existiert, erhautä Sie i wenigä Minutä ä E-Mail, mit derä Sie Ihri Registrierig bestätigä chönd.
+    failure:
+      already_authenticated: Sie si bereits agmäudet.
+      inactive: Ihr Konto isch nid aktiv.
+      invalid: "%{authentication_keys} oder Passwort ungültig."
+      last_attempt: Sie hei no ei Versuch, bis Ihr Konto gsperrt wird.
+      locked: Ihr Konto isch gsperrt.
+      not_found_in_database: "%{authentication_keys} oder Passwort ungültig."
+      timeout: Ihri Sitzig isch abgloufä, bitte melde Sie sich erneut an.
+      titles:
+        unauthorized: 401 Keine ausreichenden Berechtigungen
+      unauthenticated: Sie müssen sich anmelden oder registrieren, bevor Sie fortfahren chönd.
+      unauthorized: Sie si nid berechtigt, uf diese Seite zuzugreifen.
+      unconfirmed: Sie müssen Ihr Konto bestätigä, bevor Sie fortfahren chönd.
+    mailer:
+      confirmation_instructions:
+        action: Mis Konto bestätigä
+        greeting: Willkommen %{recipient}!
+        instruction: 'Bitte folgen Sie dem untenstehenden Link, um Ihr Konto zu bestätigä:'
+        subject: Anleitig zur Bestätigung Ihres Kontos
+      email_changed:
+        greeting: Hallo %{recipient}!
+        message: Wir schreiben Ihnen, um Sie darüber zu informieren, dass Ihri E-Mail-Adrässä zu %{email} geändert wurde.
+        subject: E-Mail-Adrässä geändert
+      password_change:
+        greeting: Hallo %{recipient}!
+        message: Wir schreiben Ihnen, um Sie darüber zu informieren, dass Ihr Passwort geändert wurde.
+        subject: Passwort geändert
+      reset_password_instructions:
+        action: Passwort ändern
+        greeting: Hallo %{recipient}!
+        instruction: Jemand hat einen Link angefordert, um Ihri Passwort zu ändern. Klicken Sie uf den unten aufgeführten Link um das Passwort zu ändern.
+        instruction_2: Bitte ignorieren Sie diese E-Mail, wenn Sie kein neues Passwort angefordert hei.
+        instruction_3: Das Passwort wird nid geändert bis Sie den obenstehenden Link abrufen und ein neues Passwort bestimmen.
+        subject: Anleitig für das Zurücksetzen Ihres Passworts
+      unlock_instructions:
+        action: Mein Konto entsperren
+        greeting: Hallo %{recipient}!
+        instruction: 'Folgen Sie dem untenstehenden Link, um Ihr Konto zu entsperren:'
+        message: Ihr Konto wurde aufgrund einer großen Anzahl von fehlgeschlagenen Anmeldeversuchen gsperrt.
+        subject: Anleitig für die Konto-Freischaltung
+    omniauth_callbacks:
+      failure: Sie chöi nid mit Ihrem %{kind}-Konto agmäudet werden, weil "%{reason}".
+      success: Sie hei sich erfougrich mit Ihrem %{kind}-Konto agmäudet.
+    passwords:
+      edit:
+        change_my_password: Ändere mein Passwort
+        change_your_password: Passwort ändern
+        confirm_new_password: Neues Passwort bestätigä
+        new_password: Neues Passwort
+      new:
+        forgot_your_password: Haben Sie Ihr Passwort vergessen?
+        send_me_reset_password_instructions: Schicke mir die Anleitig, um mein Passwort zurückzusetzen
+      no_token: Sie chönd Sich nid uf dieser Seite anmelden, wenn Sie nid von einer Passwort-Zurücksetzen-E-Mail kommen. Wenn Sie von solch einer E-Mail kommen, überprüfen Sie bitte, ob Sie die gesamte URL verwendet hei.
+      send_instructions: Sie erhautä i wenigä Minutä ä E-Mail mit der Anleitig, wie Sie Ihr Passwort zurücksetzä chöit.
+      send_paranoid_instructions: Faus Ihri E-Mail-Adrässä i üserä Datenbank existiert, erhautä Sie i wenigä Minutä ä E-Mail, mit der Anleitig, wie Sie Ihr Passwort zurücksetzen chöit.
+      updated: Ihr Passwort isch gändert wordä. Sie si jetzt agmäudet.
+      updated_not_active: Ihr Passwort isch gändert wordä.
+    registrations:
+      destroyed: Ihr Konto isch glöscht wordä.
+      edit:
+        are_you_sure: Si Sie sicher?
+        cancel_my_account: Konto löschä
+        currently_waiting_confirmation_for_email: Wartä uf Bestätigung vo %{email}.
+        leave_blank_if_you_don_t_want_to_change_it: freilassä, wenn Sie das nid ändern weit
+        title: "%{resource} bearbeitä"
+        unhappy: Unzfridä?
+        update: Aktualisierä
+        we_need_your_current_password_to_confirm_your_changes: wir benötigä Ihres aktuellä Passwort, um die Änderig z'bestätigä
+      new:
+        sign_up: Registrierä
+      signed_up: Sie hei sich erfougrich registriert.
+      signed_up_but_inactive: Sie hei sich erfougrich registriert. Wir chöi Sie jedoch nid anmelden, wöu Ihr Konto no nid aktiviert isch.
+      signed_up_but_locked: Sie hei sich erfougrich registriert. Wir chöi Sie jedoch nid anmelden, wöu Ihr Konto gsperrt isch.
+      signed_up_but_unconfirmed: Sie erhautä i wenigä Minutä ä E-Mail mit em nä link Link für d'Bestätigung vor Registrierig. Klickä Sie uf ä Link um Ihr Konto z'aktivieren.
+      update_needs_confirmation: Ihri Daten si aktualisiert wordä, aber Sie müessä Ihri neui E-Mail-Adrässä bestätigä. Sie erhautä i wenigä Minutä ä E-Mail, mit derä Sie d'Änderig Ihrer E-Mail-Adrässä abschließä chöit.
+      updated: Ihri Daten si aktualisiert wordä.
+      updated_but_not_signed_in:
+    sessions:
+      already_signed_out: Erfougrich abgmäudet.
+      new:
+        sign_in: Amäudä
+      signed_in: Erfougrich agmäudet.
+      signed_out: Erfougrich abgmäudet.
+    shared:
+      links:
+        back: Zrügg
+        didn_t_receive_confirmation_instructions: Kei Anleitig zur Bestätigung erhautä?
+        didn_t_receive_unlock_instructions: Kei Anleitig zum Entsperren erhautä?
+        forgot_your_password: Passwort vergässä?
+        sign_in: Amäudä
+        sign_in_with_provider: Mit %{provider} amäudä
+        sign_up: Registrierä
+      minimum_password_length:
+        one: "(mindestens %{count} Zeichä)"
+        other: "(mindestens %{count} Zeichä)"
+    unlocks:
+      new:
+        resend_unlock_instructions: Anleitig zum Entsperrä erneut schickä
+      send_instructions: Sie erhautä i wenigä Minutä ä E-Mail mit erä Anleitig, wie Sie Ihr Konto entsperrä chöit.
+      send_paranoid_instructions: Faus Ihri E-Mail-Adrässä i üserä Datenbank existiert, erhautä Sie i wenigä Minutä ä E-Mail, mit der Anleitig, wie Sie Ihr Konto entsperrä chöit.
+      unlocked: Ihr Konto isch entsperrt wordä. Bitte mäudet euch a, um fortzfahrä.
+  errors:
+    messages:
+      already_confirmed: isch bereits bestätigt wordä, bitte versuchet Sie, sich azmäudä
+      confirmation_period_expired: hättä innerhalb von %{period} bestätigt werden müssen, bitte neu anforderä.
+      expired: isch abgloufä, bitte neu anforderä
+      not_found: nid gfungä
+      not_locked: isch nid gsperrt
+      not_saved:
+        one: "%{resource} isch ufgrund vom nä Fähler nid gspichert wordä:"
+        other: "%{count} Fähler verhindert ds Spicherä vo %{resource}:"
