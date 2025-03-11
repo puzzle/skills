@@ -3,7 +3,7 @@
 class SkillsController < CrudController
   include ExportController
   before_action :update_category_parent, only: [:update]
-  before_action :render_unauthorized_skills, except: %i[index show unrated_by_person]
+  before_action :render_unauthorized, except: %i[index show unrated_by_person]
 
   helper_method :filter_by_rated, :compare_default_set
 
@@ -77,11 +77,4 @@ class SkillsController < CrudController
     end
   end
   # rubocop:enable Metrics/AbcSize
-
-  private
-
-  def render_unauthorized_skills
-    return false if helpers.admin?
-    redirect_to skills_path, alert: " rights!"
-  end
 end

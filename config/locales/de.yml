@@ -108,6 +108,7 @@ de:
       max_size_error: darf nicht grösser als 10MB sein.
       profile-not-found: Profil konnte nicht gefunden werden.
       valid_percent_range: muss zwischen 0 und 200 liegen.
+      authorization_error: Du hast keine Berechtigung, diese Funktion auszuführen.
   global:
     date:
       from: Von

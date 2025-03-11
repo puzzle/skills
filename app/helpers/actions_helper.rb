@@ -82,4 +82,17 @@ module ActionsHelper
   def cancel_action_link(path, options = {})
     action_link(ti('link.cancel'), '', path, options)
   end
+
+  def admin_action_link(label, icon = nil, url = {}, html_options = {})
+    add_css_class html_options, 'action btn btn-link d-flex align-items-center gap-2'
+    add_css_class html_options, 'disabled' unless current_auth_user.is_admin?
+    link = link_to(icon ? action_icon(icon, label) : label,
+                   url, html_options)
+
+    if current_auth_user.is_admin?
+      link
+    else
+      content_tag(:div, '', class: "disable-btn-tooltip", data: { bs_toggle: "tooltip", bs_title: I18n.t('errors.messages.authorization_error') }) { link }
+    end
+  end
 end

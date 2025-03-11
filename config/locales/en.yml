@@ -104,6 +104,7 @@ en:
       max_size_error: must not be larger than 10MB.
       profile-not-found: Profile could not be found.
       valid_percent_range: must be between 0 and 200.
+      authorization_error: You do not have permission to execute this function.
   global:
     date:
       from: From
