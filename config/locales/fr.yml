@@ -98,13 +98,13 @@ fr:
       search_skills: Rechercher également des compétences
   errors:
     messages:
+      authorization_error: Vous n'avez pas les droits pour exécuter cette fonction.
       cannot_remove: ne doit pas être supprimé.
       invalid_date_range: doit être antérieure à la date de fin.
       max_size_10MB: ne doit pas dépasser 10 Mo.
       max_size_error: ne doit pas dépasser 10 Mo.
       profile-not-found: Le profil n'a pas été trouvé.
       valid_percent_range: doit être compris entre 0 et 200.
-      authorization_error: Vous n'avez pas les droits pour exécuter cette fonction.
   global:
     date:
       from: De
