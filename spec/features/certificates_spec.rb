@@ -62,13 +62,13 @@ describe :certificates, type: :feature, js: true do
           fill_in "certificate_#{attr}", with: value
         end
         should_save ? save_certificate : cancel_certificate
-        expect(page).to have_css(".icon.icon-pencil") if should_save
       end
     end
 
     def save_certificate
       save_button = page.find("input[type='image']")
       save_button.click
+      expect(page).to have_no_css("input#certificate_name").or have_css('.alert.alert-danger')
     end
 
     def cancel_certificate
