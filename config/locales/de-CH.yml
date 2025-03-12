@@ -9,6 +9,15 @@ de-CH:
       advanced_training:
         description: Beschribig
         year_from: Startdatum
+      certificate:
+        description: Beschribig
+        exam_duration: Prüefigsduur in Minute
+        name: Namä
+        notes: Notizä
+        points_value: Punkt
+        provider: Herusgäber
+        study_time: Lernufwand in Tagä
+        type_of_exam: Prüefigsart
       education:
         location: Usbiudigsort
         title: Usbiudig
@@ -71,6 +80,9 @@ de-CH:
       category:
         one: Kategorie
         other: Kategoriä
+      certificate:
+        one: Zertifikat
+        other: Zertifikat
       company:
         one: Firma
         other: Firmä
@@ -96,13 +108,24 @@ de-CH:
     global:
       link:
         list: Admin Panel
+  certificates:
+    global:
+      table:
+        description: Beschribig
+        exam_duration: Prüefigsduur in Minute
+        modify: Änderä
+        name: Namä
+        notes: Notizä
+        points_value: Punkt
+        provider: Herusgäber
+        study_time: Lernufwand in Tagä
+        type_of_exam: Prüefigsart
   cv_search:
     global:
       search_placeholder: CVs dürsuechä...
       search_skills: Skills äbäfaus dürsuechä
   date:
     month_names:
-    -
     - Jäner
     - Februar
     - März
@@ -157,6 +180,7 @@ de-CH:
       remove: Entfärnä
       save_new: Spicherä & Neu
     navbar:
+      certificates: Zertifikat
       cv_search: CV Suechi
       profile: Profiu
       skill_search: Skill Suechi
