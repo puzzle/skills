@@ -48,7 +48,7 @@ describe :certificates, type: :feature, js: true do
     end
   end
 
-  describe 'Edit certificate' do
+  describe 'edit certificate' do
     updated_certificate_values = {
       name: 'Updated name', description: 'Updated description', points_value: 1000,
       provider: 'Updated provider', exam_duration: 5, type_of_exam: 'Updated exam type',
