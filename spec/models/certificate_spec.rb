@@ -8,26 +8,28 @@ describe Certificate do
       certificate = Certificate.new
       certificate.valid?
 
-      expect(certificate.errors[:name].first).to eq('muss ausgefüllt werden')
-      expect(certificate.errors[:points_value].first).to eq('muss ausgefüllt werden')
-      expect(certificate.errors[:description].first).to eq('muss ausgefüllt werden')
-      expect(certificate.errors[:exam_duration].first).to eq('muss ausgefüllt werden')
-      expect(certificate.errors[:type_of_exam].first).to eq('muss ausgefüllt werden')
-      expect(certificate.errors[:study_time].first).to eq('muss ausgefüllt werden')
+      not_null_attrs = %i[name points_value]
+
+      not_null_attrs.each do |attr|
+        expect(certificate.errors[attr].first).to eq('muss ausgefüllt werden')
+      end
     end
 
     it 'checks validation maximum length for attribute' do
       certificate = certificates('aws-certificate')
-      certificate.name = SecureRandom.hex(101)
-      certificate.provider = SecureRandom.hex(101)
-      certificate.description = SecureRandom.hex(251)
-      certificate.notes = SecureRandom.hex(251)
+
+      attrs_with_length_limit = %i[name provider type_of_exam description notes]
+      long_string = SecureRandom.hex(251)
+
+      attrs_with_length_limit.each do |attr|
+        certificate[attr] = long_string
+      end
+
       certificate.valid?
 
-      expect(certificate.errors[:name].first).to eq('ist zu lang (mehr als 100 Zeichen)')
-      expect(certificate.errors[:provider].first).to eq('ist zu lang (mehr als 100 Zeichen)')
-      expect(certificate.errors[:description].first).to eq('ist zu lang (mehr als 250 Zeichen)')
-      expect(certificate.errors[:notes].first).to eq('ist zu lang (mehr als 250 Zeichen)')
+      attrs_with_length_limit.each do |attr|
+        expect(certificate.errors[attr].first).to eq('ist zu lang (mehr als 250 Zeichen)')
+      end
     end
   end
 end

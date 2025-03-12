@@ -3,11 +3,11 @@ class CreateCertificates < ActiveRecord::Migration[8.0]
     create_table :certificates do |t|
       t.string :name, null: false
       t.decimal :points_value, null: false
-      t.string :description, null: false
+      t.string :description
       t.string :provider
-      t.integer :exam_duration, null: false
-      t.string :type_of_exam, null: false
-      t.integer :study_time, null: false
+      t.integer :exam_duration
+      t.string :type_of_exam
+      t.integer :study_time
       t.text :notes
 
       t.timestamps
