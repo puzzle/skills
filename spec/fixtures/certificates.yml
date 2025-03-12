@@ -1,8 +1,8 @@
 aws-certificate:
-  name: AWS certification
+  name: AWS certificate
   points_value: 1
-  description: An AWS certification
-  provider: AWS certification office
+  description: An AWS certificate
+  provider: AWS certificate office
   exam_duration: 120
   type_of_exam: Multiple Choice
   study_time: 5
@@ -12,9 +12,9 @@ azure-certificate:
   name: Professional turbo super duper azure cert
   points_value: 2
   description: The almighty certificate
-  provider: AWS Training and Certification
+  provider: Blue Hat
   exam_duration: 240
-  type_of_exam: Theoretisch und praktisch
+  type_of_exam: Theoretical & Practical
   study_time: 20
   notes: Very notable
 
@@ -24,6 +24,6 @@ python-certificate:
   description: You must like indentation
   provider: Snake
   exam_duration: 60
-  type_of_exam: Theoretisch
+  type_of_exam: Theoretical
   study_time: 5
   notes: Very interesting indeed
