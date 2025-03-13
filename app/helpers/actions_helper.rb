@@ -88,14 +88,16 @@ module ActionsHelper
     add_css_class html_options, 'disabled' unless current_auth_user.is_admin?
     link = link_to(icon ? action_icon(icon, label) : label,
                    url, html_options)
+    wrap_with_tooltip_if_needed(link)
+  end
 
-    if current_auth_user.is_admin?
-      link
-    else
-      content_tag(:div, '',
-                  class: 'disable-btn-tooltip',
-                  data: { bs_toggle: 'tooltip', bs_title: I18n.t('errors.messages.authorization_error')
-                  }) { link }
-    end
+  def wrap_with_tooltip_if_needed(link)
+    return link if current_auth_user.is_admin?
+
+    content_tag(:div, '',
+                class: 'disable-btn-tooltip',
+                data: { bs_toggle: 'tooltip',
+                        bs_title: I18n.t('errors.messages.authorization_error') }
+    ) { link }
   end
 end
