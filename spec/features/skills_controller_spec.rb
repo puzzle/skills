@@ -71,7 +71,7 @@ describe :skills do
     end
   end
 
-  describe 'Export skill', type: :feature, js: true do
+  describe 'Export skill', type: :feature do
     it 'button is disabled when you are no admin' do
       sign_in auth_users(:user), scope: :auth_user
       visit skills_path
