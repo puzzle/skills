@@ -67,7 +67,7 @@ describe :skills do
       visit skills_path
 
       within "#skill_#{Skill.second.id}" do
-        expect(page).to have_selector('.icon.icon-pencil[disabled]')
+        expect(page).to have_button('.icon.icon-pencil', disabled: true)
       end
     end
   end
