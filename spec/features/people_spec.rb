@@ -149,7 +149,7 @@ describe :people do
       expect(find_field('nat-two-checkbox')).to be_checked
     end
     expect(page.all('.nationality-two').count).to equal(person.nationality2.nil? ? 0 : 2)
-    expect(page).to have_select('person_nationality', selected: person.nationality.nil? ? ISO3166::Country[common_languages_translated.first.first].translations[I18n.locale] : ISO3166::Country[person.nationality].translations[I18n.locale])
+    expect(page).to have_select('person_nationality', selected: person.nationality.nil? ? ISO3166::Country[:CH].translations[I18n.locale] : ISO3166::Country[person.nationality].translations[I18n.locale])
     person.nationality2.nil? ? (expect(page).not_to have_select('person_nationality2')) : (expect(page).to have_select('person_nationality2', selected: ISO3166::Country[person.nationality2].translations[I18n.locale]))
     expect(page).to have_select('person_marital_status', selected: t("marital_statuses.#{person.marital_status}"))
     expect(page).to have_field('person_shortname', with: person.shortname)
