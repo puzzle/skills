@@ -96,6 +96,7 @@ module ActionsHelper
   end
 
   private
+
   def wrap_with_tooltip_if_needed(link)
     return link if current_auth_user.is_admin?
 
