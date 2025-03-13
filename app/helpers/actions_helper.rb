@@ -94,10 +94,9 @@ module ActionsHelper
   def wrap_with_tooltip_if_needed(link)
     return link if current_auth_user.is_admin?
 
+    data = { bs_toggle: 'tooltip', bs_title: I18n.t('errors.messages.authorization_error') }
     content_tag(:div, '',
                 class: 'disable-btn-tooltip',
-                data: { bs_toggle: 'tooltip',
-                        bs_title: I18n.t('errors.messages.authorization_error') }
-    ) { link }
+                data: data) { link }
   end
 end
