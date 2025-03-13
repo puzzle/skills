@@ -1,5 +1,5 @@
 !!!
-%html
+%html.h-100
   %head
     // This disables the Turbo prefetch in development as it gets quite annoying when debugging
     - if Rails.env.development?
@@ -13,8 +13,8 @@
     = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
     = javascript_include_tag "application", "https://unpkg.com/@puzzleitc/puzzle-shell/dist/bundle.js", type: "module"
     = favicon_link_tag "favicon.png"
-  %body.d-flex.justify-content-center{"data-controller": "skills-empty-space"}
-    %div.content{"data-skills-empty-space-target": "container"}
+  %body.h-100.d-flex.justify-content-center{"data-controller": "skills-empty-space"}
+    %div.h-100.content{"data-skills-empty-space-target": "container"}
       %div.position-sticky.top-0.z-3
         %div.d-flex.justify-content-between.bg-white.flex-wrap
           = link_to root_path, class: "text-decoration-none text-dark" do
@@ -24,8 +24,6 @@
               %text.d-flex.align-items-end.ms-2.small= "5.1.0"
           %ul.navbar.text-gray
             -# Language selector
-            %li.d-flex.align-items-center.cursor-pointer.border-start.border-end.h-100.ps-2.pe-2{"data-controller": "dropdown"}
-              = select :i18n, :language, language_selector, {}, class: "form-control", data:{action: "change->dropdown#navigateOnChange"}
             -# Devise/Mockdata
             - if Rails.env.development?
               %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start.border-end.h-100
@@ -64,7 +62,7 @@
         %div.puzzle-header
           %div.d-flex.h-100
             = render "application/tabbar", tabs: global_tabs, bar_class: "skills-navbar", active_path: global_navbar_path
-      %div.container-fluid
+      %div.h-100.container-fluid
         %div.row.d-flex.justify-content-center
           = render partial: 'layouts/flash', collection: [:notice, :alert], as: :level
           - content_for(:actions) do
@@ -73,3 +71,9 @@
           = content_for?(:content) ? yield(:content) : yield
 
           = turbo_frame_tag "remote_modal", target: "_top"
+      %pzsh-footer.position-sticky.bottom-0.z-3
+        %div{slot: 'start'}
+          %div{"data-controller": "dropdown"}
+            = select :i18n, :language, language_selector, {}, class: "form-control", data:{action: "change->dropdown#navigateOnChange"}
+        %div{slot: 'end'}
+          %img{:src=> "/assets/logo.svg",:height=>"32"}
