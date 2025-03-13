@@ -117,6 +117,7 @@ de-CH:
     - Dezämber
   errors:
     messages:
+      authorization_error: Du hesch ke Berächtigung, diä Funktion uszfühärä.
       cannot_remove: darf nid glöscht wärdä.
       invalid_date_range: muess vorem Änddatum si.
       max_size_10MB: darf nid grösser aus 10MB si.
