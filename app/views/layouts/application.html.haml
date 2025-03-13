@@ -72,8 +72,12 @@
 
           = turbo_frame_tag "remote_modal", target: "_top"
       %pzsh-footer.position-sticky.bottom-0.z-3
-        %div{slot: 'start'}
+        %div.justify-content-center{slot: 'start'}
+          %pzsh-footer-link
+            Version 3.6
+        %div{slot: 'center'}
           %div{"data-controller": "dropdown"}
             = select :i18n, :language, language_selector, {}, class: "form-control", data:{action: "change->dropdown#navigateOnChange"}
+
         %div{slot: 'end'}
-          %img{:src=> "/assets/logo.svg",:height=>"32"}
+          %img{:src=> "/assets/powered-by-puzzle.svg",:height=>"27"}
