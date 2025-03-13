@@ -91,6 +91,11 @@ module ActionsHelper
     wrap_with_tooltip_if_needed(link)
   end
 
+  def admin_export_action_link(path, options = {})
+    admin_action_link(ti('link.export'), 'export', path, options)
+  end
+
+  private
   def wrap_with_tooltip_if_needed(link)
     return link if current_auth_user.is_admin?
 

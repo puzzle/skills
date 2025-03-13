@@ -65,8 +65,17 @@ describe :skills do
     it 'button is disabled when you are no admin' do
       sign_in auth_users(:user), scope: :auth_user
       visit skills_path
-      expect(page).to have_css('.icon.icon-pencil:not([disabled])')
+      within "#skill_#{Skill.second.id}" do
+        page.find('.icon.icon-pencil').disabled?
+      end
+    end
+  end
 
+  describe 'Edit skill', type: :feature, js: true do
+    it 'button is disabled when you are no admin' do
+      sign_in auth_users(:user), scope: :auth_user
+      visit skills_path
+      page.find('.icon.icon-export').disabled?
     end
   end
 end

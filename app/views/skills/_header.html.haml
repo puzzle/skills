@@ -22,5 +22,5 @@
         %span.text-gray.me-1
           = "#{Category.model_name.human}:"
         = form.collection_select :category, Category.all_parents.order(:title), :id, :title, {prompt: true}, class: "form-select fit-content", onchange: 'this.form.requestSubmit();'
-      = export_action_link  export_skills_path, "data-turbo-prefetch": false , data: { turbo: false }
+      = admin_export_action_link  export_skills_path, "data-turbo-prefetch": false , data: { turbo: false }
       = add_action_link_modal
