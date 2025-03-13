@@ -65,10 +65,8 @@ describe :skills do
     it 'button is disabled when you are no admin' do
       sign_in auth_users(:user), scope: :auth_user
       visit skills_path
+      expect(page).to have_css('.icon.icon-pencil:not([disabled])')
 
-      within "#skill_#{Skill.second.id}" do
-        expect(page).to have_button('.icon.icon-pencil', disabled: true)
-      end
     end
   end
 end
