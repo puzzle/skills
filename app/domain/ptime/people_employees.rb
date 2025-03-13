@@ -1,13 +1,13 @@
 module Ptime
   class PeopleEmployees
-    # TODO: Once PTime API is updated, add 'city: :location & birthdate: :birthdate'
     ATTRIBUTES_MAPPING = {
       firstname: :name,
       shortname: :shortname,
       email: :email,
       marital_status: :marital_status,
       graduation: :title,
-      location: :location
+      city: :location,
+      birthday: :birthdate
     }.freeze
 
     def find_or_create(ptime_employee_id)
@@ -38,9 +38,9 @@ module Ptime
       end
 
       set_additional_attributes(person, ptime_employee)
-      set_full_name(person, ptime_employee)
 
       person.save!
+      set_person_roles(person, ptime_employee)
       person
     end
     # rubocop:enable Metrics
@@ -54,16 +54,35 @@ module Ptime
       nationalities = ptime_employee[:attributes][:nationalities] || []
       person.nationality = nationalities[0]
       person.nationality2 = nationalities[1]
-
-      # TODO: Remove temporary placeholder values when PTime API got updated
-      person.birthdate = DateTime.new(2000, 2, 3)
-      person.location = 'Boston, MA'
+      person.name = split_name(ptime_employee[:attributes][:full_name])
     end
 
-    def set_full_name(person, ptime_employee)
-      first_name = ptime_employee[:attributes][:firstname].presence || ''
-      last_name = ptime_employee[:attributes][:lastname].presence || ''
-      person[:name] = "#{first_name} #{last_name}".strip
+    def split_name(full_name)
+      parts = full_name.split
+      last_names = parts[0..-2].join(' ')
+      first_name = parts[-1]
+
+      "#{first_name} #{last_names}"
+    end
+
+    def set_person_roles(person, ptime_employee)
+      ptime_employee[:attributes][:employment_roles].each do |role|
+        role_id = find_or_create_role(role[:name])
+        # next if person.person_roles.exists?(role_id: role_id)
+
+        PersonRole.create!(person_id: person.id,
+                           role_id: role_id,
+                           percent: role[:percent],
+                           person_role_level_id: 1)
+      end
+    end
+
+    def find_or_create_role(role_name)
+      Role.find_by(name: role_name)&.id || Role.create!(name: sanitized_role_name(role_name)).id
+    end
+
+    def sanitized_role_name(role_name)
+      role_name.gsub(/\A[A-Z]\d+\s/, '')
     end
   end
 end
