@@ -92,7 +92,10 @@ module ActionsHelper
     if current_auth_user.is_admin?
       link
     else
-      content_tag(:div, '', class: "disable-btn-tooltip", data: { bs_toggle: "tooltip", bs_title: I18n.t('errors.messages.authorization_error') }) { link }
+      content_tag(:div, '',
+                  class: 'disable-btn-tooltip',
+                  data: { bs_toggle: 'tooltip', bs_title: I18n.t('errors.messages.authorization_error')
+                  }) { link }
     end
   end
 end
