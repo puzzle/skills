@@ -10,14 +10,14 @@ de:
         description: Beschreibung
         year_from: Startdatum
       certificate:
+        comment: Bemerkung
         course_duration: Kursdauer in Tagen
-        description: Beschreibung
+        designation: Bezeichnung
         exam_duration: Prüfungsdauer in Minuten
-        name: Name
-        notes: Notizen
-        points_value: Punkte
+        points_value: PCTS
         provider: Herausgeber
         study_time: Lernaufwand in Tagen
+        title: Titel
         type_of_exam: Prüfungsart
       education:
         location: Ausbildungsort
@@ -112,15 +112,15 @@ de:
   certificates:
     global:
       table:
+        comment: Bemerkung
         course_duration: Kursdauer in Tagen
-        description: Beschreibung
+        designation: Bezeichnung
         exam_duration: Prüfungsdauer in Minuten
         modify: Ändern
-        name: Name
-        notes: Notizen
-        points_value: Punkte
+        points_value: PCTS
         provider: Herausgeber
         study_time: Lernaufwand in Tagen
+        title: Titel
         type_of_exam: Prüfungsart
   cv_search:
     global:

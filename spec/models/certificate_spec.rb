@@ -8,7 +8,7 @@ describe Certificate do
       certificate = Certificate.new
       certificate.valid?
 
-      not_null_attrs = %i[name points_value]
+      not_null_attrs = %i[title points_value]
 
       not_null_attrs.each do |attr|
         expect(certificate.errors[attr].first).to eq('muss ausgefüllt werden')
@@ -18,7 +18,7 @@ describe Certificate do
     it 'checks validation maximum length for attribute' do
       certificate = certificates('aws-certificate')
 
-      attrs_with_length_limit = %i[name provider type_of_exam description notes]
+      attrs_with_length_limit = %i[designation title provider comment type_of_exam]
       long_string = SecureRandom.hex(251)
 
       attrs_with_length_limit.each do |attr|

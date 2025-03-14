@@ -1,11 +1,11 @@
 class Certificate < ApplicationRecord
-  validates :name, :points_value, presence: true
+  validates :title, :points_value, presence: true
 
-  validates :name, :provider, :type_of_exam, :description, :notes, length: { maximum: 250 }
+  validates :designation, :title, :provider, :comment, :type_of_exam, length: { maximum: 250 }
 
-  default_scope { order(:name) }
+  default_scope { order(:title) }
 
   def to_s
-    name
+    title
   end
 end
