@@ -102,6 +102,7 @@ de:
       search_skills: Skills ebenfalls durchsuchen
   errors:
     messages:
+      authorization_error: Du hast keine Berechtigung, diese Funktion auszuführen.
       cannot_remove: darf nicht gelöscht werden.
       invalid_date_range: muss vor dem Enddatum sein.
       max_size_10MB: darf nicht grösser als 10MB sein.

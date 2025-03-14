@@ -62,5 +62,20 @@ describe :skills do
       expect(skill.radar).to eq('adopt')
       expect(skill.portfolio).to eq('aktiv')
     end
+    it 'button is disabled when you are no admin' do
+      sign_in auth_users(:user), scope: :auth_user
+      visit skills_path
+      within "#skill_#{Skill.second.id}" do
+        page.find('.icon.icon-pencil').disabled?
+      end
+    end
+  end
+
+  describe 'Export skill', type: :feature do
+    it 'button is disabled when you are no admin' do
+      sign_in auth_users(:user), scope: :auth_user
+      visit skills_path
+      page.find('.icon.icon-export').disabled?
+    end
   end
 end

@@ -98,6 +98,7 @@ fr:
       search_skills: Rechercher également des compétences
   errors:
     messages:
+      authorization_error: Vous n'avez pas les droits pour exécuter cette fonction.
       cannot_remove: ne doit pas être supprimé.
       invalid_date_range: doit être antérieure à la date de fin.
       max_size_10MB: ne doit pas dépasser 10 Mo.

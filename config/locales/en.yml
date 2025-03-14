@@ -98,6 +98,7 @@ en:
       search_skills: Search skills as well
   errors:
     messages:
+      authorization_error: You do not have permission to execute this function.
       cannot_remove: must not be deleted.
       invalid_date_range: must be before the end date.
       max_size_10MB: must not be larger than 10MB.

@@ -98,6 +98,7 @@ it:
       search_skills: Anche le capacità di ricerca
   errors:
     messages:
+      authorization_error: Non hai i diritti per eseguire questa funzione.
       cannot_remove: non deve essere cancellato.
       invalid_date_range: deve essere precedente alla data di scadenza.
       max_size_10MB: non deve essere più grande di 10 MB.
