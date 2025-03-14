@@ -1,8 +1,9 @@
 %div.d-flex.flex-row.justify-content-between{class: "#{bar_class}"}
     %div.d-flex.flex-row
         - tabs.each do |tab|
-            = link_to tab[:path], class: "btn text-primary p-0 d-flex align-items-center" do
-                %div{class: "nav-link h-100 d-flex align-items-center #{'active' if active_path == tab[:path]}"}
-                    = tab[:title]
+            - unless tab[:admin_only] && !admin?
+                = link_to tab[:path], class: "btn text-primary p-0 d-flex align-items-center" do
+                    %div{class: "nav-link h-100 d-flex align-items-center #{'active' if active_path == tab[:path]}"}
+                        = tab[:title]
     %div
         = yield if defined?(do_yield) && do_yield|| false

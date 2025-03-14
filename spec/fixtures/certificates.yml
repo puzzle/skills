@@ -1,0 +1,32 @@
+aws-certificate:
+  designation: AWS certificate
+  title: An AWS certificate
+  provider: AWS certificate office
+  points_value: 1
+  comment: Some notes about this certificate
+  course_duration: 8
+  exam_duration: 120
+  type_of_exam: Multiple Choice
+  study_time: 5
+
+azure-certificate:
+  designation: Professional turbo super duper azure cert
+  title: The almighty certificate
+  provider: Blue Hat
+  points_value: 2
+  comment: Very notable
+  course_duration: 10
+  exam_duration: 240
+  type_of_exam: Theoretical & Practical
+  study_time: 20
+
+python-certificate:
+  designation: Quarter stack python certificate
+  title: You must like indentation
+  provider: Snake
+  points_value: 0.5
+  comment: Very interesting indeed
+  course_duration: 5
+  exam_duration: 60
+  type_of_exam: Theoretical
+  study_time: 5

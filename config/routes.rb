@@ -66,6 +66,8 @@ Rails.application.routes.draw do
         patch 'people-skills', to: 'people/people_skills#update'
       end
     end
+
+    resources :certificates
   end
 
 
