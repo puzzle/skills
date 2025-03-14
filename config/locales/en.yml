@@ -10,6 +10,7 @@ en:
         description: Description
         year_from: Start date
       certificate:
+        course_duration: Course duration in days
         description: Description
         exam_duration: Exam duration in minutes
         name: Name
@@ -107,6 +108,7 @@ en:
   certificates:
     global:
       table:
+        course_duration: Course duration in days
         description: Description
         exam_duration: Exam duration in minutes
         modify: Change

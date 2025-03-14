@@ -15,8 +15,8 @@ describe :certificates, type: :feature, js: true do
     it 'creates new certificate' do
       new_certificate_values = {
         name: 'New certificate name', description: 'New certificate description', points_value: 12345,
-        provider: 'New certificate provider', exam_duration: 30, type_of_exam: 'New exam type',
-        study_time: 28, notes: 'New certificate notes'
+        provider: 'New certificate provider', course_duration: 10, exam_duration: 30,
+        type_of_exam: 'New exam type', study_time: 28, notes: 'New certificate notes'
       }
 
       new_certificate_values.each do |attr, value|
@@ -51,8 +51,8 @@ describe :certificates, type: :feature, js: true do
   describe 'edit certificate' do
     updated_certificate_values = {
       name: 'Updated name', description: 'Updated description', points_value: 1000,
-      provider: 'Updated provider', exam_duration: 5, type_of_exam: 'Updated exam type',
-      study_time: 10, notes: 'Updated notes'
+      provider: 'Updated provider', course_duration: 8, exam_duration: 5,
+      type_of_exam: 'Updated exam type', study_time: 10, notes: 'Updated notes'
     }
 
     def edit_certificate(certificate_id, updated_certificate_values, should_save)
@@ -94,8 +94,8 @@ describe :certificates, type: :feature, js: true do
     it 'displays validation errors when updating certificate' do
       empty_certificate_values = {
         name: '', description: '', points_value: '',
-        provider: '', exam_duration: '', type_of_exam: '',
-        study_time: '', notes: ''
+        provider: '', course_duration: '', exam_duration: '',
+        type_of_exam: '', study_time: '', notes: ''
       }
       edit_certificate(Certificate.second.id, empty_certificate_values, true)
 
