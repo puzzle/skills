@@ -74,11 +74,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_05_074320) do
   create_table "certificates", force: :cascade do |t|
     t.string "name", null: false
     t.decimal "points_value", null: false
-    t.string "description", null: false
+    t.string "description"
     t.string "provider"
-    t.integer "exam_duration", null: false
-    t.string "type_of_exam", null: false
-    t.integer "study_time", null: false
+    t.integer "exam_duration"
+    t.string "type_of_exam"
+    t.integer "study_time"
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
