@@ -14,9 +14,9 @@ describe :certificates, type: :feature, js: true do
 
     it 'creates new certificate' do
       new_certificate_values = {
-        name: 'New certificate name', description: 'New certificate description', points_value: 12345,
-        provider: 'New certificate provider', course_duration: 10, exam_duration: 30,
-        type_of_exam: 'New exam type', study_time: 28, notes: 'New certificate notes'
+        designation: 'New certificate name', title: 'New certificate description',
+        provider: 'New certificate provider', points_value: 12345, comment: 'New certificate notes',
+        course_duration: 10, exam_duration: 30, type_of_exam: 'New exam type', study_time: 28
       }
 
       new_certificate_values.each do |attr, value|
@@ -50,9 +50,9 @@ describe :certificates, type: :feature, js: true do
 
   describe 'edit certificate' do
     updated_certificate_values = {
-      name: 'Updated name', description: 'Updated description', points_value: 1000,
-      provider: 'Updated provider', course_duration: 8, exam_duration: 5,
-      type_of_exam: 'Updated exam type', study_time: 10, notes: 'Updated notes'
+      designation: 'Updated name', title: 'Updated description', provider: 'Updated provider',
+      points_value: 1000, comment: 'Updated notes', course_duration: 8,
+      exam_duration: 5, type_of_exam: 'Updated exam type', study_time: 10
     }
 
     def edit_certificate(certificate_id, updated_certificate_values, should_save)
@@ -93,9 +93,9 @@ describe :certificates, type: :feature, js: true do
 
     it 'displays validation errors when updating certificate' do
       empty_certificate_values = {
-        name: '', description: '', points_value: '',
-        provider: '', course_duration: '', exam_duration: '',
-        type_of_exam: '', study_time: '', notes: ''
+        designation: '', title: '', provider: '', points_value: '',
+        comment: '', course_duration: '', exam_duration: '',
+        type_of_exam: '', study_time: ''
       }
       edit_certificate(Certificate.second.id, empty_certificate_values, true)
 
