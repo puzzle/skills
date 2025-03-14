@@ -7,7 +7,7 @@ describe :certificates, type: :feature, js: true do
     visit certificates_path
   end
 
-  describe 'Create certificate' do
+  describe 'create certificate' do
     before(:each) do
       click_link(href: new_certificate_path)
     end
@@ -103,6 +103,17 @@ describe :certificates, type: :feature, js: true do
       empty_cert.valid?
       empty_cert.errors.each do |error|
         expect(page).to have_text(error.full_message)
+      end
+    end
+  end
+
+  describe 'sort certificate' do
+    it 'should be able to sort certificate table' do
+      Certificate.attribute_names.excluding("id", "created_at", "updated_at").each do |attr|
+        click_link Certificate.human_attribute_name(attr)
+        expect(page).to have_current_path(certificates_path(sort: attr, sort_dir: 'asc'))
+        click_link Certificate.human_attribute_name(attr)
+        expect(page).to have_current_path(certificates_path(sort: attr, sort_dir: 'desc'))
       end
     end
   end
