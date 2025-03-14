@@ -5,6 +5,7 @@ class CreateCertificates < ActiveRecord::Migration[8.0]
       t.decimal :points_value, null: false
       t.string :description
       t.string :provider
+      t.integer :course_duration
       t.integer :exam_duration
       t.string :type_of_exam
       t.integer :study_time

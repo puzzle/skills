@@ -1,6 +1,6 @@
 = form_with(model: @certificate) do |f|
   .row.border.border-top.table-light.table-hover.table-row
-    .col-2.d-flex.align-items-center
+    .col-1.d-flex.align-items-center
       = f.text_field :name, class: "form-control"
     .col-2.d-flex.align-items-center
       = f.text_field :description, class: "form-control"
@@ -12,6 +12,8 @@
       = f.number_field :exam_duration, class: "form-control"
     .col-1.d-flex.align-items-center
       = f.text_field :type_of_exam, class: "form-control"
+    .col-1.d-flex.align-items-center
+      = f.text_field :course_duration, class: "form-control"
     .col-1.d-flex.align-items-center
       = f.number_field :study_time, class: "form-control"
     .col-2.d-flex.align-items-center

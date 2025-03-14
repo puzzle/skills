@@ -3,6 +3,7 @@ aws-certificate:
   points_value: 1
   description: An AWS certificate
   provider: AWS certificate office
+  course_duration: 8
   exam_duration: 120
   type_of_exam: Multiple Choice
   study_time: 5
@@ -13,6 +14,7 @@ azure-certificate:
   points_value: 2
   description: The almighty certificate
   provider: Blue Hat
+  course_duration: 10
   exam_duration: 240
   type_of_exam: Theoretical & Practical
   study_time: 20
@@ -23,6 +25,7 @@ python-certificate:
   points_value: 0.5
   description: You must like indentation
   provider: Snake
+  course_duration: 5
   exam_duration: 60
   type_of_exam: Theoretical
   study_time: 5

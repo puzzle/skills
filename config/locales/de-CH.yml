@@ -10,6 +10,7 @@ de-CH:
         description: Beschribig
         year_from: Startdatum
       certificate:
+        course_duration: Kursduur in Tag
         description: Beschribig
         exam_duration: Prüefigsduur in Minute
         name: Namä
@@ -111,6 +112,7 @@ de-CH:
   certificates:
     global:
       table:
+        course_duration: Kursduur in Tag
         description: Beschribig
         exam_duration: Prüefigsduur in Minute
         modify: Änderä

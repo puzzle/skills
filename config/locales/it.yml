@@ -10,6 +10,7 @@ it:
         description: Descrizione del
         year_from: Data di inizio
       certificate:
+        course_duration: Durata del corso in giorni
         description: Descrizione
         exam_duration: Durata dell'esame in minuti
         name: Nome
@@ -107,6 +108,7 @@ it:
   certificates:
     global:
       table:
+        course_duration: Durata del corso in giorni
         description: Descrizione
         exam_duration: Durata dell'esame in minuti
         modify: Cambiamento

@@ -76,6 +76,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_05_074320) do
     t.decimal "points_value", null: false
     t.string "description"
     t.string "provider"
+    t.integer "course_duration"
     t.integer "exam_duration"
     t.string "type_of_exam"
     t.integer "study_time"
