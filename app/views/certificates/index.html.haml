@@ -6,13 +6,13 @@
       %strong= sort_link 'designation'
     .col-2.bg-secondary-subtle.d-flex.align-items-center
       %strong= sort_link 'title'
-    .col-1.bg-secondary-subtle.d-flex.align-items-center
+    .col-1.d-flex.align-items-center
       %strong= sort_link 'provider'
-    .col-1.d-flex.align-items-center
+    .col-1.bg-secondary-subtle.d-flex.align-items-center
       %strong= sort_link 'points_value'
-    .col-2.bg-secondary-subtle.d-flex.align-items-center
+    .col-2.d-flex.align-items-center
       %strong= sort_link 'comment'
-    .col-1.d-flex.align-items-center
+    .col-1.bg-secondary-subtle.d-flex.align-items-center
       %strong= sort_link 'course_duration'
     .col-1.d-flex.align-items-center
       %strong= sort_link 'exam_duration'
@@ -20,7 +20,7 @@
       %strong= sort_link 'type_of_exam'
     .col-1.d-flex.align-items-center
       %strong= sort_link 'study_time'
-    .col-1.d-flex.align-items-center
+    .col-1.bg-secondary-subtle.d-flex.align-items-center
       %strong= ti "table.modify"
   %div
     %turbo-frame{id: "certificates"}
@@ -31,13 +31,13 @@
               = certificate.designation
             .col-2.bg-light.d-flex.align-items-center.text-break
               = certificate.title
-            .col-1.bg-light.d-flex.align-items-center.text-break
+            .col-1.d-flex.align-items-center.text-break
               = certificate.provider
-            .col-1.d-flex.align-items-center.text-break
+            .col-1.bg-light.d-flex.align-items-center.text-break
               = certificate.points_value
-            .col-2.bg-light.d-flex.align-items-center.text-break
+            .col-2.d-flex.align-items-center.text-break
               = certificate.comment
-            .col-1.d-flex.align-items-center.text-break
+            .col-1.bg-light.d-flex.align-items-center.text-break
               = certificate.course_duration
             .col-1.d-flex.align-items-center.text-break
               = certificate.exam_duration
@@ -45,6 +45,6 @@
               = certificate.type_of_exam
             .col-1.d-flex.align-items-center.text-break
               = certificate.study_time
-            .col-1.d-flex.align-items-center
+            .col-1.bg-light.d-flex.align-items-center
               %div.h-100.d-flex.justify-content-center.align-items-center.w-100
                 = action_link("", "pencil", edit_certificate_path(certificate))
