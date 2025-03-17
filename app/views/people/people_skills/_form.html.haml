@@ -1,30 +1,30 @@
 = form_with(model: pskill, url: person_people_skills_path(person)) do |f|
-    %div.d-flex.flex-column{data: {controller: "people-skills"}}
-        = f.label :skill
-        = f.fields_for :skill do |sf|
-            = sf.select :id, options_for_select(skills_dropdown_options, disabled: person.skills.pluck(:id)), {}, 
+  %div.d-flex.flex-column{data: {controller: "people-skills"}}
+    =  f.label :skill
+    = f.fields_for :skill do |sf|
+      = sf.select :id, options_for_select(skills_dropdown_options, disabled: true), {},
                 {data: {"people-skills-target": "skillsDropdown"}}
-            = sf.hidden_field :title, {data: {"people-skills-target": "skillTitle"}}
-            = sf.hidden_field :default_set, value: false
-            = sf.hidden_field :radar, value: Settings.radar[1]
-            = sf.hidden_field :portfolio, value: Settings.portfolio[1]
-            
-            %div
-                = sf.label :category
-                = sf.collection_select :category_id, Category.where.not(parent_id: nil).sort_by(&:position), :id, :name_with_parent, {}, class: "form-select", data: {"people-skills-target": "categoriesDropdown"}
-        
-        = f.label :level
-        %div.d-flex.gap-2
-            = f.range_field :level, min: 1, max: 5, value: 1,  class: "form-range w-25", 
+      = sf.hidden_field :title, {data: {"people-skills-target": "skillTitle"}}
+      = sf.hidden_field :default_set, value: false
+      = sf.hidden_field :radar, value: Settings.radar[1]
+      = sf.hidden_field :portfolio, value: Settings.portfolio[1]
+
+      %div
+        = sf.label :category
+        = sf.collection_select :category_id, Category.where.not(parent_id: nil).sort_by(&:position), :id, :name_with_parent, {}, class: "form-select", data: {"people-skills-target": "categoriesDropdown"}
+
+    = f.label :level
+    %div.d-flex.gap-2
+      = f.range_field :level, min: 1, max: 5, value: 1,  class: "form-range w-25",
             data: { "action": "change->people-skills#displayLevelLabel", "people-skills-target": "switch"  }
-            %label.form-label.text-gray#skill-level-label{"data-people-skills-target": "label"}
-        %div
-            = render partial: "edit_interest_stars", locals: { ff: f }
-        %div
-            = f.check_box :certificate, class: "form-check-input me-2"
-            = f.label :certificate
-        %div
-            = f.check_box :core_competence, class: "form-check-input me-2"
-            = f.label :core_competence
-        = f.submit
+      %label.form-label.text-gray#skill-level-label{"data-people-skills-target": "label"}
+    %div
+      = render partial: "edit_interest_stars", locals: { ff: f }
+    %div
+      = f.check_box :certificate, class: "form-check-input me-2"
+      = f.label :certificate
+    %div
+      = f.check_box :core_competence, class: "form-check-input me-2"
+      = f.label :core_competence
+    = f.submit
         
