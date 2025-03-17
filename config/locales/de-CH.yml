@@ -11,12 +11,12 @@ de-CH:
         year_from: Startdatum
       certificate:
         comment: Bemerkig
-        course_duration: Kursduur in Tag
+        course_duration: Kursduur [d]
         designation: Bezeichnig
-        exam_duration: Prüefigsduur in Minute
+        exam_duration: Prüefigsduur [min]
         points_value: PCTS
         provider: Herusgäber
-        study_time: Lernufwand in Tagä
+        study_time: Lernufwand [d]
         title: Titu
         type_of_exam: Prüefigsart
       education:
@@ -113,13 +113,13 @@ de-CH:
     global:
       table:
         comment: Bemerkig
-        course_duration: Kursduur in Tag
+        course_duration: Kursduur [d]
         designation: Bezeichnig
-        exam_duration: Prüefigsduur in Minute
+        exam_duration: Prüefigsduur [min]
         modify: Änderä
         points_value: PCTS
         provider: Herusgäber
-        study_time: Lernufwand in Tagä
+        study_time: Lernufwand [d]
         title: Titu
         type_of_exam: Prüefigsart
   cv_search:

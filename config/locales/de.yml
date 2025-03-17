@@ -11,12 +11,12 @@ de:
         year_from: Startdatum
       certificate:
         comment: Bemerkung
-        course_duration: Kursdauer in Tagen
+        course_duration: Kursdauer [d]
         designation: Bezeichnung
-        exam_duration: Prüfungsdauer in Minuten
+        exam_duration: Prüfungsdauer [min]
         points_value: PCTS
         provider: Herausgeber
-        study_time: Lernaufwand in Tagen
+        study_time: Lernaufwand [d]
         title: Titel
         type_of_exam: Prüfungsart
       education:
@@ -113,13 +113,13 @@ de:
     global:
       table:
         comment: Bemerkung
-        course_duration: Kursdauer in Tagen
+        course_duration: Kursdauer [d]
         designation: Bezeichnung
-        exam_duration: Prüfungsdauer in Minuten
+        exam_duration: Prüfungsdauer [min]
         modify: Ändern
         points_value: PCTS
         provider: Herausgeber
-        study_time: Lernaufwand in Tagen
+        study_time: Lernaufwand [d]
         title: Titel
         type_of_exam: Prüfungsart
   cv_search:

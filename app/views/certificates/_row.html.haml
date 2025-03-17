@@ -1,12 +1,12 @@
 = form_with(model: @certificate) do |f|
   .row.border.border-top.table-light.table-hover.table-row
-    .col-1.d-flex.align-items-center
+    .col.d-flex.align-items-center
       = f.text_field :designation, class: "form-control"
     .col-2.d-flex.align-items-center
       = f.text_field :title, class: "form-control"
     .col-1.d-flex.align-items-center
       = f.text_field :provider, class: "form-control"
-    .col-1.d-flex.align-items-center
+    .w-5.d-flex.align-items-center.p-0
       = f.number_field :points_value, class: "form-control", step: 0.5
     .col-2.d-flex.align-items-center
       = f.text_field :comment, class: "form-control"

@@ -11,12 +11,12 @@ it:
         year_from: Data di inizio
       certificate:
         comment: Note
-        course_duration: Durata del corso in giorni
+        course_duration: Durata del corso [d]
         designation: Designazione
-        exam_duration: Durata dell'esame in minuti
+        exam_duration: Durata dell'esame [min]
         points_value: PCTS
         provider: Editore
-        study_time: Tempo di studio in giorni
+        study_time: Tempo di studio [d]
         title: Titolo
         type_of_exam: Tipo di esame
       education:
@@ -109,13 +109,13 @@ it:
     global:
       table:
         comment: Note
-        course_duration: Durata del corso in giorni
+        course_duration: Durata del corso [d]
         designation: Designazione
-        exam_duration: Durata dell'esame in minuti
+        exam_duration: Durata dell'esame [min]
         modify: Cambiamento
         points_value: PCTS
         provider: Editore
-        study_time: Tempo di studio in giorni
+        study_time: Tempo di studio [d]
         title: Titolo
         type_of_exam: Tipo di esame
   cv_search:
