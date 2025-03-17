@@ -2,10 +2,10 @@
   = add_action_link_modal
 %div.w-100.margin-header.mt-4
   .row.bg-light-subtle.border-bottom.border-5.border-secondary
-    .col.d-flex.align-items-center
-      %strong= sort_link 'designation'
     .col-2.bg-secondary-subtle.d-flex.align-items-center
       %strong= sort_link 'title'
+    .col.d-flex.align-items-center
+      %strong= sort_link 'designation'
     .col-1.d-flex.align-items-center
       %strong= sort_link 'provider'
     .w-5.bg-secondary-subtle.d-flex.align-items-center
@@ -27,10 +27,10 @@
       - @certificates.each do |certificate|
         %turbo-frame{id: "#{dom_id certificate}"}
           .row.border.border-top.table-light.tableform-hover.table-row.py-2
-            .col.d-flex.align-items-center.text-break
-              = certificate.designation
             .col-2.bg-light.d-flex.align-items-center.text-break
               = certificate.title
+            .col.d-flex.align-items-center.text-break
+              = certificate.designation
             .col-1.d-flex.align-items-center.text-break
               = certificate.provider
             .w-5.bg-light.d-flex.align-items-center.text-break
