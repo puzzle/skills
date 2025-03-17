@@ -53,6 +53,7 @@ Rails.application.routes.draw do
       resources :activities
       resources :projects
       resources :people_skills, controller: 'people/people_skills_create'
+      patch :people_skills, to: 'people/people_skills#update'
 
       member do
         get 'export-cv', to: 'people/export_cv#show'

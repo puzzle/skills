@@ -12,9 +12,8 @@
 
           = close_action_link person_people_skills_path(@person, no_default_skill_prompt: "")
         - not_rated_default_skills(@person).each do |skill|
-          = form_with model: @person, url: people_skills_person_path(@person, rating: params["rating"]) do |form|
-            = form.fields_for :people_skills, skill do |ff|
-              = render "people/people_skills/edit_form", ff: ff
+          = form_with model: skill, url: person_people_skills_path(@person, rating: params["rating"]) do |form|
+            = render "people/people_skills/edit_form", ff: form
         %div.align-items-center.mt-3
           = cancel_action_link person_people_skills_path(@person, no_default_skill_prompt: "")
     %div#person-skill-overview
