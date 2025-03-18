@@ -9,12 +9,9 @@ class People::PeopleSkillsController < CrudController
 
   self.nesting = Person
   layout 'person'
+
   def self.model_class
     PeopleSkill
-  end
-
-  def self.controller_path
-    'people/people_skills'
   end
 
   def index

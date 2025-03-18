@@ -31,7 +31,7 @@ describe :people do
       ember = alice.people_skills.first
       within("#default-skill-#{ember.skill.id}") do
         select_star_rating(2)
-        select_level(3, "person[people_skills_attributes][0][level]")
+        select_level(3, "level_#{ember.skill.id}")
       end
 
       # Check if changes were saved
@@ -52,7 +52,7 @@ describe :people do
       expect(bash.level).to eq(0)
       expect(bash.interest).to eq(0)
       within("#default-skill-#{bash.skill.id}") do
-        select_level(3, "person[people_skills_attributes][0][level]")
+        select_level(3, "level_#{bash.skill.id}")
       end
 
       # Check if changes were saved
@@ -149,10 +149,10 @@ describe :people do
     it 'saves rated default skills' do
       not_rated_default_skills = not_rated_default_skills(bob)
       within '#default-skills' do
-        page.first('[name="person[people_skills_attributes][0][level]"]').set(3)
+        page.first('[name="people_skill[level]"]').set(3)
         page.first(".star3", visible: false).click(x: 10, y: 10)
-        page.first('[name="person[people_skills_attributes][0][certificate]"]').check
-        page.first('[name="person[people_skills_attributes][0][core_competence]"]').check
+        page.first('[name="people_skill[certificate]"]').check
+        page.first('[name="people_skill[core_competence]"]').check
         click_button("Bewerten")
       end
       if not_rated_default_skills.count > 1
