@@ -9,6 +9,16 @@ de-CH:
       advanced_training:
         description: Beschribig
         year_from: Startdatum
+      certificate:
+        comment: Bemerkig
+        course_duration: Kursduur [d]
+        designation: Bezeichnig
+        exam_duration: Prüefigsduur [min]
+        points_value: PCTS
+        provider: Herusgäber
+        study_time: Lernufwand [d]
+        title: Titu
+        type_of_exam: Prüefigsart
       education:
         location: Usbiudigsort
         title: Usbiudig
@@ -71,6 +81,9 @@ de-CH:
       category:
         one: Kategorie
         other: Kategoriä
+      certificate:
+        one: Zertifikat
+        other: Zertifikat
       company:
         one: Firma
         other: Firmä
@@ -96,6 +109,19 @@ de-CH:
     global:
       link:
         list: Admin Panel
+  certificates:
+    global:
+      table:
+        comment: Bemerkig
+        course_duration: Kursduur [d]
+        designation: Bezeichnig
+        exam_duration: Prüefigsduur [min]
+        modify: Änderä
+        points_value: PCTS
+        provider: Herusgäber
+        study_time: Lernufwand [d]
+        title: Titu
+        type_of_exam: Prüefigsart
   cv_search:
     global:
       search_placeholder: CVs dürsuechä...
@@ -157,6 +183,7 @@ de-CH:
       remove: Entfärnä
       save_new: Spicherä & Neu
     navbar:
+      certificates: Zertifikat
       cv_search: CV Suechi
       profile: Profiu
       skill_search: Skill Suechi

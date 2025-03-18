@@ -1,0 +1,3 @@
+= turbo_stream.update "#{dom_id @certificate}" do
+  = render "row", certificate: @certificate
+  = render "application/error_banners", errors: @certificate.errors

@@ -9,6 +9,16 @@ en:
       advanced_training:
         description: Description
         year_from: Start date
+      certificate:
+        comment: Comment
+        course_duration: Course duration [d]
+        designation: Designation
+        exam_duration: Exam duration [min]
+        points_value: PCTS
+        provider: Provider
+        study_time: Study time [d]
+        title: Title
+        type_of_exam: Type of exam
       education:
         location: Training location
         title: Education
@@ -69,6 +79,9 @@ en:
       category:
         one: Category
         other: Categories
+      certificate:
+        one: Certificate
+        other: Certificates
       company:
         one: Company
         other: Companies
@@ -92,6 +105,19 @@ en:
     global:
       link:
         list: Admin Panel
+  certificates:
+    global:
+      table:
+        comment: Comment
+        course_duration: Course duration [d]
+        designation: Designation
+        exam_duration: Exam duration [min]
+        modify: Change
+        points_value: PCTS
+        provider: Provider
+        study_time: Study time [d]
+        title: Title
+        type_of_exam: Type of exam
   cv_search:
     global:
       search_placeholder: Search CVs...
@@ -138,6 +164,7 @@ en:
       remove: Remove
       save_new: Save & New
     navbar:
+      certificates: Certificates
       cv_search: CV search
       profile: Profile
       skill_search: Skill search

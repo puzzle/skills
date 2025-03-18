@@ -1,0 +1,23 @@
+%turbo-frame{id: "#{dom_id @certificate}"}
+  .row.border.border-top.table-light.tableform-hover.table-row.py-2
+    .col-2.bg-light.d-flex.align-items-center.text-break
+      = @certificate.title
+    .col.d-flex.align-items-center.text-break
+      = @certificate.designation
+    .col-1.d-flex.align-items-center.text-break
+      = @certificate.provider
+    .w-5.bg-light.d-flex.align-items-center.text-break
+      = @certificate.points_value
+    .col-2.d-flex.align-items-center.text-break
+      = @certificate.comment
+    .col-1.bg-light.d-flex.align-items-center.text-break
+      = @certificate.course_duration
+    .col-1.d-flex.align-items-center.text-break
+      = @certificate.exam_duration
+    .col-1.bg-light.d-flex.align-items-center.text-break
+      = @certificate.type_of_exam
+    .col-1.d-flex.align-items-center.text-break
+      = @certificate.study_time
+    .col-1.bg-light.d-flex.align-items-center
+      %div.h-100.d-flex.justify-content-center.align-items-center.w-100
+        = action_link("", "pencil", edit_certificate_path(@certificate))

@@ -9,6 +9,16 @@ it:
       advanced_training:
         description: Descrizione del
         year_from: Data di inizio
+      certificate:
+        comment: Note
+        course_duration: Durata del corso [d]
+        designation: Designazione
+        exam_duration: Durata dell'esame [min]
+        points_value: PCTS
+        provider: Editore
+        study_time: Tempo di studio [d]
+        title: Titolo
+        type_of_exam: Tipo di esame
       education:
         location: Luogo di formazione
         title: Istruzione
@@ -69,6 +79,9 @@ it:
       category:
         one: Categoria
         other: Categorie
+      certificate:
+        one: Certificato
+        other: Certificati
       company:
         one: Azienda
         other: Aziende
@@ -92,6 +105,19 @@ it:
     global:
       link:
         list: Pannello di amministrazione
+  certificates:
+    global:
+      table:
+        comment: Note
+        course_duration: Durata del corso [d]
+        designation: Designazione
+        exam_duration: Durata dell'esame [min]
+        modify: Cambiamento
+        points_value: PCTS
+        provider: Editore
+        study_time: Tempo di studio [d]
+        title: Titolo
+        type_of_exam: Tipo di esame
   cv_search:
     global:
       search_placeholder: Ricerca CV...
@@ -138,6 +164,7 @@ it:
       remove: Rimuovere
       save_new: Risparmi e novità
     navbar:
+      certificates: Certificati
       cv_search: Ricerca di CV
       profile: Profilo
       skill_search: Ricerca di competenze

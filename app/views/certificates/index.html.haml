@@ -1,0 +1,50 @@
+%div.bg-white.w-100.d-flex
+  = add_action_link_modal
+%div.w-100.margin-header.mt-4
+  .row.bg-light-subtle.border-bottom.border-5.border-secondary
+    .col-2.bg-secondary-subtle.d-flex.align-items-center
+      %strong= sort_link 'title'
+    .col.d-flex.align-items-center
+      %strong= sort_link 'designation'
+    .col-1.d-flex.align-items-center
+      %strong= sort_link 'provider'
+    .w-5.bg-secondary-subtle.d-flex.align-items-center
+      %strong= sort_link 'points_value'
+    .col-2.d-flex.align-items-center
+      %strong= sort_link 'comment'
+    .col-1.bg-secondary-subtle.d-flex.align-items-center
+      %strong= sort_link 'course_duration'
+    .col-1.d-flex.align-items-center
+      %strong= sort_link 'exam_duration'
+    .col-1.bg-secondary-subtle.d-flex.align-items-center
+      %strong= sort_link 'type_of_exam'
+    .col-1.d-flex.align-items-center
+      %strong= sort_link 'study_time'
+    .col-1.bg-secondary-subtle.d-flex.align-items-center
+      %strong= ti "table.modify"
+  %div
+    %turbo-frame{id: "certificates"}
+      - @certificates.each do |certificate|
+        %turbo-frame{id: "#{dom_id certificate}"}
+          .row.border.border-top.table-light.tableform-hover.table-row.py-2
+            .col-2.bg-light.d-flex.align-items-center.text-break
+              = certificate.title
+            .col.d-flex.align-items-center.text-break
+              = certificate.designation
+            .col-1.d-flex.align-items-center.text-break
+              = certificate.provider
+            .w-5.bg-light.d-flex.align-items-center.text-break
+              = certificate.points_value
+            .col-2.d-flex.align-items-center.text-break
+              = certificate.comment
+            .col-1.bg-light.d-flex.align-items-center.text-break
+              = certificate.course_duration
+            .col-1.d-flex.align-items-center.text-break
+              = certificate.exam_duration
+            .col-1.bg-light.d-flex.align-items-center.text-break
+              = certificate.type_of_exam
+            .col-1.d-flex.align-items-center.text-break
+              = certificate.study_time
+            .col-1.bg-light.d-flex.align-items-center
+              %div.h-100.d-flex.justify-content-center.align-items-center.w-100
+                = action_link("", "pencil", edit_certificate_path(certificate))

@@ -7,17 +7,18 @@ module TabHelper
 
   def person_tabs(person)
     [
-      { title: ti('tabbar.cv'), path: person_path(person) },
-      { title: ti('tabbar.skills'), path: person_people_skills_path(person) }
+      { title: ti('tabbar.cv'), path: person_path(person), admin_only: false },
+      { title: ti('tabbar.skills'), path: person_people_skills_path(person), admin_only: false }
     ]
   end
 
   def global_tabs
     [
-      { title: ti('navbar.profile'), path: people_path },
-      { title: ti('navbar.skill_search'), path: people_skills_path },
-      { title: ti('navbar.cv_search'), path: cv_search_index_path },
-      { title: ti('navbar.skillset'), path: skills_path }
+      { title: ti('navbar.profile'), path: people_path, admin_only: false },
+      { title: ti('navbar.skill_search'), path: people_skills_path, admin_only: false },
+      { title: ti('navbar.cv_search'), path: cv_search_index_path, admin_only: false },
+      { title: ti('navbar.skillset'), path: skills_path, admin_only: false },
+      { title: ti('navbar.certificates'), path: certificates_path, admin_only: true }
     ]
   end
 
