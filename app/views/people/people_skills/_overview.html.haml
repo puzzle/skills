@@ -27,5 +27,5 @@
           =category_child.title + " (#{people_skills_of_category.count})"
           - people_skills_of_category.each do |person_skill|
             - @person_skill = person_skill
-            = form_with model: person_skill, url: person_people_skills_path(@person, rating: params["rating"]) do |ff|
+            = form_with model: person_skill, url: person_people_skill_path(@person, person_skill, rating: params["rating"]) do |ff|
               = render "people/people_skills/edit_form", ff: ff

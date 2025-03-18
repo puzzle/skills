@@ -9,12 +9,41 @@ class People::PeopleSkillsController < CrudController
 
   self.nesting = Person
   layout 'person'
+  def self.model_class
+    PeopleSkill
+  end
+
+  def self.controller_path
+    'people/people_skills'
+  end
+
+  def index
+    return super if params[:rating].present?
+
+    redirect_to url_for(request.params.merge(rating: 0))
+  end
+
+  def show
+    redirect_to person_people_skills_path(@person)
+  end
+
+  def new
+    super
+    @people_skill.skill ||= Skill.new
+    @category_hidden = @people_skill.skill.category&.id.present? && @people_skill.skill&.id.present?
+  end
 
   def update
     @people_skills = filtered_people_skills
     super do |format, success|
       format.turbo_stream { render 'people/people_skills/update', status: :ok } if success
     end
+  end
+
+  def list_entries
+    return super if params[:rating].blank?
+
+    filter_by_rating(super, params[:rating])
   end
 
   def show_path
