@@ -83,7 +83,6 @@ export default class extends Controller {
     }
 
     isEditMode(e) {
-        const formElements = Array.from(e.target.form.elements);
-        return formElements.some(e=> e.id === "person_people_skills_attributes_0_id");
+        return document.getElementById("person-skill-overview").contains(e.target);
     }
 }

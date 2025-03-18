@@ -11,8 +11,8 @@
             = "(#{not_rated_default_skills(@person).count})"
 
           = close_action_link person_people_skills_path(@person, no_default_skill_prompt: "")
-        - not_rated_default_skills(@person).each do |skill|
-          = form_with model: skill, url: person_people_skills_path(@person, rating: params["rating"]) do |form|
+        - not_rated_default_skills(@person).each do |person_skill|
+          = form_with model: person_skill, url: person_people_skills_path(@person, rating: params["rating"]) do |form|
             = render "people/people_skills/edit_form", ff: form
         %div.align-items-center.mt-3
           = cancel_action_link person_people_skills_path(@person, no_default_skill_prompt: "")
