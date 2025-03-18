@@ -266,6 +266,7 @@ en:
       updated_at: Last edited
   people/people_skills:
     edit_form:
+      ptime_data: This data comes from Puzzle Time, therefore you cannot edit it.
       rate: Rate
       unrate: Do not rate
     global:

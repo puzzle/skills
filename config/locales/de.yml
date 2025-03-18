@@ -270,6 +270,7 @@ de:
       updated_at: Zuletzt bearbeitet
   people/people_skills:
     edit_form:
+      ptime_data: Diese Daten stammen aus dem Puzzle Time, daher kannst du diese nicht bearbeiten.
       rate: Bewerten
       unrate: Nicht bewerten
     global:

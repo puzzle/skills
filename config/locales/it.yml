@@ -266,6 +266,7 @@ it:
       updated_at: Ultima modifica
   people/people_skills:
     edit_form:
+      ptime_data: Questi dati provengono da Puzzle Time, pertanto non è possibile modificarli.
       rate: Tasso
       unrate: Non valutare
     global:
