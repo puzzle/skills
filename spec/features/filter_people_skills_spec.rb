@@ -18,11 +18,13 @@ describe :people do
       end
 
       find("label[for='rating_0']").click
+      sleep(0.3)
       person_skills.each do |person_skill|
         expect(page.has_text?(person_skill.skill.title, wait: 0.1)).to eql(person_skill.level != 0)
       end
 
       find("label[for='rating_-1']").click
+      sleep(0.3)
       person_skills.each do |person_skill|
         expect(page.has_text?(person_skill.skill.title, wait: 0.1)).to eql(person_skill.level == 0)
       end
