@@ -15,7 +15,8 @@ class People::PeopleSkillsController < CrudController
   end
 
   def index
-    return super if params[:rating].present?
+    rating = params[:rating]
+    return super if rating.present? && ([-1, 0, 1].include? rating.to_i)
 
     redirect_to url_for(request.params.merge(rating: 0))
   end
@@ -44,7 +45,7 @@ class People::PeopleSkillsController < CrudController
   end
 
   def show_path
-    person_people_skills_path(@person)
+    person_people_skills_path(@person, rating: params[:rating])
   end
 
   private
