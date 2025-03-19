@@ -66,13 +66,11 @@ module Ptime
     end
 
     def set_person_roles(person, ptime_employee)
+      PersonRole.where(person_id: person.id).destroy_all
+
       ptime_employee[:attributes][:employment_roles].each do |role|
-        person_roles = PersonRole.all
         role_id = Role.find_or_create_by(name: sanitized_role_name(role[:name])).id
-
-        next if person_roles.find_by(person_id: person.id, role_id: role_id)
-                          .present?
-
+        role_level_id = map_role_level(role)
         PersonRole.create!(person_id: person.id,
                            role_id: role_id,
                            percent: role[:percent],
@@ -80,13 +78,13 @@ module Ptime
       end
     end
 
-    def delete_inactive_person_roles(person_roles, role)
-
-    end
-
     # Remove prefix of role such as 'T1' or 'M2' which is not needed
     def sanitized_role_name(role_name)
       role_name.gsub(/\A[A-Z]\d+\s/, '')
+    end
+
+    def map_role_level(role)
+      PersonRoleLevel.find_by(level: role[role_level]).id
     end
   end
 end
