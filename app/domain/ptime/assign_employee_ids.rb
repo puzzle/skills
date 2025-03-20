@@ -1,6 +1,7 @@
 # This script will assign each person the corresponding employee ID from PuzzleTime
 module Ptime
   class AssignEmployeeIds
+    MAX_NUMBER_OF_FETCHED_EMPLOYEES = 1000
 
     # rubocop:disable Rails/Output
     def run(should_map: false)
@@ -47,7 +48,6 @@ module Ptime
     end
     # rubocop:enable Metrics
 
-    MAX_NUMBER_OF_FETCHED_EMPLOYEES = 1000
     def fetch_data
       puts 'Fetching required data...'
       @ptime_employees = Ptime::Client.new.request(:get, 'employees',
