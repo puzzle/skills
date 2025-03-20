@@ -30,10 +30,12 @@ describe :people do
       it 'searches skills space insensitive' do
         within '#remote_modal' do
           page.find('.ss-main').click
-          page.all('input')[0].send_keys(query)
+          send_keys(query)
           sleep 0.3
-          expect(page).to have_text("Web Components")
-          expect(page).to have_text("WebComponents")
+        end
+        within('#dropdown-wormhole') do |list|
+          expect(list).to have_content("Web Components")
+          expect(list).to have_content("WebComponents")
         end
       end
     end
