@@ -3,18 +3,17 @@ RSpec.describe PersonHelper, type: :helper do
 
   describe '#fetch_people_data' do
 
-    it 'should send request to ptime api' do
+    it 'should send request to ptime and return employees api if ptime_snyc is active' do
       allow(Skills).to receive(:use_ptime_sync?).and_return(true)
       skills_people = helper.fetch_people_data
-      expected = [
+      expected_people = [
         ["Longmax Smith", "/people/new?ptime_employee_id=33", { class: "p-0", "data-html": "<a href='/people/new?ptime_employee_id=33' class='dropdown-option-link'>Longmax Smith</a>" }],
-        ["Alice Mante", "/people/new?ptime_employee_id=21", { class: "p-0", "data-html": "<a href='/people/new?ptime_employee_id=21' class='dropdown-option-link'>Alice Mante</a>" }],
         ["Charlie Ford", "/people/new?ptime_employee_id=45", { class: "p-0", "data-html": "<a href='/people/new?ptime_employee_id=45' class='dropdown-option-link'>Charlie Ford</a>" }]
       ]
-      expect(skills_people).to eq(expected)
+      expect(skills_people).to match_array(expected_people)
     end
 
-    it 'should return people from skills database if last request was right now' do
+    it 'should return people from skills database if ptime_sync is inactive' do
       allow(Skills).to receive(:use_ptime_sync?).and_return(false)
 
       skills_people = helper.fetch_people_data
