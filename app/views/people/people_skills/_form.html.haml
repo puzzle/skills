@@ -2,7 +2,7 @@
   %div.d-flex.flex-column{data: {controller: "people-skills"}}
     =  f.label :skill
     = f.fields_for :skill do |sf|
-      = sf.select :id, options_for_select(skills_dropdown_options, disabled: true), {},
+      = sf.select :id, options_for_select(skills_dropdown_options, disabled: person.skills.pluck(:id)), {},
                 {data: {"people-skills-target": "skillsDropdown"}}
       = sf.hidden_field :title, {data: {"people-skills-target": "skillTitle"}}
       = sf.hidden_field :default_set, value: false
@@ -27,4 +27,3 @@
       = f.check_box :core_competence, class: "form-check-input me-2"
       = f.label :core_competence
     = f.submit
-        
