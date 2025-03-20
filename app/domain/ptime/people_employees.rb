@@ -70,7 +70,7 @@ module Ptime
 
       ptime_employee[:attributes][:employment_roles].each do |role|
         role_id = Role.find_or_create_by(name: sanitized_role_name(role[:name])).id
-        role_level_id = map_role_level(role)
+        # role_level_id = map_role_level(role)
         PersonRole.create!(person_id: person.id,
                            role_id: role_id,
                            percent: role[:percent],
@@ -83,8 +83,8 @@ module Ptime
       role_name.gsub(/\A[A-Z]\d+\s/, '')
     end
 
-    def map_role_level(role)
-      PersonRoleLevel.find_by(level: role[role_level]).id
-    end
+    # def map_role_level(role)
+    #   PersonRoleLevel.find_by(level: role[role_level]).id
+    # end
   end
 end
