@@ -33,7 +33,7 @@
                 "graduation" : "MSc in writing",
                 "department_shortname" : "SYS",
                 "employment_roles" : [],
-                "is_employed" : false,
+                "is_employed" : true,
                 "birthdate" : "01.04.2001",
                 "location" : "Bern"
             }
