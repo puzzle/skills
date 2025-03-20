@@ -54,15 +54,11 @@ module Ptime
       nationalities = ptime_employee[:attributes][:nationalities] || []
       person.nationality = nationalities[0]
       person.nationality2 = nationalities[1]
-      person.name = split_name(ptime_employee[:attributes][:full_name])
+      person.name = append_ptime_employee_name(ptime_employee)
     end
 
-    def split_name(full_name)
-      parts = full_name.split
-      last_names = parts[0..-2].join(' ')
-      first_name = parts[-1]
-
-      "#{first_name} #{last_names}"
+    def append_ptime_employee_name(ptime_employee)
+      "#{ptime_employee[:attributes][:firstname]} #{ptime_employee[:attributes][:lastname]}"
     end
 
     def set_person_roles(person, ptime_employee)

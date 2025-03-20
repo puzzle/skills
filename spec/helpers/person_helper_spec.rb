@@ -3,7 +3,7 @@ RSpec.describe PersonHelper, type: :helper do
 
   describe '#fetch_people_data' do
 
-    it 'should send request to ptime and return employees api if ptime_snyc is active' do
+    it 'should send request to ptime and return employed employees when ptime_sync is active' do
       allow(Skills).to receive(:use_ptime_sync?).and_return(true)
       skills_people = helper.fetch_people_data
       expected_people = [
@@ -13,7 +13,7 @@ RSpec.describe PersonHelper, type: :helper do
       expect(skills_people).to match_array(expected_people)
     end
 
-    it 'should return people from skills database if ptime_sync is inactive' do
+    it 'should return people from skills database when ptime_sync is inactive' do
       allow(Skills).to receive(:use_ptime_sync?).and_return(false)
 
       skills_people = helper.fetch_people_data

@@ -112,7 +112,6 @@ module PersonHelper
     ptime_employees.map do |ptime_employee|
       next unless ptime_employee[:attributes][:is_employed] == true
 
-      ptime_employee_name = append_ptime_employee_name(ptime_employee)
       skills_person = Person.find_by(ptime_employee_id: ptime_employee[:id])
 
       path = if skills_person.present?
@@ -120,7 +119,7 @@ module PersonHelper
              else
                new_person_path(ptime_employee_id: ptime_employee[:id])
              end
-      build_dropdown_entry(ptime_employee_name, path)
+      build_dropdown_entry(append_ptime_employee_name(ptime_employee), path)
     end.compact
   end
 
