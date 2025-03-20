@@ -56,13 +56,13 @@ module DryCrud
       def destroy_action_col(html_options = {}, &) # rubocop:disable Metrics/MethodLength
         action_col do |entry|
           path = action_path(entry, &)
+          html_options.merge!(data:
+                                { 'turbo-confirm': ti(:confirm_delete),
+                                  'turbo-method': :delete })
           if path && entry.destroyable?
             table_action_link('remove',
                               path,
-                              html_options.merge(
-                                data: { confirm: ti(:confirm_delete),
-                                        'turbo-method': :delete }
-                              ))
+                              html_options)
           end
         end
       end
