@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_05_074320) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_21_093308) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -231,6 +231,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_05_074320) do
     t.datetime "updated_at", precision: nil, null: false
     t.bigint "category_id"
     t.index ["category_id"], name: "index_skills_on_category_id"
+  end
+
+  create_table "unified_skills", force: :cascade do |t|
+    t.text "skill_1_attrs"
+    t.text "skill_2_attrs"
+    t.text "unified_skill_attrs"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "categories", "categories", column: "parent_id"
