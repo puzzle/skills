@@ -68,6 +68,7 @@ Rails.application.routes.draw do
     end
 
     resources :certificates
+    resources :unified_skills
   end
 
 
