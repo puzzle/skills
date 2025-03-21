@@ -34,9 +34,6 @@ class PeopleController < CrudController
   def new
     super
     @person.nationality = 'CH'
-    %w[DE EN FR].each do |language|
-      @person.language_skills.push(LanguageSkill.new({ language: language }))
-    end
   end
 
   def create
