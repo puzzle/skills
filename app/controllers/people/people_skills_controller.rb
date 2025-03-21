@@ -28,7 +28,6 @@ class People::PeopleSkillsController < CrudController
   def new
     super
     @people_skill.skill ||= Skill.new
-    @category_hidden = @people_skill.skill.category&.id.present? && @people_skill.skill&.id.present?
   end
 
   def update

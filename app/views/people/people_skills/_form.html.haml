@@ -10,8 +10,8 @@
             = sf.hidden_field :portfolio, value: Settings.portfolio[1]
             
             %div
-                = sf.label :category, {hidden:@category_hidden}
-                = sf.collection_select :category_id, Category.where.not(parent_id: nil).sort_by(&:position), :id, :name_with_parent, {}, class: "form-select", hidden: @category_hidden, data: {"people-skills-target": "categoriesDropdown"}
+                = sf.label :category
+                = sf.collection_select :category_id, Category.where.not(parent_id: nil).sort_by(&:position), :id, :name_with_parent, {}, class: "form-select", data: {"people-skills-target": "categoriesDropdown"}
         
         = f.label :level
         %div.d-flex.gap-2
