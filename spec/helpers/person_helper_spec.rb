@@ -3,6 +3,7 @@ RSpec.describe PersonHelper, type: :helper do
 
   local_data = [
     ["Bob Anderson", "/people/902541635", { class: "p-0", "data-html": "<a href='/people/902541635' class='dropdown-option-link'>Bob Anderson</a>" }],
+    ["Andreas Admin", "/people/135138680", {  class: "p-0", "data-html": "<a href='/people/135138680' class='dropdown-option-link'>Andreas Admin</a>" }],
     ["Alice Mante", "/people/663665735", { class: "p-0", "data-html": "<a href='/people/663665735' class='dropdown-option-link'>Alice Mante</a>" }],
     ["ken", "/people/155397742", { class: "p-0", "data-html": "<a href='/people/155397742' class='dropdown-option-link'>ken</a>" }],
     ["Charlie Ford", "/people/786122151", { class: "p-0", "data-html": "<a href='/people/786122151' class='dropdown-option-link'>Charlie Ford</a>" }],
