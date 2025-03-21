@@ -70,7 +70,7 @@ module Ptime
         PersonRole.create!(person_id: person.id,
                            role_id: role_id,
                            percent: role[:percent],
-                           person_role_level_id: 1)
+                           person_role_level_id: PersonRoleLevel.first.id)
       end
     end
 

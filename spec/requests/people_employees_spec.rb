@@ -36,6 +36,13 @@ describe 'Update or create person' do
     expect(person_wally.location).to eq('Basel')
     expect(person_wally.nationality).to eq('DE')
     expect(person_wally.nationality2).to eq('DK')
+
+    role = Role.find_by(name: "Newest employment role")
+    expect(role).not_to be_nil
+
+    person_role = PersonRole.find_by(role_id: role.id)
+    expect(person_role.person_id).to eq(person_wally.id)
+    expect(person_role.percent).to eq(100)
   end
 
   it 'should create person when visited' do
@@ -58,6 +65,13 @@ describe 'Update or create person' do
     expect(new_wally.location).to eq('Basel')
     expect(new_wally.nationality).to eq('DE')
     expect(new_wally.nationality2).to eq('DK')
+
+    role = Role.find_by(name: "Newest employment role")
+    expect(role).not_to be_nil
+
+    person_role = PersonRole.find_by(role_id: role.id)
+    expect(person_role.person_id).to eq(new_wally.id)
+    expect(person_role.percent).to eq(100)
   end
 
   it 'should not update but still show person if ptime temporarily unavailable' do
