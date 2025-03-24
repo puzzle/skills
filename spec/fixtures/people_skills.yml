@@ -30,8 +30,8 @@ alice_junit:
 alice_rails:
   skill: rails
   person: alice
-  level: 0
-  interest: 0
+  level: 1
+  interest: 1
   certificate: false
   core_competence: true
 

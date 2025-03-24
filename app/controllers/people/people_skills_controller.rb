@@ -2,35 +2,52 @@
 
 class People::PeopleSkillsController < CrudController
   include ParamConverters
-  self.permitted_attrs = [{ people_skills_attributes: [[:id, :certificate, :level, :interest,
-                                                        :core_competence, :skill_id, :unrated,
-                                                        :_destroy]] }]
-  before_action :set_person
+  self.permitted_attrs = [:id, :certificate, :level, :interest, :core_competence,
+                          :skill_id, :unrated, :skill_ids, :_destroy,
+                          { skill_attributes:
+                              [:id, :title, :radar, :portfolio, :default_set, :category_id] }]
+
+  self.nesting = Person
+  layout 'person'
 
   def self.model_class
-    Person
+    PeopleSkill
+  end
+
+  def index
+    rating = params[:rating]
+    return super if rating.present? && ([-1, 0, 1].include? rating.to_i)
+
+    redirect_to url_for(request.params.merge(rating: 0))
+  end
+
+  def show
+    redirect_to person_people_skills_path(@person)
+  end
+
+  def new
+    super
+    @people_skill.skill ||= Skill.new
   end
 
   def update
     @people_skills = filtered_people_skills
-    if params[:person].blank?
-      render(:index, status: :ok)
-      return
-    end
     super do |format, success|
       format.turbo_stream { render 'people/people_skills/update', status: :ok } if success
     end
   end
 
+  def list_entries
+    return super if params[:rating].blank?
+
+    filter_by_rating(super, params[:rating])
+  end
+
   def show_path
-    person_people_skills_path(@person)
+    person_people_skills_path(@person, rating: params[:rating])
   end
 
   private
-
-  def set_person
-    @person = Person.find(params[:id])
-  end
 
   def filtered_people_skills
     return @person.people_skills if params[:rating].blank?

@@ -52,7 +52,7 @@ Rails.application.routes.draw do
       resources :educations
       resources :activities
       resources :projects
-      resources :people_skills, controller: 'people/people_skills_create'
+      resources :people_skills, controller: 'people/people_skills', path: 'skills'
 
       member do
         get 'export-cv', to: 'people/export_cv#show'
@@ -61,9 +61,6 @@ Rails.application.routes.draw do
         get 'export', to: 'people#export'
         get 'competence-notes', to: 'people/competence_notes#edit'
         post 'competence-notes', to: 'people/competence_notes#update'
-
-        get 'people-skills-edit', to: 'people/people_skills#edit'
-        patch 'people-skills', to: 'people/people_skills#update'
       end
     end
 

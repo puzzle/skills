@@ -1,7 +1,7 @@
-%turbo-frame#people-skill-form.d-flex.gap-3.col-12
+%div.d-flex.gap-3.col-12
   = render('people/scroll_to_menu', items: Category.all_parents.pluck(:title)) do
     = add_action_link_modal
-  %div.w-100{data: { "scroll-target": "parent"}}
+  %turbo-frame#people-skill-form.w-100{data: { "scroll-target": "parent"}}
     - if not_rated_default_skills(@person).count > 0 && !params.key?("no_default_skill_prompt")
       %div.border.border-1.mb-2.p-3.border-black#default-skills
         %div#default-skill-errors
@@ -11,10 +11,9 @@
             = "(#{not_rated_default_skills(@person).count})"
 
           = close_action_link person_people_skills_path(@person, no_default_skill_prompt: "")
-        - not_rated_default_skills(@person).each do |skill|
-          = form_with model: @person, url: people_skills_person_path(@person, rating: params["rating"]) do |form|
-            = form.fields_for :people_skills, skill do |ff|
-              = render "people/people_skills/edit_form", ff: ff
+        - not_rated_default_skills(@person).each do |person_skill|
+          = form_with model: person_skill, url: person_people_skills_path(@person, rating: params["rating"]) do |form|
+            = render "people/people_skills/edit_form", ff: form
         %div.align-items-center.mt-3
           = cancel_action_link person_people_skills_path(@person, no_default_skill_prompt: "")
     %div#person-skill-overview
