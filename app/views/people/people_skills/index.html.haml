@@ -2,18 +2,17 @@
   = render('people/scroll_to_menu', items: Category.all_parents.pluck(:title)) do
     = add_action_link_modal
   %turbo-frame#people-skill-form.w-100{data: { "scroll-target": "parent"}}
-    %turbo-frame
-      - if not_rated_default_skills(@person).count > 0 && !params.key?("no_default_skill_prompt")
-        %div.border.border-1.mb-2.p-3.border-black#default-skills
-          %div#default-skill-errors
-          %div.d-flex.align-items-center.profile-header.justify-content-between.mb-2
-            %div
-              = ti("new_skills_to_rate")
-              = "(#{not_rated_default_skills(@person).count})"
-            = close_action_link person_people_skills_path(@person, no_default_skill_prompt: "")
-          - not_rated_default_skills(@person).each do |person_skill|
-            = form_with model: person_skill, url: person_people_skills_path(@person, rating: params["rating"]) do |form|
-              = render "people/people_skills/edit_form", ff: form
+    - if not_rated_default_skills(@person).count > 0 && !params.key?("no_default_skill_prompt")
+      %div.border.border-1.mb-2.p-3.border-black#default-skills
+        %div#default-skill-errors
+        %div.d-flex.align-items-center.profile-header.justify-content-between.mb-2
+          %div
+            = ti("new_skills_to_rate")
+            = "(#{not_rated_default_skills(@person).count})"
+          = close_action_link person_people_skills_path(@person, no_default_skill_prompt: "")
+        - not_rated_default_skills(@person).each do |person_skill|
+          = form_with model: person_skill, url: person_people_skills_path(@person, rating: params["rating"]) do |form|
+            = render "people/people_skills/edit_form", ff: form
         %div.align-items-center.mt-3
           = cancel_action_link person_people_skills_path(@person, no_default_skill_prompt: "")
     %div#person-skill-overview
