@@ -12,7 +12,7 @@ module Ptime
     def request(method, endpoint, params = {})
       url = @base_url + endpoint
 
-      if request_allowed?
+      if last_error_stale?
         execute_request(method, url, params)
       else
         raise CustomExceptions::PTimeTemporarilyUnavailableError, 'PTime is temporarily unavailable'
@@ -21,7 +21,7 @@ module Ptime
 
     private
 
-    def request_allowed?
+    def last_error_stale?
       last_request_time = ENV.fetch('LAST_PTIME_ERROR', nil)
       return true if last_request_time.nil?
 

@@ -83,7 +83,7 @@ module PersonHelper
 
   def fetch_people_data
     all_skills_people = fetch_local_people_data
-    return all_skills_people unless Skills.use_ptime_sync?
+    return all_skills_people unless Skills.use_ptime_sync? && request_allowed?
 
     fetch_ptime_people_data
   rescue CustomExceptions::PTimeClientError
@@ -101,6 +101,7 @@ module PersonHelper
 
   def fetch_ptime_people_data
     ptime_employees = Ptime::Client.new.request(:get, 'employees', { per_page: 1000 })
+    ENV['LAST_PTIME_REQUEST'] = DateTime.current.to_s
     build_people_dropdown(ptime_employees)
   end
 
@@ -137,6 +138,13 @@ module PersonHelper
   # Once https://github.com/puzzle/skills/issues/744 is merged there should be no need for this
   def append_ptime_employee_name(ptime_employee)
     "#{ptime_employee[:attributes][:firstname]} #{ptime_employee[:attributes][:lastname]}"
+  end
+
+  def request_allowed?
+    last_request_time = ENV.fetch('LAST_PTIME_REQUEST', nil)
+    return true if last_request_time.nil?
+
+    last_request_time.to_datetime <= 1.hour.ago
   end
 
   def ptime_sync_active?
