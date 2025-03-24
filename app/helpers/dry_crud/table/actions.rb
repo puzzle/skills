@@ -53,16 +53,15 @@ module DryCrud
       # Action column to destroy the row entry.
       # A block may be given to define the link path for the row entry.
       # If the block returns nil, no link is rendered.
-      def destroy_action_col(html_options = {}, &) # rubocop:disable Metrics/MethodLength
+      def destroy_action_col(html_options = {}, &)
         action_col do |entry|
           path = action_path(entry, &)
+
           if path && entry.destroyable?
             table_action_link('remove',
                               path,
-                              html_options.merge(
-                                data: { confirm: ti(:confirm_delete),
-                                        'turbo-method': :delete }
-                              ))
+                              html_options.merge(data: { 'turbo-confirm': ti(:confirm_delete),
+                                                         'turbo-method': :delete }))
           end
         end
       end
