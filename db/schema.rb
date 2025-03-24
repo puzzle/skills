@@ -162,6 +162,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_05_074320) do
     t.string "email"
     t.integer "department_id"
     t.string "shortname"
+    t.integer "ptime_employee_id"
     t.index ["company_id"], name: "index_people_on_company_id"
   end
 
