@@ -4,20 +4,20 @@
 #
 # Table name: projects
 #
-#  id          :integer          not null, primary key
-#  updated_by  :string
-#  description :text
-#  title       :text
-#  role        :text
-#  technology  :text
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  person_id   :integer
-#  year_from   :integer          not null
-#  year_to     :integer
-#  month_from  :integer
-#  month_to    :integer
-#
+#  id            :integer          not null, primary key
+#  updated_by    :string
+#  description   :text
+#  title         :text
+#  role          :text
+#  technology    :text
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  person_id     :integer
+#  year_from     :integer          not null
+#  year_to       :integer
+#  month_from    :integer
+#  month_to      :integer
+#  display_in_cv :boolean
 
 class Project < ApplicationRecord
   include DaterangeModel
@@ -30,6 +30,7 @@ class Project < ApplicationRecord
 
   has_many :project_technologies, dependent: :destroy
 
+  validates :display_in_cv, inclusion: [true, false]
   validates :role, :title, presence: true
   validates :description, :technology, :role, length: { maximum: 5000 }
   validates :title, length: { maximum: 500 }

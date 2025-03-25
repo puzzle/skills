@@ -14,6 +14,7 @@
 #  updated_at              :datetime         not null
 #  picture                 :string
 #  competence_notes        :string
+#  export_competence_notes :boolean
 #  company_id              :bigint(8)
 #  associations_updatet_at :datetime
 #  nationality             :string
@@ -48,6 +49,7 @@ class Person < ApplicationRecord
 
   accepts_nested_attributes_for :advanced_trainings, allow_destroy: true
 
+  validates :export_competence_notes, inclusion: [true, false]
   validates :birthdate, :location, :name, :nationality,
             :title, :marital_status, :email, presence: true
   validates :location, :name, :title,

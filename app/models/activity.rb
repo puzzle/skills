@@ -4,17 +4,18 @@
 #
 # Table name: activities
 #
-#  id          :integer          not null, primary key
-#  description :text
-#  updated_by  :string
-#  role        :text
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  person_id   :integer
-#  year_from   :integer          not null
-#  year_to     :integer
-#  month_from  :integer
-#  month_to    :integer
+#  id            :integer          not null, primary key
+#  description   :text
+#  updated_by    :string
+#  role          :text
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  person_id     :integer
+#  year_from     :integer          not null
+#  year_to       :integer
+#  month_from    :integer
+#  month_to      :integer
+#  display_in_cv :boolean
 #
 
 class Activity < ApplicationRecord
@@ -26,6 +27,7 @@ class Activity < ApplicationRecord
 
   belongs_to :person, touch: true
 
+  validates :display_in_cv, inclusion: [true, false]
   validates :role, presence: true
   validates :description, length: { maximum: 5000 }
   validates :role, length: { maximum: 500 }
