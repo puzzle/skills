@@ -33,7 +33,11 @@ class People::PeopleSkillsController < CrudController
   def update
     @people_skills = filtered_people_skills
     super do |format, success|
-      format.turbo_stream { render 'people/people_skills/update', status: :ok } if success
+      if params[:rating] == '-1'
+        format.turbo_stream { head :ok } if success
+      else
+        format.turbo_stream { render 'people/people_skills/update', status: :ok } if success
+      end
     end
   end
 
