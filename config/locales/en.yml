@@ -227,6 +227,8 @@ en:
         location: 'Branch office (for footer):'
         skills_by_level: Skills by level
         trainee: Trainee
+    form:
+      ptime_data: This data comes from Puzzle Time, therefore you cannot edit it.
     global:
       confirm_delete: Do you really want to delete this person?
       link:
@@ -251,8 +253,6 @@ en:
       core_competences: Core competencies
       personals: Personal details
       upload_image: Upload image
-    form:
-      ptime_data: This data comes from Puzzle Time, therefore you cannot edit it.
     projects:
       link:
         add: New project

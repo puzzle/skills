@@ -227,6 +227,8 @@ fr:
         location: 'Établissement (pour le pied de page) :'
         skills_by_level: Compétences par niveau
         trainee: Stagiaire
+    form:
+      ptime_data: Ces données proviennent de Puzzle Time, vous ne pouvez donc pas les modifier.
     global:
       confirm_delete: Veux-tu vraiment supprimer cette personne ?
       link:
@@ -251,8 +253,6 @@ fr:
       core_competences: Compétences clés
       personals: Données personnelles
       upload_image: Télécharger une image
-    form:
-      ptime_data: Ces données proviennent de Puzzle Time, vous ne pouvez donc pas les modifier.
     projects:
       link:
         add: Nouveau projet
