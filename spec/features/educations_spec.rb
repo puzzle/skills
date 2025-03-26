@@ -84,6 +84,17 @@ describe 'Educations', type: :feature, js:true do
       expect(page).to have_css(".alert.alert-danger", text: "Ausbildung muss ausgefüllt werden")
       expect(page).to have_css(".alert.alert-danger", text: "Ausbildungsort muss ausgefüllt werden")
     end
-  end
 
+    it 'Update entry to not be displayed in the CV' do
+      education = person.educations.first
+      open_edit_form(education)
+      checkbox = find('#education_display_in_cv')
+      within("turbo-frame#education_#{education.id}") do
+        checkbox.click
+        click_default_submit
+      end
+      open_edit_form(education)
+      expect(checkbox).not_to be_checked
+    end
+  end
 end

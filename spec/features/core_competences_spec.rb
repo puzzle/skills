@@ -46,4 +46,14 @@ describe "Core competences", type: :feature, js: true do
     expect(page).to have_selector('.core-competence', count: 1,
                                   text: "Software-Engineering Rails ember", normalize_ws: true)
   end
+
+  it 'Update core competence notes to not be displayed in the CV' do
+    visit person_path(alice)
+    click_link(href: competence_notes_person_path(alice))
+    checkbox = find('#person_display_in_cv')
+    checkbox.click
+    click_button "Person aktualisieren"
+    click_link(href: competence_notes_person_path(alice))
+    expect(checkbox).not_to be_checked
+  end
 end

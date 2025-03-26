@@ -1,6 +1,5 @@
 %div.border-top
     %turbo-frame{id: dom_id(education)}
-        - puts "EDUCATIONS #{education.display_in_cv}"
         = link_to edit_person_education_path(@person, education), data:{turbo_prefetch: :false, turbo_frame: dom_id(education)}, class: "text-decoration-none text-dark bg-hover-gray d-block" do
             %div.d-flex.row.pt-3.pb-5
                 %span.col-3.ps-5
