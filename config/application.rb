@@ -14,7 +14,7 @@ Bundler.require(*Rails.groups)
 
 module Skills
   def self.use_ptime_sync?
-    ActiveModel::Type::Boolean.new.cast(ENV.fetch('PTIME_API_ACCESSIBLE', true))
+    ActiveModel::Type::Boolean.new.cast(ENV.fetch('PTIME_API_ACCESSIBLE', false))
   end
 
   class Application < Rails::Application
