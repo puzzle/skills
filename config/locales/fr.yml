@@ -251,6 +251,8 @@ fr:
       core_competences: Compétences clés
       personals: Données personnelles
       upload_image: Télécharger une image
+    form:
+      ptime_data: Ces données proviennent de Puzzle Time, vous ne pouvez donc pas les modifier.
     projects:
       link:
         add: Nouveau projet
@@ -266,7 +268,6 @@ fr:
       updated_at: Dernièrement édité
   people/people_skills:
     edit_form:
-      ptime_data: Ces données proviennent de Puzzle Time, vous ne pouvez donc pas les modifier.
       rate: Évaluer
       unrate: Ne pas évaluer
     global:

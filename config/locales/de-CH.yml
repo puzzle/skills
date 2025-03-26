@@ -272,6 +272,8 @@ de-CH:
       core_competences: Chärnkompetenzä
       personals: Personaliä
       upload_image: Biud hochladä
+    form:
+      ptime_data: Diä Datä si usem Puzzle Time, drum chasch du diä nid veränderä.
     projects:
       link:
         add: Neues Projekt
@@ -287,7 +289,6 @@ de-CH:
       updated_at: Z'letzt bearbeitet
   people/people_skills:
     edit_form:
-      ptime_data: Diä Datä si usem Puzzle Time, drum chasch du diä nid veränderä.
       rate: Bewärtet
       unrate: Nid bewärtet
     global:

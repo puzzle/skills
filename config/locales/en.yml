@@ -251,6 +251,8 @@ en:
       core_competences: Core competencies
       personals: Personal details
       upload_image: Upload image
+    form:
+      ptime_data: This data comes from Puzzle Time, therefore you cannot edit it.
     projects:
       link:
         add: New project
@@ -266,7 +268,6 @@ en:
       updated_at: Last edited
   people/people_skills:
     edit_form:
-      ptime_data: This data comes from Puzzle Time, therefore you cannot edit it.
       rate: Rate
       unrate: Do not rate
     global:

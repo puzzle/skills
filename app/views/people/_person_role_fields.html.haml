@@ -1,4 +1,4 @@
-%div.border.border-dark-subtle.rounded.p-1.fw-light.nested-fields{(ptime_sync_active? ? { "data-bs-toggle": "tooltip", "data-bs-title": I18n.t('people/people_skills.edit_form.ptime_data'), "data-controller": 'tooltip' } : {})}
+%div.border.border-dark-subtle.rounded.p-1.fw-light.nested-fields{(ptime_sync_active? ? { "data-bs-toggle": "tooltip", "data-bs-title": I18n.t('people.form.ptime_data'), "data-controller": 'tooltip' } : {})}
   = f.hidden_field :_destroy
   = f.label :role
   = f.collection_select :role_id, Role.order(:name), :id, :name, {}, class: "form-select w-100 role-select", disabled: ptime_sync_active?

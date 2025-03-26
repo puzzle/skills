@@ -212,7 +212,6 @@ describe :people do
       visit person_path(bob)
       click_link('Bearbeiten', href: edit_person_path(bob))
       page.find('#person_name').disabled?
-
     end
 
     it 'should have all edit fields' do
