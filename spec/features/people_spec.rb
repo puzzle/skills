@@ -206,6 +206,15 @@ describe :people do
       sign_in auth_users(:user), scope: :auth_user
     end
 
+    it 'should have edit fields disabled if ptime sync is active' do
+      allow(Skills).to receive(:use_ptime_sync?).and_return(true)
+      bob = people(:bob)
+      visit person_path(bob)
+      click_link('Bearbeiten', href: edit_person_path(bob))
+      page.find('#person_name').disabled?
+
+    end
+
     it 'should have all edit fields' do
       bob = people(:bob)
       visit person_path(bob)
