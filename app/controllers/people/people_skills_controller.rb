@@ -42,7 +42,7 @@ class People::PeopleSkillsController < CrudController
 
   def update_render(format, success)
     if success
-      if params[:rating] == '-1'
+      if params[:rating] == '-1' # Rating -1 means that we are currently only displaying unrated skills
         format.turbo_stream { head :ok }
       else
         format.turbo_stream { render 'people/people_skills/update', status: :ok }
