@@ -276,6 +276,7 @@ de:
       confirm_delete: Willst du diese Person wirklich löschen?
       link:
         add: Neues Profil
+        add_skill: Skill hinzufügen
         delete: Person löschen
       more_actions: Weitere Aktionen
       tabbar:

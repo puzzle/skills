@@ -272,6 +272,7 @@ fr:
       confirm_delete: Veux-tu vraiment supprimer cette personne ?
       link:
         add: Nouveau profil
+        add_skill: Ajouter une compétence
         delete: Supprimer une personne
       more_actions: Autres actions
       tabbar:

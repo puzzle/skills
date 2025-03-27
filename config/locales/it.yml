@@ -272,6 +272,7 @@ it:
       confirm_delete: Volete davvero cancellare questa persona?
       link:
         add: Nuovo profilo
+        add_skill: Aggiungi abilità
         delete: Cancellare una persona
       more_actions: Ulteriori azioni
       tabbar:
