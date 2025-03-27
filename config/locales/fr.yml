@@ -4,10 +4,12 @@ fr:
     attributes:
       activity:
         description: Coordonnées de la société et description de l'activité
+        display_in_cv: Afficher dans le CV
         role: Rouleau
         year_from: Date de début
       advanced_training:
         description: Description
+        display_in_cv: Afficher dans le CV
         year_from: Date de début
       certificate:
         comment: Commentaire
@@ -20,6 +22,7 @@ fr:
         title: Titre
         type_of_exam: Type d'examen
       education:
+        display_in_cv: Afficher dans le CV
         location: Lieu de formation
         title: Formation
         year_from: Date de début
@@ -38,6 +41,7 @@ fr:
         birthdate: Date de naissance
         competence_notes: Notes Member
         department: Unité organisationnelle
+        display_in_cv: Afficher dans le CV
         dual_citizen: Double nationalité
         educations:
           one: Formation
@@ -67,6 +71,7 @@ fr:
         title: Conclusion
       project:
         description: Description
+        display_in_cv: Afficher dans le CV
         role: Rôle et tâches
         technology: Technologies utilisées
         title: Projet
