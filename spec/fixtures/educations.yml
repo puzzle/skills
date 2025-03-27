@@ -2,17 +2,17 @@
 #
 # Table name: educations
 #
-#  id         :integer          not null, primary key
-#  location   :text
-#  title      :text
-#  updated_at :datetime
-#  updated_by :string
-#  person_id  :integer
-#  year_from  :integer          not null
-#  year_to    :integer
-#  month_from :integer
-#  month_to   :integer
-#
+#  id            :integer          not null, primary key
+#  location      :text
+#  title         :text
+#  updated_at    :datetime
+#  updated_by    :string
+#  person_id     :integer
+#  year_from     :integer          not null
+#  year_to       :integer
+#  month_from    :integer
+#  month_to      :integer
+#  display_in_cv :boolean
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
@@ -57,3 +57,11 @@ mscw:
   year_to: 2020
   year_from: 2014
   person: longmax
+
+mscw:
+  location: University of Applied Sciences Bern
+  title: MSc in cooking
+  year_to: 2019
+  year_from: 2013
+  display_in_cv: false
+  person: maximillian

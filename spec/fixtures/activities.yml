@@ -2,18 +2,18 @@
 #
 # Table name: activities
 #
-#  id          :integer          not null, primary key
-#  description :text
-#  updated_by  :string
-#  role        :text
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  person_id   :integer
-#  year_from   :integer          not null
-#  year_to     :integer
-#  month_from  :integer
-#  month_to    :integer
-#
+#  id            :integer          not null, primary key
+#  description   :text
+#  updated_by    :string
+#  role          :text
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  person_id     :integer
+#  year_from     :integer          not null
+#  year_to       :integer
+#  month_from    :integer
+#  month_to      :integer
+#  display_in_cv :boolean
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
@@ -64,3 +64,12 @@ migros:
   year_to: 2020
   year_from: 2014
   person: longmax
+
+sbb:
+  description: SBB
+  updated_by: MyString
+  role: Train
+  year_to: 2025
+  year_from: 2014
+  display_in_cv: false
+  person: maximillian
