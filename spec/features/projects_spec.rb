@@ -132,5 +132,17 @@ describe 'Projects', type: :feature, js:true do
       end
       expect(page).to have_css(".alert.alert-danger", text: "Rolle und Aufgaben muss ausgefüllt werden")
     end
+
+    it 'Update entry to not be displayed in the CV' do
+      project = person.projects.first
+      open_edit_form(project)
+      checkbox = find('#project_display_in_cv')
+      within("turbo-frame#project_#{project.id}") do
+        checkbox.click
+        click_default_submit
+      end
+      open_edit_form(project)
+      expect(checkbox).not_to be_checked
+    end
   end
 end

@@ -29,6 +29,7 @@ module Odt
         insert_projects(r)
       end
     end
+
     # rubocop:enable Metrics/MethodLength
 
     private
@@ -81,7 +82,8 @@ module Odt
 
     attr_accessor :person
 
-    def insert_general_sections(report) # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/AbcSize
+    def insert_general_sections(report)
       report.add_field(:client, 'mg')
       report.add_field(:project, 'pcv')
       report.add_field(:section, 'dev1')
@@ -100,7 +102,7 @@ module Odt
       report.add_field(:niederlassung, location.adress_information)
     end
 
-    def insert_personalien(report) # rubocop:disable Metrics/AbcSize
+    def insert_personalien(report)
       report.add_field(:title, person.title)
       unless anon?
         report.add_field(:birthdate, Date.parse(person.birthdate.to_s)
@@ -133,6 +135,7 @@ module Odt
         t.add_column(:competence, :competence)
       end
     end
+
     # rubocop:enable Metrics/MethodLength
 
     def skills_by_level_value(level_value)
@@ -140,7 +143,7 @@ module Odt
       competences_list(level_skills_ids, true)
     end
 
-    # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+    # rubocop:disable Metrics/MethodLength
     def competences_list(competences_ids, sort_by_level)
       Category.all_parents.map do |parent_c|
         skills = Skill.joins(:category)
@@ -156,6 +159,7 @@ module Odt
           competence: format_competences_list(sort_by_level, skills, mapped_string) }
       end.compact
     end
+
     # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
     # rubocop:disable Metrics/MethodLength
@@ -172,6 +176,7 @@ module Odt
         t.add_column(:competence, :competence)
       end
     end
+
     # rubocop:enable Metrics/MethodLength
 
     def skills_by_level(level_value)
@@ -179,7 +184,7 @@ module Odt
     end
 
     def competence_notes_list
-      if person.competence_notes.present?
+      if person.competence_notes.present? && person.display_in_cv
         {
           category: 'Notizen',
           competence: person.competence_notes.strip
@@ -189,16 +194,16 @@ module Odt
       end
     end
 
+    # rubocop:disable Metrics/AbcSize
     # rubocop:disable Metrics/MethodLength
-    def insert_educations(report) # rubocop:disable Metrics/AbcSize
-      educations_list = person.educations.list.collect do |e|
+    def insert_educations(report)
+      educations_list = person.educations.list.select(&:display_in_cv).collect do |e|
         { year_from: formatted_year(e.year_from),
           month_from: formatted_month(e.month_from),
           year_to: formatted_year(e.year_to),
           month_to: formatted_month(e.month_to),
           title: "#{e.title}\n#{e.location}" }
       end
-
       report.add_table('EDUCATIONS', educations_list, header: true) do |t|
         t.add_column(:month_from, :month_from)
         t.add_column(:year_from, :year_from)
@@ -208,8 +213,9 @@ module Odt
       end
     end
 
-    def insert_advanced_trainings(report) # rubocop:disable Metrics/AbcSize
-      advanced_trainings_list = person.advanced_trainings.list.collect do |at|
+    def insert_advanced_trainings(report)
+      advanced_trainings_list = person.advanced_trainings.list.select(&:display_in_cv).collect do
+      |at|
         { year_from: formatted_year(at.year_from),
           month_from: formatted_month(at.month_from),
           year_to: formatted_year(at.year_to),
@@ -226,8 +232,8 @@ module Odt
       end
     end
 
-    def insert_activities(report) # rubocop:disable Metrics/AbcSize
-      activities_list = person.activities.list.collect do |a|
+    def insert_activities(report)
+      activities_list = person.activities.list.select(&:display_in_cv).collect do |a|
         { year_from: formatted_year(a.year_from),
           month_from: formatted_month(a.month_from),
           year_to: formatted_year(a.year_to),
@@ -244,8 +250,8 @@ module Odt
       end
     end
 
-    def insert_projects(report) # rubocop:disable Metrics/AbcSize
-      projects_list = person.projects.list.collect do |p|
+    def insert_projects(report)
+      projects_list = person.projects.list.select(&:display_in_cv).collect do |p|
         { year_from: formatted_year(p.year_from),
           month_from: formatted_month(p.month_from),
           year_to: formatted_year(p.year_to),
@@ -267,6 +273,7 @@ module Odt
         t.add_column(:project_technology, :project_technology)
       end
     end
+    # rubocop:enable Metrics/AbcSize
     # rubocop:enable Metrics/MethodLength
 
     def formatted_month(month)
@@ -303,5 +310,6 @@ module Odt
     end
 
   end
+
   # rubocop:enable Metrics/ClassLength
 end

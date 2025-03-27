@@ -115,5 +115,17 @@ describe 'Activities', type: :feature, js:true do
       end
       expect(page).to have_css(".alert.alert-danger", text: "Rolle muss ausgefüllt werden")
     end
+
+    it 'Update entry to not be displayed in the CV' do
+      activity = person.activities.first
+      open_edit_form(activity)
+      checkbox = find('#activity_display_in_cv')
+      within("turbo-frame#activity_#{activity.id}") do
+        checkbox.click
+        click_default_submit
+      end
+      open_edit_form(activity)
+      expect(checkbox).not_to be_checked
+    end
   end
 end

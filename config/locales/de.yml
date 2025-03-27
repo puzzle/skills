@@ -4,10 +4,12 @@ de:
     attributes:
       activity:
         description: Firmenangaben und Beschreibung der Tätigkeit
+        display_in_cv: Im CV anzeigen
         role: Rolle
         year_from: Startdatum
       advanced_training:
         description: Beschreibung
+        display_in_cv: Im CV anzeigen
         year_from: Startdatum
       certificate:
         comment: Bemerkung
@@ -20,6 +22,7 @@ de:
         title: Titel
         type_of_exam: Prüfungsart
       education:
+        display_in_cv: Im CV anzeigen
         location: Ausbildungsort
         title: Ausbildung
         year_from: Startdatum
@@ -38,6 +41,7 @@ de:
         birthdate: Geburtsdatum
         competence_notes: Notizen Member
         department: Organisationseinheit
+        display_in_cv: Im CV anzeigen
         dual_citizen: Doppelbürger
         educations:
           one: Ausbildung
@@ -67,6 +71,7 @@ de:
         title: Abschluss
       project:
         description: Beschreibung
+        display_in_cv: Im CV anzeigen
         role: Rolle und Aufgaben
         technology: Eingesetzte Technologien
         title: Projekt

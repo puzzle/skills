@@ -4,17 +4,18 @@
 #
 # Table name: educations
 #
-#  id         :integer          not null, primary key
-#  location   :text
-#  title      :text
-#  updated_at :datetime
-#  updated_by :string
-#  person_id  :integer
-#  year_from  :integer          not null
-#  year_to    :integer
-#  month_from :integer
-#  month_to   :integer
-#
+#  id            :integer          not null, primary key
+#  location      :text
+#  title         :text
+#  updated_at    :datetime
+#  updated_by    :string
+#  person_id     :integer
+#  year_from     :integer          not null
+#  year_to       :integer
+#  month_from    :integer
+#  month_to      :integer
+#  display_in_cv :boolean
+
 
 class Education < ApplicationRecord
   include DaterangeModel
@@ -25,6 +26,7 @@ class Education < ApplicationRecord
 
   belongs_to :person, touch: true
 
+  validates :display_in_cv, inclusion: [true, false]
   validates :title, :location, presence: true
   validates :location, :title, length: { maximum: 500 }
 

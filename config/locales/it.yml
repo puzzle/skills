@@ -4,10 +4,12 @@ it:
     attributes:
       activity:
         description: Dati dell'azienda e descrizione dell'attività
+        display_in_cv: Mostra nel CV
         role: Ruolo
         year_from: Data di inizio
       advanced_training:
         description: Descrizione del
+        display_in_cv: Mostra nel CV
         year_from: Data di inizio
       certificate:
         comment: Note
@@ -20,6 +22,7 @@ it:
         title: Titolo
         type_of_exam: Tipo di esame
       education:
+        display_in_cv: Mostra nel CV
         location: Luogo di formazione
         title: Istruzione
         year_from: Data di inizio
@@ -38,6 +41,7 @@ it:
         birthdate: Data di nascita
         competence_notes: Note Membro
         department: Unità organizzativa
+        display_in_cv: Mostra nel CV
         dual_citizen: Doppi cittadini
         educations:
           one: Istruzione
@@ -67,6 +71,7 @@ it:
         title: Conclusione
       project:
         description: Descrizione del
+        display_in_cv: Mostra nel CV
         role: Ruolo e compiti
         technology: Tecnologie utilizzate
         title: Progetto

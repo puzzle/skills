@@ -9,7 +9,7 @@ class PeopleController < CrudController
 
   self.permitted_attrs = [:birthdate, :location, :marital_status, :updated_by, :name, :nationality,
                           :nationality2, :title, :competence_notes, :company_id, :email,
-                          :department_id, :shortname, :picture, :picture_cache,
+                          :department_id, :shortname, :picture, :picture_cache, :display_in_cv,
                           { person_roles_attributes:
                             [[:role_id, :person_role_level_id, :percent, :id, :_destroy]],
                             language_skills_attributes:
