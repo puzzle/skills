@@ -32,8 +32,21 @@ class People::PeopleSkillsController < CrudController
 
   def update
     @people_skills = filtered_people_skills
+    if params['people_skill'][:level] == '0'
+      params['people_skill'][:unrated] = true
+    end
     super do |format, success|
-      format.turbo_stream { render 'people/people_skills/update', status: :ok } if success
+      update_render(format, success)
+    end
+  end
+
+  def update_render(format, success)
+    if success
+      if params[:rating] == '-1'
+        format.turbo_stream { head :ok }
+      else
+        format.turbo_stream { render 'people/people_skills/update', status: :ok }
+      end
     end
   end
 
