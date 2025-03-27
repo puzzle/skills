@@ -212,7 +212,7 @@ describe :people do
   end
 
   it 'should not refresh view when editing a unrated skill' do
-    bob = people(:alice)
+    bob = people(:bob)
     first_unrated_skill = not_rated_default_skills(bob).first.skill
     sign_in auth_users(:user), scope: :auth_user
     visit person_people_skills_path(bob, rating: -1)
