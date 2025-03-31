@@ -93,7 +93,7 @@ fisherman :
 
 gourmet-chef:
   description: Cooking gourmet food
-  title: Cook
+  title: cook
   role: Chef
   technology: grill
   year_to: 2023
