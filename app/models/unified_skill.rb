@@ -1,3 +1,5 @@
 class UnifiedSkill < ApplicationRecord
-  serialize :skill_1_attrs, coder: JSON
+  serialize :skill1_attrs, type: Hash, coder: JSON
+  serialize :skill2_attrs, type: Hash, coder: JSON
+  serialize :unified_skill_attrs, type: Hash, coder: JSON
 end
