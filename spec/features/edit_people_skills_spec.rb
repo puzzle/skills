@@ -219,9 +219,9 @@ describe :people do
     within("#default-skill-#{first_unrated_skill.id}") do
       select_star_rating(2)
       fill_in "level_#{first_unrated_skill.id}", with: 4
+      expect(page).to have_content(first_unrated_skill.title)
+      visit person_people_skills_path(bob, rating: 0)
+      expect(page).to  have_content(first_unrated_skill.title)
     end
-    expect(page).to have_content(first_unrated_skill.title)
-    visit person_people_skills_path(bob, rating: 0)
-    expect(page).to  have_content(first_unrated_skill.title)
   end
 end
