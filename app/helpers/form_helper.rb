@@ -48,4 +48,41 @@ module FormHelper
     standard_form(path_args(entry), *attrs, &)
   end
 
+  def disabled_ptime_sync_form(formdata, checkbox_field: false,
+                               checkbox_options: {}, options: {})
+    if ptime_sync_active?
+      options[:data] = {
+        bs_toggle: 'tooltip',
+        bs_title: I18n.t('people.form.ptime_data'),
+        bs_placement: formdata['tooltip_placement'],
+        controller: 'tooltip'
+      }
+      options[:disabled] = true
+    end
+    chose_right_field(formdata, checkbox_field, checkbox_options, options)
+  end
+
+  private
+  def chose_right_field(formdata, checkbox_field, checkbox_options, options)
+    if checkbox_field
+      make_checkbox_field(formdata, checkbox_options, options)
+    elsif formdata['field_usage'] == 'text_field'
+      formdata['form'].text_field formdata['field_name'], class: 'mw-100 form-control', **options
+    else
+      formdata['form'].collection_select formdata['field_name'], formdata['translation_map'],
+                                         :first, :last, formdata['selected'],
+                                         class: 'mw-100 form-control', **options
+    end
+  end
+
+  def make_checkbox_field(formdata, checkbox_options, options)
+    checkbox_default_options = {
+      'data-action' => 'nationality-two#nationalityTwoVisible',
+      'id' => 'nat-two-checkbox'
+    }.merge(checkbox_options)
+    final_checkbox_options = checkbox_default_options.merge(options)
+    formdata['form'].check_box formdata['field_name'],
+                               { 'checked' => formdata['selected'] }.merge(final_checkbox_options)
+  end
+
 end
