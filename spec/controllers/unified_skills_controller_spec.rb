@@ -14,6 +14,8 @@ describe UnifiedSkillsController do
 
     post :create, params: {old_skill_id1: skill1.id, old_skill_id2: skill2.id, skill: new_skill}
 
+    expect(UnifiedSkill.find_by(skill1_attrs: skill1.attributes, skill2_attrs: skill2.attributes)).not_to be_nil
+
     expect(Skill.find_by(id: skill1.id)).to be_nil
     expect(Skill.find_by(id: skill2.id)).to be_nil
     expect(PeopleSkill.where(skill_id: [skill1.id, skill2.id])).to be_empty
