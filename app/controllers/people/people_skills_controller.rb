@@ -32,9 +32,6 @@ class People::PeopleSkillsController < CrudController
 
   def update
     @people_skills = filtered_people_skills
-    if params['people_skill'][:level] == '0'
-      params['people_skill'][:unrated] = true
-    end
     super do |format, success|
       update_render(format, success)
     end
@@ -42,7 +39,7 @@ class People::PeopleSkillsController < CrudController
 
   def update_render(format, success)
     if success
-      if params[:rating] == '-1'
+      if params[:rating] == '-1' # rating -1 means that we are in the unrated tab
         format.turbo_stream { head :ok }
       else
         format.turbo_stream { render 'people/people_skills/update', status: :ok }

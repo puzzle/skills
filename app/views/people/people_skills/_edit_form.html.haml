@@ -8,7 +8,7 @@
       %div.d-flex.flex-column.align-items-center
         = ff.label :level, for: "level_#{ff.object.skill_id}"
         = ff.label(ti("people_skills.levels_by_id.#{ff.object.level}"), {"data-people-skills-target": "label"})
-        - range_min = (ff.object.id.nil? || ff.object.level != 0) ? 1 : 0
+        - range_min = (ff.object.id.nil? && ff.object.level == 0) ? 0 : 1
         = ff.range_field :level, min: range_min, max: 5, class: "form-range w-75", id: "level_#{ff.object.skill_id}",
         "data-action": "change->people-skills#displayLevelLabel people-skills#rateSkill",
         "data-people-skills-target": "switch"
