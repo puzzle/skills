@@ -73,9 +73,9 @@ export default class extends Controller {
         e.preventDefault();
         if(!this.isEditMode(e)) return;
         this.setUnratedField(e, false);
-        if ( e.currentTarget.value > 0 && e.currentTarget.min === 0){ // Checks if the value is bigger than unrated and if the range is at 0
-            e.currentTarget.value -= - 1 // Sets back the value by one because the range is gonna get 1 smaller
-            e.currentTarget.min = 1; // Remove the unrated from the range
+        if ( e.currentTarget.value > 0 && e.currentTarget.min === 0){ // Checks if the value is bigger than unrated and if the range goes from 0-5
+            e.currentTarget.value -= - 1 // Sets back the value by one because the range is going to get 1 smaller
+            e.currentTarget.min = 1; // Remove the unrated from the range by making the range go from 1-5
         }
         e.target.form.requestSubmit();
     }
