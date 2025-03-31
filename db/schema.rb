@@ -234,8 +234,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_21_093308) do
   end
 
   create_table "unified_skills", force: :cascade do |t|
-    t.text "skill_1_attrs"
-    t.text "skill_2_attrs"
+    t.text "skill1_attrs"
+    t.text "skill2_attrs"
     t.text "unified_skill_attrs"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
