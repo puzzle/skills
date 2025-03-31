@@ -65,6 +65,7 @@ Rails.application.routes.draw do
     end
 
     resources :certificates
+    post 'unified-skills', to: 'unified_skills#create'
   end
 
 
