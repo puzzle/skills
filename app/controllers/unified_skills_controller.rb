@@ -1,25 +1,29 @@
 class UnifiedSkillsController < CrudController
   self.permitted_attrs = [:old_skill_id1, :old_skill_id2, { skill:
                               [:id, :title, :radar, :portfolio, :default_set, :category_id] }]
-  # rubocop:disable Metrics
   def create
     ActiveRecord::Base.transaction do
       params.permit!
       validate!
 
-      new_skill = Skill.create!(new_skill_values)
       old_skill1 = Skill.find(old_skill_id1)
       old_skill2 = Skill.find(old_skill_id2)
-      UnifiedSkill.create!(skill1_attrs: old_skill1.attributes, skill2_attrs: old_skill2.attributes,
-                           unified_skill_attrs: new_skill.attributes)
-      PeopleSkill.where(skill_id: [old_skill_id1, old_skill_id2]).update!(skill_id: new_skill.id)
-      old_skill1.delete
-      old_skill2.delete
+
+      merge_skills(old_skill1, old_skill2)
     end
   end
-  # rubocop:enable Metrics
 
   private
+
+  def merge_skills(old_skill1, old_skill2)
+    new_skill = Skill.create!(new_skill_values)
+    PeopleSkill.where(skill_id: [old_skill_id1, old_skill_id2]).update!(skill_id: new_skill.id)
+    UnifiedSkill.create!(skill1_attrs: old_skill1.attributes, skill2_attrs: old_skill2.attributes,
+                         unified_skill_attrs: new_skill.attributes)
+
+    old_skill1.delete
+    old_skill2.delete
+  end
 
   def new_skill_values
     params.fetch(:skill)
