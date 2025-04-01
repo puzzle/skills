@@ -12,11 +12,9 @@ class UnifiedSkillsController < CrudController
       old_skill2 = Skill.find(old_skill_id2)
       UnifiedSkill.create!(skill1_attrs: old_skill1.attributes, skill2_attrs: old_skill2.attributes,
                            unified_skill_attrs: new_skill.attributes)
-      PeopleSkill.where(skill_id: [old_skill1.id, old_skill2.id]).update!(skill_id: new_skill.id)
+      PeopleSkill.where(skill_id: [old_skill_id1, old_skill_id2]).update!(skill_id: new_skill.id)
       old_skill1.delete
       old_skill2.delete
-
-      new_skill
     end
   end
   # rubocop:enable Metrics
