@@ -33,11 +33,11 @@ describe PeopleController do
 
     it 'should not be able to update name' do
       allow(Skills).to receive(:use_ptime_sync?).and_return(true)
-      testname = 'Test'
       expect(person["name"]).to eql("Bob Anderson")
       expect {
-        put :update, params: { id: person["id"], person: { name: testname } }
+        put :update, params: { id: person["id"], person: { name: 'Test' } }
       }.to raise_error(ActionController::ParameterMissing)
+      expect(people(:bob).reload.name).to eql("Bob Anderson")
     end
   end
 end
