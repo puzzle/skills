@@ -141,6 +141,9 @@ de:
       profile-not-found: Profil konnte nicht gefunden werden.
       valid_percent_range: muss zwischen 0 und 200 liegen.
   global:
+    unified_skills:
+      merge: Vereinen
+      merge_skills: Skills vereinen
     date:
       from: Von
       month: Monat
