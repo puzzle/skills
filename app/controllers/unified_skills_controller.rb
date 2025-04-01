@@ -7,7 +7,7 @@ class UnifiedSkillsController < CrudController
       params.permit!
       validate!
 
-      new_skill = Skill.create!(params.fetch(:skill).merge(default_set: false))
+      new_skill = Skill.create!(new_skill_values)
       old_skill1 = Skill.find(old_skill_id1)
       old_skill2 = Skill.find(old_skill_id2)
       UnifiedSkill.create!(skill1_attrs: old_skill1.attributes, skill2_attrs: old_skill2.attributes,
@@ -20,6 +20,10 @@ class UnifiedSkillsController < CrudController
   # rubocop:enable Metrics
 
   private
+
+  def new_skill_values
+    params.fetch(:skill)
+  end
 
   def old_skill_id1
     params.fetch(:old_skill_id1)
