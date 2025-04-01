@@ -1,11 +1,11 @@
-%div.border.border-dark-subtle.rounded.p-1.fw-light.nested-fields{(ptime_sync_active? ? { "data-bs-toggle": "tooltip", "data-bs-title": I18n.t('people.form.ptime_data'), "data-controller": 'tooltip' } : {})}
+%div.border.border-dark-subtle.rounded.p-1.fw-light.nested-fields
   = f.hidden_field :_destroy
   = f.label :role
-  = f.collection_select :role_id, Role.order(:name), :id, :name, {}, class: "form-select w-100 role-select", disabled: ptime_sync_active?
+  = f.collection_select :role_id, Role.order(:name), :id, :name, {}, {class: "form-select w-100 role-select", **disable_ptime_sync("top") }
   %div
     = f.label :person_role_level
     %div.d-flex.fw-light
-      = f.collection_select :person_role_level_id, PersonRoleLevel.order(:level), :id, :level, {}, class: "form-select w-50 me-1 role-level-select", disabled: ptime_sync_active?
-      = f.number_field :percent, in: 0..200, step: 1, class: "form-control w-50 person-role-percent", disabled: ptime_sync_active?
+      = f.collection_select :person_role_level_id, PersonRoleLevel.order(:level), :id, :level, {}, {class: "form-select w-50 me-1 role-level-select", **disable_ptime_sync("top") }
+      = f.number_field :percent, {in: 0..200, step: 1, class: "form-control w-50 person-role-percent", **disable_ptime_sync("top") }
 - unless ptime_sync_active?
   %div{"data-controller"=>"dynamic-fields"}= link_to "Remove", "#", { class: "remove_fields", 'data-action' => 'dynamic-fields#removeField'}

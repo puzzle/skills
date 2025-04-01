@@ -49,12 +49,14 @@ module FormHelper
   end
 
   def disable_ptime_sync(tooltip_placement)
-    {
-      'data-bs-toggle': 'tooltip',
-      'data-bs-title': I18n.t('people.form.ptime_data'),
-      'data-bs-placement': tooltip_placement,
-      'data-controller': 'tooltip',
-      disabled: true
-    }
+    if ptime_sync_active?
+      {
+        'data-bs-toggle': 'tooltip',
+        'data-bs-title': I18n.t('people.form.ptime_data'),
+        'data-bs-placement': tooltip_placement,
+        'data-controller': 'tooltip',
+        disabled: true
+      }
+    end
   end
 end
