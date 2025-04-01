@@ -154,6 +154,7 @@ longmax:
                   CSS
                   Spring
                   .NET Maui
+  display_in_cv: true
   email: longmax@example.com
   department: sys
 

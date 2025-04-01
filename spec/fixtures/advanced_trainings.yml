@@ -56,6 +56,7 @@ tutoring:
   updated_by: longmax
   year_to: 2020
   year_from: 2015
+  display_in_cv: true
   person: longmax
 
 cook:

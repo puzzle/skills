@@ -63,6 +63,7 @@ migros:
   role: Businessman
   year_to: 2020
   year_from: 2014
+  display_in_cv: true
   person: longmax
 
 sbb:

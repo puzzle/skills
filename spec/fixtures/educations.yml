@@ -56,9 +56,10 @@ mscw:
   title: MSc in writing
   year_to: 2020
   year_from: 2014
+  display_in_cv: true
   person: longmax
 
-mscw:
+mscc:
   location: University of Applied Sciences Bern
   title: MSc in cooking
   year_to: 2019

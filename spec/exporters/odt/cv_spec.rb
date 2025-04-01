@@ -19,13 +19,18 @@ describe Odt::Cv do
       Odt::Cv.new(person, { 'anon' => 'false' }).export
     end
 
-    it 'every tables values should be null if all educations, advanced_trainings, member_notes, projects and activities of the person is are to display_in_cv false' do
+    it 'every tables values should be null if all educations, advanced_trainings, member_notes, projects and activities of the person have attr display_in_cv false' do
       person = people(:maximillian)
       report = Odt::Cv.new(person, { 'anon' => 'false' }).export
       report.as_json["tables"].each do |table|
-        table["fields"].each do |field|
-          expect(field["data_source"]["value"]).to be_nil
-        end
+        expect(table["data_source"]["value"]).to be_empty
+      end
+    end
+    it 'every tables values should not be null if all educations, advanced_trainings, member_notes, projects and activities of the person have attr display_in_cv true' do
+      person = people(:longmax)
+      report = Odt::Cv.new(person, { 'anon' => 'false' }).export
+      report.as_json["tables"].each do |table|
+        expect(table["data_source"]["value"]).to_not be_empty
       end
     end
   end

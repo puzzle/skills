@@ -89,6 +89,7 @@ fisherman :
   technology: Boat driving
   year_to: 2022
   year_from: 2021
+  display_in_cv: true
   person: longmax
 
 gourmet-chef:
