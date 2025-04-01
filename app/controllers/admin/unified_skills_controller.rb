@@ -1,6 +1,13 @@
-class UnifiedSkillsController < CrudController
+class Admin::UnifiedSkillsController < CrudController
+  self.nesting = :admin
   self.permitted_attrs = [:old_skill_id1, :old_skill_id2, { skill:
                               [:id, :title, :radar, :portfolio, :default_set, :category_id] }]
+  before_action :render_unauthorized_not_admin
+
+  def index
+    @skill = Skill.find_by(id: params[:old_skill_id1]) || Skill.new
+  end
+
   def create
     ActiveRecord::Base.transaction do
       params.permit!
