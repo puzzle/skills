@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Certificate do
+describe UnifiedSkill do
   it 'should correctly serialize attributes' do
     skill = Skill.first
     unified_skill = UnifiedSkill.create!(skill1_attrs: skill.attributes, skill2_attrs: skill.attributes, unified_skill_attrs: skill.attributes)
