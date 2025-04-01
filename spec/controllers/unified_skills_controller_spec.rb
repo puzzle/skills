@@ -5,7 +5,7 @@ describe UnifiedSkillsController do
     sign_in(auth_users(:admin))
   end
 
-  let(:new_skill) { { title: 'A unified skill', radar: 'adopt', portfolio: 'aktiv', category_id: Category.first.id } }
+  let(:new_skill) { { title: 'A unified skill', radar: 'adopt', portfolio: 'aktiv', category_id: Category.first.id, default_set: true } }
 
   it 'should unify two skills' do
     skill1 = skills(:bash)
