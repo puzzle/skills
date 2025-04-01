@@ -21,18 +21,15 @@
           %th.fw-normal
             = form.label :name
           %tr
-            %td
-              = disabled_ptime_sync_form(formdata = {"form" => form , "field_name" => :name, "field_usage" => "text_field", "translation_map" => "", "selected" => {}, "tooltip_placement" => "top"})
+            %td= form.text_field :name, {class: "mw-100 form-control", **disable_ptime_sync("top")}
           %th.fw-normal
             = form.label :email
           %tr
-            %td
-              = disabled_ptime_sync_form(formdata = {"form" => form , "field_name" => :email, "field_usage" => "text_field", "translation_map" => "", "selected" => {}, "tooltip_placement" => "top"})
+            %td= form.text_field :email, {class: "mw-100 form-control", **disable_ptime_sync("top")}
           %th.fw-normal
             = form.label :title
           %tr
-            %td
-              = disabled_ptime_sync_form(formdata = {"form" => form , "field_name" => :title, "field_usage" => "text_field", "translation_map" => "", "selected" => {}, "tooltip_placement" => "top"})
+            %td= form.text_field :title, {class: "mw-100 form-control", **disable_ptime_sync("top")}
           %th.fw-normal
             = form.label :person_roles
           %div
@@ -47,18 +44,15 @@
           %th.fw-normal
             = form.label :department
           %tr
-            %td
-              = disabled_ptime_sync_form(formdata = {"form" => form , "field_name" => :department, "field_usage" => "text_field", "translation_map" => "", "selected" => {}, "tooltip_placement" => "top"})
+            %td= form.collection_select :department_id, Department.order(:name), :id, :name, {}, {class: "form-select mw-100", **disable_ptime_sync("top")}
           %th.fw-normal
             = form.label :company
           %tr
-            %td
-              = disabled_ptime_sync_form(formdata = {"form" => form , "field_name" => :company, "field_usage" => "text_field", "translation_map" => "", "selected" => {}, "tooltip_placement" => "top"})
+            %td= form.collection_select :company_id, Company.order(:name), :id, :name, {}, {class: "form-select mw-100", **disable_ptime_sync("top")}
           %th.fw-normal
             = form.label :location
           %tr
-            %td
-              = disabled_ptime_sync_form(formdata = {"form" => form , "field_name" => :location, "field_usage" => "text_field", "translation_map" => "", "selected" => {}, "tooltip_placement" => "top"})
+            %td= form.text_field :location, {class: "form-control mw-100", **disable_ptime_sync("top")}
 
     %div.pe-5.col-xl-3.col-12
       %table.w-100
@@ -66,33 +60,27 @@
           %th.fw-normal
             = form.label :birthdate
           %tr
-            %td
-              = disabled_ptime_sync_form(formdata = {"form" => form , "field_name" => :birthdate, "field_usage" => "text_field", "translation_map" => "", "selected" => {}, "tooltip_placement" => "top"})
+            %td= form.date_field :birthdate, {class: "form-control mw-100", **disable_ptime_sync("top")}
           %th.fw-normal
             = form.label :dual_citizen
           %tr
-            %td
-              = disabled_ptime_sync_form(formdata = {"form" => form , "field_name" => :has_nationality2, "field_usage" => "", "translation_map" => "", "selected" =>  @person.nationality2?, "tooltip_placement" => "left" }, checkbox_field: true, checkbox_options: { "data-controller"=>"nationality-two" })
+            %td{"data-controller"=>"nationality-two"}= check_box :has_nationality2, "checked", {"checked" => @person.nationality2?, "data-action" => "nationality-two#nationalityTwoVisible", "id" => "nat-two-checkbox", **disable_ptime_sync("top")}
           %th.fw-normal
             = form.label :nationality
           %tr
-            %td
-              = disabled_ptime_sync_form(formdata = {"form" => form , "field_name" => :nationality, "field_usage" => "collection_select", "translation_map" => country_alpha2_translation_map, "selected" => {} , "tooltip_placement" => "top"})
+            %td= form.collection_select :nationality, country_alpha2_translation_map, :first, :last, {}, {class: "form-select mw-100", **disable_ptime_sync("top")}
           %th.fw-normal.nationality-two
             = form.label :nationality2
           %tr.nationality-two
-            %td
-              = disabled_ptime_sync_form(formdata = {"form" => form , "field_name" => :nationality2, "field_usage" => "collection_select", "translation_map" => country_alpha2_translation_map, "selected" => {}, "tooltip_placement" => "top"})
+            %td= form.collection_select :nationality2, country_alpha2_translation_map, :first, :last, {}, {class: "form-select mw-100", **disable_ptime_sync("top")}
           %th.fw-normal
             = form.label :marital_status
           %tr
-            %td
-              = disabled_ptime_sync_form(formdata = {"form" => form , "field_name" => :marital_status, "field_usage" => "collection_select", "translation_map" => marital_status_translation_map, "selected" => { selected: @person.marital_status }, "tooltip_placement" => "top"})
+            %td= form.collection_select :marital_status, marital_status_translation_map, :first, :last, { selected: @person.marital_status }, { class: "form-select mw-100", **disable_ptime_sync("top")}
           %th.fw-normal
             = form.label :shortname
           %tr
-            %td
-              = disabled_ptime_sync_form(formdata = {"form" => form , "field_name" => :shortname, "field_usage" => "text_field", "translation_map" => "", "selected" => {}, "tooltip_placement" => "top"})
+            %td= form.text_field :shortname, {class: "mw-100 form-control", **disable_ptime_sync("top")}
     %div.col-xl-3.col-12{"data-controller"=>"lang-selection"}
       %div.fw-normal 
         = form.label :language_skills
