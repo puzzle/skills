@@ -269,6 +269,8 @@ it:
     search:
       new_profile: Nuovo profilo
       updated_at: Ultima modifica
+    show:
+      is_not_displayed_in_cv: Non viene mostrato nel CV.
   people/people_skills:
     edit_form:
       rate: Tasso

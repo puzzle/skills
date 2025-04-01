@@ -53,6 +53,9 @@ describe "Core competences", type: :feature, js: true do
     checkbox = find('#person_display_in_cv')
     checkbox.click
     click_button "Person aktualisieren"
+    within("#competence-notes") do
+      expect(find("img")[:src]).to have_content("no-file")
+    end
     click_link(href: competence_notes_person_path(alice))
     expect(checkbox).not_to be_checked
   end

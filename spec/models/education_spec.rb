@@ -65,17 +65,17 @@ describe Education do
       Education.create(title: 'test4', location: 'test4', year_from: 2004, month_from: 1, year_to: 2030, month_to: 1, person_id: bob_id)
 
       list = Education.all.list
-
       expect(list[0].location).to eq('test1')
       expect(list[1].location).to eq('test3')
       expect(list[2].location).to eq('test4')
       expect(list[3].location).to eq('test2')
-      expect(list[4].location).to eq('University of Applied Sciences Bern')
-      expect(list[5].location).to eq('University of London')
-      expect(list[6].location).to eq('Iceborough College')
-      expect(list[7].location).to eq('University of New York')
-      expect(list[8].location).to eq('Uni Bern')
-      expect(list[9].location).to eq('Brookville Technical College')
+      expect(list[4].location).to eq('University of Applied Cooking Bern')
+      expect(list[5].location).to eq('University of Applied Sciences Bern')
+      expect(list[6].location).to eq('University of London')
+      expect(list[7].location).to eq('Iceborough College')
+      expect(list[8].location).to eq('University of New York')
+      expect(list[9].location).to eq('Uni Bern')
+      expect(list[10].location).to eq('Brookville Technical College')
     end
   end
 

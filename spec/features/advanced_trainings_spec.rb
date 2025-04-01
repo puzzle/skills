@@ -135,6 +135,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
       within("turbo-frame#advanced_training_#{at.id}") do
         checkbox.click
         click_default_submit
+        expect(find("img")[:src]).to have_content("no-file")
       end
       open_edit_form(at)
       expect(checkbox).not_to be_checked

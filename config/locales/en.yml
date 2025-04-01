@@ -269,6 +269,8 @@ en:
     search:
       new_profile: New profile
       updated_at: Last edited
+    show:
+      is_not_displayed_in_cv: Does not get displayed in CV.
   people/people_skills:
     edit_form:
       rate: Rate

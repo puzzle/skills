@@ -290,6 +290,8 @@ de-CH:
     search:
       new_profile: Neues Profiu
       updated_at: Z'letzt bearbeitet
+    show:
+      is_not_displayed_in_cv: Wird nid im CV azeigt.
   people/people_skills:
     edit_form:
       rate: Bewärtet

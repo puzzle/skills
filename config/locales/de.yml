@@ -273,6 +273,8 @@ de:
     search:
       new_profile: Neues Profil
       updated_at: Zuletzt bearbeitet
+    show:
+      is_not_displayed_in_cv: Wird nicht im CV angezeigt.
   people/people_skills:
     edit_form:
       rate: Bewerten

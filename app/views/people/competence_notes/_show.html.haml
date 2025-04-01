@@ -1,5 +1,9 @@
 %turbo-frame{id: "competence-notes"}
-  %div.d-flex
+  %div.d-flex.justify-content-between.p-2
     %div.persisted-line-breaks= @person.competence_notes
+    - unless @person.display_in_cv
+      .pe-4
+        %div{ 'data-bs-toggle': 'tooltip', 'data-bs-title': ti("is_not_displayed_in_cv"), 'data-controller': 'tooltip'}
+          = image_tag('no-file.svg')
   %div.d-flex.flex-row
     = edit_action_link competence_notes_person_path(@person)
