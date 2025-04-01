@@ -22,5 +22,22 @@ describe PeopleController do
       expect(response).to redirect_to(person_path(person["id"]))
       expect(people(:bob).reload.nationality2).to eql("DE")
     end
+
+    it 'should be able to update name' do
+      testname = 'Test'
+      expect(person["name"]).to eql('Bob Anderson')
+      put :update, params: {id: person["id"], person: { name: testname } }
+      expect(response).to redirect_to(person_path(person["id"]))
+      expect(people(:bob).reload.name).to eql(testname)
+    end
+
+    it 'should not be able to update name' do
+      allow(Skills).to receive(:use_ptime_sync?).and_return(true)
+      testname = 'Test'
+      expect(person["name"]).to eql("Bob Anderson")
+      expect {
+        put :update, params: { id: person["id"], person: { name: testname } }
+      }.to raise_error(ActionController::ParameterMissing)
+    end
   end
 end

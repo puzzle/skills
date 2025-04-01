@@ -7,14 +7,13 @@ class PeopleController < CrudController
 
   helper_method :default_branch_adress
 
-  self.permitted_attrs = [:birthdate, :location, :marital_status, :updated_by, :name, :nationality,
-                          :nationality2, :title, :competence_notes, :company_id, :email,
-                          :department_id, :shortname, :picture, :picture_cache,
-                          { person_roles_attributes:
-                            [[:role_id, :person_role_level_id, :percent, :id, :_destroy]],
-                            language_skills_attributes:
-                            [[:language, :level, :certificate, :id, :_destroy]] }]
+
+  self.permitted_attrs = [:updated_by, :picture, :picture_cache,
+                          { language_skills_attributes:
+                              [[:language, :level, :certificate, :id, :_destroy]] }]
   layout 'person', only: [:show]
+
+  before_action :add_attrs
 
   def index
     return flash[:alert] = I18n.t('errors.messages.profile-not-found') if params[:alert].present?
@@ -70,5 +69,18 @@ class PeopleController < CrudController
 
   def default_branch_adress
     BranchAdress.find_by(default_branch_adress: true) || BranchAdress.first
+  end
+
+  def add_attrs
+    unless Skills.use_ptime_sync?
+      permitted_attrs << [:birthdate, :location, :marital_status, :updated_by, :name, :nationality,
+                          :nationality2, :title, :competence_notes, :company_id, :email,
+                          :department_id, :shortname, :picture, :picture_cache,
+                          { person_roles_attributes:
+                              [[:role_id, :person_role_level_id, :percent, :id, :_destroy]],
+                            language_skills_attributes:
+                              [[:language, :level, :certificate, :id,
+                                :_destroy]] }]
+    end
   end
 end
