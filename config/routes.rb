@@ -45,6 +45,7 @@ Rails.application.routes.draw do
       resources :departments
       resources :roles
       resources :companies
+      resources :unified_skills
     end
 
     resources :people do
@@ -65,7 +66,6 @@ Rails.application.routes.draw do
     end
 
     resources :certificates
-    post 'unified-skills', to: 'unified_skills#create'
   end
 
 
