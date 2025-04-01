@@ -5,5 +5,6 @@
       = f.text_area :role, placeholder: "Rolle", class: "form-control w-100"
       = f.label :description
       = f.text_area :description, placeholder: "Beschreibung", class: "form-control w-100"
-      = f.label :display_in_cv, class: "form-check-label text-gray"
-      = f.checkbox :display_in_cv, class: "form-check-input"
+      .flex-row
+        = f.label :display_in_cv, class: "form-check-label text-gray me-1"
+        = f.checkbox :display_in_cv, class: "form-check-input"
