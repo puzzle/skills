@@ -21,15 +21,15 @@
           %th.fw-normal
             = form.label :name
           %tr
-            %td= form.text_field :name, {class: "mw-100 form-control", **disable_ptime_sync("top")}
+            %td= form.text_field :name, {class: "mw-100 form-control", **disabled_with_ptime_sync}
           %th.fw-normal
             = form.label :email
           %tr
-            %td= form.text_field :email, {class: "mw-100 form-control", **disable_ptime_sync("top")}
+            %td= form.text_field :email, {class: "mw-100 form-control", **disabled_with_ptime_sync}
           %th.fw-normal
             = form.label :title
           %tr
-            %td= form.text_field :title, {class: "mw-100 form-control", **disable_ptime_sync("top")}
+            %td= form.text_field :title, {class: "mw-100 form-control", **disabled_with_ptime_sync}
           %th.fw-normal
             = form.label :person_roles
           %div
@@ -44,15 +44,15 @@
           %th.fw-normal
             = form.label :department
           %tr
-            %td= form.collection_select :department_id, Department.order(:name), :id, :name, {}, {class: "form-select mw-100", **disable_ptime_sync("top")}
+            %td= form.collection_select :department_id, Department.order(:name), :id, :name, {}, {class: "form-select mw-100", **disabled_with_ptime_sync}
           %th.fw-normal
             = form.label :company
           %tr
-            %td= form.collection_select :company_id, Company.order(:name), :id, :name, {}, {class: "form-select mw-100", **disable_ptime_sync("top")}
+            %td= form.collection_select :company_id, Company.order(:name), :id, :name, {}, {class: "form-select mw-100", **disabled_with_ptime_sync}
           %th.fw-normal
             = form.label :location
           %tr
-            %td= form.text_field :location, {class: "form-control mw-100", **disable_ptime_sync("top")}
+            %td= form.text_field :location, {class: "form-control mw-100", **disabled_with_ptime_sync}
 
     %div.pe-5.col-xl-3.col-12
       %table.w-100
@@ -60,27 +60,27 @@
           %th.fw-normal
             = form.label :birthdate
           %tr
-            %td= form.date_field :birthdate, {class: "form-control mw-100", **disable_ptime_sync("top")}
+            %td= form.date_field :birthdate, {class: "form-control mw-100", **disabled_with_ptime_sync}
           %th.fw-normal
             = form.label :dual_citizen
           %tr
-            %td{"data-controller"=>"nationality-two"}= check_box :has_nationality2, "checked", {"checked" => @person.nationality2?, "data-action" => "nationality-two#nationalityTwoVisible", "id" => "nat-two-checkbox", **disable_ptime_sync("top")}
+            %td{"data-controller"=>"nationality-two"}= check_box :has_nationality2, "checked", {"checked" => @person.nationality2?, "data-action" => "nationality-two#nationalityTwoVisible", "id" => "nat-two-checkbox", **disabled_with_ptime_sync}
           %th.fw-normal
             = form.label :nationality
           %tr
-            %td= form.collection_select :nationality, country_alpha2_translation_map, :first, :last, {}, {class: "form-select mw-100", **disable_ptime_sync("top")}
+            %td= form.collection_select :nationality, country_alpha2_translation_map, :first, :last, {}, {class: "form-select mw-100", **disabled_with_ptime_sync}
           %th.fw-normal.nationality-two
             = form.label :nationality2
           %tr.nationality-two
-            %td= form.collection_select :nationality2, country_alpha2_translation_map, :first, :last, {}, {class: "form-select mw-100", **disable_ptime_sync("top")}
+            %td= form.collection_select :nationality2, country_alpha2_translation_map, :first, :last, {}, {class: "form-select mw-100", **disabled_with_ptime_sync}
           %th.fw-normal
             = form.label :marital_status
           %tr
-            %td= form.collection_select :marital_status, marital_status_translation_map, :first, :last, { selected: @person.marital_status }, { class: "form-select mw-100", **disable_ptime_sync("top")}
+            %td= form.collection_select :marital_status, marital_status_translation_map, :first, :last, { selected: @person.marital_status }, { class: "form-select mw-100", **disabled_with_ptime_sync}
           %th.fw-normal
             = form.label :shortname
           %tr
-            %td= form.text_field :shortname, {class: "mw-100 form-control", **disable_ptime_sync("top")}
+            %td= form.text_field :shortname, {class: "mw-100 form-control", **disabled_with_ptime_sync}
     %div.col-xl-3.col-12{"data-controller"=>"lang-selection"}
       %div.fw-normal 
         = form.label :language_skills

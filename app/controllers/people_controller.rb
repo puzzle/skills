@@ -13,7 +13,7 @@ class PeopleController < CrudController
                               [[:language, :level, :certificate, :id, :_destroy]] }]
   layout 'person', only: [:show]
 
-  before_action :add_attrs
+  before_action :allow_all_attrs_without_ptime_sync
 
   def index
     return flash[:alert] = I18n.t('errors.messages.profile-not-found') if params[:alert].present?
@@ -71,7 +71,7 @@ class PeopleController < CrudController
     BranchAdress.find_by(default_branch_adress: true) || BranchAdress.first
   end
 
-  def add_attrs
+  def allow_all_attrs_without_ptime_sync
     unless Skills.use_ptime_sync?
       permitted_attrs << [:birthdate, :location, :marital_status, :updated_by, :name, :nationality,
                           :nationality2, :title, :competence_notes, :company_id, :email,
