@@ -66,7 +66,8 @@
             = render "application/tabbar", tabs: global_tabs, bar_class: "skills-navbar", active_path: global_navbar_path
       %div.container-fluid
         %div.row.d-flex.justify-content-center
-          = render partial: 'layouts/flash', collection: [:notice, :alert], as: :level
+          %span#flash-messages
+            = render partial: 'layouts/flash', collection: [:notice, :alert], as: :level
           - content_for(:actions) do
             %span
               = yield :actions
