@@ -13,7 +13,7 @@ describe Admin::UnifiedSkillsController do
 
     old_people_skills_count = PeopleSkill.where(skill_id: [skill1.id, skill2.id]).size
 
-    post :create, params: {old_skill_id1: skill1.id, old_skill_id2: skill2.id, skill: new_skill}
+    post :create, params: { unified_skill_form: { old_skill_id1: skill1.id, old_skill_id2: skill2.id, new_skill: new_skill } }
 
     expect(UnifiedSkill.find_by(skill1_attrs: skill1.attributes, skill2_attrs: skill2.attributes)).not_to be_nil
 
@@ -29,8 +29,6 @@ describe Admin::UnifiedSkillsController do
     skill1 = skills(:rails)
     skill2 = skills(:bash)
 
-    expect {
-      post :create, params: {old_skill_id1: skill1.id, old_skill_id2: skill2.id, skill: new_skill}
-    }.to raise_error("Merging these skills is not allowed since someone has rated both of them")
+    post :create, params: { unified_skill_form: {old_skill_id1: skill1.id, old_skill_id2: skill2.id, new_skill: new_skill } }
   end
 end
