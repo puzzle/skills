@@ -4,6 +4,7 @@ describe :people do
   describe 'People Search', type: :feature, js: true do
 
     before(:each) do
+      use_skills_db
       sign_in auth_users(:user), scope: :auth_user
     end
 
@@ -48,6 +49,16 @@ describe :people do
       not_matched_strings.pluck(:name).each do |name|
         expect(page).to have_no_text(name)
       end
+    end
+
+    it 'should redirect to correct person ' do
+      alice = people(:alice)
+      alice.ptime_employee_id = 21
+      alice.save!
+      visit people_path
+      select_from_slim_select("#person_id_person", alice.name)
+      expect(page).to have_current_path(person_path(alice))
+      expect(page).to have_css('.ss-single', text: 'Alice Mante')
     end
   end
 
