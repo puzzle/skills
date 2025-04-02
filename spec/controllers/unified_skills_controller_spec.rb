@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe UnifiedSkillsController do
+describe Admin::UnifiedSkillsController do
   before(:each) do
     sign_in(auth_users(:admin))
   end
