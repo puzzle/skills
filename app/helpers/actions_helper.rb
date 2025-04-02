@@ -28,17 +28,17 @@ module ActionsHelper
 
   # Standard edit action to given path.
   # Uses the current +entry+ if no path is given.
-  def edit_action_link(path = nil)
+  def edit_action_link(path = nil, html_options: {})
     path ||= path_args(entry)
     path = edit_polymorphic_path(path) unless path.is_a?(String)
-    action_link(ti('link.edit'), 'pencil', path)
+    action_link(ti('link.edit'), 'pencil', path, html_options)
   end
 
   # Standard destroy action to the given path.
   # Uses the current +entry+ if no path is given.
-  def destroy_action_link(path = nil)
+  def destroy_action_link(path = nil, icon = 'remove')
     path ||= path_args(entry)
-    action_link(ti('link.delete'), 'remove', path,
+    action_link(ti('link.delete'), icon, path,
                 data: { turbo_confirm: ti(:confirm_delete),
                         method: :delete, 'turbo-method': :delete })
   end
@@ -80,7 +80,7 @@ module ActionsHelper
   end
 
   def cancel_action_link(path, options = {})
-    action_link(ti('link.cancel'), '', path, options)
+    action_link(ti('link.cancel'), 'cancel', path, options)
   end
 
   def admin_action_link(label, icon = nil, url = {}, html_options = {})
@@ -108,5 +108,27 @@ module ActionsHelper
     content_tag(:div, '',
                 class: 'disable-btn-tooltip',
                 data: data) { link }
+  end
+
+  def update_action_link(html_options = {})
+    button_tag(class: 'action btn btn-link d-flex align-items-center gap-2', name: 'save',
+               html_options: html_options) do
+      action_icon('save', ti('link.update'))
+    end
+  end
+
+  def save_action_link(html_options = {})
+    button_tag(class: 'action btn btn-link d-flex align-items-center gap-2', name: 'save',
+               html_options: html_options) do
+      action_icon('save', ti('link.save'))
+    end
+  end
+
+  def save_and_new_action_link(html_options = {})
+    button_tag(class: 'action btn btn-link d-flex align-items-center gap-2',
+               name: 'render_new_after_save',
+               html_options: html_options) do
+      action_icon('save-and-new', ti('link.save_new'))
+    end
   end
 end

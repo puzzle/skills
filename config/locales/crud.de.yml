@@ -36,7 +36,10 @@ de:
       delete: Löschen
       edit: Bearbeiten
       list: Liste
+      save: Speichern
+      save_and_new: Speichern & Neu
       show: Anzeigen
+      update: Aktualisieren
     'no': nein
     no_list_entries: Keine Einträge gefunden.
     'yes': ja

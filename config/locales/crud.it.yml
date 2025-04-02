@@ -36,7 +36,11 @@ it:
       delete: Elimina
       edit: Modifica
       list: Elenco
+      save: Salvarlo
+      save_and_new: Salvarlo e Nuovo
       show: Mostra
+      update: Aggiornarlo
+
     'no': 'no'
     no_list_entries: Nessun elemento trovato.
     'yes': si

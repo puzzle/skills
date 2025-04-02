@@ -4,10 +4,11 @@
     = render partial: 'application/daterange_picker', locals: { form: form, end_date: form.object.till_today? }
   %span.col-5.d-flex.flex-column
     = yield :input
-  %div.col-3.d-flex.flex-column
-    = form.button(name: :"save", class:"btn btn-primary")
+  %div.col.d-flex.flex-column
     - if entry.persisted?
-      = destroy_action_link
-    - else 
-      = form.button(ti("link.save_new"), name: :"render_new_after_save", class:"btn btn-link", data: { turbo_frame: dom_id(entry.class.new)})
+      = update_action_link
+      = destroy_action_link('','trash')
+    - else
+      = save_action_link
+      = save_and_new_action_link(data: { turbo_frame: dom_id(entry.class.new)})
     = cancel_action_link polymorphic_path(entry.person)
