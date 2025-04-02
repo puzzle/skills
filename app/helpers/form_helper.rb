@@ -53,7 +53,7 @@ module FormHelper
       {
         'data-bs-toggle': 'tooltip',
         'data-bs-title': I18n.t('people.form.ptime_data'),
-        'data-bs-placement': "top",
+        'data-bs-placement': 'top',
         'data-controller': 'tooltip',
         disabled: true
       }
