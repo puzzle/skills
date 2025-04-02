@@ -40,7 +40,6 @@ it:
       save_and_new: Salvarlo e Nuovo
       show: Mostra
       update: Aggiornarlo
-
     'no': 'no'
     no_list_entries: Nessun elemento trovato.
     'yes': si
