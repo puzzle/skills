@@ -45,6 +45,24 @@ class Admin::UnifiedSkillsController < CrudController
   end
 
   def validate!
+    validate_skill_ids_are_present!
+    validate_skills_are_unique!
+    validate_no_one_rated_both_skills!
+  end
+
+  def validate_skill_ids_are_present!
+    return true if old_skill_id1.present? && old_skill_id2.present?
+
+    raise 'Either one or both skill ids are missing'
+  end
+
+  def validate_skills_are_unique!
+    return true if old_skill_id1 != old_skill_id2
+
+    raise 'Merging a skill with itself is not possible'
+  end
+
+  def validate_no_one_rated_both_skills!
     return true if PeopleSkill
                    .where(skill_id: [old_skill_id1, old_skill_id2])
                    .group(:person_id)
