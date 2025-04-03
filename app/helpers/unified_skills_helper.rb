@@ -8,11 +8,20 @@ module UnifiedSkillsHelper
   end
 
   def old_skill_id1
-    params[:old_skill_id1]
+    entry.old_skill_id1
   end
 
   def old_skill_id2
-    params[:old_skill_id2]
+    entry.old_skill_id2
+  end
+
+  def skill_value(key)
+    entry.new_skill.try(:[], key)
+  end
+
+  def category_map_for_dropdown
+    Category.all_children.sort_by { |category| category.parent&.title }
+            .map { |cat| [cat.name_with_parent, cat.id] }
   end
 
   private
