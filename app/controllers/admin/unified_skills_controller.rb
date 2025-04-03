@@ -13,12 +13,9 @@ class Admin::UnifiedSkillsController < CrudController
                                                                         :portfolio, :default_set,
                                                                         :category_id] }]
   before_action :render_unauthorized_not_admin
+  before_action :assign_and_validate_entry, only: :create
 
   def create
-    assign_attributes
-
-    return redirect_on_failure(location: new_admin_unified_skill_path) unless entry.valid?
-
     ActiveRecord::Base.transaction do
       old_skill1 = Skill.find(old_skill_id1)
       old_skill2 = Skill.find(old_skill_id2)
@@ -28,6 +25,17 @@ class Admin::UnifiedSkillsController < CrudController
   end
 
   private
+
+  def assign_and_validate_entry
+    assign_attributes
+
+    unless entry.valid?
+      respond_to do |format|
+        flash[:alert] ||= error_messages.presence || flash_message(:failure)
+        format.turbo_stream { render 'new' }
+      end
+    end
+  end
 
   def merge_skills(old_skill1, old_skill2)
     new_skill = Skill.create!(entry.new_skill)
