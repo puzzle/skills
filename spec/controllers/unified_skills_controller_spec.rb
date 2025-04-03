@@ -25,10 +25,23 @@ describe Admin::UnifiedSkillsController do
     expect(PeopleSkill.where(skill_id: merged_skill.id).size).to eql(old_people_skills_count)
   end
 
-  it 'should not allow unifying skills that are both rated by a single person' do
+  it 'should choose better rating when unifying skills that are both rated by a single person' do
     skill1 = skills(:rails)
     skill2 = skills(:bash)
+    wally = people(:wally)
+    wally_rails = people_skills(:wally_rails)
+    wally_bash = people_skills(:wally_bash)
+
+    expect(wally_bash.level).to be > wally_rails.level
 
     post :create, params: { unified_skill_form: {old_skill_id1: skill1.id, old_skill_id2: skill2.id, new_skill: new_skill } }
+
+    expect(PeopleSkill.find_by(id: wally_rails.id)).to be_nil
+
+    merged_people_skill = Skill.find_by!(title: 'A unified skill').people_skills.find_by!(person_id: wally.id)
+    expect(merged_people_skill.level).to eql(wally_bash.level)
+    expect(merged_people_skill.interest).to eql(wally_bash.interest)
+    expect(merged_people_skill.certificate).to eql(wally_bash.certificate)
+    expect(merged_people_skill.core_competence).to eql(wally_bash.core_competence)
   end
 end
