@@ -1,16 +1,16 @@
 %div.w-100.d-flex.justify-content-center
   %div.w-50.mt-4
-    %h2.text-center= ti('unified_skills.merge_skills')
+    %h2.text-center= ti('merge_skills')
     %div.mt-4
       = form_with model: entry, url: admin_unified_skills_path do |form|
-        %div.d-flex.justify-content-between
+        %div.d-flex.justify-content-between.mb-2
           %span.w-45
             = form.label :old_skill_id1
             = form.select :old_skill_id1, old_skill1_select_options, {}, {data: {controller: 'dropdown', 'dropdown-target': 'dropdown'}}
           %span.w-45
             = form.label :old_skill_id2
             = form.select :old_skill_id2, old_skill2_select_options, {}, {data: {controller: 'dropdown', 'dropdown-target': 'dropdown'}}
-        = form.fields_for :new_skill do |f|
+        = form.fields_for :new_skill, Skill.new do |f|
           .mb-2.w-100
             = f.label :title, class: "form-label"
             = f.text_field :title, class: "form-control", value: skill_value(:title)
@@ -24,4 +24,4 @@
             = f.label :portfolio, class: "form-label w-100"
             = f.select :portfolio, options_for_select(Settings.portfolio, selected: skill_value(:portfolio)), {}, class: "form-select"
           .w-100
-            = f.submit ti('unified_skills.merge')
+            = f.submit ti('merge')
