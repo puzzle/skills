@@ -119,11 +119,11 @@ de:
       link:
         list: Admin Panel
     index:
-      merge_skills: Skills vereinen
+      unify_skills: Skills vereinen
   admin/unified_skills:
     form:
-      merge: Vereinen
-      merge_skills: Skills vereinen
+      unify: Vereinen
+      unify_skills: Skills vereinen
   certificates:
     global:
       table:

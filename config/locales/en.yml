@@ -1,5 +1,10 @@
 ---
 en:
+  activemodel:
+    attributes:
+      unified_skill_form:
+        old_skill_id1: Skill 1
+        old_skill_id2: Skill 2
   activerecord:
     attributes:
       activity:
@@ -73,6 +78,10 @@ en:
         year_from: Start date
       skill:
         category: Category
+        default_set: Default set
+        portfolio: Portfolio
+        radar: Radar
+        title: Title
     models:
       activity: Station
       advanced_training: Further training
@@ -105,6 +114,12 @@ en:
     global:
       link:
         list: Admin Panel
+    index:
+      unify_skills: Unify skills
+  admin/unified_skills:
+    form:
+      unify: Unify
+      unify_skills: Unify skills
   certificates:
     global:
       table:
