@@ -13,15 +13,15 @@
         = form.fields_for :new_skill do |f|
           .mb-2.w-100
             = f.label :title, class: "form-label"
-            = f.text_field :title, class: "form-control"
+            = f.text_field :title, class: "form-control", value: skill_value(:title)
           .mb-2.w-100
             = f.label :kategorie, class: "form-label w-100"
-            = f.collection_select :category_id, Category.all_children.sort_by { |category| category.parent&.title}, :id, :name_with_parent, {}, class: "form-select w-100"
+            = f.select :category_id, options_for_select(category_map_for_dropdown, selected: skill_value(:category_id)), {}, class: "form-select w-100"
           .mb-2.w-100
             = f.label :radar, class: "form-label w-100"
-            = f.select :radar, Settings.radar, {}, class: "form-select"
+            = f.select :radar, options_for_select(Settings.radar, selected: skill_value(:radar)), {}, class: "form-select"
           .mb-2.w-100
             = f.label :portfolio, class: "form-label w-100"
-            = f.select :portfolio, Settings.portfolio, {}, class: "form-select"
+            = f.select :portfolio, options_for_select(Settings.portfolio, selected: skill_value(:portfolio)), {}, class: "form-select"
           .w-100
             = f.submit ti('unified_skills.merge')
