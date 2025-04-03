@@ -4,5 +4,5 @@
       = f.text_area :competence_notes, class: "form-control w-75", value: @person.competence_notes,
       rows: computed_size
     .mb-1.mt-4.d-flex.flex-row
-      = update_action_link
+      = update_action_link class: 'pt-0'
       = cancel_action_link polymorphic_path(@person), class: 'pt-0'
