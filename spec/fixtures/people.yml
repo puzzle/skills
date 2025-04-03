@@ -2,25 +2,25 @@
 #
 # Table name: people
 #
-#  id                      :integer          not null, primary key
-#  birthdate               :datetime
-#  location                :string
-#  updated_by              :string
-#  name                    :string
-#  title                   :string
-#  created_at              :datetime         not null
-#  updated_at              :datetime         not null
-#  picture                 :string
-#  competence_notes        :string
-#  company_id              :bigint(8)
-#  associations_updatet_at :datetime
-#  nationality             :string
-#  nationality2            :string
-#  marital_status          :integer          default("single"), not null
-#  email                   :string
-#  department_id           :integer
-#  shortname               :string
-#
+#  id                             :integer          not null, primary key
+#  birthdate                      :datetime
+#  location                       :string
+#  updated_by                     :string
+#  name                           :string
+#  title                          :string
+#  created_at                     :datetime         not null
+#  updated_at                     :datetime         not null
+#  picture                        :string
+#  competence_notes               :string
+#  company_id                     :bigint(8)
+#  associations_updatet_at        :datetime
+#  nationality                    :string
+#  nationality2                   :string
+#  marital_status                 :integer          default("single"), not null
+#  email                          :string
+#  department_id                  :integer
+#  shortname                      :string
+#  display_competence_notes_in_cv :boolean
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
@@ -156,3 +156,27 @@ longmax:
                   .NET Maui
   email: longmax@example.com
   department: sys
+
+maximillian:
+  birthdate: 1999-02-05 01:01:01
+  location: Berlin
+  marital_status: <%= Person.marital_statuses[:single] %>
+  name: Maximillian Meier
+  nationality: DE
+  roles: [train]
+  company: firma
+  title: BSc in Architecture
+  competence_notes: |
+    C
+    Bash
+    Java
+    Ruby
+    LaTex
+    Puppet
+    HTML
+    CSS
+    Spring
+    .NET Maui
+  display_competence_notes_in_cv: false
+  email: maximillian@example.com
+  department: mid

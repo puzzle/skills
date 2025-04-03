@@ -4,16 +4,17 @@
 #
 # Table name: advanced_trainings
 #
-#  id          :integer          not null, primary key
-#  description :text
-#  updated_by  :string
-#  person_id   :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  year_from   :integer          not null
-#  year_to     :integer
-#  month_from  :integer
-#  month_to    :integer
+#  id           :integer          not null, primary key
+#  description  :text
+#  updated_by   :string
+#  person_id    :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  year_from    :integer          not null
+#  year_to      :integer
+#  month_from   :integer
+#  month_to     :integer
+# display_in_cv :boolean
 #
 
 class AdvancedTraining < ApplicationRecord
@@ -26,6 +27,7 @@ class AdvancedTraining < ApplicationRecord
 
   belongs_to :person, touch: true
 
+  validates :display_in_cv, inclusion: [true, false]
   validates :description, presence: true
   validates :description, length: { maximum: 5000 }
 

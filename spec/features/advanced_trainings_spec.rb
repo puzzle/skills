@@ -127,5 +127,18 @@ describe 'Advanced Trainings', type: :feature, js:true do
       end
       expect(page).to have_css(".alert.alert-danger", text: /Startdatum muss vor dem Enddatum sein/)
     end
+
+    it 'Update entry to not be displayed in the CV' do
+      at = person.advanced_trainings.first
+      open_edit_form(at)
+      checkbox = find('#advanced_training_display_in_cv')
+      within("turbo-frame#advanced_training_#{at.id}") do
+        checkbox.click
+        click_default_submit
+        expect(find("img")[:src]).to have_content("no-file")
+      end
+      open_edit_form(at)
+      expect(checkbox).not_to be_checked
+    end
   end
 end
