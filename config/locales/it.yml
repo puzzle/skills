@@ -1,5 +1,10 @@
 ---
 it:
+  activemodel:
+    attributes:
+      unified_skill_form:
+        old_skill_id1: Competenza 1
+        old_skill_id2: Competenza 2
   activerecord:
     attributes:
       activity:
@@ -78,6 +83,10 @@ it:
         year_from: Data di inizio
       skill:
         category: Categoria
+        default_set: Set predefinito
+        portfolio: Portafoglio
+        radar: Radar
+        title: Titolo
     models:
       activity: Stazione
       advanced_training: Formazione continua
@@ -109,7 +118,13 @@ it:
   admin:
     global:
       link:
-        list: Pannello di amministrazione
+        list: Pannello di amministrazione.
+    index:
+      unify_skills: Unire le competenze
+  admin/unified_skills:
+    form:
+      unify: Unire
+      unify_skills: Unire le competenze
   certificates:
     global:
       table:

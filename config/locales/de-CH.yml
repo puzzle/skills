@@ -1,5 +1,10 @@
 ---
 de-CH:
+  activemodel:
+    attributes:
+      unified_skill_form:
+        old_skill_id1: Skill 1
+        old_skill_id2: Skill 2
   activerecord:
     attributes:
       activity:
@@ -78,6 +83,10 @@ de-CH:
         year_from: Startdatum
       skill:
         category: Kategorie
+        default_set: Default-Set
+        portfolio: Portfolio
+        radar: Radar
+        title: Titu
     models:
       activity: Station
       advanced_training:
@@ -114,6 +123,12 @@ de-CH:
     global:
       link:
         list: Admin Panel
+    index:
+      unify_skills: Skills vereinä
+  admin/unified_skills:
+    form:
+      unify: Vereinä
+      unify_skills: Skills vereinä
   certificates:
     global:
       table:

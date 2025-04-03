@@ -1,6 +1,6 @@
 %div.w-100.d-flex.justify-content-center
   %div.w-50.mt-4
-    %h2.text-center= ti('merge_skills')
+    %h2.text-center= ti('unify_skills')
     %div.mt-4
       = form_with model: entry, url: admin_unified_skills_path do |form|
         %div.d-flex.justify-content-between.mb-2
@@ -15,7 +15,7 @@
             = f.label :title, class: "form-label"
             = f.text_field :title, class: "form-control", value: skill_value(:title)
           .mb-2.w-100
-            = f.label :kategorie, class: "form-label w-100"
+            = f.label :category, class: "form-label w-100"
             = f.select :category_id, options_for_select(category_map_for_dropdown, selected: skill_value(:category_id)), {}, class: "form-select w-100"
           .mb-2.w-100
             = f.label :radar, class: "form-label w-100"
@@ -24,4 +24,4 @@
             = f.label :portfolio, class: "form-label w-100"
             = f.select :portfolio, options_for_select(Settings.portfolio, selected: skill_value(:portfolio)), {}, class: "form-select"
           .w-100
-            = f.submit ti('merge')
+            = f.submit ti('unify')
