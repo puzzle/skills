@@ -111,23 +111,31 @@ module ActionsHelper
   end
 
   def update_action_link(html_options = {})
-    button_tag(class: 'action btn btn-link d-flex align-items-center gap-2', name: 'save',
-               html_options: html_options) do
+    button_tag(
+      class: add_css_class(html_options, 'action btn btn-link d-flex align-items-center gap-2'),
+      name: 'save',
+      html_options: html_options
+    ) do
       action_icon('save', ti('link.update'))
     end
   end
 
   def save_action_link(html_options = {})
-    button_tag(class: 'action btn btn-link d-flex align-items-center gap-2', name: 'save',
-               html_options: html_options) do
+    button_tag(
+      class: add_css_class(html_options, 'action btn btn-link d-flex align-items-center gap-2'),
+      name: 'save',
+      html_options: html_options
+    ) do
       action_icon('save', ti('link.save'))
     end
   end
 
   def save_and_new_action_link(html_options = {})
-    button_tag(class: 'action btn btn-link d-flex align-items-center gap-2',
-               name: 'render_new_after_save',
-               html_options: html_options) do
+    button_tag(
+      class: add_css_class(html_options, 'action btn btn-link d-flex align-items-center gap-2'),
+      name: 'render_new_after_save',
+      html_options: html_options
+    ) do
       action_icon('save-and-new', ti('link.save_new'))
     end
   end
