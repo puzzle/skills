@@ -39,12 +39,24 @@ class Admin::UnifiedSkillsController < CrudController
 
   def merge_skills(old_skill1, old_skill2)
     new_skill = Skill.create!(entry.new_skill)
-    PeopleSkill.where(skill_id: [old_skill_id1, old_skill_id2]).update!(skill_id: new_skill.id)
+    update_people_skills(new_skill.id)
     UnifiedSkill.create!(skill1_attrs: old_skill1.attributes, skill2_attrs: old_skill2.attributes,
                          unified_skill_attrs: new_skill.attributes)
 
     old_skill1.delete
     old_skill2.delete
+  end
+
+  def update_people_skills(new_skill_id)
+    PeopleSkill.where(skill_id: [old_skill_id1, old_skill_id2])
+               .group_by(&:person_id)
+               .each_value do |people_skills|
+
+      best_people_skill = people_skills.max_by { |ps| ps.level.to_i }
+      other_people_skills = people_skills - [best_people_skill]
+      best_people_skill&.update!(skill_id: new_skill_id)
+      other_people_skills.each { |ps| ps.delete }
+    end
   end
 
   def old_skill_id1
