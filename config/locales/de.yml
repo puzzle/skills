@@ -1,5 +1,10 @@
 ---
 de:
+  activemodel:
+    attributes:
+      unified_skill_form:
+        old_skill_id1: Skill 1
+        old_skill_id2: Skill 2
   activerecord:
     attributes:
       activity:
@@ -78,6 +83,10 @@ de:
         year_from: Startdatum
       skill:
         category: Kategorie
+        default_set: Default-Set
+        portfolio: Portfolio
+        radar: Radar
+        title: Titel
     models:
       activity: Station
       advanced_training:
@@ -114,6 +123,12 @@ de:
     global:
       link:
         list: Admin Panel
+    index:
+      merge_skills: Skills vereinen
+  admin/unified_skills:
+    form:
+      merge: Vereinen
+      merge_skills: Skills vereinen
   certificates:
     global:
       table:
@@ -141,9 +156,6 @@ de:
       profile-not-found: Profil konnte nicht gefunden werden.
       valid_percent_range: muss zwischen 0 und 200 liegen.
   global:
-    unified_skills:
-      merge: Vereinen
-      merge_skills: Skills vereinen
     date:
       from: Von
       month: Monat
