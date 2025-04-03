@@ -41,7 +41,7 @@ it:
         birthdate: Data di nascita
         competence_notes: Note Membro
         department: Unità organizzativa
-        display_in_cv: Mostra nel CV
+        display_competence_notes_in_cv: Mostra nel CV
         dual_citizen: Doppi cittadini
         educations:
           one: Istruzione

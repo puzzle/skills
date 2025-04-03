@@ -4,12 +4,12 @@ de-CH:
     attributes:
       activity:
         description: Firmäangabä und Beschribig vor Tätigkeit
-        display_in_cv: Im CV anzeigä
+        display_in_cv: Im CV azeigä
         role: Rouä
         year_from: Startdatum
       advanced_training:
         description: Beschribig
-        display_in_cv: Im CV anzeigä
+        display_in_cv: Im CV azeigä
         year_from: Startdatum
       certificate:
         comment: Bemerkig
@@ -22,7 +22,7 @@ de-CH:
         title: Titu
         type_of_exam: Prüefigsart
       education:
-        display_in_cv: Im CV anzeigä
+        display_in_cv: Im CV azeigä
         location: Usbiudigsort
         title: Usbiudig
         year_from: Startdatum
@@ -41,7 +41,7 @@ de-CH:
         birthdate: Geburtsdatum
         competence_notes: Notizä Member
         department: Organisationsiheit
-        display_in_cv: Im CV anzeigä
+        display_competence_notes_in_cv: Im CV azeigä
         dual_citizen: Doppubürger
         educations:
           one: Usbiudig$
@@ -71,7 +71,7 @@ de-CH:
         title: Abschluss
       project:
         description: Beschribig
-        display_in_cv: Im CV anzeigä
+        display_in_cv: Im CV azeigä
         role: Rouä u Ufgabe
         technology: Igsetzti Technologiä
         title: Projekt

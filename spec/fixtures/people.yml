@@ -2,25 +2,25 @@
 #
 # Table name: people
 #
-#  id                      :integer          not null, primary key
-#  birthdate               :datetime
-#  location                :string
-#  updated_by              :string
-#  name                    :string
-#  title                   :string
-#  created_at              :datetime         not null
-#  updated_at              :datetime         not null
-#  picture                 :string
-#  competence_notes        :string
-#  company_id              :bigint(8)
-#  associations_updatet_at :datetime
-#  nationality             :string
-#  nationality2            :string
-#  marital_status          :integer          default("single"), not null
-#  email                   :string
-#  department_id           :integer
-#  shortname               :string
-#  display_in_cv           :boolean
+#  id                             :integer          not null, primary key
+#  birthdate                      :datetime
+#  location                       :string
+#  updated_by                     :string
+#  name                           :string
+#  title                          :string
+#  created_at                     :datetime         not null
+#  updated_at                     :datetime         not null
+#  picture                        :string
+#  competence_notes               :string
+#  company_id                     :bigint(8)
+#  associations_updatet_at        :datetime
+#  nationality                    :string
+#  nationality2                   :string
+#  marital_status                 :integer          default("single"), not null
+#  email                          :string
+#  department_id                  :integer
+#  shortname                      :string
+#  display_competence_notes_in_cv :boolean
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
@@ -154,7 +154,6 @@ longmax:
                   CSS
                   Spring
                   .NET Maui
-  display_in_cv: true
   email: longmax@example.com
   department: sys
 
@@ -178,6 +177,6 @@ maximillian:
     CSS
     Spring
     .NET Maui
-  display_in_cv: false
+  display_competence_notes_in_cv: false
   email: maximillian@example.com
   department: mid

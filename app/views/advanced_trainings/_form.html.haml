@@ -3,6 +3,6 @@
     - content_for :input do
       = f.label :description
       = f.text_area :description, placeholder: "Description", class: "form-control w-100"
-      .flex-row
+      .flex-row.mt-1
         = f.label :display_in_cv, class: "form-check-label text-gray me-1"
         = f.checkbox :display_in_cv, class: "form-check-input"

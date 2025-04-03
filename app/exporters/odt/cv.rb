@@ -184,7 +184,7 @@ module Odt
     end
 
     def competence_notes_list
-      if person.competence_notes.present? && person.display_in_cv
+      if person.competence_notes.present? && person.display_competence_notes_in_cv
         {
           category: 'Notizen',
           competence: person.competence_notes.strip
@@ -197,7 +197,7 @@ module Odt
     # rubocop:disable Metrics/AbcSize
     # rubocop:disable Metrics/MethodLength
     def insert_educations(report)
-      educations_list = person.educations.list.select(&:display_in_cv).collect do |e|
+      educations_list = person.educations.list.where(display_in_cv: true).collect do |e|
         { year_from: formatted_year(e.year_from),
           month_from: formatted_month(e.month_from),
           year_to: formatted_year(e.year_to),
@@ -214,7 +214,7 @@ module Odt
     end
 
     def insert_advanced_trainings(report)
-      advanced_trainings_list = person.advanced_trainings.list.select(&:display_in_cv).collect do
+      advanced_trainings_list = person.advanced_trainings.list.where(display_in_cv: true).collect do
       |at|
         { year_from: formatted_year(at.year_from),
           month_from: formatted_month(at.month_from),
@@ -233,7 +233,7 @@ module Odt
     end
 
     def insert_activities(report)
-      activities_list = person.activities.list.select(&:display_in_cv).collect do |a|
+      activities_list = person.activities.list.where(display_in_cv: true).collect do |a|
         { year_from: formatted_year(a.year_from),
           month_from: formatted_month(a.month_from),
           year_to: formatted_year(a.year_to),
@@ -251,7 +251,7 @@ module Odt
     end
 
     def insert_projects(report)
-      projects_list = person.projects.list.select(&:display_in_cv).collect do |p|
+      projects_list = person.projects.list.where(display_in_cv: true).collect do |p|
         { year_from: formatted_year(p.year_from),
           month_from: formatted_month(p.month_from),
           year_to: formatted_year(p.year_to),

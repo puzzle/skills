@@ -41,7 +41,7 @@ en:
         birthdate: Date of birth
         competence_notes: Notes Member
         department: Department
-        display_in_cv: Display in CV
+        display_competence_notes_in_cv: Display in CV
         dual_citizen: Dual citizens
         educations:
           one: Education

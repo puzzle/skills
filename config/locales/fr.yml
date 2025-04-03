@@ -41,7 +41,7 @@ fr:
         birthdate: Date de naissance
         competence_notes: Notes Member
         department: Unité organisationnelle
-        display_in_cv: Afficher dans le CV
+        display_competence_notes_in_cv: Afficher dans le CV
         dual_citizen: Double nationalité
         educations:
           one: Formation
