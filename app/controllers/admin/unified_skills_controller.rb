@@ -34,7 +34,7 @@ class Admin::UnifiedSkillsController < CrudController
 
     unless entry.valid?
       respond_to do |format|
-        flash[:alert] ||= error_messages.presence || flash_message(:failure)
+        flash[:alert] = error_messages.presence || flash_message(:failure)
         format.turbo_stream { render 'new', status: :bad_request }
       end
     end
