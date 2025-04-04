@@ -44,4 +44,24 @@ describe Admin::UnifiedSkillsController do
     expect(merged_people_skill.certificate).to eql(wally_bash.certificate)
     expect(merged_people_skill.core_competence).to eql(wally_bash.core_competence)
   end
+
+  it 'should choose a people skill even if rating is the same for both skills' do
+    skill1 = skills(:junit)
+    skill2 = skills(:bash)
+    wally = people(:wally)
+    wally_junit = people_skills(:wally_junit)
+    wally_bash = people_skills(:wally_bash)
+
+    expect(wally_junit.level).to eql(wally_bash.level)
+
+    post :create, params: { unified_skill_form: {old_skill_id1: skill1.id, old_skill_id2: skill2.id, new_skill: new_skill } }
+
+    expect(PeopleSkill.find_by(id: wally_bash.id)).to be_nil
+
+    merged_people_skill = Skill.find_by!(title: 'A unified skill').people_skills.find_by!(person_id: wally.id)
+    expect(merged_people_skill.level).to eql(wally_junit.level)
+    expect(merged_people_skill.interest).to eql(wally_junit.interest)
+    expect(merged_people_skill.certificate).to eql(wally_junit.certificate)
+    expect(merged_people_skill.core_competence).to eql(wally_junit.core_competence)
+  end
 end
