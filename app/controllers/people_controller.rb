@@ -7,27 +7,6 @@ class PeopleController < CrudController
 
   helper_method :default_branch_adress
 
-  # rubocop:disable Metrics/MethodLength
-  def self.apply_right_attrs
-    if Skills.use_ptime_sync?
-      [:updated_by, :picture, :picture_cache,
-       { language_skills_attributes:
-            [[:language, :level, :certificate, :id, :_destroy]] }]
-    else
-      [:birthdate, :location, :marital_status, :updated_by, :name, :nationality,
-       :nationality2, :title, :competence_notes, :company_id, :email,
-       :department_id, :shortname, :picture, :picture_cache,
-       { person_roles_attributes:
-           [[:role_id, :person_role_level_id, :percent, :id, :_destroy]],
-         language_skills_attributes:
-           [[:language, :level, :certificate, :id,
-             :_destroy]] }]
-    end
-  end
-  # rubocop:enable Metrics/MethodLength
-
-
-  self.permitted_attrs = apply_right_attrs
 
   layout 'person', only: [:show]
 
@@ -73,6 +52,25 @@ class PeopleController < CrudController
               type: 'application/vnd.oasis.opendocument.text',
               disposition: content_disposition('attachment', filename)
   end
+
+  # rubocop:disable Metrics/MethodLength
+  def self.permitted_attrs
+    if Skills.use_ptime_sync?
+      [:updated_by, :picture, :picture_cache,
+       { language_skills_attributes:
+           [[:language, :level, :certificate, :id, :_destroy]] }]
+    else
+      [:birthdate, :location, :marital_status, :updated_by, :name, :nationality,
+       :nationality2, :title, :competence_notes, :company_id, :email,
+       :department_id, :shortname, :picture, :picture_cache,
+       { person_roles_attributes:
+           [[:role_id, :person_role_level_id, :percent, :id, :_destroy]],
+         language_skills_attributes:
+           [[:language, :level, :certificate, :id,
+             :_destroy]] }]
+    end
+  end
+  # rubocop:enable Metrics/MethodLength
 
   private
 
