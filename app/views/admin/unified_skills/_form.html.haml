@@ -23,5 +23,8 @@
           .mb-2.w-100
             = f.label :portfolio, class: "form-label w-100"
             = f.select :portfolio, options_for_select(Settings.portfolio, selected: skill_value(:portfolio)), {}, class: "form-select"
+          .mb-2.w-100
+            = f.check_box :default_set, class: "form-check-input me-1", checked: true?(skill_value(:default_set))
+            = f.label :default_set, class: "form-label"
           .w-100
             = f.submit ti('unify')
