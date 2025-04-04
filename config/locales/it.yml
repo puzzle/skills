@@ -5,6 +5,12 @@ it:
       unified_skill_form:
         old_skill_id1: Competenza 1
         old_skill_id2: Competenza 2
+    errors:
+      models:
+        unified_skill_form:
+          attributes:
+            old_skill_id1:
+              other_than: non può essere la stessa della competenza 2
   activerecord:
     attributes:
       activity:
@@ -116,6 +122,9 @@ it:
         list: Pannello di amministrazione.
     index:
       unify_skills: Unire le competenze
+    unified_skills:
+      create:
+        success: La competenza %{skill1} è stata unificata con successo con la competenza %{skill2}
   admin/unified_skills:
     form:
       unify: Unire

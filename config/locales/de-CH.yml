@@ -5,6 +5,12 @@ de-CH:
       unified_skill_form:
         old_skill_id1: Skill 1
         old_skill_id2: Skill 2
+    errors:
+      models:
+        unified_skill_form:
+          attributes:
+            old_skill_id1:
+              other_than: darf nid gliich wie Skill 2 si
   activerecord:
     attributes:
       activity:
@@ -120,6 +126,9 @@ de-CH:
         list: Admin Panel
     index:
       unify_skills: Skills vereinä
+    unified_skills:
+      create:
+        success: Skill %{skill1} isch erfolgriich mit Skill %{skill2} vereint worde
   admin/unified_skills:
     form:
       unify: Vereinä

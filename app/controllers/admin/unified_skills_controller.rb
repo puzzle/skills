@@ -16,12 +16,15 @@ class Admin::UnifiedSkillsController < CrudController
   before_action :assign_and_validate_entry, only: :create
 
   def create
-    ActiveRecord::Base.transaction do
-      old_skill1 = Skill.find(old_skill_id1)
-      old_skill2 = Skill.find(old_skill_id2)
+    old_skill1 = Skill.find(old_skill_id1)
+    old_skill2 = Skill.find(old_skill_id2)
 
+    ActiveRecord::Base.transaction do
       merge_skills(old_skill1, old_skill2)
     end
+
+    flash[:notice] = t('.success', skill1: old_skill1.title, skill2: old_skill2.title)
+    redirect_to new_admin_unified_skill_path
   end
 
   private
@@ -32,7 +35,7 @@ class Admin::UnifiedSkillsController < CrudController
     unless entry.valid?
       respond_to do |format|
         flash[:alert] ||= error_messages.presence || flash_message(:failure)
-        format.turbo_stream { render 'new' }
+        format.turbo_stream { render 'new', status: :bad_request }
       end
     end
   end
