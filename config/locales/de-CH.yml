@@ -1,5 +1,16 @@
 ---
 de-CH:
+  activemodel:
+    attributes:
+      unified_skill_form:
+        old_skill_id1: Skill 1
+        old_skill_id2: Skill 2
+    errors:
+      models:
+        unified_skill_form:
+          attributes:
+            old_skill_id1:
+              other_than: darf nid gliich wie Skill 2 si
   activerecord:
     attributes:
       activity:
@@ -73,6 +84,10 @@ de-CH:
         year_from: Startdatum
       skill:
         category: Kategorie
+        default_set: Default-Set
+        portfolio: Portfolio
+        radar: Radar
+        title: Titu
     models:
       activity: Station
       advanced_training:
@@ -109,6 +124,15 @@ de-CH:
     global:
       link:
         list: Admin Panel
+    index:
+      unify_skills: Skills vereinä
+    unified_skills:
+      create:
+        success: Skill %{skill1} isch erfolgriich mit Skill %{skill2} vereint worde
+  admin/unified_skills:
+    form:
+      unify: Vereinä
+      unify_skills: Skills vereinä
   certificates:
     global:
       table:
