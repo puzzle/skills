@@ -53,8 +53,22 @@ class PeopleController < CrudController
               disposition: content_disposition('attachment', filename)
   end
 
+  private
+
+  def fetch_entries
+    Person.includes(:company).list
+  end
+
+  def person
+    @person ||= Person.find(params[:person_id])
+  end
+
+  def default_branch_adress
+    BranchAdress.find_by(default_branch_adress: true) || BranchAdress.first
+  end
+
   # rubocop:disable Metrics/MethodLength
-  def self.permitted_attrs
+  def permitted_attrs
     if Skills.use_ptime_sync?
       [:updated_by, :picture, :picture_cache,
        { language_skills_attributes:
@@ -71,18 +85,4 @@ class PeopleController < CrudController
     end
   end
   # rubocop:enable Metrics/MethodLength
-
-  private
-
-  def fetch_entries
-    Person.includes(:company).list
-  end
-
-  def person
-    @person ||= Person.find(params[:person_id])
-  end
-
-  def default_branch_adress
-    BranchAdress.find_by(default_branch_adress: true) || BranchAdress.first
-  end
 end
