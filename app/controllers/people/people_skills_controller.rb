@@ -66,6 +66,7 @@ class People::PeopleSkillsController < CrudController
       end
       return people_skills.where(level: 0) # Returns all unrated skills
     end
+
     people_skills # If the rating is neither 1 or 0 it returns all
   end
 end
