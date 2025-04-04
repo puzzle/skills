@@ -1,9 +1,11 @@
-require 'fuzzy_match'
+require 'did_you_mean/spell_checker'
 
 task unify: [:environment] do
-  Skill.create()
-  fz = FuzzyMatch.new(Skill.all, :read => :title)
-  Skill.all.map { |skill| skill.title }.each do |skill_title|
-    puts "#{fz.find(skill_title)}"
+  skills = Skill.all
+  spell_checker = DidYouMean::SpellChecker.new(dictionary: skills.pluck(:title))
+  skills.each do |skill|
+    spell_checker.correct(skill.title).each do |match|
+      puts "Duplicate of: #{skill.title} id: #{skill.id} Duplicate: #{match} id: #{skills.find_by(title: match).id}"
+    end
   end
 end
