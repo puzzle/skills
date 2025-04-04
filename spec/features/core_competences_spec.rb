@@ -26,7 +26,7 @@ describe "Core competences", type: :feature, js: true do
     expect(page).to have_selector('.form-control')
 
     fill_in 'person_competence_notes', with: 'Hello World here'
-    click_button "Person aktualisieren"
+    click_button "Aktualisieren"
     expect(page).to have_content('Hello World here')
   end
 

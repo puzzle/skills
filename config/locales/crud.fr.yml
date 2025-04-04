@@ -36,7 +36,10 @@ fr:
       delete: Supprimer
       edit: Modifier
       list: Liste
+      save: Sauvegarder
+      save_and_new: Sauvegarder & Nouveau
       show: Annonces
+      update: Mettre à jour
     'no': non
     no_list_entries: Aucune entrée trouvée.
     'yes': oui

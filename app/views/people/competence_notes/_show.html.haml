@@ -2,4 +2,4 @@
   %div.d-flex
     %div.persisted-line-breaks= @person.competence_notes
   %div.d-flex.flex-row
-    = edit_action_link competence_notes_person_path(@person)
+    = edit_action_link competence_notes_person_path(@person), html_options: { class: 'ps-0' }
