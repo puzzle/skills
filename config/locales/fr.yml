@@ -10,7 +10,7 @@ fr:
         unified_skill_form:
           attributes:
             old_skill_id1:
-              other_than: ne peut pas être la même que Compétence 2
+              other_than: ne peut pas être la même que compétence 2
   activerecord:
     attributes:
       activity:
