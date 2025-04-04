@@ -76,18 +76,6 @@ export default class extends Controller {
         e.target.form.requestSubmit();
     }
 
-    /*
-    When the value is bigger than unrated and
-    and the range goes from unrated to expert
-    we shorten the range by one to remove unrated from it
-    and we subtract 1 from the value so it stays same
-     */
-/*    removeUnratedFromRange(e){
-        if ( e.currentTarget.value > 0 && e.currentTarget.min == 0){
-            e.currentTarget.min = 1;
-        }
-    }*/
-
     setUnratedField(e, value) {
         const formElements = Array.from(e.target.form.elements);
         const unratedField = formElements.find(e=> e.id.startsWith("unrated-field"))
