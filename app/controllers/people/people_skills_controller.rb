@@ -31,7 +31,7 @@ class People::PeopleSkillsController < CrudController
   end
 
   def update
-    @people_skills = filtered_people_skills
+    @people_skills = filtered_people_skills(params[:people_skill])
     super do |format, success|
       format.turbo_stream { render 'people/people_skills/update', status: :ok } if success
     end
@@ -49,16 +49,24 @@ class People::PeopleSkillsController < CrudController
 
   private
 
-  def filtered_people_skills
+  def filtered_people_skills(current_skill)
     return @person.people_skills if params[:rating].blank?
 
-    filter_by_rating(@person.people_skills, params[:rating])
+    filter_by_rating(@person.people_skills, params[:rating], current_skill)
   end
 
-  def filter_by_rating(people_skills, rating)
-    return people_skills.where('level > ?', 0) if rating == '0'
-    return people_skills.where(level: 0) if rating == '-1'
+  def filter_by_rating(people_skills, rating, current_skill = nil)
+    if rating == '0'
+      return people_skills.where('level > ?', 0) # Returns all rated skills
+    elsif rating == '-1'
+      unless current_skill.nil? # Checks if currently a unrated skill is getting rated
+        # If yes we add the currently rated skill so he doesnt disappear
+        return people_skills.where(level: 0)
+                            .or(people_skills.where(skill_id: current_skill[:skill_id]))
+      end
+      return people_skills.where(level: 0) # Returns all unrated skills
+    end
 
-    people_skills
+    people_skills # If the rating is neither 1 or 0 it returns all
   end
 end
