@@ -73,12 +73,20 @@ export default class extends Controller {
         e.preventDefault();
         if(!this.isEditMode(e)) return;
         this.setUnratedField(e, false);
-        if ( e.currentTarget.value > 0 && e.currentTarget.min === 0){ // Checks if the value is bigger than unrated and if the range goes from 0-5
-            e.currentTarget.value -= - 1 // Sets back the value by one because the range is going to get 1 smaller
-            e.currentTarget.min = 1; // Remove the unrated from the range by making the range go from 1-5
-        }
         e.target.form.requestSubmit();
     }
+
+    /*
+    When the value is bigger than unrated and
+    and the range goes from unrated to expert
+    we shorten the range by one to remove unrated from it
+    and we subtract 1 from the value so it stays same
+     */
+/*    removeUnratedFromRange(e){
+        if ( e.currentTarget.value > 0 && e.currentTarget.min == 0){
+            e.currentTarget.min = 1;
+        }
+    }*/
 
     setUnratedField(e, value) {
         const formElements = Array.from(e.target.form.elements);
