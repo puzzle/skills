@@ -2,7 +2,7 @@
 %div.d-flex.row.py-3.ps-5
   %span.col-3
     = render partial: 'application/daterange_picker', locals: { form: form, end_date: form.object.till_today? }
-  %span.col-5.d-flex.flex-column
+  %span.col-5.d-flex.flex-column.model-form-container
     = yield :input
   %div.col.d-flex.flex-column
     - if entry.persisted?
