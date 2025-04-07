@@ -133,7 +133,11 @@ de:
       unify_skills: Skills vereinen
     unified_skills:
       create:
-        success: Skill %{skill1} wurde erfolgreich mit Skill %{skill2} vereint
+        success: "Skill %{skill1} wurde erfolgreich mit Skill %{skill2} vereint"
+        conflicts_found:
+          one: "%{names} hat beide Skills bewertet. Werden die Skills trotzdem vereint, wird die bessere Bewertung genommen."
+          other: "%{names} haben beide Skills bewertet. Werden die Skills trotzdem vereint, wird die bessere Bewertung genommen."
+        no_conflicts_found: Es wurden keine Konflikte gefunden. Die Skills können problemlos vereint werden.
   admin/unified_skills:
     form:
       unify: Vereinen

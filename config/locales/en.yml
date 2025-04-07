@@ -129,7 +129,11 @@ en:
       unify_skills: Unify skills
     unified_skills:
       create:
-        success: Skill %{skill1} was successfully unified with Skill %{skill2}
+        success: "Skill %{skill1} was successfully unified with Skill %{skill2}"
+        conflicts_found:
+          one: "%{names} has rated both Skills. If the Skills are unified anyway, the better rating will be used."
+          other: "%{names} have rated both Skills. If the Skills are unified anyway, the better rating will be used."
+        no_conflicts_found: No conflicts were found. The skills can be unified without issues.
   admin/unified_skills:
     form:
       unify: Unify
