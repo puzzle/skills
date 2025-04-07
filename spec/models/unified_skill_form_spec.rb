@@ -6,6 +6,7 @@ describe UnifiedSkillForm do
       unified_skill_form = UnifiedSkillForm.new
       unified_skill_form.valid?
 
+      expect(unified_skill_form.checked_conflicts).to eql(false)
       expect(unified_skill_form.errors[:old_skill_id1].first).to eql('muss ausgefüllt werden')
       expect(unified_skill_form.errors[:old_skill_id2].first).to eql('muss ausgefüllt werden')
       expect(unified_skill_form.errors[:new_skill].first).to eql('muss ausgefüllt werden')

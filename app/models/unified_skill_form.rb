@@ -7,7 +7,8 @@ class UnifiedSkillForm
   validates :old_skill_id1, comparison: { other_than: :old_skill_id2 }, if: :skill_ids_present?
   validate :validate_skill
 
-  def initialize
+  def initialize(attributes = nil)
+    super
     self.checked_conflicts = false
   end
 
