@@ -9,9 +9,11 @@ class Admin::UnifiedSkillsController < CrudController
     UnifiedSkillForm.new
   end
 
-  self.permitted_attrs = [:old_skill_id1, :old_skill_id2, { new_skill: [:id, :title, :radar,
-                                                                        :portfolio, :default_set,
-                                                                        :category_id] }]
+  self.permitted_attrs = [:checked_conflicts, :old_skill_id1, :old_skill_id2,
+                          { new_skill: [:id, :title, :radar,
+                                        :portfolio, :default_set,
+                                        :category_id] }]
+
   before_action :render_unauthorized_not_admin
   before_action :assign_and_validate_entry, only: :create
 
@@ -31,12 +33,34 @@ class Admin::UnifiedSkillsController < CrudController
 
   def assign_and_validate_entry
     assign_attributes
+    flash.clear
 
     unless entry.valid?
-      respond_to do |format|
+      return respond_to do |format|
         flash[:alert] = error_messages.presence || flash_message(:failure)
         format.turbo_stream { render 'new', status: :bad_request }
       end
+    end
+
+    check_skill_conflicts
+  end
+
+  def check_skill_conflicts
+    return if true?(entry.checked_conflicts)
+
+    entry.check_conflicts
+    respond_to do |format|
+      set_flash_for_conflicts
+      format.turbo_stream { render 'new', status: :ok }
+    end
+  end
+
+  def set_flash_for_conflicts
+    if entry.conflicts.any?
+      flash[:alert] = t('.conflicts_found', names: entry.conflicts.to_sentence,
+                                            count: entry.conflicts.count)
+    else
+      flash[:notice] = t('.no_conflicts_found')
     end
   end
 
