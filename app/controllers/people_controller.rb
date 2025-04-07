@@ -7,14 +7,7 @@ class PeopleController < CrudController
 
   helper_method :default_branch_adress
 
-  self.permitted_attrs = [:birthdate, :location, :marital_status, :updated_by, :name, :nationality,
-                          :nationality2, :title, :competence_notes, :company_id, :email,
-                          :department_id, :shortname, :picture, :picture_cache,
-                          :display_competence_notes_in_cv,
-                          { person_roles_attributes:
-                            [[:role_id, :person_role_level_id, :percent, :id, :_destroy]],
-                            language_skills_attributes:
-                            [[:language, :level, :certificate, :id, :_destroy]] }]
+
   layout 'person', only: [:show]
 
   def index
@@ -59,7 +52,6 @@ class PeopleController < CrudController
               disposition: content_disposition('attachment', filename)
   end
 
-
   private
 
   def fetch_entries
@@ -73,4 +65,23 @@ class PeopleController < CrudController
   def default_branch_adress
     BranchAdress.find_by(default_branch_adress: true) || BranchAdress.first
   end
+
+  # rubocop:disable Metrics/MethodLength
+  def permitted_attrs
+    if Skills.use_ptime_sync?
+      [:updated_by, :picture, :picture_cache, :display_competence_notes_in_cv,
+       { language_skills_attributes:
+           [[:language, :level, :certificate, :id, :_destroy]] }]
+    else
+      [:birthdate, :location, :marital_status, :updated_by, :name, :nationality,
+       :nationality2, :title, :competence_notes, :company_id, :email,
+       :department_id, :shortname, :picture, :picture_cache, :display_competence_notes_in_cv,
+       { person_roles_attributes:
+           [[:role_id, :person_role_level_id, :percent, :id, :_destroy]],
+         language_skills_attributes:
+           [[:language, :level, :certificate, :id,
+             :_destroy]] }]
+    end
+  end
+  # rubocop:enable Metrics/MethodLength
 end
