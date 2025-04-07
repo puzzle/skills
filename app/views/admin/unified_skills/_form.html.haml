@@ -29,4 +29,4 @@
             = f.label :default_set, class: "form-label"
           .w-100
             = f.submit ti('unify'), {'data-unified-skills-target': 'submitButton', hidden: false?(entry.checked_conflicts)}
-            = f.submit :Check, {'data-unified-skills-target': 'checkButton', hidden: true?(entry.checked_conflicts)}
+            = f.submit ti('check_for_conflicts'), {'data-unified-skills-target': 'checkButton', hidden: true?(entry.checked_conflicts)}
