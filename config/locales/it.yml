@@ -129,13 +129,14 @@ it:
       unify_skills: Unire le competenze
     unified_skills:
       create:
-        success: "La competenza %{skill1} è stata unificata con successo con la competenza %{skill2}"
         conflicts_found:
           one: "%{names} ha valutato entrambe le competenze. Se le competenze vengono comunque unite, verrà utilizzata la valutazione migliore."
           other: "%{names} hanno valutato entrambe le competenze. Se le competenze vengono comunque unite, verrà utilizzata la valutazione migliore."
         no_conflicts_found: Non sono stati trovati conflitti. Le competenze possono essere unite senza problemi.
+        success: La competenza %{skill1} è stata unificata con successo con la competenza %{skill2}
   admin/unified_skills:
     form:
+      check_for_conflicts: Vérifier les conflits
       unify: Unire
       unify_skills: Unire le competenze
   certificates:
