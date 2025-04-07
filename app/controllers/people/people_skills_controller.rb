@@ -56,9 +56,9 @@ class People::PeopleSkillsController < CrudController
   end
 
   def filter_by_rating(people_skills, rating, current_skill = nil)
-    if rating == '0'
+    if rating == ratings[:rated_value]
       return people_skills.where('level > ?', 0) # Returns all rated skills
-    elsif rating == '-1'
+    elsif rating == ratings[:unrated_value]
       unless current_skill.nil? # Checks if currently a unrated skill is getting rated
         # If yes we add the currently rated skill so he doesnt disappear
         return people_skills.where(level: 0)
@@ -68,5 +68,13 @@ class People::PeopleSkillsController < CrudController
     end
 
     people_skills # If the rating is neither 1 or 0 it returns all
+  end
+
+  def ratings
+    {
+      all_value: '1',
+      rated_value: '0',
+      unrated_value: '-1'
+    }
   end
 end
