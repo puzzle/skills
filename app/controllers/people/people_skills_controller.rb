@@ -16,7 +16,7 @@ class People::PeopleSkillsController < CrudController
 
   def index
     rating = params[:rating]
-    return super if rating.present? && ([-1, 0, 1].include? rating.to_i)
+    return super if rating.present? && ratings.has_value?(rating)
 
     redirect_to url_for(request.params.merge(rating: 0))
   end
