@@ -13,7 +13,6 @@ class UnifiedSkillForm
   end
 
   def check_conflicts
-    self.checked_conflicts = true
     self.conflicts = Person.joins(:people_skills)
                            .where(people_skills: { skill_id: [old_skill_id1, old_skill_id2] })
                            .group('people.id')

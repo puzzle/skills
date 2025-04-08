@@ -1,0 +1,5 @@
+= render 'remote_modal', title: 'Konflikte Gefunden' do
+  = entry.conflicts.to_sentence
+  %div.mt-3{ 'data-controller': 'unified-skills' }
+    %button{ class: 'btn btn-primary', 'aria-label': 'Submit', 'data-action': 'unified-skills#submitAsChecked', 'data-bs-dismiss': 'modal' } Submit
+    = link_to 'Cancel', skills_path, class: 'btn btn-outline-secondary', 'data-bs-dismiss': 'modal'
