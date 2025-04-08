@@ -392,7 +392,11 @@ a > img {
   width: 5%;
 }
 
-.model-form-container * {
-  margin-bottom: 0;
+.model-form-container textarea {
+  @extend .mt-1;
   padding-top: 0;
+}
+
+.model-form-container label {
+  margin-bottom: 0;
 }
