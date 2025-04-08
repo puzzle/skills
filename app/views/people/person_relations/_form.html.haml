@@ -6,9 +6,10 @@
     = yield :input
   %div.col.d-flex.flex-column
     - if entry.persisted?
-      = update_action_link
+      = update_action_link(class: 'py-3')
       = destroy_action_link('','trash')
+      = cancel_action_link polymorphic_path(entry.person)
     - else
-      = save_action_link
+      = save_action_link(class: 'py-3')
       = save_and_new_action_link(data: { turbo_frame: dom_id(entry.class.new)})
-    = cancel_action_link polymorphic_path(entry.person)
+      = cancel_action_link polymorphic_path(entry.person)
