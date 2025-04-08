@@ -3,16 +3,16 @@
 # Table name: advanced_trainings
 #
 #  id          :integer          not null, primary key
-#  description :text
-#  updated_by  :string
-#  person_id   :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  year_from   :integer          not null
-#  year_to     :integer
-#  month_from  :integer
-#  month_to    :integer
-#
+#  description   :text
+#  updated_by    :string
+#  person_id     :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  year_from     :integer          not null
+#  year_to       :integer
+#  month_from    :integer
+#  month_to      :integer
+#  display_in_cv :boolean
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
@@ -56,4 +56,13 @@ tutoring:
   updated_by: longmax
   year_to: 2020
   year_from: 2015
+  display_in_cv: true
   person: longmax
+
+cook:
+  description: Further training to cooking
+  updated_by: maximillian
+  year_to: 2018
+  year_from: 2013
+  display_in_cv: false
+  person: maximillian

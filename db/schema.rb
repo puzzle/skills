@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_05_074320) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_25_145055) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -25,6 +25,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_05_074320) do
     t.integer "year_to"
     t.integer "month_from"
     t.integer "month_to"
+    t.boolean "display_in_cv", default: true, null: false
     t.index ["person_id"], name: "index_activities_on_person_id"
   end
 
@@ -38,6 +39,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_05_074320) do
     t.integer "year_to"
     t.integer "month_from"
     t.integer "month_to"
+    t.boolean "display_in_cv", default: true, null: false
     t.index ["person_id"], name: "index_advanced_trainings_on_person_id"
   end
 
@@ -107,6 +109,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_05_074320) do
     t.integer "year_to"
     t.integer "month_from"
     t.integer "month_to"
+    t.boolean "display_in_cv", default: true, null: false
     t.index ["person_id"], name: "index_educations_on_person_id"
   end
 
@@ -162,6 +165,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_05_074320) do
     t.string "email"
     t.integer "department_id"
     t.string "shortname"
+    t.boolean "display_competence_notes_in_cv", default: true, null: false
     t.index ["company_id"], name: "index_people_on_company_id"
   end
 
@@ -213,6 +217,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_05_074320) do
     t.integer "year_to"
     t.integer "month_from"
     t.integer "month_to"
+    t.boolean "display_in_cv", default: true, null: false
     t.index ["person_id"], name: "index_projects_on_person_id"
   end
 

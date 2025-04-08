@@ -2,20 +2,20 @@
 #
 # Table name: projects
 #
-#  id          :integer          not null, primary key
-#  updated_by  :string
-#  description :text
-#  title       :text
-#  role        :text
-#  technology  :text
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  person_id   :integer
-#  year_from   :integer          not null
-#  year_to     :integer
-#  month_from  :integer
-#  month_to    :integer
-#
+#  id             :integer          not null, primary key
+#  updated_by     :string
+#  description    :text
+#  title          :text
+#  role           :text
+#  technology     :text
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  person_id      :integer
+#  year_from      :integer          not null
+#  year_to        :integer
+#  month_from     :integer
+#  month_to       :integer
+#  display_in_cv :boolean
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
@@ -89,4 +89,15 @@ fisherman :
   technology: Boat driving
   year_to: 2022
   year_from: 2021
+  display_in_cv: true
   person: longmax
+
+gourmet-chef:
+  description: Cooking gourmet food
+  title: cook
+  role: Chef
+  technology: grill
+  year_to: 2023
+  year_from: 2020
+  display_in_cv: false
+  person: maximillian

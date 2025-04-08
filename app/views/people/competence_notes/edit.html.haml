@@ -1,8 +1,12 @@
 %turbo-frame{id: "competence-notes"}
   = form_with model: @person do |f|
-    .mb-4.w-100
+    .w-100.mb-2
       = f.text_area :competence_notes, class: "form-control w-75", value: @person.competence_notes,
       rows: computed_size
-    .mb-1.mt-4
+    .mb-2
+      = f.label :display_competence_notes_in_cv, class: "form-check-label me-1 text-gray"
+      = f.checkbox :display_competence_notes_in_cv, class: "form-check-input"
+    .mb-2
       = f.submit
       = f.cancel
+

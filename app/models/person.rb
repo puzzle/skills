@@ -4,25 +4,25 @@
 #
 # Table name: people
 #
-#  id                      :integer          not null, primary key
-#  birthdate               :datetime
-#  location                :string
-#  updated_by              :string
-#  name                    :string
-#  title                   :string
-#  created_at              :datetime         not null
-#  updated_at              :datetime         not null
-#  picture                 :string
-#  competence_notes        :string
-#  company_id              :bigint(8)
-#  associations_updatet_at :datetime
-#  nationality             :string
-#  nationality2            :string
-#  marital_status          :integer          default("single"), not null
-#  email                   :string
-#  department_id           :integer
-#  shortname               :string
-#
+#  id                             :integer          not null, primary key
+#  birthdate                      :datetime
+#  location                       :string
+#  updated_by                     :string
+#  name                           :string
+#  title                          :string
+#  created_at                     :datetime         not null
+#  updated_at                     :datetime         not null
+#  picture                        :string
+#  competence_notes               :string
+#  display_competence_notes_in_cv :boolean
+#  company_id                     :bigint(8)
+#  associations_updatet_at        :datetime
+#  nationality                    :string
+#  nationality2                   :string
+#  marital_status                 :integer          default("single"), not null
+#  email                          :string
+#  department_id                  :integer
+#  shortname                      :string
 
 class Person < ApplicationRecord
   include PgSearch::Model
@@ -48,6 +48,7 @@ class Person < ApplicationRecord
 
   accepts_nested_attributes_for :advanced_trainings, allow_destroy: true
 
+  validates :display_competence_notes_in_cv, inclusion: [true, false]
   validates :birthdate, :location, :name, :nationality,
             :title, :marital_status, :email, presence: true
   validates :location, :name, :title,

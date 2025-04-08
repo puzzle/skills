@@ -4,10 +4,12 @@ en:
     attributes:
       activity:
         description: Company details and description of the activity
+        display_in_cv: Include in CV export
         role: Role
         year_from: Start date
       advanced_training:
         description: Description
+        display_in_cv: Include in CV export
         year_from: Start date
       certificate:
         comment: Comment
@@ -20,6 +22,7 @@ en:
         title: Title
         type_of_exam: Type of exam
       education:
+        display_in_cv: Include in CV export
         location: Training location
         title: Education
         year_from: Start date
@@ -38,6 +41,7 @@ en:
         birthdate: Date of birth
         competence_notes: Notes Member
         department: Department
+        display_competence_notes_in_cv: Include in CV export
         dual_citizen: Dual citizens
         educations:
           one: Education
@@ -67,6 +71,7 @@ en:
         title: Degree
       project:
         description: Description
+        display_in_cv: Include in CV export
         role: Role and tasks
         technology: Technologies used
         title: Project
@@ -264,6 +269,8 @@ en:
     search:
       new_profile: New profile
       updated_at: Last edited
+    show:
+      is_not_displayed_in_cv: Will not be included in the CV export.
   people/people_skills:
     edit_form:
       rate: Rate
