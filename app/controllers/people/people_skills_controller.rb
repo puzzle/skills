@@ -2,6 +2,10 @@
 
 class People::PeopleSkillsController < CrudController
   include ParamConverters
+
+  RATED_VALUE = '0'
+  UNRATED_VALUE = '-1'
+
   self.permitted_attrs = [:id, :certificate, :level, :interest, :core_competence,
                           :skill_id, :unrated, :skill_ids, :_destroy,
                           { skill_attributes:
@@ -16,7 +20,7 @@ class People::PeopleSkillsController < CrudController
 
   def index
     rating = params[:rating]
-    return super if rating.present? && ratings.value?(rating)
+    return super if rating.present? && [1, 0, -1].include?(rating.to_i)
 
     redirect_to url_for(request.params.merge(rating: 0))
   end
@@ -56,9 +60,9 @@ class People::PeopleSkillsController < CrudController
   end
 
   def filter_by_rating(people_skills, rating, current_skill = nil)
-    if rating == ratings[:rated_value]
+    if rating == RATED_VALUE
       return people_skills.where('level > ?', 0) # Returns all rated skills
-    elsif rating == ratings[:unrated_value]
+    elsif rating == UNRATED_VALUE
       unless current_skill.nil? # Checks if currently a unrated skill is getting rated
         # If yes we add the currently rated skill so he doesnt disappear
         return people_skills.where(level: 0)
@@ -68,13 +72,5 @@ class People::PeopleSkillsController < CrudController
     end
 
     people_skills # If the rating is neither 1 or 0 it returns all
-  end
-
-  def ratings
-    {
-      all_value: '1',
-      rated_value: '0',
-      unrated_value: '-1'
-    }
   end
 end
