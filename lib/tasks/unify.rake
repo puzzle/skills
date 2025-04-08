@@ -16,5 +16,5 @@ task unify: [:environment] do
 end
 
 def duplicate_sentence(skill, match)
-  "Duplicate of: #{skill.title} with id: #{skill.id} Duplicate: #{match.title} with id: #{match.id}.\n"
+  "Possible duplicates detected: #{skill.title} (id: #{skill.id}) matched: #{match.title} (id: #{match.id}).\n"
 end
