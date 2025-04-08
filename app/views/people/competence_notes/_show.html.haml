@@ -6,4 +6,4 @@
         %div{ 'data-bs-toggle': 'tooltip', 'data-bs-title': ti("is_not_displayed_in_cv"), 'data-controller': 'tooltip'}
           = image_tag('no-file.svg')
   %div.d-flex.flex-row
-    = edit_action_link competence_notes_person_path(@person), html_options: { class: 'ps-0' }
+    = edit_action_link competence_notes_person_path(@person), options: { class: 'ps-0' }
