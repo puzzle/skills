@@ -52,7 +52,7 @@ describe "Core competences", type: :feature, js: true do
     click_link(href: competence_notes_person_path(alice))
     checkbox = find('#person_display_competence_notes_in_cv')
     checkbox.click
-    click_button "Person aktualisieren"
+    click_button "Aktualisieren"
     within("#competence-notes") do
       expect(find("img")[:src]).to have_content("no-file")
     end
