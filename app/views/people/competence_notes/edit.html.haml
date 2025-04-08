@@ -1,11 +1,11 @@
 %turbo-frame{id: "competence-notes"}
   = form_with model: @person do |f|
-    .w-100.mb-4
+    .w-100.mb-3
       = f.text_area :competence_notes, class: "form-control w-75", value: @person.competence_notes,
       rows: computed_size
     .mb-2
       = f.label :display_competence_notes_in_cv, class: "form-check-label me-1 text-gray"
       = f.checkbox :display_competence_notes_in_cv, class: "form-check-input"
-    .mb-1.mt-4.d-flex.flex-row
-      = update_action_link class: 'pt-0'
-      = cancel_action_link polymorphic_path(@person), class: 'pt-0'
+    .d-flex.flex-row
+      = update_action_link class: 'p-0 me-2'
+      = cancel_action_link polymorphic_path(@person), class: 'p-0'
