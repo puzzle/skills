@@ -210,4 +210,18 @@ describe :people do
       expect(page).not_to have_css('#default-skills')
     end
   end
+
+  it 'should not refresh view when editing a unrated skill' do
+    bob = people(:bob)
+    first_unrated_skill = not_rated_default_skills(bob).first.skill
+    sign_in auth_users(:user), scope: :auth_user
+    visit person_people_skills_path(bob, rating: -1)
+    within("#default-skill-#{first_unrated_skill.id}") do
+      select_star_rating(2)
+      fill_in "level_#{first_unrated_skill.id}", with: 4
+      expect(page).to have_content(first_unrated_skill.title)
+      visit person_people_skills_path(bob, rating: 0)
+      expect(page).to  have_content(first_unrated_skill.title)
+    end
+  end
 end
