@@ -15,7 +15,7 @@ class Admin::UnifiedSkillsController < CrudController
                                         :category_id] }]
 
   before_action :render_unauthorized_not_admin
-  before_action :assign_and_validate_entry, only: :create
+  before_action :assign_and_validate, only: :create
 
   def create
     old_skill1 = Skill.find(old_skill_id1)
@@ -31,36 +31,34 @@ class Admin::UnifiedSkillsController < CrudController
 
   private
 
-  def assign_and_validate_entry
-    assign_attributes
+  def assign_and_validate
     flash.clear
+    assign_attributes
 
-    unless entry.valid?
-      return respond_to do |format|
-        flash[:alert] = error_messages.presence || flash_message(:failure)
-        format.turbo_stream { render 'new', status: :bad_request }
-      end
-    end
+    return if check_entry_validity
 
     check_skill_conflicts
   end
 
-  def check_skill_conflicts
-    return if true?(entry.checked_conflicts)
-
-    entry.check_conflicts
-    respond_to do |format|
-      set_flash_for_conflicts
-      format.turbo_stream { render 'new', status: :ok }
+  def check_entry_validity
+    unless entry.valid?
+      respond_to do |format|
+        flash[:alert] = error_messages.presence || flash_message(:failure)
+        format.turbo_stream { render 'new', status: :bad_request }
+      end
+      return true
     end
+
+    false
   end
 
-  def set_flash_for_conflicts
-    if entry.conflicts.any?
-      flash[:alert] = t('.conflicts_found', names: entry.conflicts.to_sentence,
-                                            count: entry.conflicts.count)
-    else
-      flash[:notice] = t('.no_conflicts_found')
+  def check_skill_conflicts
+    entry.check_conflicts
+
+    if entry.conflicts.any? && false?(entry.checked_conflicts)
+      respond_to do |format|
+        format.html { render 'conflict_dialog' }
+      end
     end
   end
 
