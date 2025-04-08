@@ -4,12 +4,12 @@ de:
     attributes:
       activity:
         description: Firmenangaben und Beschreibung der Tätigkeit
-        display_in_cv: Im CV anzeigen
+        display_in_cv: Im CV Export inkludieren
         role: Rolle
         year_from: Startdatum
       advanced_training:
         description: Beschreibung
-        display_in_cv: Im CV anzeigen
+        display_in_cv: Im CV Export inkludieren
         year_from: Startdatum
       certificate:
         comment: Bemerkung
@@ -22,7 +22,7 @@ de:
         title: Titel
         type_of_exam: Prüfungsart
       education:
-        display_in_cv: Im CV anzeigen
+        display_in_cv: Im CV Export inkludieren
         location: Ausbildungsort
         title: Ausbildung
         year_from: Startdatum
@@ -41,7 +41,7 @@ de:
         birthdate: Geburtsdatum
         competence_notes: Notizen Member
         department: Organisationseinheit
-        display_competence_notes_in_cv: Im CV anzeigen
+        display_competence_notes_in_cv: Im CV Export inkludieren
         dual_citizen: Doppelbürger
         educations:
           one: Ausbildung
@@ -71,7 +71,7 @@ de:
         title: Abschluss
       project:
         description: Beschreibung
-        display_in_cv: Im CV anzeigen
+        display_in_cv: Im CV Export inkludieren
         role: Rolle und Aufgaben
         technology: Eingesetzte Technologien
         title: Projekt
@@ -274,7 +274,7 @@ de:
       new_profile: Neues Profil
       updated_at: Zuletzt bearbeitet
     show:
-      is_not_displayed_in_cv: Wird nicht im CV angezeigt.
+      is_not_displayed_in_cv: Wird im CV Export nicht inkludiert.
   people/people_skills:
     edit_form:
       rate: Bewerten
