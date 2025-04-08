@@ -10,7 +10,10 @@ class UnifyTaskTest
     it "should find correct duplicates" do
       expect {
         Rake::Task["unify"].execute
-      }.to output("Duplicate of: JUnit with id: 677333953 Duplicate: cunit with id: 625945042.\nDuplicate of: WebComponents with id: 1031312693 Duplicate: Web Components with id: 157721798.\n").to_stdout
+      }.to output(
+                   "Possible duplicates detected: JUnit (id: #{Skill.find_by(title: 'JUnit').id}) matched: cunit (id: #{Skill.find_by(title: 'cunit').id}).\n" +
+                   "Possible duplicates detected: WebComponents (id: #{Skill.find_by(title: 'WebComponents').id}) matched: Web Components (id: #{Skill.find_by(title: 'Web Components').id}).\n"
+                 ).to_stdout
     end
   end
 end
