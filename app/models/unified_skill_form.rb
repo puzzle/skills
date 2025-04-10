@@ -31,7 +31,7 @@ class UnifiedSkillForm
     return true if skill.valid?
 
     skill.errors.each do |error|
-      errors.add(:"skill_#{error.attribute}", error.message)
+      errors.add(error.attribute.to_sym, error.message)
     end
   end
 end
