@@ -65,7 +65,11 @@ describe 'Unified Skills', type: :feature, js: true do
     end
 
     expect(page).not_to have_content("Skill #{skill1.title} wurde erfolgreich mit Skill #{skill2.title} vereint")
+    expect(Skill.find_by(id: skill1.id)).not_to be_nil
+    expect(Skill.find_by(id: skill2.id)).not_to be_nil
 
+    expect(call('#unified_skill_form_old_skill_id1', 'getSelected')).to match_array([skill1.id.to_s])
+    expect(call('#unified_skill_form_old_skill_id2', 'getSelected')).to match_array([skill2.id.to_s])
     expect(page).to have_field('unified_skill_form_new_skill_title', with: new_skill.title)
     expect(page).to have_field('unified_skill_form_new_skill_category_id', with: new_skill.category.id)
     expect(page).to have_field('unified_skill_form_new_skill_radar', with: new_skill.radar)
