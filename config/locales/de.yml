@@ -140,10 +140,11 @@ de:
       unify: Vereinen
       unify_skills: Skills vereinen
     remote_modal:
-      conflicts_found: Konflikte gefunden
       conflicts_found_message:
         one: "%{names} hat beide Skills bewertet. Werden die Skills trotzdem vereint, wird die bessere Bewertung genommen."
         other: "%{names} haben beide Skills bewertet. Werden die Skills trotzdem vereint, wird die bessere Bewertung genommen."
+    conflict_dialog:
+      conflicts_found: Konflikte gefunden
   certificates:
     global:
       table:

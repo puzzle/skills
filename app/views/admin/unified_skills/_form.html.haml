@@ -3,7 +3,7 @@
     %h2.text-center= ti('unify_skills')
     %div.mt-4
       = form_with model: entry, url: admin_unified_skills_path, id: 'unify-skills-form' do |form|
-        = form.hidden_field :checked_conflicts, { value: entry.checked_conflicts, 'id': 'checked-conflicts-field' }
+        = form.hidden_field :checked_conflicts, { value: entry.checked_conflicts, id: 'checked-conflicts-field' }
         %div.d-flex.justify-content-between.mb-2
           %span.w-45
             = form.label :old_skill_id1

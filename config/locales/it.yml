@@ -136,10 +136,11 @@ it:
       unify: Unire
       unify_skills: Unire le competenze
     remote_modal:
-      conflicts_found: Conflitti rilevati
       conflicts_found_message:
         one: "%{names} ha valutato entrambe le competenze. Se le competenze vengono comunque unite, verrà utilizzata la valutazione migliore."
         other: "%{names} hanno valutato entrambe le competenze. Se le competenze vengono comunque unite, verrà utilizzata la valutazione migliore."
+    conflict_dialog:
+      conflicts_found: Conflitti rilevati
   certificates:
     global:
       table:
