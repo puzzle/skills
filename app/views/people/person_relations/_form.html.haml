@@ -9,7 +9,7 @@
       = update_action_link(class: 'pt-0')
       %div
         = cancel_action_link polymorphic_path(entry.person)
-        = destroy_action_link('','trash')
+        = destroy_action_link(nil, 'trash')
     - else
       %div
         = save_action_link(class: '')
