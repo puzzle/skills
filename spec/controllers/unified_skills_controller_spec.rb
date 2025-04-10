@@ -7,6 +7,13 @@ describe Admin::UnifiedSkillsController do
 
   let(:new_skill) { { title: 'A unified skill', radar: 'adopt', portfolio: 'aktiv', category_id: Category.first.id, default_set: true } }
 
+  def check_merged_people_skill_values(merged_people_skill, original_people_skill)
+    expect(merged_people_skill.level).to eql(original_people_skill.level)
+    expect(merged_people_skill.interest).to eql(original_people_skill.interest)
+    expect(merged_people_skill.certificate).to eql(original_people_skill.certificate)
+    expect(merged_people_skill.core_competence).to eql(original_people_skill.core_competence)
+  end
+
   it 'should unify two skills' do
     skill1 = skills(:bash)
     skill2 = skills(:webcomponents)
@@ -34,15 +41,12 @@ describe Admin::UnifiedSkillsController do
 
     expect(wally_bash.level).to be > wally_rails.level
 
-    post :create, params: { unified_skill_form: {old_skill_id1: skill1.id, old_skill_id2: skill2.id, checked_conflicts: true, new_skill: new_skill } }
+    post :create, params: { unified_skill_form: { old_skill_id1: skill1.id, old_skill_id2: skill2.id, checked_conflicts: true, new_skill: new_skill } }
 
     expect(PeopleSkill.find_by(id: wally_rails.id)).to be_nil
 
     merged_people_skill = Skill.find_by!(title: 'A unified skill').people_skills.find_by!(person_id: wally.id)
-    expect(merged_people_skill.level).to eql(wally_bash.level)
-    expect(merged_people_skill.interest).to eql(wally_bash.interest)
-    expect(merged_people_skill.certificate).to eql(wally_bash.certificate)
-    expect(merged_people_skill.core_competence).to eql(wally_bash.core_competence)
+    check_merged_people_skill_values(merged_people_skill, wally_bash)
   end
 
   it 'should choose a people skill even if rating is the same for both skills' do
@@ -54,14 +58,11 @@ describe Admin::UnifiedSkillsController do
 
     expect(wally_junit.level).to eql(wally_bash.level)
 
-    post :create, params: { unified_skill_form: {old_skill_id1: skill1.id, old_skill_id2: skill2.id, checked_conflicts: true, new_skill: new_skill } }
+    post :create, params: { unified_skill_form: { old_skill_id1: skill1.id, old_skill_id2: skill2.id, checked_conflicts: true, new_skill: new_skill } }
 
     expect(PeopleSkill.find_by(id: wally_bash.id)).to be_nil
 
     merged_people_skill = Skill.find_by!(title: 'A unified skill').people_skills.find_by!(person_id: wally.id)
-    expect(merged_people_skill.level).to eql(wally_junit.level)
-    expect(merged_people_skill.interest).to eql(wally_junit.interest)
-    expect(merged_people_skill.certificate).to eql(wally_junit.certificate)
-    expect(merged_people_skill.core_competence).to eql(wally_junit.core_competence)
+    check_merged_people_skill_values(merged_people_skill, wally_junit)
   end
 end
