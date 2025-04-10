@@ -136,10 +136,11 @@ fr:
       unify: Unifier
       unify_skills: Unifier les compétences
     remote_modal:
-      conflicts_found: Conflits détectés
       conflicts_found_message:
         one: "%{names} a évalué les deux compétences. Si les compétences sont quand même unifiées, la meilleure évaluation sera utilisée."
         other: "%{names} ont évalué les deux compétences. Si les compétences sont quand même unifiées, la meilleure évaluation sera utilisée."
+    conflict_dialog:
+      conflicts_found: Conflits détectés
   certificates:
     global:
       table:

@@ -140,10 +140,11 @@ de-CH:
       unify: Vereinä
       unify_skills: Skills vereinä
     remote_modal:
-      conflicts_found: Konfliktä gfundä
       conflicts_found_message:
         one: "%{names} het beidi Skills bewertet. We si trotzdem vereint werde, wird di besseri Bewertig übernoh."
         other: "%{names} hei beidi Skills bewertet. We si trotzdem vereint werde, wird di besseri Bewertig übernoh."
+    conflict_dialog:
+      conflicts_found: Konfliktä gfundä
   certificates:
     global:
       table:

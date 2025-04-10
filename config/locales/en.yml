@@ -136,10 +136,11 @@ en:
       unify: Unify
       unify_skills: Unify skills
     remote_modal:
-      conflicts_found: Conflicts found
       conflicts_found_message:
         one: "%{names} has rated both Skills. If the Skills are unified anyway, the better rating will be used."
         other: "%{names} have rated both Skills. If the Skills are unified anyway, the better rating will be used."
+    conflict_dialog:
+      conflicts_found: Conflicts found
   certificates:
     global:
       table:
