@@ -5,6 +5,7 @@ it:
       unified_skill_form:
         old_skill_id1: Competenza 1
         old_skill_id2: Competenza 2
+        title: Titolo
     errors:
       models:
         unified_skill_form:
@@ -131,6 +132,8 @@ it:
       create:
         success: La competenza %{skill1} è stata unificata con successo con la competenza %{skill2}
   admin/unified_skills:
+    conflict_dialog:
+      conflicts_found: Conflitti rilevati
     form:
       check_for_conflicts: Vérifier les conflits
       unify: Unire
@@ -139,8 +142,6 @@ it:
       conflicts_found_message:
         one: "%{names} ha valutato entrambe le competenze. Se le competenze vengono comunque unite, verrà utilizzata la valutazione migliore."
         other: "%{names} hanno valutato entrambe le competenze. Se le competenze vengono comunque unite, verrà utilizzata la valutazione migliore."
-    conflict_dialog:
-      conflicts_found: Conflitti rilevati
   certificates:
     global:
       table:

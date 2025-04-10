@@ -5,6 +5,7 @@ de:
       unified_skill_form:
         old_skill_id1: Skill 1
         old_skill_id2: Skill 2
+        title: Titel
     errors:
       models:
         unified_skill_form:
@@ -135,6 +136,8 @@ de:
       create:
         success: Skill %{skill1} wurde erfolgreich mit Skill %{skill2} vereint
   admin/unified_skills:
+    conflict_dialog:
+      conflicts_found: Konflikte gefunden
     form:
       check_for_conflicts: Auf Konflikte prüfen
       unify: Vereinen
@@ -143,8 +146,6 @@ de:
       conflicts_found_message:
         one: "%{names} hat beide Skills bewertet. Werden die Skills trotzdem vereint, wird die bessere Bewertung genommen."
         other: "%{names} haben beide Skills bewertet. Werden die Skills trotzdem vereint, wird die bessere Bewertung genommen."
-    conflict_dialog:
-      conflicts_found: Konflikte gefunden
   certificates:
     global:
       table:
