@@ -61,7 +61,7 @@ describe 'Unified Skills', type: :feature, js: true do
 
     unify_skills(skill1, skill2, new_skill)
     within '.modal-dialog'  do
-      click_link 'Abbrechen'
+      click_button 'Abbrechen'
     end
 
     expect(page).not_to have_content("Skill #{skill1.title} wurde erfolgreich mit Skill #{skill2.title} vereint")
