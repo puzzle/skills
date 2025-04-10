@@ -2,4 +2,4 @@
   = ti('conflicts_found_message', names: entry.conflicts.to_sentence, count: entry.conflicts.count)
   %div.mt-3{ 'data-controller': 'unified-skills' }
     %button{ class: 'btn btn-primary', 'aria-label': 'Submit', 'data-action': 'unified-skills#submitAsChecked', 'data-bs-dismiss': 'modal' }= t('helpers.continue')
-    = link_to t('helpers.cancel'), skills_path, class: 'btn btn-outline-secondary', 'data-bs-dismiss': 'modal'
+    %button{class: 'btn btn-outline-secondary', 'data-bs-dismiss': 'modal'}= t('helpers.cancel')
