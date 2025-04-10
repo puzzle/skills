@@ -129,16 +129,17 @@ en:
       unify_skills: Unify skills
     unified_skills:
       create:
-        conflicts_found:
-          one: "%{names} has rated both Skills. If the Skills are unified anyway, the better rating will be used."
-          other: "%{names} have rated both Skills. If the Skills are unified anyway, the better rating will be used."
-        no_conflicts_found: No conflicts were found. The skills can be unified without issues.
         success: Skill %{skill1} was successfully unified with Skill %{skill2}
   admin/unified_skills:
     form:
       check_for_conflicts: Check for conflicts
       unify: Unify
       unify_skills: Unify skills
+    remote_modal:
+      conflicts_found: Conflicts found
+      conflicts_found_message:
+        one: "%{names} has rated both Skills. If the Skills are unified anyway, the better rating will be used."
+        other: "%{names} have rated both Skills. If the Skills are unified anyway, the better rating will be used."
   certificates:
     global:
       table:
@@ -232,6 +233,7 @@ en:
     'true': 'Yes'
   helpers:
     cancel: Cancel
+    continue: Continue
     submit:
       add: "%{model} add"
       delete: Delete

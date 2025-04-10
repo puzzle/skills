@@ -133,16 +133,17 @@ de:
       unify_skills: Skills vereinen
     unified_skills:
       create:
-        conflicts_found:
-          one: "%{names} hat beide Skills bewertet. Werden die Skills trotzdem vereint, wird die bessere Bewertung genommen."
-          other: "%{names} haben beide Skills bewertet. Werden die Skills trotzdem vereint, wird die bessere Bewertung genommen."
-        no_conflicts_found: Es wurden keine Konflikte gefunden. Die Skills können problemlos vereint werden.
         success: Skill %{skill1} wurde erfolgreich mit Skill %{skill2} vereint
   admin/unified_skills:
     form:
       check_for_conflicts: Auf Konflikte prüfen
       unify: Vereinen
       unify_skills: Skills vereinen
+    remote_modal:
+      conflicts_found: Konflikte gefunden
+      conflicts_found_message:
+        one: "%{names} hat beide Skills bewertet. Werden die Skills trotzdem vereint, wird die bessere Bewertung genommen."
+        other: "%{names} haben beide Skills bewertet. Werden die Skills trotzdem vereint, wird die bessere Bewertung genommen."
   certificates:
     global:
       table:
@@ -236,6 +237,7 @@ de:
     'true': Ja
   helpers:
     cancel: Abbrechen
+    continue: Fortfahren
     submit:
       add: "%{model} hinzufügen"
       delete: Löschen
