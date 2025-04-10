@@ -11,7 +11,7 @@
         = cancel_action_link polymorphic_path(entry.person)
         = destroy_action_link('','trash')
     - else
-      = save_action_link(class: '')
       %div
+        = save_action_link(class: '')
         = save_and_new_action_link(data: { turbo_frame: dom_id(entry.class.new)})
-        = cancel_action_link polymorphic_path(entry.person)
+      = cancel_action_link polymorphic_path(entry.person)
