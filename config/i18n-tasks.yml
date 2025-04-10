@@ -148,8 +148,6 @@ ignore_missing:
   - 'number.format.{delimiter, precision}'
   - 'helpers.select.prompt' 
   - 'date.month_names'
-  - 'admin.unified_skills.set_flash_for_conflicts.conflicts_found'
-  - 'admin.unified_skills.set_flash_for_conflicts.no_conflicts_found'
 
 ## Consider these keys used:
 # ignore_unused:

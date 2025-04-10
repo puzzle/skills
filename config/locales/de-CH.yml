@@ -133,16 +133,17 @@ de-CH:
       unify_skills: Skills vereinä
     unified_skills:
       create:
-        conflicts_found:
-          one: "%{names} het beidi Skills bewertet. We si trotzdem vereint werde, wird di besseri Bewertig übernoh."
-          other: "%{names} hei beidi Skills bewertet. We si trotzdem vereint werde, wird di besseri Bewertig übernoh."
-        no_conflicts_found: Es si keni Konflikte gfunde worde. D Skills chöi ohni Problem vereint werde.
         success: Skill %{skill1} isch erfolgriich mit Skill %{skill2} vereint worde
   admin/unified_skills:
     form:
       check_for_conflicts: Uf Konflikt überprüefe
       unify: Vereinä
       unify_skills: Skills vereinä
+    remote_modal:
+      conflicts_found: Konfliktä gfundä
+      conflicts_found_message:
+        one: "%{names} het beidi Skills bewertet. We si trotzdem vereint werde, wird di besseri Bewertig übernoh."
+        other: "%{names} hei beidi Skills bewertet. We si trotzdem vereint werde, wird di besseri Bewertig übernoh."
   certificates:
     global:
       table:
@@ -251,6 +252,7 @@ de-CH:
     'true': Ja
   helpers:
     cancel: Abbrächä
+    continue: Witerfahre
     select:
       prompt: Bitte uswählä
     submit:
