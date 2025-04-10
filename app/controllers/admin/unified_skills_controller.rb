@@ -57,7 +57,7 @@ class Admin::UnifiedSkillsController < CrudController
 
     if entry.conflicts.any? && false?(entry.checked_conflicts)
       respond_to do |format|
-        format.html { render 'conflict_dialog' }
+        format.turbo_stream { render 'conflict_dialog' }
       end
     end
   end
