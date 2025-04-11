@@ -6,10 +6,10 @@ module ActionsHelper
 
   # A generic helper method to create action links.
   # These link could be styled to look like buttons, for example.
-  def action_link(label, icon = nil, url = {}, html_options = {})
-    add_css_class html_options, 'action btn btn-link d-flex align-items-center gap-2'
+  def action_link(label, icon = nil, url = {}, options = {})
+    add_css_class options, 'action btn btn-link d-flex align-items-center gap-2'
     link_to(icon ? action_icon(icon, label) : label,
-            url, html_options)
+            url, options)
   end
 
   # Outputs an icon for an action with an optional label.
@@ -28,17 +28,17 @@ module ActionsHelper
 
   # Standard edit action to given path.
   # Uses the current +entry+ if no path is given.
-  def edit_action_link(path = nil)
+  def edit_action_link(path = nil, options: {})
     path ||= path_args(entry)
     path = edit_polymorphic_path(path) unless path.is_a?(String)
-    action_link(ti('link.edit'), 'pencil', path)
+    action_link(ti('link.edit'), 'pencil', path, options)
   end
 
   # Standard destroy action to the given path.
   # Uses the current +entry+ if no path is given.
-  def destroy_action_link(path = nil)
+  def destroy_action_link(path = nil, icon = 'remove')
     path ||= path_args(entry)
-    action_link(ti('link.delete'), 'remove', path,
+    action_link(ti('link.delete'), icon, path,
                 data: { turbo_confirm: ti(:confirm_delete),
                         method: :delete, 'turbo-method': :delete })
   end
@@ -53,15 +53,15 @@ module ActionsHelper
 
   # Standard add action to given path.
   # Uses the current +model_class+ if no path is given.
-  def add_action_link(path = nil, url_options = {}, html_options = {})
+  def add_action_link(path = nil, url_options = {}, options = {})
     path ||= path_args(model_class)
     path = new_polymorphic_path(path, url_options) unless path.is_a?(String)
-    action_link(ti('link.add'), 'plus', path, html_options)
+    action_link(ti('link.add'), 'plus', path, options)
   end
 
-  def add_person_relation_link(path, person_relation_name, html_options)
-    path = new_polymorphic_path(path, url_options, html_options) unless path.is_a?(String)
-    action_link(t("people.#{person_relation_name}.link.add"), 'plus', path, html_options)
+  def add_person_relation_link(path, person_relation_name, options)
+    path = new_polymorphic_path(path, url_options, options) unless path.is_a?(String)
+    action_link(t("people.#{person_relation_name}.link.add"), 'plus', path, options)
   end
 
   def add_action_link_modal(path = nil, url_options = {})
@@ -80,14 +80,14 @@ module ActionsHelper
   end
 
   def cancel_action_link(path, options = {})
-    action_link(ti('link.cancel'), '', path, options)
+    action_link(ti('link.cancel'), 'cancel', path, options)
   end
 
-  def admin_action_link(label, icon = nil, url = {}, html_options = {})
-    add_css_class html_options, 'action btn btn-link d-flex align-items-center gap-2'
-    add_css_class html_options, 'disabled' unless current_auth_user.is_admin?
+  def admin_action_link(label, icon = nil, url = {}, options = {})
+    add_css_class options, 'action btn btn-link d-flex align-items-center gap-2'
+    add_css_class options, 'disabled' unless current_auth_user.is_admin?
     link = link_to(icon ? action_icon(icon, label) : label,
-                   url, html_options)
+                   url, options)
 
     return link if current_auth_user.is_admin?
 
@@ -108,5 +108,35 @@ module ActionsHelper
     content_tag(:div, '',
                 class: 'disable-btn-tooltip',
                 data: data) { link }
+  end
+
+  def update_action_link(options = {})
+    button_tag(
+      class: add_css_class(options, 'action btn btn-link d-flex align-items-center gap-2'),
+      name: 'save',
+      html_options: options
+    ) do
+      action_icon('save', ti('link.update'))
+    end
+  end
+
+  def save_action_link(options = {})
+    button_tag(
+      class: add_css_class(options, 'action btn btn-link d-flex align-items-center gap-2'),
+      name: 'save',
+      html_options: options
+    ) do
+      action_icon('save', ti('link.save'))
+    end
+  end
+
+  def save_and_new_action_link(options = {})
+    button_tag(
+      class: add_css_class(options, 'action btn btn-link d-flex align-items-center gap-2'),
+      name: 'render_new_after_save',
+      html_options: options
+    ) do
+      action_icon('save-and-new', ti('link.save_new'))
+    end
   end
 end

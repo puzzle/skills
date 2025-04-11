@@ -26,7 +26,7 @@ describe "Core competences", type: :feature, js: true do
     expect(page).to have_selector('.form-control')
 
     fill_in 'person_competence_notes', with: 'Hello World here'
-    click_button "Person aktualisieren"
+    click_button "Aktualisieren"
     expect(page).to have_content('Hello World here')
   end
 
@@ -52,7 +52,7 @@ describe "Core competences", type: :feature, js: true do
     click_link(href: competence_notes_person_path(alice))
     checkbox = find('#person_display_competence_notes_in_cv')
     checkbox.click
-    click_button "Person aktualisieren"
+    click_button "Aktualisieren"
     within("#competence-notes") do
       expect(find("img")[:src]).to have_content("no-file")
     end

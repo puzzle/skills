@@ -2,12 +2,16 @@
 %div.d-flex.row.py-3.ps-5
   %span.col-3
     = render partial: 'application/daterange_picker', locals: { form: form, end_date: form.object.till_today? }
-  %span.col-5.d-flex.flex-column
+  %span.col-5.d-flex.flex-column.model-form-container
     = yield :input
-  %div.col-3.d-flex.flex-column
-    = form.button(name: :"save", class:"btn btn-primary")
+  %div.col.d-flex.flex-column.justify-content-between
     - if entry.persisted?
-      = destroy_action_link
-    - else 
-      = form.button(ti("link.save_new"), name: :"render_new_after_save", class:"btn btn-link", data: { turbo_frame: dom_id(entry.class.new)})
-    = cancel_action_link polymorphic_path(entry.person)
+      = update_action_link(class: 'pt-0')
+      %div
+        = cancel_action_link polymorphic_path(entry.person)
+        = destroy_action_link(nil, 'trash')
+    - else
+      %div
+        = save_action_link(class: '')
+        = save_and_new_action_link(data: { turbo_frame: dom_id(entry.class.new)})
+      = cancel_action_link polymorphic_path(entry.person)
