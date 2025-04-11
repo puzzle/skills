@@ -36,13 +36,12 @@ services:
   assets:
     container_name: assets
     image: ruby:3.4.1
-    user: "${UID:-1000}"
     working_dir: /myapp
     command: >
      /bin/bash -c "
       curl -fsSL https://deb.nodesource.com/setup_18.x | bash - &&
       apt-get install -y nodejs &&
-      npm install -g yarn && yarn add nodemon esbuild && bin/assets &&
+      npm install -g yarn && bin/assets &&
       sleep infinity"
     volumes:
       - ./:/myapp
