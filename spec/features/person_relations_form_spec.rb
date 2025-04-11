@@ -7,7 +7,7 @@ describe :person_relations_form, type: :feature, js: true do
     sign_in auth_users(:admin)
     visit person_path(person)
   end
-  describe 'hallo' do
+  describe 'Should only delete person_relation and not person' do
     %w[advanced_trainings activities educations projects].each do |entity_name|
       it "Should delete #{entity_name}" do
         entity = person.send(entity_name).first
@@ -19,7 +19,7 @@ describe :person_relations_form, type: :feature, js: true do
           end
         end
         expect(page).not_to have_selector("#{entity_class_name}_#{entity.id}")
-        expect(page).not_to have_content("Content missing") # Appears when the User was deleted which should not happen
+        expect { Person.find(person.id) }.not_to raise_error
       end
     end
   end
