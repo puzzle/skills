@@ -238,6 +238,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_25_145055) do
     t.index ["category_id"], name: "index_skills_on_category_id"
   end
 
+  create_table "unified_skills", force: :cascade do |t|
+    t.text "skill1_attrs"
+    t.text "skill2_attrs"
+    t.text "unified_skill_attrs"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "categories", "categories", column: "parent_id"
   add_foreign_key "language_skills", "people"
   add_foreign_key "people", "companies"
