@@ -10,6 +10,7 @@
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = stylesheet_link_tag "bundle.css", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
     = javascript_include_tag "application", "bundle.js", type: "module"
     = favicon_link_tag "favicon.png"
@@ -20,7 +21,7 @@
           = link_to root_path, class: "text-decoration-none text-dark" do
             %div.d-flex
               %div.mb-1.mt-1
-                %img{:src=> "/assets/logo.svg",:height=>"42"}
+                %img{:src=> "/assets/alternativ_logo.svg",:height=>"42"}
               %text.d-flex.align-items-end.ms-2.small.text-white= "5.1.0"
           %pzsh-menu
             %div{slot: 'actions'}
@@ -61,9 +62,9 @@
               - elsif devise_mapping.omniauthable?
                 =button_to ti("devise.sign_in"), omniauth_authorize_path(resource_name, resource_class.omniauth_providers.first), {data: { "turbo": false, controller: "instant-click" }, class: "btn btn-link"}
           %pzsh-menu-action.d-flex.cursor-pointer.h-100.ps-2.pe-2{"data-action": "click->skills-empty-space#goCrazy"}
-        %div.puzzle-header
-          %div.d-flex.h-100
-            = render "application/tabbar", tabs: global_tabs, bar_class: "skills-navbar", active_path: global_navbar_path
+
+        %div
+          = render "application/header_tabbar", tabs: global_tabs, bar_class: "skills-navbar", active_path: global_navbar_path
       %div.container-fluid
         %div.row.d-flex.justify-content-center
           %span#flash-messages
