@@ -35,7 +35,7 @@ describe UnifiedSkillForm do
       unified_skill_form = UnifiedSkillForm.new(old_skill_id1: 1, old_skill_id2: 1)
       unified_skill_form.valid?
 
-      expect(unified_skill_form.errors[:old_skill_id1].first).to eql('darf nicht gleich Skill 2 sein')
+      expect(unified_skill_form.errors[:old_skill_id1].first).to eql('und Skill 2 dürfen nicht identisch sein')
     end
   end
 end
