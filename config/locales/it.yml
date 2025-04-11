@@ -11,7 +11,7 @@ it:
         unified_skill_form:
           attributes:
             old_skill_id1:
-              other_than: non può essere la stessa della competenza 2
+              other_than: e Competenza 2 non devono essere identiche
   activerecord:
     attributes:
       activity:
