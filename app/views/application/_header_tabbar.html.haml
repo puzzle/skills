@@ -1,0 +1,9 @@
+%pzsh-banner
+%pzsh-menu
+  %pzsh-nav{slot: "nav"}
+    - tabs.each do |tab|
+      - unless tab[:admin_only] && !admin?
+        %pzsh-nav-item{ href: tab[:path], **(active_path == tab[:path] ? {active: ''} : {})}
+          = tab[:title]
+  %div
+    = yield if defined?(do_yield) && do_yield|| false
