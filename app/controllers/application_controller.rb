@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
   default_form_builder SkillsFormBuilder
 
   def switch_locale(&)
-    locale = params[:locale] || I18n.default_locale
+    cookies[:locale] = params[:locale] unless params[:locale].nil?
+    locale = params[:locale] || cookies[:locale] || I18n.default_locale
     I18n.with_locale(locale, &)
   end
 
