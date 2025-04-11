@@ -11,7 +11,7 @@ de-CH:
         unified_skill_form:
           attributes:
             old_skill_id1:
-              other_than: darf nid gliich wie Skill 2 si
+              other_than: u Skill 2 dörfe nid identisch si
   activerecord:
     attributes:
       activity:

@@ -11,7 +11,7 @@ de:
         unified_skill_form:
           attributes:
             old_skill_id1:
-              other_than: darf nicht gleich Skill 2 sein
+              other_than: und Skill 2 dürfen nicht identisch sein
   activerecord:
     attributes:
       activity:
