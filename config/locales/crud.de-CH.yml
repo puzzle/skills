@@ -36,7 +36,10 @@ de-CH:
       delete: Löschä
       edit: Bearbeitä
       list: Listä
-      show: Anzeigä
+      save: Spicherä
+      save_and_new: Spicherä & neu
+      show: Azeigä
+      update: Aktualisierä
     'no': nei
     no_list_entries: kei Iträg gfungä.
     'yes': ja

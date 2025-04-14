@@ -13,9 +13,11 @@ $skills-dark-blue: #1e5a96;
 .pointer {
   cursor: pointer;
 }
+
 .modal-dialog {
   max-width: 60%;
 }
+
 .content {
   max-width: 80%;
   flex-grow: 1;
@@ -25,10 +27,11 @@ $skills-dark-blue: #1e5a96;
   cursor: pointer;
 }
 
-.skills-navbar{
+.skills-navbar {
   .nav-link {
     color: white;
     @extend .px-2;
+
     &.active {
       background-color: $skills-dark-blue;
     }
@@ -72,6 +75,7 @@ pzsh-topbar {
 .level {
   pointer-events: none !important;
 }
+
 .table-row:hover {
   background-color: $light;
 }
@@ -208,6 +212,7 @@ pzsh-topbar {
 .rate-show label:hover ~ input:checked ~ label {
   color: #ffc700;
 }
+
 .rate-show:not(:checked) label:hover,
 .rate-show:not(:checked) label:hover ~ label {
   color: #ccc;
@@ -252,9 +257,11 @@ pzsh-topbar {
 .skills-filter-container {
   width: 80%;
 }
+
 .highlighted {
   background-color: $skills-dark-blue;
 }
+
 .banner-text {
   font-size: 55px;
   color: $skills-dark-blue;
@@ -390,4 +397,13 @@ a > img {
 
 .w-5 {
   width: 5%;
+}
+
+.model-form-container textarea {
+  @extend .mt-1;
+  padding-top: 0;
+}
+
+.model-form-container label {
+  margin-bottom: 0;
 }
