@@ -22,12 +22,15 @@ module UnifiedSkillsHelper
 
   def category_map_for_dropdown
     Category.all_children.sort_by { |category| category.parent&.title }
-            .map { |cat| [cat.name_with_parent, cat.id] }
+            .map { |category| [category.name_with_parent, category.id] }
   end
 
   private
 
   def skills_for_dropdown
-    Skill.all.map { |skill| [skill.title, skill.id] }.unshift([ta('please_select'), nil])
+    Skill.all
+         .sort_by(&:title)
+         .map { |skill| [skill.title, skill.id] }
+         .unshift([ta('please_select'), nil])
   end
 end
