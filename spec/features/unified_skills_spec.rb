@@ -22,7 +22,7 @@ describe 'Unified Skills', type: :feature, js: true do
   end
 
   def check_unification(skill1, skill2, new_skill)
-    expect(page).to have_content("Skill #{skill1.title} wurde erfolgreich mit Skill #{skill2.title} vereint")
+    expect(page).to have_content("Skill #{skill1.title} wurde erfolgreich mit Skill #{skill2.title} zum neuen Skill #{new_skill.title} vereint")
     expect(Skill.find_by(id: skill1.id)).to be_nil
     expect(Skill.find_by(id: skill2.id)).to be_nil
 
@@ -64,7 +64,7 @@ describe 'Unified Skills', type: :feature, js: true do
       click_button 'Abbrechen'
     end
 
-    expect(page).not_to have_content("Skill #{skill1.title} wurde erfolgreich mit Skill #{skill2.title} vereint")
+    expect(page).not_to have_content("Skill #{skill1.title} wurde erfolgreich mit Skill #{skill2.title} zum neuen Skill #{new_skill.title} vereint")
     expect(Skill.find_by(id: skill1.id)).not_to be_nil
     expect(Skill.find_by(id: skill2.id)).not_to be_nil
 
