@@ -135,7 +135,7 @@ de-CH:
       unify_skills: Skills vereinä
     unified_skills:
       create:
-        success: Skill %{skill1} isch erfolgriich mit Skill %{skill2} vereint worde
+        success: Skill %{skill1} isch erfolgriich mit Skill %{skill2} zum neuä Skill %{new_skill} vereint wordä
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: Konfliktä gfundä

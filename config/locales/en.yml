@@ -131,7 +131,7 @@ en:
       unify_skills: Unify skills
     unified_skills:
       create:
-        success: Skill %{skill1} was successfully unified with Skill %{skill2}
+        success: Skill %{skill1} was successfully unified with Skill %{skill2} into the new Skill %{new_skill}
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: Conflicts found

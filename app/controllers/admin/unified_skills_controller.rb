@@ -21,11 +21,14 @@ class Admin::UnifiedSkillsController < CrudController
     old_skill1 = Skill.find(old_skill_id1)
     old_skill2 = Skill.find(old_skill_id2)
 
-    ActiveRecord::Base.transaction do
+    new_skill = ActiveRecord::Base.transaction do
       merge_skills(old_skill1, old_skill2)
     end
 
-    flash[:notice] = t('.success', skill1: old_skill1.title, skill2: old_skill2.title)
+    flash[:notice] = t('.success', skill1: old_skill1.title,
+                                   skill2: old_skill2.title,
+                                   new_skill: new_skill)
+
     redirect_to new_admin_unified_skill_path
   end
 
@@ -70,6 +73,8 @@ class Admin::UnifiedSkillsController < CrudController
 
     old_skill1.delete
     old_skill2.delete
+
+    new_skill
   end
 
   def update_people_skills(new_skill_id)

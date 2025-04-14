@@ -131,7 +131,7 @@ it:
       unify_skills: Unire le competenze
     unified_skills:
       create:
-        success: La competenza %{skill1} è stata unificata con successo con la competenza %{skill2}
+        success: La competenza %{skill1} è stata unificata con successo con la competenza %{skill2} nella nuova competenza %{new_skill}
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: Conflitti rilevati
