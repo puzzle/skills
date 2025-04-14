@@ -19,7 +19,7 @@ describe :person_relations_form, type: :feature, js: true do
           end
         end
         expect(page).not_to have_selector("#{entity_class_name}_#{entity.id}")
-        expect { Person.find(person.id) }.not_to raise_error
+        expect(Person.find(person.id)).to be_present
       end
     end
   end
