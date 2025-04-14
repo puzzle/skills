@@ -3,6 +3,7 @@ de-CH:
   activemodel:
     attributes:
       unified_skill_form:
+        new_skill: Neuä Skill
         old_skill_id1: Skill 1
         old_skill_id2: Skill 2
         title: Titu

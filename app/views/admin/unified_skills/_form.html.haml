@@ -11,6 +11,8 @@
           %span.w-45
             = form.label :old_skill_id2
             = form.select :old_skill_id2, old_skill2_select_options, {}, { data: { controller: 'dropdown', 'dropdown-target': 'dropdown' } }
+        %hr
+        = form.label :new_skill
         = form.fields_for :new_skill, Skill.new do |f|
           .mb-2.w-100
             = f.label :title, class: "form-label"
@@ -27,5 +29,4 @@
           .mb-2.w-100
             = f.check_box :default_set, class: "form-check-input me-1", checked: true?(skill_value(:default_set))
             = f.label :default_set, class: "form-label"
-          .w-100
-            = f.submit ti('unify'), { 'data-turbo-frame': 'remote_modal' }
+        = form.submit ti('unify'), { 'data-turbo-frame': 'remote_modal' }

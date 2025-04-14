@@ -3,6 +3,7 @@ en:
   activemodel:
     attributes:
       unified_skill_form:
+        new_skill: New Skill
         old_skill_id1: Skill 1
         old_skill_id2: Skill 2
         title: Title
