@@ -16,8 +16,6 @@ if [ -z "$SKIP_RAILS_MIGRATIONS" ]; then
   echo "✅ Migrations done"
 fi
 
-bundle exec rails db:create RAILS_ENV=test
-
 if [ -z "$skip_seeds" ]; then
   if [ ! -f /seed/done ]; then
     echo "⚙️  seeding db"
