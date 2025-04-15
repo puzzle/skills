@@ -15,7 +15,6 @@ services:
       - 3000:3000
     volumes:
       - ./:/myapp
-      - ./tmp/seed:/seed
       - ./config/docker/development/home/rails:/home/developer
       - /tmp/.X11-unix:/tmp/.X11-unix
       - ${GEM_PATH}:/opt/bundle
