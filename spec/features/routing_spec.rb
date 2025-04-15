@@ -30,13 +30,15 @@ describe 'Routing', type: :feature, js: true do
       before(:each) do
         visit people_path
         select 'Italiano', from: "i18n_language"
-        default_url_options[:locale] = :it
       end
 
-      it "Should open profile with correct language" do
+      it "Should open profile with correct language and preserve language in cookie" do
+        # Simulate revisit without a locale in the url
+        visit '/'
+
         select_from_slim_select("#person_id_person", bob.name)
         expect(page).to have_text("Dati personali")
-        click_link(href: person_people_skills_path(bob))
+        click_link(href: person_people_skills_path(bob, locale: :it))
         expect(page).to have_text("Nuove competenze per la valutazione")
       end
     end
