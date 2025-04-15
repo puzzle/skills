@@ -17,7 +17,7 @@ module UnifiedSkillsHelper
   end
 
   def skill_value(key)
-    entry.new_skill.try(:[], key)
+    entry.new_skill&.dig(key)
   end
 
   def category_map_for_dropdown
