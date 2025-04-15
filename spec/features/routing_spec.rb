@@ -29,11 +29,20 @@ describe 'Routing', type: :feature, js: true do
     context "Set locale via dropdown" do
       before(:each) do
         visit people_path
-        select 'Italiano', from: "i18n_language"
       end
 
       it "Should open profile with correct language and preserve language in cookie" do
-        # Simulate revisit without a locale in the url
+        select 'Italiano', from: "i18n_language"
+
+        select_from_slim_select("#person_id_person", bob.name)
+        expect(page).to have_text("Dati personali")
+
+        # Visiting page with locale explicitly defined in route should use locale from route
+        visit '/en/'
+        select_from_slim_select("#person_id_person", bob.name)
+        expect(page).to have_text("Personal details")
+
+        # Simulate revisit without a locale in the url, which should use locale from cookie
         visit '/'
 
         select_from_slim_select("#person_id_person", bob.name)
