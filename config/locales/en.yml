@@ -1,5 +1,18 @@
 ---
 en:
+  activemodel:
+    attributes:
+      unified_skill_form:
+        new_skill: New Skill
+        old_skill_id1: Skill 1
+        old_skill_id2: Skill 2
+        title: Title
+    errors:
+      models:
+        unified_skill_form:
+          attributes:
+            old_skill_id1:
+              other_than: and Skill 2 cannot be identical
   activerecord:
     attributes:
       activity:
@@ -78,6 +91,10 @@ en:
         year_from: Start date
       skill:
         category: Category
+        default_set: Default set
+        portfolio: Portfolio
+        radar: Radar
+        title: Title
     models:
       activity: Station
       advanced_training: Further training
@@ -110,6 +127,22 @@ en:
     global:
       link:
         list: Admin Panel
+    index:
+      unify_skills: Unify skills
+    unified_skills:
+      create:
+        success: Skill %{skill1} was successfully unified with Skill %{skill2} into the new Skill %{new_skill}
+  admin/unified_skills:
+    conflict_dialog:
+      conflicts_found: Conflicts found
+    form:
+      check_for_conflicts: Check for conflicts
+      unify: Unify
+      unify_skills: Unify skills
+    remote_modal:
+      conflicts_found_message:
+        one: "%{names} has rated both Skills. If the Skills are unified anyway, the better rating will be used."
+        other: "%{names} have rated both Skills. If the Skills are unified anyway, the better rating will be used."
   certificates:
     global:
       table:
@@ -203,6 +236,7 @@ en:
     'true': 'Yes'
   helpers:
     cancel: Cancel
+    continue: Continue
     submit:
       add: "%{model} add"
       delete: Delete

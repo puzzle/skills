@@ -1,5 +1,18 @@
 ---
 de-CH:
+  activemodel:
+    attributes:
+      unified_skill_form:
+        new_skill: Neuä Skill
+        old_skill_id1: Skill 1
+        old_skill_id2: Skill 2
+        title: Titu
+    errors:
+      models:
+        unified_skill_form:
+          attributes:
+            old_skill_id1:
+              other_than: u Skill 2 dörfe nid identisch si
   activerecord:
     attributes:
       activity:
@@ -44,7 +57,7 @@ de-CH:
         display_competence_notes_in_cv: Im CV Export inkludierä.
         dual_citizen: Doppubürger
         educations:
-          one: Usbiudig$
+          one: Usbiudig
           other: Usbiudigä
         email: Email
         languages:
@@ -78,6 +91,10 @@ de-CH:
         year_from: Startdatum
       skill:
         category: Kategorie
+        default_set: Default-Set
+        portfolio: Portfolio
+        radar: Radar
+        title: Titu
     models:
       activity: Station
       advanced_training:
@@ -114,6 +131,22 @@ de-CH:
     global:
       link:
         list: Admin Panel
+    index:
+      unify_skills: Skills vereinä
+    unified_skills:
+      create:
+        success: Skill %{skill1} isch erfolgriich mit Skill %{skill2} zum neuä Skill %{new_skill} vereint wordä
+  admin/unified_skills:
+    conflict_dialog:
+      conflicts_found: Konfliktä gfundä
+    form:
+      check_for_conflicts: Uf Konflikt überprüefe
+      unify: Vereinä
+      unify_skills: Skills vereinä
+    remote_modal:
+      conflicts_found_message:
+        one: "%{names} het beidi Skills bewertet. We si trotzdem vereint werde, wird di besseri Bewertig übernoh."
+        other: "%{names} hei beidi Skills bewertet. We si trotzdem vereint werde, wird di besseri Bewertig übernoh."
   certificates:
     global:
       table:
@@ -222,6 +255,7 @@ de-CH:
     'true': Ja
   helpers:
     cancel: Abbrächä
+    continue: Witerfahre
     select:
       prompt: Bitte uswählä
     submit:

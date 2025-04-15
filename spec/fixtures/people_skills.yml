@@ -67,6 +67,14 @@ charlie_cunit:
   certificate: true
   core_competence: true
 
+charlie_webcomponents:
+  skill: webcomponents
+  person: charlie
+  level: 4
+  interest: 5
+  certificate: false
+  core_competence: true
+
 wally_rails:
   skill: rails
   person: wally

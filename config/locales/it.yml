@@ -1,5 +1,18 @@
 ---
 it:
+  activemodel:
+    attributes:
+      unified_skill_form:
+        new_skill: Nuova competenza
+        old_skill_id1: Competenza 1
+        old_skill_id2: Competenza 2
+        title: Titolo
+    errors:
+      models:
+        unified_skill_form:
+          attributes:
+            old_skill_id1:
+              other_than: e Competenza 2 non devono essere identiche
   activerecord:
     attributes:
       activity:
@@ -78,6 +91,10 @@ it:
         year_from: Data di inizio
       skill:
         category: Categoria
+        default_set: Set predefinito
+        portfolio: Portafoglio
+        radar: Radar
+        title: Titolo
     models:
       activity: Stazione
       advanced_training: Formazione continua
@@ -109,7 +126,23 @@ it:
   admin:
     global:
       link:
-        list: Pannello di amministrazione
+        list: Pannello di amministrazione.
+    index:
+      unify_skills: Unire le competenze
+    unified_skills:
+      create:
+        success: La competenza %{skill1} è stata unificata con successo con la competenza %{skill2} nella nuova competenza %{new_skill}
+  admin/unified_skills:
+    conflict_dialog:
+      conflicts_found: Conflitti rilevati
+    form:
+      check_for_conflicts: Vérifier les conflits
+      unify: Unire
+      unify_skills: Unire le competenze
+    remote_modal:
+      conflicts_found_message:
+        one: "%{names} ha valutato entrambe le competenze. Se le competenze vengono comunque unite, verrà utilizzata la valutazione migliore."
+        other: "%{names} hanno valutato entrambe le competenze. Se le competenze vengono comunque unite, verrà utilizzata la valutazione migliore."
   certificates:
     global:
       table:
@@ -203,6 +236,7 @@ it:
     'true': Sì
   helpers:
     cancel: Annullamento
+    continue: Continuare
     submit:
       add: "%{model} aggiungere"
       delete: Cancellare

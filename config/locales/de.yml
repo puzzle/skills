@@ -1,5 +1,18 @@
 ---
 de:
+  activemodel:
+    attributes:
+      unified_skill_form:
+        new_skill: Neuer Skill
+        old_skill_id1: Skill 1
+        old_skill_id2: Skill 2
+        title: Titel
+    errors:
+      models:
+        unified_skill_form:
+          attributes:
+            old_skill_id1:
+              other_than: und Skill 2 dürfen nicht identisch sein
   activerecord:
     attributes:
       activity:
@@ -78,6 +91,10 @@ de:
         year_from: Startdatum
       skill:
         category: Kategorie
+        default_set: Default-Set
+        portfolio: Portfolio
+        radar: Radar
+        title: Titel
     models:
       activity: Station
       advanced_training:
@@ -114,6 +131,22 @@ de:
     global:
       link:
         list: Admin Panel
+    index:
+      unify_skills: Skills vereinen
+    unified_skills:
+      create:
+        success: Skill %{skill1} wurde erfolgreich mit Skill %{skill2} zum neuen Skill %{new_skill} vereint
+  admin/unified_skills:
+    conflict_dialog:
+      conflicts_found: Konflikte gefunden
+    form:
+      check_for_conflicts: Auf Konflikte prüfen
+      unify: Vereinen
+      unify_skills: Skills vereinen
+    remote_modal:
+      conflicts_found_message:
+        one: "%{names} hat beide Skills bewertet. Werden die Skills trotzdem vereint, wird die bessere Bewertung genommen."
+        other: "%{names} haben beide Skills bewertet. Werden die Skills trotzdem vereint, wird die bessere Bewertung genommen."
   certificates:
     global:
       table:
@@ -207,6 +240,7 @@ de:
     'true': Ja
   helpers:
     cancel: Abbrechen
+    continue: Fortfahren
     submit:
       add: "%{model} hinzufügen"
       delete: Löschen

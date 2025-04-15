@@ -72,7 +72,7 @@ describe :people do
         click_button 'Skill erstellen'
       end
       within '#remote_modal' do
-        expect(page).to have_content "Skill title muss ausgefüllt werden"
+        expect(page).to have_content "Titel muss ausgefüllt werden"
         validate_interest(3)
       end
     end
