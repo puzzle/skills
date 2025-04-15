@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include ParamConverters
+
   before_action :authenticate_auth_user!
   around_action :switch_locale
 
