@@ -109,7 +109,7 @@ module Odt
                                          .strftime('%d.%m.%Y'))
         report.add_field(:nationalities, nationalities)
         report.add_field(:email, person.email)
-        report.add_image(:profile_picture, person.picture.path) if person.picture.file.present?
+        report.add_image(:profile_picture, person.picture.path) if person.picture?
       end
       report.add_field(:languages, languages)
     end
