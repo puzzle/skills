@@ -26,30 +26,37 @@
           %pzsh-menu
             %div{slot: 'actions'}
               %pzsh-menu-dropdown
+                -# Language selector
                 %div{slot: 'toggle'}
                   = language(I18n.locale.to_s.upcase)
                 %div{slot: 'items'}
                   - language_selector.each do |lang_name, switch_url|
                     %pzsh-menu-dropdown-item{href: switch_url}
                       = lang_name
+              -# Devise/Mockdata
               - if Rails.env.development?
-                %span#username.text-white
+                %span.text-white
                   - if devise?
                     = ti("devise.devise")
                   - else
                     = ti("devise.mockdata")
+              -# Admin panel
               - if conf_admin?
                 %pzsh-menu-action{href: admin_index_path}
                   %pzsh-icon{name: 'sliders-v-alt'}
                   = ti("devise.admin_panel")
+              -# Help area
               %pzsh-menu-action{href: 'https://github.com/puzzle/skills/issues'}
                 %pzsh-icon{name: 'question-circle'}
                 Help
+              -# User profile dropdown
               - if auth_user_signed_in?
                 %pzsh-menu-dropdown{href: '#'}
                   %div{slot: 'toggle'}
                     %pzsh-icon{name: 'user'}
-                    = current_auth_user&.name || current_auth_user&.email
+                    %span#username
+                      = current_auth_user&.name || current_auth_user&.email
+                      = ti 'devise.admin' if admin?
                   %div{slot: 'items'}
                     - if devise?
                       %pzsh-menu-dropdown-item{href: destroy_auth_user_session_path, data: { "turbo-method": :delete }}
@@ -59,7 +66,7 @@
                       %pzsh-menu-dropdown-item{href: person_path(find_person_by_auth_user)}
                         %pzsh-icon{name: 'setting'}
                         = ti("devise.profile")
-              - elsif devise_mapping.omniauthable?
+              - elsif devise? && devise_mapping.omniauthable?
                 =button_to ti("devise.sign_in"), omniauth_authorize_path(resource_name, resource_class.omniauth_providers.first), {data: { "turbo": false, controller: "instant-click" }, class: "btn btn-link"}
           %pzsh-menu-action.d-flex.cursor-pointer.h-100.ps-2.pe-2{"data-action": "click->skills-empty-space#goCrazy"}
 
