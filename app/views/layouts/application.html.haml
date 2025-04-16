@@ -10,9 +10,9 @@
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
-    = stylesheet_link_tag "bundle.css", "data-turbo-track": "reload"
-    = javascript_include_tag "bundle.js", type: "module"
+    = stylesheet_link_tag "https://unpkg.com/@puzzleitc/puzzle-shell/dist/style.css"
     = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
+    = javascript_include_tag "https://unpkg.com/@puzzleitc/puzzle-shell/dist/bundle.js", type: "module"
     = favicon_link_tag "favicon.png"
   %body#dropdown-wormhole.d-flex.justify-content-center{"data-controller": "skills-empty-space"}
     %div.content{"data-skills-empty-space-target": "container"}
