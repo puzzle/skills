@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_12_074440) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_17_064719) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -105,16 +105,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_12_074440) do
     t.string "queue"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "cron"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
-  end
-
-  create_table "department_skill_snapshots", force: :cascade do |t|
-    t.bigint "department_id", null: false
-    t.text "department_skill_levels"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["department_id"], name: "index_department_skill_snapshots_on_department_id"
   end
 
   create_table "departments", force: :cascade do |t|
@@ -259,9 +250,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_12_074440) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.bigint "category_id"
-    t.datetime "discarded_at"
     t.index ["category_id"], name: "index_skills_on_category_id"
-    t.index ["discarded_at"], name: "index_skills_on_discarded_at"
   end
 
   create_table "unified_skills", force: :cascade do |t|
@@ -273,7 +262,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_12_074440) do
   end
 
   add_foreign_key "categories", "categories", column: "parent_id"
-  add_foreign_key "department_skill_snapshots", "departments"
   add_foreign_key "language_skills", "people"
   add_foreign_key "people", "companies"
   add_foreign_key "project_technologies", "projects"
