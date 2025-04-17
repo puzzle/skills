@@ -58,10 +58,6 @@ $skills-dark-blue: #1e5a96;
   }
 }
 
-pzsh-topbar {
-  background-color: $skills-blue;
-}
-
 .text-gray {
   color: $skills-text-gray;
 }
@@ -298,7 +294,7 @@ pzsh-topbar {
 
 .profile-header-and-tabs {
   position: sticky;
-  top: 80px;
+  top: 98px;
   background-color: white;
   z-index: 2;
 }
@@ -397,6 +393,10 @@ a > img {
 
 .w-5 {
   width: 5%;
+}
+
+pzsh-banner {
+  height: 50px;
 }
 
 .w-45 {

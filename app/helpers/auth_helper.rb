@@ -24,10 +24,9 @@ module AuthHelper
   end
 
   def language_selector
-    languages = I18n.available_locales.map { |e| e.to_s }.map do |lang_code|
+    I18n.available_locales.map { |e| e.to_s }.map do |lang_code|
       [language(lang_code).capitalize, url_for(locale: lang_code)]
     end
-    options_for_select(languages, url_for(locale: I18n.locale))
   end
 
   def language(lang_code)

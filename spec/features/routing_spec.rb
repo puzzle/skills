@@ -29,7 +29,9 @@ describe 'Routing', type: :feature, js: true do
     context "Set locale via dropdown" do
       before(:each) do
         visit people_path
-        select 'Italiano', from: "i18n_language"
+        page.first('pzsh-menu-dropdown').click
+        page.find('pzsh-menu-dropdown-item', text: 'Italiano').click
+        expect(page).to have_content('Profilo')
         default_url_options[:locale] = :it
       end
 
