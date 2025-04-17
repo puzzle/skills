@@ -62,6 +62,10 @@ RSpec.configure do |config|
 
   config.infer_spec_type_from_file_location!
 
+  config.before(:each) do
+    stub_env_variables_and_request
+  end
+
   # Controller helper
   config.include(JsonMacros, type: :controller)
   config.include(JsonAssertion, type: :controller)
@@ -81,6 +85,7 @@ RSpec.configure do |config|
   config.include(SlimselectHelpers, type: :feature)
   config.include(PeopleSkillsHelpers, type: :feature)
   config.include(UtilitiesHelpers)
+  config.include(PtimeHelpers)
 
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!

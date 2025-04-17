@@ -27,7 +27,9 @@ services:
     image: postgres:16
     ports:
       - 5432:5432
-    env_file: .env
+    env_file:
+      - .env
+      - .sec
     volumes:
       - postgres:/var/lib/postgres
 
