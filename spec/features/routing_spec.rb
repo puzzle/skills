@@ -31,6 +31,7 @@ describe 'Routing', type: :feature, js: true do
         visit people_path
         page.first('pzsh-menu-dropdown').click
         page.find('pzsh-menu-dropdown-item', text: 'Italiano').click
+        expect(page).to have_content('Profilo')
         default_url_options[:locale] = :it
       end
 
