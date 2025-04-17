@@ -22,6 +22,8 @@ module Skills
 
     config.active_record.verify_foreign_keys_for_fixtures = false
 
+    config.active_job.queue_adapter = :delayed_job
+
     # Bullet tries to add finish_at to insert statement, which does not exist anymore
     config.active_record.partial_inserts = true
 
