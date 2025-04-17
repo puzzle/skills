@@ -223,6 +223,27 @@ describe :people do
       expect(person.attributes).to eql(Person.first.attributes)
     end
 
+    it 'should have edit fields disabled if ptime sync is active' do
+      allow(Skills).to receive(:use_ptime_sync?).and_return(true)
+      bob = people(:bob)
+      visit person_path(bob)
+      click_link('Bearbeiten', href: edit_person_path(bob))
+      page.find('#person_name').disabled?
+      page.find('#person_email').disabled?
+      page.find('#person_title').disabled?
+      page.find('#person_person_roles_attributes_0_role_id').disabled?
+      page.find('#person_person_roles_attributes_0_person_role_level_id').disabled?
+      page.find('#person_person_roles_attributes_0_percent').disabled?
+      page.find('#person_department_id').disabled?
+      page.find('#person_company_id').disabled?
+      page.find('#person_location').disabled?
+      page.find('#person_birthdate').disabled?
+      page.find('#nat-two-checkbox').disabled?
+      page.find('#person_nationality').disabled?
+      page.find('#person_marital_status').disabled?
+      page.find('#person_shortname').disabled?
+    end
+
     it('should correctly disable languages if they are selected, changed, created or deleted') {
       bob = people(:bob)
       visit person_path(bob)
