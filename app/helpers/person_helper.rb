@@ -92,4 +92,8 @@ module PersonHelper
       ]
     end
   end
+
+  def ptime_sync_active?
+    Skills.use_ptime_sync?
+  end
 end

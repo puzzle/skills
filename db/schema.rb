@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_25_145055) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_17_075025) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -93,6 +93,21 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_25_145055) do
     t.datetime "updated_at", precision: nil, null: false
   end
 
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer "priority", default: 0, null: false
+    t.integer "attempts", default: 0, null: false
+    t.text "handler", null: false
+    t.text "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string "locked_by"
+    t.string "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
   create_table "departments", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -166,6 +181,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_25_145055) do
     t.integer "department_id"
     t.string "shortname"
     t.boolean "display_competence_notes_in_cv", default: true, null: false
+    t.integer "ptime_employee_id"
     t.index ["company_id"], name: "index_people_on_company_id"
   end
 
