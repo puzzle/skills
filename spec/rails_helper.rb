@@ -66,6 +66,9 @@ RSpec.configure do |config|
     stub_env_variables_and_request
   end
 
+  show_logs = ENV.fetch('SHOW_LOGS', false)
+  config.before { allow($stdout).to receive(:puts) } unless show_logs
+
   # Controller helper
   config.include(JsonMacros, type: :controller)
   config.include(JsonAssertion, type: :controller)
@@ -77,6 +80,7 @@ RSpec.configure do |config|
 
   # Helpers from gems
   config.include(Devise::Test::IntegrationHelpers, type: :feature)
+  config.include(Devise::Test::IntegrationHelpers, type: :request)
   config.include(Devise::Test::ControllerHelpers, type: :controller)
   config.include(ActionView::RecordIdentifier, type: :feature)
 
@@ -86,6 +90,7 @@ RSpec.configure do |config|
   config.include(PeopleSkillsHelpers, type: :feature)
   config.include(UtilitiesHelpers)
   config.include(PtimeHelpers)
+  config.include(JsonHelpers)
 
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
