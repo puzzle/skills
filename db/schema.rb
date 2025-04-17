@@ -165,6 +165,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_25_145055) do
     t.string "email"
     t.integer "department_id"
     t.string "shortname"
+    t.integer "ptime_employee_id"
     t.boolean "display_competence_notes_in_cv", default: true, null: false
     t.index ["company_id"], name: "index_people_on_company_id"
   end
