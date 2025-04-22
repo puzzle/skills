@@ -82,7 +82,7 @@ class PeopleController < CrudController
   # rubocop:disable Metrics/MethodLength
   def permitted_attrs
     if Skills.use_ptime_sync?
-      [:updated_by, :picture, :picture_cache, :display_competence_notes_in_cv,
+      [:updated_by, :picture, :picture_cache, :competence_notes, :display_competence_notes_in_cv,
        { language_skills_attributes:
            [[:language, :level, :certificate, :id, :_destroy]] }]
     else

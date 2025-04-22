@@ -7,7 +7,7 @@ describe Ptime::Client do
   end
 
   it 'should raise PTimeClientError page is unreachable' do
-    stub_env_var("PTIME_BASE_URL", "irgend.oepp.is")
+    stub_env_var("PTIME_BASE_URL", "irgendoepis.example.com")
     stub_ptime_request(ptime_employees.to_json, "employees?per_page=1000", 404)
     expect {
       Ptime::Client.new.request(:get, "employees", { per_page: 1000 })
