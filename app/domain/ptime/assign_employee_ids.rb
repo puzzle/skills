@@ -25,12 +25,13 @@ module Ptime
       mapped_people_count = 0
 
       @ptime_employees.each do |ptime_employee|
-        ptime_employee_name = ptime_employee[:attributes][:full_name]
         ptime_employee_email = ptime_employee[:attributes][:email]
         matched_person = Person.where(ptime_employee_id: nil).find_by(email: ptime_employee_email)
 
         if matched_person.nil?
-          unmatched_entries << { name: ptime_employee_name, id: ptime_employee[:id] }
+          unmatched_entries << {
+            name: ptime_employee_name(ptime_employee), id: ptime_employee[:id]
+          }
         else
           if should_map
             matched_person.ptime_employee_id = ptime_employee[:id]
@@ -56,5 +57,9 @@ module Ptime
       puts 'Successfully fetched data'
     end
     # rubocop:enable Rails/Output
+
+    def ptime_employee_name(ptime_employee)
+      "#{ptime_employee[:attributes][:firstname]} #{ptime_employee[:attributes][:lastname]}"
+    end
   end
 end
