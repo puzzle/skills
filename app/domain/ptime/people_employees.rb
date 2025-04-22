@@ -1,7 +1,6 @@
 module Ptime
   class PeopleEmployees
     ATTRIBUTES_MAPPING = {
-      firstname: :name,
       shortname: :shortname,
       email: :email,
       marital_status: :marital_status,
@@ -39,8 +38,11 @@ module Ptime
 
       set_additional_attributes(person, ptime_employee)
 
-      person.save!
-      set_person_roles(person, ptime_employee)
+      ActiveRecord::Base.transaction do
+        set_person_roles(person, ptime_employee)
+        person.save!
+      end
+
       person
     end
     # rubocop:enable Metrics
@@ -54,10 +56,10 @@ module Ptime
       nationalities = ptime_employee[:attributes][:nationalities] || []
       person.nationality = nationalities[0]
       person.nationality2 = nationalities[1]
-      person.name = append_ptime_employee_name(ptime_employee)
+      person.name = ptime_employee_name(ptime_employee)
     end
 
-    def append_ptime_employee_name(ptime_employee)
+    def ptime_employee_name(ptime_employee)
       "#{ptime_employee[:attributes][:firstname]} #{ptime_employee[:attributes][:lastname]}"
     end
 
