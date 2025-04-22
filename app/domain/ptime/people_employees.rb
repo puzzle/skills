@@ -9,37 +9,41 @@ module Ptime
       birthday: :birthdate
     }.freeze
 
+    def update_people_data
+      fetch_data
+      @ptime_employees.each do |ptime_employee|
+        person = find_or_create(ptime_employee.id)
+        update_person_data(person, ptime_employee[:attributes])
+      end
+    end
+
+    def fetch_data
+      @ptime_employees = Ptime::Client.new.request(:get, 'employees',
+                                                   { per_page: MAX_NUMBER_OF_FETCHED_EMPLOYEES })
+    end
+
     def find_or_create(ptime_employee_id)
       raise 'No ptime_employee_id provided' unless ptime_employee_id
 
       person = Person.find_by(ptime_employee_id: ptime_employee_id)
-      return person if person
-
-      new_person = Person.new(ptime_employee_id: ptime_employee_id)
-      update_person_data(new_person)
+      person || Person.new(ptime_employee_id: ptime_employee_id)
     end
 
     # rubocop:disable Metrics
-    def update_person_data(person)
+    def update_person_data(person, ptime_employee_attributes)
       raise 'Person has no ptime_employee_id' unless person.ptime_employee_id
 
-      begin
-        ptime_employee = Ptime::Client.new.request(:get, "employees/#{person.ptime_employee_id}")
-      rescue PtimeExceptions::PTimeTemporarilyUnavailableError
-        return
-      end
-
-      ptime_employee[:attributes].each do |key, value|
+      ptime_employee_attributes.each do |key, value|
         if ATTRIBUTES_MAPPING.key?(key.to_sym)
           person[ATTRIBUTES_MAPPING[key.to_sym]] =
             value.presence || '-'
         end
       end
 
-      set_additional_attributes(person, ptime_employee)
+      set_additional_attributes(person, ptime_employee_attributes)
 
       ActiveRecord::Base.transaction do
-        set_person_roles(person, ptime_employee)
+        set_person_roles(person, ptime_employee_attributes)
         person.save!
       end
 
@@ -49,30 +53,29 @@ module Ptime
 
     private
 
-    def set_additional_attributes(person, ptime_employee)
-      is_employed = ptime_employee[:attributes][:is_employed]
+    def set_additional_attributes(person, ptime_employee_attributes)
+      is_employed = ptime_employee_attributes[:is_employed]
       person.company = Company.find_by(name: is_employed ? 'Firma' : 'Ex-Mitarbeiter')
 
-      nationalities = ptime_employee[:attributes][:nationalities] || []
+      nationalities = ptime_employee_attributes[:nationalities] || []
       person.nationality = nationalities[0]
       person.nationality2 = nationalities[1]
-      person.name = ptime_employee_name(ptime_employee)
+      person.name = ptime_employee_name(ptime_employee_attributes)
     end
 
-    def ptime_employee_name(ptime_employee)
-      "#{ptime_employee[:attributes][:firstname]} #{ptime_employee[:attributes][:lastname]}"
+    def ptime_employee_name(ptime_employee_attributes)
+      "#{ptime_employee_attributes[:firstname]} #{ptime_employee_attributes[:lastname]}"
     end
 
-    def set_person_roles(person, ptime_employee)
+    def set_person_roles(person, ptime_employee_attributes)
       PersonRole.where(person_id: person.id).destroy_all
 
-      ptime_employee[:attributes][:employment_roles].each do |role|
+      ptime_employee_attributes[:employment_roles].each do |role|
         role_id = Role.find_or_create_by(name: sanitized_role_name(role[:name])).id
-        # role_level_id = map_role_level(role)
         PersonRole.create!(person_id: person.id,
                            role_id: role_id,
                            percent: role[:percent],
-                           person_role_level_id: PersonRoleLevel.first.id)
+                           person_role_level_id: person_role_level_id_by_role(role))
       end
     end
 
@@ -81,8 +84,8 @@ module Ptime
       role_name.gsub(/\A[A-Z]\d+\s/, '')
     end
 
-    # def map_role_level(role)
-    #   PersonRoleLevel.find_by(level: role[role_level]).id
-    # end
+    def person_role_level_id_by_role(role)
+      PersonRoleLevel.find_by(level: role[:role_level]).id || PersonRoleLevel.first.id
+    end
   end
 end
