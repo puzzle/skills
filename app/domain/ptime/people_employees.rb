@@ -59,11 +59,7 @@ module Ptime
       nationalities = ptime_employee_attributes[:nationalities] || []
       person.nationality = nationalities[0]
       person.nationality2 = nationalities[1]
-      person.name = ptime_employee_name(ptime_employee_attributes)
-    end
-
-    def ptime_employee_name(ptime_employee_attributes)
-      "#{ptime_employee_attributes[:firstname]} #{ptime_employee_attributes[:lastname]}"
+      person.name = employee_full_name(ptime_employee_attributes)
     end
 
     def set_person_roles(person, ptime_employee_attributes)
