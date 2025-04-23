@@ -3,8 +3,6 @@ module Ptime
   class AssignEmployeeIds
     include PtimeHelper
 
-    MAX_NUMBER_OF_FETCHED_EMPLOYEES = 1000
-
     # rubocop:disable Rails/Output
     def run(should_map: false)
       puts 'Notice this is a dry run and mapping will not happen!' unless should_map
