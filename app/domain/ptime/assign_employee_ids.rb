@@ -30,7 +30,7 @@ module Ptime
 
         if matched_person.nil?
           unmatched_entries << {
-            name: ptime_employee_name(ptime_employee), id: ptime_employee[:id]
+            name: employee_full_name(ptime_employee[:attributes]), id: ptime_employee[:id]
           }
         else
           if should_map
@@ -57,9 +57,5 @@ module Ptime
       puts 'Successfully fetched data'
     end
     # rubocop:enable Rails/Output
-
-    def ptime_employee_name(ptime_employee)
-      "#{ptime_employee[:attributes][:firstname]} #{ptime_employee[:attributes][:lastname]}"
-    end
   end
 end
