@@ -12,8 +12,10 @@ module Ptime
     def update_people_data
       fetch_data
       @ptime_employees.each do |ptime_employee|
-        person = find_or_create(ptime_employee.id)
-        update_person_data(person, ptime_employee[:attributes])
+        ActiveRecord::Base.transaction do
+          person = find_or_create(ptime_employee.id)
+          update_person_data(person, ptime_employee[:attributes])
+        end
       end
     end
 
@@ -41,11 +43,8 @@ module Ptime
       end
 
       set_additional_attributes(person, ptime_employee_attributes)
-
-      ActiveRecord::Base.transaction do
-        set_person_roles(person, ptime_employee_attributes)
-        person.save!
-      end
+      set_person_roles(person, ptime_employee_attributes)
+      person.save!
 
       person
     end
