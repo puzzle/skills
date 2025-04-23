@@ -1,6 +1,8 @@
 # This script will assign each person the corresponding employee ID from PuzzleTime
 module Ptime
   class AssignEmployeeIds
+    include PtimeHelper
+
     MAX_NUMBER_OF_FETCHED_EMPLOYEES = 1000
 
     # rubocop:disable Rails/Output
