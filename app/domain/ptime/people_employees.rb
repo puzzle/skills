@@ -1,5 +1,7 @@
 module Ptime
   class PeopleEmployees
+    include PtimeHelper
+
     ATTRIBUTES_MAPPING = {
       shortname: :shortname,
       email: :email,
@@ -13,7 +15,7 @@ module Ptime
       fetch_data
       @ptime_employees.each do |ptime_employee|
         ActiveRecord::Base.transaction do
-          person = find_or_create(ptime_employee.id)
+          person = Person.find_or_create_by(ptime_employee_id: ptime_employee[:id])
           update_person_data(person, ptime_employee[:attributes])
         end
       end
@@ -22,16 +24,21 @@ module Ptime
     def fetch_data
       @ptime_employees = Ptime::Client.new.request(:get, 'employees',
                                                    { per_page: MAX_NUMBER_OF_FETCHED_EMPLOYEES })
+                                      .filter do |ptime_employee|
+        ptime_employee.dig(:attributes, :is_employed)
+      end
+      cleanup_ptime_data
     end
 
-    def find_or_create(ptime_employee_id)
-      raise 'No ptime_employee_id provided' unless ptime_employee_id
-
-      person = Person.find_by(ptime_employee_id: ptime_employee_id)
-      person || Person.new(ptime_employee_id: ptime_employee_id)
+    def cleanup_ptime_data
+      @ptime_employees.each do |ptime_employee|
+        marital_status = ptime_employee[:attributes][:marital_status]
+        if marital_status.nil?
+          ptime_employee[:attributes][:marital_status] = 'single'
+        end
+      end
     end
 
-    # rubocop:disable Metrics
     def update_person_data(person, ptime_employee_attributes)
       raise 'Person has no ptime_employee_id' unless person.ptime_employee_id
 
@@ -43,12 +50,9 @@ module Ptime
       end
 
       set_additional_attributes(person, ptime_employee_attributes)
-      set_person_roles(person, ptime_employee_attributes)
       person.save!
-
-      person
+      set_person_roles(person, ptime_employee_attributes)
     end
-    # rubocop:enable Metrics
 
     private
 
@@ -56,15 +60,12 @@ module Ptime
       is_employed = ptime_employee_attributes[:is_employed]
       person.company = Company.find_by(name: is_employed ? 'Firma' : 'Ex-Mitarbeiter')
 
-      nationalities = ptime_employee_attributes[:nationalities] || []
-      person.nationality = nationalities[0]
-      person.nationality2 = nationalities[1]
+      person.nationality, person.nationality2 = ptime_employee_attributes[:nationalities]
       person.name = employee_full_name(ptime_employee_attributes)
     end
 
     def set_person_roles(person, ptime_employee_attributes)
       PersonRole.where(person_id: person.id).destroy_all
-
       ptime_employee_attributes[:employment_roles].each do |role|
         role_id = Role.find_or_create_by(name: sanitized_role_name(role[:name])).id
         PersonRole.create!(person_id: person.id,
@@ -80,7 +81,7 @@ module Ptime
     end
 
     def person_role_level_id_by_role(role)
-      PersonRoleLevel.find_by(level: role[:role_level]).id || PersonRoleLevel.first.id
+      PersonRoleLevel.find_by(level: role[:role_level])&.id || PersonRoleLevel.first.id
     end
   end
 end
