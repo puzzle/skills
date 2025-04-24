@@ -133,6 +133,7 @@ it:
         list: Pannello di amministrazione.
     index:
       unify_skills: Unire le competenze
+      update_people_manually: Aggiornare le persone manualmente
     unified_skills:
       create:
         success: La competenza %{skill1} è stata unificata con successo con la competenza %{skill2} nella nuova competenza %{new_skill}

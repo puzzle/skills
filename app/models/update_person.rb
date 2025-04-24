@@ -1,0 +1,2 @@
+class UpdatePerson < ApplicationRecord
+end
