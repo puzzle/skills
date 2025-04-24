@@ -1,5 +1,5 @@
 class NightlyUpdatePeopleDataPtimeJob < CronJob
-  self.cron_expression = '* * * * *'
+  self.cron_expression = '0 0 * * *'
 
   def perform
     if Skills.use_ptime_sync?
