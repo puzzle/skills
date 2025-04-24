@@ -1,2 +1,2 @@
-%span.d-flex.justify-content-center
-  %button.big-ass-button.position-fixed.btn.btn-primary= t('admin.index.update_people_manually')
+%span.d-flex.justify-content-center.align-items-center
+  = button_to t('admin.index.update_people_manually'), admin_manual_sync_path, method: :post, class: 'manual-sync-button btn-primary btn'
