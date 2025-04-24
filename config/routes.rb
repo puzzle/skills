@@ -46,6 +46,7 @@ Rails.application.routes.draw do
       resources :roles
       resources :companies
       resources :unified_skills, only: [:new, :create]
+      resources :update_people
     end
 
     resources :people do
