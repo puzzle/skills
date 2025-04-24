@@ -137,6 +137,7 @@ de-CH:
         list: Admin Panel
     index:
       unify_skills: Skills vereinä
+      update_people_manually: Persone manuell aktualisiere
     unified_skills:
       create:
         success: Skill %{skill1} isch erfolgriich mit Skill %{skill2} zum neuä Skill %{new_skill} vereint wordä

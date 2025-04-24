@@ -133,6 +133,7 @@ en:
         list: Admin Panel
     index:
       unify_skills: Unify skills
+      update_people_manually: Update people manually
     unified_skills:
       create:
         success: Skill %{skill1} was successfully unified with Skill %{skill2} into the new Skill %{new_skill}
