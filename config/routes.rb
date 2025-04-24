@@ -46,6 +46,7 @@ Rails.application.routes.draw do
       resources :companies
       resources :unified_skills, only: [:new, :create]
       resources :update_people
+      post 'manual_sync', to: 'update_people#manual_sync'
     end
 
     resources :people do
