@@ -104,7 +104,6 @@ charlie:
                   Bash
   email: charlie@example.com
   department: sys
-  ptime_employee_id: 45
 wally:
   birthdate: 1987-06-05 04:23:01
   location: New York
@@ -157,7 +156,6 @@ longmax:
                   .NET Maui
   email: longmax@example.com
   department: sys
-  ptime_employee_id: 33
 
 maximillian:
   birthdate: 1999-02-05 01:01:01
