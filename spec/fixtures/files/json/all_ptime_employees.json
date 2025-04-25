@@ -7,18 +7,18 @@
         "shortname" : "LSM",
         "firstname" : "Longmax",
         "lastname" : "Smith",
-        "email" : "longmax@example.com",
-        "marital_status" : "single",
-        "nationalities" : ["ZW"],
-        "graduation" : "BSc in Architecture",
+        "email" : "longmaxsmith@example.com",
+        "marital_status" : "married",
+        "nationalities" : ["US"],
+        "graduation" : "Flashing lights",
         "city" : "Bern",
         "birthday" : "1990-03-10",
         "is_employed" : true,
-        "department_shortname" : "OP",
-        "department_name" : "/sys",
+        "department_shortname" : "UX",
+        "department_name" : "/ux",
         "employment_roles" : [
           {
-            "name" : "T3 Architect",
+            "name" : "T2 UX Consultant",
             "percent" : 100.0,
             "role_level" : "S4"
           }
@@ -57,10 +57,10 @@
         "shortname" : "CFO",
         "firstname" : "Charlie",
         "lastname" : "Ford",
-        "email" : "charlie@example.com",
+        "email" : "charlieford@example.com",
         "marital_status" : "married",
-        "nationalities" : ["GB"],
-        "graduation" : "MSc in networking",
+        "nationalities" : ["CX"],
+        "graduation" : "Can't tell me nothing",
         "city" : "Thun",
         "birthday" : "1980-10-25",
         "is_employed" : false,
@@ -68,7 +68,7 @@
         "department_name" : "/ux",
         "employment_roles" : [
           {
-            "name" : "T2 UX Consultant",
+            "name" : "T3 Architect",
             "percent" : 100.0,
             "role_level" : "S3"
           }

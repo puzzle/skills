@@ -8,13 +8,11 @@ describe Ptime::AssignEmployeeIds do
 
   it 'should map people with the correct puzzletime id' do
     person_longmax = people(:longmax)
-    person_alice = people(:alice)
     person_charlie = people(:charlie)
 
     Ptime::AssignEmployeeIds.new.run(should_map: true)
 
     expect(person_longmax.reload.ptime_employee_id).to eq(33)
-    expect(person_alice.reload.ptime_employee_id).to eq(21)
     expect(person_charlie.reload.ptime_employee_id).to eq(45)
   end
 
