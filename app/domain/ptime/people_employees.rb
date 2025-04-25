@@ -22,6 +22,8 @@ module Ptime
       end
     end
 
+    private
+
     def fetch_data_of_active_ptime_employees
       Ptime::Client.new.request(
         :get, 'employees',
@@ -37,8 +39,6 @@ module Ptime
       @person.save!
       update_person_roles
     end
-
-    private
 
     def update_mappable_attributes
       @ptime_employee_attributes.each do |key, value|
