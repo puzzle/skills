@@ -27,7 +27,7 @@ describe Ptime::PeopleEmployees do
     longmax.reload
     charlie.reload
 
-    expect(longmax.email).to eq('longmaxsmith@example.com')
+    expect(longmax.email).to eq('longmax@example.com')
     expect(longmax.company.name).to eq('Firma')
     expect(longmax.marital_status).to eq('married')
     expect(longmax.nationality).to eq('US')
