@@ -151,11 +151,13 @@ de:
     form:
       check_for_conflicts: Auf Konflikte prüfen
       unify: Vereinen
-      unify_skills: Skills vereinen
     remote_modal:
       conflicts_found_message:
         one: "%{names} hat beide Skills bewertet. Werden die Skills trotzdem vereint, wird die bessere Bewertung genommen."
         other: "%{names} haben beide Skills bewertet. Werden die Skills trotzdem vereint, wird die bessere Bewertung genommen."
+  admin/update_people:
+    index:
+      description: Wenn dieser wunderschöne Knopf gedrückt wird, dann werden die Daten aller Personen mit den Daten aus dem PuzzleTime aktualisiert. Dies kann einige Sekunden dauern.
   certificates:
     form:
       cancel: Abbrechen
