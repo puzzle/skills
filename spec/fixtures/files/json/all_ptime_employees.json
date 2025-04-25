@@ -7,35 +7,47 @@
         "shortname" : "LSM",
         "firstname" : "Longmax",
         "lastname" : "Smith",
-        "full_name": "Longmax Smith",
         "email" : "longmax@example.com",
         "marital_status" : "single",
         "nationalities" : ["ZW"],
         "graduation" : "BSc in Architecture",
-        "department_shortname" : "SYS",
-        "employment_roles" : [],
+        "city" : "Bern",
+        "birthday" : "1990-03-10",
         "is_employed" : true,
-        "birthdate" : "05.05.1994",
-        "location" : "Bern"
+        "department_shortname" : "OP",
+        "department_name" : "/sys",
+        "employment_roles" : [
+          {
+            "name" : "T3 Architect",
+            "percent" : 100.0,
+            "role_level" : "S4"
+          }
+        ]
       }
     },
     {
       "id" : 21,
       "type" : "employee",
       "attributes" : {
-        "shortname" : "AMA",
-        "firstname" : "Alice",
-        "lastname" : "Mante",
-        "full_name" : "Alice Mante",
-        "email" : "alice@example.com",
+        "shortname" : "ECH",
+        "firstname" : "Emmeline",
+        "lastname" : "Charlotte",
+        "email" : "emmeline@example.com",
         "marital_status" : "single",
-        "nationalities" : ["AU"],
+        "nationalities" : ["DE"],
         "graduation" : "MSc in writing",
-        "department_shortname" : "SYS",
-        "employment_roles" : [],
+        "city" : "Genf",
+        "birthday" : "2001-01-05",
         "is_employed" : true,
-        "birthdate" : "01.04.2001",
-        "location" : "Bern"
+        "department_shortname" : "D3",
+        "department_name" : "/dev/tre",
+        "employment_roles" : [
+          {
+            "name" : "T2 Software Engineer",
+            "percent" : 80.0,
+            "role_level": "S5"
+          }
+        ]
       }
     },
     {
@@ -45,16 +57,22 @@
         "shortname" : "CFO",
         "firstname" : "Charlie",
         "lastname" : "Ford",
-        "full_name": "Charlie Ford",
         "email" : "charlie@example.com",
         "marital_status" : "married",
         "nationalities" : ["GB"],
         "graduation" : "MSc in networking",
-        "department_shortname" : "SYS",
-        "employment_roles" : [],
-        "is_employed" : true,
-        "birthdate" : "01.10.1980",
-        "location" : "Thun"
+        "city" : "Thun",
+        "birthday" : "1980-10-25",
+        "is_employed" : false,
+        "department_shortname" : "UX",
+        "department_name" : "/ux",
+        "employment_roles" : [
+          {
+            "name" : "T2 UX Consultant",
+            "percent" : 100.0,
+            "role_level" : "S3"
+          }
+        ]
       }
     }
   ]

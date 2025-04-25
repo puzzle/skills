@@ -30,10 +30,25 @@ module Ptime
     private
 
     def update_all_people
-      fetch_data_of_active_ptime_employees.each do |ptime_employee|
+      active_employees, inactive_employees = fetch_data_of_ptime_employees
+      update_active_people(active_employees)
+      update_inactive_people(inactive_employees)
+    end
+
+    def fetch_data_of_ptime_employees
+      Ptime::Client.new.request(
+        :get, 'employees',
+        { per_page: MAX_NUMBER_OF_FETCHED_EMPLOYEES }
+      ).partition do |ptime_employee|
+        ptime_employee.dig(:attributes, :is_employed)
+      end
+    end
+
+    def update_active_people(employees)
+      employees.each do |employee|
         ActiveRecord::Base.transaction do
-          @ptime_employee_attributes = ptime_employee[:attributes]
-          @person = Person.find_or_create_by(ptime_employee_id: ptime_employee[:id])
+          @ptime_employee_attributes = employee[:attributes]
+          @person = Person.find_or_create_by(ptime_employee_id: employee[:id])
           update_person_data
         rescue ActiveRecord::RecordInvalid
           @update_failed_names.push(@person.name)
@@ -41,12 +56,12 @@ module Ptime
       end
     end
 
-    def fetch_data_of_active_ptime_employees
-      Ptime::Client.new.request(
-        :get, 'employees',
-        { per_page: MAX_NUMBER_OF_FETCHED_EMPLOYEES }
-      ).filter do |ptime_employee|
-        ptime_employee.dig(:attributes, :is_employed)
+    def update_inactive_people(employees)
+      employees.each do |employee|
+        person = Person.find_by(ptime_employee_id: employee[:id])
+        person&.update!(company: @unemployed_company)
+      rescue ActiveRecord::RecordInvalid
+        @update_failed_names.push(person&.name)
       end
     end
 
