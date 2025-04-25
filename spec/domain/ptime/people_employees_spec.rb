@@ -15,11 +15,17 @@ describe Ptime::PeopleEmployees do
   end
 
   it 'creates and updates people from ptime data' do
+    longmax = Person.find_by(name: 'Longmax Smith')
+    charlie = Person.find_by(name: 'Charlie Ford')
+
+    longmax.update!(ptime_employee_id: 33)
+    charlie.update!(ptime_employee_id: 45)
+
     expect { people_employees.update_people_data }.to change(Person, :count).by(1)
 
-    longmax = Person.find_by(name: 'Longmax Smith')
     emmeline = Person.find_by(name: 'Emmeline Charlotte')
-    charlie = Person.find_by(name: 'Charlie Ford')
+    longmax.reload
+    charlie.reload
 
     expect(longmax.email).to eq('longmax@example.com')
     expect(longmax.company.name).to eq('Firma')
