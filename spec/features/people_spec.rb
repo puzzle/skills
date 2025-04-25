@@ -224,7 +224,7 @@ describe :people do
     end
 
     it 'should have edit fields disabled if ptime sync is active' do
-      allow(Skills).to receive(:use_ptime_sync?).and_return(true)
+      enable_ptime_sync
       bob = people(:bob)
       visit person_path(bob)
       click_link('Bearbeiten', href: edit_person_path(bob))
