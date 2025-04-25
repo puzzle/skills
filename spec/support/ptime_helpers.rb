@@ -1,8 +1,9 @@
 module PtimeHelpers
-  def stub_env_variables_and_request
+  def enable_ptime_sync
     stub_env_var("PTIME_BASE_URL", "www.ptime.example.com")
     stub_env_var("PTIME_API_USERNAME", "test username")
     stub_env_var("PTIME_API_PASSWORD", "test password")
+    stub_env_var("PTIME_API_ACCESSIBLE", true)
     stub_ptime_request(ptime_employees.to_json)
   end
 

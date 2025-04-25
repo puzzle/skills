@@ -2,6 +2,10 @@ require 'rails_helper'
 
 describe Ptime::AssignEmployeeIds do
 
+  before(:each) do
+    enable_ptime_sync
+  end
+
   it 'should map people with the correct puzzletime id' do
     person_longmax = people(:longmax)
     person_alice = people(:alice)
