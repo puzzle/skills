@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 describe Ptime::Client do
+
+  before(:each) do
+    enable_ptime_sync
+  end
+
   it 'should be able to fetch employee data' do
     fetched_employees = Ptime::Client.new.request(:get, "employees", { per_page: 1000 })
     expect(fetched_employees).to eq(ptime_employees_data)
