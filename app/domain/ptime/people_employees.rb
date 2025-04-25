@@ -10,19 +10,36 @@ module Ptime
       shortname: :shortname
     }.freeze
 
-    def update_people_data
-      @employed_company ||= Company.find_by(name: 'Firma')
-      @unemployed_company ||= Company.find_by(name: 'Ex-Mitarbeiter')
+    def initialize
+      @employed_company = Company.find_by(name: 'Firma')
+      @unemployed_company = Company.find_by(name: 'Ex-Mitarbeiter')
+    end
+
+    def update_people_data(is_manual_sync: false)
+      @update_failed_names = []
+      update_all_people
+      if @update_failed_names.any? && !is_manual_sync
+        raise PtimeExceptions::PersonUpdateWithPTimeDataFailed,
+              "Records were invalid while updating
+               #{@update_failed_names.to_sentence(locale: :en)}
+               with data from PuzzleTime."
+      end
+      @update_failed_names
+    end
+
+    private
+
+    def update_all_people
       fetch_data_of_active_ptime_employees.each do |ptime_employee|
         ActiveRecord::Base.transaction do
           @ptime_employee_attributes = ptime_employee[:attributes]
           @person = Person.find_or_create_by(ptime_employee_id: ptime_employee[:id])
           update_person_data
+        rescue ActiveRecord::RecordInvalid
+          @update_failed_names.push(@person.name)
         end
       end
     end
-
-    private
 
     def fetch_data_of_active_ptime_employees
       Ptime::Client.new.request(
