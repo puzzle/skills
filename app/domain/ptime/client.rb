@@ -6,11 +6,9 @@ require 'base64'
 module Ptime
   class Client
     def initialize
-      begin
-        @base_url = "#{ENV.fetch('PTIME_BASE_URL')}/api/v1/"
-      rescue KeyError
-        raise PtimeExceptions::PTimeClientError, 'PTIME_BASE_URL environment variable is not set.'
-      end
+      @base_url = "#{ENV.fetch('PTIME_BASE_URL')}/api/v1/"
+    rescue KeyError
+      raise PtimeExceptions::PTimeClientError, 'PTIME_BASE_URL environment variable is not set.'
     end
 
     def request(method, endpoint, params = {})
