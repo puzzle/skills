@@ -27,15 +27,15 @@ describe Ptime::PeopleEmployees do
     longmax.reload
     charlie.reload
 
-    expect(longmax.email).to eq('longmax@example.com')
+    expect(longmax.email).to eq('longmaxsmith@example.com')
     expect(longmax.company.name).to eq('Firma')
-    expect(longmax.marital_status).to eq('single')
-    expect(longmax.nationality).to eq('ZW')
-    expect(longmax.title).to eq('BSc in Architecture')
+    expect(longmax.marital_status).to eq('married')
+    expect(longmax.nationality).to eq('US')
+    expect(longmax.title).to eq('Flashing lights')
     expect(longmax.location).to eq('Bern')
     expect(longmax.birthdate.to_s).to eq('1990-03-10 00:00:00 UTC')
-    expect(longmax.department.name).to eq('/sys')
-    expect(longmax.roles.first.name).to eq('Architect')
+    expect(longmax.department.name).to eq('/ux')
+    expect(longmax.roles.first.name).to eq('UX Consultant')
 
     longmax_person_role = PersonRole.find_by_person_id(longmax.id)
     expect(longmax_person_role.percent).to eq(100.0)
@@ -56,5 +56,13 @@ describe Ptime::PeopleEmployees do
     expect(emmeline_person_role.person_role_level_id).to eq(PersonRoleLevel.find_by_level('S5').id)
 
     expect(charlie.company.name).to eq('Ex-Mitarbeiter') # Not employed
+    expect(charlie.email).not_to eq('charlieford@example.com')
+    expect(charlie.marital_status).not_to eq('married')
+    expect(charlie.nationality).not_to eq('CX')
+    expect(charlie.title).not_to eq("Can't tell me nothing")
+    expect(charlie.location).not_to eq('Thun')
+    expect(charlie.department.name).not_to eq('/ux')
+    expect(charlie.roles.first.name).not_to eq('Architect')
+
   end
 end
