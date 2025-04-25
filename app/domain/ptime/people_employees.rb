@@ -10,10 +10,9 @@ module Ptime
       shortname: :shortname
     }.freeze
 
-    EMPLOYED_COMPANY = Company.find_by(name: 'Firma')
-    UNEMPLOYED_COMPANY = Company.find_by(name: 'Ex-Mitarbeiter')
-
     def update_people_data
+      @employed_company ||= Company.find_by(name: 'Firma')
+      @unemployed_company ||= Company.find_by(name: 'Ex-Mitarbeiter')
       fetch_data_of_active_ptime_employees.each do |ptime_employee|
         ActiveRecord::Base.transaction do
           @ptime_employee_attributes = ptime_employee[:attributes]
@@ -52,9 +51,10 @@ module Ptime
 
     def update_non_mappable_attributes
       is_employed = @ptime_employee_attributes[:is_employed]
-      @person.company = is_employed ? EMPLOYED_COMPANY : UNEMPLOYED_COMPANY
-      department = Department.find_or_create_by!(name: @ptime_employee_attributes[:department_name])
-      @person.department = department
+      @person.company = is_employed ? @employed_company : @unemployed_company
+      @person.department = Department.find_or_create_by!(
+        name: @ptime_employee_attributes[:department_name]
+      )
       @person.marital_status = @ptime_employee_attributes[:marital_status].presence || 'single'
       @person.name = employee_full_name(@ptime_employee_attributes)
       @person.nationality, @person.nationality2 = @ptime_employee_attributes[:nationalities]
