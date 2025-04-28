@@ -93,21 +93,20 @@ For local development dynamically generated, extensive seeds are available for e
 or just simply run `rails jobs:work` to start working off queued delayed jobs.
 
 ## PuzzleTime synchronization
-If you are using PuzzleSkills as an external company this part of the application will only bother you once. The only
-thing you need to know is how to disable it.
+If you are using PuzzleSkills as an external company and are not also using the PuzzleTime application, this part of the
+application will only bother you once. The only thing you need to know is how to disable it.
 
 ### Description of the PuzzleTime Sync
 The PuzzleTime sync was written to reduce data redundancy and maintain a single source of truth for people data.
-An initial mapping script assigns each person a ptime_id, which is then used to update them. A nightly delayed job runs 
+An initial mapping script assigns each person a `ptime_employee_id`, which is then used to update them. A nightly delayed job runs 
 at midnight to fetch employee data from the PuzzleTime API. This data is used to update people in the application. 
 While the sync is active, users are not allowed to edit certain attributes of a person.
 
 The sync also creates new people when needed or sets people to inactive (in which case they will no longer be updated).
 
 ### How to disable it
-The PuzzleTime sync depends on an environment variable (ENV variable), with a default value defined in the 
-`use_ptime_sync?` method. The default value is true, but it can easily be set to false. This method is defined in the 
-`application.rb` file.
+The PuzzleTime sync depends on the environment variable (ENV variable) `PTIME_API_ACCESSIBLE`, which defaults to true.
+This default value is defined in the `use_ptime_sync?` method in the `application.rb` file.
 
 ### Manual sync
 Sometimes, synchronization may be needed during the day instead of waiting for the nightly job. For this purpose,
@@ -116,14 +115,26 @@ delayed job and updates all people accordingly.
 
 ### Setup
 This is a step for step manual on how to run the PuzzleTime sync. 
-1. Check that the default value of the 'use_ptime_sync?' method in the `application.rb` file is set to `true`.
-2. Make sure PuzzleTime API is up and running
-3. The credentials for the PuzzleTime API need to be setup correctly. Either you set them directly in the pod or export
-   them via env file in the rails docker.
-4. If it's the first time activating the sync make sure to run `rake ptime:assign` to assign each person a unique ptime_id.
-   You can also run `rake ptime:evaluate_assign` to do a dry run and see which people can be mapped and which cannot.
-5. Assuming all these steps have been followed correctly the nightly delayed job should execute the sync. You can try by
+1. Make sure the environment variable `PTIME_API_ACCESSIBLE` is set to `true`. The default value if it is not set is `true`.
+2. Make sure your instance of the PuzzleTime application is up and running so the API is accessible.
+3. The URL and the credentials for the PuzzleTime API need to be set via environment variables for the sync to work.
+   To do this, set the following env vars:
+
+   | Variable           | Description                                             |
+   |--------------------|---------------------------------------------------------|
+   | PTIME_BASE_URL     | The base URL of your PuzzleTime instance                |
+   | PTIME_API_USERNAME | The API username configured in your PuzzleTime instance |
+   | PTIME_API_PASSWORD | The API password configured in your PuzzleTime instance |
+
+4. If it's the first time activating the sync make sure to run `rake ptime:assign` to assign each person a unique `ptime_employee_id`.
+   The people are mapped by E-Mail address. You can also run `rake ptime:evaluate_assign` to do a dry run and see which people
+   can be mapped and which cannot.
+5. Make sure you start the delayed job worker, otherwise the job won't be executed. You can find help on how to do this in
+   [the delayed job documentation](https://github.com/collectiveidea/delayed_job?tab=readme-ov-file#running-jobs).
+6. Assuming all these steps have been followed correctly, the nightly delayed job should execute the sync. You can try by
    navigating to `/admin/update_people` and pressing the manual sync button.
+7. **Optional**: In case you wish to run the job more than once a day, you can also change the cron expression in the
+   `NightlyUpdatePeopleDataPtimeJob`.
 
 ## Debugging
 To interact with `pry` inside a controller, you have to attach to the container first using `docker attach rails`.
