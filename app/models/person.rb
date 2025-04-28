@@ -68,7 +68,8 @@ class Person < ApplicationRecord
 
   scope :list, -> { order(:name) }
 
-  scope :employed, -> { where.not(:company_id => Company.find_by(name: 'Ex-Mitarbeiter')&.id) }
+  UNEMPLOYED_COMPANY_ID = Company.find_by(name: 'Ex-Mitarbeiter')&.id
+  scope :employed, -> { where.not(:company_id => UNEMPLOYED_COMPANY_ID) }
 
   enum :marital_status, { single: 0, married: 1, widowed: 2, registered_partnership: 3,
                           divorced: 4 }
