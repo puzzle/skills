@@ -15,10 +15,15 @@ describe Ptime::PeopleEmployees do
   end
 
   it 'creates and updates people from ptime data' do
+    # Longmax: Currently unemployed in skills DB -> Ptime data will update him to be employed
+    # Emmeline: Not in skills DB -> Will be created from Ptime data
+    # Charlie: Currently employed in skills Db -> Ptime data will update him to be unemployed
+
     longmax = people(:longmax)
     charlie = people(:charlie)
 
     longmax.update!(ptime_employee_id: 33)
+    longmax.update!(company: Company.find_by(name: 'Ex-Mitarbeiter'))
     charlie.update!(ptime_employee_id: 45)
 
     expect { people_employees.update_people_data }.to change(Person, :count).by(1)
