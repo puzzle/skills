@@ -92,6 +92,25 @@ For local development dynamically generated, extensive seeds are available for e
 [the delayed job documentation](https://github.com/collectiveidea/delayed_job?tab=readme-ov-file#running-jobs)
 or just simply run `rails jobs:work` to start working off queued delayed jobs.
 
+## PuzzleTime synchronisation
+If you are using PuzzleSkills as an external company this part of the application will only bother you once. The only thing you need to know is how to disable it.
+
+### Description of the PuzzleTime sync
+The PuzzleTime sync was written to make people data less redundant and have a single source of truth. A nightly delayed job
+that runs at midnight fetches employee data from the PuzzleTime API. The fetched data is then mapped and displayed
+as people attributes in the application. While the PuzzleTime sync is active, the user is not allowed to edit certain
+attributes of a person. The synchronisation also makes sure to create new people or set people to inactive which results
+in them not being updated anymore.
+
+### How to disable it
+The whole PuzzleTime sync is dependent on a ENV variable, for which a default value can be set in the 'use_ptime_sync?'
+method. The default value is true but can easily set to false. This method is defined in the `application.rb` file.
+
+### Manual sync
+There may be cases where the synchronisation needs to be done throughout the day instead of at midnight. For this exact
+case a manual sync button has been added to the admin view. This button instantly executes the delayed job and
+updates all persons accordingly.
+
 ## Debugging
 To interact with `pry` inside a controller, you have to attach to the container first using `docker attach rails`.
 This will show you any **new** logs, and if you encounter a `pry` prompt, you can interact with it.
