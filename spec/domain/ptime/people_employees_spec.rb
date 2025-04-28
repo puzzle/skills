@@ -44,6 +44,27 @@ describe Ptime::PeopleEmployees do
     check_person_data_updated(charlie, charlie_data)
   end
 
+  it 'should return a list with the names of the people for which the update failed if the manual sync is used' do
+    people_employees_json = ptime_employees
+    longmax_attributes = people_employees_json[:data].first[:attributes]
+    longmax_attributes[:email] = ''
+
+    stub_ptime_request(people_employees_json.to_json)
+
+    expect(Ptime::PeopleEmployees.new.update_people_data(is_manual_sync: true)).to match_array(['Longmax Smith'])
+  end
+
+  it 'should throw custom exception when nightly job is used' do
+    people_employees_json = ptime_employees
+    longmax_attributes = people_employees_json[:data].first[:attributes]
+    longmax_attributes[:email] = ''
+
+    stub_ptime_request(people_employees_json.to_json)
+
+    expect { Ptime::PeopleEmployees.new.update_people_data }.to raise_error(PtimeExceptions::PersonUpdateWithPTimeDataFailed,
+      "Records were invalid while updating Longmax Smith with data from PuzzleTime")
+  end
+
   def check_person_data_updated(person, employee_data)
     is_employed = employee_data[:is_employed]
 
