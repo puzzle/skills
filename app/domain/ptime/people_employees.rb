@@ -22,7 +22,7 @@ module Ptime
         raise PtimeExceptions::PersonUpdateWithPTimeDataFailed,
               "Records were invalid while updating
                #{@update_failed_names.to_sentence(locale: :en)}
-               with data from PuzzleTime."
+               with data from PuzzleTime".squish
       end
       @update_failed_names
     end
