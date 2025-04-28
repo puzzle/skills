@@ -15,54 +15,52 @@ describe Ptime::PeopleEmployees do
   end
 
   it 'creates and updates people from ptime data' do
-    longmax = Person.find_by(name: 'Longmax Smith')
-    charlie = Person.find_by(name: 'Charlie Ford')
+    longmax = people(:longmax)
+    charlie = people(:charlie)
 
     longmax.update!(ptime_employee_id: 33)
     charlie.update!(ptime_employee_id: 45)
 
     expect { people_employees.update_people_data }.to change(Person, :count).by(1)
 
-    emmeline = Person.find_by(name: 'Emmeline Charlotte')
     longmax.reload
+    emmeline = Person.find_by(name: 'Emmeline Charlotte')
     charlie.reload
 
-    expect(longmax.email).to eq('longmax@example.com')
-    expect(longmax.company.name).to eq('Firma')
-    expect(longmax.marital_status).to eq('married')
-    expect(longmax.nationality).to eq('US')
-    expect(longmax.title).to eq('Flashing lights')
-    expect(longmax.location).to eq('Bern')
-    expect(longmax.birthdate.to_s).to eq('1990-03-10 00:00:00 UTC')
-    expect(longmax.department.name).to eq('/ux')
-    expect(longmax.roles.first.name).to eq('UX Consultant')
+    employee_data = ptime_employees_data
+    longmax_data = employee_data.first[:attributes]
+    emmeline_data = employee_data.second[:attributes]
+    charlie_data = employee_data.third[:attributes]
 
-    longmax_person_role = PersonRole.find_by_person_id(longmax.id)
-    expect(longmax_person_role.percent).to eq(100.0)
-    expect(longmax_person_role.person_role_level_id).to eq(PersonRoleLevel.find_by_level('S4').id)
+    charlie_data[:email] = 'charlie_ford@example.com'
 
-    expect(emmeline.email).to eq('emmeline@example.com')
-    expect(emmeline.company.name).to eq('Firma')
-    expect(emmeline.marital_status).to eq('single')
-    expect(emmeline.nationality).to eq('DE')
-    expect(emmeline.title).to eq('MSc in writing')
-    expect(emmeline.location).to eq('Genf')
-    expect(emmeline.birthdate.to_s).to eq('2001-01-05 00:00:00 UTC')
-    expect(emmeline.department.name).to eq('/dev/tre')
-    expect(emmeline.roles.first.name).to eq('Software Engineer')
+    check_person_data_updated(longmax, longmax_data)
+    check_person_data_updated(emmeline, emmeline_data)
+    check_person_data_updated(charlie, charlie_data)
+  end
 
-    emmeline_person_role = PersonRole.find_by_person_id(emmeline.id)
-    expect(emmeline_person_role.percent).to eq(80.0)
-    expect(emmeline_person_role.person_role_level_id).to eq(PersonRoleLevel.find_by_level('S5').id)
+  def check_person_data_updated(person, employee_data)
+    is_employed = employee_data[:is_employed]
 
-    expect(charlie.company.name).to eq('Ex-Mitarbeiter') # Not employed
-    expect(charlie.email).not_to eq('charlieford@example.com')
-    expect(charlie.marital_status).not_to eq('married')
-    expect(charlie.nationality).not_to eq('CX')
-    expect(charlie.title).not_to eq("Can't tell me nothing")
-    expect(charlie.location).not_to eq('Thun')
-    expect(charlie.department.name).not_to eq('/ux')
-    expect(charlie.roles.first.name).not_to eq('Architect')
+    expect(person.email.eql?(employee_data[:email])).to eql(is_employed)
+    expect(person.company.name).to eq(is_employed ? 'Firma' : 'Ex-Mitarbeiter')
+    expect(person.marital_status.eql?(employee_data[:marital_status])).to eq(is_employed)
+    expect(person.nationality.eql?(employee_data[:nationalities].first)).to eq(is_employed)
+    expect(person.title.eql?(employee_data[:graduation])).to eq(is_employed)
+    expect(person.location.eql?(employee_data[:city])).to eq(is_employed)
+    expect(person.birthdate == employee_data[:birthday].to_date).to eq(is_employed)
+    expect(person.department.name.eql?(employee_data[:department_name])).to eq(is_employed)
 
+    check_person_roles_updated(person, employee_data) if is_employed
+  end
+  def check_person_roles_updated(person, employee_data)
+    person.roles.each_with_index do |role, i|
+      employment_role = employee_data[:employment_roles][i]
+
+      expect(role.name).to eq(employment_role[:name].gsub(/\A[A-Z]\d+\s/, ''))
+      person_role = person.person_roles[i]
+      expect(person_role.percent).to eq(employment_role[:percent])
+      expect(person_role.person_role_level.level).to eq(employment_role[:role_level])
+    end
   end
 end

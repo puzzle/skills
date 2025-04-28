@@ -21,6 +21,11 @@
             "name" : "T2 UX Consultant",
             "percent" : 100.0,
             "role_level" : "S4"
+          },
+          {
+            "name" : "T2 Bratwurstbrater",
+            "percent" : 20,
+            "role_level" : "S3"
           }
         ]
       }
@@ -46,6 +51,11 @@
             "name" : "T2 Software Engineer",
             "percent" : 80.0,
             "role_level": "S5"
+          },
+          {
+            "name" : "T1 Raumschiff Pilotin",
+            "percent" : 20,
+            "role_level" : "S3"
           }
         ]
       }
