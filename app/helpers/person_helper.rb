@@ -111,8 +111,7 @@ module PersonHelper
   end
 
   def people_for_select
-    # ToDo -> Use person scope instead of find_by call in view here
-    Person.where.not(company: Company.find_by(name: 'Ex-Mitarbeiter')).map do |p|
+    Person.employed.map do |p|
       [
         p.name, person_path(p),
         {
