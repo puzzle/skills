@@ -66,13 +66,13 @@ module Ptime
     end
 
     def update_person_data
-      update_mappable_attributes
-      update_non_mappable_attributes
+      update_directly_mappable_attributes
+      update_indirectly_mappable_attributes
       @person.save!
       update_person_roles
     end
 
-    def update_mappable_attributes
+    def update_directly_mappable_attributes
       @ptime_employee_attributes.each do |key, value|
         if ATTRIBUTES_MAPPING.key?(key.to_sym)
           @person[ATTRIBUTES_MAPPING[key.to_sym]] =
@@ -81,7 +81,7 @@ module Ptime
       end
     end
 
-    def update_non_mappable_attributes
+    def update_indirectly_mappable_attributes
       is_employed = @ptime_employee_attributes[:is_employed]
       @person.company = is_employed ? @employed_company : @unemployed_company
       @person.department = Department.find_or_create_by!(
