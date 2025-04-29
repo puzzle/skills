@@ -9,6 +9,8 @@ class PeopleController < CrudController
 
   layout 'person', only: [:show]
 
+  before_action :redirect_index_if_use_ptime_sync, only: [:new]
+
   def index
     return flash[:alert] = I18n.t('errors.messages.profile-not-found') if params[:alert].present?
 
@@ -97,4 +99,8 @@ class PeopleController < CrudController
     end
   end
   # rubocop:enable Metrics/MethodLength
+
+  def redirect_index_if_use_ptime_sync
+    redirect_to root_path if Skills.use_ptime_sync?
+  end
 end
