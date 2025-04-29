@@ -138,13 +138,16 @@ de:
     index:
       unify_skills: Skills vereinen
       update_people_manually: Personen manuell aktualisieren
-    unified_skills:
-      create:
-        success: Skill %{skill1} wurde erfolgreich mit Skill %{skill2} zum neuen Skill %{new_skill} vereint
-    update_people:
+    manual_ptime_sync:
       manual_sync:
         failed_people_updates: Bei der Aktualisierung von %{names} ist etwas schiefgelaufen. Versuche es erneut und überprüfe allenfalls die Daten im PuzzleTime.
         people_updated: Die Daten aller Personen wurden erfolgreich aktualisiert
+    unified_skills:
+      create:
+        success: Skill %{skill1} wurde erfolgreich mit Skill %{skill2} zum neuen Skill %{new_skill} vereint
+  admin/manual_ptime_sync:
+    index:
+      description: Wenn dieser wunderschöne Knopf gedrückt wird, dann werden die Daten aller Personen mit den Daten aus dem PuzzleTime aktualisiert. Dies kann einige Sekunden dauern.
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: Konflikte gefunden
@@ -155,9 +158,6 @@ de:
       conflicts_found_message:
         one: "%{names} hat beide Skills bewertet. Werden die Skills trotzdem vereint, wird die bessere Bewertung genommen."
         other: "%{names} haben beide Skills bewertet. Werden die Skills trotzdem vereint, wird die bessere Bewertung genommen."
-  admin/update_people:
-    index:
-      description: Wenn dieser wunderschöne Knopf gedrückt wird, dann werden die Daten aller Personen mit den Daten aus dem PuzzleTime aktualisiert. Dies kann einige Sekunden dauern.
   certificates:
     form:
       cancel: Abbrechen
