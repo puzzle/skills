@@ -29,4 +29,8 @@ module PtimeHelpers
     allow(ENV).to receive(:fetch).with(name).and_return(value)
     stub_const('ENV', ENV.to_hash.merge(name => value))
   end
+
+  def employee_full_name(ptime_employee)
+    "#{ptime_employee[:firstname]} #{ptime_employee[:lastname]}"
+  end
 end

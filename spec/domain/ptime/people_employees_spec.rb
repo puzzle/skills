@@ -6,9 +6,6 @@ describe Ptime::PeopleEmployees do
   before(:each) do
     enable_ptime_sync
 
-    Company.create!(name: 'Firma')
-    Company.create!(name: 'Ex-Mitarbeiter')
-
     PersonRoleLevel.create!(level: 'S3')
     PersonRoleLevel.create!(level: 'S4')
     PersonRoleLevel.create!(level: 'S5')
@@ -51,7 +48,7 @@ describe Ptime::PeopleEmployees do
 
     stub_ptime_request(people_employees_json.to_json)
 
-    expect(Ptime::PeopleEmployees.new.update_people_data(is_manual_sync: true)).to match_array(['Longmax Smith'])
+    expect(Ptime::PeopleEmployees.new.update_people_data(is_manual_sync: true)).to match_array([employee_full_name(longmax_attributes)])
   end
 
   it 'should throw custom exception when nightly job is used' do
@@ -62,12 +59,13 @@ describe Ptime::PeopleEmployees do
     stub_ptime_request(people_employees_json.to_json)
 
     expect { Ptime::PeopleEmployees.new.update_people_data }.to raise_error(PtimeExceptions::PersonUpdateWithPTimeDataFailed,
-      "Records were invalid while updating Longmax Smith with data from PuzzleTime")
+      "Records were invalid while updating #{employee_full_name(longmax_attributes)} with data from PuzzleTime")
   end
 
   def check_person_data_updated(person, employee_data)
     is_employed = employee_data[:is_employed]
 
+    expect(person.name.eql?(employee_full_name(employee_data))).to eql(is_employed)
     expect(person.email.eql?(employee_data[:email])).to eql(is_employed)
     expect(person.company.name).to eq(is_employed ? 'Firma' : 'Ex-Mitarbeiter')
     expect(person.marital_status.eql?(employee_data[:marital_status])).to eq(is_employed)
