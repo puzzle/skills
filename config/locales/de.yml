@@ -52,6 +52,7 @@ de:
           one: Weiterbildung
           other: Weiterbildungen
         birthdate: Geburtsdatum
+        company: Firma
         competence_notes: Notizen Member
         department: Organisationseinheit
         display_competence_notes_in_cv: Im CV Export inkludieren
@@ -60,6 +61,7 @@ de:
           one: Ausbildung
           other: Ausbildungen
         email: Email
+        language_skills: Sprachkenntnisse
         languages:
           one: Sprache
           other: Sprachen
@@ -67,6 +69,7 @@ de:
         marital_status: Zivilstand
         name: Name
         nationality: Nationalität
+        person_role_level: Person Rolle Level
         person_roles:
           one: Funktion
           other: Funktionen
@@ -247,6 +250,9 @@ de:
       add: "%{model} hinzufügen"
       delete: Löschen
       edit: "%{model} bearbeiten"
+  language_skills:
+    native: Muttersprache
+    none: Keine
   marital_statuses:
     divorced: geschieden
     married: verheiratet

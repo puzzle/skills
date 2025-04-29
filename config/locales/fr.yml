@@ -52,6 +52,7 @@ fr:
           one: Formation continue
           other: Formations continues
         birthdate: Date de naissance
+        company: Société
         competence_notes: Notes Member
         department: Unité organisationnelle
         display_competence_notes_in_cv: Inclure dans l'exportation du CV
@@ -60,6 +61,7 @@ fr:
           one: Formation
           other: Formations
         email: Email
+        language_skills: Compétences linguistiques
         languages:
           one: Langue
           other: Langues
@@ -67,6 +69,7 @@ fr:
         marital_status: État civil
         name: Nom
         nationality: Nationalité
+        person_role_level: Personne rôle niveau
         person_roles:
           one: Fonction
           other: Fonctions
@@ -243,6 +246,9 @@ fr:
       add: "%{model} ajouter"
       delete: Supprimer
       edit: "%{model} éditer"
+  language_skills:
+    native: Locuteur natif
+    none: Aucun
   marital_statuses:
     divorced: divorcé(e)
     married: marié(e)

@@ -1,10 +1,10 @@
 %div.border.border-dark-subtle.rounded.p-1.fw-light.nested-fields
   = f.hidden_field :_destroy
-  = f.label :role
+  = f.label t("activerecord.attributes.activity.role")
   = f.collection_select :role_id, Role.order(:name), :id, :name, {}, class: "form-select w-100 role-select"
   %div
-    = f.label :person_role_level
+    = f.label t("activerecord.attributes.person.person_role_level")
     %div.d-flex.fw-light
       = f.collection_select :person_role_level_id, PersonRoleLevel.order(:level), :id, :level, {}, class: "form-select w-50 me-1 role-level-select"
       = f.number_field :percent, in: 0..200, step: 1, class: "form-control w-50 person-role-percent"
-  %div{"data-controller"=>"dynamic-fields"}= link_to "Remove", "#", { class: "remove_fields", 'data-action' => 'dynamic-fields#removeField' }
+  %div{"data-controller"=>"dynamic-fields"}= link_to ti("link.remove"), "#", { class: "remove_fields", 'data-action' => 'dynamic-fields#removeField' }

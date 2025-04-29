@@ -52,6 +52,7 @@ de-CH:
           one: Witerbiudig
           other: Witerbiudigä
         birthdate: Geburtsdatum
+        company: Firma
         competence_notes: Notizä Member
         department: Organisationsiheit
         display_competence_notes_in_cv: Im CV Export inkludierä.
@@ -60,6 +61,7 @@ de-CH:
           one: Usbiudig
           other: Usbiudigä
         email: Email
+        language_skills: Sprachkenntniss
         languages:
           one: Sprach
           other: Sprachä
@@ -67,6 +69,7 @@ de-CH:
         marital_status: Ziviustand
         name: Namä
         nationality: Nationalität
+        person_role_level: Person Rouä Level
         person_roles:
           one: Funktion
           other: Funktionä
@@ -264,6 +267,9 @@ de-CH:
       add: "%{model} hinzuefügä"
       delete: Löschä
       edit: "%{model} bearbeitä"
+  language_skills:
+    native: Muetersprach
+    none: Keni
   marital_statuses:
     divorced: gschiedä
     married: verhüratet
