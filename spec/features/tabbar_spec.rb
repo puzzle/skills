@@ -23,11 +23,11 @@ describe 'Tabbar', type: :feature, js:true do
 
       before(:each) do
         I18n.locale = locale
-        default_url_options[:locale] = I18n.locale == I18n.default_locale ? nil : I18n.locale
+        default_url_options[:locale] = I18n.locale
       end
 
       after(:each) do
-        expect(current_path.start_with?("/#{locale}")).to eq(I18n.locale != I18n.default_locale)
+        expect(current_path).to start_with("/#{locale}")
       end
 
       describe 'Global' do
