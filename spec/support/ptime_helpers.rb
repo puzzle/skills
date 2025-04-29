@@ -3,7 +3,7 @@ module PtimeHelpers
     stub_env_var("PTIME_BASE_URL", "www.ptime.example.com")
     stub_env_var("PTIME_API_USERNAME", "test username")
     stub_env_var("PTIME_API_PASSWORD", "test password")
-    stub_env_var("PTIME_API_ACCESSIBLE", true)
+    stub_env_var("USE_PTIME_SYNC", true)
     stub_ptime_request(ptime_employees.to_json)
   end
 

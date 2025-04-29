@@ -134,13 +134,16 @@ it:
     index:
       unify_skills: Unire le competenze
       update_people_manually: Aggiornare le persone manualmente
-    unified_skills:
-      create:
-        success: La competenza %{skill1} è stata unificata con successo con la competenza %{skill2} nella nuova competenza %{new_skill}
-    update_people:
+    manual_ptime_sync:
       manual_sync:
         failed_people_updates: Si è verificato un errore durante l'aggiornamento di %{names}. Si prega di riprovare e, se necessario, controllare i dati in PuzzleTime.
         people_updated: I dati di tutte le persone sono stati aggiornati con successo
+    unified_skills:
+      create:
+        success: La competenza %{skill1} è stata unificata con successo con la competenza %{skill2} nella nuova competenza %{new_skill}
+  admin/manual_ptime_sync:
+    index:
+      description: Quando questo bellissimo pulsante viene premuto, i dati di tutte le persone verranno aggiornati con i dati di PuzzleTime. Questo potrebbe richiedere alcuni secondi.
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: Conflitti rilevati
@@ -151,9 +154,6 @@ it:
       conflicts_found_message:
         one: "%{names} ha valutato entrambe le competenze. Se le competenze vengono comunque unite, verrà utilizzata la valutazione migliore."
         other: "%{names} hanno valutato entrambe le competenze. Se le competenze vengono comunque unite, verrà utilizzata la valutazione migliore."
-  admin/update_people:
-    index:
-      description: Quando questo bellissimo pulsante viene premuto, i dati di tutte le persone verranno aggiornati con i dati di PuzzleTime. Questo potrebbe richiedere alcuni secondi.
   certificates:
     form:
       cancel: cancellare

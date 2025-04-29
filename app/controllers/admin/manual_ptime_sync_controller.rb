@@ -1,4 +1,4 @@
-class Admin::UpdatePeopleController < CrudController
+class Admin::ManualPtimeSyncController < CrudController
   self.nesting = :admin
   before_action :render_unauthorized_not_admin
   before_action :redirect_admin_without_ptime_sync

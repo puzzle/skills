@@ -138,13 +138,16 @@ de-CH:
     index:
       unify_skills: Skills vereinä
       update_people_manually: Persone manuell aktualisiere
-    unified_skills:
-      create:
-        success: Skill %{skill1} isch erfolgriich mit Skill %{skill2} zum neuä Skill %{new_skill} vereint wordä
-    update_people:
+    manual_ptime_sync:
       manual_sync:
         failed_people_updates: Bi dr Aktualisierig vo %{names} isch öppis schiefgloffe. Versuechs nomau und überprüef auefaus d Date im PuzzleTime.
         people_updated: D Datä vo aunä Personä si erfolgriich aktualisiert wordä
+    unified_skills:
+      create:
+        success: Skill %{skill1} isch erfolgriich mit Skill %{skill2} zum neuä Skill %{new_skill} vereint wordä
+  admin/manual_ptime_sync:
+    index:
+      description: We dä wunderschön Chnopf drückt wird, de wärde d Date vo aune Persone mit de Date usem PuzzleTime aktualisiert. Ds cha einigi Sekunde duure.
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: Konfliktä gfundä
@@ -155,9 +158,6 @@ de-CH:
       conflicts_found_message:
         one: "%{names} het beidi Skills bewertet. We si trotzdem vereint werde, wird di besseri Bewertig übernoh."
         other: "%{names} hei beidi Skills bewertet. We si trotzdem vereint werde, wird di besseri Bewertig übernoh."
-  admin/update_people:
-    index:
-      description: We dä wunderschön Chnopf drückt wird, de wärde d Date vo aune Persone mit de Date usem PuzzleTime aktualisiert. Ds cha einigi Sekunde duure.
   certificates:
     form:
       cancel: Abbrächä

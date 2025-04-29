@@ -105,7 +105,7 @@ While the sync is active, users are not allowed to edit certain attributes of a 
 The sync also creates new people when needed or sets people to inactive (in which case they will no longer be updated).
 
 ### How to disable it
-The PuzzleTime sync depends on the environment variable (ENV variable) `PTIME_API_ACCESSIBLE`, which defaults to true.
+The PuzzleTime sync depends on the environment variable (ENV variable) `USE_PTIME_SYNC`, which defaults to true.
 This default value is defined in the `use_ptime_sync?` method in the `application.rb` file.
 
 ### Manual sync
@@ -115,7 +115,7 @@ delayed job and updates all people accordingly.
 
 ### Setup
 This is a step for step manual on how to run the PuzzleTime sync. 
-1. Make sure the environment variable `PTIME_API_ACCESSIBLE` is set to `true`. The default value if it is not set is `true`.
+1. Make sure the environment variable `USE_PTIME_SYNC` is set to `true`. The default value if it is not set is `true`.
 2. Make sure your instance of the PuzzleTime application is up and running so the API is accessible.
 3. The URL and the credentials for the PuzzleTime API need to be set via environment variables for the sync to work.
    To do this, set the following env vars:

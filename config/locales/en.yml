@@ -134,13 +134,16 @@ en:
     index:
       unify_skills: Unify skills
       update_people_manually: Update people manually
-    unified_skills:
-      create:
-        success: Skill %{skill1} was successfully unified with Skill %{skill2} into the new Skill %{new_skill}
-    update_people:
+    manual_ptime_sync:
       manual_sync:
         failed_people_updates: Something went wrong while updating %{names}. Please try again and, if necessary, check the data in PuzzleTime.
         people_updated: The data for all people has been successfully updated
+    unified_skills:
+      create:
+        success: Skill %{skill1} was successfully unified with Skill %{skill2} into the new Skill %{new_skill}
+  admin/manual_ptime_sync:
+    index:
+      description: When this beautiful button is pressed, all people's data will be updated with the data from PuzzleTime. This may take a few seconds.
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: Conflicts found
@@ -151,9 +154,6 @@ en:
       conflicts_found_message:
         one: "%{names} has rated both Skills. If the Skills are unified anyway, the better rating will be used."
         other: "%{names} have rated both Skills. If the Skills are unified anyway, the better rating will be used."
-  admin/update_people:
-    index:
-      description: When this beautiful button is pressed, all people's data will be updated with the data from PuzzleTime. This may take a few seconds.
   certificates:
     form:
       cancel: cancel

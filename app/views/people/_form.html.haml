@@ -37,7 +37,7 @@
               %tr
                 %td= render "person_role_fields", f: person_role
             %tr
-              - unless ptime_sync_active?
+              - unless use_ptime_sync?
                 %td{"data-controller"=>"dynamic-fields"}
                   = link_to_add_field t("people.profile.add_function"), form, :person_roles
 
