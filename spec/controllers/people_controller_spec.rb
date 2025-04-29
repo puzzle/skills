@@ -41,7 +41,7 @@ describe PeopleController do
   end
 
   describe 'PuzzleTime sync' do
-    it 'new person route should redirect to index path when ptime sync is active' do
+    it 'should redirect to new index path when ptime sync is active and new route is visited' do
       get :new
       expect(response.code).to eql('200')
 
