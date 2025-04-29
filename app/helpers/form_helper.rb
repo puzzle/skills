@@ -49,7 +49,7 @@ module FormHelper
   end
 
   def disabled_with_ptime_sync
-    if ptime_sync_active?
+    if use_ptime_sync?
       {
         'data-bs-toggle': 'tooltip',
         'data-bs-title': I18n.t('people.form.ptime_data'),

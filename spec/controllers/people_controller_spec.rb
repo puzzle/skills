@@ -23,4 +23,16 @@ describe PeopleController do
       expect(people(:bob).reload.nationality2).to eql("DE")
     end
   end
+
+  describe 'PuzzleTime sync' do
+    it 'new person route should redirect to index path when ptime sync is active' do
+      get :new
+      expect(response.code).to eql('200')
+
+      enable_ptime_sync
+
+      get :new
+      expect(response).to redirect_to(root_path)
+    end
+  end
 end

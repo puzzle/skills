@@ -63,7 +63,7 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.before(:each) do
-    stub_env_var("PTIME_API_ACCESSIBLE", false)
+    stub_env_var("USE_PTIME_SYNC", false)
   end
 
   show_logs = ENV.fetch('SHOW_LOGS', false)
