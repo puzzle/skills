@@ -39,7 +39,7 @@ describe 'Skill Form', type: :feature, js:true do
   end
 
   it 'redirects to the skills index when the cancel button is clicked' do
-    click_link(href:skills_path, text: "Cancel")
+    click_link(href:skills_path, text: "Abbrechen")
     all 'turbo-frame[id^="skill"]', count: 8
   end
 end

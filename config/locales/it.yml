@@ -144,6 +144,8 @@ it:
         one: "%{names} ha valutato entrambe le competenze. Se le competenze vengono comunque unite, verrà utilizzata la valutazione migliore."
         other: "%{names} hanno valutato entrambe le competenze. Se le competenze vengono comunque unite, verrà utilizzata la valutazione migliore."
   certificates:
+    form:
+      cancel: cancellare
     global:
       table:
         comment: Note
@@ -335,6 +337,8 @@ it:
   profile:
     updated_at: Ultima modifica
   skills:
+    form:
+      cancel: cancellare
     global:
       table:
         category: Categoria

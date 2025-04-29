@@ -43,7 +43,7 @@ describe :certificates, type: :feature, js: true do
 
     it 'redirects to the certificate index when the cancel button is clicked' do
       expect(page).to have_text("Zertifikat erstellen")
-      click_link("Cancel")
+      click_link("Abbrechen")
       expect(page).not_to have_text("Zertifikat erstellen")
     end
   end

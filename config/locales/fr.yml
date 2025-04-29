@@ -144,6 +144,8 @@ fr:
         one: "%{names} a évalué les deux compétences. Si les compétences sont quand même unifiées, la meilleure évaluation sera utilisée."
         other: "%{names} ont évalué les deux compétences. Si les compétences sont quand même unifiées, la meilleure évaluation sera utilisée."
   certificates:
+    form:
+      cancel: annuler
     global:
       table:
         comment: Commentaire
@@ -335,6 +337,8 @@ fr:
   profile:
     updated_at: Dernièrement édité
   skills:
+    form:
+      cancel: annuler
     global:
       table:
         category: Catégorie

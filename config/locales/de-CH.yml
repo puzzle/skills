@@ -148,6 +148,8 @@ de-CH:
         one: "%{names} het beidi Skills bewertet. We si trotzdem vereint werde, wird di besseri Bewertig übernoh."
         other: "%{names} hei beidi Skills bewertet. We si trotzdem vereint werde, wird di besseri Bewertig übernoh."
   certificates:
+    form:
+      cancel: Abbrächä
     global:
       table:
         comment: Bemerkig
@@ -356,6 +358,8 @@ de-CH:
   profile:
     updated_at: Z'letzt bearbeitet
   skills:
+    form:
+      cancel: Abbrächä
     global:
       table:
         category: Kategorie
