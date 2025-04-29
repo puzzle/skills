@@ -7,7 +7,7 @@ class Admin::ManualPtimeSyncController < CrudController
     update_failed_names = NightlyUpdatePeopleDataPtimeJob.perform_now(is_manual_sync: true)
     if update_failed_names.any?
       flash[:alert] = t('.failed_people_updates', names: update_failed_names.to_sentence)
-      render :index, status: :bad_request
+      render :index, status: :internal_server_error
     else
       flash[:notice] = t('.people_updated')
     end

@@ -52,7 +52,7 @@ module Ptime
     def fetch_data
       puts 'Fetching required data...'
       @ptime_employees = Ptime::Client.new.request(:get, 'employees',
-                                                   { per_page: MAX_NUMBER_OF_FETCHED_EMPLOYEES })
+                                                   { per_page: MAX_PAGE_SIZE })
       @skills_people = Person.all
       puts 'Successfully fetched data'
     end

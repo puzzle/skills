@@ -38,7 +38,7 @@ module Ptime
     def fetch_data_of_ptime_employees
       Ptime::Client.new.request(
         :get, 'employees',
-        { per_page: MAX_NUMBER_OF_FETCHED_EMPLOYEES }
+        { per_page: MAX_PAGE_SIZE }
       ).partition do |ptime_employee|
         ptime_employee.dig(:attributes, :is_employed)
       end
