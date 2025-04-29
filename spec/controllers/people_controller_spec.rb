@@ -23,4 +23,32 @@ describe PeopleController do
       expect(people(:bob).reload.nationality2).to eql("DE")
     end
   end
+
+  describe 'handling of locale' do
+    it 'it should correctly set locale cookie' do
+      # Check if locale cookie is not set by default
+      get :index, params: {locale: :fr}
+      expect(response.cookies['locale']).to be_nil
+
+      # Check if locale cookie is set if it is changed by user
+      get :index, params: {locale: :fr, set_by_user: true}
+      expect(response.cookies['locale']).to eql('fr')
+
+      # Cookie should not be changed if user requests page with other locale
+      get :index, params: {locale: :en}
+      expect(response.cookies['locale']).to be_nil
+    end
+  end
+
+  describe 'PuzzleTime sync' do
+    it 'new person route should redirect to index path when ptime sync is active' do
+      get :new
+      expect(response.code).to eql('200')
+
+      enable_ptime_sync
+
+      get :new
+      expect(response).to redirect_to(root_path)
+    end
+  end
 end

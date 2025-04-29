@@ -1,2 +1,0 @@
-class UpdatePerson < ApplicationRecord
-end
