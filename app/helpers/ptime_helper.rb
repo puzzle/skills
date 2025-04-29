@@ -3,5 +3,5 @@ module PtimeHelper
     "#{ptime_employee[:firstname]} #{ptime_employee[:lastname]}"
   end
 
-  MAX_NUMBER_OF_FETCHED_EMPLOYEES = 1000
+  MAX_PAGE_SIZE = 1000
 end
