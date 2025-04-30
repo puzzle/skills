@@ -11,11 +11,18 @@ describe Ptime::Client do
     expect(fetched_employees).to eq(ptime_employees_data)
   end
 
-  it 'should raise PTimeClientError page is unreachable' do
+  it 'should raise PtimeClientError when page is unreachable' do
     stub_env_var("PTIME_BASE_URL", "irgendoepis.example.com")
     stub_ptime_request(ptime_employees.to_json, "employees?per_page=1000", 404)
     expect {
       Ptime::Client.new.request(:get, "employees", { per_page: 1000 })
     }.to raise_error(PtimeExceptions::PtimeClientError)
+  end
+
+  it 'should raise PtimeBaseUrlNotSet when ptime sync is active but base url is not set' do
+    allow(ENV).to receive(:fetch).with('PTIME_BASE_URL').and_raise(KeyError)
+    expect {
+      Ptime::Client.new.request(:get, "employees", { per_page: 1000 })
+    }.to raise_error(PtimeExceptions::PtimeBaseUrlNotSet)
   end
 end
