@@ -1,4 +1,5 @@
 module PtimeExceptions
-  class PTimeClientError < StandardError; end
+  class PtimeClientError < StandardError; end
+  class PtimeBaseUrlNotSet < StandardError; end
   class PersonUpdateWithPTimeDataFailed < StandardError; end
 end

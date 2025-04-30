@@ -16,6 +16,6 @@ describe Ptime::Client do
     stub_ptime_request(ptime_employees.to_json, "employees?per_page=1000", 404)
     expect {
       Ptime::Client.new.request(:get, "employees", { per_page: 1000 })
-    }.to raise_error(PtimeExceptions::PTimeClientError)
+    }.to raise_error(PtimeExceptions::PtimeClientError)
   end
 end
