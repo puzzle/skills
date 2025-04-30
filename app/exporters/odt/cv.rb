@@ -88,9 +88,7 @@ module Odt
       report.add_field(:project, 'pcv')
       report.add_field(:section, 'dev1')
       report.add_field(:name, person.name) unless anon?
-      # For the moment we only take the first role, will change when there are many per person
-      report.add_field(:title_function, person.roles[0].try(:name))
-
+      report.add_field(:title_function, person.roles.list.map(&:name).join("\n"))
       report.add_field(:header_info, "#{person.name} - Version 1.0")
 
       report.add_field(:date, Time.zone.today.strftime('%d.%m.%Y'))
@@ -184,13 +182,14 @@ module Odt
     end
 
     def competence_notes_list
-      if person.competence_notes.present? && person.display_competence_notes_in_cv
-        {
-          category: 'Notizen',
-          competence: person.competence_notes.strip
-        }
-      else
-        []
+      return [] unless person.display_competence_notes_in_cv && person.competence_notes.present?
+
+      { category: 'Notizen', competence: person.competence_notes.strip }
+    end
+
+    def add_cv_table(report, name, records, columns)
+      report.add_table(name, records, header: true) do |t|
+        columns.each { |key, attr| t.add_column(key, attr) }
       end
     end
 
@@ -204,13 +203,14 @@ module Odt
           month_to: formatted_month(e.month_to),
           title: "#{e.title}\n#{e.location}" }
       end
-      report.add_table('EDUCATIONS', educations_list, header: true) do |t|
-        t.add_column(:month_from, :month_from)
-        t.add_column(:year_from, :year_from)
-        t.add_column(:month_to, :month_to)
-        t.add_column(:year_to, :year_to)
-        t.add_column(:education, :title)
-      end
+      add_cv_table(report, 'EDUCATIONS', educations_list, {
+                     month_from: :month_from,
+                     year_from: :year_from,
+                     month_to: :month_to,
+                     year_to: :year_to,
+                     education: :title
+                   })
+
     end
 
     def insert_advanced_trainings(report)
@@ -223,13 +223,13 @@ module Odt
           description: at.description }
       end
 
-      report.add_table('ADVANCED_TRAININGS', advanced_trainings_list, header: true) do |t|
-        t.add_column(:month_from, :month_from)
-        t.add_column(:year_from, :year_from)
-        t.add_column(:month_to, :month_to)
-        t.add_column(:year_to, :year_to)
-        t.add_column(:advanced_training, :description)
-      end
+      add_cv_table(report, 'ADVANCED_TRAININGS', advanced_trainings_list, {
+                     month_from: :month_from,
+                     year_from: :year_from,
+                     month_to: :month_to,
+                     year_to: :year_to,
+                     advanced_training: :description
+                   })
     end
 
     def insert_activities(report)
@@ -241,13 +241,13 @@ module Odt
           description: "#{a.role}\n\n#{a.description}" }
       end
 
-      report.add_table('ACTIVITIES', activities_list, header: true) do |t|
-        t.add_column(:month_from, :month_from)
-        t.add_column(:year_from, :year_from)
-        t.add_column(:month_to, :month_to)
-        t.add_column(:year_to, :year_to)
-        t.add_column(:activity, :description)
-      end
+      add_cv_table(report, 'ACTIVITIES', activities_list, {
+                     month_from: :month_from,
+                     year_from: :year_from,
+                     month_to: :month_to,
+                     year_to: :year_to,
+                     activity: :description
+                   })
     end
 
     def insert_projects(report)
@@ -262,16 +262,16 @@ module Odt
           project_technology: p.technology.to_s }
       end
 
-      report.add_table('PROJECTS', projects_list, header: true) do |t|
-        t.add_column(:month_from, :month_from)
-        t.add_column(:year_from, :year_from)
-        t.add_column(:month_to, :month_to)
-        t.add_column(:year_to, :year_to)
-        t.add_column(:project_title, :project_title)
-        t.add_column(:project_description, :project_description)
-        t.add_column(:project_role, :project_role)
-        t.add_column(:project_technology, :project_technology)
-      end
+      add_cv_table(report, 'PROJECTS', projects_list, {
+                     month_from: :month_from,
+                     year_from: :year_from,
+                     month_to: :month_to,
+                     year_to: :year_to,
+                     project_title: :project_title,
+                     project_description: :project_description,
+                     project_role: :project_role,
+                     project_technology: :project_technology
+                   })
     end
     # rubocop:enable Metrics/AbcSize
     # rubocop:enable Metrics/MethodLength
@@ -300,14 +300,12 @@ module Odt
     end
 
     def languages
-      languages = []
-      person.language_skills.list.collect do |l|
+      person.language_skills.list.map do |l|
         language = I18nData.languages('DE')[l.language]
-        level = l.level
-        languages << "#{language} (#{level})"
-      end
-      languages.join("\n")
+        "#{language} (#{l.level})"
+      end.join("\n")
     end
+
 
   end
 
