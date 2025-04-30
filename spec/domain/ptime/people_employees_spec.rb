@@ -58,7 +58,7 @@ describe Ptime::PeopleEmployees do
 
     stub_ptime_request(people_employees_json.to_json)
 
-    expect { Ptime::PeopleEmployees.new.update_people_data }.to raise_error(PtimeExceptions::PersonUpdateWithPTimeDataFailed,
+    expect { Ptime::PeopleEmployees.new.update_people_data }.to raise_error(PtimeExceptions::PersonUpdateWithPtimeDataFailed,
       "Records were invalid while updating #{employee_full_name(longmax_attributes)} with data from PuzzleTime")
   end
 
