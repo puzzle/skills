@@ -210,7 +210,6 @@ module Odt
                      year_to: :year_to,
                      education: :title
                    })
-
     end
 
     def insert_advanced_trainings(report)
