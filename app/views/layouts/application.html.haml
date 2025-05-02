@@ -17,7 +17,7 @@
   %body#dropdown-wormhole.d-flex.justify-content-center{"data-controller": "skills-empty-space"}
     %div.content{"data-skills-empty-space-target": "container"}
       %div.position-sticky.top-0.z-top
-        %pzsh-topbar{href: root_path}
+        %pzsh-topbar{href: people_path}
           %img{:src=> "/assets/pzsh_skills_logo.svg"}
           %div.d-flex
             %div.mb-1.mt-1
@@ -25,7 +25,7 @@
         %pzsh-banner
         %pzsh-menu
           %div{slot: 'actions'}
-            %pzsh-menu-action.d-flex.cursor-pointer.h-100.ps-2.pe-2{"data-action": "click->skills-empty-space#goCrazy"}
+            %pzsh-menu-action.d-flex.cursor-pointer.h-100.ps-2.pe-2.go-crazy{"data-action": "click->skills-empty-space#goCrazy"}
             %pzsh-menu-dropdown
               -# Language selector
               %div{slot: 'toggle'}

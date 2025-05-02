@@ -410,3 +410,9 @@ a > img {
 .z-top {
   z-index: 9999999;
 }
+
+@media (max-width: 800px) {
+  .go-crazy {
+    display: none !important;
+  }
+}
