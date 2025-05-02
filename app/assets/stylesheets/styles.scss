@@ -19,8 +19,7 @@ $skills-dark-blue: #1e5a96;
 }
 
 .content {
-  width: 80%;
-  flex-grow: 1;
+  min-width: 80%;
 }
 
 .cursor-pointer {
@@ -395,10 +394,6 @@ a > img {
   width: 5%;
 }
 
-pzsh-banner {
-  height: 50px;
-}
-
 .w-45 {
   width: 45%;
 }
@@ -412,8 +407,6 @@ pzsh-banner {
   margin-bottom: 0;
 }
 
-pzsh-backdrop {
-  z-index: -1;
-  width: 80%;
-  left: 10%;
+.z-top {
+  z-index: 9999999;
 }
