@@ -50,12 +50,24 @@ class PeopleController < CrudController
   end
 
   def export
-    odt_file = Odt::Cv.new(entry, params).export
+    cv = Odt::Cv.new(entry, params)
+    odt_file = Odt::PuzzleCv.new(cv).export
     filename = if true?(params[:anon])
                  'CV_Puzzle_ITC_anonymized.odt'
                else
                  filename(entry.name, 'CV_Puzzle_ITC')
                end
+
+    send_data odt_file.generate,
+              type: 'application/vnd.oasis.opendocument.text',
+              disposition: content_disposition('attachment', filename)
+  end
+
+  def export_redhat
+    cv = Odt::Cv.new(entry, params)
+    odt_file = Odt::RedhatCv.new(cv).export
+    initials = entry.name.split.then { |first, last| "#{first[0]}#{last[0]}" }
+    filename = initials << '_Red_Hat_Services_CV'
 
     send_data odt_file.generate,
               type: 'application/vnd.oasis.opendocument.text',

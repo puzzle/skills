@@ -11,27 +11,6 @@ module Odt
       @params = params
     end
 
-    # rubocop:disable Metrics/MethodLength
-    def export
-      country_suffix = location.country == 'DE' ? '_de' : ''
-      anonymous_suffix = anon? ? '_anon' : ''
-      @skills_by_level_list = skills_by_level_value(skill_level_value)
-      include_level = include_skills_by_level? ? '_with_level' : ''
-      template_name = "cv_template#{country_suffix}#{anonymous_suffix}#{include_level}.odt"
-      ODFReport::Report.new("lib/templates/#{template_name}") do |r|
-        insert_general_sections(r)
-        insert_locations(r)
-        insert_personalien(r)
-        insert_competences(r)
-        insert_advanced_trainings(r)
-        insert_educations(r)
-        insert_activities(r)
-        insert_projects(r)
-      end
-    end
-
-    # rubocop:enable Metrics/MethodLength
-
     private
 
     def anon?
@@ -305,7 +284,16 @@ module Odt
       end.join("\n")
     end
 
+    def insert_initials(report)
+      first, last = person.name.split
+      initials = "#{first[0]}.#{last[0]}."
+      report.add_field(:initials, initials)
+    end
 
+    def insert_competence_notes_string(report)
+      competence_notes = person.competence_notes.split("\n").join(', ')
+      report.add_field(:competence, competence_notes)
+    end
   end
 
   # rubocop:enable Metrics/ClassLength
