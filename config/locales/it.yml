@@ -69,7 +69,6 @@ it:
         marital_status: Stato civile
         name: Nome
         nationality: Nazionalità
-        person_role_level: Persona ruolo livello
         person_roles:
           one: Funzione
           other: Funzioni
@@ -255,6 +254,11 @@ it:
     registered_partnership: società registrata
     single: singolo
     widowed: vedova
+  company:
+    company: Azienda
+    former_employee: Ex dipendente
+    applicant: Candidato
+    partner: Partner
   people:
     activities:
       link:

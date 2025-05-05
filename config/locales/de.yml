@@ -69,7 +69,6 @@ de:
         marital_status: Zivilstand
         name: Name
         nationality: Nationalität
-        person_role_level: Person Rolle Level
         person_roles:
           one: Funktion
           other: Funktionen
@@ -259,6 +258,11 @@ de:
     registered_partnership: eingetragene Partnerschaft
     single: ledig
     widowed: verwitwet
+  company:
+    company: Firma
+    former_employee: Ex-Mitarbeite
+    applicant: Bewerber
+    partner: Partner
   people:
     activities:
       link:

@@ -39,7 +39,7 @@
               %th.fw-normal.text-gray 
                 = Person.human_attribute_name(:company)
               %tr
-                %td= @person.company.name
+                %td= I18n.t("company.#{@person.company.name.gsub(/\s+/, "_").downcase}")
         %div.pe-5.col-xl-3.col-12
           %table.fixed-table
             %tbody

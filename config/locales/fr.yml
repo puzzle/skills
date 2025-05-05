@@ -69,7 +69,6 @@ fr:
         marital_status: État civil
         name: Nom
         nationality: Nationalité
-        person_role_level: Personne rôle niveau
         person_roles:
           one: Fonction
           other: Fonctions
@@ -255,6 +254,11 @@ fr:
     registered_partnership: partenariat enregistré
     single: célibataire
     widowed: veuf/veuve
+  company:
+    company: Entreprise
+    former_employee: Ancien employé
+    applicant: Candidat
+    partner: Partenaire
   people:
     activities:
       link:

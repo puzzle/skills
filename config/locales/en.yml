@@ -69,7 +69,6 @@ en:
         marital_status: Marital status
         name: Name
         nationality: Nationality
-        person_role_level: Person role level
         person_roles:
           one: Function
           other: Functions
@@ -255,6 +254,11 @@ en:
     registered_partnership: registered partnership
     single: single
     widowed: widowed
+  company:
+    company: Company
+    former_employee: Former employee
+    applicant: Applicant
+    partner: Partner
   people:
     activities:
       link:
