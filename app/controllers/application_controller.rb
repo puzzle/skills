@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   def switch_locale(&)
     param_locale = params[:locale]
-    redirect_to(locale: cookies[:locale] || I18n.default_locale) unless param_locale
+    redirect_to url_for(locale: cookies[:locale] || I18n.default_locale) and return unless  param_locale
     cookies.permanent[:locale] = param_locale unless params[:set_by_user].nil?
     I18n.with_locale(param_locale, &)
   end
