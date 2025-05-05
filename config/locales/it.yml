@@ -201,6 +201,7 @@ it:
       cancel: Annullamento
       download: Scaricare
       export: Esportazione
+      export_redhat: Esportazione Red Hat
       remove: Rimuovere
       save_new: Risparmi e novità
     navbar:

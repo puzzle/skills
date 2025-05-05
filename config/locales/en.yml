@@ -201,6 +201,7 @@ en:
       cancel: Cancel
       download: Download
       export: Export
+      export_redhat: Red Hat export
       remove: Remove
       save_new: Save & New
     navbar:
