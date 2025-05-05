@@ -3,9 +3,9 @@
 module PictureHelper
   def language_skill_svg(level)
     if matching_skill_level('native', level)
-      return 'muttersprache'
+      return 'Muttersprache'
     elsif matching_skill_level('none', level)
-      return 'keine'
+      return 'Keine'
     end
 
     level
