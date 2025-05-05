@@ -17,9 +17,12 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
+require 'webmock/rspec'
 require 'simplecov'
 SimpleCov.start
 SimpleCov.coverage_dir 'spec/coverage'
+
+WebMock.disable_net_connect!(allow_localhost: true)
 
 RSpec.configure do |config|
 

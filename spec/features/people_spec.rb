@@ -4,6 +4,7 @@ describe :people do
   describe 'People Search', type: :feature, js: true do
 
     before(:each) do
+      use_skills_db
       sign_in auth_users(:user), scope: :auth_user
     end
 
@@ -48,6 +49,16 @@ describe :people do
       not_matched_strings.pluck(:name).each do |name|
         expect(page).to have_no_text(name)
       end
+    end
+
+    it 'should redirect to correct person ' do
+      alice = people(:alice)
+      alice.ptime_employee_id = 21
+      alice.save!
+      visit people_path
+      select_from_slim_select("#person_id_person", alice.name)
+      expect(page).to have_current_path(person_path(alice))
+      expect(page).to have_css('.ss-single', text: 'Alice Mante')
     end
   end
 
@@ -193,6 +204,27 @@ describe :people do
   describe 'Edit person', type: :feature, js: true do
     before(:each) do
       sign_in auth_users(:user), scope: :auth_user
+    end
+
+    it 'should have edit fields disabled if ptime sync is active' do
+      allow(Skills).to receive(:use_ptime_sync?).and_return(true)
+      bob = people(:bob)
+      visit person_path(bob)
+      click_link('Bearbeiten', href: edit_person_path(bob))
+      page.find('#person_name').disabled?
+      page.find('#person_email').disabled?
+      page.find('#person_title').disabled?
+      page.find('#person_person_roles_attributes_0_role_id').disabled?
+      page.find('#person_person_roles_attributes_0_person_role_level_id').disabled?
+      page.find('#person_person_roles_attributes_0_percent').disabled?
+      page.find('#person_department_id').disabled?
+      page.find('#person_company_id').disabled?
+      page.find('#person_location').disabled?
+      page.find('#person_birthdate').disabled?
+      page.find('#nat-two-checkbox').disabled?
+      page.find('#person_nationality').disabled?
+      page.find('#person_marital_status').disabled?
+      page.find('#person_shortname').disabled?
     end
 
     it 'should have all edit fields' do
