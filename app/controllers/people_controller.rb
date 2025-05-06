@@ -81,9 +81,7 @@ class PeopleController < CrudController
     BranchAdress.find_by(default_branch_adress: true) || BranchAdress.first
   end
 
-  def permitted_attrs
-    Skills.use_ptime_sync? ? ptime_permitted_attrs : default_permitted_attrs
-  end
+  self.permitted_attrs = Skills.use_ptime_sync? ? ptime_permitted_attrs : default_permitted_attrs
 
   def ptime_permitted_attrs
     [
