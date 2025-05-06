@@ -12,7 +12,7 @@ module PersonHelper
 
   def person_role_string(person_role)
     role_level = person_role.person_role_level&.level
-    role_level = I18n.t('language_skills.none') if role_level == "Keine"
+    role_level = I18n.t('language_skills.none') if role_level == 'Keine'
     "#{person_role.role.name} #{role_level}
       #{person_role.percent.nil? ? '' : "#{person_role.percent.to_i}%"}"
   end
@@ -67,7 +67,7 @@ module PersonHelper
 
   def role_skill_levels
     PersonRoleLevel.order(:level).each do |role|
-      if role.level == "Keine"
+      if role.level == 'Keine'
         role.level = I18n.t('language_skills.none')
       end
     end

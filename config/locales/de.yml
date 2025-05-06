@@ -251,7 +251,7 @@ de:
       edit: "%{model} bearbeiten"
   language_skills:
     native: Muttersprache
-    none: Keine
+    none: Keines
   marital_statuses:
     divorced: geschieden
     married: verheiratet
