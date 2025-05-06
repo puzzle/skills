@@ -22,7 +22,7 @@ module Ptime
       puts 'Assigning employee IDs now...' if should_map
 
       @unmatched_entries = []
-      mapped_people_count = 0
+      @mapped_people_count = 0
 
       @ptime_employees.each do |ptime_employee|
         email = ptime_employee[:attributes][:email]
@@ -36,13 +36,17 @@ module Ptime
         matched_person.update(ptime_employee_id: ptime_employee[:id])
       end
 
+      print_mapped_and_unmapped_people
+    end
+    # rubocop:enable Metrics
+
+    def print_mapped_and_unmapped_people
       puts '--------------------------'
-      puts "#{mapped_people_count} people were matched successfully"
+      puts "#{@mapped_people_count} people were matched successfully"
       puts '--------------------------'
       puts "#{@unmatched_entries.size} people didn't match"
       @unmatched_entries.each { |entry| puts "- #{entry[:name]} with id #{entry[:id]}" }
     end
-    # rubocop:enable Metrics
 
     def record_unmatched_entry(ptime_employee)
       @unmatched_entries << {
