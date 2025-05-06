@@ -175,7 +175,7 @@ describe :people do
         expect(language_select.value).to eql(default_languages[i])
       end
       language_level_selects.each do |language_level_select|
-        expect(language_level_select.value).to eql('Keine')
+        expect(language_level_select.value).to eql('Keines')
       end
       language_certificate_inputs.each do |language_certificate_input|
         expect(language_certificate_input.value).to eql('')
