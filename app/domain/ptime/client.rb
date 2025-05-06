@@ -6,9 +6,7 @@ require 'base64'
 module Ptime
   class Client
     def initialize
-      @base_url = "#{ENV.fetch('PTIME_BASE_URL')}/api/v1/"
-    rescue KeyError
-      raise PtimeExceptions::PtimeBaseUrlNotSet, 'PTIME_BASE_URL environment variable is not set'
+      @base_url = "#{ptime_base_url}/api/v1/"
     end
 
     def request(method, endpoint, params = {})
@@ -35,6 +33,13 @@ module Ptime
       JSON.parse(response.body, symbolize_names: true)[:data]
     rescue RestClient::ExceptionWithResponse
       raise PtimeExceptions::PtimeClientError, 'An unexpected error occurred while fetching data'
+    end
+
+    def ptime_base_url
+      url = ENV.fetch('PTIME_BASE_URL')
+      return url if url
+
+      raise PtimeExceptions::PtimeBaseUrlNotSet, 'PTIME_BASE_URL environment variable is not set'
     end
   end
 end
