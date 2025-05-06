@@ -47,7 +47,7 @@
           %th.fw-normal 
             = form.label :company
           %tr
-            %td= form.collection_select :company_id, company_status, :id, :name, {}, class: "form-select mw-100"
+            %td= form.collection_select :company_id, Company.order(:name), :id, :name, {}, class: "form-select mw-100"
           %th.fw-normal 
             = form.label :location
           %tr

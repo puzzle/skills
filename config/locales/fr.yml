@@ -254,11 +254,6 @@ fr:
     registered_partnership: partenariat enregistré
     single: célibataire
     widowed: veuf/veuve
-  company:
-    company: Entreprise
-    former_employee: Ancien employé
-    applicant: Candidat
-    partner: Partenaire
   people:
     activities:
       link:

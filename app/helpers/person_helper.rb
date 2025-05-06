@@ -73,12 +73,6 @@ module PersonHelper
     end
   end
 
-  def company_status
-    Company.order(:name).each do |company|
-      company.name = I18n.t("company.#{company.name.gsub(/\s+/, "_").downcase}")
-    end
-  end
-
   def people_skills_of_category(category)
     @people_skills.where(skill_id: category.skills.pluck(:id)).sort_by(&:id)
   end

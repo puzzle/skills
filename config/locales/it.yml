@@ -254,11 +254,6 @@ it:
     registered_partnership: società registrata
     single: singolo
     widowed: vedova
-  company:
-    company: Azienda
-    former_employee: Ex dipendente
-    applicant: Candidato
-    partner: Partner
   people:
     activities:
       link:

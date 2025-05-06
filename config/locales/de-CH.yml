@@ -275,11 +275,6 @@ de-CH:
     registered_partnership: itrageni Partnerschaft
     single: ledig
     widowed: verwitwet
-  company:
-    company: Firma
-    former_employee: Ex-Mitarbeiter
-    applicant: Bewärber
-    partner: Partner
   people:
     activities:
       link:
