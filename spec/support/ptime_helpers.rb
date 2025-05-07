@@ -1,5 +1,6 @@
 module PtimeHelpers
   def enable_ptime_sync
+    PeopleController.permitted_attrs = PeopleController.instance_variable_get("@ptime_permitted_attrs")
     stub_env_var("PTIME_BASE_URL", "www.ptime.example.com")
     stub_env_var("PTIME_API_USERNAME", "test username")
     stub_env_var("PTIME_API_PASSWORD", "test password")
