@@ -20,7 +20,7 @@ describe Ptime::Client do
   end
 
   it 'should raise PtimeBaseUrlNotSet when ptime sync is active but base url is not set' do
-    allow(ENV).to receive(:fetch).with('PTIME_BASE_URL').and_raise(KeyError)
+    stub_env_var('PTIME_BASE_URL', nil)
     expect {
       Ptime::Client.new.request(:get, "employees", { per_page: 1000 })
     }.to raise_error(PtimeExceptions::PtimeBaseUrlNotSet)
