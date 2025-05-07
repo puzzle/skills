@@ -85,7 +85,7 @@ class PeopleController < CrudController
     [
       :updated_by, :picture, :picture_cache, :competence_notes,
       :display_competence_notes_in_cv,
-      { language_skills_attributes: [[:language, :level, :certificate, :id, :_destroy]]}
+      { language_skills_attributes: [[:language, :level, :certificate, :id, :_destroy]] }
     ]
   end
 
