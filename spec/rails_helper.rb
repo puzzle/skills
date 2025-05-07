@@ -64,6 +64,7 @@ RSpec.configure do |config|
 
   config.before(:each) do
     stub_env_var("USE_PTIME_SYNC", false)
+    PeopleController.permitted_attrs = PeopleController.instance_variable_get("@default_permitted_attrs")
   end
 
   show_logs = ENV.fetch('SHOW_LOGS', false)

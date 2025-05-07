@@ -81,15 +81,14 @@ class PeopleController < CrudController
     BranchAdress.find_by(default_branch_adress: true) || BranchAdress.first
   end
 
-  def ptime_permitted_attrs
+  @ptime_permitted_attrs =
     [
       :updated_by, :picture, :picture_cache, :competence_notes,
       :display_competence_notes_in_cv,
       { language_skills_attributes: [[:language, :level, :certificate, :id, :_destroy]] }
     ]
-  end
 
-  def default_permitted_attrs
+  @default_permitted_attrs =
     [
       :birthdate, :location, :marital_status, :updated_by, :name,
       :nationality, :nationality2, :title, :competence_notes, :company_id, :email,
@@ -99,11 +98,8 @@ class PeopleController < CrudController
         language_skills_attributes: [[:language, :level, :certificate, :id, :_destroy]]
       }
     ]
-  end
 
-  def permitted_attrs
-    Skills.use_ptime_sync? ? ptime_permitted_attrs : default_permitted_attrs
-  end
+  self.permitted_attrs = Skills.use_ptime_sync? ? @ptime_permitted_attrs : @default_permitted_attrs
 
   def redirect_index_if_use_ptime_sync
     redirect_to root_path if Skills.use_ptime_sync?
