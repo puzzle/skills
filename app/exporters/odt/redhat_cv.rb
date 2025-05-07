@@ -2,9 +2,8 @@
 
 module Odt
   class RedhatCv
-
-    def initialize(cv)
-      @cv = cv
+    def initialize(redhat_cv)
+      @cv = redhat_cv
     end
 
     def export

@@ -2,16 +2,15 @@
 
 module Odt
   class PuzzleCv
-    def initialize(cv)
-      @cv = cv
+    def initialize(puzzle_cv)
+      @cv = puzzle_cv
     end
 
     def export
       country_suffix = @cv.send(:location).country == 'DE' ? '_de' : ''
       anonymous_suffix = @cv.send(:anon?) ? '_anon' : ''
       @cv.instance_variable_set(:@skills_by_level_list,
-                                @cv.send(:skills_by_level_value, @cv.send(:skill_level_value))
-      )
+                                @cv.send(:skills_by_level_value, @cv.send(:skill_level_value)))
       include_level = @cv.send(:include_skills_by_level?) ? '_with_level' : ''
       new_report("cv_template#{country_suffix}#{anonymous_suffix}#{include_level}.odt")
     end
