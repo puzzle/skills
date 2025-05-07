@@ -51,7 +51,7 @@ module Ptime
     def record_unmatched_entry(ptime_employee)
       @unmatched_entries << {
         id: ptime_employee[:id],
-        name: employee_full_name(ptime_employee[:attributes]),
+        name: employee_full_name(ptime_employee[:attributes])
       }
     end
 
