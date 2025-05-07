@@ -1,0 +1,89 @@
+{
+  "data": [
+    {
+      "id" : 33,
+      "type" : "employee",
+      "attributes" : {
+        "shortname" : "SFI",
+        "firstname" : "Shortmax",
+        "lastname" : "Fisher",
+        "email" : "longmax@example.com",
+        "marital_status" : "married",
+        "nationalities" : ["US"],
+        "graduation" : "Flashing lights",
+        "city" : "Bern",
+        "birthday" : "1990-03-10",
+        "is_employed" : true,
+        "department_shortname" : "UX",
+        "department_name" : "/ux",
+        "employment_roles" : [
+          {
+            "name" : "T2 UX Consultant",
+            "percent" : 100.0,
+            "role_level" : "S4"
+          },
+          {
+            "name" : "T2 Bratwurstbrater",
+            "percent" : 20,
+            "role_level" : "S3"
+          }
+        ]
+      }
+    },
+    {
+      "id" : 21,
+      "type" : "employee",
+      "attributes" : {
+        "shortname" : "ECH",
+        "firstname" : "Emmeline",
+        "lastname" : "Charlotte",
+        "email" : "emmeline@example.com",
+        "marital_status" : "single",
+        "nationalities" : ["DE"],
+        "graduation" : "MSc in writing",
+        "city" : "Genf",
+        "birthday" : "2001-01-05",
+        "is_employed" : true,
+        "department_shortname" : "D3",
+        "department_name" : "/dev/tre",
+        "employment_roles" : [
+          {
+            "name" : "T2 Software Engineer",
+            "percent" : 80.0,
+            "role_level": "S5"
+          },
+          {
+            "name" : "T1 Raumschiff Pilotin",
+            "percent" : 20,
+            "role_level" : "S3"
+          }
+        ]
+      }
+    },
+    {
+      "id" : 45,
+      "type" : "employee",
+      "attributes" : {
+        "shortname" : "WFI",
+        "firstname" : "Walter",
+        "lastname" : "Fiat",
+        "email" : "charlie@example.com",
+        "marital_status" : "married",
+        "nationalities" : ["CX"],
+        "graduation" : "Can't tell me nothing",
+        "city" : "Thun",
+        "birthday" : "1980-10-25",
+        "is_employed" : false,
+        "department_shortname" : "UX",
+        "department_name" : "/ux",
+        "employment_roles" : [
+          {
+            "name" : "T3 Architect",
+            "percent" : 100.0,
+            "role_level" : "S3"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -46,6 +46,8 @@ Rails.application.routes.draw do
       resources :roles
       resources :companies
       resources :unified_skills, only: [:new, :create]
+      resources :manual_ptime_sync, only: :index
+      post :execute_manual_ptime_sync, to: 'manual_ptime_sync#manual_sync'
     end
 
     resources :people do

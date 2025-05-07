@@ -133,16 +133,24 @@ de-CH:
         list: Admin Panel
     index:
       unify_skills: Skills vereinä
+      update_people_manually: Persone manuell aktualisiere
+    manual_ptime_sync:
+      manual_sync:
+        failed_people_updates: Bi dr Aktualisierig vo %{names} isch öppis schiefgloffe. Versuechs nomau und überprüef auefaus d Date im PuzzleTime.
+        fetching_data_failed: Öppis ische bim fetche vo de Date usem PuzzleTime schief gloffe. Bitte probiers nomau und kontaktier auefaus dr Support.
+        people_updated: D Datä vo aunä Personä si erfolgriich aktualisiert wordä
     unified_skills:
       create:
         success: Skill %{skill1} isch erfolgriich mit Skill %{skill2} zum neuä Skill %{new_skill} vereint wordä
+  admin/manual_ptime_sync:
+    index:
+      description: We dä wunderschön Chnopf drückt wird, de wärde d Date vo aune Persone mit de Date usem PuzzleTime aktualisiert. Ds cha einigi Sekunde duure.
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: Konfliktä gfundä
     form:
       check_for_conflicts: Uf Konflikt überprüefe
       unify: Vereinä
-      unify_skills: Skills vereinä
     remote_modal:
       conflicts_found_message:
         one: "%{names} het beidi Skills bewertet. We si trotzdem vereint werde, wird di besseri Bewertig übernoh."
@@ -289,6 +297,8 @@ de-CH:
         location: 'Niderlassig (für Footer):'
         skills_by_level: Skills nach Level
         trainee: Trainee
+    form:
+      ptime_data: Diä Datä si usem Puzzle Time, drum chasch du diä nid veränderä.
     global:
       confirm_delete: Wosch du diä Person würk löschä?
       link:

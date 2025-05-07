@@ -13,6 +13,9 @@ require 'action_mailer/railtie'
 Bundler.require(*Rails.groups)
 
 module Skills
+  def self.use_ptime_sync?
+    ActiveModel::Type::Boolean.new.cast(ENV.fetch('USE_PTIME_SYNC', true))
+  end
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 8.0
@@ -21,6 +24,8 @@ module Skills
     config.i18n.default_locale = :de
 
     config.active_record.verify_foreign_keys_for_fixtures = false
+
+    config.active_job.queue_adapter = :delayed_job
 
     # Bullet tries to add finish_at to insert statement, which does not exist anymore
     config.active_record.partial_inserts = true
