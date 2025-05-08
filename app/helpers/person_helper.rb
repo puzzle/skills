@@ -62,7 +62,16 @@ module PersonHelper
   end
 
   def language_skill_levels
-    [I18n.t('language_skills.none')] + %w[A1 A2 B1 B2 C1 C2] + [I18n.t('language_skills.native')]
+    [
+      ["#{I18n.t('language_skills.none')}", 'Keines'],
+      ['A1', 'A1'],
+      ['A2', 'A2'],
+      ['B1', 'B1'],
+      ['B2', 'B2'],
+      ['C1', 'C1'],
+      ['C2', 'C2'],
+      ["#{I18n.t('language_skills.native')}", 'Muttersprache']
+    ]
   end
 
   def role_skill_levels

@@ -7,7 +7,7 @@
   %div.d-flex
     %div.w-25.me-2
       = f.label t("global.people_skills.levels.level")
-      = f.collection_select :level, language_skill_levels, :itself, :itself, {}, class: "form-select mw-100 language-level-select"
+      = f.collection_select :level, language_skill_levels, :last, :first, {}, class: "form-select mw-100 language-level-select"
     %div.w-75
       = f.label t("global.people_skills.certificate")
       = f.text_field :certificate, class: "mw-100 form-control language-certificate-input"

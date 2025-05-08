@@ -75,7 +75,7 @@
                 - sort_languages(@person.language_skills).each do |language|
                   %tr
                     %td.p-2.pe-3.text-gray= language.language
-                    %td.p-2.pe-3= image_tag("language-levels/#{language_skill_svg(language.level).downcase}.svg", alt: "Language level indicator")
+                    %td.p-2.pe-3= image_tag("language-levels/#{language.level.downcase}.svg", alt: "Language level indicator")
                     - unless language.certificate.blank?
                       %td.p-2= image_tag("language-levels/icon_certificate.svg", alt: "Language certificate icon", title: language.certificate)
   %br
