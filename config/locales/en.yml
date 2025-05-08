@@ -202,6 +202,7 @@ en:
       download: Download
       export: Export
       export_redhat: Red Hat export
+      export_redhat_tooltip: Exports the CV using the official Red Hat template
       remove: Remove
       save_new: Save & New
     navbar:

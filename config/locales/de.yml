@@ -206,6 +206,7 @@ de:
       download: Herunterladen
       export: Exportieren
       export_redhat: Red Hat export
+      export_redhat_tooltip: Exportiert den Lebenslauf im offiziellen Red Hat format
       remove: Entfernen
       save_new: Speichern & Neu
     navbar:

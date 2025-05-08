@@ -9,7 +9,7 @@
           %ul.dropdown-menu
             %li 
               = export_action_link export_cv_person_path(@person), data: { turbo_frame: "remote_modal" }
-            %li.text-nowrap
+            %li.text-nowrap{ data: { bs_toggle: 'tooltip' }, title: ti('link.export_redhat_tooltip') }
               = export_redhat_action_link export_redhat_cv_person_path(@person)
             %li.text-nowrap
               = destroy_action_link

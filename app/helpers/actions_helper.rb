@@ -76,7 +76,7 @@ module ActionsHelper
   end
 
   def export_redhat_action_link(path, options = {})
-    action_link(ti('link.export_redhat'), 'export', path, options)
+    action_link(ti('link.export_redhat'), 'redhat', path, options)
   end
 
   def close_action_link(path, options = {})
