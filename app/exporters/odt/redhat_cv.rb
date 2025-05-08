@@ -8,12 +8,13 @@ module Odt
 
     def export
       ODFReport::Report.new('lib/templates/redhat_cv_template.odt') do |r|
-        @cv.send(:insert_initials, r)
-        @cv.send(:insert_personalien, r)
-        @cv.send(:insert_general_sections, r)
-        @cv.send(:insert_advanced_trainings, r)
-        @cv.send(:insert_projects, r)
-        @cv.send(:insert_competence_notes_string, r)
+        @cv.insert_initials(r)
+        @cv.insert_languages(r, 'EN')
+        @cv.insert_personalien(r)
+        @cv.insert_general_sections(r)
+        @cv.insert_advanced_trainings(r)
+        @cv.insert_activities(r)
+        @cv.insert_competence_notes_string(r)
       end
     end
   end

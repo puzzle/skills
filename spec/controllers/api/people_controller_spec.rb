@@ -12,7 +12,7 @@ describe Api::PeopleController do
       it 'returns bob' do
         bob = people(:bob)
 
-        expect_any_instance_of(Odt::PuzzleCv)
+        expect_any_instance_of(Odt::Cv)
           .to receive(:export)
           .exactly(1).times
           .and_call_original

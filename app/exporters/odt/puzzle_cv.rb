@@ -15,17 +15,20 @@ module Odt
       new_report("cv_template#{country_suffix}#{anonymous_suffix}#{include_level}.odt")
     end
 
+    # rubocop:disable Metrics/MethodLength
     def new_report(template_name)
       ODFReport::Report.new("lib/templates/#{template_name}") do |r|
-        @cv.send(:insert_general_sections, r)
-        @cv.send(:insert_locations, r)
-        @cv.send(:insert_personalien, r)
-        @cv.send(:insert_competences, r)
-        @cv.send(:insert_advanced_trainings, r)
-        @cv.send(:insert_educations, r)
-        @cv.send(:insert_activities, r)
-        @cv.send(:insert_projects, r)
+        @cv.insert_general_sections(r)
+        @cv.insert_languages(r)
+        @cv.insert_locations(r)
+        @cv.insert_personalien(r)
+        @cv.insert_competences(r)
+        @cv.insert_advanced_trainings(r)
+        @cv.insert_educations(r)
+        @cv.insert_activities(r)
+        @cv.insert_projects(r)
       end
     end
+    # rubocop:enable Metrics/MethodLength
   end
 end

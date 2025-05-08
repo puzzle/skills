@@ -66,7 +66,9 @@ class PeopleController < CrudController
   def export_redhat
     cv = Odt::Cv.new(entry, params)
     odt_file = Odt::RedhatCv.new(cv).export
-    initials = entry.name.split.then { |first, last| "#{first[0]}#{last[0]}" }
+    initials = entry.name.rpartition(' ').then do |first_part, _, last_part|
+      "#{first_part[0]}#{last_part[0]}"
+    end
     filename = initials << '_Red_Hat_Services_CV'
 
     send_data odt_file.generate,

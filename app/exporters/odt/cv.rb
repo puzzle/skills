@@ -11,8 +11,6 @@ module Odt
       @params = params
     end
 
-    private
-
     def anon?
       true?(@params[:anon])
     end
@@ -67,7 +65,7 @@ module Odt
       report.add_field(:project, 'pcv')
       report.add_field(:section, 'dev1')
       report.add_field(:name, person.name) unless anon?
-      report.add_field(:title_function, person.roles.list.map(&:name).join("\n"))
+      report.add_field(:title_function, person.roles.pluck(:name).join("\n"))
       report.add_field(:header_info, "#{person.name} - Version 1.0")
 
       report.add_field(:date, Time.zone.today.strftime('%d.%m.%Y'))
@@ -88,7 +86,6 @@ module Odt
         report.add_field(:email, person.email)
         report.add_image(:profile_picture, person.picture.path) if person.picture.file.present?
       end
-      report.add_field(:languages, languages)
     end
 
     def insert_competences(report)
@@ -216,7 +213,8 @@ module Odt
           month_from: formatted_month(a.month_from),
           year_to: formatted_year(a.year_to),
           month_to: formatted_month(a.month_to),
-          description: "#{a.role}\n\n#{a.description}" }
+          activity: a.role,
+          description: a.description }
       end
 
       add_cv_table(report, 'ACTIVITIES', activities_list, {
@@ -224,7 +222,8 @@ module Odt
                      year_from: :year_from,
                      month_to: :month_to,
                      year_to: :year_to,
-                     activity: :description
+                     activity: :activity,
+                     activity_description: :description
                    })
     end
 
@@ -277,16 +276,17 @@ module Odt
       country.translations[I18n.locale.to_s]
     end
 
-    def languages
-      person.language_skills.list.map do |l|
-        language = I18nData.languages('DE')[l.language]
+    def insert_languages(report, display_language = 'DE')
+      report.add_field(:languages, person.language_skills.list.map do |l|
+        language = I18nData.languages(display_language)[l.language]
         "#{language} (#{l.level})"
-      end.join("\n")
+      end.join("\n"))
     end
 
     def insert_initials(report)
-      first, last = person.name.split
-      initials = "#{first[0]}.#{last[0]}."
+      initials = person.name.rpartition(' ').then do |first_part, _, last_part|
+        "#{first_part[0]}.#{last_part[0]}."
+      end
       report.add_field(:initials, initials)
     end
 
