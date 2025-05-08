@@ -52,6 +52,7 @@ it:
           one: Formazione continua
           other: Formazione continua
         birthdate: Data di nascita
+        company: Azienda
         competence_notes: Note Membro
         department: Unità organizzativa
         display_competence_notes_in_cv: Includere nell'esportazione del CV
@@ -60,6 +61,7 @@ it:
           one: Istruzione
           other: Programmi di formazione
         email: E-mail
+        language_skills: Competenze linguistiche
         languages:
           one: Lingua
           other: Le lingue
@@ -243,6 +245,9 @@ it:
       add: "%{model} aggiungere"
       delete: Cancellare
       edit: "%{model} modifica"
+  language_skills:
+    native: Madrelingua
+    none: Nessuno
   marital_statuses:
     divorced: divorziato
     married: sposato

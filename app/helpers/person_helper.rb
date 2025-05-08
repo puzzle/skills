@@ -11,7 +11,9 @@ module PersonHelper
   end
 
   def person_role_string(person_role)
-    "#{person_role.role.name} #{person_role.person_role_level&.level}
+    role_level = person_role.person_role_level&.level
+    role_level = I18n.t('language_skills.none') if role_level == 'Keine'
+    "#{person_role.role.name} #{role_level}
       #{person_role.percent.nil? ? '' : "#{person_role.percent.to_i}%"}"
   end
 
@@ -39,7 +41,9 @@ module PersonHelper
   end
 
   def common_languages_translated
-    I18nData.languages('DE').collect do |language|
+    locale = I18n.locale
+    locale = 'de' if I18n.locale == :'de-CH'
+    I18nData.languages(locale).collect do |language|
       if LanguageList::LanguageInfo.find(language[0])&.common?
         [language.first, "#{language.last} (#{language.first})"]
       end
@@ -58,7 +62,24 @@ module PersonHelper
   end
 
   def language_skill_levels
-    %w[Keine A1 A2 B1 B2 C1 C2 Muttersprache]
+    [
+      [I18n.t('language_skills.none').to_s, 'Keines'],
+      %w[A1],
+      %w[A2],
+      %w[B1],
+      %w[B2],
+      %w[C1],
+      %w[C2],
+      [I18n.t('language_skills.native').to_s, 'Muttersprache']
+    ]
+  end
+
+  def role_skill_levels
+    PersonRoleLevel.order(:level).each do |role|
+      if role.level == 'Keine'
+        role.level = I18n.t('language_skills.none')
+      end
+    end
   end
 
   def people_skills_of_category(category)
