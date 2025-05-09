@@ -11,29 +11,6 @@ module Odt
       @params = params
     end
 
-    # rubocop:disable Metrics/MethodLength
-    def export
-      country_suffix = location.country == 'DE' ? '_de' : ''
-      anonymous_suffix = anon? ? '_anon' : ''
-      @skills_by_level_list = skills_by_level_value(skill_level_value)
-      include_level = include_skills_by_level? ? '_with_level' : ''
-      template_name = "cv_template#{country_suffix}#{anonymous_suffix}#{include_level}.odt"
-      ODFReport::Report.new("lib/templates/#{template_name}") do |r|
-        insert_general_sections(r)
-        insert_locations(r)
-        insert_personalien(r)
-        insert_competences(r)
-        insert_advanced_trainings(r)
-        insert_educations(r)
-        insert_activities(r)
-        insert_projects(r)
-      end
-    end
-
-    # rubocop:enable Metrics/MethodLength
-
-    private
-
     def anon?
       true?(@params[:anon])
     end
@@ -88,9 +65,7 @@ module Odt
       report.add_field(:project, 'pcv')
       report.add_field(:section, 'dev1')
       report.add_field(:name, person.name) unless anon?
-      # For the moment we only take the first role, will change when there are many per person
-      report.add_field(:title_function, person.roles[0].try(:name))
-
+      report.add_field(:title_function, person.roles.pluck(:name).join("\n"))
       report.add_field(:header_info, "#{person.name} - Version 1.0")
 
       report.add_field(:date, Time.zone.today.strftime('%d.%m.%Y'))
@@ -111,7 +86,6 @@ module Odt
         report.add_field(:email, person.email)
         report.add_image(:profile_picture, person.picture.path) if person.picture.file.present?
       end
-      report.add_field(:languages, languages)
     end
 
     def insert_competences(report)
@@ -184,13 +158,14 @@ module Odt
     end
 
     def competence_notes_list
-      if person.competence_notes.present? && person.display_competence_notes_in_cv
-        {
-          category: 'Notizen',
-          competence: person.competence_notes.strip
-        }
-      else
-        []
+      return [] unless person.display_competence_notes_in_cv && person.competence_notes.present?
+
+      { category: 'Notizen', competence: person.competence_notes.strip }
+    end
+
+    def add_cv_table(report, name, records, columns)
+      report.add_table(name, records, header: true) do |t|
+        columns.each { |key, attr| t.add_column(key, attr) }
       end
     end
 
@@ -204,13 +179,13 @@ module Odt
           month_to: formatted_month(e.month_to),
           title: "#{e.title}\n#{e.location}" }
       end
-      report.add_table('EDUCATIONS', educations_list, header: true) do |t|
-        t.add_column(:month_from, :month_from)
-        t.add_column(:year_from, :year_from)
-        t.add_column(:month_to, :month_to)
-        t.add_column(:year_to, :year_to)
-        t.add_column(:education, :title)
-      end
+      add_cv_table(report, 'EDUCATIONS', educations_list, {
+                     month_from: :month_from,
+                     year_from: :year_from,
+                     month_to: :month_to,
+                     year_to: :year_to,
+                     education: :title
+                   })
     end
 
     def insert_advanced_trainings(report)
@@ -223,13 +198,13 @@ module Odt
           description: at.description }
       end
 
-      report.add_table('ADVANCED_TRAININGS', advanced_trainings_list, header: true) do |t|
-        t.add_column(:month_from, :month_from)
-        t.add_column(:year_from, :year_from)
-        t.add_column(:month_to, :month_to)
-        t.add_column(:year_to, :year_to)
-        t.add_column(:advanced_training, :description)
-      end
+      add_cv_table(report, 'ADVANCED_TRAININGS', advanced_trainings_list, {
+                     month_from: :month_from,
+                     year_from: :year_from,
+                     month_to: :month_to,
+                     year_to: :year_to,
+                     advanced_training: :description
+                   })
     end
 
     def insert_activities(report)
@@ -238,16 +213,18 @@ module Odt
           month_from: formatted_month(a.month_from),
           year_to: formatted_year(a.year_to),
           month_to: formatted_month(a.month_to),
-          description: "#{a.role}\n\n#{a.description}" }
+          activity: a.role,
+          description: a.description }
       end
 
-      report.add_table('ACTIVITIES', activities_list, header: true) do |t|
-        t.add_column(:month_from, :month_from)
-        t.add_column(:year_from, :year_from)
-        t.add_column(:month_to, :month_to)
-        t.add_column(:year_to, :year_to)
-        t.add_column(:activity, :description)
-      end
+      add_cv_table(report, 'ACTIVITIES', activities_list, {
+                     month_from: :month_from,
+                     year_from: :year_from,
+                     month_to: :month_to,
+                     year_to: :year_to,
+                     activity: :activity,
+                     activity_description: :description
+                   })
     end
 
     def insert_projects(report)
@@ -262,16 +239,16 @@ module Odt
           project_technology: p.technology.to_s }
       end
 
-      report.add_table('PROJECTS', projects_list, header: true) do |t|
-        t.add_column(:month_from, :month_from)
-        t.add_column(:year_from, :year_from)
-        t.add_column(:month_to, :month_to)
-        t.add_column(:year_to, :year_to)
-        t.add_column(:project_title, :project_title)
-        t.add_column(:project_description, :project_description)
-        t.add_column(:project_role, :project_role)
-        t.add_column(:project_technology, :project_technology)
-      end
+      add_cv_table(report, 'PROJECTS', projects_list, {
+                     month_from: :month_from,
+                     year_from: :year_from,
+                     month_to: :month_to,
+                     year_to: :year_to,
+                     project_title: :project_title,
+                     project_description: :project_description,
+                     project_role: :project_role,
+                     project_technology: :project_technology
+                   })
     end
     # rubocop:enable Metrics/AbcSize
     # rubocop:enable Metrics/MethodLength
@@ -299,16 +276,24 @@ module Odt
       country.translations[I18n.locale.to_s]
     end
 
-    def languages
-      languages = []
-      person.language_skills.list.collect do |l|
-        language = I18nData.languages('DE')[l.language]
-        level = l.level
-        languages << "#{language} (#{level})"
-      end
-      languages.join("\n")
+    def insert_languages(report, display_language = 'DE')
+      report.add_field(:languages, person.language_skills.list.map do |l|
+        language = I18nData.languages(display_language)[l.language]
+        "#{language} (#{l.level})"
+      end.join("\n"))
     end
 
+    def insert_initials(report)
+      initials = person.name.rpartition(' ').then do |first_part, _, last_part|
+        "#{first_part[0]}.#{last_part[0]}."
+      end
+      report.add_field(:initials, initials)
+    end
+
+    def insert_competence_notes_string(report)
+      competence_notes = person.competence_notes.split("\n").join(', ')
+      report.add_field(:competence, competence_notes)
+    end
   end
 
   # rubocop:enable Metrics/ClassLength
