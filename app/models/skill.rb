@@ -15,6 +15,8 @@
 #
 
 class Skill < ApplicationRecord
+  include Discard::Model
+
   has_many :people_skills, dependent: :destroy
   has_many :people, through: :people_skills
   belongs_to :category
@@ -24,6 +26,8 @@ class Skill < ApplicationRecord
   enum :portfolio, Settings.portfolio
 
   validates :title, presence: true, length: { maximum: 100 }, uniqueness: { scope: :category_id }
+
+  default_scope { kept }
 
   scope :list, -> { order(:title) }
 

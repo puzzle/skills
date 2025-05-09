@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_09_105746) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_09_113422) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -243,7 +243,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_09_105746) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.bigint "category_id"
+    t.datetime "discarded_at"
     t.index ["category_id"], name: "index_skills_on_category_id"
+    t.index ["discarded_at"], name: "index_skills_on_discarded_at"
   end
 
   create_table "unified_skills", force: :cascade do |t|

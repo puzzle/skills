@@ -23,7 +23,7 @@ describe Admin::UnifiedSkillsController do
     post :create, params: { unified_skill_form: { old_skill_id1: skill1.id, old_skill_id2: skill2.id, checked_conflicts: true, new_skill: new_skill } }
 
     unified_skill = UnifiedSkill.find_by(skill1_attrs: skill1.attributes, skill2_attrs: skill2.attributes)
-    expect(unified_skill.unified_skill_attrs.excluding('id', 'updated_at', 'created_at')).to eql(new_skill.stringify_keys)
+    expect(unified_skill.unified_skill_attrs.excluding('id', 'updated_at', 'created_at', 'discarded_at')).to eql(new_skill.stringify_keys)
 
     expect(Skill.find_by(id: skill1.id)).to be_nil
     expect(Skill.find_by(id: skill2.id)).to be_nil
