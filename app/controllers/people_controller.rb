@@ -69,7 +69,7 @@ class PeopleController < CrudController
     initials = entry.name.rpartition(' ').then do |first_part, _, last_part|
       "#{first_part[0]}#{last_part[0]}"
     end
-    filename = initials << '_Red_Hat_Services_CV'
+    filename = initials << '_Red_Hat_Services_CV.odt'
 
     send_data odt_file.generate,
               type: 'application/vnd.oasis.opendocument.text',
