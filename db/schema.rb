@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_25_145055) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_09_105746) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -227,6 +227,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_25_145055) do
     t.datetime "updated_at", precision: nil, null: false
   end
 
+  create_table "skill_snapshots", force: :cascade do |t|
+    t.bigint "department_id", null: false
+    t.text "skills"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_skill_snapshots_on_department_id"
+  end
+
   create_table "skills", force: :cascade do |t|
     t.string "title"
     t.integer "radar"
@@ -250,4 +258,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_25_145055) do
   add_foreign_key "language_skills", "people"
   add_foreign_key "people", "companies"
   add_foreign_key "project_technologies", "projects"
+  add_foreign_key "skill_snapshots", "departments"
 end
