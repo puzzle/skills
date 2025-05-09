@@ -1,0 +1,8 @@
+%label{ for: "department_select" } Department
+%select#department_select{name: "department_id"}
+  %option{value: ""} Select a Department
+  - Department.all.each do |department|
+    %option{value: department.id}= department.name
+
+%div.chart-container{ data: { controller: "chart" } }
+  %canvas{ "data-chart-target": "canvas", width: "500", height: "200" }

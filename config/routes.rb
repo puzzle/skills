@@ -66,6 +66,8 @@ Rails.application.routes.draw do
     end
 
     resources :certificates
+
+    resources :team_skills, only: [:index, :show]
   end
 
 
