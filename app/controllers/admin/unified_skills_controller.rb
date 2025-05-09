@@ -71,8 +71,8 @@ class Admin::UnifiedSkillsController < CrudController
     UnifiedSkill.create!(skill1_attrs: old_skill1.attributes, skill2_attrs: old_skill2.attributes,
                          unified_skill_attrs: new_skill.attributes)
 
-    old_skill1.delete
-    old_skill2.delete
+    old_skill1.discard!
+    old_skill2.discard!
 
     new_skill
   end

@@ -39,7 +39,7 @@ class CreateDepartment < ActiveRecord::Migration[6.0]
     remove_column :people, :department_id, :integer
     rename_column :people, :department_name, :department
 
-    drop_table :departments
+    drop_table :departments, force: :cascade
     Person.reset_column_information
   end
 end
