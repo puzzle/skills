@@ -1,6 +1,6 @@
-class CreateSkillSnapshots < ActiveRecord::Migration[8.0]
+class CreateDepartmentSkillSnapshots < ActiveRecord::Migration[8.0]
   def change
-    create_table :skill_snapshots do |t|
+    create_table :department_skill_snapshots do |t|
       t.references :department, null: false, foreign_key: true
       t.text :skills
 

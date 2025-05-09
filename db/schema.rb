@@ -93,6 +93,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_09_113422) do
     t.datetime "updated_at", precision: nil, null: false
   end
 
+  create_table "department_skill_snapshots", force: :cascade do |t|
+    t.bigint "department_id", null: false
+    t.text "skills"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_department_skill_snapshots_on_department_id"
+  end
+
   create_table "departments", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -227,14 +235,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_09_113422) do
     t.datetime "updated_at", precision: nil, null: false
   end
 
-  create_table "skill_snapshots", force: :cascade do |t|
-    t.bigint "department_id", null: false
-    t.text "skills"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["department_id"], name: "index_skill_snapshots_on_department_id"
-  end
-
   create_table "skills", force: :cascade do |t|
     t.string "title"
     t.integer "radar"
@@ -257,8 +257,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_09_113422) do
   end
 
   add_foreign_key "categories", "categories", column: "parent_id"
+  add_foreign_key "department_skill_snapshots", "departments"
   add_foreign_key "language_skills", "people"
   add_foreign_key "people", "companies"
   add_foreign_key "project_technologies", "projects"
-  add_foreign_key "skill_snapshots", "departments"
 end
