@@ -67,7 +67,7 @@ Rails.application.routes.draw do
 
     resources :certificates
 
-    resources :team_skills, only: [:index, :show]
+    resources :team_skills, only: [:index]
   end
 
 
