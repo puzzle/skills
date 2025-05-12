@@ -1,23 +1,24 @@
-= form_tag team_skills_path, method: :get do
+= form_tag team_skills_path, {"data-turbo-frame": "team-skill-chart", method: :get} do
   %label{ for: "department_select" } Department
-  %select#department_select{name: "department_id"}
+  %select#department_select{name: "department_id", onChange: "this.form.requestSubmit()"}
     %option{value: ""} Select a Department
     - Department.all.each do |department|
       %option{value: department.id}= department.name
 
   %label{ for: "skill_select" } Skill
-  %select#skill_select{name: "skill_id"}
+  %select#skill_select{name: "skill_id", onChange: "this.form.requestSubmit()"}
     %option{value: ""} Select a Skill
     - Skill.all.each do |skill|
       %option{value: skill.id}= skill.title
 
   %label{ for: "year_select" } Year
-  %select#year_select{name: "year"}
+  %select#year_select{name: "year", onChange: "this.form.requestSubmit()"}
     %option{value: ""} Select a Year
-    - (2000..Date.today.year).to_a.reverse.each do |year|
+    - (2025..Date.today.year).to_a.reverse.each do |year|
       %option{value: year}= year
 
   %button{ type: "submit" } Submit
 
-%div.chart-container{ data: { controller: "chart" } }
-  %canvas{ "data-chart-target": "canvas", width: "500", height: "200" }
+%turbo-frame#team-skill-chart
+  %div.chart-container{data: {"chart-dataset-value": @data, controller: "chart" }}
+    %canvas{ "data-chart-target": "canvas", width: "500", height: "200" }
