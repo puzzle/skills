@@ -339,6 +339,8 @@ it:
     global:
       link:
         add: Aggiungi abilità (max. 5)
+  person_role:
+    none: Nessuno
   profile:
     updated_at: Ultima modifica
   skills:

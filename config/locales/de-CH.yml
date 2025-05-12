@@ -360,6 +360,8 @@ de-CH:
     global:
       link:
         add: Skill hinzuäfüegä (max. 5)
+  person_role:
+    none: Kes
   profile:
     updated_at: Z'letzt bearbeitet
   skills:

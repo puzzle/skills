@@ -40,6 +40,8 @@ module PersonHelper
                .group_by { |ps| ps.skill.category.parent }
   end
 
+  # This method is only used to translate the language dropdown.
+  # The gem however, does not support Swiss German, so it just shows the German translation.
   def common_languages_translated
     locale = I18n.locale
     locale = 'de' if I18n.locale == :'de-CH'
@@ -61,9 +63,11 @@ module PersonHelper
     %w[DE EN FR].include?(lang)
   end
 
+  # The first and last are there twice since in the form one gets shown
+  # and the other one is the value that is saved. And we don't want to save translations.
   def language_skill_levels
     [
-      [I18n.t('language_skills.none').to_s, 'Keines'],
+      [I18n.t('language_skills.none').to_s, 'Keine'],
       %w[A1],
       %w[A2],
       %w[B1],
@@ -77,7 +81,7 @@ module PersonHelper
   def role_skill_levels
     PersonRoleLevel.order(:level).each do |role|
       if role.level == 'Keine'
-        role.level = I18n.t('language_skills.none')
+        role.level = I18n.t('person_role.none')
       end
     end
   end

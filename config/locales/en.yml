@@ -339,6 +339,8 @@ en:
     global:
       link:
         add: Add skill (max. 5)
+  person_role:
+    none: None
   profile:
     updated_at: Last edited
   skills:

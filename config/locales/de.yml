@@ -343,6 +343,8 @@ de:
     global:
       link:
         add: Skill hinzufügen (max. 5)
+  person_role:
+    none: Keines
   profile:
     updated_at: Zuletzt bearbeitet
   skills:
