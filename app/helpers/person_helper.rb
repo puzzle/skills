@@ -91,7 +91,9 @@ module PersonHelper
   end
 
   def not_rated_default_skills_of_category(person, category = nil)
-    not_rated_default_skills(person).filter { |people_skill| people_skill.skill.category == category }
+    not_rated_default_skills(person).filter do |people_skill|
+      people_skill.skill.category == category
+    end
   end
 
   def not_rated_default_skills(person)
