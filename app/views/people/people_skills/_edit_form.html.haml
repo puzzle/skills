@@ -1,11 +1,11 @@
 %div.mw-100.border-bottom.text-black.ps-5.border{id: "default-skill-#{ff.object.skill.id}"}
   %div.d-flex.flex-row.align-items-center.mt-3.mb-3.w-100{data: {controller: "people-skills"}}
-    %div.col-2.text-center
-      - if defined?(show_category) && show_category
-        .text-body-tertiary
-          = ff.object.skill.category.parent.title
-          \-
-          = ff.object.skill.category.title
+    %div.col-2
+      -# - if defined?(show_category) && show_category
+      -#   .text-body-tertiary
+      -#     = ff.object.skill.category.parent.title
+      -#     %br
+      -#     = ff.object.skill.category.title
       = ff.object.skill.title
       = ff.hidden_field :interest
       = ff.hidden_field :unrated, value: false, id: "unrated-field-#{ff.object.skill.id}"

@@ -10,9 +10,18 @@
             = ti("new_skills_to_rate")
             = "(#{not_rated_default_skills(@person).count})"
           = close_action_link person_people_skills_path(@person, no_default_skill_prompt: "")
-        - not_rated_default_skills(@person).each do |person_skill|
-          = form_with model: person_skill, url: person_people_skills_path(@person, rating: params["rating"]) do |form|
-            = render "people/people_skills/edit_form", ff: form, show_category: true
+        - Category.all_parents.each do |category|
+          %div.profile-header.mw-100.border-bottom.mt-4{id: category.title.parameterize, "data-scroll-target": "scrollItem"}
+            = category.title
+          - ([category] + category.children.to_a).each do |category_child|
+            - not_rated_default_skills_of_category = not_rated_default_skills_of_category(@person, category_child)
+            - if not_rated_default_skills_of_category.count > 0
+              %div.white-header.mw-100.border-bottom.text-gray
+                = category_child.title + " (#{not_rated_default_skills_of_category.count})"
+                - not_rated_default_skills_of_category.each do |person_skill|
+                  - @person_skill = person_skill
+                  = form_with model: person_skill, url: person_people_skills_path(@person, rating: params["rating"]) do |form|
+                    = render "people/people_skills/edit_form", ff: form, show_category: true
         %div.align-items-center.mt-3
           = cancel_action_link person_people_skills_path(@person, no_default_skill_prompt: "")
     %div#person-skill-overview
