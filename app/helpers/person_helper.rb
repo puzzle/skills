@@ -90,12 +90,6 @@ module PersonHelper
     @people_skills.where(skill_id: category.skills.pluck(:id)).sort_by(&:id)
   end
 
-  def not_rated_default_skills_of_category(person, category = nil)
-    not_rated_default_skills(person).filter do |people_skill|
-      people_skill.skill.category == category
-    end
-  end
-
   def not_rated_default_skills(person)
     rated_skills = person.skills
     not_rated_default_skills = Skill.all.filter do |skill|
