@@ -111,7 +111,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_12_074440) do
 
   create_table "department_skill_snapshots", force: :cascade do |t|
     t.bigint "department_id", null: false
-    t.text "skills"
+    t.text "department_skill_levels"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["department_id"], name: "index_department_skill_snapshots_on_department_id"
