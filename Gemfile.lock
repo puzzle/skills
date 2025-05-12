@@ -141,6 +141,8 @@ GEM
     database_cleaner-core (2.0.1)
     date (3.4.1)
     deep_merge (1.2.2)
+    delayed_cron_job (0.9.0)
+      fugit (>= 1.5)
     delayed_job (4.1.13)
       activesupport (>= 3.0, < 9.0)
     delayed_job_active_record (4.1.11)
@@ -160,6 +162,8 @@ GEM
     dotenv (3.1.7)
     drb (2.2.1)
     erubi (1.13.1)
+    et-orbi (1.2.11)
+      tzinfo
     faker (3.5.1)
       i18n (>= 1.8.11, < 2)
     faraday (2.12.2)
@@ -171,6 +175,9 @@ GEM
     faraday-net_http (3.4.0)
       net-http (>= 0.5.0)
     ffi (1.17.1-x86_64-linux-gnu)
+    fugit (1.11.1)
+      et-orbi (~> 1, >= 1.2.11)
+      raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
     haml (6.3.0)
@@ -325,6 +332,7 @@ GEM
     public_suffix (6.0.1)
     puma (6.6.0)
       nio4r (~> 2.0)
+    raabro (1.4.0)
     racc (1.8.1)
     rack (3.1.12)
     rack-protection (4.1.1)
@@ -541,6 +549,7 @@ DEPENDENCIES
   cssbundling-rails
   csv
   database_cleaner
+  delayed_cron_job
   delayed_job_active_record
   devise
   discard (~> 1.4)
