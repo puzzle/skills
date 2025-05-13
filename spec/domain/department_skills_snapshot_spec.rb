@@ -5,12 +5,20 @@ describe PeopleSearch do
     DepartmentSkillsSnapshotBuilder.new.snapshot_all_departments
 
     snapshots = DepartmentSkillSnapshot.all
-    expect(snapshots.pluck(:department_id)).to include(departments(:ux).id, departments(:sys).id, departments(:mid).id)
-    expect(snapshots.pluck(:department_id)).not_to include(departments('dev-one').id, departments('dev-two').id)
 
-    expect(snapshots.count).to eql(3)
-    expected_department_id = Person.first.department_id
-    expect(snapshots.first.department_id).to eql(expected_department_id)
-    expect(snapshots.first.department_skill_levels).to eql(expected_department_id)
+    expect(snapshots.count).to eql(Person.distinct.pluck(:department_id).count)
+
+    department = departments(:sys)
+    snapshot = snapshots.find_by(department_id: department)
+
+    expect(snapshot).not_to be_nil
+
+    department_skill_levels = snapshot.department_skill_levels
+    people_skills_of_department = PeopleSkill.joins(:person).where(people: {department_id: department.id})
+
+    expect(department_skill_levels.keys).to match_array(people_skills_of_department.distinct.pluck(:skill_id).map(&:to_s))
+    department_skill_levels.each do |k, v|
+      expect(people_skills_of_department.where(skill_id: k.to_i).pluck(:level)).to match_array(v)
+    end
   end
 end
