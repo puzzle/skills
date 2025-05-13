@@ -341,7 +341,7 @@ describe :people do
       visit people_path
       expect(page).to have_content(t("people.index.export_cv"))
       click_link(t("people.index.export_cv"))
-      allow_any_instance_of(Odt::Cv).to receive(:export).and_call_original
+      allow_any_instance_of(Odt::PuzzleCv).to receive(:export).and_call_original
     end
 
     it 'does not shows buttons if the logged-in user has no profile' do

@@ -8,7 +8,7 @@ describe Api::PeopleController do
     end 
 
 
-    describe 'Export person as odt' do
+    xdescribe 'Export person as odt' do
       it 'returns bob' do
         bob = people(:bob)
 

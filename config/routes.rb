@@ -60,6 +60,7 @@ Rails.application.routes.draw do
         put 'picture', to: 'people/picture#update'
         get 'picture', to: 'people/picture#show'
         get 'export', to: 'people#export'
+        get 'export-redhat-cv', to: 'people#export_redhat'
         get 'competence-notes', to: 'people/competence_notes#edit'
         post 'competence-notes', to: 'people/competence_notes#update'
       end

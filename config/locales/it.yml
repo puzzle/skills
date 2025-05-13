@@ -201,6 +201,8 @@ it:
       cancel: Annullamento
       download: Scaricare
       export: Esportazione
+      export_redhat: Esportazione Red Hat
+      export_redhat_tooltip: Esporta il CV utilizzando il modello ufficiale di Red Hat.
       remove: Rimuovere
       save_new: Risparmi e novità
     navbar:

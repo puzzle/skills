@@ -220,6 +220,8 @@ de-CH:
       cancel: Abbrächä
       download: Abeladä
       export: Exportierä
+      export_redhat: Red Hat export
+      export_redhat_tooltip: Exportiert der Lebenslouf im offizieue format vo Red Hat
       remove: Entfärnä
       save_new: Spicherä & Neu
     navbar:
