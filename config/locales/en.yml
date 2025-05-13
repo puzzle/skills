@@ -358,5 +358,6 @@ en:
         radar: Radar
         skill: Skill
         subcategory: Subcategory
+        title: Title
     show:
       title: 'Skill: %{title} (%{amount} Members)'

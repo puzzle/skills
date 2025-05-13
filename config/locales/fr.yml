@@ -358,5 +358,6 @@ fr:
         radar: Radar
         skill: Compétence
         subcategory: Sous-catégorie
+        title: Titre
     show:
       title: 'Compétence : %{title} (%{amount} Members)'

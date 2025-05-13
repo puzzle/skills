@@ -358,5 +358,6 @@ it:
         radar: Radar
         skill: Abilità
         subcategory: Sottocategoria
+        title: Titolo
     show:
       title: "%{title}%{amount} Abilità: ( Membri)"

@@ -379,5 +379,6 @@ de-CH:
         radar: Radar
         skill: Skill
         subcategory: Subkategorie
+        title: Titu
     show:
       title: 'Skill: %{title} (%{amount} Members)'
