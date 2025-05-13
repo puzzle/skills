@@ -3,30 +3,30 @@
 %div.w-100.margin-header.mt-4
   .row.bg-light-subtle.border.border-top.border-5.border-secondary.border-top-0.border-start-0.border-end-0
     .col-2.d-flex.align-items-center
-      %strong= ti "table.skill"
+      %strong= sort_link "title"
     .col-1.bg-secondary-subtle.d-flex.align-items-center
-      %strong= ti "table.members"
+      %strong= sort_link "members"
     .col-3.d-flex.align-items-center
-      %strong= ti "table.category"
+      %strong= sort_link "category"
     .col-2.bg-secondary-subtle.d-flex.align-items-center
-      %strong= ti "table.subcategory"
+      %strong= sort_link "subcategory"
     .col-1.d-flex.align-items-center
-      %strong= ti "table.default_set"
+      %strong= sort_link "default_set"
     .col-1.bg-secondary-subtle.d-flex.align-items-center
-      %strong= ti "table.radar"
+      %strong= sort_link "radar"
     .col-1.d-flex.align-items-center
-      %strong= ti "table.portfolio"
+      %strong= sort_link "portfolio"
     .col-1.bg-secondary-subtle.d-flex.align-items-center
       %strong= ti "table.modify"
   %div
     %turbo-frame{id: "skills"}
-      - @skills.each do |skill|
+      - sort_skills.each do |skill|
         %turbo-frame{id: "#{dom_id skill}"}
           .row.border.border-top.table-light.tableform-hover.table-row.py-2
             .col-2.d-flex.align-items-center.text-break
               = link_to skill.title, skill_path(skill), data: { turbo_frame: "remote_modal" }
             .col-1.bg-light.d-flex.align-items-center
-              = filter_by_rated(skill).count
+              =filter_by_rated(skill).count
             .col-3.d-flex.align-items-center
               =skill.category.parent.title
             .col-2.bg-light.d-flex.align-items-center

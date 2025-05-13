@@ -76,5 +76,6 @@ class SkillsController < CrudController
       params[:skill].delete(:category_id)
     end
   end
+
   # rubocop:enable Metrics/AbcSize
 end
