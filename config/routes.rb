@@ -98,9 +98,6 @@ Rails.application.routes.draw do
     resources :companies
     resources :departments, only: :index
     resources :educations
-    resources :expertise_categories
-    resources :expertise_topics
-    resources :expertise_topic_skill_values
     resources :languages, only: :index
     resources :language_skills
     resources :people_skills
