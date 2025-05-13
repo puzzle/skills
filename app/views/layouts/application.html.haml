@@ -55,10 +55,9 @@
               %pzsh-menu-dropdown{href: '#'}
                 %div{slot: 'toggle'}
                   %pzsh-icon{name: 'user'}
+                  = current_auth_user&.name || current_auth_user&.email
+                  = ti 'devise.admin' if admin?
                 %div{slot: 'items'}
-                  %pzsh-menu-dropdown-item#username
-                    = current_auth_user&.name || current_auth_user&.email
-                    = ti 'devise.admin' if admin?
                   - unless find_person_by_auth_user.nil?
                     %pzsh-menu-dropdown-item{href: person_path(find_person_by_auth_user)}
                       %pzsh-icon{name: 'setting'}
