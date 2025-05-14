@@ -28,7 +28,7 @@ describe 'Check authentications', type: :feature, js: true do
     end
 
     it 'Username field contains admin tag' do
-      expect(page.find('#username').text).to end_with("(Admin)")
+      expect(page).to have_css('#username', text: /\(Admin\)/)
     end
 
     it 'Admin can create new skill' do

@@ -188,6 +188,7 @@ en:
       devise: Devise
       mockdata: Mockdata
       no_omniauth_providers: An error has occurred, there are no Omniauth providers available, please contact the administrator.
+      profile: My Profile
       sign_in: Log in
       sign_in_with: 'Log in with %{provider} '
       sign_out: Log out

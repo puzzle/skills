@@ -192,6 +192,7 @@ de:
       devise: Devise
       mockdata: Mockdata
       no_omniauth_providers: Ein Fehler ist aufgetreten, es sind keine Omniauth-Anbieter verfügbar, bitte kontaktieren Sie den Administrator.
+      profile: Mein Profil
       sign_in: Anmelden
       sign_in_with: Mit %{provider} anmelden
       sign_out: Abmelden

@@ -188,6 +188,7 @@ it:
       devise: Motto
       mockdata: Mockdata
       no_omniauth_providers: Si è verificato un errore, non sono disponibili provider Omniauth, contattare l'amministratore.
+      profile: Il mio profilo
       sign_in: Accedi
       sign_in_with: "%{provider} Accedere con"
       sign_out: Disconnettersi

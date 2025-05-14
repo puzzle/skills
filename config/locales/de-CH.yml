@@ -207,6 +207,7 @@ de-CH:
       devise: Devise
       mockdata: Mockdata
       no_omniauth_providers: Ä Fähler ist uftretä, es si ke Omniauth-Abieter verfügbar, bitte kontaktieren Sie dr Administrator.
+      profile: Mis Profil
       sign_in: Amäudä
       sign_in_with: Mit %{provider} amäudä
       sign_out: Abmäudä
