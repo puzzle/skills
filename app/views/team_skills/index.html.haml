@@ -1,25 +1,17 @@
-= form_tag team_skills_path, {"data-turbo-frame": "team-skill-chart", method: :get} do
-  %div.d-flex.justify-content-evenly.mt-5.mb-5
+= form_with url: team_skills_path, method: :get, data: { turbo_frame: "team-skill-chart" } do |f|
+  .d-flex.mt-4.mb-4.gap-4
     %div
-      %label.me-2{ for: "department_select" } Department
-      %select#department_select{name: "department_id", onChange: "this.form.requestSubmit()"}
-        %option{value: ""} Select a Department
-        - Department.all.each do |department|
-          %option{value: department.id}= department.name
-
+      = f.label :department_id, "Department", class: "text-secondary"
+      = f.select :department_id,
+            options_from_collection_for_select(Department.all, :id, :name, params[:department_id]), {}, { onchange: "this.form.requestSubmit()", class: "form-select"}
     %div
-      %label.me-2{ for: "skill_select" } Skill
-      %select#skill_select{name: "skill_id", onChange: "this.form.requestSubmit()"}
-        %option{value: ""} Select a Skill
-        - Skill.all.each do |skill|
-          %option{value: skill.id}= skill.title
-
+      = f.label :skill_id, "Skill", class: "text-secondary"
+      = f.select :skill_id,
+            options_from_collection_for_select(Skill.all, :id, :title, params[:skill_id]), {}, { onchange: "this.form.requestSubmit()", class: "form-select" }
     %div
-      %label.me-2{ for: "year_select" } Year
-      %select#year_select{name: "year", onChange: "this.form.requestSubmit()"}
-        %option{value: ""} Select a Year
-        - (2025..Date.today.year).to_a.reverse.each do |year|
-          %option{value: year}= year
+      = f.label :year, "Year", class: "text-secondary"
+      = f.select :year,
+            options_for_select((2025..Date.today.year).to_a.reverse, params[:year]), {}, { onchange: "this.form.requestSubmit()", class: "form-select"}
 
 %turbo-frame#team-skill-chart
   %div.chart-container{data: {"chart-dataset-value": @data, controller: "chart" }}
