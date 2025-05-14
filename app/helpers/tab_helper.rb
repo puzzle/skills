@@ -19,7 +19,7 @@ module TabHelper
       { title: ti('navbar.cv_search'), path: cv_search_index_path, admin_only: false },
       { title: ti('navbar.skillset'), path: skills_path, admin_only: false },
       { title: ti('navbar.certificates'), path: certificates_path, admin_only: true },
-      { title: 'Team Skills', path: team_skills_path, admin_only: false },
+      { title: ti('navbar.skills_tracking'), path: team_skills_path, admin_only: false },
     ]
   end
 
