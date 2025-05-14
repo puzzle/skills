@@ -47,7 +47,7 @@
               Help
             -# User profile dropdown
             - if auth_user_signed_in?
-              %pzsh-menu-dropdown{href: '#'}
+              %pzsh-menu-dropdown{href: '#', id: 'username'}
                 %div{slot: 'toggle'}
                   %pzsh-icon{name: 'user'}
                   = current_auth_user&.name || current_auth_user&.email
