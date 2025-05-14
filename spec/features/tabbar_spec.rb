@@ -9,7 +9,8 @@ describe 'Tabbar', type: :feature, js:true do
       { title: 'global.navbar.skill_search', path_helper: "people_skills_path", admin_only: false },
       { title: 'global.navbar.cv_search', path_helper: "cv_search_index_path", admin_only: false },
       { title: 'global.navbar.skillset', path_helper: "skills_path", admin_only: false },
-      { title: 'global.navbar.certificates', path_helper: "certificates_path", admin_only: true }
+      { title: 'global.navbar.certificates', path_helper: "certificates_path", admin_only: true },
+      { title: 'global.navbar.skills_tracking', path_helper: "department_skill_snapshots_path", admin_only: false }
     ]
 
   PERSON_TABS =
@@ -27,7 +28,7 @@ describe 'Tabbar', type: :feature, js:true do
       end
 
       after(:each) do
-        expect(current_path).to start_with("/#{locale}")
+        expect(current_path).to start_with("/#{locale}/")
       end
 
       describe 'Global' do

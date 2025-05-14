@@ -1,4 +1,4 @@
-= form_with url: department_skill_snapshot_index_path, method: :get, data: { turbo_frame: "team-skill-chart" } do |f|
+= form_with url: department_skill_snapshots_path, method: :get, data: { turbo_frame: "team-skill-chart" } do |f|
   .d-flex.mt-4.mb-4.gap-4
     %div
       = f.label :department_id, "Department", class: "text-secondary"

@@ -1,4 +1,4 @@
-class DepartmentSkillSnapshotController < CrudController
+class DepartmentSkillSnapshotsController < CrudController
 
   def index
     colors = %w[red blue green purple orange]
