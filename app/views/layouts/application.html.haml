@@ -26,14 +26,9 @@
         %pzsh-menu
           %div{slot: 'actions'}
             %pzsh-menu-action.d-flex.cursor-pointer.h-100.ps-2.pe-2.go-crazy{"data-action": "click->skills-empty-space#goCrazy"}
-            %pzsh-menu-dropdown
+            %pzsh-menu-action{'data-controller': 'dropdown', href: 'javascript:void(0);'}
               -# Language selector
-              %div{slot: 'toggle'}
-                = language(I18n.locale.to_s.upcase)
-              %div{slot: 'items'}
-                - language_selector.each do |lang_name, switch_url|
-                  %pzsh-menu-dropdown-item{href: switch_url}
-                    = lang_name
+              = select :i18n, :language, language_selector, {}, class: "form-control", data:{action: "change->dropdown#navigateOnChange"}
             -# Devise/Mockdata
             - if Rails.env.development?
               %span.text-white

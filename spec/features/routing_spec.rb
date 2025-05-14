@@ -32,9 +32,7 @@ describe 'Routing', type: :feature, js: true do
       end
 
       it "Should open profile with correct language and preserve language in cookie" do
-        page.first('pzsh-menu-dropdown').click
-        page.find('pzsh-menu-dropdown-item', text: 'Italiano').click
-        expect(page).to have_content('Profilo')
+        select 'Italiano', from: 'i18n_language';
 
         select_from_slim_select("#person_id_person", bob.name)
         expect(page).to have_text("Dati personali")
