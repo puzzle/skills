@@ -1,3 +1,0 @@
-class TeamSkill < ApplicationRecord
-
-end
