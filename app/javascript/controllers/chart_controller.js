@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import Chart from "chart.js/auto"
+import { Colors } from 'chart.js';
 
 export default class extends Controller {
   static targets = ["canvas"]
@@ -8,6 +9,8 @@ export default class extends Controller {
   }
 
   connect() {
+    Chart.register(Colors);
+
     const ctx = this.canvasTarget.getContext("2d")
 
     const chartData = JSON.parse(this.datasetValue)

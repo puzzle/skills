@@ -7,11 +7,15 @@ describe 'Department Skill Snapshots', type: :feature, js: true do
     visit department_skill_snapshots_path
   end
 
-  it 'Should display all labels correctly' do
-    expect(page).to have_text('Organisationseinheit')
-    expect(page).to have_text('Skill')
-    expect(page).to have_text('Jahr')
+  it 'Should display all selects with the corresponding labels and the the canvas chart' do
+    expect(page).to have_content('Organisationseinheit')
+    expect(page).to have_content('Skill')
+    expect(page).to have_content('Jahr')
 
+    expect(page).to have_select('department_id')
+    expect(page).to have_select('skill_id')
+    expect(page).to have_select('year')
 
+    expect(page).to have_selector("canvas")
   end
 end
