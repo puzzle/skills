@@ -140,7 +140,7 @@ describe 'Projects', type: :feature, js:true do
       within("turbo-frame#project_#{project.id}") do
         checkbox.click
         click_default_submit
-        expect(find("img")[:src]).to have_content("no-file")
+        expect(page).to have_css("img[src*='no-file']")
       end
       open_edit_form(project)
       expect(checkbox).not_to be_checked
