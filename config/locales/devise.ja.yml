@@ -1,0 +1,94 @@
+---
+ja:
+  activerecord:
+    attributes:
+      user:
+        confirmation_sent_at: 確認メール送信日時
+        confirmation_token: 確認トークン
+        confirmed_at: 確認日時
+        created_at: 作成日時
+        current_password: 現在のパスワード
+        current_sign_in_at: 現在のサインイン日時
+        current_sign_in_ip: 現在のサインインIP
+        email: メールアドレス
+        encrypted_password: 暗号化されたパスワード
+        failed_attempts: 失敗した試行回数
+        last_sign_in_at: 最終サインイン日時
+        last_sign_in_ip: 最終サインインIP
+        locked_at: ロックされた日時
+        password: パスワード
+        password_confirmation: パスワード（確認）
+        privacy_accepted_at: プライバシーポリシー同意日時
+        remember_created_at: ログイン状態保持開始日時
+        remember_me: ログイン状態を保持する
+        reset_password_sent_at: パスワードリセットメール送信日時
+        reset_password_token: パスワードリセットトークン
+        sign_in_count: サインイン回数
+        terms_accepted_at: 利用規約同意日時
+        unconfirmed_email: 未確認のメールアドレス
+        unlock_token: アンロックトークン
+        updated_at: 更新日時
+    models:
+      user: ユーザー
+  devise:
+    confirmations:
+      confirmed: メールアドレスが正常に確認されました。
+      send_instructions: 数分以内に、メールアドレス確認のための手順が記載されたメールを受け取ります。
+      send_paranoid_instructions: 入力されたメールアドレスが登録されている場合、確認手順を記載したメールが送信されます。
+    failure:
+      already_authenticated: すでにログインしています。
+      inactive: アカウントがまだ有効化されていません。
+      invalid: "%{authentication_keys} またはパスワードが無効です。"
+      last_attempt: あと1回でアカウントがロックされます。
+      locked: アカウントがロックされています。
+      not_found_in_database: "%{authentication_keys} またはパスワードが無効です。"
+      timeout: セッションが期限切れです。再度ログインしてください。
+      unauthenticated: 続行するにはログインまたはアカウント登録が必要です。
+      unconfirmed: 続行するにはメールアドレスの確認が必要です。
+    mailer:
+      confirmation_instructions:
+        subject: メールアドレス確認手順
+      email_changed:
+        subject: メールアドレスが変更されました
+      password_change:
+        subject: パスワードが変更されました
+      reset_password_instructions:
+        subject: パスワード再設定の手順
+      unlock_instructions:
+        subject: アカウントロック解除の手順
+    omniauth_callbacks:
+      failure: '%{kind} からの認証に失敗しました（理由: "%{reason}"）。'
+      success: "%{kind} アカウントからの認証に成功しました。"
+    passwords:
+      no_token: パスワードリセットメールからアクセスしない限り、このページにはアクセスできません。正しいURLを使用しているか確認してください。
+      send_instructions: 数分以内に、パスワードをリセットする手順を記載したメールを受け取ります。
+      send_paranoid_instructions: 入力されたメールアドレスが登録されている場合、数分以内にパスワード再設定リンクが送信されます。
+      updated: パスワードは正常に変更されました。ログイン済みです。
+      updated_not_active: パスワードは正常に変更されました。
+    registrations:
+      destroyed: アカウントを削除しました。またのご利用をお待ちしております。
+      signed_up: ご登録ありがとうございます！アカウント作成が完了しました。
+      signed_up_but_inactive: 登録は完了しましたが、アカウントが有効化されていないためログインできません。
+      signed_up_but_locked: 登録は完了しましたが、アカウントがロックされているためログインできません。
+      signed_up_but_unconfirmed: 確認リンクを含むメールを送信しました。リンクをクリックしてアカウントを有効化してください。
+      update_needs_confirmation: アカウント情報を更新しましたが、新しいメールアドレスの確認が必要です。確認メールを確認し、リンクに従ってください。
+      updated: アカウント情報を正常に更新しました。
+      updated_but_not_signed_in: アカウント情報を更新しましたが、パスワードが変更されたため再度ログインしてください。
+    sessions:
+      already_signed_out: ログアウトが完了しました。
+      signed_in: ログインに成功しました。
+      signed_out: ログアウトに成功しました。
+    unlocks:
+      send_instructions: 数分以内に、アカウントのロック解除手順が記載されたメールを受け取ります。
+      send_paranoid_instructions: アカウントが存在する場合は、ロック解除の手順が記載されたメールを受け取ります。
+      unlocked: アカウントのロックが解除されました。ログインして続行してください。
+  errors:
+    messages:
+      already_confirmed: はすでに確認されています。ログインを試してください。
+      confirmation_period_expired: は%{period}以内に確認される必要があります。新しい確認メールをリクエストしてください。
+      expired: の有効期限が切れています。新しいものをリクエストしてください。
+      not_found: が見つかりません
+      not_locked: はロックされていません
+      not_saved:
+        one: '次のエラーのため、%{resource} を保存できませんでした:'
+        other: "%{count} 件のエラーのため、%{resource} を保存できませんでした:"
