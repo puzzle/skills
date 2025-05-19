@@ -214,8 +214,8 @@ it:
       cv_search: Ricerca di CV
       profile: Profilo
       skill_search: Ricerca di competenze
-      skillset: Competenze
       skills_tracking: Tracciamento delle competenze
+      skillset: Competenze
     new: Nuovo
     people_skills:
       certificate: Certificato
