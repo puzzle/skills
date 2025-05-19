@@ -103,11 +103,11 @@ module PersonHelper
   end
 
   def filter_parent(parent)
-    not_rated_default_skills(@person).filter {|skill| skill.skill.category.parent == parent}
+    not_rated_default_skills(@person).filter { |skill| skill.skill.category.parent == parent }
   end
 
   def filter_category(category_child)
-    not_rated_default_skills(@person).filter {|skill| skill.skill.category == category_child}
+    not_rated_default_skills(@person).filter { |skill| skill.skill.category == category_child }
   end
 
   def sorted_people
