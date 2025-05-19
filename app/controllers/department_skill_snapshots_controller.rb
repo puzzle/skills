@@ -12,7 +12,7 @@ class DepartmentSkillSnapshotsController < CrudController
       datasets: dataset_values.map { |value| build_dataset(value) }
     }
   end
-  
+
   def dataset_values
     %w[Azubi Junior Senior Professional Expert]
   end
