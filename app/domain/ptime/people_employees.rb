@@ -11,14 +11,13 @@ module Ptime
     }.freeze
 
     def initialize
-      @employed_company = Company.find_by(name: 'Firma')
       @unemployed_company = Company.find_by(name: 'Ex-Mitarbeiter')
     end
 
     def update_people_data(is_manual_sync: false)
-      @update_failed_names = []
+      @update_failed_names = {}
       update_all_people
-      if @update_failed_names.any? && !is_manual_sync
+      if @update_failed_names.values.flatten.any? && !is_manual_sync
         raise PtimeExceptions::PersonUpdateWithPtimeDataFailed,
               "Records were invalid while updating
                #{@update_failed_names.to_sentence(locale: :en)}
@@ -30,17 +29,15 @@ module Ptime
     private
 
     def update_all_people
-      active_employees, inactive_employees = fetch_data_of_ptime_employees
-      update_active_people(active_employees)
-      update_inactive_people(inactive_employees)
-    end
-
-    def fetch_data_of_ptime_employees
-      Ptime::Client.new.request(
-        :get, 'employees',
-        { per_page: MAX_PAGE_SIZE }
-      ).partition do |ptime_employee|
-        ptime_employee.dig(:attributes, :is_employed)
+      fetch_data_of_ptime_employees_by_provider.each do |provider, provider_employees|
+        active_employees, inactive_employees = provider_employees.partition do |ptime_employee|
+          ptime_employee.dig(:attributes, :is_employed)
+        end
+        @provider = provider
+        @update_failed_names[@provider] = []
+        @employed_company = Company.find_by(name: @provider)
+        update_active_people(active_employees)
+        update_inactive_people(inactive_employees)
       end
     end
 
@@ -48,20 +45,21 @@ module Ptime
       employees.each do |employee|
         ActiveRecord::Base.transaction do
           @ptime_employee_attributes = employee[:attributes]
-          @person = Person.find_or_create_by(ptime_employee_id: employee[:id])
+          @person = Person.find_or_create_by(ptime_employee_id: employee[:id],
+                                             ptime_data_provider: @provider)
           update_person_data
         rescue ActiveRecord::RecordInvalid
-          @update_failed_names.push(@person.name)
+          @update_failed_names[@provider].push(@person.name)
         end
       end
     end
 
     def update_inactive_people(employees)
       employees.each do |employee|
-        person = Person.find_by(ptime_employee_id: employee[:id])
+        person = Person.find_by(ptime_employee_id: employee[:id], ptime_data_provider: @provider)
         person&.update!(company: @unemployed_company)
       rescue ActiveRecord::RecordInvalid
-        @update_failed_names.push(person&.name)
+        @update_failed_names[@provider].push(person&.name)
       end
     end
 

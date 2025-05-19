@@ -38,14 +38,16 @@ module Ptime
 
       @provider_employees.each do |ptime_employee|
         email = ptime_employee[:attributes][:email]
-        matched_person = Person.where(ptime_employee_id: nil, ptime_data_provider: nil).find_by(email:)
+        matched_person = Person.where(ptime_employee_id: nil, ptime_data_provider: nil)
+                               .find_by(email:)
 
         next record_unmatched_entry(ptime_employee) unless matched_person
 
         @mapped_people_count += 1
         next unless should_map
 
-        matched_person.update(ptime_employee_id: ptime_employee[:id], ptime_data_provider: @provider)
+        matched_person.update(ptime_employee_id: ptime_employee[:id],
+                              ptime_data_provider: @provider)
       end
 
       print_mapped_and_unmapped_people
@@ -69,13 +71,7 @@ module Ptime
 
     def fetch_data
       puts 'Fetching required data from all providers...'
-      @ptime_employees_by_provider =
-        ptime_providers.each_with_object({}) do |provider_data, hash|
-          ptime_employees = Ptime::Client.new(provider_data)
-                                         .request(:get, 'employees', { per_page: MAX_PAGE_SIZE })
-          hash[provider_data['COMPANY_IDENTIFIER']] = ptime_employees
-        end
-
+      @ptime_employees_by_provider = fetch_data_of_ptime_employees_by_provider
       @skills_people = Person.all
       puts 'Successfully fetched data for all providers'
     end
