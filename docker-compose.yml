@@ -47,8 +47,14 @@ services:
       - assets_cache:/usr/bin/
     depends_on:
       - rails
-  
-      
+
+  worker:
+    build: .
+    command: bundle exec rails jobs:work
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
 volumes:
   bundler_cache:
   assets_cache:
