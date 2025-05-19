@@ -94,8 +94,10 @@ fr:
       skill:
         category: Catégorie
         default_set: Set par défaut
+        members: Membres
         portfolio: Portefeuille
         radar: Radar
+        subcategory: Sous-catégorie
         title: Titre
     models:
       activity: Station

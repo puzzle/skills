@@ -94,8 +94,10 @@ en:
       skill:
         category: Category
         default_set: Default set
+        members: Members
         portfolio: Portfolio
         radar: Radar
+        subcategory: Subcategory
         title: Title
     models:
       activity: Station

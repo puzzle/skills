@@ -94,8 +94,10 @@ it:
       skill:
         category: Categoria
         default_set: Set predefinito
+        members: Membri
         portfolio: Portafoglio
         radar: Radar
+        subcategory: Sottocategoria
         title: Titolo
     models:
       activity: Stazione
