@@ -5,8 +5,12 @@ module PtimeHelper
 
   def ptime_providers
     @provider_configs = ENV.filter { |env_var| env_var.start_with?('PTIME_PROVIDER') }
+                           .sort
+                           .to_h
                            .each_slice(4)
-                           .map(&:to_h)
+                           .map do |config|
+      config.to_h.transform_keys { |key| key.sub(/^PTIME_PROVIDER_[0-9]+_/, '') }
+    end
 
     validate_ptime_provider_configs
 
@@ -23,23 +27,19 @@ module PtimeHelper
   end
 
   def validate_number_of_ptime_provider_configs
-    provider_config_valid = @provider_configs.map.with_index do |config, i|
-      config.keys.sort ==
-        %W[PTIME_PROVIDER_#{i}_API_PASSWORD PTIME_PROVIDER_#{i}_API_USERNAME
-           PTIME_PROVIDER_#{i}_BASE_URL PTIME_PROVIDER_#{i}_COMPANY_IDENTIFIER]
+    provider_configs_valid = @provider_configs.map do |config|
+      config.keys.sort == %w[API_PASSWORD API_USERNAME BASE_URL COMPANY_IDENTIFIER]
     end.all?
 
-    unless provider_config_valid
+    unless provider_configs_valid
       raise PtimeExceptions::InvalidProviderConfig,
-            'A config is missing or wrongly named. Make sure that every config option is
-             set for every provider.'.squeeze
+            'A config is missing or named wrongly. Make sure that every config option is
+             set for every provider.'.squish
     end
   end
 
   def validate_ptime_company_identifiers
-    @company_identifiers = @provider_configs.filter do |env_var|
-      env_var.include?('COMPANY_IDENTIFIER')
-    end
+    @company_identifiers = @provider_configs.pluck('COMPANY_IDENTIFIER')
 
     validate_company_identifiers_unique
     validate_company_identifiers_exist

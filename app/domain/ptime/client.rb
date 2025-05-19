@@ -5,8 +5,10 @@ require 'base64'
 
 module Ptime
   class Client
-    def initialize
-      @base_url = "#{ENV.fetch('PTIME_BASE_URL')}/api/v1/"
+    def initialize(provider_data)
+      @base_url = "#{provider_data['BASE_URL']}/api/v1/"
+      @provider_api_username = provider_data['API_USERNAME']
+      @provider_api_password = provider_data['API_PASSWORD']
     end
 
     def request(method, endpoint, params = {})
@@ -21,8 +23,8 @@ module Ptime
       RestClient::Request.new(
         :method => method,
         :url => url,
-        :user => ENV.fetch('PTIME_API_USERNAME'),
-        :password => ENV.fetch('PTIME_API_PASSWORD'),
+        :user => @provider_api_username,
+        :password => @provider_api_password,
         :headers => { :accept => :json, :content_type => :json }
       )
     end
