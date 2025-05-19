@@ -1,0 +1,51 @@
+---
+ja:
+  crud:
+    create:
+      flash:
+        success: "%{model}を作成しました。"
+    destroy:
+      flash:
+        failure: "%{model}を削除できませんでした。"
+        success: "%{model}を削除しました。"
+    edit:
+      title: "%{model}を編集"
+    new:
+      title: 新しい%{model}
+    show:
+      title: "%{model}"
+    update:
+      flash:
+        success: "%{model}を更新しました。"
+  global:
+    associations:
+      no_entry: "（なし）"
+      none_available: "（利用可能な項目なし）"
+      please_select: 選択してください
+    button:
+      cancel: キャンセル
+      save: 保存
+      search: 検索
+    confirm_delete: この項目を本当に削除しますか？
+    errors:
+      header:
+        one: 1件のエラーにより保存できませんでした：
+        other: "%{count}件のエラーにより保存できませんでした："
+    link:
+      add: 追加
+      delete: 削除
+      edit: 編集
+      list: 一覧
+      save: 保存
+      save_and_new: 保存して新規作成
+      show: 表示
+      update: 更新
+    'no': いいえ
+    no_list_entries: 該当する項目が見つかりません。
+    'yes': はい
+  list:
+    index:
+      title: "%{models}の一覧"
+  time:
+    formats:
+      time: "%H:%M"
