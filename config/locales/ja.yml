@@ -1,3 +1,4 @@
+---
 ja:
   activemodel:
     attributes:
@@ -188,9 +189,9 @@ ja:
       mockdata: モックデータ
       no_omniauth_providers: エラーが発生しました。利用可能なOmniauthプロバイダーがありません。管理者に連絡してください。
       sign_in: ログイン
-      sign_in_with: '%{provider}でログイン'
+      sign_in_with: "%{provider}でログイン"
       sign_out: ログアウト
-    'false': 'いいえ'
+    'false': いいえ
     filter:
       all: すべて
       default: デフォルト
@@ -233,12 +234,12 @@ ja:
         '4': シニア
         '5': エキスパート
     search:
-      found_in: ～にて見つかりました
-      no_match: '以下の検索条件に該当する結果はありませんでした：'
+      found_in: "～にて見つかりました"
+      no_match: 以下の検索条件に該当する結果はありませんでした：
       no_results: 結果が見つかりませんでした
       no_skill: 検索にヒットするスキルがありません。スキルを追加してください。
       search_results: 検索結果
-    'true': 'はい'
+    'true': はい
   helpers:
     cancel: キャンセル
     continue: 続行
@@ -271,7 +272,7 @@ ja:
       export_form:
         anonymised_cv: 匿名化された履歴書
         competences_skills: コアコンピタンス - スキル
-        location: '支店（フッター用）：'
+        location: 支店（フッター用）：
         skills_by_level: レベル別スキル
         trainee: 研修生
     global:
