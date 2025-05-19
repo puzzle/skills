@@ -17,6 +17,14 @@ module PtimeHelper
     @provider_configs
   end
 
+  def fetch_data_of_ptime_employees_by_provider
+    ptime_providers.each_with_object({}) do |provider_data, hash|
+      ptime_employees = Ptime::Client.new(provider_data)
+                                     .request(:get, 'employees', { per_page: MAX_PAGE_SIZE })
+      hash[provider_data['COMPANY_IDENTIFIER']] = ptime_employees
+    end
+  end
+
   MAX_PAGE_SIZE = 1000
 
   private
