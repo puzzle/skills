@@ -20,6 +20,7 @@ class People::PeopleSkillsController < CrudController
 
   def index
     rating = params[:rating]
+    @category_parents = Category.all_parents
     return super if rating.present? && [1, 0, -1].include?(rating.to_i)
 
     redirect_to url_for(request.params.merge(rating: 0))
