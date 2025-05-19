@@ -3,14 +3,17 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
     static targets = ["list", "listItem", "scrollItem", "parent"]
     currentSelectedIndex = -1;
-    offsetY = this.parentTarget.getBoundingClientRect().top + window.scrollY;
+    offsetY = 0;
 
     connect() {
-        this.listTarget.style.top = `${this.offsetY}px`;
-        document.addEventListener("scroll", () => {
-            this.highlight();
-        });
-        this.highlight()
+        addEventListener('turbo:load', (event) => {
+            this.offsetY = this.parentTarget.getBoundingClientRect().top + window.scrollY;
+            this.listTarget.style.top = `${this.offsetY}px`;
+            document.addEventListener("scroll", () => {
+                this.highlight();
+            });
+            this.highlight()
+        })
     }
 
     disconnect() {

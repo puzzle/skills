@@ -188,6 +188,7 @@ fr:
       devise: Devise
       mockdata: Mockdata
       no_omniauth_providers: Une erreur s'est produite, aucun fournisseur Omniauth n'est disponible, veuillez contacter l'administrateur.
+      profile: Mon profil
       sign_in: S'inscrire
       sign_in_with: 'S''inscrire avec %{provider} '
       sign_out: Se désinscrire

@@ -19,8 +19,7 @@ $skills-dark-blue: #1e5a96;
 }
 
 .content {
-  max-width: 80%;
-  flex-grow: 1;
+  width: 80%;
 }
 
 .cursor-pointer {
@@ -56,10 +55,6 @@ $skills-dark-blue: #1e5a96;
   .scale-icon-08 {
     transform: scale(0.8);
   }
-}
-
-pzsh-topbar {
-  background-color: $skills-blue;
 }
 
 .text-gray {
@@ -298,7 +293,7 @@ pzsh-topbar {
 
 .profile-header-and-tabs {
   position: sticky;
-  top: 80px;
+  top: 98px;
   background-color: white;
   z-index: 2;
 }
@@ -410,4 +405,14 @@ a > img {
 
 .model-form-container label {
   margin-bottom: 0;
+}
+
+.z-top {
+  z-index: 9999999;
+}
+
+@media (max-width: 800px) {
+  .go-crazy {
+    display: none !important;
+  }
 }
