@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-describe DepartmentSkillSnapshotController do
+describe DepartmentSkillSnapshotsController do
 
 end
