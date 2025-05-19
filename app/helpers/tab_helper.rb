@@ -12,6 +12,7 @@ module TabHelper
     ]
   end
 
+  # rubocop:disable Metrics/LineLength
   def global_tabs
     [
       { title: ti('navbar.profile'), path: people_path, admin_only: false },
@@ -22,6 +23,7 @@ module TabHelper
       { title: ti('navbar.skills_tracking'), path: department_skill_snapshots_path, admin_only: false }
     ]
   end
+  # rubocop:enable Metrics/LineLength
 
   def extract_path(regex)
     request.path.match(regex)&.captures&.join
