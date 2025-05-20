@@ -7,13 +7,11 @@ class DepartmentSkillsSnapshotBuilder
   # skill in a given department.
 
   def snapshot_all_departments
-    Person.all.group_by(&:department_id).each do |department_id, people|
+    Person.where.not(department_id: nil).group_by(&:department_id).each do |department_id, people|
       department_skill_levels = PeopleSkill
                                 .where(person_id: people)
                                 .group_by(&:skill_id)
-                                .transform_values do |value|
-        value.pluck(:level)
-      end
+                                .transform_values { |value| value.pluck(:level) }
 
       DepartmentSkillSnapshot.create!(department_id:, department_skill_levels:)
     end
