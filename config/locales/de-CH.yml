@@ -140,6 +140,7 @@ de-CH:
       update_people_manually: Persone manuell aktualisiere
     manual_ptime_sync:
       manual_sync:
+        names_by_provider: "%{names} vom Provider %{provider}"
         failed_people_updates: Bi dr Aktualisierig vo %{names} isch öppis schiefgloffe. Versuechs nomau und überprüef auefaus d Date im PuzzleTime.
         fetching_data_failed: Öppis ische bim fetche vo de Date usem PuzzleTime schief gloffe. Bitte probiers nomau und kontaktier auefaus dr Support.
         people_updated: D Datä vo aunä Personä si erfolgriich aktualisiert wordä

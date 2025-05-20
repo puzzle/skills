@@ -19,9 +19,7 @@ module Ptime
       update_all_people
       if @update_failed_names.values.flatten.any? && !is_manual_sync
         raise PtimeExceptions::PersonUpdateWithPtimeDataFailed,
-              "Records were invalid while updating
-               #{@update_failed_names.to_sentence(locale: :en)}
-               with data from PuzzleTime".squish
+              update_failed_names_message(@update_failed_names, locale: :en)
       end
       @update_failed_names
     end

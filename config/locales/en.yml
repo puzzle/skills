@@ -136,6 +136,7 @@ en:
       update_people_manually: Update people manually
     manual_ptime_sync:
       manual_sync:
+        names_by_provider: "%{names} from provider %{provider}"
         failed_people_updates: Something went wrong while updating %{names}. Please try again and, if necessary, check the data in PuzzleTime.
         fetching_data_failed: Something went wrong while trying to fetch data from PuzzleTime. Please try again and contact support if necessary.
         people_updated: The data for all people has been successfully updated
