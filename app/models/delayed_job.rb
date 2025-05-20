@@ -1,0 +1,2 @@
+class DelayedJob < ApplicationRecord
+end
