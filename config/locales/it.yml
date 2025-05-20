@@ -136,6 +136,7 @@ it:
       update_people_manually: Aggiornare le persone manualmente
     manual_ptime_sync:
       manual_sync:
+        names_by_provider: "%{names} del fornitore %{provider}"
         failed_people_updates: Si è verificato un errore durante l'aggiornamento di %{names}. Si prega di riprovare e, se necessario, controllare i dati in PuzzleTime.
         fetching_data_failed: Si è verificato un errore durante il recupero dei dati da PuzzleTime. Si prega di riprovare e contattare il supporto se necessario.
         people_updated: I dati di tutte le persone sono stati aggiornati con successo
