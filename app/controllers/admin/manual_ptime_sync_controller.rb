@@ -11,8 +11,9 @@ class Admin::ManualPtimeSyncController < CrudController
       flash.now[:alert] = t('.fetching_data_failed')
       return render :index, status: :internal_server_error
     end
-    if update_failed_names.any?
-      flash.now[:alert] = t('.failed_people_updates', names: update_failed_names.to_sentence)
+    if update_failed_names.values.flatten.any?
+      flash.now[:alert] =
+        t('.failed_people_updates', names: helpers.update_failed_names_message(update_failed_names))
       return render :index, status: :internal_server_error
     end
     flash.now[:notice] = t('.people_updated')
