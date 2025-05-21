@@ -7,15 +7,21 @@ describe Ptime::Client do
   end
 
   it 'should be able to fetch employee data' do
-    fetched_employees = Ptime::Client.new.request(:get, "employees", { per_page: 1000 })
-    expect(fetched_employees).to eq(ptime_employees_data)
+    fetched_employees = Ptime::Client.new(ptime_company_request_data)
+                                     .request(:get, "employees", { per_page: 1000 })
+    expect(fetched_employees).to eq(ptime_company_employee_data)
+
+    fetched_employees = Ptime::Client.new(ptime_partner_request_data)
+                                     .request(:get, "employees", { per_page: 1000 })
+    expect(fetched_employees).to eq(ptime_partner_employee_data)
   end
 
   it 'should raise PtimeClientError when page is unreachable' do
-    stub_env_var("PTIME_BASE_URL", "irgendoepis.example.com")
-    stub_ptime_request(ptime_employees.to_json, "employees?per_page=1000", 404)
+    invalid_ptime_company_request_data = ptime_company_request_data
+    invalid_ptime_company_request_data[:base_url] = 'irgendoepis.example.com'
+    stub_ptime_request(*invalid_ptime_company_request_data.values, "employees?per_page=1000", 404)
     expect {
-      Ptime::Client.new.request(:get, "employees", { per_page: 1000 })
+      Ptime::Client.new(invalid_ptime_company_request_data).request(:get, "employees", { per_page: 1000 })
     }.to raise_error(PtimeExceptions::PtimeClientError)
   end
 end

@@ -28,8 +28,8 @@ module PtimeHelper
   def update_failed_names_message(failed_names_by_provider, locale = nil)
     failed_names_by_provider.map do |provider, names|
       if names.any?
-        t('admin.manual_ptime_sync.manual_sync.names_by_provider',
-          names: names.to_sentence(locale:), provider:)
+        I18n.t('admin.manual_ptime_sync.manual_sync.names_by_provider',
+               names: names.to_sentence(locale:), provider:, locale:)
       end
     end.compact.to_sentence(locale:)
   end
