@@ -3,15 +3,21 @@
     %div
       = f.label :department_id, t('activerecord.models.department.one'), class: "text-secondary"
       = f.select :department_id,
-            options_from_collection_for_select(Department.all, :id, :name, params[:department_id]), {}, { onchange: "this.form.requestSubmit()", class: "form-select"}
+            options_from_collection_for_select(Department.all, :id, :name, params[:department_id]),
+            { prompt: "Select Department "},
+            { onchange: "this.form.requestSubmit()", class: "form-select"}
     %div
       = f.label :skill_id, t('activerecord.models.skill.one'), class: "text-secondary"
       = f.select :skill_id,
-            options_from_collection_for_select(Skill.all, :id, :title, params[:skill_id]), {}, { onchange: "this.form.requestSubmit()", class: "form-select" }
+            options_from_collection_for_select(Skill.all, :id, :title, params[:skill_id]),
+            { prompt: "Select Skill "},
+            { onchange: "this.form.requestSubmit()", class: "form-select" }
     %div
       = f.label :year, t('global.date.year'), class: "text-secondary"
       = f.select :year,
-            options_for_select((2025..Date.today.year).to_a.reverse, params[:year]), {}, { onchange: "this.form.requestSubmit()", class: "form-select"}
+            options_for_select((2025..Date.today.year).to_a.reverse, params[:year]),
+            { prompt: "Select Department "},
+            { onchange: "this.form.requestSubmit()", class: "form-select"}
 
 %turbo-frame#team-skill-chart
   %div.chart-container{data: {"chart-dataset-value": @data, controller: "chart" }}
