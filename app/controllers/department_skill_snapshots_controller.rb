@@ -9,7 +9,9 @@ class DepartmentSkillSnapshotsController < CrudController
   def chart_data
     {
       labels: Date::MONTHNAMES.compact,
-      datasets: dataset_values.map.with_index(1) { |label, level| build_dataset(label, level) }.compact
+      datasets: dataset_values.map.with_index(1) do |label, level|
+        build_dataset(label, level)
+      end.compact
     }
   end
 
@@ -19,7 +21,9 @@ class DepartmentSkillSnapshotsController < CrudController
 
   # level corresponds to 1-5 (Azubi = 1, ..., Expert = 5)
   def build_dataset(label, level)
-    return unless params[:department_id].present? && params[:skill_id].present? && params[:year].present?
+    return unless params[:department_id].present? &&
+      params[:skill_id].present? &&
+      params[:year].present?
 
     {
       label: label,
@@ -33,9 +37,7 @@ class DepartmentSkillSnapshotsController < CrudController
     monthly_data = Array.new(12, 0)
     skill_id = params[:skill_id].to_s
 
-    snapshots = DepartmentSkillSnapshot.where(
-      department_id: params[:department_id]
-    )
+    snapshots = find_department_skill_snapshots_by_department_id_and_year
 
     snapshots.each do |snapshot|
       month_index = snapshot.created_at.month - 1
@@ -45,4 +47,16 @@ class DepartmentSkillSnapshotsController < CrudController
 
     monthly_data
   end
+
+  def find_snapshots_by_department_id_and_year
+    year = params[:year].to_i
+    start_date = Date.new(year, 1, 1)
+    end_date = start_date.end_of_year
+
+    DepartmentSkillSnapshot.where(
+      department_id: params[:department_id],
+      created_at: start_date..end_date
+    )
+  end
 end
+
