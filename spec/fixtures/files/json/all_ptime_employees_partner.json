@@ -1,0 +1,34 @@
+{
+  "data": [
+    {
+      "id" : 23,
+      "type" : "employee",
+      "attributes" : {
+        "shortname" : "AJU",
+        "firstname" : "Andreas",
+        "lastname" : "Jung",
+        "email" : "bob@example.com",
+        "marital_status" : "married",
+        "nationalities" : ["US", "GS"],
+        "graduation" : "Very interesting graduation",
+        "city" : "Zürich",
+        "birthday" : "1990-03-10",
+        "is_employed" : true,
+        "department_shortname" : "UX",
+        "department_name" : "/ux",
+        "employment_roles" : [
+          {
+            "name" : "T2 Autohändler",
+            "percent" : 80.0,
+            "role_level" : "S5"
+          },
+          {
+            "name" : "T1 Doktor",
+            "percent" : 20,
+            "role_level" : "S2"
+          }
+        ]
+      }
+    }
+  ]
+}
