@@ -7,15 +7,9 @@ class PeopleController < CrudController
 
   helper_method :default_branch_adress
 
-  self.permitted_attrs = [:birthdate, :location, :marital_status, :updated_by, :name, :nationality,
-                          :nationality2, :title, :competence_notes, :company_id, :email,
-                          :department_id, :shortname, :picture, :picture_cache,
-                          :display_competence_notes_in_cv,
-                          { person_roles_attributes:
-                            [[:role_id, :person_role_level_id, :percent, :id, :_destroy]],
-                            language_skills_attributes:
-                            [[:language, :level, :certificate, :id, :_destroy]] }]
   layout 'person', only: [:show]
+
+  before_action :redirect_index_if_use_ptime_sync, only: [:new]
 
   def index
     return flash[:alert] = I18n.t('errors.messages.profile-not-found') if params[:alert].present?
@@ -34,9 +28,6 @@ class PeopleController < CrudController
   def new
     super
     @person.nationality = 'CH'
-    %w[DE EN FR].each do |language|
-      @person.language_skills.push(LanguageSkill.new({ language: language }))
-    end
   end
 
   def create
@@ -76,7 +67,6 @@ class PeopleController < CrudController
               disposition: content_disposition('attachment', filename)
   end
 
-
   private
 
   def fetch_entries
@@ -89,5 +79,29 @@ class PeopleController < CrudController
 
   def default_branch_adress
     BranchAdress.find_by(default_branch_adress: true) || BranchAdress.first
+  end
+
+  @ptime_permitted_attrs =
+    [
+      :updated_by, :picture, :picture_cache, :competence_notes,
+      :display_competence_notes_in_cv,
+      { language_skills_attributes: [[:language, :level, :certificate, :id, :_destroy]] }
+    ]
+
+  @default_permitted_attrs =
+    [
+      :birthdate, :location, :marital_status, :updated_by, :name,
+      :nationality, :nationality2, :title, :competence_notes, :company_id, :email,
+      :department_id, :shortname, :picture, :picture_cache, :display_competence_notes_in_cv,
+      {
+        person_roles_attributes: [[:role_id, :person_role_level_id, :percent, :id, :_destroy]],
+        language_skills_attributes: [[:language, :level, :certificate, :id, :_destroy]]
+      }
+    ]
+
+  self.permitted_attrs = Skills.use_ptime_sync? ? @ptime_permitted_attrs : @default_permitted_attrs
+
+  def redirect_index_if_use_ptime_sync
+    redirect_to root_path if Skills.use_ptime_sync?
   end
 end

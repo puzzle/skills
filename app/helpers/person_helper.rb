@@ -107,7 +107,7 @@ module PersonHelper
   end
 
   def people_for_select
-    Person.all.map do |p|
+    Person.employed.map do |p|
       [
         p.name, person_path(p),
         {
@@ -116,5 +116,9 @@ module PersonHelper
         }
       ]
     end
+  end
+
+  def use_ptime_sync?
+    Skills.use_ptime_sync?
   end
 end
