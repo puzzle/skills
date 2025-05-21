@@ -19,7 +19,8 @@ module Ptime
       update_all_people
       if @update_failed_names.values.flatten.any? && !is_manual_sync
         raise PtimeExceptions::PersonUpdateWithPtimeDataFailed,
-              update_failed_names_message(@update_failed_names, locale: :en)
+              I18n.t('admin.manual_ptime_sync.manual_sync.failed_people_updates',
+                     names: update_failed_names_message(@update_failed_names, :en), locale: :en)
       end
       @update_failed_names
     end
