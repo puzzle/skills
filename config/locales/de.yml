@@ -140,9 +140,9 @@ de:
       update_people_manually: Personen manuell aktualisieren
     manual_ptime_sync:
       manual_sync:
-        names_by_provider: "%{names} vom Provider %{provider}"
         failed_people_updates: Bei der Aktualisierung von %{names} ist etwas schiefgelaufen. Versuche es erneut und überprüfe allenfalls die Daten im PuzzleTime.
         fetching_data_failed: Etwas ist schiefgelaufen, als versucht wurde die Daten aus dem PuzzleTime zu fetchen. Bitte versuche es erneut und kontaktiere allenfalls den Support.
+        names_by_provider: "%{names} vom Provider %{provider}"
         people_updated: Die Daten aller Personen wurden erfolgreich aktualisiert
     unified_skills:
       create:
