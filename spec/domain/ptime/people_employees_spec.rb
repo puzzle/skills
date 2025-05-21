@@ -17,6 +17,7 @@ describe Ptime::PeopleEmployees do
     # Charlie: Currently employed in skills Db -> Ptime data will update him to be unemployed
     # Bob: Currently employed in skills Db -> Will be updated with data from second ptime provider
 
+    # Change email to make sure data is not updated for unemployed people
     updated_company_employees = ptime_company_employees
     updated_company_employees[:data].third[:attributes][:email] = 'charlie_ford@example.com'
     stub_ptime_request(*ptime_company_request_data.values, updated_company_employees.to_json)
