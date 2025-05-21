@@ -361,6 +361,7 @@ pzsh-topbar {
   flex-direction: column;
   position: sticky;
   height: min-content;
+  top: 194px;
   @extend .col-2;
   @extend .gap-2;
 }
