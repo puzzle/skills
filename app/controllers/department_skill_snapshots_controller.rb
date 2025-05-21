@@ -37,7 +37,7 @@ class DepartmentSkillSnapshotsController < CrudController
     monthly_data = Array.new(12, 0)
     skill_id = params[:skill_id].to_s
 
-    snapshots = find_department_skill_snapshots_by_department_id_and_year
+    snapshots = find_snapshots_by_department_id_and_year
 
     snapshots.each do |snapshot|
       month_index = snapshot.created_at.month - 1
@@ -59,4 +59,3 @@ class DepartmentSkillSnapshotsController < CrudController
     )
   end
 end
-

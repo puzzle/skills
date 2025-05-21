@@ -4,19 +4,19 @@
       = f.label :department_id, t('activerecord.models.department.one'), class: "text-secondary"
       = f.select :department_id,
             options_from_collection_for_select(Department.all, :id, :name, params[:department_id]),
-            { prompt: "Please select a department"},
+            { prompt: ta(:please_select)},
             { onchange: "this.form.requestSubmit()", class: "form-select"}
     %div
       = f.label :skill_id, t('activerecord.models.skill.one'), class: "text-secondary"
       = f.select :skill_id,
             options_from_collection_for_select(Skill.all, :id, :title, params[:skill_id]),
-            { prompt: "Please select a skill"},
+            { prompt: ta(:please_select)},
             { onchange: "this.form.requestSubmit()", class: "form-select" }
     %div
       = f.label :year, t('global.date.year'), class: "text-secondary"
       = f.select :year,
             options_for_select((2025..Date.today.year).to_a.reverse, params[:year]),
-            { prompt: "Please select a year"},
+            { prompt: ta(:please_select)},
             { onchange: "this.form.requestSubmit()", class: "form-select"}
 
 %turbo-frame#team-skill-chart
