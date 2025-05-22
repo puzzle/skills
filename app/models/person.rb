@@ -35,8 +35,6 @@ class Person < ApplicationRecord
   has_many :activities, dependent: :destroy
   has_many :advanced_trainings, dependent: :destroy
   has_many :educations, dependent: :destroy
-  has_many :expertise_topic_skill_values, dependent: :destroy
-  has_many :expertise_topics, through: :expertise_topic_skill_values
   has_many :language_skills, dependent: :delete_all
   accepts_nested_attributes_for :language_skills, allow_destroy: true
   has_many :person_roles, dependent: :destroy
