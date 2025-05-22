@@ -194,6 +194,7 @@ de-CH:
       max_size_error: darf nid grösser aus 10MB si.
       profile-not-found: Profiu isch nid gfungä wordä.
       valid_percent_range: muess zwüschä 0 u 200 liegä.
+      chart_data_empty: Wähl e Abteilig, e Skill und es Jahr us um d date la azeige
   global:
     date:
       from: Vom

@@ -166,6 +166,21 @@ en:
     global:
       search_placeholder: Search CVs...
       search_skills: Search skills as well
+  date:
+    month_names:
+      -
+      - January
+      - February
+      - March
+      - April
+      - May
+      - June
+      - July
+      - August
+      - September
+      - October
+      - November
+      - December
   errors:
     messages:
       authorization_error: You do not have permission to execute this function.
@@ -175,6 +190,7 @@ en:
       max_size_error: must not be larger than 10MB.
       profile-not-found: Profile could not be found.
       valid_percent_range: must be between 0 and 200.
+      chart_data_empty: Select a department, skill and a year to display data
   global:
     date:
       from: From

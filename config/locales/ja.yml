@@ -166,6 +166,21 @@ ja:
     global:
       search_placeholder: 履歴書を検索...
       search_skills: スキルも検索する
+  date:
+    month_names:
+      -
+      - 1月
+      - 2月
+      - 3月
+      - 4月
+      - 5月
+      - 6月
+      - 7月
+      - 8月
+      - 9月
+      - 10月
+      - 11月
+      - 12月
   errors:
     messages:
       authorization_error: この機能を実行する権限がありません。
@@ -175,6 +190,7 @@ ja:
       max_size_error: 10MBを超えてはいけません。
       profile-not-found: プロフィールが見つかりませんでした。
       valid_percent_range: 0から200の間でなければなりません。
+      chart_data_empty: データを表示するには、部署、スキル、年を選択してください
   global:
     date:
       from: から

@@ -20,5 +20,5 @@
             { onchange: "this.form.requestSubmit()", class: "form-select"}
 
 %turbo-frame#team-skill-chart
-  %div.chart-container{data: {"chart-dataset-value": @data, controller: "chart" }}
+  %div.chart-container{data: {controller: "chart", "chart-dataset-value": @data, "chart-emptychart-value": t('errors.messages.chart_data_empty') }}
     %canvas{ "data-chart-target": "canvas", width: "3", height: "1" }
