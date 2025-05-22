@@ -1,19 +1,14 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  include ParamConverters
-
   before_action :authenticate_auth_user!
   around_action :switch_locale
 
   default_form_builder SkillsFormBuilder
 
   def switch_locale(&)
-    param_locale = params[:locale]
-    redirect_to(locale: cookies[:locale] || I18n.default_locale) and return unless param_locale
-
-    cookies.permanent[:locale] = param_locale unless params[:set_by_user].nil?
-    I18n.with_locale(param_locale, &)
+    locale = params[:locale] || I18n.default_locale
+    I18n.with_locale(locale, &)
   end
 
   def authenticate_auth_user!
@@ -48,6 +43,6 @@ class ApplicationController < ActionController::Base
   end
 
   def default_url_options
-    { locale: I18n.locale }
+    { locale: I18n.locale == I18n.default_locale ? nil : I18n.locale }
   end
 end

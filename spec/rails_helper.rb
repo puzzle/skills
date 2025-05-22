@@ -90,6 +90,6 @@ RSpec.configure do |config|
   end
 
   config.before(:each, type: :feature) do
-    default_url_options[:locale] = I18n.locale
+    default_url_options[:locale] = I18n.locale == I18n.default_locale ? nil : I18n.locale
   end
 end
