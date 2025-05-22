@@ -8,7 +8,7 @@ class DepartmentSkillSnapshotsController < CrudController
 
   def chart_data
     {
-      labels: Date::MONTHNAMES.compact,
+      labels: t('date.month_names').compact,
       datasets: dataset_values.map.with_index(1) do |label, level|
         build_dataset(label, level)
       end.compact
