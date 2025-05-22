@@ -16,7 +16,7 @@ export default class extends Controller {
     const chartData = JSON.parse(this.datasetValue)
 
     this.chart = new Chart(ctx, {
-      type: 'line',
+      type: 'bar',
       data: chartData,
       options: {
         responsive: true,
