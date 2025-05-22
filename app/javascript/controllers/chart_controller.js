@@ -14,8 +14,6 @@ export default class extends Controller {
     Chart.register(annotationPlugin);
     Chart.register(Colors);
 
-    console.log(this.emptychartValue)
-
     const ctx = this.canvasTarget.getContext("2d");
     const chartData = JSON.parse(this.datasetValue);
 
