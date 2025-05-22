@@ -37,9 +37,7 @@ class DepartmentSkillSnapshotsController < CrudController
     monthly_data = Array.new(12, 0)
     skill_id = params[:skill_id].to_s
 
-    snapshots = find_snapshots_by_department_id_and_year
-
-    snapshots.each do |snapshot|
+    find_snapshots_by_department_id_and_year.each do |snapshot|
       month_index = snapshot.created_at.month - 1
       levels = snapshot.department_skill_levels[skill_id] || []
       monthly_data[month_index] += levels.count(level)
