@@ -168,29 +168,29 @@ en:
       search_skills: Search skills as well
   date:
     month_names:
-      -
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
+    -
+    - January
+    - February
+    - March
+    - April
+    - May
+    - June
+    - July
+    - August
+    - September
+    - October
+    - November
+    - December
   errors:
     messages:
       authorization_error: You do not have permission to execute this function.
       cannot_remove: must not be deleted.
+      chart_data_empty: Select a department, skill and a year to display data
       invalid_date_range: must be before the end date.
       max_size_10MB: must not be larger than 10MB.
       max_size_error: must not be larger than 10MB.
       profile-not-found: Profile could not be found.
       valid_percent_range: must be between 0 and 200.
-      chart_data_empty: Select a department, skill and a year to display data
   global:
     date:
       from: From

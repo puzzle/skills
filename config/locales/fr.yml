@@ -168,29 +168,29 @@ fr:
       search_skills: Rechercher également des compétences
   date:
     month_names:
-      -
-      - Janvier
-      - Février
-      - Mars
-      - Avril
-      - Mai
-      - Juin
-      - Juillet
-      - Août
-      - Septembre
-      - Octobre
-      - Novembre
-      - Décembre
+    -
+    - Janvier
+    - Février
+    - Mars
+    - Avril
+    - Mai
+    - Juin
+    - Juillet
+    - Août
+    - Septembre
+    - Octobre
+    - Novembre
+    - Décembre
   errors:
     messages:
       authorization_error: Vous n'avez pas les droits pour exécuter cette fonction.
       cannot_remove: ne doit pas être supprimé.
+      chart_data_empty: Sélectionnez un département, une compétence et une année pour afficher les données
       invalid_date_range: doit être antérieure à la date de fin.
       max_size_10MB: ne doit pas dépasser 10 Mo.
       max_size_error: ne doit pas dépasser 10 Mo.
       profile-not-found: Le profil n'a pas été trouvé.
       valid_percent_range: doit être compris entre 0 et 200.
-      chart_data_empty: Sélectionnez un département, une compétence et une année pour afficher les données
   global:
     date:
       from: De
