@@ -9,11 +9,9 @@ class ApplicationController < ActionController::Base
   default_form_builder SkillsFormBuilder
 
   def switch_locale(&)
-    param_locale = params[:locale]
-    redirect_to(locale: cookies[:locale] || I18n.default_locale) and return unless param_locale
-
-    cookies.permanent[:locale] = param_locale unless params[:set_by_user].nil?
-    I18n.with_locale(param_locale, &)
+    locale = params[:locale] || cookies[:locale] || I18n.default_locale
+    cookies.permanent[:locale] = locale if params[:locale] && !params[:set_by_user].nil?
+    I18n.with_locale(locale, &)
   end
 
   def authenticate_auth_user!
