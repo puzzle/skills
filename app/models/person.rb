@@ -49,7 +49,7 @@ class Person < ApplicationRecord
   accepts_nested_attributes_for :advanced_trainings, allow_destroy: true
 
   validates :display_competence_notes_in_cv, inclusion: [true, false]
-  validates :birthdate, :location, :name, :nationality,
+  validates :location, :name, :nationality,
             :title, :marital_status, :email, presence: true
   validates :location, :name, :title,
             :email, :shortname, length: { maximum: 100 }
