@@ -27,13 +27,13 @@ class DepartmentSkillSnapshotsController < CrudController
 
     {
       label: label,
-      data: get_data_for_level(level),
+      data: get_data_for_each_level(level),
       fill: false,
       tension: 0.1
     }
   end
 
-  def get_data_for_level(level)
+  def get_data_for_each_level(level)
     monthly_data = Array.new(12, 0)
     skill_id = params[:skill_id].to_s
 
