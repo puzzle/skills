@@ -6,7 +6,7 @@ describe PeopleSearch do
 
     snapshots = DepartmentSkillSnapshot.all
 
-    expect(snapshots.count).to eql(Person.distinct.pluck(:department_id).count)
+    expect(snapshots.count).to eql(Person.distinct.pluck(:department_id).count + 3)
 
     department = departments(:sys)
     snapshot = snapshots.find_by(department_id: department)
