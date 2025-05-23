@@ -1,0 +1,4 @@
+%div
+= render 'destroy_people_table', person_collection: Person.employed.invert_where
+%hr.my-3
+= render 'destroy_people_table', person_collection: Person.where(ptime_employee_id: nil).or(Person.where(ptime_data_provider: nil))
