@@ -44,11 +44,18 @@ describe Api::CompaniesController do
     end
 
     describe 'DELETE destroy' do
-      it 'destroys existing company' do
-        firma = companies(:partner)
-        process :destroy, method: :delete, params: { id: firma.id }
+      it 'doesnt destroy company if it has people in it' do
+        company = companies(:partner)
+        process :destroy, method: :delete, params: { id: company.id }
 
-        expect(Company.exists?(firma.id)).to eq(false)
+        expect(Company.exists?(company.id)).to eq(true)
+      end
+
+      it 'destroys company without any people in it' do
+        company = companies('ex-mitarbeiter')
+        process :destroy, method: :delete, params: { id: company.id }
+
+        expect(Company.exists?(company.id)).to eq(false)
       end
     end
   end
