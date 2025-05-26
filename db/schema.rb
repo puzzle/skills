@@ -137,30 +137,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_19_122857) do
     t.index ["person_id"], name: "index_educations_on_person_id"
   end
 
-  create_table "expertise_categories", force: :cascade do |t|
-    t.string "name", null: false
-    t.integer "discipline", null: false
-  end
-
-  create_table "expertise_topic_skill_values", force: :cascade do |t|
-    t.integer "years_of_experience"
-    t.integer "number_of_projects"
-    t.integer "last_use"
-    t.integer "skill_level"
-    t.string "comment"
-    t.bigint "person_id", null: false
-    t.bigint "expertise_topic_id", null: false
-    t.index ["expertise_topic_id"], name: "index_expertise_topic_skill_values_on_expertise_topic_id"
-    t.index ["person_id"], name: "index_expertise_topic_skill_values_on_person_id"
-  end
-
-  create_table "expertise_topics", force: :cascade do |t|
-    t.string "name", null: false
-    t.boolean "user_topic", default: false
-    t.bigint "expertise_category_id", null: false
-    t.index ["expertise_category_id"], name: "index_expertise_topics_on_expertise_category_id"
-  end
-
   create_table "language_skills", force: :cascade do |t|
     t.string "language"
     t.string "level"
