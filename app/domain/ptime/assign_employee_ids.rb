@@ -46,8 +46,8 @@ module Ptime
         @mapped_people_count += 1
         next unless should_map
 
-        matched_person.update(ptime_employee_id: ptime_employee[:id],
-                              ptime_data_provider: @provider)
+        matched_person.update!(ptime_employee_id: ptime_employee[:id],
+                               ptime_data_provider: @provider)
       end
 
       print_mapped_and_unmapped_people
