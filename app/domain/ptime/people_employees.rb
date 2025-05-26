@@ -56,7 +56,9 @@ module Ptime
     def update_inactive_people(employees)
       employees.each do |employee|
         person = Person.find_by(ptime_employee_id: employee[:id], ptime_data_provider: @provider)
-        person&.update!(company: @unemployed_company)
+        person&.company = @unemployed_company
+        # Save without updating updated_at so we can show when a person was last updated by the sync
+        person&.save!(touch: false)
       rescue ActiveRecord::RecordInvalid
         @update_failed_names[@provider].push(person&.name)
       end

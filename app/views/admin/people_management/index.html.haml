@@ -1,10 +1,14 @@
-- if Person.unemployed.any?
-  %span.p-0.fs-4.text-decoration-underline= ti('ex_members_title')
-  = render 'destroy_people_table', person_collection: Person.unemployed
+- unemployed_people = Person.unemployed
+- not_synced_profiles = Person.where(ptime_employee_id: nil).or(Person.where(ptime_data_provider: nil))
 
-- if use_ptime_sync?
-  - not_synced_profiles = Person.where(ptime_employee_id: nil).or(Person.where(ptime_data_provider: nil))
-  - if not_synced_profiles.any?
-    %hr.my-3
-    %span.p-0.fs-4.text-decoration-underline= ti('not_synced_members_title')
-    = render 'destroy_people_table', person_collection: not_synced_profiles
+- if unemployed_people.none? && not_synced_profiles.none?
+  %span.p-0.fs-4= ti('nothing_to_manage')
+
+- if unemployed_people.any?
+  %span.p-0.fs-4.text-decoration-underline= ti('ex_members_title')
+  = render 'destroy_people_table', person_collection: unemployed_people, table_id: 'unemployed-people'
+
+- if use_ptime_sync? && not_synced_profiles.any?
+  %hr.my-3
+  %span.p-0.fs-4.text-decoration-underline= ti('not_synced_members_title')
+  = render 'destroy_people_table', person_collection: not_synced_profiles, table_id: 'not-synced-people'
