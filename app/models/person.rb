@@ -72,6 +72,8 @@ class Person < ApplicationRecord
     where.not(company_id: Company.where(name: 'Ex-Mitarbeiter').select('id'))
   }
 
+  scope :unemployed, -> { employed.invert_where }
+
   enum :marital_status, { single: 0, married: 1, widowed: 2, registered_partnership: 3,
                           divorced: 4 }
 
