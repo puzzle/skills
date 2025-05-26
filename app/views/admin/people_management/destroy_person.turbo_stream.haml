@@ -1,4 +1,5 @@
 = turbo_stream.update "flash-messages" do
   = render partial: 'layouts/flash', collection: [:notice, :alert], as: :level
 
-= turbo_stream.remove @person
+= turbo_stream.remove "unemployed-people-#{dom_id(@person)}"
+= turbo_stream.remove "not-synced-people-#{dom_id(@person)}"
