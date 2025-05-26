@@ -11,8 +11,9 @@
               = export_action_link export_cv_person_path(@person), data: { turbo_frame: "remote_modal" }
             %li.text-nowrap{ data: { bs_toggle: 'tooltip' }, title: ti('link.export_redhat_tooltip') }
               = export_redhat_action_link export_redhat_cv_person_path(@person)
-            %li.text-nowrap
-              = destroy_action_link
+            - unless use_ptime_sync?
+              %li.text-nowrap
+                = destroy_action_link
   %turbo-frame#tab-content.d-flex.gap-3{"data-controller": "scroll"}
     = yield
 = render template: "layouts/application"
