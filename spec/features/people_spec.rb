@@ -346,6 +346,13 @@ describe :people do
       end
       expect(page).to have_selector('.alert', text: I18n.t("crud.destroy.flash.success", model: longmax))
     end
+
+    it 'should not show delete button when ptime sync is active' do
+      enable_ptime_sync
+      visit person_path(longmax)
+      click_button(t("people.global.more_actions"))
+      expect(page).not_to have_button(t("people.global.link.delete"))
+    end
   end
 
   describe 'Click Quick loading Buttons' do
