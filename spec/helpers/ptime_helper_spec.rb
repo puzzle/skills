@@ -25,6 +25,11 @@ describe 'PuzzleTime helpers', type: :helper do
     expect {helper.ptime_providers}.to raise_error(PtimeExceptions::InvalidProviderConfig, 'Company identifiers have to be unique')
   end
 
+  it 'should detect when company identifier is "Ex-Mitarbeiter"' do
+    stub_env_var('PTIME_PROVIDER_0_COMPANY_IDENTIFIER', 'Ex-Mitarbeiter')
+    expect {helper.ptime_providers}.to raise_error(PtimeExceptions::InvalidProviderConfig, 'Company identifiers cannot be "Ex-Mitarbeiter"')
+  end
+
   it 'should detect when company identifier does not exist' do
     stub_env_var('PTIME_PROVIDER_1_COMPANY_IDENTIFIER', 'Invalid Company')
     expect {helper.ptime_providers}.to raise_error(PtimeExceptions::InvalidProviderConfig, "The company with the identifier Invalid Company does not exist")

@@ -59,12 +59,20 @@ module PtimeHelper
     @company_identifiers = @provider_configs.pluck('COMPANY_IDENTIFIER')
 
     validate_company_identifiers_unique
+    validate_company_identifier_not_ex_mitarbeiter
     validate_company_identifiers_exist
   end
 
   def validate_company_identifiers_unique
     unless @company_identifiers.length == @company_identifiers.uniq.length
       raise PtimeExceptions::InvalidProviderConfig, 'Company identifiers have to be unique'
+    end
+  end
+
+  def validate_company_identifier_not_ex_mitarbeiter
+    unless @company_identifiers.all? { |cid| cid != 'Ex-Mitarbeiter' }
+      raise PtimeExceptions::InvalidProviderConfig,
+            'Company identifiers cannot be "Ex-Mitarbeiter"'
     end
   end
 
