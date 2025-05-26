@@ -84,6 +84,7 @@ de:
           one: Skill
           other: Skills
         title: Abschluss
+        updated_at: Letztes Update
       project:
         description: Beschreibung
         display_in_cv: Im CV Export inkludieren
@@ -136,6 +137,7 @@ de:
       link:
         list: Admin Panel
     index:
+      delete_inactive_profiles: Inaktive Profile löschen
       unify_skills: Skills vereinen
       update_people_manually: Personen manuell aktualisieren
     manual_ptime_sync:
@@ -150,6 +152,10 @@ de:
   admin/manual_ptime_sync:
     index:
       description: Wenn dieser wunderschöne Knopf gedrückt wird, dann werden die Daten aller Personen mit den Daten aus dem PuzzleTime aktualisiert. Dies kann einige Sekunden dauern.
+  admin/people_management:
+    index:
+      ex_members_title: Die folgenden Profile sind als Ex-Mitarbeiter markiert
+      not_synced_members_title: Die folgenden Profile werden momentan nicht vom PuzzleTime sync aktualisiert
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: Konflikte gefunden

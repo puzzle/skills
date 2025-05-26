@@ -84,6 +84,7 @@ it:
           one: Abilità
           other: Competenze
         title: Conclusione
+        updated_at: Ultimo aggiornamento
       project:
         description: Descrizione del
         display_in_cv: Includere nell'esportazione del CV
@@ -132,6 +133,7 @@ it:
       link:
         list: Pannello di amministrazione.
     index:
+      delete_inactive_profiles: Elimina profili inattivi
       unify_skills: Unire le competenze
       update_people_manually: Aggiornare le persone manualmente
     manual_ptime_sync:
@@ -146,6 +148,10 @@ it:
   admin/manual_ptime_sync:
     index:
       description: Quando questo bellissimo pulsante viene premuto, i dati di tutte le persone verranno aggiornati con i dati di PuzzleTime. Questo potrebbe richiedere alcuni secondi.
+  admin/people_management:
+    index:
+      ex_members_title: I seguenti profili sono contrassegnati come ex dipendenti
+      not_synced_members_title: I seguenti profili non sono attualmente aggiornati dalla sincronizzazione PuzzleTime
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: Conflitti rilevati

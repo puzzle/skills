@@ -84,6 +84,7 @@ de-CH:
           one: Skill
           other: Skills
         title: Abschluss
+        updated_at: Letzts Update
       project:
         description: Beschribig
         display_in_cv: Im CV Export inkludierä.
@@ -136,6 +137,7 @@ de-CH:
       link:
         list: Admin Panel
     index:
+      delete_inactive_profiles: Inaktivi Profiu löschä
       unify_skills: Skills vereinä
       update_people_manually: Persone manuell aktualisiere
     manual_ptime_sync:
@@ -150,6 +152,10 @@ de-CH:
   admin/manual_ptime_sync:
     index:
       description: We dä wunderschön Chnopf drückt wird, de wärde d Date vo aune Persone mit de Date usem PuzzleTime aktualisiert. Ds cha einigi Sekunde duure.
+  admin/people_management:
+    index:
+      ex_members_title: Di folgendä Profiu si aus 'Ex-Mitarbeiter' markiert
+      not_synced_members_title: Di folgendä Profiu wärde momentan nid vom PuzzleTime sync aktualisiert
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: Konfliktä gfundä
