@@ -156,6 +156,7 @@ de:
     index:
       ex_members_title: Die folgenden Profile sind als Ex-Mitarbeiter markiert
       not_synced_members_title: Die folgenden Profile werden momentan nicht vom PuzzleTime sync aktualisiert
+      nothing_to_manage: Momentan gibt es nichts zu bereinigen
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: Konflikte gefunden

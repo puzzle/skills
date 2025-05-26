@@ -152,6 +152,7 @@ ja:
     index:
       ex_members_title: 以下のプロファイルは元従業員としてマークされています
       not_synced_members_title: 次のプロファイルは現在、PuzzleTime同期によって更新されていません
+      nothing_to_manage: 現在、クリーンアップするものはありません
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: 衝突が見つかりました

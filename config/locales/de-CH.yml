@@ -156,6 +156,7 @@ de-CH:
     index:
       ex_members_title: Di folgendä Profiu si aus 'Ex-Mitarbeiter' markiert
       not_synced_members_title: Di folgendä Profiu wärde momentan nid vom PuzzleTime sync aktualisiert
+      nothing_to_manage: Moment gits nüt zum bereinige
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: Konfliktä gfundä

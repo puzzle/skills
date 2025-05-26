@@ -152,6 +152,7 @@ it:
     index:
       ex_members_title: I seguenti profili sono contrassegnati come ex dipendenti
       not_synced_members_title: I seguenti profili non sono attualmente aggiornati dalla sincronizzazione PuzzleTime
+      nothing_to_manage: Attualmente non c'è niente da pulire
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: Conflitti rilevati
