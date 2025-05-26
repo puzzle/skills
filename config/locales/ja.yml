@@ -84,6 +84,7 @@ ja:
           one: スキル
           other: スキル
         title: 学位
+        updated_at: 最終更新
       project:
         description: 説明
         display_in_cv: 履歴書に含める
@@ -132,6 +133,7 @@ ja:
       link:
         list: 管理パネル
     index:
+      delete_inactive_profiles: 無効なプロファイルを削除
       unify_skills: スキル統合
       update_people_manually: ユーザーを手動で更新
     manual_ptime_sync:
@@ -146,6 +148,10 @@ ja:
   admin/manual_ptime_sync:
     index:
       description: この素敵なボタンが押されると、すべてのユーザーのデータがPuzzleTimeのデータをもとに更新されます。この処理には数秒かかる場合があります。
+  admin/people_management:
+    index:
+      ex_members_title: 以下のプロファイルは元従業員としてマークされています
+      not_synced_members_title: 次のプロファイルは現在、PuzzleTime同期によって更新されていません
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: 衝突が見つかりました

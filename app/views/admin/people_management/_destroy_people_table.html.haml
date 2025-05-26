@@ -1,4 +1,4 @@
-%table
+%table.table.table-striped.table-hover
   %thead
     %tr.w-100
       %th.col-4= Person.human_attribute_name(:name)
@@ -8,6 +8,6 @@
     - person_collection.each do |person|
       = form_with(model: person, url: admin_people_management_path(person_id: person.id), method: :delete) do |f|
         %tr.w-100{id: dom_id(person)}
-          %td.col-4= person.name
+          %td.col-4= link_to person.name, person_path(person)
           %td.col-4= person.updated_at.strftime('%d.%m.%Y')
           %td.col-4= f.submit ti('link.delete')
