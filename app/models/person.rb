@@ -50,7 +50,7 @@ class Person < ApplicationRecord
 
   validates :display_competence_notes_in_cv, inclusion: [true, false]
   validates :location, :name, :nationality,
-            :title, :marital_status, :email, presence: true
+            :title, :email, presence: true
   validates :location, :name, :title,
             :email, :shortname, length: { maximum: 100 }
 

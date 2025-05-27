@@ -33,8 +33,8 @@ module Ptime
           ptime_employee.dig(:attributes, :is_employed)
         end
         @provider = provider
-        @update_failed_names[@provider] = []
-        @employed_company = Company.find_by(name: @provider)
+        @update_failed_names[provider] = []
+        @employed_company = Company.find_by(name: provider)
         update_active_people(active_employees)
         update_inactive_people(inactive_employees)
       end
@@ -73,10 +73,11 @@ module Ptime
 
     def update_directly_mappable_attributes
       @ptime_employee_attributes.each do |key, value|
-        if ATTRIBUTES_MAPPING.key?(key.to_sym)
-          @person[ATTRIBUTES_MAPPING[key.to_sym]] =
-            value.presence || '-'
-        end
+        next unless ATTRIBUTES_MAPPING.key?(key.to_sym)
+
+        attr_name = ATTRIBUTES_MAPPING[key.to_sym]
+        @person[attr_name] =
+          value.presence || (Person.type_for_attribute(attr_name).type == :string ? '-' : nil)
       end
     end
 
@@ -86,7 +87,7 @@ module Ptime
       @person.department = Department.find_or_create_by!(
         name: @ptime_employee_attributes[:department_name]
       )
-      @person.marital_status = @ptime_employee_attributes[:marital_status].presence || 'single'
+      @person.marital_status = @ptime_employee_attributes[:marital_status]
       @person.name = employee_full_name(@ptime_employee_attributes)
       @person.nationality, @person.nationality2 = @ptime_employee_attributes[:nationalities]
     end
