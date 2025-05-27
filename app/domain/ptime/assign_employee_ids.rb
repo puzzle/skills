@@ -3,6 +3,9 @@ module Ptime
   class AssignEmployeeIds
     include PtimeHelper
 
+    SHORT_OUTPUT_SEPARATOR = '-' * 80
+    LONG_OUTPUT_SEPARATOR = '-' * 100
+
     # rubocop:disable Rails/Output
     def run(should_map: false)
       puts 'Notice this is a dry run and mapping will not happen!' unless should_map
@@ -12,10 +15,10 @@ module Ptime
         @provider = provider
         @provider_employees = provider_employees
 
-        puts '-' * 100
+        puts LONG_OUTPUT_SEPARATOR
         puts "Now mapping with data from PuzzleTime provider #{@provider}"
         map_employees_by_provider(should_map)
-        puts '-' * 100
+        puts LONG_OUTPUT_SEPARATOR
       end
     end
 
@@ -55,9 +58,9 @@ module Ptime
     # rubocop:enable Metrics
 
     def print_mapped_and_unmapped_people
-      puts '-' * 80
+      puts SHORT_OUTPUT_SEPARATOR
       puts "#{@mapped_people_count} people were matched successfully for provider #{@provider}"
-      puts '-' * 80
+      puts SHORT_OUTPUT_SEPARATOR
       puts "#{@unmatched_entries.size} people didn't match for provider #{@provider}"
       @unmatched_entries.each { |entry| puts "- #{entry[:name]} with id #{entry[:id]}" }
     end

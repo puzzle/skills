@@ -15,7 +15,6 @@ describe 'PuzzleTime helpers', type: :helper do
 
   it 'should detect invalid config' do
     stub_env_var('PTIME_PROVIDER_0_INVALID_CONFIG', nil)
-    ENV.delete('PTIME_PROVIDER_0_')
     expect {helper.ptime_providers}.to raise_error(PtimeExceptions::InvalidProviderConfig, 'A config is missing or named wrongly. Make sure that
                                                                                              every config option is set for every provider.'.squish)
   end
