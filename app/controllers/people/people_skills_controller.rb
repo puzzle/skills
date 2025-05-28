@@ -20,10 +20,12 @@ class People::PeopleSkillsController < CrudController
 
   def index
     rating = params[:rating]
-    @category_parents = Category.all_parents
-    return super if rating.present? && [1, 0, -1].include?(rating.to_i)
+    unless rating.present? && [1, 0, -1].include?(rating.to_i)
+      redirect_to url_for(request.params.merge(rating: 0))
+    end
 
-    redirect_to url_for(request.params.merge(rating: 0))
+    super
+    @not_rated_default_skills = not_rated_default_skills(@person)
   end
 
   def show
@@ -38,6 +40,7 @@ class People::PeopleSkillsController < CrudController
   def update
     @people_skills = filtered_people_skills(params[:people_skill])
     super do |format, success|
+      @not_rated_default_skills = not_rated_default_skills(@person)
       format.turbo_stream { render 'people/people_skills/update', status: :ok } if success
     end
   end
@@ -73,5 +76,16 @@ class People::PeopleSkillsController < CrudController
     end
 
     people_skills # If the rating is neither 1 or 0 it returns all
+  end
+
+  def not_rated_default_skills(person)
+    not_rated_default_skills =
+      Skill.where(default_set: true)
+           .where.not(id: PeopleSkill.where(person:).select('skill_id'))
+
+    not_rated_default_skills.map do |skill|
+      PeopleSkill.new({ person_id: person.id, skill_id: skill.id, level: 1, interest: 1,
+                        certificate: false, core_competence: false })
+    end
   end
 end

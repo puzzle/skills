@@ -2,27 +2,19 @@
   = render('people/scroll_to_menu', items: Category.all_parents.pluck(:title)) do
     = add_action_link_modal
   %turbo-frame#people-skill-form.w-100{data: { "scroll-target": "parent"}}
-    - if not_rated_default_skills(@person).count > 0 && !params.key?("no_default_skill_prompt")
+    - if @not_rated_default_skills.length > 0 && !params.key?("no_default_skill_prompt")
       %div.border.border-1.mb-2.p-3.border-black#default-skills
         %div#default-skill-errors
         %div.d-flex.align-items-center.profile-header.justify-content-between.mb-2
           %div
             = ti("new_skills_to_rate")
-            = "(#{not_rated_default_skills(@person).count})"
+            = "(#{@not_rated_default_skills.length})"
           = close_action_link person_people_skills_path(@person, no_default_skill_prompt: "")
-        - @category_parents.each do |category|
-          - unless filter_parent(category).count.zero?
-            %div{id: "#{category.title.parameterize}-skills-container"}
-              %div.profile-header.mw-100.border-bottom.mt-4
-                = category.title
-              - ([category] + category.children.to_a).each do |category_child|
-                - not_rated_default_skills_of_category = filter_category(category_child)
-                - unless not_rated_default_skills_of_category.count.zero?
-                  %div.white-header.mw-100.border-bottom.text-gray
-                    = category_child.title + " (#{not_rated_default_skills_of_category.count})"
-                    - not_rated_default_skills_of_category.each do |person_skill|
-                      = form_with model: person_skill, url: person_people_skills_path(@person, rating: params["rating"]) do |form|
-                        = render "people/people_skills/edit_form", ff: form, show_category: true
+
+        - people_skills_by_category(@not_rated_default_skills.sort_by(&:skill_id)).each do |parent_category, child_categories|
+          %div.profile-header.mw-100.border-bottom.mt-4{id: "#{parent_category.title.parameterize}-skills-container"}
+            = parent_category.title
+          = render "skills_by_category", child_categories:
         %div.align-items-center.mt-3
           = cancel_action_link person_people_skills_path(@person, no_default_skill_prompt: "")
     %div#person-skill-overview
