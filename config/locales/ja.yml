@@ -94,8 +94,10 @@ ja:
       skill:
         category: カテゴリー
         default_set: デフォルトセット
+        members: メンバー
         portfolio: ポートフォリオ
         radar: レーダー
+        subcategory: サブカテゴリ
         title: タイトル
     models:
       activity: 配属先
@@ -358,5 +360,6 @@ ja:
         radar: レーダー
         skill: スキル
         subcategory: サブカテゴリ
+        title: タイトル
     show:
       title: 'スキル: %{title} (%{amount} 人のメンバー)'

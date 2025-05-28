@@ -94,8 +94,10 @@ de-CH:
       skill:
         category: Kategorie
         default_set: Default-Set
+        members: Mitglider
         portfolio: Portfolio
         radar: Radar
+        subcategory: Subkategorie
         title: Titu
     models:
       activity: Station
@@ -379,5 +381,6 @@ de-CH:
         radar: Radar
         skill: Skill
         subcategory: Subkategorie
+        title: Titu
     show:
       title: 'Skill: %{title} (%{amount} Members)'
