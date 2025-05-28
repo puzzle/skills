@@ -1,5 +1,8 @@
 # encoding: utf-8
 class DepartmentskillSnapshotSeeder
+  def initialize
+    @previous_skill_levels = {}
+  end
 
   def seed_department_skill_snapshots
     Department.ids.each do |department_id|
@@ -12,20 +15,33 @@ class DepartmentskillSnapshotSeeder
   def seed_snapshot_for_month(department_id, date)
     DepartmentSkillSnapshot.seed do |snp|
       snp.department_id = department_id
-      snp.department_skill_levels = seed_department_skill_levels
+      snp.department_skill_levels = seed_department_skill_levels(department_id)
       snp.created_at = date
       snp.updated_at = date
     end
   end
 
-  def seed_department_skill_levels
+  def seed_department_skill_levels(department_id)
     skill_levels = {}
 
     Skill.all.each do |skill|
-      skill_levels[skill.id.to_s] = Array.new(rand(5..10)) { rand(1..5) }
+      previous = @previous_skill_levels.dig(department_id, skill.id)
+
+      if previous.nil?
+        new_values = Array.new(rand(8..15)) { rand(1..5) }
+      else
+        new_values = previous.dup
+        indices_to_change = new_values.size.times.to_a.sample(3)
+        indices_to_change.each do |i|
+          new_values[i] = rand(1..5)
+        end
+      end
+
+      skill_levels[skill.id.to_s] = new_values
+      @previous_skill_levels[department_id] ||= {}
+      @previous_skill_levels[department_id][skill.id] = new_values
     end
 
     skill_levels
   end
-
 end
