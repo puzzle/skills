@@ -48,4 +48,15 @@ module FormHelper
     standard_form(path_args(entry), *attrs, &)
   end
 
+  def disabled_with_ptime_sync
+    if use_ptime_sync?
+      {
+        'data-bs-toggle': 'tooltip',
+        'data-bs-title': I18n.t('people.form.ptime_data'),
+        'data-bs-placement': 'top',
+        'data-controller': 'tooltip',
+        disabled: true
+      }
+    end
+  end
 end
