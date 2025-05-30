@@ -131,11 +131,9 @@ describe :people do
 
       within '#default-skills' do
         not_rated_default_skills.each do |person_skill|
-          within "##{person_skill.skill.category.parent.title.parameterize}-skills-container" do
-            expect(page).to have_content(person_skill.skill.category.parent.title)
-            expect(page).to have_content(person_skill.skill.category.title)
-            expect(page).to have_content(person_skill.skill.title)
-          end
+          expect(page).to have_content(person_skill.skill.category.parent.title)
+          expect(page).to have_content(person_skill.skill.category.title)
+          expect(page).to have_content(person_skill.skill.title)
         end
 
         expect(page).to have_content('Azubi', count: not_rated_default_skills.count)
