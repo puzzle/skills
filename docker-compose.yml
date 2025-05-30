@@ -49,12 +49,19 @@ services:
       - rails
 
   worker:
-    build: .
-    command: bundle exec rails jobs:work
+    container_name: worker
+    image: ruby:3.4.1
+    environment:
+      - RAILS_DB_HOST=postgres
+      - RAILS_ENV=development
+    env_file: .env
+    working_dir: /app
+    command: /bin/bash -c "bundle install && bundle exec rails jobs:work"
     volumes:
       - .:/app
     depends_on:
       - postgres
+      - rails
 volumes:
   bundler_cache:
   assets_cache:
