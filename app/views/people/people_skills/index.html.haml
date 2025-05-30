@@ -1,7 +1,7 @@
-%div.d-flex.gap-3.col-12
+%turbo-frame#people-skill-form.d-flex.gap-3.col-12
   = render('people/scroll_to_menu', items: parent_categories_with_rated_skills) do
     = add_action_link_modal
-  %turbo-frame#people-skill-form.w-100{data: { "scroll-target": "parent"}}
+  %div.w-100{data: { "scroll-target": "parent"}}
     - if @not_rated_default_skills.length > 0 && !params.key?("no_default_skill_prompt")
       %div.border.border-1.mb-2.p-3.border-black#default-skills
         %div#default-skill-errors

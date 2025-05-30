@@ -39,10 +39,8 @@ class People::PeopleSkillsController < CrudController
 
   def update
     @people_skills = filtered_people_skills(params[:people_skill])
-    super do |format, success|
-      @not_rated_default_skills = not_rated_default_skills(@person)
-      format.turbo_stream { render 'people/people_skills/update', status: :ok } if success
-    end
+    super
+    @not_rated_default_skills = not_rated_default_skills(@person)
   end
 
   def list_entries
