@@ -93,7 +93,7 @@ module PersonHelper
   end
 
   def person_people_skills
-    @person.people_skills.order(:skill_id).includes(skill: { category: :parent })
+    @people_skills.order(:skill_id).includes(skill: { category: :parent })
   end
 
   def sorted_people
