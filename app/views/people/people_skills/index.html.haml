@@ -1,18 +1,18 @@
 %div.d-flex.gap-3.col-12
-  = render('people/scroll_to_menu', items: Category.all_parents.pluck(:title)) do
+  = render('people/scroll_to_menu', items: parent_categories_with_rated_skills) do
     = add_action_link_modal
   %turbo-frame#people-skill-form.w-100{data: { "scroll-target": "parent"}}
     - if @not_rated_default_skills.length > 0 && !params.key?("no_default_skill_prompt")
       %div.border.border-1.mb-2.p-3.border-black#default-skills
         %div#default-skill-errors
-        %div.d-flex.align-items-center.profile-header.justify-content-between.mb-2
+        %div.d-flex.align-items-center.profile-header.justify-content-between.mb-2.bg-light-blue
           %div
             = ti("new_skills_to_rate")
             = "(#{@not_rated_default_skills.length})"
           = close_action_link person_people_skills_path(@person, no_default_skill_prompt: "")
 
         - people_skills_by_category(@not_rated_default_skills.sort_by(&:skill_id)).each do |parent_category, child_categories|
-          %div.profile-header.mw-100.border-bottom.mt-4
+          %div.profile-header.mw-100.border-bottom.mt-4.bg-light-blue
             = parent_category.title
           = render "skills_by_category", child_categories:
         %div.align-items-center.mt-3
