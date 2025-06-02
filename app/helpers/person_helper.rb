@@ -90,7 +90,7 @@ module PersonHelper
     people_skills
       .group_by { |person_skill| person_skill.skill.category }
       .group_by { |category, _| category.parent }
-      .sort_by { |parent_category, _| parent_category.title}
+      .sort_by { |parent_category, _| parent_category.title }
   end
 
   def person_people_skills
