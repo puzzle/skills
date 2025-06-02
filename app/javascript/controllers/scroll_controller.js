@@ -3,14 +3,20 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
     static targets = ["list", "listItem", "scrollItem", "parent"]
     currentSelectedIndex = -1;
-    offsetY = this.parentTarget.getBoundingClientRect().top + window.scrollY;
+    offsetY = 0;
 
     connect() {
-        this.listTarget.style.top = `${this.offsetY}px`;
-        document.addEventListener("scroll", () => {
-            this.highlight();
-        });
-        this.highlight()
+        document.removeEventListener('scroll', () => {});
+        ['turbo:frame-load', 'turbo:load'].forEach(e => {
+            window.addEventListener(e, () => {
+                this.offsetY = this.parentTarget.getBoundingClientRect().top + window.scrollY;
+                this.listTarget.style.top = `${this.offsetY}px`;
+                document.addEventListener("scroll", () => {
+                    this.highlight();
+                });
+                this.highlight()
+            })
+        })
     }
 
     disconnect() {
@@ -28,11 +34,9 @@ export default class extends Controller {
     highlight() {
         for (const [i, scrollItem] of this.scrollItemTargets.entries()) {
             if (this.isElementInViewport(scrollItem)) {
-                if (this.currentSelectedIndex !== i) {
-                    this.listItemTargets.forEach(e => e.classList.remove("skills-selected"))
-                    this.listItemTargets[i].classList.add("skills-selected");
-                    this.currentSelectedIndex = i;
-                }
+                this.listItemTargets.forEach(e => e.classList.remove("skills-selected"))
+                this.listItemTargets[i].classList.add("skills-selected");
+                this.currentSelectedIndex = i;
                 break;
             }
         }
@@ -40,6 +44,6 @@ export default class extends Controller {
 
     isElementInViewport(el) {
         let rect = el.getBoundingClientRect();
-        return rect.top >= this.offsetY;
+        return rect.bottom > this.offsetY;
     }
 }

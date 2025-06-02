@@ -89,7 +89,7 @@ describe :people do
       visit person_people_skills_path(alice, rating: 1)
       expect(page).to have_content('Ruby (2)')
       expect(page).to have_content('Java (1)')
-      expect(page).to have_content('c (0)')
+      expect(page).not_to have_content('c (0)')
       expect(page).to have_content('Linux-Engineering (1)')
     end
 
@@ -131,6 +131,8 @@ describe :people do
 
       within '#default-skills' do
         not_rated_default_skills.each do |person_skill|
+          expect(page).to have_content(person_skill.skill.category.parent.title)
+          expect(page).to have_content(person_skill.skill.category.title)
           expect(page).to have_content(person_skill.skill.title)
         end
 
