@@ -89,7 +89,7 @@ describe :people do
       visit person_people_skills_path(alice, rating: 1)
       expect(page).to have_content('Ruby (2)')
       expect(page).to have_content('Java (1)')
-      expect(page).to have_content('c (0)')
+      expect(page).not_to have_content('c (0)')
       expect(page).to have_content('Linux-Engineering (1)')
     end
 
