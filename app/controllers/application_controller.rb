@@ -3,6 +3,7 @@
 class ApplicationController < ActionController::Base
   include ParamConverters
 
+  before_action :redirect_with_locale
   before_action :authenticate_auth_user!
   around_action :switch_locale
 
@@ -47,5 +48,10 @@ class ApplicationController < ActionController::Base
 
   def default_url_options
     { locale: I18n.locale }
+  end
+
+  def redirect_with_locale
+    path = request.env['PATH_INFO']
+    redirect_to("/#{cookies[:locale] || I18n.default_locale}#{path}") unless params[:locale]
   end
 end
