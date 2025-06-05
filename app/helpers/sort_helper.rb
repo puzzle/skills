@@ -42,7 +42,7 @@ module SortHelper
     @skills = if indirect_skill_attributes.include?(params[:sort])
                 sort_skills_by_indirect_attributes
               else
-                @skills.sort_by { |skill| skill[params[:sort]].to_s }
+                @skills.sort_by { |skill| skill[params[:sort]].to_s.downcase }
               end
     params[:sort_dir] == 'asc' ? @skills : @skills.reverse
   end
@@ -55,11 +55,11 @@ module SortHelper
   end
 
   def sort_by_subcategory
-    @skills.sort_by { |skill| skill.category.title }
+    @skills.sort_by { |skill| skill.category.title.downcase }
   end
 
   def sort_by_category
-    @skills.sort_by { |skill| skill.category.parent.title }
+    @skills.sort_by { |skill| skill.category.parent.title.downcase }
   end
 
   def sort_by_members
