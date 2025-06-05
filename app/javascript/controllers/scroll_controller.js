@@ -6,7 +6,6 @@ export default class extends Controller {
     offsetY = this.parentTarget.getBoundingClientRect().top + window.scrollY;
 
     connect() {
-        this.listTarget.style.top = `${this.offsetY}px`;
         document.addEventListener("scroll", () => {
             this.highlight();
         });

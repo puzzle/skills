@@ -32,7 +32,7 @@ module AuthHelper
 
   def language(lang_code)
     if lang_code == 'de-CH'
-      'Schwizer Dütsch'
+      'Schwizerdütsch'
     else
       I18nData.languages(lang_code)[lang_code.upcase]
     end
