@@ -13,4 +13,4 @@
     .rate
       - 5.downto(1) do |index|
         = form.radio_button "interest[#{row_number}]", index, id: "row#{row_number}_star#{index}", checked: index == filter_params.interest_of_row(row_number), onClick: "this.form.submit()"
-        %label{for: "row#{row_number}_star#{index}", title: "text", id: "row#{row_number}_star-label#{index}", class: "star#{index}"} stars
+        %label{for: "row#{row_number}_star#{index}", id: "row#{row_number}_star-label#{index}", class: "star#{index}"} stars
