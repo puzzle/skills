@@ -43,6 +43,36 @@ describe :people do
       expect(ember.interest).to eq(2)
     end
 
+    it 'should only show nav items with rated skills' do
+      alice = people(:alice)
+      visit person_people_skills_path(alice, rating: 1)
+
+      within '.sidebar' do
+        expect(page).to have_content('Software-Engineering')
+        expect(page).to have_content('System-Engineering')
+      end
+
+      find('label[for="rating_0"]').click
+
+      within '.sidebar' do
+        expect(page).to have_content('Software-Engineering')
+        expect(page).not_to have_content('System-Engineering')
+      end
+
+      find('label[for="rating_-1"]').click
+
+      within '.sidebar' do
+        expect(page).not_to have_content('Software-Engineering')
+        expect(page).to have_content('System-Engineering')
+      end
+    end
+
+    it 'should add category to scroll-to-menu once a skill of it is rated' do
+      alice = people(:alice)
+      alice.people_skills.first.destroy
+      visit person_people_skills_path(alice, rating: 1)
+    end
+
     it 'interest is changed from 0 when level is not 0 anymore' do
       # Switch to PeopleSkills tab
       alice = people(:alice)
