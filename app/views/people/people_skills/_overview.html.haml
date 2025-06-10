@@ -2,7 +2,7 @@
   = "#{PeopleSkill.model_name.human(count: @person.people_skills.count)} (#{@person.people_skills.count})"
 
 %div.ms-3
-  = form_with(url: person_people_skills_path(@person), method: :get, data: {controller: "filter", turbo_frame: "people-skills"}) do |f|
+  = form_with(url: person_people_skills_path(@person), method: :get, data: {controller: "filter"}) do |f|
     %span.btn-group
       - rating = request.query_parameters[:rating]
       = f.radio_button :rating, 1, class: "btn-check", checked: rating == "1",
@@ -17,7 +17,7 @@
             onClick: "this.form.requestSubmit()", data: {action: "change->filter#submit"}
       = f.label :rating, ti("filter.unrated"), value: -1, class: "btn btn-outline-primary"
 
-  = turbo_frame_tag 'people-skills' do
+  #people-skills
     - people_skills_by_category(person_people_skills).each do |parent_category, child_categories|
       %div{id: parent_category.title.parameterize, "data-scroll-target": "scrollItem"}
         %div.profile-header.mw-100.border-bottom.mt-4
