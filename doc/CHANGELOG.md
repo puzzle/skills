@@ -26,7 +26,7 @@
 
 ### Features
 
-- **Tech Stack** Complete rewrite of the tech stack. EmberJS was removed and its functionality has been replaced with Rails + Hotwire ("feature complete").
+- **Tech-Stack** Complete rewrite of the tech stack. EmberJS was removed and its functionality has been replaced with Rails + Hotwire ("feature complete").
 - **Docker Setup** Thanks to the significantly simplified tech stack, the Docker setup is now much more functional.
 
 # 4.4.0
@@ -35,8 +35,8 @@
 
 - **Skill AND Search** It is now possible to search for multiple skills simultaneously.
 - **No End Date Required** Profile entries can now be created without an end date (https://github.com/puzzle/skills/issues/450).
-- **CV Search "go-back" behavior** The CV search now remembers the last search input and handles browser history more intelligently.
-- **CV Export Skill-Level Filter** Only skills that meet a minimum level can now be included in the export.
+- **CV-Search "go-back" behavior** The CV search now remembers the last search input and handles browser history more intelligently.
+- **CV-Export Skill-Level Filter** Only skills that meet a minimum level can now be included in the export.
 - **ESC Behavior in Forms** Forms are no longer closed immediately when pressing ESC. Instead, focus is first shifted to the current field, and a dialog appears before any input is deleted. (https://github.com/puzzle/skills/issues/392)
 - **Frontend Cleanup** A lot has been cleaned up and unified in the frontend.
 
@@ -46,7 +46,7 @@
 
 - **Sentry:** Skills is now compatible with Sentry!
 - **Env Variables via Endpoint:** Required environment variables for the frontend can now be retrieved via an endpoint.
-- **CV Search with "Found in":** CV search now shows where the search term was found, and allows you to jump directly to that spot.
+- **CV-Search with "Found in":** CV search now shows where the search term was found, and allows you to jump directly to that spot.
 - **Skill Search Minimum Experience:** Skill search now allows setting a minimum experience level.
 - **Anonymized CV:** CVs can now be exported without personal data.
 
@@ -74,7 +74,7 @@
 
 ### Features
 
-- **CV Search:** Full user CVs can once again be searched via the Search tab.
+- **CV-Search:** Full user CVs can once again be searched via the Search tab.
 
 ### Improvements
 
