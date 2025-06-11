@@ -74,6 +74,9 @@ module Odt
     end
 
     def insert_locations(report)
+      is_de = location.country == 'DE'
+      report.add_section('FOOTER_SWITZERLAND', is_de ? [] : [1]) {}
+      report.add_section('FOOTER_GERMANY', is_de ? [1] : []) {}
       report.add_field(:niederlassung, location.adress_information)
     end
 
