@@ -28,7 +28,7 @@ We're glad you want to set up your machine for PuzzleSkills development 💃
 ### Windows users
 If you're on Windows you should be able to Download Ubuntu from Microsoft Store. Note that you need to enable Subsystem for Linux and virtual machine platform in your Windows features.  
 Then you can open Ubuntu and follow the manual using the Ubuntu console.  
-Once you're done, open your Windows IDE and navigate to the `/skills` folder located in your Linux subsystem under Ubuntu to start developing.
+Once you're done, open your Windows IDE and navigate to the skills folder located in your Linux subsystem under Ubuntu to start developing.
 If this doesn't work you can always use a VM.
 
 First you need to clone this repository:
