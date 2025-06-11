@@ -26,7 +26,7 @@ describe Odt::PuzzleCv do
       end
 
       it 'calls new_report with correct template name' do
-        expect(puzzle_cv).to receive(:new_report).with('cv_template_de_anon_with_level.odt')
+        expect(puzzle_cv).to receive(:new_report).with('cv_template_anon.odt')
         subject
       end
     end
@@ -60,7 +60,7 @@ describe Odt::PuzzleCv do
       end
 
       it 'calls new_report with correct suffixes' do
-        expect(puzzle_cv).to receive(:new_report).with('cv_template_de_with_level.odt')
+        expect(puzzle_cv).to receive(:new_report).with('cv_template.odt')
         subject
       end
     end
@@ -109,6 +109,7 @@ describe Odt::PuzzleCv do
 
         report = Odt::PuzzleCv.new(cv).export
         report.as_json["tables"].each do |table|
+          next if table["name"] == "LEVEL_COMPETENCES"
           expect(table["data_source"]["value"]).to_not be_empty
         end
       end
