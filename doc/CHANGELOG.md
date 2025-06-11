@@ -1,12 +1,26 @@
+# Work in progress
+
+### Features
+- **Language localization** Added translations for Japanese and Swiss-german to the application.
+- **Different template for CV export** A Red Hat template has been added as an option when exporting the CV. The foundation has been layed to add more templates if requested.
+- **Unifying of skills** Duplicates of skills can now be unified using an option in the admin view.
+- **Certificate master** It is now possible to keep track of different certificates inside of PuzzleSkills.
+
+### Improvements
+- **Unrated skills disappear** When rating a skill as not rated, it disappears from the profile.
+- **Various translations** Translations for various parts of the application have been added and improved.
+
 # 5.1.0
 
 ### Features
-- **Turbo upgrade** Dropdowns and links are now turbo 8 friendly which includes pre-fetching of entries
-- **Rails upgrade** Rails version upgraded to 8
-- **Ruby upgrade** Ruby version upgraded to 3.4.1
-- **Future years to be selected** Allow future years to be selected in the from-to dropdown
-- **Language selection** Translations for English, French and Italian added
-- **Delete button for people** Add the missing delete button for people
+- **Language selection** Translations for English, French and Italian added.
+- **Delete button for people** Add the missing delete button for people.
+
+### Improvements
+- **Turbo upgrade** Dropdowns and links are now turbo 8 friendly which includes pre-fetching of entries.
+- **Rails upgrade** Rails version upgraded to 8.
+- **Ruby upgrade** Ruby version upgraded to 3.4.1.
+- **Future years to be selected** Allow future years to be selected in the from-to dropdown for person relations.
 
 # 5.0.0 - The Big Rewrite
 
@@ -38,11 +52,11 @@
 
 ### Improvements
 
-- **Ember Upgrade:** Ember-cli version upgraded to 3.15
-- **Rails Upgrade:** Rails version upgraded to 6
-- **README:** README significantly improved in structure and content
-- **Docker Image:** A Skills Docker image has been published on Docker Hub
-- **Department and PersonRole Levels:** Departments and PersonRole levels were moved from `settings.yml` to the database
+- **Ember Upgrade:** Ember-cli version upgraded to 3.15.
+- **Rails Upgrade:** Rails version upgraded to 6.
+- **README:** README significantly improved in structure and content.
+- **Docker Image:** A Skills Docker image has been published on Docker Hub.
+- **Department and PersonRole Levels:** Departments and PersonRole levels were moved from `settings.yml` to the database.
 - **Bugfix:** [Skill creation bugfix](https://github.com/puzzle/skills/issues/308)
 
 # 4.2.0
