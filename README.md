@@ -22,6 +22,10 @@ You will need the following things properly installed on your computer:
 -   [RVM (Ruby Version Manager)](https://rvm.io/) ([installation](https://rvm.io/rvm/install) requires `curl` and `gpg`)
 -   Either [PostgreSQL](https://www.postgresql.org/) or [Docker](https://www.docker.com/) for the Database (Docker is recommended)
 
+## 📄 Changelog
+See what’s new in the latest versions by checking the [CHANGELOG.md](https://github.com/puzzle/skills/blob/master/doc/CHANGELOG.md).
+
+
 ## Setup dockerized Application👩🏽‍💻
 We're glad you want to set up your machine for PuzzleSkills development 💃
 
