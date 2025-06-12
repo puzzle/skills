@@ -6,7 +6,6 @@ describe 'Profile scroll-to', type: :feature, js: true do
   before(:each) do
     sign_in auth_users(:user), scope: :auth_user
     visit root_path
-    Capybara.page.driver.browser.manage.window.maximize
   end
 
   it 'Should change background of selected section' do
