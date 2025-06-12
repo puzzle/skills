@@ -164,10 +164,26 @@ it:
     global:
       search_placeholder: Ricerca CV...
       search_skills: Anche le capacità di ricerca
+  date:
+    month_names:
+    -
+    - Gennaio
+    - Febbraio
+    - Marzo
+    - Aprile
+    - Maggio
+    - Giugno
+    - Luglio
+    - Agosto
+    - Settembre
+    - Ottobre
+    - Novembre
+    - Dicembre
   errors:
     messages:
       authorization_error: Non hai i diritti per eseguire questa funzione.
       cannot_remove: non deve essere cancellato.
+      chart_data_empty: Selezionare un unità organizzativa, una competenza e un anno per visualizzare i dati.
       invalid_date_range: deve essere precedente alla data di scadenza.
       max_size_10MB: non deve essere più grande di 10 MB.
       max_size_error: non deve essere più grande di 10 MB.
@@ -212,6 +228,7 @@ it:
       cv_search: Ricerca di CV
       profile: Profilo
       skill_search: Ricerca di competenze
+      skills_tracking: Tracciamento delle competenze
       skillset: Competenze
     new: Nuovo
     people_skills:

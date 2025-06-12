@@ -12,7 +12,7 @@ describe :people do
       bob = people(:bob)
       visit person_path(bob)
 
-      expect(page).to have_css('.nav-link', text: 'Skills', count: 2)
+      expect(page).to have_css('.nav-link', text: 'Skills', count: 3)
       page.all('.nav-link', text: 'Skills')[1].click
     end
 
