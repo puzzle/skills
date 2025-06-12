@@ -3,10 +3,10 @@
 class PeopleSearch
   SEARCHABLE_FIELDS = %w{name title competence_notes description
                          role technology location}.freeze
-  attr_reader :search_term, :entries, :search_skills
+  attr_reader :search_terms, :entries, :search_skills
 
-  def initialize(search_term, search_skills: false)
-    @search_term = search_term
+  def initialize(search_terms, search_skills: false)
+    @search_terms = search_terms
     @search_skills = search_skills
     @entries = search_result
   end
@@ -14,9 +14,12 @@ class PeopleSearch
   private
 
   def search_result
-    people = Person.all.search(search_term)
-    people = pre_load(people)
+    people = []
+    search_terms.each do |search_term|
+      people = Person.all.search(search_term)
+    end
 
+    people = pre_load(people)
     results = []
 
     people.map do |p|
@@ -73,6 +76,7 @@ class PeopleSearch
       in_attributes(target.attributes)
     end
   end
+
   # rubocop:enable Metrics/MethodLength
 
   def attribute_in_array(array)
@@ -84,8 +88,10 @@ class PeopleSearch
   def in_attributes(attrs)
     attribute = searchable_fields(attrs).find_all do |_key, value|
       next if value.nil?
+      search_terms.each do |search_term|
+        value.downcase.include?(search_term.downcase) # PG Search is not case sensitive
 
-      value.downcase.include?(search_term.downcase) # PG Search is not case sensitive
+      end
     end
     attribute.map!(&:first)
   end
