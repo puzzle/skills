@@ -31,9 +31,13 @@ class DepartmentskillSnapshotSeeder
         new_values = Array.new(rand(8..15)) { rand(1..5) }
       else
         new_values = previous.dup
-        indices_to_change = new_values.size.times.to_a.sample(3)
+        indices_to_change = new_values.size.times.to_a.sample(rand(1..3))
+
         indices_to_change.each do |i|
-          new_values[i] = rand(1..5)
+          current_value = new_values[i]
+          delta = [-2, -1, 1, 2].sample
+          new_value = current_value + delta
+          new_values[i] = new_value.clamp(1, 5)
         end
       end
 
