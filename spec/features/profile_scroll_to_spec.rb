@@ -6,7 +6,7 @@ describe 'Profile scroll-to', type: :feature, js: true do
   before(:each) do
     sign_in auth_users(:user), scope: :auth_user
     visit root_path
-    Capybara.page.driver.browser.manage.window.maximize
+    # Capybara.page.driver.browser.manage.window.maximize
   end
 
   it 'Should change background of selected section' do
@@ -14,7 +14,6 @@ describe 'Profile scroll-to', type: :feature, js: true do
     page.find('span', text: 'Ausbildung').click
     expect(page.all('div', text: 'Ausbildung')[0]).to have_css('.skills-selected')
 
-    sleep(1)
     page.find('span', text: 'Projekte').click
     expect(page.all('div', text: 'Projekte')[0]).to have_css('.skills-selected')
   end
