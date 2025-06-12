@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     get 'sentry_error', to: 'status#sentry_error'
   end
 
-  get root to: "application#redirect_with_locale"
+  get root to: redirect(path: "/people")
 
   scope "(:locale)", locale: LOCALE_REGEX do
     get '/:locale' => redirect("%{locale}/people")
