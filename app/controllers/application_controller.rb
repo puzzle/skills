@@ -11,7 +11,14 @@ class ApplicationController < ActionController::Base
   def switch_locale(&)
     param_locale = params[:locale]
     path = request.env['PATH_INFO']
-    redirect_to(locale: cookies[:locale] || I18n.default_locale) && return unless param_locale || path.include?("auth") || path.include?("sign_up")
+    unless param_locale || path.include?('auth') || path.include?('sign_up')
+      redirect_to(locale: cookies[:locale] || I18n.default_locale) && return
+    end
+
+    set_locale_cookie(&)
+  end
+
+  def set_locale_cookie(&)
     cookies.permanent[:locale] = param_locale unless params[:set_by_user].nil?
     I18n.with_locale(param_locale, &)
   end
