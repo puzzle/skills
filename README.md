@@ -27,10 +27,10 @@ See what’s new in the latest versions by checking the [CHANGELOG.md](https://g
 
 
 ## Setup dockerized Application👩🏽‍💻
-We're glad you want to set up your machine for PuzzleSkills development 💃
+We're glad you want to setup your machine for PuzzleSkills development 💃
 
 ### Windows users
-If you're on Windows you should be able to Download Ubuntu from Microsoft Store. Note that you need to enable Subsystem for Linux and virtual machine platform in your Windows features.  
+If you're on Windows you should be able to Download Ubuntu from the Microsoft Store. Note that you need to enable Subsystem for Linux and virtual machine platform in your Windows features.  
 Then you can open Ubuntu and follow the manual using the Ubuntu console.  
 Once you're done, open your Windows IDE and navigate to the skills folder located in your Linux subsystem under Ubuntu to start developing.
 If this doesn't work you can always use a VM.
@@ -42,7 +42,7 @@ mkdir -p ~/git/ && cd ~/git/
 git clone https://github.com/puzzle/skills.git && cd ~/git/skills
 ```
 
-⚡ If your user id is not 1000 (run id -u to check), you need to export this as env variable: **export UID=$UID** before running any of the further commands. You may want to add this to your `.bashrc` file for convenience.
+⚡ If your user id is not 1000 (run id -u to check), you need to export this as an env variable: **export UID=$UID** before running any of the further commands. You may want to add this to your `.bashrc` file for convenience.
 
 ## Start Development Containers
 <img src="https://developers.redhat.com/sites/default/files/styles/article_feature/public/blog/2014/05/homepage-docker-logo.png?itok=zx0e-vcP" alt="docker whale" width="350">

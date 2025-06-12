@@ -1,8 +1,8 @@
 # Work in progress
 
 ### Features
-- **Language localization** Added translations for Japanese and Swiss-german to the application.
-- **Different template for CV export** A Red Hat template has been added as an option when exporting the CV. The foundation has been layed to add more templates if requested.
+- **Language localization** Added translations for Japanese and Swiss-German to the application.
+- **Different template for CV export** A Red Hat template has been added as an option when exporting the CV. The foundation has been laid to add more templates if requested.
 - **Unifying of skills** Duplicates of skills can now be unified using an option in the admin view.
 - **Certificate master** It is now possible to keep track of different certificates inside of PuzzleSkills.
 
