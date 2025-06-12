@@ -15,10 +15,10 @@ class ApplicationController < ActionController::Base
       redirect_to(locale: cookies[:locale] || I18n.default_locale) && return
     end
 
-    set_locale_cookie(&)
+    set_locale_cookie(param_locale, &)
   end
 
-  def set_locale_cookie(&)
+  def set_locale_cookie(param_locale, &)
     cookies.permanent[:locale] = param_locale unless params[:set_by_user].nil?
     I18n.with_locale(param_locale, &)
   end
