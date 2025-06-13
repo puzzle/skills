@@ -7,12 +7,10 @@ module Odt
     end
 
     def export
-      country_suffix = @cv.send(:location).country == 'DE' ? '_de' : ''
       anonymous_suffix = @cv.send(:anon?) ? '_anon' : ''
       @cv.instance_variable_set(:@skills_by_level_list,
                                 @cv.send(:skills_by_level_value, @cv.send(:skill_level_value)))
-      include_level = @cv.send(:include_skills_by_level?) ? '_with_level' : ''
-      new_report("cv_template#{country_suffix}#{anonymous_suffix}#{include_level}.odt")
+      new_report("cv_template#{anonymous_suffix}.odt")
     end
 
     # rubocop:disable Metrics/MethodLength
