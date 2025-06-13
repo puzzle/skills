@@ -10,10 +10,10 @@ describe 'Routing', type: :feature, js: true do
 
   describe "Check auto rerouting" do
     ROUTES = {
-      "/": "/people",
+      "/": "/de/people",
       "/de/": "/de/people",
-      "/people": "/people",
-      "/people_skills": "/people_skills",
+      "/people": "/de/people",
+      "/people_skills": "/de/people_skills",
       "/en": "/en/people",
     }
 
@@ -29,14 +29,25 @@ describe 'Routing', type: :feature, js: true do
     context "Set locale via dropdown" do
       before(:each) do
         visit people_path
-        select 'Italiano', from: "i18n_language"
-        default_url_options[:locale] = :it
       end
 
-      it "Should open profile with correct language" do
+      it "Should open profile with correct language and preserve language in cookie" do
+        select 'Italiano', from: "i18n_language"
+
         select_from_slim_select("#person_id_person", bob.name)
         expect(page).to have_text("Dati personali")
-        click_link(href: person_people_skills_path(bob))
+
+        # Visiting page with locale explicitly defined in route should use locale from route
+        visit '/en/'
+        select_from_slim_select("#person_id_person", bob.name)
+        expect(page).to have_text("Personal details")
+
+        # Simulate revisit without a locale in the url, which should use locale from cookie
+        visit '/'
+
+        select_from_slim_select("#person_id_person", bob.name)
+        expect(page).to have_text("Dati personali")
+        click_link(href: person_people_skills_path(bob, locale: :it))
         expect(page).to have_text("Nuove competenze per la valutazione")
       end
     end
