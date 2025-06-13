@@ -1,0 +1,10 @@
+= form_with model: ([entry.person, entry]) do |f|
+  = render('people/person_relations/form', form: f) do
+    - content_for :input do
+      = f.label :title
+      = f.text_area :title, placeholder: "Titel", class: "form-control w-100"
+      = f.label :link
+      = f.text_area :link, placeholder: "Link", class: "form-control w-100"
+      .flex-row.mt-1
+        = f.label :display_in_cv, class: "form-check-label text-gray me-1"
+        = f.checkbox :display_in_cv, class: "form-check-input"
