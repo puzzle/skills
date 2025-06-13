@@ -56,6 +56,7 @@ Rails.application.routes.draw do
       resources :educations
       resources :activities
       resources :projects
+      resources :contributions
       resources :people_skills, controller: 'people/people_skills', path: 'skills'
 
       member do

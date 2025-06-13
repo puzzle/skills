@@ -20,6 +20,10 @@ de:
         display_in_cv: Im CV Export inkludieren
         role: Rolle
         year_from: Startdatum
+      contribution:
+        title: Titel
+        link: Link
+        display_in_cv: Im CV Export inkludieren
       advanced_training:
         description: Beschreibung
         display_in_cv: Im CV Export inkludieren
@@ -111,6 +115,9 @@ de:
       certificate:
         one: Zertifikat
         other: Zertifikate
+      contribution:
+        one: Open source contribution
+        other: Open source contributions
       company:
         one: Firma
         other: Firmen
@@ -296,6 +303,9 @@ de:
     educations:
       link:
         add: Neue Ausbildung
+    contributions:
+      link:
+        add: Neue Contribution
     export_cv:
       export_form:
         anonymised_cv: Anonymisierter CV

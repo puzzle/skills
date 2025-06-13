@@ -93,6 +93,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_24_100849) do
     t.datetime "updated_at", precision: nil, null: false
   end
 
+  create_table "contributions", force: :cascade do |t|
+    t.string "title"
+    t.string "link"
+    t.integer "person_id"
+    t.integer "year_from"
+    t.integer "year_to"
+    t.integer "month_from"
+    t.integer "month_to"
+    t.boolean "display_in_cv"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
     t.integer "attempts", default: 0, null: false
