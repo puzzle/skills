@@ -75,10 +75,8 @@ module Odt
 
     def insert_locations(report)
       is_de = location.country == 'DE'
-      # rubocop:disable Lint/EmptyBlock
-      report.add_section('FOOTER_SWITZERLAND', is_de ? [] : [1]) {}
-      report.add_section('FOOTER_GERMANY', is_de ? [1] : []) {}
-      # rubocop:enable Lint/EmptyBlock
+      report.add_section('FOOTER_SWITZERLAND', is_de ? [] : [1]) { nil }
+      report.add_section('FOOTER_GERMANY', is_de ? [1] : []) { nil }
       report.add_field(:niederlassung, location.adress_information)
     end
 
