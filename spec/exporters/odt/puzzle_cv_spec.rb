@@ -25,7 +25,7 @@ describe Odt::PuzzleCv do
         allow(cv).to receive(:include_skills_by_level?).and_return(include_level)
       end
 
-      it 'calls new_report with correct template name' do
+      it 'calls new report with anonymized template name' do
         expect(puzzle_cv).to receive(:new_report).with('cv_template_anon.odt')
         subject
       end
@@ -42,7 +42,7 @@ describe Odt::PuzzleCv do
         allow(cv).to receive(:include_skills_by_level?).and_return(include_level)
       end
 
-      it 'calls new_report with basic template name' do
+      it 'calls new_report with unanonymized template name' do
         expect(puzzle_cv).to receive(:new_report).with('cv_template.odt')
         subject
       end
@@ -59,7 +59,7 @@ describe Odt::PuzzleCv do
         allow(cv).to receive(:include_skills_by_level?).and_return(include_level)
       end
 
-      it 'calls new_report with correct suffixes' do
+      it 'calls new_report with unanonymized template name' do
         expect(puzzle_cv).to receive(:new_report).with('cv_template.odt')
         subject
       end
@@ -103,13 +103,13 @@ describe Odt::PuzzleCv do
         end
       end
 
-      it 'every tables values should not be null if all educations, advanced_trainings, member_notes, projects and activities of the person have attr display_in_cv true' do
-        person = people(:longmax)
+      it 'every tables values should not be null if all educations, advanced_trainings, member_notes, projects and activities of the person have attr display_in_cv true and skills by level is true' do
+        person = people(:bob)
+        allow(cv).to receive(:include_skills_by_level?).and_return(true)
         cv = Odt::Cv.new(person, { 'anon' => 'false' })
 
         report = Odt::PuzzleCv.new(cv).export
         report.as_json["tables"].each do |table|
-          next if table["name"] == "LEVEL_COMPETENCES"
           expect(table["data_source"]["value"]).to_not be_empty
         end
       end
