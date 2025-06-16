@@ -94,8 +94,10 @@ de:
       skill:
         category: Kategorie
         default_set: Default-Set
+        members: Mitglieder
         portfolio: Portfolio
         radar: Radar
+        subcategory: Subkategorie
         title: Titel
     models:
       activity: Station
@@ -362,5 +364,6 @@ de:
         radar: Radar
         skill: Skill
         subcategory: Subkategorie
+        title: Titel
     show:
       title: 'Skill: %{title} (%{amount} Members)'

@@ -78,4 +78,16 @@ describe :skills do
       page.find('.icon.icon-export').disabled?
     end
   end
+
+  describe 'sort skillsets' do
+    it 'should be able to sort skillset table' do
+      visit skills_path
+      Skill.attribute_names.excluding("id", "created_at", "updated_at", "category_id", "discarded_at").including("category", "members", "subcategory").each do |attr|
+        click_link Skill.human_attribute_name(attr)
+        expect(page).to have_current_path(skills_path(sort: attr, sort_dir: 'asc'))
+        click_link Skill.human_attribute_name(attr)
+        expect(page).to have_current_path(skills_path(sort: attr, sort_dir: 'desc'))
+      end
+    end
+  end
 end
