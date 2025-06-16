@@ -35,9 +35,9 @@ it:
         title: Titolo
         type_of_exam: Tipo di esame
       contribution:
-        title: Titolo
-        link: Link
         display_in_cv: Includere nell'esportazione del CV
+        link: Link
+        title: Titolo
       education:
         display_in_cv: Includere nell'esportazione del CV
         location: Luogo di formazione
@@ -113,12 +113,12 @@ it:
       certificate:
         one: Certificato
         other: Certificati
-      contribution:
-        one: Contributo open source
-        other: Contributi open source
       company:
         one: Azienda
         other: Aziende
+      contribution:
+        one: Contributo open source
+        other: Contributi open source
       department:
         one: Unità organizzativa
         other: Unità organizzative
@@ -294,14 +294,14 @@ it:
     advanced_trainings:
       link:
         add: Nuova formazione continua
+    contributions:
+      link:
+        add: Nuovo contributo
     cv:
       no_skills_rated_msg: Questo profilo non ha ancora competenze valutate. Andate alla scheda Competenze e valutate le competenze che vi interessano.
     educations:
       link:
         add: Nuovo programma di formazione
-    contributions:
-      link:
-        add: Nuovo contributo
     export_cv:
       export_form:
         anonymised_cv: CV anonimo

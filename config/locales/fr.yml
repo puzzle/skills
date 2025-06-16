@@ -35,9 +35,9 @@ fr:
         title: Titre
         type_of_exam: Type d'examen
       contribution:
-        title: Titre
-        link: lien
         display_in_cv: Inclure dans l'exportation du CV
+        link: lien
+        title: Titre
       education:
         display_in_cv: Inclure dans l'exportation du CV
         location: Lieu de formation
@@ -113,12 +113,12 @@ fr:
       certificate:
         one: Certificat
         other: Certificats
-      contribution:
-        one: Contribution open source
-        other: Contributions open source
       company:
         one: Société
         other: Entreprises
+      contribution:
+        one: Contribution open source
+        other: Contributions open source
       department:
         one: Unité organisationnelle
         other: Unités organisationnelles
@@ -294,14 +294,14 @@ fr:
     advanced_trainings:
       link:
         add: Nouvelle formation continue
+    contributions:
+      link:
+        add: Nouvelle contribution
     cv:
       no_skills_rated_msg: Ce profil n'a pas encore de skills évalués. Va dans l'onglet Skills et évalue les skills qui te concernent.
     educations:
       link:
         add: Nouvelle formation
-    contributions:
-      link:
-        add: Nouvelle contribution
     export_cv:
       export_form:
         anonymised_cv: CV anonyme

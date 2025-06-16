@@ -35,9 +35,9 @@ de-CH:
         title: Titu
         type_of_exam: Prüefigsart
       contribution:
-        title: Titu
-        link: Link
         display_in_cv: Im CV Export inkludierä
+        link: Link
+        title: Titu
       education:
         display_in_cv: Im CV Export inkludierä
         location: Usbiudigsort
@@ -115,12 +115,12 @@ de-CH:
       certificate:
         one: Zertifikat
         other: Zertifikat
-      contribution:
-        one: Open source Biitrag
-        other: Open source Biiträg
       company:
         one: Firma
         other: Firmä
+      contribution:
+        one: Open source Biitrag
+        other: Open source Biiträg
       department:
         one: Organisationsiheit
         other: Organisationseiheitä
@@ -315,14 +315,14 @@ de-CH:
     advanced_trainings:
       link:
         add: Neui Witerbiudig
+    contributions:
+      link:
+        add: Neui Contribution
     cv:
       no_skills_rated_msg: Ds Profiu het no kei bewärtetä Skills. Gang zum Skills Tab und bewärtä diä für di relevantä Skills.
     educations:
       link:
         add: Neui Usbiudig
-    contributions:
-      link:
-        add: Neui Contribution
     export_cv:
       export_form:
         anonymised_cv: Anonymisierter CV

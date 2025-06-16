@@ -35,9 +35,9 @@ en:
         title: Title
         type_of_exam: Type of exam
       contribution:
-        title: Title
-        link: Link
         display_in_cv: Include in CV export
+        link: Link
+        title: Title
       education:
         display_in_cv: Include in CV export
         location: Training location
@@ -113,12 +113,12 @@ en:
       certificate:
         one: Certificate
         other: Certificates
-      contribution:
-        one: Open source contribution
-        other: Open source contributions
       company:
         one: Company
         other: Companies
+      contribution:
+        one: Open source contribution
+        other: Open source contributions
       department:
         one: Department
         other: Departments
@@ -294,14 +294,14 @@ en:
     advanced_trainings:
       link:
         add: New further training
+    contributions:
+      link:
+        add: New contribution
     cv:
       no_skills_rated_msg: This profile has no rated skills yet. Go to the Skills tab and rate the skills relevant to you.
     educations:
       link:
         add: New education
-    contributions:
-      link:
-        add: New contribution
     export_cv:
       export_form:
         anonymised_cv: Anonymized CV
