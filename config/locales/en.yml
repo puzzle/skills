@@ -36,7 +36,7 @@ en:
         type_of_exam: Type of exam
       contribution:
         display_in_cv: Include in CV export
-        link: Link
+        reference: Reference (e.g., Link)
         title: Title
       education:
         display_in_cv: Include in CV export

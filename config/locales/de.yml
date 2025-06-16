@@ -36,7 +36,7 @@ de:
         type_of_exam: Prüfungsart
       contribution:
         display_in_cv: Im CV Export inkludieren
-        link: Link
+        reference: Referenz (z.B. Link)
         title: Titel
       education:
         display_in_cv: Im CV Export inkludieren

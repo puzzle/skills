@@ -36,7 +36,7 @@ ja:
         type_of_exam: 試験の種類
       contribution:
         display_in_cv: 履歴書に含める
-        link: リンク
+        reference: 参照（例：リンク
         title: タイトル
       education:
         display_in_cv: 履歴書に含める
