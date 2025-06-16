@@ -36,7 +36,7 @@ it:
         type_of_exam: Tipo di esame
       contribution:
         display_in_cv: Includere nell'esportazione del CV
-        link: Link
+        reference: Riferimento (ad es. link)
         title: Titolo
       education:
         display_in_cv: Includere nell'esportazione del CV

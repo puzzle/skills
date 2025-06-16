@@ -36,7 +36,7 @@ de-CH:
         type_of_exam: Prüefigsart
       contribution:
         display_in_cv: Im CV Export inkludierä
-        link: Link
+        reference: Referänz (z.B. Link)
         title: Titu
       education:
         display_in_cv: Im CV Export inkludierä
