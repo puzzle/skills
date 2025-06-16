@@ -35,9 +35,9 @@ de:
         title: Titel
         type_of_exam: Prüfungsart
       contribution:
-        title: Titel
-        link: Link
         display_in_cv: Im CV Export inkludieren
+        link: Link
+        title: Titel
       education:
         display_in_cv: Im CV Export inkludieren
         location: Ausbildungsort
@@ -119,12 +119,12 @@ de:
       certificate:
         one: Zertifikat
         other: Zertifikate
-      contribution:
-        one: Open source Beitrag
-        other: Open source Beiträge
       company:
         one: Firma
         other: Firmen
+      contribution:
+        one: Open source Beitrag
+        other: Open source Beiträge
       department:
         one: Organisationseinheit
         other: Organisationseinheiten
@@ -305,14 +305,14 @@ de:
     advanced_trainings:
       link:
         add: Neue Weiterbildung
+    contributions:
+      link:
+        add: Neue Contribution
     cv:
       no_skills_rated_msg: Dieses Profil hat noch keine bewerteten Skills. Gehe zum Skills Tab und bewerte die für dich relevanten Skills.
     educations:
       link:
         add: Neue Ausbildung
-    contributions:
-      link:
-        add: Neue Contribution
     export_cv:
       export_form:
         anonymised_cv: Anonymisierter CV
