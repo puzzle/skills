@@ -20,10 +20,6 @@ de:
         display_in_cv: Im CV Export inkludieren
         role: Rolle
         year_from: Startdatum
-      contribution:
-        title: Titel
-        link: Link
-        display_in_cv: Im CV Export inkludieren
       advanced_training:
         description: Beschreibung
         display_in_cv: Im CV Export inkludieren
@@ -38,6 +34,10 @@ de:
         study_time: Lernaufwand [d]
         title: Titel
         type_of_exam: Prüfungsart
+      contribution:
+        title: Titel
+        link: Link
+        display_in_cv: Im CV Export inkludieren
       education:
         display_in_cv: Im CV Export inkludieren
         location: Ausbildungsort
@@ -116,8 +116,8 @@ de:
         one: Zertifikat
         other: Zertifikate
       contribution:
-        one: Open source contribution
-        other: Open source contributions
+        one: Open source Beitrag
+        other: Open source Beiträge
       company:
         one: Firma
         other: Firmen
