@@ -17,12 +17,12 @@ de-CH:
     attributes:
       activity:
         description: Firmäangabä und Beschribig vor Tätigkeit
-        display_in_cv: Im CV Export inkludierä.
+        display_in_cv: Im CV Export inkludierä
         role: Rouä
         year_from: Startdatum
       advanced_training:
         description: Beschribig
-        display_in_cv: Im CV Export inkludierä.
+        display_in_cv: Im CV Export inkludierä
         year_from: Startdatum
       certificate:
         comment: Bemerkig
@@ -34,8 +34,12 @@ de-CH:
         study_time: Lernufwand [d]
         title: Titu
         type_of_exam: Prüefigsart
+      contribution:
+        title: Titu
+        link: Link
+        display_in_cv: Im CV Export inkludierä
       education:
-        display_in_cv: Im CV Export inkludierä.
+        display_in_cv: Im CV Export inkludierä
         location: Usbiudigsort
         title: Usbiudig
         year_from: Startdatum
@@ -56,7 +60,7 @@ de-CH:
         company: Firma
         competence_notes: Notizä Member
         department: Organisationsiheit
-        display_competence_notes_in_cv: Im CV Export inkludierä.
+        display_competence_notes_in_cv: Im CV Export inkludierä
         dual_citizen: Doppubürger
         educations:
           one: Usbiudig
@@ -89,7 +93,7 @@ de-CH:
         updated_at: Letzts Update
       project:
         description: Beschribig
-        display_in_cv: Im CV Export inkludierä.
+        display_in_cv: Im CV Export inkludierä
         role: Rouä u Ufgabe
         technology: Igsetzti Technologiä
         title: Projekt
@@ -115,6 +119,9 @@ de-CH:
       certificate:
         one: Zertifikat
         other: Zertifikat
+      contribution:
+        one: Open source Biitrag
+        other: Open source Biiträg
       company:
         one: Firma
         other: Firmä
@@ -320,6 +327,9 @@ de-CH:
     educations:
       link:
         add: Neui Usbiudig
+    contributions:
+      link:
+        add: Neui Contribution
     export_cv:
       export_form:
         anonymised_cv: Anonymisierter CV

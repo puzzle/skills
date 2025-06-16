@@ -34,6 +34,10 @@ en:
         study_time: Study time [d]
         title: Title
         type_of_exam: Type of exam
+      contribution:
+        title: Title
+        link: Link
+        display_in_cv: Include in CV export
       education:
         display_in_cv: Include in CV export
         location: Training location
@@ -113,6 +117,9 @@ en:
       certificate:
         one: Certificate
         other: Certificates
+      contribution:
+        one: Open source contribution
+        other: Open source contributions
       company:
         one: Company
         other: Companies
@@ -299,6 +306,9 @@ en:
     educations:
       link:
         add: New education
+    contributions:
+      link:
+        add: New contribution
     export_cv:
       export_form:
         anonymised_cv: Anonymized CV
