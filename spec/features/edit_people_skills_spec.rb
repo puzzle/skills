@@ -43,6 +43,7 @@ describe :people do
       expect(ember.interest).to eq(2)
     end
 
+
     it 'interest is changed from 0 when level is not 0 anymore' do
       # Switch to PeopleSkills tab
       alice = people(:alice)
@@ -89,7 +90,7 @@ describe :people do
       visit person_people_skills_path(alice, rating: 1)
       expect(page).to have_content('Ruby (2)')
       expect(page).to have_content('Java (1)')
-      expect(page).to have_content('c (0)')
+      expect(page).not_to have_content('c (0)')
       expect(page).to have_content('Linux-Engineering (1)')
     end
 
@@ -131,6 +132,8 @@ describe :people do
 
       within '#default-skills' do
         not_rated_default_skills.each do |person_skill|
+          expect(page).to have_content(person_skill.skill.category.parent.title)
+          expect(page).to have_content(person_skill.skill.category.title)
           expect(page).to have_content(person_skill.skill.title)
         end
 
@@ -221,7 +224,57 @@ describe :people do
       fill_in "level_#{first_unrated_skill.id}", with: 4
       expect(page).to have_content(first_unrated_skill.title)
       visit person_people_skills_path(bob, rating: 0)
-      expect(page).to  have_content(first_unrated_skill.title)
+      expect(page).to have_content(first_unrated_skill.title)
+    end
+  end
+
+  describe 'scroll to menu', type: :feature, js: true do
+    before(:each) do
+      sign_in auth_users(:user), scope: :auth_user
+    end
+
+    it 'should only show nav items with rated skills' do
+      alice = people(:alice)
+      visit person_people_skills_path(alice, rating: 1)
+
+      within '.sidebar' do
+        expect(page).to have_content('Software-Engineering')
+        expect(page).to have_content('System-Engineering')
+      end
+
+      find('label[for="rating_0"]').click
+
+      within '.sidebar' do
+        expect(page).to have_content('Software-Engineering')
+        expect(page).not_to have_content('System-Engineering')
+      end
+
+      find('label[for="rating_-1"]').click
+
+      within '.sidebar' do
+        expect(page).not_to have_content('Software-Engineering')
+        expect(page).to have_content('System-Engineering')
+      end
+    end
+
+    it 'should add category to scroll-to-menu once a skill of it is rated' do
+      alice = people(:alice)
+      alice.people_skills.find_by(skill: skills(:bash)).destroy
+      skills(:bash).update(default_set: true)
+      visit person_people_skills_path(alice, rating: 1)
+
+      within '.sidebar' do
+        expect(page).to have_content('Software-Engineering')
+        expect(page).not_to have_content('System-Engineering')
+      end
+
+      click_button('Bewerten')
+
+
+      within '.sidebar' do
+        expect(page).to have_content('Software-Engineering')
+        expect(page).to have_content('System-Engineering')
+      end
     end
   end
 end

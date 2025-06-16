@@ -86,20 +86,24 @@ module PersonHelper
     end
   end
 
-  def people_skills_of_category(category)
-    @people_skills.where(skill_id: category.skills.pluck(:id)).sort_by(&:id)
+  def people_skills_by_category(people_skills)
+    people_skills
+      .group_by { |person_skill| person_skill.skill.category }
+      .group_by { |category, _| category.parent }
+      .sort_by { |parent_category, _| parent_category.title }
   end
 
-  def not_rated_default_skills(person)
-    rated_skills = person.skills
-    not_rated_default_skills = Skill.all.filter do |skill|
-      skill.default_set && rated_skills.exclude?(skill)
-    end
+  def person_people_skills
+    @people_skills.order(:skill_id).includes(skill: { category: :parent })
+  end
 
-    not_rated_default_skills.map do |skill|
-      PeopleSkill.new({ person_id: person.id, skill_id: skill.id, level: 1, interest: 1,
-                        certificate: false, core_competence: false })
-    end
+  def parent_categories_with_rated_skills
+    Category.where(id: Category.joins(skills: :people_skills)
+                               .where(people_skills: { id: @people_skills })
+                               .distinct
+                               .select('parent_id'))
+            .order(:title)
+            .pluck(:title)
   end
 
   def sorted_people
