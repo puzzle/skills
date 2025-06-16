@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_12_080030) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_16_095102) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -91,6 +91,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_12_080030) do
     t.string "name"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.boolean "reminder_mails_active", default: false
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -166,6 +167,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_12_080030) do
     t.integer "department_id"
     t.string "shortname"
     t.boolean "display_competence_notes_in_cv", default: true, null: false
+    t.boolean "reminder_mails_active", default: true
     t.index ["company_id"], name: "index_people_on_company_id"
   end
 
@@ -177,6 +179,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_12_080030) do
     t.boolean "certificate", default: false
     t.boolean "core_competence", default: false
     t.boolean "unrated"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["person_id"], name: "index_people_skills_on_person_id"
     t.index ["skill_id"], name: "index_people_skills_on_skill_id"
   end
