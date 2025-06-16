@@ -1,61 +1,84 @@
+# Work in progress
+
+### Features
+- **Language localization** Added translations for Japanese and Swiss-German to the application.
+- **Different template for CV export** A Red Hat template has been added as an option when exporting the CV. The foundation has been laid to add more templates if requested.
+- **Unifying of skills** Duplicates of skills can now be unified using an option in the admin view.
+- **Certificate master** It is now possible to keep track of different certificates inside of PuzzleSkills.
+
+### Improvements
+- **Unrated skills disappear** When rating a skill as not rated, it disappears from the profile.
+- **Various translations** Translations for various parts of the application have been added and improved.
+
+# 5.1.0
+
+### Features
+- **Language selection** Translations for English, French and Italian added.
+- **Delete button for people** Add the missing delete button for people.
+
+### Improvements
+- **Turbo upgrade** Dropdowns and links are now turbo 8 friendly which includes pre-fetching of entries.
+- **Rails upgrade** Rails version upgraded to 8.
+- **Ruby upgrade** Ruby version upgraded to 3.4.1.
+- **Future years to be selected** Allow future years to be selected in the from-to dropdown for person relations.
+
 # 5.0.0 - The Big Rewrite
 
 ### Features
 
-- **Tech-Stack** Kompletter Rewrite des Tech-Stacks. EmberJS wurde entfernt und dessen Funktionalität durch Rails + Hotwire "Feature complete" ersetzt.
-- **Docker Setup** Dank dem extrem vereinfachten Tech-Stack ist das Docker Setup nun auch entsprechend funktioneller.
+- **Tech-Stack** Complete rewrite of the tech stack. EmberJS was removed and its functionality has been replaced with Rails + Hotwire ("feature complete").
+- **Docker Setup** Thanks to the significantly simplified tech stack, the Docker setup is now much more functional.
 
 # 4.4.0
 
 ### Features
 
-- **Skill AND Suche** Es kann nun nach mehreren Skills gleichzeitig gesucht werden.
-- **Kein End-Datumszwang** Es können nun Profileinträge ohne End-Datum eingetragen werden (https://github.com/puzzle/skills/issues/450).
-- **CV-Search "go-back" verhalten"** Die CV-Suche speichert nun den letzten Sucheintrag und geht generell intelligenter mit der Browser History um.
-- **CV-Export Skill-Level Filter** Es können nun nur Skills die ein Mindest-Level erfüllen im Export inkludiert werden.
-- **ESC Verhalten in den Forms** Die Forms werden nun nicht automatisch mit ESC geschlossen sondern ändern in einem ersten Schritt nur den Fokus aufs aktuelle Feld und lösen dann noch einen Dialog aus bevor der Input gelöscht wird. (https://github.com/puzzle/skills/issues/392)
-- **Frontend Cleanup** Im Frontend wurde einiges aufgeräumt und homogenisiert.
+- **Skill AND Search** It is now possible to search for multiple skills simultaneously.
+- **No End Date Required** Profile entries can now be created without an end date (https://github.com/puzzle/skills/issues/450).
+- **CV-Search "go-back" behavior** The CV search now remembers the last search input and handles browser history more intelligently.
+- **CV-Export Skill-Level Filter** Only skills that meet a minimum level can now be included in the export.
+- **ESC Behavior in Forms** Forms are no longer closed immediately when pressing ESC. Instead, focus is first shifted to the current field, and a dialog appears before any input is deleted. (https://github.com/puzzle/skills/issues/392)
+- **Frontend Cleanup** A lot has been cleaned up and unified in the frontend.
 
 # 4.3.0
 
 ### Features
 
-- **Sentry:** Skills ist nun Sentry-kompatibel!
-- **Env Variabeln per Endpoint:** Benötigte Environment Variabeln für das Frontend können per Endpoint abgefragt werden.
-- **Cv Suche mit Gefunden in:** Cv Suche zeigt nun an, wo der gesuchte Begriff gefunden wurde, zudem kann man direkt dorthin springen.
-- **Skill Suche mindest Erfahrung:** Skill Suche erlaubt es nun, die mindest Erfahrung festzulegen.
-- **Anonymisiertes CV:** CVs können ohne die persönlichen Daten exportiert werden.
-
+- **Sentry:** Skills is now compatible with Sentry!
+- **Env Variables via Endpoint:** Required environment variables for the frontend can now be retrieved via an endpoint.
+- **CV-Search with "Found in":** CV search now shows where the search term was found, and allows you to jump directly to that spot.
+- **Skill Search Minimum Experience:** Skill search now allows setting a minimum experience level.
+- **Anonymized CV:** CVs can now be exported without personal data.
 
 ### Improvements
 
-- **Ember Upgrade:** Ember-cli Versions Upgrade auf 3.15
-- **Rails Upgrade:** Rails Versions Upgrade auf 6
-- **README:** Readme deutlich verbessert in Struktur und Inhalt
-- **Docker Image:** Ein Skills Docker Image wurde auf Dockerhub veröffentlicht
-- **Department und PersonRole Level:** Die Departments und PersonRole levels wurden aus dem settings.yml in die Datenbank verschoben
-- **Bugfix:** [Skill erstellen Bugfix](https://github.com/puzzle/skills/issues/308)
+- **Ember Upgrade:** Ember-cli version upgraded to 3.15.
+- **Rails Upgrade:** Rails version upgraded to 6.
+- **README:** README significantly improved in structure and content.
+- **Docker Image:** A Skills Docker image has been published on Docker Hub.
+- **Department and PersonRole Levels:** Departments and PersonRole levels were moved from `settings.yml` to the database.
+- **Bugfix:** [Skill creation bugfix](https://github.com/puzzle/skills/issues/308)
 
 # 4.2.0
 
 ### Features
 
-- **Skills:** Es gibt eine Skills Seite für Admins zur Verwaltung
-- **Person Skills:** Man kann einer Person nun neben dem CV auch Skills hinzufügen. Dabei können verschiedene Werte gesetzt werden.
+- **Skills:** There is now a Skills page for admins to manage skills.
+- **Person Skills:** You can now assign skills to a person in addition to their CV. Various values can be set in the process.
 
 ### Improvements
 
-- **Kernkompetenzen:** Die Kernkompetenzen werden neu durch die Skills der Person abgefüllt. Alte Kernkompetenzen sind noch als Notiz vorhanden
+- **Core Competencies:** Core competencies are now populated based on the person’s skills. Old core competencies are still available as notes.
 
 # 4.1.1
 
 ### Features
 
-- **CV-Suche:** Die kompletten CVs der Nutzer können über den Tab Suche wieder durchsucht werden.
+- **CV-Search:** Full user CVs can once again be searched via the Search tab.
 
 ### Improvements
 
-- **Header:** Der Header ist nun Sticky und scrollt mit.
-- **Daterange-Attribute:** Die Daterange Attribute in Educations, Advanced Trainings, Activities, und Projects sind nun separate Felder, statt Date Attribute.
-- **Neues CV-Template:** Das CV-Template wurde geupdated
-- **Company-Type:** Das my_company Feld auf der Person wurde mit dem Enum company_type ausgetauscht.
+- **Header:** The header is now sticky and scrolls with the page.
+- **Date Range Attributes:** Date range attributes in Educations, Advanced Trainings, Activities, and Projects are now separate fields instead of date attributes.
+- **New CV Template:** The CV template has been updated.
+- **Company Type:** The `my_company` field on the person model has been replaced with the `company_type` enum.

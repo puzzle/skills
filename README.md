@@ -8,9 +8,9 @@
 ![GitHub stars](https://img.shields.io/github/stars/puzzle/skills)
 
 
-PuzzleSkills is an open source webapplication to facilitate skill management.   
-With the help of PuzzleSkills Users can manage their profiles, CVs and Skills.
-Managing employees and getting an overview of each of their skills has never been easier.
+PuzzleSkills is an open source web application to facilitate skill management.   
+With the help of PuzzleSkills users can manage their profiles, CVs and Skills.
+Managing employees and gaining an overview of each of their skills has never been easier.
 
 ![Skills Workflow](skills.gif)
 
@@ -22,13 +22,17 @@ You will need the following things properly installed on your computer:
 -   [RVM (Ruby Version Manager)](https://rvm.io/) ([installation](https://rvm.io/rvm/install) requires `curl` and `gpg`)
 -   Either [PostgreSQL](https://www.postgresql.org/) or [Docker](https://www.docker.com/) for the Database (Docker is recommended)
 
+## 📄 Changelog
+See what’s new in the latest versions by checking the [CHANGELOG.md](https://github.com/puzzle/skills/blob/master/doc/CHANGELOG.md).
+
+
 ## Setup dockerized Application👩🏽‍💻
 We're glad you want to setup your machine for PuzzleSkills development 💃
 
 ### Windows users
-If you're on Windows you should be able to Download Ubuntu from Microsoft Store. Note that you need to enable Subsystem for Linux and virtual machine platform in your Windows features.  
+If you're on Windows you should be able to Download Ubuntu from the Microsoft Store. Note that you need to enable Subsystem for Linux and virtual machine platform in your Windows features.  
 Then you can open Ubuntu and follow the manual using the Ubuntu console.  
-When you finished use your Windows IDE and open the skills folder that's located in your Linux subsystem -> Ubuntu and start developing.  
+Once you're done, open your Windows IDE and navigate to the skills folder located in your Linux subsystem under Ubuntu to start developing.
 If this doesn't work you can always use a VM.
 
 First you need to clone this repository:
@@ -38,7 +42,7 @@ mkdir -p ~/git/ && cd ~/git/
 git clone https://github.com/puzzle/skills.git && cd ~/git/skills
 ```
 
-⚡ If your user id is not 1000 (run id -u to check), you need to export this as env variable: **export UID=$UID** before running any of the further commands. Maybe you want to add this to your bashrc.
+⚡ If your user id is not 1000 (run id -u to check), you need to export this as an env variable: **export UID=$UID** before running any of the further commands. You may want to add this to your `.bashrc` file for convenience.
 
 ## Start Development Containers
 <img src="https://developers.redhat.com/sites/default/files/styles/article_feature/public/blog/2014/05/homepage-docker-logo.png?itok=zx0e-vcP" alt="docker whale" width="350">
@@ -69,10 +73,10 @@ docker ps
 This should look something like this:
 
 ```
-IMAGE              COMMAND                   PORTS                                       NAMES
-ruby:3.2           "/bin/bash -c '\n apt…"                                               assets
-skills-dev/rails   "rails-entrypoint ra…"    0.0.0.0:3000->3000/tcp, :::3000->3000/tcp   rails
-postgres:16        "docker-entrypoint.s…"    0.0.0.0:5432->5432/tcp, :::5432->5432/tcp   postgres
+IMAGE              COMMAND                   CREATED          STATUS           PORTS                                       NAMES
+ruby:3.4.1         "/bin/bash -c '\n cur…"   11 seconds ago   Up 9 seconds                                                 assets
+skills-dev/rails   "rails-entrypoint ra…"    11 seconds ago   Up 9 seconds     0.0.0.0:3000->3000/tcp, :::3000->3000/tcp   rails
+postgres:16        "docker-entrypoint.s…"    11 seconds ago   Up 10 seconds    0.0.0.0:5432->5432/tcp, :::5432->5432/tcp   postgres
 ```
 
 Access the web application by browser: http://localhost:3000 and enjoy the ride!
@@ -80,13 +84,13 @@ Access the web application by browser: http://localhost:3000 and enjoy the ride!
 ## Debugging
 To interact with `pry` inside a controller, you have to attach to the container first using `docker attach rails`.
 This will show you any **new** logs, and if you encounter a `pry` prompt, you can interact with it.
-To detach from the container without stopping it, press `CTRL + p` then `CTRL + q`.
+**To detach from the container without stopping it, press `CTRL + p` then `CTRL + q`.**
 
 
 ## Testing
 
 -   To run the backend tests run `rake spec`
--   To use a user without admin privileges change email in `app/controllers/application_controller.rb#authenticate_auth_user"` to "user@skills.ch"
+-   To test with a non-admin user, change the email in `app/controllers/application_controller.rb#authenticate_auth_user"` to "user@skills.ch"
 
 ## Documentation
 Find further Documentation at the links below
