@@ -15,7 +15,8 @@ describe Ptime::AssignEmployeeIds do
 
     expect(person_bob.reload.ptime_employee_id).to eq(23)
     expect(person_longmax.reload.ptime_employee_id).to eq(33)
-    expect(person_charlie.reload.ptime_employee_id).to eq(45)
+    # Should not map unemployed people
+    expect(person_charlie.reload.ptime_employee_id).to be_nil
   end
 
   it 'should not map people that are not found' do
@@ -32,7 +33,8 @@ describe Ptime::AssignEmployeeIds do
 
     expect(person_longmax.reload.ptime_employee_id).to be_nil
     expect(person_bob.reload.ptime_employee_id).to eq(23)
-    expect(person_charlie.reload.ptime_employee_id).to eq(45)
+    # Should not map unemployed people
+    expect(person_charlie.reload.ptime_employee_id).to be_nil
   end
 
   it 'should not map people on dry run' do
