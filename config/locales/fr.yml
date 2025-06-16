@@ -36,7 +36,7 @@ fr:
         type_of_exam: Type d'examen
       contribution:
         display_in_cv: Inclure dans l'exportation du CV
-        link: lien
+        reference: Référence (p. ex., lien)
         title: Titre
       education:
         display_in_cv: Inclure dans l'exportation du CV
