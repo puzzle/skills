@@ -1,13 +1,13 @@
 class SendUpdateProfileReminderMailJob < ApplicationJob
   queue_as :default
+
   def perform
-    # return unless // admin view switch is off
-
     Person.find_each do |person|
-      # only if user has not disabled it
-
-      if needs_profile_reminder?(person)
-        ReminderMailer.update_user_reminder_email(person).deliver_later
+      company = Company.find(id: person.company_id)
+      unless person.reminder_mails_active === false || company.reminder_mails_active === false
+        if needs_profile_reminder?(person)
+          ReminderMailer.update_user_reminder_email(person).deliver_later
+        end
       end
     end
   end
