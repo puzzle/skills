@@ -1,4 +1,5 @@
-= form_with(url: person_path(format: 'odt'), method: 'get', data: {controller: "skills-filter", turbo: false}) do |f|
+= form_with(url: person_path(format: 'odt'), method: 'get', data: {controller: "skills-filter info-message", turbo: false}) do |f|
+  .text-danger.text-decoration-underline{'data-info-message-target': 'message'}= ti('update_index_info')
   .mb-2.w-100
     = f.label :location, class: "form-label w-100"
     = f.collection_select :location, BranchAdress.all, :id, :short_name, {selected: (BranchAdress.find_by(default_branch_adress: true) || BranchAdress.first).id}, class: "form-select w-100"
@@ -16,5 +17,5 @@
     = f.check_box :anon, class: "form-check-input"
     = f.label t(".anonymised_cv"), class: "form-check-label w-100"
   .mb-1.mt-4
-    = f.submit ti("link.download")
+    = f.submit ti("link.download"), {'data-action': 'info-message#showMessage'}
     = f.cancel person_path, "data-bs-dismiss":"modal"

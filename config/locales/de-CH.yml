@@ -343,6 +343,9 @@ de-CH:
       updated_at: Z'letzt bearbeitet
     show:
       is_not_displayed_in_cv: Wird im CV Export nid inkludiert.
+  people/export_cv:
+    export_form:
+      update_index_info: 'Achtung: bitte vorem Versände dr CV in LibreOffice öffne und ds Inhautsverzeichnis aktualisiere'
   people/people_skills:
     edit_form:
       rate: Bewärtet

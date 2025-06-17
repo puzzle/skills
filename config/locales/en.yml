@@ -322,6 +322,9 @@ en:
       updated_at: Last edited
     show:
       is_not_displayed_in_cv: Will not be included in the CV export.
+  people/export_cv:
+    export_form:
+      update_index_info: 'Attention: Please open the CV in LibreOffice before sending and update the table of contents'
   people/people_skills:
     edit_form:
       rate: Rate

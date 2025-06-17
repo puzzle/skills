@@ -322,6 +322,9 @@ fr:
       updated_at: Dernièrement édité
     show:
       is_not_displayed_in_cv: Ne sera pas inclus dans l'exportation du CV.
+  people/export_cv:
+    export_form:
+      update_index_info: 'Attention: veuillez ouvrir le CV dans LibreOffice et mettre à jour la table des matières avant de l''envoyer'
   people/people_skills:
     edit_form:
       rate: Évaluer
