@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PeopleSkills::FilterFormController < ApplicationController
+class SkillSearch::FilterFormController < ApplicationController
   include ParamConverters
 
   helper_method :filter_params
@@ -8,6 +8,6 @@ class PeopleSkills::FilterFormController < ApplicationController
   private
 
   def filter_params
-    PeopleSkills::FilterParams.new(params)
+    SkillSearch::FilterParams.new(params)
   end
 end

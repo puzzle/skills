@@ -362,18 +362,18 @@ fr:
     scroll_to_menu:
       link:
         add: Ajouter une compétence
-  people_skills:
-    global:
-      link:
-        add: Ajouter une compétence (max. 5)
-  people_skills/filter_form:
-    global:
-      link:
-        add: Ajouter une compétence (max. 5)
   person_role:
     none: Aucun
   profile:
     updated_at: Dernièrement édité
+  skill_search:
+    global:
+      link:
+        add: Ajouter une compétence (max. 5)
+  skill_search/filter_form:
+    global:
+      link:
+        add: Ajouter une compétence (max. 5)
   skills:
     form:
       cancel: annuler
