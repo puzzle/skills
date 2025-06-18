@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe PeopleSkillsController do
+describe SkillSearchController do
   before(:each) do
     sign_in auth_users(:user), scope: :auth_user
   end

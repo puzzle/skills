@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module PeopleSkills
+module SkillSearch
   class FilterParams
 
     def initialize(params)

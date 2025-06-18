@@ -1,6 +1,6 @@
 %div.mt-3{"data-controller": "people-skills-filter"}
   %turbo-frame{id: "search-filters"}
-    = form_with(url: people_skills_path, method: :get, class: "filter-form", data: {"people-skills-filter-target": "form"}) do |form|
+    = form_with(url: skill_search_index_path, method: :get, class: "filter-form", data: {"people-skills-filter-target": "form"}) do |form|
       - filter_params.rows_count.times do |i|
         %div.d-flex.flex-row.align-items-center{"data-people-skills-filter-target": "filter", id: "filter-row-#{i}"}
           %div.filter-container.me-1
@@ -8,7 +8,7 @@
           - if i != 0
             = close_action_link "#", {data: {action: "click->people-skills-filter#remove", "people-skills-filter-id-param": i}, id: "remove-row-#{i+1}"}
       - if filter_params.rows_count < 5
-        - path = filter_form_people_skills_path(rows: filter_params.rows_count) + "&#{filter_params.query_params}"
+        - path = filter_form_skill_search_index_path(rows: filter_params.rows_count) + "&#{filter_params.query_params}"
         = add_action_link path, {}, {data: {"turbo-frame": "search-filters"},  id: "add-row-button"}
 
   %div.profile-header.mw-100.border-bottom.mt-4.fw-normal

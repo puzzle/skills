@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
-class PeopleSkillsController < CrudController
+class SkillSearchController < CrudController
   include ParamConverters
   helper_method :filter_params, :no_match_message
+
+  def self.model_class
+    PeopleSkill
+  end
 
   def entries
     return [] if filter_params.skill_ids.empty?
@@ -23,7 +27,7 @@ class PeopleSkillsController < CrudController
   private
 
   def filter_params
-    PeopleSkills::FilterParams.new(params)
+    SkillSearch::FilterParams.new(params)
   end
 
   def extract_required_search_values

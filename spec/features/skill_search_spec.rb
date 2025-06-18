@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe :people_skills do
+describe :skill_search do
   describe 'People Search', type: :feature, js: true do
     let(:skill) { skills(:rails) }
 
@@ -9,28 +9,28 @@ describe :people_skills do
     end
 
     it 'Should return matching entries to page' do
-      visit people_skills_path
+      visit skill_search_index_path
       fill_out_row(skill.title, 3, 5)
       expect(page).to have_text('Bob Anderson')
       expect(page).to have_text('Wally Allround')
     end
 
     it 'Should set values of query parameters' do
-      visit people_skills_path({ skill_id: [skill.id], level: [3], "interest[0]": 5 })
+      visit skill_search_index_path({ skill_id: [skill.id], level: [3], "interest[0]": 5 })
       expect(page).to have_select("skill_id[]", selected: "Rails", visible: false)
       expect(page).to have_field("level[]", with: 3)
       expect(page).to have_field("interest[0]", with: 5, visible: false)
     end
 
     it 'Should return add skill to search message if skill id is not given' do
-      visit people_skills_path({ level: [3], "interest[0]": 5 })
+      visit skill_search_index_path({ level: [3], "interest[0]": 5 })
       expect(page).to have_field("level[]", with: 3)
       expect(page).to have_field("interest[0]", with: 5, visible: false)
       expect(page).to have_text("Füge einen Skill zur Suche hinzu.")
     end
 
     it 'Should return user which matches filters' do
-      visit(people_skills_path)
+      visit(skill_search_index_path)
       fill_out_row("JUnit", 5, 3)
       add_and_fill_out_row("Rails", 4, 5)
       add_and_fill_out_row("ember", 5, 4)
@@ -41,19 +41,19 @@ describe :people_skills do
     end
 
     it 'Should return no results if no user matches filters' do
-      visit(people_skills_path)
+      visit(skill_search_index_path)
       fill_out_row("Bash", 5, 3)
       expect(page).to have_text("Keine Resultate gefunden mit der folgenden Suche: Bash (5/3)")
     end
 
     it 'Should return no results if no user matches multiple filters' do
-      visit(people_skills_path)
+      visit(skill_search_index_path)
       fill_out_row("Bash", 5, 3)
       add_and_fill_out_row("Rails", 1, 4)
       expect(page).to have_text("Keine Resultate gefunden mit der folgenden Suche: Bash (5/3) und Rails (1/4)")
     end
     it 'Should be able to remove filter row and switch results accordingly' do
-      visit(people_skills_path)
+      visit(skill_search_index_path)
 
       # set skills in filters
       fill_out_row("ember", 1, 1)
@@ -79,7 +79,7 @@ describe :people_skills do
 
   def add_and_fill_out_row(skill, level, interest)
     old_row_number = last_row[:id][-1, 1].to_i
-    click_link(t("people_skills.global.link.add"))
+    click_link(t("skill_search.global.link.add"))
 
     new_row_id = "filter-row-#{old_row_number + 1}"
     expect(page).to have_selector("[id='#{new_row_id}']")
