@@ -96,7 +96,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_08_065049) do
 
   create_table "contributions", force: :cascade do |t|
     t.string "title"
-    t.string "link"
+    t.string "reference"
     t.integer "person_id"
     t.integer "year_from"
     t.integer "year_to"

@@ -6,7 +6,7 @@
 #
 #  id             :integer
 #  title          :string
-#  link           :string
+#  reference      :string
 #  person_id      :integer
 #  year_from      :integer
 #  year_to        :integer

@@ -2,7 +2,7 @@ class CreateContributions < ActiveRecord::Migration[8.0]
   def change
     create_table :contributions do |t|
       t.string :title
-      t.string :link
+      t.string :reference
       t.integer :person_id
       t.integer :year_from
       t.integer :year_to
