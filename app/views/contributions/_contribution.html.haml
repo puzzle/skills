@@ -7,7 +7,7 @@
         %span.col.d-flex.flex-column
           %span.fw-bolder
             = contribution.title
-          = contribution.link
+          = contribution.reference
         - unless contribution.display_in_cv
           %span.col-1.d-flex.justify-content-end.pe-5
             %div{ 'data-bs-toggle': 'tooltip', 'data-bs-title': ti("is_not_displayed_in_cv"), 'data-controller': 'tooltip'}
