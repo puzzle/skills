@@ -364,18 +364,18 @@ en:
     scroll_to_menu:
       link:
         add: Add skill
-  people_skills:
-    global:
-      link:
-        add: Add skill (max. 5)
-  people_skills/filter_form:
-    global:
-      link:
-        add: Add skill (max. 5)
   person_role:
     none: None
   profile:
     updated_at: Last edited
+  skill_search:
+    global:
+      link:
+        add: Add skill (max. 5)
+  skill_search/filter_form:
+    global:
+      link:
+        add: Add skill (max. 5)
   skills:
     form:
       cancel: cancel
