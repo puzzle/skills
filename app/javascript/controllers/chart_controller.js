@@ -18,8 +18,6 @@ export default class extends Controller {
     const ctx = this.canvasTarget.getContext("2d");
     const chartData = JSON.parse(this.datasetValue);
 
-    console.log(chartData)
-
     const isEmpty = !chartData?.datasets?.length || chartData.datasets.every(ds => !ds.data?.length);
 
     const options = {
