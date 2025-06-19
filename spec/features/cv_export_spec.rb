@@ -30,5 +30,12 @@ describe :people do
       page.find('#levelValue').set(5)
       expect(page).to have_text('Expert')
     end
+
+    it 'should display info message after downloading the cv' do
+      visit person_path(people(:bob))
+      page.all('a', text: 'Export').first.click
+      click_button('Herunterladen')
+      expect(page).to have_content('Achtung: bitte vor dem Versenden den CV in LibreOffice öffnen und das Inhaltsverzeichnis aktualisieren')
+    end
   end
 end
