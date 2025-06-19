@@ -12,9 +12,7 @@ class CvSearchController < ApplicationController
   end
 
   def query
-    unless params[:q].nil?
-      params[:q].split(", ")
-    end
+    params[:q]&.split(', ')
   end
 
   def search_skills?

@@ -94,7 +94,7 @@ class Person < ApplicationRecord
                   },
                   using: {
                     tsearch: {
-                      prefix: true
+                      any_word: false
                     }
                   }
 

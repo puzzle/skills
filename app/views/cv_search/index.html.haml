@@ -20,5 +20,5 @@
             - person_id = result[:person][:id]
             - path = person_path(person_id, url_params)
             - path = person_people_skills_path(person_id, url_params) if found_in_skills?(result)
-            = link_to result[:found_in], path, {class: "bg-skills-search-result-blue w-50 text-decoration-none text-white ps-1 p-2 rounded-1 text-center", "data-turbo-frame": "_top" }
+            = link_to result[:found_in][:attribute], path, {class: "bg-skills-search-result-blue w-50 text-decoration-none text-white ps-1 p-2 rounded-1 text-center", "data-turbo-frame": "_top" }
         %br

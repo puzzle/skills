@@ -3,6 +3,6 @@
 module CvSearchHelper
 
   def found_in_skills?(result)
-    result[:found_in].include?('Skills')
+    result[:found_in][:attribute].include?('Skills')
   end
 end
