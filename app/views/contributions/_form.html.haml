@@ -5,6 +5,4 @@
       = f.text_area :title, placeholder: "Titel", class: "form-control w-100"
       = f.label :reference
       = f.text_area :reference, placeholder: "Reference", class: "form-control w-100"
-      .flex-row.mt-1
-        = f.label :display_in_cv, class: "form-check-label text-gray me-1"
-        = f.checkbox :display_in_cv, class: "form-check-input"
+      = f.hidden_field :display_in_cv, value: false
