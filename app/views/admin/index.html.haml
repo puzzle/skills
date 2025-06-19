@@ -2,3 +2,12 @@
 = link_to Role.model_name.human , admin_roles_path
 = link_to Company.model_name.human , admin_companies_path
 = link_to ti('unify_skills'), new_admin_unified_skill_path
+
+.first.mt-3
+  %h5= @company.name
+
+  = form_with(model: @company, url: toggle_reminder_mails_admin_index_path, method: :patch, remote: true) do |form|
+    .custom-control.custom-switch
+      = form.check_box :reminder_mails_active, { onchange: "this.form.requestSubmit()" }
+      = form.label :reminder_mails_active, class: 'color: black' do
+        Reminder mails for your company:
