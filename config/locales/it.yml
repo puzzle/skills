@@ -166,21 +166,6 @@ it:
     global:
       search_placeholder: Ricerca CV...
       search_skills: Anche le capacità di ricerca
-  date:
-    month_names:
-    -
-    - Gennaio
-    - Febbraio
-    - Marzo
-    - Aprile
-    - Maggio
-    - Giugno
-    - Luglio
-    - Agosto
-    - Settembre
-    - Ottobre
-    - Novembre
-    - Dicembre
   errors:
     messages:
       authorization_error: Non hai i diritti per eseguire questa funzione.

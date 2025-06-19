@@ -166,21 +166,6 @@ en:
     global:
       search_placeholder: Search CVs...
       search_skills: Search skills as well
-  date:
-    month_names:
-    -
-    - January
-    - February
-    - March
-    - April
-    - May
-    - June
-    - July
-    - August
-    - September
-    - October
-    - November
-    - December
   errors:
     messages:
       authorization_error: You do not have permission to execute this function.

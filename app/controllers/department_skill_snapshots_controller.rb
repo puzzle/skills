@@ -1,3 +1,5 @@
+include DateHelper
+
 class DepartmentSkillSnapshotsController < CrudController
   def index
     @data = chart_data.to_json
@@ -8,7 +10,7 @@ class DepartmentSkillSnapshotsController < CrudController
 
   def chart_data
     {
-      labels: t('date.month_names').compact,
+      labels: months.compact,
       datasets: dataset_values.map.with_index(1) do |label, level|
         build_dataset(label, level)
       end.compact

@@ -170,21 +170,6 @@ de:
     global:
       search_placeholder: CVs durchsuchen...
       search_skills: Skills ebenfalls durchsuchen
-  date:
-    month_names:
-    -
-    - Januar
-    - Februar
-    - März
-    - April
-    - Mai
-    - Juni
-    - Juli
-    - August
-    - September
-    - Oktober
-    - November
-    - Dezember
   errors:
     messages:
       authorization_error: Du hast keine Berechtigung, diese Funktion auszuführen.
