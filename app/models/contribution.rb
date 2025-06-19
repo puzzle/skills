@@ -4,7 +4,7 @@
 #
 #  Table name: educations
 #
-#  id             :integer
+#  id             :integer          not null, primary key
 #  title          :string
 #  reference      :string
 #  person_id      :integer
@@ -13,6 +13,8 @@
 #  month_from     :integer
 #  month_to       :integer
 #  display_in_cv  :boolean
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 
 class Contribution < ApplicationRecord
   include DaterangeModel
@@ -22,6 +24,9 @@ class Contribution < ApplicationRecord
   after_destroy :update_associations_updatet_at
 
   belongs_to :person, touch: true
+
+  validates :display_in_cv, inclusion: [false]
+  validates :title, presence: true
 
   private
 
