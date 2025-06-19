@@ -258,11 +258,11 @@ en:
       no_results: No results found
       no_skill: No results found, please add a skill to the search.
       search_results: Search results
-    'true': 'Yes'
     skills_tracking:
-      chart_type: Chart type
       bar-chart: Bar
+      chart_type: Chart type
       line-chart: Line
+    'true': 'Yes'
   helpers:
     cancel: Cancel
     continue: Continue

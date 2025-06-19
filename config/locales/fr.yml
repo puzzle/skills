@@ -258,11 +258,11 @@ fr:
       no_results: Aucun résultat trouvé
       no_skill: Aucun résultat trouvé, veuillez ajouter une compétence à la recherche.
       search_results: Résultats de la recherche
-    'true': Oui
     skills_tracking:
-      chart_type: Type de graphique
       bar-chart: Barre
+      chart_type: Type de graphique
       line-chart: Ligne
+    'true': Oui
   helpers:
     cancel: Annuler
     continue: Continuer

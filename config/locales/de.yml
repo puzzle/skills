@@ -262,11 +262,11 @@ de:
       no_results: Keine Resultate gefunden
       no_skill: Füge einen Skill zur Suche hinzu.
       search_results: Suchergebnisse
-    'true': Ja
     skills_tracking:
-      chart_type: Diagramm Typ
       bar-chart: Balken
+      chart_type: Diagramm Typ
       line-chart: Linien
+    'true': Ja
   helpers:
     cancel: Abbrechen
     continue: Fortfahren
