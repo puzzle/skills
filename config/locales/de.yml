@@ -263,6 +263,10 @@ de:
       no_skill: Füge einen Skill zur Suche hinzu.
       search_results: Suchergebnisse
     'true': Ja
+    skills_tracking:
+      chart_type: Diagramm Typ
+      bar-chart: Balken
+      line-chart: Linien
   helpers:
     cancel: Abbrechen
     continue: Fortfahren

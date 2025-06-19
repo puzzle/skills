@@ -15,6 +15,7 @@ describe 'Department Skill Snapshots', type: :feature, js: true do
     expect(page).to have_select('department_id')
     expect(page).to have_select('skill_id')
     expect(page).to have_select('year')
+    expect(page).to have_select('chart_type')
 
     expect(page).to have_selector("canvas")
   end

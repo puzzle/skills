@@ -259,6 +259,10 @@ it:
       no_skill: Nessun risultato trovato, aggiungi una competenza alla ricerca.
       search_results: Risultati della ricerca
     'true': Sì
+    skills_tracking:
+      chart_type: Tipo di grafico
+      bar-chart: Bar
+      line-chart: Linea
   helpers:
     cancel: Annullamento
     continue: Continuare

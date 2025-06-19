@@ -7,7 +7,8 @@ export default class extends Controller {
   static targets = ["canvas"]
   static values = {
     dataset: String,
-    emptychart: String
+    emptychart: String,
+    charttype: String
   }
 
   connect() {
@@ -52,7 +53,7 @@ export default class extends Controller {
     }
 
     this.chart = new Chart(ctx, {
-      type: 'bar',
+      type: this.charttypeValue.toLowerCase(),
       data: chartData,
       options: options
     });

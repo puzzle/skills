@@ -263,6 +263,10 @@ de-CH:
       no_skill: Füegä Sie ä Skill zur Suechi hinzu.
       search_results: Suechergäbnissä
     'true': Ja
+    skills_tracking:
+      chart_type: Diagramm Typ
+      bar-chart: Bauke
+      line-chart: Liniä
   helpers:
     cancel: Abbrächä
     continue: Witerfahre

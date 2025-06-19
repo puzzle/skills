@@ -259,6 +259,10 @@ ja:
       no_skill: 検索にヒットするスキルがありません。スキルを追加してください。
       search_results: 検索結果
     'true': はい
+    skills_tracking:
+      chart_type: チャートの種類
+      bar-chart: 棒グラフ
+      line-chart: 折れ線グラフ
   helpers:
     cancel: キャンセル
     continue: 続行
