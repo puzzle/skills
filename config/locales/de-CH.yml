@@ -189,6 +189,7 @@ de-CH:
     messages:
       authorization_error: Du hesch ke Berächtigung, diä Funktion uszfüährä.
       cannot_remove: darf nid glöscht wärdä.
+      chart_data_empty: Wähl e Abteilig, e Skill und es Jahr us um d date ds zeige.
       invalid_date_range: muess vorem Änddatum si.
       max_size_10MB: darf nid grösser aus 10MB si.
       max_size_error: darf nid grösser aus 10MB si.
@@ -233,6 +234,7 @@ de-CH:
       cv_search: CV Suechi
       profile: Profiu
       skill_search: Skill Suechi
+      skills_tracking: Skills tracking
       skillset: Skillset
     new: Neu
     people_skills:
@@ -260,6 +262,10 @@ de-CH:
       no_results: Kei Resultatä
       no_skill: Füegä Sie ä Skill zur Suechi hinzu.
       search_results: Suechergäbnissä
+    skills_tracking:
+      bar-chart: Bauke
+      chart_type: Diagramm Typ
+      line-chart: Liniä
     'true': Ja
   helpers:
     cancel: Abbrächä

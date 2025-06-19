@@ -170,6 +170,7 @@ en:
     messages:
       authorization_error: You do not have permission to execute this function.
       cannot_remove: must not be deleted.
+      chart_data_empty: Select a department, skill and a year to display data
       invalid_date_range: must be before the end date.
       max_size_10MB: must not be larger than 10MB.
       max_size_error: must not be larger than 10MB.
@@ -214,6 +215,7 @@ en:
       cv_search: CV search
       profile: Profile
       skill_search: Skill search
+      skills_tracking: Skills tracking
       skillset: Skillset
     new: New
     people_skills:
@@ -241,6 +243,10 @@ en:
       no_results: No results found
       no_skill: No results found, please add a skill to the search.
       search_results: Search results
+    skills_tracking:
+      bar-chart: Bar
+      chart_type: Chart type
+      line-chart: Line
     'true': 'Yes'
   helpers:
     cancel: Cancel

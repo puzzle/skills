@@ -170,6 +170,7 @@ ja:
     messages:
       authorization_error: この機能を実行する権限がありません。
       cannot_remove: 削除できません。
+      chart_data_empty: データを表示するには、部署、スキル、年を選択してください
       invalid_date_range: 終了日より前の日付でなければなりません。
       max_size_10MB: 10MBを超えてはいけません。
       max_size_error: 10MBを超えてはいけません。
@@ -214,6 +215,7 @@ ja:
       cv_search: 履歴書検索
       profile: プロフィール
       skill_search: スキル検索
+      skills_tracking: スキルトラッキング
       skillset: スキルセット
     new: 新規
     people_skills:
@@ -241,6 +243,10 @@ ja:
       no_results: 結果が見つかりませんでした
       no_skill: 検索にヒットするスキルがありません。スキルを追加してください。
       search_results: 検索結果
+    skills_tracking:
+      bar-chart: 棒グラフ
+      chart_type: チャートの種類
+      line-chart: 折れ線グラフ
     'true': はい
   helpers:
     cancel: キャンセル

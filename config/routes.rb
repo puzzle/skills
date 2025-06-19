@@ -66,6 +66,8 @@ Rails.application.routes.draw do
     end
 
     resources :certificates
+
+    resources :department_skill_snapshots, only: [:index]
   end
 
 

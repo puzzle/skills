@@ -170,6 +170,7 @@ fr:
     messages:
       authorization_error: Vous n'avez pas les droits pour exécuter cette fonction.
       cannot_remove: ne doit pas être supprimé.
+      chart_data_empty: Sélectionnez un département, une compétence et une année pour afficher les données.
       invalid_date_range: doit être antérieure à la date de fin.
       max_size_10MB: ne doit pas dépasser 10 Mo.
       max_size_error: ne doit pas dépasser 10 Mo.
@@ -214,6 +215,7 @@ fr:
       cv_search: Recherche de CV
       profile: Profil
       skill_search: Recherche de compétences
+      skills_tracking: Suivi des compétences
       skillset: Kit de compétences
     new: Nouveau
     people_skills:
@@ -241,6 +243,10 @@ fr:
       no_results: Aucun résultat trouvé
       no_skill: Aucun résultat trouvé, veuillez ajouter une compétence à la recherche.
       search_results: Résultats de la recherche
+    skills_tracking:
+      bar-chart: Barre
+      chart_type: Type de graphique
+      line-chart: Ligne
     'true': Oui
   helpers:
     cancel: Annuler
