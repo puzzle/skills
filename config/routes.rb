@@ -22,7 +22,6 @@ Rails.application.routes.draw do
 
   get root to: redirect(path: "/people")
 
-
   scope "(:locale)", locale: LOCALE_REGEX do
     get '/:locale' => redirect("%{locale}/people")
 
