@@ -6,4 +6,4 @@
     %div.d-flex.align-items-center.text-gray
       = "#{t '.updated_at'}: #{@person&.last_updated_at.strftime("%d.%m.%Y")}" if @person&.last_updated_at
   %a.d-flex.justify-content-between#new-person-button
-    = add_action_link new_person_path
+    = add_action_link new_person_path unless use_ptime_sync?

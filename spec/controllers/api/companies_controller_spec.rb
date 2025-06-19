@@ -10,11 +10,10 @@ describe Api::CompaniesController do
         get :index
 
         companies = json['data']
-
-        expect(companies.count).to eq(2)
+        expect(companies.count).to eq(3)
         firma_attrs = companies.first['attributes']
         expect(firma_attrs.count).to eq(3)
-        expect(firma_attrs.first[1]).to eq('Firma')
+        expect(firma_attrs.first[1]).to eq('Ex-Mitarbeiter')
         json_object_includes_keys(firma_attrs, keys)
         expect(companies).not_to include('relationships')
       end
@@ -45,11 +44,18 @@ describe Api::CompaniesController do
     end
 
     describe 'DELETE destroy' do
-      it 'destroys existing company' do
-        firma = companies(:partner)
-        process :destroy, method: :delete, params: { id: firma.id }
+      it 'doesnt destroy company if it has people in it' do
+        company = companies(:partner)
+        process :destroy, method: :delete, params: { id: company.id }
 
-        expect(Company.exists?(firma.id)).to eq(false)
+        expect(Company.exists?(company.id)).to eq(true)
+      end
+
+      it 'destroys company without any people in it' do
+        company = companies('ex-mitarbeiter')
+        process :destroy, method: :delete, params: { id: company.id }
+
+        expect(Company.exists?(company.id)).to eq(false)
       end
     end
   end

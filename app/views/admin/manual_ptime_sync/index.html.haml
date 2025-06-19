@@ -1,0 +1,3 @@
+%span.d-flex.justify-content-center.align-items-center.flex-column.w-50.mt-3
+  .fs-4.text-center= ti('description')
+  = button_to t('admin.index.update_people_manually'), admin_execute_manual_ptime_sync_path, method: :post, class: 'manual-sync-button mt-3 p-5 btn-primary btn'

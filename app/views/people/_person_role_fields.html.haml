@@ -1,10 +1,11 @@
 %div.border.border-dark-subtle.rounded.p-1.fw-light.nested-fields
   = f.hidden_field :_destroy
   = f.label t("activerecord.attributes.activity.role")
-  = f.collection_select :role_id, Role.order(:name), :id, :name, {}, class: "form-select w-100 role-select"
+  = f.collection_select :role_id, Role.order(:name), :id, :name, {}, { class: "form-select w-100 role-select", **disabled_with_ptime_sync }
   %div
     = f.label t("global.people_skills.levels.level")
     %div.d-flex.fw-light
-      = f.collection_select :person_role_level_id, role_skill_levels, :id, :level, {}, class: "form-select w-50 me-1 role-level-select"
-      = f.number_field :percent, in: 0..200, step: 1, class: "form-control w-50 person-role-percent"
+      = f.collection_select :person_role_level_id, role_skill_levels, :id, :level, {}, { class: "form-select w-50 me-1 role-level-select", **disabled_with_ptime_sync }
+      = f.number_field :percent, {in: 0..200, step: 1, class: "form-control w-50 person-role-percent", **disabled_with_ptime_sync }
+- unless use_ptime_sync?
   %div{"data-controller"=>"dynamic-fields"}= link_to ti("link.remove"), "#", { class: "remove_fields", 'data-action' => 'dynamic-fields#removeField' }
