@@ -5,7 +5,7 @@ class Api::PeopleController < Api::CrudController
 
   self.permitted_attrs = %i[birthdate location
                             marital_status updated_by name nationality nationality2 title
-                            competence_notes company_id email department_id shortname]
+                            competence_notes company_id email department_id shortname reminder_mails_active]
 
   self.nested_models = %i[advanced_trainings activities projects
                           educations language_skills person_roles
