@@ -304,6 +304,7 @@ ja:
     contributions:
       link:
         add: 新しい貢献
+        open: 参照を開く
     cv:
       no_skills_rated_msg: このプロフィールにはまだ評価されたスキルがありません。スキルタブに移動し、関連するスキルを評価してください。
     educations:

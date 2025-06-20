@@ -308,6 +308,7 @@ de:
     contributions:
       link:
         add: Neue Contribution
+        open: Referenz öffnen
     cv:
       no_skills_rated_msg: Dieses Profil hat noch keine bewerteten Skills. Gehe zum Skills Tab und bewerte die für dich relevanten Skills.
     educations:

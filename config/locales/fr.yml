@@ -304,6 +304,7 @@ fr:
     contributions:
       link:
         add: Nouvelle contribution
+        open : Référence ouverte
     cv:
       no_skills_rated_msg: Ce profil n'a pas encore de skills évalués. Va dans l'onglet Skills et évalue les skills qui te concernent.
     educations:
