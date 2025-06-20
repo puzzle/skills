@@ -16,7 +16,7 @@ describe :skill_search do
     end
 
     it 'Should set values of query parameters' do
-      visit skill_search_index_path({ skill_id: [skill.id], level: [3], "interest[0]": 5 })
+      visit skill_search_index_path({ 'skill_id': [skill.id], 'level': [3], 'interest[0]': 5 })
       expect(page).to have_select("skill_id[]", selected: "Rails", visible: false)
       expect(page).to have_field("level[]", with: 3)
       expect(page).to have_field("interest[0]", with: 5, visible: false)
