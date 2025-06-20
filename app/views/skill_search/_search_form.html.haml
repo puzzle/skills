@@ -1,11 +1,11 @@
 = form_with(url: skill_search_index_path, method: :get, class: 'filter-form') do |form|
   - @search_filters.each_with_index do |filter, i|
     - skill_id, level, interest = filter
-    %div.d-flex.flex-row.align-items-center
+    %div.d-flex.flex-row.align-items-center{id: "filter-row-#{i}"}
       %div.filter-container
         %div.w-100.d-flex.flex-row.justify-content-start{data: {controller: "skills-level"}}
           %div.w-50.mt-3{"data-controller": "dropdown"}
-            = form.collection_select "skill_id[]", Skill.order(:title), :id, :title, { selected: skill_id }, data:{"dropdown-target": "dropdown"}, onchange: "this.form.submit()"
+            = form.collection_select "skill_id[]", Skill.order(:title), :id, :title, { selected: skill_id, prompt: true }, data:{"dropdown-target": "dropdown"}, onchange: "this.form.submit()"
           %div.w-25.d-flex.flex-column.align-items-center
             %label.form-label.text-gray.fs-6{"data-skills-level-target": "label"}= ti "people_skills.levels_by_id.#{level}"
             = form.range_field "level[]", min: 1, max: 5, value: level, class: "form-range w-75",
@@ -19,7 +19,9 @@
                 = form.radio_button "interest[#{i}]", index, id: "row#{i}_star#{index}", checked: index == interest, onClick: "this.form.submit()"
                 = form.label 'stars', for: "row#{i}_star#{index}", id: "row#{i}_star-label#{index}", class: "star#{index}"
       - if i != 0
-        = form.label '', for: 'delete-row', class: 'icon icon-close p-0 cursor-pointer'
-        = form.submit '', name: 'delete_row', value: i, class: 'd-none', id: 'delete-row'
+        = form.label '', for: "delete-row-#{i}", class: 'icon icon-close p-0 cursor-pointer'
+        = form.submit '', name: 'delete_row', value: i, class: 'd-none', id: "delete-row-#{i}"
   - if @search_filters.length < 5
-    = form.submit 'Add row', name: 'add_row', class: 'btn btn-link p-0'
+    %div.d-flex.align-items-center
+      %span.icon.icon-plus.me-1
+      = form.submit ti('link.add'), name: 'add_row', class: 'btn btn-link p-0'
