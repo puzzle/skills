@@ -297,6 +297,7 @@ it:
     contributions:
       link:
         add: Nuovo contributo
+        open: Riferimento aperto
     cv:
       no_skills_rated_msg: Questo profilo non ha ancora competenze valutate. Andate alla scheda Competenze e valutate le competenze che vi interessano.
     educations:

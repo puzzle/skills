@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
     static targets = ["reference"]
 
-    copyReference(event) {
+    openReference(event) {
         event.preventDefault()
         event.stopPropagation()
 
