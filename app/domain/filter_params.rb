@@ -26,7 +26,19 @@ class FilterParams
   end
 
   def search_results(filters)
-    skill_ids, levels, interests = filters.transpose
+    skill_ids = filters.transpose.first
+
+    filtered_people_skills = filters.map do |skill_id, level, interest|
+      PeopleSkill.where('skill_id = ? AND level >= ? AND interest >= ?', skill_id, level, interest)
+    end.reduce(:or)
+
+    filtered_people = filtered_people_skills.group('person_id')
+                                            .having('COUNT(id) = ?', skill_ids.length)
+                                            .select('person_id')
+
+    PeopleSkill.includes(:skill, :person).joins(:person)
+               .where(person_id: filtered_people, skill_id: skill_ids)
+               .group_by(&:person)
   end
 
   def skill_ids
