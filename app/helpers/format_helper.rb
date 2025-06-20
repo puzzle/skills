@@ -162,4 +162,7 @@ module FormatHelper
     respond_to?(:"#{val.class.model_name.singular_route_key}_path")
   end
 
+  def link_valid(link)
+    link =~ /\A#{URI::RFC2396_PARSER.make_regexp}\z/
+  end
 end
