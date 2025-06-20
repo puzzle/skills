@@ -9,7 +9,8 @@
             = contribution.title
           %span{ data: { contribution_target: "reference" } }
             = sanitize contribution.reference
-          %label.btn.btn-outline-primary.w-20.mt-4{ data: { action: "click->contribution#copyReference" } } Open reference
+          - if link_valid(sanitize contribution.reference)
+            %label.btn.btn-outline-primary.w-20.mt-4{ data: { action: "click->contribution#copyReference" } } Open reference
         - unless contribution.display_in_cv
           %span.col-1.d-flex.justify-content-end.pe-5
             %div{ 'data-bs-toggle': 'tooltip', 'data-bs-title': t("people.show.is_not_displayed_in_cv"), 'data-controller': 'tooltip'}
