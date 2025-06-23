@@ -3,7 +3,9 @@
   %div.profile-header.mw-100.border-bottom.mt-4.fw-normal
     = ti "search.search_results"
   %div.border.p-3.rounded-bottom.search-results
-    - if @search_results.length == 0
+    - if @no_match_message
+      = ti('search.no_match') + @no_match_message
+    - elsif @search_results.empty?
       = ti 'search.no_skill'
     - else
       - @search_results.each do | person, person_skills |
