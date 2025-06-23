@@ -54,11 +54,11 @@ class FilterParams
   end
 
   def constructed_filters
-    skill_ids.map(&:to_i).zip(levels.map(&:to_i), interests.map(&:to_i))
+    skill_ids.map{ |id| id.present? ? id.to_i : nil }.zip(levels.map(&:to_i), interests.map(&:to_i))
   end
 
   def default_filter
-    [Skill.order(:title).first.id, 1, 1]
+    [nil, 1, 1]
   end
 
   def add_row?
