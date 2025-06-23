@@ -5,18 +5,18 @@
       %div.filter-container
         %div.w-100.d-flex.flex-row.justify-content-start{data: {controller: "skills-level"}}
           %div.w-50.mt-3{"data-controller": "dropdown"}
-            = form.collection_select "skill_id[]", Skill.order(:title), :id, :title, { selected: skill_id, prompt: true }, data:{"dropdown-target": "dropdown"}, onchange: "this.form.submit()"
+            = form.collection_select "skill_id[]", Skill.order(:title), :id, :title, { selected: skill_id, prompt: true }, data:{"dropdown-target": "dropdown"}, onchange: "this.form.requestSubmit()"
           %div.w-25.d-flex.flex-column.align-items-center
             %label.form-label.text-gray.fs-6{"data-skills-level-target": "label"}= ti "people_skills.levels_by_id.#{level}"
             = form.range_field "level[]", min: 1, max: 5, value: level, class: "form-range w-75",
                                     "data-action": "change->skills-level#toggleLevel",
-                                    "data-skills-level-target": "switch", onchange: "this.form.submit()"
+                                    "data-skills-level-target": "switch", onchange: "this.form.requestSubmit()"
           %div.w-25.d-flex.flex-column.align-items-center
             %span.fs-6.text-gray
               = ti "people_skills.interest"
             .rate
               - 5.downto(1) do |index|
-                = form.radio_button "interest[#{i}]", index, id: "row#{i}_star#{index}", checked: index == interest, onClick: "this.form.submit()"
+                = form.radio_button "interest[#{i}]", index, id: "row#{i}_star#{index}", checked: index == interest, onClick: "this.form.requestSubmit()"
                 = form.label 'stars', for: "row#{i}_star#{index}", id: "row#{i}_star-label#{index}", class: "star#{index}"
       - if i != 0
         = form.label '', for: "delete-row-#{i}", class: 'icon icon-close p-0 cursor-pointer'
