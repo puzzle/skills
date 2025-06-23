@@ -174,6 +174,7 @@ de:
     messages:
       authorization_error: Du hast keine Berechtigung, diese Funktion auszuführen.
       cannot_remove: darf nicht gelöscht werden.
+      chart_data_empty: Wähle eine Abteilung, einen Skill und ein Jahr aus um Daten anzuzeigen.
       invalid_date_range: muss vor dem Enddatum sein.
       max_size_10MB: darf nicht grösser als 10MB sein.
       max_size_error: darf nicht grösser als 10MB sein.
@@ -218,6 +219,7 @@ de:
       cv_search: CV Suche
       profile: Profil
       skill_search: Skill Suche
+      skills_tracking: Skills Entwicklung
       skillset: Skillset
     new: Neu
     people_skills:
@@ -245,6 +247,10 @@ de:
       no_results: Keine Resultate gefunden
       no_skill: Füge einen Skill zur Suche hinzu.
       search_results: Suchergebnisse
+    skills_tracking:
+      bar-chart: Balken
+      chart_type: Diagramm Typ
+      line-chart: Linien
     'true': Ja
   helpers:
     cancel: Abbrechen

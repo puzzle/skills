@@ -2,6 +2,8 @@ require 'rails_helper'
 
 describe PeopleSearch do
   it 'should create snapshot of all departments that have members' do
+    DepartmentSkillSnapshot.delete_all
+
     DepartmentSkillsSnapshotBuilder.new.snapshot_all_departments
 
     snapshots = DepartmentSkillSnapshot.all
