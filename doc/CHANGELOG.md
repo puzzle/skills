@@ -1,6 +1,7 @@
 # Work in progress
 
 ### Features
+- **Team skill tracking** The Skills application now automatically keeps track of the level and amount of certain skills inside a department.
 - **Language localization** Added translations for Japanese and Swiss-German to the application.
 - **Different template for CV export** A Red Hat template has been added as an option when exporting the CV. The foundation has been laid to add more templates if requested.
 - **Unifying of skills** Duplicates of skills can now be unified using an option in the admin view.

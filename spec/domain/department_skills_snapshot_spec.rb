@@ -2,11 +2,13 @@ require 'rails_helper'
 
 describe PeopleSearch do
   it 'should create snapshot of all departments that have members' do
+    DepartmentSkillSnapshot.delete_all
+
     DepartmentSkillsSnapshotBuilder.new.snapshot_all_departments
 
     snapshots = DepartmentSkillSnapshot.all
 
-    expect(snapshots.count).to eql(Person.distinct.pluck(:department_id).count + 3)
+    expect(snapshots.count).to eql(Person.distinct.pluck(:department_id).count)
 
     department = departments(:sys)
     snapshot = snapshots.find_by(department_id: department)

@@ -15,14 +15,14 @@
     %div
       = f.label :year, t('global.date.year'), class: "text-secondary"
       = f.select :year,
-            options_for_select((2025..Date.today.year).to_a.reverse, params[:year]),
+            options_for_select((2025..Date.today.year).to_a.reverse, params[:year] || Date.today.year),
             { prompt: ta(:please_select)},
             { onchange: "this.form.requestSubmit()", class: "form-select"}
 
     %div
       = f.label :chart_type, ti('skills_tracking.chart_type'), class: "text-secondary"
       = f.select :chart_type,
-            options_for_select([['Line Chart', 'line'], ['Bar Chart', 'bar']].map { |label, value| [ti("skills_tracking.#{value}-chart"), value] }),
+            options_for_select([['Line Chart', 'line'], ['Bar Chart', 'bar']].map { |label, value| [ti("skills_tracking.#{value}-chart"), value] }, params[:chart_type] || 'line'),
             { prompt: ta(:please_select)},
             { onchange: "this.form.requestSubmit()", class: "form-select"}
 

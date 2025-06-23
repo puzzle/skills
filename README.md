@@ -82,9 +82,11 @@ postgres:16        "docker-entrypoint.s…"    11 seconds ago   Up 10 seconds   
 Access the web application by browser: http://localhost:3000 and enjoy the ride!
 
 ## Skill snapshot for departments
-The core competence of this feature is to track how many people are able to use a certain skill inside a department. It works by running a monthly DelayedJob that creates these 'Snapshots' for each department.
-You can then take a look at these Snapshots to see how the amount people with certain skills have changed over a year. 
+The core competence of this feature is to track how many people in a department have a given skill. This also includes tracking the level of the skill.
+It works by running a monthly DelayedJob that creates these 'Snapshots' for each department.
+You can then take a look at these Snapshots using `chart.js` to see how the amount people with certain skills have changed over the span of a year. 
 This also features a soft-delete for skills since we want to be able to access skills that have been a thing in the past.
+For local development dynamically generated, extensive seeds are available for each department and skill.
 
 **Make sure to start the delayed job worker**, otherwise the job won't be executed. You can find help on how to do this in
 [the delayed job documentation](https://github.com/collectiveidea/delayed_job?tab=readme-ov-file#running-jobs)
