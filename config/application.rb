@@ -14,7 +14,7 @@ Bundler.require(*Rails.groups)
 
 module Skills
   def self.use_ptime_sync?
-    ActiveModel::Type::Boolean.new.cast(ENV.fetch('USE_PTIME_SYNC', true))
+    ActiveModel::Type::Boolean.new.cast(ENV.fetch('USE_PTIME_SYNC', false))
   end
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
