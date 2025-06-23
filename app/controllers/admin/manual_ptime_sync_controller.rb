@@ -1,7 +1,7 @@
 class Admin::ManualPtimeSyncController < CrudController
   self.nesting = :admin
   before_action :render_unauthorized_not_admin
-  before_action :redirect_admin_unless_use_ptime_sync
+  before_action :redirect_admin, unless: -> { Skills.use_ptime_sync? }
 
   # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   def manual_sync
@@ -22,7 +22,7 @@ class Admin::ManualPtimeSyncController < CrudController
 
   private
 
-  def redirect_admin_unless_use_ptime_sync
-    redirect_to admin_index_path unless Skills.use_ptime_sync?
+  def redirect_admin
+    redirect_to admin_index_path
   end
 end
