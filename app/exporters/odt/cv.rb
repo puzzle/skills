@@ -75,6 +75,8 @@ module Odt
 
     def insert_locations(report)
       is_de = location.country == 'DE'
+      # The add_section method is used here to display the switzerland / germany footer
+      # either 1 or 0 times
       report.add_section('FOOTER_SWITZERLAND', is_de ? [] : [1]) { nil }
       report.add_section('FOOTER_GERMANY', is_de ? [1] : []) { nil }
       report.add_field(:niederlassung, location.adress_information)
@@ -92,13 +94,13 @@ module Odt
     end
 
     def insert_competences(report)
-      insert_level_skills(report)
+      insert_level_skills(report) if include_skills_by_level?
       insert_core_competences(report)
     end
 
     # rubocop:disable Metrics/MethodLength
     def insert_level_skills(report)
-      report.add_section('SKILLS_BY_LEVEL', include_skills_by_level? ? [1] : []) do
+      report.add_section('SKILLS_BY_LEVEL', [1]) do
         if @skills_by_level_list.empty?
           # rubocop:disable Layout/LineLength
           report.add_field(:skills_present,
