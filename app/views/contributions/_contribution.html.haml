@@ -8,8 +8,8 @@
           %span.fw-bolder
             = contribution.title
           %span{ data: { contribution_target: "reference" } }
-            = sanitize contribution.reference
-          - if link_valid(sanitize contribution.reference)
+            = contribution.reference
+          - if link_valid(contribution.reference)
             %label.btn.btn-outline-primary.w-20.mt-4{ data: { action: "click->contribution#openReference" } }= t("people.contributions.link.open")
         - unless contribution.display_in_cv
           %span.col-1.d-flex.justify-content-end.pe-5
