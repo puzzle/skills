@@ -1,10 +1,14 @@
 %div.mt-2
   %form.d-flex.align-items-center{data: {"turbo-frame": "search-results", "turbo-action": "advance"}, "data-controller": "search"}
-    %input{class: 'form-control w-75', placeholder: ti("search_placeholder"), name: 'q', "data-action": "search#submitWithTimeout", id: "cv_search_field", 'data-bs-toggle': 'tooltip', 'data-bs-title': "Mit , kann nach mehreren Wörtern gesucht werden.", 'data-controller': 'tooltip'}
+    %input{class: 'form-control w-75', placeholder: ti("search_placeholder"), name: 'q', "data-action": "search#submitWithTimeout", id: "cv_search_field"}
     %div.ms-5
       %input{type: "checkbox", name: 'search_skills', id: 'search_skills_checkbox', onchange: 'this.form.requestSubmit();'}
         = ti('search_skills')
+  %p.text-secondary.d-flex.align-items-center
+    = image_tag("info", class: "pe-1")
+    = ti("multiple_keywords_message")
   %div.profile-header.mw-100.border-bottom.mt-2.mb-2
+
     = ti "search.search_results"
   %turbo-frame{id: "search-results"}
     - if @cv_search_results.blank?
