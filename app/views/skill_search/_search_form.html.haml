@@ -4,7 +4,7 @@
     %div.d-flex.flex-row.align-items-center{id: "filter-row-#{i}"}
       %div.filter-container
         %div.w-100.d-flex.flex-row.justify-content-start{data: {controller: "skills-level"}}
-          %div.w-50.mt-3{"data-controller": "dropdown"}
+          %div.w-50.align-self-end{"data-controller": "dropdown"}
             = form.collection_select "skill_id[]", Skill.order(:title), :id, :title, { selected: skill_id, prompt: true }, data:{"dropdown-target": "dropdown"}, onchange: "this.form.requestSubmit()"
           %div.w-25.d-flex.flex-column.align-items-center
             %label.form-label.text-gray.fs-6{"data-skills-level-target": "label"}= ti "people_skills.levels_by_id.#{level}"
@@ -22,6 +22,6 @@
         = form.label '', for: "delete-row-#{i}", class: 'icon icon-close p-0 cursor-pointer'
         = form.submit '', name: 'delete_row', value: i, class: 'd-none', id: "delete-row-#{i}"
   - if @search_filters.length < 5
-    %div.d-flex.align-items-center
+    %div.d-flex.align-items-center.mt-2
       %span.icon.icon-plus.me-1
       = form.submit ti('link.add'), name: 'add_row', class: 'btn btn-link p-0'
