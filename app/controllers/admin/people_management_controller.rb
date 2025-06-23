@@ -4,6 +4,12 @@ class Admin::PeopleManagementController < CrudController
     Person
   end
 
+  def index
+    @unemployed_people = Person.unemployed
+    @not_synced_profiles = Person.where(ptime_employee_id: nil)
+                                 .or(Person.where(ptime_data_provider: nil))
+  end
+
   def destroy_person
     @person = Person.find(params['person_id'])
     if @person.destroy.destroyed?
