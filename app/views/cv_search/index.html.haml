@@ -1,6 +1,6 @@
 %div.mt-2
   %form.d-flex.align-items-center{data: {"turbo-frame": "search-results", "turbo-action": "advance"}, "data-controller": "search"}
-    %input{class: 'form-control w-75', placeholder: ti("search_placeholder"), name: 'q', "data-action": "search#submitWithTimeout", id: "cv_search_field"}
+    %input{class: 'form-control w-75', placeholder: ti("search_placeholder"), name: 'q', "data-action": "search#submitWithTimeout", id: "cv_search_field", 'data-bs-toggle': 'tooltip', 'data-bs-title': "Mit , kann nach mehreren Wörtern gesucht werden.", 'data-controller': 'tooltip'}
     %div.ms-5
       %input{type: "checkbox", name: 'search_skills', id: 'search_skills_checkbox', onchange: 'this.form.requestSubmit();'}
         = ti('search_skills')

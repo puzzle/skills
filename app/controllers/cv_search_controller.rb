@@ -12,7 +12,7 @@ class CvSearchController < ApplicationController
   end
 
   def query
-    params[:q]&.split(', ')
+    params[:q]&.split(',')
   end
 
   def search_skills?
