@@ -101,9 +101,9 @@ describe :skill_search do
     end
 
     within row_selector do
-      id = find("[id$='star-label#{interest}']")[:for]
       # Tests are flaky in firefox
       sleep 0.3
+      id = find("[id$='star#{interest}']", visible: false)[:id]
       choose(id, allow_label_click: true)
     end
   end
