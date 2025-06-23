@@ -23,7 +23,7 @@ describe :skill_search do
     end
 
     it 'Should return add skill to search message if skill id is not given' do
-      visit skill_search_index_path({ level: [3], "interest[0]": 5 })
+      visit skill_search_index_path({ skill_id: [''], level: [3], "interest[0]": 5 })
       expect(page).to have_field("level[]", with: 3)
       expect(page).to have_field("interest[0]", with: 5, visible: false)
       expect(page).to have_text("Füge einen Skill zur Suche hinzu.")
@@ -70,7 +70,7 @@ describe :skill_search do
       expect(page).to have_text("Wally Allround")
 
       # remove skill filter
-      page.find('#remove-row-2').click
+      page.find('label[for="delete-row-1"]').click
       expect(page).to have_text("Alice Mante")
       expect(page).to have_text("Wally Allround")
       expect(page).to have_text("Hope Sunday")
@@ -79,7 +79,7 @@ describe :skill_search do
 
   def add_and_fill_out_row(skill, level, interest)
     old_row_number = last_row[:id][-1, 1].to_i
-    click_link(t("skill_search.global.link.add"))
+    click_button(t("skill_search.global.link.add"))
 
     new_row_id = "filter-row-#{old_row_number + 1}"
     expect(page).to have_selector("[id='#{new_row_id}']")
