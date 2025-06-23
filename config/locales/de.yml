@@ -202,10 +202,10 @@ de:
     filter:
       all: Alle
       default: Default
-      unrated: Nicht bewertet
       new: Neue
       rated: Bewertet
       search: "%{target} suchen"
+      unrated: Nicht bewertet
     link:
       cancel: Abbrechen
       download: Herunterladen

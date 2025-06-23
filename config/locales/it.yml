@@ -324,7 +324,7 @@ it:
       is_not_displayed_in_cv: Non verrà incluso nell'esportazione del CV.
   people/export_cv:
     export_form:
-      update_index_info: 'Attenzione: prima dell''invio, aprire il CV in LibreOffice e aggiornare l''indice'
+      update_index_info: "Attenzione: prima dell'invio, aprire il CV in LibreOffice e aggiornare l'indice"
   people/people_skills:
     edit_form:
       rate: Tasso
