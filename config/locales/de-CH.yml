@@ -186,6 +186,8 @@ de-CH:
     global:
       search_placeholder: CVs dürsuechä...
       search_skills: Skills äbäfaus dürsuechä
+    index:
+      multiple_keywords_message: Du chasch mehreri Schlüssuwörter mit em nä Komma trennä.
   date:
     month_names:
     -

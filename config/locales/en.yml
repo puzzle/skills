@@ -182,6 +182,8 @@ en:
     global:
       search_placeholder: Search CVs...
       search_skills: Search skills as well
+    index:
+      multiple_keywords_message: You can separate multiple keywords with a comma.
   errors:
     messages:
       authorization_error: You do not have permission to execute this function.

@@ -182,6 +182,8 @@ ja:
     global:
       search_placeholder: 履歴書を検索...
       search_skills: スキルも検索する
+    index:
+      multiple_keywords_message: 複数のキーワードはコンマで区切って入力できます。
   errors:
     messages:
       authorization_error: この機能を実行する権限がありません。
