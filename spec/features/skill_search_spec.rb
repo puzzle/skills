@@ -109,6 +109,7 @@ describe :skill_search do
   end
 
   def last_row
+    expect(page).to have_css('#filter-row-0')
     page.all("[id^='filter-row-']").sort_by { |row| row[:id] }.last
   end
 end
