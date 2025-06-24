@@ -136,14 +136,13 @@ describe 'Projects', type: :feature, js:true do
     it 'Update entry to not be displayed in the CV' do
       project = person.projects.first
       open_edit_form(project)
-      checkbox = find('#project_display_in_cv')
       within("turbo-frame#project_#{project.id}") do
-        checkbox.click
+        uncheck('project_display_in_cv')
         click_default_submit
         expect(page).to have_css("img[src*='no-file']")
       end
       open_edit_form(project)
-      expect(checkbox).not_to be_checked
+      expect(page).to have_unchecked_field('project_display_in_cv')
     end
   end
 end

@@ -50,14 +50,16 @@ describe "Core competences", type: :feature, js: true do
   it 'Update core competence notes to not be displayed in the CV' do
     visit person_path(alice)
     click_link(href: competence_notes_person_path(alice))
-    expect(page).to have_css('#person_display_competence_notes_in_cv')
-    checkbox = find('#person_display_competence_notes_in_cv')
-    checkbox.click
-    click_button "Aktualisieren"
-    within("#competence-notes") do
+    within('#competence-notes') do
+      expect(page).to have_checked_field('person_display_competence_notes_in_cv')
+      page.find('#person_display_competence_notes_in_cv').click
+      expect(page).to have_unchecked_field('person_display_competence_notes_in_cv')
+      click_button "Aktualisieren"
       expect(page).to have_css("img[src*='no-file']")
     end
     click_link(href: competence_notes_person_path(alice))
-    expect(checkbox).not_to be_checked
+    within('#competence-notes') do
+      expect(page).to have_unchecked_field('person_display_competence_notes_in_cv')
+    end
   end
 end
