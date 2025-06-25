@@ -15,9 +15,9 @@
             %span.fs-6.text-gray
               = ti "people_skills.interest"
             .rate
-              - 5.downto(1) do |index|
-                = form.radio_button "interest[#{i}]", index, id: "row#{i}_star#{index}", checked: index == interest, onClick: "this.form.requestSubmit()"
-                = form.label 'stars', for: "row#{i}_star#{index}", id: "row#{i}_star-label#{index}", class: "star#{index}"
+              - 5.downto(1) do |interest_n|
+                = form.radio_button "interest[#{i}]", interest_n, id: "row#{i}_star#{interest_n}", checked: interest_n == interest, onClick: "this.form.requestSubmit()"
+                = form.label 'stars', for: "row#{i}_star#{interest_n}", id: "row#{i}_star-label#{interest_n}", class: "star#{interest_n}"
       - if i != 0
         = form.label '', for: "delete-row-#{i}", class: 'icon icon-close p-0 cursor-pointer'
         = form.submit '', name: 'delete_row', value: i, class: 'd-none', id: "delete-row-#{i}"
