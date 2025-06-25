@@ -7,7 +7,7 @@ class FilterParams
 
   def filters_and_results
     filters = search_filters
-    results = search_results(filters)
+    results = search_results(filters.filter { |f| f.exclude?(nil) })
     [filters, results]
   end
 
@@ -26,19 +26,24 @@ class FilterParams
   end
 
   def search_results(filters)
+    return [] unless filters.any?
+
     skill_ids = filters.transpose.first
 
-    filtered_people_skills = filters.map do |skill_id, level, interest|
-      PeopleSkill.where('skill_id = ? AND level >= ? AND interest >= ?', skill_id, level, interest)
-    end.reduce(:or)
+    filtered_people = filtered_people_skills(filters)
+                      .group('person_id')
+                      .having('COUNT(id) = ?', skill_ids.length)
+                      .select('person_id')
 
-    filtered_people = filtered_people_skills.group('person_id')
-                                            .having('COUNT(id) = ?', skill_ids.length)
-                                            .select('person_id')
-
-    PeopleSkill.includes(:skill, :person).joins(:person)
+    PeopleSkill.includes(:skill, :person)
                .where(person_id: filtered_people, skill_id: skill_ids)
                .group_by(&:person)
+  end
+
+  def filtered_people_skills(filters)
+    filters.map do |skill_id, level, interest|
+      PeopleSkill.where('skill_id = ? AND level >= ? AND interest >= ?', skill_id, level, interest)
+    end.reduce(:or)
   end
 
   def skill_ids
