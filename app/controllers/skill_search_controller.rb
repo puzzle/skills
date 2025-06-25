@@ -15,7 +15,7 @@ class SkillSearchController < CrudController
 
   def no_match_message
     skill_ids, levels, interests = @search_filters.transpose
-    if @search_results.empty? && skill_ids.none?(&:nil?)
+    if @search_results.empty? && skill_ids.any?(&:present?)
       skill_titles = Skill.find(skill_ids).pluck(:title)
       combine_to_feedback_sentence(skill_titles, levels, interests)
     end
