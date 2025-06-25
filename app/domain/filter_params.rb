@@ -61,7 +61,7 @@ class FilterParams
   def constructed_filters
     skill_ids.map do |id|
       id.present? ? id.to_i : nil
-    end.zip(levels.map(&:to_i), interests.map(&:to_i))
+    end.zip(levels.map(&:to_i), interests.map(&:to_i))[0..4]
   end
 
   def default_filter
