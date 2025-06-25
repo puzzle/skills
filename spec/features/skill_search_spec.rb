@@ -30,7 +30,7 @@ describe :skill_search do
     end
 
     it 'Should return user which matches filters' do
-      visit(skill_search_index_path)
+      visit skill_search_index_path
       fill_out_row("JUnit", 5, 3)
       add_and_fill_out_row("Rails", 4, 5)
       add_and_fill_out_row("ember", 5, 4)
@@ -41,19 +41,20 @@ describe :skill_search do
     end
 
     it 'Should return no results if no user matches filters' do
-      visit(skill_search_index_path)
+      visit skill_search_index_path
       fill_out_row("Bash", 5, 3)
       expect(page).to have_text("Keine Resultate gefunden mit der folgenden Suche: Bash (5/3)")
     end
 
     it 'Should return no results if no user matches multiple filters' do
-      visit(skill_search_index_path)
+      visit skill_search_index_path
       fill_out_row("Bash", 5, 3)
       add_and_fill_out_row("Rails", 1, 4)
       expect(page).to have_text("Keine Resultate gefunden mit der folgenden Suche: Bash (5/3) und Rails (1/4)")
     end
+
     it 'Should be able to remove filter row and switch results accordingly' do
-      visit(skill_search_index_path)
+      visit skill_search_index_path
 
       # set skills in filters
       fill_out_row("ember", 1, 1)
@@ -74,6 +75,17 @@ describe :skill_search do
       expect(page).to have_text("Alice Mante")
       expect(page).to have_text("Wally Allround")
       expect(page).to have_text("Hope Sunday")
+    end
+
+    it 'Should ignore filters without a selected skill' do
+      visit skill_search_index_path
+      expect(page).to have_text("Füge einen Skill zur Suche hinzu.")
+      fill_out_row("ember", 1, 1)
+      expect(page).to have_text("Alice Mante")
+      expect(page).not_to have_text("Füge einen Skill zur Suche hinzu.")
+      click_button(t("skill_search.global.link.add"))
+      expect(page).to have_text("Alice Mante")
+      expect(page).not_to have_text("Füge einen Skill zur Suche hinzu.")
     end
   end
 
