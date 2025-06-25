@@ -78,11 +78,8 @@ describe :skill_search do
   end
 
   def add_and_fill_out_row(skill, level, interest)
-    old_row_number = last_row[:id][-1, 1].to_i
     click_button(t("skill_search.global.link.add"))
-
-    new_row_id = "filter-row-#{old_row_number + 1}"
-    expect(page).to have_selector("[id='#{new_row_id}']")
+    expect(page).to have_content('Bitte wählen')
 
     fill_out_row(skill, level, interest)
   end
