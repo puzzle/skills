@@ -26,3 +26,7 @@
     %div.d-flex.align-items-center.mt-2
       %span.icon.icon-plus.me-1
       = form.submit ti('link.add'), name: 'add_row', class: 'btn btn-link p-0'
+  %hr
+  .d-flex.gap-2.align-items-center{'data-controller': 'dropdown'}
+    = form.label Department.model_name.human, class: 'm-0', for: 'department-filter'
+    = form.collection_select :department, Department.order(:name), :id, :name, {include_blank: 'Nicht filtern', selected: params[:department]}, data: { 'dropdown-target': 'dropdown' }, class: 'w-25', id: 'department-filter', onchange: "this.form.requestSubmit()"
