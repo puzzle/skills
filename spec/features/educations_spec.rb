@@ -62,6 +62,36 @@ describe 'Educations', type: :feature, js:true do
     end
   end
 
+  describe 'Date picker functionality' do
+    it 'should copy value of month_from and year_from when values are entered first and button is clicked afterwards' do
+      open_create_form(Education)
+
+      within('turbo-frame#new_education') do
+        select '2024', from: 'education_year_from'
+        select 'Mai', from: 'education_month_from'
+
+        find('button', text: 'Mit Enddatum').click
+      end
+
+      expect(find('select', id: 'education_year_to').value).to eq('2024')
+      expect(find('select', id: 'education_month_to').value).to eq('5')
+    end
+
+    it 'should not copy values when button is opened first and values are entered afterwards' do
+      open_create_form(Education)
+
+      within('turbo-frame#new_education') do
+        find('button', text: 'Mit Enddatum').click
+
+        select '2024', from: 'education_year_from'
+        select 'Mai', from: 'education_month_from'
+      end
+
+      expect(find('select', id: 'education_year_to').value).not_to eq('2024')
+      expect(find('select', id: 'education_month_to').value).not_to eq('5')
+    end
+  end
+
   describe 'Error handling' do
     it 'create new education without title and location' do
       open_create_form(Education)
