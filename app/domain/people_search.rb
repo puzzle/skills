@@ -92,14 +92,14 @@ class PeopleSearch
   end
 
   def attribute_in_array(array)
-    in_attributes = { attribute: table_name_of_attr(array[0]), found_in_attribute: [] }
+    in_attributes = { attribute: table_name_of_attr(array[0]), keywords_in_attribute: [] }
     array.each do |t|
       in_attributes(t.attributes).each do |attribute|
-        in_attributes[:found_in_attribute] =
-          (in_attributes[:found_in_attribute] + attribute[:found_in_attribute]).uniq
+        in_attributes[:keywords_in_attribute] =
+          (in_attributes[:keywords_in_attribute] + attribute[:keywords_in_attribute]).uniq
       end
     end
-    in_attributes[:found_in_attribute].length.positive? ? in_attributes : []
+    in_attributes[:keywords_in_attribute].length.positive? ? in_attributes : []
   end
 
   def in_attributes(attrs)
@@ -107,23 +107,23 @@ class PeopleSearch
     searchable_fields(attrs).find_all do |key, value|
       next if value.nil?
 
-      found_in_attribute = found_in_attribute(value)
-      if found_in_attribute.length.positive?
+      keywords_in_attribute = keywords_in_attribute(value)
+      if keywords_in_attribute.length.positive?
         attribute.push({ attribute: key,
-                         found_in_attribute: found_in_attribute })
+                         keywords_in_attribute: keywords_in_attribute })
       end
     end
     attribute
   end
 
-  def found_in_attribute(value)
-    found_in_attribute = []
+  def keywords_in_attribute(value)
+    keywords_in_attribute = []
     search_terms.each do |search_term|
       if value.strip.downcase.include?(search_term.strip.downcase)
-        found_in_attribute.push(search_term)
+        keywords_in_attribute.push(search_term)
       end
     end
-    found_in_attribute
+    keywords_in_attribute
   end
 
   def searchable_fields(fields)
