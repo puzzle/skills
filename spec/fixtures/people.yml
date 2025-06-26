@@ -40,6 +40,7 @@ bob:
   email: bob@example.com
   department: sys
   shortname: BA
+  reminder_mails_active: true
 
 admin:
   birthdate: 2014-03-02 13:15:11
@@ -74,6 +75,7 @@ alice:
   email: alice@example.com
   department: sys
   shortname: AM
+  reminder_mails_active: false
 
 ken:
   birthdate: 1995-08-26 03:15:11
