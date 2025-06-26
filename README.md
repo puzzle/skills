@@ -92,6 +92,58 @@ For local development dynamically generated, extensive seeds are available for e
 [the delayed job documentation](https://github.com/collectiveidea/delayed_job?tab=readme-ov-file#running-jobs)
 or just simply run `rails jobs:work` to start working off queued delayed jobs.
 
+## PuzzleTime synchronization
+If you are using PuzzleSkills as an external company and are not also using the PuzzleTime application, this part of the
+application will not bother you.
+
+### Description of the PuzzleTime sync
+The PuzzleTime sync was written to reduce data redundancy and maintain a single source of truth for people data. It is
+possible to gather the data from multiple instances of PuzzleTime but every person in PuzzleSkills will only be updated
+by a single instance of PuzzleTime. Be aware that when the sync is run, profiles would be created multiple times if they have
+employments in multiple providers, so you should avoid this. An initial mapping script assigns each person a `ptime_employee_id`
+and a `ptime_data_provider`, which are then used to update them. A nightly delayed job runs at `3am` to fetch employee data
+from the PuzzleTime API(s). This data is used to update people in the application. While the sync is active, users are not
+allowed to edit certain attributes of a person or delete them.
+
+The sync also creates new people when needed or sets people to inactive (in which case they will no longer be updated).
+
+### How to enable it
+The PuzzleTime sync depends on the environment variable (ENV variable) `USE_PTIME_SYNC`, which defaults to false.
+This default value is defined in the `use_ptime_sync?` method in the `application.rb` file.
+
+### Manual sync
+Sometimes, synchronization may be needed during the day instead of waiting for the nightly job. For this purpose,
+a manual sync button has been added to the admin view (/admin/update_people). This button immediately executes the 
+delayed job and updates all people accordingly.
+
+### Setup
+This is a step for step manual on how to run the PuzzleTime sync. 
+1. Enable the sync by setting the environment variable `USE_PTIME_SYNC` to `true`.
+2. Make sure your instance(s) of the PuzzleTime application is/are up and running so the API(s) is/are accessible.
+3. The URL and the credentials for the PuzzleTime API(s) need to be set via environment variables for the sync to work.
+   To do this, set the following env vars per provider:
+
+   | Variable                                | Description                                                                                                                                                                                      |
+   |-----------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   | `PTIME_PROVIDER_<n>_BASE_URL`           | The base URL of your PuzzleTime instance                                                                                                                                                         |
+   | `PTIME_PROVIDER_<n>_API_USERNAME`       | The API username configured in your PuzzleTime instance                                                                                                                                          |
+   | `PTIME_PROVIDER_<n>_API_PASSWORD`       | The API password configured in your PuzzleTime instance                                                                                                                                          |
+|  | `PTIME_PROVIDER_<n>_COMPANY_IDENTIFIER` | The company identifier is used to tell apart the different providers but must also match the name of a company in your database, because a person will be assigned this company as it is updated |
+   
+   `<n>` is to be replaced with a number, e.g. `PTIME_PROVIDER_0_BASE_URL`. For every provider number, all 4 properties have to be set.
+4. If this is the very first time you're setting up the sync, you need to assign each person a `ptime_employee_id` and a `ptime_data_provider` which
+   links to their corresponding account in PuzzleTime. This is done using their email addresses. This mapping is only done for people that have an active
+   employment in their respective PuzzleTime provider.
+      - To perform the linking, run this command `rake ptime:assign`
+      - To see who will be linked without actually making changes (a dry run), run `rake ptime:evaluate_assign`
+5. Make sure you start the delayed job worker, otherwise the job won't be executed. You can find help on how to do this in
+   [the delayed job documentation](https://github.com/collectiveidea/delayed_job?tab=readme-ov-file#running-jobs). In the `dev`
+   environment we have a docker-compose service for this.
+6. Assuming all these steps have been followed correctly, the nightly delayed job should execute the sync. You can try by
+   navigating to `/admin/update_people` and pressing the manual sync button.
+7. *Optional*: If you need the sync to happen more than once a day, you can change the 
+   schedule by modifying the cron expression in the `NightlyUpdatePeopleDataPtimeJob.`
+
 ## Debugging
 To interact with `pry` inside a controller, you have to attach to the container first using `docker attach rails`.
 This will show you any **new** logs, and if you encounter a `pry` prompt, you can interact with it.

@@ -1,6 +1,6 @@
 %div.w-100.d-flex.justify-content-center
   %div.w-50.mt-4
-    %h2.text-center= ti('unify_skills')
+    %h2.text-center= t('admin.index.unify_skills')
     %div.mt-4
       = form_with model: entry, url: admin_unified_skills_path, id: 'unify-skills-form' do |form|
         = form.hidden_field :checked_conflicts, { value: entry.checked_conflicts, id: 'checked-conflicts-field' }

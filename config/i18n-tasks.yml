@@ -148,6 +148,8 @@ ignore_missing:
   - 'number.format.{delimiter, precision}'
   - 'helpers.select.prompt' 
   - 'date.month_names'
+  - 'admin.manual_ptime_sync.return_update_status.manual_sync.failed_people_updates'
+  - 'admin.manual_ptime_sync.return_update_status.manual_sync.people_updated'
 
 ## Consider these keys used:
 # ignore_unused:

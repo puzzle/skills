@@ -1,0 +1,2 @@
+class ManualPtimeSync < ApplicationRecord
+end

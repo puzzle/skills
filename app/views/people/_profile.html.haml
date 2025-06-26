@@ -47,7 +47,7 @@
                 = Person.human_attribute_name(:birthdate)
               %tr
                 %td.pb-1
-                  = @person.birthdate.to_date.strftime('%d.%m.%Y')
+                  = @person.birthdate&.to_date&.strftime('%d.%m.%Y') || '-'
               %th.fw-normal.text-gray 
                 = Person.human_attribute_name(:nationality)
               %tr
@@ -60,7 +60,7 @@
               %th.fw-normal.text-gray 
                 = Person.human_attribute_name(:marital_status)
               %tr
-                %td.pb-1= t("marital_statuses.#{@person.marital_status}")
+                %td.pb-1= @person.marital_status.nil? ? '-' : t("marital_statuses.#{@person.marital_status}")
               %th.fw-normal.text-gray 
                 = Person.human_attribute_name(:shortname)
               %tr

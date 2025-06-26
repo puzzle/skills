@@ -84,6 +84,7 @@ fr:
           one: Compétence
           other: Compétences
         title: Conclusion
+        updated_at: Dernière mise à jour
       project:
         description: Description
         display_in_cv: Inclure dans l'exportation du CV
@@ -132,17 +133,32 @@ fr:
       link:
         list: Panneau d'administration
     index:
+      delete_inactive_profiles: Supprimer les profils inactifs
       unify_skills: Unifier les compétences
+      update_people_manually: Mise à jour manuelle des personnes
+    manual_ptime_sync:
+      manual_sync:
+        failed_people_updates: Une erreur s'est produite lors de la mise à jour de %{names}. Veuillez réessayer et, si nécessaire, vérifier les données dans PuzzleTime.
+        fetching_data_failed: Une erreur s'est produite lors de la récupération des données de PuzzleTime. Veuillez réessayer et contacter le support si nécessaire.
+        names_by_provider: "%{names} du fournisseur %{provider}"
+        people_updated: Les données de toutes les personnes ont été mises à jour avec succès
     unified_skills:
       create:
         success: La compétence %{skill1} a été unifiée avec succès avec la compétence %{skill2} en la nouvelle compétence %{new_skill}
+  admin/manual_ptime_sync:
+    index:
+      description: Lorsque vous appuyez sur ce magnifique bouton, les données de toutes les personnes sont mises à jour avec celles de PuzzleTime. Ceci peut prendre quelques secondes.
+  admin/people_management:
+    index:
+      ex_members_title: Les profils suivants sont marqués comme anciens employés
+      not_synced_members_title: Les profils suivants ne sont actuellement pas mis à jour par la synchronisation PuzzleTime
+      nothing_to_manage: Actuellement, il n'y a rien à nettoyer
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: Conflits détectés
     form:
       check_for_conflicts: Verificare conflitti
       unify: Unifier
-      unify_skills: Unifier les compétences
     remote_modal:
       conflicts_found_message:
         one: "%{names} a évalué les deux compétences. Si les compétences sont quand même unifiées, la meilleure évaluation sera utilisée."
@@ -283,6 +299,8 @@ fr:
         location: 'Établissement (pour le pied de page) :'
         skills_by_level: Compétences par niveau
         trainee: Stagiaire
+    form:
+      ptime_data: Ces données proviennent de Puzzle Time, vous ne pouvez donc pas les modifier.
     global:
       confirm_delete: Veux-tu vraiment supprimer cette personne ?
       link:

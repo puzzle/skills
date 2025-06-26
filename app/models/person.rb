@@ -27,6 +27,8 @@
 class Person < ApplicationRecord
   include PgSearch::Model
 
+  after_initialize :set_default_languages
+
   belongs_to :company
   belongs_to :department, optional: true
 
@@ -47,8 +49,8 @@ class Person < ApplicationRecord
   accepts_nested_attributes_for :advanced_trainings, allow_destroy: true
 
   validates :display_competence_notes_in_cv, inclusion: [true, false]
-  validates :birthdate, :location, :name, :nationality,
-            :title, :marital_status, :email, presence: true
+  validates :location, :name, :nationality,
+            :title, :email, presence: true
   validates :location, :name, :title,
             :email, :shortname, length: { maximum: 100 }
 
@@ -65,6 +67,12 @@ class Person < ApplicationRecord
   validate :picture_size
 
   scope :list, -> { order(:name) }
+
+  scope :employed, lambda {
+    where.not(company_id: Company.where(name: 'Ex-Mitarbeiter').select('id'))
+  }
+
+  scope :unemployed, -> { employed.invert_where }
 
   enum :marital_status, { single: 0, married: 1, widowed: 2, registered_partnership: 3,
                           divorced: 4 }
@@ -105,5 +113,13 @@ class Person < ApplicationRecord
     return if picture.nil? || picture.size < 10.megabytes
 
     errors.add(:picture, :max_size_10MB)
+  end
+
+  def set_default_languages
+    if new_record?
+      %w[DE EN FR].each do |language|
+        language_skills.push(LanguageSkill.new({ language: language, level: 'Keine' }))
+      end
+    end
   end
 end

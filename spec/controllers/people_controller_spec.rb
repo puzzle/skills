@@ -39,4 +39,16 @@ describe PeopleController do
       expect(response.cookies['locale']).to be_nil
     end
   end
+
+  describe 'PuzzleTime sync' do
+    it 'should redirect to new index path when ptime sync is active and new route is visited' do
+      get :new
+      expect(response.code).to eql('200')
+
+      enable_ptime_sync
+
+      get :new
+      expect(response).to redirect_to(root_path)
+    end
+  end
 end

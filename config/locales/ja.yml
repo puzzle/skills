@@ -84,6 +84,7 @@ ja:
           one: スキル
           other: スキル
         title: 学位
+        updated_at: 最終更新
       project:
         description: 説明
         display_in_cv: 履歴書に含める
@@ -132,17 +133,32 @@ ja:
       link:
         list: 管理パネル
     index:
+      delete_inactive_profiles: 無効なプロファイルを削除
       unify_skills: スキル統合
+      update_people_manually: ユーザーを手動で更新
+    manual_ptime_sync:
+      manual_sync:
+        failed_people_updates: "%{names}の更新に失敗しました。再度お試しください。また、念のためPuzzleTime内のデータもご確認ください。"
+        fetching_data_failed: PuzzleTimeからデータを取得しようとした際に問題が発生しました。お手数ですが再度お試しいただき、それでも解決しない場合はサポートにご連絡ください。
+        names_by_provider: "%{provider}の%{names}"
+        people_updated: すべてのユーザーのデータの更新に成功しました。
     unified_skills:
       create:
         success: スキル %{skill1} はスキル %{skill2} と統合され、新しいスキル %{new_skill} が作成されました
+  admin/manual_ptime_sync:
+    index:
+      description: この素敵なボタンが押されると、すべてのユーザーのデータがPuzzleTimeのデータをもとに更新されます。この処理には数秒かかる場合があります。
+  admin/people_management:
+    index:
+      ex_members_title: 以下のプロファイルは元従業員としてマークされています
+      not_synced_members_title: 次のプロファイルは現在、PuzzleTime同期によって更新されていません
+      nothing_to_manage: 現在、クリーンアップするものはありません
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: 衝突が見つかりました
     form:
       check_for_conflicts: 衝突を確認
       unify: 統合
-      unify_skills: スキルを統合
     remote_modal:
       conflicts_found_message:
         one: "%{names} は両方のスキルを評価しています。スキルが統合されても、より良い評価が使用されます。"
@@ -283,6 +299,8 @@ ja:
         location: 支店（フッター用）：
         skills_by_level: レベル別スキル
         trainee: 研修生
+    form:
+      ptime_data: このデータはPuzzle Timeのものです。そのため、編集できません。
     global:
       confirm_delete: 本当にこの人物を削除しますか？
       link:

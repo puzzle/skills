@@ -84,6 +84,7 @@ it:
           one: Abilità
           other: Competenze
         title: Conclusione
+        updated_at: Ultimo aggiornamento
       project:
         description: Descrizione del
         display_in_cv: Includere nell'esportazione del CV
@@ -132,17 +133,32 @@ it:
       link:
         list: Pannello di amministrazione.
     index:
+      delete_inactive_profiles: Elimina profili inattivi
       unify_skills: Unire le competenze
+      update_people_manually: Aggiornare le persone manualmente
+    manual_ptime_sync:
+      manual_sync:
+        failed_people_updates: Si è verificato un errore durante l'aggiornamento di %{names}. Si prega di riprovare e, se necessario, controllare i dati in PuzzleTime.
+        fetching_data_failed: Si è verificato un errore durante il recupero dei dati da PuzzleTime. Si prega di riprovare e contattare il supporto se necessario.
+        names_by_provider: "%{names} del fornitore %{provider}"
+        people_updated: I dati di tutte le persone sono stati aggiornati con successo
     unified_skills:
       create:
         success: La competenza %{skill1} è stata unificata con successo con la competenza %{skill2} nella nuova competenza %{new_skill}
+  admin/manual_ptime_sync:
+    index:
+      description: Quando questo bellissimo pulsante viene premuto, i dati di tutte le persone verranno aggiornati con i dati di PuzzleTime. Questo potrebbe richiedere alcuni secondi.
+  admin/people_management:
+    index:
+      ex_members_title: I seguenti profili sono contrassegnati come ex dipendenti
+      not_synced_members_title: I seguenti profili non sono attualmente aggiornati dalla sincronizzazione PuzzleTime
+      nothing_to_manage: Attualmente non c'è niente da pulire
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: Conflitti rilevati
     form:
       check_for_conflicts: Vérifier les conflits
       unify: Unire
-      unify_skills: Unire le competenze
     remote_modal:
       conflicts_found_message:
         one: "%{names} ha valutato entrambe le competenze. Se le competenze vengono comunque unite, verrà utilizzata la valutazione migliore."
@@ -283,6 +299,8 @@ it:
         location: 'Sede secondaria (per il piè di pagina):'
         skills_by_level: Competenze per livello
         trainee: Apprendista
+    form:
+      ptime_data: Questi dati provengono da Puzzle Time, pertanto non è possibile modificarli.
     global:
       confirm_delete: Volete davvero cancellare questa persona?
       link:
