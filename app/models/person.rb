@@ -94,10 +94,9 @@ class Person < ApplicationRecord
                   },
                   using: {
                     tsearch: {
-                      any_word: false
+                      prefix: true
                     }
                   }
-
 
   def last_updated_at
     [associations_updatet_at, updated_at].compact.max
