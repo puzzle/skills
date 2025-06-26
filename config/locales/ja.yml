@@ -322,6 +322,9 @@ ja:
       updated_at: 最終編集日
     show:
       is_not_displayed_in_cv: 履歴書エクスポートに含まれません。
+  people/export_cv:
+    export_form:
+      update_index_info: 注意：送信前にLibreOfficeで履歴書を開き、目次を更新してください。
   people/people_skills:
     edit_form:
       rate: 評価する

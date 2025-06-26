@@ -74,6 +74,11 @@ module Odt
     end
 
     def insert_locations(report)
+      is_de = location.country == 'DE'
+      # The add_section method is used here to display the switzerland / germany footer
+      # either 1 or 0 times
+      report.add_section('FOOTER_SWITZERLAND', is_de ? [] : [1]) { nil }
+      report.add_section('FOOTER_GERMANY', is_de ? [1] : []) { nil }
       report.add_field(:niederlassung, location.adress_information)
     end
 
@@ -95,18 +100,20 @@ module Odt
 
     # rubocop:disable Metrics/MethodLength
     def insert_level_skills(report)
-      if @skills_by_level_list.empty?
-        # rubocop:disable Layout/LineLength
-        report.add_field(:skills_present,
-                         "Der Entwickler hat keine Skills mit Level #{skill_level_value} oder höher.")
-        # rubocop:enable Layout/LineLength
-      else
-        report.add_field(:skills_present,
-                         "Der Entwickler hat sich selbst als #{stage_by_level} eingeschätzt.")
-      end
-      report.add_table('LEVEL_COMPETENCES', @skills_by_level_list, header: true) do |t|
-        t.add_column(:category, :category)
-        t.add_column(:competence, :competence)
+      report.add_section('SKILLS_BY_LEVEL', [1]) do
+        if @skills_by_level_list.empty?
+          # rubocop:disable Layout/LineLength
+          report.add_field(:skills_present,
+                           "Der Entwickler hat keine Skills mit Level #{skill_level_value} oder höher.")
+          # rubocop:enable Layout/LineLength
+        else
+          report.add_field(:skills_present,
+                           "Der Entwickler hat sich selbst als #{stage_by_level} eingeschätzt.")
+        end
+        report.add_table('LEVEL_COMPETENCES', @skills_by_level_list, header: true) do |t|
+          t.add_column(:category, :category)
+          t.add_column(:competence, :competence)
+        end
       end
     end
 

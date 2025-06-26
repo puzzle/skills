@@ -326,6 +326,9 @@ de:
       updated_at: Zuletzt bearbeitet
     show:
       is_not_displayed_in_cv: Wird im CV Export nicht inkludiert.
+  people/export_cv:
+    export_form:
+      update_index_info: 'Achtung: bitte vor dem Versenden den CV in LibreOffice öffnen und das Inhaltsverzeichnis aktualisieren'
   people/people_skills:
     edit_form:
       rate: Bewerten
