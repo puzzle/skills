@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_12_080030) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_12_120048) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -91,6 +91,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_12_080030) do
     t.string "name"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+  end
+
+  create_table "contributions", force: :cascade do |t|
+    t.string "title"
+    t.string "reference"
+    t.integer "person_id"
+    t.integer "year_from"
+    t.integer "year_to"
+    t.integer "month_from"
+    t.integer "month_to"
+    t.boolean "display_in_cv"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
