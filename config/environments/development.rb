@@ -85,4 +85,15 @@ Rails.application.configure do
     # Add warnings directly to the Rails log
     Bullet.rails_logger = true
   end
+
+  # Mailer configuration
+  config.action_mailer.delivery_methode = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.mailrelay.com',
+    port: '25',
+    domain: 'mailrelay.puzzle.ch',
+    user_name: ENV['MAILRELAY_USERNAME'],
+    password: ENV['MAILRELAY_PASSWORD'],
+    authentication: 'LOGIN'
+  }
 end
