@@ -18,9 +18,9 @@
             %span.fw-bold.col-2 
                 = "#{ti('date.to')}:"
             %span.col-5
-                = form.select :month_to, add_default_option(months_with_nil, { text: '-' }), {}, class: "form-select"
+                = form.select :month_to, add_default_option(months_with_nil, { text: '-' }), {}, class: "form-select", data: { "date-picker-target": "monthTo" }
             %span.col-5
-                = form.select :year_to, add_default_option(year_range, { hidden: true }), {}, class: "form-select"
+                = form.select :year_to, add_default_option(year_range, { hidden: true }), {}, class: "form-select", data: { "date-picker-target": "yearTo" }
     %div.pb-2{"data-date-picker-target": "hideable", hidden: !end_date}
         %div.d-flex.justify-content-end
             %span.d-flex.justify-content-center.fw-bold.py-2.col-10
