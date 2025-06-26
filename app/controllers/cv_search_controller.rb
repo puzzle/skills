@@ -20,6 +20,6 @@ class CvSearchController < ApplicationController
   end
 
   def should_search
-    query.nil? || query.include?(nil)
+    query.nil? || query.include?(nil) || query.any? { |keyword| keyword.length < 3 }
   end
 end
