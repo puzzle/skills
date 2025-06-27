@@ -11,15 +11,15 @@ class FilterParams
     [filters, results]
   end
 
+  DEFAULT_FILTER = [nil, 1, 1].freeze
+
   private
 
   def search_filters
-    unless skill_ids && levels && interests
-      return [default_filter]
-    end
+    return [DEFAULT_FILTER] unless skill_ids && levels && interests
 
     filters = constructed_filters
-    filters << default_filter if add_row?
+    filters << DEFAULT_FILTER if add_row?
     filters.delete_at(delete_row.to_i) if delete_row
 
     filters
@@ -42,7 +42,8 @@ class FilterParams
 
   def filtered_people_skills(filters)
     filters.map do |skill_id, level, interest|
-      PeopleSkill.where('skill_id = ? AND level >= ? AND interest >= ?', skill_id, level, interest)
+      PeopleSkill.where('skill_id = ? AND level >= ? AND interest >= ?',
+                        skill_id, level, interest)
     end.reduce(:or)
   end
 
@@ -64,9 +65,6 @@ class FilterParams
     end.zip(levels.map(&:to_i), interests.map(&:to_i))[0..4]
   end
 
-  def default_filter
-    [nil, 1, 1]
-  end
 
   def add_row?
     @params[:add_row].present?
