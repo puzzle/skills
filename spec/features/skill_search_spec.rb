@@ -87,6 +87,14 @@ describe :skill_search do
       expect(page).to have_text("Alice Mante")
       expect(page).not_to have_text("Füge einen Skill zur Suche hinzu.")
     end
+
+    it 'should deactivate already selected skills in dropdowns' do
+      visit skill_search_index_path
+      fill_out_row("ember", 1, 1)
+      add_and_fill_out_row("Rails", 4, 5)
+      expect(page).to have_css('.ss-disabled', text: 'ember', visible: false)
+      expect(page).to have_css('.ss-disabled', text: 'Rails', visible: false)
+    end
   end
 
   def add_and_fill_out_row(skill, level, interest)
