@@ -35,9 +35,10 @@ class FilterParams
                       .having('COUNT(id) = ?', skill_ids.length)
                       .select('person_id')
 
+    department_filter = department ? { person: { department: department } } : {}
+
     PeopleSkill.includes(:skill, person: :department)
-               .where(person_id: filtered_people, skill_id: skill_ids)
-               .where(department ? {person: {department: department}} : {})
+               .where(person_id: filtered_people, skill_id: skill_ids).where(department_filter)
                .group_by(&:person)
   end
 
