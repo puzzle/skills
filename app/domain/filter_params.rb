@@ -28,7 +28,7 @@ class FilterParams
   def search_results(filters)
     return [] unless filters.any?
 
-    skill_ids = filters.transpose.first
+    skill_ids = filters.map(&:first)
 
     filtered_people = filtered_people_skills(filters)
                       .group('person_id')
@@ -64,7 +64,6 @@ class FilterParams
       id.present? ? id.to_i : nil
     end.zip(levels.map(&:to_i), interests.map(&:to_i))[0..4]
   end
-
 
   def add_row?
     @params[:add_row].present?
