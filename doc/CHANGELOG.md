@@ -2,7 +2,7 @@
 
 ### Features
 - **PuzzleTime Sync** The data of the people are now directly fetched from the PuzzleTime API using a nightly DelayedJob. (An extensive documentation can be found in the README.md)
-- **Team skill tracking** The Skills application now automatically keeps track of the level and amount of rated skills inside a department.
+- **Team skill tracking** The Skills application now automatically keeps track of the level and amount of rated skills inside a department. (See README.md for more information)
 - **Different template for CV export** A Red Hat template has been added as an option when exporting the CV. The foundation has been laid to add more templates in the future.
 - **Skill unification** Duplicates of skills can now be unified using an option in the admin view.
 - **Certificate master** It is now possible to keep track of different certificates inside of PuzzleSkills.
