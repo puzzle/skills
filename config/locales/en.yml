@@ -370,10 +370,7 @@ en:
     global:
       link:
         add: Add skill (max. 5)
-  skill_search/filter_form:
-    global:
-      link:
-        add: Add skill (max. 5)
+      dont_filter: Don't filter
   skills:
     form:
       cancel: cancel

@@ -370,10 +370,7 @@ ja:
     global:
       link:
         add: スキルを追加（最大5つまで）
-  skill_search/filter_form:
-    global:
-      link:
-        add: スキルを追加（最大5つまで）
+      dont_filter: フィルターなし
   skills:
     form:
       cancel: キャンセル
