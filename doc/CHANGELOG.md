@@ -1,6 +1,7 @@
 # Work in progress
 
 ### Features
+- **Open Source contributions** The possibility to add open source contributions to your profile as well has been implemented.
 - **Team skill tracking** The Skills application now automatically keeps track of the level and amount of certain skills inside a department.
 - **Language localization** Added translations for Japanese and Swiss-German to the application.
 - **Different template for CV export** A Red Hat template has been added as an option when exporting the CV. The foundation has been laid to add more templates if requested.
