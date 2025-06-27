@@ -1,14 +1,16 @@
-# Work in progress
+# 6.0.0
 
 ### Features
-- **Team skill tracking** The Skills application now automatically keeps track of the level and amount of certain skills inside a department.
-- **Language localization** Added translations for Japanese and Swiss-German to the application.
-- **Different template for CV export** A Red Hat template has been added as an option when exporting the CV. The foundation has been laid to add more templates if requested.
-- **Unifying of skills** Duplicates of skills can now be unified using an option in the admin view.
+- **PuzzleTime Sync** The data of the people are now directly fetched from the PuzzleTime API using a nightly DelayedJob. (An extensive documentation can be found in the README.md)
+- **Team skill tracking** The Skills application now automatically keeps track of the level and amount of rated skills inside a department.
+- **Different template for CV export** A Red Hat template has been added as an option when exporting the CV. The foundation has been laid to add more templates in the future.
+- **Skill unification** Duplicates of skills can now be unified using an option in the admin view.
 - **Certificate master** It is now possible to keep track of different certificates inside of PuzzleSkills.
 
 ### Improvements
-- **Unrated skills disappear** When rating a skill as not rated, it disappears from the profile.
+- **Locales in cookies** The selected locale is now saved inside a cookie which results in automatically selecting this language once you visit PuzzleSkills.
+- **Unrated skills disappear** When a skill is rated as 'not rated', it disappears from the profile.
+- **Language localization** Added translations for Japanese and Swiss-German to the application.
 - **Various translations** Translations for various parts of the application have been added and improved.
 
 # 5.1.0
