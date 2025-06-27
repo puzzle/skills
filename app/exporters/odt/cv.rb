@@ -94,13 +94,13 @@ module Odt
     end
 
     def insert_competences(report)
-      insert_level_skills(report) if include_skills_by_level?
+      insert_level_skills(report)
       insert_core_competences(report)
     end
 
     # rubocop:disable Metrics/MethodLength
     def insert_level_skills(report)
-      report.add_section('SKILLS_BY_LEVEL', [1]) do
+      report.add_section('SKILLS_BY_LEVEL', include_skills_by_level? ? [1] : []) do
         if @skills_by_level_list.empty?
           # rubocop:disable Layout/LineLength
           report.add_field(:skills_present,
