@@ -3,10 +3,10 @@
 class PeopleSearch
   SEARCHABLE_FIELDS = %w{name title competence_notes description
                          role technology location}.freeze
-  attr_reader :search_term, :entries, :search_skills
+  attr_reader :search_terms, :entries, :search_skills
 
-  def initialize(search_term, search_skills: false)
-    @search_term = search_term
+  def initialize(search_terms, search_skills: false)
+    @search_terms = search_terms
     @search_skills = search_skills
     @entries = search_result
   end
@@ -14,24 +14,32 @@ class PeopleSearch
   private
 
   def search_result
-    people = Person.all.search(search_term)
-    people = pre_load(people)
-
+    people = []
+    people = find_matches(people)
     results = []
 
     people.map do |p|
       found_in(p).each do |result|
-        translated_attr = Person.human_attribute_name(result, count: 2)
-        results.push({ person: { id: p.id, name: p.name }, found_in: translated_attr })
+        result[:attribute] = Person.human_attribute_name(result[:attribute], count: 2)
+        results.push({ person: { id: p.id, name: p.name }, found_in: result })
       end
     end
     results
   end
 
+  def find_matches(people)
+    search_terms.each do |search_term|
+      matches = Person.all.search(search_term)
+      people = matches & people
+      people = matches if search_term == search_terms[0]
+    end
+    pre_load(people)
+  end
+
   def found_in(person)
     res_attributes = in_attributes(person.attributes)
     res_associations = in_associations(person)
-    [res_attributes, res_associations].flatten.compact
+    (res_attributes + res_associations).flatten
   end
 
   # Load the attributes of the given people into cache
@@ -47,9 +55,8 @@ class PeopleSearch
 
   def in_associations(person)
     association_symbols.map do |sym|
-      attribute_names = in_association(person, sym)
-      sym.to_s if attribute_names.any?
-    end.flatten
+      in_association(person, sym)
+    end
   end
 
   def association_symbols
@@ -70,28 +77,61 @@ class PeopleSearch
     if target.is_a?(Array)
       attribute_in_array(target)
     else
-      in_attributes(target.attributes)
+      attribute_not_in_array(target)
     end
   end
+
   # rubocop:enable Metrics/MethodLength
 
+  def attribute_not_in_array(target)
+    result = in_attributes(target.attributes)
+    if result.length.positive?
+      result[0][:attribute] = target.class.name.downcase
+    end
+    result
+  end
+
   def attribute_in_array(array)
-    array.map do |t|
-      in_attributes(t.attributes)
-    end.flatten
+    in_attributes = { attribute: table_name_of_attr(array[0]), keywords_in_attribute: [] }
+    array.each do |t|
+      in_attributes(t.attributes).each do |attribute|
+        in_attributes[:keywords_in_attribute] =
+          (in_attributes[:keywords_in_attribute] + attribute[:keywords_in_attribute]).uniq
+      end
+    end
+    in_attributes[:keywords_in_attribute].length.positive? ? in_attributes : []
   end
 
   def in_attributes(attrs)
-    attribute = searchable_fields(attrs).find_all do |_key, value|
+    attribute = []
+    searchable_fields(attrs).find_all do |key, value|
       next if value.nil?
 
-      value.downcase.include?(search_term.downcase) # PG Search is not case sensitive
+      keywords_in_attribute = keywords_in_attribute(value)
+      if keywords_in_attribute.length.positive?
+        attribute.push({ attribute: key,
+                         keywords_in_attribute: keywords_in_attribute })
+      end
     end
-    attribute.map!(&:first)
+    attribute
+  end
+
+  def keywords_in_attribute(value)
+    keywords_in_attribute = []
+    search_terms.each do |search_term|
+      if value.strip.downcase.include?(search_term.strip.downcase)
+        keywords_in_attribute.push(search_term)
+      end
+    end
+    keywords_in_attribute
   end
 
   def searchable_fields(fields)
     keys = fields.keys & SEARCHABLE_FIELDS
     fields.slice(*keys)
+  end
+
+  def table_name_of_attr(attr)
+    attr.class.name.tableize.pluralize
   end
 end

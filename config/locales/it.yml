@@ -182,6 +182,8 @@ it:
     global:
       search_placeholder: Ricerca CV...
       search_skills: Anche le capacità di ricerca
+    index:
+      multiple_keywords_message: È possibile separare più parole chiave con una virgola.
   errors:
     messages:
       authorization_error: Non hai i diritti per eseguire questa funzione.

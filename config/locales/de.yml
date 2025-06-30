@@ -186,6 +186,8 @@ de:
     global:
       search_placeholder: CVs durchsuchen...
       search_skills: Skills ebenfalls durchsuchen
+    index:
+      multiple_keywords_message: Du kannst mehrere Schlüsselwörter mit einem Komma voneinander trennen.
   errors:
     messages:
       authorization_error: Du hast keine Berechtigung, diese Funktion auszuführen.
