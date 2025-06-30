@@ -16,7 +16,7 @@ module TabHelper
   def global_tabs
     [
       { title: ti('navbar.profile'), path: people_path, admin_only: false },
-      { title: ti('navbar.skill_search'), path: people_skills_path, admin_only: false },
+      { title: ti('navbar.skill_search'), path: skill_search_index_path, admin_only: false },
       { title: ti('navbar.cv_search'), path: cv_search_index_path, admin_only: false },
       { title: ti('navbar.skillset'), path: skills_path, admin_only: false },
       { title: ti('navbar.certificates'), path: certificates_path, admin_only: true },
