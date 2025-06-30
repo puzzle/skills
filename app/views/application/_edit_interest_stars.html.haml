@@ -1,13 +1,13 @@
 %label.form-label.text-gray= ti "people_skills.interest"
 .rate
   = ff.radio_button :interest, 5, { checked: ff.object.interest == 5, id: "star5#{ff.object.skill.id}", "data-action": "change->people-skills#rateSkill" }
-  %label{for: "star5#{ff.object.skill.id}", title: "text", id: "star-label5#{ff.object.skill.id}", class: "star5"} 5 stars
+  %label{for: "star5#{ff.object.skill.id}", id: "star-label5#{ff.object.skill.id}", class: "star5"} 5 stars
   = ff.radio_button :interest, 4, { checked: ff.object.interest == 4, id: "star4#{ff.object.skill.id}", "data-action": "change->people-skills#rateSkill" }
-  %label{for: "star4#{ff.object.skill.id}", title: "text", id: "star-label4#{ff.object.skill.id}", class: "star4"} 4 stars
+  %label{for: "star4#{ff.object.skill.id}", id: "star-label4#{ff.object.skill.id}", class: "star4"} 4 stars
   = ff.radio_button :interest, 3, { checked: ff.object.interest == 3, id: "star3#{ff.object.skill.id}", "data-action": "change->people-skills#rateSkill" }
-  %label{for: "star3#{ff.object.skill.id}", title: "text", id: "star-label3#{ff.object.skill.id}", class: "star3"} 3 stars
+  %label{for: "star3#{ff.object.skill.id}", id: "star-label3#{ff.object.skill.id}", class: "star3"} 3 stars
   = ff.radio_button :interest, 2, { checked: ff.object.interest == 2, id: "star2#{ff.object.skill.id}", "data-action": "change->people-skills#rateSkill" }
-  %label{for: "star2#{ff.object.skill.id}", title: "text", id: "star-label2#{ff.object.skill.id}", class: "star2"} 2 stars
+  %label{for: "star2#{ff.object.skill.id}", id: "star-label2#{ff.object.skill.id}", class: "star2"} 2 stars
   = ff.radio_button :interest, 1, { checked: (ff.object.id.nil? && ff.object.interest.nil?) || ff.object.interest == 1, id: "star1#{ff.object.skill.id}", "data-action": "change->people-skills#rateSkill" }
-  %label{for: "star1#{ff.object.skill.id}", title: "text", id: "star-label1#{ff.object.skill.id}", class: "star1"} 1 star
+  %label{for: "star1#{ff.object.skill.id}", id: "star-label1#{ff.object.skill.id}", class: "star1"} 1 star
   = ff.radio_button :interest, 0, id: "default-star-#{ff.object.skill.id}", class: "visually-hidden"
