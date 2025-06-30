@@ -393,10 +393,7 @@ de-CH:
     global:
       link:
         add: Skill hinzuäfüegä (max. 5)
-  skill_search/filter_form:
-    global:
-      link:
-        add: Skill hinzuäfüegä (max. 5)
+      dont_filter: Nid filterä
   skills:
     form:
       cancel: Abbrächä

@@ -22,8 +22,11 @@ class SkillSearchController < CrudController
   end
 
   def combine_to_feedback_sentence(skill_titles, levels, interests)
-    skill_titles.zip(levels, interests).map do |skill_title, level, interest|
+    skill_ratings = skill_titles.zip(levels, interests).map do |skill_title, level, interest|
       "#{skill_title} (#{level}/#{interest})"
-    end.to_sentence
+    end
+    department = params[:department].presence
+    skill_ratings << Department.find(department).name if department
+    skill_ratings.to_sentence
   end
 end
