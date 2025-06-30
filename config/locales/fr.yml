@@ -370,10 +370,7 @@ fr:
     global:
       link:
         add: Ajouter une compétence (max. 5)
-  skill_search/filter_form:
-    global:
-      link:
-        add: Ajouter une compétence (max. 5)
+      dont_filter: Ne pas filtrer
   skills:
     form:
       cancel: annuler

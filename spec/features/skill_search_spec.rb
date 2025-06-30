@@ -53,6 +53,14 @@ describe :skill_search do
       expect(page).to have_text("Keine Resultate gefunden mit der folgenden Suche: Bash (5/3) und Rails (1/4)")
     end
 
+    it 'Should return no results if no user matches multiple filters and department' do
+      visit skill_search_index_path
+      fill_out_row("Bash", 5, 3)
+      add_and_fill_out_row("Rails", 1, 4)
+      select_from_slim_select('#department-filter', '/sys')
+      expect(page).to have_text("Keine Resultate gefunden mit der folgenden Suche: Bash (5/3), Rails (1/4) und /sys")
+    end
+
     it 'Should be able to remove filter row and switch results accordingly' do
       visit skill_search_index_path
 
@@ -94,6 +102,31 @@ describe :skill_search do
       add_and_fill_out_row("Rails", 4, 5)
       expect(page).to have_css('.ss-disabled', text: 'ember', visible: false)
       expect(page).to have_css('.ss-disabled', text: 'Rails', visible: false)
+    end
+
+    it 'should filter by department' do
+      visit skill_search_index_path
+      fill_out_row("ember", 1, 1)
+
+      expect(page).to have_text("Alice Mante")
+      expect(page).to have_text("Hope Sunday")
+      expect(page).to have_text("Wally Allround")
+
+      select_from_slim_select('#department-filter', '/sys')
+      expect(page).to have_text("Alice Mante")
+      expect(page).to have_text("Wally Allround")
+      expect(page).not_to have_text("Hope Sunday")
+
+      select_from_slim_select('#department-filter', '/ux')
+      expect(page).to have_text("Hope Sunday")
+      expect(page).not_to have_text("Alice Mante")
+      expect(page).not_to have_text("Wally Allround")
+
+      select_from_slim_select('#department-filter', 'Nicht filtern')
+
+      expect(page).to have_text("Alice Mante")
+      expect(page).to have_text("Hope Sunday")
+      expect(page).to have_text("Wally Allround")
     end
   end
 
