@@ -15,6 +15,7 @@ class SendUpdateProfileReminderMailJob < CronJob
   private
 
   def needs_profile_reminder?(person)
-    person.updated_at < 1.year.ago
+    person.updated_at < 1.year.ago ||
+    person.people_skills.where('updated_at < ?', 1.year.ago).exists?
   end
 end

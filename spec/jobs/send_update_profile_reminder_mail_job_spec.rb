@@ -6,7 +6,7 @@ RSpec.describe SendUpdateProfileReminderMailJob, type: :job do
     let(:company) { companies(:firma) }
 
     before do
-      allow(Company).to receive(:find).with(id: person.company_id).and_return(company)
+      allow(Company).to receive(:find).with(person.company_id).and_return(company)
       allow(Person).to receive(:find_each).and_yield(person)
       person.update_column(:updated_at, 2.years.ago)
     end
@@ -24,7 +24,7 @@ RSpec.describe SendUpdateProfileReminderMailJob, type: :job do
     let(:company) { companies(:partner) }
 
     before do
-      allow(Company).to receive(:find).with(id: person.company_id).and_return(company)
+      allow(Company).to receive(:find).with(person.company_id).and_return(company)
       allow(Person).to receive(:find_each).and_yield(person)
       person.update_column(:updated_at, 2.years.ago)
     end
@@ -41,7 +41,7 @@ RSpec.describe SendUpdateProfileReminderMailJob, type: :job do
     let(:company) { companies(:firma) }
 
     before do
-      allow(Company).to receive(:find).with(id: person.company_id).and_return(company)
+      allow(Company).to receive(:find).with(person.company_id).and_return(company)
       allow(Person).to receive(:find_each).and_yield(person)
       person.update_column(:updated_at, 2.month.ago)
     end
@@ -58,7 +58,7 @@ RSpec.describe SendUpdateProfileReminderMailJob, type: :job do
     let(:company) { companies(:firma) }
 
     before do
-      allow(Company).to receive(:find).with(id: person.company_id).and_return(company)
+      allow(Company).to receive(:find).with(person.company_id).and_return(company)
       allow(Person).to receive(:find_each).and_return(:person)
       person.update_column(:updated_at, 2.years.ago)
     end

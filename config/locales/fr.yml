@@ -80,6 +80,7 @@ fr:
           one: Fonction
           other: Fonctions
         shortname: Nom court
+        reminder_mails_active: E-mails de rappel actifs
         skills:
           one: Compétence
           other: Compétences
@@ -136,6 +137,7 @@ fr:
       delete_inactive_profiles: Supprimer les profils inactifs
       unify_skills: Unifier les compétences
       update_people_manually: Mise à jour manuelle des personnes
+      reminder_mail: Activez les e-mails de rappel pour votre entreprise.
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Une erreur s'est produite lors de la mise à jour de %{names}. Veuillez réessayer et, si nécessaire, vérifier les données dans PuzzleTime.

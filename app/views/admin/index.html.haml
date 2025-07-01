@@ -12,4 +12,4 @@
     .custom-control.custom-switch
       = form.check_box :reminder_mails_active, { onchange: "this.form.requestSubmit()" }
       = form.label :reminder_mails_active, class: 'color: black' do
-        Reminder mails for your company:
+        = ti('reminder_mail');

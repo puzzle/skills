@@ -80,6 +80,7 @@ it:
           one: Funzione
           other: Funzioni
         shortname: Nome breve
+        reminder_mails_active: Email di promemoria attive
         skills:
           one: Abilità
           other: Competenze
@@ -136,6 +137,7 @@ it:
       delete_inactive_profiles: Elimina profili inattivi
       unify_skills: Unire le competenze
       update_people_manually: Aggiornare le persone manualmente
+      reminder_mail: Attiva le email di promemoria per la tua azienda.
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Si è verificato un errore durante l'aggiornamento di %{names}. Si prega di riprovare e, se necessario, controllare i dati in PuzzleTime.

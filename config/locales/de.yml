@@ -80,6 +80,7 @@ de:
           one: Funktion
           other: Funktionen
         shortname: Kurzname
+        reminder_mails_active: Erinnerungsmails aktiv
         skills:
           one: Skill
           other: Skills
@@ -140,6 +141,7 @@ de:
       delete_inactive_profiles: Inaktive Profile löschen
       unify_skills: Skills vereinen
       update_people_manually: Personen manuell aktualisieren
+      reminder_mail: Aktiviere Erinnerungs E-Mails für die Firma.
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Bei der Aktualisierung von %{names} ist etwas schiefgelaufen. Versuche es erneut und überprüfe allenfalls die Daten im PuzzleTime.
