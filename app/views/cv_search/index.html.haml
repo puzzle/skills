@@ -14,13 +14,12 @@
     - if @cv_search_results.blank?
       = ti "search.no_results"
     - else
-      - @cv_search_results.each_with_index do |result, index|
+      - @cv_search_results.each do |result|
         %div.w-50.d-flex
           = link_to result[:person][:name], person_path(result[:person][:id]), {class: "bg-skills-green w-50 text-decoration-none text-white ps-1 p-2 rounded-1", "data-turbo-frame": "_top" }
           %div.w-50.d-flex.justify-content-end.align-items-center
             %div.me-1
               = ti("search.found_in")
-            - query = params[:q].split(",").find {|keyword| result[:found_in][:keywords_in_attribute].include?(keyword)}
             - url_params = {q: query, rating: found_in_skills?(result)? 1: nil}
             - person_id = result[:person][:id]
             - path = person_path(person_id, url_params)
