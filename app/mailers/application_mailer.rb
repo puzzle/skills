@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: ''
+  default from: 'skills@puzzle.ch'
   layout 'mailer'
 end
 

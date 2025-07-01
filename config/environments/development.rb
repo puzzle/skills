@@ -87,13 +87,14 @@ Rails.application.configure do
   end
 
   # Mailer configuration
-  config.action_mailer.delivery_methode = :smtp
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: 'smtp.mailrelay.com',
-    port: '25',
-    domain: 'mailrelay.puzzle.ch',
-    user_name: ENV['MAILRELAY_USERNAME'],
-    password: ENV['MAILRELAY_PASSWORD'],
-    authentication: 'LOGIN'
+    address: ENV['EMAIL_ADDRESS'],
+    port: ENV['EMAIL_PORT'],
+    user_name: ENV['EMAIL_USER_NAME'],
+    password: ENV['EMAIL_PASSWORD'],
+    authentication: ENV['EMAIL_AUTH'],
+    domain: ENV['EMAIL_DOMAIN'],
   }
+
 end
