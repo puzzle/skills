@@ -128,6 +128,22 @@ describe :skill_search do
       expect(page).to have_text("Hope Sunday")
       expect(page).to have_text("Wally Allround")
     end
+
+    it 'should disable skill when trying to select it twice' do
+      visit skill_search_index_path
+      fill_out_row("Rails", 3, 1)
+
+      click_button(t("skill_search.global.link.add"))
+      expect(page).to have_content('Bitte wählen')
+
+      row_selector = "##{last_row[:id]}"
+      within row_selector do
+        select_id = find('select', visible: false)[:id]
+        ss_open("#{row_selector} [id='#{select_id}']")
+      end
+
+      expect(page).to have_css('.ss-disabled', text: 'Rails')
+    end
   end
 
   def add_and_fill_out_row(skill, level, interest)
