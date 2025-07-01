@@ -18,6 +18,6 @@ class AdminController < CrudController
   end
 
   def company_params
-    params.require(:company).permit(:reminder_mails_active)
+    params.expect(company: [:reminder_mails_active])
   end
 end
