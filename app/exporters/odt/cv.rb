@@ -257,8 +257,6 @@ module Odt
                      project_technology: :project_technology
                    })
     end
-    # rubocop:enable Metrics/AbcSize
-    # rubocop:enable Metrics/MethodLength
 
     def insert_contributions(report)
       contributions_list = person.contributions.list.where(display_in_cv: true).collect do |c|
@@ -271,14 +269,17 @@ module Odt
       end
 
       add_cv_table(report, 'CONTRIBUTIONS', contributions_list, {
-                     month_from: :month_from,
-                     year_from: :year_from,
-                     month_to: :month_to,
-                     year_to: :year_to,
-                     contribution_title: :contribution_title,
-                     contribution_reference: :contribution_reference
-                   })
+        month_from: :month_from,
+        year_from: :year_from,
+        month_to: :month_to,
+        year_to: :year_to,
+        contribution_title: :contribution_title,
+        contribution_reference: :contribution_reference
+      })
     end
+
+    # rubocop:enable Metrics/AbcSize
+    # rubocop:enable Metrics/MethodLength
 
     def formatted_month(month)
       month ? "#{format '%02d', month}." : ''
