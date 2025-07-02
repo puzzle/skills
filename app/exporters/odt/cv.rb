@@ -269,13 +269,13 @@ module Odt
       end
 
       add_cv_table(report, 'CONTRIBUTIONS', contributions_list, {
-        month_from: :month_from,
-        year_from: :year_from,
-        month_to: :month_to,
-        year_to: :year_to,
-        contribution_title: :contribution_title,
-        contribution_reference: :contribution_reference
-      })
+                     month_from: :month_from,
+                     year_from: :year_from,
+                     month_to: :month_to,
+                     year_to: :year_to,
+                     contribution_title: :contribution_title,
+                     contribution_reference: :contribution_reference
+                   })
     end
 
     # rubocop:enable Metrics/AbcSize
