@@ -16,7 +16,7 @@
 #  competence_notes               :string
 #  display_competence_notes_in_cv :boolean
 #  company_id                     :bigint(8)
-#  associations_updatet_at        :datetime
+#  associations_updated_at        :datetime
 #  nationality                    :string
 #  nationality2                   :string
 #  marital_status                 :integer          default("single"), not null
@@ -100,7 +100,7 @@ class Person < ApplicationRecord
 
 
   def last_updated_at
-    [associations_updatet_at, updated_at].compact.max
+    [associations_updated_at, updated_at].compact.max
   end
 
   def to_s

@@ -22,9 +22,9 @@
 class Project < ApplicationRecord
   include DaterangeModel
 
-  after_create :update_associations_updatet_at
-  after_update :update_associations_updatet_at
-  after_destroy :update_associations_updatet_at
+  after_create :update_associations_updated_at
+  after_update :update_associations_updated_at
+  after_destroy :update_associations_updated_at
 
   belongs_to :person, touch: true
 
@@ -37,9 +37,9 @@ class Project < ApplicationRecord
 
   private
 
-  def update_associations_updatet_at
+  def update_associations_updated_at
     timestamp = Time.zone.now
-    person.update!(associations_updatet_at: timestamp)
+    person.update!(associations_updated_at: timestamp)
   end
 
 end

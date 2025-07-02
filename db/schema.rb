@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_24_100849) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_02_093637) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -93,6 +93,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_24_100849) do
     t.datetime "updated_at", precision: nil, null: false
   end
 
+  create_table "contributions", force: :cascade do |t|
+    t.string "title"
+    t.string "reference"
+    t.integer "person_id"
+    t.integer "year_from"
+    t.integer "year_to"
+    t.integer "month_from"
+    t.integer "month_to"
+    t.boolean "display_in_cv"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
     t.integer "attempts", default: 0, null: false
@@ -158,7 +171,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_24_100849) do
     t.string "picture"
     t.string "competence_notes"
     t.bigint "company_id"
-    t.datetime "associations_updatet_at", precision: nil
+    t.datetime "associations_updated_at", precision: nil
     t.string "nationality"
     t.string "nationality2"
     t.integer "marital_status", default: 0
