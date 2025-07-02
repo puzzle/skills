@@ -9,8 +9,6 @@ export default class extends Controller {
         document.removeEventListener('scroll', () => {});
         ['turbo:frame-load', 'turbo:load'].forEach(e => {
             window.addEventListener(e, () => {
-                this.offsetY = this.parentTarget.getBoundingClientRect().top + window.scrollY;
-                this.listTarget.style.top = `${this.offsetY}px`;
                 document.addEventListener("scroll", () => {
                     this.highlight();
                 });
