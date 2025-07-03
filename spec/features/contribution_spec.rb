@@ -98,6 +98,19 @@ describe 'Contributions', type: :feature, js:true do
       end
       expect(page).not_to have_content(title)
     end
+
+    it 'Update entry to not be displayed in the CV' do
+      contribution = person.contributions.first
+      open_edit_form(contribution)
+      checkbox = find('#contribution_display_in_cv')
+      within("turbo-frame#contribution_#{contribution.id}") do
+        checkbox.click
+        click_default_submit
+        expect(find("img")[:src]).to have_content("no-file")
+      end
+      open_edit_form(contribution)
+      expect(checkbox).not_to be_checked
+    end
   end
 
   describe 'Error handling' do
