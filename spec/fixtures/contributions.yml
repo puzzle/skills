@@ -21,3 +21,11 @@ puzzle-time:
   month_from: 11
   display_in_cv: false
   person: bob
+
+puzzle-docs:
+  title: Added a new documentation
+  reference: https://reference.example.com
+  year_from: 2022
+  month_from: 9
+  display_in_cv: true
+  person: bob

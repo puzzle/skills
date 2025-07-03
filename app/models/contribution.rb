@@ -25,7 +25,7 @@ class Contribution < ApplicationRecord
 
   belongs_to :person, touch: true
 
-  validates :display_in_cv, inclusion: [false]
+  validates :display_in_cv, inclusion: [true, false]
   validates :title, presence: true
 
   private

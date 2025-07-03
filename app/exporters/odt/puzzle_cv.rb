@@ -25,6 +25,7 @@ module Odt
         @cv.insert_educations(r)
         @cv.insert_activities(r)
         @cv.insert_projects(r)
+        @cv.insert_contributions(r)
       end
     end
     # rubocop:enable Metrics/MethodLength
