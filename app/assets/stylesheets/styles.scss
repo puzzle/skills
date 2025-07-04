@@ -21,7 +21,7 @@ $skills-dark-blue: #1e5a96;
 .content {
   max-width: 80%;
   flex-grow: 1;
-  @media (max-width: 768px) {
+  @media (max-width: 1000px) {
     max-width: 95%;
   }
 }
@@ -426,13 +426,19 @@ a > img {
   font-size: 50px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1000px) {
   .h-100-md {
     height: 100%;
   }
 }
 
-.test {
+@media (max-width: 1000px) {
+  .responsive-hide {
+    display: none;
+  }
+}
+
+.flex-flow-wrap {
   flex-flow: wrap;
 }
 
