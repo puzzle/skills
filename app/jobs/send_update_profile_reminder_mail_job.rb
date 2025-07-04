@@ -5,7 +5,7 @@ class SendUpdateProfileReminderMailJob < CronJob
     Person.find_each do |person|
       company = Company.find(person.company_id)
       if person.reminder_mails_active && company.reminder_mails_active && needs_reminder?(person)
-        ReminderMailer.update_user_reminder_email(person).deliver_later
+        ReminderMailer.update_user_reminder_email(person).deliver_now!
       end
     end
   end

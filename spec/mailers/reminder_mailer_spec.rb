@@ -6,7 +6,7 @@ RSpec.describe ReminderMailer, type: :mailer do
     let(:mail) { ReminderMailer.update_user_reminder_email(person) }
 
     it "renders the headers" do
-      expect(mail.subject).to eq("Time to update your profile!")
+      expect(mail.subject).to eq("Erneuere dein Skills Profil!")
       expect(mail.to).to eq([person.email])
       expect(mail.from).to eq(["skills@puzzle.ch"])
     end
