@@ -12,7 +12,7 @@ RSpec.describe SendUpdateProfileReminderMailJob, type: :job do
     end
 
     it 'should send a reminder email' do
-      mailer_double = double('ReminderMailer', deliver_later: true)
+      mailer_double = double('ReminderMailer', deliver_now!: true)
       expect(ReminderMailer).to receive(:update_user_reminder_email).with(person).and_return(mailer_double)
 
       SendUpdateProfileReminderMailJob.new.perform
