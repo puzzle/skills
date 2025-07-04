@@ -88,7 +88,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: ENV['EMAIL_ADDRESS'],
     port: 25,
-    user_name: ENV['EMAIL_USER_NAME'],
+    user_name: ENV['EMAIL_USERNAME'],
     password: ENV['EMAIL_PASSWORD'],
     enable_starttls_auto: true,
     delivery_method: :smtp,
