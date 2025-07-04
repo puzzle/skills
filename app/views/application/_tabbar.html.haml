@@ -1,5 +1,5 @@
 %div.d-flex.flex-row.justify-content-between{class: "#{bar_class}"}
-    %div.d-flex.flex-row
+    %div.d-flex.flex-row.test
         - tabs.each do |tab|
             - unless tab[:admin_only] && !admin?
                 = link_to tab[:path], class: "btn text-primary p-0 d-flex align-items-center" do

@@ -21,7 +21,7 @@ $skills-dark-blue: #1e5a96;
 .content {
   max-width: 80%;
   flex-grow: 1;
-  @media (max-width: 800px) {
+  @media (max-width: 768px) {
     max-width: 95%;
   }
 }
@@ -97,7 +97,8 @@ pzsh-topbar {
 
 .puzzle-header {
   background-color: $skills-blue;
-  height: 40px;
+  min-height: 40px;
+  height: auto;
 }
 
 .bg-skills-blue {
@@ -423,4 +424,18 @@ a > img {
 .manual-sync-button {
   height: 300px;
   font-size: 50px;
+}
+
+@media (min-width: 768px) {
+  .h-100-md {
+    height: 100%;
+  }
+}
+
+.test {
+  flex-flow: wrap;
+}
+
+.min-height-inherit {
+  min-height: inherit;
 }
