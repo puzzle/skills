@@ -12,7 +12,7 @@ class CvSearchController < ApplicationController
   end
 
   def query
-    params[:q]
+    params[:q]&.split(',')
   end
 
   def search_skills?
@@ -20,6 +20,6 @@ class CvSearchController < ApplicationController
   end
 
   def should_search
-    query.nil? || query.length < 3
+    query.nil? || query.include?(nil) || query.any? { |keyword| keyword.length < 3 }
   end
 end

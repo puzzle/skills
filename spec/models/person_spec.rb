@@ -32,6 +32,7 @@ describe Person do
   context 'search' do
     it 'finds search term in associated project' do
       people = Person.search('duckduck')
+
       expect(people.count).to eq(1)
       expect(people.first.name).to eq('Bob Anderson')
     end

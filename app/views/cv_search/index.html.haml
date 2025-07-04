@@ -4,7 +4,11 @@
     %div.ms-5
       %input{type: "checkbox", name: 'search_skills', id: 'search_skills_checkbox', onchange: 'this.form.requestSubmit();'}
         = ti('search_skills')
+  %p.text-secondary.d-flex.align-items-center
+    = image_tag("info", class: "pe-1")
+    = ti("multiple_keywords_message")
   %div.profile-header.mw-100.border-bottom.mt-2.mb-2
+
     = ti "search.search_results"
   %turbo-frame{id: "search-results"}
     - if @cv_search_results.blank?
@@ -14,11 +18,7 @@
         %div.w-50.d-flex
           = link_to result[:person][:name], person_path(result[:person][:id]), {class: "bg-skills-green w-50 text-decoration-none text-white ps-1 p-2 rounded-1", "data-turbo-frame": "_top" }
           %div.w-50.d-flex.justify-content-end.align-items-center
-            %div.me-1 
+            %div.me-1
               = ti("search.found_in")
-            - url_params = {q: params[:q], rating: found_in_skills?(result)? 1: nil}
-            - person_id = result[:person][:id]
-            - path = person_path(person_id, url_params)
-            - path = person_people_skills_path(person_id, url_params) if found_in_skills?(result)
-            = link_to result[:found_in], path, {class: "bg-skills-search-result-blue w-50 text-decoration-none text-white ps-1 p-2 rounded-1 text-center", "data-turbo-frame": "_top" }
+            = link_to result[:found_in][:attribute], path(result), {class: "bg-skills-search-result-blue w-50 text-decoration-none text-white ps-1 p-2 rounded-1 text-center", "data-turbo-frame": "_top" }
         %br
