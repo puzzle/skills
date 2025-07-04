@@ -25,7 +25,7 @@ class DropOfferLocationEmployeeQuantity < ActiveRecord::Migration[6.0]
       t.remove :crm
       t.remove :level
       t.remove :company_type
-      t.remove :associations_updated_at
+      t.remove :associations_updatet_at
     end
   end
 
