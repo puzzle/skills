@@ -364,18 +364,15 @@ it:
     scroll_to_menu:
       link:
         add: Aggiungi abilità
-  people_skills:
-    global:
-      link:
-        add: Aggiungi abilità (max. 5)
-  people_skills/filter_form:
-    global:
-      link:
-        add: Aggiungi abilità (max. 5)
   person_role:
     none: Nessuno
   profile:
     updated_at: Ultima modifica
+  skill_search:
+    global:
+      link:
+        add: Aggiungi abilità (max. 5)
+      dont_filter: Non filtrare
   skills:
     form:
       cancel: cancellare

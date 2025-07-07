@@ -368,18 +368,15 @@ de:
     scroll_to_menu:
       link:
         add: Skill hinzufügen
-  people_skills:
-    global:
-      link:
-        add: Skill hinzufügen (max. 5)
-  people_skills/filter_form:
-    global:
-      link:
-        add: Skill hinzufügen (max. 5)
   person_role:
     none: Keines
   profile:
     updated_at: Zuletzt bearbeitet
+  skill_search:
+    global:
+      link:
+        add: Skill hinzufügen (max. 5)
+      dont_filter: Nicht filtern
   skills:
     form:
       cancel: Abbrechen

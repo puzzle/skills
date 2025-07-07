@@ -1,0 +1,19 @@
+%turbo-frame#people-search.mt-3{'data-turbo-action': 'advance'}
+  = render('search_form')
+  %div.profile-header.mw-100.border-bottom.mt-4.fw-normal
+    = ti "search.search_results"
+  %div.border.p-3.rounded-bottom.search-results
+    - if @no_match_message
+      = ti('search.no_match') + @no_match_message
+    - elsif @search_results.empty?
+      = ti 'search.no_skill'
+    - else
+      - @search_results.each do | person, person_skills |
+        %div.d-flex.flex-row.w-100.border-bottom
+          %div.d-flex.flex-column.mt-2.mb-2.person-filter-container.justify-content-start
+            = link_to person, {}, {"data-turbo-frame": "_top"}
+            = person.department
+          %div.d-flex.flex-column.mt-2.mb-2.skills-filter-container
+            - person_skills.each do |person_skill|
+              %div.d-flex.flex-row.mb-5
+                = render('person_skill', {person_skill: person_skill})

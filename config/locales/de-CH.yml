@@ -385,18 +385,15 @@ de-CH:
     scroll_to_menu:
       link:
         add: Skill hinzuäfüegä
-  people_skills:
-    global:
-      link:
-        add: Skill hinzuäfüegä (max. 5)
-  people_skills/filter_form:
-    global:
-      link:
-        add: Skill hinzuäfüegä (max. 5)
   person_role:
     none: Kes
   profile:
     updated_at: Z'letzt bearbeitet
+  skill_search:
+    global:
+      link:
+        add: Skill hinzuäfüegä (max. 5)
+      dont_filter: Nid filterä
   skills:
     form:
       cancel: Abbrächä

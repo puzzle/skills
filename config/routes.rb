@@ -31,11 +31,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :people_skills do
-      collection do
-        get 'filter_form', to: "people_skills/filter_form#index"
-      end
-    end
+    resources :skill_search, only: [:index]
 
     resources :cv_search
 

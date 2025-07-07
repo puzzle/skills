@@ -364,18 +364,15 @@ ja:
     scroll_to_menu:
       link:
         add: スキルを追加
-  people_skills:
-    global:
-      link:
-        add: スキルを追加（最大5つまで）
-  people_skills/filter_form:
-    global:
-      link:
-        add: スキルを追加（最大5つまで）
   person_role:
     none: なし
   profile:
     updated_at: 最終編集日
+  skill_search:
+    global:
+      link:
+        add: スキルを追加（最大5つまで）
+      dont_filter: フィルターなし
   skills:
     form:
       cancel: キャンセル
