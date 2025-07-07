@@ -8,7 +8,7 @@
 #  name                    :string
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
-#  associations_updatet_at :datetime
+#  associations_updated_at :datetime
 #
 
 class CompanySerializer < ApplicationSerializer

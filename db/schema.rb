@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_24_100849) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_02_093637) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -158,7 +158,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_24_100849) do
     t.string "picture"
     t.string "competence_notes"
     t.bigint "company_id"
-    t.datetime "associations_updatet_at", precision: nil
+    t.datetime "associations_updated_at", precision: nil
     t.string "nationality"
     t.string "nationality2"
     t.integer "marital_status", default: 0

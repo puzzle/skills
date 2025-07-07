@@ -13,7 +13,7 @@
 #  picture                 :string
 #  competence_notes        :string
 #  company_id              :bigint(8)
-#  associations_updatet_at :datetime
+#  associations_updated_at :datetime
 #  nationality             :string
 #  nationality2            :string
 #  marital_status          :integer          default("single"), not null
