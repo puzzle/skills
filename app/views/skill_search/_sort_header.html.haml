@@ -1,0 +1,23 @@
+.d-flex.flex-column.person-filter-container.justify-content-start.border-bottom
+  %strong= sort_link 'name'
+.col.d-flex.justify-content-center.align-items-center.flex-row.p-0.border-bottom
+  .d-flex.align-items-start.col-2.text-start.ps-2
+    %strong= ti('table.skill')
+  - if @search_filters.map(&:first).length  == 1
+    .d-flex.flex-column.align-items-center.col-2
+      %strong= sort_link 'level'
+    .d-flex.flex-column.align-items-center.col-3
+      %strong= sort_link 'interest'
+    .d-flex.align-items-center.col-2
+      %strong= sort_link 'certificate'
+    .d-flex.align-items-center.col
+      %strong= sort_link 'core_competence'
+  - else
+    .d-flex.flex-column.align-items-center.col-2
+      %strong= ti('table.level')
+    .d-flex.flex-column.align-items-center.col-3
+      %strong= ti('table.interest')
+    .d-flex.align-items-center.col-2
+      %strong= ti('table.certificate')
+    .d-flex.align-items-center.col
+      %strong= ti('table.core_competence')

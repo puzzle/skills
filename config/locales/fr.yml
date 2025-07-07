@@ -42,6 +42,7 @@ fr:
       people_skill:
         certificate: Certificat
         core_competence: Compétence clé
+        interest: Intérêt
         level: Niveau
         skill: Compétence
       person:
@@ -369,6 +370,14 @@ fr:
   profile:
     updated_at: Dernièrement édité
   skill_search:
+    index:
+      table:
+        certificate: Certificat
+        name: Nom
+        skill: Compétence
+        level: Niveau
+        interest: Intérêt
+        core_competence: Compétence clé
     global:
       link:
         add: Ajouter une compétence (max. 5)

@@ -3,7 +3,31 @@ module SortHelper
     link_to((ti "table.#{attr}"), sort_params(attr)) + current_mark(attr)
   end
 
+  def people_skills
+    Rails.logger.debug @search_results
+    if params[:sort_dir] && params[:sort]
+      sort_people_skills
+    else
+      @search_results
+    end
+  end
+
+  def skills
+    if params[:sort_dir] && params[:sort]
+      sort_skills
+    else
+      @skills
+    end
+  end
+
+
   private
+
+  def filter_by_rated(skill)
+    skill.people_skills.where.not(interest: 0)
+         .or(skill.people_skills.where.not(level: 0))
+         .joins(:person).order(:name)
+  end
 
   def sort_params(attr)
     result = params.respond_to?(:to_unsafe_h) ? params.to_unsafe_h : params
@@ -28,11 +52,25 @@ module SortHelper
     end
   end
 
-  def skills
-    if params[:sort_dir] && params[:sort]
-      sort_skills
-    else
-      @skills
+  def sort_people_skills
+    @search_results = @search_results.to_a
+    @search_results = if Person.attribute_names.include?(params[:sort])
+                        sort_by_human_attr
+                      else
+                        sort_by_people_skill_attr
+                      end
+    params[:sort_dir] == 'asc' ? @search_results.to_h : @search_results.reverse.to_h
+  end
+
+  def sort_by_human_attr
+    @search_results.sort_by do |person_skill|
+      person_skill[0][params[:sort]].to_s.downcase
+    end
+  end
+
+  def sort_by_people_skill_attr
+    @search_results.sort_by do |person_skill|
+      person_skill[1][0][params[:sort]].to_s.downcase
     end
   end
 
