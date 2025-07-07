@@ -1,16 +1,16 @@
 %div.border.border-secondary-subtle.border-1.d-flex.flex-column.mb-3#core-competences{"data-scroll-target": "scrollItem"}
   %div.profile-header.mw-100.border-bottom
     = t "people.profile.core_competences"
-  %div.d-flex.flex-column.ms-5.mt-3.mb-3
+  %div.d-flex.flex-column.ms-5-md.mt-3.mb-3.core-competences
     - group_person_skills_by_category(@person).each do |parent_skill, children_skills|
       %div.d-flex.flex-row.align-items-center.border-bottom.border-1.pb-3.pt-3.core-competence
-        %span.text-gray.w-25= parent_skill.title
+        %span.text-gray.w-25.me-2= parent_skill.title
         - children_skills.each do | person_skill |
           %span= person_skill.skill.title
           - if person_skill != children_skills.last
             %div.circle-divider.ms-2.me-2
     %div.d-flex.flex-row.border-bottom.border-1.pb-3.pt-3
-      %span.text-gray.w-25 
+      %span.text-gray.w-25
         = Person.human_attribute_name(:competence_notes)
       %span.w-75.d-flex.align-items-center
         = render('people/competence_notes/show')
