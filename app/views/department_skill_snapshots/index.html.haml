@@ -3,15 +3,15 @@
     %div
       = f.label :department_id, t('activerecord.models.department.one'), class: "text-secondary"
       = f.select :department_id,
-            options_from_collection_for_select(Department.all, :id, :name, params[:department_id]),
+            options_from_collection_for_select(Department.all.order('name ASC'), :id, :name, params[:department_id]),
             { prompt: ta(:please_select)},
             { onchange: "this.form.requestSubmit()", class: "form-select"}
-    %div
+    %div{"data-controller": "dropdown"}
       = f.label :skill_id, t('activerecord.models.skill.one'), class: "text-secondary"
       = f.select :skill_id,
-            options_from_collection_for_select(Skill.all, :id, :title, params[:skill_id]),
-            { prompt: ta(:please_select)},
-            { onchange: "this.form.requestSubmit()", class: "form-select" }
+        options_from_collection_for_select(Skill.all.order('title ASC'), :id, :title, params[:skill_id]),
+        { prompt: ta(:please_select) },
+        { onchange: "this.form.requestSubmit()", data: { dropdown_target: "dropdown" } }
     %div
       = f.label :year, t('global.date.year'), class: "text-secondary"
       = f.select :year,
