@@ -430,11 +430,23 @@ a > img {
   .h-100-md {
     height: 100%;
   }
+
+  .ms-5-md {
+    margin-left: 3rem;
+  }
 }
 
 @media (max-width: 1000px) {
   .responsive-hide {
     display: none;
+  }
+
+  .core-competences {
+    margin-left: 1rem;
+  }
+
+  .text-ms-3 {
+    margin-left: 2rem
   }
 }
 
