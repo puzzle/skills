@@ -21,7 +21,7 @@ $skills-dark-blue: #1e5a96;
 .content {
   max-width: 80%;
   flex-grow: 1;
-  @media (max-width: 1000px) {
+  @include media-breakpoint-down(lg) {
     max-width: 95%;
   }
 }
@@ -426,7 +426,7 @@ a > img {
   font-size: 50px;
 }
 
-@media (min-width: 1000px) {
+@include media-breakpoint-up(lg) {
   .h-100-md {
     height: 100%;
   }
@@ -434,9 +434,17 @@ a > img {
   .ms-5-md {
     margin-left: 3rem;
   }
+
+  .border-end-lg {
+    border-right: 0.5px solid #dee2e6;
+  }
+
+  .border-start-lg {
+    border-left: 0.5px solid #dee2e6;
+  }
 }
 
-@media (max-width: 1000px) {
+@include media-breakpoint-down(lg) {
   .responsive-hide {
     display: none;
   }

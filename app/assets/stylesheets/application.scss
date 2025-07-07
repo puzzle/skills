@@ -1,28 +1,3 @@
-@import 'bootstrap/scss/functions';
-@import 'bootstrap/scss/variables';
-@import 'bootstrap/scss/variables-dark';
-@import 'bootstrap/scss/maps';
-@import 'bootstrap/scss/mixins';
-@import 'bootstrap/scss/utilities';
-
-$utilities: map-merge(
-                $utilities,
-                (
-                        "border-end": map-merge(
-                                        map-get($utilities, "border-end"),
-                                        (
-                                                responsive: true,
-                                        )
-                        ),
-                        "border-start": map-merge(
-                                        map-get($utilities, "border-start"),
-                                        (
-                                                responsive: true,
-                                        )
-                        ),
-                )
-);
-
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
 @import 'slim-select/src/slim-select/slimselect';
