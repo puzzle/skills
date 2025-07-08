@@ -5,26 +5,26 @@
       = f.select :department_id,
             options_from_collection_for_select(Department.all.order('name ASC'), :id, :name, params[:department_id]),
             { prompt: ta(:please_select)},
-            { onchange: "this.form.requestSubmit()", class: "skill-department-select", data: { dropdown_target: "dropdown" } }
+            { onchange: "this.form.requestSubmit()", class: "skill-tracking-select", data: { dropdown_target: "dropdown" } }
     %div{"data-controller": "dropdown"}
       = f.label :skill_id, t('activerecord.models.skill.one'), class: "text-secondary"
       = f.select :skill_id,
         options_from_collection_for_select(Skill.all.order('title ASC'), :id, :title, params[:skill_id]),
         { prompt: ta(:please_select) },
-        { onchange: "this.form.requestSubmit()", class: "skill-department-select" , data: { dropdown_target: "dropdown" } }
+        { onchange: "this.form.requestSubmit()", class: "skill-tracking-select" , data: { dropdown_target: "dropdown" } }
     %div
       = f.label :year, t('global.date.year'), class: "text-secondary"
       = f.select :year,
             options_for_select((2025..Date.today.year).to_a.reverse, params[:year] || Date.today.year),
             { prompt: ta(:please_select)},
-            { onchange: "this.form.requestSubmit()", class: "form-select skill-department-select"}
+            { onchange: "this.form.requestSubmit()", class: "form-select skill-tracking-select"}
 
     %div
       = f.label :chart_type, ti('skills_tracking.chart_type'), class: "text-secondary"
       = f.select :chart_type,
             options_for_select([['Line Chart', 'line'], ['Bar Chart', 'bar']].map { |label, value| [ti("skills_tracking.#{value}-chart"), value] }, params[:chart_type] || 'line'),
             { prompt: ta(:please_select)},
-            { onchange: "this.form.requestSubmit()", class: "form-select skill-department-select"}
+            { onchange: "this.form.requestSubmit()", class: "form-select skill-tracking-select"}
 
 %turbo-frame#team-skill-chart
   %div.chart-container{data: {controller: "chart", "chart-dataset-value": @data, "chart-emptychart-value": t('errors.messages.chart_data_empty'), "chart-charttype-value": params[:chart_type]}}
