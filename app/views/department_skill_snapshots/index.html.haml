@@ -1,6 +1,6 @@
 = form_with url: department_skill_snapshots_path, method: :get, data: { turbo_frame: "team-skill-chart", controller: "auto-submit" } do |f|
   .d-flex.mt-4.mb-4.gap-4
-    %div.searchable-dropdown{"data-controller": "dropdown"}
+    %div{"data-controller": "dropdown"}
       = f.label :department_id, t('activerecord.models.department.one'), class: "text-secondary"
       = f.select :department_id,
             options_from_collection_for_select(Department.all.order('name ASC'), :id, :name, params[:department_id]),
@@ -12,14 +12,14 @@
         options_from_collection_for_select(Skill.all.order('title ASC'), :id, :title, params[:skill_id]),
         { prompt: ta(:please_select) },
         { onchange: "this.form.requestSubmit()", class: "skill-department-select" , data: { dropdown_target: "dropdown" } }
-    %div.searchable-dropdown
+    %div
       = f.label :year, t('global.date.year'), class: "text-secondary"
       = f.select :year,
             options_for_select((2025..Date.today.year).to_a.reverse, params[:year] || Date.today.year),
             { prompt: ta(:please_select)},
             { onchange: "this.form.requestSubmit()", class: "form-select skill-department-select"}
 
-    %div.searchable-dropdown
+    %div
       = f.label :chart_type, ti('skills_tracking.chart_type'), class: "text-secondary"
       = f.select :chart_type,
             options_for_select([['Line Chart', 'line'], ['Bar Chart', 'bar']].map { |label, value| [ti("skills_tracking.#{value}-chart"), value] }, params[:chart_type] || 'line'),
