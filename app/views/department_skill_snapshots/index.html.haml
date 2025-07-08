@@ -11,7 +11,7 @@
       = f.select :skill_id,
         options_from_collection_for_select(Skill.all.order('title ASC'), :id, :title, params[:skill_id]),
         { prompt: ta(:please_select) },
-        { onchange: "this.form.requestSubmit()", class: "skill-tracking-select" , data: { dropdown_target: "dropdown" } }
+        { onchange: "this.form.requestSubmit()", class: "skill-tracking-select", data: { dropdown_target: "dropdown" } }
     %div
       = f.label :year, t('global.date.year'), class: "text-secondary"
       = f.select :year,
