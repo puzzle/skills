@@ -10,7 +10,8 @@
     - else
       .row.bg-light-subtle.border-bottom.border-5.border-secondary.p-0
         = render('sort_header')
-        - people_skills.each do | person, person_skills |
+        - people_skills.each do | person_skills |
+          - person = person_skills[0].person
           %div.d-flex.flex-row.w-100.border-bottom
             %div.d-flex.flex-column.mt-2.mb-2.person-filter-container.justify-content-start
               = link_to person, {}, {"data-turbo-frame": "_top"}

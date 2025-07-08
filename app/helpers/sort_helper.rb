@@ -4,7 +4,6 @@ module SortHelper
   end
 
   def people_skills
-    Rails.logger.debug @search_results
     if params[:sort_dir] && params[:sort]
       sort_people_skills
     else
@@ -19,7 +18,6 @@ module SortHelper
       @skills
     end
   end
-
 
   private
 
@@ -59,18 +57,19 @@ module SortHelper
                       else
                         sort_by_people_skill_attr
                       end
-    params[:sort_dir] == 'asc' ? @search_results.to_h : @search_results.reverse.to_h
+    params[:sort_dir] == 'asc' ? @search_results : @search_results.reverse
   end
 
   def sort_by_human_attr
-    @search_results.sort_by do |person_skill|
-      person_skill[0][params[:sort]].to_s.downcase
+    @search_results.sort_by do |person_skills|
+      person = person_skills[0].person
+      person[params[:sort]].to_s.downcase
     end
   end
 
   def sort_by_people_skill_attr
-    @search_results.sort_by do |person_skill|
-      person_skill[1][0][params[:sort]].to_s.downcase
+    @search_results.sort_by do |person_skills|
+      person_skills[0][params[:sort]].to_s.downcase
     end
   end
 
