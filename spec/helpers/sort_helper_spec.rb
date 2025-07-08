@@ -7,26 +7,28 @@ describe SortHelper, type: :helper do
 
   describe "Sort people_skills" do
     let(:search_results) { [
-      [person1, [people_skills(:alice_bash)]],
-      [person2, [people_skills(:bob_rails)]]
+      [people_skills(:alice_bash)],
+      [people_skills(:bob_rails)]
     ] }
 
     before do
-      helper.instance_variable_set(:@search_results, search_results.to_h)
+      helper.instance_variable_set(:@search_results, search_results)
     end
 
     %w[asc desc].each do |sort_dir|
       it "should sort people_skills correctly by name #{sort_dir}" do
         allow(helper).to receive(:params).and_return({ sort: 'name', sort_dir: sort_dir })
-        search_results.sort_by! { |people_skills| people_skills[0][:name].to_s.downcase }
-        expect(helper.people_skills).to eq(sort_dir(search_results, sort_dir).to_h)
+        search_results.sort_by! { |people_skills|
+          people_skills[0].person.name.to_s.downcase
+        }
+        expect(helper.people_skills).to eq(sort_dir(search_results, sort_dir))
       end
 
       %w[level interest certificate core_competence].each do |attr|
         it "should sort people_skills correctly by #{attr} #{sort_dir}" do
           allow(helper).to receive(:params).and_return({ sort: attr, sort_dir: sort_dir })
-          search_results.sort_by! { |people_skills| people_skills[1][0][attr].to_s.downcase }
-          expect(helper.people_skills).to eq(sort_dir(search_results, sort_dir).to_h)
+          search_results.sort_by! { |people_skills| people_skills[0][attr].to_s.downcase }
+          expect(helper.people_skills).to eq(sort_dir(search_results, sort_dir))
         end
       end
     end
