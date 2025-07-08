@@ -8,7 +8,7 @@ class CreateContributions < ActiveRecord::Migration[8.0]
       t.integer :year_to
       t.integer :month_from
       t.integer :month_to
-      t.boolean :display_in_cv
+      t.boolean :display_in_cv, default: true, null: false
 
       t.timestamps
     end
