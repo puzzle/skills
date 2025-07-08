@@ -427,11 +427,11 @@ a > img {
 }
 
 @include media-breakpoint-up(lg) {
-  .h-100-md {
+  .h-100-lg {
     height: 100%;
   }
 
-  .ms-5-md {
+  .ms-5-lg {
     margin-left: 3rem;
   }
 
@@ -453,7 +453,7 @@ a > img {
     margin-left: 1rem;
   }
 
-  .text-ms-3 {
+  .text-ms {
     margin-left: 2rem
   }
 }
