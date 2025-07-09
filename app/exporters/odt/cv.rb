@@ -23,6 +23,10 @@ module Odt
       true?(@params[:skillsByLevel])
     end
 
+    def include_contributions?
+      true?(@params[:includeCont]) && !person.contributions.list.where(display_in_cv: true).empty?
+    end
+
     def skill_level_value
       @params[:levelValue]
     end
@@ -259,23 +263,26 @@ module Odt
     end
 
     def insert_contributions(report)
-      contributions_list = person.contributions.list.where(display_in_cv: true).collect do |c|
-        { year_from: formatted_year(c.year_from),
-          month_from: formatted_month(c.month_from),
-          year_to: formatted_year(c.year_to),
-          month_to: formatted_month(c.month_to),
-          contribution_title: c.title,
-          contribution_reference: c.reference }
-      end
+      report.add_section('OPEN_SOURCE_CONTRIBUTIONS', include_contributions? ? [1] : []) do
 
-      add_cv_table(report, 'CONTRIBUTIONS', contributions_list, {
-                     month_from: :month_from,
-                     year_from: :year_from,
-                     month_to: :month_to,
-                     year_to: :year_to,
-                     contribution_title: :contribution_title,
-                     contribution_reference: :contribution_reference
-                   })
+        contributions_list = person.contributions.list.where(display_in_cv: true).collect do |c|
+          { year_from: formatted_year(c.year_from),
+            month_from: formatted_month(c.month_from),
+            year_to: formatted_year(c.year_to),
+            month_to: formatted_month(c.month_to),
+            contribution_title: c.title,
+            contribution_reference: c.reference }
+        end
+
+        add_cv_table(report, 'CONTRIBUTIONS', contributions_list, {
+                       month_from: :month_from,
+                       year_from: :year_from,
+                       month_to: :month_to,
+                       year_to: :year_to,
+                       contribution_title: :contribution_title,
+                       contribution_reference: :contribution_reference
+                     })
+      end
     end
 
     # rubocop:enable Metrics/AbcSize
