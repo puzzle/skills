@@ -21,6 +21,7 @@ export default class extends Controller {
     const isEmpty = !chartData?.datasets?.length || chartData.datasets.every(ds => !ds.data?.length);
 
     const options = {
+      spanGaps: true,
       responsive: true,
       scales: {
         y: {
