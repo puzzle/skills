@@ -10,13 +10,8 @@ class SendUpdateProfileReminderMailJob < CronJob
   private
 
   def people_to_remind
-    Person
-      .joins(:company)
-      .where(reminder_mails_active: true)
-      .where(companies: { reminder_mails_active: true })
-      .where(
-        updated_at: six_months_condition
-      ).or(Person.where(updated_at: one_year_condition))
+    base_query.where(updated_at: six_months_condition)
+              .or(base_query.where(updated_at: one_year_condition))
   end
 
   def six_months_condition
@@ -25,5 +20,12 @@ class SendUpdateProfileReminderMailJob < CronJob
 
   def one_year_condition
     (1.year.ago - 7.days)..1.year.ago
+  end
+
+  def base_query
+    Person
+      .joins(:company)
+      .where(reminder_mails_active: true)
+      .where(companies: { reminder_mails_active: true })
   end
 end

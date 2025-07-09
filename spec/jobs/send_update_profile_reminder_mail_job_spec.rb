@@ -8,7 +8,7 @@ RSpec.describe SendUpdateProfileReminderMailJob, type: :job do
     before do
       allow(Company).to receive(:find).with(person.company_id).and_return(company)
       allow(Person).to receive(:find_each).and_yield(person)
-      person.update_column(:updated_at, 1.years.ago + 1.day)
+      person.update_column(:updated_at, 1.years.ago - 1.day)
     end
 
     it 'should send a reminder email' do
@@ -26,7 +26,7 @@ RSpec.describe SendUpdateProfileReminderMailJob, type: :job do
     before do
       allow(Company).to receive(:find).with(person.company_id).and_return(company)
       allow(Person).to receive(:find_each).and_yield(person)
-      person.update_column(:updated_at, 6.months.ago + 1.day)
+      person.update_column(:updated_at, 6.months.ago - 1.day)
     end
 
     it 'should send a reminder email' do
@@ -38,13 +38,13 @@ RSpec.describe SendUpdateProfileReminderMailJob, type: :job do
   end
 
   describe 'when company reminders are inactive' do
-    let(:person) { people(:bob) }
+    let(:person) { people(:alice) }
     let(:company) { companies(:partner) }
 
     before do
-      allow(Company).to receive(:find).with(person.company_id).and_return(company)
       allow(Person).to receive(:find_each).and_yield(person)
-      person.update_column(:updated_at, 2.years.ago)
+      allow(Company).to receive(:find).with(person.company_id).and_return(company)
+      person.update_column(:updated_at, 1.years.ago)
     end
 
     it 'should send no reminder email' do
