@@ -5,6 +5,6 @@ repos:
       - id: trufflehog
         name: TruffleHog
         description: Scan push for secrets.
-        entry: bash -c 'trufflehog git file://. --since-commit HEAD --no-verification --fail'
+        entry: sudo bash -c 'trufflehog git file://. --since-commit HEAD --no-verification --fail'
         language: system
-        stages: ["commit", "push"]
+        stages: ["pre-commit", "pre-push"]
