@@ -2,14 +2,14 @@ class SendUpdateProfileReminderMailJob < CronJob
   self.cron_expression = '0 3 * * 7'
 
   def perform
-    find_people_to_remind.find_each do |person|
+    people_to_remind.each do |person|
       ReminderMailer.update_user_reminder_email(person).deliver_later
     end
   end
 
   private
 
-  def find_people_to_remind
+  def people_to_remind
     Person
       .joins(:company)
       .where(reminder_mails_active: true)
@@ -20,10 +20,10 @@ class SendUpdateProfileReminderMailJob < CronJob
   end
 
   def six_months_condition
-    6.months.ago..6.months.ago + 7.days
+    (6.months.ago - 7.days)..6.months.ago
   end
 
   def one_year_condition
-    1.year.ago..1.year.ago + 7.days
+    (1.year.ago - 7.days)..1.year.ago
   end
 end
