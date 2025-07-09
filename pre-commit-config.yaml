@@ -1,10 +1,10 @@
+
 repos:
   - repo: local
     hooks:
       - id: trufflehog
         name: TruffleHog
-        description: Detect secrets in your data.
-        entry: trufflehog filesystem --fail --json
+        description: Scan push for secrets.
+        entry: bash -c 'trufflehog git file://. --since-commit HEAD --no-verification --fail'
         language: system
         stages: ["commit", "push"]
-        args: ['--', 'bash', '-c', 'cat trufflehog_results.json && ! jq -e ".[]" trufflehog_results.json']
