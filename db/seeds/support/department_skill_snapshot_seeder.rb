@@ -6,7 +6,10 @@ class DepartmentskillSnapshotSeeder
 
   def seed_department_skill_snapshots
     Department.ids.each do |department_id|
-      (1..12).each do |month|
+      (3..6).each do |month|
+        seed_snapshot_for_month(department_id, DateTime.new(2025, month, 1))
+      end
+      (9..11).each do |month|
         seed_snapshot_for_month(department_id, DateTime.new(2025, month, 1))
       end
     end

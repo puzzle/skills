@@ -12,7 +12,7 @@ class DepartmentSkillSnapshotsController < CrudController
 
   def chart_data
     {
-      labels: months.compact,
+      labels: months,
       datasets: dataset_values.map.with_index(1) do |label, level|
         build_dataset(label, level)
       end.compact
@@ -37,27 +37,48 @@ class DepartmentSkillSnapshotsController < CrudController
     }
   end
 
-  def get_data_for_each_level(level)
-    monthly_data = Array.new(12, 0)
-    skill_id = params[:skill_id].to_s
-
-    find_snapshots_by_department_id_and_year.each do |snapshot|
-      month_index = snapshot.created_at.month - 1
-      levels = snapshot.department_skill_levels[skill_id] || []
-      monthly_data[month_index] += levels.count(level)
-    end
-
-    monthly_data
+  def months
+    return [] if active_snapshots.empty?
+    (first_month_with_data..last_month_with_data).map { |month_number| Date::MONTHNAMES[month_number] }
   end
 
-  def find_snapshots_by_department_id_and_year
-    year = params[:year].to_i
-    start_date = Date.new(year, 1, 1)
-    end_date = start_date.end_of_year
+  def get_data_for_each_level(level)
+    skill_id = params[:skill_id].to_s
 
-    DepartmentSkillSnapshot.where(
-      department_id: params[:department_id],
-      created_at: start_date..end_date
-    )
+    (first_month_with_data..last_month_with_data).map do |month_number|
+      snapshot = active_snapshots[month_number]
+
+      if snapshot
+        levels = snapshot.department_skill_levels[skill_id] || []
+        levels.count(level)
+      else
+        nil
+      end
+    end
+  end
+
+  def first_month_with_data
+    @first_month_with_data ||= active_snapshots.keys.min
+  end
+
+  def last_month_with_data
+    @last_month_with_data ||= active_snapshots.keys.max
+  end
+
+  def active_snapshots
+    @active_snapshots ||= begin
+                            year = params[:year].to_i
+                            start_date = Date.new(year, 1, 1)
+                            end_date = start_date.end_of_year
+
+                            snapshots = DepartmentSkillSnapshot.where(
+                              department_id: params[:department_id],
+                              created_at: start_date..end_date
+                            )
+
+                            snapshots.each_with_object({}) do |snapshot, hash|
+                              hash[snapshot.created_at.month] = snapshot
+                            end
+                          end
   end
 end
