@@ -1,12 +1,12 @@
 = form_with url: department_skill_snapshots_path, method: :get, data: { turbo_frame: "team-skill-chart", controller: "auto-submit" } do |f|
   .d-flex.mt-4.mb-4.gap-4
-    %div{"data-controller": "dropdown"}
+    %div{"data-controller": "dropdown", "data-dropdown-auto-width-value": "true"}
       = f.label :department_id, t('activerecord.models.department.one'), class: "text-secondary"
       = f.select :department_id,
             options_from_collection_for_select(Department.all.order('name ASC'), :id, :name, params[:department_id]),
             { prompt: ta(:please_select)},
             { onchange: "this.form.requestSubmit()", class: "skill-tracking-select", data: { dropdown_target: "dropdown" } }
-    %div{"data-controller": "dropdown"}
+    %div{"data-controller": "dropdown", "data-dropdown-auto-width-value": "true"}
       = f.label :skill_id, t('activerecord.models.skill.one'), class: "text-secondary"
       = f.select :skill_id,
         options_from_collection_for_select(Skill.all.order('title ASC'), :id, :title, params[:skill_id]),
