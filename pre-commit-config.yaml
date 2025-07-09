@@ -1,0 +1,10 @@
+repos:
+  - repo: local
+    hooks:
+      - id: trufflehog
+        name: TruffleHog
+        description: Detect secrets in your data.
+        entry: trufflehog filesystem --fail --json
+        language: system
+        stages: ["commit", "push"]
+        args: ['--', 'bash', '-c', 'cat trufflehog_results.json && ! jq -e ".[]" trufflehog_results.json']
