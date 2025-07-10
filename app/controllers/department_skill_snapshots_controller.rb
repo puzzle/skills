@@ -39,7 +39,10 @@ class DepartmentSkillSnapshotsController < CrudController
 
   def months
     return [] if active_snapshots.empty?
-    (first_month_with_data..last_month_with_data).map { |month_number| Date::MONTHNAMES[month_number] }
+
+    (first_month_with_data..last_month_with_data).map do |month_number|
+      Date::MONTHNAMES[month_number]
+    end
   end
 
   def get_data_for_each_level(level)
@@ -51,8 +54,6 @@ class DepartmentSkillSnapshotsController < CrudController
       if snapshot
         levels = snapshot.department_skill_levels[skill_id] || []
         levels.count(level)
-      else
-        nil
       end
     end
   end
@@ -67,18 +68,20 @@ class DepartmentSkillSnapshotsController < CrudController
 
   def active_snapshots
     @active_snapshots ||= begin
-                            year = params[:year].to_i
-                            start_date = Date.new(year, 1, 1)
-                            end_date = start_date.end_of_year
+      year = params[:year].to_i
+      start_date = Date.new(year, 1, 1)
+      end_date = start_date.end_of_year
 
-                            snapshots = DepartmentSkillSnapshot.where(
-                              department_id: params[:department_id],
-                              created_at: start_date..end_date
-                            )
+      snapshots_of_this_year(start_date, end_date).index_by do |snapshot|
+        snapshot.created_at.month
+      end
+    end
+  end
 
-                            snapshots.each_with_object({}) do |snapshot, hash|
-                              hash[snapshot.created_at.month] = snapshot
-                            end
-                          end
+  def snapshots_of_this_year(start_date, end_date)
+    DepartmentSkillSnapshot.where(
+      department_id: params[:department_id],
+      created_at: start_date..end_date
+    )
   end
 end
