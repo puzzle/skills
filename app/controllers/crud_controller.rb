@@ -68,7 +68,6 @@ class CrudController < ListController
   # Specify a :location option if you wish to do a custom redirect.
   def create(**options, &)
     raise CanCan::AccessDenied unless can? :create, model_class
-
     model_class.transaction do
       assign_attributes
       created = with_callbacks(:create, :save) { entry.save }
@@ -93,7 +92,6 @@ class CrudController < ListController
   # Specify a :location option if you wish to do a custom redirect.
   def update(**options, &) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
     raise CanCan::AccessDenied unless can? :update, entry
-
     model_class.transaction do
       if assign_attributes
         updated = false
@@ -124,7 +122,6 @@ class CrudController < ListController
   # Specify a :location option if you wish to do a custom redirect.
   def destroy(**options, &)
     raise CanCan::AccessDenied unless can? :destroy, model_class
-
     model_class.transaction do
       destroyed = run_callbacks(:destroy) { entry.destroy }
       respond(destroyed,
