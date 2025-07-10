@@ -6,6 +6,7 @@
 - **Open Source contributions** The possibility to add open source contributions to your profile as well has been implemented.
 
 ### Improvements
+- **Team skill tracking** Months that have already passed or are ahead with no data are no longer being shown.
 - **Team skill tracking usability** The department and skill dropdowns are now searchable, with results displayed in alphabetical order.
 
 # 6.0.0
