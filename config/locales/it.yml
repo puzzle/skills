@@ -42,6 +42,7 @@ it:
       people_skill:
         certificate: Certificato
         core_competence: Competenza di base
+        interest: Interesse
         level: Livello
         skill: Abilità
       person:
@@ -369,6 +370,14 @@ it:
   profile:
     updated_at: Ultima modifica
   skill_search:
+    index:
+      table:
+        certificate: Certificato
+        name: Nome
+        skill: Competenza
+        level: Livello
+        interest: Interesse
+        core_competence: Competenza chiave
     global:
       link:
         add: Aggiungi abilità (max. 5)

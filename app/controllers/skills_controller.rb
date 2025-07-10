@@ -5,7 +5,7 @@ class SkillsController < CrudController
   before_action :update_category_parent, only: [:update]
   before_action :render_unauthorized_not_admin, except: %i[index show unrated_by_person]
 
-  helper_method :filter_by_rated, :compare_default_set
+  helper_method :compare_default_set
 
   self.permitted_attrs = %i[title radar portfolio default_set category_id]
 
@@ -32,12 +32,6 @@ class SkillsController < CrudController
   end
 
   private
-
-  def filter_by_rated(skill)
-    skill.people_skills.where.not(interest: 0)
-         .or(skill.people_skills.where.not(level: 0))
-         .joins(:person).order(:name)
-  end
 
   def compare_default_set(value)
     value == params[:defaultSet]
