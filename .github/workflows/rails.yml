@@ -53,7 +53,7 @@ jobs:
           RAILS_DB_USERNAME: ${{ env.POSTGRES_USER }}
           RAILS_DB_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
           IS_CI: true
-        run: bundle exec rake
+        run: bundle exec rake parallel:setup
 
       - name: 'Run RuboCop'
         run: bundle exec rubocop --parallel
