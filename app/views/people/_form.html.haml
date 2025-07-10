@@ -1,12 +1,7 @@
 = form_with model: @person do |form|
   %div.d-flex.flex-xl-row.flex-column
     %div.col-xl-3.col-12
-      - if avatar_cached?(@person.picture)
-        %img.rounded-circle#avatar{src: "#{@person.picture}?#{Time.now.to_f}", width: '141', height: '141'}
-      - elsif @person.id.nil?
-        %img.rounded-circle#avatar{width: '141', height: '141'}
-      - else
-        %img.rounded-circle#avatar{src: "#{@person.id}/picture?#{Time.now.to_f}", width: '141', height: '141'}
+      %img.rounded-circle#avatar{src: "#{@person.picture}?#{Time.now.to_f}", width: '141', height: '141'}
       %br
       %label.btn.btn-link{for: "avatar-uploader"}
         - if @person.id.nil?
