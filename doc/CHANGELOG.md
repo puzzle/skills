@@ -1,3 +1,11 @@
+# Work in progress
+
+### Features
+
+### Improvements
+- **Team skill tracking** Months that have already passed or are ahead with no data are no longer being shown.
+
+
 # 6.0.0
 
 ### Features
