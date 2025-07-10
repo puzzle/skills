@@ -46,6 +46,9 @@ jobs:
         run: |
           bundle exec rake db:create db:migrate
 
+      - name: 'Prepare parallel databases'
+        run: bundle exec rake parallel:setup
+
       - name: 'Run tests'
         env:
           PGHOST: ${{ env.PGHOST }}
@@ -53,7 +56,7 @@ jobs:
           RAILS_DB_USERNAME: ${{ env.POSTGRES_USER }}
           RAILS_DB_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
           IS_CI: true
-        run: bundle exec rake parallel:setup
+        run: bundle exec rake parallel:spec
 
       - name: 'Run RuboCop'
         run: bundle exec rubocop --parallel
