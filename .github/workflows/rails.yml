@@ -36,7 +36,7 @@ jobs:
         with:
           node-version: '20'
 
-      - name: 'Prepare database and run migrations'
+      - name: 'Set up parallel test databases'
         env:
           RAILS_ENV: test
           RAILS_DB_HOST: ${{ env.PGHOST }}
@@ -46,14 +46,15 @@ jobs:
         run: |
           bundle exec rake parallel:setup
 
-      - name: 'Run tests'
+      - name: 'Run tests in parallel'
         env:
           PGHOST: ${{ env.PGHOST }}
           RAILS_DB_NAME: ${{ env.POSTGRES_DB }}
           RAILS_DB_USERNAME: ${{ env.POSTGRES_USER }}
           RAILS_DB_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
           IS_CI: true
-        run: bundle exec rake parallel:spec
+        run: |
+          bundle exec rake parallel:spec
 
       - name: 'Run RuboCop'
         run: bundle exec rubocop --parallel
