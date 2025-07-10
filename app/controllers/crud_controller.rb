@@ -92,7 +92,6 @@ class CrudController < ListController
   #
   # Specify a :location option if you wish to do a custom redirect.
   def update(**options, &) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
-    require 'pry'; binding.pry
     raise CanCan::AccessDenied unless can? :update, entry
 
     model_class.transaction do
