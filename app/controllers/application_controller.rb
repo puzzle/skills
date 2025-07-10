@@ -35,8 +35,8 @@ class ApplicationController < ActionController::Base
     render_unauthorized(helpers.conf_admin?)
   end
 
-  def render_unauthorized(unauthorized)
-    return false if unauthorized
+  def render_unauthorized(authorized)
+    return false if authorized
 
     redirect_to root_path if request.referer.nil?
     render_error('unauthorized', 'unauthorized', :unauthorized)
@@ -51,5 +51,9 @@ class ApplicationController < ActionController::Base
 
   def default_url_options
     { locale: I18n.locale }
+  end
+
+  def current_ability
+    @current_ability ||= Ability.new(current_auth_user)
   end
 end
