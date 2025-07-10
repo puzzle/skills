@@ -10,3 +10,10 @@ admin:
   name: Andreas Admin
   email: admin@skills.ch
   is_admin: true
+
+conf_admin:
+  uid: 1234-5678-9012-8558
+  name: Carl Albrecht Conf
+  email: conf_admin@skills.ch
+  is_admin: true
+  is_conf_admin: true
