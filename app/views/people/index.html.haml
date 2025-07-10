@@ -12,7 +12,7 @@
     = ti("choose_create_person")
 %div.row.w-50.ms-0.me-auto
   - unless find_person_by_auth_user.nil?
-    %div.col-3.p-0.me-3
+    %div.col-12.col-sm-6.col-md-3.p-0.mb-2.mb-md-0.me-md-3
       = link_to ti('profile'), person_path(find_person_by_auth_user), method: 'get', class: "btn btn-outline-primary h-100 w-100 d-flex justify-content-center align-items-center"
-    %div.col-3.p-0
+    %div.col-12.col-sm-6.col-md-3.p-0
       = link_to ti('export_cv'), export_person_path(id: find_person_by_auth_user.id, location: default_branch_adress.id), method: 'get', class: "btn btn-outline-primary w-100", title: ti('default_location', {default_location: default_branch_adress.short_name}), data: { turbo: false }

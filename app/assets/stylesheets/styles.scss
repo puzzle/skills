@@ -21,7 +21,7 @@ $skills-dark-blue: #1e5a96;
 .content {
   max-width: 80%;
   flex-grow: 1;
-  @media (max-width: 800px) {
+  @include media-breakpoint-down(lg) {
     max-width: 95%;
   }
 }
@@ -97,7 +97,8 @@ pzsh-topbar {
 
 .puzzle-header {
   background-color: $skills-blue;
-  height: 40px;
+  min-height: 40px;
+  height: auto;
 }
 
 .bg-skills-blue {
@@ -423,4 +424,44 @@ a > img {
 .manual-sync-button {
   height: 300px;
   font-size: 50px;
+}
+
+@include media-breakpoint-up(lg) {
+  .h-100-lg {
+    height: 100%;
+  }
+
+  .ms-5-lg {
+    margin-left: 3rem;
+  }
+
+  .border-end-lg {
+    border-right: 0.5px solid #dee2e6;
+  }
+
+  .border-start-lg {
+    border-left: 0.5px solid #dee2e6;
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  .responsive-hide {
+    display: none;
+  }
+
+  .core-competences {
+    margin-left: 1rem;
+  }
+
+  .text-ms {
+    margin-left: 2rem
+  }
+}
+
+.flex-flow-wrap {
+  flex-flow: wrap;
+}
+
+.min-height-inherit {
+  min-height: inherit;
 }
