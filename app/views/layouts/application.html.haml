@@ -35,7 +35,7 @@
                   - else
                     = ti("devise.mockdata")
             -# Admin panel
-            - if conf_admin?
+            - if admin?
               %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start-lg.h-100-lg
                 = link_to ti("devise.admin_panel"), admin_index_path
             -# Username
