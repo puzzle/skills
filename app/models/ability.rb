@@ -25,14 +25,16 @@ class Ability
   def initialize_admin_rights(user)
     admin_classes.each do |admin_class|
       can :manage, admin_class
-      cannot :destroy, admin_class, user: user
+      cannot :destroy, admin_class
+      can :destroy, admin_class, user: user
     end
   end
 
   def initialize_conf_admin_rights(user)
     conf_admin_classes.each do |conf_admin_class|
       can :manage, conf_admin_class
-      cannot :destroy, conf_admin_class, user: user
+      cannot :destroy, conf_admin_class
+      can :destroy, conf_admin_class, user: user
     end
   end
 
