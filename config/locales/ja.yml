@@ -101,6 +101,8 @@ ja:
         radar: レーダー
         subcategory: サブカテゴリ
         title: タイトル
+      company:
+        reminder_mails_active: リマインダーメールが有効
     models:
       activity: 配属先
       advanced_training: 研修

@@ -101,6 +101,8 @@ de-CH:
         radar: Radar
         subcategory: Subkategorie
         title: Titu
+      company:
+        reminder_mails_active: Erinnerigsmail aktiv
     models:
       activity: Station
       advanced_training:

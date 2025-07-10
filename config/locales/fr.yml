@@ -101,6 +101,8 @@ fr:
         radar: Radar
         subcategory: Sous-catégorie
         title: Titre
+      company:
+        reminder_mails_active: E-mails de rappel actifs
     models:
       activity: Station
       advanced_training: Formation continue

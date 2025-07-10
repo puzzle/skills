@@ -101,6 +101,8 @@ en:
         radar: Radar
         subcategory: Subcategory
         title: Title
+      company:
+        reminder_mails_active: Reminder mails active
     models:
       activity: Station
       advanced_training: Further training

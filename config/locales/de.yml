@@ -101,6 +101,8 @@ de:
         radar: Radar
         subcategory: Subkategorie
         title: Titel
+      company:
+        reminder_mails_active: Erinnerungsmails aktiv
     models:
       activity: Station
       advanced_training:

@@ -101,6 +101,8 @@ it:
         radar: Radar
         subcategory: Sottocategoria
         title: Titolo
+      company:
+        reminder_mails_active: Email di promemoria attive
     models:
       activity: Stazione
       advanced_training: Formazione continua
