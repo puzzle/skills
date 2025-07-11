@@ -66,6 +66,7 @@ group :development, :test do
   # to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'i18n-tasks', '~> 1.0.14'
+  gem 'parallel_tests'
   gem 'pry'
   gem 'pry-byebug'
   gem 'rspec-rails'

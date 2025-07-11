@@ -14,7 +14,7 @@ development:
 
 test:
   <<: *default
-  database: <%= ENV['RAILS_TEST_DB_NAME'] || "skills_test" %>
+  database: <%= "#{ENV['RAILS_TEST_DB_NAME'] || 'skills_test'}#{ENV['TEST_ENV_NUMBER']}" %>
 
 production:
   <<: *default
