@@ -24,7 +24,7 @@ module Odt
     end
 
     def include_contributions?
-      true?(@params[:includeCont]) && !person.contributions.list.where(display_in_cv: true).empty?
+      true?(@params[:includeContributions]) && !person.contributions.list.where(display_in_cv: true).empty?
     end
 
     def skill_level_value
