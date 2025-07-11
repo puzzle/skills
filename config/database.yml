@@ -10,7 +10,7 @@ default: &default
 
 development:
   <<: *default
-  database: <%= ENV['RAILS_DEV_DB_NAME'] || "skills_development" %>
+  database: <%= "#{ENV['RAILS_DEV_DB_NAME'] || 'skills_development'}#{ENV['TEST_ENV_NUMBER']}" %>
 
 test:
   <<: *default
