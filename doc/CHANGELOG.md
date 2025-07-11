@@ -1,3 +1,11 @@
+# Work in progress
+
+### Features
+- **Open Source contributions** The possibility to add open source contributions to your profile as well has been implemented.
+
+### Improvements
+-
+
 # 6.0.0
 
 ### Features
