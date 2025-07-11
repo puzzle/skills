@@ -6,7 +6,7 @@ jobs:
 
     env:
       PGHOST: localhost
-      POSTGRES_DB: skills_test # This is fine, defines the name for the postgres service
+      POSTGRES_DB: skills_test
       POSTGRES_USER: skills
       POSTGRES_PASSWORD: skills
 
@@ -39,8 +39,8 @@ jobs:
       - name: 'Run database migrations'
         env:
           RAILS_ENV: test
-          PGHOST: ${{ env.PGHOST }}
-          RAILS_TEST_DB_NAME: ${{ env.POSTGRES_DB }}
+          RAILS_DB_HOST: ${{ env.PGHOST }}
+          RAILS_DB_NAME: ${{ env.POSTGRES_DB }}
           RAILS_DB_USERNAME: ${{ env.POSTGRES_USER }}
           RAILS_DB_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
         run: |
@@ -48,8 +48,9 @@ jobs:
 
       - name: 'Run tests'
         env:
+          RAILS_ENV: test
           PGHOST: ${{ env.PGHOST }}
-          RAILS_TEST_DB_NAME: ${{ env.POSTGRES_DB }}
+          RAILS_DB_NAME: ${{ env.POSTGRES_DB }}
           RAILS_DB_USERNAME: ${{ env.POSTGRES_USER }}
           RAILS_DB_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
           IS_CI: true
