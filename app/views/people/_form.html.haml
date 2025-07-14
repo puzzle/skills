@@ -90,6 +90,6 @@
         %div{"data-controller"=>"dynamic-fields"}
           = link_to_add_field t("people.profile.add_language"), form, :language_skills
 
-  %div.mt-3
+  %div.mt-3.create-button
     = form.submit class: "btn btn-primary me-3 bg-skills-blue", id: "save-button"
     = form.cancel
