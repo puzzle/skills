@@ -17,8 +17,6 @@ class Ability
       can :manage, user_classes
     end
 
-    can :manage, Person
-    can :manage, PeopleSkill
     can :read, Skill
   end
 
@@ -35,7 +33,7 @@ class Ability
   end
 
   def user_classes
-    [Activity, AdvancedTraining, Education, Project]
+    [Activity, AdvancedTraining, Education, Project, Person, PeopleSkill]
   end
 
   def conf_admin_classes
