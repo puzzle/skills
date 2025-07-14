@@ -36,8 +36,6 @@ class Ability
     initialize_editor_rights
     admin_classes.each do |admin_class|
       can :manage, admin_class
-      cannot :destroy, admin_class
-      can :destroy, admin_class, user: user
     end
   end
 
@@ -45,8 +43,6 @@ class Ability
     initialize_admin_rights
     conf_admin_classes.each do |conf_admin_class|
       can :manage, conf_admin_class
-      cannot :destroy, conf_admin_class
-      can :destroy, conf_admin_class, user: user
     end
   end
 
