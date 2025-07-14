@@ -5,10 +5,11 @@ class Ability
 
   def initialize(user)
     initialize_user_rights
+    if user.is_admin? || user.is_conf_admin?
+      initialize_admin_rights
+    end
     if user.is_conf_admin?
       initialize_conf_admin_rights
-    elsif user.is_admin? || user.is_conf_admin?
-      initialize_admin_rights
     end
   end
 
