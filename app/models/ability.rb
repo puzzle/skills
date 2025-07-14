@@ -24,6 +24,7 @@ class Ability
     editor_classes.each do |editor_class|
       can :read, editor_class
     end
+    can :read, Skill
   end
 
   def initialize_editor_rights
@@ -44,6 +45,10 @@ class Ability
     conf_admin_classes.each do |conf_admin_class|
       can :manage, conf_admin_class
     end
+  end
+
+  def user_classes
+    [Activity, AdvancedTraining, Education, Project, Person, PeopleSkill]
   end
 
   def editor_classes
