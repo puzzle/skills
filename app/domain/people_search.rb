@@ -19,9 +19,7 @@ class PeopleSearch
     results = []
 
     people.map do |p|
-      results.push({ person: { id: p.id, name: p.name }, found_in: found_in(p).each do |found_in|
-        found_in[:attribute] = Person.human_attribute_name(found_in[:attribute], count: 2)
-      end })
+      results.push({ person: { id: p.id, name: p.name }, found_in: found_in_human_attrs(p)})
     end
     results
   end
@@ -35,7 +33,7 @@ class PeopleSearch
     pre_load(people)
   end
 
-  def found_in(person)
+  def found_in_attrs(person)
     res_attributes = in_attributes(person.attributes)
     res_associations = in_associations(person)
     (res_attributes + res_associations).flatten
@@ -132,5 +130,11 @@ class PeopleSearch
 
   def table_name_of_attr(attr)
     attr.class.name.tableize.pluralize
+  end
+
+  def found_in_human_attrs(p)
+    found_in_attrs(p).each do |found_in|
+      found_in[:attribute] = Person.human_attribute_name(found_in[:attribute], count: 2)
+    end
   end
 end
