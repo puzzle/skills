@@ -88,12 +88,14 @@ fabric.properties
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
-config/docker/development/home/rails/.bundle
-config/docker/development/home/rails/.cache
-config/docker/development/home/rails/.local
-config/docker/development/home/rails/.yarnrc
-config/docker/development/home/rails/.irb_history
-config/docker/development/home/rails/.bash_history
+config/docker/*/home/rails/.bundle
+config/docker/*/home/rails/.cache
+config/docker/*/home/rails/.local
+config/docker/*/home/rails/.yarnrc
+config/docker/*/home/rails/.irb_history
+config/docker/*/home/rails/.bash_history
+config/docker/*/home/rails/Downloads
+config/docker/*/home/rails/.mozilla
 
 /app/assets/builds/*
 !/app/assets/builds/.keep

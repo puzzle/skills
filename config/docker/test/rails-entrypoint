@@ -1,0 +1,32 @@
+#!/bin/bash
+
+set -e
+
+rm -f tmp/pids/server.pid
+
+echo "running bundle install"
+gem install bundler -v 2.4.10
+bundle install
+
+yarn install --check-files
+
+if [ -z "$SKIP_RAILS_MIGRATIONS" ]; then
+  echo "⚙️  Performing migrations"
+  bundle exec rails db:create db:migrate
+  echo "✅ Migrations done"
+fi
+
+if [ -z "$skip_seeds" ]; then
+  if [ ! -f /seed/done ]; then
+    echo "⚙️  seeding db"
+    bundle exec rails db:seed && date > /seed/done
+    echo "✅ seeding done"
+  else
+    echo "↪️  skipping seeding because already done on $(cat /seed/done)"
+  fi
+fi
+
+echo "➡️ handing control over to '$*''"
+
+echo "⚙️  executing: $@"
+exec bundle exec "$@"
