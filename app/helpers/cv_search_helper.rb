@@ -9,13 +9,13 @@ module CvSearchHelper
   def path(result, found_in)
     person_id = result[:person][:id]
     if found_in_skills?(found_in)
-      person_people_skills_path(person_id, url_params(result, found_in))
+      person_people_skills_path(person_id, url_params(found_in))
     else
-      person_path(person_id, url_params(result, found_in))
+      person_path(person_id, url_params(found_in))
     end
   end
 
-  def url_params(_result, found_in)
+  def url_params(found_in)
     query = params[:q].split(',').find do |keyword|
       found_in[:keywords_in_attribute].include?(keyword)
     end
