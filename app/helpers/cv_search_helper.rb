@@ -2,23 +2,23 @@
 
 module CvSearchHelper
 
-  def found_in_skills?(result)
-    result[:found_in][:attribute].include?('Skills')
+  def found_in_skills?(found_in)
+    found_in[:attribute].include?('Skills')
   end
 
-  def path(result)
+  def path(result, found_in)
     person_id = result[:person][:id]
-    if found_in_skills?(result)
-      person_people_skills_path(person_id, url_params(result))
+    if found_in_skills?(found_in)
+      person_people_skills_path(person_id, url_params(result, found_in))
     else
-      person_path(person_id, url_params(result))
+      person_path(person_id, url_params(result, found_in))
     end
   end
 
-  def url_params(result)
+  def url_params(result, found_in)
     query = params[:q].split(',').find do |keyword|
-      result[:found_in][:keywords_in_attribute].include?(keyword)
+      found_in[:keywords_in_attribute].include?(keyword)
     end
-    { q: query, rating: found_in_skills?(result) ? 1 : nil }
+    { q: query, rating: found_in_skills?(found_in) ? 1 : nil }
   end
 end
