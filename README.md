@@ -154,7 +154,7 @@ This will show you any **new** logs, and if you encounter a `pry` prompt, you ca
 
 -   To run the backend tests run `rake spec`
 -   To test with a non-admin user, change the email in `app/controllers/application_controller.rb#authenticate_auth_user"` to "user@skills.ch"
-
+-   To run the tests within the docker container use `docker exec -it test bundle exec rspec`
 ## Documentation
 Find further Documentation at the links below
 
