@@ -15,7 +15,7 @@ module CvSearchHelper
     end
   end
 
-  def url_params(result, found_in)
+  def url_params(_result, found_in)
     query = params[:q].split(',').find do |keyword|
       found_in[:keywords_in_attribute].include?(keyword)
     end
