@@ -19,7 +19,7 @@ class PeopleSearch
     results = []
 
     people.map do |p|
-      results.push({ person: { id: p.id, name: p.name }, found_in: found_in_human_attrs(p)})
+      results.push({ person: { id: p.id, name: p.name }, found_in: found_in_human_attrs(p) })
     end
     results
   end
@@ -132,8 +132,8 @@ class PeopleSearch
     attr.class.name.tableize.pluralize
   end
 
-  def found_in_human_attrs(p)
-    found_in_attrs(p).each do |found_in|
+  def found_in_human_attrs(person)
+    found_in_attrs(person).each do |found_in|
       found_in[:attribute] = Person.human_attribute_name(found_in[:attribute], count: 2)
     end
   end
