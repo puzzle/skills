@@ -21,6 +21,29 @@ services:
 
     depends_on:
       - postgres
+  test:
+    container_name: test
+    image: skills-dev/rails
+    user: "${UID:-1000}"
+    tty: true
+    stdin_open: true
+    environment:
+      - RAILS_DB_HOST=postgres
+      - RAILS_ENV=test
+    env_file: .env
+    build:
+      context: ./config/docker/test
+      dockerfile: Rails.dockerfile
+    ports:
+      - 3001:3000
+    volumes:
+      - ./:/myapp
+      - ./config/docker/development/home/rails:/home/developer
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ${GEM_PATH}:/opt/bundle
+
+    depends_on:
+      - postgres
 
   postgres:
     container_name: postgres
