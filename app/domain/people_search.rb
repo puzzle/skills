@@ -19,10 +19,7 @@ class PeopleSearch
     results = []
 
     people.map do |p|
-      found_in(p).each do |result|
-        result[:attribute] = Person.human_attribute_name(result[:attribute], count: 2)
-        results.push({ person: { id: p.id, name: p.name }, found_in: result })
-      end
+      results.push({ person: { id: p.id, name: p.name }, found_in: found_in(p).each { |found_in| found_in[:attribute] = Person.human_attribute_name(found_in[:attribute], count: 2) } })
     end
     results
   end

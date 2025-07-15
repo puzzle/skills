@@ -7,14 +7,14 @@ describe PeopleSearch do
       search_terms = ['duckduckgo']
       people = PeopleSearch.new(search_terms).entries
       person = people[0]
-      expect(person[:found_in][:attribute]).to eq('Projekte')
+      expect(person[:found_in].any? {|found_in| found_in[:attribute] == 'Projekte'}).to eq(true)
     end
 
     it 'finds in which person attribute the search term has been found' do
       search_terms = ['Alice']
       people = PeopleSearch.new(search_terms).entries
       person = people[0]
-      expect(person[:found_in][:attribute]).to eq('Name')
+      expect(person[:found_in].any? {|found_in| found_in[:attribute] == 'Name'}).to eq(true)
     end
 
     it 'returns nothing for nonsense search term' do
