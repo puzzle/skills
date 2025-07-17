@@ -11,6 +11,7 @@ gem 'annotate'
 gem 'bigdecimal'
 gem 'bleib', '0.0.8' # For deployment
 gem 'bootsnap'
+gem 'bundler-audit'
 gem 'carrierwave'
 gem 'config'
 gem 'countries'
