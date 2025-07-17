@@ -41,6 +41,7 @@ services:
       - ./config/docker/development/home/rails:/home/developer
       - /tmp/.X11-unix:/tmp/.X11-unix
       - ${GEM_PATH}:/opt/bundle
+      - /etc/passwd:/etc/passwd
 
     depends_on:
       - postgres
