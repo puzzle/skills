@@ -15,20 +15,19 @@
       = ti "search.no_results"
     - else
       - @cv_search_results.each do |result|
-        .d-flex.flex-row
-          %div.w-50.d-flex.mb-2
+        .d-flex.flex-row.border.p-1.justify-content-center
+          %div.w-50.d-flex.mb-2.h-25.mt-2
             = link_to result[:person][:name], person_path(result[:person][:id]), {class: "bg-skills-green w-75 text-decoration-none text-white ps-1 p-2 rounded-1", "data-turbo-frame": "_top" }
-          %div.d-flex.flex-column.w-100.h-100
+          %div.d-flex.flex-column.w-100.h-100.mt-2
             - result[:found_in].each do |found_in|
               %div.d-flex.flex-row.mb-2
                 %div.w-25.d-flex.justify-content-start.align-items-center.me-5
                   %div.me-1.w-100.h-100
                     %p.bg-skills-search-result-blue.text-decoration-none.text-white.ps-1.p-2.rounded-1.text-center.mb-0
-                      = "#{found_in[:keywords_in_attribute].join(', ')}"
+                      = "#{found_in[:keywords_in_attribute].sort.join(', ')}"
                 %div.d-flex.justify-content-start.align-items-center.me-2
                   = ti("search.found_in")
                 %div.w-25.d-flex.justify-content-start.align-items-center
                   %div.me-1.w-100.h-100.d-flex.flex-row.align-items-center.justify-content-start
                     %p.bg-skills-search-result-blue.text-decoration-none.ps-1.p-2.rounded-1.text-center.mb-0.w-100
                       = link_to found_in[:attribute], path(result, found_in), {class: "text-decoration-none text-white","data-turbo-frame": "_top" }
-        %br
