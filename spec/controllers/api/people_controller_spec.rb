@@ -113,7 +113,7 @@ describe Api::PeopleController do
         nested_keys = %w(advanced_trainings activities projects educations company roles language_skills person_roles)
         nested_attrs = json['data']['relationships']
 
-        expect(nested_attrs.count).to eq(9)
+        expect(nested_attrs.count).to eq(10)
         json_object_includes_keys(nested_attrs, nested_keys)
       end
     end

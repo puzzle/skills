@@ -103,7 +103,7 @@ describe Odt::PuzzleCv do
         end
       end
 
-      it 'every tables values should not be null if all educations, advanced_trainings, member_notes, projects and activities of the person have attr display_in_cv true and skills by level is true' do
+      it 'every tables values should not be null if all educations, advanced_trainings, member_notes, projects, activities and contributions of the person have attr display_in_cv true and skills by level is true' do
         person = people(:bob)
         allow(cv).to receive(:include_skills_by_level?).and_return(true)
         cv = Odt::Cv.new(person, { 'anon' => 'false' })
@@ -136,6 +136,7 @@ describe Odt::PuzzleCv do
         insert_educations
         insert_activities
         insert_projects
+        insert_contributions
       ].each do |method|
         expect(cv).to receive(method).with(report)
       end
