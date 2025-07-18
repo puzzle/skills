@@ -57,9 +57,11 @@ class DepartmentSkillSnapshotsController < CrudController
       end
     end
   end
+
   def first_month_with_data
     @first_month_with_data ||= snapshots_by_month.keys.min
   end
+
   def last_month_with_data
     @last_month_with_data ||= snapshots_by_month.keys.max
   end
