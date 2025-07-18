@@ -21,6 +21,7 @@ course:
   updated_by: bob
   year_to: 2012
   year_from: 2010
+  month_from: 12
   person: bob
 
 education:
