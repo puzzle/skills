@@ -160,10 +160,9 @@ The development environment also includes [debugbar](https://debugbar.dev/docs/)
 
 -   To run the backend tests run `rake spec`
 -   To test with a non-admin user, change the email in `app/controllers/application_controller.rb#authenticate_auth_user"` to "user@skills.ch"
--   To run the tests within the docker container use `docker exec -it test bundle exec rspec`
+-   To run the tests within the docker container use `bin/test`
 ## Hooks
 - To install the pre-commit hooks run `overcommit --install`
-
 ## Documentation
 Find further Documentation at the links below
 
