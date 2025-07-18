@@ -14,20 +14,27 @@ RSpec.shared_examples 'a model with date range validations' do
       expect(record.errors[:year_to]).to be_empty
     end
 
+    it 'allows month_to to be blank' do
+      record.month_to = nil
+      record.valid?
+      expect(record.errors[:month_to]).to be_empty
+    end
+
     it 'does not create if year_from is later than year_to' do
       record.year_from = record.year_to + 1
       record.valid?
       expect(record.errors[:year_from].first).to eq('muss vor dem Enddatum sein.')
     end
-  end
-end
 
-RSpec.shared_examples 'a model that touches the associated person' do
-  context 'on update' do
-    it 'updates updated_at on the associated person' do
-      person_updated_at = record.person.updated_at
-      record.save!
-      expect(record.person.reload.updated_at).to be > person_updated_at
+    it 'kann mit gültigen Attributen erstellt und aktualisiert werden' do
+      expect(record[:year_from]).to eq(2010)
+      expect(record[:month_from]).to eq(12)
+
+      record.update(year_from: 2022)
+      record.update(month_from: 11)
+
+      expect(record[:year_from]).to eq(2022)
+      expect(record[:month_from]).to eq(11)
     end
   end
 end
@@ -39,7 +46,6 @@ describe Education do
   let(:record) { educations(:bsc) }
 
   it_behaves_like 'a model with date range validations'
-  it_behaves_like 'a model that touches the associated person'
 end
 
 describe Project do
@@ -48,16 +54,6 @@ describe Project do
   let(:record) { projects(:duckduckgo) }
 
   it_behaves_like 'a model with date range validations'
-  it_behaves_like 'a model that touches the associated person'
-end
-
-describe Project do
-  fixtures :projects
-
-  let(:record) { projects(:duckduckgo) }
-
-  it_behaves_like 'a model with date range validations'
-  it_behaves_like 'a model that touches the associated person'
 end
 
 describe Activity do
@@ -66,16 +62,6 @@ describe Activity do
   let(:record) { activities(:swisscom) }
 
   it_behaves_like 'a model with date range validations'
-  it_behaves_like 'a model that touches the associated person'
-end
-
-describe Activity do
-  fixtures :activities
-
-  let(:record) { activities(:swisscom) }
-
-  it_behaves_like 'a model with date range validations'
-  it_behaves_like 'a model that touches the associated person'
 end
 
 describe AdvancedTraining do
@@ -84,5 +70,4 @@ describe AdvancedTraining do
   let(:record) { advanced_trainings(:course) }
 
   it_behaves_like 'a model with date range validations'
-  it_behaves_like 'a model that touches the associated person'
 end

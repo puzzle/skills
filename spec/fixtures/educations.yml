@@ -20,7 +20,8 @@ bsc:
   location: Uni Bern
   title: BSc in Cleaning
   year_to: 2010
-  year_from: 2000
+  year_from: 2010
+  month_from: 12
   person: bob
 
 msc:

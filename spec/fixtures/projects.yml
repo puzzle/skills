@@ -26,6 +26,7 @@ duckduckgo:
   technology: Ruby on Rails
   year_to: 2013
   year_from: 2010
+  month_from: 12
   person: bob 
 
 google:
