@@ -5,7 +5,7 @@
 - **Your Personal Setting** You can control whether you receive these emails. This option is active by default, but you can turn it off anytime using the new checkbox in your profile settings.
 
 ### Improvements
-
+- **Team skill tracking** Months that have already passed or are ahead with no data are no longer being shown.
 
 # 6.0.0
 
