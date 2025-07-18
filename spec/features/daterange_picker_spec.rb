@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.shared_examples 'a model with date range validations' do
+RSpec.shared_examples 'a model validating date ranges' do
   context 'validations' do
     it 'does not allow year_from to be blank' do
       instance = described_class.new
@@ -26,7 +26,7 @@ RSpec.shared_examples 'a model with date range validations' do
       expect(record.errors[:year_from].first).to eq('muss vor dem Enddatum sein.')
     end
 
-    it 'kann mit gültigen Attributen erstellt und aktualisiert werden' do
+    it 'is valid and updatable with correct date attributes' do
       expect(record[:year_from]).to eq(2010)
       expect(record[:month_from]).to eq(12)
 
@@ -41,33 +41,25 @@ end
 
 
 describe Education do
-  fixtures :educations
-
   let(:record) { educations(:moe) }
 
-  it_behaves_like 'a model with date range validations'
+  it_behaves_like 'a model validating date ranges'
 end
 
 describe Project do
-  fixtures :projects
-
   let(:record) { projects(:duckduckgo) }
 
-  it_behaves_like 'a model with date range validations'
+  it_behaves_like 'a model validating date ranges'
 end
 
 describe Activity do
-  fixtures :activities
-
   let(:record) { activities(:roche) }
 
-  it_behaves_like 'a model with date range validations'
+  it_behaves_like 'a model validating date ranges'
 end
 
 describe AdvancedTraining do
-  fixtures :advanced_trainings
-
   let(:record) { advanced_trainings(:course) }
 
-  it_behaves_like 'a model with date range validations'
+  it_behaves_like 'a model validating date ranges'
 end
