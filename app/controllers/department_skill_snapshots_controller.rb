@@ -40,15 +40,16 @@ class DepartmentSkillSnapshotsController < CrudController
   def month_labels
     return [] if active_snapshots.empty?
 
-    (snapshots_by_month.keys.min..snapshots_by_month.keys.max).map do |month_number|
+    (first_month_with_data..last_month_with_data).map do |month_number|
       Date::MONTHNAMES[month_number]
     end
   end
 
   def get_data_for_each_level(level)
-    skill_id = params[:skill_id].to_s
-    (snapshots_by_month.keys.min..snapshots_by_month.keys.max).map do |month|
-      snapshot = snapshots_by_month[month]&.first
+    skill_id = params[:skill_id]
+
+    (first_month_with_data..last_month_with_data).map do |month|
+      snapshot = snapshots_by_month[month]
 
       if snapshot
         levels = snapshot.department_skill_levels[skill_id] || []
@@ -56,9 +57,15 @@ class DepartmentSkillSnapshotsController < CrudController
       end
     end
   end
+  def first_month_with_data
+    @first_month_with_data ||= snapshots_by_month.keys.min
+  end
+  def last_month_with_data
+    @last_month_with_data ||= snapshots_by_month.keys.max
+  end
 
   def snapshots_by_month
-    active_snapshots.group_by do |snapshot|
+    active_snapshots.index_by do |snapshot|
       snapshot.created_at.month
     end
   end
