@@ -48,9 +48,10 @@ class PeopleSearch
   def pre_load(people)
     person_keys = people.map(&:id)
 
-    Person.includes(:department, :roles, :projects, :activities,
-                    :educations, :advanced_trainings, (:skills if search_skills))
-          .find(person_keys)
+    associations = [:department, :roles, :projects, :activities, :educations, :advanced_trainings]
+    associations << :skills if search_skills
+
+    Person.includes(associations).find(person_keys)
   end
 
   def in_associations(person)
