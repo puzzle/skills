@@ -42,6 +42,7 @@ ja:
       people_skill:
         certificate: 証明書
         core_competence: コアコンピタンス
+        interest: 興味
         level: レベル
         skill: スキル
       person:
@@ -373,6 +374,14 @@ ja:
   profile:
     updated_at: 最終編集日
   skill_search:
+    index:
+      table:
+        certificate: 証明書
+        name: 名前
+        skill: スキル
+        level: レベル
+        interest: 興味
+        core_competence: 核心能力
     global:
       link:
         add: スキルを追加（最大5つまで）

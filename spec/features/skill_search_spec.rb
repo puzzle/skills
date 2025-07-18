@@ -144,6 +144,31 @@ describe :skill_search do
 
       expect(page).to have_css('.ss-disabled', text: 'Rails')
     end
+
+    it 'should be able to sort people_skills table' do
+      visit skill_search_index_path
+      skill = skills(:rails)
+      fill_out_row(skill.title, 1, 1)
+      sortable_columns = %w[name level interest certificate core_competence]
+      sortable_columns.each do |attr|
+        click_link PeopleSkill.human_attribute_name(attr)
+        expect(page).to have_current_path(skill_search_index_path(department: "", "interest[0]": 1, "level[]": 1, "skill_id[]": skill.id, sort: attr.downcase, sort_dir: 'asc'))
+        click_link PeopleSkill.human_attribute_name(attr)
+        expect(page).to have_current_path(skill_search_index_path(department: "", "interest[0]": 1, "level[]": 1, "skill_id[]": skill.id, sort: attr.downcase, sort_dir: 'desc'))
+      end
+    end
+
+    it 'should not be able to sort certain columns when multiple skills are searched' do
+      visit skill_search_index_path
+      skill1 = skills(:rails)
+      skill2 = skills(:cunit)
+      fill_out_row(skill1.title, 1, 1)
+      add_and_fill_out_row(skill2.title, 1, 1)
+      not_sortable_columns = %w[level interest certificate core_competence]
+      not_sortable_columns.each do |attr|
+        expect(page).to have_no_link(PeopleSkill.human_attribute_name(attr))
+      end
+    end
   end
 
   def add_and_fill_out_row(skill, level, interest)

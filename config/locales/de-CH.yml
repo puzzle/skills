@@ -42,6 +42,7 @@ de-CH:
       people_skill:
         certificate: Zertifikat
         core_competence: chärnkompetenz
+        interest: Interässä
         level: Level
         skill: Skill
       person:
@@ -394,6 +395,14 @@ de-CH:
   profile:
     updated_at: Z'letzt bearbeitet
   skill_search:
+    index:
+      table:
+        certificate: Zertifikat
+        name: Namä
+        skill: Skill
+        level: Level
+        interest: Interässä
+        core_competence: Chärnkompetenz
     global:
       link:
         add: Skill hinzuäfüegä (max. 5)

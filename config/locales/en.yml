@@ -42,6 +42,7 @@ en:
       people_skill:
         certificate: Certificate
         core_competence: Core competence
+        interest: Interest
         level: Level
         skill: Skill
       person:
@@ -373,6 +374,14 @@ en:
   profile:
     updated_at: Last edited
   skill_search:
+    index:
+      table:
+        certificate: Certificate
+        name: Name
+        skill: Skill
+        level: Level
+        interest: Interest
+        core_competence: Core competence
     global:
       link:
         add: Add skill (max. 5)
