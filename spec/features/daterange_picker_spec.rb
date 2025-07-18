@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.shared_examples 'a model with date range validations' do
   context 'validations' do
-    it 'checks whether required attribute values are present' do
+    it 'does not allow year_from to be blank' do
       instance = described_class.new
       instance.valid?
       expect(instance.errors[:year_from].first).to eq('muss ausgefüllt werden')
