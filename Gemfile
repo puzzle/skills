@@ -38,7 +38,6 @@ gem 'nokogiri'
 gem 'odf-report'
 gem 'omniauth-keycloak'
 gem 'omniauth-rails_csrf_protection'
-gem 'overcommit'
 gem 'pg'
 gem 'pg_search'
 gem 'psych', '~> 3.3', '>= 3.3.4'
@@ -78,6 +77,7 @@ group :development do
   gem 'debugbar'
   gem 'dotenv'
   gem 'listen'
+  gem 'overcommit'
   gem 'rb-readline'
   # Spring speeds up development by keeping your application
   # running in the background. Read more: https://github.com/rails/spring
