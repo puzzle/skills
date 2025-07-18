@@ -43,7 +43,7 @@ end
 describe Education do
   fixtures :educations
 
-  let(:record) { educations(:bsc) }
+  let(:record) { educations(:moe) }
 
   it_behaves_like 'a model with date range validations'
 end
@@ -59,7 +59,7 @@ end
 describe Activity do
   fixtures :activities
 
-  let(:record) { activities(:swisscom) }
+  let(:record) { activities(:roche) }
 
   it_behaves_like 'a model with date range validations'
 end

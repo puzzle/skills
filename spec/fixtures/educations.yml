@@ -20,8 +20,7 @@ bsc:
   location: Uni Bern
   title: BSc in Cleaning
   year_to: 2010
-  year_from: 2010
-  month_from: 12
+  year_from: 2000
   person: bob
 
 msc:
@@ -50,6 +49,7 @@ moe:
   title: Master of Engineering
   year_to: 2014
   year_from: 2010
+  month_from: 12
   person: longmax
 
 mscw:
