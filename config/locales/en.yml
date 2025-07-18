@@ -80,6 +80,7 @@ en:
           one: Function
           other: Functions
         shortname: Short name
+        reminder_mails_active: Reminder mails active
         skills:
           one: Skill
           other: Skills
@@ -100,6 +101,8 @@ en:
         radar: Radar
         subcategory: Subcategory
         title: Title
+      company:
+        reminder_mails_active: Reminder mails active
     models:
       activity: Station
       advanced_training: Further training
@@ -136,6 +139,7 @@ en:
       delete_inactive_profiles: Delete inactive profiles
       unify_skills: Unify skills
       update_people_manually: Update people manually
+      reminder_mail: Activate reminder emails for your company.
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Something went wrong while updating %{names}. Please try again and, if necessary, check the data in PuzzleTime.

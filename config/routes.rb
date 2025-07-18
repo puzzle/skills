@@ -47,6 +47,10 @@ Rails.application.routes.draw do
       delete :people_management, to: 'people_management#destroy_person'
     end
 
+    resources :admin do
+      patch :toggle_reminder_mails, on: :collection, as: :toggle_reminder_mails
+    end
+
     resources :people do
       resources :advanced_trainings
       resources :educations

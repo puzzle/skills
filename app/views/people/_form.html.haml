@@ -76,6 +76,10 @@
             = form.label :shortname
           %tr
             %td= form.text_field :shortname, {class: "mw-100 form-control", **disabled_with_ptime_sync}
+          %th.fw-normal
+            = form.label :reminder_mails_active
+          %tr
+            %td= form.check_box :reminder_mails_active
     %div.col-xl-3.col-12{"data-controller"=>"lang-selection"}
       %div.fw-normal
         = form.label :language_skills

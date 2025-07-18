@@ -80,6 +80,7 @@ ja:
           one: 職務
           other: 職務
         shortname: 短縮名
+        reminder_mails_active: リマインダーメールが有効
         skills:
           one: スキル
           other: スキル
@@ -100,6 +101,8 @@ ja:
         radar: レーダー
         subcategory: サブカテゴリ
         title: タイトル
+      company:
+        reminder_mails_active: リマインダーメールが有効
     models:
       activity: 配属先
       advanced_training: 研修
@@ -136,6 +139,7 @@ ja:
       delete_inactive_profiles: 無効なプロファイルを削除
       unify_skills: スキル統合
       update_people_manually: ユーザーを手動で更新
+      reminder_mail: 会社のリマインダーメールを有効にする
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: "%{names}の更新に失敗しました。再度お試しください。また、念のためPuzzleTime内のデータもご確認ください。"
