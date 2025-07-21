@@ -11,6 +11,7 @@ gem 'annotate'
 gem 'bigdecimal'
 gem 'bleib', '0.0.8' # For deployment
 gem 'bootsnap'
+gem 'bundler-audit'
 gem 'carrierwave'
 gem 'config'
 gem 'countries'
@@ -73,8 +74,10 @@ end
 
 group :development do
   gem 'bullet'
+  gem 'debugbar'
   gem 'dotenv'
   gem 'listen'
+  gem 'overcommit'
   gem 'rb-readline'
   # Spring speeds up development by keeping your application
   # running in the background. Read more: https://github.com/rails/spring

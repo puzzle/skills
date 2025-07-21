@@ -42,6 +42,7 @@ de:
       people_skill:
         certificate: Zertifikat
         core_competence: Kernkompetenz
+        interest: Interesse
         level: Level
         skill: Skill
       person:
@@ -80,6 +81,7 @@ de:
           one: Funktion
           other: Funktionen
         shortname: Kurzname
+        reminder_mails_active: Erinnerungsmails aktiv
         skills:
           one: Skill
           other: Skills
@@ -100,6 +102,8 @@ de:
         radar: Radar
         subcategory: Subkategorie
         title: Titel
+      company:
+        reminder_mails_active: Erinnerungsmails aktiv
     models:
       activity: Station
       advanced_training:
@@ -140,6 +144,7 @@ de:
       delete_inactive_profiles: Inaktive Profile löschen
       unify_skills: Skills vereinen
       update_people_manually: Personen manuell aktualisieren
+      reminder_mail: Aktiviere Erinnerungs E-Mails für die Firma.
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Bei der Aktualisierung von %{names} ist etwas schiefgelaufen. Versuche es erneut und überprüfe allenfalls die Daten im PuzzleTime.
@@ -368,18 +373,23 @@ de:
     scroll_to_menu:
       link:
         add: Skill hinzufügen
-  people_skills:
-    global:
-      link:
-        add: Skill hinzufügen (max. 5)
-  people_skills/filter_form:
-    global:
-      link:
-        add: Skill hinzufügen (max. 5)
   person_role:
     none: Keines
   profile:
     updated_at: Zuletzt bearbeitet
+  skill_search:
+    index:
+      table:
+        certificate: Zertifikat
+        name: Name
+        skill: Skill
+        level: Level
+        interest: Interesse
+        core_competence: Kernkompetenz
+    global:
+      link:
+        add: Skill hinzufügen (max. 5)
+      dont_filter: Nicht filtern
   skills:
     form:
       cancel: Abbrechen

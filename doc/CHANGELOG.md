@@ -1,3 +1,12 @@
+# Work in progress
+
+### Features
+- **Reminder Mails** These are emails sent to all members of a company. This feature is turned off by default at the company level.
+- **Your Personal Setting** You can control whether you receive these emails. This option is active by default, but you can turn it off anytime using the new checkbox in your profile settings.
+
+### Improvements
+
+
 # 6.0.0
 
 ### Features

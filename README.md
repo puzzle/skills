@@ -149,11 +149,19 @@ To interact with `pry` inside a controller, you have to attach to the container 
 This will show you any **new** logs, and if you encounter a `pry` prompt, you can interact with it.
 **To detach from the container without stopping it, press `CTRL + p` then `CTRL + q`.**
 
+### Debugbar
+The development environment also includes [debugbar](https://debugbar.dev/docs/) which is very handy to see
+- All the details of a request (Params, Response body, Statuscode, Cookies. Method) 
+- DB Queries executed
+- Requests sent
+- How many entities of a model were interacted with
 
 ## Testing
 
 -   To run the backend tests run `rake spec`
 -   To test with a non-admin user, change the email in `app/controllers/application_controller.rb#authenticate_auth_user"` to "user@skills.ch"
+## Hooks
+- To install the pre-commit hooks run `overcommit --install`
 
 ## Documentation
 Find further Documentation at the links below

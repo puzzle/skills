@@ -10,9 +10,11 @@
 
 firma:
   name: Firma
+  reminder_mails_active: true
 
 partner:
   name: Partner
+  reminder_mails_active: false
 
 ex-mitarbeiter:
   name: Ex-Mitarbeiter

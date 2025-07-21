@@ -13,7 +13,7 @@ describe 'Routing', type: :feature, js: true do
       "/": "/de/people",
       "/de/": "/de/people",
       "/people": "/de/people",
-      "/people_skills": "/de/people_skills",
+      "/skill_search": "/de/skill_search",
       "/en": "/en/people",
     }
 

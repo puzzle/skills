@@ -31,11 +31,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :people_skills do
-      collection do
-        get 'filter_form', to: "people_skills/filter_form#index"
-      end
-    end
+    resources :skill_search, only: [:index]
 
     resources :cv_search
 
@@ -49,6 +45,10 @@ Rails.application.routes.draw do
       post :execute_manual_ptime_sync, to: 'manual_ptime_sync#manual_sync'
       resources :people_management, only: :index
       delete :people_management, to: 'people_management#destroy_person'
+    end
+
+    resources :admin do
+      patch :toggle_reminder_mails, on: :collection, as: :toggle_reminder_mails
     end
 
     resources :people do

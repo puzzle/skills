@@ -1,0 +1,7 @@
+PreCommit:
+  TruffleHog:
+    enabled: true
+    required_executable: 'docker'
+    command: ['bash', '-c', 'docker run --rm -v "$(pwd):/workdir" trufflesecurity/trufflehog:latest git file:///workdir --since-commit HEAD --no-verification --fail']
+    problem_on_unmodified_line: true
+    description: 'Detect secrets using TruffleHog (Docker)'

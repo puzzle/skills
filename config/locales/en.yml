@@ -42,6 +42,7 @@ en:
       people_skill:
         certificate: Certificate
         core_competence: Core competence
+        interest: Interest
         level: Level
         skill: Skill
       person:
@@ -80,6 +81,7 @@ en:
           one: Function
           other: Functions
         shortname: Short name
+        reminder_mails_active: Reminder mails active
         skills:
           one: Skill
           other: Skills
@@ -100,6 +102,8 @@ en:
         radar: Radar
         subcategory: Subcategory
         title: Title
+      company:
+        reminder_mails_active: Reminder mails active
     models:
       activity: Station
       advanced_training: Further training
@@ -136,6 +140,7 @@ en:
       delete_inactive_profiles: Delete inactive profiles
       unify_skills: Unify skills
       update_people_manually: Update people manually
+      reminder_mail: Activate reminder emails for your company.
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Something went wrong while updating %{names}. Please try again and, if necessary, check the data in PuzzleTime.
@@ -334,7 +339,7 @@ en:
       activities: Station
       advanced-trainings: Further training
       core-competences: Core competencies
-      educations: Trainings
+      educations: Educations
       personal-data: Personal data
       projects: Projects
     search:
@@ -364,18 +369,23 @@ en:
     scroll_to_menu:
       link:
         add: Add skill
-  people_skills:
-    global:
-      link:
-        add: Add skill (max. 5)
-  people_skills/filter_form:
-    global:
-      link:
-        add: Add skill (max. 5)
   person_role:
     none: None
   profile:
     updated_at: Last edited
+  skill_search:
+    index:
+      table:
+        certificate: Certificate
+        name: Name
+        skill: Skill
+        level: Level
+        interest: Interest
+        core_competence: Core competence
+    global:
+      link:
+        add: Add skill (max. 5)
+      dont_filter: Don't filter
   skills:
     form:
       cancel: cancel

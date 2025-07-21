@@ -42,6 +42,7 @@ de-CH:
       people_skill:
         certificate: Zertifikat
         core_competence: chärnkompetenz
+        interest: Interässä
         level: Level
         skill: Skill
       person:
@@ -80,6 +81,7 @@ de-CH:
           one: Funktion
           other: Funktionä
         shortname: churznamä
+        reminder_mails_active: Erinnerigsmail aktiv
         skills:
           one: Skill
           other: Skills
@@ -100,6 +102,8 @@ de-CH:
         radar: Radar
         subcategory: Subkategorie
         title: Titu
+      company:
+        reminder_mails_active: Erinnerigsmail aktiv
     models:
       activity: Station
       advanced_training:
@@ -140,6 +144,7 @@ de-CH:
       delete_inactive_profiles: Inaktivi Profiu löschä
       unify_skills: Skills vereinä
       update_people_manually: Persone manuell aktualisiere
+      reminder_mail: Aktivier Erinnerigs E-Mails für d Firma.
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Bi dr Aktualisierig vo %{names} isch öppis schiefgloffe. Versuechs nomau und überprüef auefaus d Date im PuzzleTime.
@@ -385,18 +390,23 @@ de-CH:
     scroll_to_menu:
       link:
         add: Skill hinzuäfüegä
-  people_skills:
-    global:
-      link:
-        add: Skill hinzuäfüegä (max. 5)
-  people_skills/filter_form:
-    global:
-      link:
-        add: Skill hinzuäfüegä (max. 5)
   person_role:
     none: Kes
   profile:
     updated_at: Z'letzt bearbeitet
+  skill_search:
+    index:
+      table:
+        certificate: Zertifikat
+        name: Namä
+        skill: Skill
+        level: Level
+        interest: Interässä
+        core_competence: Chärnkompetenz
+    global:
+      link:
+        add: Skill hinzuäfüegä (max. 5)
+      dont_filter: Nid filterä
   skills:
     form:
       cancel: Abbrächä

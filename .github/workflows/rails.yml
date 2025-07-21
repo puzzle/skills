@@ -57,3 +57,6 @@ jobs:
 
       - name: 'Run RuboCop'
         run: bundle exec rubocop --parallel
+
+      - name: 'Run bundle-audit'
+        run: bundle exec bundle-audit

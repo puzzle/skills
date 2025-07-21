@@ -42,6 +42,7 @@ fr:
       people_skill:
         certificate: Certificat
         core_competence: Compétence clé
+        interest: Intérêt
         level: Niveau
         skill: Compétence
       person:
@@ -80,6 +81,7 @@ fr:
           one: Fonction
           other: Fonctions
         shortname: Nom court
+        reminder_mails_active: E-mails de rappel actifs
         skills:
           one: Compétence
           other: Compétences
@@ -100,6 +102,8 @@ fr:
         radar: Radar
         subcategory: Sous-catégorie
         title: Titre
+      company:
+        reminder_mails_active: E-mails de rappel actifs
     models:
       activity: Station
       advanced_training: Formation continue
@@ -136,6 +140,7 @@ fr:
       delete_inactive_profiles: Supprimer les profils inactifs
       unify_skills: Unifier les compétences
       update_people_manually: Mise à jour manuelle des personnes
+      reminder_mail: Activez les e-mails de rappel pour votre entreprise.
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Une erreur s'est produite lors de la mise à jour de %{names}. Veuillez réessayer et, si nécessaire, vérifier les données dans PuzzleTime.
@@ -364,18 +369,23 @@ fr:
     scroll_to_menu:
       link:
         add: Ajouter une compétence
-  people_skills:
-    global:
-      link:
-        add: Ajouter une compétence (max. 5)
-  people_skills/filter_form:
-    global:
-      link:
-        add: Ajouter une compétence (max. 5)
   person_role:
     none: Aucun
   profile:
     updated_at: Dernièrement édité
+  skill_search:
+    index:
+      table:
+        certificate: Certificat
+        name: Nom
+        skill: Compétence
+        level: Niveau
+        interest: Intérêt
+        core_competence: Compétence clé
+    global:
+      link:
+        add: Ajouter une compétence (max. 5)
+      dont_filter: Ne pas filtrer
   skills:
     form:
       cancel: annuler
