@@ -470,14 +470,10 @@ a > img {
   min-height: inherit;
 }
 
-.skill-department-select {
-  min-width: 150px;
-  height: 75%;
-}
-
 .skill-tracking-select {
   width: 18.75em;
   min-width: 18.75em;
+  min-height: 38px;
   text-wrap: nowrap;
   text-overflow: ellipsis;
 }
