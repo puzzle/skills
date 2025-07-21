@@ -55,6 +55,7 @@ roche:
   role: Scrum Master
   year_to: 2014
   year_from: 2010
+  month_from: 12
   person: longmax
 
 migros:
