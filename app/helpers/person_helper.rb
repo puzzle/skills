@@ -36,7 +36,7 @@ module PersonHelper
   end
 
   def group_person_skills_by_category(person)
-    PeopleSkill.includes(skill: { category: :parent }).core_competence
+    PeopleSkill.includes(skill: :category).core_competence
                .where(person_id: person.id)
                .group_by { |ps| ps.skill.category.parent }
   end
