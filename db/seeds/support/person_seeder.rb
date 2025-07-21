@@ -10,7 +10,7 @@ class PersonSeeder
       seed_person_roles(person)
       seed_people_skills(person.id)
       seed_image(person)
-      associations = [:activity, :advanced_training, :project, :education, :language_skill, :people_skills]
+      associations = [:activity, :advanced_training, :project, :education, :language_skill, :people_skills, :contribution]
       associations.each do |a|
         seed_association(a, person.id)
       end
@@ -179,6 +179,18 @@ class PersonSeeder
       a.level = %w{Keine A1 A2 B1 B2 C1 C2 Muttersprache}.sample
       a.certificate = Faker::Educator.university
       a.person_id = person_id
+    end
+  end
+
+  def seed_contribution(person_id)
+    Contribution.seed do |c|
+      c.title = Faker::Company.name
+      c.reference = Faker::Internet.url
+      c.person_id = person_id
+      c.year_from = rand(2000..2015)
+      c.year_to = rand(2015..Time.now.year)
+      c.month_from = rand(1..12)
+      c.month_to = rand(1..12)
     end
   end
 

@@ -1,4 +1,4 @@
-= render 'scroll_to_menu', items: %w[personal-data core-competences educations advanced-trainings activities projects] do
+= render 'scroll_to_menu', items: %w[personal-data core-competences educations advanced-trainings activities projects contributions] do
   = export_action_link export_cv_person_path(@person), data: { turbo_frame: "remote_modal" }
 %div.w-100{data: { "scroll-target": "parent"}}
   - if @person.people_skills.count == 0
@@ -12,3 +12,4 @@
   = render('people/person_relations/index', list: @person.advanced_trainings.list, id: "advanced-trainings")
   = render('people/person_relations/index', list: @person.activities.list, id: "activities")
   = render('people/person_relations/index', list: @person.projects.list, id: "projects")
+  = render('people/person_relations/index', list: @person.contributions.list, id: "contributions")

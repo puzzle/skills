@@ -1,0 +1,31 @@
+# == Schema Information
+#
+#  Table name: educations
+#
+#  id             :integer
+#  title          :string
+#  reference      :string
+#  person_id      :integer
+#  year_from      :integer
+#  year_to        :integer
+#  month_from     :integer
+#  month_to       :integer
+#  display_in_cv  :boolean
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+puzzle-time:
+  title: Updated the PuzzleTime API
+  reference: https://reference.example.com
+  year_from: 2012
+  month_from: 11
+  display_in_cv: false
+  person: bob
+
+puzzle-docs:
+  title: Added a new documentation
+  reference: https://reference.example.com
+  year_from: 2022
+  month_from: 9
+  display_in_cv: true
+  person: bob

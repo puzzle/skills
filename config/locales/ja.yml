@@ -34,6 +34,10 @@ ja:
         study_time: 学習時間 [日]
         title: タイトル
         type_of_exam: 試験の種類
+      contribution:
+        display_in_cv: 履歴書に含める
+        reference: 参照（例：リンク
+        title: タイトル
       education:
         display_in_cv: 履歴書に含める
         location: 研修場所
@@ -116,6 +120,9 @@ ja:
       company:
         one: 会社
         other: 会社
+      contribution:
+        one: オープンソース貢献
+        other: オープンソース貢献
       department:
         one: 部署
         other: 部署
@@ -294,6 +301,10 @@ ja:
     advanced_trainings:
       link:
         add: 新しい研修
+    contributions:
+      link:
+        add: 新しい貢献
+        open: 参照を開く
     cv:
       no_skills_rated_msg: このプロフィールにはまだ評価されたスキルがありません。スキルタブに移動し、関連するスキルを評価してください。
     educations:
@@ -338,6 +349,7 @@ ja:
     scroll_to_menu:
       activities: 勤務地（ステーション）
       advanced-trainings: さらなる研修
+      contributions: オープンソース貢献
       core-competences: コアコンピテンシー
       educations: 研修
       personal-data: 個人データ

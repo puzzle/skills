@@ -34,6 +34,10 @@ de:
         study_time: Lernaufwand [d]
         title: Titel
         type_of_exam: Prüfungsart
+      contribution:
+        display_in_cv: Im CV Export inkludieren
+        reference: Referenz (z.B. Link)
+        title: Titel
       education:
         display_in_cv: Im CV Export inkludieren
         location: Ausbildungsort
@@ -118,6 +122,9 @@ de:
       company:
         one: Firma
         other: Firmen
+      contribution:
+        one: Open Source Beitrag
+        other: Open Source Beiträge
       department:
         one: Organisationseinheit
         other: Organisationseinheiten
@@ -298,6 +305,10 @@ de:
     advanced_trainings:
       link:
         add: Neue Weiterbildung
+    contributions:
+      link:
+        add: Neue Contribution
+        open: Referenz öffnen
     cv:
       no_skills_rated_msg: Dieses Profil hat noch keine bewerteten Skills. Gehe zum Skills Tab und bewerte die für dich relevanten Skills.
     educations:
@@ -342,6 +353,7 @@ de:
     scroll_to_menu:
       activities: Station
       advanced-trainings: Weiterbildungen
+      contributions: Open Source Beiträge
       core-competences: Kernkompetenzen
       educations: Ausbildungen
       personal-data: Personliche Daten

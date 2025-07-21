@@ -34,6 +34,10 @@ it:
         study_time: Tempo di studio [d]
         title: Titolo
         type_of_exam: Tipo di esame
+      contribution:
+        display_in_cv: Includere nell'esportazione del CV
+        reference: Riferimento (ad es. link)
+        title: Titolo
       education:
         display_in_cv: Includere nell'esportazione del CV
         location: Luogo di formazione
@@ -116,6 +120,9 @@ it:
       company:
         one: Azienda
         other: Aziende
+      contribution:
+        one: Contributo open source
+        other: Contributi open source
       department:
         one: Unità organizzativa
         other: Unità organizzative
@@ -294,6 +301,10 @@ it:
     advanced_trainings:
       link:
         add: Nuova formazione continua
+    contributions:
+      link:
+        add: Nuovo contributo
+        open: Riferimento aperto
     cv:
       no_skills_rated_msg: Questo profilo non ha ancora competenze valutate. Andate alla scheda Competenze e valutate le competenze che vi interessano.
     educations:
@@ -338,6 +349,7 @@ it:
     scroll_to_menu:
       activities: Stazione
       advanced-trainings: Formazione continua
+      contributions: Contributi open source
       core-competences: Competenze di base
       educations: Programmi di formazione
       personal-data: Dati personali

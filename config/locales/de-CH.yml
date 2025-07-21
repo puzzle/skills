@@ -17,12 +17,12 @@ de-CH:
     attributes:
       activity:
         description: Firmäangabä und Beschribig vor Tätigkeit
-        display_in_cv: Im CV Export inkludierä.
+        display_in_cv: Im CV Export inkludierä
         role: Rouä
         year_from: Startdatum
       advanced_training:
         description: Beschribig
-        display_in_cv: Im CV Export inkludierä.
+        display_in_cv: Im CV Export inkludierä
         year_from: Startdatum
       certificate:
         comment: Bemerkig
@@ -34,8 +34,12 @@ de-CH:
         study_time: Lernufwand [d]
         title: Titu
         type_of_exam: Prüefigsart
+      contribution:
+        display_in_cv: Im CV Export inkludierä
+        reference: Referänz (z.B. Link)
+        title: Titu
       education:
-        display_in_cv: Im CV Export inkludierä.
+        display_in_cv: Im CV Export inkludierä
         location: Usbiudigsort
         title: Usbiudig
         year_from: Startdatum
@@ -56,7 +60,7 @@ de-CH:
         company: Firma
         competence_notes: Notizä Member
         department: Organisationsiheit
-        display_competence_notes_in_cv: Im CV Export inkludierä.
+        display_competence_notes_in_cv: Im CV Export inkludierä
         dual_citizen: Doppubürger
         educations:
           one: Usbiudig
@@ -89,7 +93,7 @@ de-CH:
         updated_at: Letzts Update
       project:
         description: Beschribig
-        display_in_cv: Im CV Export inkludierä.
+        display_in_cv: Im CV Export inkludierä
         role: Rouä u Ufgabe
         technology: Igsetzti Technologiä
         title: Projekt
@@ -118,6 +122,9 @@ de-CH:
       company:
         one: Firma
         other: Firmä
+      contribution:
+        one: Open source Biitrag
+        other: Open source Biiträg
       department:
         one: Organisationsiheit
         other: Organisationseiheitä
@@ -315,6 +322,10 @@ de-CH:
     advanced_trainings:
       link:
         add: Neui Witerbiudig
+    contributions:
+      link:
+        add: Neui Contribution
+        open: Referänz öffne
     cv:
       no_skills_rated_msg: Ds Profiu het no kei bewärtetä Skills. Gang zum Skills Tab und bewärtä diä für di relevantä Skills.
     educations:
@@ -359,6 +370,7 @@ de-CH:
     scroll_to_menu:
       activities: Station
       advanced-trainings: Witerbiudigä
+      contributions: Open Source Biiträg
       core-competences: Chärnkompetenzä
       educations: Usbiudigä
       personal-data: Personlechi Datä

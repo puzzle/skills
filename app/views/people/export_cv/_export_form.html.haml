@@ -7,6 +7,9 @@
     = f.check_box :includeCS, class: "form-check-input"
     = f.label t(".competences_skills"), class: "form-check-label w-100"
   .mb-2.w-100.form-check.form-switch
+    = f.check_box :includeContributions, class: "form-check-input"
+    = f.label t("activerecord.models.contribution.other"), class: "form-check-label w-100"
+  .mb-2.w-100.form-check.form-switch
     = f.check_box :skillsByLevel, class: "form-check-input", "data-action": "click->skills-filter#toggleSwitch"
     = f.label t(".skills_by_level"), class: "form-check-label w-100"
 
