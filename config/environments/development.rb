@@ -78,6 +78,8 @@ Rails.application.configure do
   config.after_initialize do
     Bullet.enable = true
 
+    # Log warnings to your browser's console.log
+    Bullet.console = true
     # Adds the details in the bottom left corner of the page. Double click the footer or use close button to hide footer
     Bullet.add_footer = true
     # Add Bullet to Sentry, probably interesting in the future
