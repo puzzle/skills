@@ -43,24 +43,4 @@ export default class extends Controller {
     navigateOnChange(event) {
         window.location.href = event.target.value;
     }
-
-    adjustDropdownWidth(selectEl) {
-        const span = document.createElement('span')
-        span.style.fontSize = '16px'
-        document.body.appendChild(span)
-
-        let maxWidth = 0
-        for (let option of selectEl.options) {
-            span.textContent = option.text
-            const width = span.getBoundingClientRect().width
-            maxWidth = Math.max(maxWidth, width)
-        }
-
-        document.body.removeChild(span)
-
-        const wrapper = selectEl.nextElementSibling
-        if (wrapper && wrapper.classList.contains('ss-main')) {
-            wrapper.style.width = `${maxWidth + 60}px`
-        }
-    }
 }

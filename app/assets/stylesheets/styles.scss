@@ -476,6 +476,12 @@ a > img {
 }
 
 .skill-tracking-select {
-  min-width: 150px;
-  min-height: 45px;
+  width: 18.75em;
+  min-width: 18.75em;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ss-content.skill-tracking-select {
+  width: max-content !important;
 }
