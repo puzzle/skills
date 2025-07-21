@@ -1,14 +1,6 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  config.after_initialize do
-    Bullet.enable        = true
-    Bullet.alert         = true
-    Bullet.bullet_logger = true
-    Bullet.console       = true
-    Bullet.rails_logger  = true
-    Bullet.add_footer    = true
-  end
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Make code changes take effect immediately without server restart.
@@ -86,6 +78,8 @@ Rails.application.configure do
   config.after_initialize do
     Bullet.enable = true
 
+    # Adds the details in the bottom left corner of the page. Double click the footer or use close button to hide footer
+    Bullet.add_footer = true
     # Add Bullet to Sentry, probably interesting in the future
     Bullet.sentry = false
     # Log to the Bullet log file (Rails.root/log/bullet.log)
@@ -104,5 +98,4 @@ Rails.application.configure do
     delivery_method: :smtp,
     authentication: :plain
   }
-
 end
