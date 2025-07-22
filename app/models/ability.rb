@@ -48,7 +48,7 @@ class Ability
   end
 
   def user_classes
-    [Activity, AdvancedTraining, Education, Project, Person, PeopleSkill]
+    [Activity, AdvancedTraining, Education, Project, Person, PeopleSkill, Contribution]
   end
 
   def editor_classes
