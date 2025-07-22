@@ -27,9 +27,6 @@ class PeopleController < CrudController
 
   def new
     super
-    %w[DE EN FR].map do |language|
-      @person.language_skills.push LanguageSkill.new({ language: language, level: 'Keine' })
-    end
     @person.nationality = 'CH'
   end
 

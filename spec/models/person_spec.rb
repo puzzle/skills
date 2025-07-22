@@ -113,5 +113,13 @@ describe Person do
       expect(person.errors[:email].first).to eq('ist zu lang (mehr als 100 Zeichen)')
       expect(person.errors[:shortname].first).to eq('ist zu lang (mehr als 100 Zeichen)')
     end
+
+    context 'language_skills' do
+      it 'should automatically add default language on person creation' do
+        new_person = Person.new
+        expect(new_person.language_skills.length).to eq(3)
+        expect(new_person.language_skills.map(&:language)).to eql(%w[DE EN FR])
+      end
+    end
   end
 end
