@@ -8,7 +8,7 @@ class CvSearchController < ApplicationController
   private
 
   def search_results
-    PeopleSearch.new(query, search_skills: search_skills?).entries
+    PeopleSearch.new(query.map(&:strip), search_skills: search_skills?).entries
   end
 
   def query

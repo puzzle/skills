@@ -24,7 +24,7 @@
                 %div.w-25.d-flex.justify-content-start.align-items-center.me-5
                   %div.me-1.w-100.h-100
                     %p.bg-skills-search-result-blue.text-decoration-none.text-white.ps-1.p-2.rounded-1.text-center.mb-0
-                      = "#{found_in[:keywords_in_attribute].sort.join(', ')}"
+                      = found_in[:keywords_in_attribute].sort_by(&:downcase).join(', ')
                 %div.d-flex.justify-content-start.align-items-center.me-2
                   = ti("search.found_in")
                 %div.w-25.d-flex.justify-content-start.align-items-center
