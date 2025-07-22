@@ -26,7 +26,6 @@ spec/coverage/.last_run.json
 # Ignore uploaded pictures
 /uploads
 /public/uploads
-
 /node_modules
 
 
@@ -99,5 +98,6 @@ config/docker/*/home/rails/.mozilla
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
+/app/.cache
 
 .envrc

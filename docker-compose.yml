@@ -2,7 +2,7 @@ services:
   rails:
     container_name: rails
     image: skills-dev/rails
-    user: "${UID:-1000}"
+    user: app
     tty: true
     stdin_open: true
     environment:
@@ -23,8 +23,8 @@ services:
       - postgres
   test:
     container_name: test
-    image: skills-dev/rails
-    user: "${UID:-1000}"
+    image: skills-test/rails
+    user: app
     tty: true
     stdin_open: true
     environment:
@@ -33,15 +33,14 @@ services:
     env_file: .env
     build:
       context: ./config/docker/test
-      dockerfile: Rails.dockerfile
+      dockerfile: Test.dockerfile
     ports:
       - 3001:3000
     volumes:
       - ./:/myapp
-      - ./config/docker/development/home/rails:/home/developer
+      - ./config/docker/test/home/rails:/home/test
       - /tmp/.X11-unix:/tmp/.X11-unix
       - ${GEM_PATH}:/opt/bundle
-      - /etc/passwd:/etc/passwd
 
     depends_on:
       - postgres

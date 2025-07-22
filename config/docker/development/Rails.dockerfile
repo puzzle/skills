@@ -9,6 +9,7 @@ WORKDIR /myapp
 
 COPY ./rails-entrypoint /usr/local/bin
 
+RUN useradd app -m -U -d /myapp/
 RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
 RUN apt-get update
 RUN apt-get install direnv -y
