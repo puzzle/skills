@@ -469,3 +469,15 @@ a > img {
 .min-height-inherit {
   min-height: inherit;
 }
+
+.skill-tracking-select {
+  width: 18.75em;
+  min-width: 18.75em;
+  min-height: 38px;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ss-content.skill-tracking-select {
+  width: max-content !important;
+}
