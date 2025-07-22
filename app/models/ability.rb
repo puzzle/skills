@@ -34,7 +34,7 @@ class Ability
   end
 
   def user_classes
-    [Activity, AdvancedTraining, Education, Project, Person, PeopleSkill]
+    [Activity, AdvancedTraining, Education, Project, Person, PeopleSkill, Contribution]
   end
 
   def conf_admin_classes
