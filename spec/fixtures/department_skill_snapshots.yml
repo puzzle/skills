@@ -21,6 +21,12 @@ dev-one-2025:
   updated_at: 2025-05-01 12:00:00
 
 dev-two-2025:
+  department_id: 457905166
+  department_skill_levels: "{\"31989848\":[5,2,2],\"677333953\":[3,3,3]}"
+  created_at: 2025-07-01 12:00:00
+  updated_at: 2025-07-01 12:00:00
+
+dev-three-2025:
   department_id: 820844698
   department_skill_levels: "{\"31989848\":[5,2,2],\"677333953\":[3,3,3]}"
   created_at: 2025-05-01 12:00:00

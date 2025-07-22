@@ -12,7 +12,7 @@ class DepartmentSkillSnapshotsController < CrudController
 
   def chart_data
     {
-      labels: months.compact,
+      labels: month_labels,
       datasets: dataset_values.map.with_index(1) do |label, level|
         build_dataset(label, level)
       end.compact
@@ -37,20 +37,42 @@ class DepartmentSkillSnapshotsController < CrudController
     }
   end
 
-  def get_data_for_each_level(level)
-    monthly_data = Array.new(12, 0)
-    skill_id = params[:skill_id].to_s
+  def month_labels
+    return [] if active_snapshots.empty?
 
-    find_snapshots_by_department_id_and_year.each do |snapshot|
-      month_index = snapshot.created_at.month - 1
-      levels = snapshot.department_skill_levels[skill_id] || []
-      monthly_data[month_index] += levels.count(level)
+    (first_month_with_data..last_month_with_data).map do |month_number|
+      Date::MONTHNAMES[month_number]
     end
-
-    monthly_data
   end
 
-  def find_snapshots_by_department_id_and_year
+  def get_data_for_each_level(level)
+    skill_id = params[:skill_id]
+
+    (first_month_with_data..last_month_with_data).map do |month|
+      snapshot = snapshots_by_month[month]
+
+      if snapshot
+        levels = snapshot.department_skill_levels[skill_id] || []
+        levels.count(level)
+      end
+    end
+  end
+
+  def first_month_with_data
+    @first_month_with_data ||= snapshots_by_month.keys.min
+  end
+
+  def last_month_with_data
+    @last_month_with_data ||= snapshots_by_month.keys.max
+  end
+
+  def snapshots_by_month
+    active_snapshots.index_by do |snapshot|
+      snapshot.created_at.month
+    end
+  end
+
+  def active_snapshots
     year = params[:year].to_i
     start_date = Date.new(year, 1, 1)
     end_date = start_date.end_of_year
