@@ -80,6 +80,6 @@ class DepartmentSkillSnapshotsController < CrudController
     DepartmentSkillSnapshot.where(
       department_id: params[:department_id],
       created_at: start_date..end_date
-    )
+    ).filter { |snapshot| snapshot.department_skill_levels.keys.include? params[:skill_id] }
   end
 end
