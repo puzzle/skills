@@ -327,7 +327,7 @@ module Odt
     end
 
     def insert_competence_notes_string(report)
-      competence_notes = person.competence_notes.split("\n").join(', ')
+      competence_notes = person.competence_notes&.split("\n")&.join(', ')
       report.add_field(:competence, competence_notes)
     end
   end
