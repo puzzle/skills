@@ -201,6 +201,7 @@ fr:
       authorization_error: Vous n'avez pas les droits pour exécuter cette fonction.
       cannot_remove: ne doit pas être supprimé.
       chart_data_empty: Sélectionnez un département, une compétence et une année pour afficher les données.
+      chart_results_empty: Aucun instantané correspondant aux filtres sélectionnés n'a été trouvé.
       invalid_date_range: doit être antérieure à la date de fin.
       max_size_10MB: ne doit pas dépasser 10 Mo.
       max_size_error: ne doit pas dépasser 10 Mo.

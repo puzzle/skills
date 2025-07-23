@@ -27,5 +27,5 @@
             { onchange: "this.form.requestSubmit()", class: "form-select skill-tracking-select"}
 
 %turbo-frame#team-skill-chart
-  %div.chart-container{data: {controller: "chart", "chart-dataset-value": @data, "chart-emptychart-value": t('errors.messages.chart_data_empty'), "chart-charttype-value": params[:chart_type]}}
+  %div.chart-container{data: {controller: "chart", "chart-dataset-value": @data, "chart-emptychart-value": @empty_chart_message, "chart-charttype-value": params[:chart_type]}}
     %canvas{ "data-chart-target": "canvas", width: "3", height: "1" }

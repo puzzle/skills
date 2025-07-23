@@ -201,6 +201,7 @@ ja:
       authorization_error: この機能を実行する権限がありません。
       cannot_remove: 削除できません。
       chart_data_empty: データを表示するには、部署、スキル、年を選択してください
+      chart_results_empty: 選択したフィルターに一致するスナップショットは見つかりませんでした。
       invalid_date_range: 終了日より前の日付でなければなりません。
       max_size_10MB: 10MBを超えてはいけません。
       max_size_error: 10MBを超えてはいけません。

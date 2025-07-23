@@ -18,10 +18,9 @@ export default class extends Controller {
     const ctx = this.canvasTarget.getContext("2d");
     const chartData = JSON.parse(this.datasetValue);
 
-    const isEmpty = !chartData?.datasets?.length || chartData.datasets.every(ds => !ds.data?.length);
+    const isEmpty = !chartData;
 
     const options = {
-      spanGaps: true,
       responsive: true,
       scales: {
         y: {
