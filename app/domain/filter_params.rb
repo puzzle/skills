@@ -39,6 +39,7 @@ class FilterParams
 
     PeopleSkill.includes(:skill, person: :department)
                .where(person_id: filtered_people, skill_id: skill_ids).where(department_filter)
+               .order('skills.title')
                .group_by(&:person)
   end
 
