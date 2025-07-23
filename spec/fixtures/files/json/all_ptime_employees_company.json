@@ -13,7 +13,7 @@
         "graduation" : "Flashing lights",
         "city" : "Bern",
         "birthday" : "1990-03-10",
-        "is_employed" : true,
+        "has_relevant_employment" : true,
         "department_shortname" : "UX",
         "department_name" : "/ux",
         "employment_roles" : [
@@ -43,7 +43,7 @@
         "graduation" : "MSc in writing",
         "city" : "Genf",
         "birthday" : "2001-01-05",
-        "is_employed" : true,
+        "has_relevant_employment" : true,
         "department_shortname" : "D3",
         "department_name" : "/dev/tre",
         "employment_roles" : [
@@ -73,7 +73,7 @@
         "graduation" : "Can't tell me nothing",
         "city" : "Thun",
         "birthday" : "1980-10-25",
-        "is_employed" : false,
+        "has_relevant_employment" : false,
         "department_shortname" : "UX",
         "department_name" : "/ux",
         "employment_roles" : [
