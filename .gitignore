@@ -98,6 +98,9 @@ config/docker/*/home/rails/.mozilla
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+# Ignoring caches
 /app/.cache
+.cache
 
 .envrc
