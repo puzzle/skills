@@ -1,14 +1,14 @@
 %div.border-top
-    %turbo-frame{id: dom_id(education)}
-        = link_to edit_person_education_path(@person, education), data:{turbo_prefetch: :false, turbo_frame: dom_id(education)}, class: "text-decoration-none text-dark bg-hover-gray d-block" do
-            %div.d-flex.row.pt-3.pb-5
-                %span.col-3.ps-5
-                    = date_range_label education
-                %span.col.d-flex.flex-column.text-ms
-                    %span.fw-bolder
-                        = education.title
-                    = education.location
-                - unless education.display_in_cv
-                    %span.col-1.d-flex.justify-content-end.pe-5
-                        %div{ 'data-bs-toggle': 'tooltip', 'data-bs-title': t("people.show.is_not_displayed_in_cv"), 'data-controller': 'tooltip'}
-                            = image_tag('no-file.svg')
+  %turbo-frame{id: dom_id(education)}
+    = link_to edit_person_education_path(@person, education), data:{turbo_prefetch: :false, turbo_frame: dom_id(education)}, class: "text-decoration-none text-dark bg-hover-gray d-block" do
+      %div.d-flex.row.pt-3.pb-5
+        %span.col-3.ps-5
+          = date_range_label education
+        %span.col.d-flex.flex-column.text-ms
+          %span.fw-bolder
+            = education.title
+          = education.location
+        - unless education.display_in_cv
+          %span.col-1.d-flex.justify-content-end.pe-5
+            %div{ 'data-bs-toggle': 'tooltip', 'data-bs-title': t("people.show.is_not_displayed_in_cv"), 'data-controller': 'tooltip', 'data-action': 'click->tooltip#hide'}
+              = image_tag('no-file.svg')
