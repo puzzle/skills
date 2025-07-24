@@ -1,1 +1,1 @@
-docker exec -it test bundle exec rspec "$@"
+docker compose run --rm test bundle exec rspec "$@"
