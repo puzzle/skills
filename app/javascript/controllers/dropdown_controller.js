@@ -35,9 +35,6 @@ export default class extends Controller {
         if(slimSelectDropdown.getSelected()[0]?.startsWith("/")) {
             document.querySelector('.ss-main .dropdown-option-link').href = "javascript:void(0)";
         }
-        if (this.autoWidthValue) {
-            this.adjustDropdownWidth(this.dropdownTarget)
-        }
     }
 
     navigateOnChange(event) {

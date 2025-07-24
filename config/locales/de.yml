@@ -204,7 +204,8 @@ de:
     messages:
       authorization_error: Du hast keine Berechtigung, diese Funktion auszuführen.
       cannot_remove: darf nicht gelöscht werden.
-      chart_data_empty: Wähle eine Abteilung, einen Skill und ein Jahr aus um Daten anzuzeigen.
+      chart_data_empty: Wähle eine Abteilung, einen Skill und ein Jahr aus, um Daten anzuzeigen.
+      chart_results_empty: Es wurden keine Snapshots gefunden, die den gewählten Filtern entsprechen.
       invalid_date_range: muss vor dem Enddatum sein.
       max_size_10MB: darf nicht grösser als 10MB sein.
       max_size_error: darf nicht grösser als 10MB sein.

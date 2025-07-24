@@ -200,7 +200,8 @@ en:
     messages:
       authorization_error: You do not have permission to execute this function.
       cannot_remove: must not be deleted.
-      chart_data_empty: Select a department, skill and a year to display data
+      chart_data_empty: Select a department, skill and a year to display data.
+      chart_results_empty: No snapshots matching the selected filters were found.
       invalid_date_range: must be before the end date.
       max_size_10MB: must not be larger than 10MB.
       max_size_error: must not be larger than 10MB.
