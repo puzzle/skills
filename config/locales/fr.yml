@@ -146,20 +146,20 @@ fr:
     index:
       delete_inactive_profiles: Supprimer les profils inactifs
       unify_skills: Unifier les compétences
-      update_people_manually: Mise à jour manuelle des personnes
+      update_people_manually: Mettre à jour les membres manuellement
       reminder_mail: Activez les e-mails de rappel pour votre entreprise.
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Une erreur s'est produite lors de la mise à jour de %{names}. Veuillez réessayer et, si nécessaire, vérifier les données dans PuzzleTime.
         fetching_data_failed: Une erreur s'est produite lors de la récupération des données de PuzzleTime. Veuillez réessayer et contacter le support si nécessaire.
         names_by_provider: "%{names} du fournisseur %{provider}"
-        people_updated: Les données de toutes les personnes ont été mises à jour avec succès
+        people_updated: Les données de tous les membres ont été mises à jour avec succès
     unified_skills:
       create:
         success: La compétence %{skill1} a été unifiée avec succès avec la compétence %{skill2} en la nouvelle compétence %{new_skill}
   admin/manual_ptime_sync:
     index:
-      description: Lorsque vous appuyez sur ce magnifique bouton, les données de toutes les personnes sont mises à jour avec celles de PuzzleTime. Ceci peut prendre quelques secondes.
+      description:Lorsque vous appuyez sur ce magnifique bouton, les données de tous les membres sont mises à jour avec les données provenant de PuzzleTime. Cela peut prendre quelques secondes.
   admin/people_management:
     index:
       ex_members_title: Les profils suivants sont marqués comme anciens employés
