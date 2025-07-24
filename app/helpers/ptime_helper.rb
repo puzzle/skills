@@ -3,6 +3,11 @@ module PtimeHelper
     "#{ptime_employee[:firstname]} #{ptime_employee[:lastname]}"
   end
 
+  def employee_is_or_will_be_employed?(ptime_employee_attributes)
+    ptime_employee_attributes[:is_employed] ||
+      ptime_employee_attributes[:employed_within_three_months]
+  end
+
   def ptime_providers
     @provider_configs = ENV.filter { |env_var| env_var.start_with?('PTIME_PROVIDER') }
                            .sort

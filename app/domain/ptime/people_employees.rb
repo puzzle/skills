@@ -30,7 +30,7 @@ module Ptime
     def update_all_people
       fetch_data_of_ptime_employees_by_provider.each do |provider, provider_employees|
         active_employees, inactive_employees = provider_employees.partition do |ptime_employee|
-          ptime_employee.dig(:attributes, :has_relevant_employment)
+          employee_is_or_will_be_employed?(ptime_employee[:attributes])
         end
         @provider = provider
         @update_failed_names[provider] = []
@@ -82,7 +82,7 @@ module Ptime
     end
 
     def update_indirectly_mappable_attributes
-      is_employed = @ptime_employee_attributes[:has_relevant_employment]
+      is_employed = employee_is_or_will_be_employed?(@ptime_employee_attributes)
       @person.company = is_employed ? @employed_company : @unemployed_company
       @person.department = Department.find_or_create_by!(
         name: @ptime_employee_attributes[:department_name]
