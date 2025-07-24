@@ -169,7 +169,7 @@ fr:
         success: L’historique du département %{old_department_names} a été transféré au département %{new_department_name}.
   admin/manual_ptime_sync:
     index:
-      description:Lorsque vous appuyez sur ce magnifique bouton, les données de tous les membres sont mises à jour avec les données provenant de PuzzleTime. Cela peut prendre quelques secondes.
+      description: Lorsque vous appuyez sur ce magnifique bouton, les données de tous les membres sont mises à jour avec les données provenant de PuzzleTime. Cela peut prendre quelques secondes.
   admin/people_management:
     index:
       not_synced_title: Les profils suivants ne sont actuellement pas mis à jour par la synchronisation PuzzleTime
