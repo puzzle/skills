@@ -150,20 +150,20 @@ de:
     index:
       delete_inactive_profiles: Inaktive Profile löschen
       unify_skills: Skills vereinen
-      update_people_manually: Personen manuell aktualisieren
+      update_people_manually: Members manuell aktualisieren
       reminder_mail: Aktiviere Erinnerungs E-Mails für die Firma.
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Bei der Aktualisierung von %{names} ist etwas schiefgelaufen. Versuche es erneut und überprüfe allenfalls die Daten im PuzzleTime.
         fetching_data_failed: Etwas ist schiefgelaufen, als versucht wurde die Daten aus dem PuzzleTime zu fetchen. Bitte versuche es erneut und kontaktiere allenfalls den Support.
         names_by_provider: "%{names} vom Provider %{provider}"
-        people_updated: Die Daten aller Personen wurden erfolgreich aktualisiert
+        people_updated: Die Daten aller Members wurden erfolgreich aktualisiert
     unified_skills:
       create:
         success: Skill %{skill1} wurde erfolgreich mit Skill %{skill2} zum neuen Skill %{new_skill} vereint
   admin/manual_ptime_sync:
     index:
-      description: Wenn dieser wunderschöne Knopf gedrückt wird, dann werden die Daten aller Personen mit den Daten aus dem PuzzleTime aktualisiert. Dies kann einige Sekunden dauern.
+      description: Wenn dieser wunderschöne Knopf gedrückt wird, dann werden die Daten aller Members mit den Daten aus dem PuzzleTime aktualisiert. Dies kann einige Sekunden dauern.
   admin/people_management:
     index:
       ex_members_title: Die folgenden Profile sind als Ex-Mitarbeiter markiert

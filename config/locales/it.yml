@@ -146,20 +146,20 @@ it:
     index:
       delete_inactive_profiles: Elimina profili inattivi
       unify_skills: Unire le competenze
-      update_people_manually: Aggiornare le persone manualmente
+      update_people_manually: Aggiornare manualmente i membri
       reminder_mail: Attiva le email di promemoria per la tua azienda.
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Si è verificato un errore durante l'aggiornamento di %{names}. Si prega di riprovare e, se necessario, controllare i dati in PuzzleTime.
         fetching_data_failed: Si è verificato un errore durante il recupero dei dati da PuzzleTime. Si prega di riprovare e contattare il supporto se necessario.
         names_by_provider: "%{names} del fornitore %{provider}"
-        people_updated: I dati di tutte le persone sono stati aggiornati con successo
+        people_updated: I dati di tutti i membri sono stati aggiornati con successo
     unified_skills:
       create:
         success: La competenza %{skill1} è stata unificata con successo con la competenza %{skill2} nella nuova competenza %{new_skill}
   admin/manual_ptime_sync:
     index:
-      description: Quando questo bellissimo pulsante viene premuto, i dati di tutte le persone verranno aggiornati con i dati di PuzzleTime. Questo potrebbe richiedere alcuni secondi.
+      description: Quando questo bellissimo pulsante viene premuto, i dati di tutti i membri verranno aggiornati con i dati di PuzzleTime. Questo potrebbe richiedere alcuni secondi.
   admin/people_management:
     index:
       ex_members_title: I seguenti profili sono contrassegnati come ex dipendenti
