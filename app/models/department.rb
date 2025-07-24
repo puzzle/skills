@@ -11,7 +11,7 @@ class Department < ApplicationRecord
   default_scope { kept }
 
   def destroy
-    self.discard
+    discard
   end
 
   def to_s
