@@ -3,7 +3,7 @@
 .col.d-flex.justify-content-center.align-items-center.flex-row.p-0.border-bottom
   .d-flex.align-items-start.col-2.text-start.ps-2
     %strong= ti('table.skill')
-  - if @search_filters.map(&:first).length  == 1
+  - if @search_filters.map(&:first).length == 1
     .d-flex.flex-column.align-items-center.col-2
       %strong= sort_link 'level'
     .d-flex.flex-column.align-items-center.col-3
