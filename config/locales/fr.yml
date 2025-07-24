@@ -159,7 +159,7 @@ fr:
         success: La compétence %{skill1} a été unifiée avec succès avec la compétence %{skill2} en la nouvelle compétence %{new_skill}
   admin/manual_ptime_sync:
     index:
-      description:Lorsque vous appuyez sur ce magnifique bouton, les données de tous les membres sont mises à jour avec les données provenant de PuzzleTime. Cela peut prendre quelques secondes.
+      description: Lorsque vous appuyez sur ce magnifique bouton, les données de tous les membres sont mises à jour avec les données provenant de PuzzleTime. Cela peut prendre quelques secondes.
   admin/people_management:
     index:
       ex_members_title: Les profils suivants sont marqués comme anciens employés
