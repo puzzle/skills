@@ -69,7 +69,7 @@ describe Ptime::PeopleEmployees do
   end
 
   def check_person_data_updated(person, employee_data)
-    is_employed = employee_data[:has_relevant_employment]
+    is_employed = employee_is_or_will_be_employed?(employee_data)
 
     expect(person.name.eql?(employee_full_name(employee_data))).to eql(is_employed)
     expect(person.email.eql?(employee_data[:email])).to eql(is_employed)

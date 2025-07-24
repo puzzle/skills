@@ -13,7 +13,8 @@
         "graduation" : "Very interesting graduation",
         "city" : "Zürich",
         "birthday" : "1990-03-10",
-        "has_relevant_employment" : true,
+        "is_employed" : true,
+        "employed_within_three_months" : false,
         "department_shortname" : "UX",
         "department_name" : "/ux",
         "employment_roles" : [
