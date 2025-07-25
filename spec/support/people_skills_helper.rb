@@ -23,7 +23,7 @@ module PeopleSkillsHelpers
   def validate_people_skill(person, skill_name)
     expect(page).to have_content(skill_name)
     people_skill = people_skill_from_skill_name(person, skill_name)
-    skill_div = find("#default-skill-#{people_skill.skill_id}")
+    skill_div = find("#skill-div-#{people_skill.skill_id}")
     within skill_div do
       expect(page).to have_field("level_#{people_skill.skill_id}", with: people_skill.level)
       validate_skill_level_label(people_skill.level)
