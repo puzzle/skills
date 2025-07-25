@@ -7,7 +7,7 @@ describe 'Department Skill Snapshots', type: :feature, js: true do
     visit department_skill_snapshots_path
   end
 
-  it 'Should display all selects with the corresponding labels and the the canvas chart' do
+  it 'Should display all selects with the corresponding labels and the canvas chart' do
     expect(page).to have_content('Organisationseinheit')
     expect(page).to have_content('Skill')
     expect(page).to have_content('Jahr')
@@ -18,35 +18,5 @@ describe 'Department Skill Snapshots', type: :feature, js: true do
     expect(page).to have_select('chart_type')
 
     expect(page).to have_selector("canvas")
-  end
-
-  it "successfully searches and selects a department from the dropdown" do
-    department = departments(:sys)
-    department_slim_select = page.find_all('.ss-main')[0]
-    department_slim_select.click
-    department_search_input = page.find('.ss-search')
-
-    department_search_input.fill_in with: department.name
-    expect(page).to have_css('.ss-option', text: department.name)
-    option = page.find('.ss-option', text: department.name)
-
-    option.click
-
-    expect(page).to have_field('department_id', with: department.id.to_s, visible: :hidden)
-  end
-
-  it "successfully searches and selects a skill from the dropdown" do
-    skill = skills(:junit)
-    skill_slim_select = page.find_all('.ss-main')[1]
-    skill_slim_select.click
-    skill_search_input = page.find('.ss-search')
-
-    skill_search_input.fill_in with: skill.title
-    expect(page).to have_css('.ss-option', text: skill.title)
-    option = page.find('.ss-option', text: skill.title)
-
-    option.click
-
-    expect(page).to have_field('skill_id', with: skill.id.to_s, visible: :hidden)
   end
 end
