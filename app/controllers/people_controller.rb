@@ -10,7 +10,6 @@ class PeopleController < CrudController
   layout 'person', only: [:show]
 
   before_action :redirect_index_if_use_ptime_sync, only: [:new]
-  around_action :set_default_language_skills, only: [:new]
 
   def index
     return flash[:alert] = I18n.t('errors.messages.profile-not-found') if params[:alert].present?
@@ -29,6 +28,7 @@ class PeopleController < CrudController
   def new
     super
     @person.nationality = 'CH'
+    @person.set_default_languages
   end
 
   def create
@@ -105,10 +105,5 @@ class PeopleController < CrudController
 
   def redirect_index_if_use_ptime_sync
     redirect_to root_path if Skills.use_ptime_sync?
-  end
-
-  def set_default_language_skills
-    @person.set_default_languages
-    yield
   end
 end
