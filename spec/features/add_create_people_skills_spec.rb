@@ -73,7 +73,7 @@ describe :people do
       end
       within '#remote_modal' do
         expect(page).to have_content "Titel muss ausgefüllt werden"
-        validate_interest(3)
+        validate_interest(3, nil)
       end
     end
   end
