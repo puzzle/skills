@@ -2,12 +2,12 @@ FROM ruby:3.4.1
 
 USER root
 
-ENV RAILS_ENV=development
+ENV RAILS_ENV=test
 ENV BUNDLE_PATH=/opt/bundle
 
 WORKDIR /myapp
 
-COPY ./rails-entrypoint /usr/local/bin
+COPY ./test-entrypoint /usr/local/bin
 
 RUN useradd app -m -U -d /myapp/
 RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
@@ -20,8 +20,10 @@ RUN npm install -g yarn
 
 RUN mkdir /opt/bundle && chmod 777 /opt/bundle
 RUN mkdir /seed && chmod 777 /seed
-RUN mkdir /home/developer && chmod 777 /home/developer
-ENV HOME=/home/developer
+RUN mkdir /home/test && chmod 777 /home/test
+RUN chown -R app:app /myapp
 
-ENTRYPOINT ["rails-entrypoint"]
+ENV HOME=/home/test
+
+ENTRYPOINT ["test-entrypoint"]
 CMD [ "rails", "server", "-b", "0.0.0.0"]
