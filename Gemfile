@@ -74,7 +74,6 @@ end
 
 group :development do
   gem 'bullet'
-  gem 'debugbar'
   gem 'dotenv'
   gem 'listen'
   gem 'overcommit'

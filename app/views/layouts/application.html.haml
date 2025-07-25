@@ -13,9 +13,7 @@
     = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
     = javascript_include_tag "application", "https://unpkg.com/@puzzleitc/puzzle-shell/dist/bundle.js", type: "module"
     = favicon_link_tag "favicon.png"
-    = debugbar_head  if defined? Debugbar
   %body#dropdown-wormhole.d-flex.justify-content-center{"data-controller": "skills-empty-space"}
-    = debugbar_body minimized: true if defined? Debugbar
     %div.content{"data-skills-empty-space-target": "container"}
       %div.position-sticky.top-0.z-3
         %div.d-flex.justify-content-between.bg-white.flex-wrap
