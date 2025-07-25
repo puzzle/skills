@@ -3,7 +3,7 @@
     %div{"data-controller": "dropdown", "data-dropdown-auto-width-value": "true"}
       = f.label :department_id, t('activerecord.models.department.one'), class: "text-secondary"
       = f.select :department_id,
-            options_from_collection_for_select(Department.all.order('name ASC'), :id, :name, params[:department_id]),
+            options_from_collection_for_select(Department.with_discarded.order('name ASC'), :id, :name, params[:department_id]),
             { prompt: ta(:please_select)},
             { onchange: "this.form.requestSubmit()", class: "skill-tracking-select", data: { dropdown_target: "dropdown" } }
     %div{"data-controller": "dropdown", "data-dropdown-auto-width-value": "true"}
