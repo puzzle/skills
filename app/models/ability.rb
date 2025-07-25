@@ -4,7 +4,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    initialize_user_rights
+    initialize_user_rights(user)
     if user.is_admin? || user.is_conf_admin?
       initialize_admin_rights
     end
@@ -13,12 +13,17 @@ class Ability
     end
   end
 
-  def initialize_user_rights
-    user_classes.each do |user_classes|
-      can :manage, user_classes
+  def initialize_user_rights(user)
+    user_classes.each do |user_class|
+      can :read, user_class
+      can :manage, user_class do |record|
+        record.person.auth_user_id == user.id
+      end
     end
 
     can :read, Skill
+    can :read, Person
+    can :manage, Person, auth_user_id: user.id
   end
 
   def initialize_admin_rights
@@ -34,7 +39,7 @@ class Ability
   end
 
   def user_classes
-    [Activity, AdvancedTraining, Education, Project, Person, PeopleSkill, Contribution]
+    [Activity, AdvancedTraining, Education, Project, PeopleSkill, Contribution]
   end
 
   def conf_admin_classes
