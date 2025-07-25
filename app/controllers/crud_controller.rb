@@ -42,7 +42,7 @@ class CrudController < ListController
   #
   # Display a form to create a new entry of this model.
   def new
-    raise CanCan::AccessDenied unless can? :create, model_class
+    raise CanCan::AccessDenied unless can? :create, entry
 
     assign_attributes if params[model_identifier]
   end
