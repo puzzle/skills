@@ -106,7 +106,7 @@ describe 'Contributions', type: :feature, js:true do
       within("turbo-frame#contribution_#{contribution.id}") do
         checkbox.click
         click_default_submit
-        expect(find("img")[:src]).to have_content("no-file")
+        expect(page).to have_css("img[src*='no-file']")
       end
       open_edit_form(contribution)
       expect(checkbox).not_to be_checked
