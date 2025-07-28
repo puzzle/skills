@@ -114,7 +114,7 @@ module Ptime
     end
 
     def update_person_with_auth_user_id
-      ldap_username = @ptime_employee_attributes[:ldap_username]
+      ldap_username = @ptime_employee_attributes[:ldapname]
       @person.auth_user_id = AuthUser.find_by(ldap_username:)&.id
     end
   end
