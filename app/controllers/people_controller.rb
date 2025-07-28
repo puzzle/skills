@@ -27,6 +27,7 @@ class PeopleController < CrudController
   def new
     super
     @person.nationality = 'CH'
+    @person.set_default_languages
   end
 
   def create
