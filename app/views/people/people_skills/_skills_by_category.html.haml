@@ -2,6 +2,6 @@
   %div.white-header.mw-100.border-bottom.text-gray
     = "#{child_category.title} (#{people_skills.length})"
     - people_skills.each do |people_skill|
-      = turbo_frame_tag "#{people_skill.id.nil? ? "default-" : ""}skill-#{people_skill.skill.id}", data: { turbo_permanent: true } do
+      %div{id: "#{people_skill.id.nil? ? "default-" : ""}skill-#{people_skill.skill.id}"}
         = form_with model: people_skill, url: polymorphic_path([@person, people_skill], rating: params["rating"]) do |form|
           = render "people/people_skills/edit_form", ff: form, show_category: true
