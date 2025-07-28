@@ -9,6 +9,7 @@ class AuthUser < ApplicationRecord
       person = where(uid: auth.uid).first_or_create do |user|
         user.name = auth.info.name
         user.email = auth.info.email
+        user.ldap_username = auth.extra.raw_info.pitc.uid
       end
       person.last_login = Time.zone.now
       set_admin(person, auth)
