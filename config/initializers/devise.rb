@@ -277,7 +277,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :keycloak_openid, {
     name: :keycloak_openid,
-    scope: [:openid, :email],
+    scope: [:openid, :email, :pitc],
     client_id: AuthConfig.client_id,
     client_secret: AuthConfig.secret,
 
