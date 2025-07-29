@@ -37,22 +37,6 @@ ARG BUILD_COMMIT="$GITHUB_SHA"
 ARG BUILD_REPO="$GITHUB_REPOSITORY"
 ARG BUILD_REF="$GITHUB_REF_NAME"
 
-# # Gitlab specific
-# ARG CI_COMMIT_SHA
-# ARG CI_REPOSITORY_URL
-# ARG CI_COMMIT_REF_NAME
-# ARG BUILD_COMMIT="$CI_COMMIT_SHA"
-# ARG BUILD_REPO="$CI_REPOSITORY_URL"
-# ARG BUILD_REF="$CI_COMMIT_REF_NAME"
-
-# # Openshift specific
-# ARG OPENSHIFT_BUILD_COMMIT
-# ARG OPENSHIFT_BUILD_SOURCE
-# ARG OPENSHIFT_BUILD_REFERENCE
-# ARG BUILD_COMMIT="$OPENSHIFT_BUILD_COMMIT"
-# ARG BUILD_REPO="$OPENSHIFT_BUILD_SOURCE"
-# ARG BUILD_REF="$OPENSHIFT_BUILD_REFERENCE"
-
 # Runtime ENV vars
 ARG SENTRY_CURRENT_ENV
 ARG PS1="$SENTRY_CURRENT_ENV > "
@@ -108,8 +92,6 @@ RUN bash -vxc "${INSTALL_SCRIPT:-"echo 'no INSTALL_SCRIPT provided'"}"
 # Install specific versions of dependencies
 RUN gem install bundler:${BUNDLER_VERSION} --no-document
 
-# TODO: Load artifacts
-
 # set up app-src directory
 WORKDIR /app-src
 COPY Gemfile Gemfile.lock ./
@@ -129,10 +111,7 @@ RUN bash -vxc "${BUILD_SCRIPT:-"echo 'no BUILD_SCRIPT provided'"}"
 
 RUN bash -vxc "${POST_BUILD_SCRIPT:-"echo 'no POST_BUILD_SCRIPT provided'"}"
 
-# TODO: Save artifacts
-
 RUN rm -rf vendor/cache/ .git spec/ node_modules/
-
 
 #################################
 #           Run Stage           #
