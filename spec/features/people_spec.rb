@@ -379,4 +379,29 @@ describe :people do
       expect(page).to have_no_content(t("people.index.profile"))
     end
   end
+
+  describe 'Access control' do
+    before(:each) do
+      sign_in auth_users(:user)
+    end
+
+    it 'logged in person can edit their own profile' do
+      ursula = people(:user)
+      visit person_path(ursula)
+
+      click_link('Bearbeiten', href: edit_person_path(ursula))
+      fill_in 'person_title', with: 'Expert at access control'
+      save_button = find_button("Person aktualisieren")
+      save_button.click
+
+      expect(page).to have_content('Expert at access control')
+    end
+
+    it 'logged in person should no be able to edit other profiles' do
+      longmax = people(:longmax)
+      visit person_path(longmax)
+
+      expect{ click_link('Bearbeiten', href: edit_person_path(longmax)) }.to raise_error("You are not authorized to access this page.")
+    end
+  end
 end
