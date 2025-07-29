@@ -12,7 +12,7 @@
           = close_action_link person_people_skills_path(@person, no_default_skill_prompt: "")
 
         - people_skills_by_category(@not_rated_default_skills.sort_by(&:skill_id)).each do |parent_category, child_categories|
-          %div.profile-header.mw-100.border-bottom.mt-4.bg-light-blue
+          %div.profile-header.mw-100.border-bottom.mt-4.bg-light-blue{id: "category-#{parent_category.id}"}
             = parent_category.title
           = render "skills_by_category", child_categories:
         %div.align-items-center.mt-3

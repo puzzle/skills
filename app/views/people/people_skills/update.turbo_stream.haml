@@ -1,7 +1,16 @@
-= turbo_stream.remove "default-skill-#{@person.people_skills.last.skill_id}"
+- rated_people_skill = @person.people_skills.last
+= turbo_stream.remove "default-skill-#{rated_people_skill.skill_id}"
+
+- category_id = rated_people_skill.skill.category_id
+- not_rated_default_skill_ids = @not_rated_default_skills.pluck(:skill_id).excluding(rated_people_skill.skill_id)
+- unless unrated_default_skill_with_category? not_rated_default_skill_ids, category_id
+  = turbo_stream.remove "category-#{category_id}"
+  - parent_category_id = rated_people_skill.skill.parent_category.id
+  - unless unrated_default_skill_with_parent_category? not_rated_default_skill_ids, parent_category_id
+    = turbo_stream.remove "category-#{parent_category_id}"
 
 = turbo_stream.update "person-skill-overview" do
   = render "people/people_skills/overview"
 
-- if @not_rated_default_skills.count < 1
+- if @not_rated_default_skills.count - 1 < 1
   = turbo_stream.remove "default-skills"

@@ -1,5 +1,5 @@
 - child_categories.each do |child_category, people_skills|
-  %div.white-header.mw-100.border-bottom.text-gray
+  %div.white-header.mw-100.border-bottom.text-gray{id: "category-#{child_category.id}"}
     = "#{child_category.title} (#{people_skills.length})"
     - people_skills.each do |people_skill|
       %div{id: "#{people_skill.id.nil? ? "default-" : ""}skill-#{people_skill.skill.id}"}
