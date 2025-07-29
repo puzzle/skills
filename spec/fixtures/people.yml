@@ -183,3 +183,21 @@ maximillian:
   display_competence_notes_in_cv: false
   email: maximillian@example.com
   department: mid
+
+user:
+  birthdate: 1995-05-32 16:04:56
+  location: Belp
+  marital_status: <%= Person.marital_statuses[:single] %>
+  name: Ursula User
+  nationality: CH
+  roles: [ software-engineer ]
+  title: Just a user
+  competence_notes: |
+    Python
+    Go
+    Unity
+  company: firma
+  email: user@example.com
+  department: dev-one
+  shortname: UU
+  auth_user_id: 227792459

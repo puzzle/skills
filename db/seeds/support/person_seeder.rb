@@ -19,6 +19,9 @@ class PersonSeeder
         seed_project_technology(project.id)
       end
     end
+
+    # Allow the default logged-in user to edit themselves
+    Person.find_by_name("Carl Albrecht Conf Admin")&.update(auth_user_id: 1)
   end
 
   def seed_association(assoc_name, person_id)
