@@ -1,4 +1,4 @@
-%div.mw-100.border-bottom.text-black.ps-5.border{id: "#{ff.object.id.nil? ? "default-" : ""}skill-div-#{ff.object.skill.id}"}
+%div.mw-100.border-bottom.text-black.ps-5.border{id: "#{ff.object.new_record? ? 'default-' : ''}skill-div-#{ff.object.skill_id}"}
   %div.d-flex.flex-row.align-items-center.mt-3.mb-3.w-100{data: {controller: "people-skills"}}
     %div.col-2
       = ff.object.skill.title

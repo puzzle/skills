@@ -1,4 +1,4 @@
-= turbo_stream.remove "default-skill-#{@person.people_skills.last.skill.id}"
+= turbo_stream.remove "default-skill-#{@person.people_skills.last.skill_id}"
 
 = turbo_stream.update "person-skill-overview" do
   = render "people/people_skills/overview"
