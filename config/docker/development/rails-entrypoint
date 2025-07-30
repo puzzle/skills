@@ -8,7 +8,7 @@ echo "running bundle install"
 gem install bundler -v 2.4.10
 bundle install
 
-yarn install --check-files
+yarn install
 
 if [ -z "$SKIP_RAILS_MIGRATIONS" ]; then
   echo "⚙️  Performing migrations"

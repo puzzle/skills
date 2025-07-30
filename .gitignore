@@ -28,6 +28,14 @@ spec/coverage/.last_run.json
 /public/uploads
 /node_modules
 
+# Ignore yarn stuff
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 
 # Created by https://www.gitignore.io/api/intellij
 
@@ -90,7 +98,7 @@ config/environments/*.local.yml
 config/docker/*/home/rails/.bundle
 config/docker/*/home/rails/.cache
 config/docker/*/home/rails/.local
-config/docker/*/home/rails/.yarnrc
+config/docker/*/home/rails/.yarn
 config/docker/*/home/rails/.irb_history
 config/docker/*/home/rails/.bash_history
 config/docker/*/home/rails/Downloads
