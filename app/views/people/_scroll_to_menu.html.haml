@@ -1,4 +1,4 @@
-%div.sidebar.responsive-hide{data: {"scroll-target": "list"}}
+%div#scroll-sidebar.sidebar.responsive-hide{data: {"scroll-target": "list"}}
   %div
     - items.each do | item |
       %div.sidebar-item.w-100{data: {"scroll-target": "listItem", "action": "click->scroll#scrollToElement",
