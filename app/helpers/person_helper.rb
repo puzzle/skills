@@ -94,15 +94,14 @@ module PersonHelper
       .sort_by { |parent_category, _| parent_category.title }
   end
 
-  def unrated_default_skill_with_category?(skill_ids, category_id)
-    Skill.where(id: skill_ids).exists?(category_id: category_id)
+  def skills_with_category_count(skill_ids, category_id)
+    Skill.where(id: skill_ids, category_id: category_id).count
   end
 
-  def unrated_default_skill_with_parent_category?(skill_ids, parent_category_id)
+  def skill_with_parent_category_count(skill_ids, parent_category_id)
     Skill.distinct.includes(:parent_category)
-         .where(id: skill_ids)
-         .find_by(parent_category: { id: parent_category_id })
-         .present?
+         .where(id: skill_ids, parent_category: { id: parent_category_id })
+         .count
   end
 
   def person_people_skills

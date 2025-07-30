@@ -1,6 +1,6 @@
 = form_with(model: pskill, url: person_people_skills_path(person)) do |f|
     %div.d-flex.flex-column{data: {controller: "people-skills"}}
-        =  f.label :skill
+        = f.label :skill
         = f.fields_for :skill do |sf|
             = sf.select :id, options_for_select(skills_dropdown_options, disabled: person.skills.pluck(:id)), {},
                 {data: {"people-skills-target": "skillsDropdown"}}
