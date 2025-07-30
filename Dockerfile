@@ -6,7 +6,6 @@
 ARG RUBY_VERSION="4.0.1"
 ARG BUNDLER_VERSION="2.5.6"
 ARG NODEJS_VERSION="18"
-ARG YARN_VERSION="1.22.10"
 
 # Packages
 ARG BUILD_PACKAGES="nodejs build-essential shared-mime-info libxml2-dev libxslt1-dev"
@@ -14,7 +13,7 @@ ARG RUN_PACKAGES="shared-mime-info postgresql graphicsmagick"
 
 # Scripts
 ARG PRE_INSTALL_SCRIPT="curl -sL https://deb.nodesource.com/setup_${NODEJS_VERSION}.x -o /tmp/nodesource_setup.sh && bash /tmp/nodesource_setup.sh"
-ARG INSTALL_SCRIPT="node -v && npm -v && npm install -g yarn && yarn set version ${YARN_VERSION}"
+ARG INSTALL_SCRIPT="node -v && npm -v && corepack enable && corepack prepare yarn@stable --activate && yarn set version stable"
 ARG PRE_BUILD_SCRIPT
 ARG BUILD_SCRIPT="yarn install && bundle exec rake assets:precompile"
 ARG POST_BUILD_SCRIPT="echo \"(built at: $(date '+%Y-%m-%d %H:%M:%S'))\" > /app-src/BUILD_INFO"
@@ -105,6 +104,9 @@ RUN    export DEBIAN_FRONTEND=noninteractive \
 
 RUN bash -vxc "${INSTALL_SCRIPT:-"echo 'no INSTALL_SCRIPT provided'"}"
 
+# Verify Corepack and Yarn
+RUN corepack --version && yarn -v
+
 # Install specific versions of dependencies
 RUN gem install bundler:${BUNDLER_VERSION} --no-document
 
@@ -113,6 +115,10 @@ RUN gem install bundler:${BUNDLER_VERSION} --no-document
 # set up app-src directory
 WORKDIR /app-src
 COPY Gemfile Gemfile.lock ./
+
+# Copy Yarn Berry configuration before running yarn install
+COPY .yarnrc.yml ./
+COPY .yarn .yarn
 
 RUN bash -vxc "${PRE_BUILD_SCRIPT:-"echo 'no PRE_BUILD_SCRIPT provided'"}"
 

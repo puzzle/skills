@@ -7,7 +7,7 @@ rm -f tmp/pids/server.pid
 echo "running bundle install"
 bundle install
 
-yarn install --check-files
+yarn install
 
 if [ -z "$SKIP_RAILS_MIGRATIONS" ]; then
   echo "⚙️  Performing migrations"
