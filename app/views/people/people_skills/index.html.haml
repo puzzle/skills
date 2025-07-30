@@ -8,7 +8,7 @@
         %div.d-flex.align-items-center.profile-header.justify-content-between.mb-2.bg-light-blue
           %div
             = ti("new_skills_to_rate")
-            = "(#{@not_rated_default_skills.length})"
+            %span#unrated-skills-header= "(#{@not_rated_default_skills.length})"
           = close_action_link person_people_skills_path(@person, no_default_skill_prompt: "")
 
         - people_skills_by_category(@not_rated_default_skills.sort_by(&:skill_id)).each do |parent_category, child_categories|
