@@ -62,7 +62,7 @@ services:
      /bin/bash -c "
       curl -fsSL https://deb.nodesource.com/setup_18.x | bash - &&
       apt-get install -y nodejs &&
-      npm install -g yarn && bin/assets &&
+      npm install -g corepack && corepack enable && bin/assets &&
       sleep infinity"
     volumes:
       - ./:/myapp
