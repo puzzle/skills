@@ -36,6 +36,9 @@ jobs:
         with:
           node-version: '20'
 
+      - name: 'Setup yarn berry'
+        run: npm install -g corepack && corepack enable
+
       - name: 'Run database migrations'
         env:
           RAILS_ENV: test
