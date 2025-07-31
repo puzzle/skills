@@ -1,7 +1,28 @@
-= turbo_stream.remove "default-skill-#{@person.people_skills.last.skill.id}"
+- rated_people_skill = @person.people_skills.last
+= turbo_stream.remove "default-skill-#{rated_people_skill.skill_id}"
+
+- category = rated_people_skill.skill.category
+- not_rated_default_skill_ids = @not_rated_default_skills.pluck(:skill_id)
+- default_skills_with_category_count = skills_with_category_count not_rated_default_skill_ids, category.id
+
+- if default_skills_with_category_count > 0
+  = turbo_stream.update "category-title-#{category.id}" do
+    = "#{category.title} (#{default_skills_with_category_count})"
+- else
+  = turbo_stream.remove "category-#{category.id}"
+  - parent_category_id = category.parent.id
+  - unless skill_with_parent_category_count(not_rated_default_skill_ids, parent_category_id) > 0
+    = turbo_stream.remove "category-#{parent_category_id}"
+
+= turbo_stream.replace "scroll-sidebar" do
+  = render('people/scroll_to_menu', items: parent_categories_with_rated_skills) do
+    = add_action_link_modal
+
+= turbo_stream.update "unrated-skills-header" do
+  %span{'data-controller': 'turbo-stream-load'}= "(#{not_rated_default_skill_ids.length})"
 
 = turbo_stream.update "person-skill-overview" do
   = render "people/people_skills/overview"
 
-- if @not_rated_default_skills.count < 1
+- if not_rated_default_skill_ids.length < 1
   = turbo_stream.remove "default-skills"

@@ -29,7 +29,7 @@ describe :people do
       visit person_people_skills_path(alice, rating: 1)
 
       ember = alice.people_skills.first
-      within("#default-skill-#{ember.skill.id}") do
+      within("#skill-div-#{ember.skill.id}") do
         select_star_rating(2)
         select_level(3, "level_#{ember.skill.id}")
       end
@@ -52,7 +52,7 @@ describe :people do
       bash = people_skills(:alice_bash)
       expect(bash.level).to eq(0)
       expect(bash.interest).to eq(0)
-      within("#default-skill-#{bash.skill.id}") do
+      within("#skill-div-#{bash.skill.id}") do
         select_level(3, "level_#{bash.skill.id}")
       end
 
@@ -70,7 +70,7 @@ describe :people do
       alice = people(:alice)
       visit person_people_skills_path(alice, rating: 1)
       ember = alice.people_skills.first
-      within("#default-skill-#{ember.skill.id}") do
+      within("#skill-div-#{ember.skill.id}") do
         click_button("Nicht bewerten")
       end
       # Check if changes were saved
@@ -183,7 +183,7 @@ describe :people do
     it 'saves not rated skills' do
       not_rated_default_skills = not_rated_default_skills(bob)
       skill_id = not_rated_default_skills.first.skill.id
-      skill_div = find("#default-skill-#{skill_id}")
+      skill_div = first("#default-skill-#{skill_id}")
 
       within skill_div do
         select_star_rating(3)

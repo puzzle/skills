@@ -94,6 +94,16 @@ module PersonHelper
       .sort_by { |parent_category, _| parent_category.title }
   end
 
+  def skills_with_category_count(skill_ids, category_id)
+    Skill.where(id: skill_ids, category_id: category_id).count
+  end
+
+  def skill_with_parent_category_count(skill_ids, parent_category_id)
+    Skill.distinct.includes(:parent_category)
+         .where(id: skill_ids, parent_category: { id: parent_category_id })
+         .count
+  end
+
   def person_people_skills
     @people_skills.order(:skill_id).includes(skill: { category: :parent })
   end

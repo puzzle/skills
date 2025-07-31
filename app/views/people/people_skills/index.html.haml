@@ -1,4 +1,4 @@
-%turbo-frame#people-skill-form.d-flex.gap-3.col-12
+#people-skill-form.d-flex.gap-3.col-12
   = render('people/scroll_to_menu', items: parent_categories_with_rated_skills) do
     = add_action_link_modal
   %div.w-100{data: { "scroll-target": "parent"}}
@@ -8,11 +8,11 @@
         %div.d-flex.align-items-center.profile-header.justify-content-between.mb-2.bg-light-blue
           %div
             = ti("new_skills_to_rate")
-            = "(#{@not_rated_default_skills.length})"
+            %span#unrated-skills-header= "(#{@not_rated_default_skills.length})"
           = close_action_link person_people_skills_path(@person, no_default_skill_prompt: "")
 
         - people_skills_by_category(@not_rated_default_skills.sort_by(&:skill_id)).each do |parent_category, child_categories|
-          %div.profile-header.mw-100.border-bottom.mt-4.bg-light-blue
+          %div.profile-header.mw-100.border-bottom.mt-4.bg-light-blue{id: "category-#{parent_category.id}"}
             = parent_category.title
           = render "skills_by_category", child_categories:
         %div.align-items-center.mt-3

@@ -16,6 +16,9 @@ export default class extends Controller {
                 this.highlight()
             })
         })
+        window.addEventListener('turbo-stream-load', () => {
+            this.highlight();
+        })
     }
 
     disconnect() {
