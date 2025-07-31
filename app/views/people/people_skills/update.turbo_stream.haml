@@ -2,7 +2,7 @@
 = turbo_stream.remove "default-skill-#{rated_people_skill.skill_id}"
 
 - category = rated_people_skill.skill.category
-- not_rated_default_skill_ids = @not_rated_default_skills.pluck(:skill_id).excluding(rated_people_skill.skill_id)
+- not_rated_default_skill_ids = @not_rated_default_skills.pluck(:skill_id)
 - default_skills_with_category_count = skills_with_category_count not_rated_default_skill_ids, category.id
 
 - if default_skills_with_category_count > 0
