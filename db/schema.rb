@@ -182,9 +182,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_24_072939) do
     t.integer "department_id"
     t.string "shortname"
     t.boolean "display_competence_notes_in_cv", default: true, null: false
-    t.boolean "reminder_mails_active", default: true
     t.string "ptime_data_provider"
     t.integer "ptime_employee_id"
+    t.boolean "reminder_mails_active", default: true
     t.index ["company_id"], name: "index_people_on_company_id"
   end
 

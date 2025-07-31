@@ -2,11 +2,11 @@
 #          Variables            #
 #################################
 
+
 # Versioning
 ARG RUBY_VERSION="3.4.1"
 ARG BUNDLER_VERSION="2.5.6"
 ARG NODEJS_VERSION="18"
-ARG YARN_VERSION="1.22.10"
 
 # Packages
 ARG BUILD_PACKAGES="nodejs build-essential shared-mime-info"
@@ -14,7 +14,7 @@ ARG RUN_PACKAGES="shared-mime-info postgresql graphicsmagick"
 
 # Scripts
 ARG PRE_INSTALL_SCRIPT="curl -sL https://deb.nodesource.com/setup_${NODEJS_VERSION}.x -o /tmp/nodesource_setup.sh && bash /tmp/nodesource_setup.sh"
-ARG INSTALL_SCRIPT="node -v && npm -v && npm install -g yarn && yarn set version ${YARN_VERSION}"
+ARG INSTALL_SCRIPT="node -v && npm -v && npm install -g corepack && corepack enable
 ARG PRE_BUILD_SCRIPT
 ARG BUILD_SCRIPT="yarn install && bundle exec rake assets:precompile"
 ARG POST_BUILD_SCRIPT="echo \"(built at: $(date '+%Y-%m-%d %H:%M:%S'))\" > /app-src/BUILD_INFO"
