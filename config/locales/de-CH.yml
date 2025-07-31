@@ -150,20 +150,20 @@ de-CH:
     index:
       delete_inactive_profiles: Inaktivi Profiu löschä
       unify_skills: Skills vereinä
-      update_people_manually: Persone manuell aktualisiere
+      update_people_manually: Members manuell aktualisiere
       reminder_mail: Aktivier Erinnerigs E-Mails für d Firma.
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Bi dr Aktualisierig vo %{names} isch öppis schiefgloffe. Versuechs nomau und überprüef auefaus d Date im PuzzleTime.
         fetching_data_failed: Öppis ische bim fetche vo de Date usem PuzzleTime schief gloffe. Bitte probiers nomau und kontaktier auefaus dr Support.
         names_by_provider: "%{names} vom Provider %{provider}"
-        people_updated: D Datä vo aunä Personä si erfolgriich aktualisiert wordä
+        people_updated: D Datä vo aunä Members si erfolgriich aktualisiert wordä
     unified_skills:
       create:
         success: Skill %{skill1} isch erfolgriich mit Skill %{skill2} zum neuä Skill %{new_skill} vereint wordä
   admin/manual_ptime_sync:
     index:
-      description: We dä wunderschön Chnopf drückt wird, de wärde d Date vo aune Persone mit de Date usem PuzzleTime aktualisiert. Ds cha einigi Sekunde duure.
+      description: We dä wunderschön Chnopf drückt wird, de wärde d Date vo aune Members mit de Date usem PuzzleTime aktualisiert. Ds cha einigi Sekunde duure.
   admin/people_management:
     index:
       ex_members_title: Di folgendä Profiu si aus 'Ex-Mitarbeiter' markiert
