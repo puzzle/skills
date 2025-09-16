@@ -6,7 +6,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def keycloak_openid
     omniauth_auth = request.env['omniauth.auth']
     @user = AuthUser.from_omniauth(omniauth_auth)
-    if @user.persisted?
+    if @user.persisted? && omniauth_auth[:extra][:raw_info][:pitc][:roles].include?(AuthConfig.relevant_keycloak_role)
       sign_in_and_redirect @user, event: :authentication
       set_flash_message(:notice, :success, kind: 'Keycloak') if is_navigational_format?
     else
@@ -15,6 +15,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def failure
-    redirect_to root_path
+    redirect_to '/auth_error'
   end
 end
