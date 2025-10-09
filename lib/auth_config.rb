@@ -37,6 +37,10 @@ class AuthConfig
       get_var_from_environment(:conf_admin_role, required: false)
     end
 
+    def relevant_keycloak_role
+      get_var_from_environment(:relevant_keycloak_role, required: true)
+    end
+
     def keycloak?
       to_boolean(get_var_from_environment(:keycloak, required: false, default: false))
     end
