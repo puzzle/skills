@@ -122,7 +122,7 @@ module PersonHelper
   end
 
   def people_for_select
-    Person.employed.map do |p|
+    Person.all.map do |p|
       [
         p.name, person_path(p),
         {
