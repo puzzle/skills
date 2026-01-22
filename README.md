@@ -128,7 +128,7 @@ This is a step for step manual on how to run the PuzzleTime sync.
    | `PTIME_PROVIDER_<n>_BASE_URL`           | The base URL of your PuzzleTime instance                                                                                                                                                         |
    | `PTIME_PROVIDER_<n>_API_USERNAME`       | The API username configured in your PuzzleTime instance                                                                                                                                          |
    | `PTIME_PROVIDER_<n>_API_PASSWORD`       | The API password configured in your PuzzleTime instance                                                                                                                                          |
-|  | `PTIME_PROVIDER_<n>_COMPANY_IDENTIFIER` | The company identifier is used to tell apart the different providers but must also match the name of a company in your database, because a person will be assigned this company as it is updated |
+   | `PTIME_PROVIDER_<n>_COMPANY_IDENTIFIER` | The company identifier is used to tell apart the different providers but must also match the name of a company in your database, because a person will be assigned this company as it is updated |
    
    `<n>` is to be replaced with a number, e.g. `PTIME_PROVIDER_0_BASE_URL`. For every provider number, all 4 properties have to be set.
 4. If this is the very first time you're setting up the sync, you need to assign each person a `ptime_employee_id` and a `ptime_data_provider` which
