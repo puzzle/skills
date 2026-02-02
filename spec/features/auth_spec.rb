@@ -37,4 +37,16 @@ describe 'Check authentications', type: :feature, js: true do
       expect(page).to have_field('skill_title')
     end
   end
+
+  context 'Already logged in' do
+
+    before(:each) do
+      sign_in(auth_users(:admin))
+      visit new_auth_user_session_path
+    end
+
+    it 'should show flash when user tries to log in but is already logged in' do
+      expect(page).to have_css('.alert-success', text: 'Sie sind bereits angemeldet.')
+    end
+  end
 end
