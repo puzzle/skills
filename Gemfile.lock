@@ -147,7 +147,7 @@ GEM
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
-    date (3.4.1)
+    date (3.5.1)
     deep_merge (1.2.2)
     delayed_cron_job (0.9.0)
       fugit (>= 1.5)
@@ -283,7 +283,7 @@ GEM
     mutex_m (0.3.0)
     net-http (0.6.0)
       uri
-    net-imap (0.5.7)
+    net-imap (0.6.2)
       date
       net-protocol
     net-ldap (0.16.3)
@@ -590,7 +590,7 @@ DEPENDENCIES
   listen
   mini_magick
   mutex_m
-  net-imap
+  net-imap (~> 0.6.2)
   net-ldap (~> 0.16.0)
   net-pop
   net-smtp

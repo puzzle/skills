@@ -30,7 +30,7 @@ gem 'jsbundling-rails'
 gem 'language_list'
 gem 'mini_magick'
 gem 'mutex_m'
-gem 'net-imap', require: false
+gem 'net-imap', '~> 0.6.2', require: false
 gem 'net-ldap', '~> 0.16.0'
 gem 'net-pop', require: false
 gem 'net-smtp', require: false
