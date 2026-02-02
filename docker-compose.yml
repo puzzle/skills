@@ -61,7 +61,6 @@ services:
     command: >
      /bin/bash -c "
       curl -fsSL https://deb.nodesource.com/setup_18.x | bash - &&
-      apt install &&
       apt-get install -y nodejs &&
       npm install -g yarn && bin/assets &&
       sleep infinity"
