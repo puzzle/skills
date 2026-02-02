@@ -143,7 +143,7 @@ module DryCrud
         elsif association_kind?(:belongs_to)
           :belongs_to_field
         elsif association_kind?(:has_and_belongs_to_many, :has_many)
-          :has_many_field
+          :many_field?
         elsif attr.to_s.include?('password')
           :password_field
         elsif attr.to_s.include?('email')

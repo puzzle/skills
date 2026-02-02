@@ -2,10 +2,11 @@
 
 class SkillsController < CrudController
   include ExportController
+
   before_action :update_category_parent, only: [:update]
   before_action :render_unauthorized_not_admin, except: %i[index show unrated_by_person]
 
-  helper_method :compare_default_set
+  helper_method :check_entry_validity?
 
   self.permitted_attrs = %i[title radar portfolio default_set category_id]
 
@@ -33,7 +34,7 @@ class SkillsController < CrudController
 
   private
 
-  def compare_default_set(value)
+  def check_entry_validity?(value)
     value == params[:defaultSet]
   end
 

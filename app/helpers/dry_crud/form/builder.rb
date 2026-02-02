@@ -131,21 +131,17 @@ module DryCrud
         end
       end
 
-      # rubocop:disable Naming/PredicateName
-
       # Render a multi select element for a :has_many or
       # :has_and_belongs_to_many association defined by attr.
       # Use additional html_options for the select element.
       # To pass a custom element list, specify the list with the :list key or
       # define an instance variable with the pluralized name of the
       # association.
-      def has_many_field(attr, html_options = {})
+      def many_field?(attr, html_options = {})
         html_options[:multiple] = true
         add_css_class(html_options, 'multiselect')
         belongs_to_field(attr, html_options)
       end
-      # rubocop:enable Naming/PredicateName
-
       ### VARIOUS FORM ELEMENTS
 
       # Render the error messages for the current form.
@@ -249,7 +245,7 @@ module DryCrud
       # To add an additional help text, use the help option.
       # E.g. labeled_boolean_field(:checked, help: 'Some Help')
       def method_missing(name, *)
-        field_method = labeled_field_method?(name)
+        field_method = labeled_field_method(name)
         if field_method
           build_labeled_field(field_method, *)
         else
@@ -259,14 +255,14 @@ module DryCrud
 
       # Overriden to fullfill contract with method_missing 'labeled_' methods.
       def respond_to_missing?(name, include_private = false)
-        labeled_field_method?(name).present? || super
+        labeled_field_method(name).present? || super
       end
 
       private
 
       # Checks if the passed name corresponds to a field method with a
       # 'labeled_' prefix.
-      def labeled_field_method?(name)
+      def labeled_field_method(name)
         prefix = 'labeled_'
         if name.to_s.start_with?(prefix)
           field_method = name.to_s[prefix.size..]
