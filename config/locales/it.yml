@@ -34,6 +34,8 @@ it:
         study_time: Tempo di studio [d]
         title: Titolo
         type_of_exam: Tipo di esame
+      company:
+        reminder_mails_active: Email di promemoria attive
       contribution:
         display_in_cv: Includere nell'esportazione del CV
         reference: Riferimento (ad es. link)
@@ -81,11 +83,11 @@ it:
         projects:
           one: Progetto
           other: Progetti
+        reminder_mails_active: Email di promemoria attive
         roles:
           one: Funzione
           other: Funzioni
         shortname: Nome breve
-        reminder_mails_active: Email di promemoria attive
         skills:
           one: Abilità
           other: Competenze
@@ -106,8 +108,6 @@ it:
         radar: Radar
         subcategory: Sottocategoria
         title: Titolo
-      company:
-        reminder_mails_active: Email di promemoria attive
     models:
       activity: Stazione
       advanced_training: Formazione continua
@@ -145,9 +145,9 @@ it:
         list: Pannello di amministrazione.
     index:
       delete_inactive_profiles: Elimina profili inattivi
+      reminder_mail: Attiva le email di promemoria per la tua azienda.
       unify_skills: Unire le competenze
       update_people_manually: Aggiornare le persone manualmente
-      reminder_mail: Attiva le email di promemoria per la tua azienda.
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Si è verificato un errore durante l'aggiornamento di %{names}. Si prega di riprovare e, se necessario, controllare i dati in PuzzleTime.
@@ -362,7 +362,7 @@ it:
       is_not_displayed_in_cv: Non verrà incluso nell'esportazione del CV.
   people/export_cv:
     export_form:
-      update_index_info: "Attenzione: prima dell'invio, aprire il CV in LibreOffice e aggiornare l'indice"
+      update_index_info: 'Attenzione: prima dell''invio, aprire il CV in LibreOffice e aggiornare l''indice'
   people/people_skills:
     edit_form:
       rate: Tasso
@@ -387,18 +387,18 @@ it:
   profile:
     updated_at: Ultima modifica
   skill_search:
+    global:
+      dont_filter: Non filtrare
+      link:
+        add: Aggiungi abilità (max. 5)
     index:
       table:
         certificate: Certificato
+        core_competence: Competenza chiave
+        interest: Interesse
+        level: Livello
         name: Nome
         skill: Competenza
-        level: Livello
-        interest: Interesse
-        core_competence: Competenza chiave
-    global:
-      link:
-        add: Aggiungi abilità (max. 5)
-      dont_filter: Non filtrare
   skills:
     form:
       cancel: cancellare

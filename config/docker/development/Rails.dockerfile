@@ -1,4 +1,4 @@
-FROM ruby:3.4.1
+FROM ruby:4.0.1
 
 USER root
 

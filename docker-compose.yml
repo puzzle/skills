@@ -56,11 +56,12 @@ services:
 
   assets:
     container_name: assets
-    image: ruby:3.4.1
+    image: ruby:4.0.1
     working_dir: /myapp
     command: >
      /bin/bash -c "
       curl -fsSL https://deb.nodesource.com/setup_18.x | bash - &&
+      apt install &&
       apt-get install -y nodejs &&
       npm install -g yarn && bin/assets &&
       sleep infinity"
@@ -73,7 +74,7 @@ services:
 
   worker:
     container_name: worker
-    image: ruby:3.4.1
+    image: ruby:4.0.1
     environment:
       - RAILS_DB_HOST=postgres
       - RAILS_ENV=development

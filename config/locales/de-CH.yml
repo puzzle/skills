@@ -34,6 +34,8 @@ de-CH:
         study_time: Lernufwand [d]
         title: Titu
         type_of_exam: Prüefigsart
+      company:
+        reminder_mails_active: Erinnerigsmail aktiv
       contribution:
         display_in_cv: Im CV Export inkludierä
         reference: Referänz (z.B. Link)
@@ -81,11 +83,11 @@ de-CH:
         projects:
           one: Projekt
           other: Projektä
+        reminder_mails_active: Erinnerigsmail aktiv
         roles:
           one: Funktion
           other: Funktionä
         shortname: churznamä
-        reminder_mails_active: Erinnerigsmail aktiv
         skills:
           one: Skill
           other: Skills
@@ -106,8 +108,6 @@ de-CH:
         radar: Radar
         subcategory: Subkategorie
         title: Titu
-      company:
-        reminder_mails_active: Erinnerigsmail aktiv
     models:
       activity: Station
       advanced_training:
@@ -149,9 +149,9 @@ de-CH:
         list: Admin Panel
     index:
       delete_inactive_profiles: Inaktivi Profiu löschä
+      reminder_mail: Aktivier Erinnerigs E-Mails für d Firma.
       unify_skills: Skills vereinä
       update_people_manually: Persone manuell aktualisiere
-      reminder_mail: Aktivier Erinnerigs E-Mails für d Firma.
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Bi dr Aktualisierig vo %{names} isch öppis schiefgloffe. Versuechs nomau und überprüef auefaus d Date im PuzzleTime.
@@ -408,18 +408,18 @@ de-CH:
   profile:
     updated_at: Z'letzt bearbeitet
   skill_search:
+    global:
+      dont_filter: Nid filterä
+      link:
+        add: Skill hinzuäfüegä (max. 5)
     index:
       table:
         certificate: Zertifikat
+        core_competence: Chärnkompetenz
+        interest: Interässä
+        level: Level
         name: Namä
         skill: Skill
-        level: Level
-        interest: Interässä
-        core_competence: Chärnkompetenz
-    global:
-      link:
-        add: Skill hinzuäfüegä (max. 5)
-      dont_filter: Nid filterä
   skills:
     form:
       cancel: Abbrächä

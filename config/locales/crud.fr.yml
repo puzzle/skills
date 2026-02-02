@@ -29,7 +29,7 @@ fr:
     confirm_delete: Voulez-vous vraiment supprimer cette entrée ?
     errors:
       header:
-        one: "Une erreur a empêché l'enregistrement de cette entrée:"
+        one: 'Une erreur a empêché l''enregistrement de cette entrée:'
         other: "%{count} Des erreurs ont empêché l'enregistrement de cette entrée:"
     link:
       add: Créer
