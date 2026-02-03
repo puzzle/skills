@@ -146,20 +146,20 @@ ja:
     index:
       delete_inactive_profiles: 無効なプロファイルを削除
       unify_skills: スキル統合
-      update_people_manually: ユーザーを手動で更新
+      update_people_manually: メンバーを手動で更新
       reminder_mail: 会社のリマインダーメールを有効にする
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: "%{names}の更新に失敗しました。再度お試しください。また、念のためPuzzleTime内のデータもご確認ください。"
         fetching_data_failed: PuzzleTimeからデータを取得しようとした際に問題が発生しました。お手数ですが再度お試しいただき、それでも解決しない場合はサポートにご連絡ください。
         names_by_provider: "%{provider}の%{names}"
-        people_updated: すべてのユーザーのデータの更新に成功しました。
+        people_updated: すべてのメンバーのデータが正常に更新されました。
     unified_skills:
       create:
         success: スキル %{skill1} はスキル %{skill2} と統合され、新しいスキル %{new_skill} が作成されました
   admin/manual_ptime_sync:
     index:
-      description: この素敵なボタンが押されると、すべてのユーザーのデータがPuzzleTimeのデータをもとに更新されます。この処理には数秒かかる場合があります。
+      description: このボタンを押すと、すべてのメンバーのデータが「PuzzleTime」のデータで更新されます。処理には数秒かかる場合があります。
   admin/people_management:
     index:
       ex_members_title: 以下のプロファイルは元従業員としてマークされています

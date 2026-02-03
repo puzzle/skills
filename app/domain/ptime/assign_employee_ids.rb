@@ -40,11 +40,12 @@ module Ptime
       @mapped_people_count = 0
 
       @provider_employees.each do |ptime_employee|
-        email = ptime_employee[:attributes][:email]
+        employee_attributes = ptime_employee[:attributes]
+        email = employee_attributes[:email]
         matched_person = Person.where(ptime_employee_id: nil, ptime_data_provider: nil)
                                .find_by(email:)
 
-        is_employed = ptime_employee[:attributes][:is_employed]
+        is_employed = employee_is_or_will_be_employed?(employee_attributes)
         next record_unmatched_entry(ptime_employee) unless matched_person && is_employed
 
         @mapped_people_count += 1
