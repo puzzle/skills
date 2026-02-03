@@ -93,6 +93,6 @@ group :test do
   # Use fixed version of webdrivers to avoid compatibility issues with chrome and chromedriver
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'tzinfo-data', platforms: %i[windows jruby]
 
 gem 'rails-controller-testing', '~> 1.0'
