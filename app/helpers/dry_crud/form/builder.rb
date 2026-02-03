@@ -131,17 +131,21 @@ module DryCrud
         end
       end
 
+      # rubocop:disable Naming/PredicatePrefix
+
       # Render a multi select element for a :has_many or
       # :has_and_belongs_to_many association defined by attr.
       # Use additional html_options for the select element.
       # To pass a custom element list, specify the list with the :list key or
       # define an instance variable with the pluralized name of the
       # association.
-      def many_field?(attr, html_options = {})
+      def has_many_field?(attr, html_options = {})
         html_options[:multiple] = true
         add_css_class(html_options, 'multiselect')
         belongs_to_field(attr, html_options)
       end
+      # rubocop:enable Naming/PredicatePrefix
+
       ### VARIOUS FORM ELEMENTS
 
       # Render the error messages for the current form.
