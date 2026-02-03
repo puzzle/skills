@@ -55,17 +55,24 @@ class SkillsController < CrudController
   end
 
   def entries
-    @member_counts = PeopleSkill
-                       .joins(:person)
-                       .where.not(interest: 0)
-                       .or(PeopleSkill.where.not(level: 0))
-                       .group(:skill_id)
-                       .count
-    @skills =
-      SkillsFilter.new(Skill.all,
-                       params[:category],
-                       params[:title]&.strip,
-                       params[:defaultSet]).scope
+    @member_counts = member_counts
+    @skills = skills
+  end
+
+  def member_counts
+    PeopleSkill
+      .joins(:person)
+      .where.not(interest: 0)
+      .or(PeopleSkill.where.not(level: 0))
+      .group(:skill_id)
+      .count
+  end
+
+  def skills
+    SkillsFilter.new(Skill.all,
+                     params[:category],
+                     params[:title]&.strip,
+                     params[:defaultSet]).scope
   end
 
   # rubocop:disable Metrics/AbcSize
