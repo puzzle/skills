@@ -1,2 +1,3 @@
 - if flash[level].present?
-  %div{class: "alert alert-#{flash_class(level)}"}= flash[level].html_safe
+  - alert_class = (flash[:already_logged_in] = true) ? "alert-success" : "alert-#{flash_class(level)}"
+  %div{class: "alert #{alert_class}"}= flash[level].html_safe
