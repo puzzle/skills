@@ -19,6 +19,14 @@ module SortHelper
     end
   end
 
+  private
+
+  def filter_by_rated(skill)
+    skill.people_skills.where.not(interest: 0)
+         .or(skill.people_skills.where.not(level: 0))
+         .joins(:person).order(:name)
+  end
+
   def sort_params(attr)
     result = params.respond_to?(:to_unsafe_h) ? params.to_unsafe_h : params
     result.merge(sort: attr, sort_dir: sort_dir(attr), only_path: true)
