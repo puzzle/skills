@@ -74,7 +74,7 @@ This should look something like this:
 
 ```
 IMAGE              COMMAND                   CREATED          STATUS           PORTS                                       NAMES
-ruby:3.4.1         "/bin/bash -c '\n cur…"   11 seconds ago   Up 9 seconds                                                 assets
+ruby:4.0.1         "/bin/bash -c '\n cur…"   11 seconds ago   Up 9 seconds                                                 assets
 skills-dev/rails   "rails-entrypoint ra…"    11 seconds ago   Up 9 seconds     0.0.0.0:3000->3000/tcp, :::3000->3000/tcp   rails
 postgres:16        "docker-entrypoint.s…"    11 seconds ago   Up 10 seconds    0.0.0.0:5432->5432/tcp, :::5432->5432/tcp   postgres
 ```

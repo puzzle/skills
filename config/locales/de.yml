@@ -34,6 +34,8 @@ de:
         study_time: Lernaufwand [d]
         title: Titel
         type_of_exam: Prüfungsart
+      company:
+        reminder_mails_active: Erinnerungsmails aktiv
       contribution:
         display_in_cv: Im CV Export inkludieren
         reference: Referenz (z.B. Link)
@@ -81,11 +83,11 @@ de:
         projects:
           one: Projekt
           other: Projekte
+        reminder_mails_active: Erinnerungsmails aktiv
         roles:
           one: Funktion
           other: Funktionen
         shortname: Kurzname
-        reminder_mails_active: Erinnerungsmails aktiv
         skills:
           one: Skill
           other: Skills
@@ -106,8 +108,6 @@ de:
         radar: Radar
         subcategory: Subkategorie
         title: Titel
-      company:
-        reminder_mails_active: Erinnerungsmails aktiv
     models:
       activity: Station
       advanced_training:
@@ -149,9 +149,9 @@ de:
         list: Admin Panel
     index:
       delete_inactive_profiles: Inaktive Profile löschen
+      reminder_mail: Aktiviere Erinnerungs E-Mails für die Firma.
       unify_skills: Skills vereinen
       update_people_manually: Personen manuell aktualisieren
-      reminder_mail: Aktiviere Erinnerungs E-Mails für die Firma.
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Bei der Aktualisierung von %{names} ist etwas schiefgelaufen. Versuche es erneut und überprüfe allenfalls die Daten im PuzzleTime.
@@ -391,18 +391,18 @@ de:
   profile:
     updated_at: Zuletzt bearbeitet
   skill_search:
+    global:
+      dont_filter: Nicht filtern
+      link:
+        add: Skill hinzufügen (max. 5)
     index:
       table:
         certificate: Zertifikat
+        core_competence: Kernkompetenz
+        interest: Interesse
+        level: Level
         name: Name
         skill: Skill
-        level: Level
-        interest: Interesse
-        core_competence: Kernkompetenz
-    global:
-      link:
-        add: Skill hinzufügen (max. 5)
-      dont_filter: Nicht filtern
   skills:
     form:
       cancel: Abbrechen

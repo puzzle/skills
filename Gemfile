@@ -30,7 +30,7 @@ gem 'jsbundling-rails'
 gem 'language_list'
 gem 'mini_magick'
 gem 'mutex_m'
-gem 'net-imap', require: false
+gem 'net-imap', '~> 0.6.2', require: false
 gem 'net-ldap', '~> 0.16.0'
 gem 'net-pop', require: false
 gem 'net-smtp', require: false
@@ -66,7 +66,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code
   # to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'i18n-tasks', '~> 1.0.14'
+  gem 'i18n-tasks', '~> 1.1.2'
   gem 'pry'
   gem 'pry-byebug'
   gem 'rspec-rails'
@@ -93,6 +93,6 @@ group :test do
   # Use fixed version of webdrivers to avoid compatibility issues with chrome and chromedriver
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'tzinfo-data', platforms: %i[windows jruby]
 
 gem 'rails-controller-testing', '~> 1.0'

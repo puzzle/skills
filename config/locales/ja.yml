@@ -34,6 +34,8 @@ ja:
         study_time: 学習時間 [日]
         title: タイトル
         type_of_exam: 試験の種類
+      company:
+        reminder_mails_active: リマインダーメールが有効
       contribution:
         display_in_cv: 履歴書に含める
         reference: 参照（例：リンク
@@ -81,11 +83,11 @@ ja:
         projects:
           one: プロジェクト
           other: プロジェクト
+        reminder_mails_active: リマインダーメールが有効
         roles:
           one: 職務
           other: 職務
         shortname: 短縮名
-        reminder_mails_active: リマインダーメールが有効
         skills:
           one: スキル
           other: スキル
@@ -106,8 +108,6 @@ ja:
         radar: レーダー
         subcategory: サブカテゴリ
         title: タイトル
-      company:
-        reminder_mails_active: リマインダーメールが有効
     models:
       activity: 配属先
       advanced_training: 研修
@@ -145,9 +145,9 @@ ja:
         list: 管理パネル
     index:
       delete_inactive_profiles: 無効なプロファイルを削除
+      reminder_mail: 会社のリマインダーメールを有効にする
       unify_skills: スキル統合
       update_people_manually: ユーザーを手動で更新
-      reminder_mail: 会社のリマインダーメールを有効にする
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: "%{names}の更新に失敗しました。再度お試しください。また、念のためPuzzleTime内のデータもご確認ください。"
@@ -387,18 +387,18 @@ ja:
   profile:
     updated_at: 最終編集日
   skill_search:
+    global:
+      dont_filter: フィルターなし
+      link:
+        add: スキルを追加（最大5つまで）
     index:
       table:
         certificate: 証明書
+        core_competence: 核心能力
+        interest: 興味
+        level: レベル
         name: 名前
         skill: スキル
-        level: レベル
-        interest: 興味
-        core_competence: 核心能力
-    global:
-      link:
-        add: スキルを追加（最大5つまで）
-      dont_filter: フィルターなし
   skills:
     form:
       cancel: キャンセル

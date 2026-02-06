@@ -14,7 +14,7 @@ module PersonHelper
     role_level = person_role.person_role_level&.level
     role_level = I18n.t('language_skills.none') if role_level == 'Keine'
     "#{person_role.role.name} #{role_level}
-      #{person_role.percent.nil? ? '' : "#{person_role.percent.to_i}%"}"
+      #{"#{person_role.percent.to_i}%" unless person_role.percent.nil?}"
   end
 
   def marital_status_translation_map

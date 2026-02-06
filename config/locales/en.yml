@@ -34,6 +34,8 @@ en:
         study_time: Study time [d]
         title: Title
         type_of_exam: Type of exam
+      company:
+        reminder_mails_active: Reminder mails active
       contribution:
         display_in_cv: Include in CV export
         reference: Reference (e.g., Link)
@@ -81,11 +83,11 @@ en:
         projects:
           one: Project
           other: Projects
+        reminder_mails_active: Reminder mails active
         roles:
           one: Function
           other: Functions
         shortname: Short name
-        reminder_mails_active: Reminder mails active
         skills:
           one: Skill
           other: Skills
@@ -106,8 +108,6 @@ en:
         radar: Radar
         subcategory: Subcategory
         title: Title
-      company:
-        reminder_mails_active: Reminder mails active
     models:
       activity: Station
       advanced_training: Further training
@@ -145,9 +145,9 @@ en:
         list: Admin Panel
     index:
       delete_inactive_profiles: Delete inactive profiles
+      reminder_mail: Activate reminder emails for your company.
       unify_skills: Unify skills
       update_people_manually: Update people manually
-      reminder_mail: Activate reminder emails for your company.
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Something went wrong while updating %{names}. Please try again and, if necessary, check the data in PuzzleTime.
@@ -387,18 +387,18 @@ en:
   profile:
     updated_at: Last edited
   skill_search:
+    global:
+      dont_filter: Don't filter
+      link:
+        add: Add skill (max. 5)
     index:
       table:
         certificate: Certificate
+        core_competence: Core competence
+        interest: Interest
+        level: Level
         name: Name
         skill: Skill
-        level: Level
-        interest: Interest
-        core_competence: Core competence
-    global:
-      link:
-        add: Add skill (max. 5)
-      dont_filter: Don't filter
   skills:
     form:
       cancel: cancel

@@ -38,12 +38,12 @@ class Admin::UnifiedSkillsController < CrudController
     flash.clear
     assign_attributes
 
-    return if check_entry_validity
+    return if check_entry_validity?
 
     check_skill_conflicts
   end
 
-  def check_entry_validity
+  def check_entry_validity?
     unless entry.valid?
       respond_to do |format|
         flash[:alert] = error_messages.presence || flash_message(:failure)

@@ -1,5 +1,6 @@
 module UnifiedSkillsHelper
   include ParamConverters
+
   def old_skill1_select_options
     options_for_select(skills_for_dropdown, selected: old_skill_id1)
   end

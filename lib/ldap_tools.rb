@@ -8,7 +8,7 @@ class LdapTools
       @@ldap_connection ||= connect_ldap
     end
 
-    def authenticate(username, password)
+    def authenticate?(username, password)
       check_username(username)
       result = ldap_connection.bind_as(base: basename,
                                        filter: "uid=#{username}",

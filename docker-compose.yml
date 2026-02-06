@@ -56,7 +56,7 @@ services:
 
   assets:
     container_name: assets
-    image: ruby:3.4.1
+    image: ruby:4.0.1
     working_dir: /myapp
     command: >
      /bin/bash -c "
@@ -73,7 +73,7 @@ services:
 
   worker:
     container_name: worker
-    image: ruby:3.4.1
+    image: ruby:4.0.1
     environment:
       - RAILS_DB_HOST=postgres
       - RAILS_ENV=development
