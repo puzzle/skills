@@ -5,7 +5,6 @@ set -e
 rm -f tmp/pids/server.pid
 
 echo "running bundle install"
-gem install bundler -v 2.4.10
 bundle install
 
 yarn install --check-files
