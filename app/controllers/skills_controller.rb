@@ -61,7 +61,6 @@ class SkillsController < CrudController
 
   def member_counts
     PeopleSkill
-      .joins(:person)
       .where.not(interest: 0)
       .or(PeopleSkill.where.not(level: 0))
       .group(:skill_id)
