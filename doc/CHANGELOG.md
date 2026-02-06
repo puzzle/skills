@@ -9,7 +9,7 @@
 - **Team skill tracking** Months that have already passed or are ahead with no data are no longer being shown.
 - **Team skill tracking usability** The department and skill dropdowns are now searchable, with results displayed in alphabetical order.
 - **Ruby upgrade** Ruby version upgraded to 4.0.1.
-- **Yarn upgrade** Yarn version upgraded to 4.0.0
+- **Yarn upgrade** Yarn version upgraded to 4.12.0
 
 # 6.0.0
 
