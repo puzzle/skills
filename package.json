@@ -30,7 +30,7 @@
   ],
   "engines": {
     "npm": "please-use-yarn",
-    "yarn": ">= 4.0.0",
+    "yarn": ">= 4.4.0",
     "node": ">= 18.16.0"
   },
   "devDependencies": {

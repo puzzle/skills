@@ -2,7 +2,6 @@ services:
   rails:
     container_name: rails
     image: skills-dev/rails
-    user: app
     tty: true
     stdin_open: true
     environment:
