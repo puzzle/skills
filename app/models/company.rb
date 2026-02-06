@@ -16,7 +16,7 @@ class Company < ApplicationRecord
   validates :name, presence: true
   validates :name, length: { maximum: 100 }
 
-  scope :list, -> { order('name asc') }
+  scope :list, -> { order(:name) }
 
   def to_s
     name

@@ -222,7 +222,7 @@ class CrudController < ListController
 
   # Render a json with the errors.
   def render_unsaved_json
-    render json: entry.errors, status: :unprocessable_entity
+    render json: entry.errors, status: :unprocessable_content
   end
 
   # Get an I18n flash message.

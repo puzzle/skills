@@ -4,17 +4,23 @@ module PtimeHelper
   end
 
   def ptime_providers
-    @provider_configs = ENV.filter { |env_var| env_var.start_with?('PTIME_PROVIDER') }
-                           .sort
-                           .to_h
-                           .each_slice(4)
-                           .map do |config|
-      config.to_h.transform_keys { |key| key.sub(/^PTIME_PROVIDER_[0-9]+_/, '') }
-    end
+    @provider_configs = provider_configs
 
     validate_ptime_provider_configs
 
     @provider_configs
+  end
+
+  def provider_configs
+    ENV.filter { |env_var| env_var.start_with?('PTIME_PROVIDER') }
+       .sort
+       .to_h
+       .each_slice(4)
+       .map do |config|
+         config.to_h.transform_keys do |key|
+           key.sub(/^PTIME_PROVIDER_[0-9]+_/, '')
+         end
+    end
   end
 
   def fetch_data_of_ptime_employees_by_provider
