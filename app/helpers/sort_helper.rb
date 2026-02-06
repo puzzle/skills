@@ -100,6 +100,6 @@ module SortHelper
   end
 
   def sort_by_members
-    @skills.sort_by { |skill| filter_by_rated(skill).count }
+    @skills.sort_by { |skill| @member_counts.fetch(skill.id, 0) }
   end
 end
