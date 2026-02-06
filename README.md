@@ -54,6 +54,12 @@ Since this is the default, you don't have to do anything and can run all command
 To use the application with Keycloak, navigate to `config/docker/keycloak` and run all commands from this directory.
 You can log in either as `user` or as `admin`. The password for both accounts is `password`.
 
+### Remove Skills related Volumes
+If this is your first time starting the Development Containers after the ruby 4 upgrade.
+Make sure to delete all skills related volumes
+```bash
+docker volume rm skills_assets_cache skills_bundler_cache skills_postgres
+```
 
 ### Start application
 To start the PuzzleSkills application, run the following commands in your shell:
