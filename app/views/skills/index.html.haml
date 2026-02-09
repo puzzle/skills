@@ -26,7 +26,7 @@
             .col-2.d-flex.align-items-center.text-break
               = link_to skill.title, skill_path(skill), data: { turbo_frame: "remote_modal" }
             .col-1.bg-light.d-flex.align-items-center
-              = @member_counts.fetch(skill.id, 0)
+              = @member_counts[skill.id].to_i
             .col-3.d-flex.align-items-center
               =skill.category.parent.title
             .col-2.bg-light.d-flex.align-items-center

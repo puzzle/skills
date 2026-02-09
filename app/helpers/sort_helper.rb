@@ -100,6 +100,6 @@ module SortHelper
   end
 
   def sort_by_members
-    @skills.sort_by { |skill| @member_counts.fetch(skill.id, 0) }
+    @skills.sort_by { |skill| @member_counts[skill.id].to_i }
   end
 end
