@@ -36,9 +36,15 @@ describe SortHelper, type: :helper do
 
   describe "Sort skills" do
     let(:skills) { Skill.all }
+    let(:member_count) { PeopleSkill
+                           .where.not(interest: 0)
+                           .or(PeopleSkill.where.not(level: 0))
+                           .group(:skill_id)
+                           .count }
 
     before do
       helper.instance_variable_set(:@skills, skills)
+      helper.instance_variable_set(:@member_counts, member_count)
     end
 
     %w[asc desc].each do |sort_dir|
