@@ -4,7 +4,6 @@
 
 # Versioning
 ARG RUBY_VERSION="4.0.1"
-ARG BUNDLER_VERSION="2.5.6"
 ARG NODEJS_VERSION="18"
 ARG YARN_VERSION="1.22.10"
 
@@ -69,7 +68,6 @@ FROM ruby:${RUBY_VERSION} AS build
 ARG PRE_INSTALL_SCRIPT
 ARG BUILD_PACKAGES
 ARG INSTALL_SCRIPT
-ARG BUNDLER_VERSION
 ARG PRE_BUILD_SCRIPT
 ARG BUNDLE_WITHOUT
 ARG BUILD_SCRIPT
@@ -104,9 +102,6 @@ RUN    export DEBIAN_FRONTEND=noninteractive \
   && apt-get install -y --no-install-recommends ${BUILD_PACKAGES}
 
 RUN bash -vxc "${INSTALL_SCRIPT:-"echo 'no INSTALL_SCRIPT provided'"}"
-
-# Install specific versions of dependencies
-RUN gem install bundler:${BUNDLER_VERSION} --no-document
 
 # TODO: Load artifacts
 
@@ -149,7 +144,6 @@ RUN adduser --disabled-password --uid 1001 --gid 0 --gecos "" app
 
 # arguments for steps
 ARG RUN_PACKAGES
-ARG BUNDLER_VERSION
 ARG BUNDLE_WITHOUT
 
 # arguments potentially used by steps
@@ -199,9 +193,6 @@ RUN mkdir -p tmp/pids \
 # support bin-stubs
 ENV HOME=/app-src \
   PATH=/app-src/bin:$PATH
-
-# Install specific versions of dependencies
-RUN gem install bundler:${BUNDLER_VERSION} --no-document
 
 # Use cached gems
 RUN    bundle config set --local deployment 'true' \
