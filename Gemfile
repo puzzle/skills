@@ -9,7 +9,7 @@ gem 'active_model_serializers'
 gem 'activerecord-postgresql-adapter'
 gem 'annotate'
 gem 'bigdecimal'
-gem 'bleib', '0.0.8' # For deployment
+gem 'bleib' # For deployment
 gem 'bootsnap'
 gem 'bundler-audit'
 gem 'carrierwave'
@@ -21,7 +21,7 @@ gem 'database_cleaner'
 gem 'delayed_cron_job'
 gem 'delayed_job_active_record'
 gem 'devise'
-gem 'discard', '~> 1.4'
+gem 'discard'
 gem 'drb'
 gem 'faker'
 gem 'haml-rails'
@@ -30,8 +30,8 @@ gem 'jsbundling-rails'
 gem 'language_list'
 gem 'mini_magick'
 gem 'mutex_m'
-gem 'net-imap', '~> 0.6.2', require: false
-gem 'net-ldap', '~> 0.16.0'
+gem 'net-imap', require: false
+gem 'net-ldap'
 gem 'net-pop', require: false
 gem 'net-smtp', require: false
 gem 'nokogiri'
@@ -40,7 +40,7 @@ gem 'omniauth-keycloak'
 gem 'omniauth-rails_csrf_protection'
 gem 'pg'
 gem 'pg_search'
-gem 'psych', '~> 3.3', '>= 3.3.4'
+gem 'psych'
 gem 'puma'
 gem 'rack'
 gem 'rails-i18n'
@@ -66,7 +66,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code
   # to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'i18n-tasks', '~> 1.1.2'
+  gem 'i18n-tasks'
   gem 'pry'
   gem 'pry-byebug'
   gem 'rspec-rails'
@@ -82,7 +82,7 @@ group :development do
   # running in the background. Read more: https://github.com/rails/spring
   gem 'rails-erd'
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen'
 end
 
 group :test do
@@ -95,4 +95,4 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[windows jruby]
 
-gem 'rails-controller-testing', '~> 1.0'
+gem 'rails-controller-testing'

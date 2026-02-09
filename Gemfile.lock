@@ -95,7 +95,7 @@ GEM
     benchmark (0.5.0)
     bigdecimal (4.0.1)
     bindata (2.5.1)
-    bleib (0.0.8)
+    bleib (0.0.16)
     bootsnap (1.22.0)
       msgpack (~> 1.2)
     brakeman (8.0.2)
@@ -175,12 +175,13 @@ GEM
     domain_name (0.6.20240107)
     dotenv (3.2.0)
     drb (2.2.3)
+    erb (6.0.1)
     erubi (1.13.1)
     et-orbi (1.4.0)
       tzinfo
     faker (3.6.0)
       i18n (>= 1.8.11, < 2)
-    faraday (2.14.0)
+    faraday (2.14.1)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
@@ -238,8 +239,9 @@ GEM
       ruby-vips (>= 2.0.17, < 3)
     iniparse (1.5.0)
     io-console (0.8.2)
-    irb (1.16.0)
+    irb (1.17.0)
       pp (>= 0.6.0)
+      prism (>= 1.3.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jsbundling-rails (1.3.1)
@@ -293,7 +295,9 @@ GEM
     net-imap (0.6.2)
       date
       net-protocol
-    net-ldap (0.16.3)
+    net-ldap (0.20.0)
+      base64
+      ostruct
     net-pop (0.1.2)
       net-protocol
     net-protocol (0.2.2)
@@ -357,7 +361,9 @@ GEM
     pry-byebug (3.12.0)
       byebug (~> 13.0)
       pry (>= 0.13, < 0.17)
-    psych (3.3.4)
+    psych (5.3.1)
+      date
+      stringio
     public_suffix (7.0.2)
     puma (7.2.0)
       nio4r (~> 2.0)
@@ -423,7 +429,10 @@ GEM
     rb-inotify (0.11.1)
       ffi (~> 1.0)
     rb-readline (0.5.5)
-    rdoc (6.3.4.1)
+    rdoc (7.1.0)
+      erb
+      psych (>= 4.0.0)
+      tsort
     regexp_parser (2.11.3)
     reline (0.6.3)
       io-console (~> 0.5)
@@ -516,10 +525,10 @@ GEM
     snaky_hash (2.0.3)
       hashie (>= 0.1.0, < 6)
       version_gem (>= 1.1.8, < 3)
-    spring (2.1.1)
-    spring-watcher-listen (2.0.1)
+    spring (4.4.2)
+    spring-watcher-listen (2.1.0)
       listen (>= 2.7, < 4.0)
-      spring (>= 1.2, < 3.0)
+      spring (>= 4)
     sprockets (4.2.2)
       concurrent-ruby (~> 1.0)
       logger
@@ -531,6 +540,7 @@ GEM
     ssrf_filter (1.3.0)
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
+    stringio (3.2.0)
     sysexits (1.2.0)
     temple (0.10.4)
     terminal-table (4.0.0)
@@ -576,7 +586,7 @@ DEPENDENCIES
   activerecord-postgresql-adapter
   annotate
   bigdecimal
-  bleib (= 0.0.8)
+  bleib
   bootsnap
   brakeman
   bullet
@@ -592,21 +602,21 @@ DEPENDENCIES
   delayed_cron_job
   delayed_job_active_record
   devise
-  discard (~> 1.4)
+  discard
   dotenv
   drb
   faker
   haml-rails
   haml_lint
-  i18n-tasks (~> 1.1.2)
+  i18n-tasks
   i18n_data
   jsbundling-rails
   language_list
   listen
   mini_magick
   mutex_m
-  net-imap (~> 0.6.2)
-  net-ldap (~> 0.16.0)
+  net-imap
+  net-ldap
   net-pop
   net-smtp
   nokogiri
@@ -618,11 +628,11 @@ DEPENDENCIES
   pg_search
   pry
   pry-byebug
-  psych (~> 3.3, >= 3.3.4)
+  psych
   puma
   rack
   rails (~> 8.1.2)
-  rails-controller-testing (~> 1.0)
+  rails-controller-testing
   rails-erd
   rails-i18n
   rb-readline
@@ -639,7 +649,7 @@ DEPENDENCIES
   sentry-ruby
   simplecov
   spring
-  spring-watcher-listen (~> 2.0.0)
+  spring-watcher-listen
   sprockets-rails
   stimulus-rails
   turbo-rails
@@ -647,4 +657,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-  4.0.3
+  4.0.5
