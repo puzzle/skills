@@ -35,8 +35,8 @@ class ApplicationController < ActionController::Base
     render_unauthorized(helpers.conf_admin?)
   end
 
-  def render_unauthorized(authorized)
-    return false if authorized
+  def render_unauthorized(is_authorized)
+    return false if is_authorized
 
     redirect_to root_path if request.referer.nil?
     render_error('unauthorized', 'unauthorized', :unauthorized)
