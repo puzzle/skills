@@ -5,7 +5,7 @@
 
 # Versioning
 ARG RUBY_VERSION="4.0.1"
-ARG NODEJS_VERSION="18"
+ARG NODEJS_VERSION="24.13.0"
 
 # Packages
 ARG BUILD_PACKAGES="nodejs build-essential shared-mime-info libxml2-dev libxslt1-dev"
