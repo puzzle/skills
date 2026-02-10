@@ -11,7 +11,7 @@ WORKDIR /myapp
 COPY ./test-entrypoint /usr/local/bin
 
 RUN useradd app -m -U -d /myapp/
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash -
 RUN apt-get update
 RUN apt-get install direnv -y
 RUN apt-get install firefox-esr -y
