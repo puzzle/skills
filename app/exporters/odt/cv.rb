@@ -91,7 +91,7 @@ module Odt
       report.add_field(:title, person.title)
       unless anon?
         report.add_field(:birthdate, Date.parse(person.birthdate.to_s)
-                                         .strftime('%d.%m.%Y'))
+                                         .strftime('%d.%m.%Y')) if person.birthdate.present?
         report.add_field(:nationalities, nationalities)
         report.add_field(:email, person.email)
         report.add_image(:profile_picture, person.picture.path) if person.picture.file.present?
