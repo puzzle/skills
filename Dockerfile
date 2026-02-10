@@ -9,7 +9,7 @@ ARG NODEJS_VERSION="18"
 ARG YARN_VERSION="1.22.10"
 
 # Packages
-ARG BUILD_PACKAGES="nodejs build-essential shared-mime-info"
+ARG BUILD_PACKAGES="nodejs build-essential shared-mime-info libxml2-dev libxslt1-dev"
 ARG RUN_PACKAGES="shared-mime-info postgresql graphicsmagick"
 
 # Scripts
@@ -116,6 +116,10 @@ COPY Gemfile Gemfile.lock ./
 
 RUN bash -vxc "${PRE_BUILD_SCRIPT:-"echo 'no PRE_BUILD_SCRIPT provided'"}"
 
+# Set nokogiri to use system libraries (libxml2-dev libxslt1-dev)
+# as it failed to build with the default settings
+RUN bundle config set build.nokogiri --use-system-libraries
+
 # install gems and build the app
 RUN    bundle config set --local deployment 'true' \
   && bundle config set --local without ${BUNDLE_WITHOUT} \
@@ -145,7 +149,7 @@ FROM ruby:${RUBY_VERSION}-slim AS app
 SHELL ["/bin/bash", "-c"]
 
 # Add user
-RUN adduser --disabled-password --uid 1001 --gid 0 --gecos "" app
+RUN useradd --uid 1001 --gid 0 --shell /bin/bash --create-home app
 
 # arguments for steps
 ARG RUN_PACKAGES
