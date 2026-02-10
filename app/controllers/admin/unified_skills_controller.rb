@@ -82,10 +82,10 @@ class Admin::UnifiedSkillsController < CrudController
                .group_by(&:person_id)
                .each_value do |people_skills|
 
-      best_people_skill = people_skills.max_by { |ps| ps.level.to_i }
-      other_people_skills = people_skills - [best_people_skill]
-      best_people_skill&.update!(skill_id: new_skill_id)
-      other_people_skills.each { |ps| ps.delete }
+                 best_people_skill = people_skills.max_by { |ps| ps.level.to_i }
+                 other_people_skills = people_skills - [best_people_skill]
+                 best_people_skill&.update!(skill_id: new_skill_id)
+                 other_people_skills.each { |ps| ps.delete }
     end
   end
 

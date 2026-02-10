@@ -1,11 +1,11 @@
 require:
-  - rubocop-capybara
-  - rubocop-rspec_rails
   - ./lib/custom_cops/translated_haml_files
 
 plugins:
   - rubocop-rails
   - rubocop-rspec
+  - rubocop-rspec_rails
+  - rubocop-capybara
 
 AllCops:
   NewCops: enable

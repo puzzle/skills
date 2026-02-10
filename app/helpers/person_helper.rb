@@ -110,9 +110,9 @@ module PersonHelper
 
   def parent_categories_with_rated_skills
     Category.where(id: Category.joins(skills: :people_skills)
-                               .where(people_skills: { id: @people_skills })
-                               .distinct
-                               .select('parent_id'))
+                       .where(people_skills: { id: @people_skills })
+                       .distinct
+                       .select('parent_id'))
             .order(:title)
             .pluck(:title)
   end

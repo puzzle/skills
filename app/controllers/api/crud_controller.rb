@@ -64,7 +64,7 @@ class Api::CrudController < Api::ListController
   end
 
   def render_errors
-    render json: entry, status: :unprocessable_entity,
+    render json: entry, status: :unprocessable_content,
            adapter: :json_api, serializer: ActiveModel::Serializer::ErrorSerializer
   end
 
