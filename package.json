@@ -30,10 +30,11 @@
   ],
   "engines": {
     "npm": "please-use-yarn",
-    "yarn": ">= 1.22.0",
+    "yarn": ">= 4.12.0",
     "node": ">= 18.16.0"
   },
   "devDependencies": {
     "husky": "^9.0.11"
-  }
+  },
+  "packageManager": "yarn@4.12.0"
 }

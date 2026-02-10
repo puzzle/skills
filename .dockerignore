@@ -4,3 +4,4 @@ uploads/person/picture/
 spec/coverage
 tmp
 log
+.yarn/install-state.gz

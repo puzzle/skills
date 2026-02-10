@@ -4,6 +4,7 @@ USER root
 
 ENV RAILS_ENV=development
 ENV BUNDLE_PATH=/opt/bundle
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 
 WORKDIR /myapp
 
@@ -16,7 +17,7 @@ RUN apt-get install direnv -y
 RUN apt-get install firefox-esr -y
 RUN apt-get install -y nodejs
 RUN apt-get install -y graphicsmagick
-RUN npm install -g yarn
+RUN npm install -g corepack && corepack enable
 
 RUN mkdir /opt/bundle && chmod 777 /opt/bundle
 RUN mkdir /seed && chmod 777 /seed
