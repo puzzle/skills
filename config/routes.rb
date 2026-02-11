@@ -113,6 +113,7 @@ Rails.application.routes.draw do
     resources :projects
     resources :project_technologies
     resources :roles, only: :index
+    resources :cvs, only: :index
 
     if Rails.env.test?
       resource 'test_api', controller: 'test_api', only: [:create, :destroy]
