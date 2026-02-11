@@ -75,4 +75,8 @@ Rails.application.routes.draw do
 
     resources :department_skill_snapshots, only: [:index]
   end
+
+  namespace :api do
+    resources :cvs, only: :index
+  end
 end
