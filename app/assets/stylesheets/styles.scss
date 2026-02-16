@@ -123,10 +123,10 @@ pzsh-topbar {
 
 .bg-skills-search-result-blue {
   background-color: $skills-search-result-blue;
+}
 
-  &:hover {
+.hover-skills-green:hover {
     background-color: $skills-green-hover;
-  }
 }
 
 .fixed-table {

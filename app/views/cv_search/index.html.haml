@@ -29,5 +29,5 @@
                   = ti("search.found_in")
                 %div.w-25.d-flex.justify-content-start.align-items-center
                   %div.me-1.w-100.h-100.d-flex.flex-row.align-items-center.justify-content-start
-                    %p.bg-skills-search-result-blue.text-decoration-none.ps-1.p-2.rounded-1.text-center.mb-0.w-100
-                      = link_to found_in[:attribute], path(result, found_in), {class: "text-decoration-none text-white","data-turbo-frame": "_top" }
+                    %p.bg-skills-search-result-blue.hover-skills-green.text-decoration-none.ps-1.p-2.rounded-1.text-center.mb-0.w-100.position-relative
+                      = link_to found_in[:attribute], path(result, found_in), {class: "text-decoration-none text-white stretched-link","data-turbo-frame": "_top" }
