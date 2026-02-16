@@ -1,4 +1,8 @@
 class Api::CvsController < Api::ApplicationController
+  include ActionController::HttpAuthentication::Token::ControllerMethods
+
+  before_action :authenticate_with_token
+
   def index
     people = Person
              .includes(
@@ -14,6 +18,12 @@ class Api::CvsController < Api::ApplicationController
   end
 
   private
+
+  def authenticate_with_token
+    authenticate_or_request_with_http_token do |token|
+      ActiveSupport::SecurityUtils.secure_compare(token, ENV.fetch('CVS_API_TOKEN', nil))
+    end
+  end
 
   def render_collection(collection, serializer)
     render json: {
