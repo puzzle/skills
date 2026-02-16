@@ -5,7 +5,7 @@ describe 'People management', type: :feature, js: true do
   let(:alice) { people(:alice) }
 
   before(:each) do
-    sign_in auth_users(:admin), scope: :auth_user
+    sign_in auth_users(:conf_admin), scope: :auth_user
     enable_ptime_sync
 
     unemployed_company = companies('ex-mitarbeiter')
