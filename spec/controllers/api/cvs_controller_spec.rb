@@ -2,15 +2,23 @@ require 'rails_helper'
 
 RSpec.describe Api::CvsController, type: :controller do
   describe 'GET #index' do
-    subject(:request) { get :index }
+    let(:api_token) { 'test-token' }
+
+    before do
+      allow(ENV).to receive(:fetch).with('CVS_API_TOKEN', nil).and_return(api_token)
+
+      request.headers['Authorization'] = "Token token=#{api_token}"
+    end
+
+    subject(:request_call) { get :index }
 
     it 'returns http success' do
-      request
+      request_call
       expect(response).to have_http_status(:ok)
     end
 
     it 'returns cvs wrapped in data.data' do
-      request
+      request_call
 
       expect(json).to have_key('data')
       expect(json['data']).to have_key('data')
@@ -18,7 +26,7 @@ RSpec.describe Api::CvsController, type: :controller do
     end
 
     it 'returns cvs with expected jsonapi structure' do
-      request
+      request_call
 
       cv = json['data']['data'].first
 
@@ -33,7 +41,7 @@ RSpec.describe Api::CvsController, type: :controller do
     end
 
     it 'includes main attributes on cv' do
-      request
+      request_call
 
       attributes = json['data']['data'].first['attributes']
 
@@ -59,7 +67,7 @@ RSpec.describe Api::CvsController, type: :controller do
     end
 
     it 'includes company and department relationships' do
-      request
+      request_call
 
       relationships = json['data']['data'].first['relationships']
 
@@ -77,7 +85,7 @@ RSpec.describe Api::CvsController, type: :controller do
     end
 
     it 'returns all people as cvs' do
-      request
+      request_call
 
       expect(json['data']['data'].size).to eq(Person.count)
     end
