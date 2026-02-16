@@ -52,6 +52,8 @@ gem 'sentry-ruby'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
+gem 'rswag-api'
+gem 'rswag-ui'
 
 group :metrics do
   gem 'brakeman'
@@ -71,6 +73,7 @@ group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
   gem 'rspec-rails'
+  gem 'rswag-specs'
 end
 
 group :development do
