@@ -59,7 +59,6 @@ RSpec.configure do |config|
               marital_status: { type: :string, example: 'single' },
               competence_notes: { type: :string },
               picture_url: { type: :string },
-              # Nested Arrays using Refs
               roles: { type: :array, items: { '$ref' => '#/components/schemas/Role' } },
               skills: { type: :array, items: { '$ref' => '#/components/schemas/Skill' } },
               language_skills: { type: :array, items: { '$ref' => '#/components/schemas/LanguageSkill' } },
@@ -161,7 +160,6 @@ RSpec.configure do |config|
             }
           },
 
-          # 5. Relationships
           CvRelationships: {
             type: :object,
             properties: {
