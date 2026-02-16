@@ -9,7 +9,7 @@ describe 'Manual PuzzleTime sync', type: :feature, js: true do
     longmax.update!(ptime_employee_id: 33, ptime_data_provider: 'Firma', company: Company.find_by(name: 'Ex-Mitarbeiter'))
     bob.update!(ptime_employee_id: 23, ptime_data_provider: 'Partner')
 
-    sign_in auth_users(:admin), scope: :auth_user
+    sign_in auth_users(:conf_admin), scope: :auth_user
     visit admin_manual_ptime_sync_index_path
   end
 

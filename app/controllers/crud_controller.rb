@@ -33,20 +33,26 @@ class CrudController < ListController
   #   GET /entries/1.json
   #
   # Show one entry of this model.
-  def show; end
+  def show
+    raise CanCan::AccessDenied unless can? :read, entry
+  end
 
   #   GET /entries/new
   #   GET /entries/new.json
   #
   # Display a form to create a new entry of this model.
   def new
+    raise CanCan::AccessDenied unless can? :create, model_class
+
     assign_attributes if params[model_identifier]
   end
 
   #   GET /entries/1/edit
   #
   # Display a form to edit an exisiting entry of this model.
-  def edit; end
+  def edit
+    raise CanCan::AccessDenied unless can? :update, entry
+  end
 
   #   POST /entries
   #   POST /entries.json
@@ -61,6 +67,8 @@ class CrudController < ListController
   #
   # Specify a :location option if you wish to do a custom redirect.
   def create(**options, &)
+    raise CanCan::AccessDenied unless can? :create, model_class
+
     model_class.transaction do
       assign_attributes
       created = with_callbacks(:create, :save) { entry.save }
@@ -83,8 +91,9 @@ class CrudController < ListController
   # in the given block will take precedence over the one defined here.
   #
   # Specify a :location option if you wish to do a custom redirect.
+  def update(**options, &) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+    raise CanCan::AccessDenied unless can? :update, entry
 
-  def update(**options, &) # rubocop:disable Metrics/MethodLength
     model_class.transaction do
       if assign_attributes
         updated = false
@@ -114,6 +123,8 @@ class CrudController < ListController
   #
   # Specify a :location option if you wish to do a custom redirect.
   def destroy(**options, &)
+    raise CanCan::AccessDenied unless can? :destroy, model_class
+
     model_class.transaction do
       destroyed = run_callbacks(:destroy) { entry.destroy }
       respond(destroyed,

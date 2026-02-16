@@ -12,6 +12,7 @@ gem 'bigdecimal'
 gem 'bleib' # For deployment
 gem 'bootsnap'
 gem 'bundler-audit'
+gem 'cancancan'
 gem 'carrierwave'
 gem 'config'
 gem 'countries'

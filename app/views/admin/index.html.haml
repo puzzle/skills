@@ -1,6 +1,7 @@
-= link_to Department.model_name.human , admin_departments_path
-= link_to Role.model_name.human , admin_roles_path
-= link_to Company.model_name.human , admin_companies_path
 = link_to ti('unify_skills'), new_admin_unified_skill_path
-= link_to ti('update_people_manually'), admin_manual_ptime_sync_index_path if use_ptime_sync?
-= link_to ti('delete_inactive_profiles'), admin_people_management_path
+- if [Company, Department, Role].all? { |c| can?(:manage, c) }
+  = link_to ti('update_people_manually'), admin_manual_ptime_sync_index_path if use_ptime_sync?
+  = link_to ti('delete_inactive_profiles'), admin_people_management_path
+  = link_to Department.model_name.human , admin_departments_path
+  = link_to Role.model_name.human , admin_roles_path
+  = link_to Company.model_name.human , admin_companies_path
