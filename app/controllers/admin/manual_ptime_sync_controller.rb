@@ -1,6 +1,6 @@
 class Admin::ManualPtimeSyncController < CrudController
   self.nesting = :admin
-  before_action :render_unauthorized_not_admin
+  before_action :render_unauthorized_not_conf_admin
   before_action :redirect_admin, unless: -> { Skills.use_ptime_sync? }
 
   def manual_sync

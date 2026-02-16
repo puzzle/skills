@@ -1,5 +1,6 @@
 class Admin::UnifiedSkillsController < CrudController
   self.nesting = :admin
+  before_action :render_unauthorized_not_conf_admin
 
   def self.model_class
     UnifiedSkillForm
