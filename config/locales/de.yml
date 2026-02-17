@@ -322,9 +322,9 @@ de:
         location: 'Niederlassung (für Footer):'
         skills_by_level: Skills nach Level
         trainee: Trainee
-        customer_abbreviation: Kundenkürzel
-        department_abbreviation: Bereichskürzel
-        project_abbreviation: Projektkürzel
+        customer_code: Kundenkürzel
+        department_code: Bereichskürzel
+        project_code: Projektkürzel
     form:
       ptime_data: Diese Daten stammen aus dem Puzzle Time, daher kannst du diese nicht bearbeiten.
     global:

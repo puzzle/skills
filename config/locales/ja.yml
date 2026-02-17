@@ -318,9 +318,9 @@ ja:
         location: 支店（フッター用）：
         skills_by_level: レベル別スキル
         trainee: 研修生
-        customer_abbreviation: クライアント略称
-        department_abbreviation: 部門略称
-        project_abbreviation: プロジェクト略称
+        customer_code: クライアント略称
+        department_code: 部門略称
+        project_code: プロジェクト略称
     form:
       ptime_data: このデータはPuzzle Timeのものです。そのため、編集できません。
     global:
