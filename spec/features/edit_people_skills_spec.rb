@@ -156,28 +156,14 @@ describe :people do
         page.first(".star3", visible: false).click(x: 10, y: 10)
         page.first('[name="people_skill[certificate]"]').check
         page.first('[name="people_skill[core_competence]"]').check
-        click_button("Bewerten")
       end
-      if not_rated_default_skills.count > 1
-        expect(page).to have_content("(#{not_rated_default_skills.count - 1})")
-      else
-        expect(page).not_to have_css('#default-skills')
-      end
+      expect(page).to have_content("Änderungen wurden gespeichert.")
       expect(page).to have_content(not_rated_default_skills.first.skill.title)
       bob_people_skill = bob.people_skills.last
       expect(bob_people_skill.level).to eql(3)
       expect(bob_people_skill.interest).to eql(3)
       expect(bob_people_skill.certificate).to be_truthy
       expect(bob_people_skill.core_competence).to be_truthy
-    end
-
-    it 'doesnt save rated default skills that arent filled out' do
-      not_rated_default_skills = not_rated_default_skills(bob)
-      expect(page).to have_content("(#{not_rated_default_skills.count})")
-      within '#default-skills' do
-        click_button("Bewerten")
-      end
-      expect(page).to have_content("(#{not_rated_default_skills.count})")
     end
 
     it 'saves not rated skills' do
@@ -190,11 +176,6 @@ describe :people do
         find('input[value="Nicht bewerten"]').click
       end
 
-      if not_rated_default_skills.count > 1
-        expect(page).to have_content("(#{not_rated_default_skills.count - 1})")
-      else
-        expect(page).not_to have_css('#default-skills')
-      end
       expect(page).to have_content(not_rated_default_skills.first.skill.title)
       bob_people_skill = bob.people_skills.last
       expect(bob_people_skill.level).to eql(0)
@@ -268,8 +249,7 @@ describe :people do
         expect(page).not_to have_content('System-Engineering')
       end
 
-      click_button('Bewerten')
-
+      expect(page).to have_content("Änderungen wurden gespeichert.")
 
       within '.sidebar' do
         expect(page).to have_content('Software-Engineering')

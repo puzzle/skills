@@ -365,6 +365,7 @@ en:
       update_index_info: 'Attention: Please open the CV in LibreOffice before sending and update the table of contents'
   people/people_skills:
     edit_form:
+      auto_save_message: Changes were saved.
       rate: Rate
       unrate: Do not rate
     global:
