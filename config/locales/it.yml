@@ -318,6 +318,9 @@ it:
         location: 'Sede secondaria (per il piè di pagina):'
         skills_by_level: Competenze per livello
         trainee: Apprendista
+        customer_abbreviation: Abbreviazione cliente
+        department_abbreviation: Abbreviazione reparto
+        project_abbreviation: Abbreviazione progetto
     form:
       ptime_data: Questi dati provengono da Puzzle Time, pertanto non è possibile modificarli.
     global:

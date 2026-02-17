@@ -318,6 +318,9 @@ fr:
         location: 'Établissement (pour le pied de page) :'
         skills_by_level: Compétences par niveau
         trainee: Stagiaire
+        customer_abbreviation: Abréviation du client
+        department_abbreviation: Abréviation du département
+        project_abbreviation: Abréviation du projet
     form:
       ptime_data: Ces données proviennent de Puzzle Time, vous ne pouvez donc pas les modifier.
     global:

@@ -339,6 +339,9 @@ de-CH:
         location: 'Niderlassig (für Footer):'
         skills_by_level: Skills nach Level
         trainee: Trainee
+        customer_abbreviation: Chundä Chürzel
+        department_abbreviation: Abteiligs Chürzel
+        project_abbreviation: Projekt Chürzel
     form:
       ptime_data: Diä Datä si usem Puzzle Time, drum chasch du diä nid veränderä.
     global:

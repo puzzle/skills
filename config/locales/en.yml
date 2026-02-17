@@ -318,6 +318,9 @@ en:
         location: 'Branch office (for footer):'
         skills_by_level: Skills by level
         trainee: Trainee
+        customer_abbreviation: Client abbreviation
+        department_abbreviation: Department abbreviation
+        project_abbreviation: Project abbreviation
     form:
       ptime_data: This data comes from Puzzle Time, therefore you cannot edit it.
     global:
