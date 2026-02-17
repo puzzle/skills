@@ -369,6 +369,7 @@ de:
       update_index_info: 'Achtung: bitte vor dem Versenden den CV in LibreOffice öffnen und das Inhaltsverzeichnis aktualisieren'
   people/people_skills:
     edit_form:
+      auto_save_message: Änderungen wurden gespeichert.
       rate: Bewerten
       unrate: Nicht bewerten
     global:
@@ -383,7 +384,6 @@ de:
         skills: Skills
     index:
       new_skills_to_rate: Neue Skills zur Bewertung
-      auto_save_message: Änderungen wurden gespeichert.
     scroll_to_menu:
       link:
         add: Skill hinzufügen

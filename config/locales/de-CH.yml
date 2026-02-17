@@ -47,7 +47,7 @@ de-CH:
         year_from: Startdatum
       people_skill:
         certificate: Zertifikat
-        core_competence: chärnkompetenz
+        core_competence: Chärnkompetenz
         interest: Interässä
         level: Level
         skill: Skill
@@ -270,7 +270,7 @@ de-CH:
     new: Neu
     people_skills:
       certificate: Zertifikat
-      core-competence: chärnkompetenz
+      core-competence: Chärnkompetenz
       interest: Interässä
       levels:
         expert: Expert
@@ -386,6 +386,7 @@ de-CH:
       update_index_info: 'Achtung: bitte vorem Versände dr CV in LibreOffice öffne und ds Inhautsverzeichnis aktualisiere'
   people/people_skills:
     edit_form:
+      auto_save_message: Änderige si gspichert wordä.
       rate: Bewärtet
       unrate: Nid bewärtet
     global:

@@ -365,6 +365,7 @@ it:
       update_index_info: 'Attenzione: prima dell''invio, aprire il CV in LibreOffice e aggiornare l''indice'
   people/people_skills:
     edit_form:
+      auto_save_message: Le modifiche sono state salvate.
       rate: Tasso
       unrate: Non valutare
     global:
