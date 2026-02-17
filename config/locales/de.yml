@@ -383,6 +383,7 @@ de:
         skills: Skills
     index:
       new_skills_to_rate: Neue Skills zur Bewertung
+      auto_save_message: Änderungen wurden gespeichert.
     scroll_to_menu:
       link:
         add: Skill hinzufügen
