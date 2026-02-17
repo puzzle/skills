@@ -5,12 +5,11 @@
     - if @not_rated_default_skills.length > 0 && !params.key?("no_default_skill_prompt")
       %div.border.border-1.mb-2.p-3.border-black#default-skills
         %div#default-skill-errors
-        %div.d-flex.align-items-center.profile-header.justify-content-between.mb-2.bg-light-blue
+        %div.d-flex.align-items-center.profile-header.justify-content-between.bg-light-blue
           %div
             = ti("new_skills_to_rate")
             %span#unrated-skills-header= "(#{@not_rated_default_skills.length})"
           = close_action_link person_people_skills_path(@person, no_default_skill_prompt: "")
-
         - people_skills_by_category(@not_rated_default_skills.sort_by(&:skill_id)).each do |parent_category, child_categories|
           %div.profile-header.mw-100.border-bottom.mt-4.bg-light-blue{id: "category-#{parent_category.id}"}
             = parent_category.title
