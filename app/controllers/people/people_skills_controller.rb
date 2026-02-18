@@ -39,15 +39,11 @@ class People::PeopleSkillsController < CrudController
 
   def create
     if params[:people_skill]&.key?(:edit_form)
-      if params[:people_skill][:unrated]
-        super do |format, success|
-          @person = Person.find(params[:person_id])
-          @people_skills = filtered_people_skills(params[:people_skill])
-          @not_rated_default_skills = not_rated_default_skills(@person)
-          format.turbo_stream { render 'people/people_skills/create', status: :ok } if success
-        end
-      else
-        update
+      super do |format, success|
+        @person = Person.find(params[:person_id])
+        @people_skills = filtered_people_skills(params[:people_skill])
+        @not_rated_default_skills = not_rated_default_skills(@person)
+        format.turbo_stream { render 'people/people_skills/update', status: :ok } if success
       end
     else
       super

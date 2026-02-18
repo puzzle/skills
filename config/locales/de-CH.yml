@@ -386,7 +386,6 @@ de-CH:
       update_index_info: 'Achtung: bitte vorem Versände dr CV in LibreOffice öffne und ds Inhautsverzeichnis aktualisiere'
   people/people_skills:
     edit_form:
-      auto_save_message: Änderige si gspichert wordä.
       rate: Bewärtet
       unrate: Nid bewärtet
     global:
@@ -404,6 +403,8 @@ de-CH:
     scroll_to_menu:
       link:
         add: Skill hinzuäfüegä
+    update:
+      auto_save_message: Änderige si gspichert wordä.
   person_role:
     none: Kes
   profile:

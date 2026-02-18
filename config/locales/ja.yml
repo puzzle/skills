@@ -365,7 +365,6 @@ ja:
       update_index_info: 注意：送信前にLibreOfficeで履歴書を開き、目次を更新してください。
   people/people_skills:
     edit_form:
-      auto_save_message: 変更が保存されました。
       rate: 評価する
       unrate: 評価しない
     global:
@@ -383,6 +382,8 @@ ja:
     scroll_to_menu:
       link:
         add: スキルを追加
+    update:
+      auto_save_message: 変更が保存されました。
   person_role:
     none: なし
   profile:
