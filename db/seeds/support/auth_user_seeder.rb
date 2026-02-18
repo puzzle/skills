@@ -15,6 +15,7 @@ class AuthUserSeeder
       user.email = auth_user_information[:last_name].parameterize.underscore. + '@skills.ch'
       user.is_admin = auth_user_information[:admin]
       user.is_conf_admin = auth_user_information[:conf_admin]
+      user.is_editor = auth_user_information[:editor]
     end
   end
 end

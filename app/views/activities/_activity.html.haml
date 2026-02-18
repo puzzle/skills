@@ -1,14 +1,16 @@
+- card_content = capture do
+  %div.d-flex.row.pt-3.pb-5
+    %span.col-3.ps-5
+      = date_range_label activity
+    %span.col.d-flex.flex-column.text-ms
+      %span.fw-bolder
+        = activity.role
+      = activity.description
+    - unless activity.display_in_cv
+      %span.col-1.d-flex.justify-content-end.pe-5
+        %div{ 'data-bs-toggle': 'tooltip', 'data-bs-title': t("people.show.is_not_displayed_in_cv"), 'data-controller': 'tooltip', 'data-action': 'click->tooltip#hide'}
+          = image_tag('no-file.svg')
+
 %div.border-top
   %turbo-frame{id: dom_id(activity)}
-    = link_to edit_person_activity_path(@person, activity), data:{turbo_prefetch: :false, turbo_frame: dom_id(activity)}, class: "text-decoration-none text-dark bg-hover-gray d-block" do
-      %div.d-flex.row.pt-3.pb-5
-        %span.col-3.ps-5
-          = date_range_label activity
-        %span.col.d-flex.flex-column.text-ms
-          %span.fw-bolder
-            = activity.role
-          = activity.description
-        - unless activity.display_in_cv
-          %span.col-1.d-flex.justify-content-end.pe-5
-            %div{ 'data-bs-toggle': 'tooltip', 'data-bs-title': t("people.show.is_not_displayed_in_cv"), 'data-controller': 'tooltip', 'data-action': 'click->tooltip#hide'}
-              = image_tag('no-file.svg')
+    = link_to_if (admin? || editor?), card_content , edit_person_activity_path(@person, activity), data:{turbo_prefetch: :false, turbo_frame: dom_id(activity)}, class: "text-decoration-none text-dark bg-hover-gray d-block"
