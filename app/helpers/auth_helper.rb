@@ -14,6 +14,10 @@ module AuthHelper
     current_auth_user&.is_conf_admin || false
   end
 
+  def editor?
+    current_auth_user&.is_editor
+  end
+
   def find_person_by_auth_user
     Person.find_by(name: current_auth_user&.name)
   end
