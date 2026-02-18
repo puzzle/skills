@@ -48,6 +48,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_02_083417) do
     t.string "email"
     t.boolean "is_admin", default: false, null: false
     t.boolean "is_conf_admin", default: false, null: false
+    t.boolean "is_editor", default: false, null: false
+    t.boolean "is_member_coach", default: false, null: false
     t.datetime "last_login"
     t.string "name"
     t.string "uid"
