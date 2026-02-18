@@ -365,7 +365,6 @@ fr:
       update_index_info: 'Attention: veuillez ouvrir le CV dans LibreOffice et mettre à jour la table des matières avant de l''envoyer'
   people/people_skills:
     edit_form:
-      auto_save_message: Les modifications ont été enregistrées.
       rate: Évaluer
       unrate: Ne pas évaluer
     global:
@@ -383,6 +382,8 @@ fr:
     scroll_to_menu:
       link:
         add: Ajouter une compétence
+    update:
+      auto_save_message: Les modifications ont été enregistrées.
   person_role:
     none: Aucun
   profile:

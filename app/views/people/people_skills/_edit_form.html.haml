@@ -1,7 +1,5 @@
 %div.position-relative.mw-100.border-bottom.text-black.ps-5.border{id: "#{ff.object.new_record? ? 'default-' : ''}skill-div-#{ff.object.skill_id}"}
-  %p.position-absolute.top-0.end-0.text-secondary.d-flex.align-items-center.bg-skills-gray.visually-hidden.p-1{id: "skill-auto-save-message-#{ff.object.skill_id}", data: {turbo: {permanent: true}}}
-    = ti("auto_save_message")
-    = image_tag("save", class: "px-2")
+  %p.position-absolute.top-0.end-0.text-secondary.d-flex.align-items-center.bg-skills-gray.p-1{id: "skill-auto-save-message-#{ff.object.skill_id}", data: {turbo: {permanent: true}}}
   %div.d-flex.flex-row.align-items-center.mt-3.mb-3.w-100{data: {controller: "people-skills"}}
     %div.col-2
       = ff.object.skill.title
@@ -30,4 +28,4 @@
         = ff.hidden_field :skill_id
     %div.col-2
       - unless ff.object.unrated
-        = ff.submit ti("unrate"), { class: "btn btn-link", "data-action": "people-skills#unrateSkill"}
+        = ff.submit ti("unrate"), { class: "btn btn-link pt-0", "data-action": "people-skills#unrateSkill"}

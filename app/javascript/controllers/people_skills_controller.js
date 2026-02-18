@@ -72,7 +72,6 @@ export default class extends Controller {
     rateSkill(e) {
         e.preventDefault();
         this.setUnratedField(e, false);
-        this.showAutoSaveMessage(e);
         e.target.form.requestSubmit();
     }
 
@@ -80,12 +79,5 @@ export default class extends Controller {
         const formElements = Array.from(e.target.form.elements);
         const unratedField = formElements.find(e=> e.id.startsWith("unrated-field"))
         unratedField.value = value;
-    }
-
-    showAutoSaveMessage(e) {
-        const formElements = Array.from(e.target.form.elements);
-        const skillId = formElements.find(e=> e.id === "people_skill_skill_id").value;
-        const autoSaveMessage = document.getElementById("skill-auto-save-message-" + skillId)
-        autoSaveMessage.classList.remove("visually-hidden");
     }
 }
