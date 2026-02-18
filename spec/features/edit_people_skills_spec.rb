@@ -249,6 +249,7 @@ describe :people do
         expect(page).not_to have_content('System-Engineering')
       end
 
+      find("#level_#{skills(:bash).id}").set(3)
       expect(page).to have_content("Änderungen wurden gespeichert.")
 
       within '.sidebar' do
