@@ -43,20 +43,25 @@ describe :people do
       page.all('a', text: 'Export').first.click
 
       expect(page).to have_field('departmentCode', with: '/sys')
+
+      page.find('#departmentCode').set('Test Department')
+      expect(page).to have_field('departmentCode', with: 'Test Department')
     end
 
     it 'should display the customer code field' do
       visit person_path(people(:bob))
       page.all('a', text: 'Export').first.click
 
-      expect(page).to have_field('customerCode')
+      page.find('#customerCode').set('Test Customer')
+      expect(page).to have_field('customerCode', with: 'Test Customer')
     end
 
     it 'should display the project code field' do
       visit person_path(people(:bob))
       page.all('a', text: 'Export').first.click
 
-      expect(page).to have_field('projectCode')
+      page.find('#projectCode').set('Test Project')
+      expect(page).to have_field('projectCode', with: 'Test Project')
     end
   end
 end
