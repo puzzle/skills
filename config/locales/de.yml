@@ -316,6 +316,7 @@ de:
       link:
         add: Neue Ausbildung
     export_cv:
+      cv_export: Lebenslauf exportieren
       export_form:
         anonymised_cv: Anonymisierter CV
         competences_skills: Kernkompetenzen - Skills

@@ -5,17 +5,6 @@ describe Odt::Cv do
 
   before { allow_any_instance_of(Odt::Cv).to receive(:location).and_return(branch_adresses(:bern)) }
 
-  let(:person) { double('Person') }
-  let(:params) do
-    {
-      customerCode: 'CUST-123',
-      projectCode: 'PROJ-99',
-      departmentCode: 'DEPT-ALPHA'
-    }
-  end
-
-  subject { described_class.new(person, params) }
-
     it 'can export without an image' do
       person = people(:bob)
       person.remove_picture
