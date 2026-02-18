@@ -312,6 +312,7 @@ ja:
       link:
         add: 新しい学歴
     export_cv:
+      cv_export: 履歴書エクスポート
       export_form:
         anonymised_cv: 匿名化された履歴書
         competences_skills: コアコンピタンス - スキル

@@ -312,6 +312,7 @@ fr:
       link:
         add: Nouvelle formation
     export_cv:
+      cv_export: Exportation du CV
       export_form:
         anonymised_cv: CV anonyme
         competences_skills: Compétences clés - Skills

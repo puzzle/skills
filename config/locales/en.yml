@@ -312,6 +312,7 @@ en:
       link:
         add: New education
     export_cv:
+      cv_export: CV Export
       export_form:
         anonymised_cv: Anonymized CV
         competences_skills: Core competencies - Skills

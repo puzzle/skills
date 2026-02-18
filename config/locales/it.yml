@@ -312,6 +312,7 @@ it:
       link:
         add: Nuovo programma di formazione
     export_cv:
+      cv_export: Esportazione CV
       export_form:
         anonymised_cv: CV anonimo
         competences_skills: Competenze di base - Capacità

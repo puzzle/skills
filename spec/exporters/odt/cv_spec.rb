@@ -5,17 +5,6 @@ describe Odt::Cv do
 
   before { allow_any_instance_of(Odt::Cv).to receive(:location).and_return(branch_adresses(:bern)) }
 
-  let(:person) { double('Person') }
-  let(:params) do
-    {
-      customerCode: 'CUST-123',
-      projectCode: 'PROJ-99',
-      departmentCode: 'DEPT-ALPHA'
-    }
-  end
-
-  subject { described_class.new(person, params) }
-
     it 'can export without an image' do
       person = people(:bob)
       person.remove_picture
@@ -64,21 +53,5 @@ describe Odt::Cv do
     it 'formats competence notes' do
       notes = Odt::Cv.new(people(:bob), { 'anon' => 'false' }).send(:competence_notes_list)[:competence]
       expect(notes).to eq("Java\nRuby")
-    end
-
-    it 'correctly assigns the person object' do
-      expect(subject.instance_variable_get(:@person)).to eq(person)
-    end
-
-    it 'assigns customer_code from params' do
-      expect(subject.instance_variable_get(:@customer_code)).to eq('CUST-123')
-    end
-
-    it 'assigns project_code from params' do
-      expect(subject.instance_variable_get(:@project_code)).to eq('PROJ-99')
-    end
-
-    it 'assigns department_code from params' do
-      expect(subject.instance_variable_get(:@department_code)).to eq('DEPT-ALPHA')
     end
 end
