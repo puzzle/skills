@@ -156,8 +156,8 @@ describe :people do
         page.first(".star3", visible: false).click(x: 10, y: 10)
         page.first('[name="people_skill[certificate]"]').check
         page.first('[name="people_skill[core_competence]"]').check
+        expect(page).to have_content("Änderungen wurden gespeichert.")
       end
-      expect(page).to have_content("Änderungen wurden gespeichert.")
       expect(page).to have_content(not_rated_default_skills.first.skill.title)
       bob_people_skill = bob.people_skills.last
       expect(bob_people_skill.level).to eql(3)
