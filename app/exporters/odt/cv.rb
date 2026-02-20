@@ -317,7 +317,12 @@ module Odt
     def insert_languages(report, display_language = 'DE')
       report.add_field(:languages, person.language_skills.list.map do |l|
         language = I18nData.languages(display_language)[l.language]
-        "#{language} (#{l.level})"
+        string = if l.level == 'Keine'
+                   language.to_s
+                 else
+                   "#{language} (#{l.level})"
+                 end
+        string
       end.join("\n"))
     end
 
