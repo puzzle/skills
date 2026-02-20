@@ -19,6 +19,11 @@ describe FixBirthdate do
   end
 
   context 'up' do
+
+    before(:each) do
+      sign_in auth_users(:admin)
+    end
+
     it 'increments day and sets hour to 0' do
       bob.birthdate = bob.birthdate.time.change(hour: 22)
       bob.birthdate = bob.birthdate.change(day: 20)

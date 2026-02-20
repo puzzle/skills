@@ -13,4 +13,4 @@
 
 %div.border-top
   %turbo-frame{id: dom_id(advanced_training)}
-    = link_to_if (admin? || editor?), card_content, edit_person_advanced_training_path(advanced_training.person, advanced_training), data:{turbo_prefetch: :false, turbo_frame: dom_id(advanced_training)}, class: "text-decoration-none text-dark bg-hover-gray d-block"
+    = link_to_if can?(:manage, advanced_training), card_content, edit_person_advanced_training_path(advanced_training.person, advanced_training), data:{turbo_prefetch: :false, turbo_frame: dom_id(advanced_training)}, class: "text-decoration-none text-dark bg-hover-gray d-block"

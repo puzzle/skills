@@ -5,7 +5,7 @@ describe :people do
     let(:person) { people(:bob) }
 
     before(:each) do
-      sign_in auth_users(:user), scope: :auth_user
+      sign_in auth_users(:admin), scope: :auth_user
     end
 
     it 'Go to people-skills tab of person' do
@@ -120,7 +120,7 @@ describe :people do
     let(:bob) { people(:bob) }
 
     before(:each) do
-      sign_in auth_users(:user), scope: :auth_user
+      sign_in auth_users(:admin), scope: :auth_user
       visit person_people_skills_path(bob, rating: 1)
     end
 
@@ -217,7 +217,7 @@ describe :people do
   it 'should not refresh view when editing a unrated skill' do
     bob = people(:bob)
     first_unrated_skill = not_rated_default_skills(bob).first.skill
-    sign_in auth_users(:user), scope: :auth_user
+    sign_in auth_users(:admin), scope: :auth_user
     visit person_people_skills_path(bob, rating: -1)
     within("#default-skill-#{first_unrated_skill.id}") do
       select_star_rating(2)
@@ -230,7 +230,7 @@ describe :people do
 
   describe 'scroll to menu', type: :feature, js: true do
     before(:each) do
-      sign_in auth_users(:user), scope: :auth_user
+      sign_in auth_users(:admin), scope: :auth_user
     end
 
     it 'should only show nav items with rated skills' do

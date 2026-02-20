@@ -11,7 +11,7 @@ describe Api::PersonRolesController do
 
       person_roles = json['data']
 
-      expect(person_roles.count).to eq(11)
+      expect(person_roles.count).to eq(12)
       expect(person_roles.first['attributes'].count).to eq(2)
       json_object_includes_keys(person_roles.first['attributes'], keys)
       json_object_includes_keys(person_roles.first['relationships'], relationships)

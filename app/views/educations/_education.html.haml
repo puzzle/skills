@@ -13,5 +13,4 @@
 
 %div.border-top
   %turbo-frame{id: dom_id(education)}
-    -# 2. Pass the captured variable as the SECOND argument (the name)
-    = link_to_if (admin? || editor?), card_content, edit_person_education_path(@person, education), data: { turbo_prefetch: :false, turbo_frame: dom_id(education) }, class: "text-decoration-none text-dark bg-hover-gray d-block"
+    = link_to_if can?(:manage, education), card_content, edit_person_education_path(@person, education), data: { turbo_prefetch: :false, turbo_frame: dom_id(education) }, class: "text-decoration-none text-dark bg-hover-gray d-block"

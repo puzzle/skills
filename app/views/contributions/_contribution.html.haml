@@ -16,4 +16,4 @@
 
 %div.border-top{ data: { controller: "contribution" } }
   %turbo-frame{id: dom_id(contribution)}
-    = link_to_if (admin? || editor?), card_content, edit_person_contribution_path(contribution.person, contribution), data: { turbo_prefetch: :false, turbo_frame: dom_id(contribution) }, class: "text-decoration-none text-dark bg-hover-gray d-block"
+    = link_to_if can?(:manage, contribution), card_content, edit_person_contribution_path(contribution.person, contribution), data: { turbo_prefetch: :false, turbo_frame: dom_id(contribution) }, class: "text-decoration-none text-dark bg-hover-gray d-block"
