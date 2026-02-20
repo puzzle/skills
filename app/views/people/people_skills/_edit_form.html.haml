@@ -1,5 +1,5 @@
 %div.position-relative.mw-100.border-bottom.text-black.ps-5.border{id: "#{ff.object.new_record? ? 'default-' : ''}skill-div-#{ff.object.skill_id}"}
-  %p.position-absolute.top-0.end-0.text-secondary.d-flex.align-items-center.bg-skills-gray.p-1{id: "skill-auto-save-message-#{ff.object.skill_id}", data: {turbo: {permanent: true}}}
+  %p.position-absolute.top-0.end-0.text-secondary.d-flex.align-items-center.bg-skills-gray.p-1{id: "skill-auto-save-message-#{ff.object.skill_id}"}
   %div.d-flex.flex-row.align-items-center.mt-3.mb-3.w-100{data: {controller: "people-skills"}}
     %div.col-2
       = ff.object.skill.title
