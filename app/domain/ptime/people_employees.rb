@@ -67,6 +67,7 @@ module Ptime
     def update_person_data
       update_directly_mappable_attributes
       update_indirectly_mappable_attributes
+      update_person_with_auth_user_id
       @person.save!
       update_person_roles
     end
@@ -110,6 +111,11 @@ module Ptime
 
     def person_role_level_id_by_role(role)
       PersonRoleLevel.find_by(level: role[:role_level])&.id || PersonRoleLevel.first.id
+    end
+
+    def update_person_with_auth_user_id
+      ldap_username = @ptime_employee_attributes[:ldapname]
+      @person.auth_user_id = AuthUser.find_by(ldap_username:)&.id
     end
   end
 end

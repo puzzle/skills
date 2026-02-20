@@ -4,7 +4,7 @@ describe :people do
   describe 'People Search', type: :feature, js: true do
 
     before(:each) do
-      sign_in auth_users(:user), scope: :auth_user
+      sign_in auth_users(:admin), scope: :auth_user
     end
 
     let(:people_list) {Person.all}
@@ -192,7 +192,7 @@ describe :people do
 
   describe 'Edit person', type: :feature, js: true do
     before(:each) do
-      sign_in auth_users(:user), scope: :auth_user
+      sign_in auth_users(:admin), scope: :auth_user
     end
 
     it 'should have all edit fields' do
@@ -297,7 +297,7 @@ describe :people do
 
   describe 'Create person', type: :feature, js: true do
     before(:each) do
-      sign_in auth_users(:user), scope: :auth_user
+      sign_in auth_users(:admin), scope: :auth_user
     end
 
     it 'should have all edit fields' do
@@ -330,7 +330,7 @@ describe :people do
     let(:longmax) { people(:longmax) }
 
     before(:each) do
-      sign_in auth_users(:user), scope: :auth_user
+      sign_in auth_users(:admin), scope: :auth_user
     end
 
     it 'should display message when no skills are rated' do
@@ -373,10 +373,35 @@ describe :people do
     end
 
     it 'does not shows buttons if the logged-in user has no profile' do
-      sign_in auth_users(:user), scope: :auth_user
+      sign_in auth_users(:admin), scope: :auth_user
       visit people_path
       expect(page).to have_no_content(t("people.index.export_cv"))
       expect(page).to have_no_content(t("people.index.profile"))
+    end
+  end
+
+  describe 'Access control' do
+    before(:each) do
+      sign_in auth_users(:user)
+    end
+
+    it 'logged in person can edit their own profile' do
+      ursula = people(:user)
+      visit person_path(ursula)
+
+      click_link('Bearbeiten', href: edit_person_path(ursula))
+      fill_in 'person_title', with: 'Expert at access control'
+      save_button = find_button("Person aktualisieren")
+      save_button.click
+
+      expect(page).to have_content('Expert at access control')
+    end
+
+    it 'logged in person should no be able to edit other profiles' do
+      longmax = people(:longmax)
+      visit person_path(longmax)
+
+      expect{ click_link('Bearbeiten', href: edit_person_path(longmax)) }.to raise_error("You are not authorized to access this page.")
     end
   end
 end

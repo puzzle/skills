@@ -13,4 +13,4 @@
 
 %div.border-top
   %turbo-frame{id: dom_id(activity)}
-    = link_to_if (admin? || editor?), card_content , edit_person_activity_path(@person, activity), data:{turbo_prefetch: :false, turbo_frame: dom_id(activity)}, class: "text-decoration-none text-dark bg-hover-gray d-block"
+    = link_to_if can?(:manage, activity), card_content , edit_person_activity_path(@person, activity), data:{turbo_prefetch: :false, turbo_frame: dom_id(activity)}, class: "text-decoration-none text-dark bg-hover-gray d-block"

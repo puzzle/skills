@@ -49,8 +49,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_16_140520) do
     t.boolean "is_admin", default: false, null: false
     t.boolean "is_conf_admin", default: false, null: false
     t.boolean "is_editor", default: false, null: false
-    t.boolean "is_member_coach", default: false, null: false
     t.datetime "last_login"
+    t.string "ldap_username"
     t.string "name"
     t.string "uid"
     t.datetime "updated_at", null: false
@@ -167,6 +167,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_16_140520) do
 
   create_table "people", id: :serial, force: :cascade do |t|
     t.datetime "associations_updated_at", precision: nil
+    t.integer "auth_user_id"
     t.datetime "birthdate", precision: nil
     t.bigint "company_id"
     t.string "competence_notes"
@@ -273,5 +274,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_16_140520) do
   add_foreign_key "department_skill_snapshots", "departments"
   add_foreign_key "language_skills", "people"
   add_foreign_key "people", "companies"
+  add_foreign_key "people", "people", column: "auth_user_id"
   add_foreign_key "project_technologies", "projects"
 end

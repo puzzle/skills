@@ -2,7 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    initialize_user_rights
+    initialize_user_rights(user)
 
     role_initializers.each do |predicate, initializer|
       send(initializer) if user.public_send(predicate)
@@ -19,11 +19,16 @@ class Ability
     }
   end
 
-  def initialize_user_rights
-    can :read, Person
-    editor_classes.each do |editor_class|
-      can :read, editor_class
+  def initialize_user_rights(user)
+    user_classes.each do |user_class|
+      can :read, user_class
+      can :manage, user_class do |record|
+        record.person.auth_user_id == user.id
+      end
     end
+    can :read, Skill
+    can :read, Person
+    can :manage, Person, auth_user_id: user.id
   end
 
   def initialize_editor_rights
@@ -44,6 +49,10 @@ class Ability
     conf_admin_classes.each do |conf_admin_class|
       can :manage, conf_admin_class
     end
+  end
+
+  def user_classes
+    [Activity, AdvancedTraining, Education, Project, PeopleSkill, Contribution]
   end
 
   def editor_classes
