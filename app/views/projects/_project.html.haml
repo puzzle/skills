@@ -1,3 +1,23 @@
+- card_content = capture do
+    %div.d-flex.flex-column.ms-5.mt-3.mb-3
+        %div.d-flex.gap-1.flex-column
+            %div.row
+                %span.fw-bold.col-12.col-lg-2
+                    = Project.human_attribute_name(:description)
+                %span.col
+                    = project.description
+            %div.row
+                %span.fw-bold.col-12.col-lg-2
+                    = Project.human_attribute_name(:role)
+                %span.col
+                    = project.role
+            %div.row
+                %span.fw-bold.col-12.col-lg-2
+                    = Project.human_attribute_name(:technology)
+                %span.col
+                    = project.technology
+
+
 %div.border-top
     %turbo-frame{id: dom_id(project)}
         %div.border.border-secondary-subtle.border-1.d-flex.flex-column
@@ -7,21 +27,5 @@
                     .pe-3
                         %div{ 'data-bs-toggle': 'tooltip', 'data-bs-title': t("people.show.is_not_displayed_in_cv"), 'data-controller': 'tooltip'}
                             = image_tag('no-file.svg')
-            = link_to edit_person_project_path(project.person, project), data:{turbo_prefetch: :false, turbo_frame: dom_id(project)}, class: "text-decoration-none text-dark bg-hover-gray d-block" do
-                %div.d-flex.flex-column.ms-5.mt-3.mb-3
-                    %div.d-flex.gap-1.flex-column
-                        %div.row
-                            %span.fw-bold.col-12.col-lg-2
-                                = Project.human_attribute_name(:description)
-                            %span.col
-                                = project.description
-                        %div.row
-                            %span.fw-bold.col-12.col-lg-2
-                                = Project.human_attribute_name(:role)
-                            %span.col
-                                = project.role
-                        %div.row
-                            %span.fw-bold.col-12.col-lg-2
-                                = Project.human_attribute_name(:technology)
-                            %span.col
-                                = project.technology
+            = link_to_if (admin? || editor?),card_content , edit_person_project_path(project.person, project), data:{turbo_prefetch: :false, turbo_frame: dom_id(project)}, class: "text-decoration-none text-dark bg-hover-gray d-block"
+
