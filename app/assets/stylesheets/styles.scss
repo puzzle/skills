@@ -1,3 +1,5 @@
+@use 'bootstrap/scss/bootstrap' as bs;
+
 $skills-blue: #3b7bbe;
 $skills-text-gray: #8e8e8e;
 $skills-gray: #f5f5f5;
@@ -21,7 +23,7 @@ $skills-dark-blue: #1e5a96;
 .content {
   max-width: 80%;
   flex-grow: 1;
-  @include media-breakpoint-down(lg) {
+  @include bs.media-breakpoint-down(lg) {
     max-width: 95%;
   }
 }
@@ -71,7 +73,7 @@ pzsh-topbar {
 
 .skill-row {
   height: 100px !important;
-  border-bottom: 2px solid $secondary-bg-subtle !important;
+  border-bottom: 2px solid bs.$secondary-bg-subtle !important;
 }
 
 .interest,
@@ -80,7 +82,7 @@ pzsh-topbar {
 }
 
 .table-row:hover {
-  background-color: $light;
+  background-color: bs.$light;
 }
 
 .profile-header {
@@ -426,7 +428,7 @@ a > img {
   font-size: 50px;
 }
 
-@include media-breakpoint-up(lg) {
+@include bs.media-breakpoint-up(lg) {
   .h-100-lg {
     height: 100%;
   }
@@ -444,7 +446,7 @@ a > img {
   }
 }
 
-@include media-breakpoint-down(lg) {
+@include bs.media-breakpoint-down(lg) {
   .responsive-hide {
     display: none;
   }
