@@ -312,12 +312,16 @@ it:
       link:
         add: Nuovo programma di formazione
     export_cv:
+      cv_export: Esportazione CV
       export_form:
         anonymised_cv: CV anonimo
         competences_skills: Competenze di base - Capacità
         location: 'Sede secondaria (per il piè di pagina):'
         skills_by_level: Competenze per livello
         trainee: Apprendista
+        customer_code: Abbreviazione cliente
+        department_code: Abbreviazione reparto
+        project_code: Abbreviazione progetto
     form:
       ptime_data: Questi dati provengono da Puzzle Time, pertanto non è possibile modificarli.
     global:

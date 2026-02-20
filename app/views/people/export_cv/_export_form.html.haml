@@ -1,8 +1,17 @@
 = form_with(url: person_path(format: 'odt'), method: 'get', data: {controller: "skills-filter info-message", turbo: false}) do |f|
   .text-danger.text-decoration-underline{'data-info-message-target': 'message'}= ti('update_index_info')
   .mb-2.w-100
-    = f.label :location, class: "form-label w-100"
+    = f.label t("activerecord.attributes.person.location"), class: "form-label w-100"
     = f.collection_select :location, BranchAdress.all, :id, :short_name, {selected: (BranchAdress.find_by(default_branch_adress: true) || BranchAdress.first).id}, class: "form-select w-100"
+  .mb-2.w-100
+    = f.label t(".customer_code"), class: "form-label w-100"
+    = f.text_field :customerCode, class: "mw-100 form-control"
+  .mb-2.w-100
+    = f.label t(".department_code"), class: "form-label w-100"
+    = f.text_field :departmentCode, class: "mw-100 form-control", value: @department
+  .mb-2.w-100
+    = f.label t(".project_code"), class: "form-label w-100"
+    = f.text_field :projectCode, class: "mw-100 form-control"
   .mb-2.w-100.form-check.form-switch
     = f.check_box :includeCS, class: "form-check-input"
     = f.label t(".competences_skills"), class: "form-check-label w-100"

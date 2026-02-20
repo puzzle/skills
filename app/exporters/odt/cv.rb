@@ -9,6 +9,10 @@ module Odt
     def initialize(person, params)
       @person = person
       @params = params
+
+      @customer_code = params[:customerCode]
+      @project_code = params[:projectCode]
+      @department_code = params[:departmentCode]
     end
 
     def anon?
@@ -66,9 +70,9 @@ module Odt
 
     # rubocop:disable Metrics/AbcSize
     def insert_general_sections(report)
-      report.add_field(:client, 'mg')
-      report.add_field(:project, 'pcv')
-      report.add_field(:section, 'dev1')
+      report.add_field(:client, @customer_code)
+      report.add_field(:project, @project_code)
+      report.add_field(:section, @department_code)
       report.add_field(:name, person.name) unless anon?
       report.add_field(:title_function, person.roles.pluck(:name).join("\n"))
       report.add_field(:header_info, "#{person.name} - Version 1.0")

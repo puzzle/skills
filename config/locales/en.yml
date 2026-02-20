@@ -312,12 +312,16 @@ en:
       link:
         add: New education
     export_cv:
+      cv_export: CV Export
       export_form:
         anonymised_cv: Anonymized CV
         competences_skills: Core competencies - Skills
         location: 'Branch office (for footer):'
         skills_by_level: Skills by level
         trainee: Trainee
+        customer_code: Client code
+        department_code: Department code
+        project_code: Project code
     form:
       ptime_data: This data comes from Puzzle Time, therefore you cannot edit it.
     global:

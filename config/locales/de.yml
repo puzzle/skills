@@ -316,12 +316,16 @@ de:
       link:
         add: Neue Ausbildung
     export_cv:
+      cv_export: Lebenslauf exportieren
       export_form:
         anonymised_cv: Anonymisierter CV
         competences_skills: Kernkompetenzen - Skills
         location: 'Niederlassung (für Footer):'
         skills_by_level: Skills nach Level
         trainee: Trainee
+        customer_code: Kundenkürzel
+        department_code: Bereichskürzel
+        project_code: Projektkürzel
     form:
       ptime_data: Diese Daten stammen aus dem Puzzle Time, daher kannst du diese nicht bearbeiten.
     global:

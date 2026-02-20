@@ -312,12 +312,16 @@ ja:
       link:
         add: 新しい学歴
     export_cv:
+      cv_export: 履歴書エクスポート
       export_form:
         anonymised_cv: 匿名化された履歴書
         competences_skills: コアコンピタンス - スキル
         location: 支店（フッター用）：
         skills_by_level: レベル別スキル
         trainee: 研修生
+        customer_code: クライアント略称
+        department_code: 部門略称
+        project_code: プロジェクト略称
     form:
       ptime_data: このデータはPuzzle Timeのものです。そのため、編集できません。
     global:
