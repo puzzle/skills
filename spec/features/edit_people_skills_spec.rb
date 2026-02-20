@@ -151,33 +151,24 @@ describe :people do
 
     it 'saves rated default skills' do
       not_rated_default_skills = not_rated_default_skills(bob)
-      within '#default-skills' do
+      skill = not_rated_default_skills.first.skill
+      skill_div = first("#default-skill-#{skill.id}")
+      within skill_div do
         page.first('[name="people_skill[level]"]').set(3)
-        page.first(".star3", visible: false).click(x: 10, y: 10)
-        page.first('[name="people_skill[certificate]"]').check
-        page.first('[name="people_skill[core_competence]"]').check
-        click_button("Bewerten")
+        select_star_rating(3)
+        find('[name="people_skill[certificate]"]').check
+        find('[name="people_skill[core_competence]"]').check
       end
-      if not_rated_default_skills.count > 1
-        expect(page).to have_content("(#{not_rated_default_skills.count - 1})")
-      else
-        expect(page).not_to have_css('#default-skills')
-      end
-      expect(page).to have_content(not_rated_default_skills.first.skill.title)
-      bob_people_skill = bob.people_skills.last
-      expect(bob_people_skill.level).to eql(3)
-      expect(bob_people_skill.interest).to eql(3)
-      expect(bob_people_skill.certificate).to be_truthy
-      expect(bob_people_skill.core_competence).to be_truthy
-    end
-
-    it 'doesnt save rated default skills that arent filled out' do
-      not_rated_default_skills = not_rated_default_skills(bob)
-      expect(page).to have_content("(#{not_rated_default_skills.count})")
-      within '#default-skills' do
-        click_button("Bewerten")
-      end
-      expect(page).to have_content("(#{not_rated_default_skills.count})")
+      expect(page).to have_content("Änderungen wurden gespeichert.")
+      expect(page).to have_content(skill.title)
+      bob_people_skill = bob.people_skills
+                            .reload
+                            .where(skill: skill)
+                            .first
+      expect(bob_people_skill.level).to eq(3)
+      expect(bob_people_skill.interest).to eq(3)
+      expect(bob_people_skill.certificate).to be(true)
+      expect(bob_people_skill.core_competence).to be(true)
     end
 
     it 'saves not rated skills' do
@@ -190,11 +181,6 @@ describe :people do
         find('input[value="Nicht bewerten"]').click
       end
 
-      if not_rated_default_skills.count > 1
-        expect(page).to have_content("(#{not_rated_default_skills.count - 1})")
-      else
-        expect(page).not_to have_css('#default-skills')
-      end
       expect(page).to have_content(not_rated_default_skills.first.skill.title)
       bob_people_skill = bob.people_skills.last
       expect(bob_people_skill.level).to eql(0)
@@ -219,13 +205,12 @@ describe :people do
     first_unrated_skill = not_rated_default_skills(bob).first.skill
     sign_in auth_users(:user), scope: :auth_user
     visit person_people_skills_path(bob, rating: -1)
-    within("#default-skill-#{first_unrated_skill.id}") do
-      select_star_rating(2)
-      fill_in "level_#{first_unrated_skill.id}", with: 4
-      expect(page).to have_content(first_unrated_skill.title)
-      visit person_people_skills_path(bob, rating: 0)
-      expect(page).to have_content(first_unrated_skill.title)
-    end
+    select_star_rating(2)
+    expect(page).to have_field("level_#{first_unrated_skill.id}")
+    fill_in "level_#{first_unrated_skill.id}", with: 4
+    expect(page).to have_content(first_unrated_skill.title)
+    visit person_people_skills_path(bob, rating: 0)
+    expect(page).to have_content(first_unrated_skill.title)
   end
 
   describe 'scroll to menu', type: :feature, js: true do
@@ -268,8 +253,8 @@ describe :people do
         expect(page).not_to have_content('System-Engineering')
       end
 
-      click_button('Bewerten')
-
+      find("#level_#{skills(:bash).id}").set(3)
+      expect(page).to have_content("Änderungen wurden gespeichert.")
 
       within '.sidebar' do
         expect(page).to have_content('Software-Engineering')

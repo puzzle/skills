@@ -382,6 +382,8 @@ ja:
     scroll_to_menu:
       link:
         add: スキルを追加
+    update:
+      auto_save_message: 変更が保存されました。
   person_role:
     none: なし
   profile:

@@ -382,6 +382,8 @@ en:
     scroll_to_menu:
       link:
         add: Add skill
+    update:
+      auto_save_message: Changes were saved.
   person_role:
     none: None
   profile:

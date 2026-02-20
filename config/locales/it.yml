@@ -382,6 +382,8 @@ it:
     scroll_to_menu:
       link:
         add: Aggiungi abilità
+    update:
+      auto_save_message: Le modifiche sono state salvate.
   person_role:
     none: Nessuno
   profile:

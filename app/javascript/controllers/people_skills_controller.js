@@ -71,7 +71,6 @@ export default class extends Controller {
 
     rateSkill(e) {
         e.preventDefault();
-        if(!this.isEditMode(e)) return;
         this.setUnratedField(e, false);
         e.target.form.requestSubmit();
     }
@@ -80,9 +79,5 @@ export default class extends Controller {
         const formElements = Array.from(e.target.form.elements);
         const unratedField = formElements.find(e=> e.id.startsWith("unrated-field"))
         unratedField.value = value;
-    }
-
-    isEditMode(e) {
-        return document.getElementById("person-skill-overview").contains(e.target);
     }
 }
