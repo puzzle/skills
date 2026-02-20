@@ -5,7 +5,7 @@
 
 # Versioning
 ARG RUBY_VERSION="4.0.1"
-ARG NODEJS_VERSION="24.13.0"
+ARG NODEJS_VERSION="24"
 
 # Packages
 ARG BUILD_PACKAGES="nodejs build-essential shared-mime-info libxml2-dev libxslt1-dev"
@@ -13,7 +13,7 @@ ARG RUN_PACKAGES="shared-mime-info postgresql graphicsmagick"
 
 # Scripts
 ARG PRE_INSTALL_SCRIPT="curl -sL https://deb.nodesource.com/setup_${NODEJS_VERSION}.x -o /tmp/nodesource_setup.sh && bash /tmp/nodesource_setup.sh"
-ARG INSTALL_SCRIPT="node -v && npm -v && npm install -g corepack && corepack enable
+ARG INSTALL_SCRIPT="node -v && npm -v && npm install -g corepack && corepack enable"
 ARG PRE_BUILD_SCRIPT
 ARG BUILD_SCRIPT="yarn install && bundle exec rake assets:precompile"
 ARG POST_BUILD_SCRIPT="echo \"(built at: $(date '+%Y-%m-%d %H:%M:%S'))\" > /app-src/BUILD_INFO"
