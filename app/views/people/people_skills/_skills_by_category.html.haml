@@ -4,4 +4,5 @@
     - people_skills.each do |people_skill|
       %div{id: "#{people_skill.id.nil? ? "default-" : ""}skill-#{people_skill.skill.id}"}
         = form_with model: people_skill, url: polymorphic_path([@person, people_skill], rating: params["rating"]) do |form|
-          = render "people/people_skills/edit_form", ff: form, show_category: true
+          = render(can?(:manage, @person) ?"people/people_skills/edit_form" :"people/people_skills/show_skill",
+          can?(:manage, @person) ? { ff: form, show_category: true } :{ person_skill: people_skill })
