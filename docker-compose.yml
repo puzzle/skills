@@ -1,92 +1,81 @@
+x-rails-shared: &rails-shared
+  image: skills-dev/rails
+  user: app
+  tty: true
+  stdin_open: true
+  env_file: .env
+  environment:
+    RAILS_DB_HOST: postgres
+  volumes:
+    - ./:/myapp
+    - ${GEM_PATH:-./vendor/bundle}:/opt/bundle
+    - /tmp/.X11-unix:/tmp/.X11-unix
+
 services:
-  rails:
-    container_name: rails
-    image: skills-dev/rails
-    user: app
-    tty: true
-    stdin_open: true
-    environment:
-      - RAILS_DB_HOST=postgres
-    env_file: .env
-    build:
-      context: ./config/docker/development
-      dockerfile: Rails.dockerfile
-    ports:
-      - 3000:3000
-    volumes:
-      - ./:/myapp
-      - ./config/docker/development/home/rails:/home/developer
-      - /tmp/.X11-unix:/tmp/.X11-unix
-      - ${GEM_PATH}:/opt/bundle
-
-    depends_on:
-      - postgres
-  test:
-    container_name: test
-    image: skills-test/rails
-    user: app
-    tty: true
-    stdin_open: true
-    environment:
-      - RAILS_DB_HOST=postgres
-      - RAILS_ENV=test
-    env_file: .env
-    build:
-      context: ./config/docker/test
-      dockerfile: Test.dockerfile
-    ports:
-      - 3001:3000
-    volumes:
-      - ./:/myapp
-      - ./config/docker/test/home/rails:/home/test
-      - /tmp/.X11-unix:/tmp/.X11-unix
-      - ${GEM_PATH}:/opt/bundle
-
-    depends_on:
-      - postgres
-
   postgres:
     container_name: postgres
     image: postgres:16
     ports:
-      - 5432:5432
+      - "5432:5432"
     env_file: .env
     volumes:
-      - postgres:/var/lib/postgres
+      - postgres_data:/var/lib/postgresql/data
+    profiles: ["", "all", "test"]
+
+  rails:
+    <<: *rails-shared
+    container_name: rails
+    build:
+      context: ./config/docker/development
+      dockerfile: Rails.dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/myapp
+      - ./config/docker/development/home/rails:/home/developer
+      - ${GEM_PATH:-./vendor/bundle}:/opt/bundle
+    depends_on:
+      - postgres
+    profiles: ["", "all"]
+
+  worker:
+    <<: *rails-shared
+    container_name: worker
+    working_dir: /myapp
+    command: bundle exec rails jobs:work
+    depends_on:
+      - postgres
+    profiles: ["all"]
+
+  test:
+    <<: *rails-shared
+    container_name: test
+    image: skills-test/rails
+    build:
+      context: ./config/docker/test
+      dockerfile: Test.dockerfile
+    ports:
+      - "3001:3000"
+    environment:
+      RAILS_ENV: test
+    volumes:
+      - ./:/myapp
+      - ./config/docker/test/home/rails:/home/test
+      - ${GEM_PATH:-./vendor/bundle}:/opt/bundle
+    depends_on:
+      - postgres
+    profiles: ["test", "all"]
 
   assets:
     container_name: assets
     image: ruby:4.0.1
     working_dir: /myapp
-    command: >
-     /bin/bash -c "
-      curl -fsSL https://deb.nodesource.com/setup_24.x | bash - &&
-      apt-get install -y nodejs &&
-      npm install -g corepack && corepack enable && bin/assets &&
-      sleep infinity"
+    command: sh -c "corepack enable && yarn install && bin/assets"
     volumes:
-      - ./:/myapp
-      - bundler_cache:/opt/bundle
-      - assets_cache:/usr/bin/
-    depends_on:
-      - rails
+      - .:/myapp
+    profiles: ["all"]
 
-  worker:
-    container_name: worker
-    image: ruby:4.0.1
-    environment:
-      - RAILS_DB_HOST=postgres
-      - RAILS_ENV=development
-    env_file: .env
-    working_dir: /app
-    command: /bin/bash -c "bundle install && bundle exec rails jobs:work"
-    volumes:
-      - .:/app
-    depends_on:
-      - postgres
-      - rails
 volumes:
+  postgres_data:
   bundler_cache:
   assets_cache:
-  postgres:
-
