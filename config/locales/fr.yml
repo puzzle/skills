@@ -322,6 +322,9 @@ fr:
         customer_code: Abréviation du client
         department_code: Abréviation du département
         project_code: Abréviation du projet
+        customer_code_placeholder : le code client s'affiche dans l'en-tête
+        department_code_placeholder : le code département s'affiche dans l'en-tête
+        project_code_placeholder : le code projet s'affiche dans l'en-tête
     form:
       ptime_data: Ces données proviennent de Puzzle Time, vous ne pouvez donc pas les modifier.
     global:

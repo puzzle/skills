@@ -343,6 +343,9 @@ de-CH:
         customer_code: Chundächürzu
         department_code: Abteiligschürzu
         project_code: Projektchürzu
+        customer_code_placeholder: Ds Chundächürzu wird i dr Chopfzielä azeigt
+        department_code_placeholder: Ds Abteiligschürzu wird i dr Chopfzielä azeigt
+        project_code_placeholder: Ds Projektchürzu wird i dr Chopfzielä azeigt
     form:
       ptime_data: Diä Datä si usem Puzzle Time, drum chasch du diä nid veränderä.
     global:
