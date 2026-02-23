@@ -29,6 +29,7 @@ class Person < ApplicationRecord
 
   belongs_to :company
   belongs_to :department, optional: true
+  belongs_to :auth_user
 
   mount_uploader :picture, PictureUploader
   has_many :projects, dependent: :destroy
