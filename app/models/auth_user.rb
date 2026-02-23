@@ -4,6 +4,8 @@ class AuthUser < ApplicationRecord
 
   devise :omniauthable, omniauth_providers: [:keycloak_openid]
 
+  has_one :person, dependent: :restrict_with_error
+
   class << self
     def from_omniauth(auth)
       person = where(uid: auth.uid).first_or_create { |user| initialize_user(user, auth) }
