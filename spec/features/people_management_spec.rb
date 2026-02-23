@@ -31,10 +31,7 @@ describe 'People management', type: :feature, js: true do
   end
 
   it 'should delete person after confirming' do
-
-    # We need to visit the index page first, otherwise we can't test if we can click the delete button, because of the interception from turbo.
-    visit admin_index_path
-    page.click_link('Inaktive Profile löschen')
+    visit admin_people_management_path
 
     within "#unemployed-people-person_#{bob.id}" do
       accept_confirm("Willst du diesen Eintrag wirklich löschen?") do
