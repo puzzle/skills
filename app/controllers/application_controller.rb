@@ -18,6 +18,11 @@ class ApplicationController < ActionController::Base
     I18n.with_locale(param_locale, &)
   end
 
+  # The parameter opts = {} accepts the Warden options,
+  # which Devise expects as a hash during authentication and passes on.
+  # This allows you to control the login behaviour for each request.
+  # We don't need the options at all, but since Devise v5.0.2 we have to define them.
+  # e.g. to suppress cookies for APIs (store: false) or to force a re-login (force: true).
   def authenticate_auth_user!(opts = {})
     return super if helpers.devise?
 
