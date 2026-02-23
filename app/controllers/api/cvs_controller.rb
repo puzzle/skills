@@ -1,7 +1,7 @@
 class Api::CvsController < Api::ApplicationController
   include ActionController::HttpAuthentication::Token::ControllerMethods
 
-  before_action :authenticate_with_token
+  before_action :authenticate_with_token, unless: -> { Rails.env.development? }
 
   def index
     people = Person
