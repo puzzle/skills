@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     I18n.with_locale(param_locale, &)
   end
 
-  def authenticate_auth_user!
+  def authenticate_auth_user!(opts = {})
     return super if helpers.devise?
 
     admin = AuthUser.find_by(email: 'conf_admin@skills.ch')
