@@ -15,15 +15,21 @@ RSpec.configure do |config|
       paths: {},
       servers: [
         {
-          url: 'https://{defaultHost}',
+          url: 'http://{defaultHost}',
           variables: {
             defaultHost: {
-              default: 'www.example.com'
+              default: 'localhost:3000'
             }
           }
         }
       ],
       components: {
+        securitySchemes: {
+          bearerAuth: {
+            type: :http,
+            scheme: :bearer
+          }
+        },
         schemas: {
           CvCollectionResponse: {
             type: :object,
@@ -195,4 +201,22 @@ RSpec.configure do |config|
   }
 
   config.openapi_format = :yaml
+end
+
+require 'swagger_helper'
+
+RSpec.describe 'CVs API', type: :request do
+  path '/api/cvs' do
+    get 'List CVs' do
+      tags 'CVs'
+      produces 'application/json'
+      security [{ bearerAuth: [] }]
+
+      response '200', 'CVs found' do
+        schema '$ref' => '#/components/schemas/CvCollectionResponse'
+
+        run_test!
+      end
+    end
+  end
 end
