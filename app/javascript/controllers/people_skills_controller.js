@@ -70,9 +70,13 @@ export default class extends Controller {
     }
 
     rateSkill(e) {
-        e.preventDefault();
-        this.setUnratedField(e, false);
-        e.target.form.requestSubmit();
+        clearTimeout(this.timeout)
+
+        this.timeout = setTimeout(() => {
+            e.preventDefault();
+            this.setUnratedField(e, false);
+            e.target.form.requestSubmit();
+        }, 500)
     }
 
     setUnratedField(e, value) {
