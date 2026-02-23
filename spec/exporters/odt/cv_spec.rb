@@ -56,18 +56,17 @@ describe Odt::Cv do
     end
 
   describe 'format language with level correctly' do
-    let(:cv) { Odt::Cv.new(:bob, { 'anon' => 'false' }) }
+    let(:bob) { people(:bob) }
+    let(:cv) { Odt::Cv.new(bob, { 'anon' => 'false' }) }
     let(:report) { instance_double('ODFReport::Report') }
     let(:german) { language_skills(:deutsch)}
 
     it 'should not include language level when it is (Keine)' do
       spanish = language_skills(:spanisch)
 
-      bob = people(:bob)
-      allow(cv).to receive(:person).and_return(bob)
       allow(bob).to receive_message_chain(:language_skills, :list).and_return([german, spanish])
 
-      expected_output = "Deutsch (Muttersprache)\nSpanisch (Kastilisch)"
+      expected_output = "Deutsch (Muttersprache)"
 
       expect(report).to receive(:add_field).with(:languages, expected_output)
 
@@ -77,8 +76,6 @@ describe Odt::Cv do
     it 'should include language level when it has a level' do
       english = language_skills(:englisch)
 
-      bob = people(:bob)
-      allow(cv).to receive(:person).and_return(bob)
       allow(bob).to receive_message_chain(:language_skills, :list).and_return([german, english])
 
       expected_output = "Deutsch (Muttersprache)\nEnglisch (B1)"

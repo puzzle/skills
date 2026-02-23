@@ -315,10 +315,16 @@ module Odt
     end
 
     def insert_languages(report, display_language = 'DE')
-      report.add_field(:languages, person.language_skills.list.map do |l|
+      languages_levels = person.language_skills.list.filter_map do |l|
+        next if l.level == 'Keine'
+
         language = I18nData.languages(display_language)[l.language]
-        l.level == 'Keine' ? language.to_s : "#{language} (#{l.level})"
-      end.join("\n"))
+        "#{language} (#{l.level})"
+      end
+
+      result = languages_levels.join("\n")
+
+      report.add_field(:languages, result)
     end
 
     def insert_initials(report)
