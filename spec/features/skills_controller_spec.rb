@@ -90,4 +90,24 @@ describe :skills do
       end
     end
   end
+
+  describe 'modal', js: true do
+    it 'should close when clicking outside modal' do
+      visit skills_path
+
+      click_link("Rails")
+
+      expect(page).to have_selector('.modal-content', visible: true)
+
+      click_link("Bob")
+
+      page.go_back
+
+      expect(page).to have_selector('.modal-content', visible: true)
+
+      find('.modal').click(x: 0, y: 0)
+
+      expect(page).not_to have_selector('.modal-content', visible: true)
+    end
+  end
 end
