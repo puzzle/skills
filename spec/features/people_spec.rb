@@ -382,7 +382,7 @@ describe :people do
     end
   end
 
-  describe 'Access control' do
+  describe 'User Access control' do
     before(:each) do
       sign_in auth_users(:user), scope: :auth_user
     end
@@ -398,11 +398,55 @@ describe :people do
       expect(page).to have_content('Expert at access control')
     end
 
+    it 'logged in person can edit their own skills' do
+      ursula = people(:user)
+      visit person_people_skills_path(ursula)
+      expect(page).to have_content('Skills (0)')
+
+      first('[data-controller="people-skills"]').click_button('Bewerten')
+
+      expect(page).to have_content('Skill (1)')
+    end
+
     it 'logged in person should no be able to edit other profiles' do
       longmax = people(:longmax)
       visit person_path(longmax)
 
       expect(page).not_to have_link('Bearbeiten', href: edit_person_path(longmax))
+    end
+
+    it "logged in person should no be able to edit other people's skills" do
+      longmax = people(:longmax)
+      visit person_people_skills_path(longmax)
+      expect(page).to have_content('Skills (0)')
+      expect(page).not_to have_button('Bewerten')
+    end
+  end
+
+  describe 'Editor Access control' do
+    before(:each) do
+      sign_in auth_users(:editor), scope: :auth_user
+    end
+
+    it  'editor can edit other profiles' do
+      ursula = people(:user)
+      visit person_path(ursula)
+
+      click_link('Bearbeiten', href: edit_person_path(ursula))
+      fill_in 'person_title', with: 'Expert at access control'
+      click_button("Person aktualisieren")
+
+      expect(page).to have_content('Expert at access control')
+    end
+
+    it 'editor can edit other profiles' do
+      ursula = people(:user)
+      visit person_people_skills_path(ursula)
+      expect(page).to have_content('Skills (0)')
+
+      first('[data-controller="people-skills"]').click_button('Bewerten')
+
+      expect(page).to have_content('Skill (1)')
     end
   end
 end

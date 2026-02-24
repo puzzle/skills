@@ -16,3 +16,9 @@ conf_admin:
   email: conf_admin@skills.ch
   is_admin: true
   is_conf_admin: true
+
+editor:
+  uid: 1234-5678-9012-3459
+  name: Eddy Editor
+  email: editor@skills.ch
+  is_editor: true
