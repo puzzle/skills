@@ -1,6 +1,6 @@
 x-rails-shared: &rails-shared
-  image: skills-dev/rails
   user: app
+  init: true
   tty: true
   stdin_open: true
   env_file: .env
@@ -8,7 +8,7 @@ x-rails-shared: &rails-shared
     RAILS_DB_HOST: postgres
   volumes:
     - ./:/myapp
-    - ${GEM_PATH:-./vendor/bundle}:/opt/bundle
+    - bundler_cache:/opt/bundle
     - /tmp/.X11-unix:/tmp/.X11-unix
 
 services:
@@ -24,6 +24,7 @@ services:
 
   rails:
     <<: *rails-shared
+    image: skills-dev/rails
     container_name: rails
     build:
       context: ./config/docker/development
@@ -33,13 +34,14 @@ services:
     volumes:
       - ./:/myapp
       - ./config/docker/development/home/rails:/home/developer
-      - ${GEM_PATH:-./vendor/bundle}:/opt/bundle
+      - bundler_cache:/opt/bundle
     depends_on:
       - postgres
     profiles: ["", "all"]
 
   worker:
     <<: *rails-shared
+    image: skills-dev/rails
     container_name: worker
     working_dir: /myapp
     command: bundle exec rails jobs:work
@@ -61,7 +63,7 @@ services:
     volumes:
       - ./:/myapp
       - ./config/docker/test/home/rails:/home/test
-      - ${GEM_PATH:-./vendor/bundle}:/opt/bundle
+      - bundler_cache:/opt/bundle
     depends_on:
       - postgres
     profiles: ["test", "all"]
