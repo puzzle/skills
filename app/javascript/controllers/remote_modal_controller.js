@@ -10,6 +10,7 @@ export default class extends Controller {
 
     disconnect() {
         this.element.classList.remove('fader');
+        this.modal.dispose();
     }
 
     isOpen() {
