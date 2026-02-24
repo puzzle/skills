@@ -375,7 +375,7 @@ describe :people do
     end
 
     it 'does not shows buttons if the logged-in user has no profile' do
-      sign_in auth_users(:admin), scope: :auth_user
+      sign_in auth_users(:conf_admin), scope: :auth_user
       visit people_path
       expect(page).to have_no_content(t("people.index.export_cv"))
       expect(page).to have_no_content(t("people.index.profile"))
@@ -390,6 +390,7 @@ describe :people do
     it 'logged in person can edit their own profile' do
       ursula = people(:user)
       visit person_path(ursula)
+
       click_link('Bearbeiten', href: edit_person_path(ursula))
       fill_in 'person_title', with: 'Expert at access control'
       click_button("Person aktualisieren")

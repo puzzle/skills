@@ -58,7 +58,7 @@ admin:
   email: admin@example.com
   department: sys
   shortname: BA
-  auth_user_id: admin.id
+  auth_user_id: <%= ActiveRecord::FixtureSet.identify(:admin) %>
 
 alice:
   birthdate: 2016-10-20 13:15:11
@@ -186,7 +186,7 @@ maximillian:
   department: mid
 
 user:
-  birthdate: 1995-05-32 16:04:56
+  birthdate: 1995-05-15 16:04:56
   location: Belp
   marital_status: <%= Person.marital_statuses[:single] %>
   name: Ursula User
@@ -201,4 +201,4 @@ user:
   email: user@example.com
   department: dev-one
   shortname: UU
-  auth_user_id: user.id
+  auth_user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
