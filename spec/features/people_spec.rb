@@ -41,12 +41,14 @@ describe :people do
         person.name.downcase.include?(search_string)
       end
 
-      matched_strings.pluck(:name).each do |name|
-        expect(page).to have_text(name)
-      end
+      within '.ss-content' do
+        matched_strings.pluck(:name).each do |name|
+          expect(page).to have_text(name)
+        end
 
-      not_matched_strings.pluck(:name).each do |name|
-        expect(page).to have_no_text(name)
+        not_matched_strings.pluck(:name).each do |name|
+          expect(page).to have_no_text(name)
+        end
       end
     end
   end
@@ -382,17 +384,15 @@ describe :people do
 
   describe 'Access control' do
     before(:each) do
-      sign_in auth_users(:user)
+      sign_in auth_users(:user), scope: :auth_user
     end
 
     it 'logged in person can edit their own profile' do
       ursula = people(:user)
       visit person_path(ursula)
-
       click_link('Bearbeiten', href: edit_person_path(ursula))
       fill_in 'person_title', with: 'Expert at access control'
-      save_button = find_button("Person aktualisieren")
-      save_button.click
+      click_button("Person aktualisieren")
 
       expect(page).to have_content('Expert at access control')
     end
@@ -401,7 +401,7 @@ describe :people do
       longmax = people(:longmax)
       visit person_path(longmax)
 
-      expect{ click_link('Bearbeiten', href: edit_person_path(longmax)) }.to raise_error("You are not authorized to access this page.")
+      expect(page).not_to have_link('Bearbeiten', href: edit_person_path(longmax))
     end
   end
 end
