@@ -1,83 +1,88 @@
-x-rails-shared: &rails-shared
-  user: app
-  init: true
-  tty: true
-  stdin_open: true
-  env_file: .env
-  environment:
-    RAILS_DB_HOST: postgres
-  volumes:
-    - ./:/myapp
-    - bundler_cache:/opt/bundle
-    - /tmp/.X11-unix:/tmp/.X11-unix
-
 services:
-  postgres:
-    container_name: postgres
-    image: postgres:16
-    ports:
-      - "5432:5432"
-    env_file: .env
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    profiles: ["", "all", "test"]
-
   rails:
-    <<: *rails-shared
-    image: skills-dev/rails
     container_name: rails
+    image: skills-dev/rails
+    user: app
+    tty: true
+    stdin_open: true
+    environment:
+      - RAILS_DB_HOST=postgres
+    env_file: .env
     build:
       context: ./config/docker/development
       dockerfile: Rails.dockerfile
     ports:
-      - "3000:3000"
+      - 3000:3000
     volumes:
       - ./:/myapp
       - ./config/docker/development/home/rails:/home/developer
-      - bundler_cache:/opt/bundle
     depends_on:
       - postgres
     profiles: ["", "all"]
 
-  worker:
-    <<: *rails-shared
-    image: skills-dev/rails
-    container_name: worker
-    working_dir: /myapp
-    command: bundle exec rails jobs:work
-    depends_on:
-      - postgres
-    profiles: ["all"]
-
   test:
-    <<: *rails-shared
     container_name: test
     image: skills-test/rails
+    user: app
+    tty: true
+    stdin_open: true
+    environment:
+      - RAILS_DB_HOST=postgres
+      - RAILS_ENV=test
+    env_file: .env
     build:
       context: ./config/docker/test
       dockerfile: Test.dockerfile
     ports:
-      - "3001:3000"
-    environment:
-      RAILS_ENV: test
+      - 3001:3000
     volumes:
       - ./:/myapp
       - ./config/docker/test/home/rails:/home/test
-      - bundler_cache:/opt/bundle
     depends_on:
       - postgres
-    profiles: ["test", "all"]
+    profiles: ["all", "test"]
+
+  postgres:
+    container_name: postgres
+    image: postgres:16
+    ports:
+      - 5432:5432
+    env_file: .env
+    volumes:
+      - postgres:/var/lib/postgres
+    profiles: ["all", "", "test"]
 
   assets:
     container_name: assets
     image: ruby:4.0.1
     working_dir: /myapp
-    command: sh -c "corepack enable && yarn install && bin/assets"
+    command: >
+      /bin/bash -c "
+       curl -fsSL https://deb.nodesource.com/setup_24.x | bash - &&
+       apt-get install -y nodejs &&
+       npm install -g corepack && corepack enable && bin/assets &&
+       sleep infinity"
     volumes:
-      - .:/myapp
+      - ./:/myapp
+    depends_on:
+      - rails
     profiles: ["all"]
 
+  worker:
+    container_name: worker
+    image: ruby:4.0.1
+    environment:
+      - RAILS_DB_HOST=postgres
+      - RAILS_ENV=development
+    env_file: .env
+    working_dir: /app
+    command: /bin/bash -c "bundle install && bundle exec rails jobs:work"
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
+      - rails
+    profiles: [ "all" ]
+
 volumes:
-  postgres_data:
-  bundler_cache:
-  assets_cache:
+  postgres:
