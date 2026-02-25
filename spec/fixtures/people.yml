@@ -58,7 +58,7 @@ admin:
   email: admin@example.com
   department: sys
   shortname: BA
-  auth_user_id: <%= ActiveRecord::FixtureSet.identify(:admin) %>
+  auth_user: admin
 
 alice:
   birthdate: 2016-10-20 13:15:11
@@ -201,4 +201,4 @@ user:
   email: user@example.com
   department: dev-one
   shortname: UU
-  auth_user_id: <%= ActiveRecord::FixtureSet.identify(:user) %>
+  auth_user: user
