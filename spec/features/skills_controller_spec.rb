@@ -98,7 +98,17 @@ describe :skills do
 
       expect(page).to have_selector('.modal-content', visible: true)
 
-      find('.modal').click(x: 0, y: 0)
+      click_link("Bob")
+
+      expect(page).to have_content("Personalien")
+
+      page.go_back
+
+      expect(page).to have_current_path(skills_path)
+
+      expect(page).to have_selector('.modal-content', visible: true)
+
+      find('.modal').send_keys(:escape)
 
       expect(page).not_to have_selector('.modal-content', visible: true)
     end
