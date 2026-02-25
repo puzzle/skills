@@ -54,4 +54,35 @@ describe Odt::Cv do
       notes = Odt::Cv.new(people(:bob), { 'anon' => 'false' }).send(:competence_notes_list)[:competence]
       expect(notes).to eq("Java\nRuby")
     end
+
+  describe 'format language with level correctly' do
+    let(:bob) { people(:bob) }
+    let(:cv) { Odt::Cv.new(bob, { 'anon' => 'false' }) }
+    let(:report) { instance_double('ODFReport::Report') }
+    let(:german) { language_skills(:deutsch)}
+
+    it 'should not include language level when it is (Keine)' do
+      spanish = language_skills(:spanisch)
+
+      allow(bob).to receive_message_chain(:language_skills, :list).and_return([german, spanish])
+
+      expected_output = "Deutsch (Muttersprache)"
+
+      expect(report).to receive(:add_field).with(:languages, expected_output)
+
+      cv.send(:insert_languages, report, 'DE')
+    end
+
+    it 'should include language level when it has a level' do
+      english = language_skills(:englisch)
+
+      allow(bob).to receive_message_chain(:language_skills, :list).and_return([german, english])
+
+      expected_output = "Deutsch (Muttersprache)\nEnglisch (B1)"
+
+      expect(report).to receive(:add_field).with(:languages, expected_output)
+
+      cv.send(:insert_languages, report, 'DE')
+    end
+  end
 end
