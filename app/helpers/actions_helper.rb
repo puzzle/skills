@@ -110,13 +110,9 @@ module ActionsHelper
   private
 
   def wrap_with_tooltip(link, tooltip_message)
-    data = { bs_toggle: 'tooltip',
-             bs_title: tooltip_message,
-             controller: 'tooltip' }
-
     content_tag(:div, '',
                 class: 'disable-btn-tooltip',
-                data: data) { link }
+                data: { tooltip: tooltip_message }) { link }
   end
 
   def update_action_link(options = {})

@@ -481,3 +481,39 @@ a > img {
 .ss-content.skill-tracking-select {
   width: max-content !important;
 }
+
+// CSS-only tooltip for disabled admin action links
+.disable-btn-tooltip {
+  position: relative;
+  display: inline-block;
+
+  &:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    font-size: 12px;
+    white-space: nowrap;
+    border-radius: 4px;
+    z-index: 1000;
+    pointer-events: none;
+  }
+
+  &:hover::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 0px;
+    border: 5px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    pointer-events: none;
+  }
+}
