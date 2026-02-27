@@ -89,13 +89,18 @@ module ActionsHelper
 
   def admin_action_link(label, icon = nil, url = {}, options = {})
     add_css_class options, 'action btn btn-link d-flex align-items-center gap-2'
-    add_css_class options, 'disabled' unless current_auth_user.is_admin?
+    is_admin = current_user_is_admin?
+    add_css_class options, 'disabled' unless is_admin
     link = link_to(icon ? action_icon(icon, label) : label,
                    url, options)
 
-    return link if current_auth_user.is_admin?
+    return link if is_admin
 
     wrap_with_tooltip(link, I18n.t('errors.messages.authorization_error'))
+  end
+
+  def current_user_is_admin?
+    @current_user_is_admin ||= current_auth_user&.is_admin?
   end
 
   def admin_export_action_link(path, options = {})
