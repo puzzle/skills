@@ -15,3 +15,8 @@ export default class extends Controller {
         return this.element.classList.contains("show")
     }
 }
+
+//Before caching dispose the modal else we can't interact with the page after it was loaded from the cache.
+document.addEventListener("turbo:before-cache", () => {
+    this.modal.dispose();
+});
