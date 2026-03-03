@@ -1,7 +1,7 @@
 class Api::CvsController < Api::ApplicationController
-  include ActionController::HttpAuthentication::Token::ControllerMethods
+  include ActionController::HttpAuthentication::Basic::ControllerMethods
 
-  before_action :authenticate_with_token, unless: -> { Rails.env.development? }
+  before_action :http_basic_authenticate!, unless: -> { Rails.env.development? }
 
   def index
     people = Person
@@ -19,9 +19,10 @@ class Api::CvsController < Api::ApplicationController
 
   private
 
-  def authenticate_with_token
-    authenticate_or_request_with_http_token do |token|
-      ActiveSupport::SecurityUtils.secure_compare(token, ENV.fetch('CVS_API_TOKEN', nil))
+  def http_basic_authenticate!
+    authenticate_or_request_with_http_basic("API") do |username, password|
+      ActiveSupport::SecurityUtils.secure_compare(username, ENV.fetch("API_USERNAME", "Hallo")) &&
+        ActiveSupport::SecurityUtils.secure_compare(password, ENV.fetch("API_PASSWORD", "Hallo"))
     end
   end
 
