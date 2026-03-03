@@ -24,10 +24,4 @@ class CvSerializer < ApplicationSerializer
   attribute :educations
   attribute :advanced_trainings
   attribute :contributions
-
-  private
-
-  def anonymized?
-    instance_options[:anon]
-  end
 end

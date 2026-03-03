@@ -25,9 +25,9 @@ RSpec.configure do |config|
       ],
       components: {
         securitySchemes: {
-          bearerAuth: {
+          basicAuth: {
             type: :http,
-            scheme: :bearer
+            scheme: :basic
           }
         },
         schemas: {
@@ -203,18 +203,19 @@ RSpec.configure do |config|
   config.openapi_format = :yaml
 end
 
-require 'swagger_helper'
-
 RSpec.describe 'CVs API', type: :request do
   path '/api/cvs' do
     get 'List CVs' do
       tags 'CVs'
       produces 'application/json'
-      security [{ bearerAuth: [] }]
+      security [{ basicAuth: [] }]
 
       response '200', 'CVs found' do
         schema '$ref' => '#/components/schemas/CvCollectionResponse'
 
+        run_test!
+      end
+      response '401', 'Unauthorized' do
         run_test!
       end
     end
