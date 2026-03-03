@@ -358,6 +358,8 @@ fr:
     search:
       new_profile: Nouveau profil
       updated_at: Dernièrement édité
+      no_permission_to_edit_person: Tu n'as pas les autorisations nécessaires pour modifier ce profil.
+      permission_to_edit_person: Tu as les autorisations nécessaires pour modifier ce profil.
     show:
       is_not_displayed_in_cv: Ne sera pas inclus dans l'exportation du CV.
   people/export_cv:

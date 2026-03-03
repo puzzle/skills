@@ -28,7 +28,8 @@ class Ability
     end
     can :read, Skill
     can :read, Person
-    can :manage, Person, auth_user_id: user.id
+    can :update, Person, auth_user_id: user.id
+    can :destroy, Person, auth_user_id: user.id
   end
 
   def initialize_editor_rights

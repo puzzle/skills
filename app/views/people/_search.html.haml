@@ -5,6 +5,13 @@
       = select :person_id, :person, options_for_select(sorted_people, select_when_available(selected_path)), {prompt: person.nil?}, {data:{"dropdown-target": "dropdown"}}
     %div.d-flex.align-items-center.text-gray
       = "#{t '.updated_at'}: #{@person&.last_updated_at.strftime("%d.%m.%Y")}" if @person&.last_updated_at
-  %a.d-flex.justify-content-between#new-person-button
-    - if can? :create, Person
+  - if can? :create, Person
+    %a.d-flex.justify-content-between#new-person-button
       = add_action_link new_person_path unless use_ptime_sync?
+
+- if @person
+  - can_manage = can?(:update, @person)
+  %span{"data-controller": "people", "data-people-target": "message"}
+    %p{ class: "alert #{can_manage ? 'alert-success' : 'alert-info'} d-flex justify-content-between" }
+      = t(can_manage ? '.permission_to_edit_person' : '.no_permission_to_edit_person')
+      = close_action_link "#", data: {action: "click->people#remove"}
