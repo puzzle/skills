@@ -24,14 +24,13 @@ describe :people do
     end
 
     it 'can edit people-skills' do
-      # Switch to PeopleSkills tab
       alice = people(:alice)
       visit person_people_skills_path(alice, rating: 1)
 
       ember = alice.people_skills.first
       within("#skill-div-#{ember.skill.id}") do
-        select_star_rating(2)
         select_level(3, "level_#{ember.skill.id}")
+        select_star_rating(2)
       end
 
       # Check if changes were saved
@@ -54,6 +53,7 @@ describe :people do
       expect(bash.interest).to eq(0)
       within("#skill-div-#{bash.skill.id}") do
         select_level(3, "level_#{bash.skill.id}")
+        find('[name="people_skill[certificate]"]').check
       end
 
       # Check if changes were saved
@@ -253,7 +253,7 @@ describe :people do
         expect(page).not_to have_content('System-Engineering')
       end
 
-      find("#level_#{skills(:bash).id}").set(3)
+      find("#level_#{skills(:bash).id}").set(3).click
       expect(page).to have_content("Änderungen wurden gespeichert.")
 
       within '.sidebar' do
