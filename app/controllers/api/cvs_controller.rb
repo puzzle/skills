@@ -21,8 +21,8 @@ class Api::CvsController < Api::ApplicationController
 
   def http_basic_authenticate!
     authenticate_or_request_with_http_basic("API") do |username, password|
-      ActiveSupport::SecurityUtils.secure_compare(username, ENV.fetch("API_USERNAME", "Hallo")) &&
-        ActiveSupport::SecurityUtils.secure_compare(password, ENV.fetch("API_PASSWORD", "Hallo"))
+      ActiveSupport::SecurityUtils.secure_compare(username, ENV.fetch("API_USERNAME")) &&
+        ActiveSupport::SecurityUtils.secure_compare(password, ENV.fetch("API_PASSWORD"))
     end
   end
 
