@@ -6,8 +6,8 @@ RSpec.describe Api::CvsController, type: :controller do
     let(:password) { 'test-password' }
 
     before do
-      allow(ENV).to receive(:fetch).with('API_USERNAME', 'Hallo').and_return(username)
-      allow(ENV).to receive(:fetch).with('API_PASSWORD', 'Hallo').and_return(password)
+      allow(ENV).to receive(:fetch).with('API_USERNAME').and_return(username)
+      allow(ENV).to receive(:fetch).with('API_PASSWORD').and_return(password)
 
       credentials = ActionController::HttpAuthentication::Basic.encode_credentials(username, password)
       request.headers['Authorization'] = credentials
@@ -94,7 +94,7 @@ RSpec.describe Api::CvsController, type: :controller do
         expect(json['data']['data'].size).to eq(Person.count)
       end
     end
-    
+
     context 'with invalid credentials' do
       before do
         credentials = ActionController::HttpAuthentication::Basic.encode_credentials('wrong', 'creds')
