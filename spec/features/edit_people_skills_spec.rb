@@ -209,7 +209,7 @@ describe :people do
     end
 
     it 'hides default skills form when canceling with cancel-x' do
-      page.find('.icon.icon-close').click
+      all('.icon.icon-close').each(&:click)
       expect(page).not_to have_css('#default-skills')
     end
   end
