@@ -62,10 +62,38 @@ docker volume rm skills_assets_cache skills_bundler_cache skills_postgres
 ```
 
 ### Start application
-To start the PuzzleSkills application, run the following commands in your shell:
+This project uses Docker Compose profiles to manage different sets of services. 
+You can start the application in different modes depending on your current needs.
 
+#### Development (Default)
+Starts the core containers needed for local development (`postgres` and `rails`).
 ```bash
 docker compose up -d
+```
+Stopping:
+```bash
+docker compose down
+```
+
+#### Testing
+Start the `test` and the `postgres` container to run tests.
+Use this profile if you want to test the application.
+```bash
+docker compose --profile test up -d
+```
+Stopping:
+```bash
+docker compose --profile test down
+```
+
+#### Full Stack
+launch the complete application, including every container (`postgres`, `rails`, `test`, `worker`, and `assets`).
+```bash
+docker compose --profile all up -d
+```
+Stopping:
+```bash
+docker compose --profile all down
 ```
 
 ⚡ This will also install all required gems and seed the database, which takes some time to complete if it's executed the first time. You can follow the progress using `docker logs -f rails` (exit with Ctrl+C).
