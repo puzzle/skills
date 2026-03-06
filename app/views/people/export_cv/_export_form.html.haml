@@ -6,9 +6,12 @@
   .mb-2.w-100
     = f.label t(".customer_code"), class: "form-label w-100"
     = f.text_field :customerCode, class: "w-100 form-control", maxlength: 15, placeholder: t(".customer_code_placeholder")
-  .mb-2.w-100
-    = f.label t(".department_code"), class: "form-label w-100"
-    = f.text_field :departmentCode, class: "w-100 form-control", value: @department, maxlength: 20, placeholder: t(".department_code_placeholder")
+  .mb-2.w-100{ data: { controller: "auto-complete", auto_complete_options_value: @departments.to_json } }
+    = f.label :departmentCode, t(".department_code"), class: "form-label w-100"
+    = f.text_field :departmentCode, value: @department, maxlength: 20,  class: "w-100 form-control",
+       placeholder: t(".department_code_placeholder"), data: { auto_complete_target: "input" },  autocomplete: "off"
+    = f.hidden_field :id, data: { auto_complete_target: "hidden" }
+    %ul.list-group{ data: { auto_complete_target: "results" }, style: "z-index: 1000;" }
   .mb-2.w-100
     = f.label t(".project_code"), class: "form-label w-100"
     = f.text_field :projectCode, class: "w-100 form-control", maxlength: 15, placeholder: t(".project_code_placeholder")

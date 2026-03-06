@@ -2,7 +2,8 @@
 
 class People::ExportCvController < ApplicationController
   def show
-    @department = Department.find(Person.find(params[:id]).department_id)
+    @departments = Department.all
+    @department = @departments.find(Person.find(params[:id]).department_id)
     render 'show'
   end
 end
