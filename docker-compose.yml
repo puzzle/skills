@@ -24,7 +24,7 @@ services:
       - .:/myapp
       - ./config/docker/development/home/rails:/home/developer
       - bundle:/usr/local/bundle
-    profiles: ["", "test", "all"]
+    profiles: ["", "all"]
     init: true
 
   test:
