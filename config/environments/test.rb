@@ -18,8 +18,7 @@ Rails.application.configure do
   # recommended that you enable it in continuous integration systems to ensure eager
   # loading is working properly before deploying your code.
 
-  # ToDo: Reactivate when devise 5.x.x is released. See: https://github.com/heartcombo/devise/pull/5728
-  #config.eager_load = ENV["IS_CI"].present?
+  config.eager_load = ENV["IS_CI"].present?
   config.eager_load = true
 
   # Configure public file server for tests with cache-control for performance.
