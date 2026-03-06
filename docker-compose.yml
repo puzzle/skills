@@ -1,61 +1,65 @@
+x-rails-defaults: &rails-defaults
+  user: app
+  tty: true
+  stdin_open: true
+  env_file: .env
+  volumes:
+    - .:/myapp
+  depends_on:
+    - postgres
+
 services:
   rails:
+    <<: *rails-defaults
     container_name: rails
     image: skills-dev/rails
-    user: app
-    tty: true
-    stdin_open: true
     environment:
       - RAILS_DB_HOST=postgres
-    env_file: .env
     build:
       context: ./config/docker/development
       dockerfile: Rails.dockerfile
     ports:
-      - 3000:3000
+      - "3000:3000"
     volumes:
-      - ./:/myapp
+      - .:/myapp
       - ./config/docker/development/home/rails:/home/developer
-    depends_on:
-      - postgres
-    profiles: ["", "all"]
+      - bundle:/usr/local/bundle
+    profiles: ["", "test", "all"]
+    init: true
 
   test:
+    <<: *rails-defaults
     container_name: test
     image: skills-test/rails
-    user: app
-    tty: true
-    stdin_open: true
     environment:
       - RAILS_DB_HOST=postgres
       - RAILS_ENV=test
-    env_file: .env
     build:
       context: ./config/docker/test
       dockerfile: Test.dockerfile
     ports:
-      - 3001:3000
+      - "3001:3000"
     volumes:
-      - ./:/myapp
+      - .:/myapp
       - ./config/docker/test/home/rails:/home/test
-    depends_on:
-      - postgres
     profiles: ["all", "test"]
 
   postgres:
     container_name: postgres
     image: postgres:16
     ports:
-      - 5432:5432
+      - "5432:5432"
     env_file: .env
     volumes:
-      - postgres:/var/lib/postgres
+      - postgres:/var/lib/postgresql/data
     profiles: ["all", "", "test"]
 
   assets:
     container_name: assets
     image: ruby:4.0.1
     working_dir: /myapp
+    environment:
+      - RAILS_ENV=development
     command: >
       /bin/bash -c "
        curl -fsSL https://deb.nodesource.com/setup_24.x | bash - &&
@@ -63,7 +67,7 @@ services:
        npm install -g corepack && corepack enable && bin/assets &&
        sleep infinity"
     volumes:
-      - ./:/myapp
+      - .:/myapp
     depends_on:
       - rails
     profiles: ["all"]
@@ -82,7 +86,8 @@ services:
     depends_on:
       - postgres
       - rails
-    profiles: [ "all" ]
+    profiles: ["all"]
 
 volumes:
   postgres:
+  bundle:
