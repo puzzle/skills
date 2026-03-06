@@ -363,7 +363,7 @@ de:
       new_profile: Neues Profil
       updated_at: Zuletzt bearbeitet
       no_permission_to_edit_person: Du hast nicht die erforderlichen Berechtigungen, um dieses Profil zu bearbeiten.
-      permission_to_edit_person: Du hast die erforderlichen Berechtigunen, um dieses Profil zu bearbeiten.
+      permission_to_edit_person: Du hast die erforderlichen Berechtigungen, um dieses Profil zu bearbeiten.
     show:
       is_not_displayed_in_cv: Wird im CV Export nicht inkludiert.
   people/export_cv:
