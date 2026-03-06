@@ -26,6 +26,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
         select '2020', from: 'advanced_training_year_from'
         click_default_submit
       end
+      expect(page).to have_content(person.advanced_trainings.count)
       expect(page).to have_content(description)
     end
 
