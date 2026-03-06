@@ -1,5 +1,5 @@
 %div.border.border-secondary-subtle.border-1.d-flex.flex-column.mb-3{id: id, "data-scroll-target": "scrollItem"}
-    %div.profile-header.mw-100.border-bottom
+    %div.profile-header.mw-100.border-bottom{id: "#{list.model_name}_count"}
         = "#{list.model_name.human(count: list.count)} (#{list.count})"
     %div.d-flex.flex-column.ms-5-lg.mt-3.mb-3
         = add_person_relation_link new_polymorphic_path([entry, name_of_obj(list).to_sym]), list.model_name.collection,  data: { turbo_frame: dom_id(list.model.new)}, class: 'ps-0'

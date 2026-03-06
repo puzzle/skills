@@ -30,7 +30,7 @@ class People::PersonRelationsController < CrudController
 
   def destroy
     super do |format, success|
-      format.turbo_stream { render turbo_stream: turbo_stream.remove(entry) } if success
+      format.turbo_stream { render 'delete' } if success
     end
   end
 end
