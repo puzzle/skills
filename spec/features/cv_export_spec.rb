@@ -48,6 +48,17 @@ describe :people do
       expect(page).to have_field('departmentCode', with: 'Test Department')
     end
 
+    it 'should be able to chose department code' do
+      visit person_path(people(:bob))
+      page.all('a', text: 'Export').first.click
+
+      page.find('#departmentCode').set('/')
+      expect(page).to have_content "/mid"
+      page.first('li', :text => '/mid').click
+
+      expect(page).to have_field('departmentCode', with: '/mid')
+    end
+
     it 'should display the customer code field' do
       visit person_path(people(:bob))
       page.all('a', text: 'Export').first.click
