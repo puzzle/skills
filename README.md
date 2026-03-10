@@ -58,12 +58,12 @@ You can log in either as `user` or as `admin`. The password for both accounts is
 If this is your first time starting the Development Containers after the ruby 4 upgrade.
 Make sure to delete all skills related volumes
 ```bash
-docker volume rm skills_assets_cache skills_bundler_cache skills_postgres
+docker volume rm skills_postgres skills_bundle
 ```
 
 ### Start application
-This project uses Docker Compose profiles to manage different sets of services. 
-You can start the application in different modes depending on your current needs.
+This project uses [Docker Compose profiles](https://docs.docker.com/compose/how-tos/profiles/) to manage different sets of services. 
+You can start the application on different profiles depending on your current needs.
 
 #### Development (Default)
 Starts the core containers needed for local development (`postgres` and `rails`).
