@@ -7,7 +7,7 @@
         %div.col-xl-3.col-12
           - picture_src = @person.picture_url || @person.picture
           %img.rounded-circle{src: picture_src, width: '141', height: '141'}
-          - if editor? || admin?
+          - if can?(:update, @person)
             %div.mt-3
               = edit_action_link
         %div.pe-5.col-xl-3.col-12
