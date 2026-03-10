@@ -139,11 +139,11 @@ module PersonHelper
 
   def person_alert(person)
     if current_auth_user&.person == person
-      { message: t('.editing_own_profile'), alert_class: 'alert-success' }
+      { message: ('.editing_own_profile'), alert_class: 'alert-success' }
     elsif can?(:update, person)
-      { message: t('.permission_to_edit_person'), alert_class: 'alert-success' }
+      { message: ti('.permission_to_edit_person'), alert_class: 'alert-success' }
     else
-      { message: t('.no_permission_to_edit_person'), alert_class: 'alert-info' }
+      { message: ti('.no_permission_to_edit_person'), alert_class: 'alert-info' }
     end
   end
 end
