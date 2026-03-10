@@ -1,7 +1,7 @@
 class Api::CvsController < Api::ApplicationController
   include ActionController::HttpAuthentication::Basic::ControllerMethods
 
-  before_action :http_basic_authenticate!, unless: -> { Rails.env.development? }
+  http_basic_authenticate_with name: ENV.fetch('API_USERNAME'), password: ENV.fetch('API_PASSWORD'), unless: -> { Rails.env.development? }
 
   def index
     people = Person
@@ -18,13 +18,6 @@ class Api::CvsController < Api::ApplicationController
   end
 
   private
-
-  def http_basic_authenticate!
-    authenticate_or_request_with_http_basic('API') do |username, password|
-      ActiveSupport::SecurityUtils.secure_compare(username, ENV.fetch('API_USERNAME')) &&
-        ActiveSupport::SecurityUtils.secure_compare(password, ENV.fetch('API_PASSWORD'))
-    end
-  end
 
   def render_collection(collection, serializer)
     render json: {
