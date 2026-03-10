@@ -14,5 +14,5 @@
 
     %span{"data-controller": "people", "data-people-target": "message"}
       %p{ class: "alert #{alert[:alert_class]} d-flex justify-content-between" }
-        = alert[:message]
+        = t(alert[:message])
         = close_action_link "#", data: { action: "click->people#remove" }
