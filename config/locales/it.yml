@@ -362,6 +362,9 @@ it:
       educations: Programmi di formazione
       personal-data: Dati personali
       projects: Progetti
+      editing_own_profile: Stai modificando il tuo profilo.
+      no_permission_to_edit_person: Non hai i permessi necessari per modificare questo profilo.
+      permission_to_edit_person: Hai i permessi necessari per modificare questo profilo.
     search:
       new_profile: Nuovo profilo
       updated_at: Ultima modifica

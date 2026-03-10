@@ -4,6 +4,7 @@
 - **Reminder Mails** These are emails sent to all members of a company. This feature is turned off by default at the company level.
 - **Your Personal Setting** You can control whether you receive these emails. This option is active by default, but you can turn it off anytime using the new checkbox in your profile settings.
 - **Open Source contributions** The possibility to add open source contributions to your profile as well has been implemented.
+- **New Permission System** Users can now only edit their own profiles. The new Role Editor role, along with Admin and Config Admin, can edit all profiles. Flash messages will notify you if you have permission to edit a profile.
 
 ### Improvements
 - **CV-Search UI** Removed hover from unclickable buttons and made the entire button clickable. 

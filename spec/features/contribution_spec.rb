@@ -10,8 +10,8 @@ describe 'Contributions', type: :feature, js:true do
 
   describe 'Crud actions' do
     it 'displays all' do
-      within('turbo-frame#contribution') do
-        person.contributions.each do |contribution|
+      person.contributions.each do |contribution|
+        within("turbo-frame##{dom_id(contribution)}") do
           expect(page).to have_content(contribution.title)
           expect(page).to have_content(contribution.reference)
         end

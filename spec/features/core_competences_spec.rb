@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "Core competences", type: :feature, js: true do
   before(:each) do
-    sign_in auth_users(:user), scope: :auth_user
+    sign_in auth_users(:admin), scope: :auth_user
     visit root_path
   end
   let(:alice) { people(:alice) }

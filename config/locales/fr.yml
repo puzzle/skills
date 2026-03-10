@@ -362,6 +362,9 @@ fr:
       educations: Formations
       personal-data: Données personnelles
       projects: Projets
+      editing_own_profile: Vous êtes en train de modifier votre profil.
+      no_permission_to_edit_person: Tu n'as pas les autorisations nécessaires pour modifier ce profil.
+      permission_to_edit_person: Tu as les autorisations nécessaires pour modifier ce profil.
     search:
       new_profile: Nouveau profil
       updated_at: Dernièrement édité

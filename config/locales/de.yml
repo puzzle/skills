@@ -366,6 +366,9 @@ de:
       educations: Ausbildungen
       personal-data: Personliche Daten
       projects: Projekte
+      editing_own_profile: Du bearbeitest gerade dein eigenes Profil.
+      no_permission_to_edit_person: Du hast nicht die erforderlichen Berechtigungen, um dieses Profil zu bearbeiten.
+      permission_to_edit_person: Du hast die erforderlichen Berechtigungen, um dieses Profil zu bearbeiten.
     search:
       new_profile: Neues Profil
       updated_at: Zuletzt bearbeitet
