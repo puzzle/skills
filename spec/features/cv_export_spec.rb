@@ -37,5 +37,42 @@ describe :people do
       click_button('Herunterladen')
       expect(page).to have_content('Achtung: bitte vor dem Versenden den CV in LibreOffice öffnen und das Inhaltsverzeichnis aktualisieren')
     end
+
+    it 'should display the prefilled Department code' do
+      visit person_path(people(:bob))
+      page.all('a', text: 'Export').first.click
+
+      expect(page).to have_field('departmentCode', with: '/sys')
+
+      page.find('#departmentCode').set('Test Department')
+      expect(page).to have_field('departmentCode', with: 'Test Department')
+    end
+
+    it 'should be able to chose department code' do
+      visit person_path(people(:bob))
+      page.all('a', text: 'Export').first.click
+
+      page.find('#departmentCode').set('/')
+      expect(page).to have_content "/mid"
+      page.first('li', :text => '/mid').click
+
+      expect(page).to have_field('departmentCode', with: '/mid')
+    end
+
+    it 'should display the customer code field' do
+      visit person_path(people(:bob))
+      page.all('a', text: 'Export').first.click
+
+      page.find('#customerCode').set('Test Customer')
+      expect(page).to have_field('customerCode', with: 'Test Customer')
+    end
+
+    it 'should display the project code field' do
+      visit person_path(people(:bob))
+      page.all('a', text: 'Export').first.click
+
+      page.find('#projectCode').set('Test Project')
+      expect(page).to have_field('projectCode', with: 'Test Project')
+    end
   end
 end
