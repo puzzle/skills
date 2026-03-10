@@ -128,6 +128,11 @@ For local development dynamically generated, extensive seeds are available for e
 [the delayed job documentation](https://github.com/collectiveidea/delayed_job?tab=readme-ov-file#running-jobs)
 or just simply run `rails jobs:work` to start working off queued delayed jobs.
 
+## Permission System
+In the current permission system, users can only edit their own profiles.
+The Role Editor role, as well as Admin and Config Admin, can edit all profiles.
+Flash messages will notify you whenever you attempt to edit a profile, indicating whether you have permission.
+
 ## PuzzleTime synchronization
 If you are using PuzzleSkills as an external company and are not also using the PuzzleTime application, this part of the
 application will not bother you.

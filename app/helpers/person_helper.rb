@@ -136,4 +136,14 @@ module PersonHelper
   def use_ptime_sync?
     Skills.use_ptime_sync?
   end
+
+  def person_alert(person)
+    if current_auth_user&.person == person
+      { message: '.editing_own_profile', alert_class: 'alert-success' }
+    elsif can?(:update, person)
+      { message: '.permission_to_edit_person', alert_class: 'alert-success' }
+    else
+      { message: '.no_permission_to_edit_person', alert_class: 'alert-info' }
+    end
+  end
 end
