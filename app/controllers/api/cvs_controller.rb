@@ -1,10 +1,10 @@
 class Api::CvsController < Api::ApplicationController
   include ActionController::HttpAuthentication::Basic::ControllerMethods
 
-  unless Rails.env.development? || Rails.env.test?
+  unless Rails.env.local?
     http_basic_authenticate_with(
-      name: ENV.fetch("API_USERNAME"),
-      password: ENV.fetch("API_PASSWORD")
+      name: ENV.fetch('API_USERNAME'),
+      password: ENV.fetch('API_PASSWORD')
     )
   end
 
