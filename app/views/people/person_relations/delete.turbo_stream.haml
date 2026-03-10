@@ -1,0 +1,4 @@
+= turbo_stream.remove(entry)
+
+= turbo_stream.update "#{entry.class}_count" do
+  = "#{entries.model_name.human(count: entries.count)} (#{entries.count})"

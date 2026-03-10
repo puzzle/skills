@@ -1,4 +1,7 @@
 = turbo_stream.update dom_id(entry.class.new)
+= turbo_stream.update "#{entry.class}_count" do
+  = "#{entries.model_name.human(count: entries.count)} (#{entries.count})"
+
 
 = turbo_stream.update name_of_obj(entry) do
   = render entries
