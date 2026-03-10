@@ -355,11 +355,12 @@ ja:
       educations: 研修
       personal-data: 個人データ
       projects: プロジェクト
+      editing_own_profile: 自分のプロフィールを編集しています。
+      no_permission_to_edit_person: このプロフィールを編集するために必要な権限がありません。
+      permission_to_edit_person: このプロフィールを編集するために必要な権限があります。
     search:
       new_profile: 新しいプロフィール
       updated_at: 最終編集日
-      no_permission_to_edit_person: このプロフィールを編集するために必要な権限がありません。
-      permission_to_edit_person: このプロフィールを編集するために必要な権限があります。
     show:
       is_not_displayed_in_cv: 履歴書エクスポートに含まれません。
   people/export_cv:
