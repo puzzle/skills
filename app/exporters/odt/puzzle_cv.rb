@@ -17,7 +17,6 @@ module Odt
     def new_report(template_name)
       ODFReport::Report.new("lib/templates/#{template_name}") do |r|
         @cv.insert_general_sections(r)
-        @cv.insert_languages(r)
         @cv.insert_locations(r)
         @cv.insert_personalien(r)
         @cv.insert_competences(r)
