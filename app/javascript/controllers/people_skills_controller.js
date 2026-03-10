@@ -4,6 +4,7 @@ import SlimSelect from 'slim-select'
 
 export default class extends Controller {
     static targets = ['switch', 'label', 'skillsDropdown', 'categoriesDropdown', 'skillTitle']
+    static values = {translations: Array }
     levels = ["Nicht Bewertet", "Trainee", "Junior", "Professional", "Senior", "Expert"]
     skills = Array.from(this.hasSkillsDropdownTarget ? this.skillsDropdownTarget.options : []).map(e => { return { id: e.value, title: e.innerHTML } })
 
@@ -13,7 +14,7 @@ export default class extends Controller {
             Turbo.cache.exemptPageFromCache()
             return;
         }
-            
+
 
         const select = new SlimSelect({
             select: this.skillsDropdownTarget,
@@ -31,7 +32,6 @@ export default class extends Controller {
                 searchText: 'Kein Ergebnis gefunden. Um einen neuen Skill hinzuzufügen drücke auf das Plus!',
             }
         })
-
         this.displayLevelLabel()
         //add new selected option to select 
         if(!this.skillTitleTarget.value) return;
@@ -43,7 +43,7 @@ export default class extends Controller {
     }
 
     displayLevelLabel() {
-        this.labelTarget.textContent = this.levels[this.switchTarget.value]
+        this.labelTarget.textContent = this.translationsValue[this.switchTarget.value]
     }
 
     addNewSkill(value){
@@ -71,7 +71,6 @@ export default class extends Controller {
 
     rateSkill(e) {
         e.preventDefault();
-        if(!this.isEditMode(e)) return;
         this.setUnratedField(e, false);
         e.target.form.requestSubmit();
     }
@@ -80,9 +79,5 @@ export default class extends Controller {
         const formElements = Array.from(e.target.form.elements);
         const unratedField = formElements.find(e=> e.id.startsWith("unrated-field"))
         unratedField.value = value;
-    }
-
-    isEditMode(e) {
-        return document.getElementById("person-skill-overview").contains(e.target);
     }
 }

@@ -47,7 +47,7 @@ de-CH:
         year_from: Startdatum
       people_skill:
         certificate: Zertifikat
-        core_competence: chärnkompetenz
+        core_competence: Chärnkompetenz
         interest: Interässä
         level: Level
         skill: Skill
@@ -270,7 +270,7 @@ de-CH:
     new: Neu
     people_skills:
       certificate: Zertifikat
-      core-competence: chärnkompetenz
+      core-competence: Chärnkompetenz
       interest: Interässä
       levels:
         expert: Expert
@@ -403,6 +403,8 @@ de-CH:
     scroll_to_menu:
       link:
         add: Skill hinzuäfüegä
+    update:
+      auto_save_message: Änderige si gspichert wordä.
   person_role:
     none: Kes
   profile:

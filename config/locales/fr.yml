@@ -382,6 +382,8 @@ fr:
     scroll_to_menu:
       link:
         add: Ajouter une compétence
+    update:
+      auto_save_message: Les modifications ont été enregistrées.
   person_role:
     none: Aucun
   profile:

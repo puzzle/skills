@@ -386,6 +386,8 @@ de:
     scroll_to_menu:
       link:
         add: Skill hinzufügen
+    update:
+      auto_save_message: Änderungen wurden gespeichert.
   person_role:
     none: Keines
   profile:

@@ -1,5 +1,7 @@
-%div.mw-100.border-bottom.text-black.ps-5.border{id: "#{ff.object.new_record? ? 'default-' : ''}skill-div-#{ff.object.skill_id}"}
-  %div.d-flex.flex-row.align-items-center.mt-3.mb-3.w-100{data: {controller: "people-skills"}}
+%div.position-relative.mw-100.border-bottom.text-black.ps-5.border{id: "#{ff.object.new_record? ? 'default-' : ''}skill-div-#{ff.object.skill_id}"}
+  %p.position-absolute.top-0.end-0.text-secondary.d-flex.align-items-center.bg-skills-gray.p-1{id: "skill-auto-save-message-#{ff.object.skill_id}"}
+  - levels = (0..5).map { |i| ti("people_skills.levels_by_id.#{i}") }
+  %div.d-flex.flex-row.align-items-center.mt-3.mb-3.w-100{data: {controller: "people-skills", "people-skills-translations-value": levels}}
     %div.col-2
       = ff.object.skill.title
       = ff.hidden_field :interest
@@ -11,7 +13,7 @@
         = ff.label(ti("people_skills.levels_by_id.#{ff.object.level}"), {"data-people-skills-target": "label"})
         - range_min = (ff.object.id.nil? || ff.object.level != 0) ? 1 : 0
         = ff.range_field :level, min: range_min, max: 5, class: "form-range w-75", id: "level_#{ff.object.skill_id}",
-        "data-action": "change->people-skills#displayLevelLabel people-skills#rateSkill",
+        "data-action": "input->people-skills#displayLevelLabel mouseup->people-skills#rateSkill touchend->people-skills#rateSkill",
         "data-people-skills-target": "switch"
     %div.col-2
       %div.d-flex.flex-column.align-items-center
@@ -26,7 +28,5 @@
         = ff.label :core_competence, for: "core_competence_#{ff.object.skill_id}"
         = ff.hidden_field :skill_id
     %div.col-2
-      - if ff.object.id.nil?
-        = ff.submit ti("rate"), { class: "btn btn-link" }
       - unless ff.object.unrated
-        = ff.submit ti("unrate"), { class: "btn btn-link", "data-action": "people-skills#unrateSkill"}
+        = ff.submit ti("unrate"), { class: "btn btn-link pt-0", "data-action": "people-skills#unrateSkill"}
