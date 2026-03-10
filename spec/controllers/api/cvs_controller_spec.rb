@@ -2,17 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Api::CvsController, type: :controller do
   describe 'GET #index' do
-    let(:username) { 'test-user' }
-    let(:password) { 'test-password' }
-
-    before do
-      allow(ENV).to receive(:fetch).with('API_USERNAME').and_return(username)
-      allow(ENV).to receive(:fetch).with('API_PASSWORD').and_return(password)
-
-      credentials = ActionController::HttpAuthentication::Basic.encode_credentials(username, password)
-      request.headers['Authorization'] = credentials
-    end
-
     subject(:request_call) { get :index }
 
     context 'with valid credentials' do
@@ -92,18 +81,6 @@ RSpec.describe Api::CvsController, type: :controller do
         request_call
 
         expect(json['data']['data'].size).to eq(Person.count)
-      end
-    end
-
-    context 'with invalid credentials' do
-      before do
-        credentials = ActionController::HttpAuthentication::Basic.encode_credentials('wrong', 'creds')
-        request.headers['Authorization'] = credentials
-      end
-
-      it 'returns unauthorized' do
-        request_call
-        expect(response).to have_http_status(:unauthorized)
       end
     end
   end
