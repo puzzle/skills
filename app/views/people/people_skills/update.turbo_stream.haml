@@ -12,3 +12,7 @@
 = turbo_stream.update "skill-auto-save-message-#{entry.skill_id}" do
   = ti("auto_save_message")
   = image_tag("save", class: "px-2")
+
+- not_rated_default_skill_ids = @not_rated_default_skills.pluck(:skill_id)
+= turbo_stream.update "unrated-skills-header" do
+  %span{'data-controller': 'turbo-stream-load'}= "(#{not_rated_default_skill_ids.length})"
