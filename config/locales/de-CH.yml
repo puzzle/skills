@@ -383,6 +383,9 @@ de-CH:
       educations: Usbiudigä
       personal-data: Personlechi Datä
       projects: Projekte
+      editing_own_profile: Du bearbeitisch grad dis eigene Profil.
+      no_permission_to_edit_person: Du hesch nid di erforderliche Berächtigunge, um das Profil z bearbeite.
+      permission_to_edit_person: Du hesch di erforderliche Berächtigunge, um das Profil z bearbeite.
     search:
       new_profile: Neues Profiu
       updated_at: Z'letzt bearbeitet

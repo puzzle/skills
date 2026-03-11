@@ -84,7 +84,7 @@ describe Api::PeopleController do
 
         people = json['data']
 
-        expect(people.count).to eq(9)
+        expect(people.count).to eq(10)
         alice_attrs = people.first['attributes']
         expect(alice_attrs.count).to eq(1)
         expect(alice_attrs.first[1]).to eq('Alice Mante')

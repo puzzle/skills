@@ -362,6 +362,9 @@ en:
       educations: Educations
       personal-data: Personal data
       projects: Projects
+      editing_own_profile: You are editing your own profile.
+      no_permission_to_edit_person: You do not have the required permissions to edit this profile.
+      permission_to_edit_person: You have the required permissions to edit this profile.
     search:
       new_profile: New profile
       updated_at: Last edited
