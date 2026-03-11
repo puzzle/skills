@@ -399,13 +399,17 @@ describe :people do
     end
 
     it 'logged in person can edit their own skills' do
+      Capybara.default_driver = :selenium_chrome
       ursula = people(:user)
+
       visit person_people_skills_path(ursula)
       expect(page).to have_content('Skills (0)')
 
-      first('[data-controller="people-skills"]').click_button('Bewerten')
+      first('label', text: 'Zertifikat').click
 
-      expect(page).to have_content('Skill (1)')
+      within('#person-skill-overview') do
+        expect(page).to have_text('Skill (1)')
+      end
     end
 
     it 'logged in person should no be able to edit other profiles' do
@@ -440,13 +444,17 @@ describe :people do
     end
 
     it 'editor can edit other profiles' do
+      Capybara.default_driver = :selenium_chrome
+
       ursula = people(:user)
       visit person_people_skills_path(ursula)
       expect(page).to have_content('Skills (0)')
 
-      first('[data-controller="people-skills"]').click_button('Bewerten')
+      first("input[type='checkbox']").check
 
-      expect(page).to have_content('Skill (1)')
+      within('#person-skill-overview') do
+        expect(page).to have_text('Skill (1)')
+      end
     end
   end
 end
