@@ -11,6 +11,9 @@ require 'rspec/rails'
 require 'support/capybara'
 # Add additional requires below this line. Rails is not loaded until this point!
 
+# Disable animation for the modal in the Test environment for more stable tests.
+Capybara.disable_animation = '.modal-dialog, .modal-backdrop'
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
