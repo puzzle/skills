@@ -1,5 +1,5 @@
-@import 'bootstrap/scss/bootstrap';
-@import 'bootstrap-icons/font/bootstrap-icons';
-@import 'slim-select/src/slim-select/slimselect';
-@import 'crud';
-@import 'styles';
+@use 'bootstrap/scss/bootstrap';
+@use 'bootstrap-icons/font/bootstrap-icons';
+@use 'slim-select/src/slim-select/slimselect';
+@use 'crud';
+@use 'styles';
