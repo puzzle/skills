@@ -3,10 +3,9 @@ x-rails-defaults: &rails-defaults
   tty: true
   stdin_open: true
   env_file: .env
-  volumes:
-    - .:/myapp
   depends_on:
-    - postgres
+    postgres:
+      condition: service_healthy
 
 services:
   rails:
@@ -52,6 +51,11 @@ services:
     env_file: .env
     volumes:
       - postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     profiles: ["all", "", "test"]
 
   assets:
