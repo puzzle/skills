@@ -26,6 +26,12 @@ services:
       - bundle:/opt/bundle
     profiles: ["", "all"]
     init: true
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://127.0.0.1:3000 || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 90s
 
   test:
     <<: *rails-defaults
@@ -93,8 +99,10 @@ services:
     volumes:
       - .:/app
     depends_on:
-      - postgres
-      - rails
+      postgres:
+        condition: service_healthy
+      rails:
+        condition: service_healthy
     profiles: ["all"]
 
 volumes:
