@@ -1,75 +1,89 @@
+x-rails-defaults: &rails-defaults
+  user: app
+  tty: true
+  stdin_open: true
+  env_file: .env
+  depends_on:
+    postgres:
+      condition: service_healthy
+
 services:
   rails:
+    <<: *rails-defaults
     container_name: rails
     image: skills-dev/rails
-    user: app
-    tty: true
-    stdin_open: true
     environment:
       - RAILS_DB_HOST=postgres
-    env_file: .env
+      - GEM_PATH=/usr/local/bundle:/opt/bundle
     build:
       context: ./config/docker/development
       dockerfile: Rails.dockerfile
     ports:
-      - 3000:3000
+      - "3000:3000"
     volumes:
-      - ./:/myapp
+      - .:/myapp
       - ./config/docker/development/home/rails:/home/developer
-      - /tmp/.X11-unix:/tmp/.X11-unix
-      - ${GEM_PATH}:/opt/bundle
+      - bundle:/opt/bundle
+    profiles: ["", "all"]
+    init: true
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://127.0.0.1:3000 || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 90s
 
-    depends_on:
-      - postgres
   test:
+    <<: *rails-defaults
     container_name: test
     image: skills-test/rails
-    user: app
-    tty: true
-    stdin_open: true
     environment:
       - RAILS_DB_HOST=postgres
       - RAILS_ENV=test
-    env_file: .env
+      - GEM_PATH=/usr/local/bundle:/opt/bundle
     build:
       context: ./config/docker/test
       dockerfile: Test.dockerfile
     ports:
-      - 3001:3000
+      - "3001:3000"
     volumes:
-      - ./:/myapp
+      - .:/myapp
       - ./config/docker/test/home/rails:/home/test
-      - /tmp/.X11-unix:/tmp/.X11-unix
-      - ${GEM_PATH}:/opt/bundle
-
-    depends_on:
-      - postgres
+      - bundle_test:/opt/bundle
+    profiles: ["all", "test"]
 
   postgres:
     container_name: postgres
     image: postgres:16
     ports:
-      - 5432:5432
+      - "5432:5432"
     env_file: .env
     volumes:
-      - postgres:/var/lib/postgres
+      - postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    profiles: ["all", "", "test"]
 
   assets:
     container_name: assets
     image: ruby:4.0.1
     working_dir: /myapp
+    environment:
+      - RAILS_ENV=development
     command: >
-     /bin/bash -c "
-      curl -fsSL https://deb.nodesource.com/setup_24.x | bash - &&
-      apt-get install -y nodejs &&
-      npm install -g corepack && corepack enable && bin/assets &&
-      sleep infinity"
+      /bin/bash -c "
+       curl -fsSL https://deb.nodesource.com/setup_24.x | bash - &&
+       apt-get install -y nodejs &&
+       npm install -g corepack && corepack enable && bin/assets &&
+       sleep infinity"
     volumes:
-      - ./:/myapp
-      - bundler_cache:/opt/bundle
-      - assets_cache:/usr/bin/
+      - .:/myapp
     depends_on:
       - rails
+    profiles: ["all"]
 
   worker:
     container_name: worker
@@ -77,16 +91,21 @@ services:
     environment:
       - RAILS_DB_HOST=postgres
       - RAILS_ENV=development
+      - SKIP_RAILS_MIGRATIONS=true
     env_file: .env
+    restart: on-failure
     working_dir: /app
     command: /bin/bash -c "bundle install && bundle exec rails jobs:work"
     volumes:
       - .:/app
     depends_on:
-      - postgres
-      - rails
-volumes:
-  bundler_cache:
-  assets_cache:
-  postgres:
+      postgres:
+        condition: service_healthy
+      rails:
+        condition: service_healthy
+    profiles: ["all"]
 
+volumes:
+  postgres:
+  bundle:
+  bundle_test:
