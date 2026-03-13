@@ -14,6 +14,7 @@ services:
     image: skills-dev/rails
     environment:
       - RAILS_DB_HOST=postgres
+      - GEM_PATH=/usr/local/bundle:/opt/bundle
     build:
       context: ./config/docker/development
       dockerfile: Rails.dockerfile
@@ -22,7 +23,7 @@ services:
     volumes:
       - .:/myapp
       - ./config/docker/development/home/rails:/home/developer
-      - bundle:/usr/local/bundle
+      - bundle:/opt/bundle
     profiles: ["", "all"]
     init: true
 
@@ -33,6 +34,7 @@ services:
     environment:
       - RAILS_DB_HOST=postgres
       - RAILS_ENV=test
+      - GEM_PATH=/usr/local/bundle:/opt/bundle
     build:
       context: ./config/docker/test
       dockerfile: Test.dockerfile
@@ -41,6 +43,7 @@ services:
     volumes:
       - .:/myapp
       - ./config/docker/test/home/rails:/home/test
+      - bundle_test:/opt/bundle
     profiles: ["all", "test"]
 
   postgres:
@@ -82,7 +85,9 @@ services:
     environment:
       - RAILS_DB_HOST=postgres
       - RAILS_ENV=development
+      - SKIP_RAILS_MIGRATIONS=true
     env_file: .env
+    restart: on-failure
     working_dir: /app
     command: /bin/bash -c "bundle install && bundle exec rails jobs:work"
     volumes:
@@ -95,3 +100,4 @@ services:
 volumes:
   postgres:
   bundle:
+  bundle_test:
