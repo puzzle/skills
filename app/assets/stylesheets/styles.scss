@@ -312,15 +312,6 @@ pzsh-topbar {
   color: white;
 }
 
-#modal-animation {
-  opacity: 0;
-  transition: opacity 0.5s;
-}
-
-#modal-animation.fader {
-  opacity: 1;
-}
-
 .dropdown-option-link {
   width: 100%;
   display: block;
