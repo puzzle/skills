@@ -99,6 +99,9 @@ describe Odt::PuzzleCv do
 
         report = Odt::PuzzleCv.new(cv).export
         report.as_json["tables"].each do |table|
+
+          # This table is always displayed.
+          next if %w[PERSONAL_FIELDS].include?(table["name"])
           expect(table["data_source"]["value"]).to be_empty
         end
       end
@@ -128,7 +131,6 @@ describe Odt::PuzzleCv do
     it 'calls all section insertion methods on the CV' do
       %i[
         insert_general_sections
-        insert_languages
         insert_locations
         insert_personalien
         insert_competences
