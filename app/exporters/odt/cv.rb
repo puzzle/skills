@@ -97,7 +97,7 @@ module Odt
     end
 
     def insert_personalien(report)
-      rows = build_personalien_rows
+      rows = build_personalien_rows(report)
 
       report.add_table('PERSONAL_FIELDS', rows, header: false) do |t|
         t.add_column(:field, :field)
@@ -105,7 +105,7 @@ module Odt
       end
     end
 
-    def build_personalien_rows
+    def build_personalien_rows(report)
       rows = []
 
       add_row(rows, 'Abschluss', person.title)
