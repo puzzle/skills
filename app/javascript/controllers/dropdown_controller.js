@@ -5,7 +5,8 @@ import SlimSelect from 'slim-select';
 export default class extends Controller {
     static targets = ["dropdown"]
     static values = {
-        autoWidth: {type: Boolean, default: false}
+        autoWidth: {type: Boolean, default: false},
+        contentPosition:  {type: String, default: 'absolute'}
     }
 
     connect() {
@@ -15,7 +16,7 @@ export default class extends Controller {
         const slimSelectDropdown = new SlimSelect({
             select: this.dropdownTarget,
             settings: {
-                contentPosition: 'fixed',
+                contentPosition: this.contentPositionValue,
             },
             events: {
                 searchFilter: (option, search) => {
