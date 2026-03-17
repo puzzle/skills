@@ -34,10 +34,8 @@ RSpec.configure do |config|
           CvCollectionResponse: {
             type: :object,
             properties: {
-              data: {
                 type: :array,
                 items: { '$ref' => '#/components/schemas/CvResource' }
-              }
             }
           },
 

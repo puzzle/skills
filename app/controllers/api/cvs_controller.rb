@@ -19,17 +19,6 @@ class Api::CvsController < Api::ApplicationController
                person_roles: [:role, :person_role_level]
              )
 
-    render_collection(people, CvSerializer)
-  end
-
-  private
-
-  def render_collection(collection, serializer)
-    render json: {
-      data: ActiveModelSerializers::SerializableResource.new(
-        collection,
-        each_serializer: serializer
-      )
-    }
+    render json: people, each_serializer: CvSerializer
   end
 end

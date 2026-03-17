@@ -14,14 +14,13 @@ RSpec.describe Api::CvsController, type: :controller do
         request_call
 
         expect(json).to have_key('data')
-        expect(json['data']).to have_key('data')
-        expect(json['data']['data']).to be_an(Array)
+        expect(json['data']).to be_an(Array)
       end
 
       it 'returns cvs with expected jsonapi structure' do
         request_call
 
-        cv = json['data']['data'].first
+        cv = json['data'].first
 
         expect(cv).to include(
                         'id',
@@ -36,7 +35,7 @@ RSpec.describe Api::CvsController, type: :controller do
       it 'includes main attributes on cv' do
         request_call
 
-        attributes = json['data']['data'].first['attributes']
+        attributes = json['data'].first['attributes']
 
         expect(attributes).to include(
                                 'name',
@@ -62,7 +61,7 @@ RSpec.describe Api::CvsController, type: :controller do
       it 'includes company and department relationships' do
         request_call
 
-        relationships = json['data']['data'].first['relationships']
+        relationships = json['data'].first['relationships']
 
         expect(relationships).to include('company', 'department')
 
@@ -80,7 +79,7 @@ RSpec.describe Api::CvsController, type: :controller do
       it 'returns all people as cvs' do
         request_call
 
-        expect(json['data']['data'].size).to eq(Person.count)
+        expect(json['data'].size).to eq(Person.count)
       end
     end
   end
