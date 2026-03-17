@@ -97,6 +97,15 @@ module Odt
     end
 
     def insert_personalien(report)
+      rows = build_personalien_rows
+
+      report.add_table('PERSONAL_FIELDS', rows, header: false) do |t|
+        t.add_column(:field, :field)
+        t.add_column(:value, :value)
+      end
+    end
+
+    def build_personalien_rows
       rows = []
 
       add_row(rows, 'Abschluss', person.title)
@@ -111,10 +120,7 @@ module Odt
 
       add_row(rows, 'Sprachkenntnisse', personal_languages)
 
-      report.add_table('PERSONAL_FIELDS', rows, header: false) do |t|
-        t.add_column(:field, :field)
-        t.add_column(:value, :value)
-      end
+      rows
     end
 
     def add_row(rows, label, value)
@@ -122,7 +128,8 @@ module Odt
     end
 
     def format_birthdate(date)
-      return unless date.present?
+      return if date.blank?
+
       Date.parse(date.to_s).strftime('%d.%m.%Y')
     end
 
