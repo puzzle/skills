@@ -6,6 +6,7 @@
 - **Open Source contributions** The possibility to add open source contributions to your profile as well has been implemented.
 
 ### Improvements
+- **CV Export** Placeholders for personal fields are no longer visible when they are not defined in your profile.
 - **Modal Animation** The modal animation has been improved.
 - **CV-Search UI** Removed hover from unclickable buttons and made the entire button clickable. 
 - **Team skill tracking** Months that have already passed or are ahead with no data are no longer being shown.

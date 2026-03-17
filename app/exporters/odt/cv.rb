@@ -91,17 +91,46 @@ module Odt
       report.add_field(:niederlassung, location.adress_information)
     end
 
-    def insert_personalien(report)
+    def insert_redhat_personalien(report)
       report.add_field(:title, person.title)
+      report.add_field(:nationalities, nationalities)
+    end
+
+    def insert_personalien(report)
+      rows = build_personalien_rows(report)
+
+      report.add_table('PERSONAL_FIELDS', rows, header: false) do |t|
+        t.add_column(:field, :field)
+        t.add_column(:value, :value)
+      end
+    end
+
+    def build_personalien_rows(report)
+      rows = []
+
+      add_row(rows, 'Abschluss', person.title)
+
       unless anon?
-        if person.birthdate.present?
-          report.add_field(:birthdate,
-                           Date.parse(person.birthdate.to_s).strftime('%d.%m.%Y'))
-        end
-        report.add_field(:nationalities, nationalities)
-        report.add_field(:email, person.email)
+        add_row(rows, 'Geburtsdatum', format_birthdate(person.birthdate))
+        add_row(rows, 'Nationalität', nationalities)
+        add_row(rows, 'E-Mail', person.email)
+
         report.add_image(:profile_picture, person.picture.path) if person.picture.file.present?
       end
+
+      add_row(rows, 'Sprachkenntnisse', personal_languages)
+
+      rows
+    end
+
+    def add_row(rows, label, value)
+      rows << { field: label, value: value } if value.present?
+    end
+
+    def format_birthdate(date)
+      return if date.blank?
+
+      Date.parse(date.to_s).strftime('%d.%m.%Y')
     end
 
     def insert_competences(report)
@@ -318,7 +347,11 @@ module Odt
       country.translations[I18n.locale.to_s]
     end
 
-    def insert_languages(report, display_language = 'DE')
+    def insert_languages(report, display_language)
+      report.add_field(:languages, personal_languages(display_language))
+    end
+
+    def personal_languages(display_language = 'DE')
       languages_levels = person.language_skills.list.filter_map do |l|
         next if l.level == 'Keine'
 
@@ -326,9 +359,7 @@ module Odt
         "#{language} (#{l.level})"
       end
 
-      result = languages_levels.join("\n")
-
-      report.add_field(:languages, result)
+      languages_levels.join("\n")
     end
 
     def insert_initials(report)

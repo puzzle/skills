@@ -13,7 +13,7 @@ describe Odt::RedhatCv do
     %i[
         insert_initials
         insert_languages
-        insert_personalien
+        insert_redhat_personalien
         insert_general_sections
         insert_advanced_trainings
         insert_activities
