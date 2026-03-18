@@ -9,16 +9,27 @@ class Api::CvsController < Api::ApplicationController
   end
 
   def index
-    people = Person
-             .includes(
-               :company, :department,
-               :language_skills,
-               :projects, :activities,
-               :advanced_trainings,
-               :educations, :contributions, :skills,
-               person_roles: [:role, :person_role_level]
-             )
+    unless params[:per_page]
+      return redirect_to url_for(request.query_parameters.merge(per_page: 15))
+    end
 
+    people = paginated_people
     render json: people, each_serializer: CvSerializer
+  end
+
+  private
+
+  def paginated_people
+    per_page = params.fetch(:per_page, 15).to_i
+    page = params.fetch(:page, 1).to_i
+
+    Person
+      .includes(
+        :company, :department, :language_skills,
+        :projects, :activities, :advanced_trainings,
+        :educations, :contributions, :skills,
+        person_roles: [:role, :person_role_level]
+      )
+      .limit(per_page).offset((page - 1) * per_page)
   end
 end
