@@ -1,7 +1,5 @@
 FROM ruby:4.0.1
 
-USER root
-
 ENV RAILS_ENV=development
 ENV BUNDLE_PATH=/opt/bundle
 ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
