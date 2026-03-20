@@ -17,7 +17,7 @@ RUN apt-get install -y direnv firefox-esr nodejs graphicsmagick
 RUN npm install -g corepack && corepack enable
 
 RUN mkdir /opt/bundle /seed
-RUN chown -R app:app /myapp /opt/bundle /seed
+RUN chown -R app:app /myapp /opt/bundle /seed /home/app .yarn
 
 USER app
 
