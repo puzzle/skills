@@ -1,8 +1,10 @@
 #!/bin/bash
-
 set -e
 
 rm -f tmp/pids/server.pid
+
+bundle check || bundle install
+yarn install
 
 if [ -z "$SKIP_RAILS_MIGRATIONS" ]; then
   echo "⚙️  Performing migrations"

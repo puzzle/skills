@@ -8,20 +8,18 @@ ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 
 WORKDIR /myapp
 
-COPY ./rails-entrypoint /usr/local/bin
-
 RUN useradd app -m -U -u 1000
 RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash -
-RUN apt-get update
-RUN apt-get install -y direnv firefox-esr nodejs graphicsmagick
+RUN apt-get update && apt-get install -y direnv firefox-esr nodejs graphicsmagick
 RUN npm install -g corepack && corepack enable
-RUN yarn install
-RUN bundle install
 
-RUN mkdir /opt/bundle /seed
-RUN chown -R app:app /myapp /opt/bundle /seed /home/app .yarn
+RUN mkdir -p /opt/bundle /seed && \
+    chown -R app:app /myapp /opt/bundle /seed /home/app
+
+COPY ./rails-entrypoint /usr/local/bin/
+RUN chmod +x /usr/local/bin/rails-entrypoint
 
 USER app
 
 ENTRYPOINT ["rails-entrypoint"]
-CMD [ "rails", "server", "-b", "0.0.0.0"]
+CMD ["rails", "server", "-b", "0.0.0.0"]
