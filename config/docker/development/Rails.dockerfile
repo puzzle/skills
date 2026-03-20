@@ -15,6 +15,8 @@ RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash -
 RUN apt-get update
 RUN apt-get install -y direnv firefox-esr nodejs graphicsmagick
 RUN npm install -g corepack && corepack enable
+RUN yarn install
+RUN bundle install
 
 RUN mkdir /opt/bundle /seed
 RUN chown -R app:app /myapp /opt/bundle /seed /home/app .yarn
