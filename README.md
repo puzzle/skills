@@ -66,7 +66,7 @@ This project uses [Docker Compose profiles](https://docs.docker.com/compose/how-
 You can start the application on different profiles depending on your current needs.
 
 #### Development (Default)
-Starts the core containers needed for local development (`postgres` and `rails`).
+Starts the core containers needed for local development (`postgres`, `rails`, `assets`, `worker`).
 ```bash
 docker compose up -d
 ```
