@@ -3,20 +3,25 @@ set -e
 
 rm -f tmp/pids/server.pid
 
-bundle check || bundle install
-yarn install
+mkdir -p /opt/bundle /seed /home/app /myapp/.yarn /myapp/node_modules tmp/pids
+
+chown -R app:app /myapp /opt/bundle /seed /home/app
+
+gosu app bundle check || gosu app bundle install
+gosu app yarn install
 
 if [ -z "$SKIP_RAILS_MIGRATIONS" ]; then
   echo "⚙️  Performing migrations"
-  bundle exec rails db:create || true
-  bundle exec rails db:migrate
+  gosu app bundle exec rails db:create || true
+  gosu app bundle exec rails db:migrate
   echo "✅ Migrations done"
 fi
 
-if [ -z "$skip_seeds" ]; then
+if [ -z "$SKIP_RAILS_SEED" ]; then
   if [ ! -f /seed/done ]; then
     echo "⚙️  seeding db"
-    bundle exec rails db:seed && date > /seed/done
+    gosu app bundle exec rails db:seed
+    gosu app bash -c "date > /seed/done"
     echo "✅ seeding done"
   else
     echo "↪️  skipping seeding because already done on $(cat /seed/done)"
@@ -26,4 +31,4 @@ fi
 echo "➡️ handing control over to '$*''"
 
 echo "⚙️  executing: $@"
-exec bundle exec "$@"
+exec gosu app bundle exec "$@"

@@ -1,5 +1,4 @@
 x-rails-defaults: &rails-defaults
-  user: app
   tty: true
   stdin_open: true
   env_file: .env
@@ -69,16 +68,13 @@ services:
 
   assets:
     container_name: assets
-    image: ruby:4.0.1
-    working_dir: /myapp
+    image: skills-dev/rails
     environment:
       - RAILS_ENV=development
-    command: >
-      /bin/bash -c "
-       curl -fsSL https://deb.nodesource.com/setup_24.x | bash - &&
-       apt-get install -y nodejs &&
-       npm install -g corepack && corepack enable && bin/assets &&
-       sleep infinity"
+      - RAILS_DB_HOST=postgres
+      - SKIP_RAILS_MIGRATIONS=true
+      - SKIP_RAILS_SEED=true
+    command: bash -c "bin/assets && sleep infinity"
     volumes:
       - .:/myapp
     depends_on:
@@ -87,17 +83,17 @@ services:
 
   worker:
     container_name: worker
-    image: ruby:4.0.1
+    image: skills-dev/rails
     environment:
       - RAILS_DB_HOST=postgres
       - RAILS_ENV=development
       - SKIP_RAILS_MIGRATIONS=true
+      - SKIP_RAILS_SEED=true
     env_file: .env
     restart: on-failure
-    working_dir: /app
-    command: /bin/bash -c "bundle install && bundle exec rails jobs:work"
+    command: rails jobs:work
     volumes:
-      - .:/app
+      - .:/myapp
     depends_on:
       postgres:
         condition: service_healthy
