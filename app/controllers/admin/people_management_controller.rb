@@ -12,6 +12,14 @@ class Admin::PeopleManagementController < CrudController
                                  .or(Person.where(ptime_data_provider: nil))
   end
 
+  def list_entries
+    sortable = sortable?(params[:sort])
+    if sortable || default_sort
+      clause = [sortable ? sort_expression : nil, default_sort]
+    end
+
+    @unemployed_people.reorder(Arel.sql(clause.compact.join(', ')))
+  end
   def destroy_person
     @person = Person.find(params['person_id'])
     if @person.destroy.destroyed?
