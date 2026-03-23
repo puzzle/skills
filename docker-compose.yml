@@ -79,7 +79,7 @@ services:
       - .:/myapp
     depends_on:
       - rails
-    profiles: ["all"]
+    profiles: ["all", ""]
 
   worker:
     container_name: worker
@@ -99,7 +99,7 @@ services:
         condition: service_healthy
       rails:
         condition: service_healthy
-    profiles: ["all"]
+    profiles: ["all", ""]
 
 volumes:
   postgres:
