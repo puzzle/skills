@@ -78,8 +78,8 @@ group :development do
   gem 'dotenv'
   gem 'listen'
   gem 'overcommit'
-  gem 'rb-readline'
   gem 'foreman'
+  gem 'rb-readline'
   # Spring speeds up development by keeping your application
   # running in the background. Read more: https://github.com/rails/spring
   gem 'rails-erd'
