@@ -7,6 +7,19 @@ paths:
   "/api/cvs":
     get:
       summary: List CVs
+      parameters:
+        - in: query
+          name: per_page
+          schema:
+            type: integer
+          required: false
+          description: Amount of data per page
+        - in: query
+          name: page
+          schema:
+            type: integer
+          required: false
+          description: Page number
       tags:
       - CVs
       security:
