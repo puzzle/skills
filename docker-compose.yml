@@ -1,15 +1,9 @@
-x-rails-defaults: &rails-defaults
-  tty: true
-  stdin_open: true
-  env_file: .env
-  depends_on:
-    postgres:
-      condition: service_healthy
-
 services:
   rails:
-    <<: *rails-defaults
     container_name: rails
+    tty: true
+    stdin_open: true
+    env_file: .env
     image: skills-dev/rails
     environment:
       - RAILS_DB_HOST=postgres
@@ -31,10 +25,15 @@ services:
       timeout: 5s
       retries: 5
       start_period: 90s
+    depends_on:
+      postgres:
+        condition: service_healthy
 
   test:
-    <<: *rails-defaults
     container_name: test
+    tty: true
+    stdin_open: true
+    env_file: .env
     image: skills-test/rails
     environment:
       - RAILS_DB_HOST=postgres
@@ -50,6 +49,9 @@ services:
       - ./config/docker/test/home/rails:/home/test
       - bundle_test:/opt/bundle
     profiles: ["all", "test"]
+    depends_on:
+      postgres:
+        condition: service_healthy
 
   postgres:
     container_name: postgres
