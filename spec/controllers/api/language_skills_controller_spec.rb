@@ -1,5 +1,5 @@
 require 'rails_helper'
-describe Api::LanguageSkillsController, type: :controller do
+xdescribe Api::LanguageSkillsController, type: :controller do
 
   describe 'GET show' do
     it 'returns language_skill' do

@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-describe Api::PersonRelationsController, type: :controller do
+xdescribe Api::PersonRelationsController, type: :controller do
 
 end

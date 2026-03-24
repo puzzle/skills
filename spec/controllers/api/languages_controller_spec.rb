@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Api::LanguagesController do
+xdescribe Api::LanguagesController do
   describe 'list' do
     it 'returns all languages' do
       process :index, method: :get

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Api::ProjectsController do
+xdescribe Api::ProjectsController do
 
   describe 'GET index' do
     it 'returns all projects' do

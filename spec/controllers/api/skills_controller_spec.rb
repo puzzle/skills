@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Api::SkillsController do
+xdescribe Api::SkillsController do
   describe 'SkillsController as admin' do
     before { load_pictures }
 

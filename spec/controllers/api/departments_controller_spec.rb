@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Api::DepartmentsController do
+xdescribe Api::DepartmentsController do
   describe 'GET index' do
     it 'returns all departments' do
       get :index

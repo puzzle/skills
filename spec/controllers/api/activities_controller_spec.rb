@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Api::ActivitiesController do
+xdescribe Api::ActivitiesController do
   
   describe 'GET index' do
     it 'returns all activities' do

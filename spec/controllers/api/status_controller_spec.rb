@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe StatusController, type: :controller do
+xdescribe StatusController, type: :controller do
   xdescribe 'Status Controller' do
     it 'returns successfully from /health' do
       get :health

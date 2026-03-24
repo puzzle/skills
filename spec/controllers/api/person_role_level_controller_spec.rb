@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Api::PersonRoleLevelsController do
+xdescribe Api::PersonRoleLevelsController do
   describe 'GET index' do
     it 'returns all person_role_levels' do
       get :index

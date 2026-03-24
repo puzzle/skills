@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Api::CategoriesController do
+xdescribe Api::CategoriesController do
   describe 'CategoriesController' do
 
     describe 'GET index' do

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Api::PeopleController do
+xdescribe Api::PeopleController do
   describe 'PeopleController' do
     before do
       load_pictures

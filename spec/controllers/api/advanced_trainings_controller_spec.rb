@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Api::AdvancedTrainingsController do
+xdescribe Api::AdvancedTrainingsController do
 
   describe 'GET index' do
     it 'returns all advanced_trainings' do

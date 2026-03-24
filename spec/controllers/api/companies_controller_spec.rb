@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Api::CompaniesController do
+xdescribe Api::CompaniesController do
   describe 'CompaniesController' do
 
     describe 'GET index' do

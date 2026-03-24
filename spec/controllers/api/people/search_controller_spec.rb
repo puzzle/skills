@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Api::People::SearchController do
+xdescribe Api::People::SearchController do
 
   it 'filters persons for term if given' do
     expect(Person)

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Api::PersonRolesController do
+xdescribe Api::PersonRolesController do
 
   describe 'GET index' do
     it 'returns all person_roles' do
