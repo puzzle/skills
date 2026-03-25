@@ -79,8 +79,10 @@ services:
     command: bash -c "bin/assets && sleep infinity"
     volumes:
       - .:/myapp
+      - bundle:/opt/bundle
     depends_on:
-      - rails
+      rails:
+        condition: service_healthy
     profiles: ["all", ""]
 
   worker:
@@ -96,6 +98,7 @@ services:
     command: rails jobs:work
     volumes:
       - .:/myapp
+      - bundle:/opt/bundle
     depends_on:
       postgres:
         condition: service_healthy
