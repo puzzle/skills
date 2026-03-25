@@ -4,33 +4,35 @@ set -e
 rm -f tmp/pids/server.pid
 
 mkdir -p /opt/bundle /seed /home/app /myapp/.yarn /myapp/node_modules tmp/pids
-
 chown -R app:app /myapp /opt/bundle /seed /home/app
 
 run_as_app() {
-  su -m app -c "HOME=/home/app PATH=$PATH $*"
+  su -m app -c "USER=app LOGNAME=app HOME=/home/app PATH=$PATH $*"
 }
 
-run_as_app "bundle check || bundle install"
-run_as_app "yarn install"
+if [[ "$1" == *"rails"* ]]; then
 
-if [ -z "$SKIP_RAILS_MIGRATIONS" ]; then
-  echo "⚙️  Performing migrations"
-  run_as_app "bundle exec rails db:create || true"
-  run_as_app "bundle exec rails db:migrate"
-  echo "✅ Migrations done"
-fi
+  run_as_app "bundle check || bundle install"
+  run_as_app "yarn install"
 
-if [ -z "$SKIP_RAILS_SEED" ]; then
-  if [ ! -f /seed/done ]; then
-    echo "⚙️  seeding db"
-    run_as_app "bundle exec rails db:seed"
-    run_as_app "date > /seed/done"
-    echo "✅ seeding done"
-  else
-    echo "↪️  skipping seeding because already done on $(cat /seed/done)"
+  if [ -z "$SKIP_RAILS_MIGRATIONS" ]; then
+    echo "⚙️  Performing migrations"
+    run_as_app "bundle exec rails db:create || true"
+    run_as_app "bundle exec rails db:migrate"
+    echo "✅ Migrations done"
+  fi
+
+  if [ -z "$SKIP_RAILS_SEED" ]; then
+    if [ ! -f /seed/done ]; then
+      echo "⚙️  seeding db"
+      run_as_app "bundle exec rails db:seed"
+      run_as_app "date > /seed/done"
+      echo "✅ seeding done"
+    else
+      echo "↪️  skipping seeding because already done on $(cat /seed/done)"
+    fi
   fi
 fi
 
-echo "➡️ handing control over to '$*''"
-exec su -m app -c "HOME=/home/app bundle exec $*"
+echo "➡️ handing control over to '$*'"
+exec su -m app -c "USER=app LOGNAME=app HOME=/home/app bundle exec $*"
