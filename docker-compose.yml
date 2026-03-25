@@ -93,7 +93,7 @@ services:
       - RAILS_DB_HOST=postgres
       - RAILS_ENV=development
     env_file: .env
-    working_dir: /app
+    working_dir: /myapp
     restart: on-failure
     command: /bin/bash -c "bundle install && bundle exec rails jobs:work"
     volumes:

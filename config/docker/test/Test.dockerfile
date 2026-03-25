@@ -1,16 +1,11 @@
 FROM ruby:4.0.1
 
-USER root
-
 ENV RAILS_ENV=test
 ENV BUNDLE_PATH=/opt/bundle
 ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 
-WORKDIR /myapp
+RUN useradd app -m -U -u 1000
 
-COPY ./test-entrypoint /usr/local/bin
-
-RUN useradd app -m -U -d /myapp/
 RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash -
 RUN apt-get update
 RUN apt-get install direnv -y
@@ -21,10 +16,12 @@ RUN npm install -g corepack && corepack enable
 
 RUN mkdir /opt/bundle && chmod 777 /opt/bundle
 RUN mkdir /seed && chmod 777 /seed
-RUN mkdir /home/test && chmod 777 /home/test
-RUN chown -R app:app /myapp
 
-ENV HOME=/home/test
+USER app
+
+WORKDIR /myapp
+
+COPY ./test-entrypoint /usr/local/bin
 
 ENTRYPOINT ["test-entrypoint"]
 CMD [ "rails", "server", "-b", "0.0.0.0"]
