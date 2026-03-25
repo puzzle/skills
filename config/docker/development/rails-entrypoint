@@ -4,7 +4,10 @@ set -e
 rm -f tmp/pids/server.pid
 
 mkdir -p /opt/bundle /seed /home/app /myapp/.yarn /myapp/node_modules tmp/pids
-chown -R app:app /myapp /opt/bundle /seed /home/app
+
+rm -f /myapp/.yarn/install-state.gz
+
+chown -R app:app /myapp /opt/bundle /seed /home/app /myapp/.yarn /myapp/node_modules
 
 run_as_app() {
   su -m app -c "USER=app LOGNAME=app HOME=/home/app PATH=$PATH $*"
