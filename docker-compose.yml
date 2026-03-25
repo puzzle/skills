@@ -70,13 +70,14 @@ services:
 
   assets:
     container_name: assets
-    image: skills-dev/rails
-    environment:
-      - RAILS_ENV=development
-      - RAILS_DB_HOST=postgres
-      - SKIP_RAILS_MIGRATIONS=true
-      - SKIP_RAILS_SEED=true
-    command: bash -c "bin/assets && sleep infinity"
+    image: ruby:4.0.1
+    working_dir: /myapp
+    command: >
+      /bin/bash -c "
+       curl -fsSL https://deb.nodesource.com/setup_24.x | bash - &&
+       apt-get install -y nodejs &&
+       npm install -g corepack && corepack enable && bin/assets &&
+       sleep infinity"
     volumes:
       - .:/myapp
       - bundle:/opt/bundle
@@ -87,15 +88,14 @@ services:
 
   worker:
     container_name: worker
-    image: skills-dev/rails
+    image: ruby:4.0.1
     environment:
       - RAILS_DB_HOST=postgres
       - RAILS_ENV=development
-      - SKIP_RAILS_MIGRATIONS=true
-      - SKIP_RAILS_SEED=true
     env_file: .env
+    working_dir: /app
     restart: on-failure
-    command: rails jobs:work
+    command: /bin/bash -c "bundle install && bundle exec rails jobs:work"
     volumes:
       - .:/myapp
       - bundle:/opt/bundle
