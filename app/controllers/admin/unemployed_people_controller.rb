@@ -1,21 +1,13 @@
-class Admin::PeopleManagementController < CrudController
+class Admin::UnemployedPeopleController < CrudController
+
   self.nesting = :admin
   before_action :render_unauthorized_not_conf_admin
 
   def self.model_class
     Person
   end
-
   def index
     @unemployed_people = Person.unemployed
-    @not_synced_profiles = Person.where(ptime_employee_id: nil)
-                                 .or(Person.where(ptime_data_provider: nil))
-
-    # @list_entries = @unemployed_people
-    #
-    # if Skills.use_ptime_sync?
-    #   @list_entries = @list_entries.or(@not_synced_profiles)
-    # end
   end
 
   def list_entries
@@ -27,6 +19,7 @@ class Admin::PeopleManagementController < CrudController
       @unemployed_people
     end
   end
+
   def destroy_person
     @person = Person.find(params['person_id'])
     if @person.destroy.destroyed?

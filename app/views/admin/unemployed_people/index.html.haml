@@ -1,0 +1,5 @@
+- if @unemployed_people.any?
+  %span.p-0.fs-4.text-decoration-underline= ti('ex_members_title')
+  = render 'admin/people_management/destroy_people_table', person_collection: @unemployed_people, table_id: 'unemployed-people'
+- else
+  %span.p-0.fs-4= ti('nothing_to_manage')

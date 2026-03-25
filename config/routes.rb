@@ -48,6 +48,8 @@ Rails.application.routes.draw do
       post :execute_manual_ptime_sync, to: 'manual_ptime_sync#manual_sync'
       resources :people_management, only: :index
       delete :people_management, to: 'people_management#destroy_person'
+      resources :unemployed_people, only: :index
+      resources :not_synced_profiles, only: :index
     end
 
     resources :admin do

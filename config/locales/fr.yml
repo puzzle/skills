@@ -144,7 +144,8 @@ fr:
       link:
         list: Panneau d'administration
     index:
-      delete_inactive_profiles: Supprimer les profils inactifs
+      delete_unemployed_people: Supprimer les anciens employés
+      delete_not_synced_profiles: Supprimer les profils non synchronisés
       reminder_mail: Activez les e-mails de rappel pour votre entreprise.
       unify_skills: Unifier les compétences
       update_people_manually: Mise à jour manuelle des personnes
@@ -160,9 +161,12 @@ fr:
   admin/manual_ptime_sync:
     index:
       description: Lorsque vous appuyez sur ce magnifique bouton, les données de toutes les personnes sont mises à jour avec celles de PuzzleTime. Ceci peut prendre quelques secondes.
-  admin/people_management:
+  admin/unemployed_people:
     index:
       ex_members_title: Les profils suivants sont marqués comme anciens employés
+      nothing_to_manage: Actuellement, il n'y a rien à nettoyer
+  admin/not_synced_profiles:
+    index:
       not_synced_members_title: Les profils suivants ne sont actuellement pas mis à jour par la synchronisation PuzzleTime
       nothing_to_manage: Actuellement, il n'y a rien à nettoyer
   admin/unified_skills:
