@@ -1,22 +1,10 @@
 require 'rails_helper'
 
-describe 'People management', type: :feature, js: true do
-  let(:bob) { people(:bob) }
-  let(:alice) { people(:alice) }
+describe 'unemployed people' do
+  it 'should show not synced by PuzzleTime' do
+    visit admin_unemployed_people_path
 
-  before(:each) do
-    sign_in auth_users(:conf_admin), scope: :auth_user
-    enable_ptime_sync
-
-    unemployed_company = companies('ex-mitarbeiter')
-    bob.update!(company: unemployed_company, ptime_employee_id: 10, ptime_data_provider: 'A cool provider')
-    alice.update!(company: unemployed_company, ptime_employee_id: 11, ptime_data_provider: 'Another cool provider')
-  end
-
-  it 'should show ex-members and profiles that are not synced by PuzzleTime' do
-    visit admin_not_synced_profiles_path
-
-    within page.all('table')[0] do
+    within page.all('table') do
       expect(page).not_to have_content(bob.name)
       expect(page).not_to have_content(alice.name)
       Person.where.not(name: [bob.name, alice.name]).each do |person|
@@ -26,7 +14,7 @@ describe 'People management', type: :feature, js: true do
   end
 
   it 'should delete person after confirming' do
-    visit admin_people_management_path
+    visit admin_unemployed_people_path
 
     within "#unemployed-people-person_#{bob.id}" do
       accept_confirm("Willst du diesen Eintrag wirklich löschen?") do
@@ -45,7 +33,7 @@ describe 'People management', type: :feature, js: true do
     employed_company = Company.find_by(name: 'Firma')
     Person.all.update!(company: employed_company, ptime_employee_id: 1, ptime_data_provider: 'Test provider')
 
-    visit admin_people_management_path
+    visit admin_unemployed_people_path
 
     expect(page).to have_content('Momentan gibt es nichts zu bereinigen')
   end
