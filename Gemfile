@@ -76,7 +76,6 @@ end
 group :development do
   gem 'bullet'
   gem 'dotenv'
-  gem 'foreman'
   gem 'listen'
   gem 'overcommit'
   gem 'rb-readline'

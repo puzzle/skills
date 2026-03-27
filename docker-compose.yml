@@ -54,6 +54,7 @@ services:
       - gem_cache:/usr/local/bundle
     profiles:
       - test
+      - all
     depends_on:
       postgres:
         condition: service_healthy
@@ -81,7 +82,6 @@ services:
     command: >
       /bin/bash -c "
        curl -fsSL https://deb.nodesource.com/setup_24.x | bash - &&
-       apt-get install -y nodejs &&
        npm install -g corepack && corepack enable && bin/assets &&
        sleep infinity"
     volumes:

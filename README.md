@@ -66,15 +66,15 @@ This project uses [Docker Compose profiles](https://docs.docker.com/compose/how-
 You can start the application on different profiles depending on your current needs.
 
 #### Bootstrap (When you launch the application for the first time)
-Before we launch the application, we need to build the images. To do this, we need the `test` profile so that we can also build the test image
+Before we launch the application, we need to build the images. To do this, we need the `all` profile.
 ```bash
-docker compose --profile test build
+docker compose --profile all build
 ```
 **If you want to be absolutely sure that the images are being rebuilt from scratch**
 
 Then use the `--no-cache` Flag
 ```bash
-docker compose --profile test build --no-cache
+docker compose --profile all build --no-cache
 ```
 
 #### Development (Default)
