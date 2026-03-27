@@ -58,14 +58,44 @@ You can log in either as `user` or as `admin`. The password for both accounts is
 If this is your first time starting the Development Containers after the ruby 4 upgrade.
 Make sure to delete all skills related volumes
 ```bash
-docker volume rm skills_assets_cache skills_bundler_cache skills_postgres
+docker volume rm skills_postgres skills_bundle
 ```
 
 ### Start application
-To start the PuzzleSkills application, run the following commands in your shell:
+This project uses [Docker Compose profiles](https://docs.docker.com/compose/how-tos/profiles/) to manage different sets of services. 
+You can start the application on different profiles depending on your current needs.
 
+#### Bootstrap (When you launch the application for the first time)
+Before we launch the application, we need to build the images. To do this, we need the `all` profile.
+```bash
+docker compose --profile all build
+```
+**If you want to be absolutely sure that the images are being rebuilt from scratch**
+
+Then use the `--no-cache` Flag
+```bash
+docker compose --profile all build --no-cache
+```
+
+#### Development (Default)
+Starts the core containers needed for local development (`postgres`, `rails`, `assets`, `worker`).
 ```bash
 docker compose up -d
+```
+Stopping:
+```bash
+docker compose down
+```
+
+#### Testing
+Start the `test` container with all the other containers.
+Use this profile if you want to test the application.
+```bash
+docker compose --profile test up -d
+```
+Stopping:
+```bash
+docker compose --profile test down
 ```
 
 ⚡ This will also install all required gems and seed the database, which takes some time to complete if it's executed the first time. You can follow the progress using `docker logs -f rails` (exit with Ctrl+C).

@@ -1,92 +1,115 @@
+x-shared-env: &shared-env
+  RAILS_DB_HOST: postgres
+  GEM_PATH: /usr/local/bundle:/opt/bundle
+
 services:
   rails:
-    container_name: rails
-    image: skills-dev/rails
-    user: app
+    container_name: skills_rails
     tty: true
     stdin_open: true
-    environment:
-      - RAILS_DB_HOST=postgres
     env_file: .env
+    image: skills-dev/rails
+    environment:
+      <<: *shared-env
+      RAILS_ENV: development
+      BUNDLE_PATH: /usr/local/bundle
     build:
-      context: ./config/docker/development
+      context: ./config/docker
       dockerfile: Rails.dockerfile
     ports:
-      - 3000:3000
+      - "3000:3000"
     volumes:
-      - ./:/myapp
+      - .:/myapp
       - ./config/docker/development/home/rails:/home/developer
-      - /tmp/.X11-unix:/tmp/.X11-unix
-      - ${GEM_PATH}:/opt/bundle
-
+      - gem_cache:/usr/local/bundle
+    init: true
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://127.0.0.1:3000/status/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 90s
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
+
   test:
-    container_name: test
-    image: skills-test/rails
-    user: app
+    container_name: skills_test
     tty: true
     stdin_open: true
-    environment:
-      - RAILS_DB_HOST=postgres
-      - RAILS_ENV=test
     env_file: .env
+    image: skills-test/rails
+    environment:
+      <<: *shared-env
+      RAILS_ENV: test
+      BUNDLE_PATH: /usr/local/bundle
     build:
-      context: ./config/docker/test
-      dockerfile: Test.dockerfile
+      context: ./config/docker
+      dockerfile: Rails.dockerfile
     ports:
-      - 3001:3000
+      - "3001:3000"
     volumes:
-      - ./:/myapp
+      - .:/myapp
       - ./config/docker/test/home/rails:/home/test
-      - /tmp/.X11-unix:/tmp/.X11-unix
-      - ${GEM_PATH}:/opt/bundle
-
+      - gem_cache:/usr/local/bundle
+    profiles:
+      - test
+      - all
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
 
   postgres:
-    container_name: postgres
+    container_name: skills_postgres
     image: postgres:16
     ports:
-      - 5432:5432
+      - "5432:5432"
     env_file: .env
     volumes:
-      - postgres:/var/lib/postgres
+      - postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER:-postgres} -d $${POSTGRES_DB:-postgres}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   assets:
-    container_name: assets
+    container_name: skills_assets
     image: ruby:4.0.1
     working_dir: /myapp
+    environment:
+      BUNDLE_PATH: /usr/local/bundle
     command: >
-     /bin/bash -c "
-      curl -fsSL https://deb.nodesource.com/setup_24.x | bash - &&
-      apt-get install -y nodejs &&
-      npm install -g corepack && corepack enable && bin/assets &&
-      sleep infinity"
+      /bin/bash -c "
+       curl -fsSL https://deb.nodesource.com/setup_24.x | bash - && apt-get install -y nodejs &&
+       npm install -g corepack && corepack enable && bin/assets &&
+       sleep infinity"
     volumes:
-      - ./:/myapp
-      - bundler_cache:/opt/bundle
-      - assets_cache:/usr/bin/
+      - .:/myapp
+      - gem_cache:/usr/local/bundle
     depends_on:
-      - rails
+      rails:
+        condition: service_healthy
 
   worker:
-    container_name: worker
+    container_name: skills_worker
     image: ruby:4.0.1
     environment:
-      - RAILS_DB_HOST=postgres
-      - RAILS_ENV=development
+      <<: *shared-env
+      RAILS_ENV: development
+      BUNDLE_PATH: /usr/local/bundle
     env_file: .env
-    working_dir: /app
+    working_dir: /myapp
     command: /bin/bash -c "bundle install && bundle exec rails jobs:work"
     volumes:
-      - .:/app
+      - .:/myapp
+      - gem_cache:/usr/local/bundle
     depends_on:
-      - postgres
-      - rails
-volumes:
-  bundler_cache:
-  assets_cache:
-  postgres:
+      postgres:
+        condition: service_healthy
+      rails:
+        condition: service_healthy
 
+volumes:
+  gem_cache:
+  postgres:
