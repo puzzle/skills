@@ -81,7 +81,7 @@ services:
       BUNDLE_PATH: /usr/local/bundle
     command: >
       /bin/bash -c "
-       curl -fsSL https://deb.nodesource.com/setup_24.x | bash - &&
+       curl -fsSL https://deb.nodesource.com/setup_24.x | bash - && apt-get install -y nodejs &&
        npm install -g corepack && corepack enable && bin/assets &&
        sleep infinity"
     volumes:
