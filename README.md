@@ -65,6 +65,18 @@ docker volume rm skills_postgres skills_bundle
 This project uses [Docker Compose profiles](https://docs.docker.com/compose/how-tos/profiles/) to manage different sets of services. 
 You can start the application on different profiles depending on your current needs.
 
+#### Bootstrap (When you launch the application for the first time)
+Before we launch the application, we need to build the images. To do this, we need the `test` profile so that we can also build the test image
+```bash
+docker compose --profile test build
+```
+**If you want to be absolutely sure that the images are being rebuilt from scratch**
+
+Then use the `--no-cache` Flag
+```bash
+docker compose --profile test build --no-cache
+```
+
 #### Development (Default)
 Starts the core containers needed for local development (`postgres`, `rails`, `assets`, `worker`).
 ```bash
@@ -76,7 +88,7 @@ docker compose down
 ```
 
 #### Testing
-Start the `test` and the `postgres` container to run tests.
+Start the `test` container with all the other containers.
 Use this profile if you want to test the application.
 ```bash
 docker compose --profile test up -d
@@ -84,16 +96,6 @@ docker compose --profile test up -d
 Stopping:
 ```bash
 docker compose --profile test down
-```
-
-#### Full Stack
-launch the complete application, including every container (`postgres`, `rails`, `test`, `worker`, and `assets`).
-```bash
-docker compose --profile all up -d
-```
-Stopping:
-```bash
-docker compose --profile all down
 ```
 
 ⚡ This will also install all required gems and seed the database, which takes some time to complete if it's executed the first time. You can follow the progress using `docker logs -f rails` (exit with Ctrl+C).

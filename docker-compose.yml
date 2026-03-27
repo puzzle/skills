@@ -4,7 +4,7 @@ x-shared-env: &shared-env
 
 services:
   rails:
-    container_name: rails
+    container_name: skills_rails
     tty: true
     stdin_open: true
     env_file: .env
@@ -12,6 +12,7 @@ services:
     environment:
       <<: *shared-env
       RAILS_ENV: development
+      BUNDLE_PATH: /usr/local/bundle
     build:
       context: ./config/docker
       dockerfile: Rails.dockerfile
@@ -20,7 +21,7 @@ services:
     volumes:
       - .:/myapp
       - ./config/docker/development/home/rails:/home/developer
-      - bundle:/opt/bundle
+      - gem_cache:/usr/local/bundle
     init: true
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://127.0.0.1:3000 || exit 1"]
@@ -28,15 +29,12 @@ services:
       timeout: 5s
       retries: 5
       start_period: 90s
-    profiles:
-      - dev
-      - all
     depends_on:
       postgres:
         condition: service_healthy
 
   test:
-    container_name: test
+    container_name: skills_test
     tty: true
     stdin_open: true
     env_file: .env
@@ -44,6 +42,7 @@ services:
     environment:
       <<: *shared-env
       RAILS_ENV: test
+      BUNDLE_PATH: /usr/local/bundle
     build:
       context: ./config/docker
       dockerfile: Rails.dockerfile
@@ -52,16 +51,15 @@ services:
     volumes:
       - .:/myapp
       - ./config/docker/test/home/rails:/home/test
-      - bundle_test:/opt/bundle
+      - gem_cache:/usr/local/bundle
     profiles:
       - test
-      - all
     depends_on:
       postgres:
         condition: service_healthy
 
   postgres:
-    container_name: postgres
+    container_name: skills_postgres
     image: postgres:16
     ports:
       - "5432:5432"
@@ -75,9 +73,11 @@ services:
       retries: 5
 
   assets:
-    container_name: assets
+    container_name: skills_assets
     image: ruby:4.0.1
     working_dir: /myapp
+    environment:
+      BUNDLE_PATH: /usr/local/bundle
     command: >
       /bin/bash -c "
        curl -fsSL https://deb.nodesource.com/setup_24.x | bash - &&
@@ -86,29 +86,24 @@ services:
        sleep infinity"
     volumes:
       - .:/myapp
-      - bundle:/opt/bundle
-    profiles:
-      - dev
-      - all
+      - gem_cache:/usr/local/bundle
     depends_on:
       rails:
         condition: service_healthy
 
   worker:
-    container_name: worker
+    container_name: skills_worker
     image: ruby:4.0.1
     environment:
       <<: *shared-env
       RAILS_ENV: development
+      BUNDLE_PATH: /usr/local/bundle
     env_file: .env
     working_dir: /myapp
     command: /bin/bash -c "bundle install && bundle exec rails jobs:work"
     volumes:
       - .:/myapp
-      - bundle:/opt/bundle
-    profiles:
-      - dev
-      - all
+      - gem_cache:/usr/local/bundle
     depends_on:
       postgres:
         condition: service_healthy
@@ -116,6 +111,5 @@ services:
         condition: service_healthy
 
 volumes:
+  gem_cache:
   postgres:
-  bundle:
-  bundle_test:
