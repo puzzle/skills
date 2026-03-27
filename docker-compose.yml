@@ -24,7 +24,7 @@ services:
       - gem_cache:/usr/local/bundle
     init: true
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://127.0.0.1:3000 || exit 1"]
+      test: ["CMD-SHELL", "curl -f http://127.0.0.1:3000/status/health || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
