@@ -1,3 +1,7 @@
+x-shared-env: &shared-env
+  RAILS_DB_HOST: postgres
+  GEM_PATH: /usr/local/bundle:/opt/bundle
+
 services:
   rails:
     container_name: rails
@@ -6,10 +10,10 @@ services:
     env_file: .env
     image: skills-dev/rails
     environment:
-      - RAILS_DB_HOST=postgres
-      - GEM_PATH=/usr/local/bundle:/opt/bundle
+      <<: *shared-env
+      RAILS_ENV: development
     build:
-      context: ./config/docker/development
+      context: ./config/docker
       dockerfile: Rails.dockerfile
     ports:
       - "3000:3000"
@@ -17,14 +21,16 @@ services:
       - .:/myapp
       - ./config/docker/development/home/rails:/home/developer
       - bundle:/opt/bundle
-    profiles: ["", "all"]
     init: true
     healthcheck:
-      test: [ "CMD-SHELL", "curl -f http://127.0.0.1:3000 || exit 1" ]
+      test: ["CMD-SHELL", "curl -f http://127.0.0.1:3000 || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
       start_period: 90s
+    profiles:
+      - dev
+      - all
     depends_on:
       postgres:
         condition: service_healthy
@@ -36,19 +42,20 @@ services:
     env_file: .env
     image: skills-test/rails
     environment:
-      - RAILS_DB_HOST=postgres
-      - RAILS_ENV=test
-      - GEM_PATH=/usr/local/bundle:/opt/bundle
+      <<: *shared-env
+      RAILS_ENV: test
     build:
-      context: ./config/docker/test
-      dockerfile: Test.dockerfile
+      context: ./config/docker
+      dockerfile: Rails.dockerfile
     ports:
       - "3001:3000"
     volumes:
       - .:/myapp
       - ./config/docker/test/home/rails:/home/test
       - bundle_test:/opt/bundle
-    profiles: ["all", "test"]
+    profiles:
+      - test
+      - all
     depends_on:
       postgres:
         condition: service_healthy
@@ -62,11 +69,10 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB" ]
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER:-postgres} -d $${POSTGRES_DB:-postgres}"]
       interval: 5s
       timeout: 5s
       retries: 5
-    profiles: ["all", "", "test"]
 
   assets:
     container_name: assets
@@ -81,30 +87,33 @@ services:
     volumes:
       - .:/myapp
       - bundle:/opt/bundle
+    profiles:
+      - dev
+      - all
     depends_on:
       rails:
         condition: service_healthy
-    profiles: ["all", ""]
 
   worker:
     container_name: worker
     image: ruby:4.0.1
     environment:
-      - RAILS_DB_HOST=postgres
-      - RAILS_ENV=development
+      <<: *shared-env
+      RAILS_ENV: development
     env_file: .env
     working_dir: /myapp
-    restart: on-failure
     command: /bin/bash -c "bundle install && bundle exec rails jobs:work"
     volumes:
       - .:/myapp
       - bundle:/opt/bundle
+    profiles:
+      - dev
+      - all
     depends_on:
       postgres:
         condition: service_healthy
       rails:
         condition: service_healthy
-    profiles: ["all", ""]
 
 volumes:
   postgres:

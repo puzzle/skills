@@ -1,6 +1,5 @@
 FROM ruby:4.0.1
 
-ENV RAILS_ENV=development
 ENV BUNDLE_PATH=/opt/bundle
 ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 
@@ -20,7 +19,7 @@ RUN mkdir /seed && chmod 777 /seed
 USER app
 
 WORKDIR /myapp
-COPY ./rails-entrypoint /usr/local/bin/
+COPY rails-entrypoint /usr/local/bin/
 
 ENTRYPOINT ["rails-entrypoint"]
 CMD ["rails", "server", "-b", "0.0.0.0"]
