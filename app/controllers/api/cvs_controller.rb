@@ -26,7 +26,6 @@ class Api::CvsController < Api::ApplicationController
         :educations, :contributions, :skills,
         person_roles: [:role, :person_role_level]
       )
-      .limit(per_page).offset((page - 1) * per_page)
-      .order(:id)
+      .limit(per_page).offset((page - 1) * per_page).order(:id)
   end
 end
