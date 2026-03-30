@@ -6,16 +6,6 @@ RSpec.describe Api::CvsController, type: :controller do
 
     let(:params) { { per_page: 15, page: 1 } }
 
-    context 'when per_page param is missing' do
-      let(:params) { {} }
-
-      it 'redirects with default per_page' do
-        request_call
-        expect(response).to have_http_status(:redirect)
-        expect(response.location).to include('per_page=15')
-      end
-    end
-
     context 'with valid params' do
       it 'returns http success' do
         request_call
@@ -101,7 +91,7 @@ RSpec.describe Api::CvsController, type: :controller do
         request_call
 
         returned_ids = json['data'].map { |cv| cv['id'].to_i }
-        expected_ids = Person.limit(4).offset(4).pluck(:id)
+        expected_ids = Person.order(:id).limit(4).offset(4).pluck(:id)
 
         expect(returned_ids).to match_array(expected_ids)
       end

@@ -3,16 +3,12 @@ class Api::CvsController < Api::ApplicationController
 
   unless Rails.env.local?
     http_basic_authenticate_with(
-      name: ENV.fetch('API_USERNAME'),
-      password: ENV.fetch('API_PASSWORD')
+      name: ENV.fetch('HTTP_BASIC_API_USERNAME'),
+      password: ENV.fetch('HTTP_BASIC_API_PASSWORD')
     )
   end
 
   def index
-    unless params[:per_page]
-      return redirect_to url_for(request.query_parameters.merge(per_page: 15))
-    end
-
     people = paginated_people
     render json: people, each_serializer: CvSerializer
   end
@@ -31,5 +27,6 @@ class Api::CvsController < Api::ApplicationController
         person_roles: [:role, :person_role_level]
       )
       .limit(per_page).offset((page - 1) * per_page)
+      .order(:id)
   end
 end
