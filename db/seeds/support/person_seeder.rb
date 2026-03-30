@@ -21,10 +21,25 @@ class PersonSeeder
     end
 
     # Allow the default logged-in user to edit themselves
-    Person.find_by_name("Carl Albrecht Conf Admin")&.update(auth_user_id: 1)
-    Person.find_by_name("Andreas Admin")&.update(auth_user_id: 2)
-    Person.find_by_name("Eddy Editor")&.update(auth_user_id: 3)
-    Person.find_by_name("Ursula User")&.update(auth_user_id: 4)
+    Person.find_by_name("Carl Albrecht Conf Admin")&.update(
+      auth_user_id: 1,
+      company_id: 1
+    )
+
+    Person.find_by_name("Andreas Admin")&.update(
+      auth_user_id: 2,
+      company_id: 1
+    )
+
+    Person.find_by_name("Eddy Editor")&.update(
+      auth_user_id: 3,
+      company_id: 1
+    )
+
+    Person.find_by_name("Ursula User")&.update(
+      auth_user_id: 4,
+      company_id: 1
+    )
   end
 
   def seed_association(assoc_name, person_id)
