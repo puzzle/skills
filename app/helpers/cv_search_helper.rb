@@ -19,6 +19,9 @@ module CvSearchHelper
     query = params[:q].split(',').find do |keyword|
       found_in[:keywords_in_attribute].include?(keyword)
     end
-    { q: query, rating: found_in_skills?(found_in) ? 1 : nil }
+
+    person_relations = found_in[:group] || found_in[:not_translated_attribute]
+    { q: query, person_relations: person_relations,
+      rating: found_in_skills?(found_in) ? 1 : nil }
   end
 end

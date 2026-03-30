@@ -3,6 +3,8 @@
 class PeopleSearch
   SEARCHABLE_FIELDS = %w{name title competence_notes description
                          role technology location}.freeze
+  PERSONAL_DETAILS = %w[name email title person_roles department company birthdate nationality location marital_status shortname].freeze
+  CORE_COMPETENCES = %w[competence_notes skills].freeze
   attr_reader :search_terms, :entries, :search_skills
 
   def initialize(search_terms, search_skills: false)
@@ -107,8 +109,20 @@ class PeopleSearch
 
       keywords_in_attribute = keywords_in_attribute(value)
       if keywords_in_attribute.length.positive?
-        attribute.push({ attribute: key,
-                         keywords_in_attribute: keywords_in_attribute })
+        group =
+          if PERSONAL_DETAILS.include?(key)
+            :personal_data
+          elsif CORE_COMPETENCES.include?(key)
+            :core_competences
+          else
+            :other
+          end
+
+        attribute.push({
+                         group: group,
+                         attribute: key,
+                         keywords_in_attribute: keywords_in_attribute
+                       })
       end
     end
     attribute
@@ -135,6 +149,7 @@ class PeopleSearch
 
   def found_in_human_attrs(person)
     found_in_attrs(person).each do |found_in|
+      found_in[:not_translated_attribute] = found_in[:attribute]
       found_in[:attribute] = Person.human_attribute_name(found_in[:attribute], count: 2)
     end
   end
