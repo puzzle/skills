@@ -6,6 +6,7 @@ class Admin::UnemployedPeopleController < CrudController
   def self.model_class
     Person
   end
+
   def index
     @unemployed_people = Person.unemployed
   end
