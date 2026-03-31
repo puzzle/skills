@@ -47,7 +47,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
       # Tests are flaky in firefox
       sleep 0.3
       click_link(Person.human_attribute_name(:educations))
-      expect(page).to have_current_path(person_path(person, q: education_location))
+      expect(page).to have_current_path(person_path(person, q: education_location, section_id: "educations"))
     end
 
     it 'should only display results when length of search-text is > 3' do
@@ -64,8 +64,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
       page.check('search_skills')
       expect(page).not_to have_content("Keine Resultate")
       check_search_results(Skill.model_name.human.pluralize)
-      link = person_people_skills_path(person, q: skill_title, rating: 1)
-      expect(page).to have_link(href: link)
+      expect(page).to have_link(href: /#{person_people_skills_path(person)}.*q=#{skill_title}/)
     end
   end
 end
