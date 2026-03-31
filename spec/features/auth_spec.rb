@@ -42,7 +42,7 @@ describe 'Check authentications', type: :feature, js: true do
 
     before(:each) do
       sign_in(auth_users(:admin))
-      visit people_path
+      visit new_auth_user_session_path
     end
 
     it 'should show flash when user tries to log in but is already logged in' do
