@@ -3,7 +3,7 @@
 class PeopleSearch
   SEARCHABLE_FIELDS = %w{name title competence_notes description
                          role technology location}.freeze
-  PERSONAL_DETAILS = %w[name email title person_roles department company birthdate nationality
+  PERSONAL_DETAILS = %w[name email title person_roles roles department company birthdate nationality
                         location marital_status shortname].freeze
   CORE_COMPETENCES = %w[competence_notes skills].freeze
   attr_reader :search_terms, :entries, :search_skills
@@ -93,7 +93,7 @@ class PeopleSearch
   end
 
   def attribute_in_array(array)
-    in_attributes = { group: table_name_of_attr(array[0]), attribute: table_name_of_attr(array[0]), 
+    in_attributes = { group: which_group(table_name_of_attr(array[0])), attribute: table_name_of_attr(array[0]),
                       keywords_in_attribute: [] }
     array.each do |t|
       in_attributes(t.attributes).each do |attribute|
