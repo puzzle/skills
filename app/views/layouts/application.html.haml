@@ -39,7 +39,10 @@
               %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start-lg.h-100-lg
                 = link_to ti("devise.admin_panel"), admin_index_path
             -# Username
-            - if auth_user_signed_in?
+            - if Rails.env.development?
+              %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start-lg.h-100-lg#username{data: { controller: "dropdown", "dropdown-content-position-value": "fixed"}}
+                = select_tag :auth_user_id, options_for_select(auth_users_for_select, url_for(auth_user_id: current_auth_user&.id)), data: { "dropdown-target": "dropdown" }
+            - elsif auth_user_signed_in?
               %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start-lg.h-100-lg
                 %div.scale-icon-06(name="user")
                 %span#username

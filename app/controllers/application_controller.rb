@@ -6,6 +6,9 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_auth_user!
   around_action :switch_locale
 
+  helper_method :auth_users_for_select
+
+
   default_form_builder SkillsFormBuilder
 
   def switch_locale(&)
@@ -18,6 +21,19 @@ class ApplicationController < ActionController::Base
     I18n.with_locale(param_locale, &)
   end
 
+  def auth_users_for_select
+    AuthUser.all.map do |a|
+      path = url_for(auth_user_id: a.id, only_path: true)
+      [
+        a.name, path,
+        {
+          'data-html': "<a href='#{path}' class='dropdown-option-link'>#{a.name}</a>",
+          class: 'p-0'
+        }
+      ]
+    end
+  end
+
   # The parameter opts = {} accepts the Warden options,
   # which Devise expects as a hash during authentication and passes on.
   # This allows you to control the login behaviour for each request.
@@ -26,10 +42,10 @@ class ApplicationController < ActionController::Base
   def authenticate_auth_user!(opts = {})
     return super if helpers.devise?
 
-    admin = AuthUser.find_by(email: 'conf_admin@skills.ch')
-    raise 'User not found. This is highly likely due to a non-seeded database.' unless admin
+    auth_user = AuthUser.find_by(id: params[:auth_user_id] || current_auth_user&.id || 1)
+    raise 'User not found. This is highly likely due to a non-seeded database.' unless auth_user
 
-    request.env['warden'].set_user(admin, :scope => :auth_user)
+    request.env['warden'].set_user(auth_user, :scope => :auth_user)
   end
 
   def render_unauthorized_not_admin
