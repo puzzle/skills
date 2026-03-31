@@ -23,12 +23,12 @@ services:
       - ./config/docker/development/home/rails:/home/developer
       - gem_cache:/usr/local/bundle
     init: true
-    healthcheck:
-      test: ["CMD-SHELL", "curl -f http://127.0.0.1:3000/status/health || exit 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 90s
+#    healthcheck:
+#      test: ["CMD-SHELL", "curl -f http://127.0.0.1:3000/status/health || exit 1"]
+#      interval: 10s
+#      timeout: 5s
+#      retries: 5
+#      start_period: 90s
     depends_on:
       postgres:
         condition: service_healthy
@@ -87,9 +87,9 @@ services:
     volumes:
       - .:/myapp
       - gem_cache:/usr/local/bundle
-    depends_on:
-      rails:
-        condition: service_healthy
+#    depends_on:
+#      rails:
+#        condition: service_healthy
 
   worker:
     container_name: skills_worker
@@ -107,8 +107,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-      rails:
-        condition: service_healthy
+#      rails:
+#        condition: service_healthy
 
 volumes:
   gem_cache:

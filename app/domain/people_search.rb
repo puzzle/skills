@@ -3,7 +3,8 @@
 class PeopleSearch
   SEARCHABLE_FIELDS = %w{name title competence_notes description
                          role technology location}.freeze
-  PERSONAL_DETAILS = %w[name email title person_roles department company birthdate nationality location marital_status shortname].freeze
+  PERSONAL_DETAILS = %w[name email title person_roles department company birthdate nationality
+                        location marital_status shortname].freeze
   CORE_COMPETENCES = %w[competence_notes skills].freeze
   attr_reader :search_terms, :entries, :search_skills
 
@@ -92,7 +93,8 @@ class PeopleSearch
   end
 
   def attribute_in_array(array)
-    in_attributes = { attribute: table_name_of_attr(array[0]), keywords_in_attribute: [] }
+    in_attributes = { group: table_name_of_attr(array[0]), attribute: table_name_of_attr(array[0]), 
+                      keywords_in_attribute: [] }
     array.each do |t|
       in_attributes(t.attributes).each do |attribute|
         in_attributes[:keywords_in_attribute] =
@@ -109,23 +111,21 @@ class PeopleSearch
 
       keywords_in_attribute = keywords_in_attribute(value)
       if keywords_in_attribute.length.positive?
-        group =
-          if PERSONAL_DETAILS.include?(key)
-            :personal_data
-          elsif CORE_COMPETENCES.include?(key)
-            :core_competences
-          else
-            :other
-          end
-
-        attribute.push({
-                         group: group,
-                         attribute: key,
-                         keywords_in_attribute: keywords_in_attribute
-                       })
+        attribute.push({ group: which_group(key), attribute: key,
+                         keywords_in_attribute: keywords_in_attribute })
       end
     end
     attribute
+  end
+
+  def which_group(key)
+    if PERSONAL_DETAILS.include?(key)
+      :personal_data
+    elsif CORE_COMPETENCES.include?(key)
+      :core_competences
+    else
+      key
+    end
   end
 
   def keywords_in_attribute(value)
@@ -149,7 +149,6 @@ class PeopleSearch
 
   def found_in_human_attrs(person)
     found_in_attrs(person).each do |found_in|
-      found_in[:not_translated_attribute] = found_in[:attribute]
       found_in[:attribute] = Person.human_attribute_name(found_in[:attribute], count: 2)
     end
   end

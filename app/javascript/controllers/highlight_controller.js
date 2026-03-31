@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
     connect() {
         const params = new URL(window.location.href).searchParams;
-        const divId = params.get("person_relations");
+        const divId = params.get("section_id");
         const query = params.get("q");
 
         if (!divId || !query) return;
