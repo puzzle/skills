@@ -2,7 +2,7 @@
 - if [Company, Department, Role].all? { |c| can?(:manage, c) }
   = link_to ti('update_people_manually'), admin_manual_ptime_sync_index_path if use_ptime_sync?
   = link_to ti('delete_unemployed_people'), admin_unemployed_people_path
-  = link_to ti('delete_not_synced_profiles'), admin_not_synced_profiles_path
+  = link_to ti('delete_not_synced_profiles'), admin_not_synced_profiles_path if use_ptime_sync?
   = link_to Department.model_name.human , admin_departments_path
   = link_to Role.model_name.human , admin_roles_path
   = link_to Company.model_name.human , admin_companies_path

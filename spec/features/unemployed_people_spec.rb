@@ -1,22 +1,30 @@
 require 'rails_helper'
 
 describe 'unemployed people' do
-  it 'should show not synced by PuzzleTime' do
+  let(:bob) { people(:bob) }
+  let(:alice) { people(:alice) }
+
+  before(:each) do
+    sign_in auth_users(:conf_admin), scope: :auth_user
+
+    unemployed_company = companies('ex-mitarbeiter')
+    bob.update!(company: unemployed_company)
+    alice.update!(company: unemployed_company)
+  end
+
+  it 'should show unemployed people' do
     visit admin_unemployed_people_path
 
-    within page.all('table') do
-      expect(page).not_to have_content(bob.name)
-      expect(page).not_to have_content(alice.name)
-      Person.where.not(name: [bob.name, alice.name]).each do |person|
-        expect(page).to have_content(person.name)
-      end
+    within page.all('table')[0] do
+      expect(page).to have_content(bob.name)
+      expect(page).to have_content(alice.name)
     end
   end
 
-  it 'should delete person after confirming' do
+  it 'should delete person after confirming', js: true do
     visit admin_unemployed_people_path
 
-    within "#unemployed-people-person_#{bob.id}" do
+    within "#person_#{bob.id}" do
       accept_confirm("Willst du diesen Eintrag wirklich löschen?") do
         click_button('Löschen')
       end

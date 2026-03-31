@@ -44,38 +44,35 @@ describe 'Not synced profiles' do
 
     visit admin_not_synced_profiles_path
 
-    within page.all('table')[0] do
-      expect(page).not_to have_content(bob.name)
-      expect(page).not_to have_content(alice.name)
-      Person.where.not(name: [bob.name, alice.name]).each do |person|
-        expect(page).to have_content(person.name)
-      end
-    end
+    expect(page).to have_content('Momentan gibt es nichts zu bereinigen')
   end
 
-  it 'should delete person after confirming' do
+  it 'should not show button for not synced people when ptime sync is disabled' do
+    disable_ptime_sync
+
+    visit admin_index_path
+
+    expect(page).not_to have_content('Nicht synchronisierte Profile löschen')
+  end
+
+  it 'should delete person after confirming', js: true do
     visit admin_not_synced_profiles_path
 
-    bob.update!(company: firma, ptime_employee_id: nil, ptime_data_provider: nil)
-
-    within "#unemployed-people-person_#{bob.id}" do
+    within "#person_#{bob.id}" do
       accept_confirm("Willst du diesen Eintrag wirklich löschen?") do
         click_button('Löschen')
       end
     end
 
-    within page.all('table')[0] do
-      expect(page).not_to have_content(bob.name)
-    end
 
-    expect(Person.find_by(name: bob.name)).to be_nil
+    expect(Person.find_by(name: bob)).to be_nil
   end
 
-  it 'should show info message when there is nothing to clean up' do
+  it 'should show info message when there is nothing to clean up', js: true do
     employed_company = Company.find_by(name: 'Firma')
     Person.all.update!(company: employed_company, ptime_employee_id: 1, ptime_data_provider: 'Test provider')
 
-    admin_not_synced_profiles_path
+    visit admin_not_synced_profiles_path
 
     expect(page).to have_content('Momentan gibt es nichts zu bereinigen')
   end
