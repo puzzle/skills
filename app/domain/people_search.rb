@@ -93,7 +93,8 @@ class PeopleSearch
   end
 
   def attribute_in_array(array)
-    in_attributes = { group: which_group(table_name_of_attr(array[0])), attribute: table_name_of_attr(array[0]),
+    table_name = table_name_of_attr(array[0])
+    in_attributes = { group: which_group(table_name), attribute: table_name,
                       keywords_in_attribute: [] }
     array.each do |t|
       in_attributes(t.attributes).each do |attribute|
