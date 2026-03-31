@@ -18,6 +18,7 @@ require "action_view/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+require_relative "../app/middleware/silent_logger"
 module Skills
   def self.use_ptime_sync?
     ActiveModel::Type::Boolean.new.cast(ENV.fetch('USE_PTIME_SYNC', false))
@@ -51,5 +52,6 @@ module Skills
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.middleware.insert_before Rails::Rack::Logger, SilentLogger, silent_paths: ["/status/health", "/status/readiness"]
   end
 end
