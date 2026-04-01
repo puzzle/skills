@@ -66,7 +66,48 @@ describe 'Advanced Trainings', type: :feature, js:true do
       check_search_results(Skill.model_name.human.pluralize)
       expect(page).to have_link(href: /#{person_people_skills_path(person)}.*q=#{skill_title}/)
     end
+
+    it "should highlight the correct text" do
+      target = "Memory"
+
+      visit(person_path(person))
+
+      create_project(target)
+      create_new_notes_entry(target)
+
+      visit(cv_search_index_path)
+      fill_in 'cv_search_field', with: target
+
+      sleep 0.3
+      click_link "Projekte"
+
+      expect(page).to have_current_path(person_path(person, q: target, section_id: "projects"))
+      within "#projects"
+      expect(page).to have_selector('mark.p-1.rounded', text: target)
+    end
   end
+end
+
+def create_project(target)
+  open_create_form(Project)
+
+  within('turbo-frame#new_project') do
+    select '2024', from: 'project_year_from'
+    fill_in 'project_role', with: 'Pressure-washer dealer'
+    fill_in 'project_description', with: target
+    fill_in 'project_title', with: 'new title'
+    fill_in 'project_technology', with: 'This technology'
+    click_default_submit
+  end
+end
+
+def create_new_notes_entry(target)
+  click_link(href: competence_notes_person_path(person))
+  expect(page).to have_selector('.form-control')
+
+  fill_in 'person_competence_notes', with: target
+  click_button "Aktualisieren"
+  expect(page).to have_content(target)
 end
 
 def check_search_results(field_name)
