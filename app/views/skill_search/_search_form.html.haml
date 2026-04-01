@@ -20,15 +20,15 @@
                 = form.radio_button "interest[#{i}]", interest_n, id: "row#{i}_star#{interest_n}", checked: interest_n == interest, onClick: "this.form.requestSubmit()"
                 = form.label 'stars', for: "row#{i}_star#{interest_n}", id: "row#{i}_star-label#{interest_n}", class: "star#{interest_n}"
       - if i != 0
-        %div.me-2
-          = form.select "operator[#{i}]",
-            options_for_select([['AND', 'and'], ['OR', 'or']], params.dig(:operator, i.to_s)),
-            {},
-            class: "form-select w-auto",
-            onchange: "this.form.requestSubmit()"
-      - if i != 0
         = form.label '', for: "delete-row-#{i}", class: 'icon icon-close p-0 cursor-pointer'
         = form.submit '', name: 'delete_row', value: i, class: 'd-none', id: "delete-row-#{i}"
+    - if i < @search_filters.length - 1
+      %div.me-2.mt-4.d-flex.justify-content-center.align-items-center
+        = form.select "operator[#{i}]",
+          options_for_select([['AND', 'and'], ['OR', 'or']], params.dig(:operator, i.to_s)),
+          {},
+          class: "form-select form-select-sm w-auto bg-light  text-center",
+          onchange: "this.form.requestSubmit()"
   - if @search_filters.length < 5
     %div.d-flex.align-items-center.mt-2
       %span.icon.icon-plus.me-1
