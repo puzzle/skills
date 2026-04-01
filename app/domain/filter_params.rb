@@ -7,11 +7,11 @@ class FilterParams
 
   def filters_and_results
     filters = search_filters
-    results = search_results(filters.filter { |f| f.exclude?(nil) })
+    results = search_results(filters.reject { |f| f.include?(nil) })
     [filters, results]
   end
 
-  DEFAULT_FILTER = [nil, 1, 1].freeze
+  DEFAULT_FILTER = [nil, 1, 1, :and].freeze
 
   private
 
@@ -30,23 +30,44 @@ class FilterParams
 
     skill_ids = filters.map(&:first)
 
-    filtered_people = filtered_people_skills(filters)
-                      .group('person_id')
-                      .having('COUNT(id) = ?', skill_ids.length)
-                      .select('person_id')
+    people = PeopleSkill.includes(:skill, person: :department)
+                        .where(skill_id: skill_ids)
+                        .group_by(&:person)
 
-    department_filter = department ? { person: { department: department } } : {}
+    results = people.select do |person, skills|
+      matches_filters?(skills, filters)
+    end
+    if department
+      results = results.select do |person, _|
+        person.department_id.to_s == department.to_s
+      end
+    end
 
-    PeopleSkill.includes(:skill, person: :department)
-               .where(person_id: filtered_people, skill_id: skill_ids).where(department_filter)
-               .order('skills.title').group_by(&:person)
+    results
   end
 
-  def filtered_people_skills(filters)
-    filters.map do |skill_id, level, interest|
-      PeopleSkill.where('skill_id = ? AND level >= ? AND interest >= ?',
-                        skill_id, level, interest)
-    end.reduce(:or)
+  def matches_filters?(skills, filters)
+    groups = []
+    current_group = []
+
+    filters.each_with_index do |(skill_id, level, interest, operator), index|
+      current_group << [skill_id, level, interest]
+
+      if operator == :or || index == filters.size - 1
+        groups << current_group
+        current_group = []
+      end
+    end
+
+    groups.any? do |group|
+      group.all? do |skill_id, level, interest|
+        skills.any? do |ps|
+          ps.skill_id == skill_id &&
+            ps.level >= level &&
+            ps.interest >= interest
+        end
+      end
+    end
   end
 
   def skill_ids
@@ -65,10 +86,19 @@ class FilterParams
     @params[:interest]&.values.presence
   end
 
+  def operators
+    @params[:operator]&.values || []
+  end
+
   def constructed_filters
-    skill_ids.map do |id|
-      id.presence&.to_i
-    end.zip(levels.map(&:to_i), interests.map(&:to_i))[0..4]
+    skill_ids.map.with_index do |id, i|
+      [
+        id.presence&.to_i,
+        levels[i].to_i,
+        interests[i].to_i,
+        (operators[i]&.to_s || 'and').downcase.to_sym
+      ]
+    end[0..4]
   end
 
   def add_row?
