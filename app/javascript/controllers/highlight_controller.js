@@ -18,7 +18,7 @@ export default class extends Controller {
 
             element.innerHTML = originalHTML.replace(
                 regex,
-                '<mark class="p-1 rounded" style="background-color: #3297fd; color: white;">$1</mark>'
+                '<mark class="p-1 rounded text-bg-primary">$1</mark>'
             );
             const headerOffset = 200;
             const elementPosition = element.getBoundingClientRect().top;
