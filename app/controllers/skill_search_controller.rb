@@ -6,6 +6,7 @@ class SkillSearchController < CrudController
   end
 
   def index
+    @expert_mode = params[:expert_mode] == "1"
     @search_filters, @search_results = FilterParams.new(params).filters_and_results
     @search_results = @search_results.values unless @search_results.empty?
     @no_match_message = no_match_message
