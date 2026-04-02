@@ -1,15 +1,17 @@
 = form_with model: @person do |form|
   %div.d-flex.flex-xl-row.flex-column
-    %div.col-xl-3.col-12
-      %img.rounded-circle#avatar{src: "#{@person.picture}?#{Time.now.to_f}", width: '141', height: '141'}
-      %br
-      %label.btn.btn-link{for: "avatar-uploader"}
-        - if @person.id.nil?
-          = t "people.profile.upload_image"
-        - else
-          = t "people.profile.change_image"
-      %div.visually-hidden{"data-controller"=>"image-upload"}= form.file_field :picture, {  accept: "image/*", "data-action" => "image-upload#changeImage", id: "avatar-uploader" }
-      = form.hidden_field :picture_cache
+    %div.col-xl-3.col-12{"data-controller"=>"image-upload"}
+      - picture_src = @person.picture_url || @person.picture + Time.now.to_f
+      %img.rounded-circle#avatar{src: picture_src, width: '141', height: '141'}
+      %span.fw-normal
+        = t "people.profile.image_url"
+      = form.text_field :picture_url, {class: "mw-100 form-control ", "data-action" => "image-upload#changeImage", id: "avatar-url"}
+      oder
+      %label.btn.btn-link.p-0{for: "avatar-uploader"}
+        = t "people.profile.upload_image"
+        %div.visually-hidden= form.file_field :picture, {  accept: "image/*", "data-action" => "image-upload#changeImage", id: "avatar-uploader" }
+        = form.hidden_field :picture_cache
+
     %div.pe-5.col-xl-3.col-12
       %table.w-100
         %tbody

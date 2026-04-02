@@ -111,6 +111,12 @@ class Person < ApplicationRecord
     end
   end
 
+
+  def picture_url()
+    picture_url = read_attribute(:picture_url)
+    picture_url.presence || super
+  end
+
   private
 
   def picture_size
