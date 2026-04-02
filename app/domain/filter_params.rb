@@ -28,15 +28,10 @@ class FilterParams
   def search_results(filters)
     return [] unless filters.any?
 
-    skill_ids = filters.map(&:first)
+    people = people_by_skill_ids(filters)
 
-    people = PeopleSkill.includes(:skill, person: :department)
-                        .where(skill_id: skill_ids)
-                        .group_by(&:person)
+    results = people.select { |_, skills| matches_filters?(skills, filters) }
 
-    results = people.select do |person, skills|
-      matches_filters?(skills, filters)
-    end
     if department
       results = results.select do |person, _|
         person.department_id.to_s == department.to_s
@@ -44,6 +39,13 @@ class FilterParams
     end
 
     results
+  end
+
+  def people_by_skill_ids(filters)
+    skill_ids = filters.map(&:first)
+    PeopleSkill.includes(:skill, person: :department)
+               .where(skill_id: skill_ids)
+               .group_by(&:person)
   end
 
   def matches_filters?(skills, filters)
@@ -59,6 +61,10 @@ class FilterParams
       end
     end
 
+    matching_group_filters?(groups, skills)
+  end
+
+  def matching_group_filters?(groups, skills)
     groups.any? do |group|
       group.all? do |skill_id, level, interest|
         skills.any? do |ps|
@@ -87,7 +93,8 @@ class FilterParams
   end
 
   def operators
-    @params[:operator]&.values || []
+    operators = @params[:operator] || {}
+    operators.values.map { it.downcase.to_sym }
   end
 
   def constructed_filters
@@ -96,7 +103,7 @@ class FilterParams
         id.presence&.to_i,
         levels[i].to_i,
         interests[i].to_i,
-        (operators[i]&.to_s || 'and').downcase.to_sym
+        operators[i] || :and
       ]
     end[0..4]
   end

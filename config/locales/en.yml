@@ -399,6 +399,8 @@ en:
   skill_search:
     global:
       dont_filter: Don't filter
+      and: And
+      or: Or
       link:
         add: Add skill (max. 5)
     index:

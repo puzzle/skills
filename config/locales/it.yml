@@ -398,6 +398,8 @@ it:
     updated_at: Ultima modifica
   skill_search:
     global:
+      and: E
+      or: O
       dont_filter: Non filtrare
       link:
         add: Aggiungi abilità (max. 5)

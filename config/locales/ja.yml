@@ -398,6 +398,8 @@ ja:
     updated_at: 最終編集日
   skill_search:
     global:
+      and: そして
+      or: または
       dont_filter: フィルターなし
       link:
         add: スキルを追加（最大5つまで）

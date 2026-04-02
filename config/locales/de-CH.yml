@@ -419,6 +419,8 @@ de-CH:
     updated_at: Z'letzt bearbeitet
   skill_search:
     global:
+      and: Und
+      or: Oder
       dont_filter: Nid filterä
       link:
         add: Skill hinzuäfüegä (max. 5)

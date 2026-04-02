@@ -398,6 +398,8 @@ fr:
     updated_at: Dernièrement édité
   skill_search:
     global:
+      and: Et
+      or: Ou
       dont_filter: Ne pas filtrer
       link:
         add: Ajouter une compétence (max. 5)

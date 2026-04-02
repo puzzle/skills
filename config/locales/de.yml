@@ -402,6 +402,8 @@ de:
     updated_at: Zuletzt bearbeitet
   skill_search:
     global:
+      and: Und
+      or: Oder
       dont_filter: Nicht filtern
       link:
         add: Skill hinzufügen (max. 5)
