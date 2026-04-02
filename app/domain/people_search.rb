@@ -82,16 +82,7 @@ class PeopleSearch
     end
   end
 
-  # rubocop:enable Metrics/MethodLength
-
-  def attribute_not_in_array(target)
-    result = in_attributes(target.attributes)
-    if result.length.positive?
-      result[0][:attribute] = target.class.name.downcase
-    end
-    result
-  end
-
+  # rubocop:disable Metrics/AbcSize
   def attribute_in_array(array)
     table_name = table_name_of_attr(array[0])
     in_attributes = { group: which_group(table_name), attribute: table_name,
@@ -100,9 +91,26 @@ class PeopleSearch
       in_attributes(t.attributes).each do |attribute|
         in_attributes[:keywords_in_attribute] =
           (in_attributes[:keywords_in_attribute] + attribute[:keywords_in_attribute]).uniq
+        next unless table_name == 'skills'
+
+        category_name = if t.category.parent_id.present?
+                          t.parent_category.title.parameterize
+                        end
+        in_attributes[:group] = category_name
       end
     end
     in_attributes[:keywords_in_attribute].length.positive? ? in_attributes : []
+  end
+
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/MethodLength
+
+  def attribute_not_in_array(target)
+    result = in_attributes(target.attributes)
+    if result.length.positive?
+      result[0][:attribute] = target.class.name.downcase
+    end
+    result
   end
 
   def in_attributes(attrs)
