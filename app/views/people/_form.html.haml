@@ -6,7 +6,7 @@
       %span.fw-normal
         = t "people.profile.image_url"
       = form.text_field :picture_url, {class: "mw-100 form-control ", "data-action" => "image-upload#changeImage"}
-      %label.btn.btn-link.p-0{for: "avatar-uploader"}
+      %label.btn.btn-link.p-0{for: "person_picture"}
         = t "people.profile.upload_image"
         %div.visually-hidden= form.file_field :picture, {  accept: "image/*", "data-action" => "image-upload#changeImage" }
         = form.hidden_field :picture_cache
