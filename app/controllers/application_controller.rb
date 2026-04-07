@@ -42,12 +42,14 @@ class ApplicationController < ActionController::Base
   def authenticate_auth_user!(opts = {})
     return super if helpers.devise?
 
-    raise 'User not found. This is highly likely due to a non-seeded database.' unless auth_user
+    raise 'User not found. This is highly likely due to a non-seeded database.' unless dev_auth_user
 
-    request.env['warden'].set_user(auth_user, :scope => :auth_user)
+    request.env['warden'].set_user(dev_auth_user, :scope => :auth_user)
   end
 
-  def auth_user
+  def dev_auth_user
+    return if helpers.devise?
+
     cookies.permanent[:auth_user_id] = params[:auth_user_id] unless params[:auth_user_id].nil?
     auth_user_id = cookies[:auth_user_id] || current_auth_user&.id || 1
     AuthUser.find_by(id: auth_user_id)
