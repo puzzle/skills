@@ -5,9 +5,7 @@ class StatusController < ApplicationController
 
   # Web Server Okay?
   def health
-    Rails.logger.silence do
-      render json: { status: :ok }
-    end
+    render json: { status: :ok }
   end
 
   # Are we ready to serve requests?
