@@ -80,6 +80,7 @@ it:
           one: Funzione
           other: Funzioni
         picture: Immagine
+        picture_url: URL dell'immagine
         projects:
           one: Progetto
           other: Progetti
@@ -203,6 +204,7 @@ it:
       chart_data_empty: Selezionare un unità organizzativa, una competenza e un anno per visualizzare i dati.
       chart_results_empty: Non sono state trovate istantanee corrispondenti ai filtri selezionati.
       invalid_date_range: deve essere precedente alla data di scadenza.
+      invalid_url: deve essere un URL valido
       max_size_10MB: non deve essere più grande di 10 MB.
       max_size_error: non deve essere più grande di 10 MB.
       profile-not-found: Il profilo non è stato trovato.
@@ -316,15 +318,15 @@ it:
       export_form:
         anonymised_cv: CV anonimo
         competences_skills: Competenze di base - Capacità
+        customer_code: Abbreviazione cliente
+        customer_code_placeholder: il codice cliente viene visualizzato nell'intestazione
+        department_code: Abbreviazione reparto
+        department_code_placeholder: il codice reparto viene visualizzato nell'intestazione
         location: 'Sede secondaria (per il piè di pagina):'
+        project_code: Abbreviazione progetto
+        project_code_placeholder: il codice progetto viene visualizzato nell'intestazione
         skills_by_level: Competenze per livello
         trainee: Apprendista
-        customer_code: Abbreviazione cliente
-        department_code: Abbreviazione reparto
-        project_code: Abbreviazione progetto
-        customer_code_placeholder: il codice cliente viene visualizzato nell'intestazione
-        department_code_placeholder: il codice reparto viene visualizzato nell'intestazione
-        project_code_placeholder: il codice progetto viene visualizzato nell'intestazione
     form:
       ptime_data: Questi dati provengono da Puzzle Time, pertanto non è possibile modificarli.
     global:
@@ -349,8 +351,9 @@ it:
       add_language: Aggiungi lingua
       change_image: Cambia immagine
       core_competences: Competenze di base
+      image_url: Inserisci l’URL dell’immagine
       personals: Dati personali
-      upload_image: Carica immagine
+      upload_image: oppure carica un'immagine
     projects:
       link:
         add: Nuovo progetto

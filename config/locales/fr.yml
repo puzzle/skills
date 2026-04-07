@@ -80,6 +80,7 @@ fr:
           one: Fonction
           other: Fonctions
         picture: Image
+        picture_url: URL de l’image
         projects:
           one: Projet
           other: Projets
@@ -203,6 +204,7 @@ fr:
       chart_data_empty: Sélectionnez un département, une compétence et une année pour afficher les données.
       chart_results_empty: Aucun instantané correspondant aux filtres sélectionnés n'a été trouvé.
       invalid_date_range: doit être antérieure à la date de fin.
+      invalid_url: doit être une URL valide
       max_size_10MB: ne doit pas dépasser 10 Mo.
       max_size_error: ne doit pas dépasser 10 Mo.
       profile-not-found: Le profil n'a pas été trouvé.
@@ -316,15 +318,15 @@ fr:
       export_form:
         anonymised_cv: CV anonyme
         competences_skills: Compétences clés - Skills
+        customer_code: Abréviation du client
+        customer_code_placeholder: le code client s'affiche dans l'en-tête
+        department_code: Abréviation du département
+        department_code_placeholder: le code département s'affiche dans l'en-tête
         location: 'Établissement (pour le pied de page) :'
+        project_code: Abréviation du projet
+        project_code_placeholder: le code projet s'affiche dans l'en-tête
         skills_by_level: Compétences par niveau
         trainee: Stagiaire
-        customer_code: Abréviation du client
-        department_code: Abréviation du département
-        project_code: Abréviation du projet
-        customer_code_placeholder : le code client s'affiche dans l'en-tête
-        department_code_placeholder : le code département s'affiche dans l'en-tête
-        project_code_placeholder : le code projet s'affiche dans l'en-tête
     form:
       ptime_data: Ces données proviennent de Puzzle Time, vous ne pouvez donc pas les modifier.
     global:
@@ -349,8 +351,9 @@ fr:
       add_language: Ajouter une langue
       change_image: Modifier l'image
       core_competences: Compétences clés
+      image_url: saisir l’URL de l’image
       personals: Données personnelles
-      upload_image: Télécharger une image
+      upload_image: ou télécharger une image
     projects:
       link:
         add: Nouveau projet

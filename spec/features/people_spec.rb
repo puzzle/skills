@@ -62,6 +62,7 @@ describe :people do
 
   def fill_out_person_form
     page.attach_file("avatar-uploader", Rails.root + 'app/assets/images/anonymous_profile_picture.png')
+    fill_in 'avatar-url', with: 'https://www.puzzle.ch/app/uploads/2024/04/graphic-hero.svg'
     fill_in 'person_name', with: 'Hansjakobli'
     fill_in 'person_email', with: 'hanswurst@somemail.com'
     fill_in 'person_title', with: 'Wurstexperte'
@@ -97,6 +98,7 @@ describe :people do
 
     person = Person.find_by(name: 'Hansjakobli')
     expect(person.picture.identifier).to eql('anonymous_profile_picture.png')
+    expect(person.picture_url).to eql('https://www.puzzle.ch/app/uploads/2024/04/graphic-hero.svg')
     expect(person.email).to eql('hanswurst@somemail.com')
     expect(person.title).to eql('Wurstexperte')
     expect(person.person_roles.count).to eql(old_number_of_roles + 1)

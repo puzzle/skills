@@ -63,7 +63,7 @@ class Person < ApplicationRecord
             inclusion: { in: ISO3166::Country.all.collect(&:alpha2) },
             allow_blank: true
 
-  validate :picture_size
+  validate :picture_size, :validate_url
 
   scope :list, -> { order(:name) }
 
@@ -111,10 +111,9 @@ class Person < ApplicationRecord
     end
   end
 
-
-  def picture_url()
+  def picture_url
     picture_url = read_attribute(:picture_url)
-    picture_url.presence || super
+    picture_url.presence
   end
 
   private
@@ -123,5 +122,21 @@ class Person < ApplicationRecord
     return if picture.nil? || picture.size < 10.megabytes
 
     errors.add(:picture, :max_size_10MB)
+  end
+
+  def url_valid?(picture_url)
+    return true if picture_url.nil? || picture_url.blank?
+
+    url = URI.parse(picture_url)
+    host_regex = /^(\w+\.)?#{ENV.fetch('PICTURE_HOST', 'puzzle.ch')}$/
+    url.host.match? host_regex
+  rescue URI::InvalidURIError
+    false
+  end
+
+  def validate_url
+    return if url_valid? picture_url
+
+    errors.add(:picture_url, :invalid_url)
   end
 end

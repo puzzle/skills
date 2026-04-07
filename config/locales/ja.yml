@@ -80,6 +80,7 @@ ja:
           one: 職務
           other: 職務
         picture: 写真
+        picture_url: 画像のURL
         projects:
           one: プロジェクト
           other: プロジェクト
@@ -203,6 +204,7 @@ ja:
       chart_data_empty: データを表示するには、部署、スキル、年を選択してください
       chart_results_empty: 選択したフィルターに一致するスナップショットは見つかりませんでした。
       invalid_date_range: 終了日より前の日付でなければなりません。
+      invalid_url: 有効なURLである必要があります
       max_size_10MB: 10MBを超えてはいけません。
       max_size_error: 10MBを超えてはいけません。
       profile-not-found: プロフィールが見つかりませんでした。
@@ -316,15 +318,15 @@ ja:
       export_form:
         anonymised_cv: 匿名化された履歴書
         competences_skills: コアコンピタンス - スキル
+        customer_code: クライアント略称
+        customer_code_placeholder: 顧客コードはヘッダーに表示されます
+        department_code: 部門略称
+        department_code_placeholder: 部門コードはヘッダーに表示されます
         location: 支店（フッター用）：
+        project_code: プロジェクト略称
+        project_code_placeholder: プロジェクトコードはヘッダーに表示されます
         skills_by_level: レベル別スキル
         trainee: 研修生
-        customer_code: クライアント略称
-        department_code: 部門略称
-        project_code: プロジェクト略称
-        customer_code_placeholder: 顧客コードはヘッダーに表示されます
-        department_code_placeholder: 部門コードはヘッダーに表示されます
-        project_code_placeholder: プロジェクトコードはヘッダーに表示されます
     form:
       ptime_data: このデータはPuzzle Timeのものです。そのため、編集できません。
     global:
@@ -349,8 +351,9 @@ ja:
       add_language: 言語を追加
       change_image: 画像を変更
       core_competences: コアコンピテンシー
+      image_url: 画像のURLを入力
       personals: 個人情報
-      upload_image: 画像をアップロード
+      upload_image: または画像をアップロード
     projects:
       link:
         add: 新しいプロジェクト

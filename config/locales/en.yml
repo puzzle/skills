@@ -80,6 +80,7 @@ en:
           one: Function
           other: Functions
         picture: Image
+        picture_url: Image URL
         projects:
           one: Project
           other: Projects
@@ -203,6 +204,7 @@ en:
       chart_data_empty: Select a department, skill and a year to display data.
       chart_results_empty: No snapshots matching the selected filters were found.
       invalid_date_range: must be before the end date.
+      invalid_url: must be a valid URL
       max_size_10MB: must not be larger than 10MB.
       max_size_error: must not be larger than 10MB.
       profile-not-found: Profile could not be found.
@@ -316,15 +318,15 @@ en:
       export_form:
         anonymised_cv: Anonymized CV
         competences_skills: Core competencies - Skills
+        customer_code: Client code
+        customer_code_placeholder: The customer code is displayed in the header
+        department_code: Department code
+        department_code_placeholder: The department code is displayed in the header
         location: 'Branch office (for footer):'
+        project_code: Project code
+        project_code_placeholder: The project code is displayed in the header
         skills_by_level: Skills by level
         trainee: Trainee
-        customer_code: Client code
-        department_code: Department code
-        project_code: Project code
-        customer_code_placeholder: The customer code is displayed in the header
-        department_code_placeholder: The department code is displayed in the header
-        project_code_placeholder: The project code is displayed in the header
     form:
       ptime_data: This data comes from Puzzle Time, therefore you cannot edit it.
     global:
@@ -349,8 +351,9 @@ en:
       add_language: Add language
       change_image: Change picture
       core_competences: Core competencies
+      image_url: Enter image URL
       personals: Personal details
-      upload_image: Upload image
+      upload_image: or Upload an image
     projects:
       link:
         add: New project

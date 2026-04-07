@@ -80,6 +80,7 @@ de:
           one: Funktion
           other: Funktionen
         picture: Bild
+        picture_url: Bildadresse
         projects:
           one: Projekt
           other: Projekte
@@ -207,6 +208,7 @@ de:
       chart_data_empty: Wähle eine Abteilung, einen Skill und ein Jahr aus, um Daten anzuzeigen.
       chart_results_empty: Es wurden keine Snapshots gefunden, die den gewählten Filtern entsprechen.
       invalid_date_range: muss vor dem Enddatum sein.
+      invalid_url: muss eine valide URL sein
       max_size_10MB: darf nicht grösser als 10MB sein.
       max_size_error: darf nicht grösser als 10MB sein.
       profile-not-found: Profil konnte nicht gefunden werden.
@@ -320,15 +322,15 @@ de:
       export_form:
         anonymised_cv: Anonymisierter CV
         competences_skills: Kernkompetenzen - Skills
+        customer_code: Kundenkürzel
+        customer_code_placeholder: Das Kundenkürzel wird in der Kopfzeile angezeigt
+        department_code: Bereichskürzel
+        department_code_placeholder: Das Bereichskürzel wird in der Kopfzeile angezeigt
         location: 'Niederlassung (für Footer):'
+        project_code: Projektkürzel
+        project_code_placeholder: Das Projektkürzel wird in der Kopfzeile angezeigt
         skills_by_level: Skills nach Level
         trainee: Trainee
-        customer_code: Kundenkürzel
-        department_code: Bereichskürzel
-        project_code: Projektkürzel
-        customer_code_placeholder: Das Kundenkürzel wird in der Kopfzeile angezeigt
-        department_code_placeholder: Das Bereichskürzel wird in der Kopfzeile angezeigt
-        project_code_placeholder: Das Projektkürzel wird in der Kopfzeile angezeigt
     form:
       ptime_data: Diese Daten stammen aus dem Puzzle Time, daher kannst du diese nicht bearbeiten.
     global:
@@ -352,10 +354,10 @@ de:
       add_function: Funktion hinzufügen
       add_language: Sprache hinzufügen
       change_image: Bild ändern
-      image_url:  Bildadresse eingeben
       core_competences: Kernkompetenzen
+      image_url: Bildadresse eingeben
       personals: Personalien
-      upload_image: Bild hochladen
+      upload_image: oder ein Bild hochladen
     projects:
       link:
         add: Neues Projekt
