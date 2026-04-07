@@ -5,10 +5,10 @@
       %img.rounded-circle#avatar{src: picture_src, width: '141', height: '141'}
       %span.fw-normal
         = t "people.profile.image_url"
-      = form.text_field :picture_url, {class: "mw-100 form-control ", "data-action" => "image-upload#changeImage", id: "avatar-url"}
+      = form.text_field :picture_url, {class: "mw-100 form-control ", "data-action" => "image-upload#changeImage"}
       %label.btn.btn-link.p-0{for: "avatar-uploader"}
         = t "people.profile.upload_image"
-        %div.visually-hidden= form.file_field :picture, {  accept: "image/*", "data-action" => "image-upload#changeImage", id: "avatar-uploader" }
+        %div.visually-hidden= form.file_field :picture, {  accept: "image/*", "data-action" => "image-upload#changeImage" }
         = form.hidden_field :picture_cache
 
     %div.pe-5.col-xl-3.col-12

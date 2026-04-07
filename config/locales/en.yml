@@ -353,7 +353,7 @@ en:
       core_competences: Core competencies
       image_url: Enter image URL
       personals: Personal details
-      upload_image: or Upload an image
+      upload_image: or upload an image
     projects:
       link:
         add: New project
