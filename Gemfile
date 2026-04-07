@@ -46,6 +46,8 @@ gem 'puma'
 gem 'rack'
 gem 'rails-i18n'
 gem 'rest-client'
+gem 'rswag-api'
+gem 'rswag-ui'
 gem 'seed-fu'
 gem 'sentry-rails'
 gem 'sentry-ruby'
@@ -71,6 +73,7 @@ group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
   gem 'rspec-rails'
+  gem 'rswag-specs'
 end
 
 group :development do

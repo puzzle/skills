@@ -1,6 +1,8 @@
 LOCALE_REGEX = /#{I18n.available_locales.join('|')}/ unless defined?(LOCALE_REGEX)
 
 Rails.application.routes.draw do
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
   # Devise
   devise_for :auth_users,
       skip: [:sessions],
@@ -74,5 +76,9 @@ Rails.application.routes.draw do
     resources :certificates
 
     resources :department_skill_snapshots, only: [:index]
+  end
+
+  namespace :api do
+    resources :cvs, only: :index
   end
 end
