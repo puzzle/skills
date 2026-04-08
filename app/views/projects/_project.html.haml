@@ -1,7 +1,7 @@
 %div.border-top
     %turbo-frame{id: dom_id(project)}
         %div.border.border-secondary-subtle.border-1.d-flex.flex-column
-            %div.profile-header.d-flex.mw-100.border-bottom.align-items-center.justify-content-between
+            %div.profile-header.d-flex.mw-100.border-bottom.align-items-center.justify-content-start
                 = "#{date_range_label project} | #{project.title}"
                 - unless project.display_in_cv
                     .pe-3
