@@ -64,7 +64,7 @@ module SortHelper
     @search_results.sort_by do |person_skills|
       [
         -person_skills.length,
-        person_skills.map { |people_skill| people_skill.skill.title.downcase }.sort,
+        person_skills.map { |people_skill| people_skill.skill.title.downcase }.sort
       ]
     end
   end

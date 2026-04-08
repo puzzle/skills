@@ -198,6 +198,44 @@ describe :skill_search do
       choose(id, allow_label_click: true)
     end
   end
+  describe 'People Search Expert Mode', type: :feature, js: true do
+    it 'Should support  OR in expert mode search' do
+      visit skill_search_index_path({
+                                      expert_mode: '1',
+                                      skill_id: [skills(:bash).id, skills(:junit).id, skills(:cunit).id],
+                                      level: [1, 1, 1],
+                                      'interest[0]': 1,
+                                      'interest[1]': 1,
+                                      'interest[2]': 1,
+                                      operator: { '0' => 'or', '1' => 'or' }
+                                    })
+
+      expect(page).to have_text('Wally Allround')
+      expect(page).to have_text('Hope Sunday')
+      expect(page).to have_text('Alice Mante')
+      expect(page).to have_text('Charlie Ford')
+      expect(page).not_to have_text('Bob Anderson')
+    end
+
+    it 'Should support AND and OR in expert mode search' do
+      visit skill_search_index_path({
+                                      expert_mode: '1',
+                                      skill_id: [skills(:bash).id, skills(:junit).id, skills(:cunit).id],
+                                      level: [1, 1, 1],
+                                      'interest[0]': 1,
+                                      'interest[1]': 1,
+                                      'interest[2]': 1,
+                                      operator: { '0' => 'or', '1' => 'and' }
+                                    })
+
+      expect(page).to have_text('Wally Allround')
+      expect(page).to have_text('Hope Sunday')
+      expect(page).to_not have_text('Alice Mante')
+      expect(page).to_not have_text('Charlie Ford')
+      expect(page).not_to have_text('Bob Anderson')
+    end
+
+  end
 
   def last_row
     expect(page).to have_css('#filter-row-0')
