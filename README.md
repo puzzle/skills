@@ -179,7 +179,12 @@ This is a step for step manual on how to run the PuzzleTime sync.
    navigating to `/admin/update_people` and pressing the manual sync button.
 7. *Optional*: If you need the sync to happen more than once a day, you can change the 
    schedule by modifying the cron expression in the `NightlyUpdatePeopleDataPtimeJob.`
-
+## Skill Search Expert Mode
+The skill search expert mode is a feature that allows users to search for people using more complex queries.
+It is designed to provide more flexibility and power to users who are familiar with the syntax. The expert mode supports the following operators:
+- `AND`: This operator allows you to search for people that match all the specified skills. For example, if you want to search for a person with both "Ruby" and "JavaScript" skills.
+- `OR`: This operator allows you to search for people that match all the specified skills. For example, if you want to search for a person with either "Ruby" and "JavaScript" skills.
+The Operators can be combined e.g. if you want a person that either has "Ruby" or "JavaScript" and "PostgreSQL" you can search for "Ruby OR JavaScript AND PostgreSQL".
 ## Debugging
 To interact with `pry` inside a controller, you have to attach to the container first using `docker attach rails`.
 This will show you any **new** logs, and if you encounter a `pry` prompt, you can interact with it.

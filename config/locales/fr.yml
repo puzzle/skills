@@ -317,15 +317,15 @@ fr:
       export_form:
         anonymised_cv: CV anonyme
         competences_skills: Compétences clés - Skills
+        customer_code: Abréviation du client
+        customer_code_placeholder: le code client s'affiche dans l'en-tête
+        department_code: Abréviation du département
+        department_code_placeholder: le code département s'affiche dans l'en-tête
         location: 'Établissement (pour le pied de page) :'
+        project_code: Abréviation du projet
+        project_code_placeholder: le code projet s'affiche dans l'en-tête
         skills_by_level: Compétences par niveau
         trainee: Stagiaire
-        customer_code: Abréviation du client
-        department_code: Abréviation du département
-        project_code: Abréviation du projet
-        customer_code_placeholder : le code client s'affiche dans l'en-tête
-        department_code_placeholder : le code département s'affiche dans l'en-tête
-        project_code_placeholder : le code projet s'affiche dans l'en-tête
     form:
       ptime_data: Ces données proviennent de Puzzle Time, vous ne pouvez donc pas les modifier.
     global:
@@ -399,10 +399,11 @@ fr:
   skill_search:
     global:
       and: Et
-      or: Ou
       dont_filter: Ne pas filtrer
+      expert_mode: Activer le mode expert
       link:
         add: Ajouter une compétence (max. 5)
+      or: Ou
     index:
       table:
         certificate: Certificat

@@ -4,9 +4,10 @@
       class: "form-check-input me-2",
       title: "Tooltip to explain nested and or logic",
       data: { action: "change->skill-search#clearAndSubmit" }
-
     %label.form-check-label{ for: "expert_mode" }
-      Activate expert mode
+      = ti 'expert_mode'
+    %a.d-flex.align-items-center.ms-1{:href => "https://github.com/puzzle/skills?tab=readme-ov-file#skill-search-expert-mode"}
+      %pzsh-icon.scale-icon-08.text-gray(name="question-circle")
   - skill_ids = @search_filters.map(&:first)
   - @search_filters.each_with_index do |filter, i|
     - skill_id, level, interest, order = filter

@@ -321,15 +321,15 @@ de:
       export_form:
         anonymised_cv: Anonymisierter CV
         competences_skills: Kernkompetenzen - Skills
+        customer_code: Kundenkürzel
+        customer_code_placeholder: Das Kundenkürzel wird in der Kopfzeile angezeigt
+        department_code: Bereichskürzel
+        department_code_placeholder: Das Bereichskürzel wird in der Kopfzeile angezeigt
         location: 'Niederlassung (für Footer):'
+        project_code: Projektkürzel
+        project_code_placeholder: Das Projektkürzel wird in der Kopfzeile angezeigt
         skills_by_level: Skills nach Level
         trainee: Trainee
-        customer_code: Kundenkürzel
-        department_code: Bereichskürzel
-        project_code: Projektkürzel
-        customer_code_placeholder: Das Kundenkürzel wird in der Kopfzeile angezeigt
-        department_code_placeholder: Das Bereichskürzel wird in der Kopfzeile angezeigt
-        project_code_placeholder: Das Projektkürzel wird in der Kopfzeile angezeigt
     form:
       ptime_data: Diese Daten stammen aus dem Puzzle Time, daher kannst du diese nicht bearbeiten.
     global:
@@ -403,10 +403,11 @@ de:
   skill_search:
     global:
       and: Und
-      or: Oder
       dont_filter: Nicht filtern
+      expert_mode: Expertenmodus aktivieren
       link:
         add: Skill hinzufügen (max. 5)
+      or: Oder
     index:
       table:
         certificate: Zertifikat

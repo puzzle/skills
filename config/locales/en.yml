@@ -317,15 +317,15 @@ en:
       export_form:
         anonymised_cv: Anonymized CV
         competences_skills: Core competencies - Skills
+        customer_code: Client code
+        customer_code_placeholder: The customer code is displayed in the header
+        department_code: Department code
+        department_code_placeholder: The department code is displayed in the header
         location: 'Branch office (for footer):'
+        project_code: Project code
+        project_code_placeholder: The project code is displayed in the header
         skills_by_level: Skills by level
         trainee: Trainee
-        customer_code: Client code
-        department_code: Department code
-        project_code: Project code
-        customer_code_placeholder: The customer code is displayed in the header
-        department_code_placeholder: The department code is displayed in the header
-        project_code_placeholder: The project code is displayed in the header
     form:
       ptime_data: This data comes from Puzzle Time, therefore you cannot edit it.
     global:
@@ -398,11 +398,12 @@ en:
     updated_at: Last edited
   skill_search:
     global:
-      dont_filter: Don't filter
       and: And
-      or: Or
+      dont_filter: Don't filter
+      expert_mode: Activate expert mode
       link:
         add: Add skill (max. 5)
+      or: Or
     index:
       table:
         certificate: Certificate

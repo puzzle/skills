@@ -338,15 +338,15 @@ de-CH:
       export_form:
         anonymised_cv: Anonymisierter CV
         competences_skills: Chärnkompetenzä - Skills
+        customer_code: Chundächürzu
+        customer_code_placeholder: Ds Chundächürzu wird i dr Chopfzielä azeigt
+        department_code: Abteiligschürzu
+        department_code_placeholder: Ds Abteiligschürzu wird i dr Chopfzielä azeigt
         location: 'Niderlassig (für Footer):'
+        project_code: Projektchürzu
+        project_code_placeholder: Ds Projektchürzu wird i dr Chopfzielä azeigt
         skills_by_level: Skills nach Level
         trainee: Trainee
-        customer_code: Chundächürzu
-        department_code: Abteiligschürzu
-        project_code: Projektchürzu
-        customer_code_placeholder: Ds Chundächürzu wird i dr Chopfzielä azeigt
-        department_code_placeholder: Ds Abteiligschürzu wird i dr Chopfzielä azeigt
-        project_code_placeholder: Ds Projektchürzu wird i dr Chopfzielä azeigt
     form:
       ptime_data: Diä Datä si usem Puzzle Time, drum chasch du diä nid veränderä.
     global:
@@ -420,10 +420,11 @@ de-CH:
   skill_search:
     global:
       and: Und
-      or: Oder
       dont_filter: Nid filterä
+      expert_mode: Expärte modus aktiviere
       link:
         add: Skill hinzuäfüegä (max. 5)
+      or: Oder
     index:
       table:
         certificate: Zertifikat

@@ -1,18 +1,39 @@
 require 'rails_helper'
 
 describe SortHelper, type: :helper do
-
-  let(:person1) { people(:alice) }
-  let(:person2) { people(:bob) }
-
-  describe "Sort people_skills" do
-    let(:search_results) { [
-      [people_skills(:alice_bash)],
-      [people_skills(:bob_rails)]
-    ] }
+  describe 'Sort people_skills' do
+    let(:search_results) do
+      [
+        [people_skills(:bob_rails)],
+        [people_skills(:alice_junit), people_skills(:alice_rails)]
+      ]
+    end
 
     before do
       helper.instance_variable_set(:@search_results, search_results)
+    end
+
+    it 'sorts people_skills by match count when no sort params are given' do
+      allow(helper).to receive(:params).and_return({})
+      expect(helper.people_skills).to eq([
+                                           [people_skills(:alice_junit), people_skills(:alice_rails)],
+                                           [people_skills(:bob_rails)]
+                                         ])
+    end
+
+    it 'sorts people_skills by matched skill titles when match counts are equal' do
+      helper.instance_variable_set(:@search_results, [
+                                   [people_skills(:bob_rails)],
+                                   [people_skills(:charlie_cunit)],
+                                   [people_skills(:alice_junit), people_skills(:alice_rails)]
+                                 ])
+      allow(helper).to receive(:params).and_return({})
+
+      expect(helper.people_skills).to eq([
+                                           [people_skills(:alice_junit), people_skills(:alice_rails)],
+                                           [people_skills(:charlie_cunit)],
+                                           [people_skills(:bob_rails)]
+                                         ])
     end
 
     %w[asc desc].each do |sort_dir|
@@ -34,13 +55,15 @@ describe SortHelper, type: :helper do
     end
   end
 
-  describe "Sort skills" do
+  describe 'Sort skills' do
     let(:skills) { Skill.all }
-    let(:member_count) { PeopleSkill
-                           .where.not(interest: 0)
-                           .or(PeopleSkill.where.not(level: 0))
-                           .group(:skill_id)
-                           .count }
+    let(:member_count) do
+      PeopleSkill
+        .where.not(interest: 0)
+        .or(PeopleSkill.where.not(level: 0))
+        .group('skill_id')
+        .count
+    end
 
     before do
       helper.instance_variable_set(:@skills, skills)
@@ -73,8 +96,5 @@ describe SortHelper, type: :helper do
       end
     end
   end
-
-  def sort_dir(array, sort_dir)
-    sort_dir == 'asc' ? array : array.reverse
-  end
 end
+
