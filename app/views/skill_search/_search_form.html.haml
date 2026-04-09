@@ -30,14 +30,13 @@
       - if i != 0
         = form.label '', for: "delete-row-#{i}", class: 'icon icon-close p-0 cursor-pointer'
         = form.submit '', name: 'delete_row', value: i, class: 'd-none', id: "delete-row-#{i}"
-    - if @expert_mode
-      - if i < @search_filters.length - 1
-        %div.me-2.mt-4.d-flex.justify-content-center.align-items-center
-          = form.select "operator[#{i}]",
-            options_for_select([[ti('and'), 'and'], [ti('or'), 'or']], params.dig(:operator, i.to_s)),
-            {},
-            class: "form-select form-select-sm w-auto bg-light  text-center",
-            onchange: "this.form.requestSubmit()"
+    - if @expert_mode && i < @search_filters.length - 1
+      %div.me-2.mt-4.d-flex.justify-content-center.align-items-center
+        = form.select "operator[#{i}]",
+          options_for_select([[ti('and'), 'and'], [ti('or'), 'or']], params.dig(:operator, i.to_s)),
+          {},
+          class: "form-select form-select-sm w-auto bg-light text-center",
+          onchange: "this.form.requestSubmit()"
   - if @search_filters.length < 5
     %div.d-flex.align-items-center.mt-2
       %span.icon.icon-plus.me-1
