@@ -1,12 +1,14 @@
 require 'rails_helper'
 
 describe :skill_search do
+
+  before(:each) do
+    sign_in auth_users(:user), scope: :auth_user
+  end
+
   describe 'People Search', type: :feature, js: true do
     let(:skill) { skills(:rails) }
 
-    before(:each) do
-      sign_in auth_users(:user), scope: :auth_user
-    end
 
     it 'Should return matching entries to page' do
       visit skill_search_index_path
@@ -234,7 +236,6 @@ describe :skill_search do
       expect(page).to_not have_text('Charlie Ford')
       expect(page).not_to have_text('Bob Anderson')
     end
-
   end
 
   def last_row
