@@ -1,11 +1,11 @@
 = form_with(url: skill_search_index_path,method: :get,class: 'filter-form') do |form|
   %div.form-check.form-switch.d-flex.justify-content-end
-    %a{:href => url_for(request.query_parameters.merge(expert_mode: @expert_mode ? 0 : 1))}
+    %a{href: url_for(request.query_parameters.merge(expert_mode: @expert_mode ? 0 : 1))}
       = check_box_tag :expert_mode, "1", @expert_mode,
         class: "form-check-input me-2"
     %label.form-check-label{ for: "expert_mode" }
       = ti 'expert_mode'
-    %a.d-flex.align-items-center.ms-1{:href => "https://github.com/puzzle/skills?tab=readme-ov-file#skill-search-expert-mode"}
+    %a.d-flex.align-items-center.ms-1{href: "https://github.com/puzzle/skills?tab=readme-ov-file#skill-search-expert-mode"}
       %pzsh-icon.scale-icon-08.text-gray(name="question-circle")
   - skill_ids = @search_filters.map(&:first)
   - @search_filters.each_with_index do |filter, i|
