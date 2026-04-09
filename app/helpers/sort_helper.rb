@@ -7,7 +7,7 @@ module SortHelper
     if params[:sort_dir] && params[:sort]
       sort_people_skills
     else
-      sort_people_skills_by_match_count
+      default_sort_people_skills
     end
   end
 
@@ -60,7 +60,7 @@ module SortHelper
     params[:sort_dir] == 'asc' ? @search_results : @search_results.reverse
   end
 
-  def sort_people_skills_by_match_count
+  def default_sort_people_skills
     @search_results.sort_by do |person_skills|
       [
         -person_skills.length,

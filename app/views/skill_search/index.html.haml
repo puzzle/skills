@@ -17,6 +17,6 @@
               = link_to person, {}, {"data-turbo-frame": "_top"}
               = person.department
             %div.d-flex.flex-column.mt-2.mb-2.skills-filter-container
-              - person_skills.each do |person_skill|
+              - person_skills.sort_by{|person_skill| person_skill.skill.title.downcase}.each do |person_skill|
                 %div.d-flex.flex-row.mb-5
                   = render('person_skill', {person_skill: person_skill})
