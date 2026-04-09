@@ -7,7 +7,8 @@
         %span.col.d-flex.flex-column.text-ms
           %span.fw-bolder
             = activity.role
-          = activity.description
+          %span.text-ms
+            = activity.description
         - unless activity.display_in_cv
           %span.col-1.d-flex.justify-content-end.pe-5
             %div{ 'data-bs-toggle': 'tooltip', 'data-bs-title': t("people.show.is_not_displayed_in_cv"), 'data-controller': 'tooltip', 'data-action': 'click->tooltip#hide'}

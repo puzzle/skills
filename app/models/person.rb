@@ -89,6 +89,7 @@ class Person < ApplicationRecord
                     activities: [:description, :role],
                     educations: [:location, :title],
                     advanced_trainings: :description,
+                    contributions: :title,
                     skills: [:title]
                   },
                   using: {
