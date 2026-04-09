@@ -1,4 +1,4 @@
-import { Controller } from "@hotwired/stimulus"
+import {Controller} from "@hotwired/stimulus"
 
 export default class extends Controller {
     connect() {
@@ -30,9 +30,26 @@ export default class extends Controller {
 
             window.scrollTo({
                 top: offsetPosition,
-                behavior: "instant"
+                behavior: "smooth"
             });
-            mark.scrollIntoView(false)
+
+            setTimeout(() => {
+                if (!this.isElementInViewport(mark)) {
+                    mark.scrollIntoView(false)
+                }
+            }, 500)
         }
     }
+
+    isElementInViewport(element) {
+        const rect = element.getBoundingClientRect();
+
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /* or $(window).height() */
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth) /* or $(window).width() */
+        );
+    }
+
 }
