@@ -34,7 +34,7 @@ export default class extends Controller {
                 behavior: "smooth"
             });
 
-            timeout = setTimeout(() => {
+            setTimeout(() => {
                 if (!this.isElementInViewport(mark)) {
                     mark.scrollIntoView(false)
                 }
