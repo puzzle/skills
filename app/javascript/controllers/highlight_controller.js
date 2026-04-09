@@ -18,17 +18,21 @@ export default class extends Controller {
 
             element.innerHTML = originalHTML.replace(
                 regex,
-                '<mark class="p-1 rounded text-bg-primary">$1</mark>'
+                '<mark id="marked-text"  class="p-1 rounded text-bg-primary">$1</mark>'
             );
             const headerOffset = 200;
-            const elementPosition = element.getBoundingClientRect().top;
 
+            const mark = document.getElementById("marked-text");
+
+            const elementPosition = element.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
 
             window.scrollTo({
                 top: offsetPosition,
-                behavior: "smooth"
+                behavior: "instant"
             });
+            mark.scrollIntoView(false)
         }
     }
 }
