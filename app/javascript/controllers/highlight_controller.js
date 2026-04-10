@@ -28,7 +28,6 @@ export default class extends Controller {
             const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
 
-            console.log(offsetPosition)
             window.scrollTo({
                 top: offsetPosition,
                 behavior: "smooth"
