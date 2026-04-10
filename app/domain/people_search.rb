@@ -3,6 +3,9 @@
 class PeopleSearch
   SEARCHABLE_FIELDS = %w{name title competence_notes description
                          role technology location}.freeze
+  PERSONAL_DETAILS = %w[name email title person_roles roles department company birthdate nationality
+                        location marital_status shortname].freeze
+  CORE_COMPETENCES = %w[competence_notes skills].freeze
   attr_reader :search_terms, :entries, :search_skills
 
   def initialize(search_terms, search_skills: false)
@@ -45,7 +48,8 @@ class PeopleSearch
   def pre_load(people)
     person_keys = people.map(&:id)
 
-    associations = [:department, :roles, :projects, :activities, :educations, :advanced_trainings]
+    associations = [:department, :roles, :projects, :activities,
+                    :educations, :advanced_trainings, :contributions]
     associations << :skills if search_skills
 
     Person.includes(associations).find(person_keys)
@@ -79,6 +83,27 @@ class PeopleSearch
     end
   end
 
+  # rubocop:disable Metrics/AbcSize
+  def attribute_in_array(array)
+    table_name = table_name_of_attr(array[0])
+    in_attributes = { group: which_group(table_name), attribute: table_name,
+                      keywords_in_attribute: [] }
+    array.each do |t|
+      in_attributes(t.attributes).each do |attribute|
+        in_attributes[:keywords_in_attribute] =
+          (in_attributes[:keywords_in_attribute] + attribute[:keywords_in_attribute]).uniq
+        next unless table_name == 'skills'
+
+        category_name = if t.category.parent_id.present?
+                          t.parent_category.title.parameterize
+                        end
+        in_attributes[:group] = category_name
+      end
+    end
+    in_attributes[:keywords_in_attribute].length.positive? ? in_attributes : []
+  end
+
+  # rubocop:enable Metrics/AbcSize
   # rubocop:enable Metrics/MethodLength
 
   def attribute_not_in_array(target)
@@ -89,17 +114,6 @@ class PeopleSearch
     result
   end
 
-  def attribute_in_array(array)
-    in_attributes = { attribute: table_name_of_attr(array[0]), keywords_in_attribute: [] }
-    array.each do |t|
-      in_attributes(t.attributes).each do |attribute|
-        in_attributes[:keywords_in_attribute] =
-          (in_attributes[:keywords_in_attribute] + attribute[:keywords_in_attribute]).uniq
-      end
-    end
-    in_attributes[:keywords_in_attribute].length.positive? ? in_attributes : []
-  end
-
   def in_attributes(attrs)
     attribute = []
     searchable_fields(attrs).find_all do |key, value|
@@ -107,11 +121,21 @@ class PeopleSearch
 
       keywords_in_attribute = keywords_in_attribute(value)
       if keywords_in_attribute.length.positive?
-        attribute.push({ attribute: key,
+        attribute.push({ group: which_group(key), attribute: key,
                          keywords_in_attribute: keywords_in_attribute })
       end
     end
     attribute
+  end
+
+  def which_group(key)
+    if PERSONAL_DETAILS.include?(key)
+      :personal_data
+    elsif CORE_COMPETENCES.include?(key)
+      :core_competences
+    else
+      key
+    end
   end
 
   def keywords_in_attribute(value)
