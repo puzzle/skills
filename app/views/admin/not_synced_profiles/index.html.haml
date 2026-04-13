@@ -1,6 +1,0 @@
-- if use_ptime_sync? && @not_synced_profiles.any?
-  %hr.my-3
-  %span.p-0.fs-4.text-decoration-underline= ti('not_synced_members_title')
-  = render 'admin/people_management/destroy_people_table', person_collection: @not_synced_profiles, table_id: 'not-synced-people'
-- else
-  %span.p-0.fs-4= ti('nothing_to_manage')

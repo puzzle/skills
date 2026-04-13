@@ -161,13 +161,10 @@ fr:
   admin/manual_ptime_sync:
     index:
       description: Lorsque vous appuyez sur ce magnifique bouton, les données de toutes les personnes sont mises à jour avec celles de PuzzleTime. Ceci peut prendre quelques secondes.
-  admin/unemployed_people:
+  admin/people_management:
     index:
-      ex_members_title: Les profils suivants sont marqués comme anciens employés
-      nothing_to_manage: Actuellement, il n'y a rien à nettoyer
-  admin/not_synced_profiles:
-    index:
-      not_synced_members_title: Les profils suivants ne sont actuellement pas mis à jour par la synchronisation PuzzleTime
+      not_synced_title: Les profils suivants ne sont actuellement pas mis à jour par la synchronisation PuzzleTime
+      unemployed_title: Les profils suivants sont marqués comme anciens employés
       nothing_to_manage: Actuellement, il n'y a rien à nettoyer
   admin/unified_skills:
     conflict_dialog:

@@ -1,0 +1,5 @@
+- if @people.any?
+  %span.p-0.fs-4.text-decoration-underline= ti(params[:people] + '_title')
+  = render 'admin/people_management/destroy_people_table', person_collection: @people, table_id: params[:people] + '-people'
+- else
+  %span.p-0.fs-4= ti('nothing_to_manage')

@@ -165,13 +165,10 @@ de-CH:
   admin/manual_ptime_sync:
     index:
       description: We dä wunderschön Chnopf drückt wird, de wärde d Date vo aune Persone mit de Date usem PuzzleTime aktualisiert. Ds cha einigi Sekunde duure.
-  admin/unemployed_people:
+  admin/people_management:
     index:
-      ex_members_title: Di folgendä Profiu si aus 'Ex-Mitarbeiter' markiert
-      nothing_to_manage: Moment gits nüt zum bereinige
-  admin/not_synced_profiles:
-    index:
-      not_synced_members_title: Di folgendä Profiu wärde momentan nid vom PuzzleTime sync aktualisiert
+      not_synced_title: Di folgendä Profiu wärde momentan nid vom PuzzleTime sync aktualisiert
+      unemployed_title: Di folgendä Profiu si aus 'Ex-Mitarbeiter' markiert
       nothing_to_manage: Moment gits nüt zum bereinige
   admin/unified_skills:
     conflict_dialog:
