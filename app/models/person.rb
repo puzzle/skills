@@ -73,6 +73,12 @@ class Person < ApplicationRecord
 
   scope :unemployed, -> { employed.invert_where }
 
+  scope :not_synced, -> {
+    return none unless Skills.use_ptime_sync?
+
+    where(ptime_employee_id: nil).or(where(ptime_data_provider: nil))
+  }
+
   enum :marital_status, { single: 0, married: 1, widowed: 2, registered_partnership: 3,
                           divorced: 4 }
 

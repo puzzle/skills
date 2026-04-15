@@ -7,12 +7,12 @@ class Admin::PeopleManagementController < CrudController
   end
 
   def index
-    if params[:people] == 'unemployed'
-      @people = Person.unemployed
-    elsif params[:people] == 'not_synced'
-      @people = Person.where(ptime_employee_id: nil)
-                      .or(Person.where(ptime_data_provider: nil))
-    end
+    @people = case params[:people]
+              when 'unemployed'
+                Person.unemployed
+              when 'not_synced'
+                Person.not_synced
+              end
   end
 
   def destroy_person
