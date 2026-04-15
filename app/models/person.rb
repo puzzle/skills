@@ -73,7 +73,7 @@ class Person < ApplicationRecord
 
   scope :unemployed, -> { employed.invert_where }
 
-  scope :not_synced, -> {
+  scope :not_synced, lambda {
     return none unless Skills.use_ptime_sync?
 
     where(ptime_employee_id: nil).or(where(ptime_data_provider: nil))
