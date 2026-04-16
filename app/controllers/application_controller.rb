@@ -59,9 +59,9 @@ class ApplicationController < ActionController::Base
     render_unauthorized(helpers.admin?)
   end
 
-  def render_unauthorized_not_conf_admin
-    render_unauthorized(helpers.conf_admin?)
-  end
+  # def render_unauthorized_not_conf_admin
+  #   render_unauthorized(helpers.conf_admin?)
+  # end
 
   def render_unauthorized(is_authorized)
     return false if is_authorized

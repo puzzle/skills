@@ -15,7 +15,7 @@ class Ability
     {
       is_editor?: :initialize_editor_rights,
       is_admin?: :initialize_admin_rights,
-      is_conf_admin?: :initialize_conf_admin_rights
+      # is_conf_admin?: :initialize_conf_admin_rights
     }
   end
 
@@ -45,12 +45,12 @@ class Ability
     end
   end
 
-  def initialize_conf_admin_rights
-    initialize_admin_rights
-    conf_admin_classes.each do |conf_admin_class|
-      can :manage, conf_admin_class
-    end
-  end
+  # def initialize_conf_admin_rights
+  #   initialize_admin_rights
+  #   conf_admin_classes.each do |conf_admin_class|
+  #     can :manage, conf_admin_class
+  #   end
+  # end
 
   def user_classes
     [Activity, AdvancedTraining, Education, Project, PeopleSkill, Contribution]
@@ -62,11 +62,11 @@ class Ability
     [Activity, AdvancedTraining, Education, Person, Project, PeopleSkill, Contribution]
   end
 
-  def conf_admin_classes
-    [Department, Role, Company]
-  end
+  # def conf_admin_classes
+  #   [Department, Role, Company]
+  # end
 
   def admin_classes
-    [Certificate, Skill, UnifiedSkill, UnifiedSkillForm]
+    [Certificate, Skill, UnifiedSkill, UnifiedSkillForm, Department, Role, Company]
   end
 end

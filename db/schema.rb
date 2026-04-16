@@ -188,6 +188,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_16_140520) do
     t.string "title"
     t.datetime "updated_at", precision: nil, null: false
     t.string "updated_by"
+    t.index ["auth_user_id"], name: "index_people_on_auth_user_id"
     t.index ["company_id"], name: "index_people_on_company_id"
   end
 

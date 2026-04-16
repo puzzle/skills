@@ -33,9 +33,9 @@ class AuthConfig
       get_var_from_environment(:admin_role, required: false)
     end
 
-    def conf_admin_role
-      get_var_from_environment(:conf_admin_role, required: false)
-    end
+    # def conf_admin_role
+    #   get_var_from_environment(:conf_admin_role, required: false)
+    # end
 
     def relevant_keycloak_role
       get_var_from_environment(:relevant_keycloak_role, required: true)
