@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Admin::ManualPtimeSyncController, type: :controller do
   it 'should redirect to admin index when ptime_sync is inactive' do
-    sign_in(auth_users(:conf_admin))
+    sign_in(auth_users(:admin))
     allow(Skills).to receive(:use_ptime_sync?).and_return(false)
 
     get :index

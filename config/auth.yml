@@ -1,5 +1,4 @@
 admin_role: ADMIN
-conf_admin_role: CONF_ADMIN
 host_url:
 realm:
 client_id:
