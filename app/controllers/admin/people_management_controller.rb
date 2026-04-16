@@ -12,6 +12,8 @@ class Admin::PeopleManagementController < CrudController
                 Person.unemployed
               when 'not_synced'
                 Person.not_synced
+              else
+                redirect_to admin_index_path
               end
   end
 
