@@ -23,7 +23,6 @@ class AuthUser < ApplicationRecord
 
     def set_admin(person, auth)
       person.is_admin = role?(auth, AuthConfig.admin_role)
-      # person.is_conf_admin = role?(auth, AuthConfig.conf_admin_role)
       person.save
       person
     end
