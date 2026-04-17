@@ -1,5 +1,5 @@
 ---
-name: "On-Push-Main"
+name: "On-Push-Master"
 on:
   push:
     branches:
