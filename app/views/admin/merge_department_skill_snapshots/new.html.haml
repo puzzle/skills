@@ -1,0 +1,24 @@
+= form_with url: admin_merge_department_skill_snapshots_path,
+            method: :post do |f|
+
+  .d-flex.mt-4.mb-4.gap-4
+
+    %div{"data-controller": "dropdown", "data-dropdown-multiple-value": "true"}
+      = f.label :old_department_ids, "Old Departments", class: "text-secondary"
+
+      = f.select :old_department_ids,
+            options_from_collection_for_select(@departments, :id, :name, params[:old_department_ids]),
+            {},
+            {multiple: true,size: 10,class: "skill-tracking-select",data: { dropdown_target: "dropdown" }}
+
+    %div{"data-controller": "dropdown", "data-dropdown-auto-width-value": "true"}
+      = f.label :new_department_id, "New Department", class: "text-secondary"
+
+      = f.select :new_department_id,
+            options_from_collection_for_select(@departments, :id, :name, params[:new_department_id]),
+            { prompt: "Select target department" },
+            {class: "skill-tracking-select",data: { dropdown_target: "dropdown" }}
+
+  = f.submit "Merge Snapshots",
+        class: "btn btn-primary",
+        data: { confirm: "Are you sure? This will create merged snapshot data." }

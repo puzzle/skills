@@ -6,12 +6,16 @@ export default class extends Controller {
     static targets = ["dropdown"]
     static values = {
         autoWidth: {type: Boolean, default: false},
-        contentPosition:  {type: String, default: 'absolute'}
+        contentPosition:  {type: String, default: 'absolute'},
+        multiple: { type: Boolean, default: false }
     }
 
     connect() {
-        if (!this.hasDropdownTarget)
-            return;
+        if (!this.hasDropdownTarget) return;
+
+        if (this.multipleValue) {
+            this.dropdownTarget.setAttribute("multiple", "multiple");
+        }
 
         const slimSelectDropdown = new SlimSelect({
             select: this.dropdownTarget,
@@ -20,17 +24,19 @@ export default class extends Controller {
             },
             events: {
                 searchFilter: (option, search) => {
-                    return option.text.toLowerCase().replace(/\s/g, '').indexOf(search.toLowerCase().replace(/\s/g, '')) !== -1
+                    return option.text.toLowerCase().replace(/\s/g, '').includes(search.toLowerCase().replace(/\s/g, ''))
                 },
                 beforeChange: (newVal) => {
                     newVal = newVal[0];
+                    const item = newVal?.[0];
 
                     // Check if dropdown element is a link
-                    if(newVal.html.startsWith("<a")) {
-                        Turbo.visit(newVal.value);
+                    if(item?.html?.startsWith("<a")) {
+                        Turbo.visit(item.value);
 
                         return false;
                     }
+                    return true;
                 }
             },
         });
