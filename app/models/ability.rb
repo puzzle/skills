@@ -50,8 +50,6 @@ class Ability
 
   def editor_classes
     [Activity, AdvancedTraining, Education, Person, Project, PeopleSkill, Contribution]
-  def editor_classes
-    [Activity, AdvancedTraining, Education, Person, Project, PeopleSkill, Contribution]
   end
 
   def admin_classes

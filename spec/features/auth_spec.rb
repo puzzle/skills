@@ -53,7 +53,7 @@ describe 'Check authentications', type: :feature, js: true do
   context 'switch between auth users' do
     before(:each) do
       allow(Rails).to receive(:env).and_return(ActiveSupport::StringInquirer.new("development"))
-      sign_in(auth_users(:conf_admin))
+      sign_in(auth_users(:editor))
       visit people_path
     end
 

@@ -16,6 +16,12 @@ admin_with_profile:
   email: admin@skills.ch
   is_admin: true
 
+auth_user:
+  uid: 1234-5678-9012-3461
+  name: Carl Albrecht Conf
+  email: admin@skills.ch
+  is_admin: true
+
 editor:
   uid: 1234-5678-9012-3459
   name: Eddy Editor
