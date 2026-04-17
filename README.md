@@ -192,6 +192,11 @@ This will show you any **new** logs, and if you encounter a `pry` prompt, you ca
 -   To run the tests within the docker container use `bin/test`
 ## Hooks
 - To install the pre-commit hooks run `overcommit --install`
+
+## Versioning
+For version management and automated release creation, we use [release-please](https://github.com/googleapis/release-please).
+It helps us automate version bumps, changelog generation, 
+and releases based on the commit history, following [conventional commits](https://www.conventionalcommits.org).
 ## Documentation
 Find further Documentation at the links below
 

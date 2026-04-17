@@ -24,9 +24,16 @@ All you need to do is adhere to the Definion of Done below
 
 - Use spaces instead of tabs
 
+#### Commit Guidelines
+- [Conventional Commits](https://www.conventionalcommits.org/)
+
+
 #### Entity Relationship Diagram
 To gain an overview of the project an ERD might help, generate one with:
 
 ```shell
 bundle exec erd
 ```
+
+#### Hooks
+- To install the pre-commit hooks run `overcommit --install`
