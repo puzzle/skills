@@ -98,6 +98,7 @@ class PeopleSearch
                           t.parent_category.title.parameterize
                         end
         in_attributes[:group] = category_name
+        in_attributes[:category] = t.parent_category.title
       end
     end
     in_attributes[:keywords_in_attribute].length.positive? ? in_attributes : []
@@ -160,6 +161,8 @@ class PeopleSearch
   def found_in_human_attrs(person)
     found_in_attrs(person).each do |found_in|
       found_in[:attribute] = Person.human_attribute_name(found_in[:attribute], count: 2)
+      found_in[:attribute] += "/ #{found_in[:category]}"
+      found_in.delete(:category)
     end
   end
 end
