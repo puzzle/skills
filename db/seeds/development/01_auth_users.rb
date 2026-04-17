@@ -6,9 +6,6 @@ seeder = AuthUserSeeder.new
 
 auth_users = [
   {
-    first_name: 'Carl Albrecht', last_name: 'Conf Admin', admin: true, editor: false
-  },
-  {
     first_name: 'Andreas', last_name: 'Admin', admin: true, editor: false
   },
   {
