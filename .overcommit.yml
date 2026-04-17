@@ -11,6 +11,6 @@ CommitMsg:
   MessageFormat:
     enabled: true
     pattern: '^(build|chore|ci|docs|feat|fix|refactor|revert|style|test)(\([a-zA-Z0-9_-]+\))?!?: .+( #[0-9]+)?$'
-    expected_pattern_message: '<type><(optional scope)><! if breaking change>: <description> <optional #ticket number> for more details visit https://www.conventionalcommits.org/'
+    expected_pattern_message: '<type>[(scope)][! if breaking change]: <description> [#ticket number] for more details visit https://www.conventionalcommits.org/'
     sample_message: 'feat(overcommit): implement new overcommit commit-msg hook #1106'
     description: 'Check if commit is a conventional commit'
