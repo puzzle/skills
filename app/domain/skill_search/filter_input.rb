@@ -5,11 +5,11 @@ module SkillSearch
     attr_reader :department
 
     def initialize(params)
-      @skill_ids  = params[:skill_id]
-      @levels     = params[:level]
-      @interests  = params[:interest]&.values
-      @operators  = params[:operator]&.values || []
-      @department = params[:department].presence&.to_i
+      @skill_ids  = params[:skill_ids]
+      @levels     = params[:levels]
+      @interests  = params[:interests]
+      @operators  = params[:operators] || []
+      @department = params[:department]
     end
 
     def rows

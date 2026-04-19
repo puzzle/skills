@@ -5,7 +5,7 @@ module SkillSearch
     LIMIT = 5
 
     def initialize(active)
-      @active = active == '1'
+      @active = active
     end
 
     def active? = @active
