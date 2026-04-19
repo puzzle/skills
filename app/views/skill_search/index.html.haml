@@ -3,20 +3,20 @@
   %div.profile-header.mw-100.border-bottom.mt-4.fw-normal
     = ti "search.search_results"
   %div.border.p-3.rounded-bottom.search-results
-    - if @no_match_message
-      = ti('search.no_match') + @no_match_message
-    - elsif @search_results.empty?
+    - if @search.no_matches?
+      = ti('search.no_match') + @search.no_match_message
+    - elsif @search.results.values.empty?
       = ti 'search.no_skill'
     - else
       .row.bg-light-subtle.border-bottom.border-5.border-secondary.p-0
         = render('sort_header')
-        - people_skills.each do | person_skills |
-          - person = person_skills[0].person
+        - @search.results.values.each do |person_skills|
+          - person = person_skills.first.person
           %div.d-flex.flex-row.w-100.border-bottom
             %div.d-flex.flex-column.mt-2.mb-2.person-filter-container.justify-content-start
               = link_to person, {}, {"data-turbo-frame": "_top"}
               = person.department
             %div.d-flex.flex-column.mt-2.mb-2.skills-filter-container
-              - person_skills.sort_by{|person_skill| person_skill.skill.title.downcase}.each do |person_skill|
+              - person_skills.sort_by { |person_skill| person_skill.skill.title.downcase }.each do |person_skill|
                 %div.d-flex.flex-row.mb-5
                   = render('person_skill', {person_skill: person_skill})
