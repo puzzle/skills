@@ -30,6 +30,7 @@ class Skill < ApplicationRecord
   default_scope { kept }
 
   scope :list, -> { order(:title) }
+  scope :for_select, -> { list.map { |skill| [skill.title, skill.id] } }
 
   scope :default_set, -> { where(default_set: true) }
 
