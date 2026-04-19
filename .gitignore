@@ -112,4 +112,6 @@ config/docker/*/home/rails/.mozilla
 .cache
 
 .envrc
+.projections.json
+
 .pryrc
