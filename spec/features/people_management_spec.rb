@@ -59,12 +59,15 @@ describe 'People management' do
     it 'should delete person after confirming', js: true do
       visit admin_people_management_path(people: 'not_synced')
 
+      expect(Person.find_by(name: bob.name)).to be_present
+
       within "#person_#{bob.id}" do
         accept_confirm("Willst du diesen Eintrag wirklich löschen?") do
           click_button('Löschen')
         end
       end
 
+      expect(page).to have_content("Bob Anderson wurde erfolgreich gelöscht.")
 
       expect(Person.find_by(name: bob.name)).to be_nil
     end
@@ -106,9 +109,7 @@ describe 'People management' do
         end
       end
 
-      within page.all('table')[0] do
-        expect(page).not_to have_content(bob.name)
-      end
+      expect(page).to have_content("Bob Anderson wurde erfolgreich gelöscht.")
 
       expect(Person.find_by(name: bob.name)).to be_nil
     end
