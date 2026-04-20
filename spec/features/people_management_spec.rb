@@ -66,7 +66,7 @@ describe 'People management' do
       end
 
 
-      expect(Person.find_by(name: bob)).to be_nil
+      expect(Person.find_by(name: bob.name)).to be_nil
     end
 
     it 'should show info message when there is nothing to clean up', js: true do
