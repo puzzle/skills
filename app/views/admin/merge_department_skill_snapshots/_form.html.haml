@@ -1,0 +1,21 @@
+= form_with url: admin_merge_department_skill_snapshots_path,
+            method: :post do |f|
+
+  .d-flex.mt-4.mb-4.gap-4
+    %div{ data: { controller: "dropdown", dropdown_multiple_value: true } }
+      = f.label :old_department_ids, t("old_departments"), class: "text-secondary"
+
+      = f.select :old_department_ids,
+        options_from_collection_for_select(@departments, :id, :name, params[:old_department_ids]),
+        {},
+        multiple: true, size: 10, class: "skill-tracking-select", data: { dropdown_target: "dropdown" }
+
+    %div{ data: { controller: "dropdown", dropdown_auto_width_value: true } }
+      = f.label :new_department_id, t("new_department"), class: "text-secondary"
+
+      = f.select :new_department_id,
+        options_from_collection_for_select(@departments, :id, :name, params[:new_department_id]),
+        {},
+        class: "skill-tracking-select", data: { dropdown_target: "dropdown" }
+
+  = f.submit ti('merge'), data: { turbo_frame: "remote_modal" }
