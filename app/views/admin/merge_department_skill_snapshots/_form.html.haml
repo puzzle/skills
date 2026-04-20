@@ -1,6 +1,4 @@
-= form_with url: admin_merge_department_skill_snapshots_path,
-            method: :post do |f|
-
+= form_with url: admin_merge_department_skill_snapshots_path, method: :post do |f|
   .d-flex.mt-4.mb-4.gap-4
     %div{ data: { controller: "dropdown", dropdown_multiple_value: true } }
       = f.label :old_department_ids, t("old_departments"), class: "text-secondary"
@@ -18,4 +16,4 @@
         {},
         class: "skill-tracking-select", data: { dropdown_target: "dropdown" }
 
-  = f.submit ti('merge'), data: { turbo_frame: "remote_modal" }
+  = f.submit 'Merge', data: { turbo_frame: "remote_modal" }
