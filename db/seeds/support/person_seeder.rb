@@ -20,12 +20,6 @@ class PersonSeeder
       end
     end
 
-    # Allow the default logged-in user to edit themselves
-    Person.find_by_name("Carl Albrecht Conf Admin")&.update(
-      auth_user_id: 1,
-      company_id: 1
-    )
-
     Person.find_by_name("Andreas Admin")&.update(
       auth_user_id: 2,
       company_id: 1

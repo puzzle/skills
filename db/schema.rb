@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_16_140520) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_16_110146) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -47,7 +47,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_16_140520) do
     t.datetime "created_at", null: false
     t.string "email"
     t.boolean "is_admin", default: false, null: false
-    t.boolean "is_conf_admin", default: false, null: false
     t.boolean "is_editor", default: false, null: false
     t.datetime "last_login"
     t.string "ldap_username"
@@ -188,6 +187,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_16_140520) do
     t.string "title"
     t.datetime "updated_at", precision: nil, null: false
     t.string "updated_by"
+    t.index ["auth_user_id"], name: "index_people_on_auth_user_id"
     t.index ["company_id"], name: "index_people_on_company_id"
   end
 
