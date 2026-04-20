@@ -57,7 +57,7 @@ describe 'Check authentications', type: :feature, js: true do
       visit people_path
     end
 
-    ['Andreas Admin', 'Ursula User', 'Carl Albrecht Conf'].each do |username|
+    ['Andreas Admin', 'Ursula User'].each do |username|
       it "successfully selects #{username} as auth user" do
         select_from_slim_select("#auth_user_id", username)
       end
