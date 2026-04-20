@@ -12,6 +12,12 @@ class Admin::MergeDepartmentSkillSnapshotsController < ApplicationController
       new_department_id: new_department_id
     )
 
+    flash[:notice] = t(
+      ".success",
+      old_department_ids: old_department_ids.join(", "),
+      new_department_id: new_department_id
+    )
+
     redirect_to new_admin_merge_department_skill_snapshots_path
   end
 
@@ -21,12 +27,15 @@ class Admin::MergeDepartmentSkillSnapshotsController < ApplicationController
     @departments = Department.order(:name)
   end
 
+  private
+
   def merge_params
-    params.permit(:new_department_id, old_department_ids: [])
+    params.except(:authenticity_token, :commit, :locale, :controller, :action)
+          .permit(:new_department_id, old_department_ids: [])
   end
 
   def old_department_ids
-    Array(merge_params[:old_department_ids]).map(&:to_i)
+    Array(merge_params[:old_department_ids]).reject(&:blank?).map(&:to_i)
   end
 
   def new_department_id
