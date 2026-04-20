@@ -149,6 +149,7 @@ fr:
       reminder_mail: Activez les e-mails de rappel pour votre entreprise.
       unify_skills: Unifier les compétences
       update_people_manually: Mise à jour manuelle des personnes
+      merge_department_snapshots: Fusionner les Department Skill snapshots
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Une erreur s'est produite lors de la mise à jour de %{names}. Veuillez réessayer et, si nécessaire, vérifier les données dans PuzzleTime.

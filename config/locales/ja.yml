@@ -149,6 +149,7 @@ ja:
       reminder_mail: 会社のリマインダーメールを有効にする
       unify_skills: スキル統合
       update_people_manually: ユーザーを手動で更新
+      merge_department_snapshots: "部署スキルスナップショットを統合"
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: "%{names}の更新に失敗しました。再度お試しください。また、念のためPuzzleTime内のデータもご確認ください。"

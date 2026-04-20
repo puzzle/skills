@@ -149,6 +149,7 @@ en:
       reminder_mail: Activate reminder emails for your company.
       unify_skills: Unify skills
       update_people_manually: Update people manually
+      merge_department_snapshots: Merge Department Skill snapshots
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Something went wrong while updating %{names}. Please try again and, if necessary, check the data in PuzzleTime.
@@ -158,6 +159,9 @@ en:
     unified_skills:
       create:
         success: Skill %{skill1} was successfully unified with Skill %{skill2} into the new Skill %{new_skill}
+    merge_department_skill_snapshots:
+      create:
+        success: "History of Department %{old_department_ids} was successfully unified and transferred to department %{new_department_id}."
   admin/manual_ptime_sync:
     index:
       description: When this beautiful button is pressed, all people's data will be updated with the data from PuzzleTime. This may take a few seconds.
@@ -176,6 +180,9 @@ en:
       conflicts_found_message:
         one: "%{names} has rated both Skills. If the Skills are unified anyway, the better rating will be used."
         other: "%{names} have rated both Skills. If the Skills are unified anyway, the better rating will be used."
+  admin/merge_department_skill_snapshots:
+    form:
+      merge: Merge
   certificates:
     form:
       cancel: cancel
