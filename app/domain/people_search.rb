@@ -86,12 +86,17 @@ class PeopleSearch
   # rubocop:disable Metrics/AbcSize
   def attribute_in_array(array)
     table_name = table_name_of_attr(array[0])
-    in_attributes = { group: which_group(table_name), attribute: table_name,
-                      keywords_in_attribute: [] }
+
+    all_attributes = []
+
     array.each do |t|
+      in_attributes = { group: which_group(table_name), attribute: table_name,
+                        keywords_in_attribute: [] }
+
       in_attributes(t.attributes).each do |attribute|
         in_attributes[:keywords_in_attribute] =
           (in_attributes[:keywords_in_attribute] + attribute[:keywords_in_attribute]).uniq
+        in_attributes[:value] = attribute[:value]
         next unless table_name == 'skills'
 
         category_name = if t.category.parent_id.present?
@@ -100,8 +105,12 @@ class PeopleSearch
         in_attributes[:group] = category_name
         in_attributes[:category] = t.parent_category.title
       end
+
+      if in_attributes[:keywords_in_attribute].length.positive?
+        all_attributes.push(in_attributes)
+      end
     end
-    in_attributes[:keywords_in_attribute].length.positive? ? in_attributes : []
+    all_attributes
   end
 
   # rubocop:enable Metrics/AbcSize
@@ -121,10 +130,11 @@ class PeopleSearch
       next if value.nil?
 
       keywords_in_attribute = keywords_in_attribute(value)
-      if keywords_in_attribute.length.positive?
-        attribute.push({ group: which_group(key), attribute: key,
-                         keywords_in_attribute: keywords_in_attribute })
-      end
+      next unless keywords_in_attribute.length.positive?
+
+      attribute.push({ group: which_group(key), attribute: key,
+                       keywords_in_attribute: keywords_in_attribute,
+                       value: [value] })
     end
     attribute
   end
