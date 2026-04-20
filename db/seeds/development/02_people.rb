@@ -26,6 +26,6 @@ names = ['Jorah Mormont',
          'Arya Stark',
          'Andreas Admin',
          'Ursula User',
-         'Carl Albrecht Conf Admin']
+         'Eddy Editor']
 
 seeder.seed_people(names)

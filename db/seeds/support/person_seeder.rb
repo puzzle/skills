@@ -19,6 +19,21 @@ class PersonSeeder
         seed_project_technology(project.id)
       end
     end
+
+    Person.find_by_name("Andreas Admin")&.update(
+      auth_user_id: 2,
+      company_id: 1
+    )
+
+    Person.find_by_name("Eddy Editor")&.update(
+      auth_user_id: 3,
+      company_id: 1
+    )
+
+    Person.find_by_name("Ursula User")&.update(
+      auth_user_id: 4,
+      company_id: 1
+    )
   end
 
   def seed_association(assoc_name, person_id)

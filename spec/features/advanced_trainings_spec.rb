@@ -10,9 +10,11 @@ describe 'Advanced Trainings', type: :feature, js:true do
 
   describe 'Simple interactions' do
     it 'shows all' do
-      within('turbo-frame#advanced_training') do
-        expect(page).to have_content('2010 - 2012')
-        expect(page).to have_content('Course about how to clean')
+      person.advanced_trainings.each do |advanced_training|
+        within("turbo-frame##{dom_id(advanced_training)}") do
+          expect(page).to have_content("#{advanced_training.year_from} - #{advanced_training.year_to}")
+          expect(page).to have_content(advanced_training.description)
+        end
       end
     end
 
