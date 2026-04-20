@@ -140,14 +140,13 @@ class PeopleSearch
   end
 
   def keywords_in_attribute(value)
-    normalized_value = value.to_s.strip
-
-    search_terms.select do |search_term|
-      clean_term = search_term.strip
-      regex = /\b#{Regexp.escape(clean_term)}\b/i
-
-      normalized_value.match?(regex)
+    keywords_in_attribute = []
+    search_terms.each do |search_term|
+      if value.strip.downcase.include?(search_term.strip.downcase)
+        keywords_in_attribute.push(search_term)
+      end
     end
+    keywords_in_attribute
   end
 
   def searchable_fields(fields)
@@ -162,9 +161,7 @@ class PeopleSearch
   def found_in_human_attrs(person)
     found_in_attrs(person).each do |found_in|
       found_in[:attribute] = Person.human_attribute_name(found_in[:attribute], count: 2)
-      if found_in[:category]
-        found_in[:attribute] += "/ #{found_in[:category]}"
-      end
+      found_in[:attribute] += "/ #{found_in[:category]}"
       found_in.delete(:category)
     end
   end
