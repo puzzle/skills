@@ -161,7 +161,7 @@ en:
         success: Skill %{skill1} was successfully unified with Skill %{skill2} into the new Skill %{new_skill}
     merge_department_skill_snapshots:
       create:
-        success: "History of Department %{old_department_ids} was successfully unified and transferred to department %{new_department_id}."
+        success: "History of Department %{old_department_names} was successfully unified and transferred to department %{new_department_name}."
   admin/manual_ptime_sync:
     index:
       description: When this beautiful button is pressed, all people's data will be updated with the data from PuzzleTime. This may take a few seconds.
@@ -183,6 +183,8 @@ en:
   admin/merge_department_skill_snapshots:
     form:
       merge: Merge
+      new_department: New Department
+      old_departments: Old Departments
   certificates:
     form:
       cancel: cancel
