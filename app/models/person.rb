@@ -125,12 +125,12 @@ class Person < ApplicationRecord
   end
 
   def url_valid?(picture_url)
-    return true if picture_url.nil? || picture_url.blank?
+    return true if picture_url.blank?
 
     url = URI.parse(picture_url)
     return false if url.host.nil?
 
-    host_regex = /^(\w+\.)?#{ENV.fetch('PICTURE_HOST', 'puzzle.ch')}$/
+    host_regex = /^(\w+\.)?#{ENV.fetch('PICTURE_HOST', 'puzzle.ch').sub('.', '\.')}$/
     url.host.match? host_regex
   rescue URI::InvalidURIError
     false
