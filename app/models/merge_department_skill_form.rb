@@ -7,8 +7,19 @@ class MergeDepartmentSkillForm
 
   validates :old_department_ids, presence: true
   validates :new_department_id, presence: true
+  validate :new_department_not_in_old_departments
 
-  def persisted?
-    false
+  def old_department_ids
+    super.reject(&:blank?).map(&:to_i)
+  end
+
+  private
+
+  def new_department_not_in_old_departments
+    return if new_department_id.blank?
+
+    if old_department_ids.include?(new_department_id)
+      errors.add(:new_department_id, :merge_identical_department)
+    end
   end
 end

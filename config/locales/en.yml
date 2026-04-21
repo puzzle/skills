@@ -149,7 +149,7 @@ en:
       reminder_mail: Activate reminder emails for your company.
       unify_skills: Unify skills
       update_people_manually: Update people manually
-      merge_department_snapshots: Merge Department Skill snapshots
+      merge_department_snapshots: Merge Department Skill History
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Something went wrong while updating %{names}. Please try again and, if necessary, check the data in PuzzleTime.
@@ -182,8 +182,8 @@ en:
         other: "%{names} have rated both Skills. If the Skills are unified anyway, the better rating will be used."
   admin/merge_department_skill_snapshots:
     form:
-      merge: Merge
-      new_department: New Department
+      merge_history: Merge history
+      new_department: Target Department
       old_departments: Old Departments
   certificates:
     form:
@@ -217,6 +217,7 @@ en:
       max_size_error: must not be larger than 10MB.
       profile-not-found: Profile could not be found.
       valid_percent_range: must be between 0 and 200.
+      merge_identical_department: Cannot merge a department history with itself.
   global:
     date:
       from: From
