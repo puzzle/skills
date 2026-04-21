@@ -182,7 +182,7 @@ en:
         other: "%{names} have rated both Skills. If the Skills are unified anyway, the better rating will be used."
   admin/merge_department_skill_snapshots:
     form:
-      merge_history: Merge history
+      merge_history: Merge History
       new_department: Target Department
       old_departments: Old Departments
   certificates:

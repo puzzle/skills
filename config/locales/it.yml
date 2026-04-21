@@ -149,7 +149,7 @@ it:
       reminder_mail: Attiva le email di promemoria per la tua azienda.
       unify_skills: Unire le competenze
       update_people_manually: Aggiornare le persone manualmente
-      merge_department_snapshots: Unisci Department Skill snapshots
+      merge_department_snapshots: Unisci cronologia competenze del reparto
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Si è verificato un errore durante l'aggiornamento di %{names}. Si prega di riprovare e, se necessario, controllare i dati in PuzzleTime.
@@ -159,6 +159,9 @@ it:
     unified_skills:
       create:
         success: La competenza %{skill1} è stata unificata con successo con la competenza %{skill2} nella nuova competenza %{new_skill}
+    merge_department_skill_snapshots:
+      create:
+        success: La cronologia del reparto %{old_department_names} è stata unificata con successo e trasferita al reparto %{new_department_name}.
   admin/manual_ptime_sync:
     index:
       description: Quando questo bellissimo pulsante viene premuto, i dati di tutte le persone verranno aggiornati con i dati di PuzzleTime. Questo potrebbe richiedere alcuni secondi.
@@ -177,6 +180,11 @@ it:
       conflicts_found_message:
         one: "%{names} ha valutato entrambe le competenze. Se le competenze vengono comunque unite, verrà utilizzata la valutazione migliore."
         other: "%{names} hanno valutato entrambe le competenze. Se le competenze vengono comunque unite, verrà utilizzata la valutazione migliore."
+  admin/merge_department_skill_snapshots:
+    form:
+      merge_history: Unisci cronologia
+      new_department: Reparto di destinazione
+      old_departments: Reparti precedenti
   certificates:
     form:
       cancel: cancellare
@@ -209,6 +217,7 @@ it:
       max_size_error: non deve essere più grande di 10 MB.
       profile-not-found: Il profilo non è stato trovato.
       valid_percent_range: deve essere compreso tra 0 e 200.
+      merge_identical_department: Non è possibile unire la cronologia del reparto con se stessa.
   global:
     date:
       from: Da
