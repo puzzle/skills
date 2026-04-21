@@ -4,43 +4,46 @@ class Admin::MergeDepartmentSkillSnapshotsController < ApplicationController
   before_action :load_departments
 
   def new
-
+    @form = MergeDepartmentSkillForm.new
   end
 
   def create
-    old_departments = Department.where(id: old_department_ids)
-    new_dept = Department.find_by(id: new_department_id)
+    @form = MergeDepartmentSkillForm.new(merge_params)
 
-      DepartmentSkillsSnapshotBuilder.new.merge_department_skills_to_new_department(
-        old_department_ids: old_departments.pluck(:id),
-        new_department_id: new_dept.id
-      )
+    return invalid_form unless @form.valid?
 
-      flash[:notice] = t(
-        ".success",
-        old_department_names: old_departments.pluck(:name).join(", "),
-        new_department_name: new_dept.name
-      )
+    old_departments = Department.where(id: @form.old_department_ids)
+    new_department = Department.find(@form.new_department_id)
+
+    DepartmentSkillsSnapshotBuilder.new.merge_department_skills_to_new_department(
+      old_department_ids: old_departments.ids,
+      new_department_id: new_department.id
+    )
+
+    flash[:notice] = t(
+      ".success",
+      old_department_names: old_departments.pluck(:name).join(", "),
+      new_department_name: new_department.name
+    )
 
     redirect_to new_admin_merge_department_skill_snapshots_path
   end
 
   private
 
+  def invalid_form
+    flash[:alert] = @form.errors.full_messages.to_sentence
+    redirect_to new_admin_merge_department_skill_snapshots_path
+  end
+
   def load_departments
     @departments = Department.order(:name)
   end
 
   def merge_params
-    params.except(:authenticity_token, :commit, :locale, :controller, :action)
-          .permit(:new_department_id, old_department_ids: [])
-  end
-
-  def old_department_ids
-    Array(merge_params[:old_department_ids]).reject(&:blank?).map(&:to_i)
-  end
-
-  def new_department_id
-    merge_params[:new_department_id].to_i
+    params.require(:merge_department_skill_form).permit(
+      :new_department_id,
+      old_department_ids: []
+    )
   end
 end
