@@ -10,6 +10,15 @@ $skills-dark-blue: #1e5a96;
   max-width: 60%;
 }
 
+.theme-dark {
+  filter: hue-rotate(180deg) invert(0.9);
+}
+
+//Remove theme filter for all images
+.theme-dark img {
+  filter: hue-rotate(180deg) invert(1.1);
+}
+
 .pointer {
   cursor: pointer;
 }
