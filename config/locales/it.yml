@@ -2,6 +2,9 @@
 it:
   activemodel:
     attributes:
+      merge_department_skill_form:
+        old_department_ids: Reparti precedenti
+        new_department_id: Reparto di destinazione
       unified_skill_form:
         new_skill: Nuova competenza
         old_skill_id1: Competenza 1
@@ -160,7 +163,7 @@ it:
       create:
         success: La competenza %{skill1} è stata unificata con successo con la competenza %{skill2} nella nuova competenza %{new_skill}
     merge_department_skill_snapshots:
-      create:
+      set_success_flash:
         success: La cronologia del reparto %{old_department_names} è stata unificata con successo e trasferita al reparto %{new_department_name}.
   admin/manual_ptime_sync:
     index:
@@ -217,7 +220,7 @@ it:
       max_size_error: non deve essere più grande di 10 MB.
       profile-not-found: Il profilo non è stato trovato.
       valid_percent_range: deve essere compreso tra 0 e 200.
-      merge_identical_department: Non è possibile unire la cronologia del reparto con se stessa.
+      merge_identical_department: non può essere unito con se stesso.
   global:
     date:
       from: Da

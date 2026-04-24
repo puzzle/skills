@@ -7,6 +7,9 @@ en:
         old_skill_id1: Skill 1
         old_skill_id2: Skill 2
         title: Title
+      merge_department_skill_form:
+        old_department_ids: Old Departments
+        new_department_id: Target Department
     errors:
       models:
         unified_skill_form:
@@ -160,7 +163,7 @@ en:
       create:
         success: Skill %{skill1} was successfully unified with Skill %{skill2} into the new Skill %{new_skill}
     merge_department_skill_snapshots:
-      create:
+      set_success_flash:
         success: "History of Department %{old_department_names} was successfully unified and transferred to department %{new_department_name}."
   admin/manual_ptime_sync:
     index:
@@ -217,7 +220,7 @@ en:
       max_size_error: must not be larger than 10MB.
       profile-not-found: Profile could not be found.
       valid_percent_range: must be between 0 and 200.
-      merge_identical_department: Cannot merge a department history with itself.
+      merge_identical_department: cannot be merged with itself.
   global:
     date:
       from: From

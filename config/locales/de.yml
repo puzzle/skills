@@ -2,6 +2,9 @@
 de:
   activemodel:
     attributes:
+      merge_department_skill_form:
+        old_department_ids: Alte Abteilungen
+        new_department_id: Zielabteilung
       unified_skill_form:
         new_skill: Neuer Skill
         old_skill_id1: Skill 1
@@ -164,7 +167,7 @@ de:
       create:
         success: Skill %{skill1} wurde erfolgreich mit Skill %{skill2} zum neuen Skill %{new_skill} vereint
     merge_department_skill_snapshots:
-      create:
+      set_success_flash:
         success: Verlauf der Abteilung %{old_department_names} wurde erfolgreich zusammengeführt und an die Abteilung %{new_department_name} übertragen.
   admin/manual_ptime_sync:
     index:
@@ -221,7 +224,7 @@ de:
       max_size_error: darf nicht grösser als 10MB sein.
       profile-not-found: Profil konnte nicht gefunden werden.
       valid_percent_range: muss zwischen 0 und 200 liegen.
-      merge_identical_department: Die Abteilungs-Historie kann nicht mit sich selbst zusammengeführt werden.
+      merge_identical_department: kann nicht mit sich selbst zusammengeführt werden.
   global:
     date:
       from: Von

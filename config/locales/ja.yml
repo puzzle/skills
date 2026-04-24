@@ -2,6 +2,9 @@
 ja:
   activemodel:
     attributes:
+      merge_department_skill_form:
+        old_department_ids: 旧部署
+        new_department_id: 対象部署
       unified_skill_form:
         new_skill: 新しいスキル
         old_skill_id1: スキル1
@@ -160,7 +163,7 @@ ja:
       create:
         success: スキル %{skill1} はスキル %{skill2} と統合され、新しいスキル %{new_skill} が作成されました
     merge_department_skill_snapshots:
-      create:
+      set_success_flash:
         success: 部署 %{old_department_names} の履歴は正常に統合され、部署 %{new_department_name} に移管されました。
   admin/manual_ptime_sync:
     index:
@@ -217,7 +220,7 @@ ja:
       max_size_error: 10MBを超えてはいけません。
       profile-not-found: プロフィールが見つかりませんでした。
       valid_percent_range: 0から200の間でなければなりません。
-      merge_identical_department: 同じ部署履歴は統合できません。
+      merge_identical_department: 自分自身とは統合できません。
   global:
     date:
       from: から

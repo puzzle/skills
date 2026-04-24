@@ -2,6 +2,9 @@
 de-CH:
   activemodel:
     attributes:
+      merge_department_skill_form:
+        old_department_ids: Auti Abteilig
+        new_department_id: Zielabteilig
       unified_skill_form:
         new_skill: Neuä Skill
         old_skill_id1: Skill 1
@@ -164,7 +167,7 @@ de-CH:
       create:
         success: Skill %{skill1} isch erfolgriich mit Skill %{skill2} zum neuä Skill %{new_skill} vereint wordä
     merge_department_skill_snapshots:
-      create:
+      set_success_flash:
         success: D Verlauf vo de Abteilig %{old_department_names} isch erfolgrich zämegfuehrt und a d Abteilig %{new_department_name} übertrage worde.
   admin/manual_ptime_sync:
     index:
@@ -236,7 +239,7 @@ de-CH:
       max_size_error: darf nid grösser aus 10MB si.
       profile-not-found: Profiu isch nid gfungä wordä.
       valid_percent_range: muess zwüschä 0 u 200 liegä.
-      merge_identical_department: D Abteiligs-Gschicht cha nid mit sich säuber zämefüehrt werde.
+      merge_identical_department: cha nid mit sich sälber zämefüehrt werde.
   global:
     date:
       from: Vom
