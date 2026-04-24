@@ -163,7 +163,7 @@ ja:
       create:
         success: スキル %{skill1} はスキル %{skill2} と統合され、新しいスキル %{new_skill} が作成されました
     merge_department_skill_snapshots:
-      set_success_flash:
+      create:
         success: 部署 %{old_department_names} の履歴は正常に統合され、部署 %{new_department_name} に移管されました。
   admin/manual_ptime_sync:
     index:

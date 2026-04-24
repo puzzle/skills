@@ -167,7 +167,7 @@ de-CH:
       create:
         success: Skill %{skill1} isch erfolgriich mit Skill %{skill2} zum neuä Skill %{new_skill} vereint wordä
     merge_department_skill_snapshots:
-      set_success_flash:
+      create:
         success: D Verlauf vo de Abteilig %{old_department_names} isch erfolgrich zämegfuehrt und a d Abteilig %{new_department_name} übertrage worde.
   admin/manual_ptime_sync:
     index:

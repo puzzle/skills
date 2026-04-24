@@ -15,7 +15,9 @@ class Admin::MergeDepartmentSkillSnapshotsController < ApplicationController
     new_department = selected_new_department
 
     merge_skills(old_departments, new_department)
-    set_success_flash(old_departments, new_department)
+    flash[:notice] = t('.success',
+                       old_department_names: old_departments.pluck(:name).join(', '),
+                       new_department_name: new_department.name)
 
     redirect_to new_admin_merge_department_skill_snapshots_path
   end
@@ -38,14 +40,6 @@ class Admin::MergeDepartmentSkillSnapshotsController < ApplicationController
     DepartmentSkillsSnapshotBuilder.new.merge_department_skills_to_new_department(
       old_department_ids: old_departments.ids,
       new_department_id: new_department.id
-    )
-  end
-
-  def set_success_flash(old_departments, new_department)
-    flash.now[:notice] = t(
-      '.success',
-      old_department_names: old_departments.pluck(:name).join(', '),
-      new_department_name: new_department.name
     )
   end
 

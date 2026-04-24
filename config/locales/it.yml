@@ -163,7 +163,7 @@ it:
       create:
         success: La competenza %{skill1} è stata unificata con successo con la competenza %{skill2} nella nuova competenza %{new_skill}
     merge_department_skill_snapshots:
-      set_success_flash:
+      create:
         success: La cronologia del reparto %{old_department_names} è stata unificata con successo e trasferita al reparto %{new_department_name}.
   admin/manual_ptime_sync:
     index:

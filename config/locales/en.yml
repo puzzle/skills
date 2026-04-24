@@ -163,7 +163,7 @@ en:
       create:
         success: Skill %{skill1} was successfully unified with Skill %{skill2} into the new Skill %{new_skill}
     merge_department_skill_snapshots:
-      set_success_flash:
+      create:
         success: "History of Department %{old_department_names} was successfully unified and transferred to department %{new_department_name}."
   admin/manual_ptime_sync:
     index:

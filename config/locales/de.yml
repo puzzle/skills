@@ -167,7 +167,7 @@ de:
       create:
         success: Skill %{skill1} wurde erfolgreich mit Skill %{skill2} zum neuen Skill %{new_skill} vereint
     merge_department_skill_snapshots:
-      set_success_flash:
+      create:
         success: Verlauf der Abteilung %{old_department_names} wurde erfolgreich zusammengeführt und an die Abteilung %{new_department_name} übertragen.
   admin/manual_ptime_sync:
     index:
