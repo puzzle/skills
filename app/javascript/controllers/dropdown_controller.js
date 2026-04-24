@@ -7,6 +7,7 @@ export default class extends Controller {
         autoWidth: {type: Boolean, default: false},
         contentPosition:  {type: String, default: 'absolute'},
         multiple: { type: Boolean, default: false },
+        placeholderText: { type: String, default: "" }
     }
 
     connect() {
@@ -19,6 +20,9 @@ export default class extends Controller {
         if (this.multipleValue) {
             settings.allowDeselect = true;
             settings.closeOnSelect = false;
+            if (this.hasPlaceholderTextValue) {
+                settings.placeholderText = this.placeholderTextValue;
+            }
         }
 
         const slimSelectDropdown = new SlimSelect({
