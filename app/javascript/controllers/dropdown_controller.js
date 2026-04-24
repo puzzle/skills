@@ -12,11 +12,18 @@ export default class extends Controller {
     connect() {
         if (!this.hasDropdownTarget) return;
 
+        const settings = {
+            contentPosition: this.contentPositionValue,
+        };
+
+        if (this.multipleValue) {
+            settings.allowDeselect = true;
+            settings.closeOnSelect = false;
+        }
+
         const slimSelectDropdown = new SlimSelect({
             select: this.dropdownTarget,
-            settings: {
-                contentPosition: this.contentPositionValue,
-            },
+            settings: settings,
             events: {
                 searchFilter: (option, search) => {
                     return option.text.toLowerCase().replace(/\s/g, '').indexOf(search.toLowerCase().replace(/\s/g, '')) !== -1
