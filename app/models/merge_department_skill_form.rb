@@ -2,7 +2,7 @@ class MergeDepartmentSkillForm
   include ActiveModel::Model
   include ActiveModel::Attributes
 
-  attribute :old_department_ids, default: []
+  attribute :old_department_ids, default: -> { [] }
   attribute :new_department_id, :integer
 
   validates :old_department_ids, presence: true
@@ -10,7 +10,7 @@ class MergeDepartmentSkillForm
   validate :new_department_not_in_old_departments
 
   def old_department_ids
-    super.reject(&:blank?).map(&:to_i)
+    super.compact_blank.map(&:to_i)
   end
 
   private
