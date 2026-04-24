@@ -144,7 +144,8 @@ ja:
       link:
         list: 管理パネル
     index:
-      delete_inactive_profiles: 無効なプロファイルを削除
+      delete_unemployed_people: 元従業員を削除する
+      delete_not_synced_profiles: 同期されていないプロファイルを削除する
       reminder_mail: 会社のリマインダーメールを有効にする
       unify_skills: スキル統合
       update_people_manually: ユーザーを手動で更新
@@ -162,8 +163,8 @@ ja:
       description: この素敵なボタンが押されると、すべてのユーザーのデータがPuzzleTimeのデータをもとに更新されます。この処理には数秒かかる場合があります。
   admin/people_management:
     index:
-      ex_members_title: 以下のプロファイルは元従業員としてマークされています
-      not_synced_members_title: 次のプロファイルは現在、PuzzleTime同期によって更新されていません
+      not_synced_title: 以下のプロファイルは元従業員としてマークされています
+      unemployed_title: 次のプロファイルは現在、PuzzleTime同期によって更新されていません
       nothing_to_manage: 現在、クリーンアップするものはありません
   admin/unified_skills:
     conflict_dialog:

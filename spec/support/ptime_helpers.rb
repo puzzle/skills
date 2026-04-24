@@ -16,6 +16,22 @@ module PtimeHelpers
     stub_ptime_request(*ptime_partner_request_data.values, ptime_partner_employees.to_json)
   end
 
+  def disable_ptime_sync
+    PeopleController.permitted_attrs = PeopleController.instance_variable_get("@default_permitted_attrs")
+
+    stub_env_var("PTIME_PROVIDER_0_BASE_URL", nil)
+    stub_env_var("PTIME_PROVIDER_0_API_USERNAME", nil)
+    stub_env_var("PTIME_PROVIDER_0_API_PASSWORD", nil)
+    stub_env_var("PTIME_PROVIDER_0_COMPANY_IDENTIFIER", nil)
+
+    stub_env_var("PTIME_PROVIDER_1_BASE_URL", nil)
+    stub_env_var("PTIME_PROVIDER_1_API_USERNAME", nil)
+    stub_env_var("PTIME_PROVIDER_1_API_PASSWORD", nil)
+    stub_env_var("PTIME_PROVIDER_1_COMPANY_IDENTIFIER", nil)
+
+    stub_env_var("USE_PTIME_SYNC", false)
+  end
+
   def ptime_company_employees
     fixture_data("all_ptime_employees_company")
   end

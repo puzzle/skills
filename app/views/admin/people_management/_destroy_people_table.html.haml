@@ -1,12 +1,5 @@
-%table.table.table-striped.table-hover
-  %thead
-    %tr.w-100
-      %th.col-4= Person.human_attribute_name(:name)
-      %th.col-4= Person.human_attribute_name(:updated_at)
-      %th.col-4= ti('link.delete')
-  %tbody
-    - person_collection.each do |person|
-      %tr.w-100{id: "#{table_id}-#{dom_id(person)}"}
-        %td.col-4= link_to person.name, person_path(person)
-        %td.col-4= person.updated_at.strftime('%d.%m.%Y')
-        %td.col-4= button_to ti('link.delete'), admin_people_management_path(person_id: person.id), method: :delete, data: { turbo_confirm: ti(:confirm_delete) }, class: "btn btn-primary bg-skills-blue"
+= index_action_link admin_index_path
+= list_table do |t|
+  - t.sortable_attr(:name) { |person| link_to person.name, person_path(person) }
+  - t.sortable_attr(:updated_at)
+  - t.col(ti('link.delete')) { |person| button_to ti('link.delete'), admin_people_management_path(person_id: person.id), method: :delete, data: { turbo_confirm: ti(:confirm_delete) }, class: "btn btn-primary bg-skills-blue" }

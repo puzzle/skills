@@ -148,7 +148,8 @@ de-CH:
       link:
         list: Admin Panel
     index:
-      delete_inactive_profiles: Inaktivi Profiu löschä
+      delete_unemployed_people: Ehemaligi Mitarbeiter löschä
+      delete_not_synced_profiles: Nid synchronisierti Profiu löschä
       reminder_mail: Aktivier Erinnerigs E-Mails für d Firma.
       unify_skills: Skills vereinä
       update_people_manually: Persone manuell aktualisiere
@@ -166,8 +167,8 @@ de-CH:
       description: We dä wunderschön Chnopf drückt wird, de wärde d Date vo aune Persone mit de Date usem PuzzleTime aktualisiert. Ds cha einigi Sekunde duure.
   admin/people_management:
     index:
-      ex_members_title: Di folgendä Profiu si aus 'Ex-Mitarbeiter' markiert
-      not_synced_members_title: Di folgendä Profiu wärde momentan nid vom PuzzleTime sync aktualisiert
+      not_synced_title: Di folgendä Profiu wärde momentan nid vom PuzzleTime sync aktualisiert
+      unemployed_title: Di folgendä Profiu si aus 'Ex-Mitarbeiter' markiert
       nothing_to_manage: Moment gits nüt zum bereinige
   admin/unified_skills:
     conflict_dialog:
