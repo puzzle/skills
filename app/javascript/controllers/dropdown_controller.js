@@ -13,21 +13,18 @@ export default class extends Controller {
     connect() {
         if (!this.hasDropdownTarget) return;
 
+        const settings = {
+            contentPosition: this.contentPositionValue,
+        };
+
         if (this.multipleValue) {
-            this.dropdownTarget.setAttribute("multiple", "multiple");
+            settings.allowDeselect = true;
+            settings.closeOnSelect = false;
         }
 
-        // Because when reloading, a different value is selected instead of the one that was previously selected
-        const originalSelectedOption = Array.from(this.dropdownTarget.options).find(opt => opt.defaultSelected);
-        if (originalSelectedOption) {
-            this.dropdownTarget.value = originalSelectedOption.value;
-        }
-
-        this.slimSelectDropdown = new SlimSelect({
+        const slimSelectDropdown = new SlimSelect({
             select: this.dropdownTarget,
-            settings: {
-                contentPosition: this.contentPositionValue,
-            },
+            settings: settings,
             events: {
                 searchFilter: (option, search) => {
                     return option.text.toLowerCase().replace(/\s/g, '').indexOf(search.toLowerCase().replace(/\s/g, '')) !== -1
