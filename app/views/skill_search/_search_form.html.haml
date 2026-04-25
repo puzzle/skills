@@ -3,11 +3,8 @@
     = expert_mode_toggle(@search.expert_mode)
     %a.d-flex.align-items-center.ms-1{href: "https://github.com/puzzle/skills?tab=readme-ov-file#skill-search-expert-mode"}
       %pzsh-icon.scale-icon-08.text-gray(name="question-circle")
-  - filter_rows = @search.filter_rows
-  - skill_ids = filter_rows.map(&:skill_id)
-  - all_skills = Skill.for_select
-  - filter_rows.each_with_index do |filter, i|
-    = render('filter_row', filter: filter, i: i, form: form, skill_ids: skill_ids, all_skills: all_skills)
+  - @search.filter_rows.each_with_index do |filter, i|
+    = render('filter_row', filter: filter, i: i, form: form)
     - if @search.expert_mode.show_operator?(i, @search.filter_count)
       = render('filter_operator', form: form, i: i)
   - unless @search.expert_mode.limit_reached?(@search.filter_count)
@@ -17,4 +14,4 @@
   %hr
   .d-flex.gap-2.align-items-center{'data-controller': 'dropdown'}
     = form.label Department.model_name.human, class: 'm-0', for: 'department-filter'
-    = form.collection_select :department, Department.order(:name), :id, :name, {include_blank: ti('dont_filter'), selected: params[:department]}, data: { 'dropdown-target': 'dropdown' }, class: 'w-25', id: 'department-filter', onchange: "this.form.requestSubmit()"
+    = department_select(form)

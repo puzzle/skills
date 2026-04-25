@@ -419,12 +419,14 @@ de-CH:
     updated_at: Z'letzt bearbeitet
   skill_search:
     global:
-      and: Und
+      and: und
       dont_filter: Nid filterä
       expert_mode: Expärte modus aktiviere
       link:
         add: Skill hinzuäfüegä (max. 5)
-      or: Oder
+      no_match: 'Kei Person gfungä mit de folgende Skills: '
+      no_match_with_department: 'Kei Person in %{department} gfungä mit de folgende Skills: '
+      or: oder
     index:
       table:
         certificate: Zertifikat

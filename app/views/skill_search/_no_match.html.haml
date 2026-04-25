@@ -1,0 +1,5 @@
+- message = @search.no_match_message
+%p= message.prefix
+%ul
+  - message.groups.each do |ratings|
+    %li= ratings.join(" #{I18n.t('skill_search.global.and')} ")

@@ -402,12 +402,14 @@ de:
     updated_at: Zuletzt bearbeitet
   skill_search:
     global:
-      and: Und
+      and: und
       dont_filter: Nicht filtern
       expert_mode: Expertenmodus aktivieren
       link:
         add: Skill hinzufügen (max. 5)
-      or: Oder
+      no_match: 'Keine Person mit den folgenden Skills gefunden: '
+      no_match_with_department: 'Keine Person in %{department} mit den folgenden Skills gefunden: '
+      or: oder
     index:
       table:
         certificate: Zertifikat

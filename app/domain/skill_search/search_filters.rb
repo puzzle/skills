@@ -33,7 +33,7 @@ module SkillSearch
     end
 
     def no_match_message
-      NoMatchMessage.new(applicable_filters, @input.department).to_s
+      NoMatchMessage.new(applicable_filters, @input.department)
     end
 
     def rows  = filters
@@ -45,7 +45,10 @@ module SkillSearch
     private
 
     def match_filters(skills)
-      filter_groups.any? { |group| SearchFilter.group_match?(group, skills) }
+      filter_groups.any? do |group|
+        group = group.select(&:skill?)
+        SearchFilter.group_match?(group, skills)
+      end
     end
 
     def filter_groups = filters.slice_after(&:or?)

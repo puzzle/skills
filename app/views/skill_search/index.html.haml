@@ -4,8 +4,8 @@
     = ti "search.search_results"
   %div.border.p-3.rounded-bottom.search-results
     - if @search.no_matches?
-      = ti('search.no_match') + @search.no_match_message
-    - elsif @search.results.values.empty?
+      = render 'no_match'
+    - elsif @search.results.empty?
       = ti 'search.no_skill'
     - else
       .row.bg-light-subtle.border-bottom.border-5.border-secondary.p-0

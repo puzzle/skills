@@ -398,12 +398,14 @@ en:
     updated_at: Last edited
   skill_search:
     global:
-      and: And
+      and: and
       dont_filter: Don't filter
       expert_mode: Activate expert mode
       link:
         add: Add skill (max. 5)
-      or: Or
+      no_match: 'No person found with the following skills: '
+      no_match_with_department: 'No person in %{department} found with the following skills: '
+      or: or
     index:
       table:
         certificate: Certificate

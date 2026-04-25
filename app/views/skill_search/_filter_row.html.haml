@@ -2,7 +2,7 @@
   %div.filter-container
     %div.w-100.d-flex.flex-row.justify-content-start{data: {controller: "skills-level"}}
       %div.w-50.align-self-end{"data-controller": "dropdown"}
-        = form.select "skill_id[]", skills_for_select(all_skills, skill_ids, filter.skill_id), { prompt: true }, data:{"dropdown-target": "dropdown"}, onchange: "this.form.requestSubmit()"
+        = form.select "skill_id[]", skills_for_select(filter.skill_id), { prompt: true }, data:{"dropdown-target": "dropdown"}, onchange: "this.form.requestSubmit()"
       %div.w-25.d-flex.flex-column.align-items-center
         %label.form-label.text-gray.fs-6{"data-skills-level-target": "label"}= ti "people_skills.levels_by_id.#{filter.level}"
         = form.range_field "level[]", min: 1, max: 5, value: filter.level, class: "form-range w-75",

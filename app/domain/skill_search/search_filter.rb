@@ -5,7 +5,7 @@ module SkillSearch
     attr_reader :skill_id, :level, :interest, :operator
 
     def initialize(skill_id = nil, level = 1, interest = 1, operator = :and) # rubocop:disable Metrics/ParameterLists
-      @skill_id = skill_id
+      @skill_id = skill_id if skill_id&.positive?
       @level    = level
       @interest = interest
       @operator = operator || :and

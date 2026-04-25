@@ -25,7 +25,7 @@ module SkillSearch
     end
 
     def equal_length_parameters?
-      [@skill_ids, @levels, @interests, @operators].map(&:size).uniq.one?
+      [@skill_ids, @levels, @interests].map(&:size).uniq.one?
     end
   end
 end

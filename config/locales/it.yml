@@ -398,12 +398,14 @@ it:
     updated_at: Ultima modifica
   skill_search:
     global:
-      and: E
+      and: e
       dont_filter: Non filtrare
       expert_mode: Attiva modalità esperta
       link:
         add: Aggiungi abilità (max. 5)
-      or: O
+      no_match: 'Nessuna persona trovata con le seguenti competenze: '
+      no_match_with_department: 'Nessuna persona in %{department} trovata con le seguenti competenze: '
+      or: o
     index:
       table:
         certificate: Certificato

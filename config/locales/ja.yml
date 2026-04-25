@@ -403,6 +403,8 @@ ja:
       expert_mode: 詳細モードを有効にする
       link:
         add: スキルを追加（最大5つまで）
+      no_match: '以下のスキルを持つ人が見つかりませんでした: '
+      no_match_with_department: '%{department}に以下のスキルを持つ人が見つかりませんでした: '
       or: または
     index:
       table:
