@@ -33,7 +33,7 @@ describe "Merge Department Skill Snapshots", type: :feature, js: true do
       new_department.name
     )
 
-    click_button "Verlauf zusammenführen"
+    click_button "Skill-Entwicklung zusammenführen"
   end
 
   it "merges departments successfully" do
@@ -58,7 +58,7 @@ describe "Merge Department Skill Snapshots", type: :feature, js: true do
   end
 
   it "submits successfully with default target department" do
-    click_button "Verlauf zusammenführen"
+    click_button "Skill-Entwicklung zusammenführen"
 
     expect(page).to have_content("Alte Abteilungen muss ausgefüllt werden")
   end
