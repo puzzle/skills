@@ -178,6 +178,7 @@ describe :people do
 
       within skill_div do
         select_star_rating(3)
+        expect(page).to have_text("Änderungen wurden gespeichert.")
         find('input[value="Nicht bewerten"]').click
       end
 
