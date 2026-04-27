@@ -22,7 +22,7 @@ describe "Merge Department Skill Snapshots", type: :feature, js: true do
     find('body').click
   end
 
-  def merge_departments(old_departments:, new_department:)
+  def merge_department_snapshots(old_departments:, new_department:)
     multi_select_from_slim_select(
       "#merge_department_skill_form_old_department_ids",
       old_departments.map(&:name)
@@ -41,7 +41,7 @@ describe "Merge Department Skill Snapshots", type: :feature, js: true do
     dev_two = departments(:"dev-two")
     sys = departments(:sys)
 
-    merge_departments(
+    merge_department_snapshots(
       old_departments: [dev_one, dev_two],
       new_department: sys
     )
@@ -72,7 +72,7 @@ describe "Merge Department Skill Snapshots", type: :feature, js: true do
     )
     form.valid?
 
-    merge_departments(
+    merge_department_snapshots(
       old_departments: [dev_one],
       new_department: dev_one
     )

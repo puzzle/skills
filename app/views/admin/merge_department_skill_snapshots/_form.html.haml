@@ -2,7 +2,7 @@
   %div.w-50.mt-4
     %h2.text-center= t('admin.index.merge_department_snapshots')
     %div.mt-4
-      = form_with model: @form, url: admin_merge_department_skill_snapshots_path do |f|
+      = form_with model: @merge_department_snapshots_form, url: admin_merge_department_skill_snapshots_path do |f|
         %div.d-flex.justify-content-center.align-content-center.flex-column
           %div.d-flex.justify-content-between
             %div{ data: { controller: "dropdown", dropdown_multiple_value: true, dropdown_placeholder_text_value: ta(:please_select) } }
