@@ -45,14 +45,16 @@ describe :skill_search do
     it 'Should return no results if no user matches filters' do
       visit skill_search_index_path
       fill_out_row("Bash", 5, 3)
-      expect(page).to have_text("Keine Resultate gefunden mit der folgenden Suche: Bash (5/3)")
+      expect(page).to have_text("Keine Person mit den folgenden Skills gefunden:")
+      expect(page).to have_text("Bash (5/3)")
     end
 
     it 'Should return no results if no user matches multiple filters' do
       visit skill_search_index_path
       fill_out_row("Bash", 5, 3)
       add_and_fill_out_row("Rails", 1, 4)
-      expect(page).to have_text("Keine Resultate gefunden mit der folgenden Suche: Bash (5/3) und Rails (1/4)")
+      expect(page).to have_text("Keine Person mit den folgenden Skills gefunden:")
+      expect(page).to have_text("Bash (5/3) und Rails (1/4)")
     end
 
     it 'Should return no results if no user matches multiple filters and department' do
@@ -60,7 +62,8 @@ describe :skill_search do
       fill_out_row("Bash", 5, 3)
       add_and_fill_out_row("Rails", 1, 4)
       select_from_slim_select('#department-filter', '/sys')
-      expect(page).to have_text("Keine Resultate gefunden mit der folgenden Suche: Bash (5/3), Rails (1/4) und /sys")
+      expect(page).to have_text("Keine Person in /sys mit den folgenden Skills gefunden:")
+      expect(page).to have_text("Bash (5/3) und Rails (1/4)")
     end
 
     it 'Should be able to remove filter row and switch results accordingly' do

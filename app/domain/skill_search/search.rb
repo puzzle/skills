@@ -12,6 +12,7 @@ module SkillSearch
     def apply_filters
       search_filters.add_row if @params[:add_row]
       search_filters.delete_row(@params[:delete_row]) if @params[:delete_row]
+      search_filters.add_row if filter_count.zero?
       search_filters.apply { |ids| people_by_skill_ids(ids) }
     end
 
