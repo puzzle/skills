@@ -8,13 +8,25 @@ describe "Merge Department Skill Snapshots", type: :feature, js: true do
     visit new_admin_merge_department_skill_snapshots_path
   end
 
-  def merge_departments(old_departments:, new_department:)
-    old_departments.each do |department|
-      select_from_slim_select(
-        "#merge_department_skill_form_old_department_ids",
-        department.name
-      )
+  def multi_select_from_slim_select(selector, values)
+    slim_select_container = find(selector, visible: false).sibling('.ss-main')
+
+    values.each do |value|
+      slim_select_container.click
+
+      find('.ss-search input').set(value)
+
+      find('.ss-list .ss-option', text: value, match: :prefer_exact).click
     end
+
+    find('body').click
+  end
+
+  def merge_departments(old_departments:, new_department:)
+    multi_select_from_slim_select(
+      "#merge_department_skill_form_old_department_ids",
+      old_departments.map(&:name)
+    )
 
     select_from_slim_select(
       "#merge_department_skill_form_new_department_id",
@@ -34,9 +46,11 @@ describe "Merge Department Skill Snapshots", type: :feature, js: true do
       new_department: sys
     )
 
-    expect(page).to have_content(dev_one.name)
-    expect(page).to have_content(dev_two.name)
-    expect(page).to have_content(sys.name)
+    within ".alert, .flash, .notice" do
+      expect(page).to have_content(dev_two.name)
+      expect(page).to have_content(dev_one.name)
+      expect(page).to have_content(sys.name)
+    end
 
     expect(page).to have_current_path(
                       new_admin_merge_department_skill_snapshots_path
