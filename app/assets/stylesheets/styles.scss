@@ -15,7 +15,8 @@ $skills-dark-blue: #1e5a96;
 }
 
 //Remove theme filter for all images
-.theme-dark img {
+.theme-dark img,
+.theme-dark .modal {
   filter: hue-rotate(180deg) invert(1.1);
 }
 
