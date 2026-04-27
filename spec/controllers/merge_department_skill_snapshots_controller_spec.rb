@@ -79,7 +79,7 @@ describe Admin::MergeDepartmentSkillSnapshotsController do
       get :new
 
       expect(assigns(:departments)).to be_present
-      expect(assigns(:form)).to be_a(MergeDepartmentSkillForm)
+      expect(assigns(:merge_department_snapshots_form)).to be_a(MergeDepartmentSkillForm)
       expect(response).to be_successful
     end
   end

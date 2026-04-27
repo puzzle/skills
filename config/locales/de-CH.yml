@@ -156,7 +156,7 @@ de-CH:
       reminder_mail: Aktivier Erinnerigs E-Mails für d Firma.
       unify_skills: Skills vereinä
       update_people_manually: Persone manuell aktualisiere
-      merge_department_snapshots: Entwickligsskillverlauf zämefüehre
+      merge_department_snapshots: Skill-Entwicklig vo Abteilig zämefüehre
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Bi dr Aktualisierig vo %{names} isch öppis schiefgloffe. Versuechs nomau und überprüef auefaus d Date im PuzzleTime.
@@ -189,7 +189,7 @@ de-CH:
         other: "%{names} hei beidi Skills bewertet. We si trotzdem vereint werde, wird di besseri Bewertig übernoh."
   admin/merge_department_skill_snapshots:
     form:
-      merge_history: Fähigkeitsverlauf zämefüehre
+      merge_history: Skill-Entwicklig zämefüehre
       new_department: Zielabteilig
       old_departments: Auti Abteilig
   certificates:

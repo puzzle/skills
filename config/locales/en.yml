@@ -152,7 +152,7 @@ en:
       reminder_mail: Activate reminder emails for your company.
       unify_skills: Unify skills
       update_people_manually: Update people manually
-      merge_department_snapshots: Merge development skill history
+      merge_department_snapshots: Merge department skill development
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Something went wrong while updating %{names}. Please try again and, if necessary, check the data in PuzzleTime.
@@ -185,7 +185,7 @@ en:
         other: "%{names} have rated both Skills. If the Skills are unified anyway, the better rating will be used."
   admin/merge_department_skill_snapshots:
     form:
-      merge_history: Merge skill history
+      merge_history: Merge skill development
       new_department: Target Department
       old_departments: Old Departments
   certificates:
