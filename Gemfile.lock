@@ -86,6 +86,7 @@ GEM
     addressable (2.9.0)
       public_suffix (>= 2.0.2, < 8.0)
     aes_key_wrap (1.1.0)
+    amazing_print (2.0.0)
     annotate (2.6.5)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
@@ -600,6 +601,7 @@ DEPENDENCIES
   abbrev
   active_model_serializers
   activerecord-postgresql-adapter
+  amazing_print
   annotate
   bigdecimal
   bleib

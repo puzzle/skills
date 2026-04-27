@@ -112,3 +112,4 @@ config/docker/*/home/rails/.mozilla
 .cache
 
 .envrc
+.pryrc
