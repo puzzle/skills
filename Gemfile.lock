@@ -176,7 +176,7 @@ GEM
     domain_name (0.6.20240107)
     dotenv (3.2.0)
     drb (2.2.3)
-    erb (6.0.2)
+    erb (6.0.4)
     erubi (1.13.1)
     et-orbi (1.4.0)
       tzinfo
