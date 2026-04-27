@@ -152,7 +152,7 @@ it:
       reminder_mail: Attiva le email di promemoria per la tua azienda.
       unify_skills: Unire le competenze
       update_people_manually: Aggiornare le persone manualmente
-      merge_department_snapshots: Unisci cronologia competenze del reparto
+      merge_department_snapshots: Unione del tracciamento dello sviluppo delle competenze
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Si è verificato un errore durante l'aggiornamento di %{names}. Si prega di riprovare e, se necessario, controllare i dati in PuzzleTime.
@@ -164,7 +164,7 @@ it:
         success: La competenza %{skill1} è stata unificata con successo con la competenza %{skill2} nella nuova competenza %{new_skill}
     merge_department_skill_snapshots:
       create:
-        success: La cronologia del reparto %{old_department_names} è stata unificata con successo e trasferita al reparto %{new_department_name}.
+        success: La cronologia del reparto %{old_department_names} è stata trasferita al reparto %{new_department_name}.
   admin/manual_ptime_sync:
     index:
       description: Quando questo bellissimo pulsante viene premuto, i dati di tutte le persone verranno aggiornati con i dati di PuzzleTime. Questo potrebbe richiedere alcuni secondi.
@@ -185,7 +185,7 @@ it:
         other: "%{names} hanno valutato entrambe le competenze. Se le competenze vengono comunque unite, verrà utilizzata la valutazione migliore."
   admin/merge_department_skill_snapshots:
     form:
-      merge_history: Unisci cronologia
+      merge_history: Unione del tracciamento delle competenze
       new_department: Reparto di destinazione
       old_departments: Reparti precedenti
   certificates:

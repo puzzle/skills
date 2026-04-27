@@ -13,6 +13,14 @@ class MergeDepartmentSkillForm
     super.compact_blank.map(&:to_i)
   end
 
+  def selected_old_departments
+    Department.where(id: old_department_ids)
+  end
+
+  def selected_new_department
+    Department.find(new_department_id)
+  end
+
   private
 
   def new_department_not_in_old_departments

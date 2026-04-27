@@ -156,7 +156,7 @@ de:
       reminder_mail: Aktiviere Erinnerungs E-Mails für die Firma.
       unify_skills: Skills vereinen
       update_people_manually: Personen manuell aktualisieren
-      merge_department_snapshots: Abteilungsskillverlauf zusammenführen
+      merge_department_snapshots: Entwicklungsskillverlauf zusammenführen
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Bei der Aktualisierung von %{names} ist etwas schiefgelaufen. Versuche es erneut und überprüfe allenfalls die Daten im PuzzleTime.
@@ -168,7 +168,7 @@ de:
         success: Skill %{skill1} wurde erfolgreich mit Skill %{skill2} zum neuen Skill %{new_skill} vereint
     merge_department_skill_snapshots:
       create:
-        success: Verlauf der Abteilung %{old_department_names} wurde erfolgreich zusammengeführt und an die Abteilung %{new_department_name} übertragen.
+        success: Verlauf der Abteilung %{old_department_names} wurde auf die Abteilung %{new_department_name} übertragen.
   admin/manual_ptime_sync:
     index:
       description: Wenn dieser wunderschöne Knopf gedrückt wird, dann werden die Daten aller Personen mit den Daten aus dem PuzzleTime aktualisiert. Dies kann einige Sekunden dauern.
@@ -189,7 +189,7 @@ de:
         other: "%{names} haben beide Skills bewertet. Werden die Skills trotzdem vereint, wird die bessere Bewertung genommen."
   admin/merge_department_skill_snapshots:
     form:
-      merge_history: Verlauf zusammenführen
+      merge_history: Entwicklungsverlauf zusammenführen
       new_department: Zielabteilung
       old_departments: Alte Abteilungen
   certificates:
