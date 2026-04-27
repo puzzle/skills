@@ -8,7 +8,9 @@ RUN useradd app -m -U -u 1000
 RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash -
 RUN apt-get update
 RUN apt-get install direnv -y
-RUN apt-get install firefox-esr -y
+RUN apt-get install -y wget
+RUN wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+RUN apt-get install -y ./google-chrome-stable_current_amd64.deb
 RUN apt-get install -y nodejs
 RUN apt-get install -y graphicsmagick
 RUN npm install -g corepack && corepack enable
