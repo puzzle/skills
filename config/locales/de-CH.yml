@@ -80,6 +80,7 @@ de-CH:
           one: Funktion
           other: Funktionä
         picture: Biud
+        picture_url: Biudadresse
         projects:
           one: Projekt
           other: Projektä
@@ -223,6 +224,7 @@ de-CH:
       chart_data_empty: Wähl e Abteilig, e Skill und es Jahr us, um d date ds zeige.
       chart_results_empty: Es si keni Snapshots gfunde worde, wo de gwählte Filter entspreche.
       invalid_date_range: muess vorem Änddatum si.
+      invalid_url: muess e validi URL si
       max_size_10MB: darf nid grösser aus 10MB si.
       max_size_error: darf nid grösser aus 10MB si.
       profile-not-found: Profiu isch nid gfungä wordä.
@@ -371,8 +373,9 @@ de-CH:
       add_language: Sprache hinzuäfüegä
       change_image: Biud änderä
       core_competences: Chärnkompetenzä
+      image_url: Biudadrässä igä
       personals: Personaliä
-      upload_image: Biud hochladä
+      upload_image: oder es Biud hochladä
     projects:
       link:
         add: Neues Projekt

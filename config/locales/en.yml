@@ -80,6 +80,7 @@ en:
           one: Function
           other: Functions
         picture: Image
+        picture_url: Image URL
         projects:
           one: Project
           other: Projects
@@ -204,6 +205,7 @@ en:
       chart_data_empty: Select a department, skill and a year to display data.
       chart_results_empty: No snapshots matching the selected filters were found.
       invalid_date_range: must be before the end date.
+      invalid_url: must be a valid URL
       max_size_10MB: must not be larger than 10MB.
       max_size_error: must not be larger than 10MB.
       profile-not-found: Profile could not be found.
@@ -350,8 +352,9 @@ en:
       add_language: Add language
       change_image: Change picture
       core_competences: Core competencies
+      image_url: Enter image URL
       personals: Personal details
-      upload_image: Upload image
+      upload_image: or upload an image
     projects:
       link:
         add: New project
