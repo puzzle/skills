@@ -2,8 +2,7 @@
     %div.d-flex.flex-row.flex-flow-wrap
         - tabs.each do |tab|
             - unless tab[:admin_only] && !admin?
-                = link_to tab[:path], class: "btn text-primary p-0 d-flex align-items-center" do
-                    %div{class: "nav-link h-100 d-flex align-items-center #{'active' if active_path == tab[:path]}"}
-                        = tab[:title]
+                = link_to tab[:path], class: "nav-link h-100 d-flex align-items-center border-0 border-bottom-100 #{'active' if active_path == tab[:path]}" do
+                    = tab[:title]
     %div
         = yield if defined?(do_yield) && do_yield|| false
