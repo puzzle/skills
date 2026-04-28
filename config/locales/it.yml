@@ -317,15 +317,15 @@ it:
       export_form:
         anonymised_cv: CV anonimo
         competences_skills: Competenze di base - Capacità
+        customer_code: Abbreviazione cliente
+        customer_code_placeholder: il codice cliente viene visualizzato nell'intestazione
+        department_code: Abbreviazione reparto
+        department_code_placeholder: il codice reparto viene visualizzato nell'intestazione
         location: 'Sede secondaria (per il piè di pagina):'
+        project_code: Abbreviazione progetto
+        project_code_placeholder: il codice progetto viene visualizzato nell'intestazione
         skills_by_level: Competenze per livello
         trainee: Apprendista
-        customer_code: Abbreviazione cliente
-        department_code: Abbreviazione reparto
-        project_code: Abbreviazione progetto
-        customer_code_placeholder: il codice cliente viene visualizzato nell'intestazione
-        department_code_placeholder: il codice reparto viene visualizzato nell'intestazione
-        project_code_placeholder: il codice progetto viene visualizzato nell'intestazione
     form:
       ptime_data: Questi dati provengono da Puzzle Time, pertanto non è possibile modificarli.
     global:
@@ -398,9 +398,14 @@ it:
     updated_at: Ultima modifica
   skill_search:
     global:
+      and: e
       dont_filter: Non filtrare
+      expert_mode: Attiva modalità esperta
       link:
         add: Aggiungi abilità (max. 5)
+      no_match: 'Nessuna persona trovata con le seguenti competenze: '
+      no_match_with_department: 'Nessuna persona in %{department} trovata con le seguenti competenze: '
+      or: o
     index:
       table:
         certificate: Certificato

@@ -317,15 +317,15 @@ ja:
       export_form:
         anonymised_cv: 匿名化された履歴書
         competences_skills: コアコンピタンス - スキル
+        customer_code: クライアント略称
+        customer_code_placeholder: 顧客コードはヘッダーに表示されます
+        department_code: 部門略称
+        department_code_placeholder: 部門コードはヘッダーに表示されます
         location: 支店（フッター用）：
+        project_code: プロジェクト略称
+        project_code_placeholder: プロジェクトコードはヘッダーに表示されます
         skills_by_level: レベル別スキル
         trainee: 研修生
-        customer_code: クライアント略称
-        department_code: 部門略称
-        project_code: プロジェクト略称
-        customer_code_placeholder: 顧客コードはヘッダーに表示されます
-        department_code_placeholder: 部門コードはヘッダーに表示されます
-        project_code_placeholder: プロジェクトコードはヘッダーに表示されます
     form:
       ptime_data: このデータはPuzzle Timeのものです。そのため、編集できません。
     global:
@@ -398,9 +398,14 @@ ja:
     updated_at: 最終編集日
   skill_search:
     global:
+      and: そして
       dont_filter: フィルターなし
+      expert_mode: 詳細モードを有効にする
       link:
         add: スキルを追加（最大5つまで）
+      no_match: '以下のスキルを持つ人が見つかりませんでした: '
+      no_match_with_department: '%{department}に以下のスキルを持つ人が見つかりませんでした: '
+      or: または
     index:
       table:
         certificate: 証明書

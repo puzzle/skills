@@ -63,6 +63,7 @@
 - **Reminder Mails** These are emails sent to all members of a company. This feature is turned off by default at the company level.
 - **Your Personal Setting** You can control whether you receive these emails. This option is active by default, but you can turn it off anytime using the new checkbox in your profile settings.
 - **Open Source contributions** The possibility to add open source contributions to your profile as well has been implemented.
+- **Expert Mode Skill Search** The user is now able to turn on the expert mode in the skill search. This feature allows you to search with nested 'and' and 'or' logic. 
 
 ### Improvements
 - **CV Export** Placeholders for personal fields are no longer visible when they are not defined in your profile.

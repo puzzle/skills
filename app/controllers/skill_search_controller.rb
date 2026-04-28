@@ -1,33 +1,35 @@
 # frozen_string_literal: true
 
 class SkillSearchController < CrudController
-  def self.model_class
-    PeopleSkill
-  end
+  def self.model_class = PeopleSkill
 
-  def index
-    @search_filters, @search_results = FilterParams.new(params).filters_and_results
-    @search_results = @search_results.values unless @search_results.empty?
-    @no_match_message = no_match_message
-    super
-  end
+  before_action :set_search
 
   private
 
-  def no_match_message
-    skill_ids, levels, interests = @search_filters.transpose
-    if @search_results.empty? && skill_ids.any?(&:present?)
-      skill_titles = Skill.find(skill_ids).pluck(:title)
-      combine_to_feedback_sentence(skill_titles, levels, interests)
-    end
+  def set_search
+    @search = SkillSearch::Search.new(search_params)
+    @search.apply_filters
   end
 
-  def combine_to_feedback_sentence(skill_titles, levels, interests)
-    skill_ratings = skill_titles.zip(levels, interests).map do |skill_title, level, interest|
-      "#{skill_title} (#{level}/#{interest})"
-    end
-    department = params[:department].presence
-    skill_ratings << Department.find(department).name if department
-    skill_ratings.to_sentence
+  # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength -- parameter mapping method; chained .to_a/.to_h/.map calls and safe navigation on optional scalars inflate all three metrics without adding real complexity
+  def search_params
+    raw = permitted_search_params
+    {
+      skill_ids: raw[:skill_id].to_a.map(&:to_i),
+      levels: raw[:level].to_a.map(&:to_i),
+      interests: raw[:interest].to_h.values.map(&:to_i),
+      operators: raw[:operator].to_h.values.map(&:to_sym),
+      department: raw[:department].presence&.to_i,
+      add_row: raw[:add_row].present?,
+      delete_row: raw[:delete_row].presence&.to_i,
+      expert_mode: raw[:expert_mode] == '1'
+    }
+  end
+  # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength
+
+  def permitted_search_params
+    params.permit(:department, :add_row, :delete_row, :expert_mode,
+                  skill_id: [], level: [], interest: {}, operator: {})
   end
 end

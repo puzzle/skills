@@ -1,12 +1,14 @@
 require 'rails_helper'
 
 describe :skill_search do
+
+  before(:each) do
+    sign_in auth_users(:user), scope: :auth_user
+  end
+
   describe 'People Search', type: :feature, js: true do
     let(:skill) { skills(:rails) }
 
-    before(:each) do
-      sign_in auth_users(:user), scope: :auth_user
-    end
 
     it 'Should return matching entries to page' do
       visit skill_search_index_path
@@ -43,14 +45,16 @@ describe :skill_search do
     it 'Should return no results if no user matches filters' do
       visit skill_search_index_path
       fill_out_row("Bash", 5, 3)
-      expect(page).to have_text("Keine Resultate gefunden mit der folgenden Suche: Bash (5/3)")
+      expect(page).to have_text("Keine Person mit den folgenden Skills gefunden:")
+      expect(page).to have_text("Bash (5/3)")
     end
 
     it 'Should return no results if no user matches multiple filters' do
       visit skill_search_index_path
       fill_out_row("Bash", 5, 3)
       add_and_fill_out_row("Rails", 1, 4)
-      expect(page).to have_text("Keine Resultate gefunden mit der folgenden Suche: Bash (5/3) und Rails (1/4)")
+      expect(page).to have_text("Keine Person mit den folgenden Skills gefunden:")
+      expect(page).to have_text("Bash (5/3) und Rails (1/4)")
     end
 
     it 'Should return no results if no user matches multiple filters and department' do
@@ -58,7 +62,8 @@ describe :skill_search do
       fill_out_row("Bash", 5, 3)
       add_and_fill_out_row("Rails", 1, 4)
       select_from_slim_select('#department-filter', '/sys')
-      expect(page).to have_text("Keine Resultate gefunden mit der folgenden Suche: Bash (5/3), Rails (1/4) und /sys")
+      expect(page).to have_text("Keine Person in /sys mit den folgenden Skills gefunden:")
+      expect(page).to have_text("Bash (5/3) und Rails (1/4)")
     end
 
     it 'Should be able to remove filter row and switch results accordingly' do
@@ -196,6 +201,43 @@ describe :skill_search do
       sleep 0.3
       id = find("[id$='star#{interest}']", visible: false)[:id]
       choose(id, allow_label_click: true)
+    end
+  end
+  describe 'People Search Expert Mode', type: :feature, js: true do
+    it 'Should support  OR in expert mode search' do
+      visit skill_search_index_path({
+                                      expert_mode: '1',
+                                      skill_id: [skills(:bash).id, skills(:junit).id, skills(:cunit).id],
+                                      level: [1, 1, 1],
+                                      'interest[0]': 1,
+                                      'interest[1]': 1,
+                                      'interest[2]': 1,
+                                      operator: { '0' => 'or', '1' => 'or' }
+                                    })
+
+      expect(page).to have_text('Wally Allround')
+      expect(page).to have_text('Hope Sunday')
+      expect(page).to have_text('Alice Mante')
+      expect(page).to have_text('Charlie Ford')
+      expect(page).not_to have_text('Bob Anderson')
+    end
+
+    it 'Should support AND and OR in expert mode search' do
+      visit skill_search_index_path({
+                                      expert_mode: '1',
+                                      skill_id: [skills(:bash).id, skills(:junit).id, skills(:cunit).id],
+                                      level: [1, 1, 1],
+                                      'interest[0]': 1,
+                                      'interest[1]': 1,
+                                      'interest[2]': 1,
+                                      operator: { '0' => 'or', '1' => 'and' }
+                                    })
+
+      expect(page).to have_text('Wally Allround')
+      expect(page).to have_text('Hope Sunday')
+      expect(page).to_not have_text('Alice Mante')
+      expect(page).to_not have_text('Charlie Ford')
+      expect(page).not_to have_text('Bob Anderson')
     end
   end
 
