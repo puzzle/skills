@@ -130,7 +130,7 @@ class Person < ApplicationRecord
     url = URI.parse(picture_url)
     return false if url.host.nil?
 
-    hosts = ENV.fetch('PICTURE_HOST', 'puzzle.ch').to_a
+    hosts = Array ENV.fetch('PICTURE_HOST', 'puzzle.ch')
     hosts.map { |host| host.sub('.', '\.') }.any? do |host|
       host_regex = /^(\w+\.)?#{host}$/
       url.host.match? host_regex
@@ -142,6 +142,7 @@ class Person < ApplicationRecord
   def validate_url
     return if url_valid? picture_url
 
+    restore_picture_url!
     errors.add(:picture_url, :invalid_url)
   end
 end
