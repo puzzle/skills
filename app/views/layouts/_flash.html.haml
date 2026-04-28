@@ -1,3 +1,3 @@
 - if flash[level].present?
-  - alert_class = (flash[:already_logged_in] = true) ? "alert-success" : "alert-#{flash_class(level)}"
+  - alert_class = (flash[:provider] == 'keycloak') ? "alert-success" : "alert-#{flash_class(level)}"
   %div{class: "alert #{alert_class}"}= flash[level].html_safe
