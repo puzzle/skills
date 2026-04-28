@@ -13,13 +13,13 @@ describe "Merge Department Skill Snapshots", type: :feature, js: true do
 
     values.each do |value|
       slim_select_container.click
-
       find('.ss-search input').set(value)
-
       find('.ss-list .ss-option', text: value).click
     end
 
     find('body').click
+
+    expect(find(selector, visible: false).value.size).to eq(values.size)
   end
 
   def merge_department_snapshots(old_departments:, new_department:)
@@ -32,7 +32,6 @@ describe "Merge Department Skill Snapshots", type: :feature, js: true do
       "#merge_department_skill_form_new_department_id",
       new_department.name
     )
-
     click_button "Skill-Entwicklung zusammenführen"
   end
 
