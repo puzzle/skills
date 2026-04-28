@@ -208,6 +208,9 @@ en:
       profile-not-found: Profile could not be found.
       valid_percent_range: must be between 0 and 200.
   global:
+    light: Light
+    dark: Dark
+    system: System
     date:
       from: From
       month: Month

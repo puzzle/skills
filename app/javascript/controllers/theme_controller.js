@@ -1,13 +1,49 @@
 import {Controller} from "@hotwired/stimulus"
+import SlimSelect from "slim-select"
 
 export default class extends Controller {
     connect() {
-        const theme = this.getCookieValue()
+        const theme = this.getCookieValue();
 
-        if (theme === "dark") {
-            this.enableThemeDark()
-        } else {
-            this.enableThemeLight()
+        this.changeTheme(theme)
+
+        this.element.value = theme
+
+        this.select = new SlimSelect({
+            select: this.element,
+            settings: {
+                showSearch: false,
+            },
+            events: {
+                afterChange: (newVal) => {
+                    const selectedTheme = newVal[0].value
+
+                    this.changeTheme(selectedTheme)
+                }
+            }
+        })
+    }
+
+    disconnect() {
+        if (this.select) {
+            this.select.destroy()
+        }
+    }
+
+    changeTheme(theme) {
+        switch(theme) {
+            case "dark":
+                this.enableThemeDark();
+                break;
+            case "light":
+                this.enableThemeLight();
+                break;
+            case "system":
+                this.enableThemeSystem();
+                break;
+            default:
+                this.enableThemeLight();
+                break;
         }
     }
 
@@ -21,12 +57,13 @@ export default class extends Controller {
         document.documentElement.classList.remove('theme-dark')
     }
 
-    toggle() {
-        if (document.documentElement.classList.contains("theme-dark")) {
-            this.enableThemeLight()
+    enableThemeSystem() {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            this.enableThemeDark();
         } else {
-            this.enableThemeDark()
+            this.enableThemeLight();
         }
+        this.setCookieValue('system')
     }
 
     setCookieValue(value) {
@@ -39,6 +76,4 @@ export default class extends Controller {
             .find((row) => row.startsWith("theme="))
             ?.split("=")[1]
     }
-
-
 }

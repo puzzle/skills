@@ -227,6 +227,9 @@ de-CH:
       profile-not-found: Profiu isch nid gfungä wordä.
       valid_percent_range: muess zwüschä 0 u 200 liegä.
   global:
+    light: Häll
+    dark: Dunkel
+    system: System
     date:
       from: Vom
       month: Monat

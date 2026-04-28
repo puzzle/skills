@@ -208,6 +208,9 @@ it:
       profile-not-found: Il profilo non è stato trovato.
       valid_percent_range: deve essere compreso tra 0 e 200.
   global:
+    light: leggera
+    dark: scura
+    system: Sistema
     date:
       from: Da
       month: Mese
