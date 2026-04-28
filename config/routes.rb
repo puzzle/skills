@@ -44,7 +44,7 @@ Rails.application.routes.draw do
       resources :roles
       resources :companies
       resources :unified_skills, only: [:new, :create]
-      resource :merge_department_skill_snapshots, only: [:new, :create]
+      resources :merge_department_skill_snapshots, only: [:new, :create]
       resources :manual_ptime_sync, only: :index
       post :execute_manual_ptime_sync, to: 'manual_ptime_sync#manual_sync'
       resources :people_management, only: :index

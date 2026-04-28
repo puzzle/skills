@@ -19,7 +19,7 @@ class Admin::MergeDepartmentSkillSnapshotsController < ApplicationController
                        old_department_names: old_departments.pluck(:name).join(', '),
                        new_department_name: new_department.name)
 
-    redirect_to new_admin_merge_department_skill_snapshots_path
+    redirect_to new_admin_merge_department_skill_snapshot_path
   end
 
   private
@@ -37,7 +37,7 @@ class Admin::MergeDepartmentSkillSnapshotsController < ApplicationController
 
   def invalid_form
     flash[:alert] = @merge_department_snapshots_form.errors.full_messages.to_sentence
-    redirect_to new_admin_merge_department_skill_snapshots_path
+    redirect_to new_admin_merge_department_skill_snapshot_path
   end
 
   def load_departments
