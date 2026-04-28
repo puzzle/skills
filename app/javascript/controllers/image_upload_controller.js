@@ -5,11 +5,9 @@ export default class extends Controller {
         const avatar = document.getElementById("avatar");
 
         if (event.target.files) {
-            const avatarUrl =  URL.createObjectURL(event.target.files[0])
+            const avatarUrl = URL.createObjectURL(event.target.files[0])
             document.getElementById("person_picture_url").value = ""
             avatar.src = avatarUrl
-        } else {
-            avatar.src = event.target.value
         }
     }
 }
