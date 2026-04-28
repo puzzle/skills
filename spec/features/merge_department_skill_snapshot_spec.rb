@@ -5,7 +5,7 @@ require "rails_helper"
 describe "Merge Department Skill Snapshots", type: :feature, js: true do
   before(:each) do
     sign_in auth_users(:admin)
-    visit new_admin_merge_department_skill_snapshots_path
+    visit new_admin_merge_department_skill_snapshot_path
   end
 
   def multi_select_from_slim_select(selector, values)
@@ -16,7 +16,7 @@ describe "Merge Department Skill Snapshots", type: :feature, js: true do
 
       find('.ss-search input').set(value)
 
-      find('.ss-list .ss-option', text: value, match: :prefer_exact).click
+      find('.ss-list .ss-option', text: value).click
     end
 
     find('body').click
@@ -53,7 +53,7 @@ describe "Merge Department Skill Snapshots", type: :feature, js: true do
     end
 
     expect(page).to have_current_path(
-                      new_admin_merge_department_skill_snapshots_path
+                      new_admin_merge_department_skill_snapshot_path
                     )
   end
 
