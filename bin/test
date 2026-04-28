@@ -1,1 +1,1 @@
-docker compose run --rm test bundle exec rspec "$@"
+docker compose run --rm -e HEADLESS=true test bundle exec rspec "$@"
