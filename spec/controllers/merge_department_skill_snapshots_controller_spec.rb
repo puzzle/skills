@@ -31,7 +31,7 @@ describe Admin::MergeDepartmentSkillSnapshotsController do
 
       post :create, params: valid_params(old: [dev_one, dev_two], new: sys)
 
-      expect(response).to redirect_to(new_admin_merge_department_skill_snapshots_path)
+      expect(response).to redirect_to(new_admin_merge_department_skill_snapshot_path)
 
       expect(flash[:notice]).to be_present
       expect(flash[:alert]).to be_nil
@@ -45,7 +45,7 @@ describe Admin::MergeDepartmentSkillSnapshotsController do
         }
       }
 
-      expect(response).to redirect_to(new_admin_merge_department_skill_snapshots_path)
+      expect(response).to redirect_to(new_admin_merge_department_skill_snapshot_path)
       expect(flash[:alert]).to be_present
     end
 
@@ -57,7 +57,7 @@ describe Admin::MergeDepartmentSkillSnapshotsController do
         }
       }
 
-      expect(response).to redirect_to(new_admin_merge_department_skill_snapshots_path)
+      expect(response).to redirect_to(new_admin_merge_department_skill_snapshot_path)
       expect(flash[:alert]).to be_present
     end
 
@@ -69,7 +69,7 @@ describe Admin::MergeDepartmentSkillSnapshotsController do
         }
       }
 
-      expect(response).to redirect_to(new_admin_merge_department_skill_snapshots_path)
+      expect(response).to redirect_to(new_admin_merge_department_skill_snapshot_path)
       expect(flash[:alert]).to include("kann nicht mit sich selbst zusammengeführt werden.")
     end
   end
