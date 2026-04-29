@@ -10,16 +10,15 @@ class SendUpdateProfileReminderMailJob < CronJob
   private
 
   def people_to_remind
-    base_query.where(updated_at: six_months_condition)
-              .or(base_query.where(updated_at: one_year_condition))
+    six_months_query.or(one_year_query)
   end
 
-  def six_months_condition
-    (6.months.ago - 7.days)..6.months.ago
+  def six_months_query
+    base_query.where(people: { updated_at: ..12.months.ago })
   end
 
-  def one_year_condition
-    (1.year.ago - 7.days)..1.year.ago
+  def one_year_query
+    base_query.where(people: { updated_at: ..12.months.ago })
   end
 
   def base_query
