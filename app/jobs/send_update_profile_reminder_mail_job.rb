@@ -1,5 +1,5 @@
 class SendUpdateProfileReminderMailJob < CronJob
-  self.cron_expression = '0 3 * * 7'
+  self.cron_expression = '0 3 * * 0'
 
   def perform
     people_to_remind.each do |person|
