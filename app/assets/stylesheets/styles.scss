@@ -11,13 +11,17 @@ $skills-dark-blue: #1e5a96;
 }
 
 .theme-dark {
-  filter: hue-rotate(180deg) invert(0.9);
-}
+  filter: hue-rotate(180deg) invert(90%);
 
-//Remove theme filter for all images
-.theme-dark img,
-.theme-dark .modal {
-  filter: hue-rotate(180deg) invert(1.1);
+  img,
+  .show,
+  .fade,
+  .rate,
+  .puzzle-header,
+  .modal-dialog {
+    //Reverts filter
+    filter: hue-rotate(180deg) invert(100%);
+  }
 }
 
 .pointer {

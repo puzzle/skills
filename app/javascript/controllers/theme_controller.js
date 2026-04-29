@@ -3,7 +3,7 @@ import SlimSelect from "slim-select"
 
 export default class extends Controller {
     connect() {
-        const theme = this.getCookieValue();
+        const theme = this.getCookieValue() || "light";
 
         this.changeTheme(theme)
 
@@ -33,17 +33,13 @@ export default class extends Controller {
     changeTheme(theme) {
         switch(theme) {
             case "dark":
-                this.enableThemeDark();
-                break;
+                return this.enableThemeDark();
             case "light":
-                this.enableThemeLight();
-                break;
+                return this.enableThemeLight();
             case "system":
-                this.enableThemeSystem();
-                break;
+                return this.enableThemeSystem();
             default:
-                this.enableThemeLight();
-                break;
+                return this.enableThemeLight();
         }
     }
 
