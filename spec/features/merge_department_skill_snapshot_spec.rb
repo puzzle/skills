@@ -3,23 +3,27 @@
 require "rails_helper"
 
 describe "Merge Department Skill Snapshots", type: :feature, js: true do
+  include SlimselectHelpers
+
   before(:each) do
     sign_in auth_users(:admin)
     visit new_admin_merge_department_skill_snapshot_path
   end
 
-  def multi_select_from_slim_select(selector, values)
-    slim_select_container = find(selector, visible: false).sibling('.ss-main')
+  def multi_select_from_slim_select(selector, texts)
+    available_options = ss_options(selector)
 
-    values.each do |value|
-      slim_select_container.click
-      find('.ss-search input').set(value)
-      find('.ss-list .ss-option', text: value).click
+    option_values = texts.map do |text|
+      matched_option = available_options.find { |opt| opt["text"] == text }
+
+      matched_option["value"]
     end
 
-    find('body').click
+    script = "document.querySelector('#{selector}').slim.setSelected(#{option_values.to_json})"
+    evaluate_script(script)
 
-    expect(find(selector, visible: false).value.size).to eq(values.size)
+    select_element = find(selector, visible: false)
+    expect(select_element.value).to match_array(option_values)
   end
 
   def merge_department_snapshots(old_departments:, new_department:)
