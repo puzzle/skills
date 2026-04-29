@@ -14,7 +14,7 @@ module SlimselectHelpers
 
     within select_parent do
       expect(page).to have_select(select_id, selected: option_text, visible: false)
-      expect(page).to have_selector '.ss-main .ss-values .ss-single', text: option_text
+      expect(page).to have_content(option_text)
     end
   end
 

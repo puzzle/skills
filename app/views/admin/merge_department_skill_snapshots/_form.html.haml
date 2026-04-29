@@ -1,0 +1,24 @@
+%div.w-100.d-flex.justify-content-center
+  %div.w-50.mt-4
+    %h2.text-center= t('admin.index.merge_department_snapshots')
+    %div.mt-4
+      = form_with model: @merge_department_snapshots_form, url: admin_merge_department_skill_snapshots_path do |f|
+        %div.d-flex.justify-content-center.align-content-center.flex-column
+          %div.d-flex.justify-content-between
+            %div{ data: { controller: "dropdown", dropdown_multiple_value: true, dropdown_placeholder_text_value: ta(:please_select) } }
+              = f.label :old_department_ids, ti("old_departments"), class: "text-secondary"
+
+              = f.select :old_department_ids,
+                options_from_collection_for_select(@departments, :id, :name, params[:old_department_ids]),
+                {},
+                multiple: true, size: 10, class: "skill-tracking-select", data: { dropdown_target: "dropdown" }
+
+            %div{ data: { controller: "dropdown", dropdown_auto_width_value: true } }
+              = f.label :new_department_id, ti("new_department"), class: "text-secondary"
+
+              = f.select :new_department_id,
+                options_from_collection_for_select(@departments, :id, :name, params[:new_department_id]),
+                { prompt: ta(:please_select) },
+                class: "skill-tracking-select", data: { dropdown_target: "dropdown" }
+        %div.d-flex.justify-content-center.mt-3.mt-5
+          = f.submit ti('merge_history'), data: { turbo_frame: "remote_modal" }

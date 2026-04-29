@@ -2,6 +2,9 @@
 it:
   activemodel:
     attributes:
+      merge_department_skill_form:
+        old_department_ids: Reparti precedenti
+        new_department_id: Reparto di destinazione
       unified_skill_form:
         new_skill: Nuova competenza
         old_skill_id1: Competenza 1
@@ -149,6 +152,7 @@ it:
       reminder_mail: Attiva le email di promemoria per la tua azienda.
       unify_skills: Unire le competenze
       update_people_manually: Aggiornare le persone manualmente
+      merge_department_snapshots: Unione dello sviluppo delle competenze dei reparti
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Si è verificato un errore durante l'aggiornamento di %{names}. Si prega di riprovare e, se necessario, controllare i dati in PuzzleTime.
@@ -158,6 +162,9 @@ it:
     unified_skills:
       create:
         success: La competenza %{skill1} è stata unificata con successo con la competenza %{skill2} nella nuova competenza %{new_skill}
+    merge_department_skill_snapshots:
+      create:
+        success: La cronologia del reparto %{old_department_names} è stata trasferita al reparto %{new_department_name}.
   admin/manual_ptime_sync:
     index:
       description: Quando questo bellissimo pulsante viene premuto, i dati di tutte le persone verranno aggiornati con i dati di PuzzleTime. Questo potrebbe richiedere alcuni secondi.
@@ -176,6 +183,11 @@ it:
       conflicts_found_message:
         one: "%{names} ha valutato entrambe le competenze. Se le competenze vengono comunque unite, verrà utilizzata la valutazione migliore."
         other: "%{names} hanno valutato entrambe le competenze. Se le competenze vengono comunque unite, verrà utilizzata la valutazione migliore."
+  admin/merge_department_skill_snapshots:
+    form:
+      merge_history: Unione dello sviluppo delle competenze
+      new_department: Reparto di destinazione
+      old_departments: Reparti precedenti
   certificates:
     form:
       cancel: cancellare
@@ -208,6 +220,7 @@ it:
       max_size_error: non deve essere più grande di 10 MB.
       profile-not-found: Il profilo non è stato trovato.
       valid_percent_range: deve essere compreso tra 0 e 200.
+      merge_identical_department: non può essere unito con se stesso.
   global:
     date:
       from: Da
