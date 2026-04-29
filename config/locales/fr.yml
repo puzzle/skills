@@ -209,6 +209,9 @@ fr:
       profile-not-found: Le profil n'a pas été trouvé.
       valid_percent_range: doit être compris entre 0 et 200.
   global:
+    light: Clair
+    dark: Sombre
+    system: Système
     date:
       from: De
       month: Mois
