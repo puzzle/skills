@@ -26,9 +26,8 @@ class PeopleSearch
   end
 
   def find_matching_people
-    matched_people = search_terms.each_with_index.inject([]) do |accumulated_people, (term, index)|
-      current_matches = Person.all.search(term).to_a
-      index.zero? ? current_matches : (accumulated_people & current_matches)
+    matched_people = search_terms.reduce(Person.all) do |scope, term|
+      scope.search(term)
     end
 
     preload_associations(matched_people)
@@ -128,7 +127,7 @@ class PeopleSearch
 
   def search_attributes(attributes)
     searchable_fields(attributes).filter_map do |key, value|
-      next if value.blank? || extract_matching_keywords(value).empty?
+      next if extract_matching_keywords(value).empty?
 
       matched_keywords = extract_matching_keywords(value)
 
@@ -147,16 +146,13 @@ class PeopleSearch
 
   def shorten(text, keywords)
     words = text.split
-    shorten_values = []
+    keywords.map { |k| k.to_s.downcase.strip }
 
-    keywords.each do |keyword|
-      words.each_with_index do |word, index|
-        if word.downcase.include?(keyword.to_s.downcase.strip)
-          shorten_values << build_shorten_value(words, index)
-        end
+    words.each_with_index.filter_map do |word, index|
+      if keywords.any? { |keyword| word.downcase.include?(keyword) }
+        build_shorten_value(words, index)
       end
-    end
-    shorten_values.join("\n")
+    end.join("\n")
   end
 
   def build_shorten_value(words, index)
@@ -193,17 +189,15 @@ class PeopleSearch
 
   def humanize_attributes(matched_data)
     matched_data.map do |match|
-      humanized_match = match.dup
+      base_attribute = Person.human_attribute_name(match[:attribute], count: 2)
 
-      base_attribute = Person.human_attribute_name(humanized_match[:attribute], count: 2)
+      match[:attribute] = if match[:category]
+                            "#{base_attribute}/ #{match.delete(:category)}"
+                          else
+                            base_attribute
+                          end
 
-      humanized_match[:attribute] = if humanized_match[:category]
-                                      "#{base_attribute}/ #{humanized_match.delete(:category)}"
-                                    else
-                                      base_attribute
-                                    end
-
-      humanized_match
+      match
     end
   end
 end
