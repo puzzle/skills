@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_07_24_072939) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_02_083417) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -178,6 +178,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_07_24_072939) do
     t.string "nationality"
     t.string "nationality2"
     t.string "picture"
+    t.string "picture_url"
     t.string "ptime_data_provider"
     t.integer "ptime_employee_id"
     t.boolean "reminder_mails_active", default: true

@@ -61,7 +61,8 @@ describe :people do
 
 
   def fill_out_person_form
-    page.attach_file("avatar-uploader", Rails.root + 'app/assets/images/anonymous_profile_picture.png')
+    page.attach_file('person_picture', Rails.root + 'app/assets/images/anonymous_profile_picture.png')
+    fill_in 'person_picture_url', with: 'https://www.puzzle.ch/app/uploads/2024/04/graphic-hero.svg'
     fill_in 'person_name', with: 'Hansjakobli'
     fill_in 'person_email', with: 'hanswurst@somemail.com'
     fill_in 'person_title', with: 'Wurstexperte'
@@ -97,6 +98,7 @@ describe :people do
 
     person = Person.find_by(name: 'Hansjakobli')
     expect(person.picture.identifier).to eql('anonymous_profile_picture.png')
+    expect(person.picture_url).to eql('https://www.puzzle.ch/app/uploads/2024/04/graphic-hero.svg')
     expect(person.email).to eql('hanswurst@somemail.com')
     expect(person.title).to eql('Wurstexperte')
     expect(person.person_roles.count).to eql(old_number_of_roles + 1)
@@ -119,7 +121,8 @@ describe :people do
   end
 
   def check_edit_fields(person, editing)
-    expect(page).to have_field('avatar-uploader')
+    expect(page).to have_field('person_picture')
+    expect(page).to have_field('person_picture_url')
     expect(page).to have_field('person_name', with: person.name)
     expect(page).to have_field('person_email', with: person.email)
     expect(page).to have_field('person_title', with: person.title)
@@ -289,7 +292,7 @@ describe :people do
 
       allow_any_instance_of(CarrierWave::SanitizedFile).to receive(:size).and_return(12.megabytes)
 
-      page.attach_file("avatar-uploader", Rails.root + 'app/assets/images/favicon.png')
+      page.attach_file("person_picture", Rails.root + 'app/assets/images/favicon.png')
       page.find("#save-button").click
       expect(page).to have_css('.alert-danger', text: 'Bild darf nicht grösser als 10MB sein')
     end
