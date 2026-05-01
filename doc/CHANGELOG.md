@@ -1,5 +1,26 @@
 # Changelog
 
+## [6.2.0](https://github.com/puzzle/skills/compare/6.1.0...6.2.0) (2026-05-01)
+
+
+### Features
+
+* add sorting to inactive members table [#1047](https://github.com/puzzle/skills/issues/1047) ([#1081](https://github.com/puzzle/skills/issues/1081)) ([d318c4b](https://github.com/puzzle/skills/commit/d318c4bd8f1ff9a7fb3c4f4e38bbbd97f5884b68))
+* change date to current date [#1127](https://github.com/puzzle/skills/issues/1127) ([#1137](https://github.com/puzzle/skills/issues/1137)) ([0f7cfc7](https://github.com/puzzle/skills/commit/0f7cfc738897446d6d5f14296fdbbc822318ef92))
+* implement logic to support the new or logic per added skill to search [#1013](https://github.com/puzzle/skills/issues/1013) ([#1098](https://github.com/puzzle/skills/issues/1098)) ([a81d331](https://github.com/puzzle/skills/commit/a81d33157cc6f6f6163bb3ad5afca8fdb2732f75))
+* remove all api endpoints and tests [#1088](https://github.com/puzzle/skills/issues/1088) ([#1129](https://github.com/puzzle/skills/issues/1129)) ([0d34c75](https://github.com/puzzle/skills/commit/0d34c753d298fc50a8a307a57e230af3e5f39370))
+
+
+### Bug Fixes
+
+* update cron expression [#1130](https://github.com/puzzle/skills/issues/1130) ([#1147](https://github.com/puzzle/skills/issues/1147)) ([8db67c6](https://github.com/puzzle/skills/commit/8db67c6992823c8c4a7370dc6135e443ace42281))
+
+
+### Miscellaneous Chores
+
+* **deps:** bump erb in the bundler group across 1 directory ([#1141](https://github.com/puzzle/skills/issues/1141)) ([dba3b21](https://github.com/puzzle/skills/commit/dba3b217d2c1540ea721ad77434378a0e264eb27))
+* **deps:** bump postcss in the npm_and_yarn group across 1 directory ([#1143](https://github.com/puzzle/skills/issues/1143)) ([78fce5d](https://github.com/puzzle/skills/commit/78fce5dacd546b87c018c8421fc8747ec5e70b97))
+
 ## [6.1.0](https://github.com/puzzle/skills/compare/v6.0.0...6.1.0) (2026-04-20)
 
 
