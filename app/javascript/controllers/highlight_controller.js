@@ -9,39 +9,32 @@ export default class extends Controller {
         if (!divId || !query) return;
 
         const element = document.getElementById(divId);
-        const allSkills = element.querySelectorAll('[data-controller="people-skills"]');
+        if (!element) return;
 
-        if (element) {
-            const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            const regex = new RegExp(`(${escapedQuery})`, "gi");
+        const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, "gi");
+        const replacement = '<mark class="marked-text p-1 rounded text-bg-primary">$1</mark>';
 
-            allSkills.forEach((skill) => {
-                const originalHTML = skill.innerHTML;
-                skill.innerHTML = originalHTML.replace(
-                    regex,
-                    '<mark id="marked-text"  class="p-1 rounded text-bg-primary">$1</mark>'
-                );
+        if (params.has("rating")) {
+            element.querySelectorAll('[data-controller="people-skills"]').forEach(skill => {
+                skill.innerHTML = skill.innerHTML.replace(regex, replacement);
             });
-
-            const headerOffset = 200;
-
-            const mark = document.getElementById("marked-text");
-
-            const elementPosition = element.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.scrollY - headerOffset;
-
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: "smooth"
-            });
-
-            setTimeout(() => {
-                if (!this.isElementInViewport(mark)) {
-                    mark.scrollIntoView(false)
-                }
-            }, 500)
+        } else {
+            element.innerHTML = element.innerHTML.replace(regex, replacement);
         }
+
+        const mark = element.querySelector("mark.marked-text");
+        if (!mark) return;
+
+        window.scrollTo({
+            top: element.getBoundingClientRect().top + window.scrollY - 200,
+            behavior: "smooth"
+        });
+
+        setTimeout(() => {
+            if (!this.isElementInViewport(mark)) {
+                mark.scrollIntoView(false);
+            }
+        }, 500);
     }
 
     isElementInViewport(element) {
