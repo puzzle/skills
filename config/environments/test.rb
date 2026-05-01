@@ -46,9 +46,6 @@ Rails.application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
-  # Set host to be used by links generated in mailer templates.
-  config.action_mailer.default_url_options = { host: "example.com" }
-
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
@@ -60,6 +57,18 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions.
   config.action_controller.raise_on_missing_callback_actions = true
+
+  # Mailer configuration
+  config.action_mailer.default_url_options = { host: "puzzle.ch" }
+  config.action_mailer.smtp_settings = {
+    address: ENV['MAIL_SERVER_ADDRESS'],
+    port: 25,
+    user_name: ENV['MAIL_SERVER_USERNAME'],
+    password: ENV['MAIL_SERVER_PASSWORD'],
+    enable_starttls_auto: true,
+    delivery_method: :smtp,
+    authentication: :plain
+  }
 
   config.after_initialize do
     Bullet.enable = true
