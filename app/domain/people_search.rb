@@ -109,7 +109,7 @@ class PeopleSearch
   end
 
   def append_skill_category_data!(match_data, record)
-    return unless record.respond_to?(:category) && record.category&.parent_id.present?#rubo
+    return unless record.respond_to?(:category) && record.category&.parent_id.present?
 
     parent_category = record.parent_category
     match_data[:group] = parent_category.title.parameterize
