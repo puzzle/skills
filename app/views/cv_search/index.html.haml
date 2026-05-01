@@ -20,7 +20,7 @@
             %div.w-50.d-flex.mb-2.h-25.mt-2
               = link_to result[:person][:name], person_path(result[:person][:id]), {class: "bg-skills-green w-75 text-decoration-none text-white ps-1 p-2 rounded-1", "data-turbo-frame": "_top" }
             %div.d-flex.flex-column.w-100.h-100.mt-2{"data-controller"=>"highlight-search-term"}
-              - result[:found_in].sort_by { |f| [f[:value].first.to_s.length, f[:value].first.to_s.downcase] }.each do |found_in|
+              - sort_found_in_items(result[:found_in]).each do |found_in|
                 %div.d-flex.flex-row.mb-2
                   %div.w-25.d-flex.justify-content-start.align-items-center.me-5
                     %div.me-1.w-100.h-100

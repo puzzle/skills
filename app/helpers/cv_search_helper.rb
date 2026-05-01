@@ -22,4 +22,13 @@ module CvSearchHelper
     { q: query, section_id: found_in[:group],
       rating: found_in_skills?(found_in) ? 1 : nil }
   end
+
+  def sort_found_in_items(items)
+    items.sort_by do |item|
+      [
+        item[:value].first.to_s.length,
+        item[:value].first.to_s.downcase
+      ]
+    end
+  end
 end
