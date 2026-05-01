@@ -136,12 +136,12 @@ class PeopleSearch
         group: determine_group(key),
         attribute: key,
         keywords_in_attribute: matched_keywords,
-        value: [shorten_if_to_long(value, matched_keywords)]
+        value: [shorten_if_too_long(value, matched_keywords)]
       }
     end
   end
 
-  def shorten_if_to_long(value, keywords)
+  def shorten_if_too_long(value, keywords)
     value.length >= 50 ? shorten(value, keywords) : value
   end
 
