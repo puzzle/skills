@@ -82,7 +82,7 @@ Rails.application.configure do
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
   # Mailer configuration
-  config.action_mailer.default_url_options = { host: "puzzle" }
+  config.action_mailer.default_url_options = { host: "puzzle.ch" }
   config.action_mailer.smtp_settings = {
     address: ENV['MAIL_SERVER_ADDRESS'],
     port: 25,

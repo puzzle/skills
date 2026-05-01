@@ -59,7 +59,7 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   # Mailer configuration
-  config.action_mailer.default_url_options = { host: "puzzle" }
+  config.action_mailer.default_url_options = { host: "puzzle.ch" }
   config.action_mailer.smtp_settings = {
     address: ENV['MAIL_SERVER_ADDRESS'],
     port: 25,
