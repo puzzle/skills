@@ -5,7 +5,7 @@ export default class extends Controller {
         const searchTerm = new URL(window.location.href).searchParams.get("q")?.trim();
 
         if (!searchTerm) return;
-        const elements = document.querySelectorAll(".bg-skills-search-result-blue.text-decoration-none.text-white.ps-1.p-2.rounded-1.text-center.mb-0");
+        const elements = document.querySelectorAll(".found-search-term");
 
         const escapedSearchTerm = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         const regex = new RegExp(`(${escapedSearchTerm})`, "gi");

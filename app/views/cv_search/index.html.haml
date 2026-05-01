@@ -24,7 +24,7 @@
                 %div.d-flex.flex-row.mb-2
                   %div.w-25.d-flex.justify-content-start.align-items-center.me-5
                     %div.me-1.w-100.h-100
-                      %p.bg-skills-search-result-blue.text-decoration-none.text-white.ps-1.p-2.rounded-1.text-center.mb-0{style: "white-space: pre;"}= found_in[:value].join(', ')
+                      %p.found-search-term{style: "white-space: pre;"}= found_in[:value].join(', ')
                   %div.d-flex.justify-content-start.align-items-center.me-2
                     = ti("search.found_in")
                   %div.w-25.d-flex.justify-content-start.align-items-center
