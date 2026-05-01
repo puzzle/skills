@@ -9,17 +9,20 @@ export default class extends Controller {
         if (!divId || !query) return;
 
         const element = document.getElementById(divId);
+        const allSkills = element.querySelectorAll('[data-controller="people-skills"]');
 
         if (element) {
             const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
-            const originalHTML = element.innerHTML;
             const regex = new RegExp(`(${escapedQuery})`, "gi");
 
-            element.innerHTML = originalHTML.replace(
-                regex,
-                '<mark id="marked-text"  class="p-1 rounded text-bg-primary">$1</mark>'
-            );
+            allSkills.forEach((skill) => {
+                const originalHTML = skill.innerHTML;
+                skill.innerHTML = originalHTML.replace(
+                    regex,
+                    '<mark id="marked-text"  class="p-1 rounded text-bg-primary">$1</mark>'
+                );
+            });
+
             const headerOffset = 200;
 
             const mark = document.getElementById("marked-text");
