@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.2.1](https://github.com/puzzle/skills/compare/6.2.0...6.2.1) (2026-05-01)
+
+
+### Features
+
+* implement a url as picture option [#170](https://github.com/puzzle/skills/issues/170) ([#1100](https://github.com/puzzle/skills/issues/1100)) ([d7d3852](https://github.com/puzzle/skills/commit/d7d3852ccfb323741d88270b8c9f4c7956f04b61))
+
 ## [6.2.0](https://github.com/puzzle/skills/compare/6.1.0...6.2.0) (2026-05-01)
 
 
