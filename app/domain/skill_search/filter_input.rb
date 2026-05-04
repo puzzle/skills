@@ -8,7 +8,7 @@ module SkillSearch
       @skill_ids  = params[:skill_ids]
       @levels     = params[:levels]
       @interests  = params[:interests]
-      @operators  = params[:operators] || []
+      @operators  = operators(params)
       @department = params[:department]
     end
 
@@ -26,6 +26,14 @@ module SkillSearch
 
     def equal_length_parameters?
       [@skill_ids, @levels, @interests].map(&:size).uniq.one?
+    end
+
+    def operators(params)
+      if params[:expert_mode]
+        params[:operators] || []
+      else
+        []
+      end
     end
   end
 end
