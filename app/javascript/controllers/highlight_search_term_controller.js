@@ -16,7 +16,7 @@ export default class extends Controller {
 
             if (userValue.toLowerCase() === searchTerm.toLowerCase()) return;
 
-            const highlightedText = userValue.replace(regex, '<mark class="p-1 rounded bg-skills-green text-white">$1</mark>');
+            const highlightedText = userValue.replace(regex, '<mark class="p-1 rounded bg-skills-gray text-dark">$1</mark>');
 
             if (highlightedText !== userValue) {
                 element.innerHTML = highlightedText;
