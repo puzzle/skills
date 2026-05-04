@@ -508,3 +508,14 @@ a > img {
     pointer-events: none;
   }
 }
+
+.found-search-term {
+  @extend .bg-skills-search-result-blue,
+          .text-decoration-none,
+          .text-white,
+          .ps-1,
+          .p-2,
+          .rounded-1,
+          .text-center,
+          .mb-0;
+}
