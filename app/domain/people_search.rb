@@ -34,13 +34,15 @@ class PeopleSearch
   end
 
   def preload_associations(people)
-    return [] if people.empty?
-
     associations = [:department, :roles, :projects, :activities,
                     :educations, :advanced_trainings, :contributions]
-    associations << :skills if search_skills
 
-    Person.includes(associations).find(people.map(&:id))
+    if search_skills
+      associations << :skills
+      associations << :people_skills
+    end
+
+    people.includes(associations)
   end
 
   def extract_match_data(person)
@@ -127,9 +129,9 @@ class PeopleSearch
 
   def search_attributes(attributes)
     searchable_fields(attributes).filter_map do |key, value|
-      next if extract_matching_keywords(value).empty?
-
       matched_keywords = extract_matching_keywords(value)
+
+      next if matched_keywords.empty?
 
       {
         group: determine_group(key),
@@ -141,15 +143,16 @@ class PeopleSearch
   end
 
   def shorten_if_too_long(value, keywords)
-    value.length >= 50 ? shorten(value, keywords) : value
+    value_as_string = value.to_s
+    value_as_string.length >= 50 ? shorten(value_as_string, keywords) : value
   end
 
   def shorten(text, keywords)
     words = text.split
-    keywords.map { |k| k.to_s.downcase.strip }
+    normalized_keywords = keywords.map { |k| k.to_s.downcase.strip }
 
     words.each_with_index.filter_map do |word, index|
-      if keywords.any? { |keyword| word.downcase.include?(keyword) }
+      if normalized_keywords.any? { |keyword| word.downcase.include?(keyword) }
         build_shorten_value(words, index)
       end
     end.join("\n")
@@ -184,7 +187,7 @@ class PeopleSearch
   end
 
   def table_name_for(record)
-    record.class.name.tableize.pluralize
+    record.class.name
   end
 
   def humanize_attributes(matched_data)
