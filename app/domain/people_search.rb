@@ -187,7 +187,7 @@ class PeopleSearch
   end
 
   def table_name_for(record)
-    record.class.name
+    record.class.name.tableize.pluralize
   end
 
   def humanize_attributes(matched_data)
