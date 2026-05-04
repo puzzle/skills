@@ -200,8 +200,14 @@ pzsh-topbar {
     color: #c59b08;
   }
 
+  input:focus-visible + label {
+    outline: 0.15rem solid $skills-search-result-blue;
+    border-radius: 0.15rem;
+  }
+
   input {
-    display: none;
+    opacity: 0;
+    width: 0;
   }
 }
 
