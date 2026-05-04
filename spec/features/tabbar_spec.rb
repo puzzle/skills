@@ -42,7 +42,7 @@ describe 'Tabbar', type: :feature, js:true do
           title = hash[:title]
 
           it "Should highlight '#{hash[:title]}' tab using click" do
-            click_link(href: eval(path_helper))
+            first(:link, href: eval(path_helper)).click
             check_highlighted_tab(t title)
           end
 
