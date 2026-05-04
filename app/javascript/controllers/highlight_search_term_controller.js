@@ -2,12 +2,15 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
     connect() {
-        const searchTerm = new URL(window.location.href).searchParams.get("q")?.trim();
-
+        let searchTerm = new URL(window.location.href).searchParams.get("q")?.trim();
         if (!searchTerm) return;
         const elements = this.element.querySelectorAll(".found-search-term");
 
-        const escapedSearchTerm = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        let escapedSearchTerm = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        if (escapedSearchTerm.includes(",")) {
+            escapedSearchTerm = escapedSearchTerm.split(",").map(s => s.trim()).join("|");
+        }
+
         const regex = new RegExp(`(${escapedSearchTerm})`, "gi");
 
         elements.forEach((element) => {
