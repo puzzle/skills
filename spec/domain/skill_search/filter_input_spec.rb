@@ -7,7 +7,8 @@ describe SkillSearch::FilterInput do
       levels:     [3, 4],
       interests:  [2, 3],
       operators:  [:and, :or],
-      department: 5
+      department: 5,
+      expert_mode: true
     }.merge(overrides)
   end
 
