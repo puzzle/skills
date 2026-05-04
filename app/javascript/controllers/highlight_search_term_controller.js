@@ -7,10 +7,8 @@ export default class extends Controller {
         const elements = this.element.querySelectorAll(".found-search-term");
 
         let escapedSearchTerm = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        if (escapedSearchTerm.includes(",")) {
-            escapedSearchTerm = escapedSearchTerm.split(",").map(s => s.trim()).join("|");
-        }
 
+        escapedSearchTerm = this.buildSearchPattern(escapedSearchTerm);
         const regex = new RegExp(`(${escapedSearchTerm})`, "gi");
 
         elements.forEach((element) => {
@@ -24,5 +22,14 @@ export default class extends Controller {
                 element.innerHTML = highlightedText;
             }
         });
+    }
+
+    buildSearchPattern(term) {
+        if (!term.includes(",")) return term;
+
+        return term.split(",")
+            .map(s => s.trim())
+            .filter(Boolean)
+            .join("|");
     }
 }
