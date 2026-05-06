@@ -23,10 +23,10 @@ Rails.application.routes.draw do
   end
 
   get '/auth_error', to: 'errors#auth_error'
-  get root to: redirect(path: "/people")
+  get root to: redirect(path: "/people/me")
 
   scope "(:locale)", locale: LOCALE_REGEX do
-    get '/:locale' => redirect("%{locale}/people")
+    get '/:locale' => redirect("%{locale}/people/me")
 
     resources :skills do
       collection do
@@ -54,6 +54,7 @@ Rails.application.routes.draw do
       patch :toggle_reminder_mails, on: :collection, as: :toggle_reminder_mails
     end
 
+    get '/people/:id', to: 'people#me', constraints: { id: /me/ }
     resources :people do
       resources :advanced_trainings
       resources :educations

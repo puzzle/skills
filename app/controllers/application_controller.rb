@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
 
   helper_method :auth_users_for_select
 
-
   default_form_builder SkillsFormBuilder
 
   def switch_locale(&)
