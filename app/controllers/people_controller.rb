@@ -17,6 +17,12 @@ class PeopleController < CrudController
     super
   end
 
+  def me
+    person = helpers.find_person_by_auth_user
+    @person = Person.includes(person_roles: [:role, :person_role_level]).find(person.id)
+    render template: 'people/show', layout: 'person'
+  end
+
   def show
     return export if format_odt?
 
