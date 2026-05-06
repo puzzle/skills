@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_07_24_072939) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_04_080914) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -121,6 +121,15 @@ ActiveRecord::Schema[8.1].define(version: 2025_07_24_072939) do
     t.datetime "run_at"
     t.datetime "updated_at"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
+  create_table "department_merge_histories", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "old_department_ids", default: [], null: false, array: true
+    t.jsonb "snapshot", default: {}, null: false
+    t.bigint "target_department_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["target_department_id"], name: "index_department_merge_histories_on_target_department_id"
   end
 
   create_table "department_skill_snapshots", force: :cascade do |t|
@@ -268,6 +277,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_07_24_072939) do
   end
 
   add_foreign_key "categories", "categories", column: "parent_id"
+  add_foreign_key "department_merge_histories", "departments", column: "target_department_id"
   add_foreign_key "department_skill_snapshots", "departments"
   add_foreign_key "language_skills", "people"
   add_foreign_key "people", "companies"

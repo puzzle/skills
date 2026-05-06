@@ -21,4 +21,4 @@
                 { prompt: ta(:please_select) },
                 class: "skill-tracking-select", data: { dropdown_target: "dropdown" }
         %div.d-flex.justify-content-center.mt-3.mt-5
-          = f.submit ti('merge_history'), data: { turbo_frame: "remote_modal" }
+          = f.submit ti('merge_history'), data: { turbo_frame: "remote_modal", turbo_confirm: ti(:confirm_snapshot_merge) }
