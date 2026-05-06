@@ -16,7 +16,7 @@ module TabHelper
   # rubocop:disable Layout/LineLength
   def global_tabs
     [
-      { title: ti('navbar.profile'), path: person_path(find_person_by_auth_user), admin_only: false },
+      { title: ti('navbar.profile'), path: person_path('me'), admin_only: false },
       { title: ti('navbar.skill_search'), path: skill_search_index_path, admin_only: false },
       { title: ti('navbar.cv_search'), path: cv_search_index_path, admin_only: false },
       { title: ti('navbar.skillset'), path: skills_path, admin_only: false },

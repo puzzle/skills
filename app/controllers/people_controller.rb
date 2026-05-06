@@ -19,6 +19,11 @@ class PeopleController < CrudController
 
   def me
     person = helpers.find_person_by_auth_user
+    unless person
+      redirect_to '/people/'
+      return
+    end
+
     @person = Person.includes(person_roles: [:role, :person_role_level]).find(person.id)
     render template: 'people/show', layout: 'person'
   end
