@@ -190,9 +190,13 @@ de:
         other: "%{names} haben beide Skills bewertet. Werden die Skills trotzdem vereint, wird die bessere Bewertung genommen."
   admin/merge_department_skill_snapshots:
     form:
-      merge_history: Skill-Entwicklung zusammenführen
+      department_merge: Skill-Entwicklung zusammenführen
       new_department: Zielabteilung
       old_departments: Alte Abteilungen
+    index:
+      department_merge_history:
+        merge_history: Abteilungs-Zusammenführungshistorie
+        no_departments_merged: Keine Merge-Historie vorhanden
   certificates:
     form:
       cancel: Abbrechen

@@ -186,9 +186,13 @@ fr:
         other: "%{names} ont évalué les deux compétences. Si les compétences sont quand même unifiées, la meilleure évaluation sera utilisée."
   admin/merge_department_skill_snapshots:
     form:
-      merge_history: Fusion du développement des compétences
+      department_merge: Fusion du développement des compétences
       new_department: Département cible
       old_departments: Anciens départements
+    index:
+      department_merge_history:
+        merge_history: Historique des fusions de départements
+        no_departments_merged: Aucun historique de fusion disponible
   certificates:
     form:
       cancel: annuler

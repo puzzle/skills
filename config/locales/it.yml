@@ -186,9 +186,13 @@ it:
         other: "%{names} hanno valutato entrambe le competenze. Se le competenze vengono comunque unite, verrà utilizzata la valutazione migliore."
   admin/merge_department_skill_snapshots:
     form:
-      merge_history: Unione dello sviluppo delle competenze
+      department_merge: Unione dello sviluppo delle competenze
       new_department: Reparto di destinazione
       old_departments: Reparti precedenti
+    index:
+      department_merge_history:
+        merge_history: Cronologia unione reparti
+        no_departments_merged: Nessuna cronologia di unione disponibile
   certificates:
     form:
       cancel: cancellare
