@@ -3,8 +3,11 @@
 class Admin::MergeDepartmentSkillSnapshotsController < ApplicationController
   before_action :load_departments
 
+  helper_method :old_department_names
+
   def new
     @merge_department_snapshots_form = MergeDepartmentSkillForm.new
+    @merge_histories = DepartmentMergeHistory.order(created_at: :desc)
   end
 
   def create
@@ -19,7 +22,12 @@ class Admin::MergeDepartmentSkillSnapshotsController < ApplicationController
                        old_department_names: old_departments.pluck(:name).join(', '),
                        new_department_name: new_department.name)
 
-    redirect_to new_admin_merge_department_skill_snapshot_path
+    @merge_histories = DepartmentMergeHistory.order(created_at: :desc)
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to new_admin_merge_department_skill_snapshot_path }
+    end
   end
 
   private
@@ -36,8 +44,14 @@ class Admin::MergeDepartmentSkillSnapshotsController < ApplicationController
   end
 
   def invalid_form
-    flash[:alert] = @merge_department_snapshots_form.errors.full_messages.to_sentence
-    redirect_to new_admin_merge_department_skill_snapshot_path
+    flash.now[:alert] = @merge_department_snapshots_form.errors.full_messages.to_sentence
+
+    respond_to do |format|
+      format.turbo_stream {
+        render turbo_stream: turbo_stream.update("flash-messages", partial: "layouts/flash", collection: [:notice, :alert], as: :level)
+      }
+      format.html { redirect_to new_admin_merge_department_skill_snapshot_path }
+    end
   end
 
   def load_departments
@@ -49,5 +63,9 @@ class Admin::MergeDepartmentSkillSnapshotsController < ApplicationController
       merge_department_skill_form: [:new_department_id,
                                     { old_department_ids: [] }]
     )
+  end
+
+  def old_department_names(row)
+    row.old_departments.pluck(:name).join(', ')
   end
 end

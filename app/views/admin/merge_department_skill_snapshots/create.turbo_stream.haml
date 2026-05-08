@@ -1,3 +1,6 @@
+= turbo_stream.replace "department_merge_history" do
+  = render partial: "admin/department_merge_history/index", locals: { merge_histories: @merge_histories }
+
 = turbo_stream.update dom_id(MergeDepartmentSkillForm.new) do
   = render "form"
 
