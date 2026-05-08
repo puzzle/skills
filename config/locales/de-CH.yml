@@ -190,9 +190,13 @@ de-CH:
         other: "%{names} hei beidi Skills bewertet. We si trotzdem vereint werde, wird di besseri Bewertig übernoh."
   admin/merge_department_skill_snapshots:
     form:
-      merge_history: Skill-Entwicklig zämefüehre
+      department_merge: Skill-Entwicklig zämefüehre
       new_department: Zielabteilig
       old_departments: Auti Abteilig
+    index:
+      department_merge_history:
+        merge_history: Abteiligs-Zämefüehrigshistorie
+        no_departments_merged: Keni Merge-Historie vorhande
   certificates:
     form:
       cancel: Abbrächä
