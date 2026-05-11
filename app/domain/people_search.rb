@@ -144,7 +144,7 @@ class PeopleSearch
 
   def shorten_if_too_long(value, keywords)
     value_as_string = value.to_s
-    value_as_string.length >= 50 ? shorten(value_as_string, keywords) : value
+    value_as_string.length >= 30 ? shorten(value_as_string, keywords) : value
   end
 
   def shorten(text, keywords)
