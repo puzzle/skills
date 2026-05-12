@@ -1,6 +1,6 @@
 class Admin::PeopleManagementController < CrudController
   self.nesting = :admin
-  before_action :render_unauthorized_not_conf_admin
+  before_action :render_unauthorized_not_admin
 
   def self.model_class
     Person
