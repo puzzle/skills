@@ -6,7 +6,7 @@ describe 'People management' do
 
   describe 'Not synced profiles' do
     before(:each) do
-      sign_in auth_users(:conf_admin), scope: :auth_user
+      sign_in auth_users(:admin), scope: :auth_user
       enable_ptime_sync
 
       bob.update!(ptime_employee_id: nil, ptime_data_provider: nil)
@@ -84,7 +84,7 @@ describe 'People management' do
 
   describe 'unemployed people' do
     before(:each) do
-      sign_in auth_users(:conf_admin), scope: :auth_user
+      sign_in auth_users(:admin), scope: :auth_user
 
       unemployed_company = companies('ex-mitarbeiter')
       bob.update!(company: unemployed_company)

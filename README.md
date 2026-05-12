@@ -130,7 +130,7 @@ or just simply run `rails jobs:work` to start working off queued delayed jobs.
 
 ## Permission System
 In the current permission system, users can only edit their own profiles.
-The Role Editor role, as well as Admin and Config Admin, can edit all profiles.
+The Role Editor role, as well as Admin, can edit all profiles.
 Flash messages will notify you whenever you attempt to edit a profile, indicating whether you have permission.
 
 ## PuzzleTime synchronization

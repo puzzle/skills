@@ -378,7 +378,7 @@ describe :people do
     end
 
     it 'does not shows buttons if the logged-in user has no profile' do
-      sign_in auth_users(:auth_user_no_profile), scope: :auth_user
+      sign_in auth_users(:admin_with_profile), scope: :auth_user
       visit people_path
       expect(page).to have_no_content(t("people.index.export_cv"))
       expect(page).to have_no_content(t("people.index.profile"))
