@@ -148,19 +148,19 @@ class PeopleSearch
   end
 
   def shorten(text, keywords)
-    words = text.split
-    normalized_keywords = keywords.map { |k| k.to_s.downcase.strip }
+    snippets = keywords.flat_map do |keyword|
+      escaped_keyword = Regexp.escape(keyword.to_s.strip)
 
-    words.each_with_index.filter_map do |word, index|
-      if normalized_keywords.any? { |keyword| word.downcase.include?(keyword) }
-        build_shorten_value(words, index)
+      # Matches the keyword along with its immediate surrounding context
+      # (up to one word before and one word after).
+      regex = /(?:\S+\s+)?\S*#{escaped_keyword}\S*(?:\s+\S+)?/i
+
+      text.scan(regex).map do |match|
+        "... #{match.gsub(/\s+/, ' ').strip} ..."
       end
-    end.join("\n")
-  end
+    end
 
-  def build_shorten_value(words, index)
-    start_index = [0, index - 1].max
-    "... #{words[start_index..(index + 1)].join(' ')} ..."
+    snippets.join("\n")
   end
 
   def extract_matching_keywords(value)
