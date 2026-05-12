@@ -14,8 +14,6 @@ export default class extends Controller {
         elements.forEach((element) => {
             const userValue = element.textContent.trim();
 
-            if (userValue.toLowerCase() === searchTerm.toLowerCase()) return;
-
             const highlightedText = userValue.replace(
                 regex,
                 '<mark class="rounded-1 bg-skills-gray text-dark" style="padding: 1px; border-radius: 1px;">$1</mark>'
