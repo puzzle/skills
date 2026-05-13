@@ -198,6 +198,7 @@ en:
       search_skills: Search skills as well
     index:
       multiple_keywords_message: You can separate multiple keywords with a comma.
+      query_too_short: You must enter at least 3 characters.
   errors:
     messages:
       authorization_error: You do not have permission to execute this function.

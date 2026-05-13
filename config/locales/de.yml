@@ -202,6 +202,7 @@ de:
       search_skills: Skills ebenfalls durchsuchen
     index:
       multiple_keywords_message: Du kannst mehrere Schlüsselwörter mit einem Komma voneinander trennen.
+      query_too_short: Du musst mindestens 3 Zeichen eingeben.
   errors:
     messages:
       authorization_error: Du hast keine Berechtigung, diese Funktion auszuführen.

@@ -198,6 +198,7 @@ ja:
       search_skills: スキルも検索する
     index:
       multiple_keywords_message: 複数のキーワードはコンマで区切って入力できます。
+      query_too_short: 3文字以上入力してください。
   errors:
     messages:
       authorization_error: この機能を実行する権限がありません。
