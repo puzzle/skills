@@ -33,6 +33,10 @@ class AuthConfig
       get_var_from_environment(:admin_role, required: false)
     end
 
+    def editor_role
+      get_var_from_environment(:editor_role, required: false)
+    end
+
     def relevant_keycloak_role
       get_var_from_environment(:relevant_keycloak_role, required: true)
     end
