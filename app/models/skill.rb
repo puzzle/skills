@@ -21,6 +21,9 @@ class Skill < ApplicationRecord
   has_many :people, through: :people_skills
   belongs_to :category
   has_one :parent_category, through: :category, source: :parent
+  has_many :project_skills, dependent: :destroy
+  accepts_nested_attributes_for :project_skills
+  has_many :projects, through: :project_skills
 
   enum :radar, Settings.radar
   enum :portfolio, Settings.portfolio
