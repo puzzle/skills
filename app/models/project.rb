@@ -29,6 +29,9 @@ class Project < ApplicationRecord
   belongs_to :person, touch: true
 
   has_many :project_technologies, dependent: :destroy
+  has_many :project_skills, dependent: :destroy
+  accepts_nested_attributes_for :project_skills
+  has_many :skills, through: :project_skills
 
   validates :display_in_cv, inclusion: [true, false]
   validates :role, :title, presence: true
