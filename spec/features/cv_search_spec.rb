@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-
-describe 'Advanced Trainings', type: :feature, js:true do
+describe 'Advanced Trainings', type: :feature, js: true do
   let(:bob) { people(:bob) }
   let(:alice) { people(:alice) }
 
@@ -75,12 +74,12 @@ describe 'Advanced Trainings', type: :feature, js:true do
       fill_in 'cv_search_field', with: target
 
       # Tests are flaky in firefox
-      sleep 0.3
+      sleep 0.5
       click_link "Projekte"
 
       expect(page).to have_current_path(person_path(bob, q: target, section_id: "projects"))
       within "#projects"
-      expect(page).to have_selector('mark.p-1.rounded', text: target)
+      expect(page).to have_selector('mark.highlight', text: target)
     end
 
     it 'should show multiple found skills and with category' do
@@ -95,29 +94,33 @@ describe 'Advanced Trainings', type: :feature, js:true do
       visit cv_search_index_path
 
       fill_in 'cv_search_field', with: first_skill
+      sleep 0.5
+
       check 'search_skills'
 
       expected_url = /#{person_people_skills_path(alice)}.*q=#{first_skill}/
       expect(page).to have_link(href: expected_url)
 
       skills_label = Skill.model_name.human.pluralize
+
       check_search_results("#{skills_label}/ #{alice.skills.first.parent_category.title}", alice)
     end
   end
-end
 
-def rename_skill_with(name, skill, category = 'Software-Engineering')
-  within "#skill_#{skill.id}" do
-    find('.icon.icon-pencil').click
-    fill_in 'skill_title', with: name
-    select category, from: 'skill_category_parent'
-    find("input[type='image']").click
+  def check_search_results(field_name, person = bob)
+    within('turbo-frame#search-results') {
+      expect(page).to have_link(person.name)
+      expect(page).to have_link(field_name)
+    }
   end
-end
 
-def check_search_results(field_name, person = bob)
-  within('turbo-frame#search-results') {
-    expect(page).to have_link(person.name)
-    expect(page).to have_link(field_name)
-  }
+  def rename_skill_with(name, skill, category = 'Software-Engineering')
+    within "#skill_#{skill.id}" do
+      find('.icon.icon-pencil').click
+      fill_in 'skill_title', with: name
+      select category, from: 'skill_category_parent'
+      find("input[type='image']").click
+    end
+
+  end
 end

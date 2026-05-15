@@ -1,36 +1,21 @@
-import { Controller } from "@hotwired/stimulus"
+import BaseSearchController from "./base_highlight_controller"
 
-export default class extends Controller {
+export default class extends BaseSearchController {
     connect() {
-        let searchTerm = new URL(window.location.href).searchParams.get("q")?.trim();
-        if (!searchTerm) return;
+        const regex = this.searchRegex;
+
+        if (!regex) return;
+
         const elements = this.element.querySelectorAll(".found-search-term");
-
-        let escapedSearchTerm = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
-        escapedSearchTerm = this.buildSearchPattern(escapedSearchTerm);
-        const regex = new RegExp(`(${escapedSearchTerm})`, "gi");
+        const replacement = '<mark class="highlight-search-term">$1</mark>';
 
         elements.forEach((element) => {
             const userValue = element.textContent.trim();
-
-            const highlightedText = userValue.replace(
-                regex,
-                '<mark class="rounded-1 bg-skills-gray text-dark" style="padding: 1px; border-radius: 1px;">$1</mark>'
-            );
+            const highlightedText = userValue.replace(regex, replacement);
 
             if (highlightedText !== userValue) {
                 element.innerHTML = highlightedText;
             }
         });
-    }
-
-    buildSearchPattern(term) {
-        if (!term.includes(",")) return term;
-
-        return term.split(",")
-            .map(s => s.trim())
-            .filter(Boolean)
-            .join("|");
     }
 }
