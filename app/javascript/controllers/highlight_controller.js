@@ -1,18 +1,17 @@
-import {Controller} from "@hotwired/stimulus"
+import BaseSearchController from "./base_highlight_controller"
 
-export default class extends Controller {
+export default class extends BaseSearchController {
     connect() {
-        const params = new URL(window.location.href).searchParams;
+        const params = this.urlParams;
         const divId = params.get("section_id");
-        const query = params.get("q");
+        const regex = this.searchRegex;
 
-        if (!divId || !query) return;
+        if (!divId || !regex) return;
 
         const element = document.getElementById(divId);
         if (!element) return;
 
-        const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, "gi");
-        const replacement = '<mark class="marked-text p-1 rounded text-bg-primary">$1</mark>';
+        const replacement = '<mark class="highlight">$1</mark';
 
         if (params.has("rating")) {
             element.querySelectorAll('[data-controller="people-skills"]').forEach(skill => {
@@ -22,9 +21,13 @@ export default class extends Controller {
             element.innerHTML = element.innerHTML.replace(regex, replacement);
         }
 
-        const mark = element.querySelector("mark.marked-text");
+        const mark = element.querySelector("mark.highlight");
         if (!mark) return;
 
+        this.scrollToMark(element, mark);
+    }
+
+    scrollToMark(element, mark) {
         window.scrollTo({
             top: element.getBoundingClientRect().top + window.scrollY - 200,
             behavior: "smooth"

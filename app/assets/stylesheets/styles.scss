@@ -525,3 +525,18 @@ a > img {
           .text-center,
           .mb-0;
 }
+
+.highlight {
+  @extend .rounded,
+          .text-bg-primary,
+          .p-1;
+}
+
+
+.highlight-search-term {
+  padding: 1px;
+
+  @extend .rounded-1,
+          .bg-skills-gray,
+          .text-dark;
+}

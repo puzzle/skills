@@ -46,15 +46,15 @@ class PeopleSearch
   end
 
   def extract_match_data(person)
-    matches_from_attrs = search_attributes(person.attributes)
-    matches_from_assocs = search_associations(person)
+    attribute_matches = search_attributes(person.attributes)
+    association_matches = search_associations(person)
 
-    (matches_from_attrs + matches_from_assocs).flatten.compact
+    (attribute_matches + association_matches).flatten.compact
   end
 
   def search_associations(person)
-    association_symbols.map do |assoc_name|
-      process_association(person, assoc_name)
+    association_symbols.map do |association_name|
+      process_association(person, association_name)
     end
   end
 
@@ -62,11 +62,10 @@ class PeopleSearch
     Person.reflections.keys.excluding('company').map(&:to_sym)
   end
 
-  def process_association(person, assoc_name)
-    target = person.association(assoc_name).target
-    return [] if target.blank?
+  def process_association(person, association_name)
+    target = person.association(association_name).target
 
-    target = filter_rated_skills(person, target) if assoc_name == :skills
+    target = filter_rated_skills(person, target) if association_name == :skills
 
     target.is_a?(Array) ? process_collection(target) : process_single_record(target)
   end
@@ -81,9 +80,7 @@ class PeopleSearch
   end
 
   def process_collection(collection)
-    return [] if collection.empty?
-
-    table_name = table_name_for(collection.first)
+    table_name = collection.first.class.name.tableize.pluralize
 
     collection.filter_map do |record|
       matched_attributes = search_attributes(record.attributes)
@@ -156,7 +153,7 @@ class PeopleSearch
       regex = /(?:\S+\s+)?\S*#{escaped_keyword}\S*(?:\s+\S+)?/i
 
       text.scan(regex).map do |match|
-        "... #{match.gsub(/\s+/, ' ').strip} ..."
+        "... #{match.gsub(/\s+/, ' ')} ..."
       end
     end
 
@@ -184,10 +181,6 @@ class PeopleSearch
   def searchable_fields(fields)
     keys = fields.keys & SEARCHABLE_FIELDS
     fields.slice(*keys)
-  end
-
-  def table_name_for(record)
-    record.class.name.tableize.pluralize
   end
 
   def humanize_attributes(matched_data)

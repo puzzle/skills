@@ -26,8 +26,8 @@ module CvSearchHelper
   def sort_found_in_items(items)
     items.sort_by do |item|
       [
-        item[:value].first.to_s.length,
-        item[:value].first.to_s.downcase
+        item[:value].to_s.length,
+        item[:value].to_s.downcase
       ]
     end
   end
