@@ -1,6 +1,6 @@
 %div.d-flex.align-items-center.justify-content-between
   %div.d-flex.col-9.gap-3
-    %span.col-6{data: { controller: "dropdown", "dropdown-content-position-value": "fixed"}}
+    %span#user-select.col-6{data: { controller: "dropdown", "dropdown-content-position-value": "fixed"}}
       - selected_path = model_path_or_nil(person)
       = select :person_id, :person, options_for_select(sorted_people, select_when_available(selected_path)), {prompt: person.nil?}, {data:{"dropdown-target": "dropdown"}}
     %div.d-flex.align-items-center.text-gray

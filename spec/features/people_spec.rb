@@ -34,7 +34,8 @@ describe :people do
       visit people_path
       sorted_list = people_list.sort_by { |item| item.name.downcase }
       search_string = "al"
-      page.find('.ss-main').click
+
+      page.find_by_id('user-select').click
       page.all('input')[0].send_keys(search_string)
 
       matched_strings, not_matched_strings = sorted_list.partition do |person|
