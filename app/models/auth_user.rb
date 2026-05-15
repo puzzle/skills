@@ -10,7 +10,7 @@ class AuthUser < ApplicationRecord
     def from_omniauth(auth)
       person = where(uid: auth.uid).first_or_create { |user| initialize_user(user, auth) }
       person.last_login = Time.zone.now
-      set_admin(person, auth)
+      set_role(person, auth)
     end
 
     private
@@ -21,8 +21,9 @@ class AuthUser < ApplicationRecord
       user.ldap_username = auth.extra.raw_info.pitc.uid
     end
 
-    def set_admin(person, auth)
+    def set_role(person, auth)
       person.is_admin = role?(auth, AuthConfig.admin_role)
+      person.is_editor = role?(auth, AuthConfig.editor_role)
       person.save
       person
     end
