@@ -446,7 +446,7 @@ describe :people do
       expect(page).to have_content('Expert at access control')
     end
 
-    it 'editor can edit other profiles' do
+    it 'editor can edit other profiles skills' do
       Capybara.default_driver = :selenium_chrome
 
       ursula = people(:user)
