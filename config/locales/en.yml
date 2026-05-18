@@ -197,6 +197,7 @@ en:
       search_placeholder: Search CVs...
       search_skills: Search skills as well
     index:
+      dont_filter: Don't filter
       multiple_keywords_message: You can separate multiple keywords with a comma.
       query_too_short: You must enter at least 3 characters.
   errors:
