@@ -197,6 +197,7 @@ ja:
       search_placeholder: 履歴書を検索...
       search_skills: スキルも検索する
     index:
+      dont_filter: フィルターなし
       multiple_keywords_message: 複数のキーワードはコンマで区切って入力できます。
   errors:
     messages:
