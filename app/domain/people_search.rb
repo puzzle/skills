@@ -153,7 +153,7 @@ class PeopleSearch
       regex = /(?:\S+\s+)?\S*#{escaped_keyword}\S*(?:\s+\S+)?/i
 
       text.scan(regex).map do |match|
-        "... #{match.gsub(/\s+/, ' ')} ..."
+        "... #{match} ..."
       end
     end
 
