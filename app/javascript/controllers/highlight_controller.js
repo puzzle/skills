@@ -1,44 +1,43 @@
-import {Controller} from "@hotwired/stimulus"
+import BaseSearchController from "./base_highlight_controller"
 
-export default class extends Controller {
+export default class extends BaseSearchController {
     connect() {
-        const params = new URL(window.location.href).searchParams;
+        const params = this.urlParams;
         const divId = params.get("section_id");
-        const query = params.get("q");
+        const regex = this.searchRegex;
 
-        if (!divId || !query) return;
+        if (!divId || !regex) return;
 
         const element = document.getElementById(divId);
+        if (!element) return;
 
-        if (element) {
-            const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const replacement = '<mark class="highlight">$1</mark';
 
-            const originalHTML = element.innerHTML;
-            const regex = new RegExp(`(${escapedQuery})`, "gi");
-
-            element.innerHTML = originalHTML.replace(
-                regex,
-                '<mark id="marked-text"  class="p-1 rounded text-bg-primary">$1</mark>'
-            );
-            const headerOffset = 200;
-
-            const mark = document.getElementById("marked-text");
-
-            const elementPosition = element.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.scrollY - headerOffset;
-
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: "smooth"
+        if (params.has("rating")) {
+            element.querySelectorAll('[data-controller="people-skills"]').forEach(skill => {
+                skill.innerHTML = skill.innerHTML.replace(regex, replacement);
             });
-
-            setTimeout(() => {
-                if (!this.isElementInViewport(mark)) {
-                    mark.scrollIntoView(false)
-                }
-            }, 500)
+        } else {
+            element.innerHTML = element.innerHTML.replace(regex, replacement);
         }
+
+        const mark = element.querySelector("mark.highlight");
+        if (!mark) return;
+
+        this.scrollToMark(element, mark);
+    }
+
+    scrollToMark(element, mark) {
+        window.scrollTo({
+            top: element.getBoundingClientRect().top + window.scrollY - 200,
+            behavior: "smooth"
+        });
+
+        setTimeout(() => {
+            if (!this.isElementInViewport(mark)) {
+                mark.scrollIntoView(false);
+            }
+        }, 500);
     }
 
     isElementInViewport(element) {
