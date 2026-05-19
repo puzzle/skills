@@ -147,17 +147,27 @@ class PeopleSearch
   def shorten(text, keywords)
     snippets = keywords.flat_map do |keyword|
       escaped_keyword = Regexp.escape(keyword.to_s.strip)
-
-      # Matches the keyword along with its immediate surrounding context
-      # (up to one word before and one word after).
       regex = /(?:\S+\s+)?\S*#{escaped_keyword}\S*(?:\s+\S+)?/i
 
-      text.scan(regex).map do |match|
-        "... #{match} ..."
-      end
+      matches(text, regex).map { match_to_text(it, text.length) }
     end
-
     snippets.join("\n")
+  end
+
+  def matches(string, regex)
+    start_at = 0
+    matches  = []
+    while (match = string.match(regex, start_at))
+      matches.push(match)
+      start_at = match.end(0)
+    end
+    matches
+  end
+
+  def match_to_text(match, text_length)
+    pre = '...' unless match.begin(0).zero?
+    post = '...' unless match.end(0) == text_length
+    [pre, match.to_s.squish, post].compact.join(' ')
   end
 
   def extract_matching_keywords(value)
