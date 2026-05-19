@@ -1,5 +1,25 @@
 # Changelog
 
+## [6.2.1](https://github.com/puzzle/skills/compare/6.2.0...6.2.1) (2026-05-19)
+
+
+### Features
+
+* implement a url as picture option [#170](https://github.com/puzzle/skills/issues/170) ([#1100](https://github.com/puzzle/skills/issues/1100)) ([d7d3852](https://github.com/puzzle/skills/commit/d7d3852ccfb323741d88270b8c9f4c7956f04b61))
+
+
+### Bug Fixes
+
+* add new headless option for tests [#1128](https://github.com/puzzle/skills/issues/1128) ([#1144](https://github.com/puzzle/skills/issues/1144)) ([988f265](https://github.com/puzzle/skills/commit/988f265fadd35d4a79e13931a4ecae6c8104d5a4))
+
+
+### Miscellaneous Chores
+
+* **deps:** bump faraday in the bundler group across 1 directory ([#1170](https://github.com/puzzle/skills/issues/1170)) ([2936e6b](https://github.com/puzzle/skills/commit/2936e6b07ac9f2922ccd635f2c11a7f4ef90f917))
+* **deps:** bump jwt in the bundler group across 1 directory ([#1171](https://github.com/puzzle/skills/issues/1171)) ([950b56f](https://github.com/puzzle/skills/commit/950b56fa984e16ea09dfc3ec7905327e0ab09336))
+* **deps:** bump net-imap in the bundler group across 1 directory ([#1161](https://github.com/puzzle/skills/issues/1161)) ([aaa6d8c](https://github.com/puzzle/skills/commit/aaa6d8cfbc1d96225f7485d08de1efcdfb0976c8))
+* **deps:** bump the bundler group across 1 directory with 2 updates ([#1164](https://github.com/puzzle/skills/issues/1164)) ([5da9b80](https://github.com/puzzle/skills/commit/5da9b806d1d03977717e904d2c3770572e90c197))
+
 ## [6.2.0](https://github.com/puzzle/skills/compare/6.1.0...6.2.0) (2026-05-01)
 
 
