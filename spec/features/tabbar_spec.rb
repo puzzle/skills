@@ -5,7 +5,7 @@ describe 'Tabbar', type: :feature, js:true do
 
   GLOBAL_TABS =
     [
-      { title: 'global.navbar.profile', path_helper: "people_path", admin_only: false },
+      { title: 'global.navbar.profile', path_helper: "person_path(auth_users(:admin))", admin_only: false },
       { title: 'global.navbar.skill_search', path_helper: "skill_search_index_path", admin_only: false },
       { title: 'global.navbar.cv_search', path_helper: "cv_search_index_path", admin_only: false },
       { title: 'global.navbar.skillset', path_helper: "skills_path", admin_only: false },
