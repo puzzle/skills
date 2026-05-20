@@ -202,7 +202,7 @@ de-CH:
       search_skills: Skills äbäfaus dürsuechä
     index:
       multiple_keywords_message: Du chasch mehreri Schlüssuwörter mit em nä Komma trennä.
-      query_too_short: Du muesch mindeistens 3 Zeiche igä.
+      query_too_short: Du muesch mindestens 3 Zeiche igä.
   date:
     month_names:
     -
@@ -220,7 +220,7 @@ de-CH:
     - Dezämber
   errors:
     messages:
-      authorization_error: Du muess ke Berächtigung, diä Funktion uszfüährä.
+      authorization_error: Du hesch ke Berächtigung, diä Funktion uszfüährä.
       cannot_remove: darf nid glöscht wärdä.
       chart_data_empty: Wähl e Abteilig, e Skill und es Jahr us, um d date ds zeige.
       chart_results_empty: Es si keni Snapshots gfunde worde, wo de gwählte Filter entspreche.
