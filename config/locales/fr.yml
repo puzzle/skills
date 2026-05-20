@@ -198,6 +198,7 @@ fr:
       search_skills: Rechercher également des compétences
     index:
       multiple_keywords_message: Vous pouvez séparer plusieurs mots-clés par une virgule.
+      query_too_short: Tu dois saisir au moins 3 caractères.
   errors:
     messages:
       authorization_error: Vous n'avez pas les droits pour exécuter cette fonction.

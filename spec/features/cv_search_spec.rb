@@ -53,6 +53,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
     it 'should only display results when length of search-text is > 3' do
       fill_in 'cv_search_field', with: person.name.slice(0, 2)
       expect(page).not_to have_content(person.name)
+      expect(page).to have_content("Du musst mindestens 3 Zeichen eingeben.")
       fill_in 'cv_search_field', with: person.name.slice(0, 3)
       expect(page).to have_content(person.name)
     end
@@ -60,7 +61,7 @@ describe 'Advanced Trainings', type: :feature, js:true do
     it 'should dynamically search skills' do
       skill_title = person.skills.last.title
       fill_in 'cv_search_field', with: skill_title
-      expect(page).to have_content("Keine Resultate")
+      expect(page).to have_content("Du musst mindestens 3 Zeichen eingeben.")
       page.check('search_skills')
       expect(page).not_to have_content("Keine Resultate")
       check_search_results(Skill.model_name.human.pluralize)
