@@ -1,15 +1,6 @@
 # frozen_string_literal: true
 
 module CvSearchHelper
-  CV_SECTIONS = [
-    ['Personal Data', 'personal-data'],
-    ['Core Competences', 'core-competences'],
-    ['Educations', 'educations'],
-    ['Advanced Trainings', 'advanced-trainings'],
-    ['Activities', 'activities'],
-    ['Projects', 'projects'],
-    ['Contributions', 'contributions']
-  ].freeze
 
   def found_in_skills?(found_in)
     found_in[:attribute].include?('Skills')
@@ -36,7 +27,7 @@ module CvSearchHelper
     options      = { include_blank: ti('dont_filter'), selected: params[:category] }
     html_options = { data: { dropdown_target: 'dropdown' }, class: 'w-25',
                      id: 'category-filter', onchange: 'this.form.requestSubmit()' }
-    form.select(:category, options_for_select(CV_SECTIONS, params[:category]), options, 
+    form.select(:category, options_for_select(@attributes, params[:category]), options,
 html_options)
   end
 end
