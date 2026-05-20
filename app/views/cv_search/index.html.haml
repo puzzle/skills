@@ -1,4 +1,4 @@
-= form_with(url: cv_search_index_path, method: :get, class: 'filter-form d-flex flex-column gap-2', data: { "turbo-frame": "search-results", "turbo-action": "advance", controller: "search" }) do |form|
+= form_with(url: cv_search_index_path, method: :get, data: { "turbo-frame": "search-results", "turbo-action": "advance", controller: "search" }) do |form|
   %div.mt-2.d-flex.align-items-center
     %input{class: 'form-control w-75', placeholder: ti("search_placeholder"), name: 'q', "data-action": "search#submitWithTimeout", id: "cv_search_field"}
     %div.ms-5
