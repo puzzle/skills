@@ -197,6 +197,7 @@ fr:
       search_placeholder: Chercher dans les CV...
       search_skills: Rechercher également des compétences
     index:
+      dont_filter: Ne pas filtrer
       multiple_keywords_message: Vous pouvez séparer plusieurs mots-clés par une virgule.
   errors:
     messages:

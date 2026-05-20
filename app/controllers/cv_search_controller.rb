@@ -2,15 +2,33 @@
 
 class CvSearchController < ApplicationController
   def index
-    @cv_search_results = should_search ? [] : search_results
+    @cv_search_results = should_search ? [] : filter_results
+
+    found_in = search_results.flat_map { |entry| entry[:found_in] }
+    @attributes = found_in.pluck(:attribute).compact.uniq
   end
 
   private
 
   def search_results
-    PeopleSearch.new(query.map(&:strip), search_skills: search_skills?).entries
+    PeopleSearch.new(Array(query).map(&:strip), search_skills: search_skills?).entries
   end
 
+  def filter_results
+    category = params[:category].presence
+    results = search_results
+
+    return results unless category
+
+    results.select { |person| match_category?(person, category) }
+  end
+
+  def match_category?(person, category)
+    person[:found_in] = person[:found_in].select do |match|
+      match[:attribute].to_s.downcase.include?(category.downcase)
+    end
+    person[:found_in].any?
+  end
   def query
     params[:q]&.split(',')
   end
