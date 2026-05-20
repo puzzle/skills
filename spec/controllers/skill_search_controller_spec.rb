@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe SkillSearchController do
   before(:each) do
-    sign_in auth_users(:user), scope: :auth_user
+    sign_in auth_users(:admin), scope: :auth_user
   end
 
   describe 'Search people with skills' do

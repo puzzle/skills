@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   end
 
   get '/auth_error', to: 'errors#auth_error'
-  get root to: redirect(path: "/people")
+  root "application#start"
 
   scope "(:locale)", locale: LOCALE_REGEX do
     get '/:locale' => redirect("%{locale}/people")

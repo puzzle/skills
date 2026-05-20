@@ -5,7 +5,7 @@ describe 'Tabbar', type: :feature, js:true do
 
   GLOBAL_TABS =
     [
-      { title: 'global.navbar.profile', path_helper: "people_path", admin_only: false },
+      { title: 'global.navbar.profile', path_helper: "person_path(auth_users(:admin))", admin_only: false },
       { title: 'global.navbar.skill_search', path_helper: "skill_search_index_path", admin_only: false },
       { title: 'global.navbar.cv_search', path_helper: "cv_search_index_path", admin_only: false },
       { title: 'global.navbar.skillset', path_helper: "skills_path", admin_only: false },
@@ -42,7 +42,7 @@ describe 'Tabbar', type: :feature, js:true do
           title = hash[:title]
 
           it "Should highlight '#{hash[:title]}' tab using click" do
-            click_link(href: eval(path_helper))
+            first(:link, href: eval(path_helper)).click
             check_highlighted_tab(t title)
           end
 

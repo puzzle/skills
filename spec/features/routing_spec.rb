@@ -10,7 +10,7 @@ describe 'Routing', type: :feature, js: true do
 
   describe "Check auto rerouting" do
     ROUTES = {
-      "/": "/de/people",
+      "/": "/de/people/:user_id",
       "/de/": "/de/people",
       "/people": "/de/people",
       "/skill_search": "/de/skill_search",
@@ -19,6 +19,7 @@ describe 'Routing', type: :feature, js: true do
 
     ROUTES.each do |url, target|
       it "Should route from '#{url}' to #{target}" do
+          target = target.sub(':user_id', auth_users(:user).id.to_s)
           visit url
           expect(current_path).to eq(target)
       end
