@@ -2,7 +2,7 @@
 
 class CvSearchController < ApplicationController
   def index
-    @cv_search_results = should_search ? [] : search_results
+    @cv_search_results = should_search ? search_results : []
     @query_too_short = (params[:q].to_s.strip.length || 0) < 3
   end
 
@@ -21,6 +21,6 @@ class CvSearchController < ApplicationController
   end
 
   def should_search
-    query.nil? || query.include?(nil) || query.any? { |keyword| keyword.length < 3 }
+    !(query.nil? || query.include?(nil) || query.any? { |keyword| keyword.strip.length < 3 })
   end
 end
