@@ -5,14 +5,18 @@ export default class extends Controller {
         return new URL(window.location.href).searchParams;
     }
 
-    get #searchTerm() {
+    get searchTerm() {
         return this.urlParams.get("q")?.trim();
     }
 
-    get searchRegex() {
-        if (!this.#searchTerm) return null;
+    escapeForRegex(term) {
+        return term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
 
-        let escapedTerm = this.#searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    get searchTermRegex() {
+        if (!this.searchTerm) return null;
+
+        let escapedTerm = this.escapeForRegex(this.searchTerm);
 
         if (escapedTerm.includes(",")) {
             escapedTerm = escapedTerm.split(",")
@@ -22,5 +26,9 @@ export default class extends Controller {
         }
 
         return new RegExp(`(${escapedTerm})`, "gi");
+    }
+
+    get attributeRegex() {
+        return new RegExp(`(${this.escapeForRegex(this.searchTerm)})`, "gi");
     }
 }

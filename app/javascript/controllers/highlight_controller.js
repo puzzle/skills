@@ -1,46 +1,49 @@
-import BaseSearchController from "./base_highlight_controller"
+import Base_highlight_controller from "./base_highlight_controller";
 
-export default class extends BaseSearchController {
+export default class extends Base_highlight_controller {
     connect() {
-        const params = this.urlParams;
-        const divId = params.get("section_id");
-        const regex = this.searchRegex;
+        const divId = this.urlParams.get("section_id");
+        if (!divId || !this.searchTerm) return;
 
-        if (!divId || !regex) return;
+        const containerElement = document.getElementById(divId);
+        if (!containerElement) return;
 
-        const element = document.getElementById(divId);
-        if (!element) return;
+        const markElement = this.#highlightText(containerElement);
 
-        const replacement = '<mark class="highlight">$1</mark';
-
-        if (params.has("rating")) {
-            element.querySelectorAll('[data-controller="people-skills"]').forEach(skill => {
-                skill.innerHTML = skill.innerHTML.replace(regex, replacement);
-            });
-        } else {
-            element.innerHTML = element.innerHTML.replace(regex, replacement);
+        if (markElement) {
+            this.#smoothScrollTo(containerElement);
+            this.#ensureVisibility(markElement);
         }
-
-        const mark = element.querySelector("mark.highlight");
-        if (!mark) return;
-
-        this.scrollToMark(element, mark);
     }
 
-    scrollToMark(element, mark) {
+    #highlightText(element) {
+        const originalHTML = element.innerHTML;
+        const regex = this.attributeRegex;
+
+        element.innerHTML = originalHTML.replace(
+            regex,
+            '<mark class="highlight">$1</mark>'
+        );
+
+        return element.querySelector("mark.highlight");
+    }
+
+    #smoothScrollTo(element) {
         window.scrollTo({
             top: element.getBoundingClientRect().top + window.scrollY - 200,
             behavior: "smooth"
         });
+    }
 
+    #ensureVisibility(markElement) {
         setTimeout(() => {
-            if (!this.isElementInViewport(mark)) {
-                mark.scrollIntoView(false);
+            if (!this.#isElementInViewport(markElement)) {
+                markElement.scrollIntoView(false);
             }
         }, 500);
     }
 
-    isElementInViewport(element) {
+    #isElementInViewport(element) {
         const rect = element.getBoundingClientRect();
         return (
             rect.top >= 0 &&
@@ -49,5 +52,4 @@ export default class extends BaseSearchController {
             rect.right <= (window.innerWidth || document.documentElement.clientWidth)
         );
     }
-
 }
