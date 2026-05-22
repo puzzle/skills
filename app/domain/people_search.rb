@@ -148,6 +148,7 @@ class PeopleSearch
     snippets = keywords.flat_map do |keyword|
       escaped_keyword = Regexp.escape(keyword.to_s.strip)
       regex = /(?:\S+\s+)?\S*#{escaped_keyword}\S*(?:\s+\S+)?/i
+      text = text.gsub("\n", ' ').strip
 
       matches(text, regex).map { match_to_text(it, text.length) }
     end
