@@ -375,12 +375,11 @@ describe :people do
       allow_any_instance_of(Odt::PuzzleCv).to receive(:export).and_call_original
     end
 
-    # it 'does not shows buttons if the logged-in user has no profile' do
-    #   sign_in auth_users(:user), scope: :auth_user
-    #   pry
-    #   visit people_path
-    #   expect(page).to have_no_content(t("people.index.export_cv"))
-    #   expect(page).to have_no_content(t("people.index.profile"))
-    # end
+    it 'does not shows buttons if the logged-in user has no profile' do
+      sign_in auth_users(:auth_user_no_profile), scope: :auth_user
+      visit people_path
+      expect(page).to have_no_content(t("people.index.export_cv"))
+      expect(page).to have_no_content(t("people.index.profile"))
+    end
   end
 end

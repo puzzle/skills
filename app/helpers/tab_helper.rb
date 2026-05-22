@@ -12,7 +12,7 @@ module TabHelper
 
   def global_tabs
     [
-      { title: ti('navbar.profile'), path: person_path(find_person_by_auth_user),
+      { title: ti('navbar.profile'), path: determine_person_path(find_person_by_auth_user),
         regex: PROFILE_REGEX },
       { title: ti('navbar.skill_search'), path: skill_search_index_path },
       { title: ti('navbar.cv_search'), path: cv_search_index_path },
@@ -38,5 +38,13 @@ module TabHelper
 
   def person_navbar_path(person)
     extract_path(person_tabs(person))
+  end
+
+  def determine_person_path(person)
+    if person
+      person_path(find_person_by_auth_user)
+    else
+      people_path
+    end
   end
 end
