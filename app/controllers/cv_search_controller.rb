@@ -20,7 +20,7 @@ class CvSearchController < ApplicationController
     params.key?(:search_skills)
   end
 
-  def should_search
+  def should_search?
     !(query.nil? || query.include?(nil) || @query_too_short)
   end
 end
