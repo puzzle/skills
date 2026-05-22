@@ -11,13 +11,7 @@ class ApplicationController < ActionController::Base
   default_form_builder SkillsFormBuilder
 
   def start
-    person = helpers.find_person_by_auth_user
-
-    if person
-      redirect_to person_path(person)
-    else
-      redirect_to people_path
-    end
+    redirect_to helpers.find_person_by_auth_user || people_path
   end
 
   def switch_locale(&)

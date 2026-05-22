@@ -23,13 +23,16 @@ module TabHelper
   end
 
   def extract_path(tabs)
-    tabs.select do |tab|
+    selected_tabs = tabs.select do |tab|
       if tab[:regex]
         request.path.match?(tab[:regex])
       else
         request.path.starts_with?(tab[:path])
       end
-    end.pluck(:path).max_by(&:length)
+    end
+
+    paths = selected_tabs.pluck(:path)
+    paths.max_by(&:length)
   end
 
   def global_navbar_path
@@ -41,10 +44,6 @@ module TabHelper
   end
 
   def determine_person_path(person)
-    if person
-      person_path(find_person_by_auth_user)
-    else
-      people_path
-    end
+    person ? person_path(person) : people_path
   end
 end
