@@ -11,7 +11,9 @@
 
     = ti "search.search_results"
   %turbo-frame{id: "search-results"}
-    - if @cv_search_results.blank?
+    - if @query_too_short
+      = ti("query_too_short")
+    - elsif @cv_search_results.blank?
       = ti "search.no_results"
     - else
       - @cv_search_results.each do |result|

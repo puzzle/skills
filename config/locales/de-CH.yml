@@ -202,6 +202,7 @@ de-CH:
       search_skills: Skills äbäfaus dürsuechä
     index:
       multiple_keywords_message: Du chasch mehreri Schlüssuwörter mit em nä Komma trennä.
+      query_too_short: Du muesch mindestens 3 Zeiche igä.
   date:
     month_names:
     -
