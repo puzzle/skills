@@ -5,7 +5,15 @@
       = f.text_field :title, placeholder: "Title", class: "form-control w-100"
       = f.label :description
       = f.text_area :description, placeholder: "Description", class: "form-control w-100"
-      = f.label :technology
+
+      %span{ data: { controller: "dropdown", dropdown_multiple_value: true, dropdown_placeholder_text_value: ta(:please_select) } }
+        = f.label :skill_ids, "Project Skills", class: "form-control w-100"
+
+        = f.select :skill_ids,
+              options_from_collection_for_select(Skill.all, 'id', 'title', f.object.skill_ids),
+              {},
+              multiple: true, size: 10, class: "skill-tracking-select", data: { dropdown_target: "dropdown" }
+
       = f.text_area :technology, placeholder: "Description", class: "form-control w-100"
       = f.label :role
       = f.text_area :role, placeholder: "Description", class: "form-control w-100"
