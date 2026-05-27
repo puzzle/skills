@@ -1,10 +1,9 @@
-import { Controller } from "@hotwired/stimulus"
+import {Controller} from "@hotwired/stimulus"
 import SlimSelect from 'slim-select';
 
 // Connects to data-controller="dropdown-links"
 export default class extends Controller {
     static targets = ["dropdown"]
-
     static values = {
         autoWidth: { type: Boolean, default: false },
         contentPosition: { type: String, default: 'absolute' },
@@ -23,14 +22,18 @@ export default class extends Controller {
         if (this.multipleValue) {
             settings.allowDeselect = true;
             settings.closeOnSelect = false;
-            settings.hideSelected = this.hideSelectedValue;
-
             if (this.hasPlaceholderTextValue) {
                 settings.placeholderText = this.placeholderTextValue;
             }
         }
 
-        const slimSelectDropdown = new SlimSelect({
+        // Because when reloading, a different value is selected instead of the one that was previously selected
+        const originalSelectedOption = Array.from(this.dropdownTarget.options).find(opt => opt.defaultSelected);
+        if (originalSelectedOption) {
+            this.dropdownTarget.value = originalSelectedOption.value;
+        }
+
+        this.slimSelectDropdown = new SlimSelect({
             select: this.dropdownTarget,
             settings: settings,
             events: {
@@ -45,10 +48,13 @@ export default class extends Controller {
                 beforeChange: (newVal) => {
                     const item = newVal[0];
 
+                    // Check if dropdown element is a link
                     if (item?.html?.startsWith("<a")) {
                         Turbo.visit(item.value);
+
                         return false;
                     }
+                    return true;
                     return true;
                 },
                 afterChange: () => {
