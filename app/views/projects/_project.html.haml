@@ -15,7 +15,10 @@
                 %span.fw-bold.col-12.col-lg-2
                     = Project.human_attribute_name(:technology)
                 %span.col
-                    = project.technology
+                    - if project.technology.present?
+                        = project.technology
+                    - else
+                        = project.skills.map(&:title).join
 
 
 %div.border-top
