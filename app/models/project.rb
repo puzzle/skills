@@ -37,6 +37,7 @@ class Project < ApplicationRecord
   validates :role, :title, presence: true
   validates :description, :technology, :role, length: { maximum: 5000 }
   validates :title, length: { maximum: 500 }
+  validates :technology, absence: true
 
   private
 
