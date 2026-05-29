@@ -11,53 +11,50 @@ class PeopleSearch
   def initialize(search_terms, search_skills: false)
     @search_terms = search_terms
     @search_skills = search_skills
-    @entries = search_result
+    @entries = perform_search
   end
 
   private
 
-  def search_result
-    people = []
-    people = find_matches(people)
-    results = []
-
-    people.map do |p|
-      results.push({ person: { id: p.id, name: p.name }, found_in: found_in_human_attrs(p) })
+  def perform_search
+    find_matching_people.map do |person|
+      {
+        person: { id: person.id, name: person.name },
+        found_in: humanize_attributes(extract_match_data(person))
+      }
     end
-    results
   end
 
-  def find_matches(people)
-    search_terms.each do |search_term|
-      matches = Person.all.search(search_term)
-      people = matches & people
-      people = matches if search_term == search_terms[0]
+  def find_matching_people
+    matched_people = search_terms.reduce(Person.all) do |scope, term|
+      scope.search(term)
     end
-    pre_load(people)
+
+    preload_associations(matched_people)
   end
 
-  def found_in_attrs(person)
-    res_attributes = in_attributes(person.attributes)
-    res_associations = in_associations(person)
-    (res_attributes + res_associations).flatten
-  end
-
-  # Load the attributes of the given people into cache
-  # Without this, reflective methods accessing attributes over associations
-  # would come up empty
-  def pre_load(people)
-    person_keys = people.map(&:id)
-
+  def preload_associations(people)
     associations = [:department, :roles, :projects, :activities,
                     :educations, :advanced_trainings, :contributions]
-    associations << :skills if search_skills
 
-    Person.includes(associations).find(person_keys)
+    if search_skills
+      associations << :skills
+      associations << :people_skills
+    end
+
+    people.includes(associations)
   end
 
-  def in_associations(person)
-    association_symbols.map do |sym|
-      in_association(person, sym)
+  def extract_match_data(person)
+    attribute_matches = search_attributes(person.attributes)
+    association_matches = search_associations(person)
+
+    (attribute_matches + association_matches).flatten.compact
+  end
+
+  def search_associations(person)
+    association_symbols.map do |association_name|
+      process_association(person, association_name)
     end
   end
 
@@ -65,70 +62,124 @@ class PeopleSearch
     Person.reflections.keys.excluding('company').map(&:to_sym)
   end
 
-  # rubocop:disable Metrics/MethodLength
-  def in_association(person, sym)
-    target = person.association(sym).target
-    return [] if target.nil?
+  def process_association(person, association_name)
+    target = person.association(association_name).target
 
-    if sym == :skills
-      target.filter! do |skill|
-        !person.people_skills.find_by(skill_id: skill.id).unrated?
-      end
-    end
+    target = filter_rated_skills(person, target) if association_name == :skills
 
-    if target.is_a?(Array)
-      attribute_in_array(target)
-    else
-      attribute_not_in_array(target)
+    target.is_a?(Array) ? process_collection(target) : process_single_record(target)
+  end
+
+  def filter_rated_skills(person, skills)
+    people_skills_map = person.people_skills.index_by(&:skill_id)
+
+    skills.select do |skill|
+      people_skill = people_skills_map[skill.id]
+      people_skill && !people_skill.unrated?
     end
   end
 
-  # rubocop:disable Metrics/AbcSize
-  def attribute_in_array(array)
-    table_name = table_name_of_attr(array[0])
-    in_attributes = { group: which_group(table_name), attribute: table_name,
-                      keywords_in_attribute: [] }
-    array.each do |t|
-      in_attributes(t.attributes).each do |attribute|
-        in_attributes[:keywords_in_attribute] =
-          (in_attributes[:keywords_in_attribute] + attribute[:keywords_in_attribute]).uniq
-        next unless table_name == 'skills'
+  def process_collection(collection)
+    table_name = collection.first.class.name.tableize.pluralize
 
-        category_name = if t.category.parent_id.present?
-                          t.parent_category.title.parameterize
-                        end
-        in_attributes[:group] = category_name
-      end
+    collection.filter_map do |record|
+      matched_attributes = search_attributes(record.attributes)
+      next if matched_attributes.empty?
+
+      build_collection_match(record, table_name, matched_attributes)
     end
-    in_attributes[:keywords_in_attribute].length.positive? ? in_attributes : []
   end
 
-  # rubocop:enable Metrics/AbcSize
-  # rubocop:enable Metrics/MethodLength
+  def build_collection_match(record, table_name, matched_attributes)
+    keywords = matched_attributes.flat_map { |attr| attr[:keywords_in_attribute] }.uniq
+    last_match = matched_attributes.last
 
-  def attribute_not_in_array(target)
-    result = in_attributes(target.attributes)
-    if result.length.positive?
-      result[0][:attribute] = target.class.name.downcase
-    end
-    result
+    match_data = {
+      group: determine_group(table_name),
+      attribute: table_name,
+      keywords_in_attribute: keywords,
+      value: last_match[:value]
+    }
+
+    append_skill_category_data!(match_data, record) if table_name == 'skills'
+
+    match_data
   end
 
-  def in_attributes(attrs)
-    attribute = []
-    searchable_fields(attrs).find_all do |key, value|
-      next if value.nil?
+  def append_skill_category_data!(match_data, record)
+    return unless record.respond_to?(:category) && record.category&.parent_id.present?
 
-      keywords_in_attribute = keywords_in_attribute(value)
-      if keywords_in_attribute.length.positive?
-        attribute.push({ group: which_group(key), attribute: key,
-                         keywords_in_attribute: keywords_in_attribute })
-      end
-    end
-    attribute
+    parent_category = record.parent_category
+    match_data[:group] = parent_category.title.parameterize
+    match_data[:category] = parent_category.title
   end
 
-  def which_group(key)
+  def process_single_record(record)
+    results = search_attributes(record.attributes)
+
+    if results.any?
+      results.first[:attribute] = record.class.name.downcase
+    end
+
+    results
+  end
+
+  def search_attributes(attributes)
+    searchable_fields(attributes).filter_map do |key, value|
+      matched_keywords = extract_matching_keywords(value)
+
+      next if matched_keywords.empty?
+
+      {
+        group: determine_group(key),
+        attribute: key,
+        keywords_in_attribute: matched_keywords,
+        value: shorten_if_too_long(value, matched_keywords)
+      }
+    end
+  end
+
+  def shorten_if_too_long(value, keywords)
+    value_as_string = value.to_s
+    value_as_string.length >= 30 ? shorten(value_as_string, keywords) : value
+  end
+
+  def shorten(text, keywords)
+    snippets = keywords.flat_map do |keyword|
+      escaped_keyword = Regexp.escape(keyword.to_s.strip)
+      regex = /(?:\S+\s+)?\S*#{escaped_keyword}\S*(?:\s+\S+)?/i
+      text = text.gsub("\n", ' ').strip
+
+      matches(text, regex).map { match_to_text(it, text.length) }
+    end
+    snippets.join("\n")
+  end
+
+  def matches(string, regex)
+    start_at = 0
+    matches  = []
+    while (match = string.match(regex, start_at))
+      matches.push(match)
+      start_at = match.end(0)
+    end
+    matches
+  end
+
+  def match_to_text(match, text_length)
+    pre = '...' unless match.begin(0).zero?
+    post = '...' unless match.end(0) == text_length
+    [pre, match.to_s.squish, post].compact.join(' ')
+  end
+
+  def extract_matching_keywords(value)
+    normalized_value = value.to_s.strip.downcase
+
+    search_terms.select do |search_term|
+      normalized_value.include?(search_term.strip.downcase)
+    end
+  end
+
+  def determine_group(key)
     if PERSONAL_DETAILS.include?(key)
       :personal_data
     elsif CORE_COMPETENCES.include?(key)
@@ -138,28 +189,22 @@ class PeopleSearch
     end
   end
 
-  def keywords_in_attribute(value)
-    keywords_in_attribute = []
-    search_terms.each do |search_term|
-      if value.strip.downcase.include?(search_term.strip.downcase)
-        keywords_in_attribute.push(search_term)
-      end
-    end
-    keywords_in_attribute
-  end
-
   def searchable_fields(fields)
     keys = fields.keys & SEARCHABLE_FIELDS
     fields.slice(*keys)
   end
 
-  def table_name_of_attr(attr)
-    attr.class.name.tableize.pluralize
-  end
+  def humanize_attributes(matched_data)
+    matched_data.map do |match|
+      base_attribute = Person.human_attribute_name(match[:attribute], count: 2)
 
-  def found_in_human_attrs(person)
-    found_in_attrs(person).each do |found_in|
-      found_in[:attribute] = Person.human_attribute_name(found_in[:attribute], count: 2)
+      match[:attribute] = if match[:category]
+                            "#{base_attribute}/ #{match.delete(:category)}"
+                          else
+                            base_attribute
+                          end
+
+      match
     end
   end
 end

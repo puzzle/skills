@@ -1,47 +1,49 @@
-import {Controller} from "@hotwired/stimulus"
+import Base_highlight_controller from "./base_highlight_controller";
 
-export default class extends Controller {
+export default class extends Base_highlight_controller {
     connect() {
-        const params = new URL(window.location.href).searchParams;
-        const divId = params.get("section_id");
-        const query = params.get("q");
+        const divId = this.urlParams.get("section_id");
+        if (!divId || !this.searchTerm) return;
 
-        if (!divId || !query) return;
+        const containerElement = document.getElementById(divId);
+        if (!containerElement) return;
 
-        const element = document.getElementById(divId);
+        const markElement = this.#highlightText(containerElement);
 
-        if (element) {
-            const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
-            const originalHTML = element.innerHTML;
-            const regex = new RegExp(`(${escapedQuery})`, "gi");
-
-            element.innerHTML = originalHTML.replace(
-                regex,
-                '<mark id="marked-text"  class="p-1 rounded text-bg-primary">$1</mark>'
-            );
-            const headerOffset = 200;
-
-            const mark = document.getElementById("marked-text");
-
-            const elementPosition = element.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.scrollY - headerOffset;
-
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: "smooth"
-            });
-
-            setTimeout(() => {
-                if (!this.isElementInViewport(mark)) {
-                    mark.scrollIntoView(false)
-                }
-            }, 500)
+        if (markElement) {
+            this.#smoothScrollTo(containerElement);
+            this.#ensureVisibility(markElement);
         }
     }
 
-    isElementInViewport(element) {
+    #highlightText(element) {
+        const originalHTML = element.innerHTML;
+        const regex = this.attributeRegex;
+
+        element.innerHTML = originalHTML.replace(
+            regex,
+            '<mark class="highlight">$1</mark>'
+        );
+
+        return element.querySelector("mark.highlight");
+    }
+
+    #smoothScrollTo(element) {
+        window.scrollTo({
+            top: element.getBoundingClientRect().top + window.scrollY - 200,
+            behavior: "smooth"
+        });
+    }
+
+    #ensureVisibility(markElement) {
+        setTimeout(() => {
+            if (!this.#isElementInViewport(markElement)) {
+                markElement.scrollIntoView(false);
+            }
+        }, 500);
+    }
+
+    #isElementInViewport(element) {
         const rect = element.getBoundingClientRect();
         return (
             rect.top >= 0 &&
@@ -50,5 +52,4 @@ export default class extends Controller {
             rect.right <= (window.innerWidth || document.documentElement.clientWidth)
         );
     }
-
 }
