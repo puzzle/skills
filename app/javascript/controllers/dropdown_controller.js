@@ -13,7 +13,13 @@ export default class extends Controller {
         if (!this.hasDropdownTarget)
             return;
 
-        const slimSelectDropdown = new SlimSelect({
+        // Because when reloading, a different value is selected instead of the one that was previously selected
+        const originalSelectedOption = Array.from(this.dropdownTarget.options).find(opt => opt.defaultSelected);
+        if (originalSelectedOption) {
+            this.dropdownTarget.value = originalSelectedOption.value;
+        }
+
+        this.slimSelectDropdown = new SlimSelect({
             select: this.dropdownTarget,
             settings: {
                 contentPosition: this.contentPositionValue,
@@ -36,8 +42,14 @@ export default class extends Controller {
         });
 
         // Make currently selected element not follow link when clicked on, so opening the dropdown is possible
-        if(slimSelectDropdown.getSelected()[0]?.startsWith("/")) {
+        if(this.slimSelectDropdown.getSelected()[0]?.startsWith("/")) {
             document.querySelector('.ss-main .dropdown-option-link').href = "javascript:void(0)";
+        }
+    }
+
+    disconnect() {
+        if (this.slimSelectDropdown) {
+            this.slimSelectDropdown.destroy();
         }
     }
 
