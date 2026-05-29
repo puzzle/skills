@@ -8,8 +8,11 @@ class ApplicationController < ActionController::Base
 
   helper_method :auth_users_for_select
 
-
   default_form_builder SkillsFormBuilder
+
+  def start
+    redirect_to helpers.find_person_by_auth_user || people_path
+  end
 
   def switch_locale(&)
     param_locale = params[:locale]

@@ -18,6 +18,14 @@ bob_rails:
   interest: 5
   certificate: false
   core_competence: true
+
+user_rails:
+  skill: rails
+  person: user
+  level: 3
+  interest: 5
+  certificate: false
+  core_competence: true
   
 alice_junit:
   skill: junit

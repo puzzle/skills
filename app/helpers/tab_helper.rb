@@ -1,39 +1,49 @@
 # frozen_string_literal: true
 
 module TabHelper
-  LOCALE_REGEX = /(\/(?:#{I18n.available_locales.join('|')}))/
-  GLOBAL_NAVBAR_REGEX = /^#{LOCALE_REGEX}?(\/[^\/]+)(?:\/|$)/
-  PERSON_NAVBAR_REGEX = /^(.*)/
+  PROFILE_REGEX = %r{/[a-z]{2}/people/\d+}
 
   def person_tabs(person)
     [
-      { title: ti('tabbar.cv'), path: person_path(person), admin_only: false },
-      { title: ti('tabbar.skills'), path: person_people_skills_path(person), admin_only: false }
+      { title: ti('tabbar.cv'), path: person_path(person) },
+      { title: ti('tabbar.skills'), path: person_people_skills_path(person) }
     ]
   end
 
-  # rubocop:disable Layout/LineLength
   def global_tabs
     [
-      { title: ti('navbar.profile'), path: people_path, admin_only: false },
-      { title: ti('navbar.skill_search'), path: skill_search_index_path, admin_only: false },
-      { title: ti('navbar.cv_search'), path: cv_search_index_path, admin_only: false },
-      { title: ti('navbar.skillset'), path: skills_path, admin_only: false },
+      { title: ti('navbar.profile'), path: determine_person_path(find_person_by_auth_user),
+        regex: PROFILE_REGEX },
+      { title: ti('navbar.skill_search'), path: skill_search_index_path },
+      { title: ti('navbar.cv_search'), path: cv_search_index_path },
+      { title: ti('navbar.skillset'), path: skills_path },
       { title: ti('navbar.certificates'), path: certificates_path, admin_only: true },
-      { title: ti('navbar.skills_tracking'), path: department_skill_snapshots_path, admin_only: false }
+      { title: ti('navbar.skills_tracking'), path: department_skill_snapshots_path }
     ]
   end
-  # rubocop:enable Layout/LineLength
 
-  def extract_path(regex)
-    request.path.match(regex)&.captures&.join
+  def extract_path(tabs)
+    selected_tabs = tabs.select do |tab|
+      if tab[:regex]
+        request.path.match?(tab[:regex])
+      else
+        request.path.starts_with?(tab[:path])
+      end
+    end
+
+    paths = selected_tabs.pluck(:path)
+    paths.max_by(&:length)
   end
 
   def global_navbar_path
-    extract_path(GLOBAL_NAVBAR_REGEX)
+    extract_path(global_tabs)
   end
 
-  def person_navbar_path
-    extract_path(PERSON_NAVBAR_REGEX)
+  def person_navbar_path(person)
+    extract_path(person_tabs(person))
+  end
+
+  def determine_person_path(person)
+    person ? person_path(person) : people_path
   end
 end

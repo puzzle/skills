@@ -4,6 +4,11 @@ user:
   email: user@skills.ch
   is_admin: false
 
+auth_user_no_profile:
+  uid: 1234-5678-9012-3459
+  name: No Profile Patrick
+  email: no_profile@skills.ch
+  is_admin: false
 
 admin: 
   uid: 1234-5678-9012-3457

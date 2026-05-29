@@ -4,7 +4,7 @@ describe :people do
   describe 'People Search', type: :feature, js: true do
 
     before(:each) do
-      sign_in auth_users(:user), scope: :auth_user
+      sign_in auth_users(:conf_admin), scope: :auth_user
     end
 
     let(:people_list) {Person.all}
@@ -376,7 +376,7 @@ describe :people do
     end
 
     it 'does not shows buttons if the logged-in user has no profile' do
-      sign_in auth_users(:user), scope: :auth_user
+      sign_in auth_users(:auth_user_no_profile), scope: :auth_user
       visit people_path
       expect(page).to have_no_content(t("people.index.export_cv"))
       expect(page).to have_no_content(t("people.index.profile"))
