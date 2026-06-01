@@ -21,17 +21,17 @@ class PersonSeeder
     end
 
     Person.find_by_name("Andreas Admin")&.update(
-      auth_user_id: 2,
+      auth_user_id: 1,
       company_id: 1
     )
 
     Person.find_by_name("Eddy Editor")&.update(
-      auth_user_id: 3,
+      auth_user_id: 2,
       company_id: 1
     )
 
     Person.find_by_name("Ursula User")&.update(
-      auth_user_id: 4,
+      auth_user_id: 3,
       company_id: 1
     )
   end
