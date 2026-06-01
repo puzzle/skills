@@ -1,6 +1,5 @@
 class DepartmentMergeHistory < ApplicationRecord
   validates :target_department_id, presence: true
-  validates :snapshot, presence: true
   validates :old_department_ids, presence: true
 
   def target_department
