@@ -36,7 +36,9 @@ describe "Merge Department Skill Snapshots", type: :feature, js: true do
       "#merge_department_skill_form_new_department_id",
       new_department.name
     )
-    click_button "Skill-Entwicklung zusammenführen"
+    accept_alert do
+      click_button(t('admin/merge_department_skill_snapshots.form.department_merge'))
+    end
   end
 
   it "merges departments successfully" do
@@ -60,8 +62,10 @@ describe "Merge Department Skill Snapshots", type: :feature, js: true do
                     )
   end
 
-  it "submits successfully with default target department" do
-    click_button "Skill-Entwicklung zusammenführen"
+  it "shows validation when old departments are not set with default target department" do
+    accept_alert do
+      click_button(t('admin/merge_department_skill_snapshots.form.department_merge'))
+    end
 
     expect(page).to have_content("Alte Abteilungen muss ausgefüllt werden")
   end
