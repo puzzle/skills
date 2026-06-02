@@ -10,10 +10,6 @@ module AuthHelper
     current_auth_user&.is_admin
   end
 
-  def conf_admin?
-    current_auth_user&.is_conf_admin || false
-  end
-
   def editor?
     current_auth_user&.is_editor
   end
