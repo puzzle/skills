@@ -406,12 +406,12 @@ describe :people do
       ursula = people(:user)
 
       visit person_people_skills_path(ursula)
-      expect(page).to have_content('Skills (0)')
+      expect(page).to have_content('Skill (1)')
 
       first('label', text: 'Zertifikat').click
 
       within('#person-skill-overview') do
-        expect(page).to have_text('Skill (1)')
+        expect(page).to have_text('Skills (2)')
       end
     end
 
@@ -451,12 +451,12 @@ describe :people do
 
       ursula = people(:user)
       visit person_people_skills_path(ursula)
-      expect(page).to have_content('Skills (0)')
+      expect(page).to have_content('Skill (1)')
 
       first("input[type='checkbox']").check
 
       within('#person-skill-overview') do
-        expect(page).to have_text('Skill (1)')
+        expect(page).to have_text('Skills (2)')
       end
     end
   end
