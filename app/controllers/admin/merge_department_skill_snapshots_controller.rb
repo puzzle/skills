@@ -47,9 +47,10 @@ class Admin::MergeDepartmentSkillSnapshotsController < ApplicationController
     flash.now[:alert] = @merge_department_snapshots_form.errors.full_messages.to_sentence
 
     respond_to do |format|
-      format.turbo_stream {
-        render turbo_stream: turbo_stream.update("flash-messages", partial: "layouts/flash", collection: [:notice, :alert], as: :level)
-      }
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update('flash-messages', partial: 'layouts/flash',
+                                                                   collection: [:notice, :alert], as: :level)
+      end
       format.html { redirect_to new_admin_merge_department_skill_snapshot_path }
     end
   end
