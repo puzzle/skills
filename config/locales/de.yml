@@ -104,7 +104,6 @@ de:
         technology: Eingesetzte Technologien
         title: Projekt
         year_from: Startdatum
-        migration_hint: Bitte migriere deine Technologien
       skill:
         category: Kategorie
         default_set: Default-Set
