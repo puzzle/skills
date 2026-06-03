@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  skip_before_action :verify_authenticity_token, only: :keycloak_openid
 
   def keycloak_openid
     omniauth_auth = request.env['omniauth.auth']
