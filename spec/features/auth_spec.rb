@@ -38,6 +38,22 @@ describe 'Check authentications', type: :feature, js: true do
     end
   end
 
+  context 'User without AuthUser' do
+    let(:person) { people(:maximillian) }
+
+    it 'does not raise an error when auth_user is nil' do
+      expect(person.auth_user).to be_nil
+
+      expect do
+        visit people_path
+      end.not_to raise_error
+
+      expect do
+        visit auth_error_path
+      end
+    end
+  end
+
   context 'Already logged in' do
 
     before(:each) do

@@ -38,4 +38,21 @@ describe OmniauthCallbacksController do
       end
     end
   end
+
+  context 'when a matching user does not exist' do
+    before do
+      allow(AuthConfig).to receive(:relevant_keycloak_role).and_return('puzzle')
+      request.env['omniauth.auth'] = mock_omniauth_user(['puzzle'])
+    end
+
+    it 'creates the user from omniauth data' do
+      expect {
+        get :keycloak_openid
+      }.to change(AuthUser, :count).by(1)
+
+      user = AuthUser.find_by(uid: '123545')
+      expect(user.name).to eq('Test User')
+      expect(user.email).to eq('test@example.com')
+    end
+  end
 end

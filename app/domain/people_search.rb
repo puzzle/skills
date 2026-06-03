@@ -6,15 +6,6 @@ class PeopleSearch
   PERSONAL_DETAILS = %w[name email title person_roles roles department company birthdate nationality
                         location marital_status shortname].freeze
   CORE_COMPETENCES = %w[competence_notes skills].freeze
-  SEARCHED_ASSOCIATIONS = %i[
-  department
-  roles
-  projects
-  activities
-  educations
-  advanced_trainings
-  contributions
-].freeze
   attr_reader :search_terms, :entries, :search_skills
 
   def initialize(search_terms, search_skills: false)
