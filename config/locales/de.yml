@@ -104,6 +104,7 @@ de:
         technology: Eingesetzte Technologien
         title: Projekt
         year_from: Startdatum
+        migration_hint: Bitte migriere deine Technologien
       skill:
         category: Kategorie
         default_set: Default-Set
@@ -476,3 +477,7 @@ de:
         title: Titel
     show:
       title: 'Skill: %{title} (%{amount} Members)'
+  projects:
+    form:
+      migration_hint: Bitte schliesse die Datenmigration ab, indem du die Technologien deines Projekts in das neue Feld "Skills" unten überträgst, damit dein Profil auf dem neuesten Stand bleibt.
+
