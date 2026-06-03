@@ -23,9 +23,9 @@ module UnifiedSkillsHelper
 
   def category_map_for_dropdown
     Category.all_children.sort_by { |category| category.parent&.title }
-                         .map do |category|
-      [category.name_with_parent,
-       category.id]
+            .map do |category|
+              [category.name_with_parent,
+               category.id]
     end
   end
 
