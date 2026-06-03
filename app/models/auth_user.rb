@@ -18,7 +18,8 @@ class AuthUser < ApplicationRecord
     def initialize_user(user, auth)
       user.name = auth.info.name
       user.email = auth.info.email
-      user.ldap_username = auth.extra&.raw_info&.pitc&.uidd
+      raw_info = auth.extra&.raw_info
+      user.ldap_username = raw_info&.pitc&.uidd
     end
 
     def set_role(person, auth)
