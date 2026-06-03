@@ -437,3 +437,6 @@ it:
         title: Titolo
     show:
       title: "%{title}%{amount} Abilità: ( Membri)"
+  projects:
+    form:
+      migration_hint: Ti preghiamo di completare la migrazione dei dati trasferendo le tecnologie del tuo progetto nel nuovo campo "Competenze" qui sotto, in modo da mantenere aggiornato il tuo profilo.
