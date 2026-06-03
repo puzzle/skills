@@ -23,17 +23,15 @@ duckduckgo:
   description: very interesting project
   title: duckduckgo
   role: Senior Software Engineer
-  technology: Ruby on Rails
   year_to: 2013
   year_from: 2010
   month_from: 12
-  person: bob 
+  person: bob
 
 google:
   description: I learned so much
   title: google
   role: Developer
-  technology: Java
   year_to: 2015
   year_from: 2012
   person: alice
@@ -42,7 +40,6 @@ construction analyst:
   description: Analyzing stuff
   title: construction analyst
   role: Analyst
-  technology: Graphs
   year_to: 2005
   year_from: 2000
   person: longmax
@@ -51,7 +48,6 @@ community manager:
   description: Trying to make the community happy
   title: community manager
   role: Manager
-  technology: Discord
   year_to: 2010
   year_from: 2005
   person: longmax
@@ -60,7 +56,6 @@ salesman:
   description: Selling drums
   title: salesman
   role: Sales
-  technology: HTML
   year_to: 2014
   year_from: 2010
   person: longmax
@@ -69,7 +64,6 @@ it director:
   description: Beeing responsible for lots of people
   title: it director
   role: Director
-  technology: Hitobito
   year_to: 2020
   year_from: 2014
   person: longmax
@@ -78,7 +72,6 @@ system engineer:
   description: Engineering lots of different stuff
   title: system engineer
   role: Engineer
-  technology: Java
   year_to: 2021
   year_from: 2020
   person: longmax
@@ -87,7 +80,6 @@ fisherman :
   description: Fishing and selling the fish
   title: fisherman
   role: Fisher
-  technology: Boat driving
   year_to: 2022
   year_from: 2021
   display_in_cv: true
@@ -97,7 +89,6 @@ gourmet-chef:
   description: Cooking gourmet food
   title: cook
   role: Chef
-  technology: grill
   year_to: 2023
   year_from: 2020
   display_in_cv: false
