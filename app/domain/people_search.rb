@@ -181,11 +181,11 @@ class PeopleSearch
 
   def determine_group(key)
     if PERSONAL_DETAILS.include?(key)
-      :personal_data
+      'personal-data'
     elsif CORE_COMPETENCES.include?(key)
-      :core_competences
+      'core-competences'
     else
-      key
+      key.dasherize
     end
   end
 
