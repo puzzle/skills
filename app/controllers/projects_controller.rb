@@ -4,6 +4,6 @@ class ProjectsController < People::PersonRelationsController
   self.permitted_attrs = [
     :description, :title, :role, :technology, :display_in_cv,
     :month_from, :year_from, :month_to, :year_to, :person_id,
-    skill_ids: []
+    { skill_ids: [] }
   ]
 end
