@@ -59,7 +59,7 @@ class PeopleSearch
   end
 
   def association_symbols
-    Person.reflections.keys.excluding('company').map(&:to_sym)
+    Person.reflections.keys.excluding('company', 'auth_user').map(&:to_sym)
   end
 
   def process_association(person, association_name)

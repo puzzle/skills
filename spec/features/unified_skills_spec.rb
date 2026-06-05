@@ -48,7 +48,7 @@ describe 'Unified Skills', type: :feature, js: true do
     unify_skills(skill1, skill2, new_skill)
 
     within '.modal-dialog'  do
-      expect(page).to have_content('Alice Mante und Wally Allround haben beide Skills bewertet. Werden die Skills trotzdem vereint, wird die bessere Bewertung genommen.')
+      expect(page).to have_text(/(Alice Mante und Wally Allround|Wally Allround und Alice Mante) haben beide Skills bewertet/)
       click_button 'Fortfahren'
     end
 

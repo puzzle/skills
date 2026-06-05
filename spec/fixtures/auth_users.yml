@@ -5,7 +5,7 @@ user:
   is_admin: false
 
 auth_user_no_profile:
-  uid: 1234-5678-9012-3459
+  uid: 1234-5678-9012-3460
   name: No Profile Patrick
   email: no_profile@skills.ch
   is_admin: false
@@ -16,9 +16,14 @@ admin:
   email: admin@skills.ch
   is_admin: true
 
-conf_admin:
-  uid: 1234-5678-9012-8558
-  name: Carl Albrecht Conf
-  email: conf_admin@skills.ch
+admin_with_profile:
+  uid: 1234-5678-9012-3458
+  name: Andreas With Profile
+  email: admin@skills.ch
   is_admin: true
-  is_conf_admin: true
+
+editor:
+  uid: 1234-5678-9012-3459
+  name: Eddy Editor
+  email: editor@skills.ch
+  is_editor: true

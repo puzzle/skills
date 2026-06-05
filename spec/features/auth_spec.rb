@@ -38,6 +38,22 @@ describe 'Check authentications', type: :feature, js: true do
     end
   end
 
+  context 'User without AuthUser' do
+    let(:person) { people(:maximillian) }
+
+    it 'does not raise an error when auth_user is nil' do
+      expect(person.auth_user).to be_nil
+
+      expect do
+        visit people_path
+      end.not_to raise_error
+
+      expect do
+        visit auth_error_path
+      end
+    end
+  end
+
   context 'Already logged in' do
 
     before(:each) do
@@ -53,11 +69,11 @@ describe 'Check authentications', type: :feature, js: true do
   context 'switch between auth users' do
     before(:each) do
       allow(Rails).to receive(:env).and_return(ActiveSupport::StringInquirer.new("development"))
-      sign_in(auth_users(:conf_admin))
+      sign_in(auth_users(:editor))
       visit people_path
     end
 
-    ['Andreas Admin', 'Ursula User', 'Carl Albrecht Conf'].each do |username|
+    ['Andreas Admin', 'Ursula User'].each do |username|
       it "successfully selects #{username} as auth user" do
         select_from_slim_select("#auth_user_id", username)
       end

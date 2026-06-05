@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_02_083417) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_12_095818) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -47,8 +47,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_02_083417) do
     t.datetime "created_at", null: false
     t.string "email"
     t.boolean "is_admin", default: false, null: false
-    t.boolean "is_conf_admin", default: false, null: false
+    t.boolean "is_editor", default: false, null: false
     t.datetime "last_login"
+    t.string "ldap_username"
     t.string "name"
     t.string "uid"
     t.datetime "updated_at", null: false
@@ -165,6 +166,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_02_083417) do
 
   create_table "people", id: :serial, force: :cascade do |t|
     t.datetime "associations_updated_at", precision: nil
+    t.integer "auth_user_id"
     t.datetime "birthdate", precision: nil
     t.bigint "company_id"
     t.string "competence_notes"
@@ -272,5 +274,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_02_083417) do
   add_foreign_key "department_skill_snapshots", "departments"
   add_foreign_key "language_skills", "people"
   add_foreign_key "people", "companies"
+  add_foreign_key "people", "people", column: "auth_user_id"
   add_foreign_key "project_technologies", "projects"
 end

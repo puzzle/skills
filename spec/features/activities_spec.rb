@@ -10,8 +10,8 @@ describe 'Activities', type: :feature, js:true do
 
   describe 'Crud actions' do
     it 'shows all' do
-      within('turbo-frame#activity') do
-        person.activities.each do |activity|
+      person.activities.each do |activity|
+        within("turbo-frame##{dom_id(activity)}") do
           expect(page).to have_content(activity.role)
           expect(page).to have_content(activity.description)
         end

@@ -21,9 +21,10 @@ describe :people do
         click_button 'Skill erstellen'
       end
       validate_people_skill(person, skill.title)
-      within('.alert-success') do |success_banner|
-        expect(success_banner).to have_content(t('crud.create.flash.success', model: skill))
-      end
+      expect(page).to have_css(
+                        '.alert-success',
+                        text: t('crud.create.flash.success', model: skill)
+                      )
     end
 
     ["Web Components", "WebComponents", "web components", "webcomponents", " w e b co  mpo ne n   ts"].each do |query|
@@ -52,9 +53,10 @@ describe :people do
         click_button 'Skill erstellen'
       end
       validate_people_skill(person, skill_name)
-      within('.alert-success') do |success_banner|
-        expect(success_banner).to have_content(t('crud.create.flash.success', model: people_skill_from_skill_name(person, skill_name)))
-      end
+      expect(page).to have_css(
+                        '.alert-success',
+                        text: t('crud.create.flash.success', model: people_skill_from_skill_name(person, skill_name))
+                      )
     end
 
     it 'Fail while add skill not selecting skill' do

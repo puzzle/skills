@@ -10,8 +10,8 @@ describe 'Educations', type: :feature, js:true do
 
   describe 'Crud actions' do
     it 'shows all' do
-      within('turbo-frame#education') do
-        person.educations.each do |education|
+      person.educations.each do |education|
+        within("turbo-frame##{dom_id(education)}") do
           expect(page).to have_content(education.title)
           expect(page).to have_content(education.location)
         end
