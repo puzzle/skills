@@ -188,6 +188,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_12_095818) do
     t.string "title"
     t.datetime "updated_at", precision: nil, null: false
     t.string "updated_by"
+    t.index ["auth_user_id"], name: "index_people_on_auth_user_id"
     t.index ["company_id"], name: "index_people_on_company_id"
   end
 
@@ -273,7 +274,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_12_095818) do
   add_foreign_key "categories", "categories", column: "parent_id"
   add_foreign_key "department_skill_snapshots", "departments"
   add_foreign_key "language_skills", "people"
+  add_foreign_key "people", "auth_users"
   add_foreign_key "people", "companies"
-  add_foreign_key "people", "people", column: "auth_user_id"
   add_foreign_key "project_technologies", "projects"
 end
