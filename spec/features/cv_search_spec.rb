@@ -13,7 +13,7 @@ describe 'Advanced Trainings', type: :feature, js: true do
     it 'should find correct results' do
       fill_in 'cv_search_field', with: bob.name
       check_search_results(Person.human_attribute_name(:name))
-      fill_in 'cv_search_field', with: bob.projects.first.technology
+      fill_in 'cv_search_field', with: bob.projects.first.description
       check_search_results(Person.human_attribute_name(:projects))
       fill_in 'cv_search_field', with: bob.title
       check_search_results(Person.human_attribute_name(:title))
@@ -33,7 +33,7 @@ describe 'Advanced Trainings', type: :feature, js: true do
     end
 
     it 'should open person when clicking result' do
-      fill_in 'cv_search_field', with: bob.projects.first.technology
+      fill_in 'cv_search_field', with: bob.projects.first.description
       check_search_results(Person.human_attribute_name(:projects))
       # Tests are flaky in firefox
       sleep 0.3
@@ -69,7 +69,7 @@ describe 'Advanced Trainings', type: :feature, js: true do
     end
 
     it "should highlight the correct text" do
-      target = "Ruby"
+      target = "duckduckgo"
 
       visit(cv_search_index_path)
       fill_in 'cv_search_field', with: target
