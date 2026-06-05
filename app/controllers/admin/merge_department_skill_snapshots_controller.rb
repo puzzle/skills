@@ -14,32 +14,35 @@ class Admin::MergeDepartmentSkillSnapshotsController < ApplicationController
     @merge_department_snapshots_form = build_form
     return invalid_form unless @merge_department_snapshots_form.valid?
 
-    perform_merge
+    old_departments, new_department = extract_departments
+    merge_department_snapshots(old_departments, new_department)
 
-    @merge_histories = DepartmentMergeHistory.order(created_at: :desc)
+    flash.now[:notice] = t('.success',
+                           old_department_names: old_departments.pluck(:name).join(', '),
+                           new_department_name: new_department.name)
 
+    @merge_histories = load_merge_histories
+    respond_to_format
+  end
+
+  private
+
+  def respond_to_format
     respond_to do |format|
       format.turbo_stream
       format.html { redirect_to new_admin_merge_department_skill_snapshot_path }
     end
   end
 
-  private
-
-  def perform_merge
-    old_departments = @merge_department_snapshots_form.selected_old_departments
-    new_department = @merge_department_snapshots_form.selected_new_department
-
-    merge_department_snapshots(old_departments, new_department)
-    set_success_flash(old_departments, new_department)
+  def extract_departments
+    [
+      @merge_department_snapshots_form.selected_old_departments,
+      @merge_department_snapshots_form.selected_new_department
+    ]
   end
 
-  def set_success_flash(old_departments, new_department)
-    flash.now[:notice] = t(
-      '.success',
-      old_department_names: old_departments.pluck(:name).join(', '),
-      new_department_name: new_department.name
-    )
+  def load_merge_histories
+    DepartmentMergeHistory.order(created_at: :desc)
   end
 
   def build_form
