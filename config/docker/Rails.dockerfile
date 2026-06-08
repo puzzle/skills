@@ -5,12 +5,14 @@ ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 
 RUN useradd app -m -U -u 1000
 
-RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash -
-RUN apt-get update
-RUN apt-get install direnv -y
-RUN apt-get install firefox-esr -y
-RUN apt-get install -y nodejs
-RUN apt-get install -y graphicsmagick
+RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash - && \
+    apt-get update && \
+    apt-get install -y \
+      direnv \
+      firefox-esr \
+      nodejs \
+      graphicsmagick \
+      libreoffice-writer
 RUN npm install -g corepack && corepack enable
 
 RUN mkdir /opt/bundle && chmod 777 /opt/bundle
