@@ -4,6 +4,8 @@
     %div.ms-5
       %input{type: "checkbox", name: 'search_skills', id: 'search_skills_checkbox', onchange: 'this.form.requestSubmit();'}
         = ti('search_skills')
+      %input{type: "checkbox", name: 'handle_whitespace', id: 'handle_whitespace_checkbox', onchange: 'this.form.requestSubmit();'}
+        = ti('handle_whitespace')
   %p.text-secondary.d-flex.align-items-center
     = image_tag("info", class: "pe-1")
     = ti("multiple_keywords_message")

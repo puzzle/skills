@@ -6,11 +6,12 @@ class PeopleSearch
   PERSONAL_DETAILS = %w[name email title person_roles roles department company birthdate nationality
                         location marital_status shortname].freeze
   CORE_COMPETENCES = %w[competence_notes skills].freeze
-  attr_reader :search_terms, :entries, :search_skills
+  attr_reader :search_terms, :entries, :search_skills, :handle_whitespace
 
-  def initialize(search_terms, search_skills: false)
+  def initialize(search_terms, search_skills: false, handle_whitespace: false)
     @search_terms = search_terms
     @search_skills = search_skills
+    @handle_whitespace = handle_whitespace
     @entries = perform_search
   end
 
@@ -172,10 +173,19 @@ class PeopleSearch
   end
 
   def extract_matching_keywords(value)
-    normalized_value = value.to_s.strip.downcase
+    normalized_value = normalized_string(value)
 
     search_terms.select do |search_term|
-      normalized_value.include?(search_term.strip.downcase)
+      normalized_search_term = normalized_string(search_term)
+      normalized_value.include?(normalized_search_term)
+    end
+  end
+
+  def normalized_string(value)
+    if @handle_whitespace
+      value.to_s.gsub(' ', '').downcase
+    else
+      value.to_s.strip.downcase
     end
   end
 
