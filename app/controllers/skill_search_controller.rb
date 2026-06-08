@@ -29,7 +29,7 @@ class SkillSearchController < CrudController
   # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength
 
   def permitted_search_params
-    params.permit(:department, :add_row, :delete_row, :expert_mode,
+    params.permit(:locale, :department, :add_row, :delete_row, :expert_mode,
                   skill_id: [], level: [], interest: {}, operator: {})
   end
 end
