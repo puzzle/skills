@@ -9,7 +9,7 @@ ARG NODEJS_VERSION="24"
 
 # Packages
 ARG BUILD_PACKAGES="nodejs build-essential shared-mime-info libxml2-dev libxslt1-dev"
-ARG RUN_PACKAGES="shared-mime-info postgresql-client-18 graphicsmagick"
+ARG RUN_PACKAGES="shared-mime-info postgresql-client-18 graphicsmagick libreoffice-writer"
 
 # Scripts
 ARG PRE_INSTALL_SCRIPT="curl -sL https://deb.nodesource.com/setup_${NODEJS_VERSION}.x -o /tmp/nodesource_setup.sh && bash /tmp/nodesource_setup.sh"

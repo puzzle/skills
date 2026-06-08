@@ -49,7 +49,7 @@ class PeopleController < CrudController
                  filename(entry.name, 'CV_Puzzle_ITC')
                end
 
-    send_data odt_file.generate,
+    send_data LibreofficeConverter.refresh_odt(odt_file.generate),
               type: 'application/vnd.oasis.opendocument.text',
               disposition: content_disposition('attachment', filename)
   end
@@ -57,14 +57,10 @@ class PeopleController < CrudController
   def export_redhat
     cv = Odt::Cv.new(entry, params)
     odt_file = Odt::RedhatCv.new(cv).export
-    initials = entry.name.rpartition(' ').then do |first_part, _, last_part|
-      "#{first_part[0]}#{last_part[0]}"
-    end
-    filename = initials << '_Red_Hat_Services_CV.odt'
 
-    send_data odt_file.generate,
+    send_data LibreofficeConverter.refresh_odt(odt_file.generate),
               type: 'application/vnd.oasis.opendocument.text',
-              disposition: content_disposition('attachment', filename)
+              disposition: content_disposition('attachment', redhat_filename)
   end
 
   private
@@ -79,6 +75,12 @@ class PeopleController < CrudController
 
   def default_branch_adress
     BranchAdress.find_by(default_branch_adress: true) || BranchAdress.first
+  end
+
+  def redhat_filename
+    entry.name.rpartition(' ').then do |first_part, _, last_part|
+      "#{first_part[0]}#{last_part[0]}"
+    end << '_Red_Hat_Services_CV.odt'
   end
 
   @ptime_permitted_attrs =
