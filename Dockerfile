@@ -9,7 +9,7 @@ ARG NODEJS_VERSION="24"
 
 # Packages
 ARG BUILD_PACKAGES="nodejs build-essential shared-mime-info libxml2-dev libxslt1-dev"
-ARG RUN_PACKAGES="shared-mime-info postgresql graphicsmagick"
+ARG RUN_PACKAGES="shared-mime-info postgresql-client-18 graphicsmagick"
 
 # Scripts
 ARG PRE_INSTALL_SCRIPT="curl -sL https://deb.nodesource.com/setup_${NODEJS_VERSION}.x -o /tmp/nodesource_setup.sh && bash /tmp/nodesource_setup.sh"
@@ -175,6 +175,11 @@ ENV PS1="${PS1}" \
 RUN    export DEBIAN_FRONTEND=noninteractive \
   && apt-get update \
   && apt-get upgrade -y \
+  && apt-get install -y --no-install-recommends curl ca-certificates gnupg \
+  && install -d /usr/share/postgresql-common/pgdg \
+  && curl -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc \
+  && echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(. /etc/os-release && echo "$VERSION_CODENAME")-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
+  && apt-get update \
   && apt-get install -y ${RUN_PACKAGES} vim curl less \
   && apt-get clean \
   && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/* /tmp/* /var/tmp/* \
