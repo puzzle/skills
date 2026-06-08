@@ -34,28 +34,22 @@ export default class extends Controller {
                     return option.text.toLowerCase().replace(/\s/g, '').indexOf(search.toLowerCase().replace(/\s/g, '')) !== -1
                 },
                 beforeChange: (newVal) => {
-                        const item = newVal[0];
+                    const item = newVal[0];
 
-                        // Check if dropdown element is a link
-                        if (item?.html?.startsWith("<a")) {
-                            Turbo.visit(item.value);
+                    // Check if dropdown element is a link
+                    if (item?.html?.startsWith("<a")) {
+                        Turbo.visit(item.value);
 
-                            return false;
-                        }
+                        return false;
+                    }
                     return true;
                 }
             },
         });
 
         // Make currently selected element not follow link when clicked on, so opening the dropdown is possible
-        if(this.slimSelectDropdown.getSelected()[0]?.startsWith("/")) {
+        if(slimSelectDropdown.getSelected()[0]?.startsWith("/")) {
             document.querySelector('.ss-main .dropdown-option-link').href = "javascript:void(0)";
-        }
-    }
-
-    disconnect() {
-        if (this.slimSelectDropdown) {
-            this.slimSelectDropdown.destroy();
         }
     }
 

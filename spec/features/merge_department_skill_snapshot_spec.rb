@@ -10,22 +10,6 @@ describe "Merge Department Skill Snapshots", type: :feature, js: true do
     visit new_admin_merge_department_skill_snapshot_path
   end
 
-  def multi_select_from_slim_select(selector, texts)
-    available_options = ss_options(selector)
-
-    option_values = texts.map do |text|
-      matched_option = available_options.find { |opt| opt["text"] == text }
-
-      matched_option["value"]
-    end
-
-    script = "document.querySelector('#{selector}').slim.setSelected(#{option_values.to_json})"
-    evaluate_script(script)
-
-    select_element = find(selector, visible: false)
-    expect(select_element.value).to match_array(option_values)
-  end
-
   def merge_department_snapshots(old_departments:, new_department:)
     multi_select_from_slim_select(
       "#merge_department_skill_form_old_department_ids",
