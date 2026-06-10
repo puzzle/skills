@@ -35,7 +35,7 @@ module CvSearchHelper
       onchange: 'this.form.requestSubmit()',
       multiple: true
     }
-    form.select(:category, options_for_select(@attributes, params[:category]), options,
+    form.select(:category, grouped_options_for_select(@attributes, params[:category]), options,
 html_options)
   end
 
