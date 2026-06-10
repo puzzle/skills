@@ -216,6 +216,7 @@ de-CH:
     global:
       search_placeholder: CVs dürsuechä...
       search_skills: Skills äbäfaus dürsuechä
+      handle_whitespaces: läärzeichä ignorierä
     index:
       multiple_keywords_message: Du chasch mehreri Schlüssuwörter mit em nä Komma trennä.
       query_too_short: Du muesch mindestens 3 Zeiche igä.

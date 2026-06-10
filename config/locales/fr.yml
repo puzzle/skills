@@ -212,6 +212,7 @@ fr:
     global:
       search_placeholder: Chercher dans les CV...
       search_skills: Rechercher également des compétences
+      handle_whitespaces: Ignorer les espaces
     index:
       multiple_keywords_message: Vous pouvez séparer plusieurs mots-clés par une virgule.
       query_too_short: Tu dois saisir au moins 3 caractères.

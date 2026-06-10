@@ -10,7 +10,7 @@ class CvSearchController < ApplicationController
 
   def search_results
     PeopleSearch.new(query.map(&:strip), search_skills: search_skills?,
-                                         handle_whitespace: handle_whitespace?).entries
+                                         handle_whitespaces: handle_whitespaces?).entries
   end
 
   def query
@@ -21,8 +21,8 @@ class CvSearchController < ApplicationController
     params.key?(:search_skills)
   end
 
-  def handle_whitespace?
-    params.key?(:whitespace)
+  def handle_whitespaces?
+    params.key?(:handle_whitespaces)
   end
 
   def should_search?

@@ -1,11 +1,13 @@
 %div.mt-2
   %form.d-flex.align-items-center{data: {"turbo-frame": "search-results", "turbo-action": "advance"}, "data-controller": "search"}
     %input{class: 'form-control w-75', placeholder: ti("search_placeholder"), name: 'q', "data-action": "search#submitWithTimeout", id: "cv_search_field"}
-    %div.ms-5
-      %input{type: "checkbox", name: 'search_skills', id: 'search_skills_checkbox', onchange: 'this.form.requestSubmit();'}
-        = ti('search_skills')
-      %input{type: "checkbox", name: 'handle_whitespace', id: 'handle_whitespace_checkbox', onchange: 'this.form.requestSubmit();'}
-        = ti('handle_whitespace')
+    %div.d-flex.flex-column
+      %div.ms-5
+        %input{type: "checkbox", name: 'search_skills', id: 'search_skills_checkbox', onchange: 'this.form.requestSubmit();'}
+          = ti('search_skills')
+      %div.ms-5
+        %input{type: "checkbox", name: 'handle_whitespaces', id: 'handle_whitespaces_checkbox', onchange: 'this.form.requestSubmit();'}
+          = ti('handle_whitespaces')
   %p.text-secondary.d-flex.align-items-center
     = image_tag("info", class: "pe-1")
     = ti("multiple_keywords_message")

@@ -212,6 +212,7 @@ en:
     global:
       search_placeholder: Search CVs...
       search_skills: Search skills as well
+      handle_whitespaces: Ignore whitespaces.
     index:
       multiple_keywords_message: You can separate multiple keywords with a comma.
       query_too_short: You must enter at least 3 characters.
