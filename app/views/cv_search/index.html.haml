@@ -9,7 +9,7 @@
     = image_tag("info", class: "pe-1")
     = ti("multiple_keywords_message")
   %hr
-    .d-flex.gap-2.align-items-center{'data-controller': 'dropdown'}
+    .d-flex.gap-2.align-items-center{ data: { controller: "dropdown", dropdown_multiple_value: true, dropdown_placeholder_text_value: ta(:please_select) }}
       = form.label :department, "Category", class: 'form-label'
       = category_select(form)
   %div.profile-header.mw-100.border-bottom.mt-2.mb-2
