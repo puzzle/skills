@@ -6,12 +6,12 @@ class PeopleSearch
   PERSONAL_DETAILS = %w[name email title person_roles roles department company birthdate nationality
                         location marital_status shortname].freeze
   CORE_COMPETENCES = %w[competence_notes skills].freeze
-  attr_reader :search_terms, :entries, :search_skills, :handle_whitespace
+  attr_reader :search_terms, :entries, :search_skills, :handle_whitespaces
 
-  def initialize(search_terms, search_skills: false, handle_whitespace: false)
+  def initialize(search_terms, search_skills: false, handle_whitespaces: false)
     @search_terms = search_terms
     @search_skills = search_skills
-    @handle_whitespace = handle_whitespace
+    @handle_whitespaces = handle_whitespaces
     @entries = perform_search
   end
 
@@ -146,14 +146,16 @@ class PeopleSearch
   end
 
   def shorten(text, keywords)
+    text = text.gsub("\n", ' ').strip
     snippets = keywords.flat_map do |keyword|
-      escaped_keyword = Regexp.escape(keyword.to_s.strip)
-      regex = /(?:\S+\s+)?\S*#{escaped_keyword}\S*(?:\s+\S+)?/i
-      text = text.gsub("\n", ' ').strip
-
-      matches(text, regex).map { match_to_text(it, text.length) }
+      keyword_pattern = keyword_regex(keyword)
+      regex = /(?:\S+\s+)?
+      \S*#{keyword_pattern.source}\S*
+      (?:\s+\S+)?
+    /ix
+      matches(text, regex).map { |match| match_to_text(match, text.length) }
     end
-    snippets.join("\n")
+    snippets.uniq.join("\n")
   end
 
   def matches(string, regex)
@@ -173,19 +175,24 @@ class PeopleSearch
   end
 
   def extract_matching_keywords(value)
-    normalized_value = normalized_string(value)
+    value_string = value.to_s
 
     search_terms.select do |search_term|
-      normalized_search_term = normalized_string(search_term)
-      normalized_value.include?(normalized_search_term)
+      keyword_match?(value_string, search_term)
     end
   end
 
-  def normalized_string(value)
-    if @handle_whitespace
-      value.to_s.gsub(' ', '').downcase
+  def keyword_match?(value, keyword)
+    value.match?(keyword_regex(keyword))
+  end
+
+  def keyword_regex(keyword)
+    if handle_whitespaces
+      escaped = Regexp.escape(keyword.to_s.gsub(/\s+/, ''))
+      Regexp.new(escaped.chars.join('\s*'), Regexp::IGNORECASE)
     else
-      value.to_s.strip.downcase
+      escaped = Regexp.escape(keyword.to_s.strip)
+      Regexp.new(escaped, Regexp::IGNORECASE)
     end
   end
 
