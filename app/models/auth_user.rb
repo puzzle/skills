@@ -10,6 +10,8 @@ class AuthUser < ApplicationRecord
     def from_omniauth(auth)
       person = where(uid: auth.uid).first_or_create { |user| initialize_user(user, auth) }
       person.last_login = Time.zone.now
+      person_to_update = Person.find_by(email: person.email)
+      person_to_update.update(auth_user_id: person.id) if person_to_update && !person_to_update.auth_user_id
       set_role(person, auth)
       set_ldap_username(person, auth)
     end
