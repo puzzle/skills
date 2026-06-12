@@ -1,9 +1,10 @@
 name: Rails
 on: [push, pull_request]
+permissions:
+  contents: read
 jobs:
   tests:
     runs-on: ubuntu-latest
-
     env:
       PGHOST: localhost
       POSTGRES_DB: skills_test

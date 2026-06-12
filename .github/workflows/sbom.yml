@@ -6,7 +6,8 @@ on:
       - 'master'
 
   workflow_dispatch:
-
+permissions:
+  contents: read
 jobs:
   generate-and-push-sbom:
     runs-on: ubuntu-latest
