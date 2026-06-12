@@ -201,6 +201,7 @@ de:
       search_placeholder: CVs durchsuchen...
       search_skills: Skills ebenfalls durchsuchen
     index:
+      dont_filter: Nicht filtern
       multiple_keywords_message: Du kannst mehrere Schlüsselwörter mit einem Komma voneinander trennen.
       query_too_short: Du musst mindestens 3 Zeichen eingeben.
   errors:

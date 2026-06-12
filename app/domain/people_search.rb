@@ -6,11 +6,19 @@ class PeopleSearch
   PERSONAL_DETAILS = %w[name email title person_roles roles department company birthdate nationality
                         location marital_status shortname].freeze
   CORE_COMPETENCES = %w[competence_notes skills].freeze
-  attr_reader :search_terms, :entries, :search_skills
+
+  ASSOCIATIONS = [:department, :roles, :projects, :activities, :educations, :advanced_trainings,
+                  :contributions]
+  attr_reader :search_terms, :entries, :search_skills, :associations, :personal_details
 
   def initialize(search_terms, search_skills: false)
     @search_terms = search_terms
     @search_skills = search_skills
+
+    @personal_details = PERSONAL_DETAILS.dup
+
+    @associations = ASSOCIATIONS.dup
+
     @entries = perform_search
   end
 
@@ -34,15 +42,12 @@ class PeopleSearch
   end
 
   def preload_associations(people)
-    associations = [:department, :roles, :projects, :activities,
-                    :educations, :advanced_trainings, :contributions]
-
     if search_skills
-      associations << :skills
-      associations << :people_skills
+      @associations << :skills unless @associations.include?(:skills)
+      @associations << :people_skills unless @associations.include?(:people_skills)
     end
 
-    people.includes(associations)
+    people.includes(@associations)
   end
 
   def extract_match_data(person)
@@ -180,7 +185,7 @@ class PeopleSearch
   end
 
   def determine_group(key)
-    if PERSONAL_DETAILS.include?(key)
+    if @personal_details.include?(key)
       'personal-data'
     elsif CORE_COMPETENCES.include?(key)
       'core-competences'

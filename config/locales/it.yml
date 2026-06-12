@@ -197,6 +197,7 @@ it:
       search_placeholder: Ricerca CV...
       search_skills: Anche le capacità di ricerca
     index:
+      dont_filter: Non filtrare
       multiple_keywords_message: È possibile separare più parole chiave con una virgola.
       query_too_short: Devi inserire almeno 3 caratteri.
   errors:

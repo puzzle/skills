@@ -23,6 +23,22 @@ module CvSearchHelper
       rating: found_in_skills?(found_in) ? 1 : nil }
   end
 
+  def category_select(form)
+    options      = { selected: params[:category] }
+    html_options = {
+      data: {
+        dropdown_target: 'dropdown',
+        dropdown_multiple_value: true
+      },
+      class: 'w-25',
+      id: 'category-filter',
+      onchange: 'this.form.requestSubmit()',
+      multiple: true
+    }
+    form.select(:category, grouped_options_for_select(@attributes, params[:category]), options,
+html_options)
+  end
+
   def sort_found_in_items(items)
     items.sort_by do |item|
       [
