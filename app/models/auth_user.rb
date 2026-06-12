@@ -11,6 +11,7 @@ class AuthUser < ApplicationRecord
       person = where(uid: auth.uid).first_or_create { |user| initialize_user(user, auth) }
       person.last_login = Time.zone.now
       set_role(person, auth)
+      set_ldap_username(person, auth)
     end
 
     private
@@ -18,8 +19,11 @@ class AuthUser < ApplicationRecord
     def initialize_user(user, auth)
       user.name = auth.info.name
       user.email = auth.info.email
+    end
+
+    def set_ldap_username(person, auth)
       raw_info = auth.extra&.raw_info
-      user.ldap_username = raw_info&.pitc&.uidd
+      person.ldap_username = raw_info&.pitc&.uidd
     end
 
     def set_role(person, auth)
