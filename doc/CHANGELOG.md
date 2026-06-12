@@ -1,5 +1,34 @@
 # Changelog
 
+## [6.3.0](https://github.com/puzzle/skills/compare/6.2.0...6.3.0) (2026-06-12)
+
+
+### Features
+
+* add permissions to rails workflow [#1177](https://github.com/puzzle/skills/issues/1177) ([#1178](https://github.com/puzzle/skills/issues/1178)) ([6582e97](https://github.com/puzzle/skills/commit/6582e974ed37ae7ced16fd16990266fac9d4e449))
+* CV Search should show categories the of the keyword [#1104](https://github.com/puzzle/skills/issues/1104) ([#1123](https://github.com/puzzle/skills/issues/1123)) ([9862890](https://github.com/puzzle/skills/commit/9862890e207a5a41ba040770e70e34cebc4dd02e))
+* implement a url as picture option [#170](https://github.com/puzzle/skills/issues/170) ([#1100](https://github.com/puzzle/skills/issues/1100)) ([d7d3852](https://github.com/puzzle/skills/commit/d7d3852ccfb323741d88270b8c9f4c7956f04b61))
+* implement editor role [#948](https://github.com/puzzle/skills/issues/948) ([#1059](https://github.com/puzzle/skills/issues/1059)) ([ea4d928](https://github.com/puzzle/skills/commit/ea4d928fe570f450499c7b33d2a315fdb43dcc20))
+* only use or queries if expert mode is active [#1154](https://github.com/puzzle/skills/issues/1154) ([#1157](https://github.com/puzzle/skills/issues/1157)) ([5cb8035](https://github.com/puzzle/skills/commit/5cb8035dea066c2dc143b3bf6a8d79a7d029d08a))
+* Profile as Start Screen [#1136](https://github.com/puzzle/skills/issues/1136) ([#1155](https://github.com/puzzle/skills/issues/1155)) ([a23cdda](https://github.com/puzzle/skills/commit/a23cddad38381370d68aeda5913b36609f692e34))
+
+
+### Bug Fixes
+
+* add new headless option for tests [#1128](https://github.com/puzzle/skills/issues/1128) ([#1144](https://github.com/puzzle/skills/issues/1144)) ([988f265](https://github.com/puzzle/skills/commit/988f265fadd35d4a79e13931a4ecae6c8104d5a4))
+* locale should be an allowed param ([#1182](https://github.com/puzzle/skills/issues/1182)) ([7270ddb](https://github.com/puzzle/skills/commit/7270ddbab5cde3f81d4f677abd7dee41699f84f3))
+* make migration rollback work ([#1180](https://github.com/puzzle/skills/issues/1180)) ([26240ca](https://github.com/puzzle/skills/commit/26240cac29f3f9bd22e7c55606843b99a471da00))
+
+
+### Miscellaneous Chores
+
+* **deps:** bump carrierwave in the bundler group across 1 directory ([#1175](https://github.com/puzzle/skills/issues/1175)) ([9f93231](https://github.com/puzzle/skills/commit/9f93231242c32b5b91db4a13d358729341639c9a))
+* **deps:** bump faraday in the bundler group across 1 directory ([#1170](https://github.com/puzzle/skills/issues/1170)) ([2936e6b](https://github.com/puzzle/skills/commit/2936e6b07ac9f2922ccd635f2c11a7f4ef90f917))
+* **deps:** bump jwt in the bundler group across 1 directory ([#1171](https://github.com/puzzle/skills/issues/1171)) ([950b56f](https://github.com/puzzle/skills/commit/950b56fa984e16ea09dfc3ec7905327e0ab09336))
+* **deps:** bump net-imap in the bundler group across 1 directory ([#1161](https://github.com/puzzle/skills/issues/1161)) ([aaa6d8c](https://github.com/puzzle/skills/commit/aaa6d8cfbc1d96225f7485d08de1efcdfb0976c8))
+* **deps:** bump net-imap in the bundler group across 1 directory ([#1184](https://github.com/puzzle/skills/issues/1184)) ([5365c76](https://github.com/puzzle/skills/commit/5365c767b7e94734ee55f1ce9121392656d25c2f))
+* **deps:** bump the bundler group across 1 directory with 2 updates ([#1164](https://github.com/puzzle/skills/issues/1164)) ([5da9b80](https://github.com/puzzle/skills/commit/5da9b806d1d03977717e904d2c3770572e90c197))
+
 ## [6.2.0](https://github.com/puzzle/skills/compare/6.1.0...6.2.0) (2026-05-01)
 
 
