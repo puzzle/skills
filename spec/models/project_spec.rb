@@ -70,10 +70,12 @@ describe Project do
 
     it 'orders projects correctly with list scope' do
       bob_id = people(:bob).id
-      Project.create(title: 'test1', role: 'test1', technology: 'test', year_from: 2014, month_from: 1, person_id: bob_id)
-      Project.create(title: 'test2', role: 'test2', technology: 'test', year_from: 2000, month_from: 1, year_to: 2030, month_to: 1, person_id: bob_id)
-      Project.create(title: 'test3', role: 'test2', technology: 'test', year_from: 2000, month_from: 1, year_to: 2030, month_to: nil, person_id: bob_id)
-      Project.create(title: 'test4', role: 'test2', technology: 'test', year_from: 2000, month_from: nil, year_to: 2030, month_to: 1, person_id: bob_id)
+      rails = Skill.find_by(title: 'Rails')
+
+      Project.create(title: 'test1', role: 'test1', skills: [rails], year_from: 2014, month_from: 1, person_id: bob_id)
+      Project.create(title: 'test2', role: 'test2', skills: [rails], year_from: 2000, month_from: 1, year_to: 2030, month_to: 1, person_id: bob_id)
+      Project.create(title: 'test3', role: 'test2', skills: [rails], year_from: 2000, month_from: 1, year_to: 2030, month_to: nil, person_id: bob_id)
+      Project.create(title: 'test4', role: 'test2', skills: [rails], year_from: 2000, month_from: nil, year_to: 2030, month_to: 1, person_id: bob_id)
 
       list = Project.all.list
 

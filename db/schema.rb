@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_12_095818) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_12_131400) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -219,6 +219,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_12_095818) do
     t.index ["role_id"], name: "index_person_roles_on_role_id"
   end
 
+  create_table "project_skills", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "project_id"
+    t.bigint "skill_id"
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_project_skills_on_project_id"
+    t.index ["skill_id"], name: "index_project_skills_on_skill_id"
+  end
+
   create_table "project_technologies", force: :cascade do |t|
     t.datetime "created_at", precision: nil, null: false
     t.text "offer", default: [], array: true
@@ -242,6 +251,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_12_095818) do
     t.integer "year_from", null: false
     t.integer "year_to"
     t.index ["person_id"], name: "index_projects_on_person_id"
+  end
+
+  create_table "projects_skills", id: false, force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.bigint "skill_id", null: false
   end
 
   create_table "roles", force: :cascade do |t|
