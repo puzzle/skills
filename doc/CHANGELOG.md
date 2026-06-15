@@ -1,5 +1,17 @@
 # Changelog
 
+## [6.3.1](https://github.com/puzzle/skills/compare/6.3.0...6.3.1) (2026-06-15)
+
+
+### Bug Fixes
+
+* set ldap same on login ([#1186](https://github.com/puzzle/skills/issues/1186)) ([f63c06f](https://github.com/puzzle/skills/commit/f63c06ff436774c1494d6c79ead012022680bf9a))
+
+
+### Miscellaneous Chores
+
+* **deps:** bump the npm_and_yarn group across 1 directory with 3 updates ([#1189](https://github.com/puzzle/skills/issues/1189)) ([964ad6a](https://github.com/puzzle/skills/commit/964ad6acd0c84f05df9b7b5032640778f83874fb))
+
 ## [6.3.0](https://github.com/puzzle/skills/compare/6.2.0...6.3.0) (2026-06-12)
 
 
