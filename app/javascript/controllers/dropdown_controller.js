@@ -28,10 +28,9 @@ export default class extends Controller {
         }
 
         // Because when reloading, a different value is selected instead of the one that was previously selected
-        const originalSelectedOption = Array.from(this.dropdownTarget.options).find(opt => opt.defaultSelected);
-        if (originalSelectedOption) {
-            this.dropdownTarget.value = originalSelectedOption.value;
-        }
+        Array.from(this.dropdownTarget.options).forEach(opt => {
+            opt.selected = opt.defaultSelected;
+        });
 
         this.slimSelectDropdown = new SlimSelect({
             select: this.dropdownTarget,
