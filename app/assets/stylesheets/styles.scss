@@ -177,13 +177,12 @@ pzsh-topbar {
     }
   }
 
-
   label:hover,
   label:has(~ label:hover) {
     color: #deb217;
   }
 
-  :not(:hover) {
+  &:not(:hover) {
     input:checked + label,
     label:has(~ input:checked) {
       color: #ffc700;
