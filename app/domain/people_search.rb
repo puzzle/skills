@@ -18,7 +18,11 @@ class PeopleSearch
   private
 
   def perform_search
-    find_matching_people.map do |person|
+    matching_people = find_matching_people
+    if handle_whitespaces
+      matching_people += find_matching_people(handle_whitespaces: true)
+    end
+    matching_people.map do |person|
       {
         person: { id: person.id, name: person.name },
         found_in: humanize_attributes(extract_match_data(person))
@@ -26,9 +30,13 @@ class PeopleSearch
     end
   end
 
-  def find_matching_people
+  def find_matching_people(handle_whitespaces: false)
     matched_people = search_terms.reduce(Person.all) do |scope, term|
-      scope.search(term)
+      if handle_whitespaces
+        scope.search(term.gsub(/\s+/, ''))
+      else
+        scope.search(term)
+      end
     end
 
     preload_associations(matched_people)

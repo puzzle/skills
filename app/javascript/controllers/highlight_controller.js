@@ -18,7 +18,8 @@ export default class extends Base_highlight_controller {
 
     #highlightText(element) {
         const originalHTML = element.innerHTML;
-        const regex = this.attributeRegex;
+
+        const regex = new RegExp(`(${this.escapeForRegex(this.searchTerm)})(?![^<]*>)`, 'gi');
 
         element.innerHTML = originalHTML.replace(
             regex,
