@@ -68,10 +68,8 @@ describe 'Advanced Trainings', type: :feature, js: true do
       expect(page).to have_link(href: /#{person_people_skills_path(bob)}.*q=#{skill_title}/)
     end
 
-    it 'should dynamically search skills with whitespace handling enabled' do
-      bob_name = "B o b"
-
-      fill_in 'cv_search_field', with: bob_name
+    it 'should dynamically search with whitespace handling enabled' do
+      fill_in 'cv_search_field', with: "B o b"
 
       page.check('handle_whitespaces')
 
