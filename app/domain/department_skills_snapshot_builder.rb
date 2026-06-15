@@ -16,4 +16,56 @@ class DepartmentSkillsSnapshotBuilder
       DepartmentSkillSnapshot.create!(department_id:, department_skill_levels:)
     end
   end
+
+  def merge_department_skills_to_new_department(old_department_ids:, new_department_id:)
+    all_snapshots = grouped_snapshots(old_department_ids, new_department_id)
+    save_department_history(old_department_ids, new_department_id)
+    delete_old_target_department_snapshots(new_department_id)
+
+    all_snapshots.each do |month, snapshots|
+      create_merged_snapshot(
+        month: month,
+        snapshots: snapshots,
+        new_department_id: new_department_id
+      )
+    end
+  end
+
+  private
+
+  def save_department_history(old_department_ids, new_department_id)
+    DepartmentMergeHistory.create!(
+      target_department_id: new_department_id,
+      old_department_ids: old_department_ids,
+      snapshot: DepartmentSkillSnapshot.where(department_id: new_department_id).as_json
+    )
+  end
+
+  def delete_old_target_department_snapshots(new_department_id)
+    DepartmentSkillSnapshot.where(department_id: new_department_id).delete_all
+  end
+
+  def grouped_snapshots(old_department_ids, new_department_id)
+    DepartmentSkillSnapshot
+      .where(department_id: old_department_ids + [new_department_id])
+      .group_by { |snapshot| [snapshot.created_at.year, snapshot.created_at.month] }
+  end
+
+  def create_merged_snapshot(month:, snapshots:, new_department_id:)
+    DepartmentSkillSnapshot.create!(
+      department_id: new_department_id,
+      department_skill_levels: merged_skill_levels(snapshots),
+      created_at: Date.new(month[0], month[1], 1)
+    )
+  end
+
+  def merged_skill_levels(snapshots)
+    snapshots.each_with_object({}) do |snapshot, result|
+      snapshot.department_skill_levels.each do |skill_id, levels|
+        skill_id = skill_id.to_i
+        result[skill_id] ||= []
+        result[skill_id].concat(levels)
+      end
+    end
+  end
 end

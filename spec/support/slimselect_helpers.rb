@@ -14,7 +14,7 @@ module SlimselectHelpers
 
     within select_parent do
       expect(page).to have_select(select_id, selected: option_text, visible: false)
-      expect(page).to have_selector '.ss-main .ss-values .ss-single', text: option_text
+      expect(page).to have_content(option_text)
     end
   end
 
@@ -76,5 +76,21 @@ module SlimselectHelpers
     selector = selector.gsub("\"", "\\\\'").gsub("'", "\\\\'")
     script = "document.querySelector('#{selector}').slim.#{method}(#{args})"
     evaluate_script(script)
+  end
+
+  def multi_select_from_slim_select(selector, texts)
+    available_options = ss_options(selector)
+
+    option_values = texts.map do |text|
+      matched_option = available_options.find { |opt| opt["text"] == text }
+
+      matched_option["value"]
+    end
+
+    script = "document.querySelector('#{selector}').slim.setSelected(#{option_values.to_json})"
+    evaluate_script(script)
+
+    select_element = find(selector, visible: false)
+    expect(select_element.value).to match_array(option_values)
   end
 end

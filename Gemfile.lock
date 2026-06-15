@@ -663,7 +663,7 @@ DEPENDENCIES
   rswag-api
   rswag-specs
   rswag-ui
-  rubocop
+  rubocop (= 1.84.1)
   rubocop-capybara
   rubocop-rails
   rubocop-rspec
