@@ -152,8 +152,8 @@ de:
       link:
         list: Admin Panel
     index:
-      delete_unemployed_people: Ehemaligen Mitarbeiter löschen
       delete_not_synced_profiles: Nicht synchronisierte Profile löschen
+      delete_unemployed_people: Ehemaligen Mitarbeiter löschen
       reminder_mail: Aktiviere Erinnerungs E-Mails für die Firma.
       unify_skills: Skills vereinen
       update_people_manually: Personen manuell aktualisieren
@@ -176,8 +176,8 @@ de:
   admin/people_management:
     index:
       not_synced_title: Die folgenden Profile werden momentan nicht vom PuzzleTime sync aktualisiert
-      unemployed_title: Die folgenden Profile sind als Ex-Mitarbeiter markiert
       nothing_to_manage: Momentan gibt es nichts zu bereinigen
+      unemployed_title: Die folgenden Profile sind als Ex-Mitarbeiter markiert
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: Konflikte gefunden
@@ -214,9 +214,10 @@ de:
         type_of_exam: Prüfungsart
   cv_search:
     global:
+      handle_whitespaces: Leerzeichen ignorieren
+      handle_whitespaces_tooltip: Alle Leerzeichen in der Eingabe werden ignoriert.
       search_placeholder: CVs durchsuchen...
       search_skills: Skills ebenfalls durchsuchen
-      handle_whitespaces: Leerzeichen ignorieren
     index:
       multiple_keywords_message: Du kannst mehrere Schlüsselwörter mit einem Komma voneinander trennen.
       query_too_short: Du musst mindestens 3 Zeichen eingeben.
@@ -386,12 +387,12 @@ de:
       advanced-trainings: Weiterbildungen
       contributions: Open Source Beiträge
       core-competences: Kernkompetenzen
-      educations: Ausbildungen
-      personal-data: Personliche Daten
-      projects: Projekte
       editing_own_profile: Du bearbeitest gerade dein eigenes Profil.
+      educations: Ausbildungen
       no_permission_to_edit_person: Du hast nicht die erforderlichen Berechtigungen, um dieses Profil zu bearbeiten.
       permission_to_edit_person: Du hast die erforderlichen Berechtigungen, um dieses Profil zu bearbeiten.
+      personal-data: Personliche Daten
+      projects: Projekte
     search:
       new_profile: Neues Profil
       updated_at: Zuletzt bearbeitet

@@ -152,8 +152,8 @@ de-CH:
       link:
         list: Admin Panel
     index:
-      delete_unemployed_people: Ehemaligi Mitarbeiter löschä
       delete_not_synced_profiles: Nid synchronisierti Profiu löschä
+      delete_unemployed_people: Ehemaligi Mitarbeiter löschä
       reminder_mail: Aktivier Erinnerigs E-Mails für d Firma.
       unify_skills: Skills vereinä
       update_people_manually: Persone manuell aktualisiere
@@ -176,8 +176,8 @@ de-CH:
   admin/people_management:
     index:
       not_synced_title: Di folgendä Profiu wärde momentan nid vom PuzzleTime sync aktualisiert
-      unemployed_title: Di folgendä Profiu si aus 'Ex-Mitarbeiter' markiert
       nothing_to_manage: Moment gits nüt zum bereinige
+      unemployed_title: Di folgendä Profiu si aus 'Ex-Mitarbeiter' markiert
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: Konfliktä gfundä
@@ -214,9 +214,10 @@ de-CH:
         type_of_exam: Prüefigsart
   cv_search:
     global:
+      handle_whitespaces: läärzeichä ignorierä
+      handle_whitespaces_tooltip: Aui leerzeiche ir eingab wärdä ignoriert.
       search_placeholder: CVs dürsuechä...
       search_skills: Skills äbäfaus dürsuechä
-      handle_whitespaces: läärzeichä ignorierä
     index:
       multiple_keywords_message: Du chasch mehreri Schlüssuwörter mit em nä Komma trennä.
       query_too_short: Du muesch mindestens 3 Zeiche igä.
@@ -403,12 +404,12 @@ de-CH:
       advanced-trainings: Witerbiudigä
       contributions: Open Source Biiträg
       core-competences: Chärnkompetenzä
-      educations: Usbiudigä
-      personal-data: Personlechi Datä
-      projects: Projekte
       editing_own_profile: Du bearbeitisch grad dis eigene Profil.
+      educations: Usbiudigä
       no_permission_to_edit_person: Du hesch nid di erforderliche Berächtigunge, um das Profil z bearbeite.
       permission_to_edit_person: Du hesch di erforderliche Berächtigunge, um das Profil z bearbeite.
+      personal-data: Personlechi Datä
+      projects: Projekte
     search:
       new_profile: Neues Profiu
       updated_at: Z'letzt bearbeitet

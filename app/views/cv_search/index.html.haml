@@ -5,7 +5,7 @@
       %div.ms-5
         %input{type: "checkbox", name: 'search_skills', id: 'search_skills_checkbox', onchange: 'this.form.requestSubmit();'}
           = ti('search_skills')
-      %div.ms-5
+      %div.ms-5{ 'data-bs-toggle': 'tooltip', 'data-bs-title': ti("handle_whitespaces_tooltip"), 'data-controller': 'tooltip'  }
         %input{type: "checkbox", name: 'handle_whitespaces', id: 'handle_whitespaces_checkbox', onchange: 'this.form.requestSubmit();'}
           = ti('handle_whitespaces')
   %p.text-secondary.d-flex.align-items-center
