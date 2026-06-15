@@ -19,10 +19,8 @@ class PeopleSearch
 
   def perform_search
     matching_people = find_matching_people
-    if handle_whitespaces
-      matching_people += find_matching_people(handle_whitespaces: true)
-    end
-    matching_people.map do |person|
+    matching_people += find_matching_people(handle_whitespaces: true) if handle_whitespaces
+    matching_people.uniq.map do |person|
       {
         person: { id: person.id, name: person.name },
         found_in: humanize_attributes(extract_match_data(person))
