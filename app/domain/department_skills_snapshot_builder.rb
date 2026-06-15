@@ -18,20 +18,24 @@ class DepartmentSkillsSnapshotBuilder
   end
 
   def merge_department_skills_to_new_department(old_department_ids:, new_department_id:)
-    all_snapshots = grouped_snapshots(old_department_ids, new_department_id)
-    save_department_history(old_department_ids, new_department_id)
-    delete_old_target_department_snapshots(new_department_id)
+    ActiveRecord::Base.transaction do
+      all_snapshots = grouped_snapshots(old_department_ids, new_department_id)
+      prepare_department_merge(old_department_ids, new_department_id)
 
-    all_snapshots.each do |month, snapshots|
-      create_merged_snapshot(
-        month: month,
-        snapshots: snapshots,
-        new_department_id: new_department_id
-      )
+      all_snapshots.each do |month, snapshots|
+        create_merged_snapshot(month: month,
+                               snapshots: snapshots,
+                               new_department_id: new_department_id)
+      end
     end
   end
 
   private
+
+  def prepare_department_merge(old_department_ids, new_department_id)
+    save_department_history(old_department_ids, new_department_id)
+    delete_old_target_department_snapshots(new_department_id)
+  end
 
   def save_department_history(old_department_ids, new_department_id)
     DepartmentMergeHistory.create!(

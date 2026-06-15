@@ -5,7 +5,7 @@
     = plain_table(@merge_histories) do |t|
       - t.attrs(:created_at)
       - t.attr :target_department_id do |row|
-        = row.target_department.name
+        = row.target_department&.name
       - t.attr :old_department_ids do |row|
         = old_department_names(row)
   - else

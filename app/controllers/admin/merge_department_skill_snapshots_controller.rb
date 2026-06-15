@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class Admin::MergeDepartmentSkillSnapshotsController < ApplicationController
-  before_action :load_departments
+  before_action :load_departments, :render_unauthorized_not_admin
+
 
   helper_method :old_department_names
-
   def new
     @merge_department_snapshots_form = MergeDepartmentSkillForm.new
     @merge_histories = DepartmentMergeHistory.order(created_at: :desc)
@@ -17,21 +17,22 @@ class Admin::MergeDepartmentSkillSnapshotsController < ApplicationController
     old_departments, new_department = extract_departments
     merge_department_snapshots(old_departments, new_department)
 
-    flash.now[:notice] = t('.success',
-                           old_department_names: old_departments.pluck(:name).join(', '),
-                           new_department_name: new_department.name)
+    flash.now[:notice] = t('.success', **success_information(old_departments, new_department))
 
-    @merge_histories = load_merge_histories
-    respond_to_format
-  end
-
-  private
-
-  def respond_to_format
+    load_merge_histories
     respond_to do |format|
       format.turbo_stream
       format.html { redirect_to new_admin_merge_department_skill_snapshot_path }
     end
+  end
+
+  private
+
+  def success_information(old_departments, new_department)
+    {
+      old_department_names: old_departments.pluck(:name).to_sentence,
+      new_department_name: new_department.name
+    }
   end
 
   def extract_departments
@@ -42,7 +43,7 @@ class Admin::MergeDepartmentSkillSnapshotsController < ApplicationController
   end
 
   def load_merge_histories
-    DepartmentMergeHistory.order(created_at: :desc)
+    @merge_histories = DepartmentMergeHistory.order(created_at: :desc)
   end
 
   def build_form
