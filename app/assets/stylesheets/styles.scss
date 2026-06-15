@@ -157,7 +157,7 @@ pzsh-topbar {
 
 .rate {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   height: 30px;
   width: max-content;
 
@@ -173,31 +173,21 @@ pzsh-topbar {
     color: #ccc;
 
     &:before {
-      content: "★ ";
-    }
-
-    &:hover,
-    &:hover ~ label {
-      color: #deb217;
+      content: "★";
     }
   }
 
-  input:checked ~ label,
-  div:has(input:checked) ~ label {
-    color: #ffc700;
+
+  label:hover,
+  label:has(~ label:hover) {
+    color: #deb217;
   }
 
-  input:checked + label:hover,
-  input:checked + label:hover ~ label,
-  input:checked ~ label:hover,
-  input:checked ~ label:hover ~ label,
-  label:hover ~ input:checked ~ label,
-  div:has(input:checked) + label:hover,
-  div:has(input:checked) + label:hover ~ label,
-  div:has(input:checked) ~ label:hover,
-  div:has(input:checked) ~ label:hover ~ label,
-  label:hover ~ div:has(input:checked) ~ label {
-    color: #c59b08;
+  :not(:hover) {
+    input:checked + label,
+    label:has(~ input:checked) {
+      color: #ffc700;
+    }
   }
 
   input {
@@ -209,23 +199,6 @@ pzsh-topbar {
     outline: 0.15rem solid $skills-search-result-blue;
     border-radius: 0.15rem;
   }
-}
-
-.rate-show:not(:checked) label {
-  cursor: default;
-}
-
-.rate-show input:checked + label:hover,
-.rate-show input:checked + label:hover ~ label,
-.rate-show input:checked ~ label:hover,
-.rate-show input:checked ~ label:hover ~ label,
-.rate-show label:hover ~ input:checked ~ label {
-  color: #ffc700;
-}
-
-.rate-show:not(:checked) label:hover,
-.rate-show:not(:checked) label:hover ~ label {
-  color: #ccc;
 }
 
 .bg-hover-gray:hover {
