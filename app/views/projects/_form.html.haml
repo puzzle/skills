@@ -16,7 +16,7 @@
         = f.select :skill_ids,
               options_from_collection_for_select(Skill.all, 'id', 'title', entry.skill_ids),
               {},
-              multiple: true, size: 10, data: { dropdown_target: "dropdown" }
+              multiple: true, size: 10, data: { dropdown_target: "dropdown", dropdown_multiple_value: true }
       = f.label :role
       = f.text_area :role, placeholder: "Description", class: "form-control w-100"
       .flex-row.mt-1
