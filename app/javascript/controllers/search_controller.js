@@ -26,8 +26,5 @@ export default class extends Controller {
     whitespaceCheckbox(){
         const includesWhitespace =  document.getElementById("cv_search_field").value.includes(" ")
         document.getElementById("handle_whitespaces_checkbox").disabled = !includesWhitespace;
-        if (!includesWhitespace){
-            document.getElementById("handle_whitespaces_checkbox").value = false;
-        }
     }
 }
