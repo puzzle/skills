@@ -130,7 +130,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_12_095818) do
     t.jsonb "snapshot", default: {}, null: false
     t.bigint "target_department_id", null: false
     t.datetime "updated_at", null: false
-    t.index ["target_department_id"], name: "index_department_merge_histories_on_target_department_id"
   end
 
   create_table "department_skill_snapshots", force: :cascade do |t|
