@@ -152,16 +152,14 @@ class PeopleSearch
   end
 
   def shorten(text, keywords)
-    text = text.gsub("\n", ' ').strip
     snippets = keywords.flat_map do |keyword|
-      keyword_pattern = keyword_regex(keyword)
-      regex = /(?:\S+\s+)?
-      \S*#{keyword_pattern.source}\S*
-      (?:\s+\S+)?
-    /ix
-      matches(text, regex).map { |match| match_to_text(match, text.length) }
+      escaped_keyword = Regexp.escape(keyword.to_s.strip)
+      regex = /(?:\S+\s+)?\S*#{escaped_keyword}\S*(?:\s+\S+)?/i
+      text = text.gsub("\n", ' ').strip
+
+      matches(text, regex).map { match_to_text(it, text.length) }
     end
-    snippets.uniq.join("\n")
+    snippets.join("\n")
   end
 
   def matches(string, regex)
@@ -181,24 +179,10 @@ class PeopleSearch
   end
 
   def extract_matching_keywords(value)
-    value_string = value.to_s
+    normalized_value = value.to_s.strip.downcase
 
     search_terms.select do |search_term|
-      keyword_match?(value_string, search_term)
-    end
-  end
-
-  def keyword_match?(value, keyword)
-    value.match?(keyword_regex(keyword))
-  end
-
-  def keyword_regex(keyword)
-    if handle_whitespaces
-      escaped = Regexp.escape(keyword.to_s.gsub(/\s+/, ''))
-      Regexp.new(escaped.chars.join('\s*'), Regexp::IGNORECASE)
-    else
-      escaped = Regexp.escape(keyword.to_s.strip)
-      Regexp.new(escaped, Regexp::IGNORECASE)
+      normalized_value.include?(search_term.strip.downcase)
     end
   end
 
