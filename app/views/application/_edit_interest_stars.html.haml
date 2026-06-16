@@ -1,6 +1,6 @@
 %label.form-label.text-gray= ti "people_skills.interest"
 .rate
   = ff.radio_button :interest, 0, id: "default-star-#{ff.object.skill.id}", class: "visually-hidden"
-  - 5.times do |interest|
-    = ff.radio_button :interest, interest, { checked: (ff.object.id.nil? && ff.object.interest.nil?) || ff.object.interest == interest, id: "star-#{interest}#{ff.object.skill.id}", "data-action": "change->people-skills#rateSkill" }
-    %label{for: "star-#{interest}#{ff.object.skill.id}", id: "star-label#{interest}#{ff.object.skill.id}", class: "star#{interest}"}
+  - 1.upto 5 do |interest|
+    = ff.radio_button :interest, interest, { checked: (ff.object.id.nil? && ff.object.interest.nil?) || ff.object.interest == interest, id: "star#{interest}#{ff.object.skill.id}", "data-action": "change->people-skills#rateSkill" }
+    %label{for: "star#{interest}#{ff.object.skill.id}", id: "star-label#{interest}#{ff.object.skill.id}", class: "star#{interest}"}
