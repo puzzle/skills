@@ -81,6 +81,12 @@ describe 'Advanced Trainings', type: :feature, js: true do
       expect(page).to have_link(href: person_path(bob, q: "Bob Anderson", section_id: "personal-data"))
     end
 
+    it "should disable whitespace handling if there are no whitespaces in search" do
+      fill_in 'cv_search_field', with: "Ruby"
+
+      expect(page).to have_field('handle_whitespaces', disabled: true)
+    end
+
     it "should highlight the correct text" do
       target = "Ruby"
 
