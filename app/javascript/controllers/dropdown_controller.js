@@ -9,7 +9,8 @@ export default class extends Controller {
         contentPosition: { type: String, default: 'absolute' },
         multiple: { type: Boolean, default: false },
         placeholderText: { type: String, default: "" },
-        hideSelected: { type: Boolean, default: false }
+        hideSelected: { type: Boolean, default: false },
+        clearText: { type: Boolean, default: false }
     }
 
     connect() {
@@ -22,17 +23,14 @@ export default class extends Controller {
         if (this.multipleValue) {
             settings.allowDeselect = true;
             settings.closeOnSelect = false;
+            settings.hideSelected = this.hideSelectedValue;
+
             if (this.hasPlaceholderTextValue) {
                 settings.placeholderText = this.placeholderTextValue;
             }
         }
 
-        // Because when reloading, a different value is selected instead of the one that was previously selected
-        Array.from(this.dropdownTarget.options).forEach(opt => {
-            opt.selected = opt.defaultSelected;
-        });
-
-        this.slimSelectDropdown = new SlimSelect({
+        const slimSelectDropdown = new SlimSelect({
             select: this.dropdownTarget,
             settings: settings,
             events: {
@@ -54,14 +52,17 @@ export default class extends Controller {
                         return false;
                     }
                     return true;
-                    return true;
                 },
+
                 afterChange: () => {
                     if (this.multipleValue) {
                         setTimeout(() => {
-                            const searchInput = this.element.querySelector('.ss-search input');
+                            const searchInput = document.querySelector('.ss-open-below input');
+
                             if (searchInput) {
-                                searchInput.value = '';
+                                if (this.clearTextValue) {
+                                    searchInput.value = ''
+                                }
                                 searchInput.dispatchEvent(
                                     new Event('input', { bubbles: true })
                                 );
@@ -72,9 +73,15 @@ export default class extends Controller {
                 }
             },
         });
-        if(slimSelectDropdown.getSelected()[0]?.startsWith("/")) {
-            const linkTag = document.querySelector('.ss-main .dropdown-option-link');
-            if (linkTag) linkTag.href = "javascript:void(0)";
+
+        if (slimSelectDropdown.getSelected()[0]?.startsWith("/")) {
+            const linkTag = document.querySelector(
+                '.ss-main .dropdown-option-link'
+            );
+
+            if (linkTag) {
+                linkTag.href = "javascript:void(0)";
+            }
         }
     }
 
