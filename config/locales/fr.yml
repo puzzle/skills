@@ -211,7 +211,7 @@ fr:
   cv_search:
     global:
       handle_whitespaces: Ignorer les espaces
-      handle_whitespaces_tooltip: Tous les espaces blancs à l’intérieur de la saisie seront ignorés.
+      handle_whitespaces_tooltip: Les résultats seront recherchés avec et sans espaces.
       search_placeholder: Chercher dans les CV...
       search_skills: Rechercher également des compétences
     index:

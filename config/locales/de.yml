@@ -215,7 +215,7 @@ de:
   cv_search:
     global:
       handle_whitespaces: Leerzeichen ignorieren
-      handle_whitespaces_tooltip: Alle Leerzeichen in der Eingabe werden ignoriert.
+      handle_whitespaces_tooltip: Resultate werden mit Leerzeichen und ohne gesucht.
       search_placeholder: CVs durchsuchen...
       search_skills: Skills ebenfalls durchsuchen
     index:

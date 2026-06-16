@@ -215,7 +215,7 @@ de-CH:
   cv_search:
     global:
       handle_whitespaces: läärzeichä ignorierä
-      handle_whitespaces_tooltip: Aui leerzeiche ir eingab wärdä ignoriert.
+      handle_whitespaces_tooltip: Resultat wärdä mit Leerzeichä und ohni gsuecht.
       search_placeholder: CVs dürsuechä...
       search_skills: Skills äbäfaus dürsuechä
     index:

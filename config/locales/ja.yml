@@ -211,7 +211,7 @@ ja:
   cv_search:
     global:
       handle_whitespaces: スペースを無視する
-      handle_whitespaces_tooltip: 入力内のすべての空白文字は無視されます。
+      handle_whitespaces_tooltip: 検索結果は、空白あり・なしの両方で検索されます。
       search_placeholder: 履歴書を検索...
       search_skills: スキルも検索する
     index:
