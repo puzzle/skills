@@ -182,7 +182,11 @@ class PeopleSearch
     normalized_value = value.to_s.strip.downcase
 
     search_terms.select do |search_term|
-      normalized_value.include?(search_term.strip.downcase)
+      if handle_whitespaces
+        normalized_value.gsub(/\s+/, '').include?(search_term.gsub(/\s+/, '').downcase)
+      else
+        normalized_value.include?(search_term.strip.downcase)
+      end
     end
   end
 
