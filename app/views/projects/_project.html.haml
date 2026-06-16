@@ -15,7 +15,7 @@
                 %span.fw-bold.col-12.col-lg-2
                     = Project.human_attribute_name(:technology)
                 %span.col
-                    = project.technology.presence || project.skills.map(&:title).join(', ')
+                    = ([project.technology] + project.skills.map(&:title)).compact_blank.join(', ')
 
 
 %div.border-top
