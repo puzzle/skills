@@ -6,15 +6,15 @@
         %img.pointer.p-2{src: "/assets/search.svg"}
     %div.d-flex.flex-row.mt-3.flex-wrap.gap-2
       %span.btn-group.me-3
-        %label.btn.btn-outline-primary{"data-skillset-selected-target": "selectButton",
+        %label.btn.btn-outline-primary{tabindex: "0", "data-skillset-selected-target": "selectButton",
         "data-action": "click->skillset-selected#selectButton", "data-skillset-selected-id-param": 0}
           = form.radio_button :defaultSet, false, onClick: "this.form.requestSubmit()", class: "d-none"
           = ti('filter.all')
-        %label.btn.btn-outline-primary{"data-skillset-selected-target": "selectButton",
+        %label.btn.btn-outline-primary{tabindex: "0", "data-skillset-selected-target": "selectButton",
         "data-action": "click->skillset-selected#selectButton", "data-skillset-selected-id-param": 1}
           = form.radio_button :defaultSet, "new", onClick: "this.form.requestSubmit()", class: "d-none"
           = ti('filter.new')
-        %label.btn.btn-outline-primary{"data-skillset-selected-target": "selectButton",
+        %label.btn.btn-outline-primary{tabindex: "0", "data-skillset-selected-target": "selectButton",
         "data-action": "click->skillset-selected#selectButton", "data-skillset-selected-id-param": 2}
           = form.radio_button :defaultSet, true, onClick: "this.form.requestSubmit()", class: "d-none"
           = ti('filter.default')
