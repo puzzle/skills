@@ -16,6 +16,7 @@ $skills-dark-blue: #1e5a96;
 
 .modal-dialog {
   max-width: 60%;
+
 }
 
 .content {
@@ -35,7 +36,7 @@ $skills-dark-blue: #1e5a96;
     color: white;
     @extend .px-2;
 
-    &.active {
+    &:hover, &:focus, &.active {
       background-color: $skills-dark-blue;
     }
   }
