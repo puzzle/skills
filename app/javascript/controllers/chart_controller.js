@@ -15,6 +15,15 @@ export default class extends Controller {
     Chart.register(annotationPlugin);
     Chart.register(Colors);
 
+    // Follow the active color mode: pull text/grid colors from the theme's
+    // CSS variables so the chart stays readable in both light and dark mode.
+    // Only set the text color globally — Chart.defaults.borderColor would also
+    // recolor the dataset lines, so the grid color is applied per scale instead.
+    const rootStyles = getComputedStyle(document.documentElement);
+    const fontColor = rootStyles.getPropertyValue("--bs-body-color").trim();
+    const gridColor = rootStyles.getPropertyValue("--bs-border-color").trim();
+    Chart.defaults.color = fontColor;
+
     const ctx = this.canvasTarget.getContext("2d");
     const chartData = JSON.parse(this.datasetValue);
 
@@ -24,7 +33,11 @@ export default class extends Controller {
       responsive: true,
       scales: {
         y: {
-          beginAtZero: true
+          beginAtZero: true,
+          grid: { color: gridColor }
+        },
+        x: {
+          grid: { color: gridColor }
         }
       }
     };
@@ -44,7 +57,7 @@ export default class extends Controller {
                 size: 32,
                 weight: 'bold'
               },
-              color: 'gray',
+              color: fontColor,
               textAlign: 'center'
             }
           }
