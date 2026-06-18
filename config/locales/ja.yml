@@ -212,6 +212,8 @@ ja:
       profile-not-found: プロフィールが見つかりませんでした。
       valid_percent_range: 0から200の間でなければなりません。
   global:
+    theme:
+      toggle: テーマを切り替える
     date:
       from: から
       month: 月

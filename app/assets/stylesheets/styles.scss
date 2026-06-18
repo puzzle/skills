@@ -6,6 +6,61 @@ $skills-green-hover: #4e903c;
 $skills-search-result-blue: #238bca;
 $skills-dark-blue: #1e5a96;
 
+// Dark mode: a soft blue-gray palette (not pure black) that sits well under the
+// Puzzle brand blue header, which is intentionally kept in both modes.
+// Overriding Bootstrap's color-mode CSS variables cascades to all components.
+[data-bs-theme="dark"] {
+  --bs-body-bg: #1b2330;
+  --bs-body-bg-rgb: 27, 35, 48;
+  --bs-body-color: #e6e8eb;
+  --bs-body-color-rgb: 230, 232, 235;
+  --bs-secondary-bg: #232c3b;
+  --bs-secondary-bg-rgb: 35, 44, 59;
+  --bs-tertiary-bg: #2a3445;
+  --bs-tertiary-bg-rgb: 42, 52, 69;
+  --bs-border-color: #3a4456;
+  --bs-emphasis-color: #ffffff;
+
+  // Custom classes that hardcode light colors and can't rely on Bootstrap utilities.
+  .profile-header,
+  .bg-skills-gray,
+  .bg-hover-gray:hover,
+  .highlight-search-term {
+    background-color: var(--bs-tertiary-bg);
+  }
+
+  .table-row:hover {
+    background-color: var(--bs-secondary-bg);
+  }
+
+  .text-gray {
+    color: #a7adb7;
+  }
+
+  // The dark-blue brand text is too dark on a dark background; lighten it.
+  .banner-text,
+  .banner-sub-text,
+  .skills-blue-text {
+    color: #6ea8de;
+  }
+
+  // SlimSelect renders its own white surfaces.
+  .ss-main,
+  .ss-content {
+    background-color: var(--bs-secondary-bg);
+    color: var(--bs-body-color);
+  }
+
+  // Monochrome icons that are fixed-color images and can't be recoloured via
+  // `color`: CRUD action icons (.icon-* background images) and standalone icon
+  // <img> tags marked with .theme-icon. Flip their lightness for dark mode while
+  // keeping any hue. (Content images — avatars, logo, language levels — are left out.)
+  .icon,
+  .theme-icon {
+    filter: invert(1) hue-rotate(180deg);
+  }
+}
+
 .modal-dialog {
   max-width: 60%;
 }
@@ -281,7 +336,7 @@ pzsh-topbar {
 .profile-header-and-tabs {
   position: sticky;
   top: 80px;
-  background-color: white;
+  background-color: var(--bs-body-bg);
   z-index: 2;
 }
 
@@ -294,7 +349,7 @@ pzsh-topbar {
   width: 100%;
   display: block;
   text-decoration: none;
-  color: black;
+  color: var(--bs-body-color);
   padding: 5px 7px;
 }
 

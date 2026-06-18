@@ -1,6 +1,16 @@
 !!!
-%html
+%html{"data-bs-theme": theme_preference}
   %head
+    -# Resolve the theme before first paint to avoid a flash of the wrong color scheme.
+    -# Reads the `theme` cookie (auto/light/dark); "auto" or unset follows the OS preference.
+    :javascript
+      (function () {
+        var m = document.cookie.match(/(?:^|; )theme=([^;]*)/);
+        var pref = m ? m[1] : 'auto';
+        var dark = pref === 'dark' || (pref !== 'light' &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.setAttribute('data-bs-theme', dark ? 'dark' : 'light');
+      })();
     // This disables the Turbo prefetch in development as it gets quite annoying when debugging
     - if Rails.env.development?
       %meta{:name => "turbo-prefetch", :content => "false"}/
@@ -16,8 +26,8 @@
   %body#dropdown-wormhole.d-flex.justify-content-center{"data-controller": "skills-empty-space"}
     %div.content{"data-skills-empty-space-target": "container"}
       %div.position-sticky.top-0.z-3
-        %div.d-flex.justify-content-between.bg-white.flex-wrap
-          = link_to people_path, class: "text-decoration-none text-dark" do
+        %div.d-flex.justify-content-between.bg-body.flex-wrap
+          = link_to people_path, class: "text-decoration-none text-body" do
             %div.d-flex
               %div.mb-1.mt-1
                 %img{:src=> "/assets/logo.svg",:height=>"32"}
@@ -59,6 +69,9 @@
                   = link_to ti("devise.sign_out"), destroy_auth_user_session_path, data: { "turbo-method": :delete }, class: "btn btn-link"
                 - elsif devise_mapping.omniauthable?
                   =button_to ti("devise.sign_in"), omniauth_authorize_path(resource_name, resource_class.omniauth_providers.first), {data: { "turbo": false, controller: "instant-click" }, class: "btn btn-link"}
+            -# Theme toggle (auto / light / dark)
+            %li.d-flex.align-items-center.cursor-pointer.border-start-lg.h-100-lg.ps-2.pe-2{role: "button", "aria-label": ti("theme.toggle"), data: { controller: "theme", "theme-pref-value": theme_cookie_pref, action: "click->theme#cycle" }, title: ti("theme.toggle")}
+              %span.d-flex.text-gray{data: { "theme-target": "icon" }}
             -# Help
             %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start-lg.h-100-lg
               %a.d-flex.align-items-center{:href => "https://github.com/puzzle/skills/issues"}

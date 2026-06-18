@@ -212,6 +212,8 @@ fr:
       profile-not-found: Le profil n'a pas été trouvé.
       valid_percent_range: doit être compris entre 0 et 200.
   global:
+    theme:
+      toggle: Changer de thème
     date:
       from: De
       month: Mois

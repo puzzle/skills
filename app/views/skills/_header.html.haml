@@ -1,9 +1,9 @@
-%div.d-flex.flex-column.bg-white{"data-controller": "skillset-selected"}
+%div.d-flex.flex-column.bg-body{"data-controller": "skillset-selected"}
   = form_with(url: skills_path, method: :get, data: { turbo_frame: 'skills' }) do |form|
     %div.d-flex.flex-row.mt-2
       = form.text_field :title, class: "form-control skills-search-field rounded-end-0", placeholder: "#{ti('filter.search', target: Skill.model_name.human)}", oninput: "this.form.requestSubmit()", include_blank: true
-      %div.border.d-flex.rounded-end.bg-white
-        %img.pointer.p-2{src: "/assets/search.svg"}
+      %div.border.d-flex.rounded-end.bg-body
+        %img.pointer.p-2.theme-icon{src: "/assets/search.svg"}
     %div.d-flex.flex-row.mt-3.flex-wrap.gap-2
       %span.btn-group.me-3
         %label.btn.btn-outline-primary{"data-skillset-selected-target": "selectButton",
