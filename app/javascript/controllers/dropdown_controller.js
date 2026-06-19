@@ -1,5 +1,5 @@
 import {Controller} from "@hotwired/stimulus"
-import SlimSelect from 'slim-select';
+import SlimSelect from "slim-select"
 
 // Connects to data-controller="dropdown-links"
 export default class extends Controller {
@@ -73,6 +73,20 @@ export default class extends Controller {
                 }
             },
         });
+
+        if (this.multipleValue) {
+            document.addEventListener("keydown", (event) => {
+                const searchInput = document.querySelector(".ss-open-below input")
+                if (!searchInput || document.activeElement !== searchInput || event.key !== "Backspace" || searchInput.value !== "") {
+                    return
+                }
+                const selected = slimSelectDropdown.getSelected()
+                if (selected.length > 0) {
+                    event.preventDefault()
+                    slimSelectDropdown.setSelected(selected.slice(0, -1))
+                }
+            })
+        }
 
         if (slimSelectDropdown.getSelected()[0]?.startsWith("/")) {
             const linkTag = document.querySelector(
