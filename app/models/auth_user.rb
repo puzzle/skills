@@ -8,15 +8,15 @@ class AuthUser < ApplicationRecord
 
   class << self
     def from_omniauth(auth)
-      person = where(uid: auth.uid).first_or_create { |user| initialize_user(user, auth) }
-      person.last_login = Time.zone.now
-      person_to_update = Person.find_by(email: person.email)
+      auth_user = where(uid: auth.uid).first_or_create { |user| initialize_user(user, auth) }
+      auth_user.last_login = Time.zone.now
+      person_to_update = Person.find_by(email: auth_user.email)
 
       if person_to_update && !person_to_update.auth_user_id
-        person_to_update.update(auth_user_id: person.id)
+        person_to_update.update(auth_user_id: auth_user.id)
       end
-      set_ldap_username(person, auth)
-      set_role(person, auth)
+      set_ldap_username(auth_user, auth)
+      set_role(auth_user, auth)
     end
 
     private
