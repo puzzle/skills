@@ -55,4 +55,14 @@ describe "Skills Filter", type: :feature, js: true do
     select "System-Engineering", from: "category"
     expect(page).to have_no_content("Rails")
   end
+
+  it 'selects default set using keyboard' do
+    visit skills_path
+
+    label = find("label[for='default_set_true']")
+    label.send_keys(:tab)
+    label.send_keys(:space)
+
+    expect(page).to have_content("JUnit")
+  end
 end
