@@ -85,7 +85,7 @@ export default class extends Controller {
                     event.preventDefault()
                     slimSelectDropdown.setSelected(selected.slice(0, -1))
                 }
-            })
+            });
         }
 
         if (slimSelectDropdown.getSelected()[0]?.startsWith("/")) {
