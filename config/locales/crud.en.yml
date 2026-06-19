@@ -27,6 +27,7 @@ en:
       save: Save
       search: Search
     confirm_delete: Do you really want to delete this entry?
+    confirm_snapshot_merge: "Merge departments?\n\nAll personnel skill history from the selected source departments will be moved to the target departments and still remain on the old departments.\n\nThis action cannot be undone."
     errors:
       header:
         one: 'One error prohibited this entry from being saved:'

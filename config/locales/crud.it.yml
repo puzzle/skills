@@ -27,6 +27,7 @@ it:
       save: Salva
       search: Cerca
     confirm_delete: Vuoi davvero eliminare questo elemento?
+    confirm_snapshot_merge: "Unire i reparti?\n\nTutta la cronologia dello sviluppo delle competenze del personale dei reparti di origine selezionati verrà trasferita ai reparti di destinazione e rimarrà comunque nei vecchi reparti.\n\nQuesta azione non può essere annullata."
     errors:
       header:
         one: 'Un errore impedisce il salvataggio di questo elemento:'

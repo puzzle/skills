@@ -1,0 +1,4 @@
+%div{id: dom_id(@merge_department_snapshots_form)}
+  = render "form"
+
+= render partial: "admin/department_merge_history/index", locals: { merge_histories: @merge_histories }
