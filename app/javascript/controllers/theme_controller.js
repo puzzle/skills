@@ -48,5 +48,8 @@ export default class extends Controller {
         const dark = this.prefValue === "dark" ||
             (this.prefValue === "auto" && this.media.matches);
         document.documentElement.setAttribute("data-bs-theme", dark ? "dark" : "light");
+        // Notify components that read theme CSS variables at render time (e.g. the
+        // chart controller) so they can restyle without a full page reload.
+        this.dispatch("changed", { detail: { dark }, prefix: "theme" });
     }
 }
