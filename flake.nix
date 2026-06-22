@@ -32,6 +32,7 @@
             postgresql_18.lib  # libpq for the pg gem
             vips            # ruby-vips (loaded at runtime via FFI)
             imagemagick     # mini_magick (shells out to the CLI)
+            graphicsmagick
           ];
 
           shellHook = ''
