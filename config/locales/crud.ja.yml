@@ -27,6 +27,7 @@ ja:
       save: 保存
       search: 検索
     confirm_delete: この項目を本当に削除しますか？
+    confirm_snapshot_merge: "部門を統合しますか？\n\n選択した元部門のすべてのスタッフのスキル開発履歴は対象部門へ移動され、元の部門にも保持されます。\n\nこの操作は元に戻せません。"
     errors:
       header:
         one: 1件のエラーにより保存できませんでした：

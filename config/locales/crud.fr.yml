@@ -27,6 +27,7 @@ fr:
       save: Enregistrer
       search: Rechercher
     confirm_delete: Voulez-vous vraiment supprimer cette entrée ?
+    confirm_snapshot_merge: "Fusionner les départements ?\n\nTout l’historique du développement des compétences du personnel des départements sources sélectionnés sera transféré vers les départements cibles et restera également dans les anciens départements.\n\nCette action ne peut pas être annulée."
     errors:
       header:
         one: 'Une erreur a empêché l''enregistrement de cette entrée:'
