@@ -314,7 +314,7 @@ GEM
       net-protocol
     netrc (0.11.0)
     nio4r (2.7.5)
-    nokogiri (1.19.3-x86_64-linux-gnu)
+    nokogiri (1.19.4-x86_64-linux-gnu)
       racc (~> 1.4)
     oauth2 (2.0.22)
       auth-sanitizer (~> 0.2, >= 0.2.1)
