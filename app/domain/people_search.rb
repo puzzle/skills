@@ -153,13 +153,21 @@ class PeopleSearch
 
   def shorten(text, keywords)
     snippets = keywords.flat_map do |keyword|
-      escaped_keyword = Regexp.escape(keyword.to_s.strip)
+      escaped_keyword = Regexp.escape(normalized_keyword(keyword))
       regex = /(?:\S+\s+)?\S*#{escaped_keyword}\S*(?:\s+\S+)?/i
       text = text.gsub("\n", ' ').strip
 
       matches(text, regex).map { match_to_text(it, text.length) }
     end
     snippets.join("\n")
+  end
+
+  def normalized_keyword(keyword)
+    if @handle_whitespaces
+      keyword.to_s.gsub(/\s+/, '')
+    else
+      keyword.to_s.strip
+    end
   end
 
   def matches(string, regex)
