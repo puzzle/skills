@@ -3,8 +3,24 @@
     - content_for :input do
       = f.label :title
       = f.text_area :title, placeholder: "Description", class: "form-control w-100", oninput: "this.style.height = 'auto'; this.style.height = this.scrollHeight + 'px';"
+      :javascript
+        (function() {
+          var el = document.getElementById('education_title');
+          if (el) {
+            el.style.height = 'auto';
+            el.style.height = el.scrollHeight + 'px';
+          }
+        })();
       = f.label :location
       = f.text_area :location, placeholder: "Ein Ausbildungsort", class: "form-control w-100", oninput: "this.style.height = 'auto'; this.style.height = this.scrollHeight + 'px';"
+      :javascript
+        (function() {
+          var el = document.getElementById('education_location');
+          if (el) {
+            el.style.height = 'auto';
+            el.style.height = el.scrollHeight + 'px';
+          }
+        })();
       .flex-row.mt-1
         = f.label :display_in_cv, class: "form-check-label text-gray flex-row me-1"
         = f.checkbox :display_in_cv, class: "form-check-input"
