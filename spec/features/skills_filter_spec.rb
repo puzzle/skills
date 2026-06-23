@@ -59,10 +59,25 @@ describe "Skills Filter", type: :feature, js: true do
   it 'selects default set using keyboard' do
     visit skills_path
 
-    label = find("label[for='default_set_true']")
-    label.send_keys(:tab)
-    label.send_keys(:space)
+    %w[all new true].each do |option|
+      find("label[for='default_set_#{option}']").send_keys(:space)
 
-    expect(page).to have_content("JUnit")
+      visible_skills, hidden_skills = case option
+                                      when "all"
+                                        [Skill.all, []]
+                                      when "new"
+                                        [Skill.where(default_set: nil), Skill.where.not(default_set: nil)]
+                                      when "true"
+                                        [Skill.where(default_set: true), Skill.where.not(default_set: true)]
+                                      end
+
+      visible_skills.each do |skill|
+        expect(page).to have_content(skill.title)
+      end
+
+      hidden_skills.each do |skill|
+        expect(page).not_to have_content(skill.title)
+      end
+    end
   end
 end
