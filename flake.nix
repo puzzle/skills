@@ -17,7 +17,8 @@
           # (nixpkgs ships Ruby 4.0.5; the project requests 4.0.1 — patch-compatible.)
           packages = with pkgs; [
             ruby_4_0
-            nodejs_24       # bundles corepack, which provides yarn 4.12.0
+            nodejs_24       # Node 24 runtime (also ships corepack and yarn 4.12.1)
+            #yarn-berry_4    # Yarn 4.14.x — matches the Yarn 4 line pinned in package.json
             postgresql_18
             just            # task runner (see ./justfile)
 
@@ -35,7 +36,23 @@
             graphicsmagick
           ];
 
+          # Static env vars: any non-special attribute is exported into the shell.
+          # (Path-derived vars that need $PWD live in shellHook — see below.)
+
+          # Database connection (matches config/database.yml defaults).
+          RAILS_DB_HOST = "127.0.0.1";
+          RAILS_DB_PORT = "5432";
+          RAILS_DB_USERNAME = "skills";
+          RAILS_DB_PASSWORD = "skills";
+
+          # Project-local PostgreSQL (managed via the justfile).
+          PGPORT = "5432";
+          PGUSER = "skills";
+
           shellHook = ''
+            # Path-derived vars: kept here because attribute values are not
+            # shell-expanded, so $PWD must be resolved at shell-entry time.
+
             # --- Project-local state, nothing installed globally -----------------
             export PROJECT_ROOT="$PWD"
             export BUNDLE_PATH="$PROJECT_ROOT/vendor/bundle"
@@ -43,33 +60,18 @@
             export GEM_HOME="$BUNDLE_PATH"
             export PATH="$BUNDLE_BIN:$PATH"
 
-            # Yarn 4.12 via corepack, kept inside the project.
-            # `corepack enable` requires the target dir to exist beforehand.
-            export COREPACK_HOME="$PROJECT_ROOT/tmp/corepack"
-            mkdir -p "$PROJECT_ROOT/tmp/corepack-bin"
-            corepack enable --install-directory "$PROJECT_ROOT/tmp/corepack-bin" >/dev/null 2>&1 || true
-            export PATH="$PROJECT_ROOT/tmp/corepack-bin:$PATH"
+            # Yarn 4 comes from nixpkgs (yarn-berry_4) — no corepack download needed.
 
-            # --- Database connection (matches config/database.yml defaults) ------
-            export RAILS_DB_HOST="127.0.0.1"
-            export RAILS_DB_PORT="5432"
-            export RAILS_DB_USERNAME="skills"
-            export RAILS_DB_PASSWORD="skills"
-
-            # --- Project-local PostgreSQL (managed via the justfile) -------------
+            # --- Project-local PostgreSQL data dir / socket ----------------------
             export PGDATA="$PROJECT_ROOT/tmp/postgres/data"
             export PGHOST="$PROJECT_ROOT/tmp/postgres/sockets"
-            export PGPORT="5432"
-            export PGUSER="skills"
 
-            cat <<'EOF'
-
-  Skills dev shell ready. Tasks are managed with `just` — run `just` for the list.
-
-  First time:   just init     (gems + JS deps + database)
-  Develop:      just dev       Test: just test       Lint: just lint
-
-EOF
+            echo
+            echo '  Skills dev shell ready. Tasks are managed with `just` — run `just` for the list.'
+            echo
+            echo '  First time:   just init     (gems + JS deps + database)'
+            echo '  Develop:      just dev       Test: just test       Lint: just lint'
+            echo
           '';
         };
       });

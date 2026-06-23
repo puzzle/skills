@@ -13,7 +13,7 @@ default:
 init: deps db
     @echo "==> Done. Start developing with: just dev"
 
-# Install Ruby gems (-> vendor/bundle) and JS deps (yarn 4 via corepack)
+# Install Ruby gems (-> vendor/bundle) and JS deps (yarn 4 from the nix shell)
 deps:
     bundle install
     yarn install
