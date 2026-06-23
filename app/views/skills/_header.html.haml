@@ -7,16 +7,16 @@
 
     %span.d-flex.flex-row.mt-3.flex-wrap.gap-2
       %div.btn-group.me-3
-        = radio_button_tag :defaultSet, "", check_entry_validity?(""), class: "btn-check", id: "default_set_all", onchange: "this.form.requestSubmit();"
-        %label.btn.btn-outline-primary{for: "default_set_all", tabindex: "0", onkeyup: "event.key === 'Enter' && this.click()"}
+        = radio_button_tag :defaultSet, "", check_entry_validity?(""), class: "btn-check", id: "default_set_all", tabindex: "-1", onchange: "this.form.requestSubmit();"
+        %label.btn.btn-outline-primary{for: "default_set_all", tabindex: "0", onkeydown: "['Enter', 'Space'].includes(event.code) && this.click()"}
           = ti('filter.all')
 
-        = radio_button_tag :defaultSet, "new", check_entry_validity?("new"), class: "btn-check", id: "default_set_new", onchange: "this.form.requestSubmit();"
-        %label.btn.btn-outline-primary{for: "default_set_new", tabindex: "0", onkeyup: "event.key === 'Enter' && this.click()"}
+        = radio_button_tag :defaultSet, "new", check_entry_validity?("new"), class: "btn-check", id: "default_set_new", tabindex: "-1", onchange: "this.form.requestSubmit();"
+        %label.btn.btn-outline-primary{for: "default_set_new", tabindex: "0", onkeydown: "['Enter', 'Space'].includes(event.code) && this.click()"}
           = ti('filter.new')
 
-        = radio_button_tag :defaultSet, "true", check_entry_validity?("true"), class: "btn-check", id: "default_set_true", onchange: "this.form.requestSubmit();"
-        %label.btn.btn-outline-primary{for: "default_set_true", tabindex: "0", onkeyup: "event.key === 'Enter' && this.click()"}
+        = radio_button_tag :defaultSet, "true", check_entry_validity?("true"), class: "btn-check", id: "default_set_true", tabindex: "-1" , onchange: "this.form.requestSubmit();"
+        %label.btn.btn-outline-primary{for: "default_set_true", tabindex: "0", onkeydown: "['Enter', 'Space'].includes(event.code) && this.click()"}
           = ti('filter.default')
       %span.d-flex.align-items-center.flex-wrap
         %span.text-gray.me-1
