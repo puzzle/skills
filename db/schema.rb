@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_15_094823) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_12_131400) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -255,6 +255,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_15_094823) do
   create_table "projects_skills", id: false, force: :cascade do |t|
     t.bigint "project_id", null: false
     t.bigint "skill_id", null: false
+    t.index ["project_id", "skill_id"], name: "index_projects_skills_on_project_id_and_skill_id"
+    t.index ["skill_id", "project_id"], name: "index_projects_skills_on_skill_id_and_project_id"
   end
 
   create_table "roles", force: :cascade do |t|
