@@ -2,25 +2,9 @@
   = render('people/person_relations/form', form: f) do
     - content_for :input do
       = f.label :title
-      = f.text_area :title, placeholder: "Titel", class: "form-control w-100", oninput: "this.style.height = 'auto'; this.style.height = this.scrollHeight + 'px';"
-      :javascript
-        (function() {
-          var el = document.getElementById('contribution_title');
-          if (el) {
-            el.style.height = 'auto';
-            el.style.height = el.scrollHeight + 'px';
-          }
-        })();
+      = f.text_area :title, placeholder: "Titel", class: "form-control w-100"
       = f.label :reference
-      = f.text_area :reference, placeholder: "Reference", class: "form-control w-100", oninput: "this.style.height = 'auto'; this.style.height = this.scrollHeight + 'px';"
-      :javascript
-        (function() {
-          var el = document.getElementById('contribution_reference');
-          if (el) {
-            el.style.height = 'auto';
-            el.style.height = el.scrollHeight + 'px';
-          }
-        })();
+      = f.text_area :reference, placeholder: "Reference", class: "form-control w-100"
       .flex-row.mt-1
         = f.label :display_in_cv, class: "form-check-label text-gray me-1"
         = f.checkbox :display_in_cv, class: "form-check-input"

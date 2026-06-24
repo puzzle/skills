@@ -410,6 +410,12 @@ a > img {
   padding-top: 0;
 }
 
+textarea.form-control {
+  min-height: calc(3em + 0.75rem + calc(var(--bs-border-width) * 1.5));
+  field-sizing: content;
+  resize: vertical;
+}
+
 .model-form-container label {
   margin-bottom: 0;
 }
