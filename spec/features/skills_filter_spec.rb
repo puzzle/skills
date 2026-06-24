@@ -60,7 +60,7 @@ describe "Skills Filter", type: :feature, js: true do
     visit skills_path
 
     %w[all new true].each do |option|
-      find("label[for='default_set_#{option}']").send_keys(:space)
+      find("#default_set_#{option}").send_keys(:space)
 
       visible_skills, hidden_skills = case option
                                       when "all"
