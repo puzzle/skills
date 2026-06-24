@@ -411,7 +411,7 @@ a > img {
 }
 
 textarea.form-control {
-  min-height: calc(3em + 0.75rem + calc(var(--bs-border-width) * 1.5));
+  min-height: 3lh;
   field-sizing: content;
   resize: vertical;
 }
