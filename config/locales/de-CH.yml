@@ -214,7 +214,7 @@ de-CH:
         type_of_exam: Prüefigsart
   cv_search:
     global:
-      handle_whitespaces: läärzeichä ignorierä
+      handle_whitespaces: Mit und ohni Leerzeichä sueche
       handle_whitespaces_tooltip: Resultat wärdä mit Leerzeichä und ohni gsuecht.
       search_placeholder: CVs dürsuechä...
       search_skills: Skills äbäfaus dürsuechä

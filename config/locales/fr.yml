@@ -210,7 +210,7 @@ fr:
         type_of_exam: Type d'examen
   cv_search:
     global:
-      handle_whitespaces: Ignorer les espaces
+      handle_whitespaces: Recherche avec et sans espaces
       handle_whitespaces_tooltip: Les résultats seront recherchés avec et sans espaces.
       search_placeholder: Chercher dans les CV...
       search_skills: Rechercher également des compétences

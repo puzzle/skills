@@ -214,7 +214,7 @@ de:
         type_of_exam: Prüfungsart
   cv_search:
     global:
-      handle_whitespaces: Leerzeichen ignorieren
+      handle_whitespaces: Mit und ohne Leerzeichen suchen
       handle_whitespaces_tooltip: Resultate werden mit Leerzeichen und ohne gesucht.
       search_placeholder: CVs durchsuchen...
       search_skills: Skills ebenfalls durchsuchen
