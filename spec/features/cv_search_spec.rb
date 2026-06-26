@@ -136,11 +136,22 @@ describe 'Advanced Trainings', type: :feature, js: true do
       it 'should only results with the correct selected category be found' do
         multi_select_from_slim_select('#category-filter', [data[:field]], true)
         fill_in 'cv_search_field', with: data[:value]
+        
+        # Tests are flaky in firefox
+        sleep 0.5
 
         check 'search_skills'
-        check_search_results_only_in_one_found_in(data[:field], bob)
+        check_search_results_only_in_one_found_in(data[:field])
       end
     }
+
+    it 'should only results with the correct selected categories be found ' do
+      multi_select_from_slim_select('#category-filter', ["Projekte", "Notizen Member"], true)
+      fill_in 'cv_search_field', with: "Rub"
+
+      check 'search_skills'
+      check_search_results_only_in_one_found_in(["Projekte", "Notizen Member"])
+    end
   end
 
   def check_search_results(field_name, person = bob)
@@ -151,15 +162,14 @@ describe 'Advanced Trainings', type: :feature, js: true do
   end
 
   def check_search_results_only_in_one_found_in(field_name, person = bob)
+    field_names = Array(field_name)
+
     within('turbo-frame#search-results') {
       results = all("[id='cv-search-result']")
 
-      # Tests are flaky in firefox
-      sleep 0.5
-
       results.each do |result|
         expect(page).to have_link(person.name)
-        expect(result).to have_link(field_name)
+        expect(field_names.any? { |name| result.has_link?(name, wait: 0.5) }).to be(true)
       end
     }
   end
