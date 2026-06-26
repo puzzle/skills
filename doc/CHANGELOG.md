@@ -1,5 +1,30 @@
 # Changelog
 
+## [6.4.0](https://github.com/puzzle/skills/compare/6.3.0...6.4.0) (2026-06-26)
+
+
+### Features
+
+* add hover and focus to tabbar [#1159](https://github.com/puzzle/skills/issues/1159) ([#1193](https://github.com/puzzle/skills/issues/1193)) ([bc03fdc](https://github.com/puzzle/skills/commit/bc03fdc811d81d9abfc06559011a9477e7a61b56))
+* change from person to auth_user [#1188](https://github.com/puzzle/skills/issues/1188) ([#1191](https://github.com/puzzle/skills/issues/1191)) ([28440f7](https://github.com/puzzle/skills/commit/28440f77f843cb4bd5ad9571f7418d63b312c96c))
+* change name of release please workflow to release please ([#1185](https://github.com/puzzle/skills/issues/1185)) ([4e619ed](https://github.com/puzzle/skills/commit/4e619ed343b2536a8979e0469d64be0b5920b1d9))
+* cv search should handle whitespaces correctly [#1140](https://github.com/puzzle/skills/issues/1140) ([#1181](https://github.com/puzzle/skills/issues/1181)) ([a92812f](https://github.com/puzzle/skills/commit/a92812f76ebe140b773a165274531f1acc8b0ec3))
+* implement the merging of the department skill snapshots [#1109](https://github.com/puzzle/skills/issues/1109) ([#1121](https://github.com/puzzle/skills/issues/1121)) ([e9ad684](https://github.com/puzzle/skills/commit/e9ad6843028c5c972a404b1a3dbb2954b6bbec82))
+
+
+### Bug Fixes
+
+* add update_columns [#1153](https://github.com/puzzle/skills/issues/1153) ([#1203](https://github.com/puzzle/skills/issues/1203)) ([21322fa](https://github.com/puzzle/skills/commit/21322fae704f4a7916874f48f11f2f396990e5b6))
+* Resize Fields in Member CV [#1132](https://github.com/puzzle/skills/issues/1132) ([#1196](https://github.com/puzzle/skills/issues/1196)) ([3c40969](https://github.com/puzzle/skills/commit/3c40969f37a60dcf52fa20a86e2faad596edaf0c))
+* set ldap same on login ([#1186](https://github.com/puzzle/skills/issues/1186)) ([f63c06f](https://github.com/puzzle/skills/commit/f63c06ff436774c1494d6c79ead012022680bf9a))
+
+
+### Miscellaneous Chores
+
+* **deps:** bump tar in the npm_and_yarn group across 1 directory ([#1198](https://github.com/puzzle/skills/issues/1198)) ([eb0be32](https://github.com/puzzle/skills/commit/eb0be327e92eb6aea62cd1f9f8c54447dbb4af7b))
+* **deps:** bump the bundler group across 1 directory with 2 updates ([#1200](https://github.com/puzzle/skills/issues/1200)) ([2c87058](https://github.com/puzzle/skills/commit/2c870588b22b29ed1189231ccf5634575cb37caf))
+* **deps:** bump the npm_and_yarn group across 1 directory with 3 updates ([#1189](https://github.com/puzzle/skills/issues/1189)) ([964ad6a](https://github.com/puzzle/skills/commit/964ad6acd0c84f05df9b7b5032640778f83874fb))
+
 ## [6.3.0](https://github.com/puzzle/skills/compare/6.2.0...6.3.0) (2026-06-12)
 
 
