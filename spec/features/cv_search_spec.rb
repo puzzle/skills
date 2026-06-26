@@ -124,15 +124,43 @@ describe 'Advanced Trainings', type: :feature, js: true do
       check_search_results("#{skills_label}/ #{alice.skills.first.parent_category.title}", alice)
     end
 
-    it 'should only results with the correct selected category be found' do
-      multi_select_from_slim_select('#category-filter', ['Name'], true)
-    end
+    [ {field: "Name", value: "bob"},
+      {field: "Abschluss", value: "BSc"},
+      {field: "Notizen Member", value: "Rub"},
+      {field: "Organisationseinheit", value: "/sy"},
+      {field: "Funktionen", value: "Sof"},
+      {field: "Projekte", value: "duc"},
+      {field: "Stationen", value: "Use"},
+      {field: "Weiterbildungen", value: "Cou"},
+      {field: "Contributions", value: "Add"}].each { |data|
+      it 'should only results with the correct selected category be found' do
+        multi_select_from_slim_select('#category-filter', [data[:field]], true)
+        fill_in 'cv_search_field', with: data[:value]
+
+        check 'search_skills'
+        check_search_results_only_in_one_found_in(data[:field], bob)
+      end
+    }
   end
 
   def check_search_results(field_name, person = bob)
     within('turbo-frame#search-results') {
       expect(page).to have_link(person.name)
       expect(page).to have_link(field_name)
+    }
+  end
+
+  def check_search_results_only_in_one_found_in(field_name, person = bob)
+    within('turbo-frame#search-results') {
+      results = all("[id='cv-search-result']")
+
+      # Tests are flaky in firefox
+      sleep 0.5
+
+      results.each do |result|
+        expect(page).to have_link(person.name)
+        expect(result).to have_link(field_name)
+      end
     }
   end
 
@@ -143,6 +171,5 @@ describe 'Advanced Trainings', type: :feature, js: true do
       select category, from: 'skill_category_parent'
       find("input[type='image']").click
     end
-
   end
 end

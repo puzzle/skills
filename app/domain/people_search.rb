@@ -31,7 +31,7 @@ class PeopleSearch
       requested_associations = ASSOCIATIONS
     else
       requested_personal_details = PERSON_FIELDS & @categories
-      requested_associations = (ASSOCIATIONS & @categories).map(&:to_sym)
+      requested_associations = ASSOCIATIONS & @categories.map(&:to_sym)
     end
 
     use_defaults = requested_personal_details.empty? && requested_associations.empty?
