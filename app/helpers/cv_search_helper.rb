@@ -16,9 +16,7 @@ module CvSearchHelper
   end
 
   def url_params(found_in)
-    query = params[:q].split(',').map(&:strip).find do |keyword|
-      found_in[:keywords_in_attribute].include?(keyword)
-    end
+    query = found_in[:value]
     { q: query, section_id: found_in[:group],
       rating: found_in_skills?(found_in) ? 1 : nil }
   end

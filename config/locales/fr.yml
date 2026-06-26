@@ -148,8 +148,8 @@ fr:
       link:
         list: Panneau d'administration
     index:
-      delete_unemployed_people: Supprimer les anciens employés
       delete_not_synced_profiles: Supprimer les profils non synchronisés
+      delete_unemployed_people: Supprimer les anciens employés
       reminder_mail: Activez les e-mails de rappel pour votre entreprise.
       unify_skills: Unifier les compétences
       update_people_manually: Mise à jour manuelle des personnes
@@ -172,8 +172,8 @@ fr:
   admin/people_management:
     index:
       not_synced_title: Les profils suivants ne sont actuellement pas mis à jour par la synchronisation PuzzleTime
-      unemployed_title: Les profils suivants sont marqués comme anciens employés
       nothing_to_manage: Actuellement, il n'y a rien à nettoyer
+      unemployed_title: Les profils suivants sont marqués comme anciens employés
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: Conflits détectés
@@ -210,6 +210,8 @@ fr:
         type_of_exam: Type d'examen
   cv_search:
     global:
+      handle_whitespaces: Recherche avec et sans espaces
+      handle_whitespaces_tooltip: Les résultats seront recherchés avec et sans espaces.
       search_placeholder: Chercher dans les CV...
       search_skills: Rechercher également des compétences
     index:
@@ -381,12 +383,12 @@ fr:
       advanced-trainings: Formations continues
       contributions: Contributions open source
       core-competences: Compétences clés
-      educations: Formations
-      personal-data: Données personnelles
-      projects: Projets
       editing_own_profile: Vous êtes en train de modifier votre profil.
+      educations: Formations
       no_permission_to_edit_person: Tu n'as pas les autorisations nécessaires pour modifier ce profil.
       permission_to_edit_person: Tu as les autorisations nécessaires pour modifier ce profil.
+      personal-data: Données personnelles
+      projects: Projets
     search:
       new_profile: Nouveau profil
       updated_at: Dernièrement édité

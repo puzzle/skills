@@ -148,8 +148,8 @@ ja:
       link:
         list: 管理パネル
     index:
-      delete_unemployed_people: 元従業員を削除する
       delete_not_synced_profiles: 同期されていないプロファイルを削除する
+      delete_unemployed_people: 元従業員を削除する
       reminder_mail: 会社のリマインダーメールを有効にする
       unify_skills: スキル統合
       update_people_manually: ユーザーを手動で更新
@@ -172,8 +172,8 @@ ja:
   admin/people_management:
     index:
       not_synced_title: 以下のプロファイルは元従業員としてマークされています
-      unemployed_title: 次のプロファイルは現在、PuzzleTime同期によって更新されていません
       nothing_to_manage: 現在、クリーンアップするものはありません
+      unemployed_title: 次のプロファイルは現在、PuzzleTime同期によって更新されていません
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: 衝突が見つかりました
@@ -210,6 +210,8 @@ ja:
         type_of_exam: 試験の種類
   cv_search:
     global:
+      handle_whitespaces: 空白あり・なしの両方で検索
+      handle_whitespaces_tooltip: 検索結果は、空白あり・なしの両方で検索されます。
       search_placeholder: 履歴書を検索...
       search_skills: スキルも検索する
     index:
@@ -381,12 +383,12 @@ ja:
       advanced-trainings: さらなる研修
       contributions: オープンソース貢献
       core-competences: コアコンピテンシー
-      educations: 研修
-      personal-data: 個人データ
-      projects: プロジェクト
       editing_own_profile: 自分のプロフィールを編集しています。
+      educations: 研修
       no_permission_to_edit_person: このプロフィールを編集するために必要な権限がありません。
       permission_to_edit_person: このプロフィールを編集するために必要な権限があります。
+      personal-data: 個人データ
+      projects: プロジェクト
     search:
       new_profile: 新しいプロフィール
       updated_at: 最終編集日
@@ -428,7 +430,7 @@ ja:
       link:
         add: スキルを追加（最大5つまで）
       no_match: '以下のスキルを持つ人が見つかりませんでした: '
-      no_match_with_department: '%{department}に以下のスキルを持つ人が見つかりませんでした: '
+      no_match_with_department: "%{department}に以下のスキルを持つ人が見つかりませんでした: "
       or: または
     index:
       table:

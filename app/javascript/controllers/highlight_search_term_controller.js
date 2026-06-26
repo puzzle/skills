@@ -15,7 +15,8 @@ export default class extends Base_highlight_controller {
 
     #highlightElementText(element, regex) {
         const userValue = element.textContent.trim();
-        const replacement = '<mark class="highlight-search-term">$1</mark>';
+
+        const replacement = '<mark class="highlight-search-term">$&</mark>';
         const highlightedText = userValue.replace(regex, replacement);
 
         if (highlightedText !== userValue) {
