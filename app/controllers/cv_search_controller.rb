@@ -20,6 +20,10 @@ class CvSearchController < ApplicationController
 
     @cv_search_results = should_search? ? people_search.entries : []
 
+    set_category_options
+  end
+
+  def set_category_options
     @associations = exclude_skills
     @personal_details = (PeopleSearch::PERSONAL_DETAILS + PeopleSearch::CORE_COMPETENCES)
 
