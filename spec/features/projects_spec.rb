@@ -24,7 +24,8 @@ describe 'Projects', type: :feature, js:true do
       role = 'Pressure-washer dealer'
       description = 'Deals with pressure-washers'
       title = 'new title'
-      technology = 'This technology'
+      first_technology = 'Rails'
+      second_technology = 'ember'
 
       open_create_form(Project)
 
@@ -33,7 +34,7 @@ describe 'Projects', type: :feature, js:true do
         fill_in 'project_role', with: role
         fill_in 'project_description', with: description
         fill_in 'project_title', with: title
-        fill_in 'project_technology', with: technology
+        multi_select_from_slim_select('#project_skill_ids', [first_technology, second_technology])
         click_default_submit
       end
 
@@ -41,14 +42,16 @@ describe 'Projects', type: :feature, js:true do
       expect(page).to have_content(role)
       expect(page).to have_content(description)
       expect(page).to have_content(title)
-      expect(page).to have_content(technology)
+      expect(page).to have_content(first_technology)
+      expect(page).to have_content(second_technology)
     end
 
     it 'Create new with save & new' do
       role = "This is a new project with a role created by the save & new functionality"
       description = "This is a new project with a description created by the save & new functionality"
       title = "This is a new project with a title created by the save & new functionality"
-      technology = "This is a new project with a technology created by the save & new functionality"
+      first_technology = 'Rails'
+      second_technology = 'ember'
 
       open_create_form(Project)
 
@@ -56,7 +59,7 @@ describe 'Projects', type: :feature, js:true do
         fill_in 'project_role', with: role
         fill_in 'project_description', with: description
         fill_in 'project_title', with: title
-        fill_in 'project_technology', with: technology
+        multi_select_from_slim_select('#project_skill_ids', [first_technology, second_technology])
         select 'Januar', from: 'project_month_from'
         select '2020', from: 'project_year_from'
 
@@ -65,14 +68,15 @@ describe 'Projects', type: :feature, js:true do
       expect(page).to have_content(role)
       expect(page).to have_content(description)
       expect(page).to have_content(title)
-      expect(page).to have_content(technology)
+      expect(page).to have_content(first_technology)
+      expect(page).to have_content(second_technology)
 
       expect(page).to have_select('project_year_from', selected: "")
       expect(page).to have_select('project_month_from', selected: "-")
       expect(page).to have_field('project_role', with: "")
       expect(page).to have_field('project_description', with: "")
       expect(page).to have_field('project_title', with: "")
-      expect(page).to have_field('project_technology', with: "")
+      expect(page).to have_select('project_skill_ids', selected: [], visible: false)
     end
 
     it 'updates project' do
