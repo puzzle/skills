@@ -148,8 +148,8 @@ it:
       link:
         list: Pannello di amministrazione.
     index:
-      delete_unemployed_people: Elimina gli ex dipendenti
       delete_not_synced_profiles: Elimina i profili non sincronizzati
+      delete_unemployed_people: Elimina gli ex dipendenti
       reminder_mail: Attiva le email di promemoria per la tua azienda.
       unify_skills: Unire le competenze
       update_people_manually: Aggiornare le persone manualmente
@@ -172,8 +172,8 @@ it:
   admin/people_management:
     index:
       not_synced_title: I seguenti profili non sono attualmente aggiornati dalla sincronizzazione PuzzleTime
-      unemployed_title: I seguenti profili sono contrassegnati come ex dipendenti
       nothing_to_manage: Attualmente non c'è niente da pulire
+      unemployed_title: I seguenti profili sono contrassegnati come ex dipendenti
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: Conflitti rilevati
@@ -210,6 +210,8 @@ it:
         type_of_exam: Tipo di esame
   cv_search:
     global:
+      handle_whitespaces: Ricerca con e senza spazi
+      handle_whitespaces_tooltip: I risultati verranno cercati sia con che senza spazi.
       search_placeholder: Ricerca CV...
       search_skills: Anche le capacità di ricerca
     index:
@@ -381,12 +383,12 @@ it:
       advanced-trainings: Formazione continua
       contributions: Contributi open source
       core-competences: Competenze di base
-      educations: Programmi di formazione
-      personal-data: Dati personali
-      projects: Progetti
       editing_own_profile: Stai modificando il tuo profilo.
+      educations: Programmi di formazione
       no_permission_to_edit_person: Non hai i permessi necessari per modificare questo profilo.
       permission_to_edit_person: Hai i permessi necessari per modificare questo profilo.
+      personal-data: Dati personali
+      projects: Progetti
     search:
       new_profile: Nuovo profilo
       updated_at: Ultima modifica

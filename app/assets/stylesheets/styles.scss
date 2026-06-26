@@ -383,6 +383,12 @@ a > img {
   padding-top: 0;
 }
 
+textarea.form-control {
+  min-height: 3lh;
+  field-sizing: content;
+  resize: vertical;
+}
+
 .model-form-container label {
   margin-bottom: 0;
 }

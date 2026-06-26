@@ -13,7 +13,7 @@ class AuthUser < ApplicationRecord
       person_to_update = Person.find_by(email: auth_user.email)
 
       if person_to_update && !person_to_update.auth_user_id
-        person_to_update.update(auth_user_id: auth_user.id)
+        person_to_update.update_columns(auth_user_id: auth_user.id)
       end
       set_ldap_username(auth_user, auth)
       set_role(auth_user, auth)

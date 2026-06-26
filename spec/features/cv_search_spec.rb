@@ -68,6 +68,25 @@ describe 'Advanced Trainings', type: :feature, js: true do
       expect(page).to have_link(href: /#{person_people_skills_path(bob)}.*q=#{skill_title}/)
     end
 
+    it 'should dynamically search with whitespace handling enabled' do
+      fill_in 'cv_search_field', with: "B o b"
+
+      page.check('handle_whitespaces')
+
+      expect(page).to have_content(bob.name)
+      check_search_results(Person.human_attribute_name(:name))
+
+      click_link "Name"
+
+      expect(page).to have_link(href: person_path(bob, q: "Bob Anderson", section_id: "personal-data"))
+    end
+
+    it "should disable whitespace handling if there are no whitespaces in search" do
+      fill_in 'cv_search_field', with: "Ruby"
+
+      expect(page).to have_field('handle_whitespaces', disabled: true)
+    end
+
     it "should highlight the correct text" do
       target = "Ruby"
 
@@ -78,7 +97,7 @@ describe 'Advanced Trainings', type: :feature, js: true do
       sleep 0.5
       click_link "Projekte"
 
-      expect(page).to have_current_path(person_path(bob, q: target, section_id: "projects"))
+      expect(page).to have_current_path(person_path(bob, q: "Ruby on Rails", section_id: "projects"))
       within "#projects"
       expect(page).to have_selector('mark.highlight', text: target)
     end

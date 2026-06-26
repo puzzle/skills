@@ -148,8 +148,8 @@ en:
       link:
         list: Admin Panel
     index:
-      delete_unemployed_people: Delete former employees
       delete_not_synced_profiles: Delete unsynchronized profiles
+      delete_unemployed_people: Delete former employees
       reminder_mail: Activate reminder emails for your company.
       unify_skills: Unify skills
       update_people_manually: Update people manually
@@ -172,8 +172,8 @@ en:
   admin/people_management:
     index:
       not_synced_title: The following profiles are currently not updated by the PuzzleTime sync
-      unemployed_title: The following profiles are marked as former employees
       nothing_to_manage: Currently, there is nothing to clean up
+      unemployed_title: The following profiles are marked as former employees
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: Conflicts found
@@ -210,6 +210,8 @@ en:
         type_of_exam: Type of exam
   cv_search:
     global:
+      handle_whitespaces: Search with and without whitespaces
+      handle_whitespaces_tooltip: Results will be searched with whitespaces and without.
       search_placeholder: Search CVs...
       search_skills: Search skills as well
     index:
@@ -381,12 +383,12 @@ en:
       advanced-trainings: Further training
       contributions: Open source contributions
       core-competences: Core competencies
-      educations: Educations
-      personal-data: Personal data
-      projects: Projects
       editing_own_profile: You are editing your own profile.
+      educations: Educations
       no_permission_to_edit_person: You do not have the required permissions to edit this profile.
       permission_to_edit_person: You have the required permissions to edit this profile.
+      personal-data: Personal data
+      projects: Projects
     search:
       new_profile: New profile
       updated_at: Last edited

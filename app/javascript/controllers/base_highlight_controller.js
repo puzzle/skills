@@ -10,6 +10,13 @@ export default class extends Controller {
     }
 
     escapeForRegex(term) {
+        if (this.urlParams.get("handle_whitespaces") === "on") {
+            return term
+                .trim()
+                .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+                .split(/\s+/)
+                .join('\\s*');
+        }
         return term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
 
