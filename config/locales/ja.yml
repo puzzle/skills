@@ -231,6 +231,8 @@ ja:
       valid_percent_range: 0から200の間でなければなりません。
       merge_identical_department: 自分自身とは統合できません。
   global:
+    theme:
+      toggle: テーマを切り替える
     date:
       from: から
       month: 月

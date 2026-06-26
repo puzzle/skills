@@ -250,6 +250,8 @@ de-CH:
       valid_percent_range: muess zwüschä 0 u 200 liegä.
       merge_identical_department: cha nid mit sich sälber zämefüehrt werde.
   global:
+    theme:
+      toggle: Theme wächsle
     date:
       from: Vom
       month: Monat
