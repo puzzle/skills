@@ -41,7 +41,7 @@ class PeopleController < CrudController
   end
 
   def export
-    cv = Odt::Cv.new(entry, params)
+    cv = Export::BaseCvExport.new(entry, params)
     odt_file = Odt::PuzzleCv.new(cv).export
     filename = if true?(params[:anon])
                  'CV_Puzzle_ITC_anonymized.odt'
