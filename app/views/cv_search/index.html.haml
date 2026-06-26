@@ -1,39 +1,21 @@
 %div.mt-2
-  %form.d-flex.align-items-center{data: {"turbo-frame": "search-results", "turbo-action": "advance"}, "data-controller": "search"}
-    %input{class: 'form-control w-75', placeholder: ti("search_placeholder"), name: 'q', "data-action": "search#submitWithTimeout", id: "cv_search_field"}
-    %div.d-flex.flex-column
-      %div.ms-5
-        %input{type: "checkbox", name: 'search_skills', id: 'search_skills_checkbox', onchange: 'this.form.requestSubmit();'}
-          = ti('search_skills')
-      %div.ms-5{ 'data-bs-toggle': 'tooltip', 'data-bs-title': ti("handle_whitespaces_tooltip"), 'data-controller': 'tooltip', 'data-action': 'click->tooltip#hide'}
+  = form_with url: search_cv_search_index_path, method: :get, id: "cv_search_form", data: { turbo_stream: true, turbo_action: "advance", controller: "search" }, class: "d-flex align-items-center flex-wrap" do |form|
+    = form.text_field :q,
+        class: "form-control w-75",
+        placeholder: ti("search_placeholder"),
+        id: "cv_search_field",
+        data: { action: "search#submitWithTimeout" }
+    .d-flex.flex-column
+      .ms-5#search-skills-checkbox
+        = search_skills_checkbox(@search_skills)
+      .ms-5{ 'data-bs-toggle': 'tooltip', 'data-bs-title': ti("handle_whitespaces_tooltip"), 'data-controller': 'tooltip', 'data-action': 'click->tooltip#hide'}
         %input{type: "checkbox", name: 'handle_whitespaces', id: 'handle_whitespaces_checkbox', onchange: 'this.form.requestSubmit();', disabled: true}
           = ti('handle_whitespaces')
+    .w-100.my-3
+      .d-flex.gap-2.align-items-center#category_dropdown{ data: { controller: "dropdown", dropdown_multiple_value: true, dropdown_placeholder_text_value: ta(:please_select) } }
+        = form.label :department, ti(".category"), class: "form-label"
+        = category_select(form)
   %p.text-secondary.d-flex.align-items-center
     = image_tag("info", class: "pe-1")
     = ti("multiple_keywords_message")
-  %div.profile-header.mw-100.border-bottom.mt-2.mb-2
-
-    = ti "search.search_results"
-  %turbo-frame{id: "search-results"}
-    - if @query_too_short
-      = ti("query_too_short")
-    - elsif @cv_search_results.blank?
-      = ti "search.no_results"
-    - else
-      - @cv_search_results.each do |result|
-        - if !result[:person].nil? && !result[:found_in].empty?
-          .d-flex.flex-row.border.p-1.justify-content-center
-            %div.w-50.d-flex.mb-2.h-25.mt-2
-              = link_to result[:person][:name], person_path(result[:person][:id]), {class: "bg-skills-green w-75 text-decoration-none text-white ps-1 p-2 rounded-1", "data-turbo-frame": "_top" }
-            %div.d-flex.flex-column.w-100.h-100.mt-2{"data-controller"=>"highlight-search-term"}
-              - sort_found_in_items(result[:found_in]).each do |found_in|
-                %div.d-flex.flex-row.mb-2
-                  %div.w-25.d-flex.justify-content-start.align-items-center.me-5
-                    %div.me-1.w-100.h-100
-                      %p.found-search-term= found_in[:value]
-                  %div.d-flex.justify-content-start.align-items-center.me-2
-                    = ti("search.found_in")
-                  %div.w-25.d-flex.justify-content-start.align-items-center
-                    %div.me-1.w-100.h-100.d-flex.flex-row.align-items-center.justify-content-start
-                      %p.bg-skills-search-result-blue.hover-skills-green.text-decoration-none.ps-1.p-2.rounded-1.text-center.mb-0.w-100.position-relative
-                        = link_to found_in[:attribute], path(result, found_in), {class: "text-decoration-none text-white stretched-link","data-turbo-frame": "_top" }
+  = render 'cv_search_results'
