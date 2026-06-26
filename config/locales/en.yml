@@ -231,6 +231,9 @@ en:
       valid_percent_range: must be between 0 and 200.
       merge_identical_department: cannot be merged with itself.
   global:
+    light: Light
+    dark: Dark
+    system: System
     date:
       from: From
       month: Month
