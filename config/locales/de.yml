@@ -64,6 +64,7 @@ de:
         birthdate: Geburtsdatum
         company: Firma
         competence_notes: Notizen Member
+        contributions: Contributions
         department: Organisationseinheit
         display_competence_notes_in_cv: Im CV Export inkludieren
         dual_citizen: Doppelbürger
@@ -213,14 +214,18 @@ de:
         title: Titel
         type_of_exam: Prüfungsart
   cv_search:
+    associations: Assoziation
     global:
       handle_whitespaces: Mit und ohne Leerzeichen suchen
       handle_whitespaces_tooltip: Resultate werden mit Leerzeichen und ohne gesucht.
       search_placeholder: CVs durchsuchen...
       search_skills: Skills ebenfalls durchsuchen
-    index:
-      multiple_keywords_message: Du kannst mehrere Schlüsselwörter mit einem Komma voneinander trennen.
       query_too_short: Du musst mindestens 3 Zeichen eingeben.
+    index:
+      category: Kategorie
+      dont_filter: Nicht filtern
+      multiple_keywords_message: Du kannst mehrere Schlüsselwörter mit einem Komma voneinander trennen.
+    personal_data: Personenbezogene Daten
   errors:
     messages:
       authorization_error: Du hast keine Berechtigung, diese Funktion auszuführen.

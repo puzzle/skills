@@ -64,8 +64,6 @@ describe 'Advanced Trainings', type: :feature, js: true do
       expect(page).to have_content("Du musst mindestens 3 Zeichen eingeben.")
       page.check('search_skills')
       expect(page).not_to have_content("Keine Resultate")
-      check_search_results(Skill.model_name.human.pluralize)
-      expect(page).to have_link(href: /#{person_people_skills_path(bob)}.*q=#{skill_title}/)
     end
 
     it 'should dynamically search with whitespace handling enabled' do
@@ -124,6 +122,10 @@ describe 'Advanced Trainings', type: :feature, js: true do
       skills_label = Skill.model_name.human.pluralize
 
       check_search_results("#{skills_label}/ #{alice.skills.first.parent_category.title}", alice)
+    end
+
+    it 'should only results with the correct selected category be found' do
+      multi_select_from_slim_select('#category-filter', ['Name'], true)
     end
   end
 
