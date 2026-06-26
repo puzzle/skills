@@ -1,7 +1,6 @@
 %turbo-frame{id: "search-results"}
   %div.profile-header.mw-100.border-bottom.mt-2.mb-2
     = ti "search.search_results"
-
   - if @query_too_short
     = ti("query_too_short")
   - elsif @cv_search_results.blank?

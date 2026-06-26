@@ -54,6 +54,6 @@ module CvSearchHelper
     href     = cv_search_index_path(request.query_parameters.merge(search_skills: !search_skills))
     checkbox = check_box_tag(:search_skills, '1', search_skills, class: 'form-check-input me-2')
     label    = label_tag(:search_skills, ti('search_skills'), class: 'form-check-label')
-    link_to(href) { safe_join([checkbox, label]) }
+    link_to(href, class: 'text-reset') { safe_join([checkbox, label]) }
   end
 end
