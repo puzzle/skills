@@ -1,11 +1,3 @@
-- is_all = params[:defaultSet] == "false" || params[:defaultSet].blank?
-= button_tag id: "default_set_all", type: "button", class: class_names("btn btn-outline-primary filter-button-highlight", "active-filter-button": is_all), data: { action: "click->skillset-selected#setDefaultSet", skillset_selected_target: "button", value: "false" } do
-  = ti('filter.all')
-
-- is_new = params[:defaultSet] == "new"
-= button_tag id: "default_set_new", type: "button", class: class_names("btn btn-outline-primary filter-button-highlight", "active-filter-button": is_new), data: { action: "click->skillset-selected#setDefaultSet", skillset_selected_target: "button", value: "new" } do
-  = ti('filter.new')
-
-- is_default = params[:defaultSet] == "true"
-= button_tag id: "default_set_true", type: "button", class: class_names("btn btn-outline-primary filter-button-highlight", "active-filter-button": is_default), data: { action: "click->skillset-selected#setDefaultSet", skillset_selected_target: "button", value: "true" } do
-  = ti('filter.default')
+= default_set_button("false", ti("filter.all"))
+= default_set_button("new", ti("filter.new"))
+= default_set_button("true", ti("filter.default"))
