@@ -64,6 +64,7 @@ ja:
         birthdate: 生年月日
         company: 会社
         competence_notes: メンバーノート
+        contributions: オープンソース貢献
         department: 部署
         display_competence_notes_in_cv: 履歴書にノートを含める
         dual_citizen: 二重国籍者
