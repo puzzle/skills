@@ -64,6 +64,7 @@ de-CH:
         birthdate: Geburtsdatum
         company: Firma
         competence_notes: Notizä Member
+        contributions: Contributions
         department: Organisationsiheit
         display_competence_notes_in_cv: Im CV Export inkludierä
         dual_citizen: Doppubürger
@@ -213,14 +214,18 @@ de-CH:
         title: Titu
         type_of_exam: Prüefigsart
   cv_search:
+    associations: Assoziatine
     global:
       handle_whitespaces: Mit und ohni Leerzeichä sueche
       handle_whitespaces_tooltip: Resultat wärdä mit Leerzeichä und ohni gsuecht.
       search_placeholder: CVs dürsuechä...
       search_skills: Skills äbäfaus dürsuechä
-    index:
-      multiple_keywords_message: Du chasch mehreri Schlüssuwörter mit em nä Komma trennä.
       query_too_short: Du muesch mindestens 3 Zeiche igä.
+    index:
+      category: Kategorie
+      dont_filter: Nid filterä
+      multiple_keywords_message: Du chasch mehreri Schlüssuwörter mit em nä Komma trennä.
+    personal_data: Personau Date
   date:
     month_names:
     -
