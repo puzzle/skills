@@ -1,4 +1,4 @@
-import { Controller } from "@hotwired/stimulus";
+import {Controller} from "@hotwired/stimulus";
 import SlimSelect from "slim-select";
 
 export default class extends Controller {
@@ -47,20 +47,7 @@ export default class extends Controller {
     createSlimSelect() {
         return new SlimSelect({
             select: this.dropdownTarget,
-            settings: {
-                contentPosition: this.contentPositionValue,
-
-                // Forces rules only when it needs to handle multiple select options
-                ...(this.multipleValue && {
-                    allowDeselect: true,
-                    closeOnSelect: false,
-                    keepOrder: true,
-                    hideSelected: this.hideSelectedValue,
-                    searchPlaceholder: 'Search... (Use backspace to deselect)',
-
-                    ...(this.hasPlaceholderTextValue && { placeholderText: this.placeholderTextValue })
-                })
-            },
+            settings: this.slimSelectSettings(),
             events: {
                 // After dropdown opens we immediately force highlight on first visible option
                 afterOpen: () => this.highlightFirstVisibleOption(),
@@ -102,11 +89,33 @@ export default class extends Controller {
         this.slim.setSelected(this.orderedSelection.slice(0, -1));
     }
 
-    handleAfterChange(newVal) {
-        const currentValues = newVal.map(opt => opt.value);
+    slimSelectSettings() {
+        const base = {contentPosition: this.contentPositionValue};
 
-        const existing = this.orderedSelection.filter(v => currentValues.includes(v));
-        const added = currentValues.filter(v => !this.orderedSelection.includes(v));
+        if (!this.multipleValue) return base; // Forces rules only when it needs to handle multiple select options
+
+        return {
+            ...base,
+            allowDeselect: true,
+            closeOnSelect: false,
+            keepOrder: true,
+            hideSelected: this.hideSelectedValue,
+            searchPlaceholder: 'Search... (Use backspace to deselect)',
+            maxValuesShown: 50,
+            maxValuesMessage: '{number} skills selected',
+        };
+    }
+
+    handleAfterChange(newVal) {
+        const current = newVal.map(({ value }) => value);
+
+        const existing = this.orderedSelection.filter(value =>
+            current.includes(value)
+        );
+
+        const added = current.filter(value =>
+            !this.orderedSelection.includes(value)
+        );
 
         this.orderedSelection = [...existing, ...added];
 
@@ -119,10 +128,9 @@ export default class extends Controller {
             if (this.clearTextValue) input.value = '';
 
             input.dispatchEvent(new Event('input', {bubbles: true}));
-
             input.focus();
-
             this.highlightFirstVisibleOption();
+
         }, 10);
     }
 
