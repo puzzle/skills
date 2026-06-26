@@ -5,15 +5,17 @@
         placeholder: ti("search_placeholder"),
         id: "cv_search_field",
         data: { action: "search#submitWithTimeout" }
-    .d-flex.flex-column
-      .ms-5#search-skills-checkbox
+    .d-flex.flex-column.ms-4
+      #search-skills-checkbox
         = search_skills_checkbox(@search_skills)
-      .ms-5{ 'data-bs-toggle': 'tooltip', 'data-bs-title': ti("handle_whitespaces_tooltip"), 'data-controller': 'tooltip', 'data-action': 'click->tooltip#hide'}
-        %input{type: "checkbox", name: 'handle_whitespaces', id: 'handle_whitespaces_checkbox', onchange: 'this.form.requestSubmit();', disabled: true}
-          = ti('handle_whitespaces')
+      .mt-2{ 'data-bs-toggle': 'tooltip', 'data-bs-title': ti("handle_whitespaces_tooltip"), 'data-controller': 'tooltip', 'data-action': 'click->tooltip#hide'}
+        .form-check
+          %input.form-check-input{type: "checkbox", name: 'handle_whitespaces', id: 'handle_whitespaces_checkbox', onchange: 'this.form.requestSubmit();', disabled: true}
+          %label.form-check-label{for: 'handle_whitespaces_checkbox'}
+            = ti('handle_whitespaces')
     .w-100.my-3
       .d-flex.gap-2.align-items-center#category_dropdown{ data: { controller: "dropdown", dropdown_multiple_value: true, dropdown_placeholder_text_value: ta(:please_select) } }
-        = form.label :department, ti(".category"), class: "form-label"
+        = form.label :department, ti(".category"), class: "form-label mb-0"
         = category_select(form)
   %p.text-secondary.d-flex.align-items-center
     = image_tag("info", class: "pe-1")
