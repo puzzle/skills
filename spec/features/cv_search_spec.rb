@@ -88,14 +88,16 @@ describe 'Advanced Trainings', type: :feature, js: true do
     end
 
     it "should highlight the correct text" do
-      target = "duckduckgo"
+      target = "Ruby"
 
       visit(cv_search_index_path)
       fill_in 'cv_search_field', with: target
 
+      pry
       # Tests are flaky in firefox
       sleep 0.5
       click_link "Projekte"
+
 
       expect(page).to have_current_path(person_path(bob, q: "Ruby on Rails", section_id: "projects"))
       within "#projects"
