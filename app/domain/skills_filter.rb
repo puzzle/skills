@@ -27,7 +27,7 @@ class SkillsFilter
 
   def filter_by_default_set
     case default_set
-    when 'true'
+    when 'default'
       return entries.where(default_set: true)
     when 'new'
       return entries.where(default_set: nil)

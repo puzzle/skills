@@ -45,7 +45,7 @@ describe "Skills Filter", type: :feature, js: true do
     expect(page).to have_content("JUnit")
     expect(page).to have_content("cunit")
 
-    find('#default-set-all').click
+    find('#default-set-default').click
     expect(page).to have_content("JUnit")
     expect(page).to have_no_content("cunit")
 
@@ -59,15 +59,15 @@ describe "Skills Filter", type: :feature, js: true do
   it 'selects default set using keyboard' do
     visit skills_path
 
-    %w[false new true].each do |option|
+    %w[all new default].each do |option|
       find("#default-set-#{option}").click
 
       visible_skills, hidden_skills = case option
-                                      when "false"
+                                      when "all"
                                         [Skill.all, []]
                                       when "new"
                                         [Skill.where(default_set: nil), Skill.where.not(default_set: nil)]
-                                      when "true"
+                                      when "default"
                                         [Skill.where(default_set: true), Skill.where.not(default_set: true)]
                                       end
 
