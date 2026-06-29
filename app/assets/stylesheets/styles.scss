@@ -519,3 +519,14 @@ textarea.form-control {
           .bg-skills-gray,
           .text-dark;
 }
+
+.active-filter-button {
+  color: var(--bs-btn-active-color) !important;
+  background-color: var(--bs-btn-active-bg) !important;
+  border-color: var(--bs-btn-active-border-color) !important;
+}
+
+.filter-button-highlight:focus-visible {
+  color: var(--bs-btn-color);
+  background-color: white;
+}
