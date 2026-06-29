@@ -14,7 +14,7 @@ describe "Skills Filter", type: :feature, js: true do
 
   it 'should filter by default set' do
     visit skills_path
-    find('#default_set_true').click
+    find('#default-set-all').click
     expect(page).to have_no_content(false)
   end
 
@@ -45,7 +45,7 @@ describe "Skills Filter", type: :feature, js: true do
     expect(page).to have_content("JUnit")
     expect(page).to have_content("cunit")
 
-    find('#default_set_true').click
+    find('#default-set-all').click
     expect(page).to have_content("JUnit")
     expect(page).to have_no_content("cunit")
 
@@ -60,7 +60,7 @@ describe "Skills Filter", type: :feature, js: true do
     visit skills_path
 
     %w[false new true].each do |option|
-      find("#default_set_#{option}").click
+      find("#default-set-#{option}").click
 
       visible_skills, hidden_skills = case option
                                       when "false"
