@@ -117,6 +117,59 @@ postgres:18        "docker-entrypoint.s…"    11 seconds ago   Up 10 seconds   
 
 Access the web application by browser: http://localhost:3000 and enjoy the ride!
 
+## Setup with Nix ❄️
+As an alternative to the Docker setup, you can use the [Nix](https://nixos.org/) flake in the
+repository root. It provides a reproducible dev shell with the whole toolchain pinned to match
+the project plus native libraries the gems need.
+Nothing is installed globally — gems land in `vendor/bundle` and a project-local PostgreSQL
+cluster lives in `tmp/postgres`.
+
+You need a [Nix installation with flakes enabled](https://nixos.org/download/) (the
+[Determinate Systems installer](https://github.com/DeterminateSystems/nix-installer) enables
+them by default). Then, from the project root:
+
+```bash
+nix develop
+```
+
+This drops you into a shell with every tool on the `PATH` and the database/env variables
+preconfigured. From there, `just` (see below) handles setup and the everyday workflow:
+
+```bash
+just init   # install gems + JS deps and create a ready-to-use database
+just dev    # start the full dev stack (web + JS/CSS watchers)
+```
+
+## Task runner (`just`)
+The repository ships a [`justfile`](justfile) with recipes for the everyday workflow. List all
+available recipes with:
+
+```bash
+just            # equivalent to: just --list
+```
+
+Frequently used recipes:
+
+| Recipe          | Description                                               |
+|-----------------|-----------------------------------------------------------|
+| `just init`     | One-shot setup: gems, JS deps and a ready-to-use database |
+| `just deps`     | Install Ruby gems and JS dependencies                     |
+| `just dev`      | Run the full dev stack (web + JS/CSS watchers)            |
+| `just server`   | Run only the Rails server                                 |
+| `just console`  | Open a Rails console                                      |
+| `just test`     | Run the RSpec suite (e.g. `just test spec/models`)        |
+| `just lint`     | Run RuboCop (`just lint-fix` to autocorrect)              |
+| `just db`       | Create + migrate the development and test databases       |
+| `just db-reset` | Drop, recreate, migrate and seed the databases            |
+| `just psql`     | Open a psql shell on the development database             |
+| `just clean`    | Stop services and clear Rails logs/tmp                    |
+
+`just` does **not** require `nix` if you already have the toolchain (Ruby, Node/Yarn, PostgreSQL)
+available, simply [install `just`](https://github.com/casey/just#installation) and run the
+recipes directly. Note that the database recipes expect the project-local PostgreSQL environment
+variables (`PGDATA`, `PGHOST`, `PGPORT`, `PGUSER`) that the Nix shell sets up; outside the Nix
+shell you either provide equivalent values yourself or use your own PostgreSQL instance.
+
 ## Skill snapshot for departments
 The core competence of this feature is to track how many people in a department have a given skill. This also includes tracking the level of the skill.
 It works by running a monthly DelayedJob that creates these 'Snapshots' for each department.
