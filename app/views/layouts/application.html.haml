@@ -73,8 +73,8 @@
             -# The navbar's `gap-2` adds space only on the icon's right (between this
             -# li and the next), so symmetric padding looks off-centre. Add matching
             -# left padding (ps-3 = pe-2 + gap-2) to centre the icon between the lines.
-            %li.d-flex.align-items-center.justify-content-center.cursor-pointer.border-start-lg.h-100-lg.ps-3.pe-2{role: "button", "aria-label": ti("theme.toggle"), data: { controller: "theme", "theme-pref-value": theme_cookie_pref, action: "click->theme#cycle" }, title: ti("theme.toggle")}
-              %span.d-flex.text-gray{data: { "theme-target": "icon" }}
+            %li.d-flex.align-items-center.justify-content-center.cursor-pointer.border-start-lg.h-100-lg.ps-3.pe-2{role: "button", "aria-label": ti("theme.toggle"), data: { controller: "theme", "theme-pref-value": theme_cookie_pref, "theme-auto-icon-value": image_path("theme/circle-half.svg"), "theme-light-icon-value": image_path("theme/sun-fill.svg"), "theme-dark-icon-value": image_path("theme/moon-stars-fill.svg"), action: "click->theme#cycle" }, title: ti("theme.toggle")}
+              %span.text-gray.theme-toggle-icon{data: { "theme-target": "icon" }}
             -# Help
             %li.d-flex.align-items-center.cursor-pointer.ps-3.pe-2.border-start-lg.h-100-lg
               %a.d-flex.align-items-center{:href => "https://github.com/puzzle/skills/issues"}

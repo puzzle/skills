@@ -69,6 +69,22 @@ pzsh-topbar {
   color: $skills-text-gray;
 }
 
+// Theme switch glyph: the SVG (app/assets/images/theme/*.svg) is applied as a
+// mask by the theme Stimulus controller, so the icon takes on `currentColor`
+// and follows the `.text-gray` value in both light and dark mode.
+.theme-toggle-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: currentColor;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
 .skill-row {
   height: 100px !important;
   border-bottom: 2px solid $secondary-bg-subtle !important;

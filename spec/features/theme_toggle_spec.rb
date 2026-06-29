@@ -16,7 +16,10 @@ describe 'Theme toggle', type: :feature, js: true do
   end
 
   it 'renders the toggle with an icon' do
-    expect(toggle).to have_css('svg')
+    # The glyph is a span whose CSS mask points at one of the theme SVG assets
+    # (app/assets/images/theme/*.svg); the controller sets the mask-image inline.
+    icon = toggle.find('.theme-toggle-icon')
+    expect(icon[:style]).to match(/mask-image:\s*url/)
   end
 
   it 'applies a resolved colour mode on load' do
