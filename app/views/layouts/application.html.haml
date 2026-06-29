@@ -34,11 +34,11 @@
               %text.d-flex.align-items-end.ms-2.small="6.3.0" #x-release-please-version
           %ul.navbar.text-gray.d-flex.flex-wrap.align-items-center.gap-2
             -# Language selector
-            %li.d-flex.align-items-center.cursor-pointer.border-start-lg.h-100-lg.ps-2.pe-2{"data-controller": "dropdown"}
+            %li.d-flex.align-items-center.cursor-pointer.border-start-lg.h-100-lg.ps-3.pe-2{"data-controller": "dropdown"}
               = select :i18n, :language, language_selector, {}, class: "form-control", data:{action: "change->dropdown#navigateOnChange"}
             -# Devise/Mockdata
             - if Rails.env.development?
-              %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start-lg.h-100-lg
+              %li.d-flex.align-items-center.cursor-pointer.ps-3.pe-2.border-start-lg.h-100-lg
                 %span#username
                   - if devise?
                     = ti("devise.devise")
@@ -46,14 +46,14 @@
                     = ti("devise.mockdata")
             -# Admin panel
             - if admin?
-              %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start-lg.h-100-lg
+              %li.d-flex.align-items-center.cursor-pointer.ps-3.pe-2.border-start-lg.h-100-lg
                 = link_to ti("devise.admin_panel"), admin_index_path
             -# Username
             - if Rails.env.development?
-              %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start-lg.h-100-lg#username{data: { controller: "dropdown", "dropdown-content-position-value": "fixed"}}
+              %li.d-flex.align-items-center.cursor-pointer.ps-3.pe-2.border-start-lg.h-100-lg#username{data: { controller: "dropdown", "dropdown-content-position-value": "fixed"}}
                 = select_tag :auth_user_id, options_for_select(auth_users_for_select, url_for(auth_user_id: current_auth_user&.id)), data: { "dropdown-target": "dropdown" }
             - elsif auth_user_signed_in?
-              %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start-lg.h-100-lg
+              %li.d-flex.align-items-center.cursor-pointer.ps-3.pe-2.border-start-lg.h-100-lg
                 %div.scale-icon-06(name="user")
                 %span#username
                   - if find_person_by_auth_user.nil?
@@ -64,7 +64,7 @@
                     = ti "devise.admin"
             -# Login/Logout
             - if devise?
-              %li.d-flex.align-items-center.cursor-pointer.border-start-lg.h-100-lg.ps-2.pe-2
+              %li.d-flex.align-items-center.cursor-pointer.border-start-lg.h-100-lg.ps-3.pe-2
                 - if auth_user_signed_in?
                   = link_to ti("devise.sign_out"), destroy_auth_user_session_path, data: { "turbo-method": :delete }, class: "btn btn-link"
                 - elsif devise_mapping.omniauthable?
@@ -76,10 +76,10 @@
             %li.d-flex.align-items-center.justify-content-center.cursor-pointer.border-start-lg.h-100-lg.ps-3.pe-2{role: "button", "aria-label": ti("theme.toggle"), data: { controller: "theme", "theme-pref-value": theme_cookie_pref, action: "click->theme#cycle" }, title: ti("theme.toggle")}
               %span.d-flex.text-gray{data: { "theme-target": "icon" }}
             -# Help
-            %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start-lg.h-100-lg
+            %li.d-flex.align-items-center.cursor-pointer.ps-3.pe-2.border-start-lg.h-100-lg
               %a.d-flex.align-items-center{:href => "https://github.com/puzzle/skills/issues"}
                 %pzsh-icon.scale-icon-08.text-gray(name="question-circle")
-            %li.d-flex.align-items-center.cursor-pointer.border-start-lg.border-end-lg.h-100-lg.ps-2.pe-2{"data-action": "click->skills-empty-space#goCrazy"}
+            %li.d-flex.align-items-center.cursor-pointer.border-start-lg.border-end-lg.h-100-lg.ps-3.pe-2{"data-action": "click->skills-empty-space#goCrazy"}
         %div.puzzle-header
           %div.d-flex.min-height-inherit
             = render "application/tabbar", tabs: global_tabs, bar_class: "skills-navbar", active_path: global_navbar_path
