@@ -1,22 +1,6 @@
 %div.bg-white.w-100.d-flex
   = render("header")
 %div.w-100.margin-header.mt-4
-  .row.bg-light-subtle.border.border-top.border-5.border-secondary.border-top-0.border-start-0.border-end-0
-    .col-2.d-flex.align-items-center
-      %strong= sort_link "title"
-    .col-1.bg-secondary-subtle.d-flex.align-items-center
-      %strong= sort_link "members"
-    .col-3.d-flex.align-items-center
-      %strong= sort_link "category"
-    .col-2.bg-secondary-subtle.d-flex.align-items-center
-      %strong= sort_link "subcategory"
-    .col-1.d-flex.align-items-center
-      %strong= sort_link "default_set"
-    .col-1.bg-secondary-subtle.d-flex.align-items-center
-      %strong= sort_link "radar"
-    .col-1.d-flex.align-items-center
-      %strong= sort_link "portfolio"
-    .col-1.bg-secondary-subtle.d-flex.align-items-center
-      %strong= ti "table.modify"
+  = render("table_header")
   %div
     = render("skills_search_results")

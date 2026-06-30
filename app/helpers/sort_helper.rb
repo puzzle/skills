@@ -1,6 +1,6 @@
 module SortHelper
-  def sort_link(attr)
-    link_to((ti "table.#{attr}"), sort_params(attr)) + current_mark(attr)
+  def sort_link(attr, options = {})
+    link_to((ti "table.#{attr}"), sort_params(attr), options) + current_mark(attr)
   end
 
   def people_skills

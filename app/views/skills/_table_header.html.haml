@@ -1,0 +1,18 @@
+.row.bg-light-subtle.border.border-top.border-5.border-secondary.border-top-0.border-start-0.border-end-0#table_header
+  - options = {data: {turbo_stream: true}}
+  .col-2.d-flex.align-items-center
+    %strong= sort_link "title", options
+  .col-1.bg-secondary-subtle.d-flex.align-items-center
+    %strong= sort_link "members", options
+  .col-3.d-flex.align-items-center
+    %strong= sort_link "category", options
+  .col-2.bg-secondary-subtle.d-flex.align-items-center
+    %strong= sort_link "subcategory", options
+  .col-1.d-flex.align-items-center
+    %strong= sort_link "default_set", options
+  .col-1.bg-secondary-subtle.d-flex.align-items-center
+    %strong= sort_link "radar", options
+  .col-1.d-flex.align-items-center
+    %strong= sort_link "portfolio", options
+  .col-1.bg-secondary-subtle.d-flex.align-items-center
+    %strong= ti "table.modify", options

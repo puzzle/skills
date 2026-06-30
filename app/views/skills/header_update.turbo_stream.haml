@@ -3,3 +3,10 @@
 
 = turbo_stream.update "header_filters" do
   = render("header_filters")
+
+= turbo_stream.update "sort" do
+  = hidden_field_tag :sort, params[:sort]
+  = hidden_field_tag :sort_dir, params[:sort_dir]
+
+= turbo_stream.replace "table_header" do
+  = render("table_header")

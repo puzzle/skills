@@ -1,13 +1,16 @@
 %div.d-flex.flex-column.bg-white{"data-controller": "skillset-selected"}
-  = form_with(url: skills_path, method: :get, data: { turbo_frame: 'skills', skillset_selected_target: "form" }) do |form|
+  = form_with(url: skills_path, method: :get, data: {turbo_stream: true, skillset_selected_target: "form" }) do |form|
     = hidden_field_tag :defaultSet, params[:defaultSet], data: { skillset_selected_target: "defaultSet" }
+    #sort
+      = hidden_field_tag :sort, params[:sort]
+      = hidden_field_tag :sort_dir, params[:sort_dir]
     %div.d-flex.flex-row.mt-2
       = form.text_field :title, class: "form-control skills-search-field rounded-end-0", placeholder: "#{ti('filter.search', target: Skill.model_name.human)}", oninput: "this.form.requestSubmit()", include_blank: true
       %div.border.d-flex.rounded-end.bg-white
         %img.pointer.p-2{src: "/assets/search.svg"}
 
     %span.d-flex.flex-row.mt-3.flex-wrap.gap-2
-      %div.btn-group.me-3#header-filters
+      %div.btn-group.me-3#header_filters
         = render("header_filters")
 
       %span.d-flex.align-items-center.flex-wrap
