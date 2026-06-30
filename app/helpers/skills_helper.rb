@@ -7,7 +7,7 @@ module SkillsHelper
 
     button_tag(
       label,
-      id: "default_set_#{value}",
+      id: "default-set-#{value}",
       type: 'button',
       class: "btn btn-outline-primary filter-button-highlight #{'active-filter-button' if active}",
       data: { action: 'click->skillset-selected#setDefaultSet',

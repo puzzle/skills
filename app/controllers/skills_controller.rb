@@ -13,7 +13,7 @@ class SkillsController < CrudController
   def index
     entries
     respond_to do |format|
-      format.turbo_stream { render('skills/header_update', status: :ok) }
+      format.turbo_stream { render('skills/search', status: :ok) }
       format.html { render :index }
     end
   end
