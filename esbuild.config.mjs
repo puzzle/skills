@@ -37,7 +37,7 @@ const config = {
   format: 'esm',
   entryPoints: entryPoints,
   minify: process.env.RAILS_ENV === "production",
-  sourcemap: process.env.RAILS_ENV !== "production",
+  sourcemap: false,
   outdir: path.join(process.cwd(), "app/assets/builds"),
   publicPath: '/assets',
   loader: {
