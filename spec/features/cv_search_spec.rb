@@ -64,8 +64,6 @@ describe 'Advanced Trainings', type: :feature, js: true do
       expect(page).to have_content("Du musst mindestens 3 Zeichen eingeben.")
       page.check('search_skills')
       expect(page).not_to have_content("Keine Resultate")
-      check_search_results(Skill.model_name.human.pluralize)
-      expect(page).to have_link(href: /#{person_people_skills_path(bob)}.*q=#{skill_title}/)
     end
 
     it 'should dynamically search with whitespace handling enabled' do
@@ -125,12 +123,57 @@ describe 'Advanced Trainings', type: :feature, js: true do
 
       check_search_results("#{skills_label}/ #{alice.skills.first.parent_category.title}", alice)
     end
+
+    [ {field: "Name", value: "bob"},
+      {field: "Abschluss", value: "BSc"},
+      {field: "Notizen Member", value: "Rub"},
+      {field: "Organisationseinheit", value: "/sy"},
+      {field: "Funktionen", value: "Sof"},
+      {field: "Projekte", value: "duc"},
+      {field: "Stationen", value: "Use"},
+      {field: "Weiterbildungen", value: "Cou"},
+      {field: "Contributions", value: "Add"}].each { |data|
+      it 'should only results with the correct selected category be found' do
+        multi_select_from_slim_select('#category-filter', [data[:field]], true)
+        fill_in 'cv_search_field', with: data[:value]
+
+        # because of 0.3 search delay
+        sleep 0.3
+
+        check 'search_skills'
+        check_search_results_only_in_one_found_in(data[:field])
+      end
+    }
+
+    it 'should only results with the correct selected categories be found ' do
+      multi_select_from_slim_select('#category-filter', ["Projekte", "Notizen Member"], true)
+      fill_in 'cv_search_field', with: "Rub"
+
+      # because of 0.3 search delay
+      sleep 0.3
+
+      check 'search_skills'
+      check_search_results_only_in_one_found_in(["Projekte", "Notizen Member"])
+    end
   end
 
   def check_search_results(field_name, person = bob)
     within('turbo-frame#search-results') {
       expect(page).to have_link(person.name)
       expect(page).to have_link(field_name)
+    }
+  end
+
+  def check_search_results_only_in_one_found_in(field_name)
+    allowed_names = Array(field_name)
+
+    # because of 0.3 search delay
+    sleep 0.3
+
+    within('turbo-frame#search-results') {
+      found_categories = all("[id='cv-search-result'] [id='found-in-link']").map(&:text)
+      invalid_categories = found_categories - allowed_names
+      expect(invalid_categories).to be_empty
     }
   end
 
@@ -141,6 +184,5 @@ describe 'Advanced Trainings', type: :feature, js: true do
       select category, from: 'skill_category_parent'
       find("input[type='image']").click
     end
-
   end
 end

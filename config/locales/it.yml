@@ -64,6 +64,7 @@ it:
         birthdate: Data di nascita
         company: Azienda
         competence_notes: Note Membro
+        contributions: Contributi
         department: Unità organizzativa
         display_competence_notes_in_cv: Includere nell'esportazione del CV
         dual_citizen: Doppi cittadini
@@ -210,14 +211,18 @@ it:
         title: Titolo
         type_of_exam: Tipo di esame
   cv_search:
+    associations: Dati del curriculum vitae
     global:
       handle_whitespaces: Ricerca con e senza spazi
       handle_whitespaces_tooltip: I risultati verranno cercati sia con che senza spazi.
+      query_too_short: Devi inserire almeno 3 caratteri.
       search_placeholder: Ricerca CV...
       search_skills: Anche le capacità di ricerca
     index:
+      category: Categoria
+      dont_filter: Non filtrare
       multiple_keywords_message: È possibile separare più parole chiave con una virgola.
-      query_too_short: Devi inserire almeno 3 caratteri.
+    personal_data: Dati personali
   errors:
     messages:
       authorization_error: Non hai i diritti per eseguire questa funzione.

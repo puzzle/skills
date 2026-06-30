@@ -28,6 +28,10 @@ module SlimselectHelpers
     call(selector, "getData")
   end
 
+  def ss_options_with_optgroup(selector)
+    ss_options(selector).flat_map { |element| element["options"] }
+  end
+
   def ss_check_options(selector, options)
     dropdown_options = ss_options(selector).map{|e| e["text"]}
     expect(dropdown_options).to eq options
@@ -78,8 +82,8 @@ module SlimselectHelpers
     evaluate_script(script)
   end
 
-  def multi_select_from_slim_select(selector, texts)
-    available_options = ss_options(selector)
+  def multi_select_from_slim_select(selector, texts, is_optgroup = false)
+    available_options = is_optgroup ? ss_options_with_optgroup(selector) : ss_options(selector)
 
     option_values = texts.map do |text|
       matched_option = available_options.find { |opt| opt["text"] == text }
