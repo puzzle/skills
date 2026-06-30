@@ -1,23 +1,15 @@
 %div.d-flex.flex-column.bg-body{"data-controller": "skillset-selected"}
-  = form_with(url: skills_path, method: :get, data: { turbo_frame: 'skills' }) do |form|
+  = form_with(url: skills_path, method: :get, data: { turbo_frame: 'skills', skillset_selected_target: "form" }) do |form|
+    = hidden_field_tag :defaultSet, params[:defaultSet], data: { skillset_selected_target: "defaultSet" }
     %div.d-flex.flex-row.mt-2
       = form.text_field :title, class: "form-control skills-search-field rounded-end-0", placeholder: "#{ti('filter.search', target: Skill.model_name.human)}", oninput: "this.form.requestSubmit()", include_blank: true
       %div.border.d-flex.rounded-end.bg-body
         %img.pointer.p-2.theme-icon{src: "/assets/search.svg"}
-    %div.d-flex.flex-row.mt-3.flex-wrap.gap-2
-      %span.btn-group.me-3
-        %label.btn.btn-outline-primary{"data-skillset-selected-target": "selectButton",
-        "data-action": "click->skillset-selected#selectButton", "data-skillset-selected-id-param": 0}
-          = form.radio_button :defaultSet, false, onClick: "this.form.requestSubmit()", class: "d-none"
-          = ti('filter.all')
-        %label.btn.btn-outline-primary{"data-skillset-selected-target": "selectButton",
-        "data-action": "click->skillset-selected#selectButton", "data-skillset-selected-id-param": 1}
-          = form.radio_button :defaultSet, "new", onClick: "this.form.requestSubmit()", class: "d-none"
-          = ti('filter.new')
-        %label.btn.btn-outline-primary{"data-skillset-selected-target": "selectButton",
-        "data-action": "click->skillset-selected#selectButton", "data-skillset-selected-id-param": 2}
-          = form.radio_button :defaultSet, true, onClick: "this.form.requestSubmit()", class: "d-none"
-          = ti('filter.default')
+
+    %span.d-flex.flex-row.mt-3.flex-wrap.gap-2
+      %div.btn-group.me-3#header-filters
+        = render("header_filters")
+
       %span.d-flex.align-items-center.flex-wrap
         %span.text-gray.me-1
           = "#{Category.model_name.human}:"

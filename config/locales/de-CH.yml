@@ -2,6 +2,9 @@
 de-CH:
   activemodel:
     attributes:
+      merge_department_skill_form:
+        old_department_ids: Auti Abteilig
+        new_department_id: Zielabteilig
       unified_skill_form:
         new_skill: Neuä Skill
         old_skill_id1: Skill 1
@@ -149,28 +152,33 @@ de-CH:
       link:
         list: Admin Panel
     index:
-      delete_unemployed_people: Ehemaligi Mitarbeiter löschä
       delete_not_synced_profiles: Nid synchronisierti Profiu löschä
+      delete_unemployed_people: Ehemaligi Mitarbeiter löschä
       reminder_mail: Aktivier Erinnerigs E-Mails für d Firma.
       unify_skills: Skills vereinä
-      update_people_manually: Persone manuell aktualisiere
+      merge_department_snapshots: Skill-Entwicklig vo Abteilig zämefüehre
+      update_people_manually: Members manuell aktualisiere
+      reminder_mail: Aktivier Erinnerigs E-Mails für d Firma.
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Bi dr Aktualisierig vo %{names} isch öppis schiefgloffe. Versuechs nomau und überprüef auefaus d Date im PuzzleTime.
         fetching_data_failed: Öppis ische bim fetche vo de Date usem PuzzleTime schief gloffe. Bitte probiers nomau und kontaktier auefaus dr Support.
         names_by_provider: "%{names} vom Provider %{provider}"
-        people_updated: D Datä vo aunä Personä si erfolgriich aktualisiert wordä
+        people_updated: D Datä vo aunä Members si erfolgriich aktualisiert wordä
     unified_skills:
       create:
         success: Skill %{skill1} isch erfolgriich mit Skill %{skill2} zum neuä Skill %{new_skill} vereint wordä
+    merge_department_skill_snapshots:
+      create:
+        success: Dr Verlauf vo der Abteilig %{old_department_names} isch a d Abteilig %{new_department_name} übertrage worde.
   admin/manual_ptime_sync:
     index:
-      description: We dä wunderschön Chnopf drückt wird, de wärde d Date vo aune Persone mit de Date usem PuzzleTime aktualisiert. Ds cha einigi Sekunde duure.
+      description: We dä wunderschön Chnopf drückt wird, de wärde d Date vo aune Members mit de Date usem PuzzleTime aktualisiert. Ds cha einigi Sekunde duure.
   admin/people_management:
     index:
       not_synced_title: Di folgendä Profiu wärde momentan nid vom PuzzleTime sync aktualisiert
-      unemployed_title: Di folgendä Profiu si aus 'Ex-Mitarbeiter' markiert
       nothing_to_manage: Moment gits nüt zum bereinige
+      unemployed_title: Di folgendä Profiu si aus 'Ex-Mitarbeiter' markiert
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: Konfliktä gfundä
@@ -181,6 +189,15 @@ de-CH:
       conflicts_found_message:
         one: "%{names} het beidi Skills bewertet. We si trotzdem vereint werde, wird di besseri Bewertig übernoh."
         other: "%{names} hei beidi Skills bewertet. We si trotzdem vereint werde, wird di besseri Bewertig übernoh."
+  admin/merge_department_skill_snapshots:
+    form:
+      department_merge: Skill-Entwicklig zämefüehre
+      new_department: Zielabteilig
+      old_departments: Auti Abteilig
+    index:
+      department_merge_history:
+        merge_history: Abteiligs-Zämefüehrigshistorie
+        no_departments_merged: Keni Merge-Historie vorhande
   certificates:
     form:
       cancel: Abbrächä
@@ -198,6 +215,8 @@ de-CH:
         type_of_exam: Prüefigsart
   cv_search:
     global:
+      handle_whitespaces: Mit und ohni Leerzeichä sueche
+      handle_whitespaces_tooltip: Resultat wärdä mit Leerzeichä und ohni gsuecht.
       search_placeholder: CVs dürsuechä...
       search_skills: Skills äbäfaus dürsuechä
     index:
@@ -230,6 +249,7 @@ de-CH:
       max_size_error: darf nid grösser aus 10MB si.
       profile-not-found: Profiu isch nid gfungä wordä.
       valid_percent_range: muess zwüschä 0 u 200 liegä.
+      merge_identical_department: cha nid mit sich sälber zämefüehrt werde.
   global:
     theme:
       toggle: Theme wächsle
@@ -387,12 +407,12 @@ de-CH:
       advanced-trainings: Witerbiudigä
       contributions: Open Source Biiträg
       core-competences: Chärnkompetenzä
-      educations: Usbiudigä
-      personal-data: Personlechi Datä
-      projects: Projekte
       editing_own_profile: Du bearbeitisch grad dis eigene Profil.
+      educations: Usbiudigä
       no_permission_to_edit_person: Du hesch nid di erforderliche Berächtigunge, um das Profil z bearbeite.
       permission_to_edit_person: Du hesch di erforderliche Berächtigunge, um das Profil z bearbeite.
+      personal-data: Personlechi Datä
+      projects: Projekte
     search:
       new_profile: Neues Profiu
       updated_at: Z'letzt bearbeitet

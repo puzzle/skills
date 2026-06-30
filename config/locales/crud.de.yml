@@ -27,6 +27,7 @@ de:
       save: Speichern
       search: Suchen
     confirm_delete: Willst du diesen Eintrag wirklich löschen?
+    confirm_snapshot_merge: "Abteilungen zusammenführen?\n\nDie gesamte Skill-Entwicklung des Personals aus den ausgewählten Quellabteilungen wird auf die Zielabteilungen übertragen und bleibt weiterhin auf den alten Abteilungen bestehen.\n\nDiese Aktion kann nicht rückgängig gemacht werden."
     errors:
       header:
         one: 'Ein Fehler verhinderte das Speichern dieses Eintrages:'

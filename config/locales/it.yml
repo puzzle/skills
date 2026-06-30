@@ -2,6 +2,9 @@
 it:
   activemodel:
     attributes:
+      merge_department_skill_form:
+        old_department_ids: Reparti precedenti
+        new_department_id: Reparto di destinazione
       unified_skill_form:
         new_skill: Nuova competenza
         old_skill_id1: Competenza 1
@@ -145,28 +148,33 @@ it:
       link:
         list: Pannello di amministrazione.
     index:
-      delete_unemployed_people: Elimina gli ex dipendenti
       delete_not_synced_profiles: Elimina i profili non sincronizzati
+      delete_unemployed_people: Elimina gli ex dipendenti
       reminder_mail: Attiva le email di promemoria per la tua azienda.
       unify_skills: Unire le competenze
-      update_people_manually: Aggiornare le persone manualmente
+      merge_department_snapshots: Unione dello sviluppo delle competenze dei reparti
+      update_people_manually: Aggiornare manualmente i membri
+      reminder_mail: Attiva le email di promemoria per la tua azienda.
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Si è verificato un errore durante l'aggiornamento di %{names}. Si prega di riprovare e, se necessario, controllare i dati in PuzzleTime.
         fetching_data_failed: Si è verificato un errore durante il recupero dei dati da PuzzleTime. Si prega di riprovare e contattare il supporto se necessario.
         names_by_provider: "%{names} del fornitore %{provider}"
-        people_updated: I dati di tutte le persone sono stati aggiornati con successo
+        people_updated: I dati di tutti i membri sono stati aggiornati con successo
     unified_skills:
       create:
         success: La competenza %{skill1} è stata unificata con successo con la competenza %{skill2} nella nuova competenza %{new_skill}
+    merge_department_skill_snapshots:
+      create:
+        success: La cronologia del reparto %{old_department_names} è stata trasferita al reparto %{new_department_name}.
   admin/manual_ptime_sync:
     index:
-      description: Quando questo bellissimo pulsante viene premuto, i dati di tutte le persone verranno aggiornati con i dati di PuzzleTime. Questo potrebbe richiedere alcuni secondi.
+      description: Quando questo bellissimo pulsante viene premuto, i dati di tutti i membri verranno aggiornati con i dati di PuzzleTime. Questo potrebbe richiedere alcuni secondi.
   admin/people_management:
     index:
       not_synced_title: I seguenti profili non sono attualmente aggiornati dalla sincronizzazione PuzzleTime
-      unemployed_title: I seguenti profili sono contrassegnati come ex dipendenti
       nothing_to_manage: Attualmente non c'è niente da pulire
+      unemployed_title: I seguenti profili sono contrassegnati come ex dipendenti
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: Conflitti rilevati
@@ -177,6 +185,15 @@ it:
       conflicts_found_message:
         one: "%{names} ha valutato entrambe le competenze. Se le competenze vengono comunque unite, verrà utilizzata la valutazione migliore."
         other: "%{names} hanno valutato entrambe le competenze. Se le competenze vengono comunque unite, verrà utilizzata la valutazione migliore."
+  admin/merge_department_skill_snapshots:
+    form:
+      department_merge: Unione dello sviluppo delle competenze
+      new_department: Reparto di destinazione
+      old_departments: Reparti precedenti
+    index:
+      department_merge_history:
+        merge_history: Cronologia unione reparti
+        no_departments_merged: Nessuna cronologia di unione disponibile
   certificates:
     form:
       cancel: cancellare
@@ -194,6 +211,8 @@ it:
         type_of_exam: Tipo di esame
   cv_search:
     global:
+      handle_whitespaces: Ricerca con e senza spazi
+      handle_whitespaces_tooltip: I risultati verranno cercati sia con che senza spazi.
       search_placeholder: Ricerca CV...
       search_skills: Anche le capacità di ricerca
     index:
@@ -211,6 +230,7 @@ it:
       max_size_error: non deve essere più grande di 10 MB.
       profile-not-found: Il profilo non è stato trovato.
       valid_percent_range: deve essere compreso tra 0 e 200.
+      merge_identical_department: non può essere unito con se stesso.
   global:
     theme:
       toggle: Cambia tema
@@ -366,12 +386,12 @@ it:
       advanced-trainings: Formazione continua
       contributions: Contributi open source
       core-competences: Competenze di base
-      educations: Programmi di formazione
-      personal-data: Dati personali
-      projects: Progetti
       editing_own_profile: Stai modificando il tuo profilo.
+      educations: Programmi di formazione
       no_permission_to_edit_person: Non hai i permessi necessari per modificare questo profilo.
       permission_to_edit_person: Hai i permessi necessari per modificare questo profilo.
+      personal-data: Dati personali
+      projects: Progetti
     search:
       new_profile: Nuovo profilo
       updated_at: Ultima modifica

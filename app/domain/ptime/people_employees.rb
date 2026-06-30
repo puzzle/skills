@@ -30,7 +30,7 @@ module Ptime
     def update_all_people
       fetch_data_of_ptime_employees_by_provider.each do |provider, provider_employees|
         active_employees, inactive_employees = provider_employees.partition do |ptime_employee|
-          ptime_employee.dig(:attributes, :is_employed)
+          employee_is_or_will_be_employed?(ptime_employee[:attributes])
         end
         @provider = provider
         @update_failed_names[provider] = []
@@ -83,7 +83,7 @@ module Ptime
     end
 
     def update_indirectly_mappable_attributes
-      is_employed = @ptime_employee_attributes[:is_employed]
+      is_employed = employee_is_or_will_be_employed?(@ptime_employee_attributes)
       @person.company = is_employed ? @employed_company : @unemployed_company
       @person.department = Department.find_or_create_by!(
         name: @ptime_employee_attributes[:department_name]
@@ -115,6 +115,8 @@ module Ptime
 
     def set_auth_user_id_on_person
       ldap_username = @ptime_employee_attributes[:ldapname]
+      return if ldap_username.blank?
+
       @person.auth_user_id = AuthUser.find_by(ldap_username:)&.id
     end
   end

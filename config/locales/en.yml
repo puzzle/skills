@@ -7,6 +7,9 @@ en:
         old_skill_id1: Skill 1
         old_skill_id2: Skill 2
         title: Title
+      merge_department_skill_form:
+        old_department_ids: Old Departments
+        new_department_id: Target Department
     errors:
       models:
         unified_skill_form:
@@ -145,11 +148,12 @@ en:
       link:
         list: Admin Panel
     index:
-      delete_unemployed_people: Delete former employees
       delete_not_synced_profiles: Delete unsynchronized profiles
+      delete_unemployed_people: Delete former employees
       reminder_mail: Activate reminder emails for your company.
       unify_skills: Unify skills
       update_people_manually: Update people manually
+      merge_department_snapshots: Merge department skill development
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Something went wrong while updating %{names}. Please try again and, if necessary, check the data in PuzzleTime.
@@ -159,14 +163,17 @@ en:
     unified_skills:
       create:
         success: Skill %{skill1} was successfully unified with Skill %{skill2} into the new Skill %{new_skill}
+    merge_department_skill_snapshots:
+      create:
+        success: History of department %{old_department_names} was transferred to department %{new_department_name}.
   admin/manual_ptime_sync:
     index:
       description: When this beautiful button is pressed, all people's data will be updated with the data from PuzzleTime. This may take a few seconds.
   admin/people_management:
     index:
       not_synced_title: The following profiles are currently not updated by the PuzzleTime sync
-      unemployed_title: The following profiles are marked as former employees
       nothing_to_manage: Currently, there is nothing to clean up
+      unemployed_title: The following profiles are marked as former employees
   admin/unified_skills:
     conflict_dialog:
       conflicts_found: Conflicts found
@@ -177,6 +184,15 @@ en:
       conflicts_found_message:
         one: "%{names} has rated both Skills. If the Skills are unified anyway, the better rating will be used."
         other: "%{names} have rated both Skills. If the Skills are unified anyway, the better rating will be used."
+  admin/merge_department_skill_snapshots:
+    form:
+      department_merge: Merge skill development
+      new_department: Target Department
+      old_departments: Old Departments
+    index:
+      department_merge_history:
+        merge_history: Department merge history
+        no_departments_merged: No merge history available
   certificates:
     form:
       cancel: cancel
@@ -194,6 +210,8 @@ en:
         type_of_exam: Type of exam
   cv_search:
     global:
+      handle_whitespaces: Search with and without whitespaces
+      handle_whitespaces_tooltip: Results will be searched with whitespaces and without.
       search_placeholder: Search CVs...
       search_skills: Search skills as well
     index:
@@ -211,6 +229,7 @@ en:
       max_size_error: must not be larger than 10MB.
       profile-not-found: Profile could not be found.
       valid_percent_range: must be between 0 and 200.
+      merge_identical_department: cannot be merged with itself.
   global:
     theme:
       toggle: Toggle theme
@@ -366,12 +385,12 @@ en:
       advanced-trainings: Further training
       contributions: Open source contributions
       core-competences: Core competencies
-      educations: Educations
-      personal-data: Personal data
-      projects: Projects
       editing_own_profile: You are editing your own profile.
+      educations: Educations
       no_permission_to_edit_person: You do not have the required permissions to edit this profile.
       permission_to_edit_person: You have the required permissions to edit this profile.
+      personal-data: Personal data
+      projects: Projects
     search:
       new_profile: New profile
       updated_at: Last edited

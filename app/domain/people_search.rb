@@ -6,18 +6,21 @@ class PeopleSearch
   PERSONAL_DETAILS = %w[name email title person_roles roles department company birthdate nationality
                         location marital_status shortname].freeze
   CORE_COMPETENCES = %w[competence_notes skills].freeze
-  attr_reader :search_terms, :entries, :search_skills
+  attr_reader :search_terms, :entries, :search_skills, :handle_whitespaces
 
-  def initialize(search_terms, search_skills: false)
+  def initialize(search_terms, search_skills: false, handle_whitespaces: false)
     @search_terms = search_terms
     @search_skills = search_skills
+    @handle_whitespaces = handle_whitespaces
     @entries = perform_search
   end
 
   private
 
   def perform_search
-    find_matching_people.map do |person|
+    matching_people = find_matching_people
+    matching_people += find_matching_people(handle_whitespaces: true) if handle_whitespaces
+    matching_people.uniq.map do |person|
       {
         person: { id: person.id, name: person.name },
         found_in: humanize_attributes(extract_match_data(person))
@@ -25,9 +28,13 @@ class PeopleSearch
     end
   end
 
-  def find_matching_people
+  def find_matching_people(handle_whitespaces: false)
     matched_people = search_terms.reduce(Person.all) do |scope, term|
-      scope.search(term)
+      if handle_whitespaces
+        scope.search(term.gsub(/\s+/, ''))
+      else
+        scope.search(term)
+      end
     end
 
     preload_associations(matched_people)
@@ -146,13 +153,21 @@ class PeopleSearch
 
   def shorten(text, keywords)
     snippets = keywords.flat_map do |keyword|
-      escaped_keyword = Regexp.escape(keyword.to_s.strip)
+      escaped_keyword = Regexp.escape(normalized_keyword(keyword))
       regex = /(?:\S+\s+)?\S*#{escaped_keyword}\S*(?:\s+\S+)?/i
       text = text.gsub("\n", ' ').strip
 
       matches(text, regex).map { match_to_text(it, text.length) }
     end
     snippets.join("\n")
+  end
+
+  def normalized_keyword(keyword)
+    if @handle_whitespaces
+      keyword.to_s.gsub(/\s+/, '')
+    else
+      keyword.to_s.strip
+    end
   end
 
   def matches(string, regex)
@@ -175,7 +190,11 @@ class PeopleSearch
     normalized_value = value.to_s.strip.downcase
 
     search_terms.select do |search_term|
-      normalized_value.include?(search_term.strip.downcase)
+      if handle_whitespaces
+        normalized_value.gsub(/\s+/, '').include?(search_term.gsub(/\s+/, '').downcase)
+      else
+        normalized_value.include?(search_term.strip.downcase)
+      end
     end
   end
 

@@ -16,6 +16,7 @@ $skills-dark-blue: #1e5a96;
 
 .modal-dialog {
   max-width: 60%;
+
 }
 
 .content {
@@ -35,7 +36,7 @@ $skills-dark-blue: #1e5a96;
     color: white;
     @extend .px-2;
 
-    &.active {
+    &:hover, &:focus, &.active {
       background-color: $skills-dark-blue;
     }
   }
@@ -398,6 +399,12 @@ a > img {
   padding-top: 0;
 }
 
+textarea.form-control {
+  min-height: 3lh;
+  field-sizing: content;
+  resize: vertical;
+}
+
 .model-form-container label {
   margin-bottom: 0;
 }
@@ -527,4 +534,15 @@ a > img {
   @extend .rounded-1,
           .bg-skills-gray,
           .text-dark;
+}
+
+.active-filter-button {
+  color: var(--bs-btn-active-color) !important;
+  background-color: var(--bs-btn-active-bg) !important;
+  border-color: var(--bs-btn-active-border-color) !important;
+}
+
+.filter-button-highlight:focus-visible {
+  color: var(--bs-btn-color);
+  background-color: white;
 }
