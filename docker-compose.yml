@@ -78,6 +78,7 @@ services:
     image: ruby:4.0.1
     working_dir: /myapp
     environment:
+      RAILS_ENV: development
       BUNDLE_PATH: /usr/local/bundle
     command: >
       /bin/bash -c "
