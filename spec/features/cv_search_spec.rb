@@ -15,6 +15,8 @@ describe 'Advanced Trainings', type: :feature, js: true do
       check_search_results(Person.human_attribute_name(:name))
       fill_in 'cv_search_field', with: bob.projects.first.description
       check_search_results(Person.human_attribute_name(:projects))
+      fill_in 'cv_search_field', with: "#{bob.projects.first.skills.first.title}, #{bob.projects.first.skills.second.title}"
+      check_search_results(Person.human_attribute_name(:projects))
       fill_in 'cv_search_field', with: bob.title
       check_search_results(Person.human_attribute_name(:title))
       fill_in 'cv_search_field', with: bob.roles.first.name
