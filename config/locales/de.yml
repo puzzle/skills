@@ -215,7 +215,7 @@ de:
         title: Titel
         type_of_exam: Prüfungsart
   cv_search:
-    associations: Assoziation
+    associations: Lebenslauf Daten
     global:
       handle_whitespaces: Mit und ohne Leerzeichen suchen
       handle_whitespaces_tooltip: Resultate werden mit Leerzeichen und ohne gesucht.

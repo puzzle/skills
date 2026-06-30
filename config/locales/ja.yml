@@ -211,7 +211,7 @@ ja:
         title: タイトル
         type_of_exam: 試験の種類
   cv_search:
-    associations: 団体
+    associations: 履歴書の情報
     global:
       query_too_short: 3文字以上入力してください。
       handle_whitespaces: 空白あり・なしの両方で検索

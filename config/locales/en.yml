@@ -212,7 +212,7 @@ en:
         title: Title
         type_of_exam: Type of exam
   cv_search:
-    associations: Associations
+    associations: CV Data
     global:
       handle_whitespaces: Search with and without whitespaces
       handle_whitespaces_tooltip: Results will be searched with whitespaces and without.

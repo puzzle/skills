@@ -211,7 +211,7 @@ it:
         title: Titolo
         type_of_exam: Tipo di esame
   cv_search:
-    associations: Associazioni
+    associations: Dati del curriculum vitae
     global:
       handle_whitespaces: Ricerca con e senza spazi
       handle_whitespaces_tooltip: I risultati verranno cercati sia con che senza spazi.
