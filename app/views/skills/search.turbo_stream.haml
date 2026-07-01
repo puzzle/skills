@@ -10,3 +10,9 @@
 
 = turbo_stream.replace "table-header" do
   = render("table_header")
+
+= turbo_stream.replace "remote_modal" do
+  = turbo_frame_tag "remote_modal"
+
+= turbo_stream.update "flash-messages" do
+  = render partial: 'layouts/flash', collection: [:notice, :alert], as: :level

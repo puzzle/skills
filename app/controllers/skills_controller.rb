@@ -14,7 +14,7 @@ class SkillsController < CrudController
     entries
     respond_to do |format|
       format.turbo_stream { render('skills/search', status: :ok) }
-      format.html { render :index }
+      format.html { render :index, status: :ok }
     end
   end
 

@@ -1,5 +1,5 @@
-import { Controller } from "@hotwired/stimulus"
-import { Modal } from "bootstrap"
+import {Controller} from "@hotwired/stimulus"
+import {Modal} from "bootstrap"
 
 export default class extends Controller {
     connect() {
@@ -13,11 +13,16 @@ export default class extends Controller {
     disconnect() {
         document.removeEventListener("turbo:before-cache", this.beforeCache)
         if (this.modal) this.modal.dispose()
+        this.removeModalLeftovers()
     }
 
     beforeCache() {
         if (this.modal) this.modal.dispose()
 
+        this.removeModalLeftovers()
+    }
+
+    removeModalLeftovers() {
         // Remove bootstrap modal leftovers
         document.body.classList.remove("modal-open")
         document.body.style.removeProperty("overflow")
