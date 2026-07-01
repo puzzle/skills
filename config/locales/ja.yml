@@ -330,6 +330,8 @@ ja:
       link:
         add: 新しい貢献
         open: 参照を開く
+    application:
+      language_select: 言語を選択してください
     cv:
       no_skills_rated_msg: このプロフィールにはまだ評価されたスキルがありません。スキルタブに移動し、関連するスキルを評価してください。
     educations:
@@ -376,6 +378,7 @@ ja:
       image_url: 画像のURLを入力
       personals: 個人情報
       upload_image: または画像をアップロード
+      picture: プロフィール写真
     projects:
       link:
         add: 新しいプロジェクト

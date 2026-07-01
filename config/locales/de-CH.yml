@@ -351,6 +351,8 @@ de-CH:
       link:
         add: Neui Contribution
         open: Referänz öffne
+    application:
+      language_select: Wähu dini Sprach us
     cv:
       no_skills_rated_msg: Ds Profiu het no kei bewärtetä Skills. Gang zum Skills Tab und bewärtä diä für di relevantä Skills.
     educations:
@@ -397,6 +399,7 @@ de-CH:
       image_url: Biudadrässä igä
       personals: Personaliä
       upload_image: oder es Biud hochladä
+      picture: Profiubiud
     projects:
       link:
         add: Neues Projekt

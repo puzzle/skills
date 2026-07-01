@@ -8,9 +8,9 @@
       %div.ms-5{ 'data-bs-toggle': 'tooltip', 'data-bs-title': ti("handle_whitespaces_tooltip"), 'data-controller': 'tooltip', 'data-action': 'click->tooltip#hide'}
         %input{type: "checkbox", name: 'handle_whitespaces', id: 'handle_whitespaces_checkbox', onchange: 'this.form.requestSubmit();', disabled: true}
           = ti('handle_whitespaces')
-  %p.text-secondary.d-flex.align-items-center
-    = image_tag("info", class: "pe-1")
-    = ti("multiple_keywords_message")
+   %p.text-secondary.d-flex.align-items-center
+     = image_tag("info", alt: "Information icon", class: "pe-1")
+     = ti("multiple_keywords_message")
   %div.profile-header.mw-100.border-bottom.mt-2.mb-2
 
     = ti "search.search_results"
