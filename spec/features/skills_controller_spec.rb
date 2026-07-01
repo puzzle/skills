@@ -84,12 +84,12 @@ describe :skills do
       visit skills_path
       Skill.attribute_names.excluding("id", "created_at", "updated_at", "category_id", "discarded_at").including("category", "members", "subcategory").each do |attr|
         click_link Skill.human_attribute_name(attr)
-        expect(find("input[name='sort']", visible: false).value).to eq(attr)
-        expect(find("input[name='sort_dir']", visible: false).value).to eq("asc")
+        expect(page).to have_field("sort", with: attr, type: :hidden)
+        expect(page).to have_field("sort_dir", with: "asc", type: :hidden)
 
         click_link Skill.human_attribute_name(attr)
-        expect(find("input[name='sort']", visible: false).value).to eq(attr)
-        expect(find("input[name='sort_dir']", visible: false).value).to eq("desc")
+        expect(page).to have_field("sort", with: attr, type: :hidden)
+        expect(page).to have_field("sort_dir", with: "desc", type: :hidden)
       end
     end
   end
