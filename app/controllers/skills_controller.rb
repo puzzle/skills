@@ -11,9 +11,10 @@ class SkillsController < CrudController
   self.permitted_attrs = %i[title radar portfolio default_set category_id]
 
   def index
-    super do |format|
-      format.turbo_stream { render('skills/header_update', status: :ok) }
-      format.html { render :index }
+    entries
+    respond_to do |format|
+      format.turbo_stream { render('skills/search', status: :ok) }
+      format.html { render :index, status: :ok }
     end
   end
 
