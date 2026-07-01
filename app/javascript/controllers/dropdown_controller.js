@@ -17,6 +17,8 @@ export default class extends Controller {
         if (!this.hasDropdownTarget) return;
 
         this.orderedSelection = [];
+        this.listScrollPosition = 0;
+        this.highlightedIndex = 0;
         this.abortController = new AbortController();
         const { signal } = this.abortController;
 
@@ -50,16 +52,27 @@ export default class extends Controller {
             settings: this.slimSelectSettings(),
             events: {
                 // After dropdown opens we immediately force highlight on first visible option
-                afterOpen: () => this.highlightFirstVisibleOption(),
-
+                afterOpen: () => this.highlightVisibleOption(),
                 // Normalize both strings so spaces/case don't matter
                 searchFilter: (option, search) => {
                     const normalize = (str) => str.toLowerCase().replace(/\s/g, '');
                     return normalize(option.text).includes(normalize(search));
                 },
 
-                // If an option is actually a link, we navigate instead of selecting
-                beforeChange: ([item]) => {
+                beforeChange: (newVal) => {
+                    const list = document.querySelector('.ss-list');
+                    if (list) {
+                        this.listScrollPosition = list.scrollTop;
+                    }
+
+                    const visibleOptions = Array.from(
+                        document.querySelectorAll('.ss-open-below .ss-option, .ss-open-above .ss-option')
+                    ).filter(el => !el.classList.contains('ss-hide') && el.style.display !== 'none');
+
+                    const highlighted = document.querySelector('.ss-option.ss-highlighted');
+                    this.highlightedIndex = Math.max(0, visibleOptions.indexOf(highlighted));
+
+                    const item = newVal[0];
                     if (item?.html?.startsWith('<a')) {
                         Turbo.visit(item.value);
                         return false;
@@ -73,7 +86,7 @@ export default class extends Controller {
     }
 
     handleInput(event) {
-        if (event.target === this.searchInput) this.highlightFirstVisibleOption();
+        if (event.target === this.searchInput) this.highlightVisibleOption(0);
     }
 
     handleKeydown(event) {
@@ -129,7 +142,13 @@ export default class extends Controller {
 
             input.dispatchEvent(new Event('input', {bubbles: true}));
             input.focus();
-            this.highlightFirstVisibleOption();
+
+            this.highlightVisibleOption(this.highlightedIndex);
+
+            const list = document.querySelector('.ss-list');
+            if (list) {
+                list.scrollTop = this.listScrollPosition;
+            }
 
         }, 10);
     }
@@ -138,7 +157,7 @@ export default class extends Controller {
         return document.querySelector('.ss-open-below input, .ss-open-above input');
     }
 
-    highlightFirstVisibleOption() {
+    highlightVisibleOption(index = 0) {
         clearTimeout(this.highlightTimeout);
 
         this.highlightTimeout = setTimeout(() => {
@@ -151,7 +170,8 @@ export default class extends Controller {
             document.querySelectorAll('.ss-option.ss-highlighted')
                 .forEach(el => el.classList.remove('ss-highlighted'));
 
-            options[0].classList.add('ss-highlighted');
+            const targetIndex = Math.min(index, options.length - 1);
+            options[targetIndex].classList.add('ss-highlighted');
         }, 100); // We need this to eliminate the highlight form getting of the first object.
     }
 

@@ -476,5 +476,5 @@ fr:
       title: 'Compétence : %{title} (%{amount} Members)'
   projects:
     form:
-      dropdown_placeholder:
+      dropdown_placeholder: Sélectionnez une compétence
       migration_hint: Veuillez finaliser la migration de vos données en transférant les technologies de votre projet dans le nouveau champ "Compétences" ci-dessous afin de maintenir votre profil à jour.
