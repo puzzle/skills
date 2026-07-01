@@ -329,6 +329,8 @@ en:
       link:
         add: New contribution
         open: Open reference
+    application:
+      language_select: Select your language
     cv:
       no_skills_rated_msg: This profile has no rated skills yet. Go to the Skills tab and rate the skills relevant to you.
     educations:
@@ -375,6 +377,7 @@ en:
       image_url: Enter image URL
       personals: Personal details
       upload_image: or upload an image
+      picture: Profile picture
     projects:
       link:
         add: New project

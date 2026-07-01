@@ -334,6 +334,8 @@ de:
       link:
         add: Neue Contribution
         open: Referenz öffnen
+    application:
+      language_select: Wähle deine Sprache aus
     cv:
       no_skills_rated_msg: Dieses Profil hat noch keine bewerteten Skills. Gehe zum Skills Tab und bewerte die für dich relevanten Skills.
     educations:
@@ -380,6 +382,7 @@ de:
       image_url: Bildadresse eingeben
       personals: Personalien
       upload_image: oder ein Bild hochladen
+      picture: Profilbild
     projects:
       link:
         add: Neues Projekt

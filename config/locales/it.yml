@@ -330,6 +330,8 @@ it:
       link:
         add: Nuovo contributo
         open: Riferimento aperto
+    application:
+      language_select: Seleziona la tua lingua
     cv:
       no_skills_rated_msg: Questo profilo non ha ancora competenze valutate. Andate alla scheda Competenze e valutate le competenze che vi interessano.
     educations:
@@ -376,6 +378,7 @@ it:
       image_url: Inserisci l’URL dell’immagine
       personals: Dati personali
       upload_image: oppure carica un'immagine
+      picture: Foto del profilo
     projects:
       link:
         add: Nuovo progetto
