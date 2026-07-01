@@ -232,6 +232,8 @@ fr:
       valid_percent_range: doit être compris entre 0 et 200.
       merge_identical_department: ne peut pas être fusionné avec lui-même.
   global:
+    theme:
+      toggle: Changer de thème
     date:
       from: De
       month: Mois
