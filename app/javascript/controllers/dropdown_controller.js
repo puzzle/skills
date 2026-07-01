@@ -100,7 +100,7 @@ export default class extends Controller {
             closeOnSelect: false,
             keepOrder: true,
             hideSelected: this.hideSelectedValue,
-            searchPlaceholder: 'Search... (Use backspace to deselect)',
+            searchPlaceholder: this.placeholderTextValue,
             maxValuesShown: 50,
             maxValuesMessage: '{number} skills selected',
         };

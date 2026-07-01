@@ -11,7 +11,7 @@
         %div.bg-warning-subtle.p-2.rounded.mb-2
           = ti("migration_hint")
         = f.text_area :technology, placeholder: "Description", class: "form-control w-100"
-      %div{ data: { controller: "dropdown", dropdown_multiple_value: true, dropdown_placeholder_text_value: ta(:please_select), dropdown_hide_selected_value: true, dropdown_clear_text_value: true } }
+      %div{ data: { controller: "dropdown", dropdown_multiple_value: true, dropdown_placeholder_text_value: ti("dropdown_placeholder"), dropdown_hide_selected_value: true, dropdown_clear_text_value: true } }
         = f.label :skill_ids, Skill.model_name.human.pluralize
         = f.select :skill_ids,
               options_from_collection_for_select(Skill.order(:title), 'id', 'title', entry.skill_ids),

@@ -474,4 +474,5 @@ en:
       title: 'Skill: %{title} (%{amount} Members)'
   projects:
     form:
+      dropdown_placeholder: Select a Skill
       migration_hint: Please complete your data migration by transferring your project's technologies into the new "Skills" field below to keep your profile updated.
