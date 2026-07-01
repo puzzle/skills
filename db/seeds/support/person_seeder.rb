@@ -163,6 +163,7 @@ class PersonSeeder
 
   def seed_project(person_id)
     Project.seed do |p|
+      p.skills = Skill.all.sample(3)
       p.description = Faker::Hacker.say_something_smart
       p.title = Faker::Job.title
       p.role = Faker::Company.profession

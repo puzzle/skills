@@ -1,76 +1,178 @@
-import { Controller } from "@hotwired/stimulus"
-import SlimSelect from 'slim-select';
+import {Controller} from "@hotwired/stimulus";
+import SlimSelect from "slim-select";
 
-// Connects to data-controller="dropdown-links"
 export default class extends Controller {
-    static targets = ["dropdown"]
+    static targets = ['dropdown'];
 
     static values = {
         autoWidth: { type: Boolean, default: false },
         contentPosition: { type: String, default: 'absolute' },
         multiple: { type: Boolean, default: false },
-        placeholderText: { type: String, default: "" },
-        hideSelected: { type: Boolean, default: false }
-    }
+        placeholderText: { type: String, default: '' },
+        hideSelected: { type: Boolean, default: false },
+        clearText: { type: Boolean, default: false }
+    };
 
     connect() {
         if (!this.hasDropdownTarget) return;
 
-        const settings = {
-            contentPosition: this.contentPositionValue,
-        };
+        this.orderedSelection = [];
+        this.listScrollPosition = 0;
+        this.highlightedIndex = 0;
+        this.abortController = new AbortController();
+        const { signal } = this.abortController;
+
+        // We attach global listeners so we can react to SlimSelect internal input changes
+        document.addEventListener('input', this.handleInput.bind(this), { signal });
+        document.addEventListener('keydown', this.handleKeydown.bind(this), { signal });
+
+        this.slim = this.createSlimSelect();
+
 
         if (this.multipleValue) {
-            settings.allowDeselect = true;
-            settings.closeOnSelect = false;
-            settings.hideSelected = this.hideSelectedValue;
-
-            if (this.hasPlaceholderTextValue) {
-                settings.placeholderText = this.placeholderTextValue;
-            }
+            // We track selection order manually because SlimSelect doesn't remove the last selected natively
+            this.orderedSelection = this.slim.getSelected();
         }
 
-        const slimSelectDropdown = new SlimSelect({
-            select: this.dropdownTarget,
-            settings: settings,
-            events: {
-                searchFilter: (option, search) => {
-                    return option.text
-                        .toLowerCase()
-                        .replace(/\s/g, '')
-                        .indexOf(
-                            search.toLowerCase().replace(/\s/g, '')
-                        ) !== -1;
-                },
-                beforeChange: (newVal) => {
-                    const item = newVal[0];
+        // Makes dropdowns with link accessible by not routing if you click the closed dropdown
+        if (this.slim.getSelected()?.[0]?.startsWith('/')) {
+            const linkTag = document.querySelector('.ss-main .dropdown-option-link');
+            if (linkTag) linkTag.href = 'javascript:void(0)';
+        }
+    }
 
-                    if (item?.html?.startsWith("<a")) {
+    disconnect() {
+        this.abortController?.abort();
+        clearTimeout(this.highlightTimeout);
+    }
+
+    createSlimSelect() {
+        return new SlimSelect({
+            select: this.dropdownTarget,
+            settings: this.slimSelectSettings(),
+            events: {
+                // After dropdown opens we immediately force highlight on first visible option
+                afterOpen: () => this.highlightVisibleOption(),
+                // Normalize both strings so spaces/case don't matter
+                searchFilter: (option, search) => {
+                    const normalize = (str) => str.toLowerCase().replace(/\s/g, '');
+                    return normalize(option.text).includes(normalize(search));
+                },
+
+                beforeChange: (newVal) => {
+                    const list = document.querySelector('.ss-list');
+                    if (list) {
+                        this.listScrollPosition = list.scrollTop;
+                    }
+
+                    const visibleOptions = Array.from(
+                        document.querySelectorAll('.ss-open-below .ss-option, .ss-open-above .ss-option')
+                    ).filter(el => !el.classList.contains('ss-hide') && el.style.display !== 'none');
+
+                    const highlighted = document.querySelector('.ss-option.ss-highlighted');
+                    this.highlightedIndex = Math.max(0, visibleOptions.indexOf(highlighted));
+
+                    const item = newVal[0];
+                    if (item?.html?.startsWith('<a')) {
                         Turbo.visit(item.value);
                         return false;
                     }
                     return true;
                 },
-                afterChange: () => {
-                    if (this.multipleValue) {
-                        setTimeout(() => {
-                            const searchInput = this.element.querySelector('.ss-search input');
-                            if (searchInput) {
-                                searchInput.value = '';
-                                searchInput.dispatchEvent(
-                                    new Event('input', { bubbles: true })
-                                );
-                                searchInput.focus();
-                            }
-                        }, 10);
-                    }
-                }
-            },
+
+                afterChange: (newVal) => this.handleAfterChange(newVal)
+            }
         });
-        if(slimSelectDropdown.getSelected()[0]?.startsWith("/")) {
-            const linkTag = document.querySelector('.ss-main .dropdown-option-link');
-            if (linkTag) linkTag.href = "javascript:void(0)";
-        }
+    }
+
+    handleInput(event) {
+        if (event.target === this.searchInput) this.highlightVisibleOption(0);
+    }
+
+    handleKeydown(event) {
+        const input = this.searchInput;
+        if (
+            !this.multipleValue || !input || document.activeElement !== input ||
+            event.key !== 'Backspace' || input.value !== '' || !this.orderedSelection.length
+        ) return;
+
+        event.preventDefault();
+
+        // We remove last selected item manually
+        this.slim.setSelected(this.orderedSelection.slice(0, -1));
+    }
+
+    slimSelectSettings() {
+        const base = {contentPosition: this.contentPositionValue};
+
+        if (!this.multipleValue) return base; // Forces rules only when it needs to handle multiple select options
+
+        return {
+            ...base,
+            allowDeselect: true,
+            closeOnSelect: false,
+            keepOrder: true,
+            hideSelected: this.hideSelectedValue,
+            searchPlaceholder: this.placeholderTextValue,
+            maxValuesShown: 50,
+            maxValuesMessage: '{number} skills selected',
+        };
+    }
+
+    handleAfterChange(newVal) {
+        const current = newVal.map(({ value }) => value);
+
+        const existing = this.orderedSelection.filter(value =>
+            current.includes(value)
+        );
+
+        const added = current.filter(value =>
+            !this.orderedSelection.includes(value)
+        );
+
+        this.orderedSelection = [...existing, ...added];
+
+        if (!this.multipleValue) return;
+
+        setTimeout(() => {
+            const input = this.searchInput;
+            if (!input) return;
+
+            if (this.clearTextValue) input.value = '';
+
+            input.dispatchEvent(new Event('input', {bubbles: true}));
+            input.focus();
+
+            this.highlightVisibleOption(this.highlightedIndex);
+
+            const list = document.querySelector('.ss-list');
+            if (list) {
+                list.scrollTop = this.listScrollPosition;
+            }
+
+        }, 10);
+    }
+
+    get searchInput() {
+        return document.querySelector('.ss-open-below input, .ss-open-above input');
+    }
+
+    highlightVisibleOption(index = 0) {
+        clearTimeout(this.highlightTimeout);
+
+        this.highlightTimeout = setTimeout(() => {
+            const options = Array.from(
+                document.querySelectorAll('.ss-open-below .ss-option, .ss-open-above .ss-option')
+            ).filter(el => !el.classList.contains('ss-hide') && el.style.display !== 'none');
+
+            if (!options.length) return;
+
+            document.querySelectorAll('.ss-option.ss-highlighted')
+                .forEach(el => el.classList.remove('ss-highlighted'));
+
+            const targetIndex = Math.min(index, options.length - 1);
+            options[targetIndex].classList.add('ss-highlighted');
+        }, 100); // We need this to eliminate the highlight form getting of the first object.
     }
 
     navigateOnChange(event) {

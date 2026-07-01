@@ -41,8 +41,8 @@ class PeopleSearch
   end
 
   def preload_associations(people)
-    associations = [:department, :roles, :projects, :activities,
-                    :educations, :advanced_trainings, :contributions]
+    associations = [:department, :roles, :activities,
+                    :educations, :advanced_trainings, :contributions, :project_skills]
 
     if search_skills
       associations << :skills
@@ -72,9 +72,14 @@ class PeopleSearch
   def process_association(person, association_name)
     target = person.association(association_name).target
 
-    target = filter_rated_skills(person, target) if association_name == :skills
+    association_name = :projects if association_name == :project_skills
 
-    target.is_a?(Array) ? process_collection(target) : process_single_record(target)
+    target = filter_rated_skills(person, target) if association_name == :skills
+    if target.is_a?(Array)
+      process_collection(target, association_name.to_s)
+    else
+      process_single_record(target)
+    end
   end
 
   def filter_rated_skills(person, skills)
@@ -86,11 +91,10 @@ class PeopleSearch
     end
   end
 
-  def process_collection(collection)
-    table_name = collection.first.class.name.tableize.pluralize
-
+  def process_collection(collection, table_name)
     collection.filter_map do |record|
       matched_attributes = search_attributes(record.attributes)
+
       next if matched_attributes.empty?
 
       build_collection_match(record, table_name, matched_attributes)
