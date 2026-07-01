@@ -476,4 +476,5 @@ ja:
       title: 'スキル: %{title} (%{amount} 人のメンバー)'
   projects:
     form:
+      dropdown_placeholder: スキルを選択してください
       migration_hint: プロフィールを最新の状態に保つため、プロジェクトで使用している技術を以下の新しい「スキル」欄に移行し、データの移行を完了してください。
