@@ -108,17 +108,17 @@ module ActionsHelper
     admin_action_link(ti('link.export'), 'export', path, options)
   end
 
+  def icon_aria_label(icon)
+    key = "icons.#{icon}"
+    I18n.t(key, default: icon.titleize)
+  end
+
   private
 
   def wrap_with_tooltip(link, tooltip_message)
     content_tag(:div, '',
                 class: 'disable-btn-tooltip',
                 data: { tooltip: tooltip_message }) { link }
-  end
-
-  def icon_aria_label(icon)
-    key = "icons.#{icon}"
-    I18n.t(key, default: icon.titleize)
   end
 
   def update_action_link(options = {})
