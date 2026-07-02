@@ -3,8 +3,8 @@ it:
   activemodel:
     attributes:
       merge_department_skill_form:
-        old_department_ids: Reparti precedenti
         new_department_id: Reparto di destinazione
+        old_department_ids: Reparti precedenti
       unified_skill_form:
         new_skill: Nuova competenza
         old_skill_id1: Competenza 1
@@ -150,26 +150,34 @@ it:
     index:
       delete_not_synced_profiles: Elimina i profili non sincronizzati
       delete_unemployed_people: Elimina gli ex dipendenti
+      merge_department_snapshots: Unione dello sviluppo delle competenze dei reparti
       reminder_mail: Attiva le email di promemoria per la tua azienda.
       unify_skills: Unire le competenze
-      merge_department_snapshots: Unione dello sviluppo delle competenze dei reparti
       update_people_manually: Aggiornare manualmente i membri
-      reminder_mail: Attiva le email di promemoria per la tua azienda.
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Si è verificato un errore durante l'aggiornamento di %{names}. Si prega di riprovare e, se necessario, controllare i dati in PuzzleTime.
         fetching_data_failed: Si è verificato un errore durante il recupero dei dati da PuzzleTime. Si prega di riprovare e contattare il supporto se necessario.
         names_by_provider: "%{names} del fornitore %{provider}"
         people_updated: I dati di tutti i membri sono stati aggiornati con successo
-    unified_skills:
-      create:
-        success: La competenza %{skill1} è stata unificata con successo con la competenza %{skill2} nella nuova competenza %{new_skill}
     merge_department_skill_snapshots:
       create:
         success: La cronologia del reparto %{old_department_names} è stata trasferita al reparto %{new_department_name}.
+    unified_skills:
+      create:
+        success: La competenza %{skill1} è stata unificata con successo con la competenza %{skill2} nella nuova competenza %{new_skill}
   admin/manual_ptime_sync:
     index:
       description: Quando questo bellissimo pulsante viene premuto, i dati di tutti i membri verranno aggiornati con i dati di PuzzleTime. Questo potrebbe richiedere alcuni secondi.
+  admin/merge_department_skill_snapshots:
+    form:
+      department_merge: Unione dello sviluppo delle competenze
+      new_department: Reparto di destinazione
+      old_departments: Reparti precedenti
+    index:
+      department_merge_history:
+        merge_history: Cronologia unione reparti
+        no_departments_merged: Nessuna cronologia di unione disponibile
   admin/people_management:
     index:
       not_synced_title: I seguenti profili non sono attualmente aggiornati dalla sincronizzazione PuzzleTime
@@ -185,15 +193,6 @@ it:
       conflicts_found_message:
         one: "%{names} ha valutato entrambe le competenze. Se le competenze vengono comunque unite, verrà utilizzata la valutazione migliore."
         other: "%{names} hanno valutato entrambe le competenze. Se le competenze vengono comunque unite, verrà utilizzata la valutazione migliore."
-  admin/merge_department_skill_snapshots:
-    form:
-      department_merge: Unione dello sviluppo delle competenze
-      new_department: Reparto di destinazione
-      old_departments: Reparti precedenti
-    index:
-      department_merge_history:
-        merge_history: Cronologia unione reparti
-        no_departments_merged: Nessuna cronologia di unione disponibile
   certificates:
     form:
       cancel: cancellare
@@ -228,9 +227,9 @@ it:
       invalid_url: deve essere un URL valido
       max_size_10MB: non deve essere più grande di 10 MB.
       max_size_error: non deve essere più grande di 10 MB.
+      merge_identical_department: non può essere unito con se stesso.
       profile-not-found: Il profilo non è stato trovato.
       valid_percent_range: deve essere compreso tra 0 e 200.
-      merge_identical_department: non può essere unito con se stesso.
   global:
     date:
       from: Da
@@ -257,6 +256,20 @@ it:
       rated: Valutazione
       search: "%{target} ricerca"
       unrated: Non valutato
+    icons:
+      cancel: Annulla azione
+      close: Chiudi finestra di dialogo
+      export: Esporta dati
+      list: Mostra elenco
+      pencil: Modifica elemento
+      plus: Aggiungi nuovo elemento
+      redhat: Esporta con modello Red Hat
+      remove: Elimina elemento
+      save: Salva modifiche
+      save-and-new: Salva e crea nuovo
+      trash: Elimina elemento
+      zoom-in: Mostra dettagli
+    language_select: Seleziona la tua lingua
     link:
       cancel: Annullamento
       download: Scaricare
@@ -330,8 +343,6 @@ it:
       link:
         add: Nuovo contributo
         open: Riferimento aperto
-    application:
-      language_select: Seleziona la tua lingua
     cv:
       no_skills_rated_msg: Questo profilo non ha ancora competenze valutate. Andate alla scheda Competenze e valutate le competenze che vi interessano.
     educations:
@@ -377,8 +388,8 @@ it:
       core_competences: Competenze di base
       image_url: Inserisci l’URL dell’immagine
       personals: Dati personali
-      upload_image: oppure carica un'immagine
       picture: Foto del profilo
+      upload_image: oppure carica un'immagine
     projects:
       link:
         add: Nuovo progetto

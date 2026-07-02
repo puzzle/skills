@@ -72,10 +72,12 @@ module DryCrud
         col('', class: 'action', &)
       end
 
-      # Generic action link inside a table.
-      def table_action_link(icon, url, html_options = {})
-        add_css_class(html_options, "icon icon-#{icon}")
-        link_to('', url, html_options)
+       # Generic action link inside a table.
+       def table_action_link(icon, url, html_options = {})
+         add_css_class(html_options, "icon icon-#{icon}")
+         aria_label = template.icon_aria_label(icon)
+         html_options['aria-label'] = aria_label
+         link_to('', url, html_options)
       end
 
       private

@@ -3,8 +3,8 @@ de-CH:
   activemodel:
     attributes:
       merge_department_skill_form:
-        old_department_ids: Auti Abteilig
         new_department_id: Zielabteilig
+        old_department_ids: Auti Abteilig
       unified_skill_form:
         new_skill: Neuä Skill
         old_skill_id1: Skill 1
@@ -154,26 +154,34 @@ de-CH:
     index:
       delete_not_synced_profiles: Nid synchronisierti Profiu löschä
       delete_unemployed_people: Ehemaligi Mitarbeiter löschä
+      merge_department_snapshots: Skill-Entwicklig vo Abteilig zämefüehre
       reminder_mail: Aktivier Erinnerigs E-Mails für d Firma.
       unify_skills: Skills vereinä
-      merge_department_snapshots: Skill-Entwicklig vo Abteilig zämefüehre
       update_people_manually: Members manuell aktualisiere
-      reminder_mail: Aktivier Erinnerigs E-Mails für d Firma.
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Bi dr Aktualisierig vo %{names} isch öppis schiefgloffe. Versuechs nomau und überprüef auefaus d Date im PuzzleTime.
         fetching_data_failed: Öppis ische bim fetche vo de Date usem PuzzleTime schief gloffe. Bitte probiers nomau und kontaktier auefaus dr Support.
         names_by_provider: "%{names} vom Provider %{provider}"
         people_updated: D Datä vo aunä Members si erfolgriich aktualisiert wordä
-    unified_skills:
-      create:
-        success: Skill %{skill1} isch erfolgriich mit Skill %{skill2} zum neuä Skill %{new_skill} vereint wordä
     merge_department_skill_snapshots:
       create:
         success: Dr Verlauf vo der Abteilig %{old_department_names} isch a d Abteilig %{new_department_name} übertrage worde.
+    unified_skills:
+      create:
+        success: Skill %{skill1} isch erfolgriich mit Skill %{skill2} zum neuä Skill %{new_skill} vereint wordä
   admin/manual_ptime_sync:
     index:
       description: We dä wunderschön Chnopf drückt wird, de wärde d Date vo aune Members mit de Date usem PuzzleTime aktualisiert. Ds cha einigi Sekunde duure.
+  admin/merge_department_skill_snapshots:
+    form:
+      department_merge: Skill-Entwicklig zämefüehre
+      new_department: Zielabteilig
+      old_departments: Auti Abteilig
+    index:
+      department_merge_history:
+        merge_history: Abteiligs-Zämefüehrigshistorie
+        no_departments_merged: Keni Merge-Historie vorhande
   admin/people_management:
     index:
       not_synced_title: Di folgendä Profiu wärde momentan nid vom PuzzleTime sync aktualisiert
@@ -189,15 +197,6 @@ de-CH:
       conflicts_found_message:
         one: "%{names} het beidi Skills bewertet. We si trotzdem vereint werde, wird di besseri Bewertig übernoh."
         other: "%{names} hei beidi Skills bewertet. We si trotzdem vereint werde, wird di besseri Bewertig übernoh."
-  admin/merge_department_skill_snapshots:
-    form:
-      department_merge: Skill-Entwicklig zämefüehre
-      new_department: Zielabteilig
-      old_departments: Auti Abteilig
-    index:
-      department_merge_history:
-        merge_history: Abteiligs-Zämefüehrigshistorie
-        no_departments_merged: Keni Merge-Historie vorhande
   certificates:
     form:
       cancel: Abbrächä
@@ -247,9 +246,9 @@ de-CH:
       invalid_url: muess e validi URL si
       max_size_10MB: darf nid grösser aus 10MB si.
       max_size_error: darf nid grösser aus 10MB si.
+      merge_identical_department: cha nid mit sich sälber zämefüehrt werde.
       profile-not-found: Profiu isch nid gfungä wordä.
       valid_percent_range: muess zwüschä 0 u 200 liegä.
-      merge_identical_department: cha nid mit sich sälber zämefüehrt werde.
   global:
     date:
       from: Vom
@@ -276,6 +275,20 @@ de-CH:
       rated: Bewärtet
       search: "%{target} suechä"
       unrated: Nid Bewärtet
+    icons:
+      cancel: Aktion abbrächä
+      close: Dialog schliessä
+      export: Daten exportierä
+      list: List azäigä
+      pencil: Elemänt bearbeitä
+      plus: Neus Elemänt hinzuefügä
+      redhat: Mit Red Hat Template exportierä
+      remove: Elemänt löschä
+      save: Änderigä spicherä
+      save-and-new: Spicherä u neus erstöue
+      trash: Elemänt löschä
+      zoom-in: Details azäigä
+    language_select: Wähu dini Sprach us
     link:
       cancel: Abbrächä
       download: Abeladä
@@ -351,8 +364,6 @@ de-CH:
       link:
         add: Neui Contribution
         open: Referänz öffne
-    application:
-      language_select: Wähu dini Sprach us
     cv:
       no_skills_rated_msg: Ds Profiu het no kei bewärtetä Skills. Gang zum Skills Tab und bewärtä diä für di relevantä Skills.
     educations:
@@ -398,8 +409,8 @@ de-CH:
       core_competences: Chärnkompetenzä
       image_url: Biudadrässä igä
       personals: Personaliä
-      upload_image: oder es Biud hochladä
       picture: Profiubiud
+      upload_image: oder es Biud hochladä
     projects:
       link:
         add: Neues Projekt

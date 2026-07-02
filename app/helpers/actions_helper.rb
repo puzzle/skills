@@ -12,14 +12,15 @@ module ActionsHelper
             url, options)
   end
 
-  # Outputs an icon for an action with an optional label.
-  def action_icon(icon, label = nil)
-    html = content_tag(:span, '', class: "icon icon-#{icon}")
-    html << ' ' << label if label
-    html
-  end
+   # Outputs an icon for an action with an optional label.
+   def action_icon(icon, label = nil)
+     aria_label = label || icon_aria_label(icon)
+     html = content_tag(:span, '', class: "icon icon-#{icon}", 'aria-label': aria_label)
+     html << ' ' << label if label
+     html
+   end
 
-  # Standard show action to the given path.
+   # Standard show action to the given path.
   # Uses the current +entry+ if no path is given.
   def show_action_link(path = nil)
     path ||= path_args(entry)
@@ -107,13 +108,18 @@ module ActionsHelper
     admin_action_link(ti('link.export'), 'export', path, options)
   end
 
-  private
+   private
 
-  def wrap_with_tooltip(link, tooltip_message)
-    content_tag(:div, '',
-                class: 'disable-btn-tooltip',
-                data: { tooltip: tooltip_message }) { link }
-  end
+   def wrap_with_tooltip(link, tooltip_message)
+     content_tag(:div, '',
+                 class: 'disable-btn-tooltip',
+                 data: { tooltip: tooltip_message }) { link }
+   end
+
+   def icon_aria_label(icon)
+     key = "icons.#{icon}"
+     I18n.t(key, default: icon.titleize)
+   end
 
   def update_action_link(options = {})
     button_tag(

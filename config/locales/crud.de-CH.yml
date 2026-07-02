@@ -27,7 +27,12 @@ de-CH:
       save: Spicherä
       search: Suechä
     confirm_delete: Wosch du dä Itrag würk löschä?
-    confirm_snapshot_merge: "Abteilige zämefüehre?\n\nD gesamte Skill-Entwicklig vom Personal us de usgwählte Quellabteilige wird uf d Zielabteilige übertrage und bliibt wiiterhin uf de alte Abteilige bestaah.\n\nDie Aktion cha nid rückgängig gmacht werde."
+    confirm_snapshot_merge: |-
+      Abteilige zämefüehre?
+
+      D gesamte Skill-Entwicklig vom Personal us de usgwählte Quellabteilige wird uf d Zielabteilige übertrage und bliibt wiiterhin uf de alte Abteilige bestaah.
+
+      Die Aktion cha nid rückgängig gmacht werde.
     errors:
       header:
         one: 'Ä Fähler verhinderte ds Spiicherä vo däm Itrag:'
