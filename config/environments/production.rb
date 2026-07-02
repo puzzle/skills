@@ -92,4 +92,6 @@ Rails.application.configure do
     delivery_method: :smtp,
     authentication: :plain
   }
+
+  config.force_ssl = true
 end
