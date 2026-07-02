@@ -92,14 +92,17 @@ export default class extends Controller {
     handleKeydown(event) {
         const input = this.searchInput;
         if (
-            !this.multipleValue || !input || document.activeElement !== input ||
-            event.key !== 'Backspace' || input.value !== '' || !this.orderedSelection.length
-        ) return;
-
-        event.preventDefault();
-
-        // We remove last selected item manually
-        this.slim.setSelected(this.orderedSelection.slice(0, -1));
+            this.multipleValue &&
+            input &&
+            document.activeElement === input &&
+            event.key === 'Backspace' &&
+            input.value === '' &&
+            this.orderedSelection.length
+        ) {
+            event.preventDefault();
+            // We remove last selected item manually
+            this.slim.setSelected(this.orderedSelection.slice(0, -1));
+        }
     }
 
     slimSelectSettings() {
@@ -172,7 +175,7 @@ export default class extends Controller {
 
             const targetIndex = Math.min(index, options.length - 1);
             options[targetIndex].classList.add('ss-highlighted');
-        }, 100); // We need this to eliminate the highlight form getting of the first object.
+        }, 100); // Debounce the highlight to prevent rapid navigation from glitching or prematurely highlighting the first item.
     }
 
     navigateOnChange(event) {
