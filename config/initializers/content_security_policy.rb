@@ -12,6 +12,10 @@ Rails.application.configure do
     policy.object_src  :none
     policy.script_src  :self, :https
     policy.style_src   :self, :https
+
+    policy.connect_src :self, :https, "sso.puzzle.ch"
+    policy.frame_src   :self, :https, "sso.puzzle.ch"
+
     # Specify URI for violation reports
     # policy.report_uri "/csp-violation-report-endpoint"
   end
