@@ -9,7 +9,7 @@
 // `yarn build --reload` - Reloads page when views, JavaScript, or stylesheets change
 //
 // Minify is enabled when "RAILS_ENV=production"
-// Sourcemaps are enabled in non-production environments
+// Sourcemaps are always disabled
 
 import * as esbuild from "esbuild"
 import path from "path"
