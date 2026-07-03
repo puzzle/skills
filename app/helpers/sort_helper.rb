@@ -12,10 +12,10 @@ module SortHelper
   end
 
   def skills
-    if params[:sort_dir] && params[:sort]
-      sort_skills
+    if params[:sort_dir].blank? || params[:sort].blank?
+      @skills.sort_by { |skill| skill.title.to_s.downcase }
     else
-      @skills
+      sort_skills
     end
   end
 
