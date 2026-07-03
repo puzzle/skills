@@ -2,7 +2,7 @@
   %div.form-check.form-switch.d-flex.justify-content-end
     = expert_mode_toggle(@search.expert_mode)
     %a.d-flex.align-items-center.ms-1{href: "https://github.com/puzzle/skills?tab=readme-ov-file#skill-search-expert-mode"}
-      %pzsh-icon.scale-icon-08.text-gray(name="question-circle")
+      %span.icon.icon-question-circle
   - @search.filter_rows.each_with_index do |filter, i|
     = render('filter_row', filter: filter, i: i, form: form)
     - if @search.expert_mode.show_operator?(i, @search.filter_count)
