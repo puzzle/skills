@@ -64,6 +64,7 @@ ja:
         birthdate: 生年月日
         company: 会社
         competence_notes: メンバーノート
+        contributions: オープンソース貢献
         department: 部署
         display_competence_notes_in_cv: 履歴書にノートを含める
         dual_citizen: 二重国籍者
@@ -209,14 +210,18 @@ ja:
         title: タイトル
         type_of_exam: 試験の種類
   cv_search:
+    associations: 履歴書の情報
     global:
+      query_too_short: 3文字以上入力してください。
       handle_whitespaces: 空白あり・なしの両方で検索
       handle_whitespaces_tooltip: 検索結果は、空白あり・なしの両方で検索されます。
       search_placeholder: 履歴書を検索...
       search_skills: スキルも検索する
     index:
+      category: カテゴリ
+      dont_filter: フィルターなし
       multiple_keywords_message: 複数のキーワードはコンマで区切って入力できます。
-      query_too_short: 3文字以上入力してください。
+    personal_data: 個人データ
   errors:
     messages:
       authorization_error: この機能を実行する権限がありません。

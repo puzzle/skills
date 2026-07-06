@@ -1,21 +1,48 @@
 # frozen_string_literal: true
 
 class PeopleSearch
-  SEARCHABLE_FIELDS = %w{name title competence_notes description
-                         role technology location}.freeze
-  PERSONAL_DETAILS = %w[name email title person_roles roles department company birthdate nationality
-                        location marital_status shortname].freeze
-  CORE_COMPETENCES = %w[competence_notes skills].freeze
-  attr_reader :search_terms, :entries, :search_skills, :handle_whitespaces
+  SEARCHABLE_FIELDS = %w[name title competence_notes description role technology location].freeze
+  PERSONAL_DETAILS  = %w[name title].freeze
+  CORE_COMPETENCES  = %w[competence_notes].freeze
+  SKILLS = %w[skills].freeze
+  ASSOCIATIONS = %i[department roles projects activities educations advanced_trainings
+                    contributions skills].freeze
+  PERSON_FIELDS = (PERSONAL_DETAILS + CORE_COMPETENCES).freeze
 
-  def initialize(search_terms, search_skills: false, handle_whitespaces: false)
+  attr_reader :search_terms, :search_skills, :categories,
+              :selected_personal_details, :selected_associations, :entries, :handle_whitespaces
+
+  def initialize(search_terms, search_skills: false, categories: nil, handle_whitespaces: false)
     @search_terms = search_terms
     @search_skills = search_skills
+    @categories = Array(categories).compact_blank.map(&:to_s)
     @handle_whitespaces = handle_whitespaces
+
+    filter_by_category
+
     @entries = perform_search
   end
 
   private
+
+  def filter_by_category
+    if @categories.empty?
+      requested_personal_details = PERSON_FIELDS
+      requested_associations = ASSOCIATIONS
+    else
+      requested_personal_details = PERSON_FIELDS & @categories
+      requested_associations = ASSOCIATIONS & @categories.map(&:to_sym)
+    end
+
+    use_defaults = requested_personal_details.empty? && requested_associations.empty?
+
+    set_selected_category(requested_personal_details, requested_associations, use_defaults)
+  end
+
+  def set_selected_category(requested_personal_details, requested_associations, use_defaults)
+    @selected_personal_details = use_defaults ? PERSON_FIELDS.dup : requested_personal_details
+    @selected_associations = use_defaults ? ASSOCIATIONS.dup : requested_associations
+  end
 
   def perform_search
     matching_people = find_matching_people
@@ -41,19 +68,15 @@ class PeopleSearch
   end
 
   def preload_associations(people)
-    associations = [:department, :roles, :projects, :activities,
-                    :educations, :advanced_trainings, :contributions]
-
-    if search_skills
-      associations << :skills
-      associations << :people_skills
-    end
-
-    people.includes(associations)
+    associations_to_load = @selected_associations.dup
+    associations_to_load -= [:skills] unless search_skills
+    people.includes(associations_to_load)
   end
 
   def extract_match_data(person)
-    attribute_matches = search_attributes(person.attributes)
+    person_attributes = person.attributes.slice(*@selected_personal_details)
+
+    attribute_matches = search_attributes(person_attributes)
     association_matches = search_associations(person)
 
     (attribute_matches + association_matches).flatten.compact
@@ -66,12 +89,12 @@ class PeopleSearch
   end
 
   def association_symbols
-    Person.reflections.keys.excluding('company', 'auth_user').map(&:to_sym)
+    associations = (@selected_associations || Person.reflections.keys).map(&:to_s)
+    associations.excluding('company', 'auth_user').map(&:to_sym)
   end
 
   def process_association(person, association_name)
     target = person.association(association_name).target
-
     target = filter_rated_skills(person, target) if association_name == :skills
 
     target.is_a?(Array) ? process_collection(target) : process_single_record(target)
@@ -123,11 +146,7 @@ class PeopleSearch
 
   def process_single_record(record)
     results = search_attributes(record.attributes)
-
-    if results.any?
-      results.first[:attribute] = record.class.name.downcase
-    end
-
+    results.first[:attribute] = record.class.name.downcase if results.any?
     results
   end
 
