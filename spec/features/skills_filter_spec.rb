@@ -56,6 +56,25 @@ describe "Skills Filter", type: :feature, js: true do
     expect(page).to have_no_content("Rails")
   end
 
+  it 'should be able to combine filters with sorting' do
+    visit skills_path
+    fill_in 'title', with: 'unit'
+    expect(page).to have_content("JUnit")
+    expect(page).to have_content("cunit")
+
+    find('#default-set-default').click
+    expect(page).to have_content("JUnit")
+    expect(page).to have_no_content("cunit")
+
+    find("#title").send_keys([:control, 'a'], :space)
+    expect(page).to have_content("Rails")
+
+    click_link("Titel")
+
+    expect(page).to have_content("Rails")
+    expect(page).to have_no_content("cunit")
+  end
+
   it 'selects default set using keyboard' do
     visit skills_path
 

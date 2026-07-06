@@ -3,13 +3,13 @@
 module SkillsHelper
 
   def default_set_button(value, label)
-    is_active = params[:defaultSet] == value
+    active = params[:defaultSet] == value
 
     button_tag(
       label,
       id: "default-set-#{value}",
       type: 'button',
-      class: "btn btn-outline-primary filter-button-highlight active-filter-button: #{is_active}",
+      class: "btn btn-outline-primary filter-button-highlight #{'active-filter-button' if active}",
       data: { action: 'click->skillset-selected#setDefaultSet',
               skillset_selected_target: 'button', value: value }
     )

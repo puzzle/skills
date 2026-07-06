@@ -1,6 +1,6 @@
 module SortHelper
-  def sort_link(attr)
-    link_to((ti "table.#{attr}"), sort_params(attr)) + current_mark(attr)
+  def sort_link(attr, options = {})
+    link_to((ti "table.#{attr}"), sort_params(attr), options) + current_mark(attr)
   end
 
   def people_skills
@@ -12,10 +12,10 @@ module SortHelper
   end
 
   def skills
-    if params[:sort_dir] && params[:sort]
-      sort_skills
+    if params[:sort_dir].blank? || params[:sort].blank?
+      @skills.sort_by { |skill| skill.title.to_s.downcase }
     else
-      @skills
+      sort_skills
     end
   end
 
