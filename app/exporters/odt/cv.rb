@@ -5,6 +5,7 @@ module Odt
   # rubocop:disable Metrics/ClassLength
   class Cv
     include ParamConverters
+    include ProjectHelper
 
     def initialize(person, params)
       @person = person
@@ -283,7 +284,7 @@ module Odt
           project_title: p.title,
           project_description: p.description,
           project_role: p.role,
-          project_technology: p.technology.to_s }
+          project_technology: humanize_project_technologies(p) }
       end
 
       add_cv_table(report, 'PROJECTS', projects_list, {
