@@ -10,8 +10,8 @@ Rails.application.configure do
     policy.font_src    :self, :https, :data
     policy.img_src     :self, :data, "https://www.puzzle.ch", "*.puzzle.ch"
     policy.object_src  :none
-    policy.script_src  :self, :https
-    policy.style_src   :self, :https
+    policy.script_src  :self, :unsafe_inline, :https
+    policy.style_src   :self, :unsafe_inline, :https
 
     policy.connect_src :self, :https, "sso.puzzle.ch"
     policy.frame_src   :self, :https, "sso.puzzle.ch"
@@ -21,8 +21,8 @@ Rails.application.configure do
   end
 
   # Generate session nonces for permitted importmap, inline scripts, and inline styles.
-  config.content_security_policy_nonce_generator = ->(request) { request.session.id.to_s }
-  config.content_security_policy_nonce_directives = %w(script-src style-src)
+  # config.content_security_policy_nonce_generator = ->(request) { request.session.id.to_s }
+  # config.content_security_policy_nonce_directives = %w(script-src style-src)
 
   # Automatically add `nonce` to `javascript_tag`, `javascript_include_tag`, and `stylesheet_link_tag`
   # if the corresponding directives are specified in `content_security_policy_nonce_directives`.
