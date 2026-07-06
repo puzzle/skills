@@ -656,7 +656,7 @@ DEPENDENCIES
   psych
   puma
   rack
-  rack-cors
+  rack-cors (~> 3.0)
   rails (~> 8.1.2)
   rails-controller-testing
   rails-erd
