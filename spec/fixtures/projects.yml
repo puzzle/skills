@@ -36,6 +36,7 @@ google:
   year_to: 2015
   year_from: 2012
   person: alice
+  skills: [junit, bash, web-components]
 
 construction analyst:
   description: Analyzing stuff
@@ -52,6 +53,7 @@ community manager:
   year_to: 2010
   year_from: 2005
   person: longmax
+  skills: [bash]
 
 salesman:
   description: Selling drums
@@ -60,6 +62,7 @@ salesman:
   year_to: 2014
   year_from: 2010
   person: longmax
+  skills: [bash]
 
 it director:
   description: Beeing responsible for lots of people
@@ -68,6 +71,7 @@ it director:
   year_to: 2020
   year_from: 2014
   person: longmax
+  skills: [bash, junit]
 
 system engineer:
   description: Engineering lots of different stuff
@@ -76,8 +80,9 @@ system engineer:
   year_to: 2021
   year_from: 2020
   person: longmax
+  skills: [bash, cunit]
 
-fisherman :
+fisherman:
   description: Fishing and selling the fish
   title: fisherman
   role: Fisher
@@ -85,6 +90,7 @@ fisherman :
   year_from: 2021
   display_in_cv: true
   person: longmax
+  skills: [bash]
 
 gourmet-chef:
   description: Cooking gourmet food
@@ -94,3 +100,4 @@ gourmet-chef:
   year_from: 2020
   display_in_cv: false
   person: maximillian
+  skills: [bash]

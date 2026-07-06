@@ -15,7 +15,9 @@ describe 'Projects', type: :feature, js:true do
           expect(page).to have_content(project.role)
           expect(page).to have_content(project.description)
           expect(page).to have_content(project.title)
-          expect(page).to have_content(project.technology)
+          project.skills.each do |skill|
+            expect(page).to have_content(skill)
+          end
         end
       end
     end
