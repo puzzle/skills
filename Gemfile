@@ -102,4 +102,4 @@ gem 'tzinfo-data', platforms: %i[windows jruby]
 
 gem 'rails-controller-testing'
 
-gem "rack-cors", "~> 3.0"
+gem 'rack-cors', '~> 3.0'
