@@ -1,9 +1,0 @@
-%div.justify-content-between.d-flex.flex-row.mb-3.mt-2.border-bottom
-  %ul.nav.nav-tabs.border-0
-    - tabs.each do |tab|
-      %li.nav-item
-        - unless tab[:admin_only] && !admin?
-          = link_to tab[:path], class: "nav-link #{'active' if active_path == tab[:path]}" do
-            = tab[:title]
-  %div.justify-content-end
-    = yield if defined?(do_yield) && do_yield|| false

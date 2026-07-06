@@ -1,8 +1,9 @@
-%nav.d-flex.flex-row.justify-content-between{class: "#{bar_class}"}
-    %div.d-flex.flex-row.flex-flow-wrap
-        - tabs.each do |tab|
-            - unless tab[:admin_only] && !admin?
-                = link_to tab[:path], class: "nav-link h-100 d-flex align-items-center #{'active' if active_path == tab[:path]}" do
-                    = tab[:title]
-    %div
-        = yield if defined?(do_yield) && do_yield|| false
+%nav.justify-content-between.d-flex.flex-row{class: "#{bar_class}"}
+  %ul.nav.border-0
+    - tabs.each do |tab|
+      %li.nav-item
+        - unless tab[:admin_only] && !admin?
+          = link_to tab[:path], class: "nav-link #{'active' if active_path == tab[:path]}" do
+            = tab[:title]
+  %div.justify-content-end
+    = yield if defined?(do_yield) && do_yield|| false
