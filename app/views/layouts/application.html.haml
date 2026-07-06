@@ -11,7 +11,6 @@
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
-    = javascript_include_tag "application", "https://unpkg.com/@puzzleitc/puzzle-shell/dist/bundle.js", type: "module"
     = favicon_link_tag "favicon.png"
   %body#dropdown-wormhole.d-flex.justify-content-center{"data-controller": "skills-empty-space"}
     %div.content{"data-skills-empty-space-target": "container"}
@@ -62,8 +61,8 @@
                   =button_to ti("devise.sign_in"), omniauth_authorize_path(resource_name, resource_class.omniauth_providers.first), {data: { "turbo": false, controller: "instant-click" }, class: "btn btn-link"}
             -# Help
             %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start-lg.h-100-lg
-              %a.d-flex.align-items-center{:href => "https://github.com/puzzle/skills/issues"}
-                %pzsh-icon.scale-icon-08.text-gray(name="question-circle")
+              %a.d-flex.align-items-center.justify-content-center{:href => "https://github.com/puzzle/skills/issues"}
+                %span.icon.ms-2.icon-question-circle
             %li.d-flex.align-items-center.cursor-pointer.border-start-lg.border-end-lg.h-100-lg.ps-2.pe-2{"data-action": "click->skills-empty-space#goCrazy"}
         %div.puzzle-header
           %div.d-flex.min-height-inherit

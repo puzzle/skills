@@ -9,7 +9,7 @@
 // `yarn build --reload` - Reloads page when views, JavaScript, or stylesheets change
 //
 // Minify is enabled when "RAILS_ENV=production"
-// Sourcemaps are enabled in non-production environments
+// Sourcemaps are always disabled
 
 import * as esbuild from "esbuild"
 import path from "path"
@@ -17,6 +17,7 @@ import rails from "esbuild-rails"
 import chokidar from "chokidar"
 import http from "http"
 import { setTimeout } from "timers/promises"
+import { execSync } from "child_process"
 
 const clients = []
 
@@ -35,8 +36,8 @@ const config = {
   bundle: true,
   format: 'esm',
   entryPoints: entryPoints,
-  minify: process.env.RAILS_ENV == "production",
-  sourcemap: process.env.RAILS_ENV != "production",
+  minify: process.env.RAILS_ENV === "production",
+  sourcemap: false,
   outdir: path.join(process.cwd(), "app/assets/builds"),
   publicPath: '/assets',
   loader: {
@@ -104,3 +105,5 @@ if (process.argv.includes("--reload")) {
 } else {
   esbuild.build(config)
 }
+
+execSync("yarn build:css", { stdio: 'inherit' })
