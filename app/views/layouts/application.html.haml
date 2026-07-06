@@ -1,5 +1,5 @@
 !!!
-%html
+%html{lang: I18n.locale}
   %head
     // This disables the Turbo prefetch in development as it gets quite annoying when debugging
     - if Rails.env.development?
@@ -15,17 +15,18 @@
     = favicon_link_tag "favicon.png"
   %body#dropdown-wormhole.d-flex.justify-content-center{"data-controller": "skills-empty-space"}
     %div.content{"data-skills-empty-space-target": "container"}
-      %div.position-sticky.top-0.z-3
+      %nav.position-sticky.top-0.z-3
         %div.d-flex.justify-content-between.bg-white.flex-wrap
           = link_to people_path, class: "text-decoration-none text-dark" do
             %div.d-flex
               %div.mb-1.mt-1
-                %img{:src=> "/assets/logo.svg",:height=>"32"}
+                %img{:src=> "/assets/logo.svg",:height=>"32", :alt=>"PuzzleSkills Logo"}
               %text.d-flex.align-items-end.ms-2.small="6.3.0" #x-release-please-version
           %ul.navbar.text-gray.d-flex.flex-wrap.align-items-center.gap-2
             -# Language selector
             %li.d-flex.align-items-center.cursor-pointer.border-start-lg.h-100-lg.ps-2.pe-2{"data-controller": "dropdown"}
-              = select :i18n, :language, language_selector, {}, class: "form-control", data:{action: "change->dropdown#navigateOnChange"}
+              %label.visually-hidden{for: "language-select"}= ti(".language_select")
+              = select :i18n, :language, language_selector, {}, id: "language-select", class: "form-control", data: {action: "change->dropdown#navigateOnChange"}
             -# Devise/Mockdata
             - if Rails.env.development?
               %li.d-flex.align-items-center.cursor-pointer.ps-2.pe-2.border-start-lg.h-100-lg

@@ -3,8 +3,8 @@ de:
   activemodel:
     attributes:
       merge_department_skill_form:
-        old_department_ids: Alte Abteilungen
         new_department_id: Zielabteilung
+        old_department_ids: Alte Abteilungen
       unified_skill_form:
         new_skill: Neuer Skill
         old_skill_id1: Skill 1
@@ -154,26 +154,34 @@ de:
     index:
       delete_not_synced_profiles: Nicht synchronisierte Profile löschen
       delete_unemployed_people: Ehemaligen Mitarbeiter löschen
+      merge_department_snapshots: Skill-Entwicklung von Abteilungen zusammenführen
       reminder_mail: Aktiviere Erinnerungs E-Mails für die Firma.
       unify_skills: Skills vereinen
-      merge_department_snapshots: Skill-Entwicklung von Abteilungen zusammenführen
       update_people_manually: Members manuell aktualisieren
-      reminder_mail: Aktiviere Erinnerungs E-Mails für die Firma.
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Bei der Aktualisierung von %{names} ist etwas schiefgelaufen. Versuche es erneut und überprüfe allenfalls die Daten im PuzzleTime.
         fetching_data_failed: Etwas ist schiefgelaufen, als versucht wurde die Daten aus dem PuzzleTime zu fetchen. Bitte versuche es erneut und kontaktiere allenfalls den Support.
         names_by_provider: "%{names} vom Provider %{provider}"
         people_updated: Die Daten aller Members wurden erfolgreich aktualisiert
-    unified_skills:
-      create:
-        success: Skill %{skill1} wurde erfolgreich mit Skill %{skill2} zum neuen Skill %{new_skill} vereint
     merge_department_skill_snapshots:
       create:
         success: Verlauf der Abteilung %{old_department_names} wurde auf die Abteilung %{new_department_name} übertragen.
+    unified_skills:
+      create:
+        success: Skill %{skill1} wurde erfolgreich mit Skill %{skill2} zum neuen Skill %{new_skill} vereint
   admin/manual_ptime_sync:
     index:
       description: Wenn dieser wunderschöne Knopf gedrückt wird, dann werden die Daten aller Members mit den Daten aus dem PuzzleTime aktualisiert. Dies kann einige Sekunden dauern.
+  admin/merge_department_skill_snapshots:
+    form:
+      department_merge: Skill-Entwicklung zusammenführen
+      new_department: Zielabteilung
+      old_departments: Alte Abteilungen
+    index:
+      department_merge_history:
+        merge_history: Abteilungs-Zusammenführungshistorie
+        no_departments_merged: Keine Merge-Historie vorhanden
   admin/people_management:
     index:
       not_synced_title: Die folgenden Profile werden momentan nicht vom PuzzleTime sync aktualisiert
@@ -189,15 +197,6 @@ de:
       conflicts_found_message:
         one: "%{names} hat beide Skills bewertet. Werden die Skills trotzdem vereint, wird die bessere Bewertung genommen."
         other: "%{names} haben beide Skills bewertet. Werden die Skills trotzdem vereint, wird die bessere Bewertung genommen."
-  admin/merge_department_skill_snapshots:
-    form:
-      department_merge: Skill-Entwicklung zusammenführen
-      new_department: Zielabteilung
-      old_departments: Alte Abteilungen
-    index:
-      department_merge_history:
-        merge_history: Abteilungs-Zusammenführungshistorie
-        no_departments_merged: Keine Merge-Historie vorhanden
   certificates:
     form:
       cancel: Abbrechen
@@ -232,9 +231,9 @@ de:
       invalid_url: muss eine valide URL sein
       max_size_10MB: darf nicht grösser als 10MB sein.
       max_size_error: darf nicht grösser als 10MB sein.
+      merge_identical_department: kann nicht mit sich selbst zusammengeführt werden.
       profile-not-found: Profil konnte nicht gefunden werden.
       valid_percent_range: muss zwischen 0 und 200 liegen.
-      merge_identical_department: kann nicht mit sich selbst zusammengeführt werden.
   global:
     date:
       from: Von
@@ -261,6 +260,21 @@ de:
       rated: Bewertet
       search: "%{target} suchen"
       unrated: Nicht bewertet
+    icons:
+      cancel: Aktion abbrechen
+      close: Dialog schliessen
+      export: Daten exportieren
+      list: Liste anzeigen
+      pencil: Element bearbeiten
+      plus: Neues Element hinzufügen
+      redhat: Mit Red Hat Template exportieren
+      remove: Element löschen
+      save: Änderungen speichern
+      saved: Gespeichert
+      save-and-new: Speichern und neu erstellen
+      trash: Element löschen
+      zoom-in: Details anzeigen
+    language_select: Wähle deine Sprache aus
     link:
       cancel: Abbrechen
       download: Herunterladen
@@ -379,6 +393,7 @@ de:
       core_competences: Kernkompetenzen
       image_url: Bildadresse eingeben
       personals: Personalien
+      picture: Profilbild
       upload_image: oder ein Bild hochladen
     projects:
       link:

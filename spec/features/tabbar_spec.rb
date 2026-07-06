@@ -53,7 +53,7 @@ describe 'Tabbar', type: :feature, js:true do
         end
 
         def check_highlighted_tab(text)
-          expect(page).to have_selector("div.skills-navbar a.nav-link.active", text: text)
+          expect(page).to have_selector("nav.skills-navbar a.nav-link.active", text: text)
         end
       end
 
@@ -97,7 +97,7 @@ describe 'Tabbar', type: :feature, js:true do
           admin_only = hash[:admin_only]
 
           it "should #{'not' if admin_only} display #{title} tab as user" do
-            expect(page.has_selector?("div.skills-navbar a.nav-link", text: (t title), wait: 0.1)).to eql(!admin_only)
+            expect(page.has_selector?("nav.skills-navbar a.nav-link", text: (t title), wait: 0.1)).to eql(!admin_only)
           end
         end
 

@@ -14,7 +14,8 @@ module ActionsHelper
 
   # Outputs an icon for an action with an optional label.
   def action_icon(icon, label = nil)
-    html = content_tag(:span, '', class: "icon icon-#{icon}")
+    aria_label = label || icon_aria_label(icon)
+    html = content_tag(:span, '', class: "icon icon-#{icon}", 'aria-label': aria_label)
     html << ' ' << label if label
     html
   end
@@ -105,6 +106,11 @@ module ActionsHelper
 
   def admin_export_action_link(path, options = {})
     admin_action_link(ti('link.export'), 'export', path, options)
+  end
+
+  def icon_aria_label(icon)
+    key = "icons.#{icon}"
+    I18n.t(key, default: icon.titleize)
   end
 
   private

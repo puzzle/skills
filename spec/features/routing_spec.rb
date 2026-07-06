@@ -33,7 +33,7 @@ describe 'Routing', type: :feature, js: true do
       end
 
       it "Should open profile with correct language and preserve language in cookie" do
-        select 'Italiano', from: "i18n_language"
+        select 'Italiano', from: "language-select"
 
         select_from_slim_select("#person_id_person", bob.name)
         expect(page).to have_text("Dati personali")

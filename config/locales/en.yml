@@ -2,14 +2,14 @@
 en:
   activemodel:
     attributes:
+      merge_department_skill_form:
+        new_department_id: Target Department
+        old_department_ids: Old Departments
       unified_skill_form:
         new_skill: New Skill
         old_skill_id1: Skill 1
         old_skill_id2: Skill 2
         title: Title
-      merge_department_skill_form:
-        old_department_ids: Old Departments
-        new_department_id: Target Department
     errors:
       models:
         unified_skill_form:
@@ -150,25 +150,34 @@ en:
     index:
       delete_not_synced_profiles: Delete unsynchronized profiles
       delete_unemployed_people: Delete former employees
+      merge_department_snapshots: Merge department skill development
       reminder_mail: Activate reminder emails for your company.
       unify_skills: Unify skills
       update_people_manually: Update people manually
-      merge_department_snapshots: Merge department skill development
     manual_ptime_sync:
       manual_sync:
         failed_people_updates: Something went wrong while updating %{names}. Please try again and, if necessary, check the data in PuzzleTime.
         fetching_data_failed: Something went wrong while trying to fetch data from PuzzleTime. Please try again and contact support if necessary.
         names_by_provider: "%{names} from provider %{provider}"
         people_updated: The data for all people has been successfully updated
-    unified_skills:
-      create:
-        success: Skill %{skill1} was successfully unified with Skill %{skill2} into the new Skill %{new_skill}
     merge_department_skill_snapshots:
       create:
         success: History of department %{old_department_names} was transferred to department %{new_department_name}.
+    unified_skills:
+      create:
+        success: Skill %{skill1} was successfully unified with Skill %{skill2} into the new Skill %{new_skill}
   admin/manual_ptime_sync:
     index:
       description: When this beautiful button is pressed, all people's data will be updated with the data from PuzzleTime. This may take a few seconds.
+  admin/merge_department_skill_snapshots:
+    form:
+      department_merge: Merge skill development
+      new_department: Target Department
+      old_departments: Old Departments
+    index:
+      department_merge_history:
+        merge_history: Department merge history
+        no_departments_merged: No merge history available
   admin/people_management:
     index:
       not_synced_title: The following profiles are currently not updated by the PuzzleTime sync
@@ -184,15 +193,6 @@ en:
       conflicts_found_message:
         one: "%{names} has rated both Skills. If the Skills are unified anyway, the better rating will be used."
         other: "%{names} have rated both Skills. If the Skills are unified anyway, the better rating will be used."
-  admin/merge_department_skill_snapshots:
-    form:
-      department_merge: Merge skill development
-      new_department: Target Department
-      old_departments: Old Departments
-    index:
-      department_merge_history:
-        merge_history: Department merge history
-        no_departments_merged: No merge history available
   certificates:
     form:
       cancel: cancel
@@ -227,9 +227,9 @@ en:
       invalid_url: must be a valid URL
       max_size_10MB: must not be larger than 10MB.
       max_size_error: must not be larger than 10MB.
+      merge_identical_department: cannot be merged with itself.
       profile-not-found: Profile could not be found.
       valid_percent_range: must be between 0 and 200.
-      merge_identical_department: cannot be merged with itself.
   global:
     date:
       from: From
@@ -256,6 +256,21 @@ en:
       rated: Rated
       search: "%{target} search"
       unrated: Not rated
+    icons:
+      cancel: Cancel action
+      close: Close dialog
+      export: Export data
+      list: Show list
+      pencil: Edit item
+      plus: Add new item
+      redhat: Export with Red Hat template
+      remove: Delete item
+      save: Save changes
+      saved: Saved
+      save-and-new: Save and create new
+      trash: Delete item
+      zoom-in: Show details
+    language_select: Select your language
     link:
       cancel: Cancel
       download: Download
@@ -374,6 +389,7 @@ en:
       core_competences: Core competencies
       image_url: Enter image URL
       personals: Personal details
+      picture: Profile picture
       upload_image: or upload an image
     projects:
       link:
