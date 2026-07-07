@@ -8,16 +8,12 @@ Rails.application.configure do
   config.content_security_policy do |policy|
     policy.default_src :self, :https
     policy.font_src    :self, :https, :data
-    policy.img_src     :self, :data, "https://www.puzzle.ch", "*.puzzle.ch"
+    policy.img_src     :self, :data, ENV.fetch('PICTURE_HOST', 'puzzle.ch')
     policy.object_src  :none
     policy.script_src  :self, :unsafe_inline, :https
     policy.style_src   :self, :unsafe_inline, :https
 
-    policy.connect_src :self, :https, "sso.puzzle.ch"
-    policy.frame_src   :self, :https, "sso.puzzle.ch"
-
-    # Specify URI for violation reports
-    # policy.report_uri "/csp-violation-report-endpoint"
+    policy.connect_src :self, :https, ENV['CONNECT_SRC']
   end
 
   # Generate session nonces for permitted importmap, inline scripts, and inline styles.
