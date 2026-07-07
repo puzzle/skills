@@ -100,9 +100,8 @@ class Person < ApplicationRecord
                     skills: [:title]
                   },
                   using: {
-                    tsearch: {
-                      prefix: true
-                    }
+                    tsearch: { prefix: true },
+                    trigram: { word_similarity: true }
                   }
 
   def last_updated_at
