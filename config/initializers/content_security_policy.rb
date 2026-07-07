@@ -13,7 +13,7 @@ Rails.application.configure do
     policy.script_src  :self, :unsafe_inline, :https
     policy.style_src   :self, :unsafe_inline, :https
 
-    policy.connect_src :self, :https, ENV['CONNECT_SRC']
+    policy.connect_src :self, :https, ENV.fetch('CONNECT_SRC', "")
   end
 
   # Generate session nonces for permitted importmap, inline scripts, and inline styles.

@@ -57,7 +57,6 @@ module Skills
 
     # Add Cors isolation to default headers
     config.action_dispatch.default_headers.merge!(
-      'Cross-Origin-Embedder-Policy' => 'unsafe-none',
       'Cross-Origin-Resource-Policy' => 'same-origin',
       'Cross-Origin-Opener-Policy'   => 'same-origin'
     )
