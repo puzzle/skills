@@ -12,7 +12,7 @@
         %span.fs-6.text-gray
           = ti "people_skills.interest"
         .rate
-          - 5.downto(1) do |interest_n|
+          - 1.upto 5 do |interest_n|
             = form.radio_button "interest[#{i}]", interest_n, id: "row#{i}_star#{interest_n}", checked: interest_n == filter.interest, onClick: "this.form.requestSubmit()"
             = form.label 'stars', for: "row#{i}_star#{interest_n}", id: "row#{i}_star-label#{interest_n}", class: "star#{interest_n}"
   - if i != 0
