@@ -82,7 +82,7 @@ describe 'Tabbar', type: :feature, js:true do
         end
 
         def check_highlighted_tab(text)
-          expect(page).to have_selector(".nav.nav-tabs a.nav-link.active", text: text)
+          expect(page).to have_selector(".nav-tabs .nav .nav-item a.nav-link.active", text: text)
         end
       end
 
@@ -108,7 +108,7 @@ describe 'Tabbar', type: :feature, js:true do
 
           it "should #{'not' if admin_only} display #{title} tab on profile as user" do
             visit eval("#{path_helper} #{bob.id}")
-            expect(page.has_selector?(".nav.nav-tabs a.nav-link", text: (t title), wait: 0.1)).to eql(!admin_only)
+            expect(page.has_selector?(".nav-tabs .nav .nav-item a.nav-link", text: (t title), wait: 0.1)).to eql(!admin_only)
           end
         end
       end
