@@ -1,12 +1,4 @@
 module SkillSearchHelper
-  def skills_for_select(skill_id)
-    options_for_select(
-      @all_skills ||= Skill.for_select,
-      selected: skill_id,
-      disabled: @search.filter_rows.map(&:skill_id).excluding(skill_id)
-    )
-  end
-
   def department_select(form)
     options      = { include_blank: ti('dont_filter'), selected: params[:department] }
     html_options = { data: { dropdown_target: 'dropdown' }, class: 'w-25',

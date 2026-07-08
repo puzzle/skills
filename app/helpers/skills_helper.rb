@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 module SkillsHelper
+  def skills_for_select(selected_skills, disabled_skills: nil)
+    options_for_select(
+      Skill.for_select,
+      selected: selected_skills,
+      disabled: disabled_skills
+    )
+  end
 
   def default_set_button(value, label)
     active = params[:defaultSet] == value
