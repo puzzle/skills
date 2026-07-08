@@ -8,7 +8,7 @@
             { onchange: "this.form.requestSubmit()", class: "skill-tracking-select", data: { dropdown_target: "dropdown" } }
     %div{"data-controller": "dropdown", "data-dropdown-auto-width-value": "true"}
       = f.label :skill_id, t('activerecord.models.skill.one'), class: "text-secondary"
-      = f.select "skill_id[]", skills_for_select(params[:skill_id]),
+      = f.select :skill_id, skills_for_select(params[:skill_id]),
         { prompt: ta(:please_select) },
         { onchange: "this.form.requestSubmit()", class: "skill-tracking-select", data: { dropdown_target: "dropdown" } }
     %div
