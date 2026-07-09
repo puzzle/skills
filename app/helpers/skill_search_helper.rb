@@ -12,4 +12,15 @@ module SkillSearchHelper
     label    = label_tag(:expert_mode, ti('expert_mode'), class: 'form-check-label')
     link_to(href) { safe_join([checkbox, label]) }
   end
+
+  def skill_select(form, skill_id)
+    disabled_skills = @search.filter_rows.map(&:skill_id).excluding(skill_id)
+    options = skills_for_select(skill_id, disabled_skills: disabled_skills)
+
+    form.select "skill_id[]",
+                  options,
+                  { prompt: true },
+                  data: { "dropdown-target": "dropdown" },
+                  onchange: "this.form.requestSubmit()"
+  end
 end
