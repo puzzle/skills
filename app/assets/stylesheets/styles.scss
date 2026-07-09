@@ -222,6 +222,11 @@ $skills-dark-blue: #1e5a96;
   display: block;
 }
 
+.profile-avatar {
+  object-fit: cover;
+  @extend .rounded-circle;
+}
+
 .portfolio-select,
 .radar-select {
   width: 100% !important;
