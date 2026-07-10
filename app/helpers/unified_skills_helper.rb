@@ -2,11 +2,11 @@ module UnifiedSkillsHelper
   include ParamConverters
 
   def old_skill1_select_options
-    options_for_select(skills_for_dropdown, selected: old_skill_id1)
+    options_for_select(Skill.for_select, selected: old_skill_id1)
   end
 
   def old_skill2_select_options
-    options_for_select(skills_for_dropdown, selected: old_skill_id2)
+    options_for_select(Skill.for_select, selected: old_skill_id2)
   end
 
   def old_skill_id1

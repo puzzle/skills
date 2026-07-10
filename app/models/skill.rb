@@ -30,7 +30,22 @@ class Skill < ApplicationRecord
   default_scope { kept }
 
   scope :list, -> { order(:title) }
-  scope :for_select, -> { list.map { |skill| [skill.title, skill.id] } }
+
+  def self.for_select
+    skills = list.includes(:category, :parent_category)
+    title_counts = skills.map { |skill| skill.title.downcase }.tally
+
+    skills.map { |skill| skill.format_for_select(title_counts) }
+  end
+
+  def format_for_select(title_counts)
+    return [title, id] unless title_counts[title.to_s.downcase] > 1
+
+    parent_title = parent_category.title
+    category_title = category.title
+
+    ["#{title} | (#{parent_title} - #{category_title})", id]
+  end
 
   scope :default_set, -> { where(default_set: true) }
 

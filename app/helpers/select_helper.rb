@@ -12,8 +12,13 @@ module SelectHelper
   end
 
   def skills_dropdown_options
-    skills = Skill.list.map { |s| [s.title, s.id, { 'data-category-id': s.category.id }] }
-    add_default_option(skills, { 'data-placeholder': true })
+    skills = Skill.list.index_by(&:id)
+
+    options = Skill.for_select.map do |title, id|
+      [title, id, { 'data-category-id': skills[id]&.category&.id }]
+    end
+
+    add_default_option(options, { 'data-placeholder': true })
   end
 
   def model_path_or_nil(model)
