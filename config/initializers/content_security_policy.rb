@@ -27,6 +27,3 @@ Rails.application.configure do
   # Report violations without enforcing the policy.
   # config.content_security_policy_report_only = true
 end
-
-
-content-security-policy: default-src 'self' https:; font-src 'self' https: data:; img-src 'self' data: ; object-src 'none'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; connect-src 'self' https:
