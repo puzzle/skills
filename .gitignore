@@ -38,6 +38,7 @@ spec/coverage/.last_run.json
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+config/docker/development/home/rails/.yarnrc
 
 # Created by https://www.gitignore.io/api/intellij
 

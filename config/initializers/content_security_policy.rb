@@ -8,7 +8,7 @@ Rails.application.configure do
   config.content_security_policy do |policy|
     policy.default_src :self, :https
     policy.font_src    :self, :https, :data
-    policy.img_src     :self, :data, ENV.fetch('PICTURE_HOST', 'puzzle.ch')
+    policy.img_src     :self, :data, ENV.fetch('PICTURE_HOST', "")
     policy.object_src  :none
     policy.script_src  :self, :unsafe_inline, :https
     policy.style_src   :self, :unsafe_inline, :https
@@ -27,3 +27,6 @@ Rails.application.configure do
   # Report violations without enforcing the policy.
   # config.content_security_policy_report_only = true
 end
+
+
+content-security-policy: default-src 'self' https:; font-src 'self' https: data:; img-src 'self' data: ; object-src 'none'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; connect-src 'self' https:
