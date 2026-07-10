@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   include ParamConverters
 
   before_action :authenticate_auth_user!
+  before_action :permissions_policy_header
   around_action :switch_locale
 
   helper_method :auth_users_for_select
@@ -82,5 +83,21 @@ class ApplicationController < ActionController::Base
 
   def current_ability
     @current_ability ||= Ability.new(current_auth_user)
+  end
+
+  protected
+
+  def permissions_policy_header
+    policies = %w[
+      camera=()
+      gyroscope=()
+      microphone=()
+      usb=()
+      fullscreen=(self)
+      payment=()
+      geolocation=()
+    ]
+
+    response.headers['Permissions-Policy'] = policies.join(', ')
   end
 end

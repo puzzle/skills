@@ -54,5 +54,11 @@ module Skills
 
     # Prevent health checks from clogging up the logs.
     config.silence_healthcheck_path = "/status/health"
+
+    # Add Cors isolation to default headers
+    config.action_dispatch.default_headers.merge!(
+      'Cross-Origin-Resource-Policy' => 'same-origin',
+      'Cross-Origin-Opener-Policy'   => 'same-origin'
+    )
   end
 end
