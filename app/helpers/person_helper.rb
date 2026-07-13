@@ -126,7 +126,7 @@ module PersonHelper
       [
         p.name, person_path(p),
         {
-          'data-html': "<a href='#{person_path(p)}' class='dropdown-option-link'>#{p.name}</a>",
+          'data-html': "<span class='dropdown-option-link'>#{p.name}</span>",
           class: 'p-0'
         }
       ]
