@@ -528,7 +528,7 @@ __metadata:
     postcss: "npm:^8.5.19"
     postcss-cli: "npm:^11.0.1"
     sass: "npm:^1.101.0"
-    slim-select: "npm:^4.0.4"
+    slim-select: "npm:^4.0.5"
   languageName: unknown
   linkType: soft
 
@@ -1822,9 +1822,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"slim-select@npm:^4.0.4":
-  version: 4.0.4
-  resolution: "slim-select@npm:4.0.4"
+"slim-select@npm:^4.0.5":
+  version: 4.0.5
+  resolution: "slim-select@npm:4.0.5"
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -1836,7 +1836,7 @@ __metadata:
       optional: true
     vue:
       optional: true
-  checksum: 10c0/b91a6b6ff571ead7c0777183bb3e07809f8d8435a976cbb7aa4cdf4e188b147430d20b028de7f4daaffabc7afe14795d8c54179620eba2886b0e81f7c73273eb
+  checksum: 10c0/62557b0e84983a8dcff9e4c3760deba52b312f9365256e6ad18366738a2b42980cc51c551b979f370e89bfbd9634ee9077ced74b099c935f5390e215208237ed
   languageName: node
   linkType: hard
 
