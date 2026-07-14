@@ -15,7 +15,8 @@
 #  month_from   :integer
 #  month_to     :integer
 # display_in_cv :boolean
-#
+# search_column :string
+
 
 class AdvancedTraining < ApplicationRecord
   include DaterangeModel

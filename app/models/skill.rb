@@ -12,7 +12,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  category_id :bigint(8)
-#
+#  search_column :string
 
 class Skill < ApplicationRecord
   include Discard::Model
