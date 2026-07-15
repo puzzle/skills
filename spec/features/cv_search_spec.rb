@@ -137,10 +137,8 @@ describe 'Advanced Trainings', type: :feature, js: true do
         multi_select_from_slim_select('#category-filter', [data[:field]], true)
         fill_in 'cv_search_field', with: data[:value]
 
-        # because of 0.3 search delay
-        sleep 0.3
+        expect(page).to have_css('#cv-search-result')
 
-        check 'search_skills'
         check_search_results_only_in_one_found_in(data[:field])
       end
     }
@@ -151,7 +149,6 @@ describe 'Advanced Trainings', type: :feature, js: true do
 
       expect(page).to have_css('#cv-search-result')
 
-      check 'search_skills'
       check_search_results_only_in_one_found_in(["Projekte", "Notizen Member"])
     end
   end
@@ -165,8 +162,6 @@ describe 'Advanced Trainings', type: :feature, js: true do
 
   def check_search_results_only_in_one_found_in(field_name)
     allowed_names = Array(field_name)
-
-    expect(page).to have_css('#cv-search-result')
 
     within('turbo-frame#search-results') {
       found_categories = all("[id='cv-search-result'] [id='found-in-link']").map(&:text)
