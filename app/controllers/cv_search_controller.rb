@@ -2,8 +2,6 @@
 
 class CvSearchController < ApplicationController
   before_action :prepare_search_data, only: [:index, :search]
-  def index
-  end
 
   def search
     respond_to do |format|
@@ -15,7 +13,7 @@ class CvSearchController < ApplicationController
   private
 
   def prepare_search_data
-    @query_too_short = query.blank? || query.any? { |q| q.strip.length < 3 }
+    @query_too_short = compact_query.blank? || compact_query.any? { |q| q.strip.length < 3 }
     @search_skills = search_skills?
 
     @cv_search_results = should_search? ? people_search.entries : []
@@ -44,6 +42,10 @@ class CvSearchController < ApplicationController
 
   def query
     params[:q].to_s.split(',').map(&:strip).compact_blank
+  end
+
+  def compact_query
+    params[:q].to_s.gsub(/\s+/, '').split(',').compact_blank
   end
 
   def translate_attributes(attributes)

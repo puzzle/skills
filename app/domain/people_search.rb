@@ -27,21 +27,12 @@ class PeopleSearch
 
   def filter_by_category
     if @categories.empty?
-      requested_personal_details = PERSON_FIELDS
-      requested_associations = ASSOCIATIONS
+      @selected_personal_details = PERSON_FIELDS
+      @selected_associations = ASSOCIATIONS
     else
-      requested_personal_details = PERSON_FIELDS & @categories
-      requested_associations = ASSOCIATIONS & @categories.map(&:to_sym)
+      @selected_personal_details = PERSON_FIELDS & @categories
+      @selected_associations = ASSOCIATIONS & @categories.map(&:to_sym)
     end
-
-    use_defaults = requested_personal_details.empty? && requested_associations.empty?
-
-    set_selected_category(requested_personal_details, requested_associations, use_defaults)
-  end
-
-  def set_selected_category(requested_personal_details, requested_associations, use_defaults)
-    @selected_personal_details = use_defaults ? PERSON_FIELDS.dup : requested_personal_details
-    @selected_associations = use_defaults ? ASSOCIATIONS.dup : requested_associations
   end
 
   def perform_search
