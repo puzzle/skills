@@ -58,7 +58,7 @@ gem 'turbo-rails'
 group :metrics do
   gem 'brakeman'
   gem 'haml_lint', require: false
-  gem 'rubocop', '>= 1.88.2'
+  gem 'rubocop'
   gem 'rubocop-capybara', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
@@ -92,7 +92,7 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'selenium-webdriver', '>= 4.46'
+  gem 'selenium-webdriver'
   gem 'simplecov'
   gem 'webmock'
   # Use fixed version of webdrivers to avoid compatibility issues with chrome and chromedriver
