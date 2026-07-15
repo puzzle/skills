@@ -22,9 +22,9 @@ module PtimeHelper
        .to_h
        .each_slice(4)
        .map do |config|
-         config.to_h.transform_keys do |key|
-           key.sub(/^PTIME_PROVIDER_[0-9]+_/, '')
-         end
+      config.to_h.transform_keys do |key|
+        key.sub(/^PTIME_PROVIDER_[0-9]+_/, '')
+      end
     end
   end
 

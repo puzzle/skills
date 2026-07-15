@@ -183,3 +183,6 @@ Style/Attr:
 
 CustomCops/TranslatedHamlFiles:
   Enabled: true
+
+Rails/StrongParametersExpect:
+  Enabled: false
