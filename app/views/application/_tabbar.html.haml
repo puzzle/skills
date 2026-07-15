@@ -3,7 +3,7 @@
     - tabs.each do |tab|
       %li.nav-item
         - unless tab[:admin_only] && !admin?
-          = link_to tab[:path], class: "nav-link #{'active' if active_path == tab[:path]}" do
+          = link_to tab[:path], class: "nav-link  #{'active' if active_path == tab[:path]}" do
             = tab[:title]
-  %div.justify-content-end
+    %div.justify-content-end
     = yield if defined?(do_yield) && do_yield|| false
