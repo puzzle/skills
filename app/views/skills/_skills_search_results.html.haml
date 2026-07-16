@@ -4,18 +4,18 @@
       .row.border.border-top.table-light.tableform-hover.table-row.py-2
         .col-2.d-flex.align-items-center.text-break
           = link_to skill.title, skill_path(skill), data: { turbo_frame: "remote_modal" }
-        .col-1.bg-light.d-flex.align-items-center
+        .col-1.bg-body-secondary.d-flex.align-items-center
           = @member_counts[skill.id].to_i
         .col-3.d-flex.align-items-center
           =skill.category.parent.title
-        .col-2.bg-light.d-flex.align-items-center
+        .col-2.bg-body-secondary.d-flex.align-items-center
           =skill.category.title
         .col-1.d-flex.align-items-center
           =skill.default_set.nil? ? "Neu" : (skill.default_set? ? "Ja" : "Nein")
-        .col-1.bg-light.d-flex.align-items-center
+        .col-1.bg-body-secondary.d-flex.align-items-center
           =skill.radar
         .col-1.d-flex.align-items-center
           =skill.portfolio
-        .col-1.bg-light
+        .col-1.bg-body-secondary
           %div.h-100.d-flex.justify-content-center.align-items-center
             =admin_action_link("", "pencil", edit_skill_path(skill))

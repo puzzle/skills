@@ -6,13 +6,12 @@
       = hidden_field_tag :sort_dir, params[:sort_dir]
     %div.d-flex.flex-row.mt-2
       = form.text_field :title, class: "form-control skills-search-field rounded-end-0", placeholder: "#{ti('filter.search', target: Skill.model_name.human)}", oninput: "this.form.requestSubmit()", include_blank: true
-      %div.border.d-flex.rounded-end.bg-white
-        %img.pointer.p-2{src: "/assets/search.svg"}
+      %div.border.d-flex.rounded-end.bg-body
+        %img.pointer.p-2.theme-icon{src: "/assets/search.svg"}
 
     %span.d-flex.flex-row.mt-3.flex-wrap.gap-2
       %div.btn-group.me-3#header-filters
         = render("header_filters")
-
       %span.d-flex.align-items-center.flex-wrap
         %span.text-gray.me-1
           = "#{Category.model_name.human}:"
