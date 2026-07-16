@@ -1,4 +1,4 @@
-%div.d-flex.flex-column.bg-white{"data-controller": "skillset-selected"}
+%div.d-flex.flex-column.bg-body{"data-controller": "skillset-selected"}
   = form_with(url: skills_path, method: :get, data: {turbo_stream: true, skillset_selected_target: "form" }) do |form|
     = hidden_field_tag :defaultSet, params[:defaultSet], data: { skillset_selected_target: "defaultSet" }
     #sort
