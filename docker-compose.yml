@@ -75,7 +75,7 @@ services:
 
   assets:
     container_name: skills_assets
-    image: ruby:4.0.1
+    image: ruby:4.0.6
     working_dir: /myapp
     environment:
       RAILS_ENV: development
@@ -94,7 +94,7 @@ services:
 
   worker:
     container_name: skills_worker
-    image: ruby:4.0.1
+    image: ruby:4.0.6
     environment:
       <<: *shared-env
       RAILS_ENV: development
