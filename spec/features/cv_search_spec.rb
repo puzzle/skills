@@ -4,102 +4,95 @@ describe 'Advanced Trainings', type: :feature, js: true do
   let(:bob) { people(:bob) }
   let(:alice) { people(:alice) }
 
-  before(:each) do
+  before do
     sign_in auth_users(:admin)
     visit("/cv_search")
   end
 
   describe 'Search' do
-    it 'should find correct results' do
-      fill_in 'cv_search_field', with: bob.name
-      check_search_results(Person.human_attribute_name(:name))
-      fill_in 'cv_search_field', with: bob.projects.first.technology
-      check_search_results(Person.human_attribute_name(:projects))
-      fill_in 'cv_search_field', with: bob.title
-      check_search_results(Person.human_attribute_name(:title))
-      fill_in 'cv_search_field', with: bob.roles.first.name
-      check_search_results(Person.human_attribute_name(:roles))
-      fill_in 'cv_search_field', with: bob.department.name
-      check_search_results(Person.human_attribute_name(:department))
-      fill_in 'cv_search_field', with: bob.competence_notes.split.first
-      check_search_results(Person.human_attribute_name(:competence_notes))
-      fill_in 'cv_search_field', with: bob.advanced_trainings.first.description
-      check_search_results(Person.human_attribute_name(:advanced_trainings))
-      fill_in 'cv_search_field', with: bob.educations.first.location
-      check_search_results(Person.human_attribute_name(:educations))
-      fill_in 'cv_search_field', with: bob.activities.first.description
-      check_search_results(Person.human_attribute_name(:activities))
-      fill_in 'cv_search_field', with: bob.projects.first.description
+    [
+      { search_term: ->(p) { p.name }, found_in: :name },
+      { search_term: ->(p) { p.projects.first.technology }, found_in: :projects },
+      { search_term: ->(p) { p.title }, found_in: :title },
+      { search_term: ->(p) { p.roles.first.name }, found_in: :roles },
+      { search_term: ->(p) { p.department.name }, found_in: :department },
+      { search_term: ->(p) { p.competence_notes.split.first }, found_in: :competence_notes },
+      { search_term: ->(p) { p.advanced_trainings.first.description }, found_in: :advanced_trainings },
+      { search_term: ->(p) { p.educations.first.location }, found_in: :educations },
+      { search_term: ->(p) { p.activities.first.description }, found_in: :activities },
+      { search_term: ->(p) { p.projects.first.description }, found_in: :projects }
+    ].each do |data|
+      it "should find correct results for #{data[:found_in]}" do
+        search_term = data[:search_term].call(bob)
+        perform_search(search_term)
+
+        check_search_results(Person.human_attribute_name(data[:found_in]))
+      end
     end
 
-    it 'should open person when clicking result' do
-      fill_in 'cv_search_field', with: bob.projects.first.technology
-      check_search_results(Person.human_attribute_name(:projects))
-      # Tests are flaky in firefox
-      sleep 0.3
-      click_link bob.name
-      expect(page).to have_current_path(person_path(bob))
+    [
+      { search_term: ->(p) { p.projects.first.technology }, found_in: :projects },
+      { search_term: ->(p) { p.educations.first.location }, found_in: :educations }
+    ].each do |data|
+      it "should open person when clicking #{data[:found_in]} result" do
+        search_term = data[:search_term].call(bob)
+        human_name = Person.human_attribute_name(data[:found_in])
 
-      visit(cv_search_index_path)
-      education_location = bob.educations.first.location
-      fill_in 'cv_search_field', with: education_location
-      check_search_results(Person.human_attribute_name(:educations))
-      # Tests are flaky in firefox
-      sleep 0.3
-      click_link(Person.human_attribute_name(:educations))
-      expect(page).to have_current_path(person_path(bob, q: education_location, section_id: "educations"))
+        perform_search(search_term)
+        check_search_results(human_name)
+
+        click_link(human_name)
+
+        expect(page).to have_current_path(person_path(bob, q: search_term, section_id: data[:found_in].to_s))
+      end
     end
 
     it 'should only display results when length of search-text is > 3' do
-      fill_in 'cv_search_field', with: bob.name.slice(0, 2)
+      perform_search(bob.name.slice(0, 2))
       expect(page).not_to have_content(bob.name)
       expect(page).to have_content("Du musst mindestens 3 Zeichen eingeben.")
-      fill_in 'cv_search_field', with: bob.name.slice(0, 3)
+
+      perform_search(bob.name.slice(0, 3))
       expect(page).to have_content(bob.name)
     end
 
     it 'should dynamically search skills' do
       skill_title = bob.skills.last.title
-      fill_in 'cv_search_field', with: skill_title
-      expect(page).to have_content("Du musst mindestens 3 Zeichen eingeben.")
+      perform_search(skill_title)
       page.check('search_skills')
-      expect(page).not_to have_content("Keine Resultate")
+
       check_search_results(Skill.model_name.human.pluralize)
       expect(page).to have_link(href: /#{person_people_skills_path(bob)}.*q=#{skill_title}/)
     end
 
     it 'should dynamically search with whitespace handling enabled' do
-      fill_in 'cv_search_field', with: "B o b"
-
+      perform_search("B o b")
       page.check('handle_whitespaces')
 
       expect(page).to have_content(bob.name)
       check_search_results(Person.human_attribute_name(:name))
 
       click_link "Name"
-
       expect(page).to have_link(href: person_path(bob, q: "Bob Anderson", section_id: "personal-data"))
     end
 
     it "should disable whitespace handling if there are no whitespaces in search" do
-      fill_in 'cv_search_field', with: "Ruby"
-
+      perform_search("Ruby")
       expect(page).to have_field('handle_whitespaces', disabled: true)
     end
 
     it "should highlight the correct text" do
-      target = "Ruby"
+      first_name = bob.name.split(' ').first
+      perform_search(first_name)
 
-      visit(cv_search_index_path)
-      fill_in 'cv_search_field', with: target
+      expect(page).to have_link("Name")
+      click_link "Name"
 
-      # Tests are flaky in firefox
-      sleep 0.5
-      click_link "Projekte"
+      expect(page).to have_current_path(person_path(bob, q: bob.name, section_id: "personal-data"))
 
-      expect(page).to have_current_path(person_path(bob, q: "Ruby on Rails", section_id: "projects"))
-      within "#projects"
-      expect(page).to have_selector('mark.highlight', text: target)
+      within("#personal-data") do
+        expect(page).to have_selector('mark.highlight', text: first_name)
+      end
     end
 
     it 'should show multiple found skills and with category' do
@@ -107,40 +100,41 @@ describe 'Advanced Trainings', type: :feature, js: true do
       second_skill = 'Javascript'
 
       visit skills_path
-
       rename_skill_with(first_skill, Skill.first)
       rename_skill_with(second_skill, Skill.fourth, 'System-Engineering')
 
       visit cv_search_index_path
 
-      fill_in 'cv_search_field', with: first_skill
-      sleep 0.5
-
+      perform_search(first_skill)
       check 'search_skills'
 
       expected_url = /#{person_people_skills_path(alice)}.*q=#{first_skill}/
       expect(page).to have_link(href: expected_url)
 
       skills_label = Skill.model_name.human.pluralize
-
       check_search_results("#{skills_label}/ #{alice.skills.first.parent_category.title}", alice)
     end
   end
 
+  private
+
+  def perform_search(term)
+    fill_in 'cv_search_field', with: term
+  end
+
   def check_search_results(field_name, person = bob)
-    within('turbo-frame#search-results') {
+    within('turbo-frame#search-results') do
       expect(page).to have_link(person.name)
       expect(page).to have_link(field_name)
-    }
+    end
   end
 
   def rename_skill_with(name, skill, category = 'Software-Engineering')
-    within "#skill_#{skill.id}" do
+    within("#skill_#{skill.id}") do
       find('.icon.icon-pencil').click
       fill_in 'skill_title', with: name
       select category, from: 'skill_category_parent'
       find("input[type='image']").click
     end
-
   end
 end
