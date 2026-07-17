@@ -460,4 +460,26 @@ describe :people do
       end
     end
   end
+  
+  describe 'People Select', type: :feature, js: true do
+
+    let(:bob) { people(:bob) }
+    let(:alice) { people(:alice) }
+
+    before(:each) do
+      sign_in auth_users(:admin), scope: :auth_user
+    end
+
+    it "renders the current person as a span and others as clickable links" do
+      visit person_path(bob)
+
+      pry
+
+      find('.ss-main').click
+
+      expect(page).to have_css("span.dropdown-option-link", text: bob.name)
+
+      expect(page).to have_css("a.dropdown-option-link[href='#{person_path(alice)}']", text: alice.name)
+    end
+  end
 end
