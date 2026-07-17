@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'rails', '~> 8.1.2'
+gem 'rails', '~> 8.1.3'
 
 gem 'abbrev'
 gem 'active_model_serializers'
@@ -58,7 +58,7 @@ gem 'turbo-rails'
 group :metrics do
   gem 'brakeman'
   gem 'haml_lint', require: false
-  gem 'rubocop', '1.84.1'
+  gem 'rubocop'
   gem 'rubocop-capybara', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
@@ -92,7 +92,7 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'selenium-webdriver', '>= 4.28.0'
+  gem 'selenium-webdriver'
   gem 'simplecov'
   gem 'webmock'
   # Use fixed version of webdrivers to avoid compatibility issues with chrome and chromedriver

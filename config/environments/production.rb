@@ -42,8 +42,11 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.logger(STDOUT)
   end
 
-  # Change to "debug" to log everything (including potentially personally-identifiable information!)
+  # Change to "debug" to log everything (including potentially personally-identifiable information!).
   config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "debug")
+
+  # Prevent health checks from clogging up the logs.
+  config.silence_healthcheck_path = "/up"
 
   # Don't log any deprecations.
   config.active_support.report_deprecations = false
