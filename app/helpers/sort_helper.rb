@@ -4,6 +4,7 @@ module SortHelper
   end
 
   def people_skills
+    @search_results = @search.results.values
     if params[:sort_dir] && params[:sort]
       sort_people_skills
     else
@@ -51,7 +52,6 @@ module SortHelper
   end
 
   def sort_people_skills
-    @search_results = @search.results.values
     @search_results = if Person.attribute_names.include?(params[:sort])
                         sort_by_human_attr
                       else
