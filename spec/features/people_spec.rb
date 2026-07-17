@@ -460,7 +460,7 @@ describe :people do
       end
     end
   end
-  
+
   describe 'People Select', type: :feature, js: true do
 
     let(:bob) { people(:bob) }
@@ -472,8 +472,6 @@ describe :people do
 
     it "renders the current person as a span and others as clickable links" do
       visit person_path(bob)
-
-      pry
 
       find('.ss-main').click
 
