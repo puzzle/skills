@@ -123,13 +123,23 @@ module PersonHelper
 
   def people_for_select
     Person.employed.map do |p|
+      path = person_path(p)
+
       [
-        p.name, person_path(p),
+        p.name, path,
         {
-          'data-html': "<a href='#{person_path(p)}' class='dropdown-option-link'>#{p.name}</a>",
+          'data-html': person_option_html(path, p),
           class: 'p-0'
         }
       ]
+    end
+  end
+
+  def person_option_html(path, person)
+    if current_page?(path)
+      "<span class='dropdown-option-link'>#{person.name}</span>"
+    else
+      "<a href='#{path}' class='dropdown-option-link'>#{person.name}</a>"
     end
   end
 
