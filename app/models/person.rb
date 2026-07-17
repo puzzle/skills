@@ -138,13 +138,21 @@ class Person < ApplicationRecord
     url = URI.parse(picture_url)
     return false if url.host.nil?
 
-    hosts = Array ENV.fetch('PICTURE_HOST', 'puzzle.ch')
-    hosts.map { |host| host.sub('.', '\.') }.any? do |host|
-      host_regex = /^(\w+\.)?#{host}$/
-      url.host.match? host_regex
-    end
+    hosts = Array ENV.fetch('PICTURE_HOST', '').split
+
+    match_host?(hosts, url)
   rescue URI::InvalidURIError
     false
+  end
+
+  def match_host?(hosts, url)
+    hosts.any? do |host|
+
+      parsed_host = URI.parse(host).host
+
+      host_regex = /^(\w+\.)?#{parsed_host}$/
+      url.host.match? host_regex
+    end
   end
 
   def validate_url
