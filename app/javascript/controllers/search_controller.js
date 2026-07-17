@@ -30,7 +30,7 @@ export default class extends Controller {
     }
 
     checkInputForEasterEggs(value) {
-        const backgroundColor = value === "jeb_" ?  "linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet, red)" : ""
+        const backgroundColor = value === "jeb_" ?  "linear-gradient(in hsl longer hue 45deg, red 0 100%)" : ""
         const rotation = value === "Dinnerbone" ? 180 : 0
         Object.assign(document.body.style, {
             transform: `rotate(${rotation}deg)`,
