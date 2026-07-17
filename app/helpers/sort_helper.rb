@@ -51,7 +51,7 @@ module SortHelper
   end
 
   def sort_people_skills
-    @search_results = @search_results.to_a
+    @search_results = @search.results.values
     @search_results = if Person.attribute_names.include?(params[:sort])
                         sort_by_human_attr
                       else
