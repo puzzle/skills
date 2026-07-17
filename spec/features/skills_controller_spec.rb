@@ -79,6 +79,19 @@ describe :skills do
     end
   end
 
+  describe 'Add skill' do
+    it 'shows the add button when admin' do
+      visit skills_path
+      expect(page).to have_css('.icon.icon-plus')
+    end
+
+    it 'hides the add button when not admin' do
+      sign_in auth_users(:user), scope: :auth_user
+      visit skills_path
+      expect(page).not_to have_css('.icon.icon-plus')
+    end
+  end
+
   describe 'sort skillsets' do
     it 'should be able to sort skillset table' do
       visit skills_path
