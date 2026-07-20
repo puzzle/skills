@@ -6,15 +6,23 @@ describe SortHelper, type: :helper do
   end
 
   describe 'Sort people_skills' do
+    let(:search) do
+      double(
+        results: double(
+          values: [
+            [people_skills(:bob_rails)],
+            [people_skills(:alice_junit), people_skills(:alice_rails)]
+          ]
+        )
+      )
+    end
+
     let(:search_results) do
-      [
-        [people_skills(:bob_rails)],
-        [people_skills(:alice_junit), people_skills(:alice_rails)]
-      ]
+      search.results.values
     end
 
     before do
-      helper.instance_variable_set(:@search_results, search_results)
+      assign(:search, search)
     end
 
     it 'sorts people_skills by match count when no sort params are given' do
