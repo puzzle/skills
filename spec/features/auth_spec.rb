@@ -14,8 +14,7 @@ describe 'Check authentications', type: :feature, js: true do
 
     it 'Cannot create new skill' do
       visit skills_path
-      click_link(href: new_skill_path)
-      expect(page).to have_content("401 Keine ausreichenden Berechtigungen")
+      expect(page).not_to have_link(href: new_skill_path)
     end
   end
 
