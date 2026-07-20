@@ -8,7 +8,7 @@ Rails.application.configure do
   config.content_security_policy do |policy|
     policy.default_src :self, :https
     policy.font_src    :self, :https, :data
-    policy.img_src     :self, :data, ENV.fetch('PICTURE_HOST', "")
+    policy.img_src     :self, :https, :data, *ENV.fetch('PICTURE_HOST', "").split
     policy.object_src  :none
     policy.script_src  :self, :unsafe_inline, :https
     policy.style_src   :self, :unsafe_inline, :https
