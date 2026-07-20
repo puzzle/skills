@@ -104,4 +104,6 @@ Rails.application.configure do
     delivery_method: :smtp,
     authentication: :plain
   }
+
+  ENV["PICTURE_HOST"] ||= "puzzle.ch giphy.com"
 end

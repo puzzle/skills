@@ -76,4 +76,6 @@ Rails.application.configure do
     Bullet.bullet_logger = true
     Bullet.raise = false # raise an error if n+1 query occurs
   end
+
+  ENV["PICTURE_HOST"] ||= "puzzle.ch"
 end
