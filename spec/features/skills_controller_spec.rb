@@ -69,6 +69,21 @@ describe :skills do
         page.find('.icon.icon-pencil').disabled?
       end
     end
+
+    it 'shows a success flash message after editing a skill' do
+      visit skills_path
+      edited_skill = Skill.new(title: 'new Title')
+
+      page.all('.icon.icon-pencil')[1].click
+      fill_out_form
+
+      find("input[type='image']").click
+
+      expect(page).to have_css(
+                        '#flash-messages',
+                        text: "Skill #{I18n.t('crud.update.flash.success', model: edited_skill)}"
+                      )
+    end
   end
 
   describe 'Export skill', type: :feature do
