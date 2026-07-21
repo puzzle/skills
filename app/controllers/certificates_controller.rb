@@ -9,7 +9,7 @@ class CertificatesController < CrudController
           status: :unprocessable_entity)
   end
 
-  def update(**options, &)
+  def update
     super(:location => skills_path,
           render_on_unsaved: :edit,
           status: :ok)
