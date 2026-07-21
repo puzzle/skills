@@ -304,8 +304,8 @@ $skills-dark-blue: #1e5a96;
 }
 
 .skills-selected {
-  background-color: $skills-blue;
-  color: white;
+  background-color: $skills-blue !important;
+  color: white !important;
 }
 
 .dropdown-option-link {
