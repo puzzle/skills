@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.4.1](https://github.com/puzzle/skills/compare/6.4.0...6.4.1) (2026-07-21)
+
+
+### Miscellaneous Chores
+
+* **deps:** bump brace-expansion ([#1246](https://github.com/puzzle/skills/issues/1246)) ([dba72c5](https://github.com/puzzle/skills/commit/dba72c5aa0c7af0b853dbcd9eb1b6049c2d4e6fc))
+
 ## [6.4.0](https://github.com/puzzle/skills/compare/6.3.0...6.4.0) (2026-07-21)
 
 
