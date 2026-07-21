@@ -105,6 +105,17 @@ describe :certificates, type: :feature, js: true do
         expect(page).to have_text(error.full_message)
       end
     end
+
+    it 'shows a success flash message after editing a certificate' do
+      edit_certificate(Certificate.third.id, updated_certificate_values, true)
+
+      edited_certificate = Certificate.new(title: updated_certificate_values[:title])
+
+      expect(page).to have_css(
+                        '#flash-messages',
+                        text: "Zertifikat #{I18n.t('crud.update.flash.success', model: edited_certificate)}"
+                      )
+    end
   end
 
   describe 'sort certificate' do

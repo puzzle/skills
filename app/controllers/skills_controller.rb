@@ -24,6 +24,12 @@ class SkillsController < CrudController
           status: :unprocessable_entity)
   end
 
+  def update
+    super(:location => skills_path,
+          render_on_unsaved: :edit,
+          status: :ok)
+  end
+
   def unrated_by_person
     if params[:person_id].present?
       entries = Skill.default_set.where
