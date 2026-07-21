@@ -1,5 +1,46 @@
 # Changelog
 
+## [6.4.0](https://github.com/puzzle/skills/compare/6.3.0...6.4.0) (2026-07-21)
+
+
+### Features
+
+* add dark mode with system-preference default close [#1029](https://github.com/puzzle/skills/issues/1029) ([#1197](https://github.com/puzzle/skills/issues/1197)) ([44798c6](https://github.com/puzzle/skills/commit/44798c6056a921f8c33d33bbf5eb61e298eb9ee7))
+* add hover and focus to tabbar [#1159](https://github.com/puzzle/skills/issues/1159) ([#1193](https://github.com/puzzle/skills/issues/1193)) ([bc03fdc](https://github.com/puzzle/skills/commit/bc03fdc811d81d9abfc06559011a9477e7a61b56))
+* add minification for css [#1202](https://github.com/puzzle/skills/issues/1202) ([#1206](https://github.com/puzzle/skills/issues/1206)) ([359af04](https://github.com/puzzle/skills/commit/359af043acb20a7ea1c72c11a6f69566f3d12493))
+* add some minecraft refs to cv search [#1221](https://github.com/puzzle/skills/issues/1221) ([#1239](https://github.com/puzzle/skills/issues/1239)) ([bd5bda5](https://github.com/puzzle/skills/commit/bd5bda561f8e54cac9a46d3774488046ce0eda37))
+* change from person to auth_user [#1188](https://github.com/puzzle/skills/issues/1188) ([#1191](https://github.com/puzzle/skills/issues/1191)) ([28440f7](https://github.com/puzzle/skills/commit/28440f77f843cb4bd5ad9571f7418d63b312c96c))
+* change name of release please workflow to release please ([#1185](https://github.com/puzzle/skills/issues/1185)) ([4e619ed](https://github.com/puzzle/skills/commit/4e619ed343b2536a8979e0469d64be0b5920b1d9))
+* cv search should handle whitespaces correctly [#1140](https://github.com/puzzle/skills/issues/1140) ([#1181](https://github.com/puzzle/skills/issues/1181)) ([a92812f](https://github.com/puzzle/skills/commit/a92812f76ebe140b773a165274531f1acc8b0ec3))
+* **frontend:** add object-fit cover css class to the images  [#679](https://github.com/puzzle/skills/issues/679) ([#1217](https://github.com/puzzle/skills/issues/1217)) ([78835f0](https://github.com/puzzle/skills/commit/78835f0c835b11f366d97779c3bb677045ff88ca))
+* implement the merging of the department skill snapshots [#1109](https://github.com/puzzle/skills/issues/1109) ([#1121](https://github.com/puzzle/skills/issues/1121)) ([e9ad684](https://github.com/puzzle/skills/commit/e9ad6843028c5c972a404b1a3dbb2954b6bbec82))
+* **nix:** add Nix dev shell and justfile for local development ([#1194](https://github.com/puzzle/skills/issues/1194)) ([8ce0aaf](https://github.com/puzzle/skills/commit/8ce0aaf73566db0f08eec95b4bc77168c603d22d))
+
+
+### Bug Fixes
+
+* add autocomplet off to form  [#1055](https://github.com/puzzle/skills/issues/1055) ([#1220](https://github.com/puzzle/skills/issues/1220)) ([676d5bc](https://github.com/puzzle/skills/commit/676d5bce0c4862e3fa09be2fb70b5b4451ed8718))
+* add important to skills-selected so it always has priority [#1089](https://github.com/puzzle/skills/issues/1089) ([#1242](https://github.com/puzzle/skills/issues/1242)) ([4972121](https://github.com/puzzle/skills/commit/49721216612bccd69d0f08757e589a9d1a8b914a))
+* add tab index to skills filter [#1158](https://github.com/puzzle/skills/issues/1158) ([#1192](https://github.com/puzzle/skills/issues/1192)) ([95771d1](https://github.com/puzzle/skills/commit/95771d1aef274a0ccdd7dc925c1cd8343e1b2e14))
+* add update_columns [#1153](https://github.com/puzzle/skills/issues/1153) ([#1203](https://github.com/puzzle/skills/issues/1203)) ([21322fa](https://github.com/puzzle/skills/commit/21322fae704f4a7916874f48f11f2f396990e5b6))
+* filter not working for dark mode [#1089](https://github.com/puzzle/skills/issues/1089) ([#1229](https://github.com/puzzle/skills/issues/1229)) ([317500f](https://github.com/puzzle/skills/commit/317500fd138de9cc20997593c1022b744c3875b0))
+* filtering after interest goes the wrong way ([#1213](https://github.com/puzzle/skills/issues/1213)) ([72861c3](https://github.com/puzzle/skills/commit/72861c38d7cf833fe6b64e7364db3c94f14db025))
+* params getting lost between requests [#1097](https://github.com/puzzle/skills/issues/1097) ([#1207](https://github.com/puzzle/skills/issues/1207)) ([5779bc4](https://github.com/puzzle/skills/commit/5779bc47cdf6b5048745d428514a4527e62106d6))
+* Resize Fields in Member CV [#1132](https://github.com/puzzle/skills/issues/1132) ([#1196](https://github.com/puzzle/skills/issues/1196)) ([3c40969](https://github.com/puzzle/skills/commit/3c40969f37a60dcf52fa20a86e2faad596edaf0c))
+* set ldap same on login ([#1186](https://github.com/puzzle/skills/issues/1186)) ([f63c06f](https://github.com/puzzle/skills/commit/f63c06ff436774c1494d6c79ead012022680bf9a))
+* skill search not getting sorted [#1233](https://github.com/puzzle/skills/issues/1233) ([#1237](https://github.com/puzzle/skills/issues/1237)) ([28ce977](https://github.com/puzzle/skills/commit/28ce97751301b9cb4b9311c7ff6a6ced897ae3fd))
+* spacing between export and cv tabs [#1089](https://github.com/puzzle/skills/issues/1089) ([#1231](https://github.com/puzzle/skills/issues/1231)) ([35466f4](https://github.com/puzzle/skills/commit/35466f45899a3ebafe38e752f40cb4e8ad10fff7))
+* success message not displayed after edit [#1099](https://github.com/puzzle/skills/issues/1099) ([#1245](https://github.com/puzzle/skills/issues/1245)) ([1dd0000](https://github.com/puzzle/skills/commit/1dd00009dcaebb3581a85de017fa0b366b2f29e0))
+* update picture validation to match syntax of CSP ([#1240](https://github.com/puzzle/skills/issues/1240)) ([ed42e52](https://github.com/puzzle/skills/commit/ed42e525b6867d1de3084dbc61dfd84fa58efca5))
+
+
+### Miscellaneous Chores
+
+* **deps:** bump tar in the npm_and_yarn group across 1 directory ([#1198](https://github.com/puzzle/skills/issues/1198)) ([eb0be32](https://github.com/puzzle/skills/commit/eb0be327e92eb6aea62cd1f9f8c54447dbb4af7b))
+* **deps:** bump the bundler group across 1 directory with 2 updates ([#1200](https://github.com/puzzle/skills/issues/1200)) ([2c87058](https://github.com/puzzle/skills/commit/2c870588b22b29ed1189231ccf5634575cb37caf))
+* **deps:** bump the npm_and_yarn group across 1 directory with 3 updates ([#1189](https://github.com/puzzle/skills/issues/1189)) ([964ad6a](https://github.com/puzzle/skills/commit/964ad6acd0c84f05df9b7b5032640778f83874fb))
+* update websocket-driver ([#1218](https://github.com/puzzle/skills/issues/1218)) ([958af80](https://github.com/puzzle/skills/commit/958af80e161bf45c71d95bedad7b6a4139cc893c))
+
 ## [6.3.0](https://github.com/puzzle/skills/compare/6.2.0...6.3.0) (2026-06-12)
 
 
