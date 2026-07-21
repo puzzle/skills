@@ -17,4 +17,5 @@
           = "#{Category.model_name.human}:"
         = form.collection_select :category, Category.all_parents.order(:title), :id, :title, {prompt: true}, class: "form-select fit-content", onchange: 'this.form.requestSubmit();'
       = admin_export_action_link  export_skills_path, "data-turbo-prefetch": false , data: { turbo: false }
-      = add_action_link_modal
+      - if admin?
+        = add_action_link_modal
