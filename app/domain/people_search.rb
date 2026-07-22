@@ -60,7 +60,11 @@ class PeopleSearch
 
   def preload_associations(people)
     associations_to_load = @selected_associations.dup
-    associations_to_load -= [:skills] unless search_skills
+
+    if  associations_to_load.delete(:skills) && search_skills
+      associations_to_load << { skills: [:parent_category, :category] } << :people_skills
+    end
+
     people.includes(associations_to_load)
   end
 
@@ -86,7 +90,7 @@ class PeopleSearch
 
   def process_association(person, association_name)
     target = person.association(association_name).target
-    target = filter_rated_skills(person, target) if association_name == :skills
+    target = filter_rated_skills(person, target) if association_name == :skills && search_skills
 
     target.is_a?(Array) ? process_collection(target) : process_single_record(target)
   end
@@ -128,8 +132,7 @@ class PeopleSearch
   end
 
   def append_skill_category_data!(match_data, record)
-    return unless record.respond_to?(:category) && record.category&.parent_id.present?
-
+    return unless record.respond_to?(:category) && record.respond_to?(:parent_category)
     parent_category = record.parent_category
     match_data[:group] = parent_category.title.parameterize
     match_data[:category] = parent_category.title
@@ -182,7 +185,7 @@ class PeopleSearch
 
   def matches(string, regex)
     start_at = 0
-    matches  = []
+    matches = []
     while (match = string.match(regex, start_at))
       matches.push(match)
       start_at = match.end(0)
