@@ -61,7 +61,7 @@ class PeopleSearch
   def preload_associations(people)
     associations_to_load = @selected_associations.dup
 
-    if  associations_to_load.delete(:skills) && search_skills
+    if associations_to_load.delete(:skills) && search_skills
       associations_to_load << { skills: [:parent_category, :category] } << :people_skills
     end
 
@@ -133,6 +133,7 @@ class PeopleSearch
 
   def append_skill_category_data!(match_data, record)
     return unless record.respond_to?(:category) && record.respond_to?(:parent_category)
+
     parent_category = record.parent_category
     match_data[:group] = parent_category.title.parameterize
     match_data[:category] = parent_category.title
