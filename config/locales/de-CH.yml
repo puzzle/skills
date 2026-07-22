@@ -287,8 +287,8 @@ de-CH:
       redhat: Mit Red Hat Template exportierä
       remove: Elemänt löschä
       save: Änderigä spicherä
-      saved: Gspeicheret
       save-and-new: Spicherä u neus erstöue
+      saved: Gspeicheret
       trash: Elemänt löschä
       zoom-in: Details azäigä
     language_select: Wähu dini Sprach us
@@ -461,6 +461,11 @@ de-CH:
     none: Kes
   profile:
     updated_at: Z'letzt bearbeitet
+  projects:
+    form:
+      add_skill: Dr Skill {searchValue} existiert nonid - drück hiä um ihn global ds ersteue
+      dropdown_placeholder: Wähl e Skill us
+      migration_hint: Bitte schliäss dini Datenmigration ab, indäm dini Technologiä vo dim Projekt it z neue Fäld "Skills" unge übertreisch, damit dies Profil ufem neuestä Stand bliebt.
   skill_search:
     global:
       and: und

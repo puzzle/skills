@@ -11,11 +11,6 @@ describe 'Check authentications', type: :feature, js: true do
     it 'Username field does not contain admin tag' do
       expect(page.find('#username').text).not_to end_with("(Admin)")
     end
-
-    it 'Cannot create new skill' do
-      visit skills_path
-      expect(page).not_to have_link(href: new_skill_path)
-    end
   end
 
 

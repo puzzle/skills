@@ -4,7 +4,7 @@ class SkillsController < CrudController
   include ExportController
 
   before_action :update_category_parent, only: [:update]
-  before_action :render_unauthorized_not_admin, except: %i[index show unrated_by_person]
+  before_action :render_unauthorized_not_admin, except: %i[index new create show unrated_by_person]
 
   helper_method :check_entry_validity?
 
@@ -12,6 +12,7 @@ class SkillsController < CrudController
 
   def index
     entries
+    @skill = Skill.new(params[:skill]) if params[:open_modal]
     respond_to do |format|
       format.turbo_stream { render('skills/search', status: :ok) }
       format.html { render :index, status: :ok }
