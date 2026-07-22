@@ -45,7 +45,7 @@ class CvSearchController < ApplicationController
   end
 
   def compact_query
-    params[:q].to_s.gsub(/\s+/, '').split(',').compact_blank
+    query.map { |part| part.gsub(/\s+/, '') }
   end
 
   def translate_attributes(attributes)
