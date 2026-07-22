@@ -61,8 +61,9 @@ class PeopleSearch
   def preload_associations(people)
     associations_to_load = @selected_associations.dup
 
-    if associations_to_load.delete(:skills) && search_skills
-      associations_to_load << { skills: [:parent_category, :category] } << :people_skills
+    associations_to_load -= [:skills]
+    if search_skills
+      associations_to_load += [{ skills: [:parent_category, :category] }] << :people_skills
     end
 
     people.includes(associations_to_load)
