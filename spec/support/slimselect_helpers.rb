@@ -56,7 +56,7 @@ module SlimselectHelpers
 
     # Check if option_value is a path
     if option_value.starts_with? '/'
-      evaluate_script("document.querySelector('#person_id_person').slim.events.beforeChange([{value: '#{option_value}', html: '<a></a>'}])")
+      evaluate_script("document.querySelector('#{selector}').slim.events.beforeChange([{value: '#{option_value}', html: '<a></a>'}])")
     end
   end
 

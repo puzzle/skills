@@ -93,6 +93,17 @@ describe 'Projects', type: :feature, js:true do
       expect(page).to have_content(updated_description)
     end
 
+    it 'routes to skills via dropdown if skill does not exist' do
+      project = person.projects.first
+
+      open_edit_form(project)
+      within("turbo-frame##{dom_id project}") do
+        ss_search("#project_skill_ids", "Not Existing Skill")
+        ss_select("#project_skill_ids", skills_path)
+      end
+      expect(page).to have_current_path(skills_path)
+    end
+
     it 'cancels without saving' do
       project = person.projects.first
       old_description = project.description

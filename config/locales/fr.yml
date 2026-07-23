@@ -268,8 +268,8 @@ fr:
       redhat: Exporter avec le modèle Red Hat
       remove: Supprimer l'élément
       save: Enregistrer les modifications
-      saved: Enregistré
       save-and-new: Enregistrer et créer un nouveau
+      saved: Enregistré
       trash: Supprimer l'élément
       zoom-in: Afficher les détails
     language_select: Choisis ta langue
@@ -440,6 +440,11 @@ fr:
     none: Aucun
   profile:
     updated_at: Dernièrement édité
+  projects:
+    form:
+      add_skill: La compétence {searchValue} n'existe pas encore - cliquez ici pour la créer globalement
+      dropdown_placeholder: Sélectionnez une compétence
+      migration_hint: Veuillez finaliser la migration de vos données en transférant les technologies de votre projet dans le nouveau champ "Compétences" ci-dessous afin de maintenir votre profil à jour.
   skill_search:
     global:
       and: et

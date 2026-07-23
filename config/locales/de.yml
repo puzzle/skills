@@ -272,8 +272,8 @@ de:
       redhat: Mit Red Hat Template exportieren
       remove: Element löschen
       save: Änderungen speichern
-      saved: Gespeichert
       save-and-new: Speichern und neu erstellen
+      saved: Gespeichert
       trash: Element löschen
       zoom-in: Details anzeigen
     language_select: Wähle deine Sprache aus
@@ -444,6 +444,11 @@ de:
     none: Keines
   profile:
     updated_at: Zuletzt bearbeitet
+  projects:
+    form:
+      add_skill: Der Skill {searchValue} existiert noch nicht - klicke hier um ihn global zu erstellen
+      dropdown_placeholder: Wähle einen Skill aus
+      migration_hint: Bitte schliesse die Datenmigration ab, indem du die Technologien deines Projekts in das neue Feld "Skills" unten überträgst, damit dein Profil auf dem neuesten Stand bleibt.
   skill_search:
     global:
       and: und

@@ -1,5 +1,7 @@
 %div.bg-body.w-100.d-flex
   = render("header")
+- if params[:open_modal]
+  = render :template => 'skills/new'
 %div.w-100.margin-header.mt-4
   = render("table_header")
   %div
