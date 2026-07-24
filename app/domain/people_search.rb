@@ -63,9 +63,10 @@ class PeopleSearch
 
     associations_to_load -= [:skills]
     if search_skills
-      associations_to_load += [{ skills: [:parent_category, :category] }] << :people_skills
+      associations_to_load += [{ skills: [:parent_category, :category] }, :people_skills]
     end
 
+    # Bullet detects a Avoid Eager Load here which is a false positive
     people.includes(associations_to_load)
   end
 
