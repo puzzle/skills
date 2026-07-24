@@ -10,7 +10,7 @@ export default class extends Controller {
         contentPosition: { type: String, default: 'absolute' },
         multiple: { type: Boolean, default: false },
         placeholderText: { type: String, default: "" },
-        hideSelected: { type: Boolean, default: false }
+        hideSelected: { type: Boolean, default: false },
     }
 
     connect() {
@@ -22,6 +22,7 @@ export default class extends Controller {
 
         if (this.multipleValue) {
             settings.allowDeselect = true;
+            settings.alwaysOpen = this.alwaysOpenValue;
             settings.closeOnSelect = false;
             settings.hideSelected = this.hideSelectedValue;
 

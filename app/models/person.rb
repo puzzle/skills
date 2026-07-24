@@ -23,6 +23,7 @@
 #  email                          :string
 #  department_id                  :integer
 #  shortname                      :string
+#  search_column                  :string
 
 class Person < ApplicationRecord
   include PgSearch::Model
@@ -84,26 +85,21 @@ class Person < ApplicationRecord
                           divorced: 4 }
 
   pg_search_scope :search,
-                  against: [
-                    :name,
-                    :title,
-                    :competence_notes
-                  ],
+                  against: :search_column,
                   associated_against: {
-                    department: :name,
-                    roles: :name,
-                    projects: [:description, :title, :role, :technology],
-                    activities: [:description, :role],
-                    educations: [:location, :title],
-                    advanced_trainings: :description,
-                    contributions: :title,
-                    skills: [:title]
+                    department: :search_column,
+                    roles: :search_column,
+                    projects: :search_column,
+                    activities: :search_column,
+                    educations: :search_column,
+                    advanced_trainings: :search_column,
+                    contributions: :search_column,
+                    skills: :search_column
                   },
                   using: {
-                    tsearch: {
-                      prefix: true
-                    }
-                  }
+                    trigram: { word_similarity: true }
+                  },
+                  ranked_by: ':trigram'
 
   def last_updated_at
     [associations_updated_at, updated_at].compact.max

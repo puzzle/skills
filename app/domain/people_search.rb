@@ -1,21 +1,39 @@
 # frozen_string_literal: true
 
 class PeopleSearch
-  SEARCHABLE_FIELDS = %w{name title competence_notes description
-                         role technology location}.freeze
-  PERSONAL_DETAILS = %w[name email title person_roles roles department company birthdate nationality
-                        location marital_status shortname].freeze
-  CORE_COMPETENCES = %w[competence_notes skills].freeze
-  attr_reader :search_terms, :entries, :search_skills, :handle_whitespaces
+  SEARCHABLE_FIELDS = %w[name title competence_notes description role technology location].freeze
+  PERSONAL_DETAILS  = %w[name title].freeze
+  CORE_COMPETENCES  = %w[competence_notes].freeze
+  SKILLS = %w[skills].freeze
+  ASSOCIATIONS = %i[department roles projects activities educations advanced_trainings
+                    contributions skills].freeze
+  PERSON_FIELDS = (PERSONAL_DETAILS + CORE_COMPETENCES).freeze
 
-  def initialize(search_terms, search_skills: false, handle_whitespaces: false)
+  attr_reader :search_terms, :search_skills, :categories,
+              :selected_personal_details, :selected_associations, :entries, :handle_whitespaces
+
+  def initialize(search_terms, search_skills: false, categories: nil, handle_whitespaces: false)
     @search_terms = search_terms
     @search_skills = search_skills
+    @categories = Array(categories).compact_blank.map(&:to_s)
     @handle_whitespaces = handle_whitespaces
+
+    filter_by_category
+
     @entries = perform_search
   end
 
   private
+
+  def filter_by_category
+    if @categories.empty?
+      @selected_personal_details = PERSON_FIELDS
+      @selected_associations = ASSOCIATIONS
+    else
+      @selected_personal_details = PERSON_FIELDS & @categories
+      @selected_associations = ASSOCIATIONS & @categories.map(&:to_sym)
+    end
+  end
 
   def perform_search
     matching_people = find_matching_people
@@ -41,19 +59,21 @@ class PeopleSearch
   end
 
   def preload_associations(people)
-    associations = [:department, :roles, :projects, :activities,
-                    :educations, :advanced_trainings, :contributions]
+    associations_to_load = @selected_associations.dup
 
+    associations_to_load -= [:skills]
     if search_skills
-      associations << :skills
-      associations << :people_skills
+      associations_to_load += [{ skills: [:parent_category, :category] }, :people_skills]
     end
 
-    people.includes(associations)
+    # Bullet detects a Avoid Eager Load here which is a false positive
+    people.includes(associations_to_load)
   end
 
   def extract_match_data(person)
-    attribute_matches = search_attributes(person.attributes)
+    person_attributes = person.attributes.slice(*@selected_personal_details)
+
+    attribute_matches = search_attributes(person_attributes)
     association_matches = search_associations(person)
 
     (attribute_matches + association_matches).flatten.compact
@@ -66,13 +86,13 @@ class PeopleSearch
   end
 
   def association_symbols
-    Person.reflections.keys.excluding('company', 'auth_user').map(&:to_sym)
+    associations = (@selected_associations || Person.reflections.keys).map(&:to_s)
+    associations.excluding('company', 'auth_user').map(&:to_sym)
   end
 
   def process_association(person, association_name)
     target = person.association(association_name).target
-
-    target = filter_rated_skills(person, target) if association_name == :skills
+    target = filter_rated_skills(person, target) if association_name == :skills && search_skills
 
     target.is_a?(Array) ? process_collection(target) : process_single_record(target)
   end
@@ -114,7 +134,7 @@ class PeopleSearch
   end
 
   def append_skill_category_data!(match_data, record)
-    return unless record.respond_to?(:category) && record.category&.parent_id.present?
+    return unless record.respond_to?(:category) && record.respond_to?(:parent_category)
 
     parent_category = record.parent_category
     match_data[:group] = parent_category.title.parameterize
@@ -123,11 +143,7 @@ class PeopleSearch
 
   def process_single_record(record)
     results = search_attributes(record.attributes)
-
-    if results.any?
-      results.first[:attribute] = record.class.name.downcase
-    end
-
+    results.first[:attribute] = record.class.name.downcase if results.any?
     results
   end
 
@@ -172,7 +188,7 @@ class PeopleSearch
 
   def matches(string, regex)
     start_at = 0
-    matches  = []
+    matches = []
     while (match = string.match(regex, start_at))
       matches.push(match)
       start_at = match.end(0)

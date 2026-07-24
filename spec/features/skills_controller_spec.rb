@@ -110,7 +110,7 @@ describe :skills do
   describe 'sort skillsets' do
     it 'should be able to sort skillset table' do
       visit skills_path
-      Skill.attribute_names.excluding("id", "created_at", "updated_at", "category_id", "discarded_at").including("category", "members", "subcategory").each do |attr|
+      Skill.attribute_names.excluding("id", "created_at", "updated_at", "category_id", "discarded_at", "search_column").including("category", "members", "subcategory").each do |attr|
         click_link Skill.human_attribute_name(attr)
         expect(page).to have_field("sort", with: attr, type: :hidden)
         expect(page).to have_field("sort_dir", with: "asc", type: :hidden)
