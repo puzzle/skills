@@ -36,6 +36,7 @@ class Person < ApplicationRecord
   has_many :advanced_trainings, dependent: :destroy
   has_many :activities, dependent: :destroy
   has_many :projects, dependent: :destroy
+  has_many :project_skills, source: :skills, through: :projects
   has_many :contributions, dependent: :destroy
   has_many :language_skills, dependent: :delete_all
   accepts_nested_attributes_for :language_skills, allow_destroy: true
@@ -93,6 +94,7 @@ class Person < ApplicationRecord
                     department: :name,
                     roles: :name,
                     projects: [:description, :title, :role, :technology],
+                    project_skills: :title,
                     activities: [:description, :role],
                     educations: [:location, :title],
                     advanced_trainings: :description,

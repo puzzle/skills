@@ -495,3 +495,7 @@ de-CH:
         title: Titu
     show:
       title: 'Skill: %{title} (%{amount} Members)'
+  projects:
+    form:
+      dropdown_placeholder: Wähl e Skill us
+      migration_hint: Bitte schliäss dini Datenmigration ab, indäm dini Technologiä vo dim Projekt it z neue Fäld "Skills" unge übertreisch, damit dies Profil ufem neuestä Stand bliebt.
