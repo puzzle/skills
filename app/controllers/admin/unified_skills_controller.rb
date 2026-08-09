@@ -67,13 +67,16 @@ class Admin::UnifiedSkillsController < CrudController
   end
 
   def merge_skills(old_skill1, old_skill2)
-    new_skill = Skill.create!(entry.new_skill)
-    update_people_skills(new_skill.id)
-    UnifiedSkill.create!(skill1_attrs: old_skill1.attributes, skill2_attrs: old_skill2.attributes,
-                         unified_skill_attrs: new_skill.attributes)
+    skill1_attrs = old_skill1.attributes
+    skill2_attrs = old_skill2.attributes
 
     old_skill1.discard!
     old_skill2.discard!
+
+    new_skill = Skill.create!(entry.new_skill)
+    update_people_skills(new_skill.id)
+    UnifiedSkill.create!(skill1_attrs: skill1_attrs, skill2_attrs: skill2_attrs,
+                         unified_skill_attrs: new_skill.attributes)
 
     new_skill
   end

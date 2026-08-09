@@ -33,6 +33,38 @@ describe Admin::UnifiedSkillsController do
     expect(PeopleSkill.where(skill_id: merged_skill.id).size).to eql(old_people_skills_count)
   end
 
+  it 'should unify duplicate skills without changing their title or category' do
+    skill1 = skills(:bash)
+    skill2 = skill1.dup
+    skill2.save!(validate: false)
+    skill1_attrs = skill1.attributes
+    skill2_attrs = skill2.attributes
+    merged_attrs = new_skill.merge(title: skill1.title, category_id: skill1.category_id)
+    old_people_skills_count = PeopleSkill.where(skill_id: [skill1.id, skill2.id]).size
+
+    post :create, params: {
+      unified_skill_form: {
+        old_skill_id1: skill1.id,
+        old_skill_id2: skill2.id,
+        checked_conflicts: true,
+        new_skill: merged_attrs
+      }
+    }
+
+    expect(response).to redirect_to(new_admin_unified_skill_path)
+    expect(Skill.find_by(id: skill1.id)).to be_nil
+    expect(Skill.find_by(id: skill2.id)).to be_nil
+
+    merged_skill = Skill.find_by!(title: skill1.title, category_id: skill1.category_id)
+    expect(merged_skill.id).not_to be_in([skill1.id, skill2.id])
+    expect(PeopleSkill.where(skill_id: merged_skill.id).size).to eql(old_people_skills_count)
+
+    history = UnifiedSkill.find_by!(skill1_attrs: skill1_attrs, skill2_attrs: skill2_attrs)
+    expect(history.unified_skill_attrs.excluding('created_at', 'updated_at')).to eql(
+      merged_skill.attributes.excluding('created_at', 'updated_at')
+    )
+  end
+
   it 'should choose better rating when unifying skills that are both rated by a single person' do
     skill1 = skills(:rails)
     skill2 = skills(:bash)
