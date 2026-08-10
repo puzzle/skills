@@ -547,3 +547,15 @@ textarea.form-control {
   color: var(--bs-btn-color);
   background-color: white;
 }
+
+.ss-content .ss-list .ss-option.ss-remove-hover {
+  &:hover {
+    background-color: transparent !important;
+  }
+
+  &.ss-highlighted {
+    background-color: transparent !important;
+    border-left: 5px solid var(--ss-primary-color) !important;
+    transition: border-left var(--ss-animation-timing) ease !important;
+  }
+}

@@ -3,7 +3,14 @@ import {Modal} from "bootstrap"
 
 export default class extends Controller {
     connect() {
-        this.modal = new Modal(this.element)
+        if (location.href.includes("?open_modal=true")){
+            this.element.addEventListener('hidden.bs.modal', () => {
+                history.replaceState({}, '', location.href.replace("?open_modal=true", ""))
+                document.getElementById("remote_modal").remove()
+            }, {once: true})
+        }
+
+        this.modal = Modal.getOrCreateInstance(this.element)
         this.modal.show()
 
         this.beforeCache = this.beforeCache.bind(this)

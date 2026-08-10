@@ -268,8 +268,8 @@ ja:
       redhat: Red Hatテンプレートでエクスポート
       remove: 項目を削除
       save: 変更を保存
-      saved: 保存済み
       save-and-new: 保存して新規作成
+      saved: 保存済み
       trash: 項目を削除
       zoom-in: 詳細を表示
     language_select: 言語を選択してください
@@ -440,6 +440,11 @@ ja:
     none: なし
   profile:
     updated_at: 最終編集日
+  projects:
+    form:
+      add_skill: スキル {searchValue} はまだ存在しません - ここをクリックしてグローバルに作成してください
+      dropdown_placeholder: スキルを選択してください
+      migration_hint: プロフィールを最新の状態に保つため、プロジェクトで使用している技術を以下の新しい「スキル」欄に移行し、データの移行を完了してください。
   skill_search:
     global:
       and: そして

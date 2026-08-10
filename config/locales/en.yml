@@ -268,8 +268,8 @@ en:
       redhat: Export with Red Hat template
       remove: Delete item
       save: Save changes
-      saved: Saved
       save-and-new: Save and create new
+      saved: Saved
       trash: Delete item
       zoom-in: Show details
     language_select: Select your language
@@ -440,6 +440,11 @@ en:
     none: None
   profile:
     updated_at: Last edited
+  projects:
+    form:
+      add_skill: The Skill {searchValue} doesn't exist yet - click here to create him globally
+      dropdown_placeholder: Select a Skill
+      migration_hint: Please complete your data migration by transferring your project's technologies into the new "Skills" field below to keep your profile updated
   skill_search:
     global:
       and: and

@@ -27,7 +27,7 @@ class Ability
         record.person.auth_user_id == user.id
       end
     end
-    can :read, Skill
+    can [:read, :create], Skill
     can :read, Person
     can :update, Person, auth_user_id: user.id
     can :destroy, Person, auth_user_id: user.id
