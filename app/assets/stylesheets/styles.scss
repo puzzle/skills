@@ -531,10 +531,10 @@ textarea.form-control {
 
 .highlight-search-term {
   padding: 1px;
+  color: var(--bs-body-color);
 
   @extend .rounded-1,
           .bg-skills-gray,
-          .text-dark;
 }
 
 .active-filter-button {
