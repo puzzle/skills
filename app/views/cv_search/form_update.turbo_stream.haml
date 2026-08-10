@@ -1,0 +1,5 @@
+= turbo_stream.update "search-skills-checkbox" do
+  = search_skills_checkbox(@search_skills)
+= turbo_stream.replace "search-results" do
+  = render 'cv_search/cv_search_results'
+

@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_12_095818) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_14_094531) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+  enable_extension "pg_trgm"
 
   create_table "activities", id: :serial, force: :cascade do |t|
     t.datetime "created_at", precision: nil, null: false
@@ -22,11 +23,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_12_095818) do
     t.integer "month_to"
     t.integer "person_id"
     t.text "role"
+    t.virtual "search_column", type: :text, as: "((COALESCE(description, ''::text) || ' '::text) || COALESCE(role, ''::text))", stored: true
     t.datetime "updated_at", precision: nil, null: false
     t.string "updated_by"
     t.integer "year_from", null: false
     t.integer "year_to"
     t.index ["person_id"], name: "index_activities_on_person_id"
+    t.index ["search_column"], name: "gin_index_activities_on_search_column", opclass: :gin_trgm_ops, using: :gin
   end
 
   create_table "advanced_trainings", id: :serial, force: :cascade do |t|
@@ -36,11 +39,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_12_095818) do
     t.integer "month_from"
     t.integer "month_to"
     t.integer "person_id"
+    t.virtual "search_column", type: :text, as: "COALESCE(description, ''::text)", stored: true
     t.datetime "updated_at", precision: nil, null: false
     t.string "updated_by"
     t.integer "year_from", null: false
     t.integer "year_to"
     t.index ["person_id"], name: "index_advanced_trainings_on_person_id"
+    t.index ["search_column"], name: "gin_index_advanced_trainings_on_search_column", opclass: :gin_trgm_ops, using: :gin
   end
 
   create_table "auth_users", force: :cascade do |t|
@@ -102,10 +107,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_12_095818) do
     t.integer "month_to"
     t.integer "person_id"
     t.string "reference"
+    t.virtual "search_column", type: :text, as: "COALESCE(title, ''::character varying)", stored: true
     t.string "title"
     t.datetime "updated_at", null: false
     t.integer "year_from"
     t.integer "year_to"
+    t.index ["search_column"], name: "gin_index_contributions_on_search_column", opclass: :gin_trgm_ops, using: :gin
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -144,8 +151,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_12_095818) do
     t.datetime "created_at", null: false
     t.datetime "discarded_at"
     t.string "name", null: false
+    t.virtual "search_column", type: :text, as: "COALESCE(name, ''::character varying)", stored: true
     t.datetime "updated_at", null: false
     t.index ["discarded_at"], name: "index_departments_on_discarded_at"
+    t.index ["search_column"], name: "gin_index_departments_on_search_column", opclass: :gin_trgm_ops, using: :gin
   end
 
   create_table "educations", id: :serial, force: :cascade do |t|
@@ -154,12 +163,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_12_095818) do
     t.integer "month_from"
     t.integer "month_to"
     t.integer "person_id"
+    t.virtual "search_column", type: :text, as: "((COALESCE(location, ''::text) || ' '::text) || COALESCE(title, ''::text))", stored: true
     t.text "title"
     t.datetime "updated_at", precision: nil
     t.string "updated_by"
     t.integer "year_from", null: false
     t.integer "year_to"
     t.index ["person_id"], name: "index_educations_on_person_id"
+    t.index ["search_column"], name: "gin_index_educations_on_search_column", opclass: :gin_trgm_ops, using: :gin
   end
 
   create_table "language_skills", force: :cascade do |t|
@@ -192,12 +203,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_12_095818) do
     t.string "ptime_data_provider"
     t.integer "ptime_employee_id"
     t.boolean "reminder_mails_active", default: true
+    t.virtual "search_column", type: :text, as: "(((((COALESCE(name, ''::character varying))::text || ' '::text) || (COALESCE(title, ''::character varying))::text) || ' '::text) || (COALESCE(competence_notes, ''::character varying))::text)", stored: true
     t.string "shortname"
     t.string "title"
     t.datetime "updated_at", precision: nil, null: false
     t.string "updated_by"
     t.index ["auth_user_id"], name: "index_people_on_auth_user_id"
     t.index ["company_id"], name: "index_people_on_company_id"
+    t.index ["search_column"], name: "gin_index_people_on_search_column", opclass: :gin_trgm_ops, using: :gin
   end
 
   create_table "people_skills", force: :cascade do |t|
@@ -243,6 +256,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_12_095818) do
     t.integer "month_to"
     t.integer "person_id"
     t.text "role"
+    t.virtual "search_column", type: :text, as: "((((((COALESCE(description, ''::text) || ' '::text) || COALESCE(title, ''::text)) || ' '::text) || COALESCE(technology, ''::text)) || ' '::text) || COALESCE(role, ''::text))", stored: true
     t.text "technology"
     t.text "title"
     t.datetime "updated_at", precision: nil, null: false
@@ -250,12 +264,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_12_095818) do
     t.integer "year_from", null: false
     t.integer "year_to"
     t.index ["person_id"], name: "index_projects_on_person_id"
+    t.index ["search_column"], name: "gin_index_projects_on_search_column", opclass: :gin_trgm_ops, using: :gin
   end
 
   create_table "roles", force: :cascade do |t|
     t.datetime "created_at", precision: nil, null: false
     t.string "name"
+    t.virtual "search_column", type: :text, as: "COALESCE(name, ''::character varying)", stored: true
     t.datetime "updated_at", precision: nil, null: false
+    t.index ["search_column"], name: "gin_index_roles_on_search_column", opclass: :gin_trgm_ops, using: :gin
   end
 
   create_table "skills", force: :cascade do |t|
@@ -265,10 +282,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_12_095818) do
     t.datetime "discarded_at"
     t.integer "portfolio"
     t.integer "radar"
+    t.virtual "search_column", type: :text, as: "COALESCE(title, ''::character varying)", stored: true
     t.string "title"
     t.datetime "updated_at", precision: nil, null: false
     t.index ["category_id"], name: "index_skills_on_category_id"
     t.index ["discarded_at"], name: "index_skills_on_discarded_at"
+    t.index ["search_column"], name: "gin_index_skills_on_search_column", opclass: :gin_trgm_ops, using: :gin
   end
 
   create_table "unified_skills", force: :cascade do |t|

@@ -64,6 +64,9 @@ en:
         birthdate: Date of birth
         company: Company
         competence_notes: Notes Member
+        contributions:
+          one: Contribution
+          other: Contributions
         department: Department
         display_competence_notes_in_cv: Include in CV export
         dual_citizen: Dual citizens
@@ -209,14 +212,18 @@ en:
         title: Title
         type_of_exam: Type of exam
   cv_search:
+    associations: CV Data
     global:
       handle_whitespaces: Search with and without whitespaces
       handle_whitespaces_tooltip: Results will be searched with whitespaces and without.
       search_placeholder: Search CVs...
       search_skills: Search skills as well
-    index:
-      multiple_keywords_message: You can separate multiple keywords with a comma.
       query_too_short: You must enter at least 3 characters.
+    index:
+      category: Category
+      dont_filter: Don't filter
+      multiple_keywords_message: You can separate multiple keywords with a comma.
+    personal_data: Personal Data
   errors:
     messages:
       authorization_error: You do not have permission to execute this function.

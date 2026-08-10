@@ -16,11 +16,16 @@ export default class extends Controller {
     timeout;
     submitWithTimeout(e) {
         this.whitespaceCheckbox()
-        const form = e.target.parentElement;
+        const form = e.target.form;
         clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
             this.checkInputForEasterEggs(e.target.value)
             form.requestSubmit();
+            const url = new URL(form.action)
+            const params = new URLSearchParams(new FormData(form))
+            url.search = params.toString()
+            window.history.pushState({}, "", url)
+
         }, 200)
     }
 

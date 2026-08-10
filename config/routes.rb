@@ -36,7 +36,11 @@ Rails.application.routes.draw do
 
     resources :skill_search, only: [:index]
 
-    resources :cv_search
+    resources :cv_search, only: :index do
+      collection do
+        get 'search', to: 'cv_search#search'
+      end
+    end
 
     resources :admin, only: :index
     namespace :admin do

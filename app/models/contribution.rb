@@ -15,6 +15,7 @@
 #  display_in_cv  :boolean
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  search_column  :string
 
 class Contribution < ApplicationRecord
   include DaterangeModel
