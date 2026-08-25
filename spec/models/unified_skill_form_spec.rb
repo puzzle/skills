@@ -37,5 +37,43 @@ describe UnifiedSkillForm do
 
       expect(unified_skill_form.errors[:old_skill_id1].first).to eql('und Skill 2 dürfen nicht identisch sein')
     end
+
+    it 'allows the unified skill to reuse a selected skill title and category' do
+      skill1 = skills(:rails)
+      skill2 = skills(:bash)
+      unified_skill_form = UnifiedSkillForm.new(
+        old_skill_id1: skill1.id,
+        old_skill_id2: skill2.id,
+        new_skill: {
+          title: skill1.title,
+          category_id: skill1.category_id,
+          radar: skill1.radar,
+          portfolio: skill1.portfolio,
+          default_set: skill1.default_set
+        }
+      )
+
+      expect(unified_skill_form).to be_valid
+    end
+
+    it 'rejects a title and category used by an unselected skill' do
+      skill1 = skills(:rails)
+      skill2 = skills(:bash)
+      existing_skill = skills(:junit)
+      unified_skill_form = UnifiedSkillForm.new(
+        old_skill_id1: skill1.id,
+        old_skill_id2: skill2.id,
+        new_skill: {
+          title: existing_skill.title,
+          category_id: existing_skill.category_id,
+          radar: existing_skill.radar,
+          portfolio: existing_skill.portfolio,
+          default_set: existing_skill.default_set
+        }
+      )
+
+      expect(unified_skill_form).not_to be_valid
+      expect(unified_skill_form.errors[:title].first).to eql('ist bereits vergeben')
+    end
   end
 end

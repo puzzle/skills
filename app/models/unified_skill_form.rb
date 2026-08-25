@@ -31,7 +31,18 @@ class UnifiedSkillForm
     return true if skill.valid?
 
     skill.errors.each do |error|
+      next if selected_skill_uniqueness_error?(error, skill)
+
       errors.add(error.attribute.to_sym, error.message)
     end
+  end
+
+  def selected_skill_uniqueness_error?(error, skill)
+    return false unless error.attribute == :title && error.type == :taken
+
+    selected_ids = [old_skill_id1, old_skill_id2].compact
+    Skill.where(title: skill.title, category_id: skill.category_id)
+         .where.not(id: selected_ids)
+         .none?
   end
 end

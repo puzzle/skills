@@ -25,7 +25,8 @@ class Skill < ApplicationRecord
   enum :radar, Settings.radar
   enum :portfolio, Settings.portfolio
 
-  validates :title, presence: true, length: { maximum: 100 }, uniqueness: { scope: :category_id }
+  validates :title, presence: true, length: { maximum: 100 },
+                    uniqueness: { scope: :category_id, conditions: -> { kept } }
 
   default_scope { kept }
 
