@@ -1,5 +1,24 @@
 # Changelog
 
+## [6.4.1](https://github.com/puzzle/skills/compare/6.4.0...6.4.1) (2026-09-08)
+
+
+### Bug Fixes
+
+* allow unifying duplicate skill titles ([#1255](https://github.com/puzzle/skills/issues/1255)) ([8dfe80f](https://github.com/puzzle/skills/commit/8dfe80f42e85bd0b0a6202adc1a80e0c455a0404))
+* highlighting inside cv search [#1247](https://github.com/puzzle/skills/issues/1247) ([#1249](https://github.com/puzzle/skills/issues/1249)) ([2a1a70b](https://github.com/puzzle/skills/commit/2a1a70b8c14e5e10f4cf9cb8df584e6909fc7e45))
+
+
+### Miscellaneous Chores
+
+* **deps:** bump activestorage in the bundler group across 1 directory ([#1252](https://github.com/puzzle/skills/issues/1252)) ([d394867](https://github.com/puzzle/skills/commit/d39486742b45357748642d8eba2de55c8e76a335))
+* **deps:** bump brace-expansion ([#1246](https://github.com/puzzle/skills/issues/1246)) ([dba72c5](https://github.com/puzzle/skills/commit/dba72c5aa0c7af0b853dbcd9eb1b6049c2d4e6fc))
+* **deps:** bump browserslist ([#1258](https://github.com/puzzle/skills/issues/1258)) ([ef2697a](https://github.com/puzzle/skills/commit/ef2697af997ffe496e6343e2de1587749ea746ac))
+* **deps:** bump nanoid in the npm_and_yarn group across 1 directory ([#1256](https://github.com/puzzle/skills/issues/1256)) ([d044491](https://github.com/puzzle/skills/commit/d04449191ed9149653c56418318827919c9601e2))
+* **deps:** bump postcss in the npm_and_yarn group across 1 directory ([#1257](https://github.com/puzzle/skills/issues/1257)) ([79b026f](https://github.com/puzzle/skills/commit/79b026f95a80c818a8224a1cf31533d304ecf055))
+* **deps:** bump tar in the npm_and_yarn group across 1 directory ([#1251](https://github.com/puzzle/skills/issues/1251)) ([347331b](https://github.com/puzzle/skills/commit/347331bbca14f630cad4fc55df64f6ca2945a28a))
+* **deps:** bump the npm_and_yarn group across 1 directory with 2 updates ([#1254](https://github.com/puzzle/skills/issues/1254)) ([f903a28](https://github.com/puzzle/skills/commit/f903a28489a748e641e4969ddd1de4436a0ab79b))
+
 ## [6.4.0](https://github.com/puzzle/skills/compare/6.3.0...6.4.0) (2026-07-21)
 
 
