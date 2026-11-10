@@ -14,7 +14,7 @@
       devShells = forEachSystem (pkgs: {
         default = pkgs.mkShell {
           # Toolchain pinned to match .tool-versions / docker-compose.yml.
-          # (nixpkgs ships Ruby 4.0.5; the project requests 4.0.1 — patch-compatible.)
+          # (nixpkgs ships Ruby 4.0.5; the project requests 4.0.6 — patch-compatible.)
           packages = with pkgs; [
             ruby_4_0
             nodejs_24       # Node 24 runtime (also ships corepack and yarn 4.12.1)
