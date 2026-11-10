@@ -175,7 +175,10 @@ describe 'Advanced Trainings', type: :feature, js: true do
       find('.icon.icon-pencil').click
       fill_in 'skill_title', with: name
       select category, from: 'skill_category_parent'
+      expect(page).to have_no_css("form[action*='validate_only']")
       find("input[type='image']").click
     end
+    expect(page).to have_no_css("#skill_#{skill.id} form")
+    expect(page).to have_css("#skill_#{skill.id}", text: name)
   end
 end

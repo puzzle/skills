@@ -177,7 +177,9 @@ describe :skill_search do
   end
 
   def add_and_fill_out_row(skill, level, interest)
+    row_count = all("[id^='filter-row-']").count
     click_button(t("skill_search.global.link.add"))
+    expect(page).to have_css("[id^='filter-row-']", count: row_count + 1)
     expect(page).to have_content('Bitte wählen')
 
     fill_out_row(skill, level, interest)
