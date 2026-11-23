@@ -4,7 +4,7 @@
 
 
 # Versioning
-ARG RUBY_VERSION="4.0.6"
+ARG RUBY_VERSION="4.0.10"
 ARG NODEJS_VERSION="24"
 
 # Packages
